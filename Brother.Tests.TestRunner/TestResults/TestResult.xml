@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="C:\Projects\brother-online\Brother\brother\Main\Brother.Tests.TestRunner\bin\Debug\Brother.Tests.Specs.dll" total="42" errors="3" failures="7" not-run="18" inconclusive="0" ignored="18" skipped="0" invalid="0" date="2014-12-11" time="08:41:46">
+  <environment nunit-version="2.6.3.13283" clr-version="4.0.30319.18444" os-version="Microsoft Windows NT 6.1.7601 Service Pack 1" platform="Win32NT" cwd="C:\Projects\brother-online\Brother\brother\Main\Brother.Tests.TestRunner\bin\Debug" machine-name="BIELT348" user="howellan" user-domain="EU" />
+  <culture-info current-culture="en-GB" current-uiculture="en-US" />
+  <test-suite type="Assembly" name="C:\Projects\brother-online\Brother\brother\Main\Brother.Tests.TestRunner\bin\Debug\Brother.Tests.Specs.dll" executed="True" result="Failure" success="False" time="973.929" asserts="0">
+    <results>
+      <test-suite type="Namespace" name="Brother" executed="True" result="Failure" success="False" time="973.921" asserts="0">
+        <results>
+          <test-suite type="Namespace" name="Tests" executed="True" result="Failure" success="False" time="973.921" asserts="0">
+            <results>
+              <test-suite type="Namespace" name="Specs" executed="True" result="Failure" success="False" time="973.920" asserts="0">
+                <results>
+                  <test-suite type="Namespace" name="TestSpecifications" executed="True" result="Failure" success="False" time="973.920" asserts="0">
+                    <results>
+                      <test-suite type="Namespace" name="BrotherMainSite" executed="True" result="Failure" success="False" time="234.712" asserts="0">
+                        <results>
+                          <test-suite type="Namespace" name="SuppliesAndAccessories" executed="True" result="Failure" success="False" time="234.711" asserts="0">
+                            <results>
+                              <test-suite type="TestFixture" name="PurchaseANewInkCartridgeFeature" description="PurchaseANewInkCartridge" executed="True" result="Failure" success="False" time="234.710" asserts="0">
+                                <categories>
+                                  <category name="UAT" />
+                                  <category name="TEST" />
+                                </categories>
+                                <results>
+                                  <test-case name="Brother.Tests.Specs.TestSpecifications.BrotherMainSite.SuppliesAndAccessories.PurchaseANewInkCartridgeFeature.PurchaseAProductByProductNumberOnBrotherIrelandButClickCancelBeforeSubmittingPayment" description="Purchase a product by product number on Brother &quot;Ireland&quot; but click Cancel before submitting payment" executed="True" result="Error" success="False" time="230.171" asserts="8">
+                                    <categories>
+                                      <category name="PROD" />
+                                      <category name="TEST" />
+                                      <category name="UAT" />
+                                    </categories>
+                                    <failure>
+                                      <message><![CDATA[OpenQA.Selenium.NoSuchElementException : Could not find element by: By.CssSelector: .button-blue.billing-add]]></message>
+                                      <stack-trace><![CDATA[at OpenQA.Selenium.Support.PageObjects.WebElementProxy.get_WrappedElement() in c:\Projects\webdriver\dotnet\src\support\PageObjects\WebElementProxy.cs:line 169
+at OpenQA.Selenium.Support.PageObjects.WebElementProxy.get_TagName() in c:\Projects\webdriver\dotnet\src\support\PageObjects\WebElementProxy.cs:line 64
+at Brother.Tests.Selenium.Lib.Pages.Base.SeleniumHelper.IsElementPresent(IWebElement element) in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Selenium\Pages\Base\SeleniumHelper.cs:line 537
+at Brother.Tests.Selenium.Lib.Pages.Base.SeleniumHelper.<>c__DisplayClass1.<AssertElementPresent>b__0() in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Selenium\Pages\Base\SeleniumHelper.cs:line 549
+at Brother.Tests.Selenium.Lib.Pages.Base.SeleniumHelper.WaitUpTo(Int32 milliseconds, Func`1 condition, String description) in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Selenium\Pages\Base\SeleniumHelper.cs:line 421
+at Brother.Tests.Selenium.Lib.Pages.Base.SeleniumHelper.AssertElementPresent(IWebElement element, String elementDescription) in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Selenium\Pages\Base\SeleniumHelper.cs:line 549
+at Brother.Tests.Selenium.Lib.Pages.BrotherOnline.Checkout.SavedPaymentDetailsPage.IsAddBillingButtonAvailable() in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Selenium\Pages\BrotherOnline\Checkout\SavedPaymentDetailsPage.cs:line 36
+at Brother.Tests.Specs.BrotherOnline.Purchasing.SavedPaymentDetailsStep.ThenIShouldSeeTheSavedPaymentDetailsPage() in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Specs\Test Steps\BrotherOnline\Purchasing\SavedPaymentDetailsSteps.cs:line 22
+at lambda_method(Closure , IContextManager )
+at TechTalk.SpecFlow.Bindings.BindingInvoker.InvokeBinding(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, TimeSpan& duration)
+at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments)
+at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(StepInstance stepInstance)
+at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.OnAfterLastStep()
+at TechTalk.SpecFlow.TestRunner.CollectScenarioErrors()
+at Brother.Tests.Specs.TestSpecifications.BrotherMainSite.SuppliesAndAccessories.PurchaseANewInkCartridgeFeature.ScenarioCleanup() in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Specs\Test Specifications\BrotherMainSite\SuppliesAndAccessories\PurchaseASupply.feature.cs:line 0
+at Brother.Tests.Specs.TestSpecifications.BrotherMainSite.SuppliesAndAccessories.PurchaseANewInkCartridgeFeature.PurchaseAProductByProductNumberOnBrotherIrelandButClickCancelBeforeSubmittingPayment() in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Specs\Test Specifications\BrotherMainSite\SuppliesAndAccessories\PurchaseASupply.feature:line 134
+]]></stack-trace>
+                                    </failure>
+                                  </test-case>
+                                </results>
+                              </test-suite>
+                            </results>
+                          </test-suite>
+                        </results>
+                      </test-suite>
+                      <test-suite type="Namespace" name="BrotherOnline" executed="True" result="Failure" success="False" time="411.241" asserts="0">
+                        <results>
+                          <test-suite type="Namespace" name="Account" executed="True" result="Failure" success="False" time="175.384" asserts="0">
+                            <results>
+                              <test-suite type="TestFixture" name="AddPaymentMethodFeature" description="AddPaymentMethod" executed="True" result="Failure" success="False" time="89.423" asserts="0">
+                                <categories>
+                                  <category name="UAT" />
+                                  <category name="TEST" />
+                                </categories>
+                                <results>
+                                  <test-case name="Brother.Tests.Specs.TestSpecifications.BrotherOnline.Account.AddPaymentMethodFeature.AddPaymentMethodWithNewAddressAndCancelBeforeSubmitting" description="Add payment method with new address and Cancel before submitting" executed="True" result="Error" success="False" time="86.382" asserts="2">
+                                    <categories>
+                                      <category name="TEST" />
+                                      <category name="PROD" />
+                                      <category name="UAT" />
+                                    </categories>
+                                    <failure>
+                                      <message><![CDATA[System.IO.DirectoryNotFoundException : Could not find a part of the path 'C:\Projects\brother-online\Brother\brother\Main\Brother.Tests.TestRunner\Supporting Files\LanguageLookup.xml'.]]></message>
+                                      <stack-trace><![CDATA[at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize)
+at System.Xml.XmlDownloadManager.GetStream(Uri uri, ICredentials credentials, IWebProxy proxy, RequestCachePolicy cachePolicy)
+at System.Xml.XmlUrlResolver.GetEntity(Uri absoluteUri, String role, Type ofObjectToReturn)
+at System.Xml.XmlTextReaderImpl.OpenUrlDelegate(Object xmlResolver)
+at System.Threading.CompressedStack.runTryCode(Object userData)
+at System.Runtime.CompilerServices.RuntimeHelpers.ExecuteCodeWithGuaranteedCleanup(TryCode code, CleanupCode backoutCode, Object userData)
+at System.Threading.CompressedStack.Run(CompressedStack compressedStack, ContextCallback callback, Object state)
+at System.Xml.XmlTextReaderImpl.OpenUrl()
+at System.Xml.XmlTextReaderImpl.Read()
+at System.Xml.XmlLoader.Load(XmlDocument doc, XmlReader reader, Boolean preserveWhitespace)
+at System.Xml.XmlDocument.Load(XmlReader reader)
+at Brother.Tests.Selenium.Lib.Support.Navigation.GetMenuItemString(String xPathExpression) in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Selenium\Support\HelperClasses\Helper.Navigation.cs:line 59
+at Brother.Tests.Selenium.Lib.Support.Navigation.ConvertProductMenuItemForLocale(String menuItemString) in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Selenium\Support\HelperClasses\Helper.Navigation.cs:line 33
+at Brother.Tests.Selenium.Lib.Pages.BrotherOnline.AccountManagement.GlobalNavigationModule.GetProductListMenuItem(ISearchContext driver, String menuItemString) in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Selenium\Pages\BrotherOnline\AccountManagement\GlobalNavigationModule.cs:line 106
+at Brother.Tests.Selenium.Lib.Pages.BrotherOnline.AccountManagement.GlobalNavigationModule.GetProductNavigationMenu(String menuItem) in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Selenium\Pages\BrotherOnline\AccountManagement\GlobalNavigationModule.cs:line 168
+at Brother.Tests.Specs.BrotherOnline.Account.AccountManagementSteps.ThenIfIClickOnMyAccountMenu() in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Specs\Test Steps\BrotherOnline\Account\AccountManagementSteps.cs:line 53
+at lambda_method(Closure , IContextManager )
+at TechTalk.SpecFlow.Bindings.BindingInvoker.InvokeBinding(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, TimeSpan& duration)
+at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments)
+at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(StepInstance stepInstance)
+at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.OnAfterLastStep()
+at TechTalk.SpecFlow.TestRunner.CollectScenarioErrors()
+at Brother.Tests.Specs.TestSpecifications.BrotherOnline.Account.AddPaymentMethodFeature.ScenarioCleanup() in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Specs\Test Specifications\BrotherOnline\Account\AddPaymentMethod.feature.cs:line 0
+at Brother.Tests.Specs.TestSpecifications.BrotherOnline.Account.AddPaymentMethodFeature.AddPaymentMethodWithNewAddressAndCancelBeforeSubmitting() in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Specs\Test Specifications\BrotherOnline\Account\AddPaymentMethod.feature:line 34
+]]></stack-trace>
+                                    </failure>
+                                  </test-case>
+                                </results>
+                              </test-suite>
+                              <test-suite type="TestFixture" name="CreateNewAccountFeature" description="CreateNewAccount" executed="True" result="Success" success="True" time="85.958" asserts="0">
+                                <categories>
+                                  <category name="PROD" />
+                                  <category name="TEST" />
+                                  <category name="UAT" />
+                                </categories>
+                                <results>
+                                  <test-case name="Brother.Tests.Specs.TestSpecifications.BrotherOnline.Account.CreateNewAccountFeature.AttemptToCreateAnAccountForBrotherOnlineUsingInvalidCredentials" description="Attempt to create an account for Brother Online using invalid credentials" executed="False" result="Ignored">
+                                    <reason>
+                                      <message><![CDATA[]]></message>
+                                    </reason>
+                                  </test-case>
+                                  <test-case name="Brother.Tests.Specs.TestSpecifications.BrotherOnline.Account.CreateNewAccountFeature.CustomerCreatesANewAccountWithBrotherOnlineUsingValidCredentialsConfirmByEmail" description="Customer creates a new account with Brother Online using valid credentials, confirm by email" executed="True" result="Success" success="True" time="82.869" asserts="2" />
+                                  <test-case name="Brother.Tests.Specs.TestSpecifications.BrotherOnline.Account.CreateNewAccountFeature.ValidateThatTheCorrectErrorMessagesAreDisplayedWhenAMandatoryFieldIsIncorrect" description="Validate that the correct error messages are displayed when a mandatory field is incorrect" executed="False" result="Ignored">
+                                    <reason>
+                                      <message><![CDATA[]]></message>
+                                    </reason>
+                                  </test-case>
+                                  <test-case name="Brother.Tests.Specs.TestSpecifications.BrotherOnline.Account.CreateNewAccountFeature.ValidateThatTheCorrectErrorMessagesAreDisplayedWhenAMandatoryFieldIsMissing" description="Validate that the correct error messages are displayed when a mandatory field is missing" executed="False" result="Ignored">
+                                    <reason>
+                                      <message><![CDATA[]]></message>
+                                    </reason>
+                                  </test-case>
+                                  <test-case name="Brother.Tests.Specs.TestSpecifications.BrotherOnline.Account.CreateNewAccountFeature.ValidateThatTheCorrectErrorMessagesAreDisplayedWhenAPasswordDoesNotComplyTheRequiredLevel" description="Validate that the correct error messages are displayed when a password does not comply the required level" executed="False" result="Ignored">
+                                    <reason>
+                                      <message><![CDATA[]]></message>
+                                    </reason>
+                                  </test-case>
+                                  <test-case name="Brother.Tests.Specs.TestSpecifications.BrotherOnline.Account.CreateNewAccountFeature.ValidateThatTheCorrectErrorMessagesAreDisplayedWhenPasswordsDoNotMatch" description="Validate that the correct error messages are displayed when passwords do not match" executed="False" result="Ignored">
+                                    <reason>
+                                      <message><![CDATA[]]></message>
+                                    </reason>
+                                  </test-case>
+                                  <test-case name="Brother.Tests.Specs.TestSpecifications.BrotherOnline.Account.CreateNewAccountFeature.ValidateThatTheCorrectErrorMessagesAreDisplayedWhenTermsAndConditionsAreNotSelected" description="Validate that the correct error messages are displayed when Terms and Conditions are not selected" executed="False" result="Ignored">
+                                    <reason>
+                                      <message><![CDATA[]]></message>
+                                    </reason>
+                                  </test-case>
+                                </results>
+                              </test-suite>
+                            </results>
+                          </test-suite>
+                          <test-suite type="Namespace" name="SiteAccess" executed="True" result="Failure" success="False" time="235.855" asserts="0">
+                            <results>
+                              <test-suite type="TestFixture" name="AccessAllProductionSitesFeature" description="AccessAllProductionSites" executed="True" result="Failure" success="False" time="224.889" asserts="0">
+                                <categories>
+                                  <category name="PROD" />
+                                </categories>
+                                <results>
+                                  <test-case name="Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess.AccessAllProductionSitesFeature.Get200OKResponseBackFromBrotherMainSiteIrelandOnTheLIVEEnvironment" description="Get 200 OK response back from Brother Main Site Ireland on the LIVE environment" executed="True" result="Success" success="True" time="1.888" asserts="4" />
+                                  <test-case name="Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess.AccessAllProductionSitesFeature.Get200OKResponseBackFromBrotherOnlineAustriaOnTheLIVEEnvironment" description="Get 200 OK response back from Brother Online Austria on the LIVE environment" executed="True" result="Success" success="True" time="7.526" asserts="4" />
+                                  <test-case name="Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess.AccessAllProductionSitesFeature.Get200OKResponseBackFromBrotherOnlineBelgiumOnTheLIVEEnvironment" description="Get 200 OK response back from Brother Online Belgium on the LIVE environment" executed="True" result="Success" success="True" time="4.643" asserts="4" />
+                                  <test-case name="Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess.AccessAllProductionSitesFeature.Get200OKResponseBackFromBrotherOnlineBulgariaOnTheLIVEEnvironment" description="Get 200 OK response back from Brother Online Bulgaria on the LIVE environment" executed="True" result="Failure" success="False" time="3.826" asserts="0">
+                                    <failure>
+                                      <message><![CDATA[Web exception - inner exception Unable to read data from the transport connection: An existing connection was forcibly closed by the remote host.]]></message>
+                                      <stack-trace><![CDATA[at Brother.Tests.Selenium.Lib.Support.HelperClasses.Utils.PageResponse(WebRequest request) in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Selenium\Support\HelperClasses\Helper.Utils.cs:line 27
+at Brother.Tests.Selenium.Lib.Support.HelperClasses.Utils.GetPageResponse(String webPage, String method) in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Selenium\Support\HelperClasses\Helper.Utils.cs:line 58
+at Brother.Tests.Specs.BrotherOnline.SiteAccess.SiteAccessSteps.GetWebPageResponse(String webSite) in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Specs\Test Steps\BrotherOnline\SiteAccess\SiteAccessSteps.cs:line 100
+at Brother.Tests.Specs.BrotherOnline.SiteAccess.SiteAccessSteps.GivenTheFollowingSiteToValidateIShouldReceiveAnOkResponseBack(String url) in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Specs\Test Steps\BrotherOnline\SiteAccess\SiteAccessSteps.cs:line 39
+at lambda_method(Closure , IContextManager , String )
+at TechTalk.SpecFlow.Bindings.BindingInvoker.InvokeBinding(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, TimeSpan& duration)
+at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments)
+at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(StepInstance stepInstance)
+at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.OnAfterLastStep()
+at TechTalk.SpecFlow.TestRunner.CollectScenarioErrors()
+at Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess.AccessAllProductionSitesFeature.ScenarioCleanup() in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Specs\Test Specifications\BrotherOnline\SiteAccess\SitesAccess_ProductionEnvironment.feature.cs:line 0
+at Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess.AccessAllProductionSitesFeature.Get200OKResponseBackFromBrotherOnlineBulgariaOnTheLIVEEnvironment() in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Specs\Test Specifications\BrotherOnline\SiteAccess\SitesAccess_ProductionEnvironment.feature:line 109
+]]></stack-trace>
+                                    </failure>
+                                  </test-case>
+                                  <test-case name="Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess.AccessAllProductionSitesFeature.Get200OKResponseBackFromBrotherOnlineCzechRepublicOnTheLIVEEnvironment" description="Get 200 OK response back from Brother Online Czech Republic on the LIVE environment" executed="True" result="Failure" success="False" time="17.141" asserts="2">
+                                    <failure>
+                                      <message><![CDATA[Brother © Copyright Symbol not found in website https://online.brother.cz/ [OpenQA.Selenium.NoSuchElementException: {"errorMessage":"Unable to find element with xpath '//div[contains(text(), '©')]'","request":{"headers":{"Accept":"application/json, image/png","Content-Length":"57","Content-Type":"application/json;charset=utf-8","Host":"127.0.0.1:6000"},"httpVersion":"1.1","method":"POST","post":"{\"using\":\"xpath\",\"value\":\"//div[contains(text(), '©')]\"}","url":"/element","urlParsed":{"anchor":"","query":"","file":"element","directory":"/","path":"/element","relative":"/element","port":"","host":"","password":"","user":"","userInfo":"","authority":"","protocol":"","source":"/element","queryKey":{},"chunks":["element"]},"urlOriginal":"/session/468775e0-8110-11e4-bf3c-77866e6eae87/element"}}
+   at OpenQA.Selenium.Remote.RemoteWebDriver.UnpackAndThrowOnError(Response errorResponse) in c:\Projects\webdriver\dotnet\src\webdriver\Remote\RemoteWebDriver.cs:line 1048
+   at OpenQA.Selenium.Remote.RemoteWebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters) in c:\Projects\webdriver\dotnet\src\webdriver\Remote\RemoteWebDriver.cs:line 862
+   at OpenQA.Selenium.Remote.RemoteWebDriver.FindElement(String mechanism, String value) in c:\Projects\webdriver\dotnet\src\webdriver\Remote\RemoteWebDriver.cs:line 893
+   at OpenQA.Selenium.Remote.RemoteWebDriver.FindElementByXPath(String xpath) in c:\Projects\webdriver\dotnet\src\webdriver\Remote\RemoteWebDriver.cs:line 664
+   at OpenQA.Selenium.By.<>c__DisplayClasse.<XPath>b__c(ISearchContext context) in c:\Projects\webdriver\dotnet\src\webdriver\By.cs:line 167
+   at OpenQA.Selenium.By.FindElement(ISearchContext context) in c:\Projects\webdriver\dotnet\src\webdriver\By.cs:line 309
+   at OpenQA.Selenium.Remote.RemoteWebDriver.FindElement(By by) in c:\Projects\webdriver\dotnet\src\webdriver\Remote\RemoteWebDriver.cs:line 330
+   at Brother.Tests.Specs.BrotherOnline.SiteAccess.SiteAccessSteps.ValidateLiveSiteUrl(String webSite) in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Specs\Test Steps\BrotherOnline\SiteAccess\SiteAccessSteps.cs:line 78]]]></message>
+                                      <stack-trace><![CDATA[at Brother.Tests.Specs.BrotherOnline.SiteAccess.SiteAccessSteps.ValidateLiveSiteUrl(String webSite) in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Specs\Test Steps\BrotherOnline\SiteAccess\SiteAccessSteps.cs:line 87
+at Brother.Tests.Specs.BrotherOnline.SiteAccess.SiteAccessSteps.GivenTheFollowingSiteToValidateIShouldReceiveAnOkResponseBack(String url) in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Specs\Test Steps\BrotherOnline\SiteAccess\SiteAccessSteps.cs:line 43
+at lambda_method(Closure , IContextManager , String )
+at TechTalk.SpecFlow.Bindings.BindingInvoker.InvokeBinding(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, TimeSpan& duration)
+at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments)
+at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(StepInstance stepInstance)
+at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.OnAfterLastStep()
+at TechTalk.SpecFlow.TestRunner.CollectScenarioErrors()
+at Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess.AccessAllProductionSitesFeature.ScenarioCleanup() in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Specs\Test Specifications\BrotherOnline\SiteAccess\SitesAccess_ProductionEnvironment.feature.cs:line 0
+at Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess.AccessAllProductionSitesFeature.Get200OKResponseBackFromBrotherOnlineCzechRepublicOnTheLIVEEnvironment() in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Specs\Test Specifications\BrotherOnline\SiteAccess\SitesAccess_ProductionEnvironment.feature:line 97
+]]></stack-trace>
+                                    </failure>
+                                  </test-case>
+                                  <test-case name="Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess.AccessAllProductionSitesFeature.Get200OKResponseBackFromBrotherOnlineDenmarkOnTheLIVEEnvironment" description="Get 200 OK response back from Brother Online Denmark on the LIVE environment" executed="True" result="Success" success="True" time="4.290" asserts="4" />
+                                  <test-case name="Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess.AccessAllProductionSitesFeature.Get200OKResponseBackFromBrotherOnlineFinlandOnTheLIVEEnvironment" description="Get 200 OK response back from Brother Online Finland on the LIVE environment" executed="True" result="Success" success="True" time="3.823" asserts="4" />
+                                  <test-case name="Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess.AccessAllProductionSitesFeature.Get200OKResponseBackFromBrotherOnlineFranceOnTheLIVEEnvironment" description="Get 200 OK response back from Brother Online France on the LIVE environment" executed="True" result="Success" success="True" time="3.403" asserts="4" />
+                                  <test-case name="Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess.AccessAllProductionSitesFeature.Get200OKResponseBackFromBrotherOnlineGermanyOnTheLIVEEnvironment" description="Get 200 OK response back from Brother Online Germany on the LIVE environment" executed="True" result="Success" success="True" time="3.244" asserts="4" />
+                                  <test-case name="Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess.AccessAllProductionSitesFeature.Get200OKResponseBackFromBrotherOnlineHollandOnTheLIVEEnvironment" description="Get 200 OK response back from Brother Online Holland on the LIVE environment" executed="True" result="Success" success="True" time="3.676" asserts="4" />
+                                  <test-case name="Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess.AccessAllProductionSitesFeature.Get200OKResponseBackFromBrotherOnlineHungaryOnTheLIVEEnvironment" description="Get 200 OK response back from Brother Online Hungary on the LIVE environment" executed="True" result="Failure" success="False" time="16.073" asserts="2">
+                                    <failure>
+                                      <message><![CDATA[Brother © Copyright Symbol not found in website https://online.brother.hu/ [OpenQA.Selenium.NoSuchElementException: {"errorMessage":"Unable to find element with xpath '//div[contains(text(), '©')]'","request":{"headers":{"Accept":"application/json, image/png","Content-Length":"57","Content-Type":"application/json;charset=utf-8","Host":"127.0.0.1:6000"},"httpVersion":"1.1","method":"POST","post":"{\"using\":\"xpath\",\"value\":\"//div[contains(text(), '©')]\"}","url":"/element","urlParsed":{"anchor":"","query":"","file":"element","directory":"/","path":"/element","relative":"/element","port":"","host":"","password":"","user":"","userInfo":"","authority":"","protocol":"","source":"/element","queryKey":{},"chunks":["element"]},"urlOriginal":"/session/50bf6d60-8110-11e4-9740-7dc99d61b17e/element"}}
+   at OpenQA.Selenium.Remote.RemoteWebDriver.UnpackAndThrowOnError(Response errorResponse) in c:\Projects\webdriver\dotnet\src\webdriver\Remote\RemoteWebDriver.cs:line 1048
+   at OpenQA.Selenium.Remote.RemoteWebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters) in c:\Projects\webdriver\dotnet\src\webdriver\Remote\RemoteWebDriver.cs:line 862
+   at OpenQA.Selenium.Remote.RemoteWebDriver.FindElement(String mechanism, String value) in c:\Projects\webdriver\dotnet\src\webdriver\Remote\RemoteWebDriver.cs:line 893
+   at OpenQA.Selenium.Remote.RemoteWebDriver.FindElementByXPath(String xpath) in c:\Projects\webdriver\dotnet\src\webdriver\Remote\RemoteWebDriver.cs:line 664
+   at OpenQA.Selenium.By.<>c__DisplayClasse.<XPath>b__c(ISearchContext context) in c:\Projects\webdriver\dotnet\src\webdriver\By.cs:line 167
+   at OpenQA.Selenium.By.FindElement(ISearchContext context) in c:\Projects\webdriver\dotnet\src\webdriver\By.cs:line 309
+   at OpenQA.Selenium.Remote.RemoteWebDriver.FindElement(By by) in c:\Projects\webdriver\dotnet\src\webdriver\Remote\RemoteWebDriver.cs:line 330
+   at Brother.Tests.Specs.BrotherOnline.SiteAccess.SiteAccessSteps.ValidateLiveSiteUrl(String webSite) in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Specs\Test Steps\BrotherOnline\SiteAccess\SiteAccessSteps.cs:line 78]]]></message>
+                                      <stack-trace><![CDATA[at Brother.Tests.Specs.BrotherOnline.SiteAccess.SiteAccessSteps.ValidateLiveSiteUrl(String webSite) in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Specs\Test Steps\BrotherOnline\SiteAccess\SiteAccessSteps.cs:line 87
+at Brother.Tests.Specs.BrotherOnline.SiteAccess.SiteAccessSteps.GivenTheFollowingSiteToValidateIShouldReceiveAnOkResponseBack(String url) in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Specs\Test Steps\BrotherOnline\SiteAccess\SiteAccessSteps.cs:line 43
+at lambda_method(Closure , IContextManager , String )
+at TechTalk.SpecFlow.Bindings.BindingInvoker.InvokeBinding(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, TimeSpan& duration)
+at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments)
+at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(StepInstance stepInstance)
+at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.OnAfterLastStep()
+at TechTalk.SpecFlow.TestRunner.CollectScenarioErrors()
+at Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess.AccessAllProductionSitesFeature.ScenarioCleanup() in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Specs\Test Specifications\BrotherOnline\SiteAccess\SitesAccess_ProductionEnvironment.feature.cs:line 0
+at Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess.AccessAllProductionSitesFeature.Get200OKResponseBackFromBrotherOnlineHungaryOnTheLIVEEnvironment() in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Specs\Test Specifications\BrotherOnline\SiteAccess\SitesAccess_ProductionEnvironment.feature:line 101
+]]></stack-trace>
+                                    </failure>
+                                  </test-case>
+                                  <test-case name="Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess.AccessAllProductionSitesFeature.Get200OKResponseBackFromBrotherOnlineIrelandOnTheLIVEEnvironment" description="Get 200 OK response back from Brother Online Ireland on the LIVE environment" executed="True" result="Success" success="True" time="5.485" asserts="4" />
+                                  <test-case name="Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess.AccessAllProductionSitesFeature.Get200OKResponseBackFromBrotherOnlineItalyOnTheLIVEEnvironment" description="Get 200 OK response back from Brother Online Italy on the LIVE environment" executed="True" result="Success" success="True" time="3.307" asserts="4" />
+                                  <test-case name="Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess.AccessAllProductionSitesFeature.Get200OKResponseBackFromBrotherOnlineLuxembourgOnTheLIVEEnvironment" description="Get 200 OK response back from Brother Online Luxembourg on the LIVE environment" executed="True" result="Success" success="True" time="5.036" asserts="4" />
+                                  <test-case name="Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess.AccessAllProductionSitesFeature.Get200OKResponseBackFromBrotherOnlineNorwayOnTheLIVEEnvironment" description="Get 200 OK response back from Brother Online Norway on the LIVE environment" executed="True" result="Success" success="True" time="4.178" asserts="4" />
+                                  <test-case name="Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess.AccessAllProductionSitesFeature.Get200OKResponseBackFromBrotherOnlinePolandOnTheLIVEEnvironment" description="Get 200 OK response back from Brother Online Poland on the LIVE environment" executed="True" result="Success" success="True" time="5.557" asserts="4" />
+                                  <test-case name="Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess.AccessAllProductionSitesFeature.Get200OKResponseBackFromBrotherOnlinePortugalOnTheLIVEEnvironment" description="Get 200 OK response back from Brother Online Portugal on the LIVE environment" executed="True" result="Failure" success="False" time="19.634" asserts="2">
+                                    <failure>
+                                      <message><![CDATA[Brother © Copyright Symbol not found in website https://online.brother.pt/ [OpenQA.Selenium.NoSuchElementException: {"errorMessage":"Unable to find element with xpath '//div[contains(text(), '©')]'","request":{"headers":{"Accept":"application/json, image/png","Content-Length":"57","Content-Type":"application/json;charset=utf-8","Host":"127.0.0.1:6000"},"httpVersion":"1.1","method":"POST","post":"{\"using\":\"xpath\",\"value\":\"//div[contains(text(), '©')]\"}","url":"/element","urlParsed":{"anchor":"","query":"","file":"element","directory":"/","path":"/element","relative":"/element","port":"","host":"","password":"","user":"","userInfo":"","authority":"","protocol":"","source":"/element","queryKey":{},"chunks":["element"]},"urlOriginal":"/session/6551d880-8110-11e4-a2d4-dbffcaba535a/element"}}
+   at OpenQA.Selenium.Remote.RemoteWebDriver.UnpackAndThrowOnError(Response errorResponse) in c:\Projects\webdriver\dotnet\src\webdriver\Remote\RemoteWebDriver.cs:line 1048
+   at OpenQA.Selenium.Remote.RemoteWebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters) in c:\Projects\webdriver\dotnet\src\webdriver\Remote\RemoteWebDriver.cs:line 862
+   at OpenQA.Selenium.Remote.RemoteWebDriver.FindElement(String mechanism, String value) in c:\Projects\webdriver\dotnet\src\webdriver\Remote\RemoteWebDriver.cs:line 893
+   at OpenQA.Selenium.Remote.RemoteWebDriver.FindElementByXPath(String xpath) in c:\Projects\webdriver\dotnet\src\webdriver\Remote\RemoteWebDriver.cs:line 664
+   at OpenQA.Selenium.By.<>c__DisplayClasse.<XPath>b__c(ISearchContext context) in c:\Projects\webdriver\dotnet\src\webdriver\By.cs:line 167
+   at OpenQA.Selenium.By.FindElement(ISearchContext context) in c:\Projects\webdriver\dotnet\src\webdriver\By.cs:line 309
+   at OpenQA.Selenium.Remote.RemoteWebDriver.FindElement(By by) in c:\Projects\webdriver\dotnet\src\webdriver\Remote\RemoteWebDriver.cs:line 330
+   at Brother.Tests.Specs.BrotherOnline.SiteAccess.SiteAccessSteps.ValidateLiveSiteUrl(String webSite) in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Specs\Test Steps\BrotherOnline\SiteAccess\SiteAccessSteps.cs:line 78]]]></message>
+                                      <stack-trace><![CDATA[at Brother.Tests.Specs.BrotherOnline.SiteAccess.SiteAccessSteps.ValidateLiveSiteUrl(String webSite) in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Specs\Test Steps\BrotherOnline\SiteAccess\SiteAccessSteps.cs:line 87
+at Brother.Tests.Specs.BrotherOnline.SiteAccess.SiteAccessSteps.GivenTheFollowingSiteToValidateIShouldReceiveAnOkResponseBack(String url) in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Specs\Test Steps\BrotherOnline\SiteAccess\SiteAccessSteps.cs:line 43
+at lambda_method(Closure , IContextManager , String )
+at TechTalk.SpecFlow.Bindings.BindingInvoker.InvokeBinding(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, TimeSpan& duration)
+at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments)
+at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(StepInstance stepInstance)
+at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.OnAfterLastStep()
+at TechTalk.SpecFlow.TestRunner.CollectScenarioErrors()
+at Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess.AccessAllProductionSitesFeature.ScenarioCleanup() in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Specs\Test Specifications\BrotherOnline\SiteAccess\SitesAccess_ProductionEnvironment.feature.cs:line 0
+at Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess.AccessAllProductionSitesFeature.Get200OKResponseBackFromBrotherOnlinePortugalOnTheLIVEEnvironment() in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Specs\Test Specifications\BrotherOnline\SiteAccess\SitesAccess_ProductionEnvironment.feature:line 93
+]]></stack-trace>
+                                    </failure>
+                                  </test-case>
+                                  <test-case name="Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess.AccessAllProductionSitesFeature.Get200OKResponseBackFromBrotherOnlineRomaniaOnTheLIVEEnvironment" description="Get 200 OK response back from Brother Online Romania on the LIVE environment" executed="True" result="Failure" success="False" time="3.493" asserts="0">
+                                    <failure>
+                                      <message><![CDATA[Web exception - inner exception Unable to read data from the transport connection: An existing connection was forcibly closed by the remote host.]]></message>
+                                      <stack-trace><![CDATA[at Brother.Tests.Selenium.Lib.Support.HelperClasses.Utils.PageResponse(WebRequest request) in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Selenium\Support\HelperClasses\Helper.Utils.cs:line 27
+at Brother.Tests.Selenium.Lib.Support.HelperClasses.Utils.GetPageResponse(String webPage, String method) in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Selenium\Support\HelperClasses\Helper.Utils.cs:line 58
+at Brother.Tests.Specs.BrotherOnline.SiteAccess.SiteAccessSteps.GetWebPageResponse(String webSite) in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Specs\Test Steps\BrotherOnline\SiteAccess\SiteAccessSteps.cs:line 100
+at Brother.Tests.Specs.BrotherOnline.SiteAccess.SiteAccessSteps.GivenTheFollowingSiteToValidateIShouldReceiveAnOkResponseBack(String url) in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Specs\Test Steps\BrotherOnline\SiteAccess\SiteAccessSteps.cs:line 39
+at lambda_method(Closure , IContextManager , String )
+at TechTalk.SpecFlow.Bindings.BindingInvoker.InvokeBinding(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, TimeSpan& duration)
+at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments)
+at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(StepInstance stepInstance)
+at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.OnAfterLastStep()
+at TechTalk.SpecFlow.TestRunner.CollectScenarioErrors()
+at Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess.AccessAllProductionSitesFeature.ScenarioCleanup() in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Specs\Test Specifications\BrotherOnline\SiteAccess\SitesAccess_ProductionEnvironment.feature.cs:line 0
+at Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess.AccessAllProductionSitesFeature.Get200OKResponseBackFromBrotherOnlineRomaniaOnTheLIVEEnvironment() in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Specs\Test Specifications\BrotherOnline\SiteAccess\SitesAccess_ProductionEnvironment.feature:line 113
+]]></stack-trace>
+                                    </failure>
+                                  </test-case>
+                                  <test-case name="Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess.AccessAllProductionSitesFeature.Get200OKResponseBackFromBrotherOnlineRussiaOnTheLIVEEnvironment" description="Get 200 OK response back from Brother Online Russia on the LIVE environment" executed="True" result="Success" success="True" time="4.424" asserts="4" />
+                                  <test-case name="Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess.AccessAllProductionSitesFeature.Get200OKResponseBackFromBrotherOnlineSloveniaOnTheLIVEEnvironment" description="Get 200 OK response back from Brother Online Slovenia on the LIVE environment" executed="True" result="Success" success="True" time="2.801" asserts="4" />
+                                  <test-case name="Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess.AccessAllProductionSitesFeature.Get200OKResponseBackFromBrotherOnlineSpainOnTheLIVEEnvironment" description="Get 200 OK response back from Brother Online Spain on the LIVE environment" executed="True" result="Success" success="True" time="3.736" asserts="4" />
+                                  <test-case name="Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess.AccessAllProductionSitesFeature.Get200OKResponseBackFromBrotherOnlineSwedenOnTheLIVEEnvironment" description="Get 200 OK response back from Brother Online Sweden on the LIVE environment" executed="True" result="Success" success="True" time="2.973" asserts="4" />
+                                  <test-case name="Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess.AccessAllProductionSitesFeature.Get200OKResponseBackFromBrotherOnlineSwitzerlandOnTheLIVEEnvironment" description="Get 200 OK response back from Brother Online Switzerland on the LIVE environment" executed="True" result="Success" success="True" time="11.839" asserts="4" />
+                                  <test-case name="Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess.AccessAllProductionSitesFeature.Get200OKResponseBackFromBrotherOnlineUnitedKingdomOnTheLIVEEnvironment" description="Get 200 OK response back from Brother Online United Kingdom on the LIVE environment" executed="True" result="Success" success="True" time="7.954" asserts="4" />
+                                  <test-case name="Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess.AccessAllProductionSitesFeature.Get200OKResponseBackFromCreativeCentreUnitedKingdomOnTheLIVEEnvironment" description="Get 200 OK response back from Creative Centre United Kingdom on the LIVE environment" executed="True" result="Failure" success="False" time="18.283" asserts="2">
+                                    <failure>
+                                      <message><![CDATA[Brother © Copyright Symbol not found in website https://creativecenter.brother.eu [OpenQA.Selenium.NoSuchElementException: {"errorMessage":"Unable to find element with xpath '//div[contains(text(), '©')]'","request":{"headers":{"Accept":"application/json, image/png","Content-Length":"57","Content-Type":"application/json;charset=utf-8","Host":"127.0.0.1:6000"},"httpVersion":"1.1","method":"POST","post":"{\"using\":\"xpath\",\"value\":\"//div[contains(text(), '©')]\"}","url":"/element","urlParsed":{"anchor":"","query":"","file":"element","directory":"/","path":"/element","relative":"/element","port":"","host":"","password":"","user":"","userInfo":"","authority":"","protocol":"","source":"/element","queryKey":{},"chunks":["element"]},"urlOriginal":"/session/81287690-8110-11e4-9788-f18a508629fb/element"}}
+   at OpenQA.Selenium.Remote.RemoteWebDriver.UnpackAndThrowOnError(Response errorResponse) in c:\Projects\webdriver\dotnet\src\webdriver\Remote\RemoteWebDriver.cs:line 1048
+   at OpenQA.Selenium.Remote.RemoteWebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters) in c:\Projects\webdriver\dotnet\src\webdriver\Remote\RemoteWebDriver.cs:line 862
+   at OpenQA.Selenium.Remote.RemoteWebDriver.FindElement(String mechanism, String value) in c:\Projects\webdriver\dotnet\src\webdriver\Remote\RemoteWebDriver.cs:line 893
+   at OpenQA.Selenium.Remote.RemoteWebDriver.FindElementByXPath(String xpath) in c:\Projects\webdriver\dotnet\src\webdriver\Remote\RemoteWebDriver.cs:line 664
+   at OpenQA.Selenium.By.<>c__DisplayClasse.<XPath>b__c(ISearchContext context) in c:\Projects\webdriver\dotnet\src\webdriver\By.cs:line 167
+   at OpenQA.Selenium.By.FindElement(ISearchContext context) in c:\Projects\webdriver\dotnet\src\webdriver\By.cs:line 309
+   at OpenQA.Selenium.Remote.RemoteWebDriver.FindElement(By by) in c:\Projects\webdriver\dotnet\src\webdriver\Remote\RemoteWebDriver.cs:line 330
+   at Brother.Tests.Specs.BrotherOnline.SiteAccess.SiteAccessSteps.ValidateLiveSiteUrl(String webSite) in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Specs\Test Steps\BrotherOnline\SiteAccess\SiteAccessSteps.cs:line 78]]]></message>
+                                      <stack-trace><![CDATA[at Brother.Tests.Specs.BrotherOnline.SiteAccess.SiteAccessSteps.ValidateLiveSiteUrl(String webSite) in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Specs\Test Steps\BrotherOnline\SiteAccess\SiteAccessSteps.cs:line 87
+at Brother.Tests.Specs.BrotherOnline.SiteAccess.SiteAccessSteps.GivenTheFollowingSiteToValidateIShouldReceiveAnOkResponseBack(String url) in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Specs\Test Steps\BrotherOnline\SiteAccess\SiteAccessSteps.cs:line 43
+at lambda_method(Closure , IContextManager , String )
+at TechTalk.SpecFlow.Bindings.BindingInvoker.InvokeBinding(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, TimeSpan& duration)
+at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments)
+at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(StepInstance stepInstance)
+at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.OnAfterLastStep()
+at TechTalk.SpecFlow.TestRunner.CollectScenarioErrors()
+at Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess.AccessAllProductionSitesFeature.ScenarioCleanup() in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Specs\Test Specifications\BrotherOnline\SiteAccess\SitesAccess_ProductionEnvironment.feature.cs:line 0
+at Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess.AccessAllProductionSitesFeature.Get200OKResponseBackFromCreativeCentreUnitedKingdomOnTheLIVEEnvironment() in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Specs\Test Specifications\BrotherOnline\SiteAccess\SitesAccess_ProductionEnvironment.feature:line 159
+]]></stack-trace>
+                                    </failure>
+                                  </test-case>
+                                  <test-case name="Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess.AccessAllProductionSitesFeature.Get200OKResponseBackFromMainSiteAustriaOnTheLIVEEnvironment" description="Get 200 OK response back from Main Site Austria on the LIVE environment" executed="True" result="Success" success="True" time="3.199" asserts="4" />
+                                  <test-case name="Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess.AccessAllProductionSitesFeature.Get200OKResponseBackFromMainSiteFranceOnTheLIVEEnvironment" description="Get 200 OK response back from Main Site France on the LIVE environment" executed="True" result="Success" success="True" time="2.259" asserts="4" />
+                                  <test-case name="Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess.AccessAllProductionSitesFeature.Get200OKResponseBackFromMainSiteGermanyOnTheLIVEEnvironment" description="Get 200 OK response back from Main Site Germany on the LIVE environment" executed="True" result="Success" success="True" time="2.863" asserts="4" />
+                                  <test-case name="Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess.AccessAllProductionSitesFeature.Get200OKResponseBackFromMainSiteUnitedKingdomOnTheLIVEEnvironment" description="Get 200 OK response back from Main Site United Kingdom on the LIVE environment" executed="True" result="Success" success="True" time="3.951" asserts="4" />
+                                  <test-case name="Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess.AccessAllProductionSitesFeature.Get200OKResponseBackFromWebConferencingFranceOnTheLIVEEnvironment" description="Get 200 OK response back from Web Conferencing France on the LIVE environment" executed="True" result="Success" success="True" time="3.008" asserts="4" />
+                                  <test-case name="Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess.AccessAllProductionSitesFeature.Get200OKResponseBackFromWebConferencingGermanyOnTheLIVEEnvironment" description="Get 200 OK response back from Web Conferencing Germany on the LIVE environment" executed="True" result="Success" success="True" time="3.097" asserts="4" />
+                                  <test-case name="Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess.AccessAllProductionSitesFeature.Get200OKResponseBackFromWebConferencingIrelandOnTheLIVEEnvironment" description="Get 200 OK response back from Web Conferencing Ireland on the LIVE environment" executed="True" result="Success" success="True" time="4.650" asserts="4" />
+                                  <test-case name="Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess.AccessAllProductionSitesFeature.Get200OKResponseBackFromWebConferencingSpainOnTheLIVEEnvironment" description="Get 200 OK response back from Web Conferencing Spain on the LIVE environment" executed="True" result="Success" success="True" time="4.123" asserts="4" />
+                                  <test-case name="Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess.AccessAllProductionSitesFeature.Get200OKResponseBackFromWebConferencingSwitzerland_GermanOnTheLIVEEnvironment" description="Get 200 OK response back from Web Conferencing Switzerland - German on the LIVE environment" executed="True" result="Failure" success="False" time="18.437" asserts="2">
+                                    <failure>
+                                      <message><![CDATA[Brother © Copyright Symbol not found in website http://videokonferenzen.brother.ch/ [OpenQA.Selenium.NoSuchElementException: {"errorMessage":"Unable to find element with xpath '//div[contains(text(), '©')]'","request":{"headers":{"Accept":"application/json, image/png","Content-Length":"57","Content-Type":"application/json;charset=utf-8","Host":"127.0.0.1:6000"},"httpVersion":"1.1","method":"POST","post":"{\"using\":\"xpath\",\"value\":\"//div[contains(text(), '©')]\"}","url":"/element","urlParsed":{"anchor":"","query":"","file":"element","directory":"/","path":"/element","relative":"/element","port":"","host":"","password":"","user":"","userInfo":"","authority":"","protocol":"","source":"/element","queryKey":{},"chunks":["element"]},"urlOriginal":"/session/a029a0a0-8110-11e4-889a-dfb635c61174/element"}}
+   at OpenQA.Selenium.Remote.RemoteWebDriver.UnpackAndThrowOnError(Response errorResponse) in c:\Projects\webdriver\dotnet\src\webdriver\Remote\RemoteWebDriver.cs:line 1048
+   at OpenQA.Selenium.Remote.RemoteWebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters) in c:\Projects\webdriver\dotnet\src\webdriver\Remote\RemoteWebDriver.cs:line 862
+   at OpenQA.Selenium.Remote.RemoteWebDriver.FindElement(String mechanism, String value) in c:\Projects\webdriver\dotnet\src\webdriver\Remote\RemoteWebDriver.cs:line 893
+   at OpenQA.Selenium.Remote.RemoteWebDriver.FindElementByXPath(String xpath) in c:\Projects\webdriver\dotnet\src\webdriver\Remote\RemoteWebDriver.cs:line 664
+   at OpenQA.Selenium.By.<>c__DisplayClasse.<XPath>b__c(ISearchContext context) in c:\Projects\webdriver\dotnet\src\webdriver\By.cs:line 167
+   at OpenQA.Selenium.By.FindElement(ISearchContext context) in c:\Projects\webdriver\dotnet\src\webdriver\By.cs:line 309
+   at OpenQA.Selenium.Remote.RemoteWebDriver.FindElement(By by) in c:\Projects\webdriver\dotnet\src\webdriver\Remote\RemoteWebDriver.cs:line 330
+   at Brother.Tests.Specs.BrotherOnline.SiteAccess.SiteAccessSteps.ValidateLiveSiteUrl(String webSite) in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Specs\Test Steps\BrotherOnline\SiteAccess\SiteAccessSteps.cs:line 78]]]></message>
+                                      <stack-trace><![CDATA[at Brother.Tests.Specs.BrotherOnline.SiteAccess.SiteAccessSteps.ValidateLiveSiteUrl(String webSite) in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Specs\Test Steps\BrotherOnline\SiteAccess\SiteAccessSteps.cs:line 87
+at Brother.Tests.Specs.BrotherOnline.SiteAccess.SiteAccessSteps.GivenTheFollowingSiteToValidateIShouldReceiveAnOkResponseBack(String url) in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Specs\Test Steps\BrotherOnline\SiteAccess\SiteAccessSteps.cs:line 43
+at lambda_method(Closure , IContextManager , String )
+at TechTalk.SpecFlow.Bindings.BindingInvoker.InvokeBinding(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, TimeSpan& duration)
+at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments)
+at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(StepInstance stepInstance)
+at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.OnAfterLastStep()
+at TechTalk.SpecFlow.TestRunner.CollectScenarioErrors()
+at Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess.AccessAllProductionSitesFeature.ScenarioCleanup() in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Specs\Test Specifications\BrotherOnline\SiteAccess\SitesAccess_ProductionEnvironment.feature.cs:line 0
+at Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess.AccessAllProductionSitesFeature.Get200OKResponseBackFromWebConferencingSwitzerland_GermanOnTheLIVEEnvironment() in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Specs\Test Specifications\BrotherOnline\SiteAccess\SitesAccess_ProductionEnvironment.feature:line 140
+]]></stack-trace>
+                                    </failure>
+                                  </test-case>
+                                  <test-case name="Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess.AccessAllProductionSitesFeature.Get200OKResponseBackFromWebConferencingSwitzerlandOnTheLIVEEnvironment" description="Get 200 OK response back from Web Conferencing Switzerland on the LIVE environment" executed="True" result="Success" success="True" time="4.903" asserts="4" />
+                                  <test-case name="Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess.AccessAllProductionSitesFeature.Get200OKResponseBackFromWebConferencingUnitedKingdomOnTheLIVEEnvironment" description="Get 200 OK response back from Web Conferencing United Kingdom on the LIVE environment" executed="True" result="Success" success="True" time="3.099" asserts="4" />
+                                </results>
+                              </test-suite>
+                              <test-suite type="TestFixture" name="AccessAllSitesFeature" description="AccessAllSites" executed="True" result="Success" success="True" time="10.948" asserts="0">
+                                <categories>
+                                  <category name="TEST" />
+                                </categories>
+                                <results>
+                                  <test-case name="Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess.AccessAllSitesFeature.Get200OKResponseBackFromEmailTokenProductionSiteUnitedKingdomOnTheLiveEnvironment" description="Get 200 OK response back from Email Token Production Site United Kingdom on the Live environment" executed="True" result="Success" success="True" time="7.894" asserts="2">
+                                    <categories>
+                                      <category name="PROD" />
+                                    </categories>
+                                  </test-case>
+                                </results>
+                              </test-suite>
+                            </results>
+                          </test-suite>
+                        </results>
+                      </test-suite>
+                      <test-suite type="Namespace" name="OmniJoin" executed="True" result="Failure" success="False" time="327.952" asserts="0">
+                        <results>
+                          <test-suite type="TestFixture" name="FreeTrialFeature" description="FreeTrial" executed="True" result="Success" success="True" time="156.491" asserts="0">
+                            <categories>
+                              <category name="DEV" />
+                              <category name="PROD" />
+                              <category name="UAT" />
+                              <category name="TEST" />
+                            </categories>
+                            <results>
+                              <test-case name="Brother.Tests.Specs.TestSpecifications.OmniJoin.FreeTrialFeature.SignUpFor14DayFreeTrialAlreadySignedIntoBrotherOnline" description="Sign Up for 14 day Free trial already signed into Brother Online" executed="True" result="Success" success="True" time="153.446" asserts="4" />
+                              <test-case name="Brother.Tests.Specs.TestSpecifications.OmniJoin.FreeTrialFeature.SignUpFor14DayFreeTrialWithABrotherOnlineAccountButStartFromPurchasePlansPage" description="Sign Up for 14 day Free trial with a Brother Online account but start from Purchase plans page" executed="False" result="Ignored">
+                                <reason>
+                                  <message><![CDATA[]]></message>
+                                </reason>
+                              </test-case>
+                              <test-case name="Brother.Tests.Specs.TestSpecifications.OmniJoin.FreeTrialFeature.SignUpFor14DayFreeTrialWithoutAnExistingBrotherOnlineAccount" description="Sign Up for 14 day Free trial without an existing Brother Online account" executed="False" result="Ignored">
+                                <reason>
+                                  <message><![CDATA[]]></message>
+                                </reason>
+                              </test-case>
+                              <test-case name="Brother.Tests.Specs.TestSpecifications.OmniJoin.FreeTrialFeature.ValidateFreeTrialFormAcceptsCorrectAmountOfCharactersAndDisplaysErrorMessages" description="Validate Free Trial form accepts correct amount of characters and displays error messages" executed="False" result="Ignored">
+                                <reason>
+                                  <message><![CDATA[]]></message>
+                                </reason>
+                              </test-case>
+                              <test-case name="Brother.Tests.Specs.TestSpecifications.OmniJoin.FreeTrialFeature.ValidateFreeTrialFormDisplaysErrorMessagesWhenAMandatoryFieldIsMissing" description="Validate Free Trial form displays error messages when a mandatory field is missing" executed="False" result="Ignored">
+                                <reason>
+                                  <message><![CDATA[]]></message>
+                                </reason>
+                              </test-case>
+                              <test-case name="Brother.Tests.Specs.TestSpecifications.OmniJoin.FreeTrialFeature.ValidateFreeTrialFormDisplaysErrorMessagesWhenAnInvalidEmailIsEntered" description="Validate Free Trial form displays error messages when an invalid email is entered" executed="False" result="Ignored">
+                                <reason>
+                                  <message><![CDATA[]]></message>
+                                </reason>
+                              </test-case>
+                              <test-case name="Brother.Tests.Specs.TestSpecifications.OmniJoin.FreeTrialFeature.ValidateFreeTrialFormDisplaysErrorMessagesWhenAnInvalidPasswordIsEntered" description="Validate Free Trial form displays error messages when an invalid Password is entered" executed="False" result="Ignored">
+                                <reason>
+                                  <message><![CDATA[]]></message>
+                                </reason>
+                              </test-case>
+                              <test-case name="Brother.Tests.Specs.TestSpecifications.OmniJoin.FreeTrialFeature.ValidateFreeTrialFormDisplaysErrorMessagesWhenInvalidFirstAndLastNamesAreEntered" description="Validate Free Trial form displays error messages when invalid First and Last names are entered" executed="False" result="Ignored">
+                                <reason>
+                                  <message><![CDATA[]]></message>
+                                </reason>
+                              </test-case>
+                              <test-case name="Brother.Tests.Specs.TestSpecifications.OmniJoin.FreeTrialFeature.ValidateFreeTrialFormDisplaysErrorMessagesWhenPasswordsDoNotMatch" description="Validate Free Trial form displays error messages when Passwords do not match" executed="False" result="Ignored">
+                                <reason>
+                                  <message><![CDATA[]]></message>
+                                </reason>
+                              </test-case>
+                              <test-case name="Brother.Tests.Specs.TestSpecifications.OmniJoin.FreeTrialFeature.ValidateFreeTrialFormDisplaysErrorMessagesWhenTermsAndConditionsAreNotCheckedOnCommit" description="Validate Free Trial form displays error messages when Terms and Conditions are not checked on Commit" executed="False" result="Ignored">
+                                <reason>
+                                  <message><![CDATA[]]></message>
+                                </reason>
+                              </test-case>
+                              <test-case name="Brother.Tests.Specs.TestSpecifications.OmniJoin.FreeTrialFeature.ValidateFreeTrialFormWhenAlreadySignedIntoBrotherOnlineAndAFree_TrialHasExpired" description="Validate Free Trial form when already signed into Brother Online and a Free-trial has expired" executed="False" result="Ignored">
+                                <reason>
+                                  <message><![CDATA[]]></message>
+                                </reason>
+                              </test-case>
+                              <test-case name="Brother.Tests.Specs.TestSpecifications.OmniJoin.FreeTrialFeature.ValidateFreeTrialFormWhenAlreadySignedIntoBrotherOnlineAndAFree_TrialIsAlreadyInProgress" description="Validate Free Trial form when already signed into Brother Online and a Free-trial is already in progress" executed="False" result="Ignored">
+                                <reason>
+                                  <message><![CDATA[]]></message>
+                                </reason>
+                              </test-case>
+                              <test-case name="Brother.Tests.Specs.TestSpecifications.OmniJoin.FreeTrialFeature.ValidateFreeTrialFormWhenAlreadySignedIntoBrotherOnlineFree_TrialHasExpiredButIsWithinTheWaitTimeForANewTrial" description="Validate Free Trial form when already signed into Brother Online, Free-trial has expired but is within the wait time for a new trial" executed="False" result="Ignored">
+                                <reason>
+                                  <message><![CDATA[]]></message>
+                                </reason>
+                              </test-case>
+                            </results>
+                          </test-suite>
+                          <test-suite type="TestFixture" name="PurchaseAPlanFeature" description="PurchaseAPlan" executed="True" result="Failure" success="False" time="171.459" asserts="0">
+                            <categories>
+                              <category name="TEST" />
+                              <category name="UAT" />
+                            </categories>
+                            <results>
+                              <test-case name="Brother.Tests.Specs.TestSpecifications.OmniJoin.PurchaseAPlanFeature.PurchaseALiteUsePlanOnMonthlyBillingButClickCancelBeforeSubmittingPayment" description="Purchase a Lite Use plan on Monthly Billing but click Cancel before submitting payment" executed="True" result="Error" success="False" time="168.397" asserts="5">
+                                <categories>
+                                  <category name="TEST" />
+                                  <category name="UAT" />
+                                  <category name="PROD" />
+                                </categories>
+                                <failure>
+                                  <message><![CDATA[System.IO.DirectoryNotFoundException : Could not find a part of the path 'C:\Projects\brother-online\Brother\brother\Main\Brother.Tests.TestRunner\Supporting Files\ProductInfo.xml'.]]></message>
+                                  <stack-trace><![CDATA[at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize)
+at System.Xml.XmlDownloadManager.GetStream(Uri uri, ICredentials credentials, IWebProxy proxy, RequestCachePolicy cachePolicy)
+at System.Xml.XmlUrlResolver.GetEntity(Uri absoluteUri, String role, Type ofObjectToReturn)
+at System.Xml.XmlTextReaderImpl.OpenUrlDelegate(Object xmlResolver)
+at System.Threading.CompressedStack.runTryCode(Object userData)
+at System.Runtime.CompilerServices.RuntimeHelpers.ExecuteCodeWithGuaranteedCleanup(TryCode code, CleanupCode backoutCode, Object userData)
+at System.Threading.CompressedStack.Run(CompressedStack compressedStack, ContextCallback callback, Object state)
+at System.Xml.XmlTextReaderImpl.OpenUrl()
+at System.Xml.XmlTextReaderImpl.Read()
+at System.Xml.XmlTextReader.Read()
+at System.Xml.XmlCharCheckingReader.Read()
+at Brother.Tests.Selenium.Lib.Support.HelperClasses.Helper.ReadItemFromFile(String tagName, String attribute) in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Selenium\Support\HelperClasses\Helper.cs:line 240
+at Brother.Tests.Selenium.Lib.Support.HelperClasses.Helper.GetProductInfoItem(String tagName, String attribute) in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Selenium\Support\HelperClasses\Helper.cs:line 179
+at Brother.Tests.Selenium.Lib.Support.HelperClasses.Helper.GetVisaCcInfo(String infoItem, Boolean valid) in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Selenium\Support\HelperClasses\Helper.cs:line 164
+at Brother.Tests.Selenium.Lib.Pages.BrotherOnline.Checkout.CreditCardDetailsPage.PopulateCreditCardInformation(Boolean validInfo) in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Selenium\Pages\BrotherOnline\Checkout\CreditCardDetailsPage.cs:line 292
+at Brother.Tests.Specs.BrotherOnline.Purchasing.CreditCardDetailsSteps.AddVisaCreditCardDetails() in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Specs\Test Steps\BrotherOnline\Purchasing\CreditCardDetailsSteps.cs:line 71
+at Brother.Tests.Specs.BrotherOnline.Purchasing.CreditCardDetailsSteps.WhenIEnterValidCreditCardDetailsForAVisaCreditCard() in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Specs\Test Steps\BrotherOnline\Purchasing\CreditCardDetailsSteps.cs:line 64
+at lambda_method(Closure , IContextManager )
+at TechTalk.SpecFlow.Bindings.BindingInvoker.InvokeBinding(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, TimeSpan& duration)
+at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments)
+at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(StepInstance stepInstance)
+at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.OnAfterLastStep()
+at TechTalk.SpecFlow.TestRunner.CollectScenarioErrors()
+at Brother.Tests.Specs.TestSpecifications.OmniJoin.PurchaseAPlanFeature.ScenarioCleanup() in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Specs\Test Specifications\OmniJoin\PurchasePlans.feature.cs:line 0
+at Brother.Tests.Specs.TestSpecifications.OmniJoin.PurchaseAPlanFeature.PurchaseALiteUsePlanOnMonthlyBillingButClickCancelBeforeSubmittingPayment() in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Specs\Test Specifications\OmniJoin\PurchasePlans.feature:line 158
+]]></stack-trace>
+                                </failure>
+                              </test-case>
+                            </results>
+                          </test-suite>
+                        </results>
+                      </test-suite>
+                    </results>
+                  </test-suite>
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>

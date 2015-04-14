@@ -1,0 +1,18 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Brother.Tests.Specs.Properties" GeneratedClassName="BrotherMainMap">
+  <Profiles />
+  <Settings>
+    <Setting Name="BrotherOnlineHomePageBase" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://online.uk.brother</Value>
+    </Setting>
+    <Setting Name="BrotherMainHomePageIE" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://ie.brother.eu</Value>
+    </Setting>
+    <Setting Name="BrotherOnlineIEHomePage" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://online.ie.brother.eu</Value>
+    </Setting>
+    <Setting Name="WebConferencingHomePage" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://webconferencing.uk.brother</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

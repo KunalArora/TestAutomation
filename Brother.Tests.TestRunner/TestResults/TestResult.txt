@@ -1,0 +1,307 @@
+Given I am logged onto Brother Online "Ireland" using valid credentials
+Then Once I have Validated an Email was received and verified my account
+-> done: ThirdParty.ThenOnceIHaveValidatedAnEmailWasReceivedAndVerifiedMyAccount() (39.6s)
+-> done: CreateNewAccountSteps.GivenIAmLoggedOntoBrotherOnlineUsingValidCredentials("Ireland") (117.8s)
+Given I have navigated to the Brother Main Site "Ireland" products pages
+-> done: MainSiteHomePageNavigation.GivenIHaveNavigatedToTheBrotherMainSiteProductsPages("Ireland") (23.1s)
+And I have clicked on Supplies
+-> done: PurchaseANewInkCartridgeSteps.GivenIHaveClickedOnSupplies() (8.9s)
+And I have entered my valid supplies code for an InkJet cartridge "LC1000BK"
+-> done: PurchaseANewInkCartridgeSteps.GivenIHaveEnteredMyValidSuppliesCodeForAnInkJetCartridge("LC1000BK") (6.2s)
+When I click on search for supply "LC1000BK"
+-> done: PurchaseANewInkCartridgeSteps.WhenIClickOnSearchForSupply("LC1000BK") (11.3s)
+Then I should see the selected item information page priced at "€25.31" inc vat
+-> done: PurchaseANewInkCartridgeSteps.ThenIShouldSeeTheSelectedItemInformationPagePricedAtIncVat("€25.31") (0.1s)
+When I click on Add To Basket
+-> done: PurchaseANewInkCartridgeSteps.WhenIClickOnAddToBasket() (3.1s)
+Then I should see the item "LC1000BK" in the Basket
+-> done: BasketSteps.ThenIShouldSeeTheItemInTheBasket("LC1000BK") (0.5s)
+And I should see the Basket item count change to "1"
+-> done: BasketSteps.ThenIShouldSeeTheBasketItemCountChangeTo(1) (3.0s)
+When I click on Go to Basket
+-> done: BasketSteps.WhenIClickOnGoToBasket() (9.0s)
+Then I should see the item "LC1000BK" in the item list
+-> done: BasketSteps.ThenIShouldSeeTheItemInTheItemList("LC1000BK") (0.1s)
+And I should see the Basket items count is "1"
+-> done: BasketSteps.ThenIShouldSeeTheBasketItemsCountIs(1) (0.1s)
+When I click Checkout
+-> done: BasketSteps.WhenIClickCheckout() (12.0s)
+Then I should see the enter Delivery Address details page
+-> done: DeliveryDetailsSteps.ThenIShouldSeeTheEnterDeliveryAddressDetailsPage() (0.1s)
+When I enter the delivery details
+  --- table step argument ---
+  | field        | value              |
+  | FirstName    | AutoTest           |
+  | LastName     | AutoTest           |
+  | AddressLine1 | 29,Selenium Street |
+  | AddressLine2 | PhantomJSVille     |
+  | CityTown     | Manchester         |
+  | County       | KILKENNY           |
+  | Phone        | 12345678           |
+-> done: DeliveryDetailsSteps.WhenIEnterTheDeliveryDetails(<table>) (1.2s)
+And I Click Save & use address
+-> done: DeliveryDetailsSteps.WhenIClickSaveUseAddress() (8.8s)
+Then I should see the Saved payment details page
+-> error: Could not find element by: By.CssSelector: .button-blue.billing-add
+When I click on Add Payment Address
+-> skipped because of previous errors
+And I click on Add New Address
+-> skipped because of previous errors
+Then I can add billing address details for Country "Ireland"
+-> skipped because of previous errors
+Then I should see the Order Summary page
+-> skipped because of previous errors
+And I click Place Your Order
+-> skipped because of previous errors
+When I enter valid credit card details for a Visa Credit Card
+-> skipped because of previous errors
+And I click Cancel I should return to the Order Summary page
+-> skipped because of previous errors
+Then I can navigate back to Brother Online home page
+-> skipped because of previous errors
+Then I can sign out of Brother Online
+-> skipped because of previous errors
+Given I am logged onto Brother Online "United Kingdom" using valid credentials
+Then Once I have Validated an Email was received and verified my account
+-> done: ThirdParty.ThenOnceIHaveValidatedAnEmailWasReceivedAndVerifiedMyAccount() (21.9s)
+-> done: CreateNewAccountSteps.GivenIAmLoggedOntoBrotherOnlineUsingValidCredentials("United Kingdom") (82.7s)
+Given I am logged into my Brother Online account
+-> done: AccountManagementSteps.GivenIAmRedirectedToTheWelcomeBackPage() (0.1s)
+Then If I click on My Account menu
+-> error: Could not find a part of the path 'C:\Projects\brother-online\Brother\brother\Main\Brother.Tests.TestRunner\Supporting Files\LanguageLookup.xml'.
+And I click on My Personal Details
+-> skipped because of previous errors
+And I can click on Payment Methods
+-> skipped because of previous errors
+Then I can add a new payment method
+-> skipped because of previous errors
+And If I click on Add New Address
+-> skipped because of previous errors
+Then I can add a new billing address details for Country "United Kingdom"
+-> skipped because of previous errors
+And I enter valid credit card details for a Visa Credit Card
+-> skipped because of previous errors
+When I click Cancel submit card details I should return to the My Payment Method page
+-> skipped because of previous errors
+Then I can sign out of Brother Online
+-> skipped because of previous errors
+Given I want to create a new account with Brother Online "United Kingdom"
+-> done: CreateNewAccountSteps.GivenIWantToCreateANewAccountWithBrotherOnline("United Kingdom") (10.0s)
+When I click on Create Account for "United Kingdom"
+-> done: CreateNewAccountSteps.WhenIClickOnSignInCreateAnAccount("United Kingdom") (8.7s)
+And I am redirected to the Brother Login/Register page
+-> done: CreateNewAccountSteps.WhenIAmRedirectedToTheBrotherLoginRegisterPage() (0.1s)
+And I have Checked No I Do Not Have An Account Checkbox
+-> done: CreateNewAccountSteps.DoNotHaveAnAccountCheckbox() (0.1s)
+And I fill in the registration information using a valid email address
+  --- table step argument ---
+  | field           | value    |
+  | FirstName       | AutoTest |
+  | LastName        | AutoTest |
+  | Password        | @@@@@    |
+  | ConfirmPassword | @@@@@    |
+-> done: CreateNewAccountSteps.WhenIFillInTheRegistrationInformationUsingAValidEmailAddress(<table>) (0.4s)
+And I have Agreed to the Terms and Conditions
+-> done: CreateNewAccountSteps.WhenIHaveAgreedToTheTermsAndConditions() (0.1s)
+And I declare that I do not use this account for business
+-> done: CreateNewAccountSteps.WhenIDeclareThatIDoNotUseThisAccountForBusiness() (0.1s)
+When I press Create Your Account
+-> done: CreateNewAccountSteps.WhenIPressCreateYourAccount() (11.2s)
+Then I should see my account confirmation page
+-> done: CreateNewAccountSteps.ThenIShouldSeeMyAccountConfirmationScreen() (0.1s)
+And When I Click Go Back
+-> done: CreateNewAccountSteps.ThenWhenIClickGoBack() (8.7s)
+And Once I have Validated an Email was received and verified my account
+-> done: ThirdParty.ThenOnceIHaveValidatedAnEmailWasReceivedAndVerifiedMyAccount() (22.1s)
+Then I should be able to log into "United Kingdom" Brother Online using my account details
+-> done: CreateNewAccountSteps.ThenIShouldBeAbleToLogIntoBrotherOnlineUsingMyAccountDetails("United Kingdom") (12.2s)
+And I can sign out of Brother Online
+-> done: AccountManagementSteps.ThenIfISignOutOfBrotherOnline() (9.1s)
+Then I am redirected to the Brother Home Page
+-> done: CreateNewAccountSteps.ThenIAmRedirectedToTheBrotherHomePage() (0.1s)
+Given The following site "http://www.brother.ie/" to validate I should receive an Ok response back
+-> done: SiteAccessSteps.GivenTheFollowingSiteToValidateIShouldReceiveAnOkResponseBack("http://www.brothe...") (1.8s)
+Given The following site "https://online.brother.at/" to validate I should receive an Ok response back
+-> done: SiteAccessSteps.GivenTheFollowingSiteToValidateIShouldReceiveAnOkResponseBack("https://online.br...") (7.5s)
+Given The following site "https://online.brother.be/" to validate I should receive an Ok response back
+-> done: SiteAccessSteps.GivenTheFollowingSiteToValidateIShouldReceiveAnOkResponseBack("https://online.br...") (4.6s)
+Given The following site "https://online.brother.bg/" to validate I should receive an Ok response back
+-> error: Web exception - inner exception Unable to read data from the transport connection: An existing connection was forcibly closed by the remote host.
+Given The following site "https://online.brother.cz/" to validate I should receive an Ok response back
+-> error: Brother © Copyright Symbol not found in website https://online.brother.cz/ [OpenQA.Selenium.NoSuchElementException: {"errorMessage":"Unable to find element with xpath '//div[contains(text(), '©')]'","request":{"headers":{"Accept":"application/json, image/png","Content-Length":"57","Content-Type":"application/json;charset=utf-8","Host":"127.0.0.1:6000"},"httpVersion":"1.1","method":"POST","post":"{\"using\":\"xpath\",\"value\":\"//div[contains(text(), '©')]\"}","url":"/element","urlParsed":{"anchor":"","query":"","file":"element","directory":"/","path":"/element","relative":"/element","port":"","host":"","password":"","user":"","userInfo":"","authority":"","protocol":"","source":"/element","queryKey":{},"chunks":["element"]},"urlOriginal":"/session/468775e0-8110-11e4-bf3c-77866e6eae87/element"}}
+   at OpenQA.Selenium.Remote.RemoteWebDriver.UnpackAndThrowOnError(Response errorResponse) in c:\Projects\webdriver\dotnet\src\webdriver\Remote\RemoteWebDriver.cs:line 1048
+   at OpenQA.Selenium.Remote.RemoteWebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters) in c:\Projects\webdriver\dotnet\src\webdriver\Remote\RemoteWebDriver.cs:line 862
+   at OpenQA.Selenium.Remote.RemoteWebDriver.FindElement(String mechanism, String value) in c:\Projects\webdriver\dotnet\src\webdriver\Remote\RemoteWebDriver.cs:line 893
+   at OpenQA.Selenium.Remote.RemoteWebDriver.FindElementByXPath(String xpath) in c:\Projects\webdriver\dotnet\src\webdriver\Remote\RemoteWebDriver.cs:line 664
+   at OpenQA.Selenium.By.<>c__DisplayClasse.<XPath>b__c(ISearchContext context) in c:\Projects\webdriver\dotnet\src\webdriver\By.cs:line 167
+   at OpenQA.Selenium.By.FindElement(ISearchContext context) in c:\Projects\webdriver\dotnet\src\webdriver\By.cs:line 309
+   at OpenQA.Selenium.Remote.RemoteWebDriver.FindElement(By by) in c:\Projects\webdriver\dotnet\src\webdriver\Remote\RemoteWebDriver.cs:line 330
+   at Brother.Tests.Specs.BrotherOnline.SiteAccess.SiteAccessSteps.ValidateLiveSiteUrl(String webSite) in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Specs\Test Steps\BrotherOnline\SiteAccess\SiteAccessSteps.cs:line 78]
+Given The following site "https://online.brother.dk/" to validate I should receive an Ok response back
+-> done: SiteAccessSteps.GivenTheFollowingSiteToValidateIShouldReceiveAnOkResponseBack("https://online.br...") (4.2s)
+Given The following site "https://online.brother.fi/" to validate I should receive an Ok response back
+-> done: SiteAccessSteps.GivenTheFollowingSiteToValidateIShouldReceiveAnOkResponseBack("https://online.br...") (3.8s)
+Given The following site "https://online.brother.fr/" to validate I should receive an Ok response back
+-> done: SiteAccessSteps.GivenTheFollowingSiteToValidateIShouldReceiveAnOkResponseBack("https://online.br...") (3.4s)
+Given The following site "https://online.brother.de/" to validate I should receive an Ok response back
+-> done: SiteAccessSteps.GivenTheFollowingSiteToValidateIShouldReceiveAnOkResponseBack("https://online.br...") (3.2s)
+Given The following site "https://online.brother.nl/" to validate I should receive an Ok response back
+-> done: SiteAccessSteps.GivenTheFollowingSiteToValidateIShouldReceiveAnOkResponseBack("https://online.br...") (3.6s)
+Given The following site "https://online.brother.hu/" to validate I should receive an Ok response back
+-> error: Brother © Copyright Symbol not found in website https://online.brother.hu/ [OpenQA.Selenium.NoSuchElementException: {"errorMessage":"Unable to find element with xpath '//div[contains(text(), '©')]'","request":{"headers":{"Accept":"application/json, image/png","Content-Length":"57","Content-Type":"application/json;charset=utf-8","Host":"127.0.0.1:6000"},"httpVersion":"1.1","method":"POST","post":"{\"using\":\"xpath\",\"value\":\"//div[contains(text(), '©')]\"}","url":"/element","urlParsed":{"anchor":"","query":"","file":"element","directory":"/","path":"/element","relative":"/element","port":"","host":"","password":"","user":"","userInfo":"","authority":"","protocol":"","source":"/element","queryKey":{},"chunks":["element"]},"urlOriginal":"/session/50bf6d60-8110-11e4-9740-7dc99d61b17e/element"}}
+   at OpenQA.Selenium.Remote.RemoteWebDriver.UnpackAndThrowOnError(Response errorResponse) in c:\Projects\webdriver\dotnet\src\webdriver\Remote\RemoteWebDriver.cs:line 1048
+   at OpenQA.Selenium.Remote.RemoteWebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters) in c:\Projects\webdriver\dotnet\src\webdriver\Remote\RemoteWebDriver.cs:line 862
+   at OpenQA.Selenium.Remote.RemoteWebDriver.FindElement(String mechanism, String value) in c:\Projects\webdriver\dotnet\src\webdriver\Remote\RemoteWebDriver.cs:line 893
+   at OpenQA.Selenium.Remote.RemoteWebDriver.FindElementByXPath(String xpath) in c:\Projects\webdriver\dotnet\src\webdriver\Remote\RemoteWebDriver.cs:line 664
+   at OpenQA.Selenium.By.<>c__DisplayClasse.<XPath>b__c(ISearchContext context) in c:\Projects\webdriver\dotnet\src\webdriver\By.cs:line 167
+   at OpenQA.Selenium.By.FindElement(ISearchContext context) in c:\Projects\webdriver\dotnet\src\webdriver\By.cs:line 309
+   at OpenQA.Selenium.Remote.RemoteWebDriver.FindElement(By by) in c:\Projects\webdriver\dotnet\src\webdriver\Remote\RemoteWebDriver.cs:line 330
+   at Brother.Tests.Specs.BrotherOnline.SiteAccess.SiteAccessSteps.ValidateLiveSiteUrl(String webSite) in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Specs\Test Steps\BrotherOnline\SiteAccess\SiteAccessSteps.cs:line 78]
+Given The following site "https://online.brother.ie/" to validate I should receive an Ok response back
+-> done: SiteAccessSteps.GivenTheFollowingSiteToValidateIShouldReceiveAnOkResponseBack("https://online.br...") (5.4s)
+Given The following site "https://online.brother.it/" to validate I should receive an Ok response back
+-> done: SiteAccessSteps.GivenTheFollowingSiteToValidateIShouldReceiveAnOkResponseBack("https://online.br...") (3.3s)
+Given The following site "https://online.brother.lu/" to validate I should receive an Ok response back
+-> done: SiteAccessSteps.GivenTheFollowingSiteToValidateIShouldReceiveAnOkResponseBack("https://online.br...") (5.0s)
+Given The following site "https://online.brother.no/" to validate I should receive an Ok response back
+-> done: SiteAccessSteps.GivenTheFollowingSiteToValidateIShouldReceiveAnOkResponseBack("https://online.br...") (4.1s)
+Given The following site "https://online.brother.pl/" to validate I should receive an Ok response back
+-> done: SiteAccessSteps.GivenTheFollowingSiteToValidateIShouldReceiveAnOkResponseBack("https://online.br...") (5.5s)
+Given The following site "https://online.brother.pt/" to validate I should receive an Ok response back
+-> error: Brother © Copyright Symbol not found in website https://online.brother.pt/ [OpenQA.Selenium.NoSuchElementException: {"errorMessage":"Unable to find element with xpath '//div[contains(text(), '©')]'","request":{"headers":{"Accept":"application/json, image/png","Content-Length":"57","Content-Type":"application/json;charset=utf-8","Host":"127.0.0.1:6000"},"httpVersion":"1.1","method":"POST","post":"{\"using\":\"xpath\",\"value\":\"//div[contains(text(), '©')]\"}","url":"/element","urlParsed":{"anchor":"","query":"","file":"element","directory":"/","path":"/element","relative":"/element","port":"","host":"","password":"","user":"","userInfo":"","authority":"","protocol":"","source":"/element","queryKey":{},"chunks":["element"]},"urlOriginal":"/session/6551d880-8110-11e4-a2d4-dbffcaba535a/element"}}
+   at OpenQA.Selenium.Remote.RemoteWebDriver.UnpackAndThrowOnError(Response errorResponse) in c:\Projects\webdriver\dotnet\src\webdriver\Remote\RemoteWebDriver.cs:line 1048
+   at OpenQA.Selenium.Remote.RemoteWebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters) in c:\Projects\webdriver\dotnet\src\webdriver\Remote\RemoteWebDriver.cs:line 862
+   at OpenQA.Selenium.Remote.RemoteWebDriver.FindElement(String mechanism, String value) in c:\Projects\webdriver\dotnet\src\webdriver\Remote\RemoteWebDriver.cs:line 893
+   at OpenQA.Selenium.Remote.RemoteWebDriver.FindElementByXPath(String xpath) in c:\Projects\webdriver\dotnet\src\webdriver\Remote\RemoteWebDriver.cs:line 664
+   at OpenQA.Selenium.By.<>c__DisplayClasse.<XPath>b__c(ISearchContext context) in c:\Projects\webdriver\dotnet\src\webdriver\By.cs:line 167
+   at OpenQA.Selenium.By.FindElement(ISearchContext context) in c:\Projects\webdriver\dotnet\src\webdriver\By.cs:line 309
+   at OpenQA.Selenium.Remote.RemoteWebDriver.FindElement(By by) in c:\Projects\webdriver\dotnet\src\webdriver\Remote\RemoteWebDriver.cs:line 330
+   at Brother.Tests.Specs.BrotherOnline.SiteAccess.SiteAccessSteps.ValidateLiveSiteUrl(String webSite) in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Specs\Test Steps\BrotherOnline\SiteAccess\SiteAccessSteps.cs:line 78]
+Given The following site "https://online.brother.ro/" to validate I should receive an Ok response back
+-> error: Web exception - inner exception Unable to read data from the transport connection: An existing connection was forcibly closed by the remote host.
+Given The following site "https://online.brother.ru/" to validate I should receive an Ok response back
+-> done: SiteAccessSteps.GivenTheFollowingSiteToValidateIShouldReceiveAnOkResponseBack("https://online.br...") (4.4s)
+Given The following site "https://online.brother.si/" to validate I should receive an Ok response back
+-> done: SiteAccessSteps.GivenTheFollowingSiteToValidateIShouldReceiveAnOkResponseBack("https://online.br...") (2.8s)
+Given The following site "https://online.brother.es/" to validate I should receive an Ok response back
+-> done: SiteAccessSteps.GivenTheFollowingSiteToValidateIShouldReceiveAnOkResponseBack("https://online.br...") (3.7s)
+Given The following site "https://online.brother.se/" to validate I should receive an Ok response back
+-> done: SiteAccessSteps.GivenTheFollowingSiteToValidateIShouldReceiveAnOkResponseBack("https://online.br...") (2.9s)
+Given The following site "https://online.brother.ch/" to validate I should receive an Ok response back
+-> done: SiteAccessSteps.GivenTheFollowingSiteToValidateIShouldReceiveAnOkResponseBack("https://online.br...") (11.8s)
+Given The following site "https://online.brother.co.uk/" to validate I should receive an Ok response back
+-> done: SiteAccessSteps.GivenTheFollowingSiteToValidateIShouldReceiveAnOkResponseBack("https://online.br...") (7.9s)
+Given The following site "https://creativecenter.brother.eu" to validate I should receive an Ok response back
+-> error: Brother © Copyright Symbol not found in website https://creativecenter.brother.eu [OpenQA.Selenium.NoSuchElementException: {"errorMessage":"Unable to find element with xpath '//div[contains(text(), '©')]'","request":{"headers":{"Accept":"application/json, image/png","Content-Length":"57","Content-Type":"application/json;charset=utf-8","Host":"127.0.0.1:6000"},"httpVersion":"1.1","method":"POST","post":"{\"using\":\"xpath\",\"value\":\"//div[contains(text(), '©')]\"}","url":"/element","urlParsed":{"anchor":"","query":"","file":"element","directory":"/","path":"/element","relative":"/element","port":"","host":"","password":"","user":"","userInfo":"","authority":"","protocol":"","source":"/element","queryKey":{},"chunks":["element"]},"urlOriginal":"/session/81287690-8110-11e4-9788-f18a508629fb/element"}}
+   at OpenQA.Selenium.Remote.RemoteWebDriver.UnpackAndThrowOnError(Response errorResponse) in c:\Projects\webdriver\dotnet\src\webdriver\Remote\RemoteWebDriver.cs:line 1048
+   at OpenQA.Selenium.Remote.RemoteWebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters) in c:\Projects\webdriver\dotnet\src\webdriver\Remote\RemoteWebDriver.cs:line 862
+   at OpenQA.Selenium.Remote.RemoteWebDriver.FindElement(String mechanism, String value) in c:\Projects\webdriver\dotnet\src\webdriver\Remote\RemoteWebDriver.cs:line 893
+   at OpenQA.Selenium.Remote.RemoteWebDriver.FindElementByXPath(String xpath) in c:\Projects\webdriver\dotnet\src\webdriver\Remote\RemoteWebDriver.cs:line 664
+   at OpenQA.Selenium.By.<>c__DisplayClasse.<XPath>b__c(ISearchContext context) in c:\Projects\webdriver\dotnet\src\webdriver\By.cs:line 167
+   at OpenQA.Selenium.By.FindElement(ISearchContext context) in c:\Projects\webdriver\dotnet\src\webdriver\By.cs:line 309
+   at OpenQA.Selenium.Remote.RemoteWebDriver.FindElement(By by) in c:\Projects\webdriver\dotnet\src\webdriver\Remote\RemoteWebDriver.cs:line 330
+   at Brother.Tests.Specs.BrotherOnline.SiteAccess.SiteAccessSteps.ValidateLiveSiteUrl(String webSite) in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Specs\Test Steps\BrotherOnline\SiteAccess\SiteAccessSteps.cs:line 78]
+Given The following site "http://www.brother.at/" to validate I should receive an Ok response back
+-> done: SiteAccessSteps.GivenTheFollowingSiteToValidateIShouldReceiveAnOkResponseBack("http://www.brothe...") (3.1s)
+Given The following site "http://www.brother.fr/" to validate I should receive an Ok response back
+-> done: SiteAccessSteps.GivenTheFollowingSiteToValidateIShouldReceiveAnOkResponseBack("http://www.brothe...") (2.2s)
+Given The following site "http://www.brother.de/" to validate I should receive an Ok response back
+-> done: SiteAccessSteps.GivenTheFollowingSiteToValidateIShouldReceiveAnOkResponseBack("http://www.brothe...") (2.8s)
+Given The following site "http://www.brother.co.uk/" to validate I should receive an Ok response back
+-> done: SiteAccessSteps.GivenTheFollowingSiteToValidateIShouldReceiveAnOkResponseBack("http://www.brothe...") (3.9s)
+Given The following site "http://webconference.brother.fr/ " to validate I should receive an Ok response back
+-> done: SiteAccessSteps.GivenTheFollowingSiteToValidateIShouldReceiveAnOkResponseBack("http://webconfere...") (3.0s)
+Given The following site "http://videokonferenzen.brother.de/" to validate I should receive an Ok response back
+-> done: SiteAccessSteps.GivenTheFollowingSiteToValidateIShouldReceiveAnOkResponseBack("http://videokonfe...") (3.0s)
+Given The following site "http://webconferencing.brother.ie/" to validate I should receive an Ok response back
+-> done: SiteAccessSteps.GivenTheFollowingSiteToValidateIShouldReceiveAnOkResponseBack("http://webconfere...") (4.6s)
+Given The following site "http://videoconferencia.brother.es/" to validate I should receive an Ok response back
+-> done: SiteAccessSteps.GivenTheFollowingSiteToValidateIShouldReceiveAnOkResponseBack("http://videoconfe...") (4.1s)
+Given The following site "http://videokonferenzen.brother.ch/" to validate I should receive an Ok response back
+-> error: Brother © Copyright Symbol not found in website http://videokonferenzen.brother.ch/ [OpenQA.Selenium.NoSuchElementException: {"errorMessage":"Unable to find element with xpath '//div[contains(text(), '©')]'","request":{"headers":{"Accept":"application/json, image/png","Content-Length":"57","Content-Type":"application/json;charset=utf-8","Host":"127.0.0.1:6000"},"httpVersion":"1.1","method":"POST","post":"{\"using\":\"xpath\",\"value\":\"//div[contains(text(), '©')]\"}","url":"/element","urlParsed":{"anchor":"","query":"","file":"element","directory":"/","path":"/element","relative":"/element","port":"","host":"","password":"","user":"","userInfo":"","authority":"","protocol":"","source":"/element","queryKey":{},"chunks":["element"]},"urlOriginal":"/session/a029a0a0-8110-11e4-889a-dfb635c61174/element"}}
+   at OpenQA.Selenium.Remote.RemoteWebDriver.UnpackAndThrowOnError(Response errorResponse) in c:\Projects\webdriver\dotnet\src\webdriver\Remote\RemoteWebDriver.cs:line 1048
+   at OpenQA.Selenium.Remote.RemoteWebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters) in c:\Projects\webdriver\dotnet\src\webdriver\Remote\RemoteWebDriver.cs:line 862
+   at OpenQA.Selenium.Remote.RemoteWebDriver.FindElement(String mechanism, String value) in c:\Projects\webdriver\dotnet\src\webdriver\Remote\RemoteWebDriver.cs:line 893
+   at OpenQA.Selenium.Remote.RemoteWebDriver.FindElementByXPath(String xpath) in c:\Projects\webdriver\dotnet\src\webdriver\Remote\RemoteWebDriver.cs:line 664
+   at OpenQA.Selenium.By.<>c__DisplayClasse.<XPath>b__c(ISearchContext context) in c:\Projects\webdriver\dotnet\src\webdriver\By.cs:line 167
+   at OpenQA.Selenium.By.FindElement(ISearchContext context) in c:\Projects\webdriver\dotnet\src\webdriver\By.cs:line 309
+   at OpenQA.Selenium.Remote.RemoteWebDriver.FindElement(By by) in c:\Projects\webdriver\dotnet\src\webdriver\Remote\RemoteWebDriver.cs:line 330
+   at Brother.Tests.Specs.BrotherOnline.SiteAccess.SiteAccessSteps.ValidateLiveSiteUrl(String webSite) in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Specs\Test Steps\BrotherOnline\SiteAccess\SiteAccessSteps.cs:line 78]
+Given The following site "http://visioconference.brother.ch/" to validate I should receive an Ok response back
+-> done: SiteAccessSteps.GivenTheFollowingSiteToValidateIShouldReceiveAnOkResponseBack("http://visioconfe...") (4.9s)
+Given The following site "http://webconferencing.brother.co.uk/" to validate I should receive an Ok response back
+-> done: SiteAccessSteps.GivenTheFollowingSiteToValidateIShouldReceiveAnOkResponseBack("http://webconfere...") (3.0s)
+Given The following site test site "http://cms.brother.eu/Test/EmailConfirmationToken.aspx" to validate I should receive an Ok response back
+-> done: SiteAccessSteps.GivenTheFollowingSiteTestSiteToValidateIShouldReceiveAnOkResponseBack("http://cms.brothe...") (7.8s)
+Given I am logged onto Brother Online "United Kingdom" using valid credentials
+Then Once I have Validated an Email was received and verified my account
+-> done: ThirdParty.ThenOnceIHaveValidatedAnEmailWasReceivedAndVerifiedMyAccount() (23.0s)
+-> done: CreateNewAccountSteps.GivenIAmLoggedOntoBrotherOnlineUsingValidCredentials("United Kingdom") (85.5s)
+Given I am logged into my Brother Online account
+-> done: AccountManagementSteps.GivenIAmRedirectedToTheWelcomeBackPage() (0.1s)
+And I have navigated to the OmniJoin WebConferencing Home Page
+-> done: WebConferencingHomePageSteps.GivenIHaveNavigatedToTheOmniJoinHomePage() (10.8s)
+And If I click on Start Free Trial
+-> done: FreeTrialSteps.GivenIfIClickOnStartFreeTrial() (13.0s)
+Then I should be directed to the OmniJoin Free Trial page
+-> done: FreeTrialSteps.ThenIShouldBeDirectedToTheOmniJoinFreeTrialPage() (0.1s)
+When I have entered a valid First and Last name, "AutoTest", "AutoTest"
+-> done: FreeTrialSteps.WhenIHaveEnteredAValidFirstAndLastName("AutoTest", "AutoTest") (0.2s)
+And I have entered a valid email address
+-> done: FreeTrialSteps.WhenIHaveEnteredAValidEmailAddress() (0.1s)
+And I have entered a valid phone number "01555 522522"
+-> done: FreeTrialSteps.WhenIHaveEnteredAValidPhoneNumber("01555 522522") (0.1s)
+And I have Agreed to the Free Trial Terms and Conditions
+-> done: FreeTrialSteps.WhenIHaveAgreedToTheFreeTrialTermsAndConditions() (0.1s)
+And if I click Submit
+-> done: FreeTrialSteps.WhenIfIClickSubmit() (14.1s)
+Then I should be directed to the download page indicating I have 14 days Free trial
+-> done: FreeTrialSteps.ThenIShouldBeDirectedToTheDownloadPageIndicatingIHaveDaysFreeTrial(14) (0.0s)
+And Once I have Validated a Free Trial confirmation Email was received
+-> done: ThirdParty.ThenOnceIHaveValidatedAFreeTrialConfirmationEmailWasReceived() (10.4s)
+Then If I go back to Brother Online Home Page
+-> done: CreateNewAccountSteps.ThenIfIGoBackToBrotherOnlineHomePage() (9.7s)
+Then I can sign out of Brother Online
+-> done: AccountManagementSteps.ThenIfISignOutOfBrotherOnline() (9.2s)
+Then I am redirected to the Brother Home Page
+-> done: CreateNewAccountSteps.ThenIAmRedirectedToTheBrotherHomePage() (0.1s)
+Given I am logged onto Brother Online "United Kingdom" using valid credentials
+Then Once I have Validated an Email was received and verified my account
+-> done: ThirdParty.ThenOnceIHaveValidatedAnEmailWasReceivedAndVerifiedMyAccount() (20.6s)
+-> done: CreateNewAccountSteps.GivenIAmLoggedOntoBrotherOnlineUsingValidCredentials("United Kingdom") (80.7s)
+Given I have navigated to the OmniJoin home page
+-> done: WebConferencingHomePageSteps.GivenIHaveNavigatedToTheOmniJoinHomePage() (10.6s)
+And I have clicked on Buy
+-> done: WebConferencingHomePageSteps.GivenIHaveClickedOnBuy() (13.1s)
+Then I should be redirected to the Plans page
+-> done: PurchaseAPlan.ThenIShouldBeRedirectedToThePlansPage() (0.1s)
+And If I then Choose the "Lite" Plan option column
+-> done: PurchaseAPlan.ThenIfIThenClickOnChoosePlanUnderTheLiteUseColumn("Lite") (10.1s)
+Then I should be directed to the relevant plan page
+-> done: PurchaseAPlan.ThenIShouldBeDirectedToTheRelevantPlanPage() (0.1s)
+When I click Agree to terms and conditions
+-> done: PurchaseAPlan.WhenIClickAgreeToTermsAndConditions() (0.1s)
+And I Click Buy Now At Brother Online
+-> done: PurchaseAPlan.WhenIClickBuyNowAtBrotherOnline() (10.2s)
+Then I should be directed to the Brother Online Basket page
+-> done: PurchaseAPlan.ThenIShouldBeDirectedToTheBrotherOnlineBasketPage() (0.1s)
+And When I click CheckOut
+-> done: PurchaseAPlan.ThenWhenIClickCheckOut() (13.1s)
+Then I can add billing address details for Country "United Kingdom"
+-> done: BillingDetailsSteps.ThenICanAddBillingAddressDetailsFor("United Kingdom") (15.1s)
+And I can go through a dummy order process for Country "United Kingdom" with order info "OmniJoin Lite" "£18.00" "1"
+Then I should see the Order Summary page
+-> done: OrderSummarySteps.ThenIShouldSeeTheOrderSummaryPage() (0.1s)
+Then I click Place Your Order
+-> done: OrderSummarySteps.ThenICanProcessMyOrder() (6.3s)
+When I enter valid credit card details for a Visa Credit Card
+When I click Select the Visa Credit Card Option
+-> done: CreditCardDetailsSteps.WhenISelectTheVisaCreditCardOption() (0.0s)
+-> error: Could not find a part of the path 'C:\Projects\brother-online\Brother\brother\Main\Brother.Tests.TestRunner\Supporting Files\ProductInfo.xml'.
+When I click Cancel I should return to the Order Summary page
+-> skipped because of previous errors
+-> done: OrderProcessSteps.ThenICanGoThroughADummyOrderProcessForCountryWithOrderInfo("United Kingdom", "OmniJoin Lite", "£18.00", 1) (11.9s)
+Then I can navigate back to Brother Online home page
+-> skipped because of previous errors
+Then I can sign out of Brother Online
+-> skipped because of previous errors

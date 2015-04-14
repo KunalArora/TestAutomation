@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="C:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Specs\bin\Debug\Brother.Tests.Specs.dll" total="3" errors="1" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2014-08-12" time="16:28:39">
+  <environment nunit-version="2.6.0.12051" clr-version="2.0.50727.5477" os-version="Microsoft Windows NT 6.1.7601 Service Pack 1" platform="Win32NT" cwd="C:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Specs" machine-name="BIELT348" user="HowellAn" user-domain="EU" />
+  <culture-info current-culture="en-GB" current-uiculture="en-US" />
+  <test-suite type="Assembly" name="C:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Specs\bin\Debug\Brother.Tests.Specs.dll" executed="True" result="Failure" success="False" time="59.465" asserts="0">
+    <results>
+      <test-suite type="Namespace" name="Brother" executed="True" result="Failure" success="False" time="59.450" asserts="0">
+        <results>
+          <test-suite type="Namespace" name="Tests" executed="True" result="Failure" success="False" time="59.450" asserts="0">
+            <results>
+              <test-suite type="Namespace" name="Specs" executed="True" result="Failure" success="False" time="59.450" asserts="0">
+                <results>
+                  <test-suite type="Namespace" name="TestSpecifications" executed="True" result="Failure" success="False" time="59.449" asserts="0">
+                    <results>
+                      <test-suite type="Namespace" name="BrotherOnline" executed="True" result="Failure" success="False" time="59.449" asserts="0">
+                        <results>
+                          <test-suite type="Namespace" name="Account" executed="True" result="Success" success="True" time="38.852" asserts="0">
+                            <results>
+                              <test-suite type="TestFixture" name="CreateNewAccountHappyPathFeature" description="CreateNewAccount (Happy Path)" executed="True" result="Success" success="True" time="22.073" asserts="0">
+                                <results>
+                                  <test-case name="Brother.Tests.Specs.TestSpecifications.BrotherOnline.Account.CreateNewAccountHappyPathFeature.CustomerCreatesANewAccountWithBrotherOnlineUsingValidCredentials" description="Customer creates a new account with Brother Online using valid credentials" executed="True" result="Success" success="True" time="21.249" asserts="0">
+                                    <categories>
+                                      <category name="ALL" />
+                                    </categories>
+                                  </test-case>
+                                </results>
+                              </test-suite>
+                              <test-suite type="TestFixture" name="SignIntoAccountHappyPathFeature" description="SignIntoAccount (Happy Path)" executed="True" result="Success" success="True" time="16.773" asserts="0">
+                                <results>
+                                  <test-case name="Brother.Tests.Specs.TestSpecifications.BrotherOnline.Account.SignIntoAccountHappyPathFeature.CustomerHasCreatedABrotherOnlineAccountAndWishesToSignInWithValidCredentials" description="Customer has created a Brother Online account and wishes to sign in with valid credentials" executed="True" result="Success" success="True" time="16.770" asserts="0">
+                                    <categories>
+                                      <category name="ALL" />
+                                    </categories>
+                                  </test-case>
+                                </results>
+                              </test-suite>
+                            </results>
+                          </test-suite>
+                          <test-suite type="Namespace" name="ProductRegistration" executed="True" result="Failure" success="False" time="20.590" asserts="0">
+                            <results>
+                              <test-suite type="TestFixture" name="AddDeviceHappyPathFeature" description="AddDevice (Happy path)" executed="True" result="Failure" success="False" time="20.589" asserts="0">
+                                <results>
+                                  <test-case name="Brother.Tests.Specs.TestSpecifications.BrotherOnline.ProductRegistration.AddDeviceHappyPathFeature.AddMyDeviceWithNoExtendedWarranty" description="Add My Device with no extended warranty" executed="True" result="Error" success="False" time="20.584" asserts="0">
+                                    <categories>
+                                      <category name="ALL" />
+                                    </categories>
+                                    <failure>
+                                      <message><![CDATA[System.Configuration.SettingsPropertyNotFoundException : The settings property 'ProductRegistration' was not found.]]></message>
+                                      <stack-trace><![CDATA[at System.Configuration.SettingsBase.GetPropertyValueByName(String propertyName)
+at System.Configuration.SettingsBase.get_Item(String propertyName)
+at System.Configuration.ApplicationSettingsBase.GetPropertyValue(String propertyName)
+at System.Configuration.ApplicationSettingsBase.get_Item(String propertyName)
+at Brother.Tests.Selenium.Lib.Pages.BrotherOnline.Products.RegistrationPage.get_DefaultTitle() in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Selenium\Pages\BrotherOnline\Products\RegistrationPage.cs:line 12
+at Brother.Tests.Selenium.Lib.Pages.Base.BasePage.GetInstance[TPage](IWebDriver driver, String baseUrl, String expectedTitle) in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Selenium\Pages\Base\BasePage.Common.cs:line 35
+at Brother.Tests.Selenium.Lib.Pages.Base.BasePage.GetInstance[TPage](IWebDriver driver, String expectedTitle) in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Selenium\Pages\Base\BasePage.Common.cs:line 21
+at Brother.Tests.Selenium.Lib.Pages.BrotherOnline.AccountManagement.WelcomeBackPage.ClickAddDeviceLink() in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Selenium\Pages\BrotherOnline\AccountManagement\WelcomeBackPage.cs:line 56
+at Brother.Tests.Specs.BrotherOnline.AddDeviceSteps.WhenIHaveClickedOnAddDevice() in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Specs\Test Steps\BrotherOnline\Product Registration\AddDeviceSteps.cs:line 15
+at TechTalk.SpecFlow.Bindings.BindingInvoker.InvokeBinding(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, TimeSpan& duration)
+at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments)
+at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(StepInstance stepInstance)
+at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.OnAfterLastStep()
+at Brother.Tests.Specs.TestSpecifications.BrotherOnline.ProductRegistration.AddDeviceHappyPathFeature.ScenarioCleanup() in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Specs\Test Specifications\BrotherOnline\Product Registration\AddDevice.feature.cs:line 0
+at Brother.Tests.Specs.TestSpecifications.BrotherOnline.ProductRegistration.AddDeviceHappyPathFeature.AddMyDeviceWithNoExtendedWarranty() in c:\Projects\brother-online\Brother\brother\Main\Brother.Tests.Specs\Test Specifications\BrotherOnline\Product Registration\AddDevice.feature:line 22
+]]></stack-trace>
+                                    </failure>
+                                  </test-case>
+                                </results>
+                              </test-suite>
+                            </results>
+                          </test-suite>
+                        </results>
+                      </test-suite>
+                    </results>
+                  </test-suite>
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>

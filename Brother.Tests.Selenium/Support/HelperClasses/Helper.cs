@@ -1,0 +1,455 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Drawing.Imaging;
+using System.IO;
+using System.Linq;
+using System.Security;
+using System.Text;
+using System.Xml;
+using Brother.Tests.Selenium.Lib.Pages.Base;
+using NUnit.Framework;
+using OpenQA.Selenium;
+using TechTalk.SpecFlow;
+
+namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
+{
+    public abstract class Helper
+    {
+        // Runtime environment constants
+        public const string RunTimeLive = @"PROD";
+        public const string RunTimeTest = @"TEST";
+        public const string RunTimeUat = @"UAT";
+        public const string RunTimeDev = @"DEV";
+        public const string RunTimeDefault = @"TEST";
+
+        public const string BrotherEmail = @"BrotherEmail";
+        public const string MailinatorEmail = @"MailinatorEmail";
+
+        private static string _pwd = @"Abcd1234";
+        private const string _defaultFirstName = @"Otto";
+        private const string _defaultLastName = @"Tiest";
+        private const string ProductInfoFile = @"ProductInfo.xml";
+        private const string _supportingFilesLocation = @"\Supporting Files\";
+        private static string _currentDomain;
+
+        public static string CurrentDomain
+        {
+            get { return _currentDomain; } 
+            set { _currentDomain = value; }
+        }
+
+        public static string CurrentDeviceSerialNumber { get; set; }
+        public static string CurrentDeviceModelNumber { get; set; }
+
+        /// <summary>
+        /// Enum DurationType
+        /// </summary>
+        public enum DurationType { Millisecond, Second, Minute }
+
+        public static string SupportingFilesLocation
+        {
+            get { return _supportingFilesLocation; }
+        }
+
+        private static string _locale = "uk"; // default locale
+
+        private const string DefaultSeleniumFolder = "C:\\TestAutomation\\SnapShots";
+        private const int MaxFileNameSize = 260;
+        public static string CreditCardType  { get; set; }
+
+        public static string Password
+        {
+            get { return _pwd; } 
+            set { _pwd = value; }
+        }
+
+        public static string SnapshotLocation { get; set; }
+        private static string ProductInfoFilePath { get; set; }
+
+        public static string DefaultFirstName
+        {
+            get { return _defaultFirstName; }
+        }
+
+        public static string DefaultLastName
+        {
+            get { return _defaultLastName; }
+        }
+
+        public static string Locale
+        {
+            get { return _locale.ToLower(); }
+            set { _locale = value; }
+        }
+
+        // Countries lookup
+        private static readonly Dictionary<string, string> _countries = new Dictionary<string, string>
+        {
+            {"Spain", "es"},
+	        {"Poland", "pl"},    
+	        {"United Kingdom", "uk"},
+	        {"Ireland", "ie"},
+            {"Germany", "de"},
+            {"Switzerland", "ch"},
+            {"France", "fr"},
+            {"Russia", "ru"},
+            {"Belgium", "be"},
+            {"Hungary", "hr"},
+            {"Czech", "cz"},
+            {"Netherlands", "nl"},
+            {"Denmark", "dk"},
+            {"Portugal", "pt"},
+            {"Slovakia", "sk"},
+            {"Slovenia", "si"},
+            {"Finland", "fi"},
+            {"Norway", "no"},
+            {"Romania", "ro"},
+        };
+
+        public static string CountryLookup(string locale)
+        {
+            foreach (KeyValuePair<string, string> country in _countries)
+            {
+                if (country.Value.Equals(locale))
+                {
+                    return country.Key;
+                }
+            }
+            return String.Empty;
+        }
+
+        public static void SetCountry(string country)
+        {
+            string locale;
+            Locale = _countries.TryGetValue(country, out locale) ? locale : String.Empty;
+            if (Locale.Equals(string.Empty))
+            {
+                Assert.Fail(string.Format("Invalid Locale {0} - unable to proceed", Locale));
+            }
+            MsgOutput("Setting Country to ", Locale);
+        }
+
+        public static string GetRunTimeEnv()
+        {
+            return Environment.GetEnvironmentVariable("AutoTestRunTimeEnv", EnvironmentVariableTarget.Machine) ?? RunTimeDefault;
+        }
+
+        public static bool SetRunTimeEnv(string runTimeEnv)
+        {
+            Environment.SetEnvironmentVariable("AutoTestRunTimeEnv", runTimeEnv, EnvironmentVariableTarget.Machine);
+            var environmentVariable = Environment.GetEnvironmentVariable("AutoTestRunTimeEnv", EnvironmentVariableTarget.Machine);
+            return environmentVariable != null && environmentVariable.Equals(runTimeEnv);
+        }
+
+        public static bool CheckScenarioEnv(string env)
+        {
+            return ScenarioContext.Current.ScenarioInfo.Tags.Contains(env);
+        }
+
+        public static bool IsSmokeTest()
+        {
+            var isSmokeTest = Environment.GetEnvironmentVariable("SmokeTestSet", EnvironmentVariableTarget.Machine);
+            return isSmokeTest != null && isSmokeTest.Equals("TRUE");
+        }
+
+        public static bool CheckFeatureEnv(string env)
+        {
+            return FeatureContext.Current.FeatureInfo.Tags.Contains(env);
+        }
+
+        public static string CurrentBaseUrlAsHttps()
+        {
+            var baseUrl = BasePage.BaseUrl;
+            return baseUrl.ToLower().Replace("http", "https");
+        }
+
+        public static string UrlAsHttps(string url)
+        {
+            return url.ToLower().Replace("http", "https");
+        }
+
+        public static void MsgOutput(string message)
+        {
+            #if DEBUG
+                Trace.WriteLine(String.Format("@@TESTMSG - {0}", message));
+            #else
+                Console.WriteLine("@@TESTMSG - {0}", message);
+            #endif
+        }
+
+        public static void MsgOutput(string msgPrefix, string message)
+        {
+            #if DEBUG
+                Trace.WriteLine(String.Format("{0} --> {1} -", msgPrefix, message));
+            #else
+                Console.WriteLine("{0} --> {1} -", msgPrefix, message);
+            #endif
+        }
+
+        public static string GetVisaCcInfo(string infoItem, bool valid)
+        {
+            return GetProductInfoItem(valid ? "ValidVisaCCDetails" : "InvalidVisaCCDetails", infoItem);
+        }
+        
+        public static string GetMasterCardCcInfo(string infoItem, bool valid)
+        {
+            return GetProductInfoItem(valid ? "ValidMasterCardCCDetails" : "InvalidMasterCardCCDetails", infoItem);
+        }
+
+        public static string GetProductInfoItem(string tagName, string attribute)
+        {
+            // check for a specific 
+            var itemValue = String.Empty;
+            ProductInfoFilePath = GetProductInfoFile();
+            if (ProductInfoFilePath != String.Empty)
+            {
+                itemValue = ReadItemFromFile(tagName, attribute);
+            }
+            // Write back used value and increment
+            if (attribute != null && (attribute.Equals("SerialNumber") && itemValue != String.Empty))
+            {
+                UpdateSerialNumber(IncrementValue(itemValue));
+            }
+            return itemValue;
+        }
+
+        public static string CheckForCdServer(string baseUrl)
+        {
+            if (Helper.GetRunTimeEnv().Contains("PROD") && UseCdServerDomain().Contains("web"))
+            {
+                if (baseUrl.Contains("online"))
+                {
+                    return baseUrl.Replace("online", string.Format("{0}.online", UseCdServerDomain()));
+                }
+
+                if (baseUrl.Contains("www."))
+                {
+                    return baseUrl.Replace("www.", string.Format("www.{0}.", UseCdServerDomain()));
+                }
+
+                if (baseUrl.Contains("webconferencing"))
+                {
+                    return baseUrl.Replace("webconferencing", string.Format("{0}.webconferencing", UseCdServerDomain()));
+                }
+            }
+            return baseUrl;
+        }
+
+        public static string UseCdServerDomain()
+        {
+            return Environment.GetEnvironmentVariable("AutoTest_UseCDServer", EnvironmentVariableTarget.Machine) ?? string.Empty;
+        }
+
+        public static bool SetCdServerDmain(string domain)
+        {
+            Environment.SetEnvironmentVariable("AutoTest_UseCDServer", domain, EnvironmentVariableTarget.Machine);
+            if (Environment.GetEnvironmentVariable("AutoTest_UseCDServer", EnvironmentVariableTarget.Machine) == domain)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static string GetDeviceCodeSeed()
+        {
+            var deviceSeed = Environment.GetEnvironmentVariable(GetRunTimeEnv().Equals(RunTimeUat) ? "AutoTest_DeviceSeed_QAS" : "AutoTest_DeviceSeed_DV2", EnvironmentVariableTarget.Machine);
+            Assert.IsNotNull(deviceSeed, "Device Code Seed");
+            UpdateSerialNumber(IncrementValue(deviceSeed));
+            return deviceSeed;
+        }
+
+        private static string ReadItemFromFile(string tagName, string attribute)
+        {
+            var settings = new XmlReaderSettings();
+            var txtReader = new XmlTextReader(ProductInfoFilePath);
+            var reader = XmlReader.Create(txtReader, settings);
+            var itemValue = String.Empty;
+            while (reader.Read())
+            {
+                if (reader.NodeType == XmlNodeType.Element && reader.Name == tagName)
+                {
+                    itemValue = reader.GetAttribute(attribute);
+                }
+            }
+            reader.Close();
+            return itemValue;
+        }
+
+        public static void UpdateSerialNumber(string serialNumber)
+        {
+            try
+            {
+                Environment.SetEnvironmentVariable(GetRunTimeEnv().Equals(RunTimeUat) ? "AutoTest_DeviceSeed_QAS" : "AutoTest_DeviceSeed_DV2", serialNumber, EnvironmentVariableTarget.Machine);
+            }
+            catch (SecurityException securityException)
+            {
+                Assert.Fail("Permission denied setting Device Seed [{0}]", securityException.Message);                                
+            }
+            catch (ArgumentNullException argumentNullException)
+            {
+                Assert.Fail("Error setting Environment Variable for Device Seed [{0}]", argumentNullException.Message);
+            }
+            Assert.AreEqual(serialNumber, Environment.GetEnvironmentVariable(GetRunTimeEnv().Equals(RunTimeUat) ? "AutoTest_DeviceSeed_QAS" : "AutoTest_DeviceSeed_DV2", EnvironmentVariableTarget.Machine));
+        }
+
+        private static string GetProductInfoFile()
+        {
+            var directoryInfo = Directory.GetParent(Directory.GetCurrentDirectory()).Parent;
+            if (directoryInfo == null) return String.Empty;
+
+            var productInfoFile = directoryInfo.FullName + SupportingFilesLocation + ProductInfoFile;
+
+            return productInfoFile;
+        }
+
+        // Code to increment Alphanumberic number
+        private static string IncrementValue(string itemValue)
+        {
+            byte[] asciiValues = Encoding.ASCII.GetBytes(itemValue);
+            var stringLength = asciiValues.Length;
+            var isAllZed = true;
+            var isAllNine = true;
+            //Check if all has ZZZ.... then do nothing just return empty string.
+            for (var i = 0; i < stringLength - 1; i++)
+            {
+                if (asciiValues[i] == 90) continue;
+                isAllZed = false;
+                break;
+            }
+            if (isAllZed && asciiValues[stringLength - 1] == 57)
+            {
+                asciiValues[stringLength - 1] = 64;
+            }
+
+            // Check if all has 999... then make it A0
+            for (var i = 0; i < stringLength; i++)
+            {
+                if (asciiValues[i] == 57) continue;
+                isAllNine = false;
+                break;
+            }
+            if (isAllNine)
+            {
+                asciiValues[stringLength - 1] = 47;
+                asciiValues[0] = 65;
+                for (var i = 1; i < stringLength - 1; i++)
+                {
+                    asciiValues[i] = 48;
+                }
+            }
+
+            for (var i = stringLength; i > 0; i--)
+            {
+                if (i - stringLength == 0)
+                {
+                    asciiValues[i - 1] += 1;
+                }
+                if (asciiValues[i - 1] == 58)
+                {
+                    asciiValues[i - 1] = 48;
+                    if (i - 2 == -1)
+                    {
+                        break;
+                    }
+                    asciiValues[i - 2] += 1;
+                }
+                else if (asciiValues[i - 1] == 91)
+                {
+                    asciiValues[i - 1] = 65;
+                    if (i - 2 == -1)
+                    {
+                        break;
+                    }
+                    asciiValues[i - 2] += 1;
+
+                }
+                else
+                {
+                    break;
+                }
+
+            }
+            itemValue = Encoding.ASCII.GetString(asciiValues);
+            return itemValue;
+        }
+
+        // Standard address for Address based forms
+        private static readonly Dictionary<string, string> _address = new Dictionary<string, string>
+        {
+            {"FirstName", "AutoTest"},
+	        {"LastName", "AutoTest"},    
+	        {"PostCode", "M34 5JE"},
+	        {"HouseNumber", "22"},
+	        {"HouseName", "Phantom House"},
+	        {"Address1", "Phantom Street"},
+	        {"Address2", "Phantom Road"},
+	        {"CityTown", "Manchester"},
+	        {"UKCounty", "Cheshire"},
+            {"IECounty", "KILKENNY"},
+	        {"PhoneNumber", "01234 678910"}
+        };
+
+        public static string GetAddressInfo(string key)
+        {
+            string addressInfo;
+            return _address.TryGetValue(key, out addressInfo) ? addressInfo : String.Empty;
+        }
+
+        public static void TakeSnapshot()
+        {
+            // Check if we are running on the build machine
+            var snapshotLocation = DefaultSeleniumFolder;
+
+            var isOnBuildMachine = Environment.MachineName;
+            if (isOnBuildMachine.ToUpper().Equals("PRDAT169V") || isOnBuildMachine.ToUpper().Equals("PRDAT204V"))
+            {
+                // switch to E: drive on CI box
+                snapshotLocation = DefaultSeleniumFolder.Replace('C', 'E');
+            }
+
+            if (!Directory.Exists(snapshotLocation))
+            {
+                Directory.CreateDirectory(snapshotLocation);
+            }
+
+            var testName = TestContext.CurrentContext.Test.Name;
+            if (testName.Contains("null"))
+            {
+                // Scenario outline used as the test name which will prove invalid as a file name
+                testName =
+                    testName.Replace("(", "__")
+                        .Replace(")", "__")
+                        .Replace("\"", "")
+                        .Replace(",null", "")
+                        .Replace("/", "_")
+                        .Replace(",", "_")
+                        .Replace("\\", "_")
+                        .Replace(".", "$")
+                        .Replace(":", "$");
+            }
+
+            var snapShot = String.Format("{0}{1}.jpg", testName, DateTime.Now.TimeOfDay.ToString().Replace(@"/", "_").Replace(" ", "").Replace(":", "_"));
+            //var snapShot = String.Format("{0}{1}.jpg", ScenarioContext.Current.ScenarioInfo.Title.Replace(" ", ""), DateTime.Now.TimeOfDay.ToString().Replace(@"/", "_").Replace(" ", "").Replace(":", "_"));
+            snapshotLocation += "\\" + snapShot;
+
+            if (snapshotLocation.Length > MaxFileNameSize)
+            {
+                // snapshot length too long so we'll have to shorten it
+
+            }
+
+            try
+            {
+                SnapshotLocation = snapshotLocation;
+                MsgOutput("Taking Snapshot......");
+                ((ITakesScreenshot)TestController.CurrentDriver).GetScreenshot().SaveAsFile(snapshotLocation, ImageFormat.Jpeg);
+                MsgOutput("Snapshot Location", snapshotLocation);
+            }
+            catch (PathTooLongException pathTooLong)
+            {
+                Assert.Fail("Snapshot length was too long - [{0}]", pathTooLong);
+            }
+        }
+    }
+}

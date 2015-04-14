@@ -1,0 +1,36 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Brother.Tests.Selenium.Lib.Pages.OmniJoin" GeneratedClassName="OmniJoinPageTitles">
+  <Profiles />
+  <Settings>
+    <Setting Name="HomePage" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">OmniJoin Web Conferencing | Online Meetings | Brother UK - </Value>
+    </Setting>
+    <Setting Name="LandingPage" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Brother at your side</Value>
+    </Setting>
+    <Setting Name="FreeTrialPage" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Free Trial - </Value>
+    </Setting>
+    <Setting Name="TrialDownloadPage" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Download - </Value>
+    </Setting>
+    <Setting Name="PurchaseOptionsPage" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Plans - </Value>
+    </Setting>
+    <Setting Name="ContactUsPage" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Contact Us - </Value>
+    </Setting>
+    <Setting Name="BusinessPlanPage" Type="System.String" Scope="User">
+      <Value Profile="(Default)">OmniJoin Professional - </Value>
+    </Setting>
+    <Setting Name="LitePlanPage" Type="System.String" Scope="User">
+      <Value Profile="(Default)">OmniJoin Lite - </Value>
+    </Setting>
+    <Setting Name="ProfessionalPlanPage" Type="System.String" Scope="User">
+      <Value Profile="(Default)">OmniJoin - </Value>
+    </Setting>
+    <Setting Name="FreeTrialPlanPage" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+  </Settings>
+</SettingsFile>

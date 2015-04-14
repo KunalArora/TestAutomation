@@ -1,0 +1,18 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Brother.Tests.Selenium.Lib.Pages.BrotherMainSite" GeneratedClassName="MainSitePageTitles">
+  <Profiles />
+  <Settings>
+    <Setting Name="ProductSupplies" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Brother Original Supplies &amp; Accessories</Value>
+    </Setting>
+    <Setting Name="BrotherProducts" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Office Printers | Business Solutions | Supplies - Brother</Value>
+    </Setting>
+    <Setting Name="InkJetSuppliesPage" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Supplies | </Value>
+    </Setting>
+    <Setting Name="BrotherOriginalSuppliesPage" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Brother Original Supplies | Brother</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
