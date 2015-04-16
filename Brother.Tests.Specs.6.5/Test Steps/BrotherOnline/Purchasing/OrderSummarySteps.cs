@@ -1,5 +1,5 @@
-﻿using Brother.Tests.Selenium.Lib.Pages.Base;
-using Brother.Tests.Selenium.Lib.Pages.BrotherOnline.Checkout;
+﻿using BrotherWebSitesCore.Pages.Base;
+using BrotherWebSitesCore.Pages.BrotherOnline.Checkout;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 

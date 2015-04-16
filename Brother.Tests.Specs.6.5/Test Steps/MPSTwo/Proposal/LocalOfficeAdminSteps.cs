@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Brother.Tests.Selenium.Lib.Pages.Base;
 using Brother.Tests.Selenium.Lib.Pages.BrotherOnline.AccountManagement;
 using Brother.Tests.Selenium.Lib.Pages.MPSTwo;
+using BrotherWebSitesCore.Pages.Base;
+using BrotherWebSitesCore.Pages.BrotherOnline.AccountManagement;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.MPSTwo.Proposal

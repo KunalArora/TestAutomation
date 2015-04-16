@@ -1,8 +1,9 @@
-﻿using Brother.Tests.Selenium.Lib.Pages.Base;
-using Brother.Tests.Selenium.Lib.Pages.BrotherOnline.Checkout;
+﻿using Brother.Tests.Selenium.Lib.Pages.BrotherOnline.Checkout;
 using Brother.Tests.Selenium.Lib.Pages.OmniJoin.Plans;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using BrotherWebSitesCore.Pages.Base;
+using BrotherWebSitesCore.Pages.BrotherOnline.Checkout;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.BrotherOnline.Purchasing

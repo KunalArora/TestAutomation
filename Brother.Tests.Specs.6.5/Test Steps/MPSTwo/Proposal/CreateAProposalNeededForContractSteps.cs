@@ -1,8 +1,8 @@
 ﻿using System;
-using Brother.Tests.Selenium.Lib.Pages.Base;
-using Brother.Tests.Selenium.Lib.Pages.BrotherOnline.AccountManagement;
-using Brother.Tests.Selenium.Lib.Pages.MPSTWO;
 using Brother.Tests.Selenium.Lib.Pages.MPSTwo;
+using BrotherWebSitesCore.Pages.Base;
+using BrotherWebSitesCore.Pages.BrotherOnline.AccountManagement;
+using BrotherWebSitesCore.Pages.MPSTwo;
 using TechTalk.SpecFlow;
 
 

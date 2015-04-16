@@ -1,9 +1,11 @@
 ﻿using System;
-using Brother.Tests.Selenium.Lib.Pages.Base;
 using Brother.Tests.Selenium.Lib.Pages.BrotherMainSite.Basket;
 using Brother.Tests.Selenium.Lib.Pages.BrotherOnline.Checkout;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using BrotherWebSitesCore.Pages.Base;
+using BrotherWebSitesCore.Pages.BrotherMainSite.Basket;
+using BrotherWebSitesCore.Pages.BrotherOnline.Checkout;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.BrotherOnline

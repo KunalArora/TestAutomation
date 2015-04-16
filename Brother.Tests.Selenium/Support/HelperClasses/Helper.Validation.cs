@@ -5,7 +5,6 @@ using System.Linq;
 using System.Net.Mail;
 using System.Text;
 using System.Xml;
-using Brother.Tests.Selenium.Lib.Pages.Base;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -92,7 +91,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                     errorsPresent = true;
                 }
             }
-            Assert.AreEqual(notificationExpected, errorsPresent, "Error notification present");
+            TestCheck.AssertIsEqual(notificationExpected, errorsPresent, "Error notification present");
         }
 
         /// <summary>

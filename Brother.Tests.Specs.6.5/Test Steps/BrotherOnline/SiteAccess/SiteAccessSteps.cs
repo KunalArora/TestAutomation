@@ -1,9 +1,9 @@
 ﻿using System;
 using System.CodeDom;
 using System.Net;
-using Brother.Tests.Selenium.Lib.Pages.Base;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using BrotherWebSitesCore.Pages.Base;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Safari.Internal;

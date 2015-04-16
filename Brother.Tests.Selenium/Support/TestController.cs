@@ -10,7 +10,6 @@ using System.Net;
 using System.Net.Security;
 using System.Runtime.Remoting;
 using System.Security.AccessControl;
-using Brother.Tests.Selenium.Lib.Pages.Base;
 using Brother.Tests.Selenium.Lib.Properties;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using NUnit.Framework;

@@ -1,5 +1,5 @@
-﻿using Brother.Tests.Selenium.Lib.Pages.Base;
-using Brother.Tests.Selenium.Lib.Pages.OmniJoin;
+﻿using BrotherWebSitesCore.Pages.Base;
+using BrotherWebSitesCore.Pages.OmniJoin;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.OmniJoin

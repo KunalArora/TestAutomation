@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
-using Brother.Tests.Selenium.Lib.Pages.Base;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Specs.TestSpecifications.BrotherOnline.ProductRegistration;
+using BrotherWebSitesCore.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Remote;
 using TechTalk.SpecFlow;

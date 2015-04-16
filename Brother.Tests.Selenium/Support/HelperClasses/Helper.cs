@@ -7,7 +7,6 @@ using System.Linq;
 using System.Security;
 using System.Text;
 using System.Xml;
-using Brother.Tests.Selenium.Lib.Pages.Base;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
@@ -125,7 +124,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             Locale = _countries.TryGetValue(country, out locale) ? locale : String.Empty;
             if (Locale.Equals(string.Empty))
             {
-                Assert.Fail(string.Format("Invalid Locale {0} - unable to proceed", Locale));
+                TestCheck.AssertFailTest(string.Format("Invalid Locale {0} - unable to proceed", Locale));
             }
             MsgOutput("Setting Country to ", Locale);
         }
@@ -160,8 +159,9 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
         public static string CurrentBaseUrlAsHttps()
         {
-            var baseUrl = BasePage.BaseUrl;
-            return baseUrl.ToLower().Replace("http", "https");
+           // var baseUrl = BasePage.BaseUrl;
+           // return baseUrl.ToLower().Replace("http", "https");
+            return string.Empty;
         }
 
         public static string UrlAsHttps(string url)
@@ -254,7 +254,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         public static string GetDeviceCodeSeed()
         {
             var deviceSeed = Environment.GetEnvironmentVariable(GetRunTimeEnv().Equals(RunTimeUat) ? "AutoTest_DeviceSeed_QAS" : "AutoTest_DeviceSeed_DV2", EnvironmentVariableTarget.Machine);
-            Assert.IsNotNull(deviceSeed, "Device Code Seed");
+            TestCheck.AssertIsNotNull(deviceSeed, "Device Code Seed");
             UpdateSerialNumber(IncrementValue(deviceSeed));
             return deviceSeed;
         }
@@ -284,13 +284,13 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             }
             catch (SecurityException securityException)
             {
-                Assert.Fail("Permission denied setting Device Seed [{0}]", securityException.Message);                                
+                TestCheck.AssertFailTest(string.Format("Permission denied setting Device Seed [{0}]", securityException.Message));
             }
             catch (ArgumentNullException argumentNullException)
             {
-                Assert.Fail("Error setting Environment Variable for Device Seed [{0}]", argumentNullException.Message);
+               TestCheck.AssertFailTest(string.Format("Error setting Environment Variable for Device Seed [{0}]", argumentNullException.Message));
             }
-            Assert.AreEqual(serialNumber, Environment.GetEnvironmentVariable(GetRunTimeEnv().Equals(RunTimeUat) ? "AutoTest_DeviceSeed_QAS" : "AutoTest_DeviceSeed_DV2", EnvironmentVariableTarget.Machine));
+            TestCheck.AssertIsEqual(serialNumber, Environment.GetEnvironmentVariable(GetRunTimeEnv().Equals(RunTimeUat) ? "AutoTest_DeviceSeed_QAS" : "AutoTest_DeviceSeed_DV2", EnvironmentVariableTarget.Machine), "Update Device Serial Number seed");
         }
 
         private static string GetProductInfoFile()
@@ -448,7 +448,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             }
             catch (PathTooLongException pathTooLong)
             {
-                Assert.Fail("Snapshot length was too long - [{0}]", pathTooLong);
+                TestCheck.AssertFailTest(string.Format("Snapshot length was too long - [{0}]", pathTooLong));
             }
         }
     }

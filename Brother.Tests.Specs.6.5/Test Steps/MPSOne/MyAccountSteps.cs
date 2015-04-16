@@ -1,6 +1,5 @@
-﻿using Brother.Tests.Selenium.Lib.Pages.Base;
-using Brother.Tests.Selenium.Lib.Pages.BrotherOnline.AccountManagement;
-using Brother.Tests.Selenium.Lib.Pages.MPSOne;
+﻿using Brother.Tests.Selenium.Lib.Pages.BrotherOnline.AccountManagement;
+using BrotherWebSitesCore.Pages.Base;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.MPSOne

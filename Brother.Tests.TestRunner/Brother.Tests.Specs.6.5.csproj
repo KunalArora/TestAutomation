@@ -36,6 +36,9 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BrotherWebSitesCore">
+      <HintPath>..\BrotherWebSitesCore\bin\Debug\BrotherWebSitesCore.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\Dependencies\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
     </Reference>
@@ -552,9 +555,6 @@
     <Content Include="Supporting Files\ProductInfo.xml">
       <SubType>Designer</SubType>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

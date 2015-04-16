@@ -1,11 +1,14 @@
 ﻿using System;
-using Brother.Tests.Selenium.Lib.Pages.Base;
 using Brother.Tests.Selenium.Lib.Pages.BrotherOnline.AccountManagement;
 using Brother.Tests.Selenium.Lib.Pages.BrotherOnline.ThirdParty;
 using Brother.Tests.Selenium.Lib.Pages.OmniJoin;
 using Brother.Tests.Selenium.Lib.Pages.OmniJoin.Trial;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using BrotherWebSitesCore.Pages.Base;
+using BrotherWebSitesCore.Pages.BrotherOnline.AccountManagement;
+using BrotherWebSitesCore.Pages.OmniJoin;
+using BrotherWebSitesCore.Pages.OmniJoin.Trial;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 

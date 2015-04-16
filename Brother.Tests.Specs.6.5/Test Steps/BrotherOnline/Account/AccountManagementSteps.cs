@@ -1,9 +1,10 @@
-﻿using Brother.Tests.Selenium.Lib.Pages.Base;
-using Brother.Tests.Selenium.Lib.Pages.BrotherOnline.AccountManagement;
+﻿using Brother.Tests.Selenium.Lib.Pages.BrotherOnline.AccountManagement;
 using Brother.Tests.Selenium.Lib.Pages.BrotherOnline.AccountManagement.PaymentMethods;
 using Brother.Tests.Selenium.Lib.Pages.BrotherOnline.Checkout;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using BrotherWebSitesCore.Pages.Base;
+using BrotherWebSitesCore.Pages.BrotherOnline.AccountManagement;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.BrotherOnline.Account

@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{85D64580-8536-410E-ABED-F0F28A6F2467}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BrotherWebSitesCore</RootNamespace>
+    <AssemblyName>BrotherWebSitesCore</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Brother.Tests.Selenium.Lib">
+      <HintPath>..\Brother.Tests.Selenium\bin\Debug\Brother.Tests.Selenium.Lib.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="TechTalk.SpecFlow">
+      <HintPath>..\Dependencies\SpecFlow\SpecFlow.1.9.0\lib\net35\TechTalk.SpecFlow.dll</HintPath>
+    </Reference>
+    <Reference Include="ThoughtWorks.Selenium.Core">
+      <HintPath>..\Dependencies\Selenium\net40\ThoughtWorks.Selenium.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="WebDriver, Version=2.45.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\Selenium\net40\WebDriver.dll</HintPath>
+    </Reference>
+    <Reference Include="WebDriver.Support">
+      <HintPath>..\Dependencies\Selenium\net40\WebDriver.Support.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Pages\Base\BasePage.Common.cs" />
+    <Compile Include="Pages\Base\BasePage.cs" />
+    <Compile Include="Pages\Base\BaseSteps.cs" />
+    <Compile Include="Pages\BrotherMainSite\Basket\BasketModule.cs" />
+    <Compile Include="Pages\BrotherMainSite\Basket\BasketPage.cs" />
+    <Compile Include="Pages\BrotherMainSite\MainSiteHomePage.cs" />
+    <Compile Include="Pages\BrotherMainSite\MainSitePageTitles.Designer.cs">
+      <DependentUpon>MainSitePageTitles.settings</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Pages\BrotherMainSite\SuppliesAndAccessories\InkJetCartridgePage.cs" />
+    <Compile Include="Pages\BrotherMainSite\SuppliesAndAccessories\OriginalSuppliesPage.cs" />
+    <Compile Include="Pages\BrotherMainSite\SuppliesAndAccessories\Printers\AllInOnePrintersPage.cs" />
+    <Compile Include="Pages\BrotherMainSite\SuppliesAndAccessories\Printers\AllPrintersPage.cs" />
+    <Compile Include="Pages\BrotherMainSite\SuppliesAndAccessories\Printers\LaserPrintersPage.cs" />
+    <Compile Include="Pages\BrotherMainSite\SuppliesAndAccessories\Printers\PrintersPage.cs" />
+    <Compile Include="Pages\BrotherMainSite\SuppliesAndAccessories\SuppliesPage.cs" />
+    <Compile Include="Pages\BrotherOnline\AccountManagement\ExtendedWarrantyPage.cs" />
+    <Compile Include="Pages\BrotherOnline\AccountManagement\GlobalNavigationModule.cs" />
+    <Compile Include="Pages\BrotherOnline\AccountManagement\MyAccountPage.cs" />
+    <Compile Include="Pages\BrotherOnline\AccountManagement\MyOrdersPage.cs" />
+    <Compile Include="Pages\BrotherOnline\AccountManagement\MyPersonalDetailsPage.cs" />
+    <Compile Include="Pages\BrotherOnline\AccountManagement\MyPrintersAndDevicesPage.cs" />
+    <Compile Include="Pages\BrotherOnline\AccountManagement\MySignInDetailsPage.cs" />
+    <Compile Include="Pages\BrotherOnline\AccountManagement\OrderDetailsPage.cs" />
+    <Compile Include="Pages\BrotherOnline\AccountManagement\PaymentMethods\AddNewCardPage.cs" />
+    <Compile Include="Pages\BrotherOnline\AccountManagement\PaymentMethods\MyPaymentMethodsPage.cs" />
+    <Compile Include="Pages\BrotherOnline\AccountManagement\RegisterDevicePage.cs" />
+    <Compile Include="Pages\BrotherOnline\AccountManagement\WelcomeBackPage.cs" />
+    <Compile Include="Pages\BrotherOnline\Account\HomePage.cs" />
+    <Compile Include="Pages\BrotherOnline\Account\RegistrationConfirmationPage.cs" />
+    <Compile Include="Pages\BrotherOnline\Account\RegistrationPage.cs" />
+    <Compile Include="Pages\BrotherOnline\BrotherOnlineHomePages.Designer.cs">
+      <DependentUpon>BrotherOnlineHomePages.settings</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Pages\BrotherOnline\Checkout\BillingDetailsPage.cs" />
+    <Compile Include="Pages\BrotherOnline\Checkout\CreditCardDetailsPage.cs" />
+    <Compile Include="Pages\BrotherOnline\Checkout\DeliveryDetailsPage.cs" />
+    <Compile Include="Pages\BrotherOnline\Checkout\OrderConfirmationPage.cs" />
+    <Compile Include="Pages\BrotherOnline\Checkout\OrderSummaryPage.cs" />
+    <Compile Include="Pages\BrotherOnline\Checkout\SavedPaymentDetailsPage.cs" />
+    <Compile Include="Pages\BrotherOnline\ThirdParty\BrotherEmailConfirmationPage.cs" />
+    <Compile Include="Pages\BrotherOnline\ThirdParty\GuerrillaEmailConfirmation.cs" />
+    <Compile Include="Pages\BrotherOnline\ThirdParty\MailinatorEmailConfirmation.cs" />
+    <Compile Include="Pages\InstantInk\StatusMonitorPage.cs" />
+    <Compile Include="Pages\MPSOne\ConsumablePage.cs" />
+    <Compile Include="Pages\MPSOne\ContractConfirmationPage.cs" />
+    <Compile Include="Pages\MPSOne\ExistingContractPage.cs" />
+    <Compile Include="Pages\MPSOne\ExistingProposalPage.cs" />
+    <Compile Include="Pages\MPSOne\ListOfOrganisationsPage.cs" />
+    <Compile Include="Pages\MPSOne\TechnicalServicePage.cs" />
+    <Compile Include="Pages\MPSTwo\ActionsModule.cs" />
+    <Compile Include="Pages\MPSTwo\BankUserLandingPage.cs" />
+    <Compile Include="Pages\MPSTwo\CloudContractPage.cs" />
+    <Compile Include="Pages\MPSTwo\CloudCustomersPage.cs" />
+    <Compile Include="Pages\MPSTwo\CloudExistingProposalPage.cs" />
+    <Compile Include="Pages\MPSTwo\CloudMpsNavigationHeaderTabs.cs" />
+    <Compile Include="Pages\MPSTwo\CreateNewProposalPage.cs" />
+    <Compile Include="Pages\MPSTwo\DealerDashBoardPage.cs" />
+    <Compile Include="Pages\MPSTwo\EasyPrintProPage.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeAdminDashBoardPage.cs" />
+    <Compile Include="Pages\MPSTwo\SendToBankPage.cs" />
+    <Compile Include="Pages\OmniJoin\OmniJoinPageTitles.Designer.cs">
+      <DependentUpon>OmniJoinPageTitles.settings</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Pages\OmniJoin\PartnerPortal\CreateActivationCodesPage.cs" />
+    <Compile Include="Pages\OmniJoin\PartnerPortal\ManageServicePage.cs" />
+    <Compile Include="Pages\OmniJoin\PartnerPortal\PartnerPortalPage.cs" />
+    <Compile Include="Pages\OmniJoin\Plans\BusinessPlanPage.cs" />
+    <Compile Include="Pages\OmniJoin\Plans\LitePlanPage.cs" />
+    <Compile Include="Pages\OmniJoin\Plans\ManagePlanPage.cs" />
+    <Compile Include="Pages\OmniJoin\Plans\PlansHomePage.cs" />
+    <Compile Include="Pages\OmniJoin\Plans\PlansModule.cs" />
+    <Compile Include="Pages\OmniJoin\Plans\ProfessionalPlanPage.cs" />
+    <Compile Include="Pages\OmniJoin\Support\ContactUsPage.cs" />
+    <Compile Include="Pages\OmniJoin\Trial\FreeTrialDownloadPage.cs" />
+    <Compile Include="Pages\OmniJoin\Trial\FreeTrialPage.cs" />
+    <Compile Include="Pages\OmniJoin\WebConferencingHomePage.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Pages\BrotherMainSite\MainSitePageTitles.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>MainSitePageTitles.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Pages\BrotherOnline\BrotherOnlineHomePages.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>BrotherOnlineHomePages.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Pages\OmniJoin\OmniJoinPageTitles.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>OmniJoinPageTitles.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

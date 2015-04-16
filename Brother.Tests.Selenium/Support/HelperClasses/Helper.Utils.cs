@@ -102,7 +102,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             HttpWebRequest webRequest = null;
             if (webPage.Contains("https:"))
             {
-                System.Net.ServicePointManager.CertificatePolicy = new TrustAllCertificatePolicy();
+                ServicePointManager.CertificatePolicy = new TrustAllCertificatePolicy();
             }
 
             try
@@ -115,9 +115,9 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                 MsgOutput("Reason : ", uriFormatException.Message);
                 if (uriFormatException.InnerException != null)
                 {
-                    Assert.Fail("URI format exception - inner exception [{0}]", uriFormatException.InnerException.Message);
+                    TestCheck.AssertFailTest(string.Format("URI format exception - inner exception [{0}]", uriFormatException.InnerException.Message));
                 }
-                Assert.Fail("URI format exception [{0}]", uriFormatException.Message);
+                TestCheck.AssertFailTest(string.Format("URI format exception [{0}]", uriFormatException.Message));
             }
 
             webRequest.Method = method;
@@ -185,9 +185,9 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                 MsgOutput("Reason : ", uriFormatException.Message);
                 if (uriFormatException.InnerException != null)
                 {
-                    Assert.Fail("URI format exception - inner exception [{0}]", uriFormatException.InnerException.Message);
+                    TestCheck.AssertFailTest(string.Format("URI format exception - inner exception [{0}]", uriFormatException.InnerException.Message));
                 }
-                Assert.Fail("URI format exception [{0}]", uriFormatException.Message);
+                TestCheck.AssertFailTest(string.Format("URI format exception [{0}]", uriFormatException.Message));
             }
 
             request.Method = WebRequestMethods.Http.Get;
@@ -246,9 +246,9 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                 MsgOutput("Reason : ", uriFormatException.Message);
                 if (uriFormatException.InnerException != null)
                 {
-                    Assert.Fail("URI format exception - inner exception [{0}]", uriFormatException.InnerException.Message);
+                    TestCheck.AssertFailTest(string.Format("URI format exception - inner exception [{0}]", uriFormatException.InnerException.Message));
                 }
-                Assert.Fail("URI format exception [{0}]", uriFormatException.Message);
+                TestCheck.AssertFailTest(string.Format("URI format exception [{0}]", uriFormatException.Message));
             }
 
             request.Method = WebRequestMethods.Http.Post;

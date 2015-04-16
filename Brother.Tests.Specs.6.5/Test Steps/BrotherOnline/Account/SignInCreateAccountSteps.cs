@@ -1,11 +1,13 @@
 ﻿using System;
-using Brother.Tests.Selenium.Lib.Pages.Base;
 using Brother.Tests.Selenium.Lib.Pages.BrotherOnline.Account;
 using Brother.Tests.Selenium.Lib.Pages.BrotherOnline.AccountManagement;
 using Brother.Tests.Selenium.Lib.Pages.BrotherOnline.ThirdParty;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Specs.Properties;
+using BrotherWebSitesCore.Pages.Base;
+using BrotherWebSitesCore.Pages.BrotherOnline.Account;
+using BrotherWebSitesCore.Pages.BrotherOnline.AccountManagement;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;

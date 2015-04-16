@@ -1,6 +1,6 @@
-﻿using Brother.Tests.Selenium.Lib.Pages.Base;
-using Brother.Tests.Selenium.Lib.Pages.BrotherOnline.Account;
+﻿using Brother.Tests.Selenium.Lib.Pages.BrotherOnline.Account;
 using Brother.Tests.Selenium.Lib.Pages.OmniJoin.PartnerPortal;
+using BrotherWebSitesCore.Pages.Base;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 

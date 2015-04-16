@@ -1,5 +1,4 @@
 ﻿using System;
-using Brother.Tests.Selenium.Lib.Pages.Base;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
