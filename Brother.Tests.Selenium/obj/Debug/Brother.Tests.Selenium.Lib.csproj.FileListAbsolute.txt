@@ -28,4 +28,3 @@ C:\Projects\Brother-Test-Automation\BrotherTestAutomation\Brother.Tests.Selenium
 C:\Projects\Brother-Test-Automation\BrotherTestAutomation\Brother.Tests.Selenium\bin\Debug\WebDriver.Support.xml
 C:\Projects\Brother-Test-Automation\BrotherTestAutomation\Brother.Tests.Selenium\obj\Debug\Brother.Tests.Selenium.Lib.dll
 C:\Projects\Brother-Test-Automation\BrotherTestAutomation\Brother.Tests.Selenium\obj\Debug\Brother.Tests.Selenium.Lib.pdb
-C:\Projects\Brother-Test-Automation\BrotherTestAutomation\Brother.Tests.Selenium\obj\Debug\Brother.Tests.Selenium.Lib.csprojResolveAssemblyReference.cache

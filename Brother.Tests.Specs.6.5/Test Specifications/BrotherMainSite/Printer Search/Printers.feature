@@ -1,5 +1,5 @@
 ﻿@UAT @TEST @PROD
-Feature: Printers 
+Feature: Correct printer product listings
 	In order to purchase a new Printer
 	As a customer
 	I want to be able to view the list of available printers
@@ -23,7 +23,7 @@ Scenarios:
 	| France      | imprimantes/imprimantes-multifonctions/multifonctions-laser |
 	| Czech       | printers/laser-printers                                     |
 	| Poland      | printers/laser-printers                                     |
-	| Finland     | printers/all-colour-lasers                                  |
+	| Finland     | printers/laser-printers                                     |
 	| Slovenia    | printers/laser-printers                                     |
 	| Norway      | printers/all-colour-lasers                                  |
 	| Russia      | printers/laser-printers                                     |

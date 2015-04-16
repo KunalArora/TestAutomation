@@ -157,12 +157,11 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             return FeatureContext.Current.FeatureInfo.Tags.Contains(env);
         }
 
-        public static string CurrentBaseUrlAsHttps()
-        {
-           // var baseUrl = BasePage.BaseUrl;
-           // return baseUrl.ToLower().Replace("http", "https");
-            return string.Empty;
-        }
+        //public static string CurrentBaseUrlAsHttps()
+        //{
+        //    var baseUrl = BasePage.BaseUrl;
+        //    return baseUrl.ToLower().Replace("http", "https");
+        //}
 
         public static string UrlAsHttps(string url)
         {
@@ -428,8 +427,8 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                         .Replace(".", "$")
                         .Replace(":", "$");
             }
-
-            var snapShot = String.Format("{0}{1}.jpg", testName, DateTime.Now.TimeOfDay.ToString().Replace(@"/", "_").Replace(" ", "").Replace(":", "_"));
+           
+            var snapShot = String.Format("{0}{1}.jpg", testName, DateTime.Now.TimeOfDay.ToString().Replace(@"/", "_").Replace(" ", "").Replace(":", "_").Replace(".", "_"));
             //var snapShot = String.Format("{0}{1}.jpg", ScenarioContext.Current.ScenarioInfo.Title.Replace(" ", ""), DateTime.Now.TimeOfDay.ToString().Replace(@"/", "_").Replace(" ", "").Replace(":", "_"));
             snapshotLocation += "\\" + snapShot;
 

@@ -530,7 +530,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Test Specifications\Brother Online Redesign\" />
     <Folder Include="Test Specifications\MPSOne\Proposals\" />
     <Folder Include="Test Steps\Brother Online Redesign\" />
   </ItemGroup>
