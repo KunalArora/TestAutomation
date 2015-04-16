@@ -124,7 +124,6 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             var root = doc.DocumentElement;
             if (root == null) return validationStringList;
 
-            //var selectSingleNode = root.SelectSingleNode(xPathExpression);
             var nodeList = root.SelectNodes(xPathExpression);
             if (nodeList == null) return validationStringList;
             foreach (XmlNode node in nodeList)
@@ -140,7 +139,6 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                 validationStringList.Add(validationSet);
             }
 
-            //return selectSingleNode != null ? selectSingleNode.InnerText : String.Empty;
             return validationStringList;
         }
 

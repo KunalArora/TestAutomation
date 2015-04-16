@@ -42,7 +42,6 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
                 CurrentPage = BasePage.LoadBolHomePage(CurrentDriver, BasePage.BaseUrl, "");
                 WhenIClickOnSignInCreateAnAccount(country);
                 WhenIAmRedirectedToTheBrotherLoginRegisterPage();
-                //CurrentPage.As<RegistrationPage>().PopulateEmailAddressTextBox(username);
                 WhenIEnterAValidEmailAddress(username);
                 WhenIEnterAValidPassword(pwd);
                 WhenIClickOnSignIn(country);

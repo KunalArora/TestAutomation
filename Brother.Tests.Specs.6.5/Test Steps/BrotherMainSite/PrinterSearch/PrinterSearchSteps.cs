@@ -73,12 +73,5 @@ namespace Brother.Tests.Specs.BrotherMainSite.PrinterSearch
         {
             Assert.AreEqual(false, CurrentPage.As<LaserPrintersPage>().ValidatePrintersSpainPortugal(), "Validating Printers (Spain and Portugal Languages)");
         }
-
-        //[Then(@"I can validate that each printer for Russia is a valid printer")]
-        //public void ThenICanValidateThatEachPrinterForRussiaIsAValidPrinter()
-        //{
-        //    Assert.AreEqual(false, CurrentPage.As<LaserPrintersPage>().ValidatePrintersRussia(), "Validating Printers (Russian Language)");
-        //}
-
     }
 }
