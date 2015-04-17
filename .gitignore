@@ -11,95 +11,6 @@
 #- tmp folder for storing temporary build artifacts
 /tmp
 
-
-#Sitecore files
-
-
-/Main/Website/Brother.Web/App_Data/MediaCache
-/Main/Website/Brother.Web/App_Data/Exports
-/Main/Website/Brother.Web/App_Data/Sitecore/*
-!/Main/Website/Brother.Web/App_Data/Sitecore/
-!/Main/Website/Brother.Web/App_Data/Sitecore/packages
-/Main/Website/Brother.Web/App_Data/Sitecore/packages/*
-!/Main/Website/Brother.Web/App_Data/Sitecore/packages/*.xml
-!/Main/Website/Brother.Web/App_Data/Sitecore/scripts
-!/Main/Website/Brother.Web/App_Data/Sitecore/scripts/*
-!/Main/Website/Brother.Web/App_Data/Sitecore/scripts/*.txt
-!/Main/Website/Brother.Web/App_Data/Solr/
-/Main/Website/Brother.Web/App_Data/Solr/*/data
-!/Main/Website/Brother.Web/App_Data/Solr/*.xml
-/Main/Website/Brother.Web/robots.txt
-
-
-#As we're ignoring all the files and folders underneath the sitecore folder, specifying files to exclude within say, the admin subfolder, just won't work.
-
-#Reason is that the admin folder is already ignored. To handle this, use the following approach:
-
-
-# First ignore the sitecore folder's files and folders
-/Main/Website/Brother.Web/sitecore/*
-/Main/Website/Brother.Web/sitecore modules/Debug*
-/Main/Website/Brother.Web/sitecore modules/Shell*
-/Main/Website/Brother.Web/sitecore modules/Web*
-/Main/Website/Brother.Web/sitecore_files/*
-/Main/Website/Brother.Web/upload/*
-/Main/Website/Brother.Web/temp/*
-!/Main/Website/Brother.Web/sitecore/RedirectUrlPage.*
-!/Main/Website/Brother.Web/sitecore/SitecoreUrls.*
-
-# Then tell it to exclude the sitecore folder itself
-!/Main/Website/Brother.Web/sitecore
-
-# Then tell it to ignore the shell folder and files 
-!/Main/Website/Brother.Web/sitecore/shell
-/Main/Website/Brother.Web/sitecore/shell/*
-!/Main/Website/Brother.Web/sitecore/shell/Controls
-/Main/Website/Brother.Web/sitecore/shell/Controls/*
-!/Main/Website/Brother.Web/sitecore/shell/Controls/Rich Text Editor
-/Main/Website/Brother.Web/sitecore/shell/Controls/Rich Text Editor/*
-!/Main/Website/Brother.Web/sitecore/shell/Controls/Rich Text Editor/EditorPage.aspx
-!/Main/Website/Brother.Web/sitecore/shell/Controls/Rich Text Editor/EditorWindow.aspx
-!/Main/Website/Brother.Web/sitecore/shell/Controls/Rich Text Editor/RichText Commands.js
-!/Main/Website/Brother.Web/sitecore/shell/Controls/Rich Text Editor/InsertImage
-/Main/Website/Brother.Web/sitecore/shell/Controls/Rich Text Editor/InsertImage/*
-!/Main/Website/Brother.Web/sitecore/shell/Controls/Rich Text Editor/InsertImage/InsertImage.xml
-!/Main/Website/Brother.Web/sitecore/shell/Controls/Rich Text Editor/InsertGlossaryTerm
-/Main/Website/Brother.Web/sitecore/shell/Controls/Rich Text Editor/InsertGlossaryTerm/*
-!/Main/Website/Brother.Web/sitecore/shell/Controls/Rich Text Editor/InsertGlossaryTerm/InsertGlossaryTerm.js
-!/Main/Website/Brother.Web/sitecore/shell/Controls/Rich Text Editor/InsertGlossaryTerm/InsertGlossaryTerm.xml
-!/Main/Website/Brother.Web/sitecore/shell/Applications
-/Main/Website/Brother.Web/sitecore/shell/Applications/*
-!/Main/Website/Brother.Web/sitecore/shell/Applications/Content Manager
-/Main/Website/Brother.Web/sitecore/shell/Applications/Content Manager/*
-!/Main/Website/Brother.Web/sitecore/shell/Applications/Content Manager/Default.aspx
-!/Main/Website/Brother.Web/sitecore/shell/Applications/Media
-/Main/Website/Brother.Web/sitecore/shell/Applications/Media/*
-!/Main/Website/Brother.Web/sitecore/shell/Applications/Media/MediaFolder
-!/Main/Website/Brother.Web/sitecore/shell/Applications/ProductLibrary
-!/Main/Website/Brother.Web/sitecore/shell/Applications/ProductLibrary/*.aspx
-
-# Then exclude the admin folder, and the relevant files you want to include (such as reindex.aspx)
-!/Main/Website/Brother.Web/sitecore/admin
-/Main/Website/Brother.Web/sitecore/admin/*
-!/Main/Website/Brother.Web/sitecore/admin/reindex.aspx*
-!/Main/Website/Brother.Web/sitecore/admin/RebuildIndex.aspx*
-!/Main/Website/Brother.Web/sitecore/admin/RebuildSearchIndexExtended.aspx*
-!/Main/Website/Brother.Web/sitecore/admin/Integration*
-!/Main/Website/Brother.Web/sitecore/admin/Projects*
-
-#TDS
-/Main/Website/Brother.Web/_DEV/*
-!/Main/Website/Brother.Web/_DEV/TdsPackageInstaller.asmx
-_CH
-/Main/Sitecore/Brother.Master/*
-!/Main/Sitecore/Brother.Master/*.scproj
-!/Main/Sitecore/Brother.Master/sitecore
-!/Main/Sitecore/Brother.Master/Sitecore Roles
-/Main/Sitecore/Brother.Core/*
-!/Main/Sitecore/Brother.Core/*.scproj
-!/Main/Sitecore/Brother.Core/sitecore
-
-
 #Tooling
 _ReSharper*/
 *.resharper
@@ -144,23 +55,14 @@ Ankh.NoLoad
 aspnet_client
 
 
-/Deploy/*.zip
-
-#MonoDevelop
-*.pidb
-*.userprefs
-
-
 #Project files
 [Bb]uild/
 
 
-#Subversion files
-.svn
-
-
 # Office Temp Files
 ~$*
+<<<<<<< .merge_file_a12572
+=======
 
 #ncrunch
 *ncrunch*
@@ -296,3 +198,4 @@ Main/Databases/Brother_MainSite_Partners/Migrations/Migrate_*.sql
 *.dll
 *.dll
 >>>>>>> 048fd903982ab1c5f5a80e2bb02ad9ecf4e05a21
+>>>>>>> .merge_file_a12992
