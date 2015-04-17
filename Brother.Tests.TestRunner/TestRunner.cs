@@ -86,7 +86,7 @@ namespace TestRunner
                     var browserType = commandOption.Split('=');
                     if (browserType.Length == 2)
                     {
-                        WebDriver.SetBrowserType(browserType[1]);
+                        Brother.Tests.Selenium.Lib.Support.HelperClasses.WebDriver.SetBrowserType(browserType[1]);
                         Helper.MsgOutput(string.Format(@"Running in [{0}] mode", browserType[1]));
                     }
                     else
