@@ -290,4 +290,9 @@ Main/Databases/Brother_MPS/Migrations/Migrate_*.sql
 Main/Databases/Brother_UserData/Migrations/Migrate_*.sql
 Main/Databases/Brother_Medio/Migrations/Migrate_*.sql
 Main/Databases/Brother_MainSite_Partners/Migrations/Migrate_*.sql
+<<<<<<< HEAD
 *.suo
+=======
+*.dll
+*.dll
+>>>>>>> 048fd903982ab1c5f5a80e2bb02ad9ecf4e05a21
