@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 
 namespace TestRunner
 {
@@ -35,7 +36,6 @@ namespace TestRunner
                 if (!ProcessCommandLineOptions(commandOptions))
                 {
                     Helper.MsgOutput("Invalid command line options - check and re-run");
-                    Brother.Tests.Selenium.Lib
                 }
 
                 SendKeys.SendWait("{ENTER}");
