@@ -1,9 +1,8 @@
 ﻿using System;
-using Brother.Tests.Selenium.Lib.Pages.OmniJoin.Plans;
-using Brother.Tests.Selenium.Lib.Pages.OmniJoin.Trial;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using BrotherWebSitesCore.Pages.Base;
+using BrotherWebSitesCore.Pages.OmniJoin.Plans;
 using BrotherWebSitesCore.Pages.OmniJoin.Trial;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;

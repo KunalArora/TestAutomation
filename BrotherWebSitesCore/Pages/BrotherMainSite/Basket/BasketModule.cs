@@ -1,5 +1,4 @@
 ﻿using System;
-using Brother.Tests.Selenium.Lib.Pages.BrotherMainSite.Basket;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using BrotherWebSitesCore.Pages.Base;
 using OpenQA.Selenium;

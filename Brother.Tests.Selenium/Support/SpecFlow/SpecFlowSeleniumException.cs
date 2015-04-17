@@ -1,7 +1,7 @@
 using System;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 
-namespace Brother.Tests.Selenium.Lib.Support
+namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
 {
     public class SpecFlowSeleniumException : Exception
     {

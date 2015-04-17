@@ -1,12 +1,11 @@
 ﻿using System;
-using Brother.Tests.Selenium.Lib.Pages.OmniJoin.Support;
-using Brother.Tests.Selenium.Lib.Pages.OmniJoin.Trial;
 using BrotherWebSitesCore.Pages.Base;
-using BrotherWebSitesCore.Pages.OmniJoin.Plans;
+using BrotherWebSitesCore.Pages.OmniJoin.Support;
+using BrotherWebSitesCore.Pages.OmniJoin.Trial;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
-namespace Brother.Tests.Selenium.Lib.Pages.OmniJoin.Plans
+namespace BrotherWebSitesCore.Pages.OmniJoin.Plans
 {
     public class PlansHomePage : BasePage
     {

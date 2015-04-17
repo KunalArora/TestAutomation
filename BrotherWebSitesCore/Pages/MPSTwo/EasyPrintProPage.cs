@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Brother.Tests.Selenium.Lib.Pages.BrotherOnline;
 using BrotherWebSitesCore.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
-namespace Brother.Tests.Selenium.Lib.Pages.MPSTwo
+namespace BrotherWebSitesCore.Pages.MPSTwo
 {
     public class EasyPrintProPage : BasePage
     {

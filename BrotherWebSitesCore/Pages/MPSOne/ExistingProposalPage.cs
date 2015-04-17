@@ -1,11 +1,9 @@
 ﻿using System;
-using Brother.Tests.Selenium.Lib.Pages.BrotherOnline;
-using Brother.Tests.Selenium.Lib.Properties;
 using BrotherWebSitesCore.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
-namespace Brother.Tests.Selenium.Lib.Pages.MPSOne
+namespace BrotherWebSitesCore.Pages.MPSOne
 {
     public class ExistingProposalPage : BasePage
     {

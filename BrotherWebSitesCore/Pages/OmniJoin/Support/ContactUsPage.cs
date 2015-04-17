@@ -1,6 +1,6 @@
 ﻿using BrotherWebSitesCore.Pages.Base;
 
-namespace Brother.Tests.Selenium.Lib.Pages.OmniJoin.Support
+namespace BrotherWebSitesCore.Pages.OmniJoin.Support
 {
     public class ContactUsPage : BasePage
     {

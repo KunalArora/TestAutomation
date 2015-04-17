@@ -2,7 +2,7 @@
 using BrotherWebSitesCore.Pages.Base;
 using OpenQA.Selenium;
 
-namespace Brother.Tests.Selenium.Lib.Pages.OmniJoin.PartnerPortal
+namespace BrotherWebSitesCore.Pages.OmniJoin.PartnerPortal
 {
     public class ManageServicePage : BasePage
     {

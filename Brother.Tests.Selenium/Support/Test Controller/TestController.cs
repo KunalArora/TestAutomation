@@ -12,6 +12,7 @@ using System.Runtime.Remoting;
 using System.Security.AccessControl;
 using Brother.Tests.Selenium.Lib.Properties;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.Tests.Selenium.Lib.Support.SpecFlow;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;

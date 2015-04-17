@@ -1,10 +1,6 @@
-﻿using Brother.Tests.Selenium.Lib.Pages.BrotherMainSite;
-using Brother.Tests.Selenium.Lib.Pages.BrotherOnline.Account;
-using Brother.Tests.Selenium.Lib.Pages.BrotherOnline.Checkout;
-using Brother.Tests.Selenium.Lib.Pages.BrotherOnline.ThirdParty;
-using Brother.Tests.Selenium.Lib.Pages.OmniJoin;
-using Brother.Tests.Selenium.Lib.Support;
+﻿using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using BrotherWebSitesCore.Pages.BrotherMainSite;
 using BrotherWebSitesCore.Pages.BrotherOnline.Account;
 using BrotherWebSitesCore.Pages.BrotherOnline.Checkout;
 using BrotherWebSitesCore.Pages.BrotherOnline.ThirdParty;

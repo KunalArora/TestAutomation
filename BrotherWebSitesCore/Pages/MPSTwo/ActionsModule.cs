@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.PageObjects;
 
-namespace Brother.Tests.Selenium.Lib.Pages.MPSTwo
+namespace BrotherWebSitesCore.Pages.MPSTwo
 {
     public class ActionsModule
     {

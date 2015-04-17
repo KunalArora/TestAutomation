@@ -1,18 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Brother.Tests.Selenium.Lib.Pages.BrotherMainSite.SuppliesAndAccessories;
-using Brother.Tests.Selenium.Lib.Pages.BrotherOnline;
-using Brother.Tests.Selenium.Lib.Pages.BrotherOnline.Checkout;
-using Brother.Tests.Selenium.Lib.Properties;
 using BrotherWebSitesCore.Pages.Base;
 using BrotherWebSitesCore.Pages.BrotherMainSite.SuppliesAndAccessories;
 using BrotherWebSitesCore.Pages.BrotherOnline.Checkout;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
-namespace Brother.Tests.Selenium.Lib.Pages.BrotherMainSite.Basket
+namespace BrotherWebSitesCore.Pages.BrotherMainSite.Basket
 {
     public class BasketPage : BasePage
     {

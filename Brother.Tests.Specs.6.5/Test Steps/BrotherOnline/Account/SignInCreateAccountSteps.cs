@@ -1,7 +1,4 @@
 ﻿using System;
-using Brother.Tests.Selenium.Lib.Pages.BrotherOnline.Account;
-using Brother.Tests.Selenium.Lib.Pages.BrotherOnline.AccountManagement;
-using Brother.Tests.Selenium.Lib.Pages.BrotherOnline.ThirdParty;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Specs.Properties;

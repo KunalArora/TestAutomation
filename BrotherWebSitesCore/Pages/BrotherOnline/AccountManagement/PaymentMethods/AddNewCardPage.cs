@@ -3,7 +3,7 @@ using BrotherWebSitesCore.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
-namespace Brother.Tests.Selenium.Lib.Pages.BrotherOnline.AccountManagement.PaymentMethods
+namespace BrotherWebSitesCore.Pages.BrotherOnline.AccountManagement.PaymentMethods
 {
     public class AddNewCardPage : BasePage
     {

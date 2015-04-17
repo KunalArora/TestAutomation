@@ -3,7 +3,7 @@ using BrotherWebSitesCore.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
-namespace Brother.Tests.Selenium.Lib.Pages.OmniJoin.Trial
+namespace BrotherWebSitesCore.Pages.OmniJoin.Trial
 {
     public class FreeTrialDownloadPage : BasePage
     {

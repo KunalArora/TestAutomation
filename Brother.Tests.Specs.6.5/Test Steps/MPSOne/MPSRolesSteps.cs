@@ -1,5 +1,4 @@
-﻿using Brother.Tests.Selenium.Lib.Pages.MPSOne;
-using BrotherWebSitesCore.Pages.Base;
+﻿using BrotherWebSitesCore.Pages.Base;
 using BrotherWebSitesCore.Pages.BrotherOnline.AccountManagement;
 using BrotherWebSitesCore.Pages.MPSOne;
 using NUnit.Framework;

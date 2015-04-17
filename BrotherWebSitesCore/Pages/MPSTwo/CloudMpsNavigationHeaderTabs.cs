@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Brother.Tests.Selenium.Lib.Pages.BrotherOnline.AccountManagement;
-using BrotherWebSitesCore.Pages.Base;
-using BrotherWebSitesCore.Pages.MPSTwo;
+﻿using BrotherWebSitesCore.Pages.Base;
 using OpenQA.Selenium;
 
-namespace Brother.Tests.Selenium.Lib.Pages.MPSTwo
+namespace BrotherWebSitesCore.Pages.MPSTwo
 {
     public class CloudMpsNavigationHeaderTabs
     {

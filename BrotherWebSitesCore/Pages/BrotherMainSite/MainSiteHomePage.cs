@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Brother.Tests.Selenium.Lib.Pages.BrotherMainSite.SuppliesAndAccessories;
-using Brother.Tests.Selenium.Lib.Pages.BrotherMainSite.SuppliesAndAccessories.Printers;
-using Brother.Tests.Selenium.Lib.Properties;
-using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using BrotherWebSitesCore.Pages.Base;
+using BrotherWebSitesCore.Pages.BrotherMainSite.SuppliesAndAccessories;
+using BrotherWebSitesCore.Pages.BrotherMainSite.SuppliesAndAccessories.Printers;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
-namespace Brother.Tests.Selenium.Lib.Pages.BrotherMainSite
+namespace BrotherWebSitesCore.Pages.BrotherMainSite
 {
     public class MainSiteHomePage : BasePage
     {

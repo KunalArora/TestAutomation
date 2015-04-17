@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using Brother.Tests.Selenium.Lib.Pages.BrotherOnline.AccountManagement.PaymentMethods;
 using Brother.Tests.Selenium.Lib.Pages.BrotherOnline.Checkout;
 using BrotherWebSitesCore.Pages.Base;
 using BrotherWebSitesCore.Pages.BrotherOnline.AccountManagement.PaymentMethods;

@@ -5,7 +5,7 @@ using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.UnitTestProvider;
 
-namespace Brother.Tests.Selenium.Lib.Support.Hooks
+namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
 {
     [Binding]
     public class Initialise

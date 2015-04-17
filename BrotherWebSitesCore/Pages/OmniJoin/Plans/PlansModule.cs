@@ -1,6 +1,6 @@
-﻿using Brother.Tests.Selenium.Lib.Pages.BrotherMainSite.Basket;
-using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using BrotherWebSitesCore.Pages.Base;
+using BrotherWebSitesCore.Pages.BrotherMainSite.Basket;
 using OpenQA.Selenium;
 
 namespace BrotherWebSitesCore.Pages.OmniJoin.Plans

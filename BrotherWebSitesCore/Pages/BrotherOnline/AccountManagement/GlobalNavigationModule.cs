@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Brother.Tests.Selenium.Lib.Pages.BrotherOnline.Account;
-using Brother.Tests.Selenium.Lib.Pages.BrotherOnline.AccountManagement;
-using Brother.Tests.Selenium.Lib.Pages.InstantInk;
-using Brother.Tests.Selenium.Lib.Pages.OmniJoin.PartnerPortal;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using BrotherWebSitesCore.Pages.Base;
 using BrotherWebSitesCore.Pages.BrotherMainSite.SuppliesAndAccessories.Printers;
+using BrotherWebSitesCore.Pages.BrotherOnline.Account;
 using BrotherWebSitesCore.Pages.BrotherOnline.AccountManagement.PaymentMethods;
+using BrotherWebSitesCore.Pages.InstantInk;
+using BrotherWebSitesCore.Pages.OmniJoin.PartnerPortal;
 using BrotherWebSitesCore.Pages.OmniJoin.Plans;
 using OpenQA.Selenium;
 

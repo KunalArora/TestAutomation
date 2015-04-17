@@ -1,8 +1,8 @@
 ﻿using System;
-using Brother.Tests.Selenium.Lib.Pages.BrotherOnline.AccountManagement.PaymentMethods;
 using Brother.Tests.Selenium.Lib.Pages.BrotherOnline.Checkout;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using BrotherWebSitesCore.Pages.Base;
+using BrotherWebSitesCore.Pages.BrotherOnline.AccountManagement.PaymentMethods;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.PageObjects;

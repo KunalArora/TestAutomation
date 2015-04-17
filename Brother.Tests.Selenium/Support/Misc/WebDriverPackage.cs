@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 
-namespace Brother.Tests.Selenium.Lib.Support
+namespace Brother.Tests.Selenium.Lib.Support.Misc
 {
     public class WebDriverPackage
     {

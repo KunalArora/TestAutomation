@@ -1,10 +1,9 @@
 ﻿using System;
 using BrotherWebSitesCore.Pages.Base;
-using BrotherWebSitesCore.Pages.BrotherMainSite.SuppliesAndAccessories.Printers;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
-namespace Brother.Tests.Selenium.Lib.Pages.BrotherMainSite.SuppliesAndAccessories.Printers
+namespace BrotherWebSitesCore.Pages.BrotherMainSite.SuppliesAndAccessories.Printers
 {
     public class PrintersPage : BasePage
     {

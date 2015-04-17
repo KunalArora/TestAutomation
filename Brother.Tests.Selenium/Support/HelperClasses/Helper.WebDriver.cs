@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using Brother.Tests.Selenium.Lib.Support.Misc;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Interactions;

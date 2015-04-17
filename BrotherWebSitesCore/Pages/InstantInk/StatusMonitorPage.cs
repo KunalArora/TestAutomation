@@ -1,6 +1,6 @@
 ﻿using BrotherWebSitesCore.Pages.Base;
 
-namespace Brother.Tests.Selenium.Lib.Pages.InstantInk
+namespace BrotherWebSitesCore.Pages.InstantInk
 {
     public class StatusMonitorPage : BasePage
     {

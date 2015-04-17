@@ -1,11 +1,9 @@
 ﻿using System;
-using Brother.Tests.Selenium.Lib.Properties;
 using BrotherWebSitesCore.Pages.Base;
-using BrotherWebSitesCore.Pages.BrotherOnline.Account;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
-namespace Brother.Tests.Selenium.Lib.Pages.BrotherOnline.Account
+namespace BrotherWebSitesCore.Pages.BrotherOnline.Account
 {
     public class RegistrationConfirmationPage : BasePage
     {

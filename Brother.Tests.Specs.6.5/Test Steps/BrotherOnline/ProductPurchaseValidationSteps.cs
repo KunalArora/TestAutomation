@@ -1,5 +1,4 @@
 ﻿using System;
-using Brother.Tests.Selenium.Lib.Pages.BrotherMainSite.Basket;
 using Brother.Tests.Selenium.Lib.Pages.BrotherOnline.Checkout;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;

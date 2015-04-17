@@ -1,19 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using Brother.Tests.Selenium.Lib.Pages.BrotherOnline.AccountManagement;
-using Brother.Tests.Selenium.Lib.Properties;
-using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using BrotherWebSitesCore.Pages.Base;
-using BrotherWebSitesCore.Pages.BrotherMainSite.SuppliesAndAccessories;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.Events;
 using OpenQA.Selenium.Support.PageObjects;
 
-namespace Brother.Tests.Selenium.Lib.Pages.BrotherMainSite.SuppliesAndAccessories
+namespace BrotherWebSitesCore.Pages.BrotherMainSite.SuppliesAndAccessories
 {
     public class SuppliesPage : BasePage
     {

@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.Tests.Selenium.Lib.Support.SpecFlow;
 using Brother.Tests.Specs.TestSpecifications.BrotherOnline.ProductRegistration;
 using BrotherWebSitesCore.Pages.Base;
 using OpenQA.Selenium;

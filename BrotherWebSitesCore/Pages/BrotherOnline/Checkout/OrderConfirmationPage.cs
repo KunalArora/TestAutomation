@@ -1,17 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Brother.Tests.Selenium.Lib.Pages.BrotherOnline.AccountManagement;
-using Brother.Tests.Selenium.Lib.Properties;
-using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using BrotherWebSitesCore.Pages.Base;
 using BrotherWebSitesCore.Pages.BrotherOnline.AccountManagement;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
-namespace Brother.Tests.Selenium.Lib.Pages.BrotherOnline.Checkout
+namespace BrotherWebSitesCore.Pages.BrotherOnline.Checkout
 {
     public class OrderConfirmationPage : BasePage
     {
