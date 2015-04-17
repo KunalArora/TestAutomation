@@ -425,6 +425,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                         .Replace(",", "_")
                         .Replace("\\", "_")
                         .Replace(".", "$")
+                        .Replace("?", "")
                         .Replace(":", "$");
             }
            
