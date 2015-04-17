@@ -61,3 +61,141 @@ aspnet_client
 
 # Office Temp Files
 ~$*
+<<<<<<< .merge_file_a12572
+=======
+
+#ncrunch
+*ncrunch*
+*crunch*.local.xml
+
+!/Main/Services/Brother.Services.User
+/Main/Website/Brother.Web/sitemap*.xml
+/Main/Website/Brother.Web/robots.txt
+/Main/Website/Brother.Web/Brother.Web.Publish.xml
+
+# local database settings
+/Main/Website/Brother.Web/App_Config/ConnectionStrings.config
+/Main/ESB/Brother.Esb.Endpoints.Sap/App.config
+
+/Deploy/Website
+/Deploy/ESB
+/Deploy/Search
+
+Main/Website/Brother.Web/App_Config/ConnectionStrings.config
+/Main/Website/Brother.Web/Data/Sitecore_WebForms.db
+/Tools/CreateActorService/CreateActorService/CreateActorService/CreateActorService.csproj
+/Tools/CreateActorService/CreateActorService/CreateActorService/Program.cs
+/Tools/CreateActorService/CreateActorService/CreateActorService/Properties/AssemblyInfo.cs
+/Tools/CreateActorService/CreateActorService/CreateActorService/Service References/SapActorCreationService/CreateActorService.SapActorCreationService.ErrorCodes.datasource
+/Tools/CreateActorService/CreateActorService/CreateActorService/Service References/SapActorCreationService/Reference.cs
+/Tools/CreateActorService/CreateActorService/CreateActorService/Service References/SapActorCreationService/Reference.svcmap
+/Tools/CreateActorService/CreateActorService/CreateActorService/Service References/SapActorCreationService/SapActorCreationService.disco
+/Tools/CreateActorService/CreateActorService/CreateActorService/Service References/SapActorCreationService/SapActorCreationService.wsdl
+/Tools/CreateActorService/CreateActorService/CreateActorService/Service References/SapActorCreationService/SapActorCreationService.xsd
+/Tools/CreateActorService/CreateActorService/CreateActorService/Service References/SapActorCreationService/SapActorCreationService1.xsd
+/Tools/CreateActorService/CreateActorService/CreateActorService/Service References/SapActorCreationService/SapActorCreationService2.xsd
+/Tools/CreateActorService/CreateActorService/CreateActorService/Service References/SapActorCreationService/SapActorCreationService3.xsd
+/Tools/CreateActorService/CreateActorService/CreateActorService/Service References/SapActorCreationService/configuration.svcinfo
+/Tools/CreateActorService/CreateActorService/CreateActorService/Service References/SapActorCreationService/configuration91.svcinfo
+/Tools/CreateActorService/CreateActorService/CreateActorService/app.config
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap.sln
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/About.aspx
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/About.aspx.cs
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/About.aspx.designer.cs
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/Account/ChangePassword.aspx
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/Account/ChangePassword.aspx.cs
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/Account/ChangePassword.aspx.designer.cs
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/Account/ChangePasswordSuccess.aspx
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/Account/ChangePasswordSuccess.aspx.cs
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/Account/ChangePasswordSuccess.aspx.designer.cs
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/Account/Login.aspx
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/Account/Login.aspx.cs
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/Account/Login.aspx.designer.cs
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/Account/Register.aspx
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/Account/Register.aspx.cs
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/Account/Register.aspx.designer.cs
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/Account/Web.config
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/EncryptionUtility.cs
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/Global.asax
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/Global.asax.cs
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/PasswordUtility.cs
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/Properties/AssemblyInfo.cs
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/Properties/Settings.Designer.cs
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/Properties/Settings.settings
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/Scripts/jquery-1.4.1-vsdoc.js
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/Scripts/jquery-1.4.1.js
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/Scripts/jquery-1.4.1.min.js
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/Site.Master
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/Site.Master.cs
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/Site.Master.designer.cs
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/Styles/Site.css
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/TestAccountCreationFromSap.aspx
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/TestAccountCreationFromSap.aspx.cs
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/TestAccountCreationFromSap.aspx.designer.cs
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/TestAccountCreationFromSap.csproj
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/Web References/SapActorCreationSvc/ErrorCodes.datasource
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/Web References/SapActorCreationSvc/Reference.cs
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/Web References/SapActorCreationSvc/Reference.map
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/Web References/SapActorCreationSvc/SapActorCreationService.disco
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/Web References/SapActorCreationSvc/SapActorCreationService.wsdl
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/Web References/SapActorCreationSvc/SapActorCreationService.xsd
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/Web References/SapActorCreationSvc/SapActorCreationService0.xsd
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/Web References/SapActorCreationSvc/SapActorCreationService1.xsd
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/Web References/SapActorCreationSvc/SapActorCreationService2.xsd
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/Web References/SapActorCreationSvc/SapActorCreationSvc.rar
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/Web References/UserRegistrationSvc/ErrorCodes.datasource
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/Web References/UserRegistrationSvc/Reference.cs
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/Web References/UserRegistrationSvc/Reference.map
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/Web References/UserRegistrationSvc/UserRegistrationService.disco
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/Web References/UserRegistrationSvc/UserRegistrationService.wsdl
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/Web References/UserRegistrationSvc/UserRegistrationService.xsd
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/Web References/UserRegistrationSvc/UserRegistrationService0.xsd
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/Web References/UserRegistrationSvc/UserRegistrationService1.xsd
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/Web References/UserRegistrationSvc/UserRegistrationService2.xsd
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/Web References/UserRegistrationSvc/UserRegistrationService3.xsd
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/Web.Debug.config
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/Web.Release.config
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/Web.config
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/lib/Brother.Bootstrapper.dll
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/lib/Brother.Domain.dll
+/Tools/TestAccountCreationFromSap/TestAccountCreationFromSap/lib/Brother.Services.Users.dll
+/Main/Website/Brother.Web/Data/Sitecore_WebForms.mdf
+/Main/Website/Brother.Web/Data/Sitecore_WebForms_Log.ldf
+/Main/Website/Brother.Web/Data/Web Forms Oracle/CreateData.bat
+/Main/Website/Brother.Web/Data/Web Forms Oracle/createrole.sql
+/Main/Website/Brother.Web/Data/Web Forms Oracle/createuser.sql
+/Main/Website/Brother.Web/Data/Web Forms Oracle/wffmschema.sql
+
+# Sitecore Powershell
+/Main/Website/Brother.Web/App_Config/Include/Cognifide.PowerShell.config
+/Main/Website/Brother.Web/Console
+/Main/Website/Brother.Web/Console/*
+*.dbmdl
+/Main/Website/Brother.Web/_CH
+/Main/Website/Brother.Web/App_Data/license.xml
+Main/Domain/Brother.Domain/Development_AaronBlake/
+Main/Services/Brother.Services.SitecoreContext/Development_AaronBlake/
+Main/Brother.Master.Static/IconCache/
+Main/Brother.Master.Static/T4RenderCache/
+Main/ESB/Brother.Esb.Endpoints.SiteWeb/Development_AaronBlake/
+Main/ESB/Brother.Esb.Endpoints.SiteWeb/NewBuiltFiles_Development_AaronBlake.txt
+Main/Website/Brother.Web.WebApi/Development_AaronBlake/
+Main/ESB/Brother.Esb.Endpoints.SiteMaster/Development_AaronBlake/
+Main/Website/Brother.Web.Application/Development_AaronBlake/
+Main/ESB/Brother.Esb.Endpoints.Sap/Development_AaronBlake/
+Main/Domain/Brother.Domain.DealerPortal/Development_AaronBlake/
+Main/ESB/Brother.Esb.Endpoints.SiteMaster/NewBuiltFiles_Development_AaronBlake.txt
+/Tools/ServiceLocator/ServiceLocator/Properties/PublishProfiles/temp.pubxml.user
+/Tools/ServiceLocator/ServiceLocator/Properties/PublishProfiles/temp.pubxml
+Main/Website/Brother.Web/App_Config/Include/SitecoreShellWax.config
+Main/Databases/Brother_MPS/Migrations/Migrate_*.sql
+Main/Databases/Brother_UserData/Migrations/Migrate_*.sql
+Main/Databases/Brother_Medio/Migrations/Migrate_*.sql
+Main/Databases/Brother_MainSite_Partners/Migrations/Migrate_*.sql
+<<<<<<< HEAD
+*.suo
+=======
+*.dll
+*.dll
+>>>>>>> 048fd903982ab1c5f5a80e2bb02ad9ecf4e05a21
+>>>>>>> .merge_file_a12992
