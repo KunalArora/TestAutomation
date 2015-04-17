@@ -90,7 +90,7 @@
     <Compile Include="Support\HelperClasses\Helper.Screenshot.cs" />
     <Compile Include="Support\HelperClasses\Helper.SpecFlow.cs" />
     <Compile Include="Support\HelperClasses\Helper.TestCheck.cs" />
-    <Compile Include="Support\Hooks\SpecFlowHooks.cs" />
+    <Compile Include="Support\SpecFlow\SpecFlowHooks.cs" />
     <Compile Include="Support\HelperClasses\Helper.Email.cs" />
     <Compile Include="Support\HelperClasses\Helper.Language.cs" />
     <Compile Include="Support\HelperClasses\Helper.Navigation.cs" />
@@ -100,10 +100,10 @@
     <Compile Include="Support\MPSUtil.cs" />
     <Compile Include="Support\HelperClasses\Helper.Selenium.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Support\TestController.cs" />
+    <Compile Include="Support\Test Controller\TestController.cs" />
     <Compile Include="Support\HelperClasses\Helper.cs" />
-    <Compile Include="Support\SpecFlowSeleniumException.cs" />
-    <Compile Include="Support\WebDriverPackage.cs" />
+    <Compile Include="Support\SpecFlow\SpecFlowSeleniumException.cs" />
+    <Compile Include="Support\Misc\WebDriverPackage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">
