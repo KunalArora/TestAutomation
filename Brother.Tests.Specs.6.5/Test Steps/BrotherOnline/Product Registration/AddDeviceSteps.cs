@@ -28,18 +28,11 @@ namespace Brother.Tests.Specs.BrotherOnline
             dynamic form = table.CreateDynamicInstance();
             var productCode = Helper.GetDeviceCodeSeed();
 
-            //try
-            //{
-                GivenIHaveEnteredMyProductSerialCode(productCode);
-                GivenIHaveEnteredMyPurchaseDate("02/02/2015");
-                GivenIHaveEnteredMyPromoCode(form.PromoCode);
-                GivenIHaveEnteredMyProductSupplier(form.Supplier);
-                WhenIHaveTickedTheExtendedWarrantyOption(form.ExtendedWarranty);
-            //}
-            //catch (StaleElementReferenceException staleElementException)
-            //{
-            //    Assert.Fail(staleElementException.Message);
-            //}
+            GivenIHaveEnteredMyProductSerialCode(productCode);
+            GivenIHaveEnteredMyPurchaseDate("02/02/2015");
+            GivenIHaveEnteredMyPromoCode(form.PromoCode);
+            GivenIHaveEnteredMyProductSupplier(form.Supplier);
+            WhenIHaveTickedTheExtendedWarrantyOption(form.ExtendedWarranty);
         }
 
         [Given(@"I have entered my Purchase Date ""(.*)""")]
@@ -51,7 +44,7 @@ namespace Brother.Tests.Specs.BrotherOnline
         [Then(@"I can validate that an error message was displayed")]
         public void ThenICanValidateThatAnErrorMessageWasDisplayed()
         {
-            Assert.AreEqual(true, CurrentPage.As<RegisterDevicePage>().IsErrorIconPresent());
+            TestCheck.AssertIsEqual(true, CurrentPage.As<RegisterDevicePage>().IsErrorIconPresent(), "Is Error Icon Present");
         }
 
 

@@ -66,7 +66,7 @@ namespace Brother.Tests.Specs.OmniJoin.FreeTrial
         {
             var expiryDate = CurrentPage.As<FreeTrialDownloadPage>().GetTrialExpiryDate();
             var currentDate = DateTime.Today.AddDays(freeTrialPeriod).ToString("dd MMMM yyyy");
-            Assert.AreEqual(currentDate, expiryDate, "OmniJoin Free Trial - Invalid expiry Date");
+            TestCheck.AssertIsEqual(currentDate, expiryDate, "OmniJoin Free Trial - Invalid expiry Date");
         }
 
 #region "Production ("Live") test. DO NOT add Credit Card details steps to the method below

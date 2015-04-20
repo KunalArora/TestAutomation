@@ -1,4 +1,5 @@
-﻿using Brother.WebSites.Core.Pages.Base;
+﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherMainSite.Basket;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
@@ -12,13 +13,13 @@ namespace Brother.Tests.Specs.BrotherOnline.Purchasing
         public void ThenIShouldSeeTheItemInTheBasket(string productItem)
         {
             var basketItem = BasketModule.GetBasketInformationItem(CurrentDriver);
-            Assert.AreEqual(basketItem.Contains(productItem), true, "Basket Product Comparison");
+            TestCheck.AssertIsEqual(basketItem.Contains(productItem), true, "Basket Product Comparison");
         }
 
         [Then(@"I should see the Basket item count change to ""(.*)""")]
         public void ThenIShouldSeeTheBasketItemCountChangeTo(int itemCount)
         {
-            Assert.AreEqual(itemCount, BasketModule.GetBasketItemsCount(CurrentDriver), "Basket Count Comparison");
+            TestCheck.AssertIsEqual(itemCount, BasketModule.GetBasketItemsCount(CurrentDriver), "Basket Count Comparison");
         }
 
         [When(@"I click on Go to Basket")]
@@ -31,14 +32,14 @@ namespace Brother.Tests.Specs.BrotherOnline.Purchasing
         public void ThenIShouldSeeTheItemInTheItemList(string productItem)
         {
             CurrentPage.As<BasketPage>().IsCheckoutButtonAvailable();
-            Assert.AreEqual(CurrentPage.As<BasketPage>().GetItemInBasket(), productItem, "Product Comparison");
+            TestCheck.AssertIsEqual(CurrentPage.As<BasketPage>().GetItemInBasket(), productItem, "Product Comparison");
         }
 
         [Then(@"I should see the Basket items count is ""(.*)""")]
         public void ThenIShouldSeeTheBasketItemsCountIs(int itemCount)
         {
             CurrentPage.As<BasketPage>().IsCheckoutButtonAvailable();
-            Assert.AreEqual(itemCount, CurrentPage.As<BasketPage>().GetItemQuantity(), "Basket Count Comparison");
+            TestCheck.AssertIsEqual(itemCount, CurrentPage.As<BasketPage>().GetItemQuantity(), "Basket Count Comparison");
         }
 
         [When(@"I click Checkout")]

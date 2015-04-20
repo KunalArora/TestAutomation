@@ -1,4 +1,5 @@
-﻿using Brother.WebSites.Core.Pages.Base;
+﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherMainSite;
 using Brother.WebSites.Core.Pages.BrotherMainSite.SuppliesAndAccessories.Printers;
 using NUnit.Framework;
@@ -43,8 +44,7 @@ namespace Brother.Tests.Specs.BrotherMainSite.PrinterSearch
         [Then(@"I should see a list of All in one printers")]
         public void ThenIShouldSeeAListOfAllInOnePrinters()
         {
-            Assert.AreEqual(true,
-                CurrentPage.As<AllInOnePrintersPage>().WaitForPrinterSearchResults("matching products"));
+            TestCheck.AssertIsEqual(true, CurrentPage.As<AllInOnePrintersPage>().WaitForPrinterSearchResults("matching products"), "Printer Search Results returned");
         }
 
         [Then(@"I click on View Our Laser Printers button")]
@@ -57,19 +57,19 @@ namespace Brother.Tests.Specs.BrotherMainSite.PrinterSearch
         [Then(@"I should see a list of Laser printers")]
         public void ThenIShouldSeeAListOfLaserPrinters()
         {
-            Assert.Greater(CurrentPage.As<LaserPrintersPage>().WaitForPrinterSearchResults(), 0, "Printer search returned zero");
+            TestCheck.AssertIsGreater(CurrentPage.As<LaserPrintersPage>().WaitForPrinterSearchResults(), 0, "Printer search returned zero");
         }
 
         [Then(@"I can validate that each printer is a valid printer")]
         public void ThenICanValidateThatEachPrinterIsAValidPrinter()
         {
-            Assert.AreEqual(false, CurrentPage.As<LaserPrintersPage>().ValidatePrinters(), "Validating Printers (Main Languages)");
+            TestCheck.AssertIsEqual(false, CurrentPage.As<LaserPrintersPage>().ValidatePrinters(), "Validating Printers (Main Languages)");
         }
 
         [Then(@"I can validate that each printer for Spain and Portugal is a valid printer")]
         public void ThenICanValidateThatEachPrinterForSpainAndPortugalIsAValidPrinter()
         {
-            Assert.AreEqual(false, CurrentPage.As<LaserPrintersPage>().ValidatePrintersSpainPortugal(), "Validating Printers (Spain and Portugal Languages)");
+            TestCheck.AssertIsEqual(false, CurrentPage.As<LaserPrintersPage>().ValidatePrintersSpainPortugal(), "Validating Printers (Spain and Portugal Languages)");
         }
     }
 }

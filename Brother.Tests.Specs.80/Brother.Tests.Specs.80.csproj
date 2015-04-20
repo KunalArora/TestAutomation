@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="nunit.framework">
+      <HintPath>..\Dependencies\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -37,9 +40,28 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="TechTalk.SpecFlow">
+      <HintPath>..\Dependencies\SpecFlow\SpecFlow.1.9.0\lib\net35\TechTalk.SpecFlow.dll</HintPath>
+    </Reference>
+    <Reference Include="WebDriver">
+      <HintPath>..\Dependencies\Selenium\net40\WebDriver.dll</HintPath>
+    </Reference>
+    <Reference Include="WebDriver.Support">
+      <HintPath>..\Dependencies\Selenium\net40\WebDriver.Support.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Brother.Tests.Selenium\Brother.Tests.Selenium.Lib.csproj">
+      <Project>{165eba24-2c36-4274-b0ce-19b899de96cc}</Project>
+      <Name>Brother.Tests.Selenium.Lib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Brother.WebSites.Core\Brother.WebSites.Core.csproj">
+      <Project>{85d64580-8536-410e-abed-f0f28a6f2467}</Project>
+      <Name>Brother.WebSites.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

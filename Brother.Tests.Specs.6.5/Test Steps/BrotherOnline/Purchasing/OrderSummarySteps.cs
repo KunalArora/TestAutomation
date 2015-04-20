@@ -1,4 +1,5 @@
-﻿using Brother.WebSites.Core.Pages.Base;
+﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherOnline.Checkout;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
@@ -29,7 +30,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Purchasing
             Then("I should see the Order Summary page");
 
             var itemDetails = CurrentPage.As<OrderSummaryPage>().GetProductInfo();
-            Assert.AreEqual(itemDetails.Contains("Quantity: " + itemQty), true, "Incorrect itenm quantity");
+            TestCheck.AssertIsEqual(itemDetails.Contains("Quantity: " + itemQty), true, "Incorrect itenm quantity");
         }
     }
 }

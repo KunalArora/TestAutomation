@@ -1,4 +1,5 @@
-﻿using Brother.WebSites.Core.Pages.Base;
+﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherMainSite.Basket;
 using Brother.WebSites.Core.Pages.BrotherOnline.Checkout;
 using NUnit.Framework;
@@ -23,7 +24,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Purchasing
         [Then(@"The purchased plan billing type is correct ""(.*)""")]
         public void ThenThePurchasedPlanBillingTypeIsCorrect(string billingType)
         {
-            Assert.AreEqual(billingType, CurrentPage.As<OrderConfirmationPage>().GetBillingType(), "Incorrect Billing Type");
+            TestCheck.AssertIsEqual(billingType, CurrentPage.As<OrderConfirmationPage>().GetBillingType(), "Incorrect Billing Type");
         }
 
 
@@ -31,10 +32,10 @@ namespace Brother.Tests.Specs.BrotherOnline.Purchasing
         public void ThenICanValidateIHaveOrderedItemsOfThisPrice(int itemQuantity, string productItem, string itemPrice)
         {
             var price = BasketModule.GetItemPrice(CurrentDriver);
-            Assert.AreEqual(itemPrice, price, "Incorrect Price");
+            TestCheck.AssertIsEqual(itemPrice, price, "Incorrect Price");
 
             var item = CurrentPage.As<OrderConfirmationPage>().GetProductInfo();
-            Assert.AreEqual(item.Contains("Quantity: " + itemQuantity), true, "Incorrect order quantity");
+            TestCheck.AssertIsEqual(item.Contains("Quantity: " + itemQuantity), true, "Incorrect order quantity");
         }
 
         [When(@"If I click on My Account")]

@@ -334,13 +334,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             return GetInstance<MySignInDetailsPage>(driver, "", "");
         }
 
-        //public static InvoicesPage InvoicesButtonClick(IWebDriver driver, IWebElement button)
-        //{
-        //    Assert.IsNotNull(button);
-        //    button.Click();
-        //    return GetInstance<InvoicesPage>(driver, "", "");
-        //}
-
         public static MyPaymentMethodsPage PaymentMethodsMenuClick(IWebDriver driver, IWebElement button)
         {
             TestCheck.AssertIsNotNull(button, "Payment Method Menu");

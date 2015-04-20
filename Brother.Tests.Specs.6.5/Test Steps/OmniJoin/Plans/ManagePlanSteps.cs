@@ -1,4 +1,5 @@
-﻿using Brother.WebSites.Core.Pages.Base;
+﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement.PaymentMethods;
 using Brother.WebSites.Core.Pages.OmniJoin.Plans;
@@ -13,13 +14,13 @@ namespace Brother.Tests.Specs.OmniJoin.Plans
         [Then(@"I can validate the correct plan is displayed ""(.*)"" ""(.*)""")]
         public void ThenICanValidateTheCorrectPlanIsDisplayed(string omniJoinPlanType, string omniJoinBillingType)
         {
-            Assert.AreEqual(true, CurrentPage.As<ManagePlanPage>().CheckCurrentOmniJoinPlanIsCorrect(omniJoinPlanType, omniJoinBillingType), "OmniJoin - Incorrect Plan displayed");
+            TestCheck.AssertIsEqual(true, CurrentPage.As<ManagePlanPage>().CheckCurrentOmniJoinPlanIsCorrect(omniJoinPlanType, omniJoinBillingType), "OmniJoin - Incorrect Plan displayed");
         }
 
         [Then(@"I can validate that the plan was changed ""(.*)"" ""(.*)""")]
         public void ThenICanValidateThatThePlanWasChanged(string omniJoinPlanType, string omniJoinBillingType)
         {
-            Assert.AreEqual(true, CurrentPage.As<ManagePlanPage>().CheckCurrentOmniJoinPlanIsCorrect(omniJoinPlanType, omniJoinBillingType), "OmniJoin Change Plan - Incorrect Plan selected so change was not successful");
+            TestCheck.AssertIsEqual(true, CurrentPage.As<ManagePlanPage>().CheckCurrentOmniJoinPlanIsCorrect(omniJoinPlanType, omniJoinBillingType), "OmniJoin Change Plan - Incorrect Plan selected so change was not successful");
         }
 
         [Then(@"If I click on Change Plan or Term")]

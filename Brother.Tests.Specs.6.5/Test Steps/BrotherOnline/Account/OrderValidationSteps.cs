@@ -13,14 +13,14 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [Then(@"I can validate the order was processed via SAP for  ""(.*)")]
         public void ThenICanValidateTheOrderWasProcessedViaSap(string orderNumber)
         {
-            Assert.AreEqual(true, Utils.ConfirmSapOrder(orderNumber, 10), "SAP Order Validation");
+            TestCheck.AssertIsEqual(true, Utils.ConfirmSapOrder(orderNumber, 10), "SAP Order Validation");
         }
 
         [Then(@"I can validate the order ""(.*)"" of ""(.*)"" @ ""(.*)"" on the My Orders page")]
         public void ThenICanValidateTheOrderOnTheMyOrdersPage(int itemQty, string item, string itemPrice)
         {
             CheckIAmOnTheMyOrdersPage();
-            Assert.AreEqual(0, BasketModule.GetBasketItemsCount(CurrentDriver), "Basket Count Comparison");
+            TestCheck.AssertIsEqual(0, BasketModule.GetBasketItemsCount(CurrentDriver), "Basket Count Comparison");
             NextPage = CurrentPage.As<MyOrdersPage>().ViewOrderDetailsButtonClick();
         }
 
@@ -37,7 +37,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         private void ThenICanValidateTheOrderDetails(int itemQty, string item, string itemPrice, string orderNumber)
         {
             CurrentPage.As<OrderDetailsPage>().IsBackToOrderButtonAvailable();
-            Assert.AreEqual(0, BasketModule.GetBasketItemsCount(CurrentDriver), "Basket Count Comparison");
+            TestCheck.AssertIsEqual(0, BasketModule.GetBasketItemsCount(CurrentDriver), "Basket Count Comparison");
             NextPage = CurrentPage.As<OrderDetailsPage>().BackToOrderButtonClick();
             CheckIAmOnTheMyOrdersPage();
         }

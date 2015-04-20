@@ -119,7 +119,7 @@ namespace Brother.Tests.Specs
                 CurrentPage.As<GuerillaEmailConfirmationPage>()
                     .SelectEmailDomain(Email.RegistrationEmailDomain.ToLower().Replace("@", string.Empty));
                 CurrentPage.As<GuerillaEmailConfirmationPage>().SetEmailText(Email.RegistrationEmailAddress);
-                Assert.AreEqual(true, CurrentPage.As<GuerillaEmailConfirmationPage>().DeleteGuerrillaWelcomeMail(),
+                TestCheck.AssertIsEqual(true, CurrentPage.As<GuerillaEmailConfirmationPage>().DeleteGuerrillaWelcomeMail(),
                     "Unable to delete the Guerrilla Mail Welcome Message");
             }
             else
@@ -129,7 +129,7 @@ namespace Brother.Tests.Specs
                 CurrentPage.As<GuerillaEmailConfirmationPage>()
                    .SelectEmailDomain(Email.RegistrationEmailDomain.ToLower().Replace("@", string.Empty));
                 CurrentPage.As<GuerillaEmailConfirmationPage>().SetEmailText(inBox);
-                Assert.AreEqual(true, CurrentPage.As<GuerillaEmailConfirmationPage>().DeleteGuerrillaWelcomeMail(),
+                TestCheck.AssertIsEqual(true, CurrentPage.As<GuerillaEmailConfirmationPage>().DeleteGuerrillaWelcomeMail(),
     "Unable to delete the Guerrilla Mail Welcome Message");
             }
         }

@@ -11,13 +11,13 @@ namespace Brother.Tests.Specs.Global
         [Then(@"I should see the Warning Bar activated and displaying a warning message")]
         public void ThenIShouldSeeTheWarningBarActivatedAndDisplayingAWarningMessage()
         {
-            Assert.AreEqual(true, Validation.ValidateWarningMessageBarStatus(true), "Warning Message Bar");
+            TestCheck.AssertIsEqual(true, Validation.ValidateWarningMessageBarStatus(true), "Warning Message Bar");
         }
 
         [Then(@"I should see the Information Bar activated and displaying an Information message")]
         public void ThenIShouldSeeTheInformationBarActivatedAndDisplayingAnInformationMessage()
         {
-            Assert.AreEqual(true, Validation.ValidateInformationMessageBarStatus(true), "Information Message Bar");
+            TestCheck.AssertIsEqual(true, Validation.ValidateInformationMessageBarStatus(true), "Information Message Bar");
         }
     }
 }

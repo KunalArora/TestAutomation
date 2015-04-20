@@ -1,4 +1,6 @@
-﻿using Brother.WebSites.Core.Pages.Base;
+﻿using Brother.Tests.Selenium.Lib.Support;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherMainSite;
 using Brother.WebSites.Core.Pages.BrotherMainSite.Basket;
 using Brother.WebSites.Core.Pages.BrotherMainSite.SuppliesAndAccessories;
@@ -39,7 +41,7 @@ namespace Brother.Tests.Specs.BrotherMainSite.SuppliesAndAccessories
         public void ThenIShouldSeeTheSelectedItemInformationPagePricedAtIncVat(string productItem)
         {
             CurrentPage.As<InkJetCartridgePage>().IsAddToBasketButtonAvailable();
-            Assert.AreEqual(BasketModule.GetItemPrice(CurrentDriver).Contains(productItem), true, "Invalid price for item");
+            TestCheck.AssertIsEqual(BasketModule.GetItemPrice(TestController.CurrentDriver).Contains(productItem), true, "Invalid price for item");
         }
 
         [Then(@"I should see the selected item information page")]
@@ -71,7 +73,7 @@ namespace Brother.Tests.Specs.BrotherMainSite.SuppliesAndAccessories
         [When(@"I click on Add To Basket")]
         public void WhenIClickOnAddToBasket()
         {
-            Assert.AreEqual(0, BasketModule.GetBasketItemsCount(CurrentDriver), "Invalid Basket item count");
+            TestCheck.AssertIsEqual(0, BasketModule.GetBasketItemsCount(CurrentDriver), "Invalid Basket item count");
             CurrentPage.As<InkJetCartridgePage>().AddToBasketButtonClick();
       
         }

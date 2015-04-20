@@ -30,7 +30,7 @@ namespace Brother.Tests.Specs
         public void ThenICanSeeTheInkSupplyMenuOptionFromTheBolHomePage()
         {
             var menuItem = GlobalNavigationModule.GetProductNavigationMenu("InstantInk");
-            Assert.AreNotEqual(null, menuItem);
+            TestCheck.AssertIsNotEqual(null, menuItem, "Is Instant Ink menu present");
         }
 
 

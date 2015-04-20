@@ -1,4 +1,5 @@
-﻿using Brother.WebSites.Core.Pages.Base;
+﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherOnline.Checkout;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
@@ -109,8 +110,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Purchasing
         public void WhenIClickCancelIShouldReturnToTheOrderSummaryPage()
         {
             NextPage = CurrentPage.As<CreditCardDetailsPage>().CancelPaymentButtonClick();
-            Assert.AreEqual(CurrentPage.As<OrderSummaryPage>().GetOrderCancellationInformation().Contains("Payment cancel"), true, "Unable to determine Order cancellation information");
-            //Assert.AreEqual(CurrentPage.As<OrderSummaryPage>().GetOrderCancellationWarnings().Equals(string.Empty), true, "Unable to determine Order cancellation warning");
+            TestCheck.AssertIsEqual(CurrentPage.As<OrderSummaryPage>().GetOrderCancellationInformation().Contains("Payment cancel"), true, "Unable to determine Order cancellation information");
         }
     }
 }

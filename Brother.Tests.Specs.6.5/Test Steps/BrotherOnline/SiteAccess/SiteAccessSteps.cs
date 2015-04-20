@@ -14,25 +14,25 @@ namespace Brother.Tests.Specs.BrotherOnline.SiteAccess
         public void GivenTheFollowingSiteTestSiteToValidateIShouldReceiveAnOkResponseBack(string url)
         {
             // Perform a page GET
-            Assert.AreEqual(HttpStatusCode.OK, GetWebPageResponse(url), "Incorrect Http Status Code returned");
+            TestCheck.AssertIsEqual(HttpStatusCode.OK, GetWebPageResponse(url), "Incorrect Http Status Code returned");
 
             WebDriver.SetPageLoadTimeout(TimeSpan.FromSeconds(120));
-            ValidateTestSiteUrl(url);
+
+            WebSites.Core.Pages.General.SiteAccess.ValidateSiteUrl(url);
             WebDriver.SetPageLoadTimeout(WebDriver.DefaultTimeout);
         }
 
         [Given(@"The following site ""(.*)"" to validate I should receive an Ok response back")]
         public void GivenTheFollowingSiteToValidateIShouldReceiveAnOkResponseBack(string url)
         {
-            var maxTries = 5;
-            HttpStatusCode responseCode = HttpStatusCode.Ambiguous;
+            const int maxTries = 5;
+            var responseCode = HttpStatusCode.Ambiguous;
 
             for (var attempts = 1; attempts < maxTries; attempts++)
             {
                 Helper.MsgOutput(string.Format("Website response attempt number [{0}]", attempts));
 
                 // Perform a page GET
-                //Assert.AreEqual(HttpStatusCode.OK, GetWebPageResponse(url), "Incorrect Http Status Code Returned");
                 responseCode = GetWebPageResponse(url);
                 switch (responseCode)
                 {
@@ -40,7 +40,7 @@ namespace Brother.Tests.Specs.BrotherOnline.SiteAccess
                     case HttpStatusCode.OK:
                         attempts = 5;
                         WebDriver.SetPageLoadTimeout(TimeSpan.FromSeconds(120));
-                        ValidateLiveSiteUrl(url);
+                        WebSites.Core.Pages.General.SiteAccess.ValidateLiveSiteUrl(url);
                         WebDriver.SetPageLoadTimeout(WebDriver.DefaultTimeout);
                         break;
                     case HttpStatusCode.MultipleChoices:
@@ -53,56 +53,7 @@ namespace Brother.Tests.Specs.BrotherOnline.SiteAccess
                 }
             }
 
-            Assert.AreEqual(HttpStatusCode.OK, responseCode, "Http Status Code Returned");
-        }
-
-        private void ValidateTestSiteUrl(string webSite)
-        {
-            //CurrentDriver.Navigate().GoToUrl(webSite);
-            //Helper.MsgOutput(string.Format("Size of page [{0}] = [{1}]", webSite, CurrentDriver.PageSource.Length));
-            //try
-            //{
-            //    var pageBodySource = CurrentDriver.FindElement(By.TagName("body")).Text;
-            //    Helper.MsgOutput(string.Format("Size of page body = [{0}]", pageBodySource.Length));
-            //}
-            //catch (NoSuchElementException noSuchElement)
-            //{
-            //    Assert.Fail("Unable to locate Body element in Test website {0} [{1}]", webSite, noSuchElement);
-            //}
-            //catch (TimeoutException timeOut)
-            //{
-            //    Assert.Fail("Timeout searching for Body Element [{0}]", timeOut);
-            //}
-        }
-
-
-        private void ValidateLiveSiteUrl(string webSite)
-        {
-
-            //webSite = Helper.CheckForCdServer(webSite);
-            //CurrentDriver.Navigate().GoToUrl(webSite);
-            //Helper.MsgOutput(string.Format("Size of page [{0}] = [{1}]", webSite, CurrentDriver.PageSource.Length));
-            //try
-            //{
-            //    Helper.MsgOutput("Now searching for © Copyright symbol on site");
-            //    if (SeleniumHelper.WaitForElementToExistByXPath("//div[contains(text(), '©')]", 5, 5))
-            //    {
-            //        var pageBodySource = CurrentDriver.FindElement(By.TagName("body")).Text;
-            //        Helper.MsgOutput(string.Format("Size of page body = [{0}]", pageBodySource.Length));
-            //    }
-            //    else
-            //    {
-            //        Assert.Fail("Brother © Copyright Symbol not found in website [{0}] ", webSite); 
-            //    }
-            //}
-            //catch (NoSuchElementException noSuchElement)
-            //{
-            //    Assert.Fail("Brother © Copyright Symbol not found in website [{0}] [{1}]", webSite, noSuchElement);
-            //}
-            //catch (TimeoutException timeOut)
-            //{
-            //    Assert.Fail("Timeout searching for Brother © Copyright symbol [{0}]", timeOut);
-            //}
+            TestCheck.AssertIsEqual(HttpStatusCode.OK, responseCode, "Http Status Code Returned");
         }
 
         private HttpStatusCode GetWebPageResponse(string webSite)

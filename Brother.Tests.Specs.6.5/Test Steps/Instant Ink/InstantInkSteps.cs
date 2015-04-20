@@ -1,4 +1,5 @@
-﻿using Brother.WebSites.Core.Pages.Base;
+﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
@@ -12,14 +13,14 @@ namespace Brother.Tests.Specs
         public void GivenICannotSeeTheInstantInkMenuOptionFromTheBolHomePage()
         {
             var menuItem  = GlobalNavigationModule.GetProductNavigationMenu("InstantInk");
-            Assert.AreEqual(null, menuItem, "Unable to detect Instant Ink Menu Item");
+            TestCheck.AssertIsEqual(null, menuItem, "Unable to detect Instant Ink Menu Item");
         }
 
         [Then(@"I can see the Instant Ink menu option from the BOL home page")]
         public void ThenICanSeeTheInstantInkMenuOptionFromTheBolHomePage()
         {
             var menuItem = GlobalNavigationModule.GetProductNavigationMenu("InstantInk");
-            Assert.AreNotEqual(null, menuItem);
+            TestCheck.AssertIsEqual(null, menuItem, "Is Instant Ink menu available");
         }
 
         [Then(@"If I click on Ink Supply")]
@@ -33,7 +34,7 @@ namespace Brother.Tests.Specs
         public void ThenICanSeeTheInkSupplyStatusMonitorButton()
         {
             var statusMonitorButton = GlobalNavigationModule.GetInstantInkMenuButton("StatusMonitor");
-            Assert.AreNotEqual(null, statusMonitorButton);
+            TestCheck.AssertIsNotEqual(null, statusMonitorButton, "Check Status Monitor button is present");
         }
 
         [When(@"I click on Status Monitor")]
