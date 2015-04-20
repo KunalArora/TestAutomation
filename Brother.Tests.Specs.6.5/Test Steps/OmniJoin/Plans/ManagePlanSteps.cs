@@ -1,9 +1,7 @@
-﻿using Brother.Tests.Selenium.Lib.Pages.BrotherOnline.Checkout;
-using Brother.Tests.Selenium.Lib.Support.HelperClasses;
-using BrotherWebSitesCore.Pages.Base;
-using BrotherWebSitesCore.Pages.BrotherOnline.AccountManagement;
-using BrotherWebSitesCore.Pages.BrotherOnline.AccountManagement.PaymentMethods;
-using BrotherWebSitesCore.Pages.OmniJoin.Plans;
+﻿using Brother.WebSites.Core.Pages.Base;
+using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
+using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement.PaymentMethods;
+using Brother.WebSites.Core.Pages.OmniJoin.Plans;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 

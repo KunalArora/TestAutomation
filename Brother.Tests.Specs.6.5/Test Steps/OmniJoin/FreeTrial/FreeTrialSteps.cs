@@ -1,9 +1,9 @@
 ﻿using System;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
-using BrotherWebSitesCore.Pages.Base;
-using BrotherWebSitesCore.Pages.BrotherOnline.AccountManagement;
-using BrotherWebSitesCore.Pages.OmniJoin;
-using BrotherWebSitesCore.Pages.OmniJoin.Trial;
+using Brother.WebSites.Core.Pages.Base;
+using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
+using Brother.WebSites.Core.Pages.OmniJoin;
+using Brother.WebSites.Core.Pages.OmniJoin.Trial;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 

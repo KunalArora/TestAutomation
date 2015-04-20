@@ -1,5 +1,5 @@
-﻿using BrotherWebSitesCore.Pages.Base;
-using BrotherWebSitesCore.Pages.MPSTwo;
+﻿using Brother.WebSites.Core.Pages.Base;
+using Brother.WebSites.Core.Pages.MPSTwo;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.MPSTwo.Proposal

@@ -1,6 +1,6 @@
-﻿using BrotherWebSitesCore.Pages.Base;
-using BrotherWebSitesCore.Pages.BrotherMainSite.Basket;
-using BrotherWebSitesCore.Pages.OmniJoin.Plans;
+﻿using Brother.WebSites.Core.Pages.Base;
+using Brother.WebSites.Core.Pages.BrotherMainSite.Basket;
+using Brother.WebSites.Core.Pages.OmniJoin.Plans;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.OmniJoin.Plans

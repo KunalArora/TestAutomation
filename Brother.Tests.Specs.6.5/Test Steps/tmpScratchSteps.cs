@@ -1,12 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
-using Brother.Tests.Selenium.Lib.Support;
-using Brother.Tests.Selenium.Lib.Support.HelperClasses;
-using Brother.Tests.Selenium.Lib.Support.SpecFlow;
-using Brother.Tests.Specs.TestSpecifications.BrotherOnline.ProductRegistration;
-using BrotherWebSitesCore.Pages.Base;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Remote;
+using Brother.WebSites.Core.Pages.Base;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs
@@ -19,21 +13,21 @@ namespace Brother.Tests.Specs
         {
 //            BasePage.LoadBolHomePage(CurrentDriver, "ie.brotherdv2.eu", "");
 
-            CurrentDriver.Navigate().GoToUrl(@"http://www.brother.ch/imprimantes\imprimantes-laser");
-            Helper.MsgOutput(TestController.CurrentDriver.Url);
+//            CurrentDriver.Navigate().GoToUrl(@"http://www.brother.ch/imprimantes\imprimantes-laser");
+//            Helper.MsgOutput(TestController.CurrentDriver.Url);
 
-            StartGrid();
-            AddHubNode("headlessDriver");
-            AddHubNode("chromeDriver");
-            //AddHubNode("ffDriver");
-            //AddHubNode("ieDriver");
-            //AddHubNode("headlessDriver");
+//            StartGrid();
+//            AddHubNode("headlessDriver");
+//            AddHubNode("chromeDriver");
+//            //AddHubNode("ffDriver");
+//            //AddHubNode("ieDriver");
+//            //AddHubNode("headlessDriver");
 
-            //StartRemoteWebDriver("127.0.0.1", "4444", "phantomjs");
-            StartRemoteWebDriver("127.0.0.1", "4444", "chrome");
-            StartRemoteWebDriver("127.0.0.1", "4444", "firefox");
-            StartRemoteWebDriver("127.0.0.1", "4444", "ie");
-//            StartRemoteWebDriver("127.0.0.1", "4444", "phantomjs");
+//            //StartRemoteWebDriver("127.0.0.1", "4444", "phantomjs");
+//            StartRemoteWebDriver("127.0.0.1", "4444", "chrome");
+//            StartRemoteWebDriver("127.0.0.1", "4444", "firefox");
+//            StartRemoteWebDriver("127.0.0.1", "4444", "ie");
+////            StartRemoteWebDriver("127.0.0.1", "4444", "phantomjs");
 
         }
 
@@ -87,40 +81,40 @@ namespace Brother.Tests.Specs
             }
         }
 
-        private static DesiredCapabilities SetDesiredCapabilities(string browserDriver)
-        {
-            var capabilities = DesiredCapabilities.PhantomJS();
-            capabilities.SetCapability("acceptSslCerts", true);
-            capabilities.SetCapability("javascriptEnabled", true);
-            capabilities.SetCapability("unexpectedAlertBehaviour", "Accept");
-            capabilities.SetCapability("platform", "WINDOWS");
-            capabilities.SetCapability("web-security", false);
-            capabilities.SetCapability("ignore-sss-errors", true);
-            capabilities.SetCapability("unexpectedAlertBehaviour", "accept");
-            capabilities.SetCapability("browserName", browserDriver);
+        //private static DesiredCapabilities SetDesiredCapabilities(string browserDriver)
+        //{
+        //    var capabilities = DesiredCapabilities.PhantomJS();
+        //    capabilities.SetCapability("acceptSslCerts", true);
+        //    capabilities.SetCapability("javascriptEnabled", true);
+        //    capabilities.SetCapability("unexpectedAlertBehaviour", "Accept");
+        //    capabilities.SetCapability("platform", "WINDOWS");
+        //    capabilities.SetCapability("web-security", false);
+        //    capabilities.SetCapability("ignore-sss-errors", true);
+        //    capabilities.SetCapability("unexpectedAlertBehaviour", "accept");
+        //    capabilities.SetCapability("browserName", browserDriver);
 
-            if (capabilities.IsJavaScriptEnabled)
-            {
-                Helper.MsgOutput("Driver Capabilities", "Javascript support is Enabled");
-            }
+        //    if (capabilities.IsJavaScriptEnabled)
+        //    {
+        //        Helper.MsgOutput("Driver Capabilities", "Javascript support is Enabled");
+        //    }
 
-            return capabilities;
-        }
+        //    return capabilities;
+        //}
 
-        public static IWebDriver StartRemoteWebDriver(string ipAddress, string port, string browserName)
-        {
-            var uri = string.Format(@"http://{0}:{1}/wd/hub", ipAddress, port);
-            var capabilities = SetDesiredCapabilities(browserName);
-            IWebDriver newDriver;
-            try
-            {
-                newDriver = new RemoteWebDriver(new Uri(uri), capabilities);
-            }
-            catch (Exception ex)
-            {
-                throw new SpecFlowSeleniumException(string.Format("{0} - {1}", "Unable to Connect to GhostDriver via RemoteWebDriver", ex.Message));
-            }
-            return newDriver;
-        }
+        //public static IWebDriver StartRemoteWebDriver(string ipAddress, string port, string browserName)
+        //{
+        //    var uri = string.Format(@"http://{0}:{1}/wd/hub", ipAddress, port);
+        //    var capabilities = SetDesiredCapabilities(browserName);
+        //    IWebDriver newDriver;
+        //    try
+        //    {
+        //        newDriver = new RemoteWebDriver(new Uri(uri), capabilities);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new SpecFlowSeleniumException(string.Format("{0} - {1}", "Unable to Connect to GhostDriver via RemoteWebDriver", ex.Message));
+        //    }
+        //    return newDriver;
+        //}
     }
 }

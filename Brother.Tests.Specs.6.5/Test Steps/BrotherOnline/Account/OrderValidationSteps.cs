@@ -1,8 +1,7 @@
-﻿using Brother.Tests.Selenium.Lib.Support;
-using Brother.Tests.Selenium.Lib.Support.HelperClasses;
-using BrotherWebSitesCore.Pages.Base;
-using BrotherWebSitesCore.Pages.BrotherMainSite.Basket;
-using BrotherWebSitesCore.Pages.BrotherOnline.AccountManagement;
+﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.WebSites.Core.Pages.Base;
+using Brother.WebSites.Core.Pages.BrotherMainSite.Basket;
+using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 

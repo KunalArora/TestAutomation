@@ -1,11 +1,7 @@
-﻿using Brother.Tests.Selenium.Lib.Support;
-using Brother.Tests.Selenium.Lib.Support.HelperClasses;
-using BrotherWebSitesCore.Pages.Base;
-using BrotherWebSitesCore.Pages.BrotherOnline.ThirdParty;
+﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.WebSites.Core.Pages.Base;
+using Brother.WebSites.Core.Pages.BrotherOnline.ThirdParty;
 using NUnit.Framework;
-using NUnit.Framework.Constraints;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs
@@ -112,16 +108,6 @@ namespace Brother.Tests.Specs
         public void ThenOnceIHaveValidatedAnEmailWasReceivedAndVerifiedMyAccount()
         {
             ValidateAccountEmail();
-        }
-
-        private void LaunchMailinator(string emailSubjectString)
-        {
-            // Validate the email was sent via Mailinator
-            CurrentPage = BasePage.LoadMailinatorEmailConfirmationPage(CurrentDriver, "");
-            CurrentPage.As<MailinatorEmailConfirmationPage>().IsEmailItemlinkAvailable();
-            CurrentPage.As<MailinatorEmailConfirmationPage>().ValidateEmailIsCorrect(emailSubjectString);
-            CurrentPage.As<MailinatorEmailConfirmationPage>().ClickEmailLink();
-            CurrentPage.As<MailinatorEmailConfirmationPage>().IsDeleteEmailButtonAvailable();
         }
 
         private void LaunchGuerrillaEmail(string inBox)

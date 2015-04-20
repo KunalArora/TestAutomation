@@ -213,13 +213,6 @@
             or if it contains a semi-colon.</exception>
       <exception cref="T:System.ArgumentNullException">If the value is <see langword="null" />.</exception>
     </member>
-    <member name="M:OpenQA.Selenium.Cookie.FromDictionary(System.Collections.Generic.Dictionary{System.String,System.Object})">
-      <summary>
-            Converts a Dictionary to a Cookie.
-            </summary>
-      <param name="rawCookie">The Dictionary object containing the cookie parameters.</param>
-      <returns>A <see cref="T:OpenQA.Selenium.Cookie" /> object with the proper parameters set.</returns>
-    </member>
     <member name="M:OpenQA.Selenium.Cookie.ToString">
       <summary>
             Creates and returns a string representation of the cookie. 
@@ -1193,12 +1186,6 @@
       <returns>An <see cref="T:OpenQA.Selenium.IWebDriver" /> instance focused on the specified frame.</returns>
       <exception cref="T:OpenQA.Selenium.NoSuchFrameException">If the element is neither a FRAME nor an IFRAME element.</exception>
       <exception cref="T:OpenQA.Selenium.StaleElementReferenceException">If the element is no longer valid.</exception>
-    </member>
-    <member name="M:OpenQA.Selenium.ITargetLocator.ParentFrame">
-      <summary>
-            Select the parent frame of the currently selected frame.
-            </summary>
-      <returns>An <see cref="T:OpenQA.Selenium.IWebDriver" /> instance focused on the specified frame.</returns>
     </member>
     <member name="M:OpenQA.Selenium.ITargetLocator.Window(System.String)">
       <summary>
@@ -2661,6 +2648,66 @@
       <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext" /> that contains contextual 
             information about the source or destination.</param>
     </member>
+    <member name="T:OpenQA.Selenium.Remote.ICommandExecutor">
+      <summary>
+            Provides a way to send commands to the remote server
+            </summary>
+    </member>
+    <member name="M:OpenQA.Selenium.Remote.ICommandExecutor.Execute(OpenQA.Selenium.Remote.Command)">
+      <summary>
+            Executes a command
+            </summary>
+      <param name="commandToExecute">The command you wish to execute</param>
+      <returns>A response from the browser</returns>
+    </member>
+    <member name="T:OpenQA.Selenium.Remote.HttpCommandExecutor">
+      <summary>
+            Provides a way of executing Commands over HTTP
+            </summary>
+    </member>
+    <member name="M:OpenQA.Selenium.Remote.HttpCommandExecutor.#ctor(System.Uri,System.TimeSpan)">
+      <summary>
+            Initializes a new instance of the HttpCommandExecutor class
+            </summary>
+      <param name="addressOfRemoteServer">Address of the WebDriver Server</param>
+      <param name="timeout">The timeout within which the server must respond.</param>
+    </member>
+    <member name="M:OpenQA.Selenium.Remote.HttpCommandExecutor.#ctor(System.Uri,System.TimeSpan,System.Boolean)">
+      <summary>
+            Initializes a new instance of the HttpCommandExecutor class
+            </summary>
+      <param name="addressOfRemoteServer">Address of the WebDriver Server</param>
+      <param name="timeout">The timeout within which the server must respond.</param>
+      <param name="enableKeepAlive">
+        <see langword="true" /> if the KeepAlive header should be sent
+            with HTTP requests; otherwise, <see langword="false" />.</param>
+    </member>
+    <member name="M:OpenQA.Selenium.Remote.HttpCommandExecutor.Execute(OpenQA.Selenium.Remote.Command)">
+      <summary>
+            Executes a command
+            </summary>
+      <param name="commandToExecute">The command you wish to execute</param>
+      <returns>A response from the browser</returns>
+    </member>
+    <member name="T:OpenQA.Selenium.Chrome.ChromeCommandExecutor">
+      <summary>
+            Provides a mechanism to execute commands on the browser
+            </summary>
+    </member>
+    <member name="M:OpenQA.Selenium.Chrome.ChromeCommandExecutor.#ctor(OpenQA.Selenium.Chrome.ChromeDriverService,System.TimeSpan)">
+      <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.Chrome.ChromeCommandExecutor" /> class.
+            </summary>
+      <param name="driverService">The <see cref="T:OpenQA.Selenium.Chrome.ChromeDriverService" /> that drives the browser.</param>
+      <param name="commandTimeout">The maximum amount of time to wait for each command.</param>
+    </member>
+    <member name="M:OpenQA.Selenium.Chrome.ChromeCommandExecutor.Execute(OpenQA.Selenium.Remote.Command)">
+      <summary>
+            Executes a command with the ChromeDriver.
+            </summary>
+      <param name="commandToExecute">The command you wish to execute</param>
+      <returns>A response from the browser</returns>
+    </member>
     <member name="T:OpenQA.Selenium.Internal.IFindsById">
       <summary>
             Defines the interface through which the user finds elements by their ID.
@@ -3269,10 +3316,11 @@
     </member>
     <member name="M:OpenQA.Selenium.Remote.RemoteWebDriver.ConvertArgumentsToJavaScriptObjects(System.Object[])">
       <summary>
-            Converts the arguments to JavaScript objects.
+            Converts the arguments to java script objects.
             </summary>
       <param name="args">The arguments.</param>
-      <returns>The list of the arguments converted to JavaScript objects.</returns>
+      <returns>
+      </returns>
     </member>
     <member name="P:OpenQA.Selenium.Remote.RemoteWebDriver.Url">
       <summary>
@@ -3548,13 +3596,13 @@
       <summary>
             Adds arguments to be appended to the Chrome.exe command line.
             </summary>
-      <param name="argumentsToAdd">An array of arguments to add.</param>
+      <param name="arguments">An array of arguments to add.</param>
     </member>
     <member name="M:OpenQA.Selenium.Chrome.ChromeOptions.AddArguments(System.Collections.Generic.IEnumerable{System.String})">
       <summary>
             Adds arguments to be appended to the Chrome.exe command line.
             </summary>
-      <param name="argumentsToAdd">An <see cref="T:System.Collections.Generic.IEnumerable`1" /> object of arguments to add.</param>
+      <param name="arguments">An <see cref="T:System.Collections.Generic.IEnumerable`1" /> object of arguments to add.</param>
     </member>
     <member name="M:OpenQA.Selenium.Chrome.ChromeOptions.AddExcludedArgument(System.String)">
       <summary>
@@ -3568,14 +3616,14 @@
             Adds arguments to be excluded from the list of arguments passed by default 
             to the Chrome.exe command line by chromedriver.exe.
             </summary>
-      <param name="argumentsToExclude">An array of arguments to exclude.</param>
+      <param name="arguments">An array of arguments to exclude.</param>
     </member>
     <member name="M:OpenQA.Selenium.Chrome.ChromeOptions.AddExcludedArguments(System.Collections.Generic.IEnumerable{System.String})">
       <summary>
             Adds arguments to be excluded from the list of arguments passed by default 
             to the Chrome.exe command line by chromedriver.exe.
             </summary>
-      <param name="argumentsToExclude">An <see cref="T:System.Collections.Generic.IEnumerable`1" /> object of arguments to exclude.</param>
+      <param name="arguments">An <see cref="T:System.Collections.Generic.IEnumerable`1" /> object of arguments to exclude.</param>
     </member>
     <member name="M:OpenQA.Selenium.Chrome.ChromeOptions.AddExtension(System.String)">
       <summary>
@@ -4249,6 +4297,12 @@
             Gets or sets the timeout to wait for Firefox to be available for command execution.
             </summary>
     </member>
+    <member name="P:OpenQA.Selenium.Firefox.FirefoxBinary.ConsoleOutput">
+      <summary>
+            Gets all console output of the binary.
+            </summary>
+      <remarks>Output retrieval is non-destructive and non-blocking.</remarks>
+    </member>
     <member name="P:OpenQA.Selenium.Firefox.FirefoxBinary.BinaryExecutable">
       <summary>
             Gets the <see cref="T:OpenQA.Selenium.Firefox.Internal.Executable" /> associated with this <see cref="T:OpenQA.Selenium.Firefox.FirefoxBinary" />.
@@ -4410,18 +4464,6 @@
       <summary>
             Gets the FirefoxProfile that is currently in use by subclasses
             </summary>
-    </member>
-    <member name="T:OpenQA.Selenium.Remote.ICommandExecutor">
-      <summary>
-            Provides a way to send commands to the remote server
-            </summary>
-    </member>
-    <member name="M:OpenQA.Selenium.Remote.ICommandExecutor.Execute(OpenQA.Selenium.Remote.Command)">
-      <summary>
-            Executes a command
-            </summary>
-      <param name="commandToExecute">The command you wish to execute</param>
-      <returns>A response from the browser</returns>
     </member>
     <member name="T:OpenQA.Selenium.Firefox.FirefoxDriverCommandExecutor">
       <summary>
@@ -4659,12 +4701,6 @@
             Gets the directory containing the profile.
             </summary>
     </member>
-    <member name="P:OpenQA.Selenium.Firefox.FirefoxProfile.DeleteAfterUse">
-      <summary>
-            Gets or sets a value indicating whether to delete this profile after use with
-            the <see cref="T:OpenQA.Selenium.Firefox.FirefoxDriver" />.
-            </summary>
-    </member>
     <member name="P:OpenQA.Selenium.Firefox.FirefoxProfile.EnableNativeEvents">
       <summary>
             Gets or sets a value indicating whether native events are enabled.
@@ -4754,6 +4790,21 @@
             Serves as a hash function for a <see cref="T:OpenQA.Selenium.Firefox.FirefoxWebElement" />.
             </summary>
       <returns>A hash code for the current <see cref="T:OpenQA.Selenium.Firefox.FirefoxWebElement" />.</returns>
+    </member>
+    <member name="T:OpenQA.Selenium.Firefox.IExtensionConnection">
+      <summary>
+            Defines the interface by which a driver connects to the WebDriver extension.
+            </summary>
+    </member>
+    <member name="M:OpenQA.Selenium.Firefox.IExtensionConnection.Start">
+      <summary>
+            Starts the connection to the extension.
+            </summary>
+    </member>
+    <member name="M:OpenQA.Selenium.Firefox.IExtensionConnection.Quit">
+      <summary>
+            Closes the connection to the extension.
+            </summary>
     </member>
     <member name="T:OpenQA.Selenium.Firefox.Preferences">
       <summary>
@@ -5056,30 +5107,6 @@
             are attempting to run the IE driver remotely, use <see cref="T:OpenQA.Selenium.Remote.RemoteWebDriver" />
             in conjunction with a standalone WebDriver server.</remarks>
     </member>
-    <member name="T:OpenQA.Selenium.IE.InternetExplorerDriverEngine">
-      <summary>
-            Represents the valid values for driver engine available with the IEDriverServer.exe.
-            </summary>
-    </member>
-    <member name="F:OpenQA.Selenium.IE.InternetExplorerDriverEngine.Legacy">
-      <summary>
-            Represents the Legacy value, forcing the driver to use only the open-source
-            driver engine implementation.
-            </summary>
-    </member>
-    <member name="F:OpenQA.Selenium.IE.InternetExplorerDriverEngine.AutoDetect">
-      <summary>
-            Represents the AutoDetect value, instructing the driver to use the vendor-provided
-            driver engine implementation, if available, falling back to the open-source
-            implementation, if it is not available.
-            </summary>
-    </member>
-    <member name="F:OpenQA.Selenium.IE.InternetExplorerDriverEngine.Vendor">
-      <summary>
-            Represents the Vendor value, instructing the driver to use the vendor-provided
-            driver engine implementation, and throwing an exception if it is not available.
-            </summary>
-    </member>
     <member name="T:OpenQA.Selenium.IE.InternetExplorerDriverLogLevel">
       <summary>
             Represents the valid values of logging levels available with the IEDriverServer.exe.
@@ -5162,11 +5189,6 @@
     <member name="P:OpenQA.Selenium.IE.InternetExplorerDriverService.LoggingLevel">
       <summary>
             Gets or sets the logging level used by the IEDriverServer.
-            </summary>
-    </member>
-    <member name="P:OpenQA.Selenium.IE.InternetExplorerDriverService.Implementation">
-      <summary>
-            Gets or sets the implementation to be used by the IEDriverServer.
             </summary>
     </member>
     <member name="P:OpenQA.Selenium.IE.InternetExplorerDriverService.LibraryExtractionPath">
@@ -5339,12 +5361,6 @@
       <summary>
             Gets or sets a value indicating whether to force the use of the Windows ShellWindows API
             when attaching to Internet Explorer. The default value is <see langword="false" />.
-            </summary>
-    </member>
-    <member name="P:OpenQA.Selenium.IE.InternetExplorerOptions.ValidateCookieDocumentType">
-      <summary>
-            Gets or sets a value indicating whether to validate the document type of the loaded
-            document when setting cookies.
             </summary>
     </member>
     <member name="P:OpenQA.Selenium.IE.InternetExplorerOptions.BrowserCommandLineArguments">
@@ -6335,7 +6351,7 @@
             Represents a cookie returned to the driver by the browser.
             </summary>
     </member>
-    <member name="M:OpenQA.Selenium.Internal.ReturnedCookie.#ctor(System.String,System.String,System.String,System.String,System.Nullable{System.DateTime},System.Boolean)">
+    <member name="M:OpenQA.Selenium.Internal.ReturnedCookie.#ctor(System.String,System.String,System.String,System.String,System.Nullable{System.DateTime},System.Boolean,System.Uri)">
       <summary>
             Initializes a new instance of the <see cref="T:OpenQA.Selenium.Internal.ReturnedCookie" /> class with a specific name, 
             value, domain, path and expiration date.
@@ -6347,6 +6363,7 @@
       <param name="expiry">The expiration date of the cookie.</param>
       <param name="isSecure">
         <see langword="true" /> if the cookie is secure; otherwise <see langword="false" /></param>
+      <param name="currentUrl">The current <see cref="T:System.Uri" /> the browser is viewing.</param>
       <exception cref="T:System.ArgumentException">If the name is <see langword="null" /> or an empty string,
             or if it contains a semi-colon.</exception>
       <exception cref="T:System.ArgumentNullException">If the value or currentUrl is <see langword="null" />.</exception>
@@ -6357,403 +6374,15 @@
             </summary>
       <returns>A string representation of the current cookie.</returns>
     </member>
+    <member name="P:OpenQA.Selenium.Internal.ReturnedCookie.CurrentHost">
+      <summary>
+            Gets the current URL the browser is viewing.
+            </summary>
+    </member>
     <member name="P:OpenQA.Selenium.Internal.ReturnedCookie.Secure">
       <summary>
             Gets a value determining if the cookie is secure.
             </summary>
-    </member>
-    <member name="T:OpenQA.Selenium.Opera.OperaDriver">
-      <summary>
-            Provides a mechanism to write tests against Opera
-            </summary>
-      <example>
-        <code>
-            [TestFixture]
-            public class Testing
-            {
-                private IWebDriver driver;
-                <para></para>
-                [SetUp]
-                public void SetUp()
-                {
-                    driver = new OperaDriver();
-                }
-                <para></para>
-                [Test]
-                public void TestGoogle()
-                {
-                    driver.Navigate().GoToUrl("http://www.google.co.uk");
-                    /*
-                    *   Rest of the test
-                    */
-                }
-                <para></para>
-                [TearDown]
-                public void TearDown()
-                {
-                    driver.Quit();
-                } 
-            }
-            </code>
-      </example>
-    </member>
-    <member name="F:OpenQA.Selenium.Opera.OperaDriver.AcceptUntrustedCertificates">
-      <summary>
-            Accept untrusted SSL Certificates
-            </summary>
-    </member>
-    <member name="M:OpenQA.Selenium.Opera.OperaDriver.#ctor">
-      <summary>
-            Initializes a new instance of the <see cref="T:OpenQA.Selenium.Opera.OperaDriver" /> class.
-            </summary>
-    </member>
-    <member name="M:OpenQA.Selenium.Opera.OperaDriver.#ctor(OpenQA.Selenium.Opera.OperaOptions)">
-      <summary>
-            Initializes a new instance of the <see cref="T:OpenQA.Selenium.Opera.OperaDriver" /> class using the specified options.
-            </summary>
-      <param name="options">The <see cref="T:OpenQA.Selenium.Opera.OperaOptions" /> to be used with the Opera driver.</param>
-    </member>
-    <member name="M:OpenQA.Selenium.Opera.OperaDriver.#ctor(System.String)">
-      <summary>
-            Initializes a new instance of the <see cref="T:OpenQA.Selenium.Opera.OperaDriver" /> class using the specified path 
-            to the directory containing OperaDriver.exe.
-            </summary>
-      <param name="operaDriverDirectory">The full path to the directory containing OperaDriver.exe.</param>
-    </member>
-    <member name="M:OpenQA.Selenium.Opera.OperaDriver.#ctor(System.String,OpenQA.Selenium.Opera.OperaOptions)">
-      <summary>
-            Initializes a new instance of the <see cref="T:OpenQA.Selenium.Opera.OperaDriver" /> class using the specified path
-            to the directory containing OperaDriver.exe and options.
-            </summary>
-      <param name="operaDriverDirectory">The full path to the directory containing OperaDriver.exe.</param>
-      <param name="options">The <see cref="T:OpenQA.Selenium.Opera.OperaOptions" /> to be used with the Opera driver.</param>
-    </member>
-    <member name="M:OpenQA.Selenium.Opera.OperaDriver.#ctor(System.String,OpenQA.Selenium.Opera.OperaOptions,System.TimeSpan)">
-      <summary>
-            Initializes a new instance of the <see cref="T:OpenQA.Selenium.Opera.OperaDriver" /> class using the specified path
-            to the directory containing OperaDriver.exe, options, and command timeout.
-            </summary>
-      <param name="operaDriverDirectory">The full path to the directory containing OperaDriver.exe.</param>
-      <param name="options">The <see cref="T:OpenQA.Selenium.Opera.OperaOptions" /> to be used with the Opera driver.</param>
-      <param name="commandTimeout">The maximum amount of time to wait for each command.</param>
-    </member>
-    <member name="M:OpenQA.Selenium.Opera.OperaDriver.#ctor(OpenQA.Selenium.Opera.OperaDriverService,OpenQA.Selenium.Opera.OperaOptions)">
-      <summary>
-            Initializes a new instance of the <see cref="T:OpenQA.Selenium.Opera.OperaDriver" /> class using the specified 
-            <see cref="T:OpenQA.Selenium.Opera.OperaDriverService" /> and options.
-            </summary>
-      <param name="service">The <see cref="T:OpenQA.Selenium.Opera.OperaDriverService" /> to use.</param>
-      <param name="options">The <see cref="T:OpenQA.Selenium.Opera.OperaOptions" /> used to initialize the driver.</param>
-    </member>
-    <member name="M:OpenQA.Selenium.Opera.OperaDriver.#ctor(OpenQA.Selenium.Opera.OperaDriverService,OpenQA.Selenium.Opera.OperaOptions,System.TimeSpan)">
-      <summary>
-            Initializes a new instance of the <see cref="T:OpenQA.Selenium.Opera.OperaDriver" /> class using the specified <see cref="T:OpenQA.Selenium.Opera.OperaDriverService" />.
-            </summary>
-      <param name="service">The <see cref="T:OpenQA.Selenium.Opera.OperaDriverService" /> to use.</param>
-      <param name="options">The <see cref="T:OpenQA.Selenium.Opera.OperaOptions" /> to be used with the Opera driver.</param>
-      <param name="commandTimeout">The maximum amount of time to wait for each command.</param>
-    </member>
-    <member name="P:OpenQA.Selenium.Opera.OperaDriver.FileDetector">
-      <summary>
-            Gets or sets the <see cref="T:OpenQA.Selenium.IFileDetector" /> responsible for detecting 
-            sequences of keystrokes representing file paths and names. 
-            </summary>
-      <remarks>The Opera driver does not allow a file detector to be set,
-            as the server component of the Opera driver (OperaDriver.exe) only 
-            allows uploads from the local computer environment. Attempting to set
-            this property has no effect, but does not throw an exception. If you 
-            are attempting to run the Opera driver remotely, use <see cref="T:OpenQA.Selenium.Remote.RemoteWebDriver" />
-            in conjunction with a standalone WebDriver server.</remarks>
-    </member>
-    <member name="T:OpenQA.Selenium.Opera.OperaDriverService">
-      <summary>
-            Exposes the service provided by the native OperaDriver executable.
-            </summary>
-    </member>
-    <member name="M:OpenQA.Selenium.Opera.OperaDriverService.#ctor(System.String,System.String,System.Int32)">
-      <summary>
-            Initializes a new instance of the OperaDriverService class.
-            </summary>
-      <param name="executablePath">The full path to the OperaDriver executable.</param>
-      <param name="executableFileName">The file name of the OperaDriver executable.</param>
-      <param name="port">The port on which the OperaDriver executable should listen.</param>
-    </member>
-    <member name="M:OpenQA.Selenium.Opera.OperaDriverService.CreateDefaultService">
-      <summary>
-            Creates a default instance of the OperaDriverService.
-            </summary>
-      <returns>A OperaDriverService that implements default settings.</returns>
-    </member>
-    <member name="M:OpenQA.Selenium.Opera.OperaDriverService.CreateDefaultService(System.String)">
-      <summary>
-            Creates a default instance of the OperaDriverService using a specified path to the OperaDriver executable.
-            </summary>
-      <param name="driverPath">The directory containing the OperaDriver executable.</param>
-      <returns>A OperaDriverService using a random port.</returns>
-    </member>
-    <member name="M:OpenQA.Selenium.Opera.OperaDriverService.CreateDefaultService(System.String,System.String)">
-      <summary>
-            Creates a default instance of the OperaDriverService using a specified path to the OperaDriver executable with the given name.
-            </summary>
-      <param name="driverPath">The directory containing the OperaDriver executable.</param>
-      <param name="driverExecutableFileName">The name of the OperaDriver executable file.</param>
-      <returns>A OperaDriverService using a random port.</returns>
-    </member>
-    <member name="P:OpenQA.Selenium.Opera.OperaDriverService.LogPath">
-      <summary>
-            Gets or sets the location of the log file written to by the OperaDriver executable.
-            </summary>
-    </member>
-    <member name="P:OpenQA.Selenium.Opera.OperaDriverService.UrlPathPrefix">
-      <summary>
-            Gets or sets the base URL path prefix for commands (e.g., "wd/url").
-            </summary>
-    </member>
-    <member name="P:OpenQA.Selenium.Opera.OperaDriverService.PortServerAddress">
-      <summary>
-            Gets or sets the address of a server to contact for reserving a port.
-            </summary>
-    </member>
-    <member name="P:OpenQA.Selenium.Opera.OperaDriverService.AndroidDebugBridgePort">
-      <summary>
-            Gets or sets the port on which the Android Debug Bridge is listening for commands.
-            </summary>
-    </member>
-    <member name="P:OpenQA.Selenium.Opera.OperaDriverService.EnableVerboseLogging">
-      <summary>
-            Gets or sets a value indicating whether to enable verbose logging for the OperaDriver executable.
-            Defaults to <see langword="false" />.
-            </summary>
-    </member>
-    <member name="P:OpenQA.Selenium.Opera.OperaDriverService.CommandLineArguments">
-      <summary>
-            Gets the command-line arguments for the driver service.
-            </summary>
-    </member>
-    <member name="T:OpenQA.Selenium.Opera.OperaOptions">
-      <summary>
-            Class to manage options specific to <see cref="T:OpenQA.Selenium.Opera.OperaDriver" /></summary>
-      <remarks>
-            Used with OperaDriver.exe for Chromium v0.1.0 and higher.
-            </remarks>
-      <example>
-        <code>
-            OperaOptions options = new OperaOptions();
-            options.AddExtensions("\path\to\extension.crx");
-            options.BinaryLocation = "\path\to\opera";
-            </code>
-        <para>
-        </para>
-        <para>For use with OperaDriver:</para>
-        <para>
-        </para>
-        <code>
-            OperaDriver driver = new OperaDriver(options);
-            </code>
-        <para>
-        </para>
-        <para>For use with RemoteWebDriver:</para>
-        <para>
-        </para>
-        <code>
-            RemoteWebDriver driver = new RemoteWebDriver(new Uri("http://localhost:4444/wd/hub"), options.ToCapabilities());
-            </code>
-      </example>
-    </member>
-    <member name="F:OpenQA.Selenium.Opera.OperaOptions.Capability">
-      <summary>
-            Gets the name of the capability used to store Opera options in
-            a <see cref="T:OpenQA.Selenium.Remote.DesiredCapabilities" /> object.
-            </summary>
-    </member>
-    <member name="M:OpenQA.Selenium.Opera.OperaOptions.AddArgument(System.String)">
-      <summary>
-            Adds a single argument to the list of arguments to be appended to the Opera.exe command line.
-            </summary>
-      <param name="argument">The argument to add.</param>
-    </member>
-    <member name="M:OpenQA.Selenium.Opera.OperaOptions.AddArguments(System.String[])">
-      <summary>
-            Adds arguments to be appended to the Opera.exe command line.
-            </summary>
-      <param name="argumentsToAdd">An array of arguments to add.</param>
-    </member>
-    <member name="M:OpenQA.Selenium.Opera.OperaOptions.AddArguments(System.Collections.Generic.IEnumerable{System.String})">
-      <summary>
-            Adds arguments to be appended to the Opera.exe command line.
-            </summary>
-      <param name="argumentsToAdd">An <see cref="T:System.Collections.Generic.IEnumerable`1" /> object of arguments to add.</param>
-    </member>
-    <member name="M:OpenQA.Selenium.Opera.OperaOptions.AddExcludedArgument(System.String)">
-      <summary>
-            Adds a single argument to be excluded from the list of arguments passed by default 
-            to the Opera.exe command line by operadriver.exe.
-            </summary>
-      <param name="argument">The argument to exclude.</param>
-    </member>
-    <member name="M:OpenQA.Selenium.Opera.OperaOptions.AddExcludedArguments(System.String[])">
-      <summary>
-            Adds arguments to be excluded from the list of arguments passed by default 
-            to the Opera.exe command line by operadriver.exe.
-            </summary>
-      <param name="arguments">An array of arguments to exclude.</param>
-    </member>
-    <member name="M:OpenQA.Selenium.Opera.OperaOptions.AddExcludedArguments(System.Collections.Generic.IEnumerable{System.String})">
-      <summary>
-            Adds arguments to be excluded from the list of arguments passed by default 
-            to the Opera.exe command line by operadriver.exe.
-            </summary>
-      <param name="argumentsToExclude">An <see cref="T:System.Collections.Generic.IEnumerable`1" /> object of arguments to exclude.</param>
-    </member>
-    <member name="M:OpenQA.Selenium.Opera.OperaOptions.AddExtension(System.String)">
-      <summary>
-            Adds a path to a packed Opera extension (.crx file) to the list of extensions 
-            to be installed in the instance of Opera.
-            </summary>
-      <param name="pathToExtension">The full path to the extension to add.</param>
-    </member>
-    <member name="M:OpenQA.Selenium.Opera.OperaOptions.AddExtensions(System.String[])">
-      <summary>
-            Adds a list of paths to packed Opera extensions (.crx files) to be installed
-            in the instance of Opera.
-            </summary>
-      <param name="extensions">An array of full paths to the extensions to add.</param>
-    </member>
-    <member name="M:OpenQA.Selenium.Opera.OperaOptions.AddExtensions(System.Collections.Generic.IEnumerable{System.String})">
-      <summary>
-            Adds a list of paths to packed Opera extensions (.crx files) to be installed
-            in the instance of Opera.
-            </summary>
-      <param name="extensions">An <see cref="T:System.Collections.Generic.IEnumerable`1" /> of full paths to the extensions to add.</param>
-    </member>
-    <member name="M:OpenQA.Selenium.Opera.OperaOptions.AddEncodedExtension(System.String)">
-      <summary>
-            Adds a base64-encoded string representing a Opera extension to the list of extensions 
-            to be installed in the instance of Opera.
-            </summary>
-      <param name="extension">A base64-encoded string representing the extension to add.</param>
-    </member>
-    <member name="M:OpenQA.Selenium.Opera.OperaOptions.AddEncodedExtensions(System.String[])">
-      <summary>
-            Adds a list of base64-encoded strings representing Opera extensions to the list of extensions 
-            to be installed in the instance of Opera.
-            </summary>
-      <param name="extensions">An array of base64-encoded strings representing the extensions to add.</param>
-    </member>
-    <member name="M:OpenQA.Selenium.Opera.OperaOptions.AddEncodedExtensions(System.Collections.Generic.IEnumerable{System.String})">
-      <summary>
-            Adds a list of base64-encoded strings representing Opera extensions to be installed
-            in the instance of Opera.
-            </summary>
-      <param name="extensions">An <see cref="T:System.Collections.Generic.IEnumerable`1" /> of base64-encoded strings
-            representing the extensions to add.</param>
-    </member>
-    <member name="M:OpenQA.Selenium.Opera.OperaOptions.AddUserProfilePreference(System.String,System.Object)">
-      <summary>
-            Adds a preference for the user-specific profile or "user data directory."
-            If the specified preference already exists, it will be overwritten.
-            </summary>
-      <param name="preferenceName">The name of the preference to set.</param>
-      <param name="preferenceValue">The value of the preference to set.</param>
-    </member>
-    <member name="M:OpenQA.Selenium.Opera.OperaOptions.AddLocalStatePreference(System.String,System.Object)">
-      <summary>
-            Adds a preference for the local state file in the user's data directory for Opera.
-            If the specified preference already exists, it will be overwritten.
-            </summary>
-      <param name="preferenceName">The name of the preference to set.</param>
-      <param name="preferenceValue">The value of the preference to set.</param>
-    </member>
-    <member name="M:OpenQA.Selenium.Opera.OperaOptions.AddAdditionalCapability(System.String,System.Object)">
-      <summary>
-            Provides a means to add additional capabilities not yet added as type safe options 
-            for the Opera driver.
-            </summary>
-      <param name="capabilityName">The name of the capability to add.</param>
-      <param name="capabilityValue">The value of the capability to add.</param>
-      <exception cref="T:System.ArgumentException">
-            thrown when attempting to add a capability for which there is already a type safe option, or 
-            when <paramref name="capabilityName" /> is <see langword="null" /> or the empty string.
-            </exception>
-      <remarks>Calling <see cref="M:OpenQA.Selenium.Opera.OperaOptions.AddAdditionalCapability(System.String,System.Object)" />
-            where <paramref name="capabilityName" /> has already been added will overwrite the 
-            existing value with the new value in <paramref name="capabilityValue" />.
-            Also, by default, calling this method adds capabilities to the options object passed to
-            operadriver.exe.</remarks>
-    </member>
-    <member name="M:OpenQA.Selenium.Opera.OperaOptions.AddAdditionalCapability(System.String,System.Object,System.Boolean)">
-      <summary>
-            Provides a means to add additional capabilities not yet added as type safe options 
-            for the Opera driver.
-            </summary>
-      <param name="capabilityName">The name of the capability to add.</param>
-      <param name="capabilityValue">The value of the capability to add.</param>
-      <param name="isGlobalCapability">Indicates whether the capability is to be set as a global
-            capability for the driver instead of a Opera-specific option.</param>
-      <exception cref="T:System.ArgumentException">
-            thrown when attempting to add a capability for which there is already a type safe option, or 
-            when <paramref name="capabilityName" /> is <see langword="null" /> or the empty string.
-            </exception>
-      <remarks>Calling <see cref="M:OpenQA.Selenium.Opera.OperaOptions.AddAdditionalCapability(System.String,System.Object,System.Boolean)" />
-            where <paramref name="capabilityName" /> has already been added will overwrite the
-            existing value with the new value in <paramref name="capabilityValue" /></remarks>
-    </member>
-    <member name="M:OpenQA.Selenium.Opera.OperaOptions.ToCapabilities">
-      <summary>
-            Returns DesiredCapabilities for Opera with these options included as
-            capabilities. This does not copy the options. Further changes will be
-            reflected in the returned capabilities.
-            </summary>
-      <returns>The DesiredCapabilities for Opera with these options.</returns>
-    </member>
-    <member name="P:OpenQA.Selenium.Opera.OperaOptions.BinaryLocation">
-      <summary>
-            Gets or sets the location of the Opera browser's binary executable file.
-            </summary>
-    </member>
-    <member name="P:OpenQA.Selenium.Opera.OperaOptions.LeaveBrowserRunning">
-      <summary>
-            Gets or sets a value indicating whether Opera should be left running after the
-            OperaDriver instance is exited. Defaults to <see langword="false" />.
-            </summary>
-    </member>
-    <member name="P:OpenQA.Selenium.Opera.OperaOptions.Proxy">
-      <summary>
-            Gets or sets the proxy to use with this instance of Opera.
-            </summary>
-    </member>
-    <member name="P:OpenQA.Selenium.Opera.OperaOptions.Arguments">
-      <summary>
-            Gets the list of arguments appended to the Opera command line as a string array.
-            </summary>
-    </member>
-    <member name="P:OpenQA.Selenium.Opera.OperaOptions.Extensions">
-      <summary>
-            Gets the list of extensions to be installed as an array of base64-encoded strings.
-            </summary>
-    </member>
-    <member name="P:OpenQA.Selenium.Opera.OperaOptions.DebuggerAddress">
-      <summary>
-            Gets or sets the address of a Opera debugger server to connect to.
-            Should be of the form "{hostname|IP address}:port".
-            </summary>
-    </member>
-    <member name="P:OpenQA.Selenium.Opera.OperaOptions.MinidumpPath">
-      <summary>
-            Gets or sets the directory in which to store minidump files.
-            </summary>
-    </member>
-    <member name="T:OpenQA.Selenium.Opera.OperaWebElement">
-      <summary>
-            Provides a mechanism to get elements off the page for test
-            </summary>
-    </member>
-    <member name="M:OpenQA.Selenium.Opera.OperaWebElement.#ctor(OpenQA.Selenium.Opera.OperaDriver,System.String)">
-      <summary>
-            Initializes a new instance of the OperaWebElement class
-            </summary>
-      <param name="parent">Driver in use</param>
-      <param name="elementId">Id of the element</param>
     </member>
     <member name="T:OpenQA.Selenium.PhantomJS.CommandLineArgumentNameAttribute">
       <summary>
@@ -7701,11 +7330,6 @@
             Represents SwitchToFrame command
             </summary>
     </member>
-    <member name="F:OpenQA.Selenium.Remote.DriverCommand.SwitchToParentFrame">
-      <summary>
-            Represents SwitchToParentFrame command
-            </summary>
-    </member>
     <member name="F:OpenQA.Selenium.Remote.DriverCommand.GetActiveElement">
       <summary>
             Represents GetActiveElement command
@@ -7963,13 +7587,6 @@
         <see langword="true" /> if the KeepAlive header should be sent
             with HTTP requests; otherwise, <see langword="false" />.</param>
     </member>
-    <member name="M:OpenQA.Selenium.Remote.DriverServiceCommandExecutor.Execute(OpenQA.Selenium.Remote.Command)">
-      <summary>
-            Executes a command
-            </summary>
-      <param name="commandToExecute">The command you wish to execute</param>
-      <returns>A response from the browser</returns>
-    </member>
     <member name="T:OpenQA.Selenium.Remote.ErrorResponse">
       <summary>
             Provides a way to store errors from a response
@@ -8006,35 +7623,6 @@
       <summary>
             Gets or sets the stack trace of the error
             </summary>
-    </member>
-    <member name="T:OpenQA.Selenium.Remote.HttpCommandExecutor">
-      <summary>
-            Provides a way of executing Commands over HTTP
-            </summary>
-    </member>
-    <member name="M:OpenQA.Selenium.Remote.HttpCommandExecutor.#ctor(System.Uri,System.TimeSpan)">
-      <summary>
-            Initializes a new instance of the HttpCommandExecutor class
-            </summary>
-      <param name="addressOfRemoteServer">Address of the WebDriver Server</param>
-      <param name="timeout">The timeout within which the server must respond.</param>
-    </member>
-    <member name="M:OpenQA.Selenium.Remote.HttpCommandExecutor.#ctor(System.Uri,System.TimeSpan,System.Boolean)">
-      <summary>
-            Initializes a new instance of the HttpCommandExecutor class
-            </summary>
-      <param name="addressOfRemoteServer">Address of the WebDriver Server</param>
-      <param name="timeout">The timeout within which the server must respond.</param>
-      <param name="enableKeepAlive">
-        <see langword="true" /> if the KeepAlive header should be sent
-            with HTTP requests; otherwise, <see langword="false" />.</param>
-    </member>
-    <member name="M:OpenQA.Selenium.Remote.HttpCommandExecutor.Execute(OpenQA.Selenium.Remote.Command)">
-      <summary>
-            Executes a command
-            </summary>
-      <param name="commandToExecute">The command you wish to execute</param>
-      <returns>A response from the browser</returns>
     </member>
     <member name="T:OpenQA.Selenium.Remote.LocalFileDetector">
       <summary>
@@ -8351,12 +7939,6 @@
             </summary>
       <param name="frameElement">a previously found FRAME or IFRAME element.</param>
       <returns>A WebDriver instance that is currently in use.</returns>
-    </member>
-    <member name="M:OpenQA.Selenium.Remote.RemoteTargetLocator.ParentFrame">
-      <summary>
-            Select the parent frame of the currently selected frame.
-            </summary>
-      <returns>An <see cref="T:OpenQA.Selenium.IWebDriver" /> instance focused on the specified frame.</returns>
     </member>
     <member name="M:OpenQA.Selenium.Remote.RemoteTargetLocator.Window(System.String)">
       <summary>
@@ -8928,6 +8510,46 @@
             </summary>
       <param name="command">The <see cref="T:OpenQA.Selenium.Remote.Command" /> to send to the driver.</param>
       <returns>The <see cref="T:OpenQA.Selenium.Remote.Response" /> from the command.</returns>
+    </member>
+    <member name="T:OpenQA.Selenium.Safari.SafariDriverExtension">
+      <summary>
+            The <see cref="T:OpenQA.Selenium.Safari.SafariDriverExtension" /> class manages the Safari extension
+            used by the <see cref="T:OpenQA.Selenium.Safari.SafariDriver" />. It handles installation and uninstallation
+            as well as its extraction from an embedded resource, if needed.
+            </summary>
+    </member>
+    <member name="M:OpenQA.Selenium.Safari.SafariDriverExtension.#ctor">
+      <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.Safari.SafariDriverExtension" /> class.
+            </summary>
+    </member>
+    <member name="M:OpenQA.Selenium.Safari.SafariDriverExtension.#ctor(System.String,System.Boolean)">
+      <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.Safari.SafariDriverExtension" /> class, given the
+            specified source path, and whether to skip the installation of the extension.
+            </summary>
+      <param name="sourcePath">The path to the SafariDriver.safariextz file used to install the
+            WebDriver Safari extension.</param>
+      <param name="skipExtensionInstallation">
+        <see langword="true" /> to skip installation of the
+            WebDriver Safari extension; otherwise <see langword="false" />.</param>
+    </member>
+    <member name="M:OpenQA.Selenium.Safari.SafariDriverExtension.Install">
+      <summary>
+            Installs the WebDriver Safari extension.
+            </summary>
+    </member>
+    <member name="M:OpenQA.Selenium.Safari.SafariDriverExtension.Uninstall">
+      <summary>
+            Uninstalls the WebDriver Safari extension.
+            </summary>
+    </member>
+    <member name="M:OpenQA.Selenium.Safari.SafariDriverExtension.GetSafariDataDirectory">
+      <summary>
+            Gets Safari's application data directory for the current platform.
+            </summary>
+      <returns>Safari's application data directory for the current platform.</returns>
+      <exception cref="T:System.InvalidOperationException">Thrown if the current platform is unsupported.</exception>
     </member>
     <member name="T:OpenQA.Selenium.Safari.SafariDriverServer">
       <summary>

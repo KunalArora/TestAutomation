@@ -1,5 +1,5 @@
-﻿using BrotherWebSitesCore.Pages.Base;
-using BrotherWebSitesCore.Pages.OmniJoin.PartnerPortal;
+﻿using Brother.WebSites.Core.Pages.Base;
+using Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 

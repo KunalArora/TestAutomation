@@ -1,7 +1,6 @@
-﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
-using BrotherWebSitesCore.Pages.Base;
-using BrotherWebSitesCore.Pages.BrotherMainSite;
-using BrotherWebSitesCore.Pages.BrotherMainSite.SuppliesAndAccessories.Printers;
+﻿using Brother.WebSites.Core.Pages.Base;
+using Brother.WebSites.Core.Pages.BrotherMainSite;
+using Brother.WebSites.Core.Pages.BrotherMainSite.SuppliesAndAccessories.Printers;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 

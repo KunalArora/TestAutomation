@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using BrotherWebSitesCore.Pages.Base;
-using BrotherWebSitesCore.Pages.BrotherOnline.AccountManagement;
-using BrotherWebSitesCore.Pages.MPSTwo;
+﻿using Brother.WebSites.Core.Pages.Base;
+using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
+using Brother.WebSites.Core.Pages.MPSTwo;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.MPSTwo.Proposal

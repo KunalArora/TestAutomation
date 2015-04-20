@@ -1,14 +1,7 @@
-﻿using System;
-using Brother.Tests.Selenium.Lib.Support;
-using Brother.Tests.Selenium.Lib.Support.HelperClasses;
-using Brother.Tests.Specs.Properties;
-using BrotherWebSitesCore.Pages.Base;
-using BrotherWebSitesCore.Pages.BrotherOnline.Account;
-using BrotherWebSitesCore.Pages.BrotherOnline.AccountManagement;
-using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Remote;
+﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.WebSites.Core.Pages.Base;
+using Brother.WebSites.Core.Pages.BrotherOnline.Account;
+using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 

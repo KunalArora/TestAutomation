@@ -1,13 +1,9 @@
-﻿using System;
-using Brother.Tests.Selenium.Lib.Pages.BrotherOnline.Checkout;
-using BrotherWebSitesCore.Pages.Base;
-using BrotherWebSitesCore.Pages.BrotherMainSite;
-using BrotherWebSitesCore.Pages.BrotherMainSite.Basket;
-using BrotherWebSitesCore.Pages.BrotherMainSite.SuppliesAndAccessories;
+﻿using Brother.WebSites.Core.Pages.Base;
+using Brother.WebSites.Core.Pages.BrotherMainSite;
+using Brother.WebSites.Core.Pages.BrotherMainSite.Basket;
+using Brother.WebSites.Core.Pages.BrotherMainSite.SuppliesAndAccessories;
 using NUnit.Framework;
-using OpenQA.Selenium.Remote;
 using TechTalk.SpecFlow;
-using TechTalk.SpecFlow.Assist;
 
 namespace Brother.Tests.Specs.BrotherMainSite.SuppliesAndAccessories
 {

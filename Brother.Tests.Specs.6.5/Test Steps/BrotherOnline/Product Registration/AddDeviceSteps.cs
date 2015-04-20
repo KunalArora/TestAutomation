@@ -1,10 +1,7 @@
-﻿using System;
-using Brother.Tests.Selenium.Lib.Support;
-using Brother.Tests.Selenium.Lib.Support.HelperClasses;
-using BrotherWebSitesCore.Pages.Base;
-using BrotherWebSitesCore.Pages.BrotherOnline.AccountManagement;
+﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.WebSites.Core.Pages.Base;
+using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
 using NUnit.Framework;
-using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
@@ -31,18 +28,18 @@ namespace Brother.Tests.Specs.BrotherOnline
             dynamic form = table.CreateDynamicInstance();
             var productCode = Helper.GetDeviceCodeSeed();
 
-            try
-            {
+            //try
+            //{
                 GivenIHaveEnteredMyProductSerialCode(productCode);
                 GivenIHaveEnteredMyPurchaseDate("02/02/2015");
                 GivenIHaveEnteredMyPromoCode(form.PromoCode);
                 GivenIHaveEnteredMyProductSupplier(form.Supplier);
                 WhenIHaveTickedTheExtendedWarrantyOption(form.ExtendedWarranty);
-            }
-            catch (StaleElementReferenceException staleElementException)
-            {
-                Assert.Fail(staleElementException.Message);
-            }
+            //}
+            //catch (StaleElementReferenceException staleElementException)
+            //{
+            //    Assert.Fail(staleElementException.Message);
+            //}
         }
 
         [Given(@"I have entered my Purchase Date ""(.*)""")]

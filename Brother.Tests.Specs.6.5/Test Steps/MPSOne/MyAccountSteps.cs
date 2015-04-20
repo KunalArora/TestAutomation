@@ -1,5 +1,5 @@
-﻿using BrotherWebSitesCore.Pages.Base;
-using BrotherWebSitesCore.Pages.BrotherOnline.AccountManagement;
+﻿using Brother.WebSites.Core.Pages.Base;
+using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.MPSOne

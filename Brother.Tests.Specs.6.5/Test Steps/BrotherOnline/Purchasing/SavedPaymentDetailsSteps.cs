@@ -1,8 +1,6 @@
-﻿using System.ComponentModel;
-using Brother.Tests.Selenium.Lib.Pages.BrotherOnline.Checkout;
-using BrotherWebSitesCore.Pages.Base;
-using BrotherWebSitesCore.Pages.BrotherOnline.AccountManagement.PaymentMethods;
-using NUnit.Framework;
+﻿using Brother.WebSites.Core.Pages.Base;
+using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement.PaymentMethods;
+using Brother.WebSites.Core.Pages.BrotherOnline.Checkout;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.BrotherOnline.Purchasing
