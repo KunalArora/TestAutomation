@@ -30,9 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Brother.Tests.Selenium.Lib">
-      <HintPath>..\Brother.Tests.Selenium\bin\Debug\Brother.Tests.Selenium.Lib.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -164,6 +161,12 @@
       <LastGenOutput>OmniJoinPageTitles.Designer.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Brother.Tests.Selenium\Brother.Tests.Selenium.Lib.csproj">
+      <Project>{165eba24-2c36-4274-b0ce-19b899de96cc}</Project>
+      <Name>Brother.Tests.Selenium.Lib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

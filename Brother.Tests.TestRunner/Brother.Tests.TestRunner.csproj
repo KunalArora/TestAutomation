@@ -45,10 +45,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dependencies\Selenium\Baseclass.Contrib.SpecFlow.Selenium.NUnit.1.3.2-tn40support2\lib\net40\Baseclass.Contrib.SpecFlow.Selenium.NUnit.SpecFlowPlugin.dll</HintPath>
     </Reference>
-    <Reference Include="Brother.Tests.Selenium.Lib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Brother.Tests.Selenium\bin\Debug\Brother.Tests.Selenium.Lib.dll</HintPath>
-    </Reference>
     <Reference Include="nunit.core, Version=2.6.3.13283, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NUnit.Runners.2.6.0.12051\tools\lib\nunit.core.dll</HintPath>
@@ -125,7 +121,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Brother.Tests.Selenium\Brother.Tests.Selenium.Lib.csproj">
+      <Project>{165eba24-2c36-4274-b0ce-19b899de96cc}</Project>
+      <Name>Brother.Tests.Selenium.Lib</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Drivers\chromedriver.exe" />
     <Content Include="Drivers\IEDriverServer.exe" />
