@@ -36,9 +36,6 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Brother.Tests.Selenium.Lib">
-      <HintPath>..\Brother.Tests.Selenium\bin\Debug\Brother.Tests.Selenium.Lib.dll</HintPath>
-    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\Dependencies\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
     </Reference>
@@ -545,6 +542,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Brother.Tests.Selenium\Brother.Tests.Selenium.Lib.csproj">
+      <Project>{165eba24-2c36-4274-b0ce-19b899de96cc}</Project>
+      <Name>Brother.Tests.Selenium.Lib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Brother.WebSites.Core\Brother.WebSites.Core.csproj">
       <Project>{85D64580-8536-410E-ABED-F0F28A6F2467}</Project>
       <Name>Brother.WebSites.Core</Name>
