@@ -76,6 +76,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             catch (ArgumentNullException noSuchEnvVar)
             {
                 // If this environment variable is not present, do email check
+                MsgOutput(string.Format("Unable to locate Email Environment setting [{0}]", noSuchEnvVar.Message));
                 return true;
             }
 

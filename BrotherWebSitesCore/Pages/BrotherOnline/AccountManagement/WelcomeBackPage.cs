@@ -171,7 +171,7 @@ namespace BrotherWebSitesCore.Pages.BrotherOnline.AccountManagement
             }
             catch (NoSuchElementException noSuchElementException)
             { 
-                throw new Exception("MPS's navigational link is not displayed");
+                throw new Exception(string.Format("MPS's navigational link is not displayed [{0}]", noSuchElementException.Message));
             }
 
             WebDriver.Wait(Helper.DurationType.Second, 3);

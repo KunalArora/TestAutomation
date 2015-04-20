@@ -84,7 +84,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             }
             catch (WebDriverTimeoutException webDriverTimeout)
             {
-                MsgOutput("Unable to locate page title", title);
+                MsgOutput(string.Format("Unable to locate page title [{0}] due to timeout exception [{1}]", title, webDriverTimeout.Message));
                 throw;
             }
         }

@@ -101,6 +101,7 @@ namespace BrotherWebSitesCore.Pages.BrotherOnline.Account
             }
             catch (ElementNotVisibleException elementNotVisible)
             {
+                MsgOutput(string.Format("Warning bar could not be located [{0}]", elementNotVisible.Message));
                 return false;
             }
             return false;

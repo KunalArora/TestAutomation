@@ -74,12 +74,12 @@ namespace BrotherWebSitesCore.Pages.BrotherOnline.ThirdParty
                 }
                 catch (StaleElementReferenceException staleElement)
                 {
-                    Helper.MsgOutput("Stale Element thrown looking for Email Inbox List");
+                    MsgOutput(string.Format("Stale Element thrown looking for Email Inbox List. Exception was [{0}]", staleElement.Message));
                     retryCount++;
                 }
                 catch (ElementNotVisibleException elementNotVisible)
                 {
-                    Helper.MsgOutput("Element not visible exception thrown looking for Email Inbox List");
+                    MsgOutput(string.Format("Element not visible exception thrown looking for Email Inbox List. Exception was [{0}]", elementNotVisible.Message));
                     retryCount++;
                 }
             }
@@ -100,7 +100,7 @@ namespace BrotherWebSitesCore.Pages.BrotherOnline.ThirdParty
                     var checkbox = Driver.FindElement(By.CssSelector("#mr_1 .td1 input"));
                     if (checkbox == null)
                     {
-                        Helper.MsgOutput("Could not locate welcome email or checkbox. Email might have been deleted");
+                        MsgOutput("Could not locate welcome email or checkbox. Email might have been deleted");
                     }
                     else
                     {
@@ -116,7 +116,7 @@ namespace BrotherWebSitesCore.Pages.BrotherOnline.ThirdParty
                         welcomeMail = Driver.FindElement(By.CssSelector("#mr_1 .td1"));
                         if (welcomeMail.Text.ToLower().Contains("welcome to guerrilla mail"))
                         {
-                            Helper.MsgOutput("Something went wrong as the Welcome email was not deleted");
+                            MsgOutput("Something went wrong as the Welcome email was not deleted");
                             WebDriver.SetWebDriverDefaultTimeOuts(WebDriver.DefaultTimeOut.Implicit);
                             return false;
                         }
@@ -125,10 +125,10 @@ namespace BrotherWebSitesCore.Pages.BrotherOnline.ThirdParty
             }
             catch (NoSuchElementException)
             {
-                Helper.MsgOutput("Could not locate Welcome email or checkbox. Email might have been deleted");
+                MsgOutput("Could not locate Welcome email or checkbox. Email might have been deleted");
                 WebDriver.SetWebDriverDefaultTimeOuts(WebDriver.DefaultTimeOut.Implicit);
             }
-            Helper.MsgOutput("Welcome email deleted");
+            MsgOutput("Welcome email deleted");
             WebDriver.SetWebDriverDefaultTimeOuts(WebDriver.DefaultTimeOut.Implicit);
             return true;
         }
@@ -349,8 +349,7 @@ namespace BrotherWebSitesCore.Pages.BrotherOnline.ThirdParty
                 }
                 catch (StaleElementReferenceException staleElement)
                 {
-                    Helper.MsgOutput(string.Format("Stale Element thrown retrieving email items. Retrying [{0}] times",
-                        retryCount));
+                    MsgOutput(string.Format("Stale Element thrown retrieving email items [{0}]. Retrying [{1}] times", staleElement.Message, retryCount));
                     retryCount++;
                 }
             }
@@ -407,8 +406,8 @@ namespace BrotherWebSitesCore.Pages.BrotherOnline.ThirdParty
                 }
                 catch (StaleElementReferenceException staleElement)
                 {
-                    Helper.MsgOutput(string.Format("Stale Element thrown retrieving email items. Retrying [{0}] times",
-                        retryCount));
+                    MsgOutput(string.Format("Stale Element thrown retrieving email items [{0}]. Retrying [{1}] times",
+                        staleElement.Message, retryCount));
                     retryCount++;
                 }
             }
@@ -418,8 +417,7 @@ namespace BrotherWebSitesCore.Pages.BrotherOnline.ThirdParty
 
         public void SelectEmail2(string email)
         {
-            Helper.MsgOutput(string.Format("Searching for email [{0}]", email));
-            IWebElement emailItem = null;
+            MsgOutput(string.Format("Searching for email [{0}]", email));
             var emailSelected = false;
             var retryCount = 0;
             var displayedRetryCount = 0;
@@ -433,15 +431,15 @@ namespace BrotherWebSitesCore.Pages.BrotherOnline.ThirdParty
                     if (FindEmail(email, out foundMail))
                     {
                         foundMail.EmailAddressElement.Click();
-                        WebDriver.Wait(Helper.DurationType.Second, 2);
+                        WebDriver.Wait(DurationType.Second, 2);
                         while ((foundMail.EmailAddressElement.Displayed == true) && (displayedRetryCount < 15))
                         {
                             foundMail.EmailAddressElement.Click();
-                            WebDriver.Wait(Helper.DurationType.Second, 1);
+                            WebDriver.Wait(DurationType.Second, 1);
                             if (foundMail.EmailAddressElement.Displayed == false)
                             {
                                 displayedRetryCount++;
-                                Helper.MsgOutput(string.Format("Failed to select email - retrying [{0}] times",
+                                MsgOutput(string.Format("Failed to select email - retrying [{0}] times",
                                 displayedRetryCount));
                             }
                         }
@@ -459,14 +457,12 @@ namespace BrotherWebSitesCore.Pages.BrotherOnline.ThirdParty
                 }
                 catch (StaleElementReferenceException staleElement)
                 {
-                    Helper.MsgOutput(string.Format(
-                        "Stale Element thrown whilst trying to select [{0}] email from Inbox", email));
+                    MsgOutput(string.Format("Stale Element [{0}] thrown whilst trying to select [{1}] email from Inbox", staleElement.Message, email));
                     retryCount++;
                 }
                 catch (NoSuchElementException noSuchElement)
                 {
-                    Helper.MsgOutput(string.Format(
-                        "Element not found whilst trying to select [{0}] email from Inbox", email));
+                    MsgOutput(string.Format("Element not found [{0}] whilst trying to select [{1}] email from Inbox", noSuchElement, email));
                     retryCount++;
                 }
             }
@@ -477,7 +473,7 @@ namespace BrotherWebSitesCore.Pages.BrotherOnline.ThirdParty
 
         public void SelectEmail(string email)
         {
-            Helper.MsgOutput(string.Format("Searching for email [{0}]", email));
+            MsgOutput(string.Format("Searching for email [{0}]", email));
             IWebElement emailItem = null;
             var emailSelected = false;
             var retryCount = 0;
@@ -489,7 +485,7 @@ namespace BrotherWebSitesCore.Pages.BrotherOnline.ThirdParty
             {
                 try
                 {
-                    WebDriver.Wait(Helper.DurationType.Second, 2);
+                    WebDriver.Wait(DurationType.Second, 2);
                     IWebElement inboxItem = GetInboxItems();
                     if (inboxItem == null)
                     {
@@ -502,19 +498,19 @@ namespace BrotherWebSitesCore.Pages.BrotherOnline.ThirdParty
                         throw new NullReferenceException(string.Format("Unable to locate email subject \"{0}\"", email));
                     }
 
-                    Helper.MsgOutput("Subject email found, moving to Element");
+                    MsgOutput("Subject email found, moving to Element");
 
                     MoveToElement(emailItem);
                     emailItem.Click();
-                    WebDriver.Wait(Helper.DurationType.Second, 2);
+                    WebDriver.Wait(DurationType.Second, 2);
                     while ((emailItem.Displayed == true) && (displayedRetryCount < 15))
                     {
                         emailItem.Click();
-                        WebDriver.Wait(Helper.DurationType.Second, 1);
+                        WebDriver.Wait(DurationType.Second, 1);
                         if (emailItem.Displayed == false)
                         {
                             displayedRetryCount++;
-                            Helper.MsgOutput(string.Format("Failed to select email - retrying [{0}] times",
+                            MsgOutput(string.Format("Failed to select email - retrying [{0}] times",
                             displayedRetryCount));
                         }
                     }
@@ -531,14 +527,12 @@ namespace BrotherWebSitesCore.Pages.BrotherOnline.ThirdParty
                 }
                 catch (StaleElementReferenceException staleElement)
                 {
-                    Helper.MsgOutput(string.Format(
-                        "Stale Element thrown whilst trying to select [{0}] email from Inbox", email));
+                    MsgOutput(string.Format("Stale Element [{0}] thrown whilst trying to select [{1}] email from Inbox", staleElement.Message, email));
                     retryCount++;
                 }
                 catch (NoSuchElementException noSuchElement)
                 {
-                    Helper.MsgOutput(string.Format(
-                        "Element not found whilst trying to select [{0}] email from Inbox", email));
+                    MsgOutput(string.Format("Element not found [{0}] whilst trying to select [{1}] email from Inbox", noSuchElement.Message, email));
                     retryCount++;
                 }
             }
@@ -552,7 +546,7 @@ namespace BrotherWebSitesCore.Pages.BrotherOnline.ThirdParty
             var validationUrl = GetEmailValidationLink();
             if (validationUrl == string.Empty)
             {
-                Helper.MsgOutput(string.Format("Invalid {0} URL", errorMessage));
+                MsgOutput(string.Format("Invalid {0} URL", errorMessage));
             }
             else
             {
@@ -646,7 +640,7 @@ namespace BrotherWebSitesCore.Pages.BrotherOnline.ThirdParty
             }
             catch (StaleElementReferenceException staleElement)
             {
-                Helper.MsgOutput("Error retrieving account validation url", staleElement.Message);
+                MsgOutput("Error retrieving account validation url", staleElement.Message);
             }
             return false;
         }
@@ -671,7 +665,7 @@ namespace BrotherWebSitesCore.Pages.BrotherOnline.ThirdParty
                 try
                 {
                     if (!FindEmail(emailSubject, out emailToDelete)) continue;
-                    WebDriver.Wait(Helper.DurationType.Second, 1);
+                    WebDriver.Wait(DurationType.Second, 1);
 //                    var email = emailToDelete.EmailElement.FindElement(By.XPath("//input[@type='checkbox']"));
                     //if (!emailToDelete.EmailElement.Selected)
                     emailToDelete.EmailCheckboxElement.Click();
@@ -691,7 +685,7 @@ namespace BrotherWebSitesCore.Pages.BrotherOnline.ThirdParty
                 }
                 catch (StaleElementReferenceException elementNoLongerAttached)
                 {
-                    Helper.MsgOutput("Email Message not found as element now stale - retrying");
+                    MsgOutput(string.Format("Email Message not found [{0}] as element now stale - retrying", elementNoLongerAttached.Message));
                 }
             }
             DeleteEmailButtonClick();

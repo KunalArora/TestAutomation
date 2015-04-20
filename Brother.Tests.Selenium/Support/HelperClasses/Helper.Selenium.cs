@@ -95,13 +95,13 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                 }
                 catch (StaleElementReferenceException staleElement)
                 {
-                    Helper.MsgOutput(string.Format("Element [{0}] Not Found. Retrying [{1}] times", element, staleElement));
+                    MsgOutput(string.Format("Element [{0}] Not Found. Retrying [{1}] times", element, staleElement));
                     retries++;
                 }
                 catch (WebDriverException timeOutException)
                 {
-                    Helper.MsgOutput(string.Format("Element [{0}] Not Found after [{1}] seconds", element, wait.Timeout.Seconds));
-                    Helper.MsgOutput("Exception timeout thrown ", timeOutException.Message);
+                    MsgOutput(string.Format("Element [{0}] Not Found after [{1}] seconds", element, wait.Timeout.Seconds));
+                    MsgOutput("Exception timeout thrown ", timeOutException.Message);
                     retries++;
                 }
             }
@@ -130,13 +130,13 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                 }
                 catch (StaleElementReferenceException staleElement)
                 {
-                    Helper.MsgOutput(string.Format("Element Not Found. Retrying [{0}] times", staleElement));
+                    MsgOutput(string.Format("Element Not Found. Retrying [{0}] times", staleElement.Message));
                     retries++;
                 }
                 catch (WebDriverException timeOutException)
                 {
-                    Helper.MsgOutput(string.Format("Element Not Found after [{0}] seconds", wait.Timeout.Seconds));
-                    Helper.MsgOutput("Exception timeout thrown ", timeOutException.Message);
+                    MsgOutput(string.Format("Element Not Found after [{0}] seconds", wait.Timeout.Seconds));
+                    MsgOutput("Exception timeout thrown ", timeOutException.Message);
                     retries++;
                 }
             }
@@ -178,22 +178,17 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             }
             catch (NullReferenceException nullReference)
             {
-
-                throw new Exception("The element being referenced is null");
+                throw new Exception(string.Format("The element being referenced is null. Exception was [{0}]", nullReference.Message));
             }
             catch (NoSuchElementException noSuchElementException)
             {
-
-                throw new Exception("The element being referenced does not exist");
+                throw new Exception(string.Format("The element being referenced does not exist. Exception was [{0}]", noSuchElementException.Message));
             }
             catch (WebDriverTimeoutException webDriverTimeoutException)
             {
-
-                throw new Exception("The element being referenced is still displayed");
+                throw new Exception(string.Format("The element being referenced is still displayed [{0}]", webDriverTimeoutException.Message));
             }
-
         }
-
 
         protected virtual IList<IWebElement> FindElementsByCssSelector(string elementName)
         {
@@ -661,22 +656,22 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             }
             catch (NullReferenceException nullReferenceException)
             {
-                Helper.MsgOutput("Element was not present");
+                MsgOutput(string.Format("Element was NULL [{0}]", nullReferenceException.Message));
                 return false;
             }
             catch (NoSuchElementException noSuchElement)
             {
-                Helper.MsgOutput("Element was not present");
+                MsgOutput(string.Format("Element was not present [{0}]", noSuchElement.Message));
                 return false;
             }
             catch (ElementNotVisibleException elementNotVisible)
             {
-                Helper.MsgOutput("Element was not present");
+                MsgOutput(string.Format("Element was not present [{0}]", elementNotVisible.Message));
                 return false;
             }
             catch (InvalidElementStateException invalidElement)
             {
-                Helper.MsgOutput(string.Format("Element : [{0}] was a invalid Eeement [{1}]", element.TagName, invalidElement));
+                MsgOutput(string.Format("Element : [{0}] was a invalid Eeement [{1}]", element.TagName, invalidElement));
                 return false;
             }
         }
@@ -694,8 +689,8 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             }
             catch (WebDriverException timeOutDriverException)
             {
-                Helper.MsgOutput(string.Format("AssertElementPresent timeout searching for element [{0}]. Timeout period was [{1}]", elementDescription, 120));
-                Helper.MsgOutput("Exception was ", timeOutDriverException.Message);
+                MsgOutput(string.Format("AssertElementPresent timeout searching for element [{0}]. Timeout period was [{1}]", elementDescription, 120));
+                MsgOutput("Exception was ", timeOutDriverException.Message);
                 TestCheck.AssertFailTest(string.Format("Element [{0}] not found", elementDescription));
             }
         }
@@ -713,8 +708,8 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             }
             catch (WebDriverException timeOutDriverException)
             {
-                Helper.MsgOutput(string.Format("AssertElementPresent timeout searching for element [{0}]. Timeout period was [{1}]", elementDescription, timeOut));
-                Helper.MsgOutput("Exception was ", timeOutDriverException.Message);
+                MsgOutput(string.Format("AssertElementPresent timeout searching for element [{0}]. Timeout period was [{1}]", elementDescription, timeOut));
+                MsgOutput("Exception was ", timeOutDriverException.Message);
             }
         }
 
@@ -735,17 +730,17 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         /// </summary>
         /// <param name="durationType">Type of the duration.</param>
         /// <param name="duration">The duration.</param>
-        internal void Wait(Helper.DurationType durationType, int duration)
+        internal void Wait(DurationType durationType, int duration)
         {
             switch (durationType)
             {
-                case Helper.DurationType.Millisecond:
+                case DurationType.Millisecond:
                     Thread.Sleep(TimeSpan.FromMilliseconds(duration));
                     break;
-                case Helper.DurationType.Second:
+                case DurationType.Second:
                     Thread.Sleep(TimeSpan.FromSeconds(duration));
                     break;
-                case Helper.DurationType.Minute:
+                case DurationType.Minute:
                     Thread.Sleep(TimeSpan.FromMinutes(duration));
                     break;
             }
@@ -796,7 +791,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             AssertElementPresent(element, elementDescription);
             var actualtext = element.Text;
             if (actualtext.Contains(expectedValue)) return true;
-            Helper.MsgOutput(String.Format("ElementContainsText Failed: Value for '{0}' did not contain expected value. Expected: [{1}], Actual: [{2}]", elementDescription, expectedValue, actualtext));
+            MsgOutput(String.Format("ElementContainsText Failed: Value for '{0}' did not contain expected value. Expected: [{1}], Actual: [{2}]", elementDescription, expectedValue, actualtext));
             return false;
         }
 
@@ -805,8 +800,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             AssertElementPresent(element, elementDescription);
             var actualtext = element.Text;
             if (actualtext != null && !actualtext.Contains(expectedValue)) return true;
-            Helper.MsgOutput(
-                String.Format(
+            MsgOutput(string.Format(
                     "ElementNotContainsText Failed: Value for '{0}' did not contain expected value. Expected: [{1}], Actual: [{2}]",
                     elementDescription, expectedValue, actualtext));
             return false;

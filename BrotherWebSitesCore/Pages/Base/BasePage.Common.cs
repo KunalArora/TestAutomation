@@ -126,8 +126,7 @@ namespace BrotherWebSitesCore.Pages.Base
 
         private static string ProcessMainSiteLiveUrl(string url)
         {
-            const string http = @"http://";
-            if ((Helper.CheckScenarioEnv(LiveEnvSuffix) || Helper.CheckFeatureEnv(LiveEnvSuffix)) && (Helper.GetRunTimeEnv().Equals(LiveEnvSuffix)) && url.Contains("online"))
+            if ((CheckScenarioEnv(LiveEnvSuffix) || CheckFeatureEnv(LiveEnvSuffix)) && (GetRunTimeEnv().Equals(LiveEnvSuffix)) && url.Contains("online"))
             {
                return url.Replace("online.", "www.");
             }
