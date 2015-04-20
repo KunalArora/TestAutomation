@@ -12,7 +12,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         public static void AssertIsGreater(int comparable1, int comparable2, string validationMessage)
         {
             MsgOutput("Validating if value is greater");
-            Assert.Greater(comparable1, comparable1, validationMessage);
+            Assert.Greater(comparable1, comparable2, validationMessage);
         }
 
         public static void AssertIsNotNullOrEmpty(string itemToValidate, string validationMessage)
