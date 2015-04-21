@@ -78,9 +78,11 @@ namespace Brother.Tests.Specs.TestSpecifications.InstantInk
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Validate a valid user can sign in to Ink")]
+        [NUnit.Framework.IgnoreAttribute()]
         public virtual void ValidateAValidUserCanSignInToInk()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate a valid user can sign in to Ink", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate a valid user can sign in to Ink", new string[] {
+                        "ignore"});
 #line 14
 this.ScenarioSetup(scenarioInfo);
 #line 8
