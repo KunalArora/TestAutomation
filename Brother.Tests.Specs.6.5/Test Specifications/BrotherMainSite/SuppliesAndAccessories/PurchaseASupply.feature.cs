@@ -391,6 +391,7 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Purchase a new Inkjet Cartridge with valid credit card details")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.CategoryAttribute("UAT")]
         [NUnit.Framework.CategoryAttribute("TEST")]
         [NUnit.Framework.TestCaseAttribute("Ireland", "Supplies", "LC1000BK", "Otto", "Tiest", "10", "Testing House", "30, Its a Test Street", "Village Of Automation", "Manchester", "KILKENNY", "012345678910", null)]
@@ -399,7 +400,8 @@ this.ScenarioSetup(scenarioInfo);
         {
             string[] @__tags = new string[] {
                     "UAT",
-                    "TEST"};
+                    "TEST",
+                    "ignore"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
