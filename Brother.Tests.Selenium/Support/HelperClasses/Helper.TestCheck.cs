@@ -31,7 +31,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         {
             if (!expectedValue.Equals(actualValue))
             {
-                throw new AssertionException(string.Format("AssertIsEqual Failed: {0} validation didn't match expectations. Expected [{1}], Actual [{2}]", validationMessage, expectedValue, actualValue));
+                throw new AssertionException(string.Format("AssertIsEqual Failed: [{0}] validation didn't match expectations. Expected [{1}], Actual [{2}]", validationMessage, expectedValue, actualValue));
             }
         }
 
@@ -39,7 +39,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         {
             if (itemToCheck == null)
             {
-                throw new AssertionException(string.Format("AssertIsNotNull Failed: {0} validation didn't match expectations. Expected Null, Actual [{0}]", validationMessage, itemToCheck));
+                throw new AssertionException(string.Format("AssertIsNotNull Failed: [{0}] validation didn't match expectations. Expected Null, Actual [{0}]", validationMessage, itemToCheck));
             }
         }
 
@@ -52,7 +52,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         {
             if (!actualText.Contains(expectedText))
             {
-                throw new AssertionException(string.Format("AssetTextContains Failed: Value for '{0}' did not match expectations. Expected: [{1}] ", actualText, expectedText));
+                throw new AssertionException(string.Format("AssetTextContains Failed: Value for [{0}] did not match expectations. Expected: [{1}] ", actualText, expectedText));
             }
         }
 
@@ -60,7 +60,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         {
             if (expectedValue.Equals(actualValue))
             {
-                throw new AssertionException(string.Format("AssertIsNotEqual Failed: {0} validation didn't match expectations. Expected [{1}], Actual [{2}]", validationMessage, expectedValue, actualValue));
+                throw new AssertionException(string.Format("AssertIsNotEqual Failed: [{0}] validation didn't match expectations. Expected [{1}], Actual [{2}]", validationMessage, expectedValue, actualValue));
             }
         }
 
@@ -68,7 +68,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         {
             if (!containingString.Contains(textSnippet))
             {
-                throw new AssertionException(string.Format("AssertTextContains Failed: '{0}' didn't match expectations. String [{1}] should have contained the text snippet [{2}]", validationMessage, containingString, textSnippet));
+                throw new AssertionException(string.Format("AssertTextContains Failed: [{0}] didn't match expectations. String [{1}] should have contained the text snippet [{2}]", validationMessage, containingString, textSnippet));
             }
         }
     }

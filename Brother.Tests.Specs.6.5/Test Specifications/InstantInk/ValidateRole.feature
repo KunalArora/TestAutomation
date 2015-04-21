@@ -8,6 +8,7 @@ Background:
 	# Create an account on BOL and sign in
 	Given I am logged onto Brother Online "United Kingdom" using valid credentials
 
+@ignore
 Scenario: Validate user has correct role for Instant Ink
 	Given I cannot see the Instant Ink menu option from the BOL home page
 	Then I can sign out of Brother Online
