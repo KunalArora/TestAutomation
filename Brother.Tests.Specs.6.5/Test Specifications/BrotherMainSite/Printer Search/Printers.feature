@@ -1,4 +1,4 @@
-﻿@UAT @TEST @PROD
+﻿@UAT @PROD
 Feature: Correct printer product listings
 	In order to purchase a new Printer
 	As a customer
