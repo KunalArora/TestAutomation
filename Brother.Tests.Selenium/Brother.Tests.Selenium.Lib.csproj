@@ -130,6 +130,11 @@
     <Content Include="Drivers\phantomjs.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Supporting Files\DeliveryAddressFieldValidation.xml" />
+    <Content Include="Supporting Files\LanguageLookup.xml" />
+    <Content Include="Supporting Files\ProductInfo.xml">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
