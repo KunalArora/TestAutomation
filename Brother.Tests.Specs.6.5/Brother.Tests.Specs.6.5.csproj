@@ -219,15 +219,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>VerificationsOnProductsPage.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\OmniJoinPartnerPortal\CustomerActions.feature.cs">
+    <Compile Include="Test Specifications\OmniJoinPartnerPortal\CustomerActions\CustomerActions.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CustomerActions.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\OmniJoinPartnerPortal\DealerActions.feature.cs">
+    <Compile Include="Test Specifications\OmniJoinPartnerPortal\DealerActions\NamedHostActivationKeys.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DealerActions.feature</DependentUpon>
+      <DependentUpon>NamedHostActivationKeys.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Specifications\OmniJoin\ContactUs.feature.cs">
       <AutoGen>True</AutoGen>
@@ -494,13 +494,13 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>VerificationsOnProductsPage.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\OmniJoinPartnerPortal\CustomerActions.feature">
+    <None Include="Test Specifications\OmniJoinPartnerPortal\CustomerActions\CustomerActions.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CustomerActions.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\OmniJoinPartnerPortal\DealerActions.feature">
+    <None Include="Test Specifications\OmniJoinPartnerPortal\DealerActions\NamedHostActivationKeys.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>DealerActions.feature.cs</LastGenOutput>
+      <LastGenOutput>NamedHostActivationKeys.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\OmniJoin\ContactUs.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
@@ -537,9 +537,9 @@
     <Content Include="Drivers\phantomjs.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Supporting Files\DeliveryAddressFieldValidation.xml" />
-    <Content Include="Supporting Files\LanguageLookup.xml" />
-    <Content Include="Supporting Files\ProductInfo.xml">
+    <Content Include="Supporting Files_old\DeliveryAddressFieldValidation.xml" />
+    <Content Include="Supporting Files_old\LanguageLookup.xml" />
+    <Content Include="Supporting Files_old\ProductInfo.xml">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
