@@ -1,8 +1,8 @@
 ﻿@UAT @TEST
-Feature: Dealer Actions - OmniJoin subscriptions
-	In order to Manage my OmniJoin customers
+Feature: Named Host Activation Keys
+	In order for Customers to use OmniJoin using Named Host licenses
 	As a dealer
-	I want to be able to perform certain actions
+	I want to be able to purchase Named Host Licenses for different OmniJoin Plans
 
 @SMOKE @ignore
 Scenario: Order and validate a new subscription activation code for Named Host licensing, with Professional Plan and Annual Term

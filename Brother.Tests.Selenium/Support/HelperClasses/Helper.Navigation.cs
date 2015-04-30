@@ -44,7 +44,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         private static string GetMenuItemString(string xPathExpression)
         {
             var doc = new XmlDocument();
-            var directoryInfo = Directory.GetParent(Directory.GetCurrentDirectory()).Parent;
+            var directoryInfo = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent;
             if (directoryInfo == null) return String.Empty;
 
             var languageLookupFile = directoryInfo.FullName + Helper.SupportingFilesLocation + LanguageLookupFile;
