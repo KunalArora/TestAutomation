@@ -1,4 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Data;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
@@ -29,15 +31,15 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.SuppliesAndAccessories.Pri
                 var featureList = element.FindElement(By.CssSelector(featureListSearch));
                 if (featureList.Text != string.Empty)
                 {
-                    Helper.MsgOutput(string.Format("Printer [{0}] contains the following feature info [{1}]",
+                    MsgOutput(string.Format("Printer [{0}] contains the following feature info [{1}]",
                         printerName, featureList.Text));
                     return true;
                 }
-                Helper.MsgOutput(string.Format("Printer [{0}] does not contain a feature list", printerName));
+                MsgOutput(string.Format("Printer [{0}] does not contain a feature list", printerName));
             }
             catch (NoSuchElementException notFound)
             {
-                Helper.MsgOutput("Unable to find Elements for Printer Information", notFound.Message);
+                MsgOutput("Unable to find Elements for Printer Information", notFound.Message);
             }
             return false;
         }
@@ -54,7 +56,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.SuppliesAndAccessories.Pri
 
             var validationError = false;
 
-            Helper.MsgOutput("Checking each printer for validity");
+            MsgOutput("Checking each printer for validity");
             foreach (var element in printers)
             {
                 var url = element.FindElement(By.CssSelector(".cf.feature-listings-info h3 [href]"));
@@ -66,7 +68,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.SuppliesAndAccessories.Pri
                 else
                 {
                     validationError = true;
-                    Helper.MsgOutput("ERROR: Validating Printer Descriptions");
+                    MsgOutput("ERROR: Validating Printer Descriptions");
                 }
             }
             return validationError;
@@ -90,7 +92,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.SuppliesAndAccessories.Pri
             }
             catch (NoSuchElementException elementNotFound)
             {
-                Helper.MsgOutput("Unable to locate printer list", elementNotFound.Message);
+                MsgOutput("Unable to locate printer list", elementNotFound.Message);
             }
             return printers;
         }
@@ -107,19 +109,19 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.SuppliesAndAccessories.Pri
             
             var validationError = false;
 
-            Helper.MsgOutput("Checking each printer for validity");
+            MsgOutput(string.Format("Checking each printer in a list of {0} for validity", printers.Count));
             foreach (var element in printers)
             {
                 var url = element.FindElement(By.CssSelector(".cf.feature-listings-info h3 [href]"));
                 // for each printer we need to check the description exists
                 if (CheckPrinterDesc(element, url.Text, standardPrinterFeatureList))
                 {
-                    Helper.MsgOutput("OK: Validating Printer Descriptions");
+                    MsgOutput("OK: Validating Printer Descriptions");
                 }
                 else
                 {
                     validationError = true;
-                    Helper.MsgOutput("ERROR: Validating Printer Descriptions");
+                    MsgOutput("ERROR: Validating Printer Descriptions");
                 }
             }
             return validationError;
@@ -127,34 +129,64 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.SuppliesAndAccessories.Pri
 
         public int WaitForPrinterSearchResults()
         {
-            Helper.MsgOutput("Looking for Laser Printer search results");
+            MsgOutput("Looking for Laser Printer search results");
+            MsgOutput("Scrolling page to trigger full loading");
+            ScrollToLocation(TestController.CurrentDriver, 0, (TestController.CurrentDriver.Manage().Window.Size.Height * 5));
             const string resultsElement = "#results";
             if (!WaitForElementToExistByCssSelector(resultsElement, 4, 30)) // 2 mins is long enough
             {
-                Helper.MsgOutput(string.Format("Unable to locate [{0}] element whilst searching for Printers", resultsElement));
+                MsgOutput(string.Format("Unable to locate [{0}] element whilst searching for Printers", resultsElement));
                 return 0;
             }
+
             const string printerList = "#results article";
             try
             {
                 if (!WaitForElementToExistByCssSelector(printerList, 4, 30)) // 2 mins is long enough
                 {
-                    Helper.MsgOutput(string.Format("Unable to locate [{0}] any printers in the results list", printerList));
+                    MsgOutput(string.Format("Unable to locate [{0}] any printers in the results list", printerList));
                     return 0;
                 }
 
-                ScrollToLocation(TestController.CurrentDriver, 0, (TestController.CurrentDriver.Manage().Window.Size.Height * 5));
+                // get the last printer in the list and move to that last element
+                ReadOnlyCollection<IWebElement> printerArray = null;
+                printerArray = FindPrinters(printerList);
+                ScrollTo(TestController.CurrentDriver, printerArray[printerArray.Count-1]);
+                ScrollToLocation(TestController.CurrentDriver, 0, (TestController.CurrentDriver.Manage().Window.Size.Height * 10));
 
-                var printers = Driver.FindElements(By.CssSelector(printerList));
-                if (printers.Count > 0)
+                var printerCount = 0;
+                var printerCountReCheck = 0;
+
+                var dynamicLoadIndex = Driver.FindElement(By.CssSelector("#dynamic-load-index"));
+                for (var pageDown = 0; pageDown < 5; pageDown++)
                 {
-                    Helper.MsgOutput(string.Format("Found {0} laser printers in list", printers.Count));
-                    return printers.Count;
+                    ScrollToLocation(TestController.CurrentDriver, 0, (TestController.CurrentDriver.Manage().Window.Size.Height * 10));
+                    dynamicLoadIndex = Driver.FindElement(By.CssSelector("#dynamic-load-index"));
                 }
+
+                while (printerCountReCheck < 10)
+                {
+                    var printers = Driver.FindElements(By.CssSelector(printerList));
+                    var indexCount = Convert.ToInt32(dynamicLoadIndex.GetAttribute("value"));
+                    if (indexCount == printers.Count)
+                    {
+                        MsgOutput(string.Format("Found {0} {1} laser printers in list", printers.Count, indexCount));
+                        return printers.Count;
+                    }
+                    //printerCount = printers.Count;
+                    //if (printers.Count > 0)
+                    //{
+                    //    MsgOutput(string.Format("Found {0} {1} laser printers in list", printers.Count, numPrinters));
+                    //    return printers.Count;
+                    //}
+                    ScrollToLocation(TestController.CurrentDriver, 0, (TestController.CurrentDriver.Manage().Window.Size.Height * 10));
+                    printerCountReCheck++;
+                }
+                MsgOutput(string.Format("Printer count = {0}. Re-checked for printers {1} times", printerCount, printerCountReCheck));
             }
             catch (NoSuchElementException noSuchElement)
             {
-                Helper.MsgOutput("No printers returned from list", noSuchElement.Message);
+                MsgOutput("No printers returned from list", noSuchElement.Message);
             }
             return 0;
         }
