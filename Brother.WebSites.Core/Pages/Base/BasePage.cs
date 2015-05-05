@@ -1,4 +1,5 @@
-﻿using Brother.Tests.Selenium.Lib.Support;
+﻿using System;
+using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.BrotherMainSite;
 using Brother.WebSites.Core.Pages.BrotherOnline.Account;
@@ -152,20 +153,34 @@ namespace Brother.WebSites.Core.Pages.Base
 
         private static void NavigateToPage(IWebDriver driver, string url)
         {
-            MsgOutput("Attempting to navigate to page ", url);
-            driver.Navigate().GoToUrl(url);
-            AcceptCookieLaw(driver);
+            try
+            {
+                MsgOutput("Attempting to navigate to page ", url);
+                driver.Navigate().GoToUrl(url);
+                AcceptCookieLaw(driver);
+            }
+            catch (WebDriverException driverException)
+            {
+                MsgOutput(string.Format("Web Driver Critcal Error!!!! {0}", driverException.Message));
+            }
         }
 
         private static void NavigateToPage(IWebDriver driver, string url, bool doRefresh)
         {
-            MsgOutput("Attempting to navigate to page ", url);
-            driver.Navigate().GoToUrl(url);
-            if (doRefresh)
+            try
             {
-                driver.Navigate().Refresh();
+                MsgOutput("Attempting to navigate to page ", url);
+                driver.Navigate().GoToUrl(url);
+                if (doRefresh)
+                {
+                    driver.Navigate().Refresh();
+                }
+                AcceptCookieLaw(driver);
             }
-            AcceptCookieLaw(driver);
+            catch (WebDriverException driverException)
+            {
+                MsgOutput(string.Format("Web Driver Critcal Error!!!! {0}", driverException.Message));
+            }
         }
     }
 }
