@@ -131,7 +131,23 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.SuppliesAndAccessories.Pri
         {
             MsgOutput("Looking for Laser Printer search results");
             MsgOutput("Scrolling page to trigger full loading");
-            ScrollToLocation(TestController.CurrentDriver, 0, (TestController.CurrentDriver.Manage().Window.Size.Height * 5));
+
+            //var dynamicLoadIndexLock = Driver.FindElement(By.CssSelector("#dynamic-load-lock"));
+            //var lockCount = Convert.ToInt32(dynamicLoadIndexLock.GetAttribute("value"));
+
+            var element = FindElementByCssSelector(".copyright");
+            ScrollToLocation(TestController.CurrentDriver, 0, element.Location.Y);
+            WebDriver.Wait(DurationType.Second, 2);
+            //var element = FindElementByCssSelector(".footer-container article h3");
+            while (!IsElementClickable(element))
+            {
+                ScrollToLocation(TestController.CurrentDriver, 0, element.Location.Y);
+                element = FindElementByCssSelector(".copyright");
+            }
+
+            //ScrollTo(TestController.CurrentDriver, FindElementByCssSelector("#site-footer"));
+            //ScrollTo(TestController.CurrentDriver, FindElementByCssSelector(".copyright"));
+            //AssertElementPresent(FindElementByCssSelector(".copyright"), "Wait for Copyright");
             const string resultsElement = "#results";
             if (!WaitForElementToExistByCssSelector(resultsElement, 4, 30)) // 2 mins is long enough
             {
@@ -150,9 +166,6 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.SuppliesAndAccessories.Pri
 
                 // get the last printer in the list and move to that last element
                 ReadOnlyCollection<IWebElement> printerArray = null;
-                printerArray = FindPrinters(printerList);
-                ScrollTo(TestController.CurrentDriver, printerArray[printerArray.Count-1]);
-                ScrollToLocation(TestController.CurrentDriver, 0, (TestController.CurrentDriver.Manage().Window.Size.Height * 10));
 
                 var printerCount = 0;
                 var printerCountReCheck = 0;
@@ -160,12 +173,14 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.SuppliesAndAccessories.Pri
                 var dynamicLoadIndex = Driver.FindElement(By.CssSelector("#dynamic-load-index"));
                 for (var pageDown = 0; pageDown < 5; pageDown++)
                 {
-                    ScrollToLocation(TestController.CurrentDriver, 0, (TestController.CurrentDriver.Manage().Window.Size.Height * 10));
+                    ScrollTo(TestController.CurrentDriver, FindElementByCssSelector("#site-footer"));
                     dynamicLoadIndex = Driver.FindElement(By.CssSelector("#dynamic-load-index"));
                 }
 
                 while (printerCountReCheck < 10)
                 {
+                    //ScrollToLocation(TestController.CurrentDriver, 0, (TestController.CurrentDriver.Manage().Window.Size.Height * 20));
+                    ScrollTo(TestController.CurrentDriver, FindElementByCssSelector("#site-footer"));
                     var printers = Driver.FindElements(By.CssSelector(printerList));
                     var indexCount = Convert.ToInt32(dynamicLoadIndex.GetAttribute("value"));
                     if (indexCount == printers.Count)
@@ -179,7 +194,6 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.SuppliesAndAccessories.Pri
                     //    MsgOutput(string.Format("Found {0} {1} laser printers in list", printers.Count, numPrinters));
                     //    return printers.Count;
                     //}
-                    ScrollToLocation(TestController.CurrentDriver, 0, (TestController.CurrentDriver.Manage().Window.Size.Height * 10));
                     printerCountReCheck++;
                 }
                 MsgOutput(string.Format("Printer count = {0}. Re-checked for printers {1} times", printerCount, printerCountReCheck));

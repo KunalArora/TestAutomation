@@ -19,6 +19,19 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
         private const int ElementSearchTimeout = 60;
 
+        public static void AcceptCookieLaw(IWebDriver driver)
+        {
+            try
+            {
+                var acceptCookieLawButton = driver.FindElement(By.CssSelector("#AcceptCookieLawHyperLink"));
+                acceptCookieLawButton.Click();
+            }
+            catch (ElementNotVisibleException elementNotVisible)
+            {
+                MsgOutput(string.Format("AcceptCookieLaw : {0}", elementNotVisible));
+            }
+        }
+        
         /// <summary>
         /// Removes all browser cookies
         /// </summary>
@@ -645,6 +658,28 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             var control = GetFieldControl(field);
 
             return control.GetAttribute("value");
+        }
+
+        public static bool IsElementClickable(IWebElement element)
+        {
+            try
+            {
+                MoveToElement(TestController.CurrentDriver, element);
+                element.Click();
+            }
+            catch (InvalidOperationException elementNotClickable)
+            {
+                MsgOutput(elementNotClickable.Message);
+                MsgOutput(string.Format("Element was not clickable on screen at location {0} {1}", element.Location.X, element.Location.Y));
+                return false;
+            }
+            catch (ElementNotVisibleException elementNotVisible)
+            {
+                MsgOutput(elementNotVisible.Message);
+                MsgOutput(string.Format("Element was not clickable on screen at location {0} {1}", element.Location.X, element.Location.Y));
+                return false;
+            }
+            return true;
         }
 
         public static bool IsElementPresent(IWebElement element)
