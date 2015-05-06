@@ -12,26 +12,26 @@ Scenario Outline: View the list of available Laser Printers on Brother Main site
 	And I can validate that each printer is a valid printer
 
 Scenarios:
-	| country     | site                                                        |
-	| Ireland     | printers/laser-printers                                     |
-	| Belgium     | brother-printers/laser-printers?sc_lang=nl-BE               |
-	| Belgium     | imprimantes/imprimantes-laser?sc_lang=fr-BE                 |
-	| Slovakia    | printers/laser-printers                                     |
-	| Netherlands | printers/laserprinters                                      |
-	| Denmark     | printers/all-colour-lasers                                  |
-	| Hungary     | printers/laser-printers                                     |
-	| France      | imprimantes/imprimantes-multifonctions/multifonctions-laser |
-	| Czech       | printers/laser-printers                                     |
-	| Poland      | printers/laser-printers                                     |
-	| Finland     | printers/laser-printers                                     |
-	| Slovenia    | printers/laser-printers                                     |
-	| Norway      | printers/all-colour-lasers                                  |
-	| Russia      | printers/laser-printers                                     |
-	| Germany     | drucker/alle-lasergeraete/monolaser                         |
-#(specialCase)	| United Kingdom | printers/all-mono-lasers |
-	| Switzerland | drucker/laserdrucker?sc_lang=de-CH                          |
-	| Switzerland | imprimantes/imprimantes-laser?sc_lang=fr-CH                 |
-	| Romania     | printers/laser-printers                                     |
+	| country        | site                                                        |
+	| Belgium        | brother-printers/laser-printers?sc_lang=nl-BE               |
+	| Belgium        | imprimantes/imprimantes-laser?sc_lang=fr-BE                 |
+	| Czech          | printers/laser-printers                                     |
+	| Denmark        | printers/all-colour-lasers                                  |
+	| Finland        | printers/laser-printers                                     |
+	| France         | imprimantes/imprimantes-multifonctions/multifonctions-laser |
+	| Germany        | drucker/alle-lasergeraete/monolaser                         |
+	| Hungary        | printers/laser-printers                                     |
+	| Ireland        | printers/laser-printers                                     |
+	| Netherlands    | printers/laserprinters                                      |
+	| Norway         | printers/all-colour-lasers                                  |
+	| Poland         | printers/laser-printers                                     |
+	| Romania        | printers/laser-printers                                     |
+	| Russia         | printers/laser-printers                                     |
+	| Slovakia       | printers/laser-printers                                     |
+	| Slovenia       | printers/laser-printers                                     |
+	| Switzerland    | drucker/laserdrucker?sc_lang=de-CH                          |
+	| Switzerland    | imprimantes/imprimantes-laser?sc_lang=fr-CH                 |
+	| United Kingdom | printers/all-mono-lasers                                    |
 
 @SMOKE
 Scenario Outline: View the list of available Laser Printers on Brother Main sites for Spain and Portugal
