@@ -20,6 +20,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Proposal
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("CompletedFieldsAreReadOnlyInConversionMode")]
+    [NUnit.Framework.IgnoreAttribute()]
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("TEST")]
     public partial class CompletedFieldsAreReadOnlyInConversionModeFeature
@@ -37,6 +38,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Proposal
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CompletedFieldsAreReadOnlyInConversionMode", "In order to prevent new values being entered into contracts during conversion\r\nAs" +
                     " an MPS Dealer\r\nI want all previously completed fields within a proposal to be r" +
                     "ead-only during contract conversion", ProgrammingLanguage.CSharp, new string[] {
+                        "Ignore",
                         "UAT",
                         "TEST"});
             testRunner.OnFeatureStart(featureInfo);

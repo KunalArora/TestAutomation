@@ -1,4 +1,4 @@
-﻿@TEST @UAT
+﻿@Ignore @TEST @UAT
 Feature: PAYGPurchaseAndClickContract
 	In order to create a PAYG Purchase and Click contract
 	As a Dealer I want to be able to create a PAYG Purchase and Click proposal and convert the proposal to contract

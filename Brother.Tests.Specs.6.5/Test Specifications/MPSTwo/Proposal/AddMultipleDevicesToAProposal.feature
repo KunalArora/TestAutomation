@@ -1,4 +1,4 @@
-﻿@UAT @TEST
+﻿@Ignore @UAT @TEST
 Feature: Proposal - Add multiple devices to a proposal during creation
 	In order to create a contract with multiple devices 
 	As an MPS Dealer

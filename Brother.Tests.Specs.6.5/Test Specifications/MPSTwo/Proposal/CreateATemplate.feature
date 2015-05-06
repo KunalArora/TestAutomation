@@ -1,4 +1,4 @@
-﻿@UAT @TEST
+﻿@Ignore @UAT @TEST
 Feature: Proposal Create a Template
 	In order to create a proposal from an existing template
 	As an MPS Dealer

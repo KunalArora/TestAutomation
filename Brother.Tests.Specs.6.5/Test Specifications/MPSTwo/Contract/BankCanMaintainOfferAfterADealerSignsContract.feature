@@ -1,4 +1,4 @@
-﻿@UAT @TEST
+﻿@Ignore @UAT @TEST
 Feature: BankCanMaintainCustomerAfterADealerSignsContract
 	In order to fully set-up a contract
 	As an MPS Bank user

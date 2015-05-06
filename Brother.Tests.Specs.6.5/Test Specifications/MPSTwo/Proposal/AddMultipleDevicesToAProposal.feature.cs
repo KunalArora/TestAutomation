@@ -20,6 +20,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Proposal
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("Proposal - Add multiple devices to a proposal during creation")]
+    [NUnit.Framework.IgnoreAttribute()]
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("TEST")]
     public partial class Proposal_AddMultipleDevicesToAProposalDuringCreationFeature
@@ -36,6 +37,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Proposal
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Proposal - Add multiple devices to a proposal during creation", "In order to create a contract with multiple devices \r\nAs an MPS Dealer\r\nI want to" +
                     " create a proposal that has multiple devices", ProgrammingLanguage.CSharp, new string[] {
+                        "Ignore",
                         "UAT",
                         "TEST"});
             testRunner.OnFeatureStart(featureInfo);

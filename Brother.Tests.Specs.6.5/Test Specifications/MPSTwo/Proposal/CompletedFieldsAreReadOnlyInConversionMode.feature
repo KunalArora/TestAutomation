@@ -1,4 +1,4 @@
-﻿@UAT @TEST
+﻿@Ignore @UAT @TEST
 Feature: CompletedFieldsAreReadOnlyInConversionMode
 	In order to prevent new values being entered into contracts during conversion
 	As an MPS Dealer

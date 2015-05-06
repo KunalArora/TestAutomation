@@ -20,6 +20,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Proposal
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("VerificationsOnProductsPage")]
+    [NUnit.Framework.IgnoreAttribute()]
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("TEST")]
     public partial class VerificationsOnProductsPageFeature
@@ -36,6 +37,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Proposal
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "VerificationsOnProductsPage", "In order to verify that products can be view in flat list mode\r\nAs a dealer\r\nI wa" +
                     "nt to be able to click a button and the products are listed in a flat list", ProgrammingLanguage.CSharp, new string[] {
+                        "Ignore",
                         "UAT",
                         "TEST"});
             testRunner.OnFeatureStart(featureInfo);

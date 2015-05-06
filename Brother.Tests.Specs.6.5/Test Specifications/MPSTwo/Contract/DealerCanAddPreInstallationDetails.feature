@@ -1,4 +1,4 @@
-﻿@TEST @UAT
+﻿@Ignore @TEST @UAT
 Feature: DealerCanAddPreInstallationDetails
 	In order to fully set-up a contract
 	As a dealer

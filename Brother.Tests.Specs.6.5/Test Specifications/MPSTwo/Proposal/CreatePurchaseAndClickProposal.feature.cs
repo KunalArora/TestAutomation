@@ -20,6 +20,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Proposal
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("CreatePurchaseAndClickProposal")]
+    [NUnit.Framework.IgnoreAttribute()]
     [NUnit.Framework.CategoryAttribute("TEST")]
     [NUnit.Framework.CategoryAttribute("UAT")]
     public partial class CreatePurchaseAndClickProposalFeature
@@ -37,6 +38,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Proposal
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CreatePurchaseAndClickProposal", "In order to create Purchase and Click contract type\r\nAs a Dealer I want to be abl" +
                     "e to create an Purchase and Click proposal\r\nSo that I am able to give customers " +
                     "multiple contract options", ProgrammingLanguage.CSharp, new string[] {
+                        "Ignore",
                         "TEST",
                         "UAT"});
             testRunner.OnFeatureStart(featureInfo);

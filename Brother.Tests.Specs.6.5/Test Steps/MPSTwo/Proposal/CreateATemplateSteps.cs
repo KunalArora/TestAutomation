@@ -106,6 +106,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
         }
 
+
         [When(@"I choose ""(.*)"" from Products screen")]
         public void WhenIChooseFromProductsScreen(string printer)
         {

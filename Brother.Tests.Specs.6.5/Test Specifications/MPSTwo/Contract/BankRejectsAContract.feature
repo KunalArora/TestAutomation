@@ -1,4 +1,4 @@
-﻿@UAT @TEST
+﻿@Ignore @UAT @TEST
 Feature: BankRejectsAContract
 	In order not to progress with a contract for whatever reason
 	As an MPS Bank user

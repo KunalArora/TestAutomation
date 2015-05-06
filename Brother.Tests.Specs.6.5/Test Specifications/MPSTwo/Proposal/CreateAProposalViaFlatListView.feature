@@ -1,4 +1,4 @@
-﻿@TEST @UAT
+﻿@Ignore @TEST @UAT
 Feature: CreateAProposalViaFlatListView
 	In order to create a proposal via flat list view
 	As an MPS Dealer

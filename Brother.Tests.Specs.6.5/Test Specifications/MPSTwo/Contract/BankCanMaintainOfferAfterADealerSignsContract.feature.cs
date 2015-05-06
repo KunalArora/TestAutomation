@@ -20,6 +20,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Contract
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("BankCanMaintainCustomerAfterADealerSignsContract")]
+    [NUnit.Framework.IgnoreAttribute()]
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("TEST")]
     public partial class BankCanMaintainCustomerAfterADealerSignsContractFeature
@@ -36,6 +37,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Contract
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "BankCanMaintainCustomerAfterADealerSignsContract", "In order to fully set-up a contract\r\nAs an MPS Bank user\r\nI want to be able to ma" +
                     "intain a customer after a contract has been signed", ProgrammingLanguage.CSharp, new string[] {
+                        "Ignore",
                         "UAT",
                         "TEST"});
             testRunner.OnFeatureStart(featureInfo);

@@ -20,6 +20,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Contract
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("Proposal - Create a Proposal that will be used for Contract")]
+    [NUnit.Framework.IgnoreAttribute()]
     [NUnit.Framework.CategoryAttribute("TEST")]
     [NUnit.Framework.CategoryAttribute("UAT")]
     public partial class Proposal_CreateAProposalThatWillBeUsedForContractFeature
@@ -35,6 +36,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Contract
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Proposal - Create a Proposal that will be used for Contract", "In order to create a contract \r\nAs an MPS Dealer\r\nI want to create a proposal", ProgrammingLanguage.CSharp, new string[] {
+                        "Ignore",
                         "TEST",
                         "UAT"});
             testRunner.OnFeatureStart(featureInfo);

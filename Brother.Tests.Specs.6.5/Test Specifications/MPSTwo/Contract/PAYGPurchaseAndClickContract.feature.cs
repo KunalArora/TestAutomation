@@ -20,6 +20,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Contract
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("PAYGPurchaseAndClickContract")]
+    [NUnit.Framework.IgnoreAttribute()]
     [NUnit.Framework.CategoryAttribute("TEST")]
     [NUnit.Framework.CategoryAttribute("UAT")]
     public partial class PAYGPurchaseAndClickContractFeature
@@ -37,6 +38,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Contract
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "PAYGPurchaseAndClickContract", "In order to create a PAYG Purchase and Click contract\r\nAs a Dealer I want to be a" +
                     "ble to create a PAYG Purchase and Click proposal and convert the proposal to con" +
                     "tract\r\nSo that I am able provide more value to the different customers", ProgrammingLanguage.CSharp, new string[] {
+                        "Ignore",
                         "TEST",
                         "UAT"});
             testRunner.OnFeatureStart(featureInfo);

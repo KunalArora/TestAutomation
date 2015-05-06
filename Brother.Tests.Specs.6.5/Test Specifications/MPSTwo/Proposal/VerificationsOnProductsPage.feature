@@ -1,4 +1,4 @@
-﻿@UAT @TEST
+﻿@Ignore @UAT @TEST
 Feature: VerificationsOnProductsPage
 	In order to verify that products can be view in flat list mode
 	As a dealer

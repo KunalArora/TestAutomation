@@ -1,4 +1,4 @@
-﻿@TEST @UAT
+﻿@Ignore @TEST @UAT
 Feature: Proposal - Create a Proposal from an existing contact
 	In order to create a contract from an existing contact 
 	As an MPS Dealer

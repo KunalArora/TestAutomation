@@ -1,4 +1,4 @@
-﻿@UAT @TEST
+﻿@Ignore @UAT @TEST
 Feature: VerificationOnClickPricesVolumeMarginChanges
 	In order to make sure that the Javascript around click prices and margin are not broken
 	As a dealer

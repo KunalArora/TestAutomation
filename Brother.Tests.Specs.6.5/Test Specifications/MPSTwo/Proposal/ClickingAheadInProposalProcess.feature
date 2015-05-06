@@ -1,4 +1,5 @@
-﻿Feature: ClickingAheadInProposalCreationProcess
+﻿@Ignore 
+Feature: ClickingAheadInProposalCreationProcess
 	In order to prevent user from proceeding to next page with black fields
 	As an MPS Administrator
 	I want to look down the next tab within proposal process

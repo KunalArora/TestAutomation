@@ -1,4 +1,4 @@
-﻿@TEST @UAT
+﻿@Ignore @TEST @UAT
 Feature: Proposal - Create a Proposal that will be used for Contract
 	In order to create a contract 
 	As an MPS Dealer

@@ -1,4 +1,4 @@
-﻿@TEST @UAT
+﻿@Ignore @TEST @UAT
 Feature: CreatePurchaseAndClickProposal
 	In order to create Purchase and Click contract type
 	As a Dealer I want to be able to create an Purchase and Click proposal

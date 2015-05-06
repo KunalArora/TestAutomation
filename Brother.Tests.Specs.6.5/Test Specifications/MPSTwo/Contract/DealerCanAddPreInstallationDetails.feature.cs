@@ -20,6 +20,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Contract
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("DealerCanAddPreInstallationDetails")]
+    [NUnit.Framework.IgnoreAttribute()]
     [NUnit.Framework.CategoryAttribute("TEST")]
     [NUnit.Framework.CategoryAttribute("UAT")]
     public partial class DealerCanAddPreInstallationDetailsFeature
@@ -36,6 +37,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Contract
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "DealerCanAddPreInstallationDetails", "In order to fully set-up a contract\r\nAs a dealer\r\nI want to be to successfully co" +
                     "mplete the pre-installation detail", ProgrammingLanguage.CSharp, new string[] {
+                        "Ignore",
                         "TEST",
                         "UAT"});
             testRunner.OnFeatureStart(featureInfo);
