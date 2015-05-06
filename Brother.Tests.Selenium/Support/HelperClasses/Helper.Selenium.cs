@@ -451,6 +451,10 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             {
                 MsgOutput(string.Format("Element not found", elementNotFound.Message));
             }
+            catch (WebDriverTimeoutException timeoutException)
+            {
+                MsgOutput(string.Format("Element not found", timeoutException.Message));
+            }
             return element;
         }
 
@@ -471,6 +475,10 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             {
                 MsgOutput(string.Format("Element not found", elementNotFound.Message));
             }
+            catch (WebDriverTimeoutException timeoutException)
+            {
+                MsgOutput(string.Format("Element not found", timeoutException.Message));
+            }
             return element;
         }
 
@@ -489,6 +497,10 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             catch (NoSuchElementException elementNotFound)
             {
                 MsgOutput(string.Format("Element not found", elementNotFound.Message));
+            }
+            catch (WebDriverTimeoutException timeoutException)
+            {
+                MsgOutput(string.Format("Element not found", timeoutException.Message));
             }
             WebDriver.SetPageLoadTimeout(defaultTimeout);
             WebDriver.SetWebDriverImplicitTimeout(implicitTimeout);
@@ -511,6 +523,10 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             catch (NoSuchElementException elementNotFound)
             {
                 MsgOutput(string.Format("Element not found", elementNotFound.Message));
+            }
+            catch (WebDriverTimeoutException timeoutException)
+            {
+                MsgOutput(string.Format("Element not found", timeoutException.Message));
             }
             WebDriver.SetPageLoadTimeout(defaultTimeout);
             WebDriver.SetWebDriverImplicitTimeout(implicitTimeout);
