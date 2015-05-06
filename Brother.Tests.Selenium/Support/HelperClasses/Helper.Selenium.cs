@@ -439,6 +439,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             IWebElement element = null;
             try
             {
+                MsgOutput(string.Format("Looking for Element {0} by Css Selector", elementName));
                 element = FindElementByCssSelector(elementName);
                 if (element == null)
                 {
@@ -458,6 +459,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             IList<IWebElement> element = null;
             try
             {
+                MsgOutput(string.Format("Looking for Elements {0} by Css Selector", elementName));
                 element = FindElementsByCssSelector(elementName);
                 if (element == null)
                 {
@@ -481,6 +483,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             WebDriver.SetWebDriverImplicitTimeout(new TimeSpan(0, 0, 0, timeOut));
             try
             {
+                MsgOutput(string.Format("Looking for Element {0} by Css Selector. Waiting for {1} seconds", elementName, timeOut));
                 element = FindElementByCssSelector(elementName);
             }
             catch (NoSuchElementException elementNotFound)
@@ -502,6 +505,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             WebDriver.SetWebDriverImplicitTimeout(new TimeSpan(0, 0, 0, timeOut));
             try
             {
+                MsgOutput(string.Format("Looking for Elements {0} by Css Selector. Waiting for {1} seconds", elementName, timeOut));
                 element = FindElementsByCssSelector(elementName);
             }
             catch (NoSuchElementException elementNotFound)
