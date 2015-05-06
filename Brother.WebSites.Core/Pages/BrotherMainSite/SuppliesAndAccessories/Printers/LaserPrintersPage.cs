@@ -135,14 +135,14 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.SuppliesAndAccessories.Pri
             //var dynamicLoadIndexLock = Driver.FindElement(By.CssSelector("#dynamic-load-lock"));
             //var lockCount = Convert.ToInt32(dynamicLoadIndexLock.GetAttribute("value"));
 
-            var element = FindElementByCssSelector(".copyright");
+            var element = GetElementByCssSelector(".copyright");
             ScrollToLocation(TestController.CurrentDriver, 0, element.Location.Y);
             WebDriver.Wait(DurationType.Second, 2);
             //var element = FindElementByCssSelector(".footer-container article h3");
             while (!IsElementClickable(element))
             {
                 ScrollToLocation(TestController.CurrentDriver, 0, element.Location.Y);
-                element = FindElementByCssSelector(".copyright");
+                element = GetElementByCssSelector(".copyright");
             }
 
             //ScrollTo(TestController.CurrentDriver, FindElementByCssSelector("#site-footer"));
@@ -173,14 +173,14 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.SuppliesAndAccessories.Pri
                 var dynamicLoadIndex = Driver.FindElement(By.CssSelector("#dynamic-load-index"));
                 for (var pageDown = 0; pageDown < 5; pageDown++)
                 {
-                    ScrollTo(TestController.CurrentDriver, FindElementByCssSelector("#site-footer"));
+                    ScrollTo(TestController.CurrentDriver, GetElementByCssSelector("#site-footer"));
                     dynamicLoadIndex = Driver.FindElement(By.CssSelector("#dynamic-load-index"));
                 }
 
                 while (printerCountReCheck < 10)
                 {
                     //ScrollToLocation(TestController.CurrentDriver, 0, (TestController.CurrentDriver.Manage().Window.Size.Height * 20));
-                    ScrollTo(TestController.CurrentDriver, FindElementByCssSelector("#site-footer"));
+                    ScrollTo(TestController.CurrentDriver, GetElementByCssSelector("#site-footer"));
                     var printers = Driver.FindElements(By.CssSelector(printerList));
                     var indexCount = Convert.ToInt32(dynamicLoadIndex.GetAttribute("value"));
                     if (indexCount == printers.Count)
