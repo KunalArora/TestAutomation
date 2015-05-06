@@ -130,24 +130,19 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.SuppliesAndAccessories.Pri
         public int WaitForPrinterSearchResults()
         {
             MsgOutput("Looking for Laser Printer search results");
-            MsgOutput("Scrolling page to trigger full loading");
-
-            //var dynamicLoadIndexLock = Driver.FindElement(By.CssSelector("#dynamic-load-lock"));
-            //var lockCount = Convert.ToInt32(dynamicLoadIndexLock.GetAttribute("value"));
 
             var element = GetElementByCssSelector(".copyright");
+            MsgOutput("Scrolling page to trigger product listing full load");
             ScrollToLocation(TestController.CurrentDriver, 0, element.Location.Y);
             WebDriver.Wait(DurationType.Second, 2);
-            //var element = FindElementByCssSelector(".footer-container article h3");
             while (!IsElementClickable(element))
             {
+                MsgOutput("Scrolling page further to trigger product listing load");
                 ScrollToLocation(TestController.CurrentDriver, 0, element.Location.Y);
                 element = GetElementByCssSelector(".copyright");
             }
 
-            //ScrollTo(TestController.CurrentDriver, FindElementByCssSelector("#site-footer"));
-            //ScrollTo(TestController.CurrentDriver, FindElementByCssSelector(".copyright"));
-            //AssertElementPresent(FindElementByCssSelector(".copyright"), "Wait for Copyright");
+            MsgOutput("Looking for Product listing results");
             const string resultsElement = "#results";
             if (!WaitForElementToExistByCssSelector(resultsElement, 4, 30)) // 2 mins is long enough
             {
@@ -156,44 +151,38 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.SuppliesAndAccessories.Pri
             }
 
             const string printerList = "#results article";
+            if (!WaitForElementToExistByCssSelector(printerList, 4, 30)) // 2 mins is long enough
+            {
+                MsgOutput(string.Format("Unable to locate [{0}] any printers in the results list", printerList));
+                return 0;
+            }
+
+            MsgOutput("Validating Product Listings");
             try
             {
-                if (!WaitForElementToExistByCssSelector(printerList, 4, 30)) // 2 mins is long enough
-                {
-                    MsgOutput(string.Format("Unable to locate [{0}] any printers in the results list", printerList));
-                    return 0;
-                }
-
                 // get the last printer in the list and move to that last element
                 ReadOnlyCollection<IWebElement> printerArray = null;
 
                 var printerCount = 0;
                 var printerCountReCheck = 0;
 
-                var dynamicLoadIndex = Driver.FindElement(By.CssSelector("#dynamic-load-index"));
+                var dynamicLoadIndex = GetElementByCssSelector("#dynamic-load-index");
                 for (var pageDown = 0; pageDown < 5; pageDown++)
                 {
                     ScrollTo(TestController.CurrentDriver, GetElementByCssSelector("#site-footer"));
-                    dynamicLoadIndex = Driver.FindElement(By.CssSelector("#dynamic-load-index"));
+                    dynamicLoadIndex = GetElementByCssSelector("#dynamic-load-index");
                 }
 
                 while (printerCountReCheck < 10)
                 {
-                    //ScrollToLocation(TestController.CurrentDriver, 0, (TestController.CurrentDriver.Manage().Window.Size.Height * 20));
                     ScrollTo(TestController.CurrentDriver, GetElementByCssSelector("#site-footer"));
-                    var printers = Driver.FindElements(By.CssSelector(printerList));
+                    var printers = GetElementsByCssSelector(printerList);
                     var indexCount = Convert.ToInt32(dynamicLoadIndex.GetAttribute("value"));
                     if (indexCount == printers.Count)
                     {
                         MsgOutput(string.Format("Found {0} {1} laser printers in list", printers.Count, indexCount));
                         return printers.Count;
                     }
-                    //printerCount = printers.Count;
-                    //if (printers.Count > 0)
-                    //{
-                    //    MsgOutput(string.Format("Found {0} {1} laser printers in list", printers.Count, numPrinters));
-                    //    return printers.Count;
-                    //}
                     printerCountReCheck++;
                 }
                 MsgOutput(string.Format("Printer count = {0}. Re-checked for printers {1} times", printerCount, printerCountReCheck));
