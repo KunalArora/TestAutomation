@@ -142,7 +142,7 @@ Scenario: Purchase a product by product number on Brother "Ireland" but click Ca
 	Then I can navigate back to Brother Online home page
 	Then I can sign out of Brother Online
 
-@UAT @TEST 
+@UAT @TEST @ignore
 # Valid Supply code with valid CC details, addresses etc - For UK site
 Scenario Outline: Purchase a new Inkjet Cartridge with valid credit card details
 	Given I am logged onto Brother Online "<Country>" using valid credentials

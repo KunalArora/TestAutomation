@@ -29,7 +29,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         private const string _defaultFirstName = @"Otto";
         private const string _defaultLastName = @"Tiest";
         private const string ProductInfoFile = @"ProductInfo.xml";
-        private const string _supportingFilesLocation = @"\Supporting Files\";
+        private const string _supportingFilesLocation = @"\Brother.Tests.Selenium\Supporting Files\";
         private static string _currentDomain;
 
         public static string CurrentDomain
@@ -294,7 +294,10 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
         private static string GetProductInfoFile()
         {
-            var directoryInfo = Directory.GetParent(Directory.GetCurrentDirectory()).Parent;
+            var info1 = Directory.GetCurrentDirectory();
+            var info2 = Directory.GetDirectoryRoot(Directory.GetCurrentDirectory());
+
+            var directoryInfo = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent;
             if (directoryInfo == null) return String.Empty;
 
             var productInfoFile = directoryInfo.FullName + SupportingFilesLocation + ProductInfoFile;

@@ -1,4 +1,4 @@
-﻿@UAT @TEST @PROD
+﻿@UAT @PROD
 Feature: Correct printer product listings
 	In order to purchase a new Printer
 	As a customer
@@ -28,7 +28,7 @@ Scenarios:
 	| Norway      | printers/all-colour-lasers                                  |
 	| Russia      | printers/laser-printers                                     |
 	| Germany     | drucker/alle-lasergeraete/monolaser                         |
-#	| United Kingdom                               | printers/all-mono-lasers |
+#(specialCase)	| United Kingdom | printers/all-mono-lasers |
 	| Switzerland | drucker/laserdrucker?sc_lang=de-CH                          |
 	| Switzerland | imprimantes/imprimantes-laser?sc_lang=fr-CH                 |
 	| Romania     | printers/laser-printers                                     |

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--Bother Online Production Information Data-->
+<Product SerialNumber="U1T000028">
+  <!--Increments after each use-->
+  <ExtendedWarranty PackType=" " ActivationCode=" ">
+  </ExtendedWarranty>
+  <ValidMasterCardCCDetails Number="5105781454975390" Expiry="12-2015" SecurityCode="132">
+  </ValidMasterCardCCDetails>
+  <InvalidMasterCardCCDetails Number="5450450010000355" Expiry="12-2014" SecurityCode="899">
+  </InvalidMasterCardCCDetails>
+  <ValidVisaCCDetails Number="4006162717519460" Expiry="12-2015" SecurityCode="624">
+  </ValidVisaCCDetails>
+  <InvalidVisaCCDetails Number="4006580940011239" Expiry="12-2014" SecurityCode="644">
+  </InvalidVisaCCDetails>
+ </Product>

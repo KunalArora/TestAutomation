@@ -79,24 +79,26 @@ namespace Brother.Tests.Specs.TestSpecifications.InstantInk
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Validate user has correct role for Instant Ink")]
+        [NUnit.Framework.IgnoreAttribute()]
         public virtual void ValidateUserHasCorrectRoleForInstantInk()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate user has correct role for Instant Ink", ((string[])(null)));
-#line 11
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate user has correct role for Instant Ink", new string[] {
+                        "ignore"});
+#line 12
 this.ScenarioSetup(scenarioInfo);
 #line 7
 this.FeatureBackground();
-#line 12
- testRunner.Given("I cannot see the Instant Ink menu option from the BOL home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 13
- testRunner.Then("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Given("I cannot see the Instant Ink menu option from the BOL home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 14
- testRunner.And("If I grant the user account the \"Extranet\\Brother Online Ink Supply User\" role", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 15
- testRunner.When("I sign back into Brother Online \"United Kingdom\" using the same credentials", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("If I grant the user account the \"Extranet\\Brother Online Ink Supply User\" role", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 16
- testRunner.Then("I can see the Instant Ink menu option from the BOL home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("I sign back into Brother Online \"United Kingdom\" using the same credentials", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 17
+ testRunner.Then("I can see the Instant Ink menu option from the BOL home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 18
  testRunner.Then("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

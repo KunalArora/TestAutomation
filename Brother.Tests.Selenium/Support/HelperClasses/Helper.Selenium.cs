@@ -19,6 +19,19 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
         private const int ElementSearchTimeout = 60;
 
+        public static void AcceptCookieLaw(IWebDriver driver)
+        {
+            try
+            {
+                var acceptCookieLawButton = driver.FindElement(By.CssSelector("#AcceptCookieLawHyperLink"));
+                acceptCookieLawButton.Click();
+            }
+            catch (ElementNotVisibleException elementNotVisible)
+            {
+                MsgOutput(string.Format("AcceptCookieLaw : {0}", elementNotVisible));
+            }
+        }
+        
         /// <summary>
         /// Removes all browser cookies
         /// </summary>
@@ -152,18 +165,18 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             var methodName = System.Reflection.MethodBase.GetCurrentMethod();
             wait.Message = string.Format("{0}:: Timeout of [{1}] seconds trying to locate element {2}", methodName, wait.Timeout, elementSearch);
 
-            Helper.MsgOutput(string.Format("Waiting for text [{0}] to exist on control [{1}]", textToExist, elementSearch));
+            MsgOutput(string.Format("Waiting for text [{0}] to exist on control [{1}]", textToExist, elementSearch));
             wait.IgnoreExceptionTypes(typeof(StaleElementReferenceException));
 
             // we need to reset the Default global timeouts after override
             if (wait.Until(d => d.FindElement(By.CssSelector(elementSearch)).Text.Contains(textToExist)))
             {
                 WebDriver.SetWebDriverDefaultTimeOuts(WebDriver.DefaultTimeOut.Implicit);
-                Helper.MsgOutput(string.Format("Text [{0}] exists on control [{1}]", textToExist, elementSearch));
+                MsgOutput(string.Format("Text [{0}] exists on control [{1}]", textToExist, elementSearch));
                 return true;
             }
             WebDriver.SetWebDriverDefaultTimeOuts(WebDriver.DefaultTimeOut.Implicit);
-            Helper.MsgOutput(string.Format("Text [{0}] DOES NOT exist on control [{1}]", textToExist, elementSearch));
+            MsgOutput(string.Format("Text [{0}] DOES NOT exist on control [{1}]", textToExist, elementSearch));
             return false;
         }
 
@@ -190,12 +203,12 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             }
         }
 
-        protected virtual IList<IWebElement> FindElementsByCssSelector(string elementName)
+        private IList<IWebElement> FindElementsByCssSelector(string elementName)
         {
             return Driver.FindElements(By.CssSelector(elementName));
         }
 
-        protected virtual IWebElement FindElementByCssSelector(string elementName)
+        private IWebElement FindElementByCssSelector(string elementName)
         {
             return Driver.FindElement(By.CssSelector(elementName));
         }
@@ -206,7 +219,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         /// <param name="elementName">Name of the element.</param>
         /// <returns>IWebElement.</returns>
         /// <exception cref="System.NotImplementedException">Not Implemented</exception>
-        protected virtual IWebElement FindElement(string elementName)
+        private IWebElement FindElement(string elementName)
         {
             return Driver.FindElement(By.Name(elementName));
         }
@@ -235,7 +248,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         {
             var action = new Actions(Driver);
             action.MoveToElement(GetElement(elementName)).Build().Perform();
-            Wait(Helper.DurationType.Second, 2);
+            Wait(DurationType.Second, 2);
         }
 
         /// <summary>
@@ -423,23 +436,49 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
         public IWebElement GetElementByCssSelector(string elementName)
         {
-            var element = FindElementByCssSelector(elementName);
-            if (element == null)
+            IWebElement element = null;
+            try
             {
-                throw new SpecFlowSeleniumException("No element named \"" + elementName + "\" have been found in html page. You should check the accessor.");
+                MsgOutput(string.Format("Looking for Element {0} by Css Selector", elementName));
+                element = FindElementByCssSelector(elementName);
+                if (element == null)
+                {
+                    throw new SpecFlowSeleniumException("No element named \"" + elementName +
+                                                        "\" have been found in html page. You should check the accessor.");
+                }
             }
-
+            catch (NoSuchElementException elementNotFound)
+            {
+                MsgOutput(string.Format("Element not found", elementNotFound.Message));
+            }
+            catch (WebDriverTimeoutException timeoutException)
+            {
+                MsgOutput(string.Format("Element not found", timeoutException.Message));
+            }
             return element;
         }
 
         public IList<IWebElement> GetElementsByCssSelector(string elementName)
         {
-            var element = FindElementsByCssSelector(elementName);
-            if (element == null)
+            IList<IWebElement> element = null;
+            try
             {
-                throw new SpecFlowSeleniumException("No element named \"" + elementName + "\" have been found in html page. You should check the accessor.");
+                MsgOutput(string.Format("Looking for Elements {0} by Css Selector", elementName));
+                element = FindElementsByCssSelector(elementName);
+                if (element == null)
+                {
+                    throw new SpecFlowSeleniumException("No element named \"" + elementName +
+                                                        "\" have been found in html page. You should check the accessor.");
+                }
             }
-
+            catch (NoSuchElementException elementNotFound)
+            {
+                MsgOutput(string.Format("Element not found", elementNotFound.Message));
+            }
+            catch (WebDriverTimeoutException timeoutException)
+            {
+                MsgOutput(string.Format("Element not found", timeoutException.Message));
+            }
             return element;
         }
 
@@ -452,11 +491,16 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             WebDriver.SetWebDriverImplicitTimeout(new TimeSpan(0, 0, 0, timeOut));
             try
             {
+                MsgOutput(string.Format("Looking for Element {0} by Css Selector. Waiting for {1} seconds", elementName, timeOut));
                 element = FindElementByCssSelector(elementName);
             }
             catch (NoSuchElementException elementNotFound)
             {
-                Helper.MsgOutput(string.Format("Element not found", elementNotFound.Message));
+                MsgOutput(string.Format("Element not found", elementNotFound.Message));
+            }
+            catch (WebDriverTimeoutException timeoutException)
+            {
+                MsgOutput(string.Format("Element not found", timeoutException.Message));
             }
             WebDriver.SetPageLoadTimeout(defaultTimeout);
             WebDriver.SetWebDriverImplicitTimeout(implicitTimeout);
@@ -473,11 +517,16 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             WebDriver.SetWebDriverImplicitTimeout(new TimeSpan(0, 0, 0, timeOut));
             try
             {
+                MsgOutput(string.Format("Looking for Elements {0} by Css Selector. Waiting for {1} seconds", elementName, timeOut));
                 element = FindElementsByCssSelector(elementName);
             }
             catch (NoSuchElementException elementNotFound)
             {
-                Helper.MsgOutput(string.Format("Element not found", elementNotFound.Message));
+                MsgOutput(string.Format("Element not found", elementNotFound.Message));
+            }
+            catch (WebDriverTimeoutException timeoutException)
+            {
+                MsgOutput(string.Format("Element not found", timeoutException.Message));
             }
             WebDriver.SetPageLoadTimeout(defaultTimeout);
             WebDriver.SetWebDriverImplicitTimeout(implicitTimeout);
@@ -571,10 +620,10 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             }
             catch (StaleElementReferenceException staleElement)
             {
-                Helper.MsgOutput("ERROR: Locating element", staleElement.Message);
+                MsgOutput("ERROR: Locating element", staleElement.Message);
                 if (staleElement.InnerException != null)
                 {
-                    Helper.MsgOutput("Inner exception was ", staleElement.InnerException.Message);
+                    MsgOutput("Inner exception was ", staleElement.InnerException.Message);
                 }
                 TestCheck.AssertFailTest(string.Format("Stale element detected [{0}]",staleElement.Message));
             }
@@ -617,7 +666,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             }
             catch (NoAlertPresentException noAlertPresent)
             {
-                Helper.MsgOutput("This page does not have any alerts present", noAlertPresent.Message);
+                MsgOutput("This page does not have any alerts present", noAlertPresent.Message);
             }
         }
 
@@ -635,7 +684,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             }
             catch (NotFoundException notFoundException)
             {
-                Helper.MsgOutput(notFoundException.Message);
+                MsgOutput(notFoundException.Message);
             }
             return null;
         }
@@ -645,6 +694,28 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             var control = GetFieldControl(field);
 
             return control.GetAttribute("value");
+        }
+
+        public static bool IsElementClickable(IWebElement element)
+        {
+            try
+            {
+                MoveToElement(TestController.CurrentDriver, element);
+                element.Click();
+            }
+            catch (InvalidOperationException elementNotClickable)
+            {
+                MsgOutput(elementNotClickable.Message);
+                MsgOutput(string.Format("Element was not clickable on screen at location {0} {1}", element.Location.X, element.Location.Y));
+                return false;
+            }
+            catch (ElementNotVisibleException elementNotVisible)
+            {
+                MsgOutput(elementNotVisible.Message);
+                MsgOutput(string.Format("Element was not clickable on screen at location {0} {1}", element.Location.X, element.Location.Y));
+                return false;
+            }
+            return true;
         }
 
         public static bool IsElementPresent(IWebElement element)
@@ -791,7 +862,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             AssertElementPresent(element, elementDescription);
             var actualtext = element.Text;
             if (actualtext.Contains(expectedValue)) return true;
-            MsgOutput(String.Format("ElementContainsText Failed: Value for '{0}' did not contain expected value. Expected: [{1}], Actual: [{2}]", elementDescription, expectedValue, actualtext));
+            MsgOutput(string.Format("ElementContainsText Failed: Value for '{0}' did not contain expected value. Expected: [{1}], Actual: [{2}]", elementDescription, expectedValue, actualtext));
             return false;
         }
 

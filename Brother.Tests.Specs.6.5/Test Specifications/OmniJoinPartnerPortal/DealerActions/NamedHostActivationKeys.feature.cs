@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Brother.Tests.Specs.TestSpecifications.OmniJoinPartnerPortal
+namespace Brother.Tests.Specs.TestSpecifications.OmniJoinPartnerPortal.DealerActions
 {
     using TechTalk.SpecFlow;
     
@@ -19,23 +19,23 @@ namespace Brother.Tests.Specs.TestSpecifications.OmniJoinPartnerPortal
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.9.0.77")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Dealer Actions - OmniJoin subscriptions")]
+    [NUnit.Framework.DescriptionAttribute("Named Host Activation Keys")]
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("TEST")]
-    public partial class DealerActions_OmniJoinSubscriptionsFeature
+    public partial class NamedHostActivationKeysFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "DealerActions.feature"
+#line 1 "NamedHostActivationKeys.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Dealer Actions - OmniJoin subscriptions", "In order to Manage my OmniJoin customers\r\nAs a dealer\r\nI want to be able to perfo" +
-                    "rm certain actions", ProgrammingLanguage.CSharp, new string[] {
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Named Host Activation Keys", "In order for Customers to use OmniJoin using Named Host licenses\r\nAs a dealer\r\nI " +
+                    "want to be able to purchase Named Host Licenses for different OmniJoin Plans", ProgrammingLanguage.CSharp, new string[] {
                         "UAT",
                         "TEST"});
             testRunner.OnFeatureStart(featureInfo);

@@ -1,4 +1,5 @@
-﻿using Brother.Tests.Selenium.Lib.Support;
+﻿using System;
+using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.BrotherMainSite;
 using Brother.WebSites.Core.Pages.BrotherOnline.Account;
@@ -26,7 +27,7 @@ namespace Brother.WebSites.Core.Pages.Base
             driver = SetDriver(driver);
             baseUrl = ProcessUrlLocale(baseUrl);
             baseUrl = ProcessMainSiteLiveUrl(baseUrl);
-            baseUrl = Helper.CheckForCdServer(baseUrl);
+            baseUrl = CheckForCdServer(baseUrl);
             NavigateToPage(driver, baseUrl.TrimEnd(new char[] { '/' }) + WebConferencingHomePage.URL);
             return GetInstance<WebConferencingHomePage>(driver, baseUrl, "");
         }
@@ -38,7 +39,7 @@ namespace Brother.WebSites.Core.Pages.Base
             driver = SetDriver(driver);
             baseUrl = ProcessUrlLocale(baseUrl);
             baseUrl = ProcessMainSiteLiveUrl(baseUrl);
-            baseUrl = Helper.CheckForCdServer(baseUrl);
+            baseUrl = CheckForCdServer(baseUrl);
             NavigateToPage(driver, baseUrl.TrimEnd(new char[] { '/' }));
             return GetInstance<MainSiteHomePage>(driver, baseUrl, "");
         }
@@ -86,7 +87,7 @@ namespace Brother.WebSites.Core.Pages.Base
         public static RegistrationPage ValidateBrotherOnlineEmailConfirmationUrl(IWebDriver driver, string baseUrl)
         {
             driver = SetDriver(driver);
-            baseUrl = Helper.CheckForCdServer(baseUrl);
+            baseUrl = CheckForCdServer(baseUrl);
             NavigateToPage(driver, baseUrl.TrimEnd(new char[] { '/' }));
             return GetInstance<RegistrationPage>(driver, baseUrl, "");
         }
@@ -99,8 +100,8 @@ namespace Brother.WebSites.Core.Pages.Base
         {
             driver = SetDriver(driver);
             baseUrl = ProcessUrlLocale(baseUrl);
-            baseUrl = Helper.CheckForCdServer(baseUrl);
-            Helper.CurrentDomain = baseUrl;
+            baseUrl = CheckForCdServer(baseUrl);
+            CurrentDomain = baseUrl;
             NavigateToPage(driver, baseUrl.TrimEnd(new char[] { '/' }) + MainSiteHomePage.Url);
             return GetInstance<HomePage>(driver, baseUrl, defaultTitleOverride);
         }
@@ -125,8 +126,8 @@ namespace Brother.WebSites.Core.Pages.Base
                     }
                 }
             }
-            baseUrl = Helper.CheckForCdServer(baseUrl);
-            Helper.CurrentDomain = baseUrl;
+            baseUrl = CheckForCdServer(baseUrl);
+            CurrentDomain = baseUrl;
             NavigateToPage(driver, baseUrl.TrimEnd(new char[] { '/' }));
             return GetInstance<RegistrationPage>(driver, baseUrl, "");
         }
@@ -137,7 +138,7 @@ namespace Brother.WebSites.Core.Pages.Base
         public static CreditCardDetailsPage LoadCreditCardDetailsFrame(IWebDriver driver)
         {
             driver = SetDriver(driver);
-            Helper.MsgOutput("Loading Credit Card details frame");
+            MsgOutput("Loading Credit Card details frame");
             return GetIFrameInstance<CreditCardDetailsPage>(driver, "", "");
         }
         #endregion
@@ -152,17 +153,35 @@ namespace Brother.WebSites.Core.Pages.Base
 
         private static void NavigateToPage(IWebDriver driver, string url)
         {
-            Helper.MsgOutput("Attempting to navigate to page ", url);
-            driver.Navigate().GoToUrl(url);
+            try
+            {
+                MsgOutput("Attempting to navigate to page ", url);
+                driver.Navigate().GoToUrl(url);
+                AcceptCookieLaw(driver);
+            }
+            catch (WebDriverException driverException)
+            {
+                MsgOutput(string.Format("Web Driver Critcal Error!!!! {0}", driverException.Message));
+                MsgOutput(string.Format("Likelhood that WebDriver could not get to the URL {0}", url));
+            }
         }
 
         private static void NavigateToPage(IWebDriver driver, string url, bool doRefresh)
         {
-            Helper.MsgOutput("Attempting to navigate to page ", url);
-            driver.Navigate().GoToUrl(url);
-            if (doRefresh)
+            try
             {
-                driver.Navigate().Refresh();
+                MsgOutput("Attempting to navigate to page ", url);
+                driver.Navigate().GoToUrl(url);
+                if (doRefresh)
+                {
+                    driver.Navigate().Refresh();
+                }
+                AcceptCookieLaw(driver);
+            }
+            catch (WebDriverException driverException)
+            {
+                MsgOutput(string.Format("Web Driver Critcal Error!!!! {0}", driverException.Message));
+                MsgOutput(string.Format("Likelhood that WebDriver could not get to the URL {0}", url));
             }
         }
     }
