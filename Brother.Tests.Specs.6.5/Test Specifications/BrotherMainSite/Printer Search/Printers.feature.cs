@@ -73,25 +73,15 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherMainSite.PrinterSearch
         [NUnit.Framework.DescriptionAttribute("View the list of available Laser Printers on Brother Main sites for languages exc" +
             "ept Spain and Portugal")]
         [NUnit.Framework.CategoryAttribute("SMOKE")]
-        [NUnit.Framework.TestCaseAttribute("Belgium", "brother-printers/laser-printers?sc_lang=nl-BE", null)]
-        [NUnit.Framework.TestCaseAttribute("Belgium", "imprimantes/imprimantes-laser?sc_lang=fr-BE", null)]
         [NUnit.Framework.TestCaseAttribute("Czech", "printers/laser-printers", null)]
-        [NUnit.Framework.TestCaseAttribute("Denmark", "printers/all-colour-lasers", null)]
         [NUnit.Framework.TestCaseAttribute("Finland", "printers/laser-printers", null)]
         [NUnit.Framework.TestCaseAttribute("France", "imprimantes/imprimantes-multifonctions/multifonctions-laser", null)]
-        [NUnit.Framework.TestCaseAttribute("Germany", "drucker/alle-lasergeraete/monolaser", null)]
         [NUnit.Framework.TestCaseAttribute("Hungary", "printers/laser-printers", null)]
         [NUnit.Framework.TestCaseAttribute("Ireland", "printers/laser-printers", null)]
-        [NUnit.Framework.TestCaseAttribute("Netherlands", "printers/laserprinters", null)]
-        [NUnit.Framework.TestCaseAttribute("Norway", "printers/all-colour-lasers", null)]
         [NUnit.Framework.TestCaseAttribute("Poland", "printers/laser-printers", null)]
         [NUnit.Framework.TestCaseAttribute("Romania", "printers/laser-printers", null)]
-        [NUnit.Framework.TestCaseAttribute("Russia", "printers/laser-printers", null)]
         [NUnit.Framework.TestCaseAttribute("Slovakia", "printers/laser-printers", null)]
         [NUnit.Framework.TestCaseAttribute("Slovenia", "printers/laser-printers", null)]
-        [NUnit.Framework.TestCaseAttribute("Switzerland", "drucker/laserdrucker?sc_lang=de-CH", null)]
-        [NUnit.Framework.TestCaseAttribute("Switzerland", "imprimantes/imprimantes-laser?sc_lang=fr-CH", null)]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "printers/all-mono-lasers", null)]
         public virtual void ViewTheListOfAvailableLaserPrintersOnBrotherMainSitesForLanguagesExceptSpainAndPortugal(string country, string site, string[] exampleTags)
         {
             string[] @__tags = new string[] {

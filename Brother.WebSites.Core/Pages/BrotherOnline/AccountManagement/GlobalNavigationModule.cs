@@ -193,11 +193,16 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
                 var language = url.Split('=');
 
                 // set the language for the site
-                TestController.CurrentDriver.Navigate()
-                    .GoToUrl(string.Format("{0}?sc_lang={1}", currentUrl, language[1]));
-            } 
-            var newUrl = string.Format("{0}{1}", currentUrl, url);
-            TestController.CurrentDriver.Navigate().GoToUrl(newUrl);
+                TestController.CurrentDriver.Navigate().GoToUrl(string.Format("{0}?sc_lang={1}", currentUrl, language[1]));
+            }
+            else
+            {
+                var newUrl = string.Format("{0}{1}", currentUrl, url);
+                TestController.CurrentDriver.Navigate().GoToUrl(newUrl);
+            }
+            //var newUrl = string.Format("{0}{1}", currentUrl, url);
+            //TestController.CurrentDriver.Navigate().GoToUrl(newUrl);
+
             return GetInstance<LaserPrintersPage>(driver, "", "");
         }
 
