@@ -78,6 +78,7 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherMainSite.PrinterSearch
         [NUnit.Framework.TestCaseAttribute("France", "imprimantes/imprimantes-multifonctions/multifonctions-laser", null)]
         [NUnit.Framework.TestCaseAttribute("Hungary", "printers/laser-printers", null)]
         [NUnit.Framework.TestCaseAttribute("Ireland", "printers/laser-printers", null)]
+        [NUnit.Framework.TestCaseAttribute("Netherlands", "printers/laserprinters", null)]
         [NUnit.Framework.TestCaseAttribute("Poland", "printers/laser-printers", null)]
         [NUnit.Framework.TestCaseAttribute("Romania", "printers/laser-printers", null)]
         [NUnit.Framework.TestCaseAttribute("Slovakia", "printers/laser-printers", null)]
