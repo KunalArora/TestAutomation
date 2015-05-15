@@ -61,7 +61,7 @@ Scenario: Customer or Dealer role persists after email address change (BOL-176)
 
 # Create an account and sign in, change registered email address and sign out, re-sign in again using new address
 @TEST @UAT @PROD
-Scenario: Customer can change their Brother Online UK email address after registration (BOL-176)
+Scenario: Customer can change their Brother Online UK email address after registration 
 	Given I am logged into my Brother Online account
 	When I navigate to my account for "United Kingdom"
 	And I click on Sign In Details
@@ -77,7 +77,7 @@ Scenario: Customer can change their Brother Online UK email address after regist
 
 # Create an account and sign in, change registered email address and sign out, re-sign in again using new address
 @TEST @UAT @PROD @ignore
-Scenario: Customer can change their Brother Online Ireland email address after registration (BOL-176)
+Scenario: Customer can change their Brother Online Ireland email address after registration 
 	Given I am logged into my Brother Online account
 	When I navigate to my account for "Ireland"
 	And I click on Sign In Details
