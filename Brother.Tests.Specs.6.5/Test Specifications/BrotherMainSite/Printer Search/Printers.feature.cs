@@ -81,6 +81,7 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherMainSite.PrinterSearch
         [NUnit.Framework.TestCaseAttribute("Netherlands", "printers/laserprinters", null)]
         [NUnit.Framework.TestCaseAttribute("Poland", "printers/laser-printers", null)]
         [NUnit.Framework.TestCaseAttribute("Romania", "printers/laser-printers", null)]
+        [NUnit.Framework.TestCaseAttribute("Russia", "printers/laser-printers", null)]
         [NUnit.Framework.TestCaseAttribute("Slovakia", "printers/laser-printers", null)]
         [NUnit.Framework.TestCaseAttribute("Slovenia", "printers/laser-printers", null)]
         public virtual void ViewTheListOfAvailableLaserPrintersOnBrotherMainSitesForLanguagesExceptSpainAndPortugal(string country, string site, string[] exampleTags)

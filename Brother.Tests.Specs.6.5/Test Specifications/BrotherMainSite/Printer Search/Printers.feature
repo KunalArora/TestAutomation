@@ -26,7 +26,7 @@ Scenarios:
 #	| Norway         | printers/all-colour-lasers                                  |
 	| Poland         | printers/laser-printers                                     |
 	| Romania        | printers/laser-printers                                     |
-#	| Russia         | printers/laser-printers                                     |
+	| Russia         | printers/laser-printers                                     |
 	| Slovakia       | printers/laser-printers                                     |
 	| Slovenia       | printers/laser-printers                                     |
 #	| Switzerland    | drucker/laserdrucker?sc_lang=de-CH                          |
