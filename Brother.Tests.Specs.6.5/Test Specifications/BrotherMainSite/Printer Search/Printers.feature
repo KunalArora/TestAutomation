@@ -22,7 +22,7 @@ Scenarios:
 #	| Germany        | drucker/alle-lasergeraete/monolaser                         |
 	| Hungary        | printers/laser-printers                                     |
 	| Ireland        | printers/laser-printers                                     |
-#	| Netherlands    | printers/laser-printers                                     |
+	| Netherlands    | printers/laser-printers                                     |
 #	| Norway         | printers/all-colour-lasers                                  |
 	| Poland         | printers/laser-printers                                     |
 	| Romania        | printers/laser-printers                                     |
