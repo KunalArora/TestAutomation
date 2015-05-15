@@ -216,15 +216,13 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Customer can change their Brother Online UK email address after registration (BOL" +
-            "-176)")]
+        [NUnit.Framework.DescriptionAttribute("Customer can change their Brother Online UK email address after registration")]
         [NUnit.Framework.CategoryAttribute("TEST")]
         [NUnit.Framework.CategoryAttribute("UAT")]
         [NUnit.Framework.CategoryAttribute("PROD")]
-        public virtual void CustomerCanChangeTheirBrotherOnlineUKEmailAddressAfterRegistrationBOL_176()
+        public virtual void CustomerCanChangeTheirBrotherOnlineUKEmailAddressAfterRegistration()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer can change their Brother Online UK email address after registration (BOL" +
-                    "-176)", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer can change their Brother Online UK email address after registration", new string[] {
                         "TEST",
                         "UAT",
                         "PROD"});
@@ -262,15 +260,15 @@ this.FeatureBackground();
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Customer can change their Brother Online Ireland email address after registration" +
-            " (BOL-176)")]
+            "")]
         [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.CategoryAttribute("TEST")]
         [NUnit.Framework.CategoryAttribute("UAT")]
         [NUnit.Framework.CategoryAttribute("PROD")]
-        public virtual void CustomerCanChangeTheirBrotherOnlineIrelandEmailAddressAfterRegistrationBOL_176()
+        public virtual void CustomerCanChangeTheirBrotherOnlineIrelandEmailAddressAfterRegistration()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer can change their Brother Online Ireland email address after registration" +
-                    " (BOL-176)", new string[] {
+                    "", new string[] {
                         "TEST",
                         "UAT",
                         "PROD",
