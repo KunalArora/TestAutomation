@@ -488,7 +488,7 @@
     </None>
     <None Include="Test Specifications\MPSTwo\Proposal\VerificationOnClickPricesVolumeMarginChanges.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>VerificationOnClickPricesVolumeMarginChanges.feature.cs</LastGenOutput>
+      <LastGenOutput>VerificationOnClickPricesVolumeMarginChanges1.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwo\Proposal\VerificationsOnProductsPage.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
