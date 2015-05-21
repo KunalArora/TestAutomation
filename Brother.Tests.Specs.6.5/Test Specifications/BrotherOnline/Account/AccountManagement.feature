@@ -69,10 +69,12 @@ Scenario: Customer can change their Brother Online UK email address after regist
 	And If I enter the current password for email change
 	And I click on Update details
 	Then I can verify the email change occurred
-	And If I validate the new changes via email
-	Then I can validate the update was successful
+	When I validate the new changes via email
 	And I can sign out of Brother Online
 	Then If I sign back into Brother Online "United Kingdom" using the same credentials
+	When I navigate to my account for "United Kingdom"
+	And I click on Sign In Details
+	Then I can validate the update was successful
 	Then I can sign out of Brother Online
 
 # Create an account and sign in, change registered email address and sign out, re-sign in again using new address

@@ -63,8 +63,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PAYGPurchaseAndClickContract.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Proposal\ProductPageByShimada.feature.cs">
-      <DependentUpon>ProductPageByShimada.feature</DependentUpon>
+    <Compile Include="Test Specifications\MPSTwo\Proposal\VerificationOnProductScreenVariations.feature.cs">
+      <DependentUpon>VerificationOnProductScreenVariations.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -459,9 +459,9 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CompletedFieldsAreReadOnlyInConversionMode.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Proposal\ProductPageByShimada.feature">
+    <None Include="Test Specifications\MPSTwo\Proposal\VerificationOnProductScreenVariations.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>ProductPageByShimada.feature.cs</LastGenOutput>
+      <LastGenOutput>VerificationOnProductScreenVariations.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwo\Proposal\CreateAProposalViaFlatListView.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
@@ -497,7 +497,7 @@
     </None>
     <None Include="Test Specifications\MPSTwo\Proposal\VerificationOnClickPricesVolumeMarginChanges.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>VerificationOnClickPricesVolumeMarginChanges.feature.cs</LastGenOutput>
+      <LastGenOutput>VerificationOnClickPricesVolumeMarginChanges1.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwo\Proposal\VerificationsOnProductsPage.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

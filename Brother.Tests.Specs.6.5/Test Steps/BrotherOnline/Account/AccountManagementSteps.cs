@@ -140,7 +140,9 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [When(@"If I enter a new email address ""(.*)""")]
         public void ThenIfIEnterANewEmailAddress(string emailAddressPrefix)
         {
-            CurrentPage.As<MySignInDetailsPage>().EnterEmailAddress(string.Format("{0}{1}", emailAddressPrefix, Email.RegistrationEmailAddress));
+            var newEmailAddress = string.Format("{0}{1}", emailAddressPrefix, Email.RegistrationEmailAddress);
+            CurrentPage.As<MySignInDetailsPage>().EnterEmailAddress(newEmailAddress);
+            Email.RegistrationEmailAddress = newEmailAddress;
         }
 
         [Then(@"If I enter the current password for email change")]
