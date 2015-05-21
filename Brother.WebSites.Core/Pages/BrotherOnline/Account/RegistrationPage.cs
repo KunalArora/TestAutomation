@@ -2,6 +2,7 @@
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
+using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
@@ -63,7 +64,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         [FindsBy(How = How.Id, Using = "BusinessAccountNoRadioButton")]
         public IWebElement DoNotUseMyAccountForBusinessCheckbox;
-        
+
         [FindsBy(How = How.Id, Using = "BusinessAccountYesRadioButton")]
         public IWebElement UseMyAccountForBusinessCheckbox;
 
@@ -78,7 +79,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         [FindsBy(How = How.CssSelector, Using = ".forgotten-password-link[href]")]
         public IWebElement ResetPasswordLink;
-        
+
         [FindsBy(How = How.CssSelector, Using = "#EmailTextBox")]
         public IWebElement EmailAddressPasswordResetTextBox;
 
@@ -186,7 +187,20 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             return GetInstance<WelcomeBackPage>(Driver, BasePage.BaseUrl, title);
         }
 
-        public RegistrationPage ClickSignUpButton()
+        public DealerDashBoardPage SignInButtonToDealerDashboard(string country)
+        {
+            ScrollTo(SignInButton);
+            SignInButton.Click();
+            // added for Firefox HTTPS warning
+            if (IsFireFoxBrowser())
+            {
+                DismissAlert();
+            }
+            var title = HomePage.WelcomePageCountryTitle(country);
+            return GetInstance<DealerDashBoardPage>(Driver, BasePage.BaseUrl, title);
+        }
+
+    public RegistrationPage ClickSignUpButton()
         {
             ScrollTo(CreateYourAccountButton);
             CreateYourAccountButton.Click();

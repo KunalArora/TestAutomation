@@ -63,6 +63,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PAYGPurchaseAndClickContract.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\MPSTwo\Proposal\VerificationOnProductScreenVariations.feature.cs">
+      <DependentUpon>VerificationOnProductScreenVariations.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Test Steps\Global\GlobalSteps.cs" />
     <Compile Include="Test Specifications\BrotherMainSite\Printer Search\Printers.feature.cs">
       <AutoGen>True</AutoGen>
@@ -453,6 +458,10 @@
     <None Include="Test Specifications\MPSTwo\Proposal\CompletedFieldsAreReadOnlyInConversionMode.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CompletedFieldsAreReadOnlyInConversionMode.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwo\Proposal\VerificationOnProductScreenVariations.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>VerificationOnProductScreenVariations.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwo\Proposal\CreateAProposalViaFlatListView.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

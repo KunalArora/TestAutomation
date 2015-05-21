@@ -85,6 +85,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private IWebElement PayPerClickBillingElement;
         [FindsBy(How = How.Id, Using = "content_1_InputUsageType_Input")]
         private IWebElement UsageTypeElement;
+        [FindsBy(How = How.Id, Using = "content_1_InputPriceHardware_Input")]
+        private IWebElement PriceHardwareElement;        
         [FindsBy(How = How.Id, Using = "content_1_ComponentIntroductionAlert")]
         private IWebElement TermAndTypeScreenTextElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-alert")]
@@ -613,7 +615,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             EnterPropertyArea();
             EnterPropertyTown();
             EnterPropertyPostCode();
-            SelectRegionFromDropdown("Niedersachsen");
+            SelectRegionFromDropdown("Greater Manchester");
         }
 
 
@@ -784,6 +786,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             OrderConsumableElement.Click();
         }
 
+        public void TickPriceHardware()
+        {
+            if (PriceHardwareElement.Selected) return;
+        }
+
         public void SelectContractLength(string length)
         {
             SelectFromDropdown(ContractLengthElement, length);
@@ -811,7 +818,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetElementByCssSelector(flatItemsIdentifier, 10);
         }
 
-        private void ClickOnAPrinter(string printer)
+        public void ClickOnAPrinter(string printer)
         {
            SpecFlow.SetContext("InitialProductPageText", ProductsScreenAlertElement.Text);
 
@@ -833,6 +840,30 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             printerClickable.Click();
             WebDriver.Wait(Helper.DurationType.Second, 5);
 
+        }
+
+        private IWebElement FullDeviceScreenElement()
+        {
+            const string element = ".js-mps-product-configuration[data-price-hardware=\"true\"]";
+
+            return GetElementByCssSelector(element);
+        }
+
+        public void IsFullDeviceScreenDisplayed()
+        {
+            AssertElementPresent(FullDeviceScreenElement(), "Full device screen is not displayed");
+        }
+
+        private IWebElement ReducedDeviceScreenElement()
+        {
+            const string element = ".js-mps-product-configuration[data-price-hardware=\"false\"]";
+
+            return GetElementByCssSelector(element);
+        }
+
+        public void IsReducedDeviceScreenDisplayed()
+        {
+            AssertElementPresent(ReducedDeviceScreenElement(), "Reduced device screen is not displayed");
         }
 
 
