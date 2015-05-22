@@ -390,8 +390,9 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         public void WhenISignInAsA(string role, string country)
         {
             SignInAsARoleType(role);
-            WhenIClickOnSignIn(country);
-            CurrentPage.As<WelcomeBackPage>().ClickOnManagedPrintServices("print");
+            //WhenIClickOnSignIn(country);
+            NextPage = CurrentPage.As<RegistrationPage>().SignInButtonToDealerDashboard(country);
+            //CurrentPage.As<WelcomeBackPage>().ClickOnManagedPrintServices("print");
         }
 
         private void SignInAsARoleType(string role)
@@ -418,7 +419,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
                 }
                 case "Cloud MPS Dealer":
                 {
-                    WhenIEnterAValidEmailAddress("mpsdealer_de_automation@mailinator.com");
+                    WhenIEnterAValidEmailAddress("mpsdealer_uk_automation@mailinator.com");
                     WhenIEnterAValidPassword("P@$$w0rd");
                     break;
                 }
