@@ -20,8 +20,7 @@ namespace Brother.Tests.Specs.TestSpecifications.SmartSupply
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("")]
-    [NUnit.Framework.CategoryAttribute("TEST")]
-    [NUnit.Framework.CategoryAttribute("UAT")]
+    [NUnit.Framework.IgnoreAttribute()]
     public partial class Feature
     {
         
@@ -36,8 +35,7 @@ namespace Brother.Tests.Specs.TestSpecifications.SmartSupply
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "", "In order to view the Supply Club benefits\nAs an anonymous user\nI need to add the " +
                     "supply club product to basket and see the club product benefits", ProgrammingLanguage.CSharp, new string[] {
-                        "TEST",
-                        "UAT"});
+                        "ignore"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -71,9 +69,11 @@ namespace Brother.Tests.Specs.TestSpecifications.SmartSupply
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("View Brother Supply Club product benefits")]
+        [NUnit.Framework.IgnoreAttribute()]
         public virtual void ViewBrotherSupplyClubProductBenefits()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("View Brother Supply Club product benefits", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("View Brother Supply Club product benefits", new string[] {
+                        "ignore"});
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line 9
