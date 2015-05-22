@@ -67,6 +67,7 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Pages\BrotherMainSite\Smart Supply\SmartSupplyProductPage.cs" />
     <Compile Include="Pages\BrotherMainSite\SuppliesAndAccessories\InkJetCartridgePage.cs" />
     <Compile Include="Pages\BrotherMainSite\SuppliesAndAccessories\OriginalSuppliesPage.cs" />
     <Compile Include="Pages\BrotherMainSite\SuppliesAndAccessories\Printers\AllInOnePrintersPage.cs" />

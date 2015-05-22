@@ -21,7 +21,7 @@ namespace Brother.Tests.Specs
        [Given(@"that I have an Ink Supply role to my Bol account")]
         public void GivenThatIHaveAnInkSupplyRoleToMyBolAccount()
         {
-          var menuItem = GlobalNavigationModule.GetProductNavigationMenu("Ink Supply");
+            var menuItem = GlobalNavigationModule.GetProductNavigationMenu("InstantInk");
         }
 
         
@@ -30,7 +30,7 @@ namespace Brother.Tests.Specs
         public void ThenICanSeeTheInkSupplyMenuOptionFromTheBolHomePage()
         {
             var menuItem = GlobalNavigationModule.GetProductNavigationMenu("InstantInk");
-            TestCheck.AssertIsNotEqual(null, menuItem, "Is Instant Ink menu present");
+            TestCheck.AssertIsNotNull(menuItem, "Is Instant Ink menu present");
         }
 
 
@@ -42,6 +42,7 @@ namespace Brother.Tests.Specs
         {
             var menuItem = GlobalNavigationModule.GetProductNavigationMenu("InstantInk");
             menuItem.Click();
+
             //CurrentPage.As<WelcomeBackPage>().IsInkDevicePropertiesContainerAvailable();
             //CurrentPage.As<WelcomeBackPage>().VerifyInkDeviceName("MFC-J5720DW");
             //IList<IWebElement> element = RegistrationPage.InkStatusSummaryListElementAvailable();

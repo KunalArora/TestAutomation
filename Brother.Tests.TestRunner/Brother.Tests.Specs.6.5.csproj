@@ -63,10 +63,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PAYGPurchaseAndClickContract.feature</DependentUpon>
     </Compile>
+<<<<<<< HEAD
+    <Compile Include="Test Specifications\Smart Supply\BrotherSupplyClubProductBenefits.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BrotherSupplyClubProductBenefits.feature</DependentUpon>
+=======
     <Compile Include="Test Specifications\MPSTwo\Proposal\VerificationOnProductScreenVariations.feature.cs">
       <DependentUpon>VerificationOnProductScreenVariations.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+>>>>>>> c0e84fa2c1e9cdbd8e3d7a68f0f65387554bb6a5
     </Compile>
     <Compile Include="Test Steps\Global\GlobalSteps.cs" />
     <Compile Include="Test Specifications\BrotherMainSite\Printer Search\Printers.feature.cs">
@@ -328,6 +335,7 @@
     <Compile Include="Test Steps\OmniJoin\Plans\ManagePlanSteps.cs" />
     <Compile Include="Test Steps\OmniJoin\Plans\PurchasePlansSteps.cs" />
     <Compile Include="Test Steps\OmniJoin\WebConferencingHomePageSteps.cs" />
+    <Compile Include="Test Steps\Smart Supply\BrotherSupplyClubProductBenefitsSteps.cs" />
     <Compile Include="Test Steps\ThirdPartyProductsSteps.cs" />
     <Compile Include="Test Steps\tmpScratchSteps.cs" />
     <Compile Include="tmpScratch\TestTmpTest.feature.cs">
@@ -526,6 +534,10 @@
     <None Include="Test Specifications\OmniJoin\PurchasePlans.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>PurchasePlans.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\Smart Supply\BrotherSupplyClubProductBenefits.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>BrotherSupplyClubProductBenefits.feature.cs</LastGenOutput>
     </None>
     <None Include="tmpScratch\TestTmpTest.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

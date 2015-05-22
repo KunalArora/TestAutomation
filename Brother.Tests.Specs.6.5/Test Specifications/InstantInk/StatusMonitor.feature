@@ -10,7 +10,7 @@ Create an account on BOL and add Ink Supply user role to it
  #Given I am logged onto BOL
  Given I am logged onto Brother Online "United Kingdom" using valid credentials	
 
-@ignore
+@TEST
 Scenario:Validate when clicking on "Status Monitor" the user should be able to see what device have been set up against "Brother Ink Supply"
     Given I have been granted the user account with the "Extranet\Brother Online Ink Supply User" role	
 	#Given that I have an Ink Supply role to my Bol account
@@ -18,7 +18,7 @@ Scenario:Validate when clicking on "Status Monitor" the user should be able to s
 	Then I can see the Ink Supply menu option from the Bol home page
 	And Ink Supply is clicked
     Then I can see the Ink Supply Status Monitor button
-	When I click on the Status Monitor
+	When I click on Status Monitor
 	Then I can see the Status Monitor page
 	#When there is an online connected device
 	#Then device name should be displayed 
