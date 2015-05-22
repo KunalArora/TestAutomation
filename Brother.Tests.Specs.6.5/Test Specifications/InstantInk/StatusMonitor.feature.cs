@@ -80,12 +80,12 @@ namespace Brother.Tests.Specs.TestSpecifications.InstantInk
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Validate when clicking on \"Status Monitor\" the user should be able to see what de" +
             "vice have been set up against \"Brother Ink Supply\"")]
-        [NUnit.Framework.IgnoreAttribute()]
+        [NUnit.Framework.CategoryAttribute("TEST")]
         public virtual void ValidateWhenClickingOnStatusMonitorTheUserShouldBeAbleToSeeWhatDeviceHaveBeenSetUpAgainstBrotherInkSupply()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate when clicking on \"Status Monitor\" the user should be able to see what de" +
                     "vice have been set up against \"Brother Ink Supply\"", new string[] {
-                        "ignore"});
+                        "TEST"});
 #line 14
 this.ScenarioSetup(scenarioInfo);
 #line 8
@@ -102,7 +102,7 @@ this.FeatureBackground();
 #line 20
     testRunner.Then("I can see the Ink Supply Status Monitor button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 21
- testRunner.When("I click on the Status Monitor", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I click on Status Monitor", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 22
  testRunner.Then("I can see the Status Monitor page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 28
