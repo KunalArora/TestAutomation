@@ -2,6 +2,7 @@
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherOnline.Account;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
+using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
@@ -238,6 +239,12 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<RegistrationPage>().PopulateConfirmPasswordTextBox(form.Password);
             WhenIEnterAValidEmailAddress(string.Empty); // Auto Generates with an empty string
         }
+        [When(@"I press tab in the email address field")]
+        public void WhenIPressTabInTheEmailAddressField()
+        {
+            CurrentPage.As<RegistrationPage>().EmptyEmailAddressTextBox(Keys.Tab);
+        }
+
 
         [Then(@"If I sign back into Brother Online ""(.*)"" using the same credentials")]
         [When(@"I sign back into Brother Online ""(.*)"" using the same credentials")]
@@ -383,8 +390,9 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         public void WhenISignInAsA(string role, string country)
         {
             SignInAsARoleType(role);
-            WhenIClickOnSignIn(country);
-            CurrentPage.As<WelcomeBackPage>().ClickOnManagedPrintServices("print");
+            //WhenIClickOnSignIn(country);
+            NextPage = CurrentPage.As<RegistrationPage>().SignInButtonToDealerDashboard(country);
+            //CurrentPage.As<WelcomeBackPage>().ClickOnManagedPrintServices("print");
         }
 
         private void SignInAsARoleType(string role)
@@ -411,7 +419,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
                 }
                 case "Cloud MPS Dealer":
                 {
-                    WhenIEnterAValidEmailAddress("mpsdealer_de_automation@mailinator.com");
+                    WhenIEnterAValidEmailAddress("mpsdealer_uk_automation@mailinator.com");
                     WhenIEnterAValidPassword("P@$$w0rd");
                     break;
                 }

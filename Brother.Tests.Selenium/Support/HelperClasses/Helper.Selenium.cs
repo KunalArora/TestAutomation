@@ -23,6 +23,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         {
             try
             {
+                WebDriver.SetWebDriverImplicitTimeout(new TimeSpan(0,0,10));
                 var acceptCookieLawButton = driver.FindElement(By.CssSelector("#AcceptCookieLawHyperLink"));
                 acceptCookieLawButton.Click();
             }
@@ -30,6 +31,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             {
                 MsgOutput(string.Format("AcceptCookieLaw : {0}", elementNotVisible));
             }
+            WebDriver.SetWebDriverImplicitTimeout(WebDriver.ImplicitWaitDefaultTimeout);
         }
         
         /// <summary>

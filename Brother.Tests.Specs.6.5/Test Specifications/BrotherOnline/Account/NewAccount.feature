@@ -158,8 +158,14 @@ Scenario: Business customer creates a new account with Brother Online using vali
 	Then I can sign out of Brother Online
 	Then I am redirected to the Brother Home Page
 
-@ignore
-Scenario: Validate that the correct error messages are displayed when a mandatory field is missing
+
+Scenario: Validate that the correct error messages are displayed when a mandatory field is missing while creating a User Account
+	Given I want to create a new account with Brother Online "United Kingdom"
+	When I click on Create Account for "United Kingdom"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	When I press tab in the email address field
+	Then I should see an error message
 
 @ignore
 Scenario: Validate that the correct error messages are displayed when a mandatory field is incorrect
