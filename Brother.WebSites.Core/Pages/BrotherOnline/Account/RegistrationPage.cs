@@ -307,10 +307,17 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             EmailAddressTextBox.SendKeys(Keys.Tab);
             TestCheck.AssertIsEqual(emailAddress, GetTextBoxValue("Email"), "Email Text Box");
         }
+        
+        public void EmptyEmailAddressTextBox(string emailAddress)
+        {
+            EmailAddressTextBox.Clear();
+            EmailAddressTextBox.SendKeys(Keys.Tab);
+        }
+
 
         public void IsErrorMessageDisplayed()
         {
-            TestCheck.AssertIsEqual(true, EmailAddressErrorMessage.Displayed, "Is Error Message Displayed");
+           TestCheck.AssertIsEqual(true, EmailAddressErrorMessage.Displayed, "Is Error Message Displayed");
         }
     }
 }
