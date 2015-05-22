@@ -46,6 +46,7 @@ namespace Brother.Tests.Specs
             CurrentPage.As<CreateActivationCodesPage>().SelectLicenseType(form.LicenseType);
             CurrentPage.As<CreateActivationCodesPage>().SelectPaymentMethod(form.Term);
             CurrentPage.As<CreateActivationCodesPage>().SelectNumberLicenses(form.Qty);
+            CurrentPage.As<CreateActivationCodesPage>().AddComment(form.Comment);
         }
 
         [Then(@"I click Create Activation Codes")]

@@ -27,5 +27,6 @@ Background:
 @ignore @TEST @UAT @PROD
 Scenario: Test Code
 	#Given I want to open a new tab
+	Given SqlCall
 	Given Setup
 	

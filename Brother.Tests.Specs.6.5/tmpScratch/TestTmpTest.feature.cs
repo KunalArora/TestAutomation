@@ -91,6 +91,8 @@ this.ScenarioSetup(scenarioInfo);
 #line 7
 this.FeatureBackground();
 #line 30
+ testRunner.Given("SqlCall", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 31
  testRunner.Given("Setup", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             this.ScenarioCleanup();

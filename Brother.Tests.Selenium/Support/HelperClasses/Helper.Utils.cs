@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.IO;
 using System.Net;
 using System.Security.Cryptography.X509Certificates;
@@ -261,6 +262,37 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             var response = PageResponse(request, out xmlResponseData);
         }
 
+        /// <summary>
+        /// GetOrpActivationCode()
+        /// 
+        /// </summary>
+        public static string GetOrpActivationCode(string sqlCommand)
+        {
+            const string server = "prdat204v.brotherdc.eu";
+            const string username = @"EU\EUSiteCoreTestAuto";
+            const string password = "Ferry1Loft2Lighter3";
+            const string database = "Dbo.ActivationCode";
+
+            var connectionString = "Data Source=" + server + ";";
+            connectionString += "User ID=" + username + ";";
+            connectionString += "Password=" + password + ";";
+            connectionString += "Initial Catalog=" + database;
+
+            var sqlConnection = new SqlConnection();
+            try
+            {
+                sqlConnection.ConnectionString = connectionString;
+                sqlConnection.Open();
+            }
+            catch (SqlException sqlException)
+            {
+                if (sqlConnection != null)
+                    sqlConnection.Dispose();
+            }
+
+            return "";
+        }
+        
         /// <summary>
         /// Get site statistics
         /// </summary>
