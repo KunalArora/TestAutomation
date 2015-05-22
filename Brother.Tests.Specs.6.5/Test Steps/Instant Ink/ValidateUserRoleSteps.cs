@@ -42,6 +42,7 @@ namespace Brother.Tests.Specs
         {
             var menuItem = GlobalNavigationModule.GetProductNavigationMenu("InstantInk");
             menuItem.Click();
+
             //CurrentPage.As<WelcomeBackPage>().IsInkDevicePropertiesContainerAvailable();
             //CurrentPage.As<WelcomeBackPage>().VerifyInkDeviceName("MFC-J5720DW");
             //IList<IWebElement> element = RegistrationPage.InkStatusSummaryListElementAvailable();
