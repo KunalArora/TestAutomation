@@ -35,6 +35,9 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
         [FindsBy(How = How.Id, Using = "content_1_innercontent_2_btnCancel")] 
         public IWebElement Cancel;
 
+        [FindsBy(How = How.Id, Using = "content_1_innercontent_2_txtComment")]
+        public IWebElement CommentField;
+
         public CreateActivationCodesPage ConfirmButtonClick()
         {
             var confirmButton = Driver.FindElement(By.CssSelector("#content_1_innercontent_2_btnConfirm"));
@@ -61,7 +64,14 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
 
         public void SelectNumberLicenses(int numLicenses)
         {
+            NumberOfLicensesSpinner.Clear();
             NumberOfLicensesSpinner.SendKeys(numLicenses.ToString());
+        }
+
+        public void AddComment(string comment)
+        {
+            CommentField.Clear();
+            CommentField.SendKeys(comment);
         }
 
         public void SelectProductPlan(string plan)
