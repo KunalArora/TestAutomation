@@ -20,7 +20,7 @@ namespace Brother.Tests.Specs.TestSpecifications.SmartSupply
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("")]
-    [NUnit.Framework.IgnoreAttribute()]
+    [NUnit.Framework.CategoryAttribute("TEST")]
     public partial class Feature
     {
         
@@ -33,9 +33,9 @@ namespace Brother.Tests.Specs.TestSpecifications.SmartSupply
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "", "In order to view the Supply Club benefits\nAs an anonymous user\nI need to add the " +
-                    "supply club product to basket and see the club product benefits", ProgrammingLanguage.CSharp, new string[] {
-                        "ignore"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "", "In order to view the Supply Club benefits\r\nAs an anonymous user\r\nI need to add th" +
+                    "e supply club product to basket and see the club product benefits", ProgrammingLanguage.CSharp, new string[] {
+                        "TEST"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -69,11 +69,11 @@ namespace Brother.Tests.Specs.TestSpecifications.SmartSupply
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("View Brother Supply Club product benefits")]
-        [NUnit.Framework.IgnoreAttribute()]
+        [NUnit.Framework.CategoryAttribute("TEST")]
         public virtual void ViewBrotherSupplyClubProductBenefits()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("View Brother Supply Club product benefits", new string[] {
-                        "ignore"});
+                        "TEST"});
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line 9

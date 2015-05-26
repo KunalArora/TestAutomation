@@ -30,7 +30,7 @@ namespace Brother.Tests.Specs.Test_Steps.Smart_Supply
         {
 
             //((Action)(() => { }))();
-            CurrentPage.As<SmartSupplyProductPage>().IsBrotherSupplyClubProductBenefitAvailable();  
+            //NextPage=CurrentPage.As<SmartSupplyProductPage>().IsBrotherSupplyClubProductBenefitAvailable();  
         }
 
 

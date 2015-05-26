@@ -1,4 +1,4 @@
-﻿@UAT @TEST
+﻿@ignore
 Feature: Validate User Roles with Ink Supply
 	In order to utilise the Status Monitor feature
 	As a user
@@ -10,7 +10,7 @@ Create an account on BOL and add Ink Supply user role to it
  #Given I am logged onto BOL
  Given I am logged onto Brother Online "United Kingdom" using valid credentials	
 
-@TEST
+@ignore
 Scenario:Validate when clicking on "Status Monitor" the user should be able to see what device have been set up against "Brother Ink Supply"
     Given I have been granted the user account with the "Extranet\Brother Online Ink Supply User" role	
 	#Given that I have an Ink Supply role to my Bol account
