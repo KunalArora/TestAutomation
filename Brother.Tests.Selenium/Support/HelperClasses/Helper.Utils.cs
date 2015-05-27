@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 using System.IO;
 using System.Net;
 using System.Security.Cryptography.X509Certificates;
@@ -266,12 +267,13 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         /// GetOrpActivationCode()
         /// 
         /// </summary>
-        public static string GetOrpActivationCode(string sqlCommand)
+        private static SqlConnection GetSqlConnection()
         {
-            const string server = "prdat204v.brotherdc.eu";
-            const string username = @"EU\EUSiteCoreTestAuto";
-            const string password = "Ferry1Loft2Lighter3";
-            const string database = "Dbo.ActivationCode";
+            const string server = @"BIELT348\SQL2008DEV";
+            //const string username = @"EU\EUSiteCoreTestAuto";
+            const string username = @"AutoTestLocalUser";
+            const string password = "@utoT3stL0c@lUs3r";
+            const string database = "Brother_MM_UserData";
 
             var connectionString = "Data Source=" + server + ";";
             connectionString += "User ID=" + username + ";";
@@ -286,11 +288,58 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             }
             catch (SqlException sqlException)
             {
+                MsgOutput(string.Format("Sql connection error - {0}", sqlException.Message));
                 if (sqlConnection != null)
                     sqlConnection.Dispose();
             }
+            return sqlConnection;
+        }
 
+        /// <summary>
+        /// GetOrpActivationCode()
+        /// 
+        /// </summary>
+        public static string GetOrpActivationCode(string dealershipId)
+        {
+            var sqlConnection = GetSqlConnection();
+
+            var sql = string.Format("SELECT ActivationCode, DealershipId, LicenceType, TermInMonths, DateActivated, DateCreated, NumberOfLicences, Comment FROM ActivationCode WHERE DealershipId = '{0}' ORDER BY DateCreated DESC", dealershipId); 
+
+            //sqlConnection.BeginTransaction();
+            var sqlCmd = new SqlCommand(sql, sqlConnection);
+
+            using (sqlConnection)
+            {
+                using (var reader = sqlCmd.ExecuteReader())
+                {
+                    // Check is the reader has any rows at all before starting to read.
+                    if (!reader.HasRows) return "";
+                    // Read advances to the next row.
+                    while (reader.Read())
+                    {
+                        // To avoid unexpected bugs access columns by name.
+                        var activationCode = reader.GetString(reader.GetOrdinal("ActivationCode"));
+
+                        var dealerShipId = reader.GetGuid(reader.GetOrdinal("DealershipId"));
+                        var licenseType = reader.GetInt32(reader.GetOrdinal("LicenceType"));
+                        var term = reader.GetInt32(reader.GetOrdinal("TermInMonths"));
+                        var dateCreated = reader.GetDateTime(reader.GetOrdinal("DateCreated"));
+                        var numLicenses = reader.GetInt32(reader.GetOrdinal("NumberOfLicences"));
+                        var comment = reader.GetString(reader.GetOrdinal("Comment"));
+
+                        try
+                        {
+                            var dateActivated = reader.GetDateTime(reader.GetOrdinal("DateActivated"));
+                        }
+                        catch (SqlNullValueException fieldIsNull)
+                        {
+                            MsgOutput("Activation code was not activated");
+                        }
+                    }
+                }
+            }
             return "";
+
         }
         
         /// <summary>
