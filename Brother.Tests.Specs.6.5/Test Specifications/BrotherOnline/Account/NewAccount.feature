@@ -159,7 +159,7 @@ Scenario: Business customer creates a new account with Brother Online using vali
 	Then I am redirected to the Brother Home Page
 
 
-Scenario: Validate that the correct error messages are displayed when a mandatory field is missing while creating a User Account
+Scenario: Validate that the correct error messages are displayed when a mandatory field Email is missing while creating a User Account
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
 	And I am redirected to the Brother Login/Register page
@@ -167,18 +167,58 @@ Scenario: Validate that the correct error messages are displayed when a mandator
 	When I press tab in the email address field
 	Then I should see an error message
 
-@ignore
-Scenario: Validate that the correct error messages are displayed when a mandatory field is incorrect
 
-@ignore
-Scenario: Validate that the correct error messages are displayed when passwords do not match
+Scenario Outline: Validate that the correct error messages are displayed when a mandatory field Password is missing while creating a User Account
+	Given I want to create a new account with Brother Online "United Kingdom"
+	When I click on Create Account for "United Kingdom"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I enter an email address containing <Email Address>
+	When I press tab in the password field
+	Then I should see an error message on the password field
+Scenarios:
+	| Email Address                     |
+	| "aaa@yahoo.com"				|
 
-@ignore
-Scenario: Validate that the correct error messages are displayed when a password does not comply the required level
 
-@ignore
-Scenario: Validate that the correct error messages are displayed when Terms and Conditions are not selected
-
+ Scenario Outline: Validate that the correct error messages are displayed when a Confirm Password field contains different passwpord than actual Password (BBAU-2209)
+	Given I want to create a new account with Brother Online "United Kingdom"
+	When I click on Create Account for "United Kingdom"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I enter an email address containing <Email Address>
+	And I enter the password containing <Password>
+	When I enter the different password in the confirm password field containing <Confirm Password> and press tab
+	Then I should see an error message on the Confirm password field
+Scenarios:
+	| Email Address                 |Password							 |Confirm Password			|
+	| "aaa@yahoo.com"				|"Astwer1234"						 |"aaaahewllo"				|
 	
 
+Scenario Outline:Validate that the correct error messages are displayed when a password does not comply the required level 
+	Given I want to create a new account with Brother Online "United Kingdom"
+	When I click on Create Account for "United Kingdom"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I enter an email address containing <Email Address>
+	When I enter the password containing <Password>
+	Then I should see an error message on the password field
+Scenarios:
+	| Email Address                 |Password						 |
+	| "aaa@yahoo.com"				|"stwer"						 |
 
+
+Scenario: Validate that the correct error messages are displayed when Terms and Conditions are not selected
+	Given I want to create a new account with Brother Online "United Kingdom"
+	When I click on Create Account for "United Kingdom"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I fill in the registration information using a valid email address 
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Password        | @@@@@	       |
+	| ConfirmPassword | @@@@@		   |
+
+	When I declare that I do not use this account for business
+	Then I should get an error message displayed on the Terms and Conditions
