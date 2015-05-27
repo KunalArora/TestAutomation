@@ -409,12 +409,12 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Validate that the correct error messages are displayed when a mandatory field is " +
-            "missing while creating a User Account")]
-        public virtual void ValidateThatTheCorrectErrorMessagesAreDisplayedWhenAMandatoryFieldIsMissingWhileCreatingAUserAccount()
+        [NUnit.Framework.DescriptionAttribute("Validate that the correct error messages are displayed when a mandatory field Ema" +
+            "il is missing while creating a User Account")]
+        public virtual void ValidateThatTheCorrectErrorMessagesAreDisplayedWhenAMandatoryFieldEmailIsMissingWhileCreatingAUserAccount()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate that the correct error messages are displayed when a mandatory field is " +
-                    "missing while creating a User Account", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate that the correct error messages are displayed when a mandatory field Ema" +
+                    "il is missing while creating a User Account", ((string[])(null)));
 #line 162
 this.ScenarioSetup(scenarioInfo);
 #line 163
@@ -434,31 +434,60 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Validate that the correct error messages are displayed when a mandatory field is " +
-            "incorrect")]
-        [NUnit.Framework.IgnoreAttribute()]
-        public virtual void ValidateThatTheCorrectErrorMessagesAreDisplayedWhenAMandatoryFieldIsIncorrect()
+        [NUnit.Framework.DescriptionAttribute("Validate that the correct error messages are displayed when a mandatory field Pas" +
+            "sword is missing while creating a User Account")]
+        [NUnit.Framework.TestCaseAttribute("\"aaa@yahoo.com\"", null)]
+        public virtual void ValidateThatTheCorrectErrorMessagesAreDisplayedWhenAMandatoryFieldPasswordIsMissingWhileCreatingAUserAccount(string emailAddress, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate that the correct error messages are displayed when a mandatory field is " +
-                    "incorrect", new string[] {
-                        "ignore"});
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate that the correct error messages are displayed when a mandatory field Pas" +
+                    "sword is missing while creating a User Account", exampleTags);
 #line 171
 this.ScenarioSetup(scenarioInfo);
+#line 172
+ testRunner.Given("I want to create a new account with Brother Online \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 173
+ testRunner.When("I click on Create Account for \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 174
+ testRunner.And("I am redirected to the Brother Login/Register page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 175
+ testRunner.And("I have Checked No I Do Not Have An Account Checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 176
+ testRunner.And(string.Format("I enter an email address containing {0}", emailAddress), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 177
+ testRunner.When("I press tab in the password field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 178
+ testRunner.Then("I should see an error message on the password field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Validate that the correct error messages are displayed when passwords do not matc" +
-            "h")]
-        [NUnit.Framework.IgnoreAttribute()]
-        public virtual void ValidateThatTheCorrectErrorMessagesAreDisplayedWhenPasswordsDoNotMatch()
+        [NUnit.Framework.DescriptionAttribute("Validate that the correct error messages are displayed when a Confirm Password fi" +
+            "eld contains different passwpord than actual Password (BBAU-2209)")]
+        [NUnit.Framework.TestCaseAttribute("\"aaa@yahoo.com\"", "\"Astwer1234\"", "\"aaaahewllo\"", null)]
+        public virtual void ValidateThatTheCorrectErrorMessagesAreDisplayedWhenAConfirmPasswordFieldContainsDifferentPasswpordThanActualPasswordBBAU_2209(string emailAddress, string password, string confirmPassword, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate that the correct error messages are displayed when passwords do not matc" +
-                    "h", new string[] {
-                        "ignore"});
-#line 174
-this.ScenarioSetup(scenarioInfo);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate that the correct error messages are displayed when a Confirm Password fi" +
+                    "eld contains different passwpord than actual Password (BBAU-2209)", exampleTags);
+#line 184
+ this.ScenarioSetup(scenarioInfo);
+#line 185
+ testRunner.Given("I want to create a new account with Brother Online \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 186
+ testRunner.When("I click on Create Account for \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 187
+ testRunner.And("I am redirected to the Brother Login/Register page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 188
+ testRunner.And("I have Checked No I Do Not Have An Account Checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 189
+ testRunner.And(string.Format("I enter an email address containing {0}", emailAddress), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 190
+ testRunner.And(string.Format("I enter the password containing {0}", password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 191
+ testRunner.When(string.Format("I enter the different password in the confirm password field containing {0} and p" +
+                        "ress tab", confirmPassword), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 192
+ testRunner.Then("I should see an error message on the Confirm password field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -466,14 +495,27 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Validate that the correct error messages are displayed when a password does not c" +
             "omply the required level")]
-        [NUnit.Framework.IgnoreAttribute()]
-        public virtual void ValidateThatTheCorrectErrorMessagesAreDisplayedWhenAPasswordDoesNotComplyTheRequiredLevel()
+        [NUnit.Framework.TestCaseAttribute("\"aaa@yahoo.com\"", "\"stwer\"", null)]
+        public virtual void ValidateThatTheCorrectErrorMessagesAreDisplayedWhenAPasswordDoesNotComplyTheRequiredLevel(string emailAddress, string password, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate that the correct error messages are displayed when a password does not c" +
-                    "omply the required level", new string[] {
-                        "ignore"});
-#line 177
+                    "omply the required level", exampleTags);
+#line 198
 this.ScenarioSetup(scenarioInfo);
+#line 199
+ testRunner.Given("I want to create a new account with Brother Online \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 200
+ testRunner.When("I click on Create Account for \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 201
+ testRunner.And("I am redirected to the Brother Login/Register page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 202
+ testRunner.And("I have Checked No I Do Not Have An Account Checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 203
+ testRunner.And(string.Format("I enter an email address containing {0}", emailAddress), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 204
+ testRunner.When(string.Format("I enter the password containing {0}", password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 205
+ testRunner.Then("I should see an error message on the password field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -481,14 +523,42 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Validate that the correct error messages are displayed when Terms and Conditions " +
             "are not selected")]
-        [NUnit.Framework.IgnoreAttribute()]
         public virtual void ValidateThatTheCorrectErrorMessagesAreDisplayedWhenTermsAndConditionsAreNotSelected()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate that the correct error messages are displayed when Terms and Conditions " +
-                    "are not selected", new string[] {
-                        "ignore"});
-#line 180
+                    "are not selected", ((string[])(null)));
+#line 211
 this.ScenarioSetup(scenarioInfo);
+#line 212
+ testRunner.Given("I want to create a new account with Brother Online \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 213
+ testRunner.When("I click on Create Account for \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 214
+ testRunner.And("I am redirected to the Brother Login/Register page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 215
+ testRunner.And("I have Checked No I Do Not Have An Account Checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+                        "field",
+                        "value"});
+            table5.AddRow(new string[] {
+                        "FirstName",
+                        "AutoTest"});
+            table5.AddRow(new string[] {
+                        "LastName",
+                        "AutoTest"});
+            table5.AddRow(new string[] {
+                        "Password",
+                        "@@@@@"});
+            table5.AddRow(new string[] {
+                        "ConfirmPassword",
+                        "@@@@@"});
+#line 216
+ testRunner.And("I fill in the registration information using a valid email address", ((string)(null)), table5, "And ");
+#line 223
+ testRunner.When("I declare that I do not use this account for business", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 224
+ testRunner.Then("I should get an error message displayed on the Terms and Conditions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

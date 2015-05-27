@@ -244,9 +244,13 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<RegistrationPage>().EmptyEmailAddressTextBox(Keys.Tab);
         }
-
-
-        [Then(@"If I sign back into Brother Online ""(.*)"" using the same credentials")]
+        
+       [When(@"I press tab in the password field")]
+        public void WhenIPressTabInThePasswordField()
+        {
+            CurrentPage.As<RegistrationPage>().EmptyPasswordTextBox(Keys.Tab);
+        }
+      [Then(@"If I sign back into Brother Online ""(.*)"" using the same credentials")]
         [When(@"I sign back into Brother Online ""(.*)"" using the same credentials")]
         public void ThenIfISignBackIntoBrotherOnlineUsingTheSameCredentials(string country)
         {
@@ -270,6 +274,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         public void WhenIDeclareThatIDoNotUseThisAccountForBusiness()
         {
             CurrentPage.As<RegistrationPage>().DoNotUseAccountForBusiness();
+            CurrentPage.As<RegistrationPage>().ClickCreateAccountButton();
         }
 
         [When(@"I add my company name as ""(.*)""")]
@@ -355,19 +360,42 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<RegistrationPage>().PopulateEmailAddressTextBox(emailAddress);
         }
-
+        [When(@"I enter the password containing ""(.*)""")]
+        public void WhenIEnterThePasswordContaining(string password)
+        {
+            CurrentPage.As<RegistrationPage>().PopulatePasswordTextBox(password);
+        }
+    [When(@"I enter the different password in the confirm password field containing ""(.*)"" and press tab")]
+        public void WhenIEnterTheDifferentPasswordInTheConfirmPasswordFieldContainingAndPressTab(string confirmpassword)
+        {
+            CurrentPage.As<RegistrationPage>().PopulateConfirmPasswordTextBox(confirmpassword);
+            CurrentPage.As<RegistrationPage>().PopulateConfirmPasswordTextBox(Keys.Tab);
+        }
         [Then(@"I should refresh the current page to clear all error messages")]
         public void ThenIShouldRefreshTheCurrentPageToClearAllErrorMessages()
         {
             CurrentDriver.Navigate().Refresh();
         }
-
         [Then(@"I should see an error message")]
         public void ThenIShouldSeeAnErrorMessage()
         {
             CurrentPage.As<RegistrationPage>().IsErrorMessageDisplayed();
         }
-
+        [Then(@"I should see an error message on the password field")]
+        public void ThenIShouldSeeAnErrorMessageOnThePasswordField()
+        {
+            CurrentPage.As<RegistrationPage>().PasswordErrorMessageDisplayed();
+        }
+       [Then(@"I should get an error message displayed on the Terms and Conditions")]
+        public void ThenIShouldGetAnErrorMessageDisplayedOnTheTermsAndConditions()
+        {
+            CurrentPage.As<RegistrationPage>().TermsAndConditionsErrorMessageDisplayed();
+        }
+        [Then(@"I should see an error message on the Confirm password field")]
+        public void ThenIShouldSeeAnErrorMessageOnTheConfirmPasswordField()
+        {
+            CurrentPage.As<RegistrationPage>().ConfirmPasswordErrorMessageDisplayed();
+        }
         [When(@"I enter a valid Email Address ""(.*)""")]
         public void WhenIEnterAValidEmailAddress(string validEmailAddress)
         {
