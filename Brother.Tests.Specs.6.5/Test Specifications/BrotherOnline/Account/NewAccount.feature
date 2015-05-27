@@ -180,7 +180,7 @@ Scenarios:
 	| Email Address                     |
 	| "aaa@yahoo.com"				|
 
-
+@ignore
  Scenario Outline: Validate that the correct error messages are displayed when a Confirm Password field contains different passwpord than actual Password (BBAU-2209)
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
@@ -221,4 +221,5 @@ Scenario: Validate that the correct error messages are displayed when Terms and 
 	| ConfirmPassword | @@@@@		   |
 
 	When I declare that I do not use this account for business
+	And I press create account button
 	Then I should get an error message displayed on the Terms and Conditions
