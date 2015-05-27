@@ -274,7 +274,6 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         public void WhenIDeclareThatIDoNotUseThisAccountForBusiness()
         {
             CurrentPage.As<RegistrationPage>().DoNotUseAccountForBusiness();
-//            CurrentPage.As<RegistrationPage>().ClickCreateAccountButton();
         }
 
         [When(@"I add my company name as ""(.*)""")]
