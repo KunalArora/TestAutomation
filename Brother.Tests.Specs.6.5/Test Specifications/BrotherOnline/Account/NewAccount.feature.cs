@@ -464,11 +464,18 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Validate that the correct error messages are displayed when a Confirm Password fi" +
             "eld contains different passwpord than actual Password (BBAU-2209)")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("\"aaa@yahoo.com\"", "\"Astwer1234\"", "\"aaaahewllo\"", null)]
         public virtual void ValidateThatTheCorrectErrorMessagesAreDisplayedWhenAConfirmPasswordFieldContainsDifferentPasswpordThanActualPasswordBBAU_2209(string emailAddress, string password, string confirmPassword, string[] exampleTags)
         {
+            string[] @__tags = new string[] {
+                    "ignore"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate that the correct error messages are displayed when a Confirm Password fi" +
-                    "eld contains different passwpord than actual Password (BBAU-2209)", exampleTags);
+                    "eld contains different passwpord than actual Password (BBAU-2209)", @__tags);
 #line 184
  this.ScenarioSetup(scenarioInfo);
 #line 185
@@ -558,6 +565,8 @@ this.ScenarioSetup(scenarioInfo);
 #line 223
  testRunner.When("I declare that I do not use this account for business", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 224
+ testRunner.And("I press create account button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 225
  testRunner.Then("I should get an error message displayed on the Terms and Conditions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

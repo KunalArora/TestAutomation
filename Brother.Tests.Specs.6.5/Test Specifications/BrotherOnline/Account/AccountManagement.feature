@@ -93,4 +93,31 @@ Scenario: Customer can change their Brother Online Ireland email address after r
 	Then If I sign back into Brother Online "Ireland" using the same credentials
 	Then I can sign out of Brother Online
 
+# Change Business details in your created account, go to my account and change/add your business details
+Scenario: Customer can change their business details after logging into account
+	Given I am logged into my Brother Online account
+	When I navigate to my account for "United Kingdom"
+	And I click on Update details
+	And I click the option yes for is your brother online account for business
+	And I enter the company name in the your company name field
+	And I choose the dropdown in the business sector to it and telecommunication services
+	And I select the number of employees to be 1-10
+	Then  I click on update button
+	And verify successfull update message appeared at the top
+	
+
+
+	# resetting a password
+
+	# change email
+
+	# changing address
+
+	# create account for different countries
+
+	# changing business details
+
+
+
+
 
