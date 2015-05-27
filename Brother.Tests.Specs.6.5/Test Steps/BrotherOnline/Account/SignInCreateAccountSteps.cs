@@ -242,13 +242,13 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [When(@"I press tab in the email address field")]
         public void WhenIPressTabInTheEmailAddressField()
         {
-            CurrentPage.As<RegistrationPage>().EmptyEmailAddressTextBox(Keys.Tab);
+            CurrentPage.As<RegistrationPage>().EmptyEmailAddressTextBox();
         }
         
        [When(@"I press tab in the password field")]
         public void WhenIPressTabInThePasswordField()
         {
-            CurrentPage.As<RegistrationPage>().EmptyPasswordTextBox(Keys.Tab);
+            CurrentPage.As<RegistrationPage>().EmptyPasswordTextBox();
         }
       [Then(@"If I sign back into Brother Online ""(.*)"" using the same credentials")]
         [When(@"I sign back into Brother Online ""(.*)"" using the same credentials")]
@@ -274,7 +274,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         public void WhenIDeclareThatIDoNotUseThisAccountForBusiness()
         {
             CurrentPage.As<RegistrationPage>().DoNotUseAccountForBusiness();
-            CurrentPage.As<RegistrationPage>().ClickCreateAccountButton();
+//            CurrentPage.As<RegistrationPage>().ClickCreateAccountButton();
         }
 
         [When(@"I add my company name as ""(.*)""")]
@@ -365,7 +365,8 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<RegistrationPage>().PopulatePasswordTextBox(password);
         }
-    [When(@"I enter the different password in the confirm password field containing ""(.*)"" and press tab")]
+
+        [When(@"I enter the different password in the confirm password field containing ""(.*)"" and press tab")]
         public void WhenIEnterTheDifferentPasswordInTheConfirmPasswordFieldContainingAndPressTab(string confirmpassword)
         {
             CurrentPage.As<RegistrationPage>().PopulateConfirmPasswordTextBox(confirmpassword);
