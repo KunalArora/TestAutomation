@@ -63,11 +63,23 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PAYGPurchaseAndClickContract.feature</DependentUpon>
     </Compile>
+<<<<<<< HEAD
+=======
+    <Compile Include="Test Specifications\MPSTwo\Proposal\VerificationOnClickPricesVolumeMarginChanges1.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VerificationOnClickPricesVolumeMarginChanges.feature</DependentUpon>
+    </Compile>
+>>>>>>> ac5b919dfc16d7ef7248c07e40b8ce0d3b906a4d
     <Compile Include="Test Specifications\Smart Supply\BrotherSupplyClubProductBenefits.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BrotherSupplyClubProductBenefits.feature</DependentUpon>
+<<<<<<< HEAD
+	</Compile>
+=======
     </Compile>
+>>>>>>> ac5b919dfc16d7ef7248c07e40b8ce0d3b906a4d
     <Compile Include="Test Specifications\MPSTwo\Proposal\VerificationOnProductScreenVariations.feature.cs">
       <DependentUpon>VerificationOnProductScreenVariations.feature</DependentUpon>
       <AutoGen>True</AutoGen>
