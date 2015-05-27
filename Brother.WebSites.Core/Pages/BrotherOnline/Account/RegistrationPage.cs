@@ -330,13 +330,15 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             TestCheck.AssertIsEqual(emailAddress, GetTextBoxValue("Email"), "Email Text Box");
         }
         
-        public void EmptyEmailAddressTextBox(string emailAddress)
+        public void EmptyEmailAddressTextBox()
         {
+            EmailAddressTextBox.SendKeys(Keys.Tab);
             EmailAddressTextBox.Clear();
             EmailAddressTextBox.SendKeys(Keys.Tab);
         }
-        public void EmptyPasswordTextBox(string password)
+        public void EmptyPasswordTextBox()
         {
+            PasswordTextBox.SendKeys(Keys.Tab);
             PasswordTextBox.Clear();
             PasswordTextBox.SendKeys(Keys.Tab);
         }
