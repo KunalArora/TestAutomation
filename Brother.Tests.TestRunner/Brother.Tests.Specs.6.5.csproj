@@ -67,7 +67,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BrotherSupplyClubProductBenefits.feature</DependentUpon>
-	</Compile>
+    </Compile>
     <Compile Include="Test Specifications\MPSTwo\Proposal\VerificationOnProductScreenVariations.feature.cs">
       <DependentUpon>VerificationOnProductScreenVariations.feature</DependentUpon>
       <AutoGen>True</AutoGen>

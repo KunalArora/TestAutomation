@@ -294,7 +294,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             }
             return sqlConnection;
         }
-
+        
         /// <summary>
         /// GetOrpActivationCode()
         /// 

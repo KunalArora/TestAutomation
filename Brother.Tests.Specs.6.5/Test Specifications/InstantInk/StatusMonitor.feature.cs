@@ -20,8 +20,7 @@ namespace Brother.Tests.Specs.TestSpecifications.InstantInk
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("Validate User Roles with Ink Supply")]
-    [NUnit.Framework.CategoryAttribute("UAT")]
-    [NUnit.Framework.CategoryAttribute("TEST")]
+    [NUnit.Framework.IgnoreAttribute()]
     public partial class ValidateUserRolesWithInkSupplyFeature
     {
         
@@ -36,8 +35,7 @@ namespace Brother.Tests.Specs.TestSpecifications.InstantInk
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Validate User Roles with Ink Supply", "In order to utilise the Status Monitor feature\r\nAs a user\r\nI need to be granted t" +
                     "he correct role to see the status of my printer", ProgrammingLanguage.CSharp, new string[] {
-                        "UAT",
-                        "TEST"});
+                        "ignore"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -80,12 +78,12 @@ namespace Brother.Tests.Specs.TestSpecifications.InstantInk
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Validate when clicking on \"Status Monitor\" the user should be able to see what de" +
             "vice have been set up against \"Brother Ink Supply\"")]
-        [NUnit.Framework.CategoryAttribute("TEST")]
+        [NUnit.Framework.IgnoreAttribute()]
         public virtual void ValidateWhenClickingOnStatusMonitorTheUserShouldBeAbleToSeeWhatDeviceHaveBeenSetUpAgainstBrotherInkSupply()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate when clicking on \"Status Monitor\" the user should be able to see what de" +
                     "vice have been set up against \"Brother Ink Supply\"", new string[] {
-                        "TEST"});
+                        "ignore"});
 #line 14
 this.ScenarioSetup(scenarioInfo);
 #line 8
