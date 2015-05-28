@@ -18,7 +18,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private IWebElement LeasingContractLinkElement;
         [FindsBy(How = How.CssSelector, Using = "a[href='/mps/local-office/purchase-and-click'] .media-body")]
         private IWebElement EasyPrintProContractLinkElement;
-        
+        [FindsBy(How = How.CssSelector, Using = "a[href='/mps/local-office/dealer-defaults'] .media-body")]
+        private IWebElement DealerDefaultsElement;        
 
 
         public void IsLeasingContractLinkAvailable()
@@ -29,6 +30,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             AssertElementPresent(LeasingContractLinkElement, "Create New Proposal Link");
         }
 
+        public void IsDealerDefaultsLinkAvailable()
+        {
+            if (DealerDefaultsElement == null)
+                throw new Exception("Unable to locate dealer defaults link on dashboard page");
+
+            AssertElementPresent(DealerDefaultsElement, "Create Dealer Defaults Link");
+        }
+
         public EasyPrintProPage NavigateToEasyPrintProPage()
         {
             if (EasyPrintProContractLinkElement == null)
@@ -37,5 +46,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetTabInstance<EasyPrintProPage>(Driver);
         }
 
+        public DealerDefaultsPage NavigateToDealerDefaultsPage()
+        {
+            IsDealerDefaultsLinkAvailable();
+            DealerDefaultsElement.Click();
+            return GetTabInstance<DealerDefaultsPage>(Driver);
+        }
     }
 }
