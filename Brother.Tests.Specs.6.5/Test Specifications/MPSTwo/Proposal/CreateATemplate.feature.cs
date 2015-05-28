@@ -20,7 +20,6 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Proposal
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("Proposal Create a Template")]
-    [NUnit.Framework.IgnoreAttribute()]
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("TEST")]
     public partial class ProposalCreateATemplateFeature
@@ -37,7 +36,6 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Proposal
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Proposal Create a Template", "In order to create a proposal from an existing template\r\nAs an MPS Dealer\r\nI want" +
                     " to create a proposal template", ProgrammingLanguage.CSharp, new string[] {
-                        "Ignore",
                         "UAT",
                         "TEST"});
             testRunner.OnFeatureStart(featureInfo);
@@ -74,8 +72,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Proposal
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Fill necessary fields on Proposal Description Screen")]
         [NUnit.Framework.CategoryAttribute("SMOKE")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Germany", "3 Jahre", "4 Monatlich Mindestvolumen", "6 Monatlich Mindestvolumen", "HL-L8350CDW", "750", "2000", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Germany", "4 Jahre", "6 Monatlich Mindestvolumen", "4 Monatlich Mindestvolumen", "DCP-L8400CDN", "1800", "2000", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "3 Jahre", "4 Monatlich Mindestvolumen", "6 Monatlich Mindestvolumen", "HL-L8350CDW", "750", "2000", null)]
         public virtual void FillNecessaryFieldsOnProposalDescriptionScreen(string role, string country, string contract, string leasing, string billing, string printer, string clickVolume, string colourVolume, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -89,8 +86,6 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Proposal
 this.ScenarioSetup(scenarioInfo);
 #line 9
  testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 10
- testRunner.And("I navigate to Dealer Dashboard page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
  testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 12

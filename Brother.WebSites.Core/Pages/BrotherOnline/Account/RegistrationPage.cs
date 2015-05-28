@@ -2,6 +2,7 @@
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
+using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
@@ -184,6 +185,19 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             }
             var title = HomePage.WelcomePageCountryTitle(country);
             return GetInstance<WelcomeBackPage>(Driver, BasePage.BaseUrl, title);
+        }
+
+        public DealerDashBoardPage SignInButtonToDealerDashboard(string country)
+        {
+            ScrollTo(SignInButton);
+            SignInButton.Click();
+            // added for Firefox HTTPS warning
+            if (IsFireFoxBrowser())
+            {
+                DismissAlert();
+            }
+            var title = HomePage.WelcomePageCountryTitle(country);
+            return GetInstance<DealerDashBoardPage>(Driver, BasePage.BaseUrl, title);
         }
 
         public RegistrationPage ClickSignUpButton()
