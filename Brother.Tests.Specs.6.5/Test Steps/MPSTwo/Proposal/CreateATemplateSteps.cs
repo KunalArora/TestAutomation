@@ -45,7 +45,19 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
         }
 
-        
+        [When(@"I begin the proposal creation process for Purchase \+ Click Service")]
+        public void WhenIBeginTheProposalCreationProcessForPurchaseClickService()
+        {
+            CurrentPage.As<CreateNewProposalPage>().IsPromptTextDisplayed();
+            CurrentPage.As<CreateNewProposalPage>().SelectingContractType("Purchase-and-Click");
+            CurrentPage.As<CreateNewProposalPage>().EnterProposalName("");
+            CurrentPage.As<CreateNewProposalPage>().EnterLeadCodeRef("");
+            CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
+
+            When(@"I enter Customer Information Detail for new customer");
+        }
+
+
         [Given(@"I skip Customer Information Screen")]
         public void GivenISkipCustomerInformationScreen()
         {
@@ -62,7 +74,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<CreateNewProposalPage>().VerifyProposalScreenAfterNavigation(screenToVerify);
         }
 
-        
+
         [When(@"I enter Customer Information Detail for new customer")]
         public void WhenIEnterCustomerInformationDetailForNewCustomer()
         {
@@ -70,7 +82,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<CreateNewProposalPage>().ClickCreateNewCustomerRadioButton();
             CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
 
-           // CurrentPage.As<CreateNewProposalPage>().ClickNewOrganisationButton();
+            // CurrentPage.As<CreateNewProposalPage>().ClickNewOrganisationButton();
 //            CurrentPage.As<CreateNewProposalPage>().IsPrivateLiableCheckBoxDiplayed();
 
             CurrentPage.As<CreateNewProposalPage>().FillOrganisationDetails();
@@ -82,7 +94,8 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
 
         [Given(@"I Enter ""(.*)"" usage type ""(.*)"" contract length and ""(.*)"" billing on Term and Type details")]
         [When(@"I Enter ""(.*)"" usage type ""(.*)"" contract length and ""(.*)"" billing on Term and Type details")]
-        public void WhenIEnterUsageTypeContractLengthAndBillingOnTermAndTypeDetails(string usage, string contract, string billing)
+        public void WhenIEnterUsageTypeContractLengthAndBillingOnTermAndTypeDetails(string usage, string contract,
+            string billing)
         {
             CurrentPage.As<CreateNewProposalPage>().IsTermAndTypeTextDisplayed();
             CurrentPage.As<CreateNewProposalPage>().SelectUsageType(usage);
@@ -92,18 +105,31 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
         }
 
-
-        [Given(@"I Enter ""(.*)"" contract terms ""(.*)"" leasing and ""(.*)"" billing on Term and Type details")]
-        [When(@"I Enter ""(.*)"" contract terms ""(.*)"" leasing and ""(.*)"" billing on Term and Type details")]
-        public void WhenIEnterContractTermsLeasingAndBillingOnTermAndTypeDetails(string contract, string leasing, string billing)
+        private void WhenIEnterContractTermsLeasingAndBillingOnTermAndTypeDetails(string contract, string leasing,
+            string billing)
         {
             CurrentPage.As<CreateNewProposalPage>().IsTermAndTypeTextDisplayed();
 
             CurrentPage.As<CreateNewProposalPage>().SelectContractLength(contract);
             CurrentPage.As<CreateNewProposalPage>().SelectLeaseBillingCycle(leasing);
             CurrentPage.As<CreateNewProposalPage>().SelectPayPerClickBillingCycle(billing);
+        }
+
+        [Given(@"I Enter ""(.*)"" contract terms ""(.*)"" leasing and ""(.*)"" billing on Term and Type details")]
+        [When(@"I Enter ""(.*)"" contract terms ""(.*)"" leasing and ""(.*)"" billing on Term and Type details")]
+        public void WhenIEnterContractTermsLeasingAndBillingOnTermAndTypeDetailsAndClick(string contract, string leasing,
+            string billing)
+        {
+            WhenIEnterContractTermsLeasingAndBillingOnTermAndTypeDetails(contract, leasing, billing);
 
             CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
+        }
+
+        [When(@"I Enter ""(.*)"" contract terms ""(.*)"" leasing and ""(.*)"" billing on Term and Type details\(only input\)")]
+        public void WhenIEnterContractTermsLeasingAndBillingOnTermAndTypeDetailsOnlyInput(string contract, string leasing,
+            string billing)
+        {
+            WhenIEnterContractTermsLeasingAndBillingOnTermAndTypeDetails(contract, leasing, billing);
         }
 
         [When(@"I Enter ""(.*)"" contract terms and ""(.*)"" billing on Term and Type details")]
@@ -123,21 +149,44 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
         }
 
+        [When(@"I untick Price Hardware radio button")]
+        public void WhenIUntickPriceHardwareRadioButton()
+        {
+            CurrentPage.As<CreateNewProposalPage>().UntickPriceHardware();
+
+            CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
+        }
+
+        [Then(@"I should not see Price Hardware radio button on Term and Type screen")]
+        public void ThenIShouldNotSeePriceHardwareRadioButtonOnTermAndTypeScreen()
+        {
+            CurrentPage.As<CreateNewProposalPage>().IsNotPriceHardwareElement();
+            CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
+        }
+
         [When(@"I choose ""(.*)"" from Products screen")]
         public void WhenIChooseFromProductsScreen(string printer)
         {
             CurrentPage.As<CreateNewProposalPage>().IsProductScreenTextDisplayed();
             CurrentPage.As<CreateNewProposalPage>().ChooseADeviceFromProductSelectionScreen(printer, "80", "90");
             CurrentPage.As<CreateNewProposalPage>().VerifyProductAdditionConfirmationMessage();
-        
+
         }
 
 
         [When(@"I display ""(.*)"" device screen")]
+        [Then(@"I display ""(.*)"" device screen")]
         public void WhenIDisplayDeviceScreen(string printer)
         {
             CurrentPage.As<CreateNewProposalPage>().IsProductScreenTextDisplayed();
             CurrentPage.As<CreateNewProposalPage>().ClickOnAPrinter(printer);
+            CurrentPage.As<CreateNewProposalPage>().StoreDefaultProductConfiguration();
+        }
+
+        [When(@"I change the Installation Pack Unit Cost displayed to a value lower than the displayed Unit Cost")]
+        public void WhenIChangeTheInstallationPackUnitCostDisplayedToAValueLowerThanTheDisplayedUnitCost()
+        {
+            CurrentPage.As<CreateNewProposalPage>().EnterInstallationPackCostPriceLessThanDefault();
         }
 
 
@@ -160,7 +209,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         {
             CurrentPage.As<CreateNewProposalPage>().CalculateEPPClickPriceAndProceed(monoVol);
         }
-        
+
 
         [When(@"I enter multiple click price volume of ""(.*)"" and ""(.*)""")]
         public void WhenIEnterMultipleClickPriceVolumeOfAnd(string clickprice, string colour)
@@ -178,7 +227,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [Then(@"I am directed to Templates screen of Proposal List page")]
         public void ThenIAmDirectedToTemplatesScreenOfProposalListPage()
         {
-             CurrentPage.As<CloudExistingProposalPage>().IsProposalListTemplateScreenDiplayed();
+            CurrentPage.As<CloudExistingProposalPage>().IsProposalListTemplateScreenDiplayed();
         }
 
         [Then(@"the newly created template is displayed on the list")]
@@ -239,7 +288,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         }
 
 
-        
+
         [When(@"I click the back button on Proposal Summary Screen")]
         public void WhenIClickTheBackButtonOnProposalSummaryScreen()
         {
@@ -278,6 +327,165 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         public void ThenOnProductPageAllTheDeviceHaveFullDetailScreen()
         {
             CurrentPage.As<CreateNewProposalPage>().IsFullDeviceScreenDisplayed();
+        }
+
+        [Then(@"on product page all the devices have reduced detail screen")]
+        public void ThenOnProductPageAllTheDevicesHaveReducedDetailScreen()
+        {
+            CurrentPage.As<CreateNewProposalPage>().IsReducedDeviceScreenDisplayed();
+        }
+
+        [Then(@"on product page QTY for accessories are default to zero")]
+        [When(@"on product page all the accessories all left with zero QTY")]
+        public void ThenOnProductPageQTYForAccessoriesAreDefaultToZero()
+        {
+            CurrentPage.As<CreateNewProposalPage>().IsQTYForAccessoriesAreDefaultToZero();
+        }
+
+        [Then(@"the default total for all accessories are defaulted to zero")]
+        public void ThenTheDefaultTotalForAllAccessoriesAreDefaultedToZero()
+        {
+            CurrentPage.As<CreateNewProposalPage>().IsTotalForAllAccessoriesAreDefaultToZero();
+        }
+
+        [When(@"enter a quantity value into an accessory field")]
+        public void WhenEnterAQuantityValueIntoAnAccessoryField()
+        {
+            CurrentPage.As<CreateNewProposalPage>().FillProductDetails();
+        }
+
+        [When(@"I change the Unit Cost of an item")]
+        public void WhenIChangeTheUnitCostOfAnItem()
+        {
+            CurrentPage.As<CreateNewProposalPage>().EnterProductCostPrice("10");
+        }
+
+        [When(@"I change the Unit Price of an item")]
+        public void WhenIChangeTheUnitPriceOfAnItem()
+        {
+            CurrentPage.As<CreateNewProposalPage>().EnterProductSellPrice("10");
+        }
+
+        [When(@"I change the Margin of an item whose Unit Cost bigger than zero")]
+        public void WhenIChangeTheMarginOfAnItemWhoseUnitCost()
+        {
+            CurrentPage.As<CreateNewProposalPage>().EnterProductMargin("7");
+        }
+
+        [When(@"I change the Margin of an item whose Unit Cost is equal to zero")]
+        public void WhenIChangeTheMarginOfAnItemWhoseUnitCostIsEqualToZero()
+        {
+            CurrentPage.As<CreateNewProposalPage>().EnterDeliveryMargin("7");
+        }
+
+        [Then(@"the Unit Price changed accordingly")]
+        public void ThenTheUnitPriceChangedAccordingly()
+        {
+            CurrentPage.As<CreateNewProposalPage>().IsProductUnitPriceChanged();
+        }
+
+        [Then(@"the Margin changes accordingly")]
+        public void ThenTheMarginChangesAccordingly()
+        {
+            CurrentPage.As<CreateNewProposalPage>().IsProductMarginChanged();
+        }
+
+        [Then(@"the associated margin does not changed")]
+        public void ThenProductdMarginDoesNotChanged()
+        {
+            CurrentPage.As<CreateNewProposalPage>().IsNotProductMarginChanged();
+        }
+
+        [Then(@"the associated Unit Cost dos not changed")]
+        public void ThenTheAssociatedUnitCostDosNotChanged()
+        {
+            CurrentPage.As<CreateNewProposalPage>().IsNotProductUnitCostChanged();
+        }
+
+        [Then(@"the Unit Price and Unit Cost does not change")]
+        public void ThenTheUnitPriceAndUnitCostDoesNotChange()
+        {
+            CurrentPage.As<CreateNewProposalPage>().IsNotDeliveryCostPriceChanged();
+            CurrentPage.As<CreateNewProposalPage>().IsNotDeliverySellPriceChanged();
+        }
+
+        [Then(@"on product page the sum of the Total Price is equal to the Grand Total Price displayed")]
+        public void ThenOnProductPageTheSumOfTheTotalPriceIsEqualToTheGrandTotalPriceDisplayed()
+        {
+            CurrentPage.As<CreateNewProposalPage>().IsGrandTotalPriceCorrect();
+        }
+
+        [When(@"I changed the Margin on any field to (.*)")]
+        public void WhenIChangedTheMarginOnAnyFieldTo(string percent)
+        {
+            CurrentPage.As<CreateNewProposalPage>().EnterDeliveryMargin(percent);
+        }
+
+        [When(@"I changed a Unit Price (.*) so that Margin is 100")]
+        public void WhenIChangedAUnitPriceSoThatMarginIs(string percent)
+        {
+            CurrentPage.As<CreateNewProposalPage>().EnterDeliverySellPrice(percent);
+        }
+
+        [When(@"I Click Add to Proposal button")]
+        public void WhenIClickAddToProposalButton()
+        {
+            CurrentPage.As<CreateNewProposalPage>().AddAllDetailsToProposal();
+        }
+
+        [When(@"I Add the device to Proposal")]
+        public void WhenIAddTheDeviceToProposal()
+        {
+            When(@"I Click Add to Proposal button");
+            CurrentPage.As<CreateNewProposalPage>().MoveToProposalSummaryScreen();
+        }
+
+        [When(@"I Calculate Click Price")]
+        public void WhenICalculateClickPrice()
+        {
+            CurrentPage.As<CreateNewProposalPage>().CalculateClickPriceAndNext();
+        }
+
+        [Then(@"Add to proposal button become grayout")]
+        public void ThenAddToProposalButtonBecomeGrayout()
+        {
+            CurrentPage.As<CreateNewProposalPage>().IsAddToProposalButtonGrayout();
+        }
+
+        [Then(@"InstallationPackUnitCostLessThanError is displayed")]
+        public void ThenInstallationPackUnitCostLessThanErrorIsDisplayed()
+        {
+            CurrentPage.As<CreateNewProposalPage>().IsInstallationPackUnitCostLessThanErrorDisplayed();
+        }
+
+        [Then(@"the product can not be added to the proposal")]
+        public void ThenTheProductCanNotBeAddedToTheProposal()
+        {
+            CurrentPage.As<CreateNewProposalPage>().IsNotTheProductAddedToTheProposal();
+        }
+
+
+        [Then(@"the selected devices above are displayed on Summary Screen")]
+        public void ThenTheSelectedDevicesAboveAreDisplayedOnSummaryScreen()
+        {
+
+        }
+
+        [Then(@"the three devices selected above are displayed on Summary Screen")]
+        public void ThenTheThreeDevicesSelectedAboveAreDisplayedOnSummaryScreen()
+        {
+            CurrentPage.As<CreateNewProposalPage>().MoveToProposalSummaryScreen();
+            CurrentPage.As<CreateNewProposalPage>().VerifyTheNumberOfPrintersOnSummaryPage(3);
+
+            NextPage = CurrentPage.As<CreateNewProposalPage>().SaveProposal();
+
+            CurrentPage.As<CloudExistingProposalPage>().IsProposalListProposalScreenDiplayed();
+        }
+
+        [Then(@"all the margin set above should be displayed in the right fields")]
+        public void ThenPartOfMarginSetAboveShouldBeDisplayedInTheRightFields()
+        {
+            CurrentPage.As<CreateNewProposalPage>().StrictVerifyMarginFieldValues();
         }
 
     }

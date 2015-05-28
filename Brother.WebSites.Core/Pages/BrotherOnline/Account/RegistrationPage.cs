@@ -209,6 +209,19 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             return GetInstance<DealerDashBoardPage>(Driver, BasePage.BaseUrl, title);
         }
 
+        public LocalOfficeAdminDashBoardPage SignInButtonToLocalOfficeDashboard(string country)
+        {
+            ScrollTo(SignInButton);
+            SignInButton.Click();
+            // added for Firefox HTTPS warning
+            if (IsFireFoxBrowser())
+            {
+                DismissAlert();
+            }
+            var title = HomePage.WelcomePageCountryTitle(country);
+            return GetInstance<LocalOfficeAdminDashBoardPage>(Driver, BasePage.BaseUrl, title);
+        }
+
         public RegistrationPage ClickSignUpButton()
         {
             ScrollTo(CreateYourAccountButton);
