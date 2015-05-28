@@ -79,11 +79,11 @@ namespace Brother.Tests.Specs.TestSpecifications.InstantInk
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Validate user has correct role for Instant Ink")]
-        [NUnit.Framework.IgnoreAttribute()]
+        [NUnit.Framework.CategoryAttribute("TEST")]
         public virtual void ValidateUserHasCorrectRoleForInstantInk()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate user has correct role for Instant Ink", new string[] {
-                        "ignore"});
+                        "TEST"});
 #line 12
 this.ScenarioSetup(scenarioInfo);
 #line 7

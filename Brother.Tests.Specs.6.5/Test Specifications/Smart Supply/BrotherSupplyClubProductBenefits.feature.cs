@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Brother.Tests.Specs.TmpScratch
+namespace Brother.Tests.Specs.TestSpecifications.SmartSupply
 {
     using TechTalk.SpecFlow;
     
@@ -19,23 +19,23 @@ namespace Brother.Tests.Specs.TmpScratch
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.9.0.77")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("TestTmpTest")]
-    [NUnit.Framework.IgnoreAttribute()]
-    public partial class TestTmpTestFeature
+    [NUnit.Framework.DescriptionAttribute("")]
+    [NUnit.Framework.CategoryAttribute("TEST")]
+    public partial class Feature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "TestTmpTest.feature"
+#line 1 "BrotherSupplyClubProductBenefits.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "TestTmpTest", "In order to test snippets of code\r\nAs a Developer\r\nI want to be able to run code " +
-                    "in isolation", ProgrammingLanguage.CSharp, new string[] {
-                        "ignore"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "", "In order to view the Supply Club benefits\r\nAs an anonymous user\r\nI need to add th" +
+                    "e supply club product to basket and see the club product benefits", ProgrammingLanguage.CSharp, new string[] {
+                        "TEST"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -67,33 +67,25 @@ namespace Brother.Tests.Specs.TmpScratch
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void FeatureBackground()
-        {
-#line 7
-#line hidden
-        }
-        
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Test Code")]
-        [NUnit.Framework.IgnoreAttribute()]
+        [NUnit.Framework.DescriptionAttribute("View Brother Supply Club product benefits")]
         [NUnit.Framework.CategoryAttribute("TEST")]
-        [NUnit.Framework.CategoryAttribute("UAT")]
-        [NUnit.Framework.CategoryAttribute("PROD")]
-        public virtual void TestCode()
+        public virtual void ViewBrotherSupplyClubProductBenefits()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Test Code", new string[] {
-                        "ignore",
-                        "TEST",
-                        "UAT",
-                        "PROD"});
-#line 28
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("View Brother Supply Club product benefits", new string[] {
+                        "TEST"});
+#line 8
 this.ScenarioSetup(scenarioInfo);
-#line 7
-this.FeatureBackground();
-#line 30
- testRunner.Given("SqlCall", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 31
- testRunner.Given("Setup", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 9
+  testRunner.Given("I have navigated to the url \"http://it.brotherdv2.eu/supplies/laser/toner/tn/tn22" +
+                    "20\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 10
+     testRunner.Then("I will see text information relating to the benefit I will receive", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 11
+  testRunner.When("I click on Add to basket button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 12
+  testRunner.Then("I hover the mouse on the basket icon to see text information relating to the bene" +
+                    "fit I will receive.", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

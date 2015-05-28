@@ -50,6 +50,7 @@ namespace Brother.Tests.Specs
             }
         }
         [Then(@"If I validate the new changes via email")]
+        [When(@"I validate the new changes via email")]
         public void ThenIfIValidateTheNewChangesViaEmail()
         {
             if (Email.CheckEmailPackage("GuerrillaEmail"))

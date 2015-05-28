@@ -106,6 +106,22 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
         }
 
+        [When(@"I Enter ""(.*)"" contract terms and ""(.*)"" billing on Term and Type details")]
+        public void WhenIEnterContractTermsAndBillingOnTermAndTypeDetails(string contract, string billing)
+        {
+            CurrentPage.As<CreateNewProposalPage>().IsTermAndTypeTextDisplayed();
+
+            CurrentPage.As<CreateNewProposalPage>().SelectContractLength(contract);
+            CurrentPage.As<CreateNewProposalPage>().SelectPayPerClickBillingCycle(billing);
+        }
+
+        [When(@"I tick Price Hardware radio button")]
+        public void WhenITickPriceHardwareRadioButton()
+        {
+            CurrentPage.As<CreateNewProposalPage>().TickPriceHardware();
+
+            CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
+        }
 
         [When(@"I choose ""(.*)"" from Products screen")]
         public void WhenIChooseFromProductsScreen(string printer)
@@ -115,6 +131,16 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<CreateNewProposalPage>().VerifyProductAdditionConfirmationMessage();
         
         }
+
+
+        [When(@"I display ""(.*)"" device screen")]
+        public void WhenIDisplayDeviceScreen(string printer)
+        {
+            CurrentPage.As<CreateNewProposalPage>().IsProductScreenTextDisplayed();
+            CurrentPage.As<CreateNewProposalPage>().ClickOnAPrinter(printer);
+        }
+
+
 
         [When(@"I enter click price volume of ""(.*)"" and ""(.*)""")]
         public void WhenIEnterClickPriceVolumeOf(string clickprice, string colour)
@@ -201,6 +227,18 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             NextPage = CurrentPage.As<WelcomeBackPage>().NavigateToDealerDashboard();
         }
 
+
+        [When(@"I navigated to Term and Type page")]
+        public void WhenINavigatedToTermAndTypePage()
+        {
+            When(@"I navigate to Dealer Dashboard page");
+            When(@"I am on MPS New Proposal Page");
+            When(@"I fill Proposal Description");
+            When(@"I enter Customer Information Detail for new customer");
+
+        }
+
+
         
         [When(@"I click the back button on Proposal Summary Screen")]
         public void WhenIClickTheBackButtonOnProposalSummaryScreen()
@@ -236,6 +274,11 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<CloudExistingProposalPage>().IsNewProposalTemplateCreated();
         }
 
+        [Then(@"on product page all the device have full detail screen")]
+        public void ThenOnProductPageAllTheDeviceHaveFullDetailScreen()
+        {
+            CurrentPage.As<CreateNewProposalPage>().IsFullDeviceScreenDisplayed();
+        }
 
     }
 }

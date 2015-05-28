@@ -64,7 +64,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         [FindsBy(How = How.Id, Using = "BusinessAccountNoRadioButton")]
         public IWebElement DoNotUseMyAccountForBusinessCheckbox;
-        
+
         [FindsBy(How = How.Id, Using = "BusinessAccountYesRadioButton")]
         public IWebElement UseMyAccountForBusinessCheckbox;
 
@@ -74,18 +74,27 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         [FindsBy(How = How.Id, Using = "Email")]
         public IWebElement EmailAddressTextBox;
 
+        [FindsBy(How = How.CssSelector, Using = ".half-col.validation-failed.blur .error")]
+        public IWebElement PasswordErrorMessage;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='form-sign-up']/div[1]/span[2]/div")]
+        public IWebElement ConfirmPasswordErrorMessage;
+
         [FindsBy(How = How.CssSelector, Using = ".error")]
         public IWebElement EmailAddressErrorMessage;
 
         [FindsBy(How = How.CssSelector, Using = ".forgotten-password-link[href]")]
         public IWebElement ResetPasswordLink;
-        
+
         [FindsBy(How = How.CssSelector, Using = "#EmailTextBox")]
         public IWebElement EmailAddressPasswordResetTextBox;
 
         [FindsBy(How = How.CssSelector, Using = "#content_1_ResetPasswordButton")]
         public IWebElement ResetYourPasswordButton;
 
+         [FindsBy(How = How.CssSelector, Using = ".form-section.cf.validation-failed.load .error")]
+        public IWebElement TermsAndConditionsErrorMessage;
+        
 
         public bool IsWarningBarPresent()
         {
@@ -252,8 +261,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             PasswordTextBox.SendKeys(password.Equals("@@@@@") ? Helper.Password : password);
             TestCheck.AssertIsEqual(password.Equals("@@@@@") ? Helper.Password : password, GetTextBoxValue("PasswordTextBox"), "Password Text Box");
         }
-
-        public void PopulateConfirmPasswordTextBox(string password)
+      public void PopulateConfirmPasswordTextBox(string password)
         {
             ConfirmPasswordTextBox.SendKeys(password.Equals("@@@@@") ? Helper.Password : password);
             TestCheck.AssertIsEqual(password.Equals("@@@@@") ? Helper.Password : password, GetTextBoxValue("ConfirmPasswordTextBox"), "Confirm Password Text Box");
@@ -321,10 +329,35 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             EmailAddressTextBox.SendKeys(Keys.Tab);
             TestCheck.AssertIsEqual(emailAddress, GetTextBoxValue("Email"), "Email Text Box");
         }
-
+        
+        public void EmptyEmailAddressTextBox()
+        {
+            EmailAddressTextBox.SendKeys(Keys.Tab);
+            EmailAddressTextBox.Clear();
+            EmailAddressTextBox.SendKeys(Keys.Tab);
+        }
+        public void EmptyPasswordTextBox()
+        {
+            PasswordTextBox.SendKeys(Keys.Tab);
+            PasswordTextBox.Clear();
+            PasswordTextBox.SendKeys(Keys.Tab);
+        }
+        
         public void IsErrorMessageDisplayed()
         {
-            TestCheck.AssertIsEqual(true, EmailAddressErrorMessage.Displayed, "Is Error Message Displayed");
+           TestCheck.AssertIsEqual(true, EmailAddressErrorMessage.Displayed, "Is Error Message Displayed");
+        }
+        public void PasswordErrorMessageDisplayed()
+        {
+            TestCheck.AssertIsEqual(true, PasswordErrorMessage.Displayed, "Is Error Message Displayed");
+        }
+        public void ConfirmPasswordErrorMessageDisplayed()
+        {
+            TestCheck.AssertIsEqual(true, ConfirmPasswordErrorMessage.Displayed, "Is Error Message Displayed");
+        }
+        public void TermsAndConditionsErrorMessageDisplayed()
+        {
+            TestCheck.AssertIsEqual(true, TermsAndConditionsErrorMessage.Displayed, "Is Error Message Displayed");
         }
     }
 }

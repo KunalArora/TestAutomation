@@ -15,6 +15,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 {
     public abstract class Helper
     {
+        
         // Runtime environment constants
         public const string RunTimeLive = @"PROD";
         public const string RunTimeTest = @"TEST";

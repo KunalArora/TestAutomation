@@ -20,8 +20,7 @@ namespace Brother.Tests.Specs.TestSpecifications.InstantInk
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("Validate User Roles with Ink Supply")]
-    [NUnit.Framework.CategoryAttribute("UAT")]
-    [NUnit.Framework.CategoryAttribute("TEST")]
+    [NUnit.Framework.IgnoreAttribute()]
     public partial class ValidateUserRolesWithInkSupplyFeature
     {
         
@@ -36,8 +35,7 @@ namespace Brother.Tests.Specs.TestSpecifications.InstantInk
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Validate User Roles with Ink Supply", "In order to utilise the Status Monitor feature\r\nAs a user\r\nI need to be granted t" +
                     "he correct role to see the status of my printer", ProgrammingLanguage.CSharp, new string[] {
-                        "UAT",
-                        "TEST"});
+                        "ignore"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -102,7 +100,7 @@ this.FeatureBackground();
 #line 20
     testRunner.Then("I can see the Ink Supply Status Monitor button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 21
- testRunner.When("I click on the Status Monitor", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I click on Status Monitor", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 22
  testRunner.Then("I can see the Status Monitor page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 28

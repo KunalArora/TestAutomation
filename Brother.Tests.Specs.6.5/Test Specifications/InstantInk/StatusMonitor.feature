@@ -1,4 +1,4 @@
-﻿@UAT @TEST
+﻿@ignore
 Feature: Validate User Roles with Ink Supply
 	In order to utilise the Status Monitor feature
 	As a user
@@ -18,7 +18,7 @@ Scenario:Validate when clicking on "Status Monitor" the user should be able to s
 	Then I can see the Ink Supply menu option from the Bol home page
 	And Ink Supply is clicked
     Then I can see the Ink Supply Status Monitor button
-	When I click on the Status Monitor
+	When I click on Status Monitor
 	Then I can see the Status Monitor page
 	#When there is an online connected device
 	#Then device name should be displayed 

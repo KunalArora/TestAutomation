@@ -63,6 +63,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PAYGPurchaseAndClickContract.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\Smart Supply\BrotherSupplyClubProductBenefits.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BrotherSupplyClubProductBenefits.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPSTwo\Proposal\VerificationOnProductScreenVariations.feature.cs">
+      <DependentUpon>VerificationOnProductScreenVariations.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Test Steps\Global\GlobalSteps.cs" />
     <Compile Include="Test Specifications\BrotherMainSite\Printer Search\Printers.feature.cs">
       <AutoGen>True</AutoGen>
@@ -323,6 +333,7 @@
     <Compile Include="Test Steps\OmniJoin\Plans\ManagePlanSteps.cs" />
     <Compile Include="Test Steps\OmniJoin\Plans\PurchasePlansSteps.cs" />
     <Compile Include="Test Steps\OmniJoin\WebConferencingHomePageSteps.cs" />
+    <Compile Include="Test Steps\Smart Supply\BrotherSupplyClubProductBenefitsSteps.cs" />
     <Compile Include="Test Steps\ThirdPartyProductsSteps.cs" />
     <Compile Include="Test Steps\tmpScratchSteps.cs" />
     <Compile Include="tmpScratch\TestTmpTest.feature.cs">
@@ -454,6 +465,10 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CompletedFieldsAreReadOnlyInConversionMode.feature.cs</LastGenOutput>
     </None>
+    <None Include="Test Specifications\MPSTwo\Proposal\VerificationOnProductScreenVariations.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>VerificationOnProductScreenVariations.feature.cs</LastGenOutput>
+    </None>
     <None Include="Test Specifications\MPSTwo\Proposal\CreateAProposalViaFlatListView.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CreateAProposalViaFlatListView.feature.cs</LastGenOutput>
@@ -488,7 +503,7 @@
     </None>
     <None Include="Test Specifications\MPSTwo\Proposal\VerificationOnClickPricesVolumeMarginChanges.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>VerificationOnClickPricesVolumeMarginChanges.feature.cs</LastGenOutput>
+      <LastGenOutput>VerificationOnClickPricesVolumeMarginChanges1.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwo\Proposal\VerificationsOnProductsPage.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
@@ -517,6 +532,10 @@
     <None Include="Test Specifications\OmniJoin\PurchasePlans.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>PurchasePlans.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\Smart Supply\BrotherSupplyClubProductBenefits.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>BrotherSupplyClubProductBenefits.feature.cs</LastGenOutput>
     </None>
     <None Include="tmpScratch\TestTmpTest.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

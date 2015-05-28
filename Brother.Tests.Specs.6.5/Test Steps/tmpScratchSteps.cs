@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using TechTalk.SpecFlow;
 
@@ -8,6 +9,12 @@ namespace Brother.Tests.Specs
     [Binding]
     public class tmpScratch : BaseSteps
     {
+        [Given(@"SqlCall")]
+        public void GivenSqlCall()
+        {
+            var foo = Utils.GetOrpActivationCode("SQL");
+        }
+
         [Given(@"Setup")]
         public void Setup()
         {

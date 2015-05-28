@@ -83,8 +83,8 @@ namespace Brother.Tests.Specs.TestSpecifications.OmniJoinPartnerPortal.DealerAct
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line 9
- testRunner.Given("I am logged into Brother Online \"United Kingdom\" using \"ORP_Cushty_Dealer_001@gue" +
-                    "rrillamail.com\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I am logged into Brother Online \"United Kingdom\" using \"AutomatedTesterDealer1@gu" +
+                    "errillamail.com\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 10
  testRunner.And("I click on the Partner Portal menu option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
@@ -115,35 +115,36 @@ this.ScenarioSetup(scenarioInfo);
             table1.AddRow(new string[] {
                         "Qty",
                         "1"});
+            table1.AddRow(new string[] {
+                        "Comment",
+                        "AutoTest"});
 #line 17
  testRunner.When("I enter the following information", ((string)(null)), table1, "When ");
-#line 24
- testRunner.Then("I click Create Activation Codes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 25
- testRunner.And("I review the order information", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("I click Create Activation Codes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 26
- testRunner.When("I click Confirm", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("I review the order information", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 27
- testRunner.Then("I should see the order success screen", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("I click Confirm", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 28
- testRunner.And("I can validate the correct order emails were received for \"ORP_Cushty_Dealer_001@" +
-                    "guerrillamail.com\" as \"order\" and as \"activation\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("I should see the order success screen", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 29
- testRunner.And("I can validate the order is displayed in the Orders tab under my account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 30
- testRunner.Then("I can validate the order was processed via SAP", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("I can validate the correct order emails were received for \"AutomatedTesterDealer1" +
+                    "@guerrillamail.com\" as \"order\" and as \"activation\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 31
- testRunner.And("I can store the Dealer Activation Code for using later", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("I can validate the order was processed via SAP", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 32
+ testRunner.And("I can store the Dealer Activation Code for using later", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 33
  testRunner.When("I create a new Customer Account using the same customer name I created as a Deale" +
                     "r", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 33
- testRunner.Then("I can navigate to the Activate Code page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 34
- testRunner.And("I can activate the stored Activation code", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("I can navigate to the Activate Code page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 35
- testRunner.When("I navigate to Manage Plan", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("I can activate the stored Activation code", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 36
+ testRunner.When("I navigate to Manage Plan", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 37
  testRunner.Then("I can see my OmniJoin plan", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
