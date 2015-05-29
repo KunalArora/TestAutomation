@@ -342,11 +342,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             AssertElementPresent(PrivateLiableElement, "Is Private Liable Check Box");
         }
 
-        public CreateNewProposalPage ClickNextButton()
+        public CreateNewProposalPage ClickNextButton_old()
         {
             ScrollTo(NextButton);
             NextButton.Click();
             return GetTabInstance<CreateNewProposalPage>(Driver);
+        }
+
+        public DealerProposalsCreateProductsPage ClickNextButton()
+        {
+            ScrollTo(NextButton);
+            NextButton.Click();
+            return GetTabInstance<DealerProposalsCreateProductsPage>(Driver);
         }
 
         public void EnterProposalName(string proposalName)

@@ -32,7 +32,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<CreateNewProposalPage>().IsPromptTextDisplayed();
             CurrentPage.As<CreateNewProposalPage>().EnterProposalName("");
             CurrentPage.As<CreateNewProposalPage>().EnterLeadCodeRef("");
-            CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
+            CurrentPage.As<CreateNewProposalPage>().ClickNextButton_old();
         }
 
         [When(@"I fill Proposal Description for ""(.*)"" Contract type")]
@@ -42,7 +42,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<CreateNewProposalPage>().SelectingContractType(contract);
             CurrentPage.As<CreateNewProposalPage>().EnterProposalName("");
             CurrentPage.As<CreateNewProposalPage>().EnterLeadCodeRef("");
-            CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
+            CurrentPage.As<CreateNewProposalPage>().ClickNextButton_old();
         }
 
         [When(@"I begin the proposal creation process for Purchase \+ Click Service")]
@@ -52,7 +52,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<CreateNewProposalPage>().SelectingContractType("Purchase-and-Click");
             CurrentPage.As<CreateNewProposalPage>().EnterProposalName("");
             CurrentPage.As<CreateNewProposalPage>().EnterLeadCodeRef("");
-            CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
+            CurrentPage.As<CreateNewProposalPage>().ClickNextButton_old();
 
             When(@"I enter Customer Information Detail for new customer");
         }
@@ -63,7 +63,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         {
             CurrentPage.As<CreateNewProposalPage>().IsCustomerInfoTextDisplayed();
             CurrentPage.As<CreateNewProposalPage>().ClickSkipCustomerRadioButton();
-            CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
+            CurrentPage.As<CreateNewProposalPage>().ClickNextButton_old();
 
         }
 
@@ -80,7 +80,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         {
             CurrentPage.As<CreateNewProposalPage>().IsCustomerInfoTextDisplayed();
             CurrentPage.As<CreateNewProposalPage>().ClickCreateNewCustomerRadioButton();
-            CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
+            CurrentPage.As<CreateNewProposalPage>().ClickNextButton_old();
 
             // CurrentPage.As<CreateNewProposalPage>().ClickNewOrganisationButton();
 //            CurrentPage.As<CreateNewProposalPage>().IsPrivateLiableCheckBoxDiplayed();
@@ -89,7 +89,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<CreateNewProposalPage>().FillOrganisationContactDetail();
             CurrentPage.As<CreateNewProposalPage>().TickOrderConsumables();
 
-            CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
+            CurrentPage.As<CreateNewProposalPage>().ClickNextButton_old();
         }
 
         [Given(@"I Enter ""(.*)"" usage type ""(.*)"" contract length and ""(.*)"" billing on Term and Type details")]
@@ -102,7 +102,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<CreateNewProposalPage>().SelectContractLength(contract);
             CurrentPage.As<CreateNewProposalPage>().SelectPayPerClickBillingCycle(billing);
 
-            CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
+            CurrentPage.As<CreateNewProposalPage>().ClickNextButton_old();
         }
 
         private void WhenIEnterContractTermsLeasingAndBillingOnTermAndTypeDetails(string contract, string leasing,
@@ -122,7 +122,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         {
             WhenIEnterContractTermsLeasingAndBillingOnTermAndTypeDetails(contract, leasing, billing);
 
-            CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
+            CurrentPage.As<CreateNewProposalPage>().ClickNextButton_old();
         }
 
         [When(@"I Enter ""(.*)"" contract terms ""(.*)"" leasing and ""(.*)"" billing on Term and Type details\(only input\)")]
@@ -146,7 +146,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         {
             CurrentPage.As<CreateNewProposalPage>().TickPriceHardware();
 
-            CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
+            NextPage = CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
         }
 
         [When(@"I untick Price Hardware radio button")]
@@ -154,14 +154,14 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         {
             CurrentPage.As<CreateNewProposalPage>().UntickPriceHardware();
 
-            CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
+            NextPage = CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
         }
 
         [Then(@"I should not see Price Hardware radio button on Term and Type screen")]
         public void ThenIShouldNotSeePriceHardwareRadioButtonOnTermAndTypeScreen()
         {
             CurrentPage.As<CreateNewProposalPage>().IsNotPriceHardwareElement();
-            CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
+            NextPage = CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
         }
 
         [When(@"I choose ""(.*)"" from Products screen")]
@@ -313,11 +313,11 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [Then(@"I can still create a proposal with the information above")]
         public void ThenICanStillCreateAProposalWithTheInformationAbove()
         {
-            CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
-            CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
-            CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
-            CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
-            CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
+            CurrentPage.As<CreateNewProposalPage>().ClickNextButton_old();
+            CurrentPage.As<CreateNewProposalPage>().ClickNextButton_old();
+            CurrentPage.As<CreateNewProposalPage>().ClickNextButton_old();
+            CurrentPage.As<CreateNewProposalPage>().ClickNextButton_old();
+            CurrentPage.As<CreateNewProposalPage>().ClickNextButton_old();
             CurrentPage.As<CreateNewProposalPage>().SaveProposal();
 
             CurrentPage.As<CloudExistingProposalPage>().IsNewProposalTemplateCreated();
@@ -488,5 +488,128 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<CreateNewProposalPage>().StrictVerifyMarginFieldValues();
         }
 
+        [When(@"I check Fax checkbox")]
+        public void WhenICheckFaxCheckbox()
+        {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().TickRelineSearchFax();
+        }
+
+        [Then(@"All printers that have Fax facility are returned")]
+        public void ThenAllPrintersThatHaveFaxFacilityAreReturned()
+        {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().IsAllPrintersHaveFaxFacility();
+        }
+
+        [When(@"I check Scanner checkbox")]
+        public void WhenICheckScannerCheckbox()
+        {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().TickRelineSearchScanner();
+        }
+
+        [Then(@"All printers that have Scanner facility are returned")]
+        public void ThenAllPrintersThatHaveScannerFacilityAreReturned()
+        {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().IsAllPrintersHaveScanFacility();
+        }
+
+        [When(@"I check Duplex checkbox")]
+        public void WhenICheckDuplexCheckbox()
+        {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().TickRelineSearchDuplex();
+        }
+
+        [Then(@"All printers that have Duplex facility are returned")]
+        public void ThenAllPrintersThatHaveDuplexFacilityAreReturned()
+        {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().IsAllPrintersHaveDuplexFacility();
+        }
+
+        [When(@"I check Additional Tray checkbox")]
+        public void WhenICheckAdditionalTrayCheckbox()
+        {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().TickRelineSearchAdditionalTray();
+        }
+
+        [Then(@"All printers that have Additional Tray facility are returned")]
+        public void ThenAllPrintersThatHaveAdditionalTrayFacilityAreReturned()
+        {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().IsAllPrintersHaveAdditionalTrayFacility();
+        }
+
+        [When(@"I check A4 checkbox")]
+        public void WhenICheckA4Checkbox()
+        {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().TickRelineSearchA4();
+        }
+
+        [Then(@"All printers that have A4 facility are returned")]
+        public void ThenAllPrintersThatHaveA4FacilityAreReturned()
+        {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().IsAllPrintersHaveA4Facility();
+        }
+
+        [When(@"I check A3 checkbox")]
+        public void WhenICheckA3Checkbox()
+        {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().TickRelineSearchA3();
+        }
+
+        [Then(@"All printers that have A3 facility are returned")]
+        public void ThenAllPrintersThatHaveA3FacilityAreReturned()
+        {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().IsAllPrintersHaveA3Facility();
+        }
+
+        [When(@"I check Mono checkbox")]
+        public void WhenICheckMonoCheckbox()
+        {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().TickRelineSearchMono();
+        }
+
+        [Then(@"All printers that have Mono facility are returned")]
+        public void ThenAllPrintersThatHaveMonoFacilityAreReturned()
+        {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().IsAllPrintersHaveMonoFacility();
+        }
+
+        [When(@"I check Colour checkbox")]
+        public void WhenICheckColourCheckbox()
+        {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().TickRelineSearchColour();
+        }
+
+        [Then(@"All printers that have Colour facility are returned")]
+        public void ThenAllPrintersThatHaveColourFacilityAreReturned()
+        {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().IsAllPrintersHaveColourFacility();
+        }
+
+        [When(@"I check Fax and Scanner checkbox")]
+        public void WhenICheckFaxAndScannerCheckbox()
+        {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().TickRelineSearchFax();
+            CurrentPage.As<DealerProposalsCreateProductsPage>().TickRelineSearchScanner();
+        }
+
+        [Then(@"All printers that have Fax and Scanner facility are returned")]
+        public void ThenAllPrintersThatHaveFaxAndScannerFacilityAreReturned()
+        {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().IsAllPrintersHaveFaxFacility();
+            CurrentPage.As<DealerProposalsCreateProductsPage>().IsAllPrintersHaveScanFacility();
+        }
+
+        [When(@"I check Duplex and Colour checkbox")]
+        public void WhenICheckDuplexAndColourCheckbox()
+        {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().TickRelineSearchDuplex();
+            CurrentPage.As<DealerProposalsCreateProductsPage>().TickRelineSearchColour();
+        }
+
+        [Then(@"All printers that have Duplex and Colour facility are returned")]
+        public void ThenAllPrintersThatHaveDuplexAndColourFacilityAreReturned()
+        {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().IsAllPrintersHaveDuplexFacility();
+            CurrentPage.As<DealerProposalsCreateProductsPage>().IsAllPrintersHaveColourFacility();
+        }
     }
 }

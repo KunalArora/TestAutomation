@@ -315,7 +315,7 @@ Scenario Outline: Change in Margin impacts Unit Price (1)
 	| Cloud MPS Dealer | United Kingdom | MFC-L8850CDW |
 
 # 27
-
+@Ignored
 Scenario Outline: Change in Margin impacts Unit Price (2)
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -332,6 +332,10 @@ Scenario Outline: Change in Margin impacts Unit Price (2)
 #
 # 9 Filters
 #
+# TODO: Should implement Enabling correct printers as a local office admin.
+
+# 28
+
 # 29
 @Ignored
 Scenario Outline: Fax filter checkbox 
@@ -339,16 +343,148 @@ Scenario Outline: Fax filter checkbox
 	And I am on MPS New Proposal Page
     When I begin the proposal creation process for Purchase + Click Service
 	And I tick Price Hardware radio button
-	And I display "<Printer>" device screen
 	And I check Fax checkbox
 	Then All printers that have Fax facility are returned
 
 	Scenarios: 
 
-	| Role             | Country        | Printer      |
-	| Cloud MPS Dealer | United Kingdom | MFC-L8850CDW |
+	| Role             | Country        |
+	| Cloud MPS Dealer | United Kingdom |
 
-# 28-34
+# 30
+@Ignored
+Scenario Outline: Scanner filter checkbox 
+	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
+	And I am on MPS New Proposal Page
+    When I begin the proposal creation process for Purchase + Click Service
+	And I tick Price Hardware radio button
+	And I check Scanner checkbox
+	Then All printers that have Scanner facility are returned
+
+	Scenarios: 
+
+	| Role             | Country        |
+	| Cloud MPS Dealer | United Kingdom |
+
+# 31
+@Ignored
+Scenario Outline: Duplex filter checkbox 
+	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
+	And I am on MPS New Proposal Page
+    When I begin the proposal creation process for Purchase + Click Service
+	And I tick Price Hardware radio button
+	And I check Duplex checkbox
+	Then All printers that have Duplex facility are returned
+
+	Scenarios: 
+
+	| Role             | Country        |
+	| Cloud MPS Dealer | United Kingdom |
+
+#32
+@Ignored
+Scenario Outline: Additional Tray filter checkbox 
+	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
+	And I am on MPS New Proposal Page
+    When I begin the proposal creation process for Purchase + Click Service
+	And I tick Price Hardware radio button
+	And I check Additional Tray checkbox
+	Then All printers that have Additional Tray facility are returned
+
+	Scenarios: 
+
+	| Role             | Country        |
+	| Cloud MPS Dealer | United Kingdom |
+
+# 33
+@Ignored
+Scenario Outline: A4 filter checkbox 
+	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
+	And I am on MPS New Proposal Page
+    When I begin the proposal creation process for Purchase + Click Service
+	And I tick Price Hardware radio button
+	And I check A4 checkbox
+	Then All printers that have A4 facility are returned
+
+	Scenarios: 
+
+	| Role             | Country        |
+	| Cloud MPS Dealer | United Kingdom |
+
+# 34
+# Which is A3 model?
+@Ignored
+Scenario Outline: A3 filter checkbox 
+	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
+	And I am on MPS New Proposal Page
+    When I begin the proposal creation process for Purchase + Click Service
+	And I tick Price Hardware radio button
+	And I check A3 checkbox
+	Then All printers that have A3 facility are returned
+
+	Scenarios: 
+
+	| Role             | Country        |
+	| Cloud MPS Dealer | United Kingdom |
+
+# 35
+@Ignored
+Scenario Outline: Mono filter checkbox 
+	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
+	And I am on MPS New Proposal Page
+    When I begin the proposal creation process for Purchase + Click Service
+	And I tick Price Hardware radio button
+	And I check Mono checkbox
+	Then All printers that have Mono facility are returned
+
+	Scenarios: 
+
+	| Role             | Country        |
+	| Cloud MPS Dealer | United Kingdom |
+
+# 36
+@Ignored
+Scenario Outline: Colour filter checkbox 
+	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
+	And I am on MPS New Proposal Page
+    When I begin the proposal creation process for Purchase + Click Service
+	And I tick Price Hardware radio button
+	And I check Colour checkbox
+	Then All printers that have Colour facility are returned
+
+	Scenarios: 
+
+	| Role             | Country        |
+	| Cloud MPS Dealer | United Kingdom |
+
+# 37
+Scenario Outline: Fax and Scanner filter checkbox 
+	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
+	And I am on MPS New Proposal Page
+    When I begin the proposal creation process for Purchase + Click Service
+	And I tick Price Hardware radio button
+	And I check Fax and Scanner checkbox
+	Then All printers that have Fax and Scanner facility are returned
+
+	Scenarios: 
+
+	| Role             | Country        |
+	| Cloud MPS Dealer | United Kingdom |
+
+# 38
+@Ignored
+Scenario Outline: Duplex and Colour filter checkbox 
+	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
+	And I am on MPS New Proposal Page
+    When I begin the proposal creation process for Purchase + Click Service
+	And I tick Price Hardware radio button
+	And I check Duplex and Colour checkbox
+	Then All printers that have Duplex and Colour facility are returned
+
+	Scenarios: 
+
+	| Role             | Country        |
+	| Cloud MPS Dealer | United Kingdom |
 
 #
 # 10 Change Display

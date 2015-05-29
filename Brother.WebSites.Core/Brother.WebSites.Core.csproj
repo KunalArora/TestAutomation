@@ -119,6 +119,7 @@
     <Compile Include="Pages\MPSTwo\CloudCustomersPage.cs" />
     <Compile Include="Pages\MPSTwo\CloudExistingProposalPage.cs" />
     <Compile Include="Pages\MPSTwo\CloudMpsNavigationHeaderTabs.cs" />
+    <Compile Include="Pages\MPSTwo\DealerProposalsCreateProductsPage.cs" />
     <Compile Include="Pages\MPSTwo\CreateNewProposalPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerDashBoardPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerDefaultsPage.cs" />
