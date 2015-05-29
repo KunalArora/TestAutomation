@@ -28,6 +28,8 @@ Scenario: Order and validate a new subscription activation code for Named Host l
 	Then I should see the order success screen
 	Then I can validate the order was processed via SAP
 	And I can store the Order Details for "AutomatedTesterDealer1@guerrillamail.com" as they are required later
+	Then I can navigate back to the Partner Portal Home Page using breadcrumbs
+	Then I can see the Partner Portal Home Page
 	When I create a new Customer Account
 	And I can store the Customer Account information for use later
 	When I can sign out of Brother Online

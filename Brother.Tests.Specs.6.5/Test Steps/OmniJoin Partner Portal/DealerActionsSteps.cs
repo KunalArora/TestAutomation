@@ -10,6 +10,13 @@ namespace Brother.Tests.Specs
     [Binding]
     public class DealerActionsSteps : BaseSteps
     {
+        [When(@"I create a new Customer Account")]
+        public void WhenICreateANewCustomerAccount()
+        {
+            //CurrentPage.As<ManageCustomersAndOrdersPage>().
+        }
+
+
         [Then(@"I can see the Partner Portal Home Page")]
         public void ThenICanSeeThePartnerPortalHomePage()
         {
