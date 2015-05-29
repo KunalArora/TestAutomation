@@ -76,7 +76,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Proposal
         public virtual void ShouldBeAbleToDisplayFullDetailScreen(string role, string country, string printer, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "Ignore"};
+                    "ignore"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -107,7 +107,7 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void DefaultValueOfFullDetailScreenAreVerified(string role, string country, string contractType, string contract, string billing, string printer, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "Ignore"};
+                    "ignore"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -144,7 +144,7 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void TotalPriceCalulationIsVerified(string role, string country, string contractType, string contract, string billing, string printer, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "Ignore"};
+                    "ignore"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -179,7 +179,7 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void TheSumOfTotalPriceIsEqualToTheGrandTotalPrice(string role, string country, string contractType, string contract, string billing, string printer, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "Ignore"};
+                    "ignore"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -215,7 +215,7 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void AllZeroQTYFieldsAreNotDisplayedOnSummaryPage(string role, string country, string contractType, string contract, string billing, string printer, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "Ignore"};
+                    "ignore"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -254,7 +254,7 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void ShouldBeAbleToDisplayReducedDetailScreen(string role, string country, string contractType, string contract, string billing, string printer, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "Ignore"};
+                    "ignore"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -289,7 +289,7 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void LeaseAndClickProductScreenValidation(string role, string country, string contractType, string contract, string leasing, string billing, string printer, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "Ignore"};
+                    "ignore"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -325,7 +325,7 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void Asdf(string role, string country, string contractType, string contract, string leasing, string billing, string printer, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "Ignore"};
+                    "ignore"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -352,7 +352,7 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void Asd(string role, string country, string printer, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "Ignore"};
+                    "ignore"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -376,12 +376,12 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Cannot input Installation Pack Unit Cost less than default")]
-        [NUnit.Framework.CategoryAttribute("Ignored")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "MFC-L8850CDW", null)]
         public virtual void CannotInputInstallationPackUnitCostLessThanDefault(string role, string country, string printer, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "Ignored"};
+                    "ignore"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -419,7 +419,7 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void WhenInput100IntoMarginFieldAddToProposalButtonBecomeGrayout(string role, string country, string printer, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "Ignore"};
+                    "ignore"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -453,7 +453,7 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void WhenChangeUnitPriceSoThatMarginIs100AddToProposalButtonBecomeGrayout(string role, string country, string printer, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "Ignore"};
+                    "ignore"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -487,7 +487,7 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void WhenLoginAsADealerOne_TimeSet_UpAndUsedByAllDealers(string role1, string country, string role2, string contractType, string contract, string leasing, string billing, string printer, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "Ignore"};
+                    "ignore"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -525,12 +525,12 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Change in Unit Cost impacts Unit Price")]
-        [NUnit.Framework.CategoryAttribute("Ignored")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "MFC-L8850CDW", null)]
         public virtual void ChangeInUnitCostImpactsUnitPrice(string role, string country, string printer, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "Ignored"};
+                    "ignore"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -560,12 +560,12 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Change in Unit Price impacts Margin")]
-        [NUnit.Framework.CategoryAttribute("Ignored")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "MFC-L8850CDW", null)]
         public virtual void ChangeInUnitPriceImpactsMargin(string role, string country, string printer, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "Ignored"};
+                    "ignore"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -595,12 +595,12 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Change in Margin impacts Unit Price (1)")]
-        [NUnit.Framework.CategoryAttribute("Ignored")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "MFC-L8850CDW", null)]
         public virtual void ChangeInMarginImpactsUnitPrice1(string role, string country, string printer, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "Ignored"};
+                    "ignore"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -630,12 +630,12 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Change in Margin impacts Unit Price (2)")]
-        [NUnit.Framework.CategoryAttribute("Ignored")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "MFC-L8850CDW", null)]
         public virtual void ChangeInMarginImpactsUnitPrice2(string role, string country, string printer, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "Ignored"};
+                    "ignore"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -662,31 +662,62 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Free Text Filter")]
+        [NUnit.Framework.IgnoreAttribute()]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "MFC-L8850CDW", null)]
+        public virtual void FreeTextFilter(string role, string country, string printer, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "ignore"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Free Text Filter", @__tags);
+#line 339
+this.ScenarioSetup(scenarioInfo);
+#line 340
+ testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 341
+ testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 342
+    testRunner.When("I begin the proposal creation process for Purchase + Click Service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 343
+ testRunner.And("I tick Price Hardware radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 344
+ testRunner.And(string.Format("I type in \"{0}\" into the top RHS free-text filter", printer), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 345
+ testRunner.Then(string.Format("All printers that contain \"{0}\" is returned", printer), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Fax filter checkbox")]
-        [NUnit.Framework.CategoryAttribute("Ignored")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", null)]
         public virtual void FaxFilterCheckbox(string role, string country, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "Ignored"};
+                    "ignore"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Fax filter checkbox", @__tags);
-#line 341
+#line 354
 this.ScenarioSetup(scenarioInfo);
-#line 342
+#line 355
  testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 343
+#line 356
  testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 344
+#line 357
     testRunner.When("I begin the proposal creation process for Purchase + Click Service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 345
+#line 358
  testRunner.And("I tick Price Hardware radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 346
+#line 359
  testRunner.And("I check Fax checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 347
+#line 360
  testRunner.Then("All printers that have Fax facility are returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -694,30 +725,30 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Scanner filter checkbox")]
-        [NUnit.Framework.CategoryAttribute("Ignored")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", null)]
         public virtual void ScannerFilterCheckbox(string role, string country, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "Ignored"};
+                    "ignore"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Scanner filter checkbox", @__tags);
-#line 356
+#line 369
 this.ScenarioSetup(scenarioInfo);
-#line 357
+#line 370
  testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 358
+#line 371
  testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 359
+#line 372
     testRunner.When("I begin the proposal creation process for Purchase + Click Service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 360
+#line 373
  testRunner.And("I tick Price Hardware radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 361
+#line 374
  testRunner.And("I check Scanner checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 362
+#line 375
  testRunner.Then("All printers that have Scanner facility are returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -725,30 +756,30 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Duplex filter checkbox")]
-        [NUnit.Framework.CategoryAttribute("Ignored")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", null)]
         public virtual void DuplexFilterCheckbox(string role, string country, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "Ignored"};
+                    "ignore"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Duplex filter checkbox", @__tags);
-#line 371
+#line 384
 this.ScenarioSetup(scenarioInfo);
-#line 372
+#line 385
  testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 373
+#line 386
  testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 374
+#line 387
     testRunner.When("I begin the proposal creation process for Purchase + Click Service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 375
+#line 388
  testRunner.And("I tick Price Hardware radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 376
+#line 389
  testRunner.And("I check Duplex checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 377
+#line 390
  testRunner.Then("All printers that have Duplex facility are returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -756,30 +787,30 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Additional Tray filter checkbox")]
-        [NUnit.Framework.CategoryAttribute("Ignored")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", null)]
         public virtual void AdditionalTrayFilterCheckbox(string role, string country, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "Ignored"};
+                    "ignore"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Additional Tray filter checkbox", @__tags);
-#line 386
+#line 399
 this.ScenarioSetup(scenarioInfo);
-#line 387
+#line 400
  testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 388
+#line 401
  testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 389
+#line 402
     testRunner.When("I begin the proposal creation process for Purchase + Click Service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 390
+#line 403
  testRunner.And("I tick Price Hardware radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 391
+#line 404
  testRunner.And("I check Additional Tray checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 392
+#line 405
  testRunner.Then("All printers that have Additional Tray facility are returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -787,30 +818,30 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("A4 filter checkbox")]
-        [NUnit.Framework.CategoryAttribute("Ignored")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", null)]
         public virtual void A4FilterCheckbox(string role, string country, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "Ignored"};
+                    "ignore"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A4 filter checkbox", @__tags);
-#line 401
+#line 414
 this.ScenarioSetup(scenarioInfo);
-#line 402
+#line 415
  testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 403
+#line 416
  testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 404
+#line 417
     testRunner.When("I begin the proposal creation process for Purchase + Click Service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 405
+#line 418
  testRunner.And("I tick Price Hardware radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 406
+#line 419
  testRunner.And("I check A4 checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 407
+#line 420
  testRunner.Then("All printers that have A4 facility are returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -818,30 +849,30 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("A3 filter checkbox")]
-        [NUnit.Framework.CategoryAttribute("Ignored")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", null)]
         public virtual void A3FilterCheckbox(string role, string country, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "Ignored"};
+                    "ignore"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A3 filter checkbox", @__tags);
-#line 417
+#line 430
 this.ScenarioSetup(scenarioInfo);
-#line 418
+#line 431
  testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 419
+#line 432
  testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 420
+#line 433
     testRunner.When("I begin the proposal creation process for Purchase + Click Service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 421
+#line 434
  testRunner.And("I tick Price Hardware radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 422
+#line 435
  testRunner.And("I check A3 checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 423
+#line 436
  testRunner.Then("All printers that have A3 facility are returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -849,30 +880,30 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Mono filter checkbox")]
-        [NUnit.Framework.CategoryAttribute("Ignored")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", null)]
         public virtual void MonoFilterCheckbox(string role, string country, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "Ignored"};
+                    "ignore"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Mono filter checkbox", @__tags);
-#line 432
+#line 445
 this.ScenarioSetup(scenarioInfo);
-#line 433
+#line 446
  testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 434
+#line 447
  testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 435
+#line 448
     testRunner.When("I begin the proposal creation process for Purchase + Click Service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 436
+#line 449
  testRunner.And("I tick Price Hardware radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 437
+#line 450
  testRunner.And("I check Mono checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 438
+#line 451
  testRunner.Then("All printers that have Mono facility are returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -880,30 +911,30 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Colour filter checkbox")]
-        [NUnit.Framework.CategoryAttribute("Ignored")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", null)]
         public virtual void ColourFilterCheckbox(string role, string country, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "Ignored"};
+                    "ignore"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Colour filter checkbox", @__tags);
-#line 447
+#line 460
 this.ScenarioSetup(scenarioInfo);
-#line 448
+#line 461
  testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 449
+#line 462
  testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 450
+#line 463
     testRunner.When("I begin the proposal creation process for Purchase + Click Service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 451
+#line 464
  testRunner.And("I tick Price Hardware radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 452
+#line 465
  testRunner.And("I check Colour checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 453
+#line 466
  testRunner.Then("All printers that have Colour facility are returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -911,23 +942,30 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Fax and Scanner filter checkbox")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", null)]
         public virtual void FaxAndScannerFilterCheckbox(string role, string country, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Fax and Scanner filter checkbox", exampleTags);
-#line 461
+            string[] @__tags = new string[] {
+                    "ignore"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Fax and Scanner filter checkbox", @__tags);
+#line 475
 this.ScenarioSetup(scenarioInfo);
-#line 462
+#line 476
  testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 463
+#line 477
  testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 464
+#line 478
     testRunner.When("I begin the proposal creation process for Purchase + Click Service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 465
+#line 479
  testRunner.And("I tick Price Hardware radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 466
+#line 480
  testRunner.And("I check Fax and Scanner checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 467
+#line 481
  testRunner.Then("All printers that have Fax and Scanner facility are returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -935,30 +973,30 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Duplex and Colour filter checkbox")]
-        [NUnit.Framework.CategoryAttribute("Ignored")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", null)]
         public virtual void DuplexAndColourFilterCheckbox(string role, string country, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "Ignored"};
+                    "ignore"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Duplex and Colour filter checkbox", @__tags);
-#line 476
+#line 490
 this.ScenarioSetup(scenarioInfo);
-#line 477
+#line 491
  testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 478
+#line 492
  testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 479
+#line 493
     testRunner.When("I begin the proposal creation process for Purchase + Click Service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 480
+#line 494
  testRunner.And("I tick Price Hardware radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 481
+#line 495
  testRunner.And("I check Duplex and Colour checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 482
+#line 496
  testRunner.Then("All printers that have Duplex and Colour facility are returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

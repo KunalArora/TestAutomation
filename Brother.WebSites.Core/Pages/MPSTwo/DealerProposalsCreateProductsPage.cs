@@ -16,6 +16,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             get { return string.Empty; }
         }
 
+        [FindsBy(How = How.Id, Using = "content_1_InputSearchProduct")]
+        private IWebElement InputSearchProductElement;
+
         private IWebElement FaxCheckboxElement()
         {
             string element = "input[data-filter-for=\"fax\"]";
@@ -213,6 +216,33 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void IsAllPrintersHaveColourFacility()
         {
             // @TODO: not implement
+        }
+
+        public void TypeIntoRHSFreeTextFilter(string model)
+        {
+            WebDriver.Wait(Helper.DurationType.Second, 3);
+            ClearAndType(InputSearchProductElement, model);
+        }
+
+        private IList<IWebElement> DisplayedAllPrintersByFilteringOfFreeTextElement()
+        {
+            string element = ".js-mps-product-open-container[style=\"display: list-item;\"";
+
+            return GetElementsByCssSelector(element);
+        }
+
+        public void IsAllPrintersReturnedThatSearched(string model)
+        {
+            int count = 0;
+
+            foreach (IWebElement element in DisplayedAllPrintersByFilteringOfFreeTextElement())
+            {
+                string modelWithPC = element.GetAttribute("id");
+                if (modelWithPC.Contains(model)) count++;
+            }
+
+            TestCheck.AssertIsEqual(count, DisplayedAllPrintersByFilteringOfFreeTextElement().Count,
+                "Displayed all printers are not invalid");
         }
     }
 }

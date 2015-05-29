@@ -611,5 +611,18 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<DealerProposalsCreateProductsPage>().IsAllPrintersHaveDuplexFacility();
             CurrentPage.As<DealerProposalsCreateProductsPage>().IsAllPrintersHaveColourFacility();
         }
+
+        [When(@"I type in ""(.*)"" into the top RHS free-text filter")]
+        public void WhenITypeInIntoTheTopRHSFree_TextFilter(string model)
+        {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().TypeIntoRHSFreeTextFilter(model);
+        }
+
+        [Then(@"All printers that contain ""(.*)"" is returned")]
+        public void ThenAllPrintersThatContainIsReturned(string model)
+        {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().IsAllPrintersReturnedThatSearched(model);
+        }
+
     }
 }

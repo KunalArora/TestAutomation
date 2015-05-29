@@ -8,7 +8,7 @@ Feature: Proposal - Add a devices to a proposal during creation
 # 1 Screen Variations
 #
 # 1)
-@Ignore
+@ignore
 Scenario Outline: Should be able to display full detail screen
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -25,7 +25,7 @@ Scenario Outline: Should be able to display full detail screen
 	| Cloud MPS Dealer | United Kingdom | MFC-L8850CDW |
 
 # 2)
-@Ignore
+@ignore
 Scenario Outline: Default value of full detail screen are verified
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -43,7 +43,7 @@ Scenario Outline: Default value of full detail screen are verified
 	| Cloud MPS Dealer | United Kingdom | Purchase-and-Click | 3 years  |  6 Monthly Minimum Volume | MFC-L8850CDW |
 
 # 3)
-@Ignore
+@ignore
 Scenario Outline: Total Price calulation is verified
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -61,7 +61,7 @@ Scenario Outline: Total Price calulation is verified
 	| Cloud MPS Dealer | United Kingdom | Purchase-and-Click | 3 years  |  6 Monthly Minimum Volume | MFC-L8850CDW |
 
 # 4)
-@Ignore
+@ignore
 Scenario Outline: The sum of Total Price is equal to the Grand Total Price
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -78,7 +78,7 @@ Scenario Outline: The sum of Total Price is equal to the Grand Total Price
 	| Cloud MPS Dealer | United Kingdom | Purchase-and-Click | 3 years  |  6 Monthly Minimum Volume | MFC-L8850CDW |
 
 # 5)
-@Ignore
+@ignore
 Scenario Outline: All Zero QTY fields are not displayed on summary page
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -99,7 +99,7 @@ Scenario Outline: All Zero QTY fields are not displayed on summary page
 	| Cloud MPS Dealer | United Kingdom | Purchase-and-Click | 3 years  |  6 Monthly Minimum Volume | MFC-L8850CDW |
 
 # 6)
-@Ignore
+@ignore
 Scenario Outline: Should be able to display Reduced detail screen
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -118,7 +118,7 @@ Scenario Outline: Should be able to display Reduced detail screen
 	| Cloud MPS Dealer | United Kingdom | Purchase-and-Click | 3 years  |  6 Monthly Minimum Volume | MFC-L8850CDW |
 
 # 7)
-@Ignore
+@ignore
 Scenario Outline: Lease and Click product screen validation
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -140,7 +140,7 @@ Scenario Outline: Lease and Click product screen validation
 # Enable Printers Scenario 
 #
 # 8) under consideration
-@Ignore
+@ignore
 Scenario Outline: asdf
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to the "Product screen" for "<ContractType>" Contract type
@@ -163,7 +163,7 @@ Scenario Outline: asdf
 # 5 Product-Accessories Relationship
 #
 # 17) under consideration
-@Ignore
+@ignore
 Scenario Outline: asd
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -181,7 +181,7 @@ Scenario Outline: asd
 # 6 Service Pack
 #
 # 18)
-@Ignored
+@ignore
 Scenario Outline: Cannot input Installation Pack Unit Cost less than default
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -200,7 +200,7 @@ Scenario Outline: Cannot input Installation Pack Unit Cost less than default
 
 # 19)
 
-@Ignore
+@ignore
 Scenario Outline: When input 100% into Margin field, "Add to proposal" button become grayout
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -216,7 +216,7 @@ Scenario Outline: When input 100% into Margin field, "Add to proposal" button be
 	| Cloud MPS Dealer | United Kingdom | MFC-L8850CDW |
 
 # 20)
-@Ignore
+@ignore
 Scenario Outline: When change Unit Price so that Margin is 100, "Add to proposal" button become grayout
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -235,7 +235,7 @@ Scenario Outline: When change Unit Price so that Margin is 100, "Add to proposal
 # 7 Margin Defaults
 #
 # 21) under construction
-@Ignore
+@ignore
 Scenario Outline: When login as a dealer, One-time set-up and used by all dealers
 	Given I sign into Cloud MPS as a "<Role1>" from "<Country>"
 	When I navigate to Dealer Defaults page
@@ -263,7 +263,7 @@ Scenario Outline: When login as a dealer, One-time set-up and used by all dealer
 # 8 Unit Cost vs Margin% vs Unit Price
 #
 # 24
-@Ignored
+@ignore
 Scenario Outline: Change in Unit Cost impacts Unit Price
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -281,7 +281,7 @@ Scenario Outline: Change in Unit Cost impacts Unit Price
 	| Cloud MPS Dealer | United Kingdom | MFC-L8850CDW |
 
 # 25
-@Ignored
+@ignore
 Scenario Outline: Change in Unit Price impacts Margin
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -298,7 +298,7 @@ Scenario Outline: Change in Unit Price impacts Margin
 	| Cloud MPS Dealer | United Kingdom | MFC-L8850CDW |
 
 #26
-@Ignored
+@ignore
 Scenario Outline: Change in Margin impacts Unit Price (1)
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -315,7 +315,7 @@ Scenario Outline: Change in Margin impacts Unit Price (1)
 	| Cloud MPS Dealer | United Kingdom | MFC-L8850CDW |
 
 # 27
-@Ignored
+@ignore
 Scenario Outline: Change in Margin impacts Unit Price (2)
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -335,9 +335,22 @@ Scenario Outline: Change in Margin impacts Unit Price (2)
 # TODO: Should implement Enabling correct printers as a local office admin.
 
 # 28
+@ignore
+Scenario Outline: Free Text Filter
+	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
+	And I am on MPS New Proposal Page
+    When I begin the proposal creation process for Purchase + Click Service
+	And I tick Price Hardware radio button
+	And I type in "<Printer>" into the top RHS free-text filter
+	Then All printers that contain "<Printer>" is returned
+
+	Scenarios: 
+
+	| Role             | Country        | Printer      |
+	| Cloud MPS Dealer | United Kingdom | MFC-L8850CDW |
 
 # 29
-@Ignored
+@ignore
 Scenario Outline: Fax filter checkbox 
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -352,7 +365,7 @@ Scenario Outline: Fax filter checkbox
 	| Cloud MPS Dealer | United Kingdom |
 
 # 30
-@Ignored
+@ignore
 Scenario Outline: Scanner filter checkbox 
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -367,7 +380,7 @@ Scenario Outline: Scanner filter checkbox
 	| Cloud MPS Dealer | United Kingdom |
 
 # 31
-@Ignored
+@ignore
 Scenario Outline: Duplex filter checkbox 
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -382,7 +395,7 @@ Scenario Outline: Duplex filter checkbox
 	| Cloud MPS Dealer | United Kingdom |
 
 #32
-@Ignored
+@ignore
 Scenario Outline: Additional Tray filter checkbox 
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -397,7 +410,7 @@ Scenario Outline: Additional Tray filter checkbox
 	| Cloud MPS Dealer | United Kingdom |
 
 # 33
-@Ignored
+@ignore
 Scenario Outline: A4 filter checkbox 
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -413,7 +426,7 @@ Scenario Outline: A4 filter checkbox
 
 # 34
 # Which is A3 model?
-@Ignored
+@ignore
 Scenario Outline: A3 filter checkbox 
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -428,7 +441,7 @@ Scenario Outline: A3 filter checkbox
 	| Cloud MPS Dealer | United Kingdom |
 
 # 35
-@Ignored
+@ignore
 Scenario Outline: Mono filter checkbox 
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -443,7 +456,7 @@ Scenario Outline: Mono filter checkbox
 	| Cloud MPS Dealer | United Kingdom |
 
 # 36
-@Ignored
+@ignore
 Scenario Outline: Colour filter checkbox 
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -458,6 +471,7 @@ Scenario Outline: Colour filter checkbox
 	| Cloud MPS Dealer | United Kingdom |
 
 # 37
+@ignore
 Scenario Outline: Fax and Scanner filter checkbox 
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -472,7 +486,7 @@ Scenario Outline: Fax and Scanner filter checkbox
 	| Cloud MPS Dealer | United Kingdom |
 
 # 38
-@Ignored
+@ignore
 Scenario Outline: Duplex and Colour filter checkbox 
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
