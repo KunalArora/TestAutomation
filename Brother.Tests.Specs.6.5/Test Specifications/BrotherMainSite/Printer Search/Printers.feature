@@ -13,25 +13,25 @@ Scenario Outline: View the list of available Laser Printers on Brother Main site
 
 Scenarios:
 	| country        | site                                                        |
-#	| Belgium        | brother-printers/laser-printers?sc_lang=nl-BE               |
-#	| Belgium        | imprimantes/imprimantes-laser?sc_lang=fr-BE                 |
+##	| Belgium        | brother-printers/laser-printers?sc_lang=nl-BE               |
+##	| Belgium        | imprimantes/imprimantes-laser?sc_lang=fr-BE                 |
 	| Czech          | printers/laser-printers                                     |
-#	| Denmark        | printers/all-colour-lasers                                  |
+##	| Denmark        | printers/all-colour-lasers                                  |
 	| Finland        | printers/laser-printers                                     |
 	| France         | imprimantes/imprimantes-multifonctions/multifonctions-laser |
-#	| Germany        | drucker/alle-lasergeraete/monolaser                         |
+##	| Germany        | drucker/alle-lasergeraete/monolaser                         |
 	| Hungary        | printers/laser-printers                                     |
 	| Ireland        | printers/laser-printers                                     |
 	| Netherlands    | printers/laserprinters                                      |
-#	| Norway         | printers/all-colour-lasers                                  |
+##	| Norway         | printers/all-colour-lasers                                  |
 	| Poland         | printers/laser-printers                                     |
 	| Romania        | printers/laser-printers                                     |
 	| Russia         | printers/laser-printers                                     |
 	| Slovakia       | printers/laser-printers                                     |
 	| Slovenia       | printers/laser-printers                                     |
-#	| Switzerland    | drucker/laserdrucker?sc_lang=de-CH                          |
-#	| Switzerland    | imprimantes/imprimantes-laser?sc_lang=fr-CH                 |
-#	| United Kingdom | printers/all-mono-lasers                                    |
+##	| Switzerland    | drucker/laserdrucker?sc_lang=de-CH                          |
+##	| Switzerland    | imprimantes/imprimantes-laser?sc_lang=fr-CH                 |
+##	| United Kingdom | printers/all-mono-lasers                                    |
 
 @SMOKE
 Scenario Outline: View the list of available Laser Printers on Brother Main sites for Spain and Portugal
