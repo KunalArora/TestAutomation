@@ -101,6 +101,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private IWebElement ProductSellPriceElement;
         [FindsBy(How = How.Id, Using = "Margin")]
         private IWebElement ProductMarginElement;
+        [FindsBy(How = How.Id, Using = "InstallationPackCostPrice")]
+        private IWebElement InstallationPackCostPriceElement;
+        [FindsBy(How = How.Id, Using = "InstallationPackMargin")]
+        private IWebElement InstallationPackMarginElement;
+        [FindsBy(How = How.Id, Using = "InstallationPackSellPrice")]
+        private IWebElement InstallationPackSellPriceElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"#tab-installation\"]")]
         private IWebElement InstallationScreenElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/proposals/create/summary\"]")]
@@ -117,14 +123,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private IWebElement ClickPriceScreenElement;
         [FindsBy(How = How.Id, Using = "Options")]
         private IWebElement OptionsDropDownElement;
-        [FindsBy(How = How.Id, Using = "OptionQuantity")]
+        [FindsBy(How = How.Id, Using = "OptionQuantity0")]
         private IWebElement OptionsQuantityElement;
-        [FindsBy(How = How.Id, Using = "OptionCostPrice")]
+        [FindsBy(How = How.Id, Using = "OptionCostPrice0")]
         private IWebElement OptionsCostPriceElement;
-        [FindsBy(How = How.Id, Using = "OptionSellPrice")]
+        [FindsBy(How = How.Id, Using = "OptionSellPrice0")]
         private IWebElement OptionsSellPriceElement;
-        [FindsBy(How = How.Id, Using = "OptionMargin")]
+        [FindsBy(How = How.Id, Using = "OptionMargin0")]
         private IWebElement OptionsMarginElement;
+        [FindsBy(How = How.Id, Using = "DeliveryCostPrice")]
+        private IWebElement DeliveryCostPriceElement;
+        [FindsBy(How = How.Id, Using = "DeliveryMargin")]
+        private IWebElement DeliveryMarginElement;
+        [FindsBy(How = How.Id, Using = "DeliverySellPrice")]
+        private IWebElement DeliverySellPriceElement;
         [FindsBy(How = How.Id, Using = "ClickPriceMonoCoverage")]
         private IWebElement ClickPriceCoverageElement;
         [FindsBy(How = How.Id, Using = "ClickPriceMonoVolume")]
@@ -133,6 +145,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private IWebElement ClickPriceMarginElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-product-configuration-submit")]
         private IWebElement AddToProposalElement;
+        [FindsBy(How = How.CssSelector, Using = ".js-mps-product-configuration-close")]
+        private IWebElement CloseWithoutSavingElement;
         [FindsBy(How = How.Id, Using = "content_1_ComponentIntroductionAlert")]
         private IWebElement SummaryConfirmationTextElement;
         [FindsBy(How = How.Id, Using = "content_1_ButtonSaveProposal")]
@@ -788,7 +802,24 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void TickPriceHardware()
         {
-            if (PriceHardwareElement.Selected) return;
+            if (PriceHardwareElement.Selected)
+            {
+                return;
+            }
+        }
+
+        public void UntickPriceHardware()
+        {
+            if (PriceHardwareElement.Selected)
+            {
+                PriceHardwareElement.Click();
+            }
+        }
+
+        public void IsNotPriceHardwareElement()
+        {
+            Boolean ret = IsElementPresent(GetElementByCssSelector("#content_1_InputPriceHardware_Input", 5));
+            TestCheck.AssertIsEqual(false, ret, "PriceHardwareElement is displayed");
         }
 
         public void SelectContractLength(string length)
@@ -811,7 +842,31 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             SelectFromDropdown(UsageTypeElement, usage);
         }
 
-        
+        public void StoreDefaultProductConfiguration()
+        {
+            if (IsElementPresent(ProductQuantityElement))
+                SpecFlow.SetContext("ProductQuantity", ProductQuantityElement.GetAttribute("value"));
+            if (IsElementPresent(ProductCostPriceElement))
+                SpecFlow.SetContext("ProductCostPrice", ProductCostPriceElement.GetAttribute("value"));
+            if (IsElementPresent(ProductMarginElement))
+                SpecFlow.SetContext("ProductMargin", ProductMarginElement.GetAttribute("value"));
+            if (IsElementPresent(ProductSellPriceElement))
+                SpecFlow.SetContext("ProductSellPrice", ProductSellPriceElement.GetAttribute("value"));
+            if (IsElementPresent(OptionsQuantityElement))
+                SpecFlow.SetContext("OptionsQuantity", OptionsQuantityElement.GetAttribute("value"));
+            if (IsElementPresent(DeliveryCostPriceElement))
+                SpecFlow.SetContext("DeliveryCostPrice", DeliveryCostPriceElement.GetAttribute("value"));
+            if (IsElementPresent(DeliveryMarginElement))
+                SpecFlow.SetContext("DeliveryMargin", DeliveryMarginElement.GetAttribute("value"));
+            if (IsElementPresent(DeliverySellPriceElement))
+                SpecFlow.SetContext("DeliverySellPrice", DeliverySellPriceElement.GetAttribute("value"));
+            if (IsElementPresent(InstallationPackCostPriceElement))
+                SpecFlow.SetContext("InstallationPackCostPrice", InstallationPackCostPriceElement.GetAttribute("value"));
+            if (IsElementPresent(InstallationPackMarginElement))
+                SpecFlow.SetContext("InstallationPackMargin", InstallationPackMarginElement.GetAttribute("value"));
+            if (IsElementPresent(InstallationPackSellPriceElement))
+                SpecFlow.SetContext("InstallationPackSellPrice", InstallationPackSellPriceElement.GetAttribute("value"));
+        }
 
         private IWebElement ProductFlatListAddElement()
         {
@@ -842,6 +897,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         }
 
+        private IList<IWebElement> AllSRPElement()
+        {
+            const string element = ".mps-qa-srp";
+
+            return GetElementsByCssSelector(element);
+        }
+
+        public void IsAllSRPNotEditable()
+        {
+//            AllSRPElement().Count
+        }
+
         private IWebElement FullDeviceScreenElement()
         {
             const string element = ".js-mps-product-configuration[data-price-hardware=\"true\"]";
@@ -866,6 +933,73 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             AssertElementPresent(ReducedDeviceScreenElement(), "Reduced device screen is not displayed");
         }
 
+        private IList<IWebElement> QTYForAccessoriesElement()
+        {
+            const string element = ".mps-qa-option .mps-txt-r [name=\"OptionQuantity\"][data-mps-val-numeric-min]";
+
+            return GetElementsByCssSelector(element);
+        }
+
+        public void IsQTYForAccessoriesAreDefaultToZero()
+        {
+            foreach (IWebElement element in QTYForAccessoriesElement())
+                TestCheck.AssertIsEqual("0", element.GetAttribute("data-mps-val-numeric-min"), "Quantity For Accessory is not defaulted zero");
+        }
+
+        private IList<IWebElement> TotalForAllAccessoriesElement()
+        {
+            const string element = ".mps-qa-option  [data-total-price=\"true\"]";
+
+            return GetElementsByCssSelector(element);
+        }
+
+        public void IsTotalForAllAccessoriesAreDefaultToZero()
+        {
+            foreach (IWebElement element in TotalForAllAccessoriesElement())
+                TestCheck.AssertIsEqual((decimal)0, MpsUtil.GetValue(element.Text), "Total for all accessories are not defaulted zero");
+        }
+
+        private IList<IWebElement> TotalPriceForAllItem()
+        {
+            const string element = "[data-total-price=\"true\"]";
+
+            return GetElementsByCssSelector(element);
+        }
+
+        private IWebElement TotalLinePriceElement()
+        {
+            const string element = "[data-total-line-price=\"true\"]";
+
+            return GetElementByCssSelector(element);
+        }
+
+        public void IsGrandTotalPriceCorrect()
+        {
+            decimal sum = 0;
+            foreach (IWebElement element in TotalPriceForAllItem())
+            {
+                sum += MpsUtil.GetValue(element.Text);
+            }
+
+            TestCheck.AssertIsEqual(sum, MpsUtil.GetValue(TotalLinePriceElement().Text), "The sum of the Total Price is not equal to the Grand Total Price displayed");            
+        }
+
+        private IWebElement InstallationPackUnitCostLessThanErrorElement()
+        {
+            const string element = ".alert-danger";
+
+            return GetElementByCssSelector(element);
+        }
+
+        public void IsInstallationPackUnitCostLessThanErrorDisplayed()
+        {
+            AssertElementPresent(InstallationPackUnitCostLessThanErrorElement(), "installation pack unit cost less than error");
+        }
+
+        public void IsNotTheProductAddedToTheProposal()
+        {
+            AssertElementPresent(CloseWithoutSavingElement, "Close without saving button element");            
+        }
 
         public void EnterProductQuantity(string value)
         {
@@ -883,13 +1017,84 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ProductSellPriceElement.SendKeys(Keys.Tab);
         }
 
+        public void EnterProductMargin(string value)
+        {
+            ClearAndType(ProductMarginElement, value);
+            ProductMarginElement.SendKeys(Keys.Tab);
+        }
+
+        public void EnterInstallationPackCostPrice(string value)
+        {
+            ClearAndType(InstallationPackCostPriceElement, value);
+        }
+
+        public void EnterInstallationPackCostPriceLessThanDefault()
+        {
+            int price = InstallationPackCostPrice();
+            EnterInstallationPackCostPrice(Convert.ToString(price - 1));
+        }
+
+        public void IsProductUnitPriceChanged()
+        {
+            string before = SpecFlow.GetContext("ProductSellPrice");
+            string after = ProductSellPriceElement.GetAttribute("value");
+            TestCheck.AssertIsNotEqual(before, after, "Product sell price should changed");
+        }
+
+        public void IsProductMarginChanged()
+        {
+            string before = SpecFlow.GetContext("ProductMargin");
+            string after = ProductMarginElement.GetAttribute("value");
+            TestCheck.AssertIsNotEqual(before, after, "Product sell price should changed");
+        }
+
+        public void IsNotProductMarginChanged()
+        {
+            string before = SpecFlow.GetContext("ProductMargin");
+            string after = ProductMarginElement.GetAttribute("value");
+            TestCheck.AssertIsEqual(before, after, "Product margin should not change");
+        }
+
+        public void IsNotProductUnitCostChanged()
+        {
+            string before = SpecFlow.GetContext("ProductCostPrice");
+            string after = ProductCostPriceElement.GetAttribute("value");
+            TestCheck.AssertIsEqual(before, after, "Product cost price should not change");
+        }
+
+        public void IsNotDeliveryCostPriceChanged()
+        {
+            string before = SpecFlow.GetContext("DeliveryCostPrice");
+            string after = DeliveryCostPriceElement.GetAttribute("value");
+            TestCheck.AssertIsEqual(before, after, "Delivery cost price should not change");
+        }
+
+        public void IsNotDeliverySellPriceChanged()
+        {
+            string before = SpecFlow.GetContext("DeliverySellPrice");
+            string after = DeliverySellPriceElement.GetAttribute("value");
+            TestCheck.AssertIsEqual(before, after, "Delivery sell price should not change");
+        }
+
+        public int InstallationPackCostPrice()
+        {
+            var priceText = InstallationPackCostPriceElement.GetAttribute("value");
+
+            return Convert.ToInt32(priceText);
+        }
+
         public void VerifyMarginFieldValues()
         {
             WebDriver.Wait(Helper.DurationType.Second, 2);
             var marginText = ProductMarginElement.Text;
             TestCheck.AssertIsNotNull(ProductMarginElement.GetAttribute("value"), "Product Margin Element");
             TestCheck.AssertIsEqual(false, marginText.StartsWith("-"), "Margin Text starts with -");
+        }
 
+        public void StrictVerifyMarginFieldValues()
+        {
+            var str = SpecFlow.GetContext("HardwareDefaultMargin");
+            TestCheck.AssertIsEqual(str, ProductMarginElement.Displayed, "Hardware Default Margin value is not equal to the value of Local Office Dealer Default");
         }
 
         private void MoveToServicePack()
@@ -902,6 +1107,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             ScrollTo(ClickPriceScreenElement);
             ClickPriceScreenElement.Click();
+        }
+
+        public void CalculateClickPriceAndNext()
+        {
+            CalculateClickPriceElement.Click();
+            ProceedOnClickPricePageElement.Click();
         }
 
         private void CalculateClickPrice(string volume, string colour)
@@ -1170,12 +1381,36 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ColourMarginElement.SendKeys(Keys.Tab);
         }
 
+        public void EnterDeliveryMargin(string value)
+        {
+            ClearAndType(DeliveryMarginElement, value);
+            DeliveryMarginElement.SendKeys(Keys.Tab);
+        }
+
+        public void EnterDeliverySellPrice(string value)
+        {
+            ClearAndType(DeliverySellPriceElement, value);
+            DeliverySellPriceElement.SendKeys(Keys.Tab);
+        }
+
         public void AddAllDetailsToProposal()
         {
             ScrollTo(AddToProposalElement);
             AddToProposalElement.Click();
             WebDriver.Wait(Helper.DurationType.Second, 5);
-           
+        }
+
+        private IWebElement AddToProposalButtonElement()
+        {
+            const string element = ".js-mps-product-configuration-submit[disabled=\"disabled\"]";
+
+            return GetElementByCssSelector(element);
+        }
+
+        public void IsAddToProposalButtonGrayout()
+        {
+            ScrollTo(AddToProposalElement);
+            AssertElementPresent(AddToProposalButtonElement(), "add to proposal grayout");
         }
 
         public void VerifyProductAdditionConfirmationMessage()

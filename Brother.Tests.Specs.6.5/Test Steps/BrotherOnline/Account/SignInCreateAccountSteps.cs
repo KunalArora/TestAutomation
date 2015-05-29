@@ -2,6 +2,7 @@
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherOnline.Account;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
+using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
@@ -177,6 +178,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             GivenILaunchBrotherOnlineFor(country);
             WhenIClickOnSignInCreateAnAccount(country);
             WhenISignInAsA(role, country);
+            
         }
 
         
@@ -360,6 +362,8 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             NextPage = CurrentPage.As<RegistrationPage>().ClickSignInButton(country);
         }
 
+
+
         [When(@"I enter an email address containing ""(.*)""")]
         public void WhenIEnterAnEmailAddressContaining(string emailAddress)
         {
@@ -425,8 +429,25 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             SignInAsARoleType(role);
             //WhenIClickOnSignIn(country);
-            NextPage = CurrentPage.As<RegistrationPage>().SignInButtonToDealerDashboard(country);
+            SignInButtonToAsARoleType(role, country);
             //CurrentPage.As<WelcomeBackPage>().ClickOnManagedPrintServices("print");
+        }
+
+        private void SignInButtonToAsARoleType(string role, string country)
+        {
+            switch (role)
+            {
+                case "Cloud MPS Dealer":
+                {
+                    NextPage = CurrentPage.As<RegistrationPage>().SignInButtonToDealerDashboard(country);
+                    break;
+                }
+                case "Cloud MPS Local Office":
+                {
+                    NextPage = CurrentPage.As<RegistrationPage>().SignInButtonToLocalOfficeDashboard(country);
+                    break;
+                }
+            }
         }
 
         private void SignInAsARoleType(string role)
@@ -471,7 +492,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
                 }
                 case "Cloud MPS Local Office":
                 {
-                    WhenIEnterAValidEmailAddress("mpsloadminDE@brother.co.uk");
+                    WhenIEnterAValidEmailAddress("mpsloadminUK@brother.co.uk");
                     WhenIEnterAValidPassword("P@$$w0rd");
                     break;
                 }

@@ -20,5 +20,17 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         {
             NextPage = CurrentPage.As<WelcomeBackPage>().NavigateToLOAdminDashboard();
         }
+
+        [When(@"I navigate to Dealer Defaults page")]
+        public void WhenINavigateToDealerDefaultsPage()
+        {
+            NextPage = CurrentPage.As<LocalOfficeAdminDashBoardPage>().NavigateToDealerDefaultsPage();
+        }
+
+        [When(@"I can set the default margins for all contracts")]
+        public void WhenICanSetTheDefaultMarginsForAllContracts()
+        {
+            NextPage = CurrentPage.As<DealerDefaultsPage>().SaveDealerDefaults();
+        }
     }
 }
