@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
@@ -659,6 +660,14 @@ namespace Brother.Tests.Selenium.Lib.Support
                 var postCode = zip[new Random().Next(20)];
 
             return postCode;
+        }
+
+        public static decimal GetValue(string money)
+        {
+            NumberFormatInfo poundNumberFormatInfo = new NumberFormatInfo();
+            poundNumberFormatInfo.CurrencySymbol = "£";
+
+            return decimal.Parse(money, NumberStyles.Currency, poundNumberFormatInfo);
         }
     }
 }

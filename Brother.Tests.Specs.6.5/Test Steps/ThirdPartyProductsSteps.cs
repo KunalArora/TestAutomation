@@ -17,11 +17,8 @@ namespace Brother.Tests.Specs
                 LaunchGuerrillaEmail(dealerEmailAddress);
 
                 CurrentPage.As<GuerillaEmailConfirmationPage>().SelectEmail2(orderEmail);
-                //CurrentPage.As<GuerillaEmailConfirmationPage>().ValidateOrderEmail();
                 CurrentPage.As<GuerillaEmailConfirmationPage>().BackToInboxButtonClick();
                 CurrentPage.As<GuerillaEmailConfirmationPage>().DeleteEmail("codes");
-                //CurrentPage.As<GuerillaEmailConfirmationPage>().SelectEmail(orderEmail);
-                //CurrentPage.As<GuerillaEmailConfirmationPage>().ValidateActivationCodeEmail();
                 CurrentPage.As<GuerillaEmailConfirmationPage>().BackToInboxButtonClick();
                 CurrentPage.As<GuerillaEmailConfirmationPage>().DeleteEmailButtonClick();
                 CurrentPage.As<GuerillaEmailConfirmationPage>().DeleteEmailButtonClick();

@@ -1,38 +1,38 @@
-﻿using TechTalk.SpecFlow;
+﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.WebSites.Core.Pages.Base;
+using Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal;
+using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs
 {
     [Binding]
-    public class CustomerActionsSteps
+    public class CustomerActionsSteps : BaseSteps
     {
-        // For additional details on SpecFlow step definitions see http://go.specflow.org/doc-stepdef
-
-        [Given("I have entered (.*) into the calculator")]
-        public void GivenIHaveEnteredSomethingIntoTheCalculator(int number)
+        [Then(@"I can navigate to the Activate Code page")]
+        public void ThenICanNavigateToTheActivateCodePage()
         {
-            //TODO: implement arrange (precondition) logic
-            // For storing and retrieving scenario-specific data see http://go.specflow.org/doc-sharingdata 
-            // To use the multiline text or the table argument of the scenario,
-            // additional string/Table parameters can be defined on the step definition
-            // method. 
+            CurrentDriver.Navigate().GoToUrl(CurrentDriver.Url + @"\omnijoin\activate");
+        }
 
+
+        [Then(@"I can activate the stored Activation code")]
+        public void ThenICanActivateTheStoredActivationCode()
+        {
+            CurrentPage.As<CodeActivationPage>().EnterActivationCode(Helper.OrpActivationCode);
+            NextPage = CurrentPage.As<CodeActivationPage>().ClickSubmitCodeButton();
+        }
+
+        [When(@"I navigate to Manage Plan")]
+        public void WhenINavigateToManagePlan()
+        {
             ScenarioContext.Current.Pending();
         }
 
-        [When("I press add")]
-        public void WhenIPressAdd()
+        [Then(@"I can see my OmniJoin plan")]
+        public void ThenICanSeeMyOmniJoinPlan()
         {
-            //TODO: implement act (action) logic
-
             ScenarioContext.Current.Pending();
         }
 
-        [Then("the result should be (.*) on the screen")]
-        public void ThenTheResultShouldBe(int result)
-        {
-            //TODO: implement assert (verification) logic
-
-            ScenarioContext.Current.Pending();
-        }
     }
 }
