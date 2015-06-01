@@ -1,6 +1,7 @@
 ﻿using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
 using Brother.WebSites.Core.Pages.MPSTwo;
+using OpenQA.Selenium.Remote;
 using TechTalk.SpecFlow;
 
 
@@ -54,7 +55,17 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<CreateNewProposalPage>().EnterLeadCodeRef("");
             CurrentPage.As<CreateNewProposalPage>().ClickNextButton_old();
 
-            When(@"I enter Customer Information Detail for new customer");
+//            When(@"I enter Customer Information Detail for new customer");
+            //@TODO: Choose an existing contact until the creating new customer sequence is fixed
+            CurrentPage.As<CreateNewProposalPage>().IsCustomerInfoTextDisplayed();
+            CurrentPage.As<CreateNewProposalPage>().ClickSelectExistingCustomerRadioButton();
+            CurrentPage.As<CreateNewProposalPage>().ClickNextButton_old();
+
+            CurrentPage.As<CreateNewProposalPage>().SelectARandomExistingContact();
+            CurrentPage.As<CreateNewProposalPage>().ClickNextButton_old();
+//            CurrentPage.As<CreateNewProposalPage>().TickOrderConsumables();
+
+//            CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
         }
 
 
@@ -167,7 +178,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [When(@"I choose ""(.*)"" from Products screen")]
         public void WhenIChooseFromProductsScreen(string printer)
         {
-            CurrentPage.As<CreateNewProposalPage>().IsProductScreenTextDisplayed();
+            CurrentPage.As<DealerProposalsCreateProductsPage>().IsProductScreenTextDisplayed();
             CurrentPage.As<CreateNewProposalPage>().ChooseADeviceFromProductSelectionScreen(printer, "80", "90");
             CurrentPage.As<CreateNewProposalPage>().VerifyProductAdditionConfirmationMessage();
 
@@ -178,15 +189,15 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [Then(@"I display ""(.*)"" device screen")]
         public void WhenIDisplayDeviceScreen(string printer)
         {
-            CurrentPage.As<CreateNewProposalPage>().IsProductScreenTextDisplayed();
-            CurrentPage.As<CreateNewProposalPage>().ClickOnAPrinter(printer);
-            CurrentPage.As<CreateNewProposalPage>().StoreDefaultProductConfiguration();
+            CurrentPage.As<DealerProposalsCreateProductsPage>().IsProductScreenTextDisplayed();
+            CurrentPage.As<DealerProposalsCreateProductsPage>().ClickOnAPrinter(printer);
+            CurrentPage.As<DealerProposalsCreateProductsPage>().StoreDefaultProductConfiguration();
         }
 
         [When(@"I change the Installation Pack Unit Cost displayed to a value lower than the displayed Unit Cost")]
         public void WhenIChangeTheInstallationPackUnitCostDisplayedToAValueLowerThanTheDisplayedUnitCost()
         {
-            CurrentPage.As<CreateNewProposalPage>().EnterInstallationPackCostPriceLessThanDefault();
+            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterInstallationPackCostPriceLessThanDefault();
         }
 
 
@@ -326,142 +337,143 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [Then(@"on product page all the device have full detail screen")]
         public void ThenOnProductPageAllTheDeviceHaveFullDetailScreen()
         {
-            CurrentPage.As<CreateNewProposalPage>().IsFullDeviceScreenDisplayed();
+            CurrentPage.As<DealerProposalsCreateProductsPage>().IsFullDeviceScreenDisplayed();
         }
 
         [Then(@"on product page all the devices have reduced detail screen")]
         public void ThenOnProductPageAllTheDevicesHaveReducedDetailScreen()
         {
-            CurrentPage.As<CreateNewProposalPage>().IsReducedDeviceScreenDisplayed();
+            CurrentPage.As<DealerProposalsCreateProductsPage>().IsReducedDeviceScreenDisplayed();
         }
 
         [Then(@"on product page QTY for accessories are default to zero")]
         [When(@"on product page all the accessories all left with zero QTY")]
         public void ThenOnProductPageQTYForAccessoriesAreDefaultToZero()
         {
-            CurrentPage.As<CreateNewProposalPage>().IsQTYForAccessoriesAreDefaultToZero();
+            CurrentPage.As<DealerProposalsCreateProductsPage>().IsQTYForAccessoriesAreDefaultToZero();
         }
 
         [Then(@"the default total for all accessories are defaulted to zero")]
         public void ThenTheDefaultTotalForAllAccessoriesAreDefaultedToZero()
         {
-            CurrentPage.As<CreateNewProposalPage>().IsTotalForAllAccessoriesAreDefaultToZero();
+            CurrentPage.As<DealerProposalsCreateProductsPage>().IsTotalForAllAccessoriesAreDefaultToZero();
         }
 
         [When(@"enter a quantity value into an accessory field")]
         public void WhenEnterAQuantityValueIntoAnAccessoryField()
         {
-            CurrentPage.As<CreateNewProposalPage>().FillProductDetails();
+            CurrentPage.As<DealerProposalsCreateProductsPage>().FillProductDetails();
         }
 
         [When(@"I change the Unit Cost of an item")]
         public void WhenIChangeTheUnitCostOfAnItem()
         {
-            CurrentPage.As<CreateNewProposalPage>().EnterProductCostPrice("10");
+            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterProductCostPrice("10");
         }
 
         [When(@"I change the Unit Price of an item")]
         public void WhenIChangeTheUnitPriceOfAnItem()
         {
-            CurrentPage.As<CreateNewProposalPage>().EnterProductSellPrice("10");
+            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterProductSellPrice("10");
         }
 
         [When(@"I change the Margin of an item whose Unit Cost bigger than zero")]
         public void WhenIChangeTheMarginOfAnItemWhoseUnitCost()
         {
-            CurrentPage.As<CreateNewProposalPage>().EnterProductMargin("7");
+            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterProductMargin("7");
         }
 
         [When(@"I change the Margin of an item whose Unit Cost is equal to zero")]
         public void WhenIChangeTheMarginOfAnItemWhoseUnitCostIsEqualToZero()
         {
-            CurrentPage.As<CreateNewProposalPage>().EnterDeliveryMargin("7");
+            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterDeliveryMargin("7");
         }
 
         [Then(@"the Unit Price changed accordingly")]
         public void ThenTheUnitPriceChangedAccordingly()
         {
-            CurrentPage.As<CreateNewProposalPage>().IsProductUnitPriceChanged();
+            CurrentPage.As<DealerProposalsCreateProductsPage>().IsProductUnitPriceChanged();
         }
 
         [Then(@"the Margin changes accordingly")]
         public void ThenTheMarginChangesAccordingly()
         {
-            CurrentPage.As<CreateNewProposalPage>().IsProductMarginChanged();
+            CurrentPage.As<DealerProposalsCreateProductsPage>().IsProductMarginChanged();
         }
 
         [Then(@"the associated margin does not changed")]
         public void ThenProductdMarginDoesNotChanged()
         {
-            CurrentPage.As<CreateNewProposalPage>().IsNotProductMarginChanged();
+            CurrentPage.As<DealerProposalsCreateProductsPage>().IsNotProductMarginChanged();
         }
 
         [Then(@"the associated Unit Cost dos not changed")]
         public void ThenTheAssociatedUnitCostDosNotChanged()
         {
-            CurrentPage.As<CreateNewProposalPage>().IsNotProductUnitCostChanged();
+            CurrentPage.As<DealerProposalsCreateProductsPage>().IsNotProductUnitCostChanged();
         }
 
         [Then(@"the Unit Price and Unit Cost does not change")]
         public void ThenTheUnitPriceAndUnitCostDoesNotChange()
         {
-            CurrentPage.As<CreateNewProposalPage>().IsNotDeliveryCostPriceChanged();
-            CurrentPage.As<CreateNewProposalPage>().IsNotDeliverySellPriceChanged();
+            CurrentPage.As<DealerProposalsCreateProductsPage>().IsNotDeliveryCostPriceChanged();
+            CurrentPage.As<DealerProposalsCreateProductsPage>().IsNotDeliverySellPriceChanged();
         }
 
         [Then(@"on product page the sum of the Total Price is equal to the Grand Total Price displayed")]
         public void ThenOnProductPageTheSumOfTheTotalPriceIsEqualToTheGrandTotalPriceDisplayed()
         {
-            CurrentPage.As<CreateNewProposalPage>().IsGrandTotalPriceCorrect();
+            CurrentPage.As<DealerProposalsCreateProductsPage>().IsGrandTotalPriceCorrect();
         }
 
         [When(@"I changed the Margin on any field to (.*)")]
         public void WhenIChangedTheMarginOnAnyFieldTo(string percent)
         {
-            CurrentPage.As<CreateNewProposalPage>().EnterDeliveryMargin(percent);
+            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterDeliveryMargin(percent);
         }
 
         [When(@"I changed a Unit Price (.*) so that Margin is 100")]
         public void WhenIChangedAUnitPriceSoThatMarginIs(string percent)
         {
-            CurrentPage.As<CreateNewProposalPage>().EnterDeliverySellPrice(percent);
+            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterDeliverySellPrice(percent);
         }
 
         [When(@"I Click Add to Proposal button")]
         public void WhenIClickAddToProposalButton()
         {
-            CurrentPage.As<CreateNewProposalPage>().AddAllDetailsToProposal();
+            CurrentPage.As<DealerProposalsCreateProductsPage>().AddAllDetailsToProposal();
         }
 
         [When(@"I Add the device to Proposal")]
         public void WhenIAddTheDeviceToProposal()
         {
             When(@"I Click Add to Proposal button");
-            CurrentPage.As<CreateNewProposalPage>().MoveToProposalSummaryScreen();
+            CurrentPage.As<DealerProposalsCreateProductsPage>().NextButtonClick();
+//            CurrentPage.As<DealerProposalsCreateProductsPage>().MoveToProposalSummaryScreen();
         }
 
         [When(@"I Calculate Click Price")]
         public void WhenICalculateClickPrice()
         {
-            CurrentPage.As<CreateNewProposalPage>().CalculateClickPriceAndNext();
+            CurrentPage.As<DealerProposalsCreateProductsPage>().CalculateClickPriceAndNext();
         }
 
         [Then(@"Add to proposal button become grayout")]
         public void ThenAddToProposalButtonBecomeGrayout()
         {
-            CurrentPage.As<CreateNewProposalPage>().IsAddToProposalButtonGrayout();
+            CurrentPage.As<DealerProposalsCreateProductsPage>().IsAddToProposalButtonGrayout();
         }
 
         [Then(@"InstallationPackUnitCostLessThanError is displayed")]
         public void ThenInstallationPackUnitCostLessThanErrorIsDisplayed()
         {
-            CurrentPage.As<CreateNewProposalPage>().IsInstallationPackUnitCostLessThanErrorDisplayed();
+            CurrentPage.As<DealerProposalsCreateProductsPage>().IsInstallationPackUnitCostLessThanErrorDisplayed();
         }
 
         [Then(@"the product can not be added to the proposal")]
         public void ThenTheProductCanNotBeAddedToTheProposal()
         {
-            CurrentPage.As<CreateNewProposalPage>().IsNotTheProductAddedToTheProposal();
+            CurrentPage.As<DealerProposalsCreateProductsPage>().IsNotTheProductAddedToTheProposal();
         }
 
 
@@ -485,7 +497,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [Then(@"all the margin set above should be displayed in the right fields")]
         public void ThenPartOfMarginSetAboveShouldBeDisplayedInTheRightFields()
         {
-            CurrentPage.As<CreateNewProposalPage>().StrictVerifyMarginFieldValues();
+            CurrentPage.As<DealerProposalsCreateProductsPage>().StrictVerifyMarginFieldValues();
         }
 
         [When(@"I check Fax checkbox")]
@@ -623,6 +635,45 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         {
             CurrentPage.As<DealerProposalsCreateProductsPage>().IsAllPrintersReturnedThatSearched(model);
         }
+
+        [Then(@"all products are displayed as a flat list with no images")]
+        [When(@"the products are displayed as Flat List")]
+        public void ThenAllProductsAreDisplayedAsAFlatListWithNoImages()
+        {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().VerifyThatAllProductsDisplayedAsAFlatListWithNoImages();
+        }
+
+        [When(@"I changed the Product view to with images")]
+        public void WhenIChangedTheProductViewToFlatList()
+        {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().ChangeProductViewToWithImages();
+        }
+
+        [Then(@"all products are displayed with images")]
+        public void ThenAllProductsAreDisplayedWithImages()
+        {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().VerifyThatAllProductsDisplayedAsAWithImages();
+        }
+
+        [Then(@"this change to dealer margin is reverted to the original value")]
+        public void ThenThisChangeToDealerMarginIsRevertedToTheOriginalValue()
+        {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().IsDealerMarginRevertedToTheOriginalValue();
+        }
+
+        [When(@"I change device installation type")]
+        public void WhenIChangeDeviceInstallationType()
+        {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().ChangeDeviceInstallationType();
+        }
+
+        [Then(@"installation SRP value should change")]
+        public void ThenInstallationSRPValueShouldChange()
+        {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().VerifyThatInstallationSRPValueChange();
+        }
+
+
 
     }
 }

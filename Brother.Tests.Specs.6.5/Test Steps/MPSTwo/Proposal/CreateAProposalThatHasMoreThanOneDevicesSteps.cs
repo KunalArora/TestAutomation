@@ -37,11 +37,14 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         {
             CurrentPage.As<CreateNewProposalPage>().IsCustomerInfoTextDisplayed();
             CurrentPage.As<CreateNewProposalPage>().ClickSelectExistingCustomerRadioButton();
-            CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
+            CurrentPage.As<CreateNewProposalPage>().ClickNextButton_old();
 
             //Choose an existing contact
             CurrentPage.As<CreateNewProposalPage>().SelectARandomExistingContact();
-            CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
+            CurrentPage.As<CreateNewProposalPage>().ClickNextButton_old();
+//            CurrentPage.As<CreateNewProposalPage>().TickOrderConsumables();
+
+            NextPage = CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
         }
 
       
