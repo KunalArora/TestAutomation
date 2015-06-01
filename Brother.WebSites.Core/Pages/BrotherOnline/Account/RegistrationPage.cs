@@ -222,7 +222,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             return GetInstance<LocalOfficeAdminDashBoardPage>(Driver, BasePage.BaseUrl, title);
         }
 
-    public RegistrationPage ClickSignUpButton()
+        public RegistrationPage ClickSignUpButton()
         {
             ScrollTo(CreateYourAccountButton);
             CreateYourAccountButton.Click();

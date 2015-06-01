@@ -9,6 +9,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
     [Binding]
     public class ProposalCreateAProposalThatWillBeUsedForContractSteps : BaseSteps
     {
+        [Then(@"I click Save Proposal button on Summary screen")]
         [When(@"I click Save Proposal button on Summary screen")]
         public void WhenIClickSaveProposalButtonOnSummaryScreen()
         {

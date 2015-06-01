@@ -1,4 +1,4 @@
-﻿@Ignore @UAT @TEST
+﻿@UAT @TEST
 Feature: Proposal Create a Template
 	In order to create a proposal from an existing template
 	As an MPS Dealer
@@ -7,7 +7,7 @@ Feature: Proposal Create a Template
 @SMOKE
 Scenario Outline: Fill necessary fields on Proposal Description Screen
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
-	And I navigate to Dealer Dashboard page
+	#And I navigate to Dealer Dashboard page
 	And I am on MPS New Proposal Page
 	When I fill Proposal Description
 	And I enter Customer Information Detail for new customer
@@ -22,8 +22,8 @@ Scenario Outline: Fill necessary fields on Proposal Description Screen
 	Scenarios: 
 
 	| Role             | Country | Contract | Leasing                    | Billing                    | Printer      | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | Germany | 3 Jahre  | 4 Monatlich Mindestvolumen | 6 Monatlich Mindestvolumen | HL-L8350CDW  | 750         | 2000         |
-	| Cloud MPS Dealer | Germany | 4 Jahre  | 6 Monatlich Mindestvolumen | 4 Monatlich Mindestvolumen | DCP-L8400CDN | 1800        | 2000         |
+	| Cloud MPS Dealer | United Kingdom | 3 Jahre  | 4 Monatlich Mindestvolumen | 6 Monatlich Mindestvolumen | HL-L8350CDW  | 750         | 2000         |
+	#| Cloud MPS Dealer | Germany | 4 Jahre  | 6 Monatlich Mindestvolumen | 4 Monatlich Mindestvolumen | DCP-L8400CDN | 1800        | 2000         |
 	
 	
 		

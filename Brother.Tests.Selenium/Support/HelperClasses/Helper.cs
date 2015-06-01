@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Security;
 using System.Text;
 using System.Xml;
@@ -15,7 +16,12 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 {
     public abstract class Helper
     {
-        
+        public static string OrpActivationCode { get; set; }
+        public static int OrpNumLicenses { get; set; }
+        public static int OrpLicenseTerm { get; set; }
+        public static Guid OrpDealerId { get; set; }
+        public static string OrpDealerEmail { get; set; }
+        public static string OrpComment { get; set; }
         // Runtime environment constants
         public const string RunTimeLive = @"PROD";
         public const string RunTimeTest = @"TEST";

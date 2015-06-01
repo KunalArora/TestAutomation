@@ -133,9 +133,13 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Pages\OmniJoin\PartnerPortal\CodeActivationPage.cs" />
     <Compile Include="Pages\OmniJoin\PartnerPortal\CreateActivationCodesPage.cs" />
+    <Compile Include="Pages\OmniJoin\PartnerPortal\ManageCustomersAndOrdersPage.cs" />
     <Compile Include="Pages\OmniJoin\PartnerPortal\ManageServicePage.cs" />
+    <Compile Include="Pages\OmniJoin\PartnerPortal\MyCustomers.cs" />
     <Compile Include="Pages\OmniJoin\PartnerPortal\PartnerPortalPage.cs" />
+    <Compile Include="Pages\OmniJoin\PartnerPortal\SuccessPage.cs" />
     <Compile Include="Pages\OmniJoin\Plans\BusinessPlanPage.cs" />
     <Compile Include="Pages\OmniJoin\Plans\LitePlanPage.cs" />
     <Compile Include="Pages\OmniJoin\Plans\ManagePlanPage.cs" />

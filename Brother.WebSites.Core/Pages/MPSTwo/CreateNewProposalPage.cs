@@ -23,6 +23,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string installationCostPrice = @"#InstallationCostPrice";
         private const string installationMargin = @"#InstallationMargin";
         private const string optionSaveButton = @".js-mps-product-option-save";
+        private const string priceHardwareTickBox = @"#content_1_InputPriceHardware_Input";
+        private const string paymentMethod = @".mps-paymentoptions";
+        private const string monoVolume = @"#content_1_LineItems_InputMonoVolumeBreaks_0";
+        private const string colourVolume = @"#content_1_LineItems_InputColourVolumeBreaks_0";
+        private const string hardwareTick = @"#content_1_InputPriceHardware_Input";
 
         public override string DefaultTitle
         {
@@ -49,31 +54,33 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private IWebElement NewOrganisationElement;
         [FindsBy(How = How.Id, Using = "content_1_CustomerManage_InputIsPrivatelyLiable_Input")]
         private IWebElement PrivateLiableElement;
-        [FindsBy(How = How.Id, Using = "content_1_CustomerManage_InputCompanyName")]
+        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerName")]
         private IWebElement CompanyNameElement;
-        [FindsBy(How = How.Id, Using = "content_1_CustomerManage_InputPropertyNumber_Input")]
+        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerPropertyNumber_Input")]
         private IWebElement PropertyNumberElement;
-        [FindsBy(How = How.Id, Using = "content_1_CustomerManage_InputPropertyStreet_Input")]
+        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerPropertyStreet_Input")]
         private IWebElement PropertyStreetElement;
         [FindsBy(How = How.Id, Using = "content_1_CustomerManage_InputPropertyArea_Input")]
         private IWebElement PropertyAreaElement;
-        [FindsBy(How = How.Id, Using = "content_1_CustomerManage_InputPropertyTown_Input")]
+        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerPropertyTown_Input")]
         private IWebElement PropertyTownElement;
-        [FindsBy(How = How.Id, Using = "content_1_CustomerManage_InputPropertyPostCode_Input")]
+        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerPropertyPostCode_Input")]
         private IWebElement PropertyPostcodeElement;
+        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerPropertyCounty_Input")]
+        private IWebElement PropertyCountyElement;
         [FindsBy(How = How.Id, Using = "content_1_CustomerManage_InputRegion_Input")]
         private IWebElement RegionElement;
-        [FindsBy(How = How.Id, Using = "content_1_CustomerManage_InputTitle_Input")]
+        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputPersonTitle_Input")]
         private IWebElement ContactTitleElement;
-        [FindsBy(How = How.Id, Using = "content_1_CustomerManage_InputFirstName_Input")]
+        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputPersonFirstName_Input")]
         private IWebElement FirstNameElement;
-        [FindsBy(How = How.Id, Using = "content_1_CustomerManage_InputLastName_Input")]
+        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputPersonLastName_Input")]
         private IWebElement LastNameElement;
         [FindsBy(How = How.Id, Using = "content_1_CustomerManage_InputPosition_Input")]
         private IWebElement PositionElement;
-        [FindsBy(How = How.Id, Using = "content_1_CustomerManage_InputTelephone_Input")]
+        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputPersonTelephone_Input")]
         private IWebElement TelephoneElement;
-        [FindsBy(How = How.Id, Using = "content_1_CustomerManage_InputEmail_Input")]
+        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputPersonEmail_Input")]
         private IWebElement EmailElement;
         [FindsBy(How = How.Id, Using = "content_1_CustomerManage_InputCanOrderConsumables_Input")]
         private IWebElement OrderConsumableElement;
@@ -242,11 +249,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [FindsBy(How = How.CssSelector, Using = "a[href=\"#tab-service-pack\"]")]
         private IWebElement PrinterServicePack;
         [FindsBy(How = How.Id, Using = "ServicePackMargin")]
-        private IWebElement MonoVolumeDropDownElement;
+        private IWebElement servicePackMarginElement;
         [FindsBy(How = How.Id, Using = "content_1_LineItems_InputMonoVolumeBreaks_0")]
-        private IWebElement ColourVolumeDropdownElement;
+        private IWebElement monoVolumeDropdownElement;
         [FindsBy(How = How.Id, Using = "content_1_LineItems_InputColourVolumeBreaks_0")]
-        private IWebElement ClickVolumeElement;
+        private IWebElement colourVolumeDropdownElement;
         [FindsBy(How = How.Id, Using = "content_1_ButtonCalculate")]
         private IWebElement CalculateClickPriceElement;
         [FindsBy(How = How.Id, Using = "content_1_ButtonNext")]
@@ -265,8 +272,34 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private IWebElement ClickColourMarginElement;
         [FindsBy(How = How.CssSelector, Using = "[id='content_1_LineItems_InputMonoVolume_0']")]
         private IWebElement MonoVolumeInputFieldElement;
-        
-
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_ContractType")]
+        private IWebElement SummaryContractTypeElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_ContractTerm")]
+        private IWebElement SummaryContractTermElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_UsageType")]
+        private IWebElement SummaryUsageTermElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_UsageBillingFrequency")]
+        private IWebElement SummaryUsageBillingFrequencyElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_LeaseRentalFrequency")]
+        private IWebElement SummaryLeaseRentalFrequencyElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_HardwareBillingBasis")]
+        private IList<IWebElement> SummaryBillingBasisElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_HardwareSku_0")]
+        private IWebElement SummaryItemizedPrinterElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_HardwareSku")]
+        private IList<IWebElement> SummaryItemizedPrintersElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_MonoVolume_0")]
+        private IWebElement SummaryMonoClickVolumeElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_ColourVolume_0")]
+        private IWebElement SummaryColourClickVolumeElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_MonoVolume")]
+        private IList<IWebElement> SummaryMonoClickVolumeElements;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_ColourVolume")]
+        private IList<IWebElement> SummaryColourClickVolumeElements;
+        [FindsBy(How = How.Id, Using = "content_1_InputServicePaymentOptions_Input_0")]
+        private IWebElement PayUpfrontElement;
+        [FindsBy(How = How.Id, Using = "content_1_InputServicePaymentOptions_Input_1")]
+        private IWebElement InClickPriceElement;
         
         
 
@@ -279,6 +312,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             AssertElementPresent(PromptText, "Leading Instruction");
         }
 
+
+        public void PayServicePackMethod(string option)
+        {
+            if (option.Equals("Pay upfront"))
+            {
+                PayUpfrontElement.Click();
+                WebDriver.Wait(DurationType.Second, 5);
+            }
+            else if (option.Equals("Included in Click Price"))
+            {
+                InClickPriceElement.Click();
+                WebDriver.Wait(DurationType.Second, 5);
+            }
+        }
 
         public void IsProductScreenDisplayed()
         {
@@ -330,6 +377,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 throw new NullReferenceException("Unable to locate tick box on the page");
             }
             AssertElementPresent(PrivateLiableElement, "Is Private Liable Check Box");
+
+        }
+
+        public void CheckPrivateLiableBox(string liable)
+        {
+            if (liable.Equals("tick"))
+            {
+                PrivateLiableElement.Click();
+            }
+            
         }
 
         public CreateNewProposalPage ClickNextButton_old()
@@ -438,6 +495,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     proposalDescriptionTabElement.Click();
                     WebDriver.Wait(Helper.DurationType.Second, 3);
                     break;
+
+                default:
+                    throw new InvalidEnumArgumentException(String.Format("{0} is not a valid contract type", tab));
             }
 
         }
@@ -472,6 +532,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     clickPriceTabConversionMode.Click();
                     WebDriver.Wait(Helper.DurationType.Second, 3);
                     break;
+                default:
+                    throw new InvalidEnumArgumentException(String.Format("{0} is not a valid contract type", tab));
             }
 
         }
@@ -500,6 +562,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     VerifyTermAndTypeValuesAreRetained();
                     ClickBackButtonDuringProposalProcess();
                     break;
+                default:
+                    throw new InvalidEnumArgumentException(String.Format("{0} is not a valid contract type", tab));
             }
 
         }
@@ -521,6 +585,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     VerifyClickPriceMonoFieldsAreDisabled();
                     VerifyClickPriceColourFieldsAreDisabled();
                     break;
+                default:
+                    throw new InvalidEnumArgumentException(String.Format("{0} is not a valid contract type", tab));
             }
         }
 
@@ -538,14 +604,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void VerifyClickPriceMonoFieldsAreDisabled()
         {
-            TestCheck.AssertIsEqual(false, ColourVolumeDropdownElement.Enabled, "Colour Volume DropDown Element disabled?");
+            TestCheck.AssertIsEqual(false, monoVolumeDropdownElement.Enabled, "Colour Volume DropDown Element disabled?");
             TestCheck.AssertIsEqual(false, ClickCoverageElement.Enabled, "Click coverage Element disabled?");
             TestCheck.AssertIsEqual(false, ClickMarginElement.Enabled, "Click margin Element disabled?");
         }
 
         private void VerifyClickPriceColourFieldsAreDisabled()
         {
-            TestCheck.AssertIsEqual(false, ClickVolumeElement.Enabled, "Click Volume Element disabled?");
+            TestCheck.AssertIsEqual(false, colourVolumeDropdownElement.Enabled, "Click Volume Element disabled?");
             TestCheck.AssertIsEqual(false, ClickColourCoverageElement.Enabled, "Click colour coverage Element disabled?");
             TestCheck.AssertIsEqual(false, ClickColourMarginElement.Enabled, "Click colour margin Element disabled?");
         }
@@ -581,6 +647,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 case "Summary":
                     IsProposalSummaryTextDisplayed();
                     break;
+                default:
+                    throw new InvalidEnumArgumentException(String.Format("{0} is not a valid contract type", tab));
             }
 
         }
@@ -609,6 +677,24 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             SkipCustomerElement.Click();
         }
 
+        public void CustomerCreationOptions(string option)
+        {
+            switch (option)
+            {
+                case "Create new customer":
+                    ClickCreateNewCustomerRadioButton();
+                    break;
+                case "Selecting existing customer":
+                    ClickSelectExistingCustomerRadioButton();
+                    break;
+                case "Skip customer creation":
+                    ClickSkipCustomerRadioButton();
+                    break;
+                default:
+                    throw new InvalidEnumArgumentException(String.Format("{0} is not a valid contract type", option));
+            }
+        }
+
         public void ClickNewOrganisationButton()
         {
             ScrollTo(NewOrganisationElement);
@@ -620,10 +706,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             EnterCompanyName();
             EnterPropertyNumber();
             EnterPropertyStreet();
-            EnterPropertyArea();
+            //EnterPropertyArea();
             EnterPropertyTown();
             EnterPropertyPostCode();
-            SelectRegionFromDropdown("Greater Manchester");
+            //SelectRegionFromDropdown("Greater Manchester");
         }
 
 
@@ -632,7 +718,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             SelectTitleFromDropdown();
             EnterContactFirstName();
             EnterContactSurName();
-            EnterContactPosition();
+            //EnterContactPosition();
             EnterContactTelephone();
             EnterContactEmailAdress();
         }
@@ -650,6 +736,21 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetElementByCssSelector(colourElement, 10);
         }
 
+
+        private IWebElement PriceHardwareElementMissing()
+        {
+            return GetElementByCssSelector(priceHardwareTickBox, 10);
+        }
+
+        public void VerifyPriceHardwareIsNotDisplayed()
+        {
+            TestCheck.AssertIsEqual(false, PriceHardwareElementMissing().Displayed, "Price hardware checkbox is displayed");
+        }
+
+        public void VerifyPriceHardwareIsDisplayed()
+        {
+            TestCheck.AssertIsEqual(true, PriceHardwareElementMissing().Displayed, "Price hardware checkbox is displayed");
+        }
         public void FillClickPriceDetails()
         {
             EnterVolumeValue("1000");
@@ -702,7 +803,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private IWebElement ContractTypeSelectorDropdown()
         {
-            return GetElementByCssSelector(contractSelector);
+            return GetElementByCssSelector(contractSelector, 10);
         }
 
 
@@ -722,10 +823,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 case "AIC" :
                     selectable = "1";
                     break;
-                case "Purchase-and-Click":
+                case "Purchase & Click with Service":
                     selectable = "3";
                     break;
-                case "Leasing" :
+                case "Lease & Click with Service":
                     selectable = "2";
                     break;
                 default:
@@ -794,6 +895,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             OrderConsumableElement.Click();
         }
 
+        public void TickOrderConsumables(string options)
+        {
+            if(options.Equals("Tick"))
+                OrderConsumableElement.Click();
+        }
+
         public void TickPriceHardware()
         {
             if (PriceHardwareElement.Selected)
@@ -816,6 +923,24 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             TestCheck.AssertIsEqual(false, ret, "PriceHardwareElement is displayed");
         }
 
+        private IWebElement PriceHardwareTickElement()
+        {
+            return GetElementByCssSelector(hardwareTick);
+        }
+
+        public void TickPriceHardware(string tickOption)
+        {
+            if (tickOption.Equals("Untick"))
+            {
+                PriceHardwareTickElement().Click();
+            }
+            else if (tickOption.Equals("Tick"))
+            {
+                //do nothing
+            }
+                 
+        }
+
         public void SelectContractLength(string length)
         {
             SelectFromDropdown(ContractLengthElement, length);
@@ -834,6 +959,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void SelectUsageType(string usage)
         {
             SelectFromDropdown(UsageTypeElement, usage);
+            WebDriver.Wait(DurationType.Second, 5);
         }
 
         private IWebElement ProductFlatListAddElement()
@@ -877,6 +1003,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 //            AllSRPElement().Count
         }
 
+        public void VerifyTypeOfDeviceScreenDisplayed(string option)
+        {
+        if (option.Equals("Full"))
+            {
+                IsFullDeviceScreenDisplayed();
+            }
+            else if(option.Equals("Reduced"))
+            {
+                IsReducedDeviceScreenDisplayed();
+            }
+        }
         public void EnterProductQuantity(string value)
         {
             ClearAndType(ProductQuantityElement, value);
@@ -913,34 +1050,51 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             PrinterServicePack.Click();
         }
 
-        private void MoveToClickPriceScreen()
+        public void MoveToClickPriceScreen()
         {
             ScrollTo(ClickPriceScreenElement);
             ClickPriceScreenElement.Click();
         }
+        private IWebElement MonoVolumeElementClickPrice()
+        {
+            return GetElementByCssSelector(monoVolume);
+        }
+
+        private IWebElement ColourVolumeElementClickPrice()
+        {
+            return GetElementByCssSelector(colourVolume);
+        }
+                public void CalculateClickPriceAndNext()
+                {
+            CalculateClickPriceElement.Click();
+            ProceedOnClickPricePageElement.Click();
+        }
 
         private void CalculateClickPrice(string volume, string colour)
         {
-            if (ClickVolumeElement == null)
+            if (colourVolumeDropdownElement == null)
                 throw new NullReferenceException("ClickVolumeElement can not be found");
             if (CalculateClickPriceElement == null)
                 throw new NullReferenceException("CalculateClickPriceElement can not be found");
-            if (ColourVolumeDropdownElement == null)
+            if (monoVolumeDropdownElement == null)
                 throw new NullReferenceException("ColourVolumeDropdownElement can not be found");
 
-            SelectFromDropdown(ClickVolumeElement, volume);
-            SelectFromDropdown(ColourVolumeDropdownElement, colour);
+            if (IsElementPresent(ColourVolumeElementClickPrice()))
+                SelectFromDropdown(colourVolumeDropdownElement, colour);
+            if (IsElementPresent(MonoVolumeElementClickPrice()))
+                SelectFromDropdown(monoVolumeDropdownElement, volume);
+            WebDriver.Wait(DurationType.Second, 3);
             CalculateClickPriceElement.Click();
         }
 
         private void CalculateEPPClickPrice(string volume)
         {
-            if (ColourVolumeDropdownElement == null)
+            if (monoVolumeDropdownElement == null)
                 throw new NullReferenceException("ClickVolumeElement can not be found");
             if (CalculateClickPriceElement == null)
                 throw new NullReferenceException("CalculateClickPriceElement can not be found");
 
-            SelectFromDropdown(ColourVolumeDropdownElement, volume);
+            SelectFromDropdown(monoVolumeDropdownElement, volume);
             CalculateClickPriceElement.Click();
         }
 
@@ -952,16 +1106,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 throw new NullReferenceException("CalculateClickPriceElement can not be found");
 
             MonoVolumeInputFieldElement.SendKeys(volume);
+            WebDriver.Wait(Helper.DurationType.Second, 2);
             CalculateClickPriceElement.Click();
         }
 
         private void SelectVolumeForMultiplePrinters(string volume, string colour)
         {
-            if (ClickVolumeElement == null)
+            if (colourVolumeDropdownElement == null)
                 throw new NullReferenceException("ClickVolumeElement can not be found");
             if (CalculateClickPriceElement == null)
                 throw new NullReferenceException("CalculateClickPriceElement can not be found");
-            if (ColourVolumeDropdownElement == null)
+            if (monoVolumeDropdownElement == null)
                 throw new NullReferenceException("ColourVolumeDropdownElement can not be found");
 
             for (var i = 0; i < MultipleClickVolumeElement.Count; i++)
@@ -986,6 +1141,77 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             VerifyColourClickPriceValueIsDisplayed();
             ProceedToProposalSummaryFromClickPrice();
 
+        }
+
+        public void VerifyCreatedProposalSummaryPageElements(string summaryElement, string value)
+        {
+            switch (summaryElement)
+            {
+                case "Contract Type":
+                    VerifyCorrectContractTypeIsDisplayedOnSummaryPage(value);
+                    break;
+                case "Contract Term":
+                    VerifyCorrectContractTermIsDisplayedOnSummaryPage(value);
+                    break;
+                case "Usage Type":
+                    VerifyCorrectUsageTypeIsDisplayedOnSummaryPage(value);
+                    break;
+                case "Leasing Frequency":
+                    VerifyCorrectLeasingFrequencyIsDisplayedOnSummaryPage(value);
+                    break;
+                case "Billing Term":
+                    VerifyCorrectBillingTermIsDisplayedOnSummaryPage(value);
+                    break;
+                case "Displayed Printer":
+                    VerifyCorrectDisplayedPrinterIsDisplayedOnSummaryPage(value);
+                    break;
+                case "Mono Volume":
+                    VerifyCorrectMonoVolumeIsDisplayedOnSummaryPage(value);
+                    break;
+                case "Colour Volume":
+                    VerifyCorrectColourVolumeIsDisplayedOnSummaryPage(value);
+                    break;
+            }
+        }
+
+        private void VerifyCorrectMonoVolumeIsDisplayedOnSummaryPage(string contractType)
+        {
+            TestCheck.AssertIsEqual(true, SummaryMonoClickVolumeElement.Text.Equals(contractType), "Printer Displayed on Summary page does not match");
+        }
+
+        private void VerifyCorrectColourVolumeIsDisplayedOnSummaryPage(string contractType)
+        {
+            TestCheck.AssertIsEqual(true, SummaryColourClickVolumeElement.Text.Equals(contractType), "Printer Displayed on Summary page does not match");
+        }
+
+        private void VerifyCorrectDisplayedPrinterIsDisplayedOnSummaryPage(string contractType)
+        {
+            TestCheck.AssertIsEqual(true, SummaryItemizedPrinterElement.Text.Equals(contractType), "Printer Displayed on Summary page does not match");
+        }
+
+        private void VerifyCorrectContractTypeIsDisplayedOnSummaryPage(string contractType)
+        {
+            TestCheck.AssertIsEqual(true, SummaryContractTypeElement.Text.Equals(contractType), "Contract Type does not match");
+        }
+
+        private void VerifyCorrectContractTermIsDisplayedOnSummaryPage(string contractTerm)
+        {
+            TestCheck.AssertIsEqual(true, SummaryContractTermElement.Text.Equals(contractTerm), "Contract Term does not match");
+        }
+
+        private void VerifyCorrectUsageTypeIsDisplayedOnSummaryPage(string contractTerm)
+        {
+            TestCheck.AssertIsEqual(true, SummaryUsageTermElement.Text.Equals(contractTerm), "Usage Type does not match");
+        }
+
+        private void VerifyCorrectLeasingFrequencyIsDisplayedOnSummaryPage(string contractTerm)
+        {
+            TestCheck.AssertIsEqual(true, SummaryLeaseRentalFrequencyElement.Text.Equals(contractTerm), "Lease Frequency does not match");
+        }
+
+        private void VerifyCorrectBillingTermIsDisplayedOnSummaryPage(string contractTerm)
+        {
+            TestCheck.AssertIsEqual(true, SummaryUsageBillingFrequencyElement.Text.Equals(contractTerm), "Usage Billing Frequency does not match");
         }
 
         private IList<IWebElement> ClickPriceValue()
@@ -1025,11 +1251,27 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ClickPriceNextButton().Click();
         }
 
+        private IWebElement PaymentMethodElement()
+        {
+            return GetElementByCssSelector(paymentMethod, 10);
+        }
+
+        public void VerifyPaymentMethodIsDisplayed()
+        {
+            TestCheck.AssertIsEqual(true, PaymentMethodElement().Displayed, "Payment method is not displayed");
+        }
+
+        public void VerifyPaymentMethodIsNotDisplayed()
+        {
+            TestCheck.AssertIsEqual(false, PaymentMethodElement().Displayed, "Payment method is displayed");
+            //AssertElementPresent(PaymentMethodElement(), "Payment method is displayed");
+        }
+
         public void CalculateClickPriceAndProceed(string volume, string colour)
         {
             MoveToClickPriceScreen();
             CalculateClickPrice(volume, colour);
-            WebDriver.Wait(Helper.DurationType.Second, 2);
+            WebDriver.Wait(Helper.DurationType.Second, 5);
             VerifyClickPriceValueIsDisplayed();
             ProceedToProposalSummaryFromClickPrice();
 
@@ -1039,7 +1281,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             MoveToClickPriceScreen();
             CalculateEPPClickPrice(volume);
-            WebDriver.Wait(Helper.DurationType.Second, 2);
+            WebDriver.Wait(Helper.DurationType.Second, 5);
             VerifyClickPriceValueIsDisplayed();
             ProceedToProposalSummaryFromClickPrice();
 
@@ -1049,7 +1291,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             MoveToClickPriceScreen();
             EnterMonoVolumeQuantity(volume);
-            WebDriver.Wait(Helper.DurationType.Second, 2);
+            WebDriver.Wait(Helper.DurationType.Second, 5);
             VerifyClickPriceValueIsDisplayed();
             ProceedToProposalSummaryFromClickPrice();
 
@@ -1088,7 +1330,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyThatServicePackFieldIsNotEmpty()
         {
-            TestCheck.AssertIsEqual(false, MonoVolumeDropDownElement.GetAttribute("value").Equals(string.Empty), "Service pack field is not empty");
+            TestCheck.AssertIsEqual(false, servicePackMarginElement.GetAttribute("value").Equals(string.Empty), "Service pack field is not empty");
         }
 
         public void VerifyInstallationMarginValue()
