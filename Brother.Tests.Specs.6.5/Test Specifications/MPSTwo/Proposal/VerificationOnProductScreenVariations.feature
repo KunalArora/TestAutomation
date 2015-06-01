@@ -293,6 +293,24 @@ Scenario Outline: Can be set-up as often as possible but used as a one-off margi
 	| Role             | Country        | Printer      |
 	| Cloud MPS Dealer | United Kingdom | MFC-L8850CDW |
 # 23
+@ignore
+Scenario Outline: One-off set-up by a dealer and used by just the dealer
+	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
+	When I navigate to Admin page
+	And I navigate to Dealer Admin Default Margin page
+	And I can change the dealer margin for use of the dealer
+	And I sign out of Cloud MPS
+	And I sign back into Cloud MPS as a "<Role>" from "<Country>"
+	And I am on MPS New Proposal Page
+	And I begin the proposal creation process for Purchase + Click Service
+	And I tick Price Hardware radio button
+	And I display "<Printer>" device screen
+	Then this change to dealer margin is retained
+
+	Scenarios: 
+
+	| Role             | Country        | Printer      |
+	| Cloud MPS Dealer | United Kingdom | MFC-L8850CDW |
 
 #
 # 8 Unit Cost vs Margin% vs Unit Price
