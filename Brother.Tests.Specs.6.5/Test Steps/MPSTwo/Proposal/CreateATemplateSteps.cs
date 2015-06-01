@@ -83,7 +83,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
 
             // CurrentPage.As<CreateNewProposalPage>().ClickNewOrganisationButton();
-//            CurrentPage.As<CreateNewProposalPage>().IsPrivateLiableCheckBoxDiplayed();
+//           CurrentPage.As<CreateNewProposalPage>().IsPrivateLiableCheckBoxDiplayed();
 
             CurrentPage.As<CreateNewProposalPage>().FillOrganisationDetails();
             CurrentPage.As<CreateNewProposalPage>().FillOrganisationContactDetail();
@@ -91,6 +91,36 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
 
             CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
         }
+
+        [When(@"I select ""(.*)"" button for customer data capture")]
+        public void WhenISelectButtonForCustomerDataCapture(string customerOption)
+        {
+            CurrentPage.As<CreateNewProposalPage>().IsCustomerInfoTextDisplayed();
+            CurrentPage.As<CreateNewProposalPage>().CustomerCreationOptions(customerOption);
+            CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
+            CurrentPage.As<CreateNewProposalPage>().FillOrganisationContactDetail();
+            CurrentPage.As<CreateNewProposalPage>().FillOrganisationDetails();
+            CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
+        }
+
+        [When(@"I ""(.*)"" Private Liable for Company Info")]
+        public void WhenIPrivateLiableForCompanyInfo(string liable)
+        {
+            CurrentPage.As<CreateNewProposalPage>().FillOrganisationDetails();
+            CurrentPage.As<CreateNewProposalPage>().CheckPrivateLiableBox(liable);
+        }
+
+        [When(@"I ""(.*)"" Customer added can order consumables")]
+        public void WhenICustomerAddedCanOrderConsumables(string orderOption)
+        {
+            CurrentPage.As<CreateNewProposalPage>().FillOrganisationContactDetail();
+            CurrentPage.As<CreateNewProposalPage>().TickOrderConsumables(orderOption);
+
+            CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
+        }
+
+
+
 
         [Given(@"I Enter ""(.*)"" usage type ""(.*)"" contract length and ""(.*)"" billing on Term and Type details")]
         [When(@"I Enter ""(.*)"" usage type ""(.*)"" contract length and ""(.*)"" billing on Term and Type details")]
@@ -102,9 +132,15 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<CreateNewProposalPage>().SelectContractLength(contract);
             CurrentPage.As<CreateNewProposalPage>().SelectPayPerClickBillingCycle(billing);
 
-            CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
+            //CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
         }
 
+        [When(@"I choose to pay Service Packs ""(.*)""")]
+        public void WhenIChooseToPayServicePacks(string pay)
+        {
+            CurrentPage.As<CreateNewProposalPage>().PayServicePackMethod(pay);
+        }
+        
         private void WhenIEnterContractTermsLeasingAndBillingOnTermAndTypeDetails(string contract, string leasing,
             string billing)
         {
@@ -122,7 +158,13 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         {
             WhenIEnterContractTermsLeasingAndBillingOnTermAndTypeDetails(contract, leasing, billing);
 
-            CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
+           CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
+        }
+
+        [When(@"enter a quantity of ""(.*)"" for model")]
+        public void WhenEnterAQuantityOfForModel(string quantity)
+        {
+            CurrentPage.As<CreateNewProposalPage>().EnterProductQuantity(quantity);
         }
 
         [When(@"I Enter ""(.*)"" contract terms ""(.*)"" leasing and ""(.*)"" billing on Term and Type details\(only input\)")]
@@ -131,6 +173,27 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         {
             WhenIEnterContractTermsLeasingAndBillingOnTermAndTypeDetails(contract, leasing, billing);
         }
+
+
+        [When(@"I Enter usage type of ""(.*)"" and ""(.*)"" contract terms ""(.*)"" leasing and ""(.*)"" billing on Term and Type details")]
+        public void WhenIEnterUsageTypeOfAndContractTermsLeasingAndBillingOnTermAndTypeDetails(string usage, string contract, string leasing, string billing)
+        {
+            CurrentPage.As<CreateNewProposalPage>().IsTermAndTypeTextDisplayed();
+            CurrentPage.As<CreateNewProposalPage>().SelectUsageType(usage);
+            CurrentPage.As<CreateNewProposalPage>().SelectLeaseBillingCycle(leasing);
+            CurrentPage.As<CreateNewProposalPage>().SelectPayPerClickBillingCycle(billing);
+
+            CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
+            
+        }
+
+        [When(@"Price Hardware radio button is not displayed for leasing contract type")]
+        public void WhenPriceHardwareRadioButtonIsNotDisplayedForLeasingContractType()
+        {
+            CurrentPage.As<CreateNewProposalPage>().VerifyPriceHardwareIsNotDisplayed();
+        }
+
+
 
         [When(@"I Enter ""(.*)"" contract terms and ""(.*)"" billing on Term and Type details")]
         public void WhenIEnterContractTermsAndBillingOnTermAndTypeDetails(string contract, string billing)
@@ -148,7 +211,11 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
 
             CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
         }
-
+        [When(@"""(.*)"" device screen is displayed")]
+        public void WhenDeviceScreenIsDisplayed(string option)
+        {
+            CurrentPage.As<CreateNewProposalPage>().VerifyTypeOfDeviceScreenDisplayed(option);
+        }
         [When(@"I untick Price Hardware radio button")]
         public void WhenIUntickPriceHardwareRadioButton()
         {
@@ -156,6 +223,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
 
             CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
         }
+
 
         [Then(@"I should not see Price Hardware radio button on Term and Type screen")]
         public void ThenIShouldNotSeePriceHardwareRadioButtonOnTermAndTypeScreen()
@@ -173,7 +241,24 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
 
         }
 
+        [When(@"I accept the default values of the device")]
+        public void WhenIAcceptTheDefaultValuesOfTheDevice()
+        {
+            CurrentPage.As<CreateNewProposalPage>().AddAllDetailsToProposal();
+            CurrentPage.As<CreateNewProposalPage>().VerifyProductAdditionConfirmationMessage();
+            CurrentPage.As<CreateNewProposalPage>().MoveToClickPriceScreen();
+            
+        }
 
+
+        [Then(@"""(.*)"" displayed on proposal Summary Page corresponds to ""(.*)""")]
+        public void ThenDisplayedOnProposalSummaryPageCorrespondsTo(string parameter, string value)
+        {
+            CurrentPage.As<CreateNewProposalPage>().VerifyCreatedProposalSummaryPageElements(parameter, value);
+        }
+
+
+        
         [When(@"I display ""(.*)"" device screen")]
         [Then(@"I display ""(.*)"" device screen")]
         public void WhenIDisplayDeviceScreen(string printer)
@@ -187,6 +272,25 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         public void WhenIChangeTheInstallationPackUnitCostDisplayedToAValueLowerThanTheDisplayedUnitCost()
         {
             CurrentPage.As<CreateNewProposalPage>().EnterInstallationPackCostPriceLessThanDefault();
+        }
+
+        [When(@"Service Pack payment method is not displayed")]
+        public void WhenServicePackPaymentMethodIsNotDisplayed()
+        {
+            CurrentPage.As<CreateNewProposalPage>().VerifyPaymentMethodIsNotDisplayed();
+        }
+
+        [When(@"I ""(.*)"" Price Hardware radio button")]
+        public void WhenIPriceHardwareRadioButton(string option)
+        {
+            CurrentPage.As<CreateNewProposalPage>().TickPriceHardware(option);
+            CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
+        }
+
+        [When(@"Service Pack payment method is displayed")]
+        public void WhenServicePackPaymentMethodIsDisplayed()
+        {
+            CurrentPage.As<CreateNewProposalPage>().VerifyPaymentMethodIsDisplayed();
         }
 
 
