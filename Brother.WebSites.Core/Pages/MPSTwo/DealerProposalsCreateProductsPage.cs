@@ -480,6 +480,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             TestCheck.AssertIsNotEqual(before, after, "Delivery Margin value is not reverted to the original value");
         }
 
+        public void IsDealerMarginRetainedByDealerAdminDefaultMargin()
+        {
+            string before = SpecFlow.GetContext("DealerAdminHardwareDefaultMargin");
+            string after = ProductMarginElement.GetAttribute("value");
+            TestCheck.AssertIsEqual(before, after, "Dealer Admin Hardware default margin value is not retained");
+        }
+
         private IWebElement InstallationPackUnitCostLessThanErrorElement()
         {
             const string element = ".alert-danger";
@@ -698,6 +705,26 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             string before = SpecFlow.GetContext("DeliverySellPrice");
             string after = DeliverySellPriceElement.GetAttribute("value");
             TestCheck.AssertIsEqual(before, after, "Delivery sell price should not change");
+        }
+
+        private IList<IWebElement> ModelNameElement()
+        {
+            string element = ".mps-product-configuration .media-heading";
+
+            return GetElementsByCssSelector(element);
+        }
+        public void IsModelFound(string model)
+        {
+            bool found = false;
+            foreach (IWebElement element in ModelNameElement())
+            {
+                if (element.Text.Equals(model))
+                {
+                    found = true;
+                    break;
+                }
+            }
+            TestCheck.AssertIsEqual(true, found, "model not found");
         }
     }
 }

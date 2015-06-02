@@ -68,6 +68,32 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
 //            CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
         }
 
+        [When(@"I navigate to Admin page")]
+        public void WhenINavigateToAdminPage()
+        {
+            NextPage = CurrentPage.As<DealerDashBoardPage>().NavigateToAdminPage();
+        }
+
+        [When(@"I navigate to Dealer Admin Default Margin page")]
+        public void WhenINavigateToDealerAdminDefaultMarginPage()
+        {
+            NextPage = CurrentPage.As<DealerAdminDashBoardPage>().NavigateToDealerAdminDefaultMarginsPage();
+        }
+
+        [When(@"I can change the dealer margin for use of the dealer")]
+        public void WhenICanChangeTheDealerMarginForUseOfTheDealer()
+        {
+            CurrentPage.As<DealerAdminDefaultMarginsPage>().EnterHardwareDefaultMarginInAutomatically();
+            CurrentPage.As<DealerAdminDefaultMarginsPage>().EnterAccesoriesDefaultMarginInAutomatically();
+            CurrentPage.As<DealerAdminDefaultMarginsPage>().EnterDeliveryDefaultMarginInAutomatically();
+            CurrentPage.As<DealerAdminDefaultMarginsPage>().EnterInstallationDefaultMarginInAutomatically();
+            CurrentPage.As<DealerAdminDefaultMarginsPage>().EnterMonoClickDefaultMarginInAutomatically();
+            CurrentPage.As<DealerAdminDefaultMarginsPage>().EnterColourClickDefaultMarginInAutomatically();
+            CurrentPage.As<DealerAdminDefaultMarginsPage>().EnterServicePackDefaultMarginInAutomatically();
+            CurrentPage.As<DealerAdminDefaultMarginsPage>().ClickNextButton();
+            CurrentPage.As<DealerAdminDefaultMarginsPage>().StoreMarginConfiguration();
+        }
+
 
         [Given(@"I skip Customer Information Screen")]
         public void GivenISkipCustomerInformationScreen()
@@ -269,7 +295,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         }
 
 
-        
+
         [When(@"I display ""(.*)"" device screen")]
         [Then(@"I display ""(.*)"" device screen")]
         public void WhenIDisplayDeviceScreen(string printer)
@@ -765,6 +791,12 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<DealerProposalsCreateProductsPage>().IsDealerMarginRevertedToTheOriginalValue();
         }
 
+        [Then(@"this change to dealer margin is retained")]
+        public void ThenThisChangeToDealerMarginIsRetained()
+        {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().IsDealerMarginRetainedByDealerAdminDefaultMargin();
+        }
+
         [When(@"I change device installation type")]
         public void WhenIChangeDeviceInstallationType()
         {
@@ -777,7 +809,10 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<DealerProposalsCreateProductsPage>().VerifyThatInstallationSRPValueChange();
         }
 
-
-
+        [Then(@"the printers ""(.*)"" enabled in Local Office Admin are displayed on product screen")]
+        public void ThenThePrintersEnabledInLocalOfficeAdminAreDisplayedOnProductScreen(string model)
+        {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().IsModelFound(model);
+        }
     }
 }
