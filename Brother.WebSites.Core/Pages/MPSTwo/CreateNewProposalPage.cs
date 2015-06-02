@@ -1002,16 +1002,38 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
 //            AllSRPElement().Count
         }
+        private IWebElement FullDeviceScreenElement()
+        {
+            const string element = ".js-mps-product-configuration[data-price-hardware=\"true\"]";
 
+            return GetElementByCssSelector(element);
+        }
+
+        public void IsFullDeviceScreenDisplayedForPrinterSelected()
+        {
+            AssertElementPresent(FullDeviceScreenElement(), "Full device screen is not displayed");
+        }
+
+        private IWebElement ReducedDeviceScreenElement()
+        {
+            const string element = ".js-mps-product-configuration[data-price-hardware=\"false\"]";
+
+            return GetElementByCssSelector(element);
+        }
+
+        public void IsReducedDeviceScreenDisplayedForPrinterSelected()
+        {
+            AssertElementPresent(ReducedDeviceScreenElement(), "Reduced device screen is not displayed");
+        }
         public void VerifyTypeOfDeviceScreenDisplayed(string option)
         {
         if (option.Equals("Full"))
             {
-                IsFullDeviceScreenDisplayed();
+                IsFullDeviceScreenDisplayedForPrinterSelected();
             }
             else if(option.Equals("Reduced"))
             {
-                IsReducedDeviceScreenDisplayed();
+                IsReducedDeviceScreenDisplayedForPrinterSelected();
             }
         }
         public void EnterProductQuantity(string value)
