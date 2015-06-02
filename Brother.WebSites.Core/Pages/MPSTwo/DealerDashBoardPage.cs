@@ -26,6 +26,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private IWebElement DashboardContractLinkElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/admin\"] .media-body")]
         private IWebElement AdminLinkElement;
+        [FindsBy(How = How.CssSelector, Using = ".separator a[href='/mps/dealer/admin']")]
+        private IWebElement DealerAdminTabElement;
 
         public void IsCreateNewProposalLinkAvailable()
         {
@@ -64,6 +66,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             AssertElementPresent(AdminLinkElement, "Create Admin Link");
         }
 
+        private void IsAdminTabAvailable()
+        {
+            if (DealerAdminTabElement == null) throw new Exception("Unable to locate create Admin link on dashboard page");
+
+            AssertElementPresent(DealerAdminTabElement, "Create Admin Tab");
+        }
+
         public CreateNewProposalPage NavigateToCreateNewProposalPage()
         {
             IsCreateNewProposalLinkAvailable();
@@ -84,6 +93,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 throw new NullReferenceException("Contract link is not Dealer Dashboard");
             DashboardContractLinkElement.Click();
             return GetTabInstance<CloudContractPage>(Driver);
+        }
+
+        public DealerAdminDashBoardPage NavigateToAdminPageUsingTab()
+        {
+            IsAdminTabAvailable();
+            DealerAdminTabElement.Click();
+            return GetTabInstance<DealerAdminDashBoardPage>(Driver);
         }
 
     }
