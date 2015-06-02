@@ -78,6 +78,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<CloudExistingProposalPage>().IsTheProposalSuccessfullyConverted();
         }
 
+       
         [Then(@"I can send the converted contract to bank")]
         public void ThenICanSendTheConvertedContractToBank()
         {
