@@ -32,6 +32,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private IWebElement ContactTerm5YearsElement;
         [FindsBy(How = How.Id, Using = "content_1_ButtonSave")]
         private IWebElement SaveButtonElement;
+        [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/local-office/purchase-and-click/printers']")]
+        private IWebElement PrintersLinkElement;
+        [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/local-office/purchase-and-click/approval-defaults']")]
+        private IWebElement ApprovalDefaultsLinkElement;
+        [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/local-office/purchase-and-click/changable-items']")]
+        private IWebElement ChangableItemsElement;
 
         public void TickProgramEnabled()
         {
@@ -164,6 +170,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void ClickSave()
         {
                 SaveButtonElement.Click();
+        }
+
+        private void IsPrintersLinkAvailable()
+        {
+            if (PrintersLinkElement == null)
+                throw new Exception("Unable to locate Printers link element");
+        }
+        public LocalOfficePrintersPage NavigateToLocalOfficePrintersPage()
+        {
+            IsPrintersLinkAvailable();
+            PrintersLinkElement.Click();
+            return GetTabInstance<LocalOfficePrintersPage>(Driver);
         }
     }
 }
