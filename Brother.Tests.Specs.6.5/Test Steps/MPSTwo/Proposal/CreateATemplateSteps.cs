@@ -295,7 +295,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         }
 
 
-        
+
         [When(@"I display ""(.*)"" device screen")]
         [Then(@"I display ""(.*)"" device screen")]
         public void WhenIDisplayDeviceScreen(string printer)
@@ -820,7 +820,10 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<DealerProposalsCreateProductsPage>().VerifyThatInstallationSRPValueChange();
         }
 
-
-
+        [Then(@"the printers ""(.*)"" enabled in Local Office Admin are displayed on product screen")]
+        public void ThenThePrintersEnabledInLocalOfficeAdminAreDisplayedOnProductScreen(string model)
+        {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().IsModelFound(model);
+        }
     }
 }

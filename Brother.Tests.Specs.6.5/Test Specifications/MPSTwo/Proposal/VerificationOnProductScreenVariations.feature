@@ -153,7 +153,28 @@ Scenario Outline: asdf
 	| Role                   | Country        | ContractType | Contract | Leasing                  | Billing                  | Printer      |
 	| Cloud MPS Local Office | United Kingdom | Leasing      | 3 years  | 4 Monthly Minimum Volume | 6 Monthly Minimum Volume | DCP-8250DN   |
 
-# 9-15: under consideration
+# 9-11: under consideration
+
+# 12
+@ignore
+Scenario Outline: When login as a dealer, One-time set-up and used by all dealers
+	Given I sign into Cloud MPS as a "<Role1>" from "<Country>"
+	And I navigate to Purchase And Click page
+	And I navigate to Printers page
+	And I enabled "<Printer>" within the Printer screen
+	And I save printers on Available Printers page
+    And I sign out of Cloud MPS
+	When I sign back into Cloud MPS as a "<Role2>" from "<Country>"
+	And I am on MPS New Proposal Page
+	And I begin the proposal creation process for Purchase + Click Service
+	And I tick Price Hardware radio button
+	And I display "<Printer>" device screen
+	Then the printers "<Printer>" enabled in Local Office Admin are displayed on product screen
+
+	Scenarios: 
+
+	| Role1                  | Country        | Role2            | Printer     |
+	| Cloud MPS Local Office | United Kingdom | Cloud MPS Dealer | DCP-8110DN  |
 
 #
 # 4 Installation Cost
@@ -253,7 +274,7 @@ Scenario Outline: When change Unit Price so that Margin is 100, "Add to proposal
 #
 # 21
 @ignore
-Scenario Outline: When login as a dealer, One-time set-up and used by all dealers
+Scenario Outline: As a Local Office Admin, sign-in and enable printer for Purchase + Click Service
 	Given I sign into Cloud MPS as a "<Role1>" from "<Country>"
 	When I navigate to Dealer Defaults page
 	And I can set the default margins for all contracts

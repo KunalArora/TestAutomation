@@ -706,5 +706,25 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             string after = DeliverySellPriceElement.GetAttribute("value");
             TestCheck.AssertIsEqual(before, after, "Delivery sell price should not change");
         }
+
+        private IList<IWebElement> ModelNameElement()
+        {
+            string element = ".mps-product-configuration .media-heading";
+
+            return GetElementsByCssSelector(element);
+        }
+        public void IsModelFound(string model)
+        {
+            bool found = false;
+            foreach (IWebElement element in ModelNameElement())
+            {
+                if (element.Text.Equals(model))
+                {
+                    found = true;
+                    break;
+                }
+            }
+            TestCheck.AssertIsEqual(true, found, "model not found");
+        }
     }
 }

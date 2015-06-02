@@ -41,6 +41,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<LocalOfficeAdminProgramSettingPage>().TickDisplayProductsAsList();
         }
 
+        [Given(@"I navigate to Purchase And Click page")]
         [When(@"I navigate to Purchase And Click page")]
         public void WhenINavigateToPurchaseAndClickPage()
         {
@@ -59,6 +60,24 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<LocalOfficeAdminProgramSettingPage>().TickDisplayProductsAsList();
         }
 
+        [Given(@"I navigate to Printers page")]
+        [When(@"I navigate to Printers page")]
+        public void WhenINavigateToPrintersPage()
+        {
+            NextPage = CurrentPage.As<LocalOfficeAdminProgramSettingPage>().NavigateToLocalOfficePrintersPage();
+        }
+
+        [Given(@"I enabled ""(.*)"" within the Printer screen")]
+        public void GivenIEnabledWithinThePrinterScreen(string model)
+        {
+            CurrentPage.As<LocalOfficePrintersPage>().EnablePrinter(model);
+        }
+
+        [Given(@"I save printers on Available Printers page")]
+        public void GivenISavePrintersOnAvailablePrintersPage()
+        {
+            CurrentPage.As<LocalOfficePrintersPage>().ClickSaveButton();
+        }
 
     }
 }
