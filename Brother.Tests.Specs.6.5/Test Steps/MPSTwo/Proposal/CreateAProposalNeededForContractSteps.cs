@@ -126,7 +126,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             When("I enter Customer Information Detail for new customer");
             When("I Enter Term and Type details");
 
-            CurrentPage.As<CreateNewProposalPage>().IsProductScreenTextDisplayed();
+            CurrentPage.As<DealerProposalsCreateProductsPage>().IsProductScreenTextDisplayed();
         }
 
         [Given(@"I changed the Product view to flat list")]

@@ -15,7 +15,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             get { return string.Empty; }
         }
 
-        [FindsBy(How = How.Id, Using = "content_1_InputDeviceDefaultMargin_Input option:selected")]
+        [FindsBy(How = How.CssSelector, Using = "content_1_InputDeviceDefaultMargin_Input")]
         private IWebElement HardwareDefaultMargin;
         [FindsBy(How = How.Id, Using = "content_1_InputDeliveryDefaultMargin_Input")]
         private IWebElement DeliveryDefaultMargin;
@@ -36,20 +36,24 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [FindsBy(How = How.Id, Using = "content_1_ButtonNext")]
         public IWebElement DealerDefaultsSaveButton;
 
-        private void IsHardwareDefaultMargin()
-        {
-            if (HardwareDefaultMargin == null)
-                throw new NullReferenceException("Hardware Default Margin element is not Dealer Defaults");
 
-            AssertElementPresent(HardwareDefaultMargin, "Create HardwareDefault Margin");
+        private IWebElement HardwareDefaultMarginElement()
+        {
+            string element = "#content_1_InputDeviceDefaultMargin_Input option[selected=\"selected\"]";
+
+            return GetElementByCssSelector(element);
         }
+
         public DealerDefaultsPage SaveDealerDefaults()
         {
+            IWebElement element = HardwareDefaultMarginElement();
+            string hoge = element.GetAttribute("value");
+            SpecFlow.SetContext("HardwareDefaultMargin", element.GetAttribute("value"));
+
             if (DealerDefaultsSaveButton == null)
                 throw new NullReferenceException("Save button is not Dealer Defaults");
             DealerDefaultsSaveButton.Click();
-            string hoge = HardwareDefaultMargin.Text;
-//            SpecFlow.SetContext("HardwareDefaultMargin", HardwareDefaultMargin.Text);
+
             return GetTabInstance<DealerDefaultsPage>(Driver);
         }
         

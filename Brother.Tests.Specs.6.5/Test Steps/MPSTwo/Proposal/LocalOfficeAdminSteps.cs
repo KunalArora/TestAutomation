@@ -11,7 +11,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [Given(@"I enable Easy Print Pro contract")]
         public void GivenIEnableEasyPrintProContract()
         {
-            NextPage = CurrentPage.As<LocalOfficeAdminDashBoardPage>().NavigateToEasyPrintProPage();
+            NextPage = CurrentPage.As<LocalOfficeAdminDashBoardPage>().NavigateToPurchaseAndClickPage();
             CurrentPage.As<EasyPrintProPage>().EnableContractType();
         }
 
@@ -32,5 +32,33 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         {
             NextPage = CurrentPage.As<DealerDefaultsPage>().SaveDealerDefaults();
         }
+
+
+        [Given(@"I enable product to be displayed as a flat list for a paticular contract type")]
+        public void GivenIEnableProductToBeDisplayedAsAFlatListForAPaticularContractType()
+        {
+            When(@"I navigate to Purchase And Click page");
+            CurrentPage.As<LocalOfficeAdminProgramSettingPage>().TickDisplayProductsAsList();
+        }
+
+        [When(@"I navigate to Purchase And Click page")]
+        public void WhenINavigateToPurchaseAndClickPage()
+        {
+            NextPage = CurrentPage.As<LocalOfficeAdminDashBoardPage>().NavigateToPurchaseAndClickPage();
+        }
+
+        [When(@"I navigate to Lease And Click page")]
+        public void WhenINavigateToLeaseAndClickPage()
+        {
+            NextPage = CurrentPage.As<LocalOfficeAdminDashBoardPage>().NavigateToLeaseAndClickPage();
+        }
+
+        [When(@"I tick Dispaly Product as List Button")]
+        public void WhenITickDispalyProductAsListButton()
+        {
+            CurrentPage.As<LocalOfficeAdminProgramSettingPage>().TickDisplayProductsAsList();
+        }
+
+
     }
 }
