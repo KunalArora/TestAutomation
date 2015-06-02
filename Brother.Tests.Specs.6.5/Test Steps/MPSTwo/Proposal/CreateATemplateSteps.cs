@@ -334,12 +334,14 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [Then(@"I can generate dealer PDF for the proposal")]
         public void ThenICanGenerateDealerPDFForTheProposal()
         {
+            //It is assumed that if pdf downloads normally then one is able to save the proposal
             CurrentPage.As<CreateNewProposalPage>().DownloadDealersProposalDocument();
         }
 
         [Then(@"I can generate customer PDF for the proposal")]
         public void ThenICanGenerateCustomerPDFForTheProposal()
         {
+            //It is assumed that if pdf downloads normally then one is able to save the proposal
             CurrentPage.As<CreateNewProposalPage>().DownloadCustomersProposalDocument();
         }
 
