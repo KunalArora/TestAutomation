@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
@@ -49,6 +50,16 @@ namespace Brother.Tests.Selenium.Lib.Support
             var todayDate = DateTime.Now;
 
             return "INTER" + todayDate.ToString("yyyyMMdHHmmss");
+
+        }
+
+        public static string DealerProfileSample()
+        {
+            var todayDate = DateTime.Now;
+
+            var profile= "Profile Dealer For now " + todayDate.ToString("yyyyMMdHHmmss");
+            
+            return profile;
 
         }
 

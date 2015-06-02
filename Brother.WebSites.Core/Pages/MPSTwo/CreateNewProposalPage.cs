@@ -302,6 +302,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private IWebElement InClickPriceElement;
         
         
+        
+        
 
         
         public void IsPromptTextDisplayed()

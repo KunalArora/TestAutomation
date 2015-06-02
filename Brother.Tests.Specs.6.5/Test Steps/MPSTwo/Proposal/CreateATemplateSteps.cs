@@ -68,11 +68,26 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
 //            CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
         }
 
+        [Given(@"I navigate to Admin page")]
         [When(@"I navigate to Admin page")]
         public void WhenINavigateToAdminPage()
         {
             NextPage = CurrentPage.As<DealerDashBoardPage>().NavigateToAdminPage();
         }
+
+        [Given(@"I navigate to Admin page using tab")]
+        public void GivenINavigateToAdminPageUsingTab()
+        {
+            NextPage = CurrentPage.As<DealerDashBoardPage>().NavigateToAdminPageUsingTab();
+        }
+
+
+        [Given(@"I navigate to Dealership Profile page")]
+        public void GivenINavigateToDealershipProfilePage()
+        {
+            NextPage = CurrentPage.As<DealerAdminDashBoardPage>().NavigateToDealerAdminDealershipProfilePage();
+        }
+
 
         [When(@"I navigate to Dealer Admin Default Margin page")]
         public void WhenINavigateToDealerAdminDefaultMarginPage()
