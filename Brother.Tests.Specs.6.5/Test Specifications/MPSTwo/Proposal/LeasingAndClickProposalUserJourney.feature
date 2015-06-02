@@ -72,6 +72,7 @@ Scenario Outline: Create different varieties of Leasing and Click proposal for n
 	| Role             | Country        | ContractType               | CreateOption        | UsageType     | Contract | Leasing   | Billing   | Printer    | DeviceScreen | ClickVolume |
 	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Create new customer | Pay As You Go | 4 years  | 6 Monthly | 4 Monthly | DCP-8110DN | Full         | 2000        |
 
+
 Scenario Outline: Create different varieties of Leasing and Click proposal for an existing customer
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
