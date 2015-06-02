@@ -1328,6 +1328,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetElementByCssSelector(installationMargin, 2);
         }
 
+        public void DownloadDealersProposalDocument()
+        {
+            DownloadProposalPdfWithCalcElement.Click();
+        }
+
+        public void DownloadCustomersProposalDocument()
+        {
+            DownloadProposalPdfElement.Click();
+        }
+
         public void VerifyThatServicePackFieldIsNotEmpty()
         {
             TestCheck.AssertIsEqual(false, servicePackMarginElement.GetAttribute("value").Equals(string.Empty), "Service pack field is not empty");

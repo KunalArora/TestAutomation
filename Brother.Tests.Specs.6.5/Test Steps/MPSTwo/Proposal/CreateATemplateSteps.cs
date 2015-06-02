@@ -331,6 +331,17 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         }
 
 
+        [Then(@"I can generate dealer PDF for the proposal")]
+        public void ThenICanGenerateDealerPDFForTheProposal()
+        {
+            CurrentPage.As<CreateNewProposalPage>().DownloadDealersProposalDocument();
+        }
+
+        [Then(@"I can generate customer PDF for the proposal")]
+        public void ThenICanGenerateCustomerPDFForTheProposal()
+        {
+            CurrentPage.As<CreateNewProposalPage>().DownloadCustomersProposalDocument();
+        }
 
         [When(@"I enter click price volume of ""(.*)"" and ""(.*)""")]
         public void WhenIEnterClickPriceVolumeOf(string clickprice, string colour)
