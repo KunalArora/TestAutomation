@@ -480,6 +480,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             TestCheck.AssertIsNotEqual(before, after, "Delivery Margin value is not reverted to the original value");
         }
 
+        public void IsDealerMarginRetainedByDealerAdminDefaultMargin()
+        {
+            string before = SpecFlow.GetContext("DealerAdminHardwareDefaultMargin");
+            string after = ProductMarginElement.GetAttribute("value");
+            TestCheck.AssertIsEqual(before, after, "Dealer Admin Hardware default margin value is not retained");
+        }
+
         private IWebElement InstallationPackUnitCostLessThanErrorElement()
         {
             const string element = ".alert-danger";

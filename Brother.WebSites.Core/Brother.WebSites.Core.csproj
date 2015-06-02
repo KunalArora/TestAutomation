@@ -119,6 +119,8 @@
     <Compile Include="Pages\MPSTwo\CloudCustomersPage.cs" />
     <Compile Include="Pages\MPSTwo\CloudExistingProposalPage.cs" />
     <Compile Include="Pages\MPSTwo\CloudMpsNavigationHeaderTabs.cs" />
+    <Compile Include="Pages\MPSTwo\DealerAdminDefaultMarginsPage.cs" />
+    <Compile Include="Pages\MPSTwo\DealerAdminDashBoardPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeAdminProgramSettingsPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerProposalsCreateProductsPage.cs" />
     <Compile Include="Pages\MPSTwo\CreateNewProposalPage.cs" />
