@@ -1042,7 +1042,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetElementByCssSelector(element);
         }
 
-        public void IsFullDeviceScreenDisplayed()
+        public void IsFullDeviceScreenDisplayedForPrinterSelected()
         {
             AssertElementPresent(FullDeviceScreenElement(), "Full device screen is not displayed");
         }
@@ -1054,7 +1054,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetElementByCssSelector(element);
         }
 
-        public void IsReducedDeviceScreenDisplayed()
+        public void IsReducedDeviceScreenDisplayedForPrinterSelected()
         {
             AssertElementPresent(ReducedDeviceScreenElement(), "Reduced device screen is not displayed");
         }
@@ -1063,11 +1063,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
         if (option.Equals("Full"))
             {
-                IsFullDeviceScreenDisplayed();
+                IsFullDeviceScreenDisplayedForPrinterSelected();
             }
             else if(option.Equals("Reduced"))
             {
-                IsReducedDeviceScreenDisplayed();
+                IsReducedDeviceScreenDisplayedForPrinterSelected();
             }
         }
         private IList<IWebElement> QTYForAccessoriesElement()

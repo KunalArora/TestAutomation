@@ -441,13 +441,13 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [Then(@"on product page all the device have full detail screen")]
         public void ThenOnProductPageAllTheDeviceHaveFullDetailScreen()
         {
-            CurrentPage.As<CreateNewProposalPage>().IsFullDeviceScreenDisplayed();
+            CurrentPage.As<CreateNewProposalPage>().IsFullDeviceScreenDisplayedForPrinterSelected();
         }
 
         [Then(@"on product page all the devices have reduced detail screen")]
         public void ThenOnProductPageAllTheDevicesHaveReducedDetailScreen()
         {
-            CurrentPage.As<CreateNewProposalPage>().IsReducedDeviceScreenDisplayed();
+            CurrentPage.As<CreateNewProposalPage>().IsReducedDeviceScreenDisplayedForPrinterSelected();
         }
 
         [Then(@"on product page QTY for accessories are default to zero")]
