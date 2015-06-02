@@ -63,6 +63,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PAYGPurchaseAndClickContract.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\MPSTwo\Proposal\DealerCanGeneratePDFAtRelevantStages.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DealerCanGeneratePDFAtRelevantStages.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specifications\MPSTwo\Proposal\LeasingAndClickProposalUserJourney.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -474,6 +479,10 @@
     <None Include="Test Specifications\MPSTwo\Proposal\CompletedFieldsAreReadOnlyInConversionMode.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CompletedFieldsAreReadOnlyInConversionMode.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwo\Proposal\DealerCanGeneratePDFAtRelevantStages.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>DealerCanGeneratePDFAtRelevantStages.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwo\Proposal\LeasingAndClickProposalUserJourney.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
