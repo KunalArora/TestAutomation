@@ -16,8 +16,9 @@ Scenario Outline: Should be able to display full detail screen
 	And I tick Price Hardware radio button
 	And I display "<Printer>" device screen
 	Then on product page all the device have full detail screen
-#	And all the SRP are not editable
-#	And the QTY for Delivery Cost, Installation Cost and Service Pack are not editable
+	And all the SRP are not editable
+	And the QTY for Delivery Cost, Installation Cost and Service Pack are not editable
+	And I sign out of Cloud MPS
 
 	Scenarios: 
 
@@ -36,6 +37,7 @@ Scenario Outline: Default value of full detail screen are verified
 	And I display "<Printer>" device screen
 	Then on product page QTY for accessories are default to zero
 	And the default total for all accessories are defaulted to zero
+	And I sign out of Cloud MPS
 
 	Scenarios: 
 
@@ -47,13 +49,15 @@ Scenario Outline: Default value of full detail screen are verified
 Scenario Outline: Total Price calulation is verified
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
-	When I fill Proposal Description for "<ContractType>" Contract type
-	And I enter Customer Information Detail for new customer
-	And I Enter "<Contract>" contract terms and "<Billing>" billing on Term and Type details
+#	When I fill Proposal Description for "<ContractType>" Contract type
+#	And I enter Customer Information Detail for new customer
+#	And I Enter "<Contract>" contract terms and "<Billing>" billing on Term and Type details
+    When I begin the proposal creation process for Purchase + Click Service
 	And I tick Price Hardware radio button
 	And I display "<Printer>" device screen
 	And enter a quantity value into an accessory field
-#	Then on product page the Total Price is the product of QTY and Unit Price
+	Then on product page the Total Price is the product of QTY and Unit Price
+	And I sign out of Cloud MPS
 
 	Scenarios: 
 
@@ -71,6 +75,7 @@ Scenario Outline: The sum of Total Price is equal to the Grand Total Price
 	And I tick Price Hardware radio button
 	And I display "<Printer>" device screen
 	Then on product page the sum of the Total Price is equal to the Grand Total Price displayed
+	And I sign out of Cloud MPS
 
 	Scenarios: 
 
@@ -104,14 +109,16 @@ Scenario Outline: All Zero QTY fields are not displayed on summary page
 Scenario Outline: Should be able to display Reduced detail screen
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
-	When I fill Proposal Description for "<ContractType>" Contract type
-	And I enter Customer Information Detail for new customer
-	And I Enter "<Contract>" contract terms and "<Billing>" billing on Term and Type details
+#	When I fill Proposal Description for "<ContractType>" Contract type
+#	And I enter Customer Information Detail for new customer
+#	And I Enter "<Contract>" contract terms and "<Billing>" billing on Term and Type details
+    When I begin the proposal creation process for Purchase + Click Service
 	And I untick Price Hardware radio button
 	And I display "<Printer>" device screen
 	Then on product page all the devices have reduced detail screen
-#	And all the SRP fields are ineditable
-#	And a change in product quantity affect the product TotalPrice
+	And all the SRP are not editable
+	And a change in product quantity affect the product TotalPrice
+	And I sign out of Cloud MPS
 
 	Scenarios: 
 
@@ -129,8 +136,9 @@ Scenario Outline: Lease and Click product screen validation
 	Then I should not see Price Hardware radio button on Term and Type screen
 	And I display "<Printer>" device screen
 	And on product page all the device have full detail screen
-#	And all the SRP are not editable
-#	And the QTY for Delivery Cost, Installation Cost and Service Pack are not editable
+	And all the SRP are not editable
+	And the QTY for Delivery Cost, Installation Cost and Service Pack are not editable
+	And I sign out of Cloud MPS
 
 	Scenarios: 
 
@@ -157,7 +165,7 @@ Scenario Outline: asdf
 
 # 12
 @ignore
-Scenario Outline: When login as a dealer, One-time set-up and used by all dealers
+Scenario Outline: Enable Printer as a Local Office Admin, then can display in Purchase + Click Service
 	Given I sign into Cloud MPS as a "<Role1>" from "<Country>"
 	And I navigate to Purchase And Click page
 	And I navigate to Printers page
@@ -170,11 +178,62 @@ Scenario Outline: When login as a dealer, One-time set-up and used by all dealer
 	And I tick Price Hardware radio button
 	And I display "<Printer>" device screen
 	Then the printers "<Printer>" enabled in Local Office Admin are displayed on product screen
+	And I sign out of Cloud MPS
 
 	Scenarios: 
 
 	| Role1                  | Country        | Role2            | Printer     |
 	| Cloud MPS Local Office | United Kingdom | Cloud MPS Dealer | DCP-8110DN  |
+
+# 13
+@ignore
+Scenario Outline: Enable Printer as a Local Office Admin, then can display in Lease + Click Service
+	Given I sign into Cloud MPS as a "<Role1>" from "<Country>"
+	And I am on MPS New Proposal Page
+	When I begin the proposal creation process for Lease + Click Service
+	And I display "<Printer>" device screen
+	Then the printers "<Printer>" enabled in Local Office Admin are displayed on product screen
+	And I sign out of Cloud MPS
+
+	Scenarios: 
+
+	| Role1            | Country        | Printer     |
+	| Cloud MPS Dealer | United Kingdom | DCP-8110DN  |
+
+# 14
+@ignore
+Scenario Outline: Disable Printer as a Local Office Admin, then can display in Purchase + Click Service
+	Given I sign into Cloud MPS as a "<Role1>" from "<Country>"
+	And I navigate to Purchase And Click page
+	And I navigate to Printers page
+	And I disabled "<Printer>" within the Printer screen
+	And I save printers on Available Printers page
+    And I sign out of Cloud MPS
+	When I sign back into Cloud MPS as a "<Role2>" from "<Country>"
+	And I am on MPS New Proposal Page
+	And I begin the proposal creation process for Purchase + Click Service
+	And I tick Price Hardware radio button
+	Then the printers "<Printer>" disabled in Local Office Admin are not displayed on product screen
+    And I sign out of Cloud MPS
+
+	Scenarios: 
+
+	| Role1                  | Country        | Role2            | Printer     |
+	| Cloud MPS Local Office | United Kingdom | Cloud MPS Dealer | DCP-8110DN  |
+
+# 15
+@ignore
+Scenario Outline: Disable Printer as a Local Office Admin, then can display in Lease + Click Service
+	Given I sign into Cloud MPS as a "<Role1>" from "<Country>"
+	And I am on MPS New Proposal Page
+	When I begin the proposal creation process for Lease + Click Service
+	Then the printers "<Printer>" disabled in Local Office Admin are not displayed on product screen
+	And I sign out of Cloud MPS
+
+	Scenarios: 
+
+	| Role1            | Country        | Printer     |
+	| Cloud MPS Dealer | United Kingdom | DCP-8110DN  |
 
 #
 # 4 Installation Cost
@@ -189,6 +248,7 @@ Scenario Outline: Change Installation cost type
 	And I display "<Printer>" device screen
 	And I change device installation type
 	Then installation SRP value should change
+	And I sign out of Cloud MPS
 
 	Scenarios: 
 
@@ -209,6 +269,7 @@ Scenario Outline: asd
 	And I tick Price Hardware radio button
 	And I display "<Printer>" device screen
 #	Then Accessories displayed for a paticular product must be correct
+	And I sign out of Cloud MPS
 
 	Scenarios: 
 
@@ -230,6 +291,7 @@ Scenario Outline: Cannot input Installation Pack Unit Cost less than default
 	And I Click Add to Proposal button
 	Then InstallationPackUnitCostLessThanError is displayed
 	And the product can not be added to the proposal
+	And I sign out of Cloud MPS
 
 	Scenarios: 
 
@@ -247,6 +309,7 @@ Scenario Outline: When input 100% into Margin field, "Add to proposal" button be
 	And I display "<Printer>" device screen
 	And I changed the Margin on any field to 100
 	Then Add to proposal button become grayout
+	And I sign out of Cloud MPS
 
 	Scenarios: 
 
@@ -263,6 +326,7 @@ Scenario Outline: When change Unit Price so that Margin is 100, "Add to proposal
 	And I display "<Printer>" device screen
 	And I changed a Unit Price 10 so that Margin is 100
 	Then Add to proposal button become grayout
+	And I sign out of Cloud MPS
 
 	Scenarios: 
 
@@ -286,6 +350,7 @@ Scenario Outline: As a Local Office Admin, sign-in and enable printer for Purcha
 	And I display "<Printer>" device screen
 	And on product page all the accessories all left with zero QTY
 	Then all the margin set above should be displayed in the right fields
+	And I sign out of Cloud MPS
 
 	Scenarios: 
 
@@ -308,6 +373,7 @@ Scenario Outline: Can be set-up as often as possible but used as a one-off margi
 	And I tick Price Hardware radio button
 	And I display "<Printer>" device screen
 	Then this change to dealer margin is reverted to the original value
+	And I sign out of Cloud MPS
 
 	Scenarios: 
 
@@ -327,6 +393,7 @@ Scenario Outline: One-off set-up by a dealer and used by just the dealer
 	And I tick Price Hardware radio button
 	And I display "<Printer>" device screen
 	Then this change to dealer margin is retained
+	And I sign out of Cloud MPS
 
 	Scenarios: 
 
@@ -347,7 +414,7 @@ Scenario Outline: Change in Unit Cost impacts Unit Price
 	And I change the Unit Cost of an item
 	Then the Unit Price changed accordingly
 	And the associated margin does not changed
-
+	And I sign out of Cloud MPS
 
 	Scenarios: 
 
@@ -365,6 +432,7 @@ Scenario Outline: Change in Unit Price impacts Margin
 	And I change the Unit Price of an item
 	Then the Margin changes accordingly
 	And the associated Unit Cost dos not changed
+	And I sign out of Cloud MPS
 
 	Scenarios: 
 
@@ -382,6 +450,7 @@ Scenario Outline: Change in Margin impacts Unit Price (1)
 	And I change the Margin of an item whose Unit Cost bigger than zero
 	Then the Unit Price changed accordingly
 	And the associated Unit Cost dos not changed
+	And I sign out of Cloud MPS
 
 	Scenarios: 
 
@@ -398,6 +467,7 @@ Scenario Outline: Change in Margin impacts Unit Price (2)
 	And I display "<Printer>" device screen
 	And I change the Margin of an item whose Unit Cost is equal to zero
 	Then the Unit Price and Unit Cost does not change
+	And I sign out of Cloud MPS
 
 	Scenarios: 
 
@@ -417,6 +487,7 @@ Scenario Outline: Free Text Filter
 	And I tick Price Hardware radio button
 	And I type in "<Printer>" into the top RHS free-text filter
 	Then All printers that contain "<Printer>" is returned
+	And I sign out of Cloud MPS
 
 	Scenarios: 
 
@@ -432,6 +503,7 @@ Scenario Outline: Fax filter checkbox
 	And I tick Price Hardware radio button
 	And I check Fax checkbox
 	Then All printers that have Fax facility are returned
+	And I sign out of Cloud MPS
 
 	Scenarios: 
 
@@ -447,6 +519,7 @@ Scenario Outline: Scanner filter checkbox
 	And I tick Price Hardware radio button
 	And I check Scanner checkbox
 	Then All printers that have Scanner facility are returned
+	And I sign out of Cloud MPS
 
 	Scenarios: 
 
@@ -462,6 +535,7 @@ Scenario Outline: Duplex filter checkbox
 	And I tick Price Hardware radio button
 	And I check Duplex checkbox
 	Then All printers that have Duplex facility are returned
+	And I sign out of Cloud MPS
 
 	Scenarios: 
 
@@ -477,6 +551,7 @@ Scenario Outline: Additional Tray filter checkbox
 	And I tick Price Hardware radio button
 	And I check Additional Tray checkbox
 	Then All printers that have Additional Tray facility are returned
+	And I sign out of Cloud MPS
 
 	Scenarios: 
 
@@ -492,6 +567,7 @@ Scenario Outline: A4 filter checkbox
 	And I tick Price Hardware radio button
 	And I check A4 checkbox
 	Then All printers that have A4 facility are returned
+	And I sign out of Cloud MPS
 
 	Scenarios: 
 
@@ -508,6 +584,7 @@ Scenario Outline: A3 filter checkbox
 	And I tick Price Hardware radio button
 	And I check A3 checkbox
 	Then All printers that have A3 facility are returned
+	And I sign out of Cloud MPS
 
 	Scenarios: 
 
@@ -523,6 +600,7 @@ Scenario Outline: Mono filter checkbox
 	And I tick Price Hardware radio button
 	And I check Mono checkbox
 	Then All printers that have Mono facility are returned
+	And I sign out of Cloud MPS
 
 	Scenarios: 
 
@@ -538,6 +616,7 @@ Scenario Outline: Colour filter checkbox
 	And I tick Price Hardware radio button
 	And I check Colour checkbox
 	Then All printers that have Colour facility are returned
+	And I sign out of Cloud MPS
 
 	Scenarios: 
 
@@ -553,6 +632,7 @@ Scenario Outline: Fax and Scanner filter checkbox
 	And I tick Price Hardware radio button
 	And I check Fax and Scanner checkbox
 	Then All printers that have Fax and Scanner facility are returned
+	And I sign out of Cloud MPS
 
 	Scenarios: 
 
@@ -568,6 +648,7 @@ Scenario Outline: Duplex and Colour filter checkbox
 	And I tick Price Hardware radio button
 	And I check Duplex and Colour checkbox
 	Then All printers that have Duplex and Colour facility are returned
+	And I sign out of Cloud MPS
 
 	Scenarios: 
 
@@ -588,6 +669,7 @@ Scenario Outline: verify that Products are displayed according to LO selection (
 	And I begin the proposal creation process for Purchase + Click Service
 	And I tick Price Hardware radio button
 	Then all products are displayed as a flat list with no images
+	And I sign out of Cloud MPS
 
 	Scenarios: 
 
@@ -604,6 +686,7 @@ Scenario Outline: verify that Products are displayed according to LO selection (
 	And the products are displayed as Flat List
 	And I changed the Product view to with images
 	Then all products are displayed with images
+	And I sign out of Cloud MPS
 
 	Scenarios: 
 

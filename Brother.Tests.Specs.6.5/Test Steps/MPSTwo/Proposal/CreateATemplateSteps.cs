@@ -1,4 +1,4 @@
-﻿using Brother.WebSites.Core.Pages.Base;
+using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium.Remote;
@@ -50,7 +50,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         public void WhenIBeginTheProposalCreationProcessForPurchaseClickService()
         {
             CurrentPage.As<CreateNewProposalPage>().IsPromptTextDisplayed();
-            CurrentPage.As<CreateNewProposalPage>().SelectingContractType("Purchase-and-Click");
+            CurrentPage.As<CreateNewProposalPage>().SelectingContractType("Purchase & Click with Service");
             CurrentPage.As<CreateNewProposalPage>().EnterProposalName("");
             CurrentPage.As<CreateNewProposalPage>().EnterLeadCodeRef("");
             CurrentPage.As<CreateNewProposalPage>().ClickNextButton_old();
@@ -68,7 +68,36 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
 //            CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
         }
 
-        
+        [When(@"I begin the proposal creation process for Lease \+ Click Service")]
+        public void WhenIBeginTheProposalCreationProcessForLeaseClickService()
+        {
+            CurrentPage.As<CreateNewProposalPage>().IsPromptTextDisplayed();
+            CurrentPage.As<CreateNewProposalPage>().SelectingContractType("Leasing");
+            CurrentPage.As<CreateNewProposalPage>().EnterProposalName("");
+            CurrentPage.As<CreateNewProposalPage>().EnterLeadCodeRef("");
+            CurrentPage.As<CreateNewProposalPage>().ClickNextButton_old();
+            //@TODO: Choose an existing contact until the creating new customer sequence is fixed
+            CurrentPage.As<CreateNewProposalPage>().IsCustomerInfoTextDisplayed();
+            CurrentPage.As<CreateNewProposalPage>().ClickSelectExistingCustomerRadioButton();
+            CurrentPage.As<CreateNewProposalPage>().ClickNextButton_old();
+
+            CurrentPage.As<CreateNewProposalPage>().SelectARandomExistingContact();
+            CurrentPage.As<CreateNewProposalPage>().ClickNextButton_old();
+            NextPage = CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
+        }
+
+        [Given(@"I navigate to Admin page")]
+        [When(@"I navigate to Admin page")]
+        public void WhenINavigateToAdminPage()
+        {
+            NextPage = CurrentPage.As<DealerDashBoardPage>().NavigateToAdminPage();
+        }
+
+        [Given(@"I navigate to Admin page using tab")]
+        public void GivenINavigateToAdminPageUsingTab()
+        {
+            NextPage = CurrentPage.As<DealerDashBoardPage>().NavigateToAdminPageUsingTab();
+        }
 
 
         [Given(@"I navigate to Dealership Profile page")]
@@ -573,6 +602,13 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<DealerProposalsCreateProductsPage>().IsGrandTotalPriceCorrect();
         }
 
+        [Then(@"on product page the Total Price is the product of QTY and Unit Price")]
+        public void ThenOnProductPageTheTotalPriceIsTheProductOfQTYAndUnitPrice()
+        {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().IsTheTotalPriceTheProductOfQTYAndUnitPrice();
+        }
+
+
         [When(@"I changed the Margin on any field to (.*)")]
         public void WhenIChangedTheMarginOnAnyFieldTo(string percent)
         {
@@ -831,5 +867,33 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         {
             CurrentPage.As<DealerProposalsCreateProductsPage>().IsModelFound(model);
         }
+
+        [Then(@"the printers ""(.*)"" disabled in Local Office Admin are not displayed on product screen")]
+        public void ThenThePrintersDisabledInLocalOfficeAdminAreNotDisplayedOnProductScreen(string model)
+        {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().IsNotModelFound(model);
+        }
+
+        [Then(@"all the SRP are not editable")]
+        public void ThenAllTheSRPAreNotEditable()
+        {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().IsAllSRPNotEditable();
+        }
+
+        [Then(@"the QTY for Delivery Cost, Installation Cost and Service Pack are not editable")]
+        public void ThenTheQTYForDeliveryCostInstallationCostAndServicePackAreNotEditable()
+        {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().IsDeliveryQuantityNotEditable();
+            CurrentPage.As<DealerProposalsCreateProductsPage>().IsInstallationQuantityNotEditable();
+            CurrentPage.As<DealerProposalsCreateProductsPage>().IsServicepackQuantityNotEditable();
+        }
+
+        [Then(@"a change in product quantity affect the product TotalPrice")]
+        public void ThenAChangeInProductQuantityAffectTheProductTotalPrice()
+        {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterProductQuantity("4");
+            CurrentPage.As<DealerProposalsCreateProductsPage>().VerifyThatProductQuantityElementChanged();
+        }
+
     }
 }
