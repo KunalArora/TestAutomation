@@ -253,7 +253,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<CreateNewProposalPage>().SelectLeaseBillingCycle(leasing);
             CurrentPage.As<CreateNewProposalPage>().SelectPayPerClickBillingCycle(billing);
 
-            CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
+            NextPage = CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
             
         }
 
@@ -308,7 +308,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         {
             CurrentPage.As<DealerProposalsCreateProductsPage>().IsProductScreenTextDisplayed();
             CurrentPage.As<CreateNewProposalPage>().ChooseADeviceFromProductSelectionScreen(printer, "80", "90");
-            CurrentPage.As<CreateNewProposalPage>().VerifyProductAdditionConfirmationMessage();
+            CurrentPage.As<DealerProposalsCreateProductsPage>().VerifyProductAdditionConfirmationMessage();
 
         }
 
@@ -394,7 +394,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [When(@"I select click price volume of ""(.*)""")]
         public void WhenISelectClickPriceVolumeOf(string monoVol)
         {
-            CurrentPage.As<CreateNewProposalPage>().CalculateEPPClickPriceAndProceed(monoVol);
+            CurrentPage.As<DealerProposalsCreateProductsPage>().CalculateEPPClickPriceAndProceed(monoVol);
         }
 
 

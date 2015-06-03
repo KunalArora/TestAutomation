@@ -78,15 +78,30 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DealerCanUpdateProfile.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\MPSTwo\Proposal\LeasingAndClickProposalGermanUserJourney.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LeasingAndClickProposalGermanUserJourney.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specifications\MPSTwo\Proposal\LeasingAndClickProposalUserJourney.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>LeasingAndClickProposalUserJourney.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\MPSTwo\Proposal\PurchaseAndClickProposalGermanUserJourney.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PurchaseAndClickProposalGermanUserJourney.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specifications\MPSTwo\Proposal\PurchaseAndClickProposalUserJourney.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>PurchaseAndClickProposalUserJourney.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPSTwo\Proposal\SummaryPageValidationForAllProposalTypes.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SummaryPageValidationForAllProposalTypes.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Specifications\Smart Supply\BrotherSupplyClubProductBenefits.feature.cs">
       <AutoGen>True</AutoGen>
@@ -503,13 +518,25 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>DealerCanUpdateProfile.feature.cs</LastGenOutput>
     </None>
+    <None Include="Test Specifications\MPSTwo\Proposal\LeasingAndClickProposalGermanUserJourney.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>LeasingAndClickProposalGermanUserJourney.feature.cs</LastGenOutput>
+    </None>
     <None Include="Test Specifications\MPSTwo\Proposal\LeasingAndClickProposalUserJourney.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>LeasingAndClickProposalUserJourney.feature.cs</LastGenOutput>
     </None>
+    <None Include="Test Specifications\MPSTwo\Proposal\PurchaseAndClickProposalGermanUserJourney.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>PurchaseAndClickProposalGermanUserJourney.feature.cs</LastGenOutput>
+    </None>
     <None Include="Test Specifications\MPSTwo\Proposal\PurchaseAndClickProposalUserJourney.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>PurchaseAndClickProposalUserJourney.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwo\Proposal\SummaryPageValidationForAllProposalTypes.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>SummaryPageValidationForAllProposalTypes.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwo\Proposal\VerificationOnProductScreenVariations.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

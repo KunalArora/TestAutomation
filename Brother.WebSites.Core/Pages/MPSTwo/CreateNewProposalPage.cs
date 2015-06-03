@@ -1033,8 +1033,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             return GetElementByCssSelector(colourVolume);
         }
-                public void CalculateClickPriceAndNext()
-                {
+
+        public void CalculateClickPriceAndNext()
+        {
             CalculateClickPriceElement.Click();
             ProceedOnClickPricePageElement.Click();
         }
@@ -1300,20 +1301,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ColourMarginElement.SendKeys(Keys.Tab);
         }
 
-        public void AddAllDetailsToProposal()
-        {
-            ScrollTo(AddToProposalElement);
-            AddToProposalElement.Click();
-            WebDriver.Wait(Helper.DurationType.Second, 5);
-        }
-
-        public void VerifyProductAdditionConfirmationMessage()
-        {
-            ScrollTo(ProductsScreenAlertElement);
-            var storedProductScreenText = SpecFlow.GetContext("InitialProductPageText");
-            var finalProductScreenText = ProductsScreenAlertElement.Text;
-            TestCheck.AssertIsEqual(false, storedProductScreenText.Equals(finalProductScreenText), "Product Screen Text");
-        }
+        
 
         public void MoveToProposalSummaryScreen()
         {
@@ -1378,6 +1366,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             
             AddAllDetailsToProposal();
         }
+        public void AddAllDetailsToProposal()
+        {
+            ScrollTo(AddToProposalElement);
+            AddToProposalElement.Click();
+            WebDriver.Wait(Helper.DurationType.Second, 5);
+        }
+
 
         public void SelectARandomExistingContact()
         {
@@ -1855,6 +1850,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             TestCheck.AssertIsEqual(true, colourClickPriceCostThirdChange.Equals(colourClickPriceCostFourthChange), "Colour Price Cost Third Change");
             TestCheck.AssertIsEqual(false, colourClickPriceSellThirdChange.Equals(colourClickPriceSellFourthChange), "Colour Price Sell Third Change");
 
+        }
+
+        public void VerifyProductAdditionConfirmationMessage()
+        {
+            ScrollTo(ProductsScreenAlertElement);
+            var storedProductScreenText = SpecFlow.GetContext("InitialProductPageText");
+            var finalProductScreenText = ProductsScreenAlertElement.Text;
+            TestCheck.AssertIsEqual(false, storedProductScreenText.Equals(finalProductScreenText), "Product Screen Text");
         }
 
     }
