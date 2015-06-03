@@ -91,8 +91,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private IWebElement CalculateClickPriceElement;
         [FindsBy(How = How.CssSelector, Using = ".mps-qa-installation .mps-qa-srp")]
         private IWebElement InstallationSRPElement;
-        [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/proposals/create/click-price\"]")]
-        private IWebElement ClickPriceScreenElement;
         [FindsBy(How = How.CssSelector, Using = "[id='content_1_LineItems_InputMonoVolume_0']")]
         private IWebElement MonoVolumeInputFieldElement;
 
@@ -466,26 +464,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
    
 
-        public void IsFullDeviceScreenDisplayedForPrinterSelected()
-        {
-            AssertElementPresent(FullDeviceScreenElement(), "Full device screen is not displayed");
-        }
-
-        public void IsReducedDeviceScreenDisplayedForPrinterSelected()
-        {
-            AssertElementPresent(ReducedDeviceScreenElement(), "Reduced device screen is not displayed");
-        }
-        public void VerifyTypeOfDeviceScreenDisplayed(string option)
-        {
-            if (option.Equals("Full"))
-            {
-                IsFullDeviceScreenDisplayedForPrinterSelected();
-            }
-            else if (option.Equals("Reduced"))
-            {
-                IsReducedDeviceScreenDisplayedForPrinterSelected();
-            }
-        }
 
         public void EnterDeliveryMargin(string value)
         {
@@ -905,13 +883,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
-        public void VerifyProductAdditionConfirmationMessage()
-        {
-            ScrollTo(ProductsScreenAlertElement);
-            var storedProductScreenText = SpecFlow.GetContext("InitialProductPageText");
-            var finalProductScreenText = ProductsScreenAlertElement.Text;
-            TestCheck.AssertIsEqual(false, storedProductScreenText.Equals(finalProductScreenText), "Product Screen Text");
-        }
+        
 
         public DealerProposalsCreateClickPricePage MoveToClickPriceScreen()
         {
@@ -921,12 +893,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetTabInstance<DealerProposalsCreateClickPricePage>(Driver);
         }
 
-        public void MoveToClickPriceScreen()
-        {
-            ScrollTo(ClickPriceScreenElement);
-            ClickPriceScreenElement.Click();
-        }
-        
         public void VerifyProductAdditionConfirmationMessage()
         {
             ScrollTo(ProductsScreenAlertElement);
