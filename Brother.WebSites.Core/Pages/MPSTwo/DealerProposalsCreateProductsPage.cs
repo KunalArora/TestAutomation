@@ -5,6 +5,7 @@ using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using OpenQA.Selenium.Support.UI;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
@@ -78,7 +79,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [FindsBy(How = How.CssSelector, Using = ".mps-qa-installation .mps-qa-srp")]
         private IWebElement InstallationSRPElement;
 
-
+        private const string QuantityElementString = "[data-quantity=\"true\"]";
+        private const string ServicePackElementString = ".mps-qa-service-pack";
+        private const string InstallationQuantityElementString = ".mps-qa-installation";
+        private const string DeliveryQuantityElementString = ".mps-qa-delivery";
 
         private IWebElement FaxCheckboxElement()
         {
@@ -577,11 +581,22 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             TestCheck.AssertIsEqual(sum, MpsUtil.GetValue(TotalLinePriceElement().Text), "The sum of the Total Price is not equal to the Grand Total Price displayed");
         }
 
+        public void IsTheTotalPriceTheProductOfQTYAndUnitPrice()
+        {
+            string Quantity = OptionsQuantityElement.GetAttribute("value");
+            string UnitPrice = OptionsSellPriceElement.GetAttribute("value");
+            decimal calcurated = Convert.ToDecimal(Quantity) * Convert.ToDecimal(UnitPrice);
+            string TotalStr = TotalForAllAccessoriesElement()[0].Text;
+            decimal Total = MpsUtil.GetValue(TotalStr);
+            TestCheck.AssertIsEqual(calcurated, Total, "TotalPriceOfAccessory is not correct");
+        }
+
         public void FillProductDetails()
         {
             EnterProductQuantity("2");
             EnterProductCostPrice("50");
             EnterProductSellPrice("60");
+            EnterOptionsQuantity0("3");
             VerifyMarginFieldValues();
         }
 
@@ -605,6 +620,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             ClearAndType(ProductMarginElement, value);
             ProductMarginElement.SendKeys(Keys.Tab);
+        }
+
+        public void EnterOptionsQuantity0(string value)
+        {
+            ClearAndType(OptionsQuantityElement, value);
         }
 
         public void VerifyMarginFieldValues()
@@ -713,7 +733,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             return GetElementsByCssSelector(element);
         }
-        public void IsModelFound(string model)
+
+        private bool SearchModelName(string model)
         {
             bool found = false;
             foreach (IWebElement element in ModelNameElement())
@@ -724,7 +745,88 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     break;
                 }
             }
-            TestCheck.AssertIsEqual(true, found, "model not found");
+            return found;
         }
+
+        public void IsModelFound(string model)
+        {
+            TestCheck.AssertIsEqual(true, SearchModelName(model), "model not found");
+        }
+
+        public void IsNotModelFound(string model)
+        {
+            WebDriver.Wait(Helper.DurationType.Second, 5);
+            TestCheck.AssertIsEqual(false, SearchModelName(model), "model found");            
+        }
+
+        private IList<IWebElement> AllSRPElement()
+        {
+            const string element = ".mps-qa-srp";
+
+            return GetElementsByCssSelector(element);
+        }
+
+        public void IsAllSRPNotEditable()
+        {
+            TestCheck.AssertIsNotEqual(0, AllSRPElement().Count, "srp field nothing");
+            IList<IWebElement> element = GetElementsByCssSelector(".mps-qa-srp input", 5);
+            TestCheck.AssertIsEqual(0, element.Count, "element is not null");
+        }
+
+        private IWebElement DeliveryQuantityElement()
+        {
+            string element = String.Format("{0} {1}", DeliveryQuantityElementString, QuantityElementString);
+
+            return GetElementByCssSelector(element);
+        }
+
+        public void IsDeliveryQuantityNotEditable()
+        {
+            string element = String.Format("{0} {1} input", DeliveryQuantityElementString, QuantityElementString);
+
+            TestCheck.AssertIsNotEqual(0, DeliveryQuantityElement(), "Unable to locate Delivery Quantity field");
+            if (GetElementByCssSelector(element, 5) == null)
+                TestCheck.AssertIsNotNull(DeliveryQuantityElement(), "Delivery Quantity is editable");
+        }
+
+        private IWebElement InstallationQuantityElement()
+        {
+            string element = String.Format("{0} {1}", InstallationQuantityElementString, QuantityElementString);
+
+            return GetElementByCssSelector(element);
+        }
+
+        public void IsInstallationQuantityNotEditable()
+        {
+            string element = String.Format("{0} {1} input", InstallationQuantityElementString, QuantityElementString);
+
+            TestCheck.AssertIsNotEqual(0, InstallationQuantityElement(), "Unable to locate Installation Quantity field");
+            if (GetElementByCssSelector(element, 5) == null)
+                TestCheck.AssertIsNotNull(InstallationQuantityElement(), "Installation Quantity is editable");
+        }
+
+        private IWebElement ServicepackQuantityElement()
+        {
+            string element = String.Format("{0} {1}", ServicePackElementString, QuantityElementString);
+
+            return GetElementByCssSelector(element);
+        }
+
+        public void IsServicepackQuantityNotEditable()
+        {
+            string element = String.Format("{0} {1} input", ServicePackElementString, QuantityElementString);
+
+            TestCheck.AssertIsNotEqual(0, ServicepackQuantityElement(), "Unable to locate Servicepack Quantity field");
+            if (GetElementByCssSelector(element, 5) == null)
+                TestCheck.AssertIsNotNull(ServicepackQuantityElement(), "Servicepack Quantity field is editable");
+        }
+
+        public void VerifyThatProductQuantityElementChanged()
+        {
+            string before = SpecFlow.GetContext("ProductQuantity");
+            string after = ProductQuantityElement.GetAttribute("value");
+            TestCheck.AssertIsNotEqual(before, after, "ProductQuantity value is changed");
+        }
+
     }
 }
