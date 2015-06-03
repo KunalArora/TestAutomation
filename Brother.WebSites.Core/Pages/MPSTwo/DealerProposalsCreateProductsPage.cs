@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
@@ -13,6 +14,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string flatItemsIdentifier = @".mps-product-group";
 
         public static string URL = "/mps/dealer/proposals/create/products";
+        private const string paymentMethod = @".mps-paymentoptions";
+        private const string monoVolume = @"#content_1_LineItems_InputMonoVolumeBreaks_0";
+        private const string colourVolume = @"#content_1_LineItems_InputColourVolumeBreaks_0";
+        private const string clickPriceValue = @"[class='mps-col mps-top mps-clickprice-line2'][data-click-price-mono='true']";
+        private const string clickPriceColourValue = @"[data-mono-only='False'] [class='mps-col mps-top mps-clickprice-line2'][data-click-price-colour='true']";
+        private const string clickPricePageNext = @"#content_1_ButtonNext";
 
         public override string DefaultTitle
         {
@@ -29,6 +36,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private IWebElement ProductsScreenAlertElement;
         [FindsBy(How = How.Id, Using = "Quantity")]
         private IWebElement ProductQuantityElement;
+        [FindsBy(How = How.Id, Using = "content_1_LineItems_InputMonoVolumeBreaks_0")]
+        private IWebElement monoVolumeDropdownElement;
+        [FindsBy(How = How.Id, Using = "content_1_LineItems_InputColourVolumeBreaks_0")]
+        private IWebElement colourVolumeDropdownElement;
         [FindsBy(How = How.Id, Using = "CostPrice")]
         private IWebElement ProductCostPriceElement;
         [FindsBy(How = How.Id, Using = "SellPrice")]
@@ -77,6 +88,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private IWebElement CalculateClickPriceElement;
         [FindsBy(How = How.CssSelector, Using = ".mps-qa-installation .mps-qa-srp")]
         private IWebElement InstallationSRPElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/proposals/create/click-price\"]")]
+        private IWebElement ClickPriceScreenElement;
+        [FindsBy(How = How.CssSelector, Using = "[id='content_1_LineItems_InputMonoVolume_0']")]
+        private IWebElement MonoVolumeInputFieldElement;
 
 
 
@@ -281,7 +296,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsProductScreenTextDisplayed()
         {
-
+            WebDriver.Wait(DurationType.Second, 5);
             if (ProductsScreenAlertElement == null) throw new
                 NullReferenceException("Unable to locate text on Product Screen");
 
@@ -439,6 +454,28 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             string before = SpecFlow.GetContext("HardwareDefaultMargin");
             string after = GetValueOfProductMarginValueElement();
             TestCheck.AssertIsEqual(before, after, "Hardware Default Margin value is not equal to the value of Local Office Dealer Default");
+        }
+   
+
+        public void IsFullDeviceScreenDisplayedForPrinterSelected()
+        {
+            AssertElementPresent(FullDeviceScreenElement(), "Full device screen is not displayed");
+        }
+
+        public void IsReducedDeviceScreenDisplayedForPrinterSelected()
+        {
+            AssertElementPresent(ReducedDeviceScreenElement(), "Reduced device screen is not displayed");
+        }
+        public void VerifyTypeOfDeviceScreenDisplayed(string option)
+        {
+            if (option.Equals("Full"))
+            {
+                IsFullDeviceScreenDisplayedForPrinterSelected();
+            }
+            else if (option.Equals("Reduced"))
+            {
+                IsReducedDeviceScreenDisplayedForPrinterSelected();
+            }
         }
 
         public void EnterDeliveryMargin(string value)
@@ -726,5 +763,157 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
             TestCheck.AssertIsEqual(true, found, "model not found");
         }
+
+        public void MoveToClickPriceScreen()
+        {
+            ScrollTo(ClickPriceScreenElement);
+            ClickPriceScreenElement.Click();
+        }
+        
+        public void VerifyProductAdditionConfirmationMessage()
+        {
+            ScrollTo(ProductsScreenAlertElement);
+            var storedProductScreenText = SpecFlow.GetContext("InitialProductPageText");
+            var finalProductScreenText = ProductsScreenAlertElement.Text;
+            TestCheck.AssertIsEqual(false, storedProductScreenText.Equals(finalProductScreenText), "Product Screen Text");
+        }
+
+        private IWebElement PaymentMethodElement()
+        {
+            return GetElementByCssSelector(paymentMethod, 10);
+        }
+
+        public void VerifyPaymentMethodIsDisplayed()
+        {
+            TestCheck.AssertIsEqual(true, PaymentMethodElement().Displayed, "Payment method is not displayed");
+        }
+
+        public void VerifyPaymentMethodIsNotDisplayed()
+        {
+
+            if (!IsElementPresent(PaymentMethodElement()))
+            {
+                TestCheck.AssertIsEqual(false, PaymentMethodElement().Displayed, "Payment method is displayed");
+            }
+        }
+
+        private IWebElement MonoVolumeElementClickPrice()
+        {
+            return GetElementByCssSelector(monoVolume);
+        }
+
+        private IWebElement ColourVolumeElementClickPrice()
+        {
+            return GetElementByCssSelector(colourVolume);
+        }
+
+        private void CalculateClickPrice(string volume, string colour)
+        {
+            if (colourVolumeDropdownElement == null)
+                throw new NullReferenceException("ClickVolumeElement can not be found");
+            if (CalculateClickPriceElement == null)
+                throw new NullReferenceException("CalculateClickPriceElement can not be found");
+            if (monoVolumeDropdownElement == null)
+                throw new NullReferenceException("ColourVolumeDropdownElement can not be found");
+
+            if (IsElementPresent(ColourVolumeElementClickPrice()))
+                SelectFromDropdown(colourVolumeDropdownElement, colour);
+            if (IsElementPresent(MonoVolumeElementClickPrice()))
+                SelectFromDropdown(monoVolumeDropdownElement, volume);
+            WebDriver.Wait(DurationType.Second, 3);
+            CalculateClickPriceElement.Click();
+        }
+
+        private void CalculateEPPClickPrice(string volume)
+        {
+            if (monoVolumeDropdownElement == null)
+                throw new NullReferenceException("ClickVolumeElement can not be found");
+            if (CalculateClickPriceElement == null)
+                throw new NullReferenceException("CalculateClickPriceElement can not be found");
+
+            SelectFromDropdown(monoVolumeDropdownElement, volume);
+            CalculateClickPriceElement.Click();
+        }
+
+        private IList<IWebElement> ClickPriceValue()
+        {
+            return GetElementsByCssSelector(clickPriceValue);
+        }
+
+        private IList<IWebElement> ClickPriceColourValue()
+        {
+            return GetElementsByCssSelector(clickPriceColourValue);
+        }
+
+        private void VerifyColourClickPriceValueIsDisplayed()
+        {
+            for (var i = 0; i < ClickPriceColourValue().Count; i++)
+            {
+                TestCheck.AssertIsEqual(false, ClickPriceColourValue().ElementAt(i).Text.Equals(string.Empty), "Price Colour Value is Empty");
+            }
+
+        }
+
+        private IWebElement ClickPriceNextButton()
+        {
+            return GetElementByCssSelector(clickPricePageNext);
+        }
+
+        private void ProceedToProposalSummaryFromClickPrice()
+        {
+            ClickPriceNextButton().Click();
+        }
+
+        private void VerifyClickPriceValueIsDisplayed()
+        {
+            for (var i = 0; i < ClickPriceValue().Count; i++)
+            {
+                TestCheck.AssertIsEqual(false, ClickPriceValue().ElementAt(i).Text.Equals(string.Empty), "Price Value is Empty");
+            }
+        }
+
+        public void CalculateClickPriceAndProceed(string volume, string colour)
+        {
+            MoveToClickPriceScreen();
+            CalculateClickPrice(volume, colour);
+            WebDriver.Wait(Helper.DurationType.Second, 5);
+            VerifyClickPriceValueIsDisplayed();
+            ProceedToProposalSummaryFromClickPrice();
+
+        }
+
+        public void CalculateEPPClickPriceAndProceed(string volume)
+        {
+            MoveToClickPriceScreen();
+            CalculateEPPClickPrice(volume);
+            WebDriver.Wait(Helper.DurationType.Second, 5);
+            VerifyClickPriceValueIsDisplayed();
+            ProceedToProposalSummaryFromClickPrice();
+
+        }
+
+        private void EnterMonoVolumeQuantity(string volume)
+        {
+            if (MonoVolumeInputFieldElement == null)
+                throw new NullReferenceException("Mono Volume field can not be found");
+            if (CalculateClickPriceElement == null)
+                throw new NullReferenceException("CalculateClickPriceElement can not be found");
+
+            MonoVolumeInputFieldElement.SendKeys(volume);
+            WebDriver.Wait(Helper.DurationType.Second, 2);
+            CalculateClickPriceElement.Click();
+        }
+
+
+        public void CalculateEnteredClickPriceAndProceed(string volume)
+        {
+            MoveToClickPriceScreen();
+            EnterMonoVolumeQuantity(volume);
+            WebDriver.Wait(Helper.DurationType.Second, 5);
+            VerifyClickPriceValueIsDisplayed();
+            ProceedToProposalSummaryFromClickPrice();
+
+        }
+
     }
 }

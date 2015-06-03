@@ -224,7 +224,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<CreateNewProposalPage>().SelectLeaseBillingCycle(leasing);
             CurrentPage.As<CreateNewProposalPage>().SelectPayPerClickBillingCycle(billing);
 
-            CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
+            NextPage = CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
             
         }
 
@@ -255,7 +255,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [When(@"""(.*)"" device screen is displayed")]
         public void WhenDeviceScreenIsDisplayed(string option)
         {
-            CurrentPage.As<CreateNewProposalPage>().VerifyTypeOfDeviceScreenDisplayed(option);
+            CurrentPage.As<DealerProposalsCreateProductsPage>().VerifyTypeOfDeviceScreenDisplayed(option);
         }
         [When(@"I untick Price Hardware radio button")]
         public void WhenIUntickPriceHardwareRadioButton()
@@ -278,16 +278,16 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         {
             CurrentPage.As<DealerProposalsCreateProductsPage>().IsProductScreenTextDisplayed();
             CurrentPage.As<CreateNewProposalPage>().ChooseADeviceFromProductSelectionScreen(printer, "80", "90");
-            CurrentPage.As<CreateNewProposalPage>().VerifyProductAdditionConfirmationMessage();
+            CurrentPage.As<DealerProposalsCreateProductsPage>().VerifyProductAdditionConfirmationMessage();
 
         }
 
         [When(@"I accept the default values of the device")]
         public void WhenIAcceptTheDefaultValuesOfTheDevice()
         {
-            CurrentPage.As<CreateNewProposalPage>().AddAllDetailsToProposal();
-            CurrentPage.As<CreateNewProposalPage>().VerifyProductAdditionConfirmationMessage();
-            CurrentPage.As<CreateNewProposalPage>().MoveToClickPriceScreen();
+            CurrentPage.As<DealerProposalsCreateProductsPage>().AddAllDetailsToProposal();
+            CurrentPage.As<DealerProposalsCreateProductsPage>().VerifyProductAdditionConfirmationMessage();
+            CurrentPage.As<DealerProposalsCreateProductsPage>().MoveToClickPriceScreen();
             
         }
 
@@ -318,7 +318,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [When(@"Service Pack payment method is not displayed")]
         public void WhenServicePackPaymentMethodIsNotDisplayed()
         {
-            CurrentPage.As<CreateNewProposalPage>().VerifyPaymentMethodIsNotDisplayed();
+            CurrentPage.As<DealerProposalsCreateProductsPage>().VerifyPaymentMethodIsNotDisplayed();
         }
 
         [When(@"I ""(.*)"" Price Hardware radio button")]
@@ -331,7 +331,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [When(@"Service Pack payment method is displayed")]
         public void WhenServicePackPaymentMethodIsDisplayed()
         {
-            CurrentPage.As<CreateNewProposalPage>().VerifyPaymentMethodIsDisplayed();
+            CurrentPage.As<DealerProposalsCreateProductsPage>().VerifyPaymentMethodIsDisplayed();
         }
 
 
@@ -352,20 +352,20 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [When(@"I enter click price volume of ""(.*)"" and ""(.*)""")]
         public void WhenIEnterClickPriceVolumeOf(string clickprice, string colour)
         {
-            CurrentPage.As<CreateNewProposalPage>().CalculateClickPriceAndProceed(clickprice, colour);
+            CurrentPage.As<DealerProposalsCreateProductsPage>().CalculateClickPriceAndProceed(clickprice, colour);
         }
 
         [When(@"I type in click price volume of ""(.*)""")]
         public void WhenITypeInClickPriceVolumeOf(string monoVol)
         {
-            CurrentPage.As<CreateNewProposalPage>().CalculateEnteredClickPriceAndProceed(monoVol);
+            CurrentPage.As<DealerProposalsCreateProductsPage>().CalculateEnteredClickPriceAndProceed(monoVol);
         }
 
 
         [When(@"I select click price volume of ""(.*)""")]
         public void WhenISelectClickPriceVolumeOf(string monoVol)
         {
-            CurrentPage.As<CreateNewProposalPage>().CalculateEPPClickPriceAndProceed(monoVol);
+            CurrentPage.As<DealerProposalsCreateProductsPage>().CalculateEPPClickPriceAndProceed(monoVol);
         }
 
 

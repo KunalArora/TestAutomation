@@ -24,7 +24,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string installationMargin = @"#InstallationMargin";
         private const string optionSaveButton = @".js-mps-product-option-save";
         private const string priceHardwareTickBox = @"#content_1_InputPriceHardware_Input";
-        private const string paymentMethod = @".mps-paymentoptions";
         private const string monoVolume = @"#content_1_LineItems_InputMonoVolumeBreaks_0";
         private const string colourVolume = @"#content_1_LineItems_InputColourVolumeBreaks_0";
         private const string hardwareTick = @"#content_1_InputPriceHardware_Input";
@@ -1088,8 +1087,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             return GetElementByCssSelector(colourVolume);
         }
-                public void CalculateClickPriceAndNext()
-                {
+
+        public void CalculateClickPriceAndNext()
+        {
             CalculateClickPriceElement.Click();
             ProceedOnClickPricePageElement.Click();
         }
@@ -1275,22 +1275,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ClickPriceNextButton().Click();
         }
 
-        private IWebElement PaymentMethodElement()
-        {
-            return GetElementByCssSelector(paymentMethod, 10);
-        }
-
-        public void VerifyPaymentMethodIsDisplayed()
-        {
-            TestCheck.AssertIsEqual(true, PaymentMethodElement().Displayed, "Payment method is not displayed");
-        }
-
-        public void VerifyPaymentMethodIsNotDisplayed()
-        {
-            TestCheck.AssertIsEqual(false, PaymentMethodElement().Displayed, "Payment method is displayed");
-            //AssertElementPresent(PaymentMethodElement(), "Payment method is displayed");
-        }
-
+        
         public void CalculateClickPriceAndProceed(string volume, string colour)
         {
             MoveToClickPriceScreen();
@@ -1461,20 +1446,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ColourMarginElement.SendKeys(Keys.Tab);
         }
 
-        public void AddAllDetailsToProposal()
-        {
-            ScrollTo(AddToProposalElement);
-            AddToProposalElement.Click();
-            WebDriver.Wait(Helper.DurationType.Second, 5);
-        }
-
-        public void VerifyProductAdditionConfirmationMessage()
-        {
-            ScrollTo(ProductsScreenAlertElement);
-            var storedProductScreenText = SpecFlow.GetContext("InitialProductPageText");
-            var finalProductScreenText = ProductsScreenAlertElement.Text;
-            TestCheck.AssertIsEqual(false, storedProductScreenText.Equals(finalProductScreenText), "Product Screen Text");
-        }
+        
 
         public void MoveToProposalSummaryScreen()
         {
@@ -1539,6 +1511,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             
             AddAllDetailsToProposal();
         }
+        public void AddAllDetailsToProposal()
+        {
+            ScrollTo(AddToProposalElement);
+            AddToProposalElement.Click();
+            WebDriver.Wait(Helper.DurationType.Second, 5);
+        }
+
 
         public void SelectARandomExistingContact()
         {
@@ -2016,6 +1995,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             TestCheck.AssertIsEqual(true, colourClickPriceCostThirdChange.Equals(colourClickPriceCostFourthChange), "Colour Price Cost Third Change");
             TestCheck.AssertIsEqual(false, colourClickPriceSellThirdChange.Equals(colourClickPriceSellFourthChange), "Colour Price Sell Third Change");
 
+        }
+
+        public void VerifyProductAdditionConfirmationMessage()
+        {
+            ScrollTo(ProductsScreenAlertElement);
+            var storedProductScreenText = SpecFlow.GetContext("InitialProductPageText");
+            var finalProductScreenText = ProductsScreenAlertElement.Text;
+            TestCheck.AssertIsEqual(false, storedProductScreenText.Equals(finalProductScreenText), "Product Screen Text");
         }
 
     }
