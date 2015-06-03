@@ -208,7 +208,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [When(@"I choose to pay Service Packs ""(.*)""")]
         public void WhenIChooseToPayServicePacks(string pay)
         {
-            CurrentPage.As<CreateNewProposalPage>().PayServicePackMethod(pay);
+            CurrentPage.As<DealerProposalsCreateClickPricePage>().PayServicePackMethod(pay);
         }
         
         private void WhenIEnterContractTermsLeasingAndBillingOnTermAndTypeDetails(string contract, string leasing,
@@ -234,7 +234,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [When(@"enter a quantity of ""(.*)"" for model")]
         public void WhenEnterAQuantityOfForModel(string quantity)
         {
-            CurrentPage.As<CreateNewProposalPage>().EnterProductQuantity(quantity);
+            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterProductQuantity(quantity);
         }
 
         [When(@"I Enter ""(.*)"" contract terms ""(.*)"" leasing and ""(.*)"" billing on Term and Type details\(only input\)")]
@@ -281,11 +281,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
 
             NextPage = CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
         }
-        [When(@"""(.*)"" device screen is displayed")]
-        public void WhenDeviceScreenIsDisplayed(string option)
-        {
-            CurrentPage.As<CreateNewProposalPage>().VerifyTypeOfDeviceScreenDisplayed(option);
-        }
+
         [When(@"I untick Price Hardware radio button")]
         public void WhenIUntickPriceHardwareRadioButton()
         {
@@ -293,13 +289,18 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
 
             NextPage = CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
         }
-
-
+        
         [Then(@"I should not see Price Hardware radio button on Term and Type screen")]
         public void ThenIShouldNotSeePriceHardwareRadioButtonOnTermAndTypeScreen()
         {
             CurrentPage.As<CreateNewProposalPage>().IsNotPriceHardwareElement();
             NextPage = CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
+        }
+
+        [When(@"""(.*)"" device screen is displayed")]
+        public void WhenDeviceScreenIsDisplayed(string option)
+        {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().VerifyTypeOfDeviceScreenDisplayed(option);
         }
 
         [When(@"I choose ""(.*)"" from Products screen")]
@@ -314,17 +315,16 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [When(@"I accept the default values of the device")]
         public void WhenIAcceptTheDefaultValuesOfTheDevice()
         {
-            CurrentPage.As<CreateNewProposalPage>().AddAllDetailsToProposal();
-            CurrentPage.As<CreateNewProposalPage>().VerifyProductAdditionConfirmationMessage();
-            CurrentPage.As<CreateNewProposalPage>().MoveToClickPriceScreen();
-            
+            CurrentPage.As<DealerProposalsCreateProductsPage>().AddAllDetailsToProposal();
+            CurrentPage.As<DealerProposalsCreateProductsPage>().VerifyProductAdditionConfirmationMessage();
+            NextPage = CurrentPage.As<DealerProposalsCreateProductsPage>().MoveToClickPriceScreen();
         }
 
 
         [Then(@"""(.*)"" displayed on proposal Summary Page corresponds to ""(.*)""")]
         public void ThenDisplayedOnProposalSummaryPageCorrespondsTo(string parameter, string value)
         {
-            CurrentPage.As<CreateNewProposalPage>().VerifyCreatedProposalSummaryPageElements(parameter, value);
+            CurrentPage.As<DealerProposalsCreateSummaryPage>().VerifyCreatedProposalSummaryPageElements(parameter, value);
         }
 
 
@@ -347,20 +347,20 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [When(@"Service Pack payment method is not displayed")]
         public void WhenServicePackPaymentMethodIsNotDisplayed()
         {
-            CurrentPage.As<CreateNewProposalPage>().VerifyPaymentMethodIsNotDisplayed();
+            CurrentPage.As<DealerProposalsCreateClickPricePage>().VerifyPaymentMethodIsNotDisplayed();
         }
 
         [When(@"I ""(.*)"" Price Hardware radio button")]
         public void WhenIPriceHardwareRadioButton(string option)
         {
             CurrentPage.As<CreateNewProposalPage>().TickPriceHardware(option);
-            CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
+            NextPage = CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
         }
 
         [When(@"Service Pack payment method is displayed")]
         public void WhenServicePackPaymentMethodIsDisplayed()
         {
-            CurrentPage.As<CreateNewProposalPage>().VerifyPaymentMethodIsDisplayed();
+            CurrentPage.As<DealerProposalsCreateClickPricePage>().VerifyPaymentMethodIsDisplayed();
         }
 
 
@@ -381,13 +381,13 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [When(@"I enter click price volume of ""(.*)"" and ""(.*)""")]
         public void WhenIEnterClickPriceVolumeOf(string clickprice, string colour)
         {
-            CurrentPage.As<CreateNewProposalPage>().CalculateClickPriceAndProceed(clickprice, colour);
+            NextPage = CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateClickPriceAndProceed(clickprice, colour);
         }
 
         [When(@"I type in click price volume of ""(.*)""")]
         public void WhenITypeInClickPriceVolumeOf(string monoVol)
         {
-            CurrentPage.As<CreateNewProposalPage>().CalculateEnteredClickPriceAndProceed(monoVol);
+            NextPage = CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateEnteredClickPriceAndProceed(monoVol);
         }
 
 
