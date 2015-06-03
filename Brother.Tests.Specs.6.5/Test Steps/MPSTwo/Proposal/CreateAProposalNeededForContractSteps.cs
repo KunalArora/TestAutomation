@@ -13,8 +13,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [When(@"I click Save Proposal button on Summary screen")]
         public void WhenIClickSaveProposalButtonOnSummaryScreen()
         {
-            CurrentPage.As<CreateNewProposalPage>().MoveToProposalSummaryScreen();
-            NextPage = CurrentPage.As<CreateNewProposalPage>().SaveProposal();
+            NextPage = CurrentPage.As<DealerProposalsCreateSummaryPage>().SaveProposal();
         }
         
         [Then(@"I am directed to Proposals screen of Proposal List page")]

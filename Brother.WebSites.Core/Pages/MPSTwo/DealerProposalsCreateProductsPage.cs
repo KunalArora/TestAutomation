@@ -6,6 +6,7 @@ using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using OpenQA.Selenium.Support.UI;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
@@ -80,6 +81,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private IWebElement CloseWithoutSavingElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/proposals/create/summary\"]")]
         private IWebElement ProposalSummaryScreenElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/proposals/create/click-price\"]")]
+        private IWebElement ClickPriceScreenElement;
         [FindsBy(How = How.Id, Using = "content_1_ComponentIntroductionAlert")]
         private IWebElement SummaryConfirmationTextElement;
         [FindsBy(How = How.Id, Using = "content_1_ButtonNext")]
@@ -93,7 +96,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [FindsBy(How = How.CssSelector, Using = "[id='content_1_LineItems_InputMonoVolume_0']")]
         private IWebElement MonoVolumeInputFieldElement;
 
-
+        private const string QuantityElementString = "[data-quantity=\"true\"]";
+        private const string ServicePackElementString = ".mps-qa-service-pack";
+        private const string InstallationQuantityElementString = ".mps-qa-installation";
+        private const string DeliveryQuantityElementString = ".mps-qa-delivery";
 
         private IWebElement FaxCheckboxElement()
         {
@@ -374,30 +380,33 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void StoreDefaultProductConfiguration()
         {
-            if (IsElementPresent(ProductQuantityElement))
-                SpecFlow.SetContext("ProductQuantity", ProductQuantityElement.GetAttribute("value"));
-            if (IsElementPresent(ProductCostPriceElement))
-                SpecFlow.SetContext("ProductCostPrice", ProductCostPriceElement.GetAttribute("value"));
-            if (IsElementPresent(ProductMarginElement))
-                SpecFlow.SetContext("ProductMargin", ProductMarginElement.GetAttribute("value"));
-            if (IsElementPresent(ProductSellPriceElement))
-                SpecFlow.SetContext("ProductSellPrice", ProductSellPriceElement.GetAttribute("value"));
-            if (IsElementPresent(OptionsQuantityElement))
-                SpecFlow.SetContext("OptionsQuantity", OptionsQuantityElement.GetAttribute("value"));
-            if (IsElementPresent(DeliveryCostPriceElement))
-                SpecFlow.SetContext("DeliveryCostPrice", DeliveryCostPriceElement.GetAttribute("value"));
-            if (IsElementPresent(DeliveryMarginElement))
-                SpecFlow.SetContext("DeliveryMargin", DeliveryMarginElement.GetAttribute("value"));
-            if (IsElementPresent(DeliverySellPriceElement))
-                SpecFlow.SetContext("DeliverySellPrice", DeliverySellPriceElement.GetAttribute("value"));
-            if (IsElementPresent(InstallationSRPElement))
-                SpecFlow.SetContext("InstallationSRP", GetValueInstallationSRPElement());
-            if (IsElementPresent(InstallationPackCostPriceElement))
-                SpecFlow.SetContext("InstallationPackCostPrice", InstallationPackCostPriceElement.GetAttribute("value"));
-            if (IsElementPresent(InstallationPackMarginElement))
-                SpecFlow.SetContext("InstallationPackMargin", InstallationPackMarginElement.GetAttribute("value"));
-            if (IsElementPresent(InstallationPackSellPriceElement))
-                SpecFlow.SetContext("InstallationPackSellPrice", InstallationPackSellPriceElement.GetAttribute("value"));
+            if (hogeIsFullDeviceScreenDisplayed())
+            {
+                if (IsElementPresent(ProductQuantityElement))
+                    SpecFlow.SetContext("ProductQuantity", ProductQuantityElement.GetAttribute("value"));
+                if (IsElementPresent(ProductCostPriceElement))
+                    SpecFlow.SetContext("ProductCostPrice", ProductCostPriceElement.GetAttribute("value"));
+                if (IsElementPresent(ProductMarginElement))
+                    SpecFlow.SetContext("ProductMargin", ProductMarginElement.GetAttribute("value"));
+                if (IsElementPresent(ProductSellPriceElement))
+                    SpecFlow.SetContext("ProductSellPrice", ProductSellPriceElement.GetAttribute("value"));
+                if (IsElementPresent(OptionsQuantityElement))
+                    SpecFlow.SetContext("OptionsQuantity", OptionsQuantityElement.GetAttribute("value"));
+                if (IsElementPresent(DeliveryCostPriceElement))
+                    SpecFlow.SetContext("DeliveryCostPrice", DeliveryCostPriceElement.GetAttribute("value"));
+                if (IsElementPresent(DeliveryMarginElement))
+                    SpecFlow.SetContext("DeliveryMargin", DeliveryMarginElement.GetAttribute("value"));
+                if (IsElementPresent(DeliverySellPriceElement))
+                    SpecFlow.SetContext("DeliverySellPrice", DeliverySellPriceElement.GetAttribute("value"));
+                if (IsElementPresent(InstallationSRPElement))
+                    SpecFlow.SetContext("InstallationSRP", GetValueInstallationSRPElement());
+                if (IsElementPresent(InstallationPackCostPriceElement))
+                    SpecFlow.SetContext("InstallationPackCostPrice", InstallationPackCostPriceElement.GetAttribute("value"));
+                if (IsElementPresent(InstallationPackMarginElement))
+                    SpecFlow.SetContext("InstallationPackMargin", InstallationPackMarginElement.GetAttribute("value"));
+                if (IsElementPresent(InstallationPackSellPriceElement))
+                    SpecFlow.SetContext("InstallationPackSellPrice", InstallationPackSellPriceElement.GetAttribute("value"));
+            }
         }
 
         private IWebElement ProductFlatListAddElement()
@@ -582,6 +591,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             AssertElementPresent(ReducedDeviceScreenElement(), "Reduced device screen is not displayed");
         }
 
+        private bool hogeIsFullDeviceScreenDisplayed()
+        {
+            const string element = ".js-mps-product-configuration";
+            string ret = GetElementByCssSelector(element).GetAttribute("data-price-hardware");
+
+            if (ret.Equals("true"))
+                return true;
+            else
+            {
+                return false;
+            }
+        }
+
         public void MoveToProposalSummaryScreen()
         {
             ScrollTo(ProposalSummaryScreenElement);
@@ -614,11 +636,22 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             TestCheck.AssertIsEqual(sum, MpsUtil.GetValue(TotalLinePriceElement().Text), "The sum of the Total Price is not equal to the Grand Total Price displayed");
         }
 
+        public void IsTheTotalPriceTheProductOfQTYAndUnitPrice()
+        {
+            string Quantity = OptionsQuantityElement.GetAttribute("value");
+            string UnitPrice = OptionsSellPriceElement.GetAttribute("value");
+            decimal calcurated = Convert.ToDecimal(Quantity) * Convert.ToDecimal(UnitPrice);
+            string TotalStr = TotalForAllAccessoriesElement()[0].Text;
+            decimal Total = MpsUtil.GetValue(TotalStr);
+            TestCheck.AssertIsEqual(calcurated, Total, "TotalPriceOfAccessory is not correct");
+        }
+
         public void FillProductDetails()
         {
             EnterProductQuantity("2");
             EnterProductCostPrice("50");
             EnterProductSellPrice("60");
+            EnterOptionsQuantity0("3");
             VerifyMarginFieldValues();
         }
 
@@ -642,6 +675,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             ClearAndType(ProductMarginElement, value);
             ProductMarginElement.SendKeys(Keys.Tab);
+        }
+
+        public void EnterOptionsQuantity0(string value)
+        {
+            ClearAndType(OptionsQuantityElement, value);
         }
 
         public void VerifyMarginFieldValues()
@@ -750,7 +788,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             return GetElementsByCssSelector(element);
         }
-        public void IsModelFound(string model)
+
+        private bool SearchModelName(string model)
         {
             bool found = false;
             foreach (IWebElement element in ModelNameElement())
@@ -761,7 +800,125 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     break;
                 }
             }
-            TestCheck.AssertIsEqual(true, found, "model not found");
+            return found;
+        }
+
+        public void IsModelFound(string model)
+        {
+            TestCheck.AssertIsEqual(true, SearchModelName(model), "model not found");
+        }
+
+        public void IsNotModelFound(string model)
+        {
+            WebDriver.Wait(Helper.DurationType.Second, 5);
+            TestCheck.AssertIsEqual(false, SearchModelName(model), "model found");            
+        }
+
+        private IList<IWebElement> AllSRPElement()
+        {
+            const string element = ".mps-qa-srp";
+
+            return GetElementsByCssSelector(element);
+        }
+
+        public void IsAllSRPNotEditable()
+        {
+            TestCheck.AssertIsNotEqual(0, AllSRPElement().Count, "srp field nothing");
+            IList<IWebElement> element = GetElementsByCssSelector(".mps-qa-srp input", 5);
+            TestCheck.AssertIsEqual(0, element.Count, "element is not null");
+        }
+
+        private IWebElement DeliveryQuantityElement()
+        {
+            string element = String.Format("{0} {1}", DeliveryQuantityElementString, QuantityElementString);
+
+            return GetElementByCssSelector(element);
+        }
+
+        public void IsDeliveryQuantityNotEditable()
+        {
+            string element = String.Format("{0} {1} input", DeliveryQuantityElementString, QuantityElementString);
+
+            TestCheck.AssertIsNotEqual(0, DeliveryQuantityElement(), "Unable to locate Delivery Quantity field");
+            if (GetElementByCssSelector(element, 5) == null)
+                TestCheck.AssertIsNotNull(DeliveryQuantityElement(), "Delivery Quantity is editable");
+        }
+
+        private IWebElement InstallationQuantityElement()
+        {
+            string element = String.Format("{0} {1}", InstallationQuantityElementString, QuantityElementString);
+
+            return GetElementByCssSelector(element);
+        }
+
+        public void IsInstallationQuantityNotEditable()
+        {
+            string element = String.Format("{0} {1} input", InstallationQuantityElementString, QuantityElementString);
+
+            TestCheck.AssertIsNotEqual(0, InstallationQuantityElement(), "Unable to locate Installation Quantity field");
+            if (GetElementByCssSelector(element, 5) == null)
+                TestCheck.AssertIsNotNull(InstallationQuantityElement(), "Installation Quantity is editable");
+        }
+
+        private IWebElement ServicepackQuantityElement()
+        {
+            string element = String.Format("{0} {1}", ServicePackElementString, QuantityElementString);
+
+            return GetElementByCssSelector(element);
+        }
+
+        public void IsServicepackQuantityNotEditable()
+        {
+            string element = String.Format("{0} {1} input", ServicePackElementString, QuantityElementString);
+
+            TestCheck.AssertIsNotEqual(0, ServicepackQuantityElement(), "Unable to locate Servicepack Quantity field");
+            if (GetElementByCssSelector(element, 5) == null)
+                TestCheck.AssertIsNotNull(ServicepackQuantityElement(), "Servicepack Quantity field is editable");
+        }
+
+        public void VerifyThatProductQuantityElementChanged()
+        {
+            string before = SpecFlow.GetContext("ProductQuantity");
+            string after = ProductQuantityElement.GetAttribute("value");
+            TestCheck.AssertIsNotEqual(before, after, "ProductQuantity value is changed");
+        }
+
+        public void IsFullDeviceScreenDisplayedForPrinterSelected()
+        {
+            AssertElementPresent(FullDeviceScreenElement(), "Full device screen is not displayed");
+        }
+
+        public void IsReducedDeviceScreenDisplayedForPrinterSelected()
+        {
+            AssertElementPresent(ReducedDeviceScreenElement(), "Reduced device screen is not displayed");
+        }
+
+        public void VerifyTypeOfDeviceScreenDisplayed(string option)
+        {
+            if (option.Equals("Full"))
+            {
+                IsFullDeviceScreenDisplayedForPrinterSelected();
+            }
+            else if (option.Equals("Reduced"))
+            {
+                IsReducedDeviceScreenDisplayedForPrinterSelected();
+            }
+        }
+
+        public void VerifyProductAdditionConfirmationMessage()
+        {
+            ScrollTo(ProductsScreenAlertElement);
+            var storedProductScreenText = SpecFlow.GetContext("InitialProductPageText");
+            var finalProductScreenText = ProductsScreenAlertElement.Text;
+            TestCheck.AssertIsEqual(false, storedProductScreenText.Equals(finalProductScreenText), "Product Screen Text");
+        }
+
+        public DealerProposalsCreateClickPricePage MoveToClickPriceScreen()
+        {
+            ScrollTo(ClickPriceScreenElement);
+            ClickPriceScreenElement.Click();
+
+            return GetTabInstance<DealerProposalsCreateClickPricePage>(Driver);
         }
 
         public void MoveToClickPriceScreen()

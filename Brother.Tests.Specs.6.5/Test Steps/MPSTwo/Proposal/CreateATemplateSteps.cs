@@ -1,4 +1,4 @@
-﻿using Brother.WebSites.Core.Pages.Base;
+using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium.Remote;
@@ -50,7 +50,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         public void WhenIBeginTheProposalCreationProcessForPurchaseClickService()
         {
             CurrentPage.As<CreateNewProposalPage>().IsPromptTextDisplayed();
-            CurrentPage.As<CreateNewProposalPage>().SelectingContractType("Purchase-and-Click");
+            CurrentPage.As<CreateNewProposalPage>().SelectingContractType("Purchase & Click with Service");
             CurrentPage.As<CreateNewProposalPage>().EnterProposalName("");
             CurrentPage.As<CreateNewProposalPage>().EnterLeadCodeRef("");
             CurrentPage.As<CreateNewProposalPage>().ClickNextButton_old();
@@ -68,7 +68,36 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
 //            CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
         }
 
-        
+        [When(@"I begin the proposal creation process for Lease \+ Click Service")]
+        public void WhenIBeginTheProposalCreationProcessForLeaseClickService()
+        {
+            CurrentPage.As<CreateNewProposalPage>().IsPromptTextDisplayed();
+            CurrentPage.As<CreateNewProposalPage>().SelectingContractType("Leasing");
+            CurrentPage.As<CreateNewProposalPage>().EnterProposalName("");
+            CurrentPage.As<CreateNewProposalPage>().EnterLeadCodeRef("");
+            CurrentPage.As<CreateNewProposalPage>().ClickNextButton_old();
+            //@TODO: Choose an existing contact until the creating new customer sequence is fixed
+            CurrentPage.As<CreateNewProposalPage>().IsCustomerInfoTextDisplayed();
+            CurrentPage.As<CreateNewProposalPage>().ClickSelectExistingCustomerRadioButton();
+            CurrentPage.As<CreateNewProposalPage>().ClickNextButton_old();
+
+            CurrentPage.As<CreateNewProposalPage>().SelectARandomExistingContact();
+            CurrentPage.As<CreateNewProposalPage>().ClickNextButton_old();
+            NextPage = CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
+        }
+
+        [Given(@"I navigate to Admin page")]
+        [When(@"I navigate to Admin page")]
+        public void WhenINavigateToAdminPage()
+        {
+            NextPage = CurrentPage.As<DealerDashBoardPage>().NavigateToAdminPage();
+        }
+
+        [Given(@"I navigate to Admin page using tab")]
+        public void GivenINavigateToAdminPageUsingTab()
+        {
+            NextPage = CurrentPage.As<DealerDashBoardPage>().NavigateToAdminPageUsingTab();
+        }
 
 
         [Given(@"I navigate to Dealership Profile page")]
@@ -179,7 +208,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [When(@"I choose to pay Service Packs ""(.*)""")]
         public void WhenIChooseToPayServicePacks(string pay)
         {
-            CurrentPage.As<CreateNewProposalPage>().PayServicePackMethod(pay);
+            CurrentPage.As<DealerProposalsCreateClickPricePage>().PayServicePackMethod(pay);
         }
         
         private void WhenIEnterContractTermsLeasingAndBillingOnTermAndTypeDetails(string contract, string leasing,
@@ -205,7 +234,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [When(@"enter a quantity of ""(.*)"" for model")]
         public void WhenEnterAQuantityOfForModel(string quantity)
         {
-            CurrentPage.As<CreateNewProposalPage>().EnterProductQuantity(quantity);
+            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterProductQuantity(quantity);
         }
 
         [When(@"I Enter ""(.*)"" contract terms ""(.*)"" leasing and ""(.*)"" billing on Term and Type details\(only input\)")]
@@ -252,11 +281,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
 
             NextPage = CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
         }
-        [When(@"""(.*)"" device screen is displayed")]
-        public void WhenDeviceScreenIsDisplayed(string option)
-        {
-            CurrentPage.As<DealerProposalsCreateProductsPage>().VerifyTypeOfDeviceScreenDisplayed(option);
-        }
+
         [When(@"I untick Price Hardware radio button")]
         public void WhenIUntickPriceHardwareRadioButton()
         {
@@ -264,13 +289,18 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
 
             NextPage = CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
         }
-
-
+        
         [Then(@"I should not see Price Hardware radio button on Term and Type screen")]
         public void ThenIShouldNotSeePriceHardwareRadioButtonOnTermAndTypeScreen()
         {
             CurrentPage.As<CreateNewProposalPage>().IsNotPriceHardwareElement();
             NextPage = CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
+        }
+
+        [When(@"""(.*)"" device screen is displayed")]
+        public void WhenDeviceScreenIsDisplayed(string option)
+        {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().VerifyTypeOfDeviceScreenDisplayed(option);
         }
 
         [When(@"I choose ""(.*)"" from Products screen")]
@@ -287,15 +317,14 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         {
             CurrentPage.As<DealerProposalsCreateProductsPage>().AddAllDetailsToProposal();
             CurrentPage.As<DealerProposalsCreateProductsPage>().VerifyProductAdditionConfirmationMessage();
-            CurrentPage.As<DealerProposalsCreateProductsPage>().MoveToClickPriceScreen();
-            
+            NextPage = CurrentPage.As<DealerProposalsCreateProductsPage>().MoveToClickPriceScreen();
         }
 
 
         [Then(@"""(.*)"" displayed on proposal Summary Page corresponds to ""(.*)""")]
         public void ThenDisplayedOnProposalSummaryPageCorrespondsTo(string parameter, string value)
         {
-            CurrentPage.As<CreateNewProposalPage>().VerifyCreatedProposalSummaryPageElements(parameter, value);
+            CurrentPage.As<DealerProposalsCreateSummaryPage>().VerifyCreatedProposalSummaryPageElements(parameter, value);
         }
 
 
@@ -318,20 +347,20 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [When(@"Service Pack payment method is not displayed")]
         public void WhenServicePackPaymentMethodIsNotDisplayed()
         {
-            CurrentPage.As<DealerProposalsCreateProductsPage>().VerifyPaymentMethodIsNotDisplayed();
+            CurrentPage.As<DealerProposalsCreateClickPricePage>().VerifyPaymentMethodIsNotDisplayed();
         }
 
         [When(@"I ""(.*)"" Price Hardware radio button")]
         public void WhenIPriceHardwareRadioButton(string option)
         {
             CurrentPage.As<CreateNewProposalPage>().TickPriceHardware(option);
-            CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
+            NextPage = CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
         }
 
         [When(@"Service Pack payment method is displayed")]
         public void WhenServicePackPaymentMethodIsDisplayed()
         {
-            CurrentPage.As<DealerProposalsCreateProductsPage>().VerifyPaymentMethodIsDisplayed();
+            CurrentPage.As<DealerProposalsCreateClickPricePage>().VerifyPaymentMethodIsDisplayed();
         }
 
 
@@ -352,13 +381,13 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [When(@"I enter click price volume of ""(.*)"" and ""(.*)""")]
         public void WhenIEnterClickPriceVolumeOf(string clickprice, string colour)
         {
-            CurrentPage.As<DealerProposalsCreateProductsPage>().CalculateClickPriceAndProceed(clickprice, colour);
+            NextPage = CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateClickPriceAndProceed(clickprice, colour);
         }
 
         [When(@"I type in click price volume of ""(.*)""")]
         public void WhenITypeInClickPriceVolumeOf(string monoVol)
         {
-            CurrentPage.As<DealerProposalsCreateProductsPage>().CalculateEnteredClickPriceAndProceed(monoVol);
+            NextPage = CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateEnteredClickPriceAndProceed(monoVol);
         }
 
 
@@ -572,6 +601,13 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         {
             CurrentPage.As<DealerProposalsCreateProductsPage>().IsGrandTotalPriceCorrect();
         }
+
+        [Then(@"on product page the Total Price is the product of QTY and Unit Price")]
+        public void ThenOnProductPageTheTotalPriceIsTheProductOfQTYAndUnitPrice()
+        {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().IsTheTotalPriceTheProductOfQTYAndUnitPrice();
+        }
+
 
         [When(@"I changed the Margin on any field to (.*)")]
         public void WhenIChangedTheMarginOnAnyFieldTo(string percent)
@@ -831,5 +867,33 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         {
             CurrentPage.As<DealerProposalsCreateProductsPage>().IsModelFound(model);
         }
+
+        [Then(@"the printers ""(.*)"" disabled in Local Office Admin are not displayed on product screen")]
+        public void ThenThePrintersDisabledInLocalOfficeAdminAreNotDisplayedOnProductScreen(string model)
+        {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().IsNotModelFound(model);
+        }
+
+        [Then(@"all the SRP are not editable")]
+        public void ThenAllTheSRPAreNotEditable()
+        {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().IsAllSRPNotEditable();
+        }
+
+        [Then(@"the QTY for Delivery Cost, Installation Cost and Service Pack are not editable")]
+        public void ThenTheQTYForDeliveryCostInstallationCostAndServicePackAreNotEditable()
+        {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().IsDeliveryQuantityNotEditable();
+            CurrentPage.As<DealerProposalsCreateProductsPage>().IsInstallationQuantityNotEditable();
+            CurrentPage.As<DealerProposalsCreateProductsPage>().IsServicepackQuantityNotEditable();
+        }
+
+        [Then(@"a change in product quantity affect the product TotalPrice")]
+        public void ThenAChangeInProductQuantityAffectTheProductTotalPrice()
+        {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterProductQuantity("4");
+            CurrentPage.As<DealerProposalsCreateProductsPage>().VerifyThatProductQuantityElementChanged();
+        }
+
     }
 }

@@ -63,10 +63,20 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PAYGPurchaseAndClickContract.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\MPSTwo\Proposal\VerrificationOnClickPrice.feature.cs">
+      <DependentUpon>VerrificationOnClickPrice.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Test Specifications\MPSTwo\Proposal\DealerCanGeneratePDFAtRelevantStages.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DealerCanGeneratePDFAtRelevantStages.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPSTwo\Proposal\DealerCanUpdateProfile.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DealerCanUpdateProfile.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Specifications\MPSTwo\Proposal\LeasingAndClickProposalUserJourney.feature.cs">
       <AutoGen>True</AutoGen>
@@ -297,6 +307,7 @@
     <Compile Include="Test Steps\MPSOne\MyAccountSteps.cs" />
     <Compile Include="Test Steps\MPSOne\NewProposalProcessSteps.cs" />
     <Compile Include="Test Steps\MPSOne\TechnicalServiceSteps.cs" />
+    <Compile Include="Test Steps\MPSTwo\DealerAdmin\DealerAdminProfileSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Proposal\ClickingAheadInProposalCreationProcessSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Proposal\CreateAProposalThatHasMoreThanOneDevicesSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -480,9 +491,17 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CompletedFieldsAreReadOnlyInConversionMode.feature.cs</LastGenOutput>
     </None>
+    <None Include="Test Specifications\MPSTwo\Proposal\VerrificationOnClickPrice.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>VerrificationOnClickPrice.feature.cs</LastGenOutput>
+    </None>
     <None Include="Test Specifications\MPSTwo\Proposal\DealerCanGeneratePDFAtRelevantStages.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>DealerCanGeneratePDFAtRelevantStages.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwo\Proposal\DealerCanUpdateProfile.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>DealerCanUpdateProfile.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwo\Proposal\LeasingAndClickProposalUserJourney.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
