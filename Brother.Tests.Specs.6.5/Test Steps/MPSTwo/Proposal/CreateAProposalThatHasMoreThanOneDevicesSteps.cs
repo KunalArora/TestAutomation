@@ -44,7 +44,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<CreateNewProposalPage>().ClickNextButton_old();
 //            CurrentPage.As<CreateNewProposalPage>().TickOrderConsumables();
 
-            NextPage = CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
+            //NextPage = CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
         }
 
       
