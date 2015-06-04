@@ -24,13 +24,12 @@ namespace Brother.Tests.Specs.Test_Steps.Smart_Supply
             WebDriver.SetPageLoadTimeout(TimeSpan.FromSeconds(20));
         }
 
-
+   
         [Then(@"I will see text information relating to the benefit I will receive")]
         public void ThenIWillSeeTextInformationRelatingToTheBenefitIWillReceive()
         {
-
-            //((Action)(() => { }))();
-            //NextPage=CurrentPage.As<SmartSupplyProductPage>().IsBrotherSupplyClubProductBenefitAvailable();  
+            NextPage = SmartSupplyProductPage.Productpageload(CurrentDriver);
+            CurrentPage.As<SmartSupplyProductPage>().IsBrotherSupplyClubProductBenefitAvailable();  
         }
 
 
@@ -40,11 +39,18 @@ namespace Brother.Tests.Specs.Test_Steps.Smart_Supply
             CurrentPage.As<SmartSupplyProductPage>().AddSmartSupplyProductToBasketButtonClick();
         }
 
-        [Then(@"I hover the mouse on the basket icon to see text information relating to the benefit I will receive\.")]
-        public void ThenIHoverTheMouseObTheBasketIconToSeeTextInformationRelatingToTheBenefitIWillReceive_()
+        [Then(@"I hover the mouse on the basket icon to see text information relating to the benefit I will receive")]
+        public void ThenIHoverTheMouseOnTheBasketIconToSeeTextInformationRelatingToTheBenefitIWillReceive()
         {
-            ScenarioContext.Current.Pending();
+            CurrentPage.As<SmartSupplyProductPage>().Hoverbasket();
+            CurrentPage.As<SmartSupplyProductPage>().PromoInfoPresent();
         }
 
+        [Then(@"I can see the benefit text as  ""(.*)"" and ""(.*)""")]
+        public void ThenICanSeeTheBenefitTextAsAnd(string line1, string line2)
+        {
+            CurrentPage.As<SmartSupplyProductPage>().CheckforPromoDetails(line1, line2);
+            
+        }
     }
 }
