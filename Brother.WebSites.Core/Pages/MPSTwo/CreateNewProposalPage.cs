@@ -22,7 +22,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string clickPricePageNext = @"#content_1_ButtonNext";
         private const string installationCostPrice = @"#InstallationCostPrice";
         private const string installationMargin = @"#InstallationMargin";
-        private const string optionSaveButton = @".js-mps-product-option-save";
         private const string priceHardwareTickBox = @"#content_1_InputPriceHardware_Input";
         private const string monoVolume = @"#content_1_LineItems_InputMonoVolumeBreaks_0";
         private const string colourVolume = @"#content_1_LineItems_InputColourVolumeBreaks_0";
@@ -347,16 +346,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
             AssertElementText(CustomerInfomationElement, "Please confirm your proposal information",
                                             "Proposal Summary confirmation instruction");
-        }
-
-        public void IsPrivateLiableCheckBoxDiplayed()
-        {
-            if (PrivateLiableElement == null)
-            {
-                throw new NullReferenceException("Unable to locate tick box on the page");
-            }
-            AssertElementPresent(PrivateLiableElement, "Is Private Liable Check Box");
-
         }
 
         public void CheckPrivateLiableBox(string liable)
@@ -854,11 +843,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             LastNameElement.SendKeys(MpsUtil.SurName());
         }
 
-        public void EnterContactPosition()
-        {
-            PositionElement.SendKeys(MpsUtil.ContactPosition());
-        }
-
         public void EnterContactTelephone()
         {
             TelephoneElement.SendKeys(MpsUtil.CompanyTelephone());
@@ -946,41 +930,29 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetElementByCssSelector(flatItemsIdentifier, 10);
         }
 
-        public void ClickOnAPrinter(string printer)
-        {
-           SpecFlow.SetContext("InitialProductPageText", ProductsScreenAlertElement.Text);
+        //public void ClickOnAPrinter(string printer)
+        //{
+        //   SpecFlow.SetContext("InitialProductPageText", ProductsScreenAlertElement.Text);
 
-            var element = "";
+        //    var element = "";
 
-            if (IsElementPresent(ProductFlatListAddElement()))
-            {
-                element = "#pc-{0} .js-mps-product-open";
-            }
-            else
-            {
-                element = "#pc-{0} .js-mps-product-open-add";
-            }
+        //    if (IsElementPresent(ProductFlatListAddElement()))
+        //    {
+        //        element = "#pc-{0} .js-mps-product-open";
+        //    }
+        //    else
+        //    {
+        //        element = "#pc-{0} .js-mps-product-open-add";
+        //    }
             
-            element = string.Format(element, printer.Equals(string.Empty) ? MpsUtil.PrinterUnderTest() : printer);
+        //    element = string.Format(element, printer.Equals(string.Empty) ? MpsUtil.PrinterUnderTest() : printer);
 
-            var printerClickable = GetElementByCssSelector(element);
+        //    var printerClickable = GetElementByCssSelector(element);
 
-            printerClickable.Click();
-            WebDriver.Wait(Helper.DurationType.Second, 5);
+        //    printerClickable.Click();
+        //    WebDriver.Wait(Helper.DurationType.Second, 5);
 
-        }
-
-        private IList<IWebElement> AllSRPElement()
-        {
-            const string element = ".mps-qa-srp";
-
-            return GetElementsByCssSelector(element);
-        }
-
-        public void IsAllSRPNotEditable()
-        {
-//            AllSRPElement().Count
-        }
+        //}
 
 
         public void EnterProductQuantity(string value)
@@ -1032,12 +1004,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private IWebElement ColourVolumeElementClickPrice()
         {
             return GetElementByCssSelector(colourVolume);
-        }
-
-        public void CalculateClickPriceAndNext()
-        {
-            CalculateClickPriceElement.Click();
-            ProceedOnClickPricePageElement.Click();
         }
 
         private void CalculateClickPrice(string volume, string colour)
@@ -1149,19 +1115,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         }
 
-        public void CalculateEPPClickPriceAndProceed(string volume)
-        {
-            MoveToClickPriceScreen();
-            CalculateEPPClickPrice(volume);
-            WebDriver.Wait(Helper.DurationType.Second, 5);
-            VerifyClickPriceValueIsDisplayed();
-            ProceedToProposalSummaryFromClickPrice();
 
-        }
-
-
-
-        
         public void MoveToInstallationScreen()
         {
             ScrollTo(InstallationScreenElement);
@@ -1232,11 +1186,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private IWebElement OptionTabElement()
         {
             return GetElementByCssSelector(optionTab, 10);
-        }
-
-        private IWebElement optionSaveElement()
-        {
-            return GetElementByCssSelector(optionSaveButton, 10);
         }
 
         public void MoveToOptionScreenAndEnterDetails()
@@ -1338,7 +1287,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ChooseADeviceFromProductSelectionScreen(string printer, string costprice, string sellprice)
         {
-            ClickOnAPrinter(printer);
+            //ClickOnAPrinter(printer);
 
             FillProductDetails();
             MoveToInstallationScreen();
@@ -1405,7 +1354,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SelectAPrinterFromTheList(string printer)
         {
-            ClickOnAPrinter(printer);
+           // ClickOnAPrinter(printer);
         }
 
         public void ProductFieldsArePopulatedWhereNecessary(string screen)

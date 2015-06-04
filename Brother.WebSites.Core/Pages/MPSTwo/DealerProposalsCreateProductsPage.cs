@@ -93,12 +93,27 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private IWebElement InstallationSRPElement;
         [FindsBy(How = How.CssSelector, Using = "[id='content_1_LineItems_InputMonoVolume_0']")]
         private IWebElement MonoVolumeInputFieldElement;
+        [FindsBy(How = How.CssSelector, Using = "#InstallationPackId [selected=\"true\"]")]
+        private IWebElement SelectedInstallationTypeElement;
+        [FindsBy(How = How.CssSelector, Using = ".mps-qa-installation [data-total-price=\"true\"]")]
+        private IWebElement SelectedInstallationPriceElement;
+        [FindsBy(How = How.CssSelector, Using = ".mps-qa-service-pack td")]
+        private IList<IWebElement> SelectedServicePackNameElement;
+        [FindsBy(How = How.CssSelector, Using = ".mps-qa-service-pack [data-total-price=\"true\"]")]
+        private IWebElement SelectedServicePackPriceElement;
+        [FindsBy(How = How.CssSelector, Using = ".js-mps-tab")]
+        private IWebElement DeviceScreenValidator;
+        
+        
+
+       
 
         private const string QuantityElementString = "[data-quantity=\"true\"]";
         private const string ServicePackElementString = ".mps-qa-service-pack";
         private const string InstallationQuantityElementString = ".mps-qa-installation";
         private const string DeliveryQuantityElementString = ".mps-qa-delivery";
 
+        
         private IWebElement FaxCheckboxElement()
         {
             string element = "input[data-filter-for=\"fax\"]";
@@ -307,6 +322,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             AssertElementPresent(ProductsScreenAlertElement, "Product Screen Instruction");
         }
 
+        public void IsDeviceScreenDisplayed()
+        {
+            WebDriver.Wait(DurationType.Second, 5);
+            TestCheck.AssertIsEqual(true, 
+                DeviceScreenValidator.Displayed, 
+                "Device screen is not displayed");
+        }
+
         public void TypeIntoRHSFreeTextFilter(string model)
         {
             WebDriver.Wait(Helper.DurationType.Second, 3);
@@ -404,6 +427,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     SpecFlow.SetContext("InstallationPackMargin", InstallationPackMarginElement.GetAttribute("value"));
                 if (IsElementPresent(InstallationPackSellPriceElement))
                     SpecFlow.SetContext("InstallationPackSellPrice", InstallationPackSellPriceElement.GetAttribute("value"));
+                if (IsElementPresent(SelectedInstallationTypeElement))
+                    SpecFlow.SetContext("SelectedInstallationType", SelectedInstallationTypeElement.Text);
+                if (IsElementPresent(SelectedServicePackPriceElement))
+                    SpecFlow.SetContext("SelectedServicePackPrice", SelectedServicePackPriceElement.Text);
+                if (IsElementPresent(SelectedServicePackNameElement.First()))
+                    SpecFlow.SetContext("ServicePackName", SelectedServicePackNameElement.First().Text);
+                if(IsElementPresent(SelectedInstallationPriceElement))
+                    SpecFlow.SetContext("SelectedInstallationPrice", SelectedInstallationPriceElement.Text);
+              
             }
         }
 
@@ -611,7 +643,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 sum += MpsUtil.GetValue(element.Text);
             }
 
-            TestCheck.AssertIsEqual(sum, MpsUtil.GetValue(TotalLinePriceElement().Text), "The sum of the Total Price is not equal to the Grand Total Price displayed");
+            TestCheck.AssertIsEqual(sum, MpsUtil.GetValue(TotalLinePriceElement().Text), 
+                "The sum of the Total Price is not equal to the Grand Total Price displayed");
         }
 
         public void IsTheTotalPriceTheProductOfQTYAndUnitPrice()
@@ -705,9 +738,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void VerifyThatInstallationSRPValueChange()
         {
             string hoge = GetValueInstallationSRPElement();
-            TestCheck.AssertIsNotEqual(SpecFlow.GetContext("InstallationSRP"), GetValueInstallationSRPElement(), "Installation SRP not changed");
-            TestCheck.AssertIsNotEqual(SpecFlow.GetContext("InstallationPackCostPrice"), InstallationPackCostPrice().ToString(), "Installation Unit Cost not changed");
-            TestCheck.AssertIsNotEqual(SpecFlow.GetContext("InstallationPackSellPrice"), InstallationPackSellPriceElement.GetAttribute("value"), "Installation Unit Price not changed");
+            TestCheck.AssertIsNotEqual(SpecFlow.GetContext("InstallationSRP"), 
+                GetValueInstallationSRPElement(), "Installation SRP not changed");
+            TestCheck.AssertIsNotEqual(SpecFlow.GetContext("InstallationPackCostPrice"), 
+                InstallationPackCostPrice().ToString(), "Installation Unit Cost not changed");
+            TestCheck.AssertIsNotEqual(SpecFlow.GetContext("InstallationPackSellPrice"), 
+                InstallationPackSellPriceElement.GetAttribute("value"), "Installation Unit Price not changed");
         }
 
         public void EnterDeliverySellPrice(string value)

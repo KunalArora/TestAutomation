@@ -231,11 +231,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<CreateNewProposalPage>().ClickNextButton_old();
         }
 
-        [When(@"enter a quantity of ""(.*)"" for model")]
-        public void WhenEnterAQuantityOfForModel(string quantity)
-        {
-            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterProductQuantity(quantity);
-        }
+        
 
         [When(@"I Enter ""(.*)"" contract terms ""(.*)"" leasing and ""(.*)"" billing on Term and Type details\(only input\)")]
         public void WhenIEnterContractTermsLeasingAndBillingOnTermAndTypeDetailsOnlyInput(string contract, string leasing,
@@ -312,31 +308,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
 
         }
 
-        [When(@"I accept the default values of the device")]
-        public void WhenIAcceptTheDefaultValuesOfTheDevice()
-        {
-            CurrentPage.As<DealerProposalsCreateProductsPage>().AddAllDetailsToProposal();
-            CurrentPage.As<DealerProposalsCreateProductsPage>().VerifyProductAdditionConfirmationMessage();
-            NextPage = CurrentPage.As<DealerProposalsCreateProductsPage>().MoveToClickPriceScreen();
-        }
-
-
-        [Then(@"""(.*)"" displayed on proposal Summary Page corresponds to ""(.*)""")]
-        public void ThenDisplayedOnProposalSummaryPageCorrespondsTo(string parameter, string value)
-        {
-            CurrentPage.As<DealerProposalsCreateSummaryPage>().VerifyCreatedProposalSummaryPageElements(parameter, value);
-        }
-
-
-
-        [When(@"I display ""(.*)"" device screen")]
-        [Then(@"I display ""(.*)"" device screen")]
-        public void WhenIDisplayDeviceScreen(string printer)
-        {
-            CurrentPage.As<DealerProposalsCreateProductsPage>().IsProductScreenTextDisplayed();
-            CurrentPage.As<DealerProposalsCreateProductsPage>().ClickOnAPrinter(printer);
-            CurrentPage.As<DealerProposalsCreateProductsPage>().StoreDefaultProductConfiguration();
-        }
+        
 
         [When(@"I change the Installation Pack Unit Cost displayed to a value lower than the displayed Unit Cost")]
         public void WhenIChangeTheInstallationPackUnitCostDisplayedToAValueLowerThanTheDisplayedUnitCost()

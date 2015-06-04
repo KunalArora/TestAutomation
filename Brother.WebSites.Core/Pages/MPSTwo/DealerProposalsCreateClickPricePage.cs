@@ -23,6 +23,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string colourVolume = @"#content_1_LineItems_InputColourVolumeBreaks_0";
         private const string monoVolume = @"#content_1_LineItems_InputMonoVolumeBreaks_0";
         private const string clickPriceValue = @"[class='mps-col mps-top mps-clickprice-line2'][data-click-price-mono='true']";
+        private const string clickPriceColourValue = @"[class='mps-col mps-top mps-clickprice-line2'][data-click-price-colour='true']";
         private const string clickPricePageNext = @"#content_1_ButtonNext";
 
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/proposals/create/summary\"]")]
@@ -104,6 +105,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 SelectFromDropdown(monoVolumeDropdownElement, volume);
             WebDriver.Wait(DurationType.Second, 3);
             CalculateClickPriceElement.Click();
+            WebDriver.Wait(DurationType.Second, 2);
+            GetClickPriceValues();
+        }
+
+        private void GetClickPriceValues()
+        {
+            SpecFlow.SetContext("ClickPriceMonoValue", ClickPriceValue().First().Text);
+            SpecFlow.SetContext("ClickPriceColourValue", ClickPriceColourValue().First().Text);
+        }
+
+        private IList<IWebElement> ClickPriceColourValue()
+        {
+            return GetElementsByCssSelector(clickPriceColourValue);
         }
 
         private IList<IWebElement> ClickPriceValue()
@@ -116,6 +130,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             for (var i = 0; i < ClickPriceValue().Count; i++)
             {
                 TestCheck.AssertIsEqual(false, ClickPriceValue().ElementAt(i).Text.Equals(string.Empty), "Price Value is Empty");
+            }
+        }
+
+        private void VerifyClickPriceColourValueIsDisplayed()
+        {
+            for (var i = 0; i < ClickPriceValue().Count; i++)
+            {
+                TestCheck.AssertIsEqual(false, ClickPriceColourValue().ElementAt(i).Text.Equals(string.Empty), "Price Value is Empty");
             }
         }
 
@@ -137,6 +159,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             CalculateClickPrice(volume, colour);
             WebDriver.Wait(Helper.DurationType.Second, 5);
             VerifyClickPriceValueIsDisplayed();
+            VerifyClickPriceColourValueIsDisplayed();
             
             return ProceedToProposalSummaryFromClickPrice();
         }
@@ -168,6 +191,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             EnterMonoVolumeQuantity(volume);
             WebDriver.Wait(Helper.DurationType.Second, 5);
             VerifyClickPriceValueIsDisplayed();
+            SpecFlow.SetContext("ClickPriceMonoValue", ClickPriceValue().First().Text);
 
             return ProceedToProposalSummaryFromClickPrice();
         }
