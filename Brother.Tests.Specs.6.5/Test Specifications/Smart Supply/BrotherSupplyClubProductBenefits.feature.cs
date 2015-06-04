@@ -85,7 +85,10 @@ this.ScenarioSetup(scenarioInfo);
   testRunner.When("I click on Add to basket button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 12
   testRunner.Then("I hover the mouse on the basket icon to see text information relating to the bene" +
-                    "fit I will receive.", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+                    "fit I will receive", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 13
+  testRunner.Then("I can see the benefit text as  \"Discount 11% TN-2220\" and \"Free Delivery Over £30" +
+                    "\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
