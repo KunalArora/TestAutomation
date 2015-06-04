@@ -111,6 +111,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             {"Slovenia", "si"},
             {"Spain", "es"},
             {"Switzerland", "ch"},
+            {"Italy", "it"},
         };
 
         public static string CountryLookup(string locale)
