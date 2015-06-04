@@ -52,5 +52,14 @@ namespace Brother.Tests.Specs.Test_Steps.Smart_Supply
             CurrentPage.As<SmartSupplyProductPage>().CheckforPromoDetails(line1, line2);
             
         }
+
+        [Then(@"I can see the product name with the benefits text")]
+        public void ThenICanSeeTheProductNameWithTheBenefitsText()
+        {
+            CurrentPage.As<SmartSupplyProductPage>().CheckProductnameinPromoDetails();
+        }
+
+        
+
     }
 }

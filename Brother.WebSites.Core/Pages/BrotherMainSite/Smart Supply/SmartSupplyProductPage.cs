@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
@@ -65,6 +66,9 @@ namespace Brother.Tests.Selenium.Lib.Pages.BrotherMainSite.Smart_Supply
 
         public void CheckforPromoDetails(string ptf, string ptl)
         {
+
+            string[] rid = BenefitsText.First().Text.Split(' ');
+            string printer = rid.ElementAt(2);
             Hoverbasket();
             if (BenefitsText == null)
             {
@@ -74,6 +78,15 @@ namespace Brother.Tests.Selenium.Lib.Pages.BrotherMainSite.Smart_Supply
             AssertElementText(BenefitsText.First(), ptf, "Product discount benefits are mentioned");
             //Hoverbasket();
             AssertElementText(BenefitsText.ElementAt(1), ptl,  "Delivery benefits are mentioned");
+        }
+
+        public bool CheckProductnameinPromoDetails()
+        {
+            Hoverbasket();
+            string[] rid = BenefitsText.First().Text.Split(' ');
+            string productname = rid.ElementAt(2);
+            if (productname == "TN-2220") return true;
+            return false;
         }
     }
 }

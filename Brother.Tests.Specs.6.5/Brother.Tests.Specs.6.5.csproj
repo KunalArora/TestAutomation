@@ -108,6 +108,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Test Specifications\Smart Supply\BrotherSupplyClubAnonymousUserProductBenefits.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BrotherSupplyClubAnonymousUserProductBenefits.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Steps\Global\GlobalSteps.cs" />
     <Compile Include="Test Specifications\BrotherMainSite\Printer Search\Printers.feature.cs">
       <AutoGen>True</AutoGen>
@@ -600,6 +605,10 @@
     <None Include="Test Specifications\Smart Supply\BrotherSupplyClubProductBenefits.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>BrotherSupplyClubProductBenefits.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\Smart Supply\BrotherSupplyClubAnonymousUserProductBenefits.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>BrotherSupplyClubAnonymousUserProductBenefits.feature.cs</LastGenOutput>
     </None>
     <None Include="tmpScratch\TestTmpTest.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
