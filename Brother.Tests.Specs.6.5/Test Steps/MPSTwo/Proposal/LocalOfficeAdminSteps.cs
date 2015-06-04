@@ -39,6 +39,15 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         {
             When(@"I navigate to Purchase And Click page");
             CurrentPage.As<LocalOfficeAdminProgramSettingPage>().TickDisplayProductsAsList();
+            CurrentPage.As<LocalOfficeAdminProgramSettingPage>().ClickSave();
+        }
+
+        [Then(@"I enable product to be displayed with images for a paticular contract type")]
+        public void GivenIEnableProductToBeDisplayedWithImagesForAPaticularContractType()
+        {
+            When(@"I navigate to Purchase And Click page");
+            CurrentPage.As<LocalOfficeAdminProgramSettingPage>().UntickDisplayProductsAsList();
+            CurrentPage.As<LocalOfficeAdminProgramSettingPage>().ClickSave();
         }
 
         [Given(@"I navigate to Purchase And Click page")]
