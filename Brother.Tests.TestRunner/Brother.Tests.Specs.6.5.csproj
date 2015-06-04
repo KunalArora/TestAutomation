@@ -63,11 +63,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PAYGPurchaseAndClickContract.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Proposal\VerrificationOnClickPrice.feature.cs">
-      <DependentUpon>VerrificationOnClickPrice.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Test Specifications\MPSTwo\Proposal\DealerCanGeneratePDFAtRelevantStages.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -112,6 +107,11 @@
       <DependentUpon>VerificationOnProductScreenVariations.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Test Specifications\Smart Supply\BrotherSupplyClubAnonymousUser.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BrotherSupplyClubAnonymousUser.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Steps\Global\GlobalSteps.cs" />
     <Compile Include="Test Specifications\BrotherMainSite\Printer Search\Printers.feature.cs">
@@ -506,10 +506,6 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CompletedFieldsAreReadOnlyInConversionMode.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Proposal\VerrificationOnClickPrice.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>VerrificationOnClickPrice.feature.cs</LastGenOutput>
-    </None>
     <None Include="Test Specifications\MPSTwo\Proposal\DealerCanGeneratePDFAtRelevantStages.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>DealerCanGeneratePDFAtRelevantStages.feature.cs</LastGenOutput>
@@ -609,6 +605,10 @@
     <None Include="Test Specifications\Smart Supply\BrotherSupplyClubProductBenefits.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>BrotherSupplyClubProductBenefits.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\Smart Supply\BrotherSupplyClubAnonymousUser.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>BrotherSupplyClubAnonymousUser.feature.cs</LastGenOutput>
     </None>
     <None Include="tmpScratch\TestTmpTest.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

@@ -20,7 +20,7 @@ namespace Brother.Tests.Specs.TestSpecifications.SmartSupply
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("")]
-    [NUnit.Framework.CategoryAttribute("TEST")]
+    [NUnit.Framework.IgnoreAttribute()]
     public partial class Feature
     {
         
@@ -35,7 +35,7 @@ namespace Brother.Tests.Specs.TestSpecifications.SmartSupply
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "", "In order to view the Supply Club benefits\r\nAs an anonymous user\r\nI need to add th" +
                     "e supply club product to basket and see the club product benefits", ProgrammingLanguage.CSharp, new string[] {
-                        "TEST"});
+                        "ignore"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -69,11 +69,11 @@ namespace Brother.Tests.Specs.TestSpecifications.SmartSupply
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("View Brother Supply Club product benefits")]
-        [NUnit.Framework.CategoryAttribute("TEST")]
+        [NUnit.Framework.IgnoreAttribute()]
         public virtual void ViewBrotherSupplyClubProductBenefits()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("View Brother Supply Club product benefits", new string[] {
-                        "TEST"});
+                        "ignore"});
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line 9
@@ -85,7 +85,10 @@ this.ScenarioSetup(scenarioInfo);
   testRunner.When("I click on Add to basket button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 12
   testRunner.Then("I hover the mouse on the basket icon to see text information relating to the bene" +
-                    "fit I will receive.", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+                    "fit I will receive", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 13
+  testRunner.Then("I can see the benefit text as  \"Discount 11% TN-2220\" and \"Free Delivery Over £30" +
+                    "\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
