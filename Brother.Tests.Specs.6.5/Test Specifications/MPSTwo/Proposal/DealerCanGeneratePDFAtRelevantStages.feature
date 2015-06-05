@@ -72,7 +72,7 @@ Scenario Outline: Dealer Can Generate PDF Purchase and Click Minimum Summary Pag
 
 	Scenarios: 
 	| Role             | Country        | ContractType                  | UsageType      | Contract | Leasing                  | Billing                  | PriceHardware | Printer      | DeviceScreen | PaymentMethod           | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Minimum Volume | 3 years  | 4 Monthly Minimum Volume | 6 Monthly Minimum Volume | Untick          | MFC-L8650CDW | Full         | Included in Click Price | 2000        | 2000         |
+	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Minimum Volume | 3 years  | 4 Monthly Minimum Volume | 6 Monthly Minimum Volume | Untick          | MFC-L8650CDW | Reduced        | Included in Click Price | 2000        | 2000         |
 
 Scenario Outline: Dealer Can Generate PDF Purchase and Click PAYG Summary Page
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"

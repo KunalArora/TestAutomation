@@ -150,7 +150,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
 
             CurrentPage.As<CreateNewProposalPage>().FillOrganisationDetails();
             CurrentPage.As<CreateNewProposalPage>().FillOrganisationContactDetail();
-            CurrentPage.As<CreateNewProposalPage>().TickOrderConsumables();
+            //CurrentPage.As<CreateNewProposalPage>().TickOrderConsumables();
 
             CurrentPage.As<CreateNewProposalPage>().ClickNextButton_old();
         }

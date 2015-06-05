@@ -98,6 +98,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SummaryPageValidationForAllProposalTypes.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\MPSTwo\SendToBank\DealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specifications\Smart Supply\BrotherSupplyClubProductBenefits.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -578,6 +583,10 @@
     <None Include="Test Specifications\MPSTwo\Proposal\VerificationsOnProductsPage.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>VerificationsOnProductsPage.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwo\SendToBank\DealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>DealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\OmniJoinPartnerPortal\CustomerActions\CustomerActions.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
