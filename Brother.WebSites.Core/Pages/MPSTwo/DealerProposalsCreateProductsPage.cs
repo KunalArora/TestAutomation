@@ -427,15 +427,23 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     SpecFlow.SetContext("InstallationPackMargin", InstallationPackMarginElement.GetAttribute("value"));
                 if (IsElementPresent(InstallationPackSellPriceElement))
                     SpecFlow.SetContext("InstallationPackSellPrice", InstallationPackSellPriceElement.GetAttribute("value"));
+                
+            }
+        }
+
+
+        public void StoreExtraValuesOnProductPage()
+        {
+            if (hogeIsFullDeviceScreenDisplayed())
+            {
                 if (IsElementPresent(SelectedInstallationTypeElement))
                     SpecFlow.SetContext("SelectedInstallationType", SelectedInstallationTypeElement.Text);
                 if (IsElementPresent(SelectedServicePackPriceElement))
                     SpecFlow.SetContext("SelectedServicePackPrice", SelectedServicePackPriceElement.Text);
                 if (IsElementPresent(SelectedServicePackNameElement.First()))
                     SpecFlow.SetContext("ServicePackName", SelectedServicePackNameElement.First().Text);
-                if(IsElementPresent(SelectedInstallationPriceElement))
+                if (IsElementPresent(SelectedInstallationPriceElement))
                     SpecFlow.SetContext("SelectedInstallationPrice", SelectedInstallationPriceElement.Text);
-              
             }
         }
 

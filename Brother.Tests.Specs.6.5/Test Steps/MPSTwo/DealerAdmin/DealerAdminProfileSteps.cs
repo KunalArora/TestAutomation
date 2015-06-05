@@ -36,11 +36,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.DealerAdmin
             NextPage = CurrentPage.As<DealerDashBoardPage>().NavigateToAdminPage();
         }
 
-        [Given(@"I navigate to Admin page using tab")]
-        public void GivenINavigateToAdminPageUsingTab()
-        {
-            NextPage = CurrentPage.As<DealerDashBoardPage>().NavigateToAdminPageUsingTab();
-        }
+
 
     }
 }

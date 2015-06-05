@@ -85,10 +85,26 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private IWebElement MonoClickRateElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_ColourClickRate_0")]
         private IWebElement ColourClickRateElement;
+        [FindsBy(How = How.Id, Using = "content_1_ButtonDownloadProposalPdf")]
+        public IWebElement DownloadProposalPdfElement;
+        [FindsBy(How = How.Id, Using = "content_1_ButtonDownloadProposalPdfWithCalcs")]
+        private IWebElement DownloadProposalPdfWithCalcElement;
 
 
 
 
+
+
+
+        public void DownloadDealersProposalDocument()
+        {
+            DownloadProposalPdfWithCalcElement.Click();
+        }
+
+        public void DownloadCustomersProposalDocument()
+        {
+            DownloadProposalPdfElement.Click();
+        }
 
         private string PrinterString(string printer)
         {

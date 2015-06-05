@@ -72,7 +72,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         public void WhenIBeginTheProposalCreationProcessForLeaseClickService()
         {
             CurrentPage.As<CreateNewProposalPage>().IsPromptTextDisplayed();
-            CurrentPage.As<CreateNewProposalPage>().SelectingContractType("Leasing");
+            CurrentPage.As<CreateNewProposalPage>().SelectingContractType("Lease & Click with Service");
             CurrentPage.As<CreateNewProposalPage>().EnterProposalName("");
             CurrentPage.As<CreateNewProposalPage>().EnterLeadCodeRef("");
             CurrentPage.As<CreateNewProposalPage>().ClickNextButton_old();
@@ -86,19 +86,12 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             NextPage = CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
         }
 
-        [Given(@"I navigate to Admin page")]
-        [When(@"I navigate to Admin page")]
-        public void WhenINavigateToAdminPage()
-        {
-            NextPage = CurrentPage.As<DealerDashBoardPage>().NavigateToAdminPage();
-        }
-
+        
         [Given(@"I navigate to Admin page using tab")]
         public void GivenINavigateToAdminPageUsingTab()
         {
             NextPage = CurrentPage.As<DealerDashBoardPage>().NavigateToAdminPageUsingTab();
         }
-
 
         [Given(@"I navigate to Dealership Profile page")]
         public void GivenINavigateToDealershipProfilePage()
@@ -340,14 +333,14 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         public void ThenICanGenerateDealerPDFForTheProposal()
         {
             //It is assumed that if pdf downloads normally then one is able to save the proposal
-            CurrentPage.As<CreateNewProposalPage>().DownloadDealersProposalDocument();
+            CurrentPage.As<DealerProposalsCreateSummaryPage>().DownloadDealersProposalDocument();
         }
 
         [Then(@"I can generate customer PDF for the proposal")]
         public void ThenICanGenerateCustomerPDFForTheProposal()
         {
             //It is assumed that if pdf downloads normally then one is able to save the proposal
-            CurrentPage.As<CreateNewProposalPage>().DownloadCustomersProposalDocument();
+            CurrentPage.As<DealerProposalsCreateSummaryPage>().DownloadCustomersProposalDocument();
         }
 
         [When(@"I enter click price volume of ""(.*)"" and ""(.*)""")]

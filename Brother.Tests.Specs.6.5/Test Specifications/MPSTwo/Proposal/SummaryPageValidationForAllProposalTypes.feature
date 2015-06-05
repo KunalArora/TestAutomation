@@ -12,7 +12,7 @@ Scenario Outline: Summary Page Validation For Minimum Volume Leasing and Click p
 	And I choose an existing contact from the list of available contacts
 	And I Enter usage type of "<UsageType>" and "<Contract>" contract terms "<Leasing>" leasing and "<Billing>" billing on Term and Type details
 	And enter a quantity of "1" for accessory for "<Printer>"
-	And I display "<Printer>" device screen
+	And I redisplay "<Printer>" device screen
 	And I confirm the values entered for the device
 	And I enter click price volume of "<ClickVolume>" and "<ColourVolume>"
 	Then the billing basis for product is "Add to lease rental cost"
@@ -50,7 +50,7 @@ Scenario Outline: Summary Page Validation For Pay As You Go Leasing and Click pr
 	And I select "<CreateOption>" button for customer data capture
 	And I Enter usage type of "<UsageType>" and "<Contract>" contract terms "<Leasing>" leasing and "<Billing>" billing on Term and Type details
 	And enter a quantity of "1" for accessory for "<Printer>"
-	And I display "<Printer>" device screen
+	And I redisplay "<Printer>" device screen
 	And I confirm the values entered for the device
 	And I type in click price volume of "<ClickVolume>"
 	Then the billing basis for product is "Add to lease rental cost"
@@ -85,7 +85,7 @@ Scenario Outline: Summary Page Validation For Minimum Volume Purchase and Click 
 	And I Enter "<UsageType>" usage type "<Contract>" contract length and "<Billing>" billing on Term and Type details  
 	And I "<PriceHardware>" Price Hardware radio button
 	And enter a quantity of "1" for accessory for "<Printer>"
-	And I display "<Printer>" device screen
+	And I redisplay "<Printer>" device screen
 	And I confirm the values entered for the device
 	And Service Pack payment method is displayed
 	And I choose to pay Service Packs "<PaymentMethod>"
@@ -122,7 +122,7 @@ Scenario Outline: Summary Page Validation For Minimum Volume Purchase and Click 
 	And I Enter "<UsageType>" usage type "<Contract>" contract length and "<Billing>" billing on Term and Type details  
 	And I "<PriceHardware>" Price Hardware radio button
 	And enter a quantity of "1" for accessory for "<Printer>"
-	And I display "<Printer>" device screen
+	And I redisplay "<Printer>" device screen
 	And I confirm the values entered for the device
 	And Service Pack payment method is displayed
 	And I choose to pay Service Packs "<PaymentMethod>"
@@ -158,7 +158,7 @@ Scenario Outline: Summary Page Validation For Pay As you Go Purchase and Click p
 	And I Enter "<UsageType>" usage type "<Contract>" contract length and "<Billing>" billing on Term and Type details  
 	And I "<PriceHardware>" Price Hardware radio button
 	And enter a quantity of "1" for accessory for "<Printer>"
-	And I display "<Printer>" device screen
+	And I redisplay "<Printer>" device screen
 	And I confirm the values entered for the device
 	And I type in click price volume of "<ClickVolume>"
 	Then the billing basis for product is "Pay upfront"
