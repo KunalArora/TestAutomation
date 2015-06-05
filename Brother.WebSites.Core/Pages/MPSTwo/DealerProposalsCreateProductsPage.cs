@@ -436,6 +436,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             if (hogeIsFullDeviceScreenDisplayed())
             {
+                if (IsElementPresent(ProductQuantityElement))
+                    SpecFlow.SetContext("ProductQuantity", ProductQuantityElement.GetAttribute("value"));
                 if (IsElementPresent(SelectedInstallationTypeElement))
                     SpecFlow.SetContext("SelectedInstallationType", SelectedInstallationTypeElement.Text);
                 if (IsElementPresent(SelectedServicePackPriceElement))
@@ -848,6 +850,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             TestCheck.AssertIsNotEqual(0, AllSRPElement().Count, "srp field nothing");
             IList<IWebElement> element = GetElementsByCssSelector(".mps-qa-srp input", 5);
             TestCheck.AssertIsEqual(0, element.Count, "element is not null");
+            if (IsElementPresent(ProductQuantityElement))
+                SpecFlow.SetContext("ProductQuantity", ProductQuantityElement.GetAttribute("value"));
         }
 
         private IWebElement DeliveryQuantityElement()
@@ -907,6 +911,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsFullDeviceScreenDisplayedForPrinterSelected()
         {
+            WebDriver.Wait(DurationType.Second, 5);
             AssertElementPresent(FullDeviceScreenElement(), "Full device screen is not displayed");
         }
 
@@ -1016,7 +1021,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             for (var i = 0; i < ClickPriceColourValue().Count; i++)
             {
-                TestCheck.AssertIsEqual(false, ClickPriceColourValue().ElementAt(i).Text.Equals(string.Empty), "Price Colour Value is Empty");
+                TestCheck.AssertIsEqual(false, 
+                    ClickPriceColourValue().ElementAt(i).Text.Equals(string.Empty), 
+                    "Price Colour Value is Empty");
             }
 
         }
@@ -1035,7 +1042,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             for (var i = 0; i < ClickPriceValue().Count; i++)
             {
-                TestCheck.AssertIsEqual(false, ClickPriceValue().ElementAt(i).Text.Equals(string.Empty), "Price Value is Empty");
+                TestCheck.AssertIsEqual(false, 
+                    ClickPriceValue().ElementAt(i).Text.Equals(string.Empty), 
+                    "Price Value is Empty");
             }
         }
 
