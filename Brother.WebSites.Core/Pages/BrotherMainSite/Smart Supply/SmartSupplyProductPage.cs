@@ -84,7 +84,7 @@ namespace Brother.Tests.Selenium.Lib.Pages.BrotherMainSite.Smart_Supply
         {
             Hoverbasket();
             string[] rid = BenefitsText.First().Text.Split(' ');
-            string productname = rid.ElementAt(2);
+            var productname = rid.ElementAt(2);
             if (productname == "TN-2220") return true;
             return false;
         }

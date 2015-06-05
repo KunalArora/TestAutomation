@@ -162,7 +162,7 @@ namespace Brother.WebSites.Core.Pages.Base
             catch (WebDriverException driverException)
             {
                 MsgOutput(string.Format("Web Driver Critcal Error!!!! {0}", driverException.Message));
-                MsgOutput(string.Format("Likelhood that WebDriver could not get to the URL {0}", url));
+                MsgOutput(string.Format("Likelihood that WebDriver could not get to the URL {0}", url));
             }
         }
 

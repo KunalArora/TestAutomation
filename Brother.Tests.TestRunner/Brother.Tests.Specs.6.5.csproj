@@ -108,10 +108,10 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Test Specifications\Smart Supply\BrotherSupplyClubAnonymousUser.feature.cs">
+    <Compile Include="Test Specifications\Smart Supply\BrotherSupplyClubAnonymousUserProductBenefits.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BrotherSupplyClubAnonymousUser.feature</DependentUpon>
+      <DependentUpon>BrotherSupplyClubAnonymousUserProductBenefits.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Steps\Global\GlobalSteps.cs" />
     <Compile Include="Test Specifications\BrotherMainSite\Printer Search\Printers.feature.cs">
@@ -367,6 +367,7 @@
     <Compile Include="Test Steps\MPSTwo\Proposal\CreateAProposalNeededForContractSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Proposal\CreateATemplateSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Proposal\LocalOfficeAdminSteps.cs" />
+    <Compile Include="Test Steps\MPSTwo\Proposal\ProposalSummaryPageSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Proposal\VerificationOnClickPricesVolumeAndMargin.cs" />
     <Compile Include="Test Steps\OmniJoin Partner Portal\CustomerActionsSteps.cs" />
     <Compile Include="Test Steps\OmniJoin Partner Portal\DealerActionsSteps.cs" />
@@ -606,9 +607,9 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>BrotherSupplyClubProductBenefits.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\Smart Supply\BrotherSupplyClubAnonymousUser.feature">
+    <None Include="Test Specifications\Smart Supply\BrotherSupplyClubAnonymousUserProductBenefits.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>BrotherSupplyClubAnonymousUser.feature.cs</LastGenOutput>
+      <LastGenOutput>BrotherSupplyClubAnonymousUserProductBenefits.feature.cs</LastGenOutput>
     </None>
     <None Include="tmpScratch\TestTmpTest.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
