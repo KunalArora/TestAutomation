@@ -156,10 +156,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private IWebElement SaveProposalElement;
         [FindsBy(How = How.Id, Using = "content_1_ButtonSaveAsTemplate")]
         private IWebElement SaveAsTemplateElement;
-        [FindsBy(How = How.Id, Using = "content_1_ButtonDownloadProposalPdf")]
-        public IWebElement DownloadProposalPdfElement;
-        [FindsBy(How = How.Id, Using = "content_1_ButtonDownloadProposalPdfWithCalcs")]
-        private IWebElement DownloadProposalPdfWithCalcElement;
         [FindsBy(How = How.CssSelector, Using = "#ClickPriceColourCoverage")]
         private IWebElement ColourCoverageElement;
         [FindsBy(How = How.Id, Using = "ClickPriceColourVolume")]
@@ -1146,15 +1142,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetElementByCssSelector(installationMargin, 2);
         }
 
-        public void DownloadDealersProposalDocument()
-        {
-            DownloadProposalPdfWithCalcElement.Click();
-        }
-
-        public void DownloadCustomersProposalDocument()
-        {
-            DownloadProposalPdfElement.Click();
-        }
 
         public void VerifyThatServicePackFieldIsNotEmpty()
         {

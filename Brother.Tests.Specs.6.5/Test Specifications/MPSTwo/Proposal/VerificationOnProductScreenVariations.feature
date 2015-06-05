@@ -40,7 +40,7 @@ Scenario Outline: Default value of full detail screen are verified
 	Scenarios: 
 
 	| Role             | Country        | ContractType       | Contract |  Billing                  | Printer      |
-	| Cloud MPS Dealer | United Kingdom | Purchase-and-Click | 3 years  |  6 Monthly Minimum Volume | MFC-L8850CDW |
+	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | 3 years  |  6 Monthly Minimum Volume | MFC-L8850CDW |
 
 
 Scenario Outline: Total Price calulation is verified
@@ -59,7 +59,7 @@ Scenario Outline: Total Price calulation is verified
 	Scenarios: 
 
 	| Role             | Country        | ContractType       | Contract |  Billing                  | Printer      |
-	| Cloud MPS Dealer | United Kingdom | Purchase-and-Click | 3 years  |  6 Monthly Minimum Volume | MFC-L8850CDW |
+	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | 3 years  |  6 Monthly Minimum Volume | MFC-L8850CDW |
 
 
 Scenario Outline: The sum of Total Price is equal to the Grand Total Price
@@ -76,7 +76,7 @@ Scenario Outline: The sum of Total Price is equal to the Grand Total Price
 	Scenarios: 
 
 	| Role             | Country        | ContractType       | Contract |  Billing                  | Printer      |
-	| Cloud MPS Dealer | United Kingdom | Purchase-and-Click | 3 years  |  6 Monthly Minimum Volume | MFC-L8850CDW |
+	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | 3 years  |  6 Monthly Minimum Volume | MFC-L8850CDW |
 
 
 Scenario Outline: All Zero QTY fields are not displayed on summary page
@@ -97,7 +97,7 @@ Scenario Outline: All Zero QTY fields are not displayed on summary page
 	Scenarios: 
 
 	| Role             | Country        | ContractType       | Contract |  Billing                  | Printer      |
-	| Cloud MPS Dealer | United Kingdom | Purchase-and-Click | 3 years  |  6 Monthly Minimum Volume | MFC-L8850CDW |
+	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | 3 years  |  6 Monthly Minimum Volume | MFC-L8850CDW |
 
 
 Scenario Outline: Should be able to display Reduced detail screen
@@ -117,7 +117,7 @@ Scenario Outline: Should be able to display Reduced detail screen
 	Scenarios: 
 
 	| Role             | Country        | ContractType       | Contract |  Billing                  | Printer      |
-	| Cloud MPS Dealer | United Kingdom | Purchase-and-Click | 3 years  |  6 Monthly Minimum Volume | MFC-L8850CDW |
+	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | 3 years  |  6 Monthly Minimum Volume | MFC-L8850CDW |
 
 
 Scenario Outline: Lease and Click product screen validation
@@ -136,7 +136,7 @@ Scenario Outline: Lease and Click product screen validation
 	Scenarios: 
 
 	| Role             | Country        | ContractType | Contract | Leasing                  | Billing                  | Printer      |
-	| Cloud MPS Dealer | United Kingdom | Leasing      | 3 years  | 4 Monthly Minimum Volume | 6 Monthly Minimum Volume | DCP-8250DN   |
+	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service      | 3 years  | 4 Monthly Minimum Volume | 6 Monthly Minimum Volume | DCP-8250DN   |
 
 #
 # Enable Printers Scenario 
@@ -152,7 +152,7 @@ Scenario Outline: asdf
 	Scenarios: 
 
 	| Role                   | Country        | ContractType | Contract | Leasing                  | Billing                  | Printer      |
-	| Cloud MPS Local Office | United Kingdom | Leasing      | 3 years  | 4 Monthly Minimum Volume | 6 Monthly Minimum Volume | DCP-8250DN   |
+	| Cloud MPS Local Office | United Kingdom | Lease & Click with Service      | 3 years  | 4 Monthly Minimum Volume | 6 Monthly Minimum Volume | DCP-8250DN   |
 
 # 9-11: under consideration
 
