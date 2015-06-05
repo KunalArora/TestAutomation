@@ -21,7 +21,7 @@ namespace Brother.Tests.Specs.Test_Steps.Smart_Supply
         public void GivenIHaveNavigatedToTheUrl(string p0)
         {
             CurrentDriver.Navigate().GoToUrl(p0);
-            WebDriver.SetPageLoadTimeout(TimeSpan.FromSeconds(20));
+            WebDriver.SetPageLoadTimeout(TimeSpan.FromSeconds(120));
         }
 
    
