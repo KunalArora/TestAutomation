@@ -155,6 +155,17 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         }
 
 
+        [When(@"I redisplay ""(.*)"" device screen")]
+        [Then(@"I redisplay ""(.*)"" device screen")]
+        public void WhenIRedisplayDeviceScreen(string printer)
+        {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().ClickOnAPrinter(printer);
+            CurrentPage.As<DealerProposalsCreateProductsPage>().StoreExtraValuesOnProductPage();
+        }
+
+        
+
+
         [Then(@"the calculated consumable net totals are equal in all places")]
         public void ThenTheCalculatedConsumableNetTotalsAreEqualInAllPlaces()
         {
