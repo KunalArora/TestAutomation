@@ -497,6 +497,12 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
                     WhenIEnterAValidPassword("P@$$w0rd");
                     break;
                 }
+                case "Cloud MPS Local Office Approver":
+                {
+                    WhenIEnterAValidEmailAddress("mpslocalofficeapprover@brother.co.uk");
+                    WhenIEnterAValidPassword("P@$$w0rd");
+                    break;
+                }
             }
         }
     }
