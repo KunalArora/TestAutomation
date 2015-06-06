@@ -1,9 +1,9 @@
-﻿@ignore
+﻿@UAT
 Feature: In order to view the Supply Club benefits on any environment
 	As an anonymous user
 	I need to add the supply club product to basket and see the club product benefits
 
-@ignore
+@UAT
 Scenario: View Brother Supply Club product benefits on any environment
 	Given I have navigated to the Brother Main Site "Italy" products pages
 	And I have clicked on Supplies
