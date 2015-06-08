@@ -130,7 +130,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [When(@"I clicked on Business Details")]
         public void WhenIClickedOnBusinessDetails()
         {
-            CurrentPage.As<MyAccountPage>().ClickBusinessDetailsLink();
+            NextPage = CurrentPage.As<MyAccountPage>().ClickBusinessDetailsLink();
         }
        [When(@"I redirected to the Business Details Page")]
        public void WhenIRedirectedToTheBusinessDetailsPage()

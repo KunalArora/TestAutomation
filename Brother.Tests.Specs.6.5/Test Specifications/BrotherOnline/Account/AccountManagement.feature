@@ -93,7 +93,6 @@ Scenario: Customer can change their Brother Online Ireland email address after r
 	Then If I sign back into Brother Online "Ireland" using the same credentials
 	Then I can sign out of Brother Online
 
-@ignore
 # Change Business details in your created account, go to my account and change/add your business details
 Scenario: Customer can change their business details after logging into account
 	Given I am logged into my Brother Online account
