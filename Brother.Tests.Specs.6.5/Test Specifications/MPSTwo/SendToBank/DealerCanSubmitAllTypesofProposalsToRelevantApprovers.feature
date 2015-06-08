@@ -7,7 +7,8 @@ Feature: SubmitAllTypesofProposalsToRelevantApprovers
 
 Scenario Outline: Send Leasing and Click proposal to bank
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
-	And I have created "<ContractType>" proposal
+	And I have created Leasing and Click proposal
+	And I am on Proposal List page
 	When I click on Action button against the proposal created above
 	Then I can click on Convert to Contract button under the Action button
 	And I am taken to the proposal summary where I can enter envisage contract start date

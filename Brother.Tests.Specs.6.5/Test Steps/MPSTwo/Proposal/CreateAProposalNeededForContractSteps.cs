@@ -38,6 +38,13 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             When("I enter Customer Information Detail for new customer");
         }
 
+        [Given(@"I am on Proposal List page")]
+        public void GivenIAmOnProposalListPage()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+
         [Given(@"I create the proposal with details above")]
         [When(@"I create the proposal with details above")]
         public void WhenICreateTheProposalWithDetailsAbove()

@@ -90,8 +90,8 @@ Scenario Outline: All Zero QTY fields are not displayed on summary page
 	And I display "<Printer>" device screen
 	And on product page all the accessories all left with zero QTY
 	And I Add the device to Proposal
-#	And I Calculate Click Price
-#	Then the selected devices above are displayed on Summary Screen
+	And I enter click price volume of "1000" and "1000"
+	Then the selected devices <Printer> above are displayed on Summary Screen
 #	Then all the components of device with zero QTY are not displayed on summary page
 
 	Scenarios: 

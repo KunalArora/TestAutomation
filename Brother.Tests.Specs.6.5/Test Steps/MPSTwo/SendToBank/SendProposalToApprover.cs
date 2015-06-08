@@ -6,12 +6,7 @@ namespace Brother.Tests.Specs.MPSTwo.SendToBank
     [Binding]
     public class SendProposalToApprover : BaseSteps
     {
-        [Given(@"I have created ""(.*)"" proposal")]
-        public void GivenIHaveCreatedProposal(string type)
-        {
-            ScenarioContext.Current.Pending();
-        }
-
+        
         [When(@"I click on Action button against the proposal created above")]
         public void WhenIClickOnActionButtonAgainstTheProposalCreatedAbove()
         {
