@@ -7,7 +7,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 {
     public class ActionsModule
     {
-        private const string ConvertButton = @".open .js-mps-convert";
+        private const string ConvertToContractButton = @".open .js-mps-convert";
         private const string ProposalEditButton = @".open .js-mps-edit";
         private const string ProposalDeleteButton = @".open .js-mps-delete";
         private const string SendToBankButton = @".open ul.dropdown-menu .js-mps-send-to-approver";
@@ -22,7 +22,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private static IWebElement ConvertButtonElement(ISearchContext driver)
         {
-            return driver.FindElement(By.CssSelector(ConvertButton));
+            return driver.FindElement(By.CssSelector(ConvertToContractButton));
         }
 
         private static IWebElement MaintainOfferElement(ISearchContext driver)
