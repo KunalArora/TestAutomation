@@ -38,10 +38,6 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             WhenIDisplayDeviceScreen("HL-L8350CDW");
             WhenIAcceptTheDefaultValuesOfTheDevice();
             WhenIEnterClickPriceVolumeOf("2000", "2000");
-
-
-
-
         }
 
 

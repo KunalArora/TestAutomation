@@ -1,4 +1,5 @@
 ﻿using Brother.WebSites.Core.Pages.Base;
+using Brother.WebSites.Core.Pages.MPSTwo;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.MPSTwo.SendToBank
@@ -10,37 +11,49 @@ namespace Brother.Tests.Specs.MPSTwo.SendToBank
         [When(@"I click on Action button against the proposal created above")]
         public void WhenIClickOnActionButtonAgainstTheProposalCreatedAbove()
         {
-            ScenarioContext.Current.Pending();
+            CurrentPage.As<CloudExistingProposalPage>().ClickOnActionButtonAgainstRelevantProposal(CurrentDriver);
         }
 
         [Then(@"I can click on Convert to Contract button under the Action button")]
         public void ThenICanClickOnConvertToContractButtonUnderTheActionButton()
         {
-            ScenarioContext.Current.Pending();
+            CurrentPage.As<CloudExistingProposalPage>().ClickOnConvertToContractButton(CurrentDriver);
         }
 
         [Then(@"I am taken to the proposal summary where I can enter envisage contract start date")]
         public void ThenIAmTakenToTheProposalSummaryWhereICanEnterEnvisageContractStartDate()
         {
-            ScenarioContext.Current.Pending();
+            CurrentPage.As<ConvertProposalSummaryPage>().IsConvertSummaryPageDisplayed();
+            CurrentPage.As<ConvertProposalSummaryPage>().EnterProposedStartDateForContract();
+            CurrentPage.As<ConvertProposalSummaryPage>().GiveThirdPartyCheckApproval();
         }
+
+        [Then(@"I am directed to customer detail page for more data capture")]
+        public void ThenIAmDirectedToCustomerDetailPageForMoreDataCapture()
+        {
+            CurrentPage.As<ConvertProposalCustomerInfo>().EnterRemainingCustomerInfo();
+            CurrentPage.As<ConvertProposalCustomerInfo>().EnterAllBankInformation();
+            NextPage = CurrentPage.As<ConvertProposalCustomerInfo>().ProceedToConvertProposalTermAndType();
+            NextPage = CurrentPage.As<ConvertProposalTermAndType>().NavigateToSummaryPageUsingTab();
+        }
+
+        [Given(@"I have created Purchase and Click proposal")]
+        public void GivenIHaveCreatedPurchaseAndClickProposal()
+        {
+            
+        }
+
 
         [Then(@"I can successfully convert the proposal to contract")]
         public void ThenICanSuccessfullyConvertTheProposalToContract()
         {
-            ScenarioContext.Current.Pending();
+            NextPage = CurrentPage.As<ConvertProposalSummaryPage>().SaveProposalAsAContract();
         }
 
         [Then(@"the newly converted contract is available under Awaiting Approval tab")]
         public void ThenTheNewlyConvertedContractIsAvailableUnderAwaitingApprovalTab()
         {
-            ScenarioContext.Current.Pending();
-        }
-
-        [Then(@"I sign into Cloud MPS as a ""(.*)"" from ""(.*)""")]
-        public void ThenISignIntoCloudMPSAsAFrom(string p0, string p1)
-        {
-            ScenarioContext.Current.Pending();
+            CurrentPage.As<DealerProposalsAwaitingApproval>().IsProposalSentToDealerAwaitingProposalPage();
         }
 
         [Then(@"I navigate to bank Awaiting Approval screen under Offer page")]
