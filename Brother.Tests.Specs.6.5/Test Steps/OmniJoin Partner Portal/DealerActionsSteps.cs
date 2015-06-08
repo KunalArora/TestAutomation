@@ -10,10 +10,17 @@ namespace Brother.Tests.Specs
     [Binding]
     public class DealerActionsSteps : BaseSteps
     {
+        [Then(@"when I click Manage Customers and Orders")]
+        public void ThenWhenIClickManageCustomersAndOrders()
+        {
+            NextPage = CurrentPage.As<PartnerPortalPage>().ManageCustomersAndOrdersButtonClick();
+        }
+
+
         [When(@"I create a new Customer Account")]
         public void WhenICreateANewCustomerAccount()
         {
-            //CurrentPage.As<ManageCustomersAndOrdersPage>().
+            //CurrentPage.As<>().
         }
 
 
