@@ -352,7 +352,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             button.Click();
             return GetInstance<MyOrdersPage>(driver, "", "");
         }
-
         public static WelcomeBackPage MyAccountMenuItemClick(IWebDriver driver, IWebElement menuItem)
         {
             TestCheck.AssertIsNotNull(menuItem, "My Account Menu Item");

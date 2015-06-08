@@ -308,6 +308,11 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<RegistrationPage>().UseAccountForBusiness();
         }
+        [When(@"I declare that I do use this account for business on my account page")]
+        public void WhenIDeclareThatIDoUseThisAccountForBusinessOnMyAccountPage()
+        {
+            CurrentPage.As<BusinessDetailsPage>().UseAccountForBusiness();
+        }
 
         [When(@"I have Agreed to the Terms and Conditions")]
         public void WhenIHaveAgreedToTheTermsAndConditions()
@@ -320,7 +325,6 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             NextPage = CurrentPage.As<RegistrationPage>().ClickCreateAccountButton();
         }
-        
         [When(@"I press create account button")]
         public void WhenIPressCreateAccountButton()
         {

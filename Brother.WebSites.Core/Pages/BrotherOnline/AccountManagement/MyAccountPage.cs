@@ -17,6 +17,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         [FindsBy(How = How.CssSelector, Using = ".content-wrapper.my-invoices")]
         public IWebElement InvoiceSection;
 
+        [FindsBy(How = How.XPath, Using = ".//*[@id='content_2_navigationcontainer_0_MenuItemsRepeater_LeftMenuLink_6']")]
+        public IWebElement BusinessDetailsLink;
+
         [FindsBy(How = How.CssSelector, Using = "#content_1_innercontent_2_InvoicesRepeater_tablerow_0")]
         public IWebElement InvoiceRow;
 
@@ -41,5 +44,12 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             }
             AssertElementPresent(InvoiceRow, "Invoice Column");
         }
+        public BusinessDetailsPage ClickBusinessDetailsLink()
+        {
+            ScrollTo(BusinessDetailsLink);
+            BusinessDetailsLink.Click();
+            return GetInstance<BusinessDetailsPage>(Driver);
+        }
+
     }
 }
