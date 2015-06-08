@@ -93,19 +93,21 @@ Scenario: Customer can change their Brother Online Ireland email address after r
 	Then If I sign back into Brother Online "Ireland" using the same credentials
 	Then I can sign out of Brother Online
 
+@ignore
 # Change Business details in your created account, go to my account and change/add your business details
 Scenario: Customer can change their business details after logging into account
 	Given I am logged into my Brother Online account
 	When I navigate to my account for "United Kingdom"
-	And I click on Update details
-	And I click the option yes for is your brother online account for business
-	And I enter the company name in the your company name field
-	And I choose the dropdown in the business sector to it and telecommunication services
-	And I select the number of employees to be 1-10
-	Then  I click on update button
-	And verify successfull update message appeared at the top
+	When I clicked on Business Details
+	And I redirected to the Business Details Page
+	And I declare that I do use this account for business on my account page
+	And I add my company name as "AutoTestLtd"
+	And I select my Business Sector as "IT and telecommunications services"
+	And I select number of Employees as "11 - 50"
+	And I add my company VAT number as "GB145937540" 
+	#When I press update button
+	#Then I can verify successfull update message appeared at the top
 	
-
 
 	# resetting a password
 

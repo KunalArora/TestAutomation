@@ -1,6 +1,8 @@
-﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+﻿using System;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
+using OpenQA.Selenium.Support.UI;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.BrotherOnline.Account
@@ -21,7 +23,6 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             var menu = GlobalNavigationModule.GetProductNavigationMenu("PartnerPortal");
             NextPage = GlobalNavigationModule.MyAccountMenuItemClick(CurrentDriver, menu);
         }
-
         [When(@"I click on the Partner Portal button")]
         public void WhenIClickOnThePartnerPortalButton()
         {
@@ -35,9 +36,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             var managePlanButton = GlobalNavigationModule.GetMyAccountInfoButton("OmniJoin", "ManagePlan");
             NextPage = GlobalNavigationModule.ManageOmniJoinPlanButtonClick(CurrentDriver, managePlanButton);
         }
-
-
-        [Given(@"I am logged into my Brother Online account")]
+       [Given(@"I am logged into my Brother Online account")]
         [Then(@"I am redirected to the Welcome Back page")]
         [Given(@"I am redirected to the Welcome Back page")]
         public void GivenIAmRedirectedToTheWelcomeBackPage()
@@ -123,14 +122,22 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             NextPage = CurrentPage.As<WelcomeBackPage>().NavigateToMyAccountPage(country);
         }
-
         [Then(@"If I enter the current password")]
         public void ThenIfIEnterTheCurrentPassword()
         {
             CurrentPage.As<MySignInDetailsPage>().EnterExistingPassword(Helper.Password);
         }
-
-        [Then(@"I can validate the update was successful")]
+        [When(@"I clicked on Business Details")]
+        public void WhenIClickedOnBusinessDetails()
+        {
+            CurrentPage.As<MyAccountPage>().ClickBusinessDetailsLink();
+        }
+       [When(@"I redirected to the Business Details Page")]
+       public void WhenIRedirectedToTheBusinessDetailsPage()
+       {
+            CurrentPage.As<BusinessDetailsPage>().IsUpdateButtonAvailable();
+       }
+       [Then(@"I can validate the update was successful")]
         public void ThenICanValidateTheUpdateWasSuccessful()
         {
             CurrentPage.As<MySignInDetailsPage>().VerifyEmailAddressValue(Email.RegistrationEmailAddress);
