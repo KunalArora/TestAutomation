@@ -126,22 +126,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             TestCheck.AssertIsEqual(false, proposalContainer.Contains(createdProposal), "Is proposal successfully sent to bank?");
 
-            // var newlyAdded = @"//td[text()='{0}']";
-            // newlyAdded = String.Format(newlyAdded, createdProposal);
-
-            //// var newProposal = Driver.FindElement(By.XPath(newlyAdded));
-
-            // Assert.IsNull(Driver.FindElement(By.XPath(newlyAdded)), 
-            //     "The proposal " + createdProposal + " is still displayed on In-Progress screen");
-
 
         }
 
-        public void ClickOnActionButtonAgainstRelevantProposal()
+        
+        public void ClickOnActionButtonAgainstRelevantProposal(IWebDriver driver)
         {
-            var actionsElement = ActionsDropdownElement(actionsButton);
-            ScrollTo(actionsElement.Last());
-            actionsElement.Last().Click();
+            ActionsModule.SpecificClickOnTheActionsDropdown(driver);
         }
 
         private ReadOnlyCollection<IWebElement> ActionsDropdownElement(string actionsButton)
@@ -162,12 +153,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return createdProposal;
         }
 
-        public void NavigateToConversionSummaryScreen(IWebDriver driver)
+        public ConvertProposalCustomerInfo ClickOnConvertToContractButton(IWebDriver driver)
         {
-            ActionsModule.NavigateToProposalSummary(driver);
-            VerifyThatTheCorrectProposalOpened();
+            ActionsModule.StartConvertToContractProcess(driver);
+            //VerifyThatTheCorrectProposalOpened();
+            return GetTabInstance<ConvertProposalCustomerInfo>(Driver);
 
         }
+
+
 
         private void VerifyThatTheCorrectProposalOpened()
         {

@@ -41,7 +41,9 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [Given(@"I am on Proposal List page")]
         public void GivenIAmOnProposalListPage()
         {
-            ScenarioContext.Current.Pending();
+            WhenIClickSaveProposalButtonOnSummaryScreen();
+            ThenIAmDirectedToProposalsScreenOfProposalListPage();
+            ThenTheNewlyCreatedProposalIsDisplayedOnTheList();
         }
 
 
@@ -59,8 +61,8 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [Then(@"I start the contract conversion process")]
         public void ThenIStartTheContractConversionProcess()
         {
-            CurrentPage.As<CloudExistingProposalPage>().ClickOnActionButtonAgainstRelevantProposal();
-            CurrentPage.As<CloudExistingProposalPage>().NavigateToConversionSummaryScreen(CurrentDriver);
+            CurrentPage.As <CloudExistingProposalPage>().ClickOnActionButtonAgainstRelevantProposal(CurrentDriver);
+            CurrentPage.As<CloudExistingProposalPage>().ClickOnConvertToContractButton(CurrentDriver);
             
         }
 

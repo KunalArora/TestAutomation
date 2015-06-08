@@ -37,6 +37,15 @@ namespace Brother.Tests.Selenium.Lib.Support
 
         }
 
+        public static string DateOfBirth()
+        {
+            var todayDate = DateTime.Now;
+            var someDaysInthePast = todayDate.AddDays(-9000);
+
+            return someDaysInthePast.ToString("dd/MM/yyyy");
+
+        }
+
         public static string CustomerReference()
         {
             var todayDate = DateTime.Now;

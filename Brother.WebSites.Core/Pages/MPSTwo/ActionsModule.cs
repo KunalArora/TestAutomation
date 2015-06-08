@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using OpenQA.Selenium;
@@ -61,6 +62,30 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return actionsElement;
         }
 
+        private static IWebElement SpecificActionsDropdownElement(ISearchContext driver)
+        {
+
+            var actionsElement = driver.FindElement(By.XPath(ProposalCreatedActionButton()));
+            return actionsElement;
+        }
+
+        private static string ProposalCreatedActionButton()
+        {
+            return String.Format("//td[text()='{0}']/parent::tr/td[6]/div/button", CreatedProposal());
+        }
+
+        private static string CreatedProposal()
+        {
+            var createdProposal = SpecFlow.GetContext("GeneratedProposalName");
+            return createdProposal;
+        }
+
+        public static void SpecificClickOnTheActionsDropdown(IWebDriver driver)
+        {
+            var actionsElement = SpecificActionsDropdownElement(driver);
+            actionsElement.Click();
+        }
+
         public static void ClickOnTheActionsDropdown(IWebDriver driver)
         {
             var actionsElement = ActionsDropdownElement(driver);
@@ -81,7 +106,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             WebDriver.Wait(Helper.DurationType.Second, 5);
         }
 
-        public static void NavigateToProposalSummary(IWebDriver driver)
+        public static void StartConvertToContractProcess(IWebDriver driver)
         {
             WebDriver.Wait(Helper.DurationType.Second, 5); //Wait for the Action pop up to appear
             ConvertButtonElement(driver).Click();

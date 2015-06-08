@@ -122,6 +122,7 @@
     <Compile Include="Pages\MPSTwo\ConvertProposalCustomerInfo.cs" />
     <Compile Include="Pages\MPSTwo\ConvertProposalSummaryPage.cs" />
     <Compile Include="Pages\MPSTwo\ConvertProposalTermAndType.cs" />
+    <Compile Include="Pages\MPSTwo\DealerProposalsAwaitingApproval.cs" />
     <Compile Include="Pages\MPSTwo\DealerProposalsCreateSummaryPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerProposalsCreateClickPricePage.cs" />
     <Compile Include="Pages\MPSTwo\DealerAdminDealershipProfilePage.cs" />
