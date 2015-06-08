@@ -132,12 +132,13 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             NextPage = CurrentPage.As<MyAccountPage>().ClickBusinessDetailsLink();
         }
-       [When(@"I redirected to the Business Details Page")]
-       public void WhenIRedirectedToTheBusinessDetailsPage()
-       {
+        [When(@"I am redirected to the Business Details Page")]
+        public void WhenIAmRedirectedToTheBusinessDetailsPage()
+        {
             CurrentPage.As<BusinessDetailsPage>().IsUpdateButtonAvailable();
-       }
-       [Then(@"I can validate the update was successful")]
+        }
+
+        [Then(@"I can validate the update was successful")]
         public void ThenICanValidateTheUpdateWasSuccessful()
         {
             CurrentPage.As<MySignInDetailsPage>().VerifyEmailAddressValue(Email.RegistrationEmailAddress);
@@ -181,7 +182,11 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<MySignInDetailsPage>().ClickUpdateDetailsButton();
         }
-
+        [When(@"I click on Update details on business details page")]
+        public void WhenIClickOnUpdateDetailsOnBusinessDetailsPage()
+        {
+            CurrentPage.As<BusinessDetailsPage>().ClickUpdateButton();
+        }
         [Then(@"My password will be updated")]
         public void ThenMyPasswordWillBeUpdated()
         {
@@ -193,5 +198,11 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<MySignInDetailsPage>().ValidateInformationMessageBarStatus(true);
         }
+        [Then(@"I can verify successfull update message appeared at the top")]
+        public void ThenICanVerifySuccessfullUpdateMessageAppearedAtTheTop()
+        {
+            CurrentPage.As<BusinessDetailsPage>().ValidateInformationMessageBarStatus(true);
+        }
+
     }
 }

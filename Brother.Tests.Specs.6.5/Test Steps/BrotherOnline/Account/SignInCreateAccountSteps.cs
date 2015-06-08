@@ -284,11 +284,21 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<RegistrationPage>().PopulateCompanyNameTextBox(companyName);
         }
+        [When(@"I add my company name as ""(.*)"" on Business Details page")]
+        public void WhenIAddMyCompanyNameAsOnBusinessDetailsPage(string companyName)
+        {
+            CurrentPage.As<BusinessDetailsPage>().PopulateCompanyNameTextBox(companyName);
+        }
 
         [When(@"I add my company VAT number as ""(.*)""")]
         public void WhenIAddMyCompanyVatNumberAs(string vatNumber)
         {
             CurrentPage.As<RegistrationPage>().PopulateVatNumberTextBox(vatNumber);
+        }
+        [When(@"I add my company VAT number as ""(.*)"" on Business Details Page")]
+        public void WhenIAddMyCompanyVatNumberAsOnBusinessDetailsPage(string vatNumber)
+        {
+            CurrentPage.As<BusinessDetailsPage>().PopulateVatNumberTextBox(vatNumber);
         }
 
         [When(@"I select my Business Sector as ""(.*)""")]
@@ -296,13 +306,23 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<RegistrationPage>().PopulateBusinessSectorDropDown(businessSector);
         }
+        [When(@"I select my Business Sector as ""(.*)"" on Business Details Page")]
+        public void WhenISelectMyBusinessSectorAsOnBusinessDetailsPage(string businessSector)
+        {
+            CurrentPage.As<BusinessDetailsPage>().PopulateBusinessSectorDropDown(businessSector);
+        }
 
         [When(@"I select number of Employees as ""(.*)""")]
         public void WhenISelectNumberOfEmployeesAs(string numberOfEmployees)
         {
             CurrentPage.As<RegistrationPage>().PopulateEmployeeCountDropDown(numberOfEmployees);
         }
-        
+        [When(@"I select number of Employees as ""(.*)"" on Business Details Page")]
+        public void WhenISelectNumberOfEmployeesAsOnBusinessDetailsPage(string numberOfEmployees)
+        {
+            CurrentPage.As<BusinessDetailsPage>().PopulateEmployeeCountDropDown(numberOfEmployees);
+        }
+
         [When(@"I declare that I do use this account for business")]
         public void WhenIDeclareThatIDoUseThisAccountForBusiness()
         {
