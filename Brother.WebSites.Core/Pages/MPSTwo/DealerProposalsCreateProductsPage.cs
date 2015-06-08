@@ -724,16 +724,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 TestCheck.AssertIsEqual((decimal)0, MpsUtil.GetValue(element.Text), "Total for all accessories are not defaulted zero");
         }
 
-        public void CalculateClickPriceAndNext()
-        {
-            CalculateClickPriceElement.Click();
-            WebDriver.Wait(Helper.DurationType.Second, 5);
-            NextButtonElement.Click();
-        }
-
-        public void NextButtonClick()
+        public DealerProposalsCreateClickPricePage NextButtonClick()
         {
             NextButtonElement.Click();
+            return GetTabInstance<DealerProposalsCreateClickPricePage>(Driver);
         }
 
         public void ChangeDeviceInstallationType()

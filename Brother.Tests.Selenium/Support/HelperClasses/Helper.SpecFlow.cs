@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,11 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         public static void SetContext(string contextKey, string value)
         {
             ScenarioContext.Current[contextKey] = value;
+        }
+
+        public static IEnumerable GetEnumerator()
+        {
+            return ScenarioContext.Current.AsEnumerable();
         }
     }
 }

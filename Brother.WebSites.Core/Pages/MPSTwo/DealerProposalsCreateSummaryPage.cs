@@ -346,5 +346,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             SaveProposalElement.Click();
             return GetTabInstance<CloudExistingProposalPage>(Driver);
         }
+
+        public void VerifySelectedDeviceIsDisplayed(string model)
+        {
+            string elementname = ".mps-qa-printer";
+            if (IsElementPresent(GetElementByCssSelector(elementname,5)))
+            {
+                string element = "{0}-{1}";
+                elementname = string.Format(element, elementname, model);
+                AssertElementPresent(GetElementByCssSelector(elementname, 5), "model is not displayed");
+            }
+        }
     }
 }

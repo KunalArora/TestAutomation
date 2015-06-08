@@ -63,6 +63,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PAYGPurchaseAndClickContract.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\MPSTwo\Proposal\ClickPriceDeepDive.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ClickPriceDeepDive.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specifications\MPSTwo\Proposal\DealerCanGeneratePDFAtRelevantStages.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -374,6 +379,7 @@
     <Compile Include="Test Steps\MPSTwo\Proposal\LocalOfficeAdminSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Proposal\ProposalSummaryPageSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Proposal\VerificationOnClickPricesVolumeAndMargin.cs" />
+    <Compile Include="Test Steps\MPSTwo\SendToBank\SendProposalToApprover.cs" />
     <Compile Include="Test Steps\OmniJoin Partner Portal\CustomerActionsSteps.cs" />
     <Compile Include="Test Steps\OmniJoin Partner Portal\DealerActionsSteps.cs" />
     <Compile Include="Test Steps\OmniJoin\FreeTrial\FreeTrialSteps.cs" />
@@ -507,6 +513,10 @@
     <None Include="Test Specifications\MPSTwo\Contract\BankRejectsAContract.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>BankRejectsAContract.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwo\Proposal\ClickPriceDeepDive.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ClickPriceDeepDive.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwo\Proposal\CompletedFieldsAreReadOnlyInConversionMode.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
