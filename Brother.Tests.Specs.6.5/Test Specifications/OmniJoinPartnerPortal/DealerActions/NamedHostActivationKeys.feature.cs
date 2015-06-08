@@ -138,27 +138,29 @@ this.ScenarioSetup(scenarioInfo);
 #line 32
  testRunner.Then("I can see the Partner Portal Home Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 33
- testRunner.When("I create a new Customer Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("when I click Manage Customers and Orders", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 34
- testRunner.And("I can store the Customer Account information for use later", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("I create a new Customer Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 35
- testRunner.When("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("I can store the Customer Account information for use later", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 36
- testRunner.And("I can verify that the Customer account association email is received", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 37
+ testRunner.And("I can verify that the Customer account association email is received", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 38
  testRunner.Then("I can validate the correct order emails were received for \"AutomatedTesterDealer1" +
                     "@guerrillamail.com\" as \"order\" and as \"activation\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 38
- testRunner.Given("I am logged into Brother Online \"United Kingdom\" using \"ORP_GENERATED_CUSTOMER\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 39
- testRunner.Then("I can navigate to the Activate Code page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Given("I am logged into Brother Online \"United Kingdom\" using \"ORP_GENERATED_CUSTOMER\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 40
- testRunner.And("I can activate the stored Activation code", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("I can navigate to the Activate Code page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 41
- testRunner.When("I navigate to Manage Plan", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("I can activate the stored Activation code", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 42
- testRunner.Then("I can see my OmniJoin plan", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("I navigate to Manage Plan", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 43
+ testRunner.Then("I can see my OmniJoin plan", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 44
  testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
