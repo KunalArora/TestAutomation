@@ -1,6 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
@@ -20,8 +21,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
         private const string paymentMethod = @".mps-paymentoptions";
-        private const string colourVolume = @"#content_1_LineItems_InputColourVolumeBreaks_0";
-        private const string monoVolume = @"#content_1_LineItems_InputMonoVolumeBreaks_0";
         private const string clickPriceValue = @"[class='mps-col mps-top mps-clickprice-line2'][data-click-price-mono='true']";
         private const string clickPriceColourValue = @"[class='mps-col mps-top mps-clickprice-line2'][data-click-price-colour='true']";
         private const string clickPricePageNext = @"#content_1_ButtonNext";
@@ -40,6 +39,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private IWebElement colourVolumeDropdownElement;
         [FindsBy(How = How.CssSelector, Using = "[id='content_1_LineItems_InputMonoVolume_0']")]
         private IWebElement MonoVolumeInputFieldElement;
+        [FindsBy(How = How.CssSelector, Using = "[id='content_1_LineItems_InputColourVolume_0']")]
+        private IWebElement ColourVolumeInputFieldElement;
+        [FindsBy(How = How.CssSelector, Using = "[id='content_1_LineItems_InputMonoCoverage_0']")]
+        private IWebElement MonoCoverageInputFieldElement;
+        [FindsBy(How = How.CssSelector, Using = "[id='content_1_LineItems_InputColourCoverage_0']")]
+        private IWebElement ColourCoverageInputFieldElement;
+        
         [FindsBy(How = How.Id, Using = "content_1_ButtonCalculate")]
         private IWebElement CalculateClickPriceElement;
         [FindsBy(How = How.Id, Using = "content_1_ButtonNext")]
@@ -57,8 +63,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyPaymentMethodIsNotDisplayed()
         {
-            TestCheck.AssertIsEqual(false, PaymentMethodElement().Displayed, "Payment method is displayed");
-            //AssertElementPresent(PaymentMethodElement(), "Payment method is displayed");
+            IWebElement element = PaymentMethodElement();
+            if (element != null)
+                TestCheck.AssertIsNotNull(element, "Payment method is displayed");
         }
 
         public void PayServicePackMethod(string option)
@@ -75,44 +82,56 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
-        private IWebElement ColourVolumeElementClickPrice()
+        private IWebElement ColourVolumeElementClickPrice(string row)
         {
-            return GetElementByCssSelector(colourVolume);
-        }
-        public void CalculateClickPriceAndNext()
-        {
-            CalculateClickPriceElement.Click();
-            ProceedOnClickPricePageElement.Click();
+            string element = String.Format("#content_1_LineItems_InputColourVolumeBreaks_{0}", row);
+
+            return GetElementByCssSelector(element);
         }
 
-        private IWebElement MonoVolumeElementClickPrice()
+        private IWebElement MonoVolumeElementClickPrice(string row)
         {
-            return GetElementByCssSelector(monoVolume);
+            string element = String.Format("#content_1_LineItems_InputMonoVolumeBreaks_{0}",row);
+
+            return GetElementByCssSelector(element);
         }
 
-        private void CalculateClickPrice(string volume, string colour)
+        private void SelectClickPriceAndCalculate(string volume, string colour)
         {
-            if (colourVolumeDropdownElement == null)
-                throw new NullReferenceException("ClickVolumeElement can not be found");
             if (CalculateClickPriceElement == null)
                 throw new NullReferenceException("CalculateClickPriceElement can not be found");
-            if (monoVolumeDropdownElement == null)
-                throw new NullReferenceException("ColourVolumeDropdownElement can not be found");
 
-            if (IsElementPresent(ColourVolumeElementClickPrice()))
-                SelectFromDropdown(colourVolumeDropdownElement, colour);
-            if (IsElementPresent(MonoVolumeElementClickPrice()))
-                SelectFromDropdown(monoVolumeDropdownElement, volume);
+            SelectMonoVolume(volume, "0");
+            SelectColorVolume(colour);
             WebDriver.Wait(DurationType.Second, 3);
-            CalculateClickPriceElement.Click();
-            WebDriver.Wait(DurationType.Second, 2);
-            GetClickPriceValues();
+
         }
 
-        private void GetClickPriceValues()
+
+        public void SelectMonoVolume(string volume, string row)
         {
-            SpecFlow.SetContext("ClickPriceMonoValue", ClickPriceValue().First().Text);
-            SpecFlow.SetContext("ClickPriceColourValue", ClickPriceColourValue().First().Text);
+            if (monoVolumeDropdownElement == null)
+                throw new NullReferenceException("monoVolumeDropdownElement can not be found");
+            IWebElement element = MonoVolumeElementClickPrice(row);
+            if (IsElementPresent(element))
+                SelectFromDropdown(element, volume);
+        }
+
+        public void SelectColorVolume(string volume)
+        {
+            if (colourVolumeDropdownElement == null)
+                throw new NullReferenceException("colourVolumeDropdownElement can not be found");
+            if (IsElementPresent(ColourVolumeElementClickPrice("0")))
+                SelectFromDropdown(colourVolumeDropdownElement, volume);
+        }
+
+        public void SelectColorVolume(string volume, string row)
+        {
+            if (colourVolumeDropdownElement == null)
+                throw new NullReferenceException("monoVolumeDropdownElement can not be found");
+            IWebElement element = ColourVolumeElementClickPrice(row);
+            if (IsElementPresent(element))
+                SelectFromDropdown(element, volume);
         }
 
         private IList<IWebElement> ClickPriceColourValue()
@@ -125,7 +144,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetElementsByCssSelector(clickPriceValue);
         }
 
-        private void VerifyClickPriceValueIsDisplayed()
+        public void VerifyClickPriceValueIsDisplayed()
         {
             for (var i = 0; i < ClickPriceValue().Count; i++)
             {
@@ -157,11 +176,23 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             //MoveToClickPriceScreen();
             CalculateClickPrice(volume, colour);
-            WebDriver.Wait(Helper.DurationType.Second, 5);
-            VerifyClickPriceValueIsDisplayed();
-            VerifyClickPriceColourValueIsDisplayed();
+			VerifyClickPriceValueIsDisplayed();
             
             return ProceedToProposalSummaryFromClickPrice();
+        }
+
+        public void CalculateClickPrice(string volume, string colour)
+        {
+            SelectClickPriceAndCalculate(volume, colour);
+            VerifyClickPriceValueIsDisplayed();
+        }
+
+        public void CalculateClickPrice()
+        {
+            CalculateClickPriceElement.Click();
+            WebDriver.Wait(Helper.DurationType.Second, 5);
+            MonoClickPriceValue();
+            ColourClickPriceValue();
         }
 
         public DealerProposalsCreateSummaryPage MoveToProposalSummaryScreen()
@@ -171,6 +202,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 //            AssertElementPresent(SummaryConfirmationTextElement, "Product Confirmation Message");
             return GetTabInstance<DealerProposalsCreateSummaryPage>(Driver);
 
+        }
+
+        public void EnterCoverageAndVolumeThenCalculate(string coverage, string volume)
+        {
+            EnterMonoCoverage(coverage);
+            EnterMonoVolumeQuantity(volume);
         }
 
         private void EnterMonoVolumeQuantity(string volume)
@@ -185,6 +222,62 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             CalculateClickPriceElement.Click();
         }
 
+        public void EnterMonoCoverage(string coverage)
+        {
+            if (MonoCoverageInputFieldElement == null)
+                throw new NullReferenceException("Mono Coverage field can not be found");
+
+            ClearAndType(MonoCoverageInputFieldElement, coverage);
+            WebDriver.Wait(Helper.DurationType.Second, 2);
+        }
+
+        private IWebElement MonoVolumeElement(string row)
+        {
+            string str = String.Format("#content_1_LineItems_InputMonoVolume_{0}", row);
+
+            return GetElementByCssSelector(str, 5);
+        }
+
+        public void EnterMonoVolume(string volume, string row)
+        {
+            IWebElement element = MonoVolumeElement(row);
+
+            if (element == null)
+                throw new NullReferenceException("Mono Volume field can not be found");
+
+            ClearAndType(element, volume);
+            WebDriver.Wait(Helper.DurationType.Second, 2);
+            SpecFlow.SetContext(String.Format("MonoVolume{0}-{1}", row, DateTime.Now.ToString("yyyyMMddHHmmss")), volume);
+        }
+
+        public void EnterColourCoverage(string coverage)
+        {
+            if (ColourCoverageInputFieldElement == null)
+                throw new NullReferenceException("Mono Coverage field can not be found");
+
+            ClearAndType(ColourCoverageInputFieldElement, coverage);
+            WebDriver.Wait(Helper.DurationType.Second, 2);
+        }
+
+        private IWebElement ColourVolumeElement(string row)
+        {
+            string str = String.Format("#content_1_LineItems_InputColourVolume_{0}", row);
+
+            return GetElementByCssSelector(str, 5);
+        }
+
+        public void EnterColourVolume(string volume, string row)
+        {
+            IWebElement element = ColourVolumeElement(row);
+
+            if (element == null)
+                throw new NullReferenceException("Colour Volume field can not be found");
+
+            ClearAndType(element, volume);
+            WebDriver.Wait(Helper.DurationType.Second, 2);
+            SpecFlow.SetContext(String.Format("ColourVolume{0}-{1}", row, DateTime.Now.ToString("yyyyMMddHHmmss")), volume);
+        }
+
         public DealerProposalsCreateSummaryPage CalculateEnteredClickPriceAndProceed(string volume)
         {
 //            MoveToClickPriceScreen();
@@ -195,5 +288,153 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             return ProceedToProposalSummaryFromClickPrice();
         }
+
+        public void IsCoverageErrorDisplayed()
+        {
+            string element = ".js-mps-alert";
+
+            AssertElementPresent(GetElementByCssSelector(element, 5), "Coverage error is not displayed");
+        }
+
+        private void MonoClickPriceValue()
+        {
+            string str = ".mps-clickprice-group [data-click-price-mono=\"true\"]";
+            int i = 0;
+            foreach (IWebElement element in GetElementsByCssSelector(str, 5))
+            {
+                string val = element.Text;
+                if (!val.Equals("")) 
+                    SpecFlow.SetContext(String.Format("MonoClickPrice{0}-{1}", i, DateTime.Now.ToString("yyyyMMddHHmmss")), val);
+                i++;
+            }
+        }
+
+        private void ColourClickPriceValue()
+        {
+            string str = ".mps-clickprice-group [data-click-price-colour=\"true\"]";
+            string val = "";
+            int i = 0;
+            IList<IWebElement> elements = GetElementsByCssSelector(str, 5);
+            if (elements.Count != 0)
+            {
+                foreach (IWebElement element in elements)
+                {
+                    val = element.Text;
+                    if (!val.Equals("")) 
+                        SpecFlow.SetContext(String.Format("ColourClickPrice{0}-{1}", i, DateTime.Now.ToString("yyyyMMddHHmmss")), val);
+                    i++;
+                }
+            }
+        }
+
+        public void VerifyThatClickPriceValueForVolumeValueBecomeSmallerAndSmaller()
+        {
+            List<string> list = new List<string>();
+            foreach (KeyValuePair<string, object> item in SpecFlow.GetEnumerator())
+            {
+                if (item.Key.Contains("MonoClickPrice"))
+                    list.Add(item.Value.ToString());
+            }
+            if (Convert.ToDouble(list[0]) < Convert.ToDouble(list[1]) ||
+                Convert.ToDouble(list[1]) < Convert.ToDouble(list[2]))
+                TestCheck.AssertFailTest("Click Price calculation is invalid");
+
+        }
+
+        public void VerifyClickPriceValueForVolumeValueIsAllEqual()
+        {
+            List<string> list = new List<string>();
+            foreach (KeyValuePair<string, object> item in SpecFlow.GetEnumerator())
+            {
+                if (item.Key.Contains("MonoClickPrice"))
+                    list.Add(item.Value.ToString());
+            }
+            if (Convert.ToDouble(list[0]) != Convert.ToDouble(list[1]) ||
+                Convert.ToDouble(list[1]) != Convert.ToDouble(list[2]))
+                TestCheck.AssertFailTest("Click Price calculation is invalid");
+        }
+
+        public void VerifyThatClickPriceDisplayedForTheColourIsChangedAccordingly()
+        {
+            List<string> list = new List<string>();
+            foreach (KeyValuePair<string, object> item in SpecFlow.GetEnumerator())
+            {
+                if (item.Key.Contains("ColourClickPrice"))
+                    list.Add(item.Value.ToString());
+            }
+            if (Convert.ToDouble(list[0]) == Convert.ToDouble(list[1]))
+                TestCheck.AssertFailTest("Colour Click Price calculation is invalid");
+        }
+
+        public void VerifyThatClickPriceDisplayedForTheMonoIsChangedAccordingly()
+        {
+            List<string> list = new List<string>();
+            foreach (KeyValuePair<string, object> item in SpecFlow.GetEnumerator())
+            {
+                if (item.Key.Contains("MonoClickPrice"))
+                    list.Add(item.Value.ToString());
+            }
+            if (Convert.ToDouble(list[0]) == Convert.ToDouble(list[1]))
+                TestCheck.AssertFailTest("Colour Click Price calculation is invalid");
+            
+        }
+
+        public void VerifyThatClickPriceForMonoIsNotChanged(string row)
+        {
+            List<string> list = new List<string>();
+
+            string key = String.Format("MonoClickPrice{0}", row);
+            foreach (KeyValuePair<string, object> item in SpecFlow.GetEnumerator())
+            {
+                if (item.Key.Contains(key))
+                    list.Add(item.Value.ToString());
+            }
+            if (Convert.ToDouble(list[0]) != Convert.ToDouble(list[1]))
+                TestCheck.AssertFailTest("Mono Click Price calculation is invalid");
+            
+        }
+
+        public void VerifyThatClickPriceForMonoIsChanged(string row)
+        {
+            List<string> list = new List<string>();
+
+            string key = String.Format("MonoClickPrice{0}", row);
+            foreach (KeyValuePair<string, object> item in SpecFlow.GetEnumerator())
+            {
+                if (item.Key.Contains(key))
+                    list.Add(item.Value.ToString());
+            }
+            if (Convert.ToDouble(list[0]) == Convert.ToDouble(list[1]))
+                TestCheck.AssertFailTest("Mono Click Price calculation is invalid");
+        }
+
+        public void VerifyThatClickPriceForColourIsChanged(string row)
+        {
+            List<string> list = new List<string>();
+
+            string key = String.Format("ColourClickPrice{0}", row);
+            foreach (KeyValuePair<string, object> item in SpecFlow.GetEnumerator())
+            {
+                if (item.Key.Contains(key))
+                    list.Add(item.Value.ToString());
+            }
+            if (Convert.ToDouble(list[0]) == Convert.ToDouble(list[1]))
+                TestCheck.AssertFailTest("Mono Click Price calculation is invalid");
+        }
+
+        public void VerifyThatClickPriceForColourIsNotChanged(string row)
+        {
+            List<string> list = new List<string>();
+
+            string key = String.Format("ColourClickPrice{0}", row);
+            foreach (KeyValuePair<string, object> item in SpecFlow.GetEnumerator())
+            {
+                if (item.Key.Contains(key))
+                    list.Add(item.Value.ToString());
+            }
+            if (Convert.ToDouble(list[0]) != Convert.ToDouble(list[1]))
+                TestCheck.AssertFailTest("Mono Click Price calculation is invalid");
+        }
+        
     }
 }

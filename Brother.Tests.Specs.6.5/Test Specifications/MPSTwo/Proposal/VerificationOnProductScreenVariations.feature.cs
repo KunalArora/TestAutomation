@@ -208,6 +208,10 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.And("on product page all the accessories all left with zero QTY", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 92
  testRunner.And("I Add the device to Proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 93
+ testRunner.And("I enter click price volume of \"1000\" and \"1000\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 94
+ testRunner.Then(string.Format("the selected devices {0} above are displayed on Summary Screen", printer), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
