@@ -115,6 +115,7 @@
     <Compile Include="Pages\MPSOne\ListOfOrganisationsPage.cs" />
     <Compile Include="Pages\MPSOne\TechnicalServicePage.cs" />
     <Compile Include="Pages\MPSTwo\ActionsModule.cs" />
+    <Compile Include="Pages\MPSTwo\BankContractsPage.cs" />
     <Compile Include="Pages\MPSTwo\BankDashBoardPage.cs" />
     <Compile Include="Pages\MPSTwo\BankOffersPage.cs" />
     <Compile Include="Pages\MPSTwo\BankUserLandingPage.cs" />
@@ -126,6 +127,7 @@
     <Compile Include="Pages\MPSTwo\ConvertProposalSummaryPage.cs" />
     <Compile Include="Pages\MPSTwo\ConvertProposalTermAndType.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeAdminServiceDeskPage.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeApproverContractsMaintenancePage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeApproverProposalsPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeApproverDashBoardPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerProposalsCreateSummaryPage.cs" />
