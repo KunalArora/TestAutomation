@@ -26,6 +26,25 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         }
 
 
+        [Given(@"I have created Leasing and Click proposal")]
+        public void GivenIHaveCreatedLeasingAndClickProposal()
+        {
+            //This snippet came from CreateATemplateSteps
+            GivenIamOnMpsNewProposalPage();
+            WhenIFillProposalDescriptionForContractType("Lease & Click with Service");
+            WhenISelectButtonForCustomerDataCapture("Create new customer");
+            WhenIEnterUsageTypeOfAndContractTermsLeasingAndBillingOnTermAndTypeDetails
+                ("Minimum Volume", "3 years", "4 Monthly Minimum Volume", "6 Monthly Minimum Volume");
+            WhenIDisplayDeviceScreen("HL-L8350CDW");
+            WhenIAcceptTheDefaultValuesOfTheDevice();
+            WhenIEnterClickPriceVolumeOf("2000", "2000");
+
+
+
+
+        }
+
+
         [Given(@"I fill Proposal Description")]
         [When(@"I fill Proposal Description")]
         public void WhenIFillProposalDescription()
@@ -300,6 +319,24 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<DealerProposalsCreateProductsPage>().VerifyProductAdditionConfirmationMessage();
 
         }
+
+        [When(@"I accept the default values of the device")]
+        public void WhenIAcceptTheDefaultValuesOfTheDevice()
+        {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().AddAllDetailsToProposal();
+            CurrentPage.As<DealerProposalsCreateProductsPage>().VerifyProductAdditionConfirmationMessage();
+            NextPage = CurrentPage.As<DealerProposalsCreateProductsPage>().MoveToClickPriceScreen();
+        }
+
+        [When(@"I display ""(.*)"" device screen")]
+        [Then(@"I display ""(.*)"" device screen")]
+        public void WhenIDisplayDeviceScreen(string printer)
+        {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().IsProductScreenTextDisplayed();
+            CurrentPage.As<DealerProposalsCreateProductsPage>().ClickOnAPrinter(printer);
+            CurrentPage.As<DealerProposalsCreateProductsPage>().StoreDefaultProductConfiguration();
+        }
+
 
         
 

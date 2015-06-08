@@ -128,13 +128,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<DealerProposalsCreateProductsPage>().EnterOptionsQuantity0(quantity);
         }
 
-        [When(@"I accept the default values of the device")]
-        public void WhenIAcceptTheDefaultValuesOfTheDevice()
-        {
-            CurrentPage.As<DealerProposalsCreateProductsPage>().AddAllDetailsToProposal();
-            CurrentPage.As<DealerProposalsCreateProductsPage>().VerifyProductAdditionConfirmationMessage();
-            NextPage = CurrentPage.As<DealerProposalsCreateProductsPage>().MoveToClickPriceScreen();
-        }
+        
 
         [When(@"I confirm the values entered for the device")]
         public void WhenIconfirmTheValuesEntereForTheDevice()
@@ -145,15 +139,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         }
 
 
-        [When(@"I display ""(.*)"" device screen")]
-        [Then(@"I display ""(.*)"" device screen")]
-        public void WhenIDisplayDeviceScreen(string printer)
-        {
-            CurrentPage.As<DealerProposalsCreateProductsPage>().IsProductScreenTextDisplayed();
-            CurrentPage.As<DealerProposalsCreateProductsPage>().ClickOnAPrinter(printer);
-            CurrentPage.As<DealerProposalsCreateProductsPage>().StoreDefaultProductConfiguration();
-        }
-
+        
 
         [When(@"I redisplay ""(.*)"" device screen")]
         [Then(@"I redisplay ""(.*)"" device screen")]
