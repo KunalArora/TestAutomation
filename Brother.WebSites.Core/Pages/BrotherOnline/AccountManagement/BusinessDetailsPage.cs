@@ -59,6 +59,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         public void PopulateCompanyNameTextBox(string companyName)
         {
             ScrollTo(CompanyNameTextBox);
+            WaitForElementToExistById(companyName);
             CompanyNameTextBox.SendKeys(companyName);
             //TestCheck.AssertIsEqual(companyName, GetTextBoxValue("CompanyNameTextBox"), "CompanyName Text Box");
         }
@@ -75,6 +76,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         public void PopulateVatNumberTextBox(string vatNumber)
         {
             ScrollTo(VatNumberTextBox);
+            WaitForElementToExistById(vatNumber);
             VatNumberTextBox.SendKeys(vatNumber);
            // TestCheck.AssertIsEqual(vatNumber, GetTextBoxValue("VatNumberTextBox"), "Vat number Text Box");
         }
