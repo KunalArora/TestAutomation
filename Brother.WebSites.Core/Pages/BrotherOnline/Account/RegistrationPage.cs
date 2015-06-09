@@ -222,6 +222,32 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             return GetInstance<LocalOfficeAdminDashBoardPage>(Driver, BasePage.BaseUrl, title);
         }
 
+        public LocalOfficeApproverDashBoardPage SignInButtonToLocalOfficeApproverDashboard(string country)
+        {
+            ScrollTo(SignInButton);
+            SignInButton.Click();
+            // added for Firefox HTTPS warning
+            if (IsFireFoxBrowser())
+            {
+                DismissAlert();
+            }
+            var title = HomePage.WelcomePageCountryTitle(country);
+            return GetInstance<LocalOfficeApproverDashBoardPage>(Driver, BasePage.BaseUrl, title);
+        }
+
+        public BankDashBoardPage SignInButtonToBankUser(string country)
+        {
+            ScrollTo(SignInButton);
+            SignInButton.Click();
+            // added for Firefox HTTPS warning
+            if (IsFireFoxBrowser())
+            {
+                DismissAlert();
+            }
+            var title = HomePage.WelcomePageCountryTitle(country);
+            return GetInstance<BankDashBoardPage>(Driver, BasePage.BaseUrl, title);
+        }
+
         public RegistrationPage ClickSignUpButton()
         {
             ScrollTo(CreateYourAccountButton);

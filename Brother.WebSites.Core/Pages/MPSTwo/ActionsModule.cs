@@ -62,7 +62,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return actionsElement;
         }
 
-        private static IWebElement SpecificActionsDropdownElement(ISearchContext driver)
+        public static IWebElement SpecificActionsDropdownElement(ISearchContext driver)
         {
 
             var actionsElement = driver.FindElement(By.XPath(ProposalCreatedActionButton()));

@@ -472,6 +472,16 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
                     NextPage = CurrentPage.As<RegistrationPage>().SignInButtonToLocalOfficeDashboard(country);
                     break;
                 }
+                case "Cloud MPS Bank":
+                {
+                    NextPage = CurrentPage.As<RegistrationPage>().SignInButtonToBankUser(country);
+                    break;
+                }
+                case "Cloud MPS Local Office Approver":
+                {
+                    NextPage = CurrentPage.As<RegistrationPage>().SignInButtonToLocalOfficeApproverDashboard(country);
+                    break;
+                }
             }
         }
 
@@ -505,7 +515,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
                 }
                 case "Cloud MPS Bank":
                 {
-                    WhenIEnterAValidEmailAddress("mpsbankDE@brother.co.uk");
+                    WhenIEnterAValidEmailAddress("mpsbankUK@brother.co.uk");
                     WhenIEnterAValidPassword("P@$$w0rd");
                     break;
                 }

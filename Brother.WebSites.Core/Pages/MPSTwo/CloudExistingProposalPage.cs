@@ -132,6 +132,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         
         public void ClickOnActionButtonAgainstRelevantProposal(IWebDriver driver)
         {
+            ScrollTo(ActionsModule.SpecificActionsDropdownElement(driver));
             ActionsModule.SpecificClickOnTheActionsDropdown(driver);
         }
 

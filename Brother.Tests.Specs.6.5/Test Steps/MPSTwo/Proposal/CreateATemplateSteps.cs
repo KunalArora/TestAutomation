@@ -40,6 +40,21 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             WhenIEnterClickPriceVolumeOf("2000", "2000");
         }
 
+        [Given(@"I have created Purchase and Click proposal")]
+        public void GivenIHaveCreatedPurchaseAndClickProposal()
+        {
+            GivenIamOnMpsNewProposalPage();
+            WhenIFillProposalDescriptionForContractType("Purchase & Click with Service");
+            WhenISelectButtonForCustomerDataCapture("Create new customer");
+            WhenIEnterUsageTypeContractLengthAndBillingOnTermAndTypeDetails
+                ("3 years", "4 Monthly Minimum Volume", "6 Monthly Minimum Volume");
+            WhenIPriceHardwareRadioButton("Tick");
+            WhenIDisplayDeviceScreen("MFC-L8650CDW");
+            WhenIAcceptTheDefaultValuesOfTheDevice();
+            WhenIEnterClickPriceVolumeOf("800", "800");
+
+        }
+
 
         [Given(@"I fill Proposal Description")]
         [When(@"I fill Proposal Description")]

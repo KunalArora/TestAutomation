@@ -30,9 +30,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsConvertSummaryPageDisplayed()
         {
-            if(ThirdPartyApproval == null)
+            if (ProposedStartDate == null)
                 throw new Exception("Third party permission tick is not displayed");
-            AssertElementPresent(ThirdPartyApproval, "Is convert proposal summary page displayed");
+            AssertElementPresent(ProposedStartDate, "Is convert proposal summary page displayed");
         }
 
         public void EnterProposedStartDateForContract()

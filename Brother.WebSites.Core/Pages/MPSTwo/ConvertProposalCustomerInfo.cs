@@ -112,7 +112,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SelectAPaymentType()
         {
-            SelectFromDropdown(PaymentTypeDropdown, "DirectDebit");
+            if (IsElementPresent(PaymentTypeDropdown))
+                SelectFromDropdown(PaymentTypeDropdown, "Direct Debit");
         }
 
         public void EnterBankName()
@@ -185,7 +186,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void EnterPrivateLiableDateOfBirth()
         {
-            ClearAndType(PrivateLiableDOBElement, MpsUtil.DateOfBirth());
+            PrivateLiableDOBElement.SendKeys(MpsUtil.DateOfBirth());
         }
 
         private void EnterPrivatePropertyNumber()
