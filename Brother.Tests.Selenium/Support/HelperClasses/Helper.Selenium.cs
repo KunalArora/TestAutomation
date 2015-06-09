@@ -56,31 +56,65 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
         public bool WaitForElementToExistById(string element)
         {
-            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(ElementSearchTimeout));
-            var elementStatus = wait.Until(ExpectedConditions.ElementIsVisible(By.Id(element))).Displayed;
+            var elementStatus = false;
+            try
+            {
+                var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(ElementSearchTimeout));
+                elementStatus = wait.Until(ExpectedConditions.ElementIsVisible(By.Id(element))).Displayed;
+            }
+            catch (TimeoutException elementSearchTimeout)
+            {
+                MsgOutput(elementSearchTimeout.Message);
+                TestCheck.AssertFailTest(string.Format("Timeout searching for Element [{0}]. Timeout after [{1}]", element, ElementSearchTimeout));
+            }
             return elementStatus;
-
         }
 
         public bool WaitForElementToExistByClassName(string element)
         {
-            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(ElementSearchTimeout));
-            var elementStatus = wait.Until(ExpectedConditions.ElementIsVisible(By.ClassName(element))).Displayed;
+            var elementStatus = false;
+            try
+            {
+                var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(ElementSearchTimeout));
+                elementStatus = wait.Until(ExpectedConditions.ElementIsVisible(By.ClassName(element))).Displayed;
+            }
+            catch (TimeoutException elementSearchTimeout)
+            {
+                MsgOutput(elementSearchTimeout.Message);
+                TestCheck.AssertFailTest(string.Format("Timeout searching for Element [{0}]. Timeout after [{1}]", element, ElementSearchTimeout));
+            }
             return elementStatus;
-
         }
 
         public bool WaitForElementToExistByName(string element)
         {
-            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(ElementSearchTimeout));
-            var elementStatus = wait.Until(ExpectedConditions.ElementIsVisible(By.Name(element))).Displayed;
+            var elementStatus = false;
+            try
+            {
+                var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(ElementSearchTimeout));
+                elementStatus = wait.Until(ExpectedConditions.ElementIsVisible(By.Name(element))).Displayed;
+            }
+            catch (TimeoutException elementSearchTimeout)
+            {
+                MsgOutput(elementSearchTimeout.Message);
+                TestCheck.AssertFailTest(string.Format("Timeout searching for Element [{0}]. Timeout after [{1}]", element, ElementSearchTimeout));
+            }
             return elementStatus;
         }
 
         public bool WaitForElementToExistByTagName(string element)
         {
-            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(ElementSearchTimeout));
-            var elementStatus = wait.Until(ExpectedConditions.ElementIsVisible(By.TagName(element))).Displayed;
+            var elementStatus = false;
+            try
+            {
+                var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(ElementSearchTimeout));
+                elementStatus = wait.Until(ExpectedConditions.ElementIsVisible(By.TagName(element))).Displayed;
+            }
+            catch (TimeoutException elementSearchTimeout)
+            {
+                MsgOutput(elementSearchTimeout.Message);
+                TestCheck.AssertFailTest(string.Format("Timeout searching for Element [{0}]. Timeout after [{1}]", element, ElementSearchTimeout));
+            }
             return elementStatus;
         }
 
