@@ -24,12 +24,15 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             try
             {
                 WebDriver.SetWebDriverImplicitTimeout(new TimeSpan(0,0,10));
-                var acceptCookieLawButton = driver.FindElement(By.CssSelector("#AcceptCookieLawHyperLink"));
-                acceptCookieLawButton.Click();
+                if (WaitForElementToExistByCssSelector("#AcceptCookieLawHyperLink", 5, 3))
+                {
+                    var acceptCookieLawButton = driver.FindElement(By.CssSelector("#AcceptCookieLawHyperLink"));
+                    acceptCookieLawButton.Click();
+                }
             }
             catch (ElementNotVisibleException elementNotVisible)
             {
-                MsgOutput(string.Format("AcceptCookieLaw : {0}", elementNotVisible));
+                MsgOutput(string.Format("AcceptCookieLaw : {0} [This error can be ignored]", elementNotVisible));
             }
             WebDriver.SetWebDriverImplicitTimeout(WebDriver.ImplicitWaitDefaultTimeout);
         }
