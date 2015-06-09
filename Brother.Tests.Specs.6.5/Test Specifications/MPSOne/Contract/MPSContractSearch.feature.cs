@@ -21,7 +21,6 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSOne.Contract
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("MPSContractSearch")]
     [NUnit.Framework.IgnoreAttribute()]
-    [NUnit.Framework.CategoryAttribute("UAT")]
     public partial class MPSContractSearchFeature
     {
         
@@ -36,8 +35,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSOne.Contract
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "MPSContractSearch", "In order to select a specific contract from a list\r\nAs a math an MPS Dealer\r\nI wa" +
                     "nt to be able to search for contract with some criteria", ProgrammingLanguage.CSharp, new string[] {
-                        "Ignore",
-                        "UAT"});
+                        "Ignore"});
             testRunner.OnFeatureStart(featureInfo);
         }
         

@@ -114,6 +114,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             if (IsElementPresent(PaymentTypeDropdown))
                 SelectFromDropdown(PaymentTypeDropdown, "Direct Debit");
+            WebDriver.Wait(DurationType.Second, 3);
         }
 
         public void EnterBankName()

@@ -20,7 +20,6 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSOne.MyAccount
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("MPSBOLMyAccountCheckMPSSalesDealer")]
-    [NUnit.Framework.CategoryAttribute("UAT")]
     public partial class MPSBOLMyAccountCheckMPSSalesDealerFeature
     {
         
@@ -34,8 +33,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSOne.MyAccount
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "MPSBOLMyAccountCheckMPSSalesDealer", "In order to view the account for an MPS Sales Dealer\r\nAs an MPS Sales Dealer\r\nI w" +
-                    "ant to be able to log in to MPS and see My Account", ProgrammingLanguage.CSharp, new string[] {
-                        "UAT"});
+                    "ant to be able to log in to MPS and see My Account", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -72,15 +70,15 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSOne.MyAccount
         public virtual void VerifyMyAccountDetailForMPSSalesDealer()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify my account detail for MPS Sales Dealer", ((string[])(null)));
-#line 8
+#line 7
 this.ScenarioSetup(scenarioInfo);
-#line 9
+#line 8
  testRunner.Given("I sign into MPS as a \"Sales Dealer\" from \"Spain\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 10
+#line 9
  testRunner.And("\"Sales Dealer\" privileges are available for use", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 11
+#line 10
  testRunner.When("I navigate to my account for \"Spain\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 12
+#line 11
  testRunner.Then("\"Sales Dealer\" invoices should be displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
