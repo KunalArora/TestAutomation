@@ -8,7 +8,7 @@ Background:
 	Given I am logged onto Brother Online "United Kingdom" using valid credentials
 
 # Sign into Brother Online and change password
-@TEST @UAT @PROD
+@ignore @TEST @UAT @PROD
 Scenario: Customer has created a Brother Online account and wishes to change their password (BOL-164)
 	Given I am logged into my Brother Online account
 	When I navigate to my account for "United Kingdom"
@@ -39,7 +39,7 @@ Scenario: Customer has created a Brother Online account but has forgotten their 
 
 # Create account, sign in, note missing menu option, add role to user, sign out and in again, note menu option present
 # Instant Ink role used as a baseline
-@TEST @UAT
+@ignore @TEST @UAT
 Scenario: Customer or Dealer role persists after email address change (BOL-176)
 	Given I am logged into my Brother Online account
 	Then I can sign out of Brother Online
@@ -60,8 +60,8 @@ Scenario: Customer or Dealer role persists after email address change (BOL-176)
 	Then I can sign out of Brother Online
 
 # Create an account and sign in, change registered email address and sign out, re-sign in again using new address
-@TEST @UAT @PROD
-Scenario: Customer can change their Brother Online UK email address after registration 
+@ignore @TEST @UAT @PROD 
+Scenario: Customer can change their Brother Online UK email address after registration (BBAU - find out the number )
 	Given I am logged into my Brother Online account
 	When I navigate to my account for "United Kingdom"
 	And I click on Sign In Details
