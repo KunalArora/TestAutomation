@@ -134,7 +134,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             IWebElement element = ActionButtonElementByName(name, "6");
             StoreProposalName(name);
             element.Click();
-            ActionsModule.NavigateToBankContractSummary(Driver);
+            ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
 
             return GetTabInstance<BankProposalsSummaryPage>(Driver);
         }
