@@ -150,11 +150,35 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             AwaitingApprovalLinkElement.Click();
         }
 
+        public void NavigateToDeclinedPage()
+        {
+            IsDeclinedLinkAvailable();
+            DeclinedLinkElement.Click();
+        }
+
+        public void NavigateToApprovedPage()
+        {
+            IsApprovedLinkAvailable();
+            ApprovedLinkElement.Click();
+        }
+
         public void VerifyDeclinedProposalIsDisplayed()
         {
             string name = SpecFlow.GetContext("ProposalNameByBank");
 
             AssertElementPresent(ActionButtonElementByName(name, "7"), "The proposal is not found");
+        }
+
+        public void VerifyApprovedProposalIsDisplayed()
+        {
+            string name = SpecFlow.GetContext("ProposalNameByBank");
+
+            AssertElementPresent(ActionButtonElementByName(name, "7"), "The proposal is not found");
+        }
+
+        public void IsAllTheDeclinedProposalDisplayed()
+        {
+            
         }
     }
 }

@@ -145,6 +145,11 @@ namespace Brother.Tests.Specs.MPSTwo.SendToBank
             NextPage = CurrentPage.As<LocalOfficeApproverDashBoardPage>().NavigateToProposalsPage();
         }
 
+        [Then(@"I can view all the proposals declined by both Bank and LocalOffice Approver")]
+        public void ThenICanViewAllTheProposalsDeclinedByBothBankAndLocalOfficeApprover()
+        {
+            CurrentPage.As<BankOffersPage>().IsAllTheDeclinedProposalDisplayed();
+        }
 
     }
 }
