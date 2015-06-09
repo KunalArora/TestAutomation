@@ -39,11 +39,11 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
             }
 
             // wait for popup form
-            if (WaitForElementToExistById("#txtEmail"))
+            if (WaitForElementToExistByCssSelector(".add-colleague.dp-pop-up.cf", 5, 5))
             {
                 CustomerEmailAddress.SendKeys(emailAddress);
             }
-            TestCheck.AssertIsEqual(emailAddress, CustomerEmailAddress.Text, "Customer Email Address");
+            TestCheck.AssertIsEqual(emailAddress, GetTextBoxValue("EmailAddress"), "Customer Email Address");
         }
     }
 }
