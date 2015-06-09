@@ -22,6 +22,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private IWebElement ApprovedLinkElement;
         [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/bank/proposals/declined']")]
         private IWebElement DeclinedLinkElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_ButtonDecline']")]
+        private IWebElement DeclineButtonElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_ButtonApprove']")]
+        private IWebElement ApproveButtonElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_InputProposalDeclineReason_Input']")]
+        private IWebElement RejectionReasonDropdownElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_InputProposalDeclineComment_Input']")]
+        private IWebElement RejectionCommentBoxElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_ButtonProposalDeclineDecline']")]
+        private IWebElement RejectButtonElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_ButtonProposalDeclineCancel']")]
+        private IWebElement RejectionCancelButtonElement;
+        
+        
 
         public void IsAwaitingApprovalLinkAvailable()
         {
@@ -56,6 +70,57 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var newProposal = Driver.FindElement(By.XPath(newlyAdded));
 
             TestCheck.AssertIsEqual(true, newProposal.Displayed, "Is new sent to bank awaiting proposal page?");
+        }
+
+
+        public void IsProposalDeclined()
+        {
+            IsProposalSentToBankAwaitingProposalPage();
+        }
+
+        public void NavigateToAwaitingApprovalSummaryPage(IWebDriver driver)
+        {
+            ActionsModule.NavigateToSummaryPageUsingActionButton(driver);
+        }
+
+        public void ClickOnActionButtonAgainstRelevantProposal(IWebDriver driver)
+        {
+            ScrollTo(ActionsModule.SpecificActionsDropdownElement(driver));
+            ActionsModule.SpecificClickOnTheActionsDropdown(driver);
+        }
+
+        public void ClickOnDeclineButton()
+        {
+            if(DeclineButtonElement == null)
+                throw new Exception("Proposal Decline Button not displayed, are you on Offer Summary page?");
+            DeclineButtonElement.Click();
+            WebDriver.Wait(DurationType.Second, 5);
+        }
+
+        public void SelectRejectionReason()
+        {
+            SelectFromDropdown(RejectionReasonDropdownElement, "Other");
+        }
+
+        public void EnterRejectionComment()
+        {
+            ClearAndType(RejectionCommentBoxElement, "It is rejected by auto");
+        }
+
+        public void ClickOnRejectionButton()
+        {
+            if(RejectButtonElement == null)
+                throw new Exception("Reject button not displayed, are you trying to reject the proposal?");
+            RejectButtonElement.Click();
+        }
+
+        public void DeclineAnAwaitingApprovalProposal()
+        {
+            ClickOnDeclineButton();
+            SelectRejectionReason();
+            EnterRejectionComment();
+            ClickOnRejectionButton();
+            WebDriver.Wait(DurationType.Second, 3);
         }
 
     }

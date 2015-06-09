@@ -28,6 +28,46 @@ namespace Brother.Tests.Specs.MPSTwo.SendToBank
             CurrentPage.As<ConvertProposalSummaryPage>().GiveThirdPartyCheckApproval();
         }
 
+        [Given(@"I send the created proposal for approval")]
+        public void GivenISendTheCreatedProposalForApproval()
+        {
+            WhenIClickOnActionButtonAgainstTheProposalCreatedAbove();
+            ThenICanClickOnConvertToContractButtonUnderTheActionButton();
+            ThenIAmDirectedToCustomerDetailPageForMoreDataCapture();
+            ThenIAmTakenToTheProposalSummaryWhereICanEnterEnvisageContractStartDate();
+            ThenICanSuccessfullyConvertTheProposalToContract();
+            ThenTheNewlyConvertedContractIsAvailableUnderAwaitingApprovalTab();
+        }
+
+        [When(@"I decline the proposal created above")]
+        public void WhenIDeclineTheProposalCreatedAbove()
+        {
+            ThenINavigateToBankAwaitingApprovalScreenUnderOfferPage();
+            CurrentPage.As<BankOffersPage>().ClickOnActionButtonAgainstRelevantProposal(CurrentDriver);
+            CurrentPage.As<BankOffersPage>().NavigateToAwaitingApprovalSummaryPage(CurrentDriver);
+            CurrentPage.As<BankOffersPage>().DeclineAnAwaitingApprovalProposal();
+            CurrentPage.As<BankOffersPage>().IsProposalDeclined();
+        }
+
+        [When(@"I navigate to decline proposal list page")]
+        public void WhenINavigateToDeclineProposalListPage()
+        {
+            NextPage = CurrentPage.As<DealerDashBoardPage>().NavigateToExistingProposalPage();
+            CurrentPage.As<CloudExistingProposalPage>().NavigateToDeclinedProposalScreen();
+            
+
+        }
+
+        [Then(@"I can copy the declined proposal without customer")]
+        public void ThenICanCopyTheDeclinedProposalWithoutCustomer()
+        {
+            CurrentPage.As<CloudExistingProposalPage>().ClickOnActionButtonAgainstRelevantProposal(CurrentDriver);
+            CurrentPage.As<CloudExistingProposalPage>().CopyAProposalWithCustomer(CurrentDriver);
+            CurrentPage.As<CloudExistingProposalPage>().IsProposalCopiedWithoutCustomer(CurrentDriver);
+        }
+
+
+
         [Then(@"I am directed to customer detail page for more data capture")]
         public void ThenIAmDirectedToCustomerDetailPageForMoreDataCapture()
         {

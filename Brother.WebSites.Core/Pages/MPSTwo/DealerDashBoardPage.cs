@@ -31,14 +31,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsCreateNewProposalLinkAvailable()
         {
-            if (CreateProposalLinkElement == null) throw new Exception("Unable to locate create new proposal link on dashboard page");
+            if (CreateProposalLinkElement == null) 
+                throw new Exception("Unable to locate create new proposal link on dashboard page");
             
             AssertElementPresent(CreateProposalLinkElement, "Create New Proposal Link");
         }
 
         public void IsExistingProposalLinkAvailable()
         {
-            if (ExistingProposalLinkElement == null) throw new Exception("Unable to locate existing proposals link on dashboard page");
+            if (ExistingProposalLinkElement == null) 
+                throw new Exception("Unable to locate existing proposals link on dashboard page");
 
             AssertElementPresent(ExistingProposalLinkElement, "Existing Proposals Link");
         }
@@ -61,14 +63,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void IsAdminLinkAvailable()
         {
-            if (AdminLinkElement == null) throw new Exception("Unable to locate create Admin link on dashboard page");
+            if (AdminLinkElement == null) 
+                throw new Exception("Unable to locate create Admin link on dashboard page");
 
             AssertElementPresent(AdminLinkElement, "Create Admin Link");
         }
 
         private void IsAdminTabAvailable()
         {
-            if (DealerAdminTabElement == null) throw new Exception("Unable to locate create Admin link on dashboard page");
+            if (DealerAdminTabElement == null) 
+                throw new Exception("Unable to locate create Admin link on dashboard page");
 
             AssertElementPresent(DealerAdminTabElement, "Create Admin Tab");
         }
@@ -100,6 +104,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             IsAdminTabAvailable();
             DealerAdminTabElement.Click();
             return GetTabInstance<DealerAdminDashBoardPage>(Driver);
+        }
+
+        public CloudExistingProposalPage NavigateToExistingProposalPage()
+        {
+            if(ExistingProposalLinkElement == null)
+                throw new Exception("Are you sure you on dealer dashboard page?");
+            ExistingProposalLinkElement.Click();
+
+            return GetInstance<CloudExistingProposalPage>(Driver);
         }
 
     }

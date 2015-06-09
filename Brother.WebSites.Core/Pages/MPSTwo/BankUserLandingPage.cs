@@ -114,7 +114,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             ActionsModule.ClickOnTheActionsDropdown(driver);
             WebDriver.Wait(Helper.DurationType.Second, 3);
-            ActionsModule.NavigateToBankContractSummary(driver);
+            ActionsModule.NavigateToSummaryPageUsingActionButton(driver);
             WebDriver.Wait(Helper.DurationType.Second, 3);
         }
 

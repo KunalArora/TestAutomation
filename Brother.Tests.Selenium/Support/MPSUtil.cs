@@ -16,7 +16,8 @@ namespace Brother.Tests.Selenium.Lib.Support
         /// <returns>Generated proposal Name as string</returns>
         public static string GenerateUniqueProposalName()
         {
-            var generatedProposalName = "MPS_" + SurName() + "-" + DateTime.Now.ToString("yyyyMMdHHmmss");
+            var generatedProposalName = "MPS_" + SurName() + 
+                "-" + DateTime.Now.ToString("yyyyMMdHHmmss");
             return generatedProposalName;
         }
 
@@ -32,6 +33,12 @@ namespace Brother.Tests.Selenium.Lib.Support
         {
             var createdProposal = HelperClasses.SpecFlow.GetContext("GeneratedProposalName");
             return createdProposal;
+        }
+
+        public static string CopiedProposal()
+        {
+            var createdProposal = HelperClasses.SpecFlow.GetContext("GeneratedProposalName");
+            return createdProposal + " (1)";
         }
 
         public static string SomeDaysFromToday()

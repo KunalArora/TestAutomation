@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using OpenQA.Selenium;
 
@@ -16,10 +17,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string actionsButton = @".js-mps-filter-ignore .dropdown-toggle";
         private const string PreInstallationButton = @".open ul.dropdown-menu .js-mps-pre-installation";
         private const string MaintainOfferButton = @".open ul.dropdown-menu .js-mps-maintain-offer";
+        private const string ProposalCopyElement = @".js-mps-copy";
+        private const string ProposalCopyElementWithCustomer = @".js-mps-copy-with-customer";
 
-        
-        
 
+        private static IWebElement CopyProposalButtonElement(ISearchContext driver)
+        {
+            return driver.FindElement(By.CssSelector(ProposalCopyElement));
+        }
+
+        private static IWebElement CopyProposalWithCustomerButtonElement(ISearchContext driver)
+        {
+            return driver.FindElement(By.CssSelector(ProposalCopyElementWithCustomer));
+        }
 
         private static IWebElement ConvertButtonElement(ISearchContext driver)
         {
@@ -71,14 +81,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private static string ProposalCreatedActionButton()
         {
-            return String.Format("//td[text()='{0}']/parent::tr/td[6]/div/button", CreatedProposal());
+            return String.Format("//td[text()='{0}']/parent::tr/td[6]/div/button", MpsUtil.CreatedProposal());
         }
 
-        private static string CreatedProposal()
+        private static string ProposalCustomer()
         {
-            var createdProposal = SpecFlow.GetContext("GeneratedProposalName");
-            return createdProposal;
+            return String.Format("//td[text()='{0}']/parent::tr/td[4]", MpsUtil.CopiedProposal());
         }
+
+        public static IWebElement ProposalCustomerColumn(IWebDriver driver)
+        {
+            var actionsElement = driver.FindElement(By.XPath(ProposalCustomer()));
+            return actionsElement;
+        } 
+
 
         public static void SpecificClickOnTheActionsDropdown(IWebDriver driver)
         {
@@ -90,6 +106,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             var actionsElement = ActionsDropdownElement(driver);
             actionsElement.Last().Click();
+        }
+
+        public static void CopyAProposal(IWebDriver driver)
+        {
+            var copyButton = CopyProposalButtonElement(driver);
+            copyButton.Click();
+        }
+
+        public static void CopyAProposalWithCustomer(IWebDriver driver)
+        {
+            var copyButton = CopyProposalWithCustomerButtonElement(driver);
+            copyButton.Click();
         }
 
         public static void NavigateToPreInstallationScreen(IWebDriver driver)
@@ -112,9 +140,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ConvertButtonElement(driver).Click();
         }
 
-        public static void NavigateToBankContractSummary(IWebDriver driver)
+        public static void NavigateToSummaryPageUsingActionButton(IWebDriver driver)
         {
-            WebDriver.Wait(Helper.DurationType.Second, 5); //Wait for the Action pop up to appear
+            WebDriver.Wait(Helper.DurationType.Second, 2); //Wait for the Action pop up to appear
             OpenOfferViewSummaryElement(driver).Click();
             WebDriver.Wait(Helper.DurationType.Second, 5); //Wait for the page to load
         }

@@ -53,7 +53,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private IWebElement productsTabElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/proposals/convert/summary\"]")]
         private IWebElement proposalSummaryTabElement;
-
+        [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/proposals/declined\"] span")]
+        private IWebElement proposalDeclinedTabElement;
         
         
 
@@ -101,6 +102,26 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetTabInstance<CreateNewProposalPage>(Driver);
         }
 
+        public void NavigateToDeclinedProposalScreen()
+        {
+            if(proposalDeclinedTabElement == null)
+                throw new Exception("Cannot fine Declined Tab");
+            proposalDeclinedTabElement.Click();
+        }
+
+        public void IsProposalCopiedWithoutCustomer(IWebDriver driver)
+        {
+            TestCheck.AssertIsEqual(true, 
+                ActionsModule.ProposalCustomerColumn(driver).Text.Equals(String.Empty), 
+                "Proposal was copied with customer detail");
+        }
+
+        public void IsProposalCopiedWithCustomer(IWebDriver driver)
+        {
+            TestCheck.AssertIsEqual(false,
+                ActionsModule.ProposalCustomerColumn(driver).Text.Equals(String.Empty),
+                "Proposal was copied with customer detail");
+        }
 
         public void IsNewProposalTemplateCreated()
         {
@@ -125,10 +146,30 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
 
             TestCheck.AssertIsEqual(false, proposalContainer.Contains(createdProposal), "Is proposal successfully sent to bank?");
-
-
         }
 
+
+        public void CopyAProposalWithoutCustomer(IWebDriver driver)
+        {
+            ActionsModule.CopyAProposal(driver);
+        }
+
+        public void CopyAProposalWithCustomer(IWebDriver driver)
+        {
+            ActionsModule.CopyAProposalWithCustomer(driver);
+        }
+
+        public void IsProposalCopied()
+        {
+            var copiedProposal = MpsUtil.CopiedProposal();
+            var newlyCopied = @"//td[text()='{0}']";
+            newlyCopied = String.Format(newlyCopied, copiedProposal);
+
+            var newlyCopiedProposal = Driver.FindElement(By.XPath(newlyCopied));
+
+            AssertElementPresent(newlyCopiedProposal, "Newly Copied proposal is not displayed");
+            
+        }
         
         public void ClickOnActionButtonAgainstRelevantProposal(IWebDriver driver)
         {
