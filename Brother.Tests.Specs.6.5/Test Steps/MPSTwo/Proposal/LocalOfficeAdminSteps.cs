@@ -30,7 +30,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [When(@"I can set the default margins for all contracts")]
         public void WhenICanSetTheDefaultMarginsForAllContracts()
         {
-            NextPage = CurrentPage.As<DealerDefaultsPage>().SaveDealerDefaults();
+            NextPage = CurrentPage.As<LocalOfficeAdminDealerDefaultsPage>().SaveDealerDefaults();
         }
 
 
