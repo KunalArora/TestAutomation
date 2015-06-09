@@ -20,7 +20,7 @@ namespace Brother.Tests.Specs.TestSpecifications.SmartSupply
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("")]
-    [NUnit.Framework.CategoryAttribute("UAT")]
+    [NUnit.Framework.CategoryAttribute("TEST")]
     public partial class Feature
     {
         
@@ -35,7 +35,7 @@ namespace Brother.Tests.Specs.TestSpecifications.SmartSupply
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "", "In order to view the Supply Club benefits\r\nAs an anonymous user\r\nI need to add th" +
                     "e supply club product to basket and see the club product benefits", ProgrammingLanguage.CSharp, new string[] {
-                        "UAT"});
+                        "TEST"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -69,15 +69,15 @@ namespace Brother.Tests.Specs.TestSpecifications.SmartSupply
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("View Brother Supply Club product benefits")]
-        [NUnit.Framework.CategoryAttribute("UAT")]
+        [NUnit.Framework.CategoryAttribute("TEST")]
         public virtual void ViewBrotherSupplyClubProductBenefits()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("View Brother Supply Club product benefits", new string[] {
-                        "UAT"});
+                        "TEST"});
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line 9
-  testRunner.Given("I have navigated to the url \"http://it.brotherqas.eu/supplies/laser/toner/tn/tn22" +
+  testRunner.Given("I have navigated to the url \"http://it.brotherdv2.eu/supplies/laser/toner/tn/tn22" +
                     "20\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 10
      testRunner.Then("I will see text information relating to the benefit I will receive", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
