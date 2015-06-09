@@ -61,9 +61,17 @@ namespace Brother.Tests.Specs.MPSTwo.SendToBank
         [Then(@"I can copy the declined proposal without customer")]
         public void ThenICanCopyTheDeclinedProposalWithoutCustomer()
         {
-            CurrentPage.As<CloudExistingProposalPage>().ClickOnActionButtonAgainstRelevantProposal(CurrentDriver);
-            CurrentPage.As<CloudExistingProposalPage>().CopyAProposalWithCustomer(CurrentDriver);
+            CurrentPage.As<CloudExistingProposalPage>().ClickOnActionButtonAgainstDeclinedProposal(CurrentDriver);
+            CurrentPage.As<CloudExistingProposalPage>().CopyAProposalWithoutCustomer(CurrentDriver);
             CurrentPage.As<CloudExistingProposalPage>().IsProposalCopiedWithoutCustomer(CurrentDriver);
+        }
+
+        [Then(@"I can copy the declined proposal with customer")]
+        public void ThenICanCopyTheDeclinedProposalWithCustomer()
+        {
+            CurrentPage.As<CloudExistingProposalPage>().ClickOnActionButtonAgainstDeclinedProposal(CurrentDriver);
+            CurrentPage.As<CloudExistingProposalPage>().CopyAProposalWithCustomer(CurrentDriver);
+            CurrentPage.As<CloudExistingProposalPage>().IsProposalCopiedWithCustomer(CurrentDriver);
         }
 
 

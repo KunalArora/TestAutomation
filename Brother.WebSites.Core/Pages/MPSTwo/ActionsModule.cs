@@ -17,8 +17,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string actionsButton = @".js-mps-filter-ignore .dropdown-toggle";
         private const string PreInstallationButton = @".open ul.dropdown-menu .js-mps-pre-installation";
         private const string MaintainOfferButton = @".open ul.dropdown-menu .js-mps-maintain-offer";
-        private const string ProposalCopyElement = @".js-mps-copy";
-        private const string ProposalCopyElementWithCustomer = @".js-mps-copy-with-customer";
+        private const string ProposalCopyElement = @".open .js-mps-copy";
+        private const string ProposalCopyElementWithCustomer = @".open .js-mps-copy-with-customer";
 
 
         private static IWebElement CopyProposalButtonElement(ISearchContext driver)
@@ -84,6 +84,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return String.Format("//td[text()='{0}']/parent::tr/td[6]/div/button", MpsUtil.CreatedProposal());
         }
 
+        private static string DeclinedProposalActionButton()
+        {
+            return String.Format("//td[text()='{0}']/parent::tr/td[7]/div/button", MpsUtil.CreatedProposal());
+        }
+
+        private static string ProposalCopiedActionButton()
+        {
+            return String.Format("//td[text()='{0}']/parent::tr/td[6]/div/button", MpsUtil.CopiedProposal());
+        }
+
         private static string ProposalCustomer()
         {
             return String.Format("//td[text()='{0}']/parent::tr/td[4]", MpsUtil.CopiedProposal());
@@ -93,8 +103,32 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             var actionsElement = driver.FindElement(By.XPath(ProposalCustomer()));
             return actionsElement;
-        } 
+        }
 
+        public static IWebElement DeclinedProposalActionDropdown(IWebDriver driver)
+        {
+            var actionsElement = driver.FindElement(By.XPath(DeclinedProposalActionButton()));
+            return actionsElement;
+        }
+
+
+        public static IWebElement CopiedProposalActionButton(IWebDriver driver)
+        {
+            var actionsElement = driver.FindElement(By.XPath(ProposalCopiedActionButton()));
+            return actionsElement;
+        }
+
+        public static void ClickOnSpecificCopiedProposalActionsDropdown(IWebDriver driver)
+        {
+            var actionsElement = CopiedProposalActionButton(driver);
+            actionsElement.Click();
+        }
+
+        public static void ClickOnSpecificDeclinedProposalActionsDropdown(IWebDriver driver)
+        {
+            var actionsElement = DeclinedProposalActionDropdown(driver);
+            actionsElement.Click();
+        }
 
         public static void SpecificClickOnTheActionsDropdown(IWebDriver driver)
         {

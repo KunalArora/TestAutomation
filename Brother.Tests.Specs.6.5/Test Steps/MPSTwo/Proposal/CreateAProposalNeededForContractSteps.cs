@@ -66,6 +66,25 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             
         }
 
+
+        [Then(@"I am redirected to Customer screen when I start proposal conversion process")]
+        public void ThenRedirectedToCustomerScreenWhenIAmStartProposalConversionProcess()
+        {
+            CurrentPage.As<CloudExistingProposalPage>().ClickOnActionButtonAgainstCopiedProposal(CurrentDriver);
+            NextPage = CurrentPage.As<CloudExistingProposalPage>().ClickOnConvertToContractButton(CurrentDriver);
+            CurrentPage.As<ConvertProposalCustomerInfo>().IsConvertCustomerInfoScreenDisplayed();
+        }
+
+
+        [Then(@"I am redirected to Summary page when I start proposal conversion process")]
+        public void ThenRedirectedToSummaryPageWhenIStartProposalConversionProcess()
+        {
+            CurrentPage.As<CloudExistingProposalPage>().ClickOnActionButtonAgainstCopiedProposal(CurrentDriver);
+            NextPage = CurrentPage.As<CloudExistingProposalPage>().ClickOnConvertToContractButtonForCopiedProposalWithCustomer(CurrentDriver);
+            CurrentPage.As<ConvertProposalSummaryPage>().IsConvertSummaryPageDisplayed();
+        }
+
+
         [When(@"I add a date to the proposal")]
         [Then(@"I add a date to the proposal")]
         public void ThenIAddADateToTheProposal()
