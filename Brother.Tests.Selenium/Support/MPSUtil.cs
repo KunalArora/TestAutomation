@@ -16,7 +16,7 @@ namespace Brother.Tests.Selenium.Lib.Support
         /// <returns>Generated proposal Name as string</returns>
         public static string GenerateUniqueProposalName()
         {
-            var generatedProposalName = "MPS_" + SurName()+ "-" + FirstName();
+            var generatedProposalName = "MPS_" + SurName() + "-" + DateTime.Now.ToString("yyyyMMdHHmmss");
             return generatedProposalName;
         }
 
@@ -26,6 +26,12 @@ namespace Brother.Tests.Selenium.Lib.Support
                 DateTime.Now.ToString("yyyyMMdHHmmss")
                 +"@mailinator.com";
             return generatedEmailAddress;
+        }
+
+        public static string CreatedProposal()
+        {
+            var createdProposal = HelperClasses.SpecFlow.GetContext("GeneratedProposalName");
+            return createdProposal;
         }
 
         public static string SomeDaysFromToday()

@@ -104,7 +104,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             SelectMonoVolume(volume, "0");
             SelectColorVolume(colour);
             WebDriver.Wait(DurationType.Second, 3);
-
+            CalculateClickPriceElement.Click();
+            WebDriver.Wait(DurationType.Second, 3);
         }
 
 
@@ -184,7 +185,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void CalculateClickPrice(string volume, string colour)
         {
             SelectClickPriceAndCalculate(volume, colour);
-            VerifyClickPriceValueIsDisplayed();
+            //VerifyClickPriceValueIsDisplayed();
         }
 
         public void CalculateClickPrice()
