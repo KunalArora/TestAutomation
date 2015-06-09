@@ -4,7 +4,7 @@ Feature: SpecFlowFeature1
 	As a math idiot
 	I want to be told the sum of two numbers
 
-
+@ignore
 Scenario Outline: Add two numbers
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to OfferPage
