@@ -80,6 +80,7 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.Account
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Customer has created a Brother Online account and wishes to change their password" +
             " (BOL-164)")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.CategoryAttribute("TEST")]
         [NUnit.Framework.CategoryAttribute("UAT")]
         [NUnit.Framework.CategoryAttribute("PROD")]
@@ -87,6 +88,7 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.Account
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer has created a Brother Online account and wishes to change their password" +
                     " (BOL-164)", new string[] {
+                        "ignore",
                         "TEST",
                         "UAT",
                         "PROD"});
@@ -166,11 +168,13 @@ this.FeatureBackground();
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Customer or Dealer role persists after email address change (BOL-176)")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.CategoryAttribute("TEST")]
         [NUnit.Framework.CategoryAttribute("UAT")]
         public virtual void CustomerOrDealerRolePersistsAfterEmailAddressChangeBOL_176()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer or Dealer role persists after email address change (BOL-176)", new string[] {
+                        "ignore",
                         "TEST",
                         "UAT"});
 #line 43
@@ -216,13 +220,17 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Customer can change their Brother Online UK email address after registration")]
+        [NUnit.Framework.DescriptionAttribute("Customer can change their Brother Online UK email address after registration (BBA" +
+            "U - find out the number )")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.CategoryAttribute("TEST")]
         [NUnit.Framework.CategoryAttribute("UAT")]
         [NUnit.Framework.CategoryAttribute("PROD")]
-        public virtual void CustomerCanChangeTheirBrotherOnlineUKEmailAddressAfterRegistration()
+        public virtual void CustomerCanChangeTheirBrotherOnlineUKEmailAddressAfterRegistrationBBAU_FindOutTheNumber()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer can change their Brother Online UK email address after registration", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer can change their Brother Online UK email address after registration (BBA" +
+                    "U - find out the number )", new string[] {
+                        "ignore",
                         "TEST",
                         "UAT",
                         "PROD"});
