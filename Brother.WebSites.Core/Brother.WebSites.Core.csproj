@@ -126,6 +126,7 @@
     <Compile Include="Pages\MPSTwo\ConvertProposalCustomerInfo.cs" />
     <Compile Include="Pages\MPSTwo\ConvertProposalSummaryPage.cs" />
     <Compile Include="Pages\MPSTwo\ConvertProposalTermAndType.cs" />
+    <Compile Include="Pages\MPSTwo\BankProposalsSummaryPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerProposalsAwaitingApproval.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeAdminServiceDeskPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeApproverContractsMaintenancePage.cs" />

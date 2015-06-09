@@ -16,14 +16,25 @@ namespace Brother.Tests.Specs
             NextPage = CurrentPage.As<PartnerPortalPage>().ManageCustomersAndOrdersButtonClick();
         }
 
-
-        [When(@"I create a new Customer Account")]
-        public void WhenICreateANewCustomerAccount()
+        [Then(@"I can navigate back to the Partner Portal Home Page using breadcrumbs")]
+        public void ThenICanNavigateBackToThePartnerPortalHomePageUsingBreadcrumbs()
         {
-            //CurrentPage.As<>().
+            NextPage = CurrentPage.As<SuccessPage>().PartnerPortalBreadcrumbClick();
+        }
+        
+        [When(@"I Click Add New Customer")]
+        public void WhenIClickAddNewCustomer()
+        {
+            CurrentPage.As<ManageCustomersAndOrdersPage>().AddNewCustomerButtonClick();
         }
 
+        [When(@"I enter a new Customer Email Address As ""(.*)""")]
+        public void WhenIEnterANewCustomerEmailAddressAs(string emailAddress)
+        {
+            CurrentPage.As<ManageCustomersAndOrdersPage>().AddNewCustomerEmailAddress(emailAddress);
+        }
 
+       
         [Then(@"I can see the Partner Portal Home Page")]
         public void ThenICanSeeThePartnerPortalHomePage()
         {
@@ -96,7 +107,7 @@ namespace Brother.Tests.Specs
         [Then(@"I should see the order success screen")]
         public void ThenIShouldSeeTheOrderSuccessScreen()
         {
-            CurrentPage.As<CreateActivationCodesPage>().IsSuccessAvailable();
+            NextPage = CurrentPage.As<CreateActivationCodesPage>().IsSuccessAvailable();
         }
 
         [Then(@"I can store the Order Details for ""(.*)"" as they are required later")]

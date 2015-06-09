@@ -20,8 +20,7 @@ namespace Brother.Tests.Specs.TestSpecifications.InstantInk
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("Validate User Role")]
-    [NUnit.Framework.CategoryAttribute("UAT")]
-    [NUnit.Framework.CategoryAttribute("TEST")]
+    [NUnit.Framework.IgnoreAttribute()]
     public partial class ValidateUserRoleFeature
     {
         
@@ -36,8 +35,7 @@ namespace Brother.Tests.Specs.TestSpecifications.InstantInk
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Validate User Role", "In order to utilise the Instant Ink feature\r\nAs a user\r\nI need to be granted the " +
                     "correct role", ProgrammingLanguage.CSharp, new string[] {
-                        "UAT",
-                        "TEST"});
+                        "ignore"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -79,11 +77,11 @@ namespace Brother.Tests.Specs.TestSpecifications.InstantInk
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Validate user has correct role for Instant Ink")]
-        [NUnit.Framework.CategoryAttribute("TEST")]
+        [NUnit.Framework.IgnoreAttribute()]
         public virtual void ValidateUserHasCorrectRoleForInstantInk()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate user has correct role for Instant Ink", new string[] {
-                        "TEST"});
+                        "ignore"});
 #line 12
 this.ScenarioSetup(scenarioInfo);
 #line 7

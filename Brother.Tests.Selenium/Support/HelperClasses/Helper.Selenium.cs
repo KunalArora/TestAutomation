@@ -24,12 +24,15 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             try
             {
                 WebDriver.SetWebDriverImplicitTimeout(new TimeSpan(0,0,10));
-                var acceptCookieLawButton = driver.FindElement(By.CssSelector("#AcceptCookieLawHyperLink"));
-                acceptCookieLawButton.Click();
+                if (WaitForElementToExistByCssSelector("#AcceptCookieLawHyperLink", 5, 3))
+                {
+                    var acceptCookieLawButton = driver.FindElement(By.CssSelector("#AcceptCookieLawHyperLink"));
+                    acceptCookieLawButton.Click();
+                }
             }
             catch (ElementNotVisibleException elementNotVisible)
             {
-                MsgOutput(string.Format("AcceptCookieLaw : {0}", elementNotVisible));
+                MsgOutput(string.Format("AcceptCookieLaw : {0} [This error can be ignored]", elementNotVisible));
             }
             WebDriver.SetWebDriverImplicitTimeout(WebDriver.ImplicitWaitDefaultTimeout);
         }
@@ -56,31 +59,65 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
         public bool WaitForElementToExistById(string element)
         {
-            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(ElementSearchTimeout));
-            var elementStatus = wait.Until(ExpectedConditions.ElementIsVisible(By.Id(element))).Displayed;
+            var elementStatus = false;
+            try
+            {
+                var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(ElementSearchTimeout));
+                elementStatus = wait.Until(ExpectedConditions.ElementIsVisible(By.Id(element))).Displayed;
+            }
+            catch (Exception elementSearchTimeout)
+            {
+                MsgOutput(elementSearchTimeout.Message);
+                throw new WebDriverTimeoutException(string.Format("Timeout searching for Element [{0}]. Timeout after [{1}]", element, ElementSearchTimeout));
+            }
             return elementStatus;
-
         }
 
         public bool WaitForElementToExistByClassName(string element)
         {
-            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(ElementSearchTimeout));
-            var elementStatus = wait.Until(ExpectedConditions.ElementIsVisible(By.ClassName(element))).Displayed;
+            var elementStatus = false;
+            try
+            {
+                var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(ElementSearchTimeout));
+                elementStatus = wait.Until(ExpectedConditions.ElementIsVisible(By.ClassName(element))).Displayed;
+            }
+            catch (Exception elementSearchTimeout)
+            {
+                MsgOutput(elementSearchTimeout.Message);
+                throw new WebDriverTimeoutException(string.Format("Timeout searching for Element [{0}]. Timeout after [{1}]", element, ElementSearchTimeout));
+            }
             return elementStatus;
-
         }
 
         public bool WaitForElementToExistByName(string element)
         {
-            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(ElementSearchTimeout));
-            var elementStatus = wait.Until(ExpectedConditions.ElementIsVisible(By.Name(element))).Displayed;
+            var elementStatus = false;
+            try
+            {
+                var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(ElementSearchTimeout));
+                elementStatus = wait.Until(ExpectedConditions.ElementIsVisible(By.Name(element))).Displayed;
+            }
+            catch (Exception elementSearchTimeout)
+            {
+                MsgOutput(elementSearchTimeout.Message);
+                throw new WebDriverTimeoutException(string.Format("Timeout searching for Element [{0}]. Timeout after [{1}]", element, ElementSearchTimeout));
+            }
             return elementStatus;
         }
 
         public bool WaitForElementToExistByTagName(string element)
         {
-            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(ElementSearchTimeout));
-            var elementStatus = wait.Until(ExpectedConditions.ElementIsVisible(By.TagName(element))).Displayed;
+            var elementStatus = false;
+            try
+            {
+                var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(ElementSearchTimeout));
+                elementStatus = wait.Until(ExpectedConditions.ElementIsVisible(By.TagName(element))).Displayed;
+            }
+            catch (Exception elementSearchTimeout)
+            {
+                MsgOutput(elementSearchTimeout.Message);
+                throw new WebDriverTimeoutException(string.Format("Timeout searching for Element [{0}]. Timeout after [{1}]", element, ElementSearchTimeout));
+            }
             return elementStatus;
         }
 

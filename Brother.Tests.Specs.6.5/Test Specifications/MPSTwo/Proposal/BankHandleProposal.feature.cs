@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Brother.Tests.Specs.TestSpecifications.SmartSupply
+namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Proposal
 {
     using TechTalk.SpecFlow;
     
@@ -19,23 +19,25 @@ namespace Brother.Tests.Specs.TestSpecifications.SmartSupply
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.9.0.77")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("")]
+    [NUnit.Framework.DescriptionAttribute("SpecFlowFeature1")]
     [NUnit.Framework.CategoryAttribute("TEST")]
-    public partial class Feature
+    [NUnit.Framework.CategoryAttribute("UAT")]
+    public partial class SpecFlowFeature1Feature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "BrotherSupplyClubProductBenefits.feature"
+#line 1 "BankHandleProposal.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "", "In order to view the Supply Club benefits\r\nAs an anonymous user\r\nI need to add th" +
-                    "e supply club product to basket and see the club product benefits", ProgrammingLanguage.CSharp, new string[] {
-                        "TEST"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "SpecFlowFeature1", "In order to avoid silly mistakes\r\nAs a math idiot\r\nI want to be told the sum of t" +
+                    "wo numbers", ProgrammingLanguage.CSharp, new string[] {
+                        "TEST",
+                        "UAT"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -68,26 +70,32 @@ namespace Brother.Tests.Specs.TestSpecifications.SmartSupply
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("View Brother Supply Club product benefits")]
-        [NUnit.Framework.CategoryAttribute("TEST")]
-        public virtual void ViewBrotherSupplyClubProductBenefits()
+        [NUnit.Framework.DescriptionAttribute("Add two numbers")]
+        [NUnit.Framework.IgnoreAttribute()]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Bank", "United Kingdom", "TEST 23", null)]
+        public virtual void AddTwoNumbers(string role, string country, string name, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("View Brother Supply Club product benefits", new string[] {
-                        "TEST"});
+            string[] @__tags = new string[] {
+                    "ignore"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add two numbers", @__tags);
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line 9
-  testRunner.Given("I have navigated to the url \"http://it.brotherdv2.eu/supplies/laser/toner/tn/tn22" +
-                    "20\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 10
-     testRunner.Then("I will see text information relating to the benefit I will receive", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("I navigate to OfferPage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
-  testRunner.When("I click on Add to basket button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("I navigate to Awaiting Approval screen under Offer page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 12
-  testRunner.Then("I hover the mouse on the basket icon to see text information relating to the bene" +
-                    "fit I will receive", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When(string.Format("I select a proposal from \"{0}\" of Proposal", name), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 13
+ testRunner.Then("I should be able to decline that proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 14
-  testRunner.Then("I can see the product name with the benefits text", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("the decline proposal should be displayed under Declined tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
