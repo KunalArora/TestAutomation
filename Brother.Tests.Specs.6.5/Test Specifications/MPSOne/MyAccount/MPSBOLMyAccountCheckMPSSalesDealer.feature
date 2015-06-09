@@ -1,5 +1,4 @@
-﻿@UAT
-Feature: MPSBOLMyAccountCheckMPSSalesDealer
+﻿Feature: MPSBOLMyAccountCheckMPSSalesDealer
 	In order to view the account for an MPS Sales Dealer
 	As an MPS Sales Dealer
 	I want to be able to log in to MPS and see My Account

@@ -1,5 +1,4 @@
-﻿@UAT
-Feature: MPSBOLMyAccountCheckMPSAdminDealer
+﻿Feature: MPSBOLMyAccountCheckMPSAdminDealer
 	In order to view the account for an Admin Dealer
 	As an MPS Admin Dealer
 	I want to be able to log in to MPS and see My Account

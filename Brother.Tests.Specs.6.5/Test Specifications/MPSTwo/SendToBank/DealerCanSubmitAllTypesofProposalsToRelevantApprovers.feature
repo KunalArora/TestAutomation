@@ -49,7 +49,7 @@ Scenario Outline: Send Leasing and Click proposal to bank for Privately Liable C
 	| Role             | Country        | Role2          |
 	| Cloud MPS Dealer | United Kingdom | Cloud MPS Bank |
 
-@Ignore
+
 Scenario Outline: Send Leasing and Click proposal to bank for Customer who can order consumables
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created Leasing and Click proposal
@@ -71,6 +71,7 @@ Scenario Outline: Send Leasing and Click proposal to bank for Customer who can o
 
 	| Role             | Country        | Role2          |
 	| Cloud MPS Dealer | United Kingdom | Cloud MPS Bank |
+
 
 @Ignore
 Scenario Outline: Send Leasing and Click proposal to bank for Privately Liable Customer who can order consumables

@@ -1,4 +1,4 @@
-﻿@Ignore @UAT
+﻿@Ignore
 Feature: MPSAuthorisedDealerAccountSetupPortalAuthorisationCheckADMINDealer
 	In order to navigate to Contract Overview page
 	As a Dealer
