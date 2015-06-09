@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
@@ -58,5 +58,38 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             TestCheck.AssertIsEqual(true, newProposal.Displayed, "Is new sent to bank awaiting proposal page?");
         }
 
+        private IWebElement ActionButtonElementByName(string name, string tdcol)
+        {
+            string element = String.Format("//td[text()=\"{0}\"]/parent::tr/td[{1}]/div/button", name, tdcol);
+            return Driver.FindElement(By.XPath(element));
+        }
+
+        public BankProposalsSummaryPage NavigateToViewSummary(string name)
+        {
+            IWebElement element = ActionButtonElementByName(name, "6");
+            StoreProposalName(name);
+            element.Click();
+            ActionsModule.NavigateToBankContractSummary(Driver);
+
+            return GetTabInstance<BankProposalsSummaryPage>(Driver);
+        }
+
+        private void StoreProposalName(string name)
+        {
+            SpecFlow.SetContext("ProposalNameByBank", name);
+        }
+
+        public void NavigateToAwaitingApprovalPage()
+        {
+            IsAwaitingApprovalLinkAvailable();
+            AwaitingApprovalLinkElement.Click();
+        }
+
+        public void VerifyDeclinedProposalIsDisplayed()
+        {
+            string name = SpecFlow.GetContext("ProposalNameByBank");
+
+            AssertElementPresent(ActionButtonElementByName(name, "7"), "The proposal is not found");
+        }
     }
 }
