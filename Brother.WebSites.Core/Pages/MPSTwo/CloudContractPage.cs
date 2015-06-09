@@ -106,7 +106,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 throw new NullReferenceException("Sign button is not displayed");
 
             ActionsModule.ClickOnTheActionsDropdown(driver);
-            ActionsModule.NavigateToBankContractSummary(driver);
+            ActionsModule.NavigateToSummaryPageUsingActionButton(driver);
 
             DealerContractSignButtonElement.Click();
             WebDriver.Wait(Helper.DurationType.Second, 3);
