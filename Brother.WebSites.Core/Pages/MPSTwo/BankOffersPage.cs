@@ -22,17 +22,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private IWebElement ApprovedLinkElement;
         [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/bank/proposals/declined']")]
         private IWebElement DeclinedLinkElement;
-        [FindsBy(How = How.CssSelector, Using = "#content_1_ButtonDecline']")]
+        [FindsBy(How = How.CssSelector, Using = "#content_1_ButtonDecline")]
         private IWebElement DeclineButtonElement;
-        [FindsBy(How = How.CssSelector, Using = "#content_1_ButtonApprove']")]
+        [FindsBy(How = How.CssSelector, Using = "#content_1_ButtonApprove")]
         private IWebElement ApproveButtonElement;
-        [FindsBy(How = How.CssSelector, Using = "#content_1_InputProposalDeclineReason_Input']")]
+        [FindsBy(How = How.CssSelector, Using = "#content_1_InputProposalDeclineReason_Input")]
         private IWebElement RejectionReasonDropdownElement;
-        [FindsBy(How = How.CssSelector, Using = "#content_1_InputProposalDeclineComment_Input']")]
+        [FindsBy(How = How.CssSelector, Using = "#content_1_InputProposalDeclineComment_Input")]
         private IWebElement RejectionCommentBoxElement;
-        [FindsBy(How = How.CssSelector, Using = "#content_1_ButtonProposalDeclineDecline']")]
+        [FindsBy(How = How.CssSelector, Using = "#content_1_ButtonProposalDeclineDecline")]
         private IWebElement RejectButtonElement;
-        [FindsBy(How = How.CssSelector, Using = "#content_1_ButtonProposalDeclineCancel']")]
+        [FindsBy(How = How.CssSelector, Using = "#content_1_ButtonProposalDeclineCancel")]
         private IWebElement RejectionCancelButtonElement;
         
         
@@ -93,6 +93,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             if(DeclineButtonElement == null)
                 throw new Exception("Proposal Decline Button not displayed, are you on Offer Summary page?");
+            WebDriver.Wait(DurationType.Second, 3);
+            ScrollTo(DeclineButtonElement);
             DeclineButtonElement.Click();
             WebDriver.Wait(DurationType.Second, 5);
         }

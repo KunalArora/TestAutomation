@@ -65,8 +65,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private IWebElement PrivateLiablePropertyPostCodeElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputPersonalLiabilityRegion_Input")]
         private IWebElement PrivateLiablePropertyRegionElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_InputCustomerChoiceNew")]
+        private IWebElement CreateNewCustomerRadioButtonElement;
 
 
+
+        public void IsConvertCustomerInfoScreenDisplayed()
+        {
+            if(CreateNewCustomerRadioButtonElement == null)
+                throw new Exception("Customer Info page for conversion is not displayed");
+            AssertElementPresent(CreateNewCustomerRadioButtonElement, "Customer radio button not displayed");
+        }
 
 
         public void CustomerCanOrderConsumables()

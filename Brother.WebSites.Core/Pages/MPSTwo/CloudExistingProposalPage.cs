@@ -112,14 +112,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void IsProposalCopiedWithoutCustomer(IWebDriver driver)
         {
             TestCheck.AssertIsEqual(true, 
-                ActionsModule.ProposalCustomerColumn(driver).Text.Equals(String.Empty), 
+                ActionsModule.ProposalCustomerColumn(driver).Text.Equals("-"), 
                 "Proposal was copied with customer detail");
         }
 
         public void IsProposalCopiedWithCustomer(IWebDriver driver)
         {
             TestCheck.AssertIsEqual(false,
-                ActionsModule.ProposalCustomerColumn(driver).Text.Equals(String.Empty),
+                ActionsModule.ProposalCustomerColumn(driver).Text.Equals("-"),
                 "Proposal was copied with customer detail");
         }
 
@@ -152,11 +152,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void CopyAProposalWithoutCustomer(IWebDriver driver)
         {
             ActionsModule.CopyAProposal(driver);
+            IsProposalCopied();
         }
 
         public void CopyAProposalWithCustomer(IWebDriver driver)
         {
             ActionsModule.CopyAProposalWithCustomer(driver);
+            IsProposalCopied();
         }
 
         public void IsProposalCopied()
@@ -175,6 +177,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             ScrollTo(ActionsModule.SpecificActionsDropdownElement(driver));
             ActionsModule.SpecificClickOnTheActionsDropdown(driver);
+        }
+
+        public void ClickOnActionButtonAgainstDeclinedProposal(IWebDriver driver)
+        {
+            ScrollTo(ActionsModule.DeclinedProposalActionDropdown(driver));
+            ActionsModule.ClickOnSpecificDeclinedProposalActionsDropdown(driver);
+            WebDriver.Wait(DurationType.Second, 2);
+        }
+
+
+        public void ClickOnActionButtonAgainstCopiedProposal(IWebDriver driver)
+        {
+            ScrollTo(ActionsModule.CopiedProposalActionButton(driver));
+            ActionsModule.ClickOnSpecificCopiedProposalActionsDropdown(driver);
         }
 
         private ReadOnlyCollection<IWebElement> ActionsDropdownElement(string actionsButton)
@@ -200,6 +216,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ActionsModule.StartConvertToContractProcess(driver);
             //VerifyThatTheCorrectProposalOpened();
             return GetTabInstance<ConvertProposalCustomerInfo>(Driver);
+
+        }
+
+        public ConvertProposalSummaryPage ClickOnConvertToContractButtonForCopiedProposalWithCustomer(IWebDriver driver)
+        {
+            ActionsModule.StartConvertToContractProcess(driver);
+            //VerifyThatTheCorrectProposalOpened();
+            return GetTabInstance<ConvertProposalSummaryPage>(Driver);
 
         }
 
