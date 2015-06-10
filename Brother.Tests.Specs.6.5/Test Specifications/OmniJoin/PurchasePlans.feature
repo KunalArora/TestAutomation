@@ -25,6 +25,7 @@ Scenario Outline: Purchase OmniJoin subscription plan for <country> for a <Plan 
 	Then I should see the Order Confirmation page
 	And The purchased plan billing type is correct "<Billing Type>"
 	And If I click on My Account
+	And I can click on Orders
 	And I can validate the order "<Qty>" of "<Order Name>" @ "<Price>" on My Account page
 	And If I sign out of Brother Online
 	Then I am redirected to the Brother Home Page

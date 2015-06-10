@@ -55,7 +55,7 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
             }
 
             // wait for popup form
-            if (WaitForElementToExistByCssSelector(AddCustomerDialog, 10, 10))
+            if (WaitForElementToExistByCssSelector(AddCustomerDialog, 5, 20))
             {
                 if (WaitForElementToExistByCssSelector(NextButton, 10, 10))
                 {
