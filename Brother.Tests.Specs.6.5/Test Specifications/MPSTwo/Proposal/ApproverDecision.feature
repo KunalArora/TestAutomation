@@ -55,6 +55,7 @@ Scenario Outline: Declined proposal is displayed on Declined Page
 # Approve
 #
 # Contract name should be removed by feature
+@ignore
 Scenario Outline: Bank Approve Proposal
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to OfferPage
@@ -66,3 +67,16 @@ Scenario Outline: Bank Approve Proposal
 	Scenarios: 
 	| Role           | Country        | Name    |
 	| Cloud MPS Bank | United Kingdom | MPS_Ross-2015069074732 |
+
+#
+# Approve Signed Contract
+#
+@ignore
+Scenario Outline: Send Leasing and Click proposal to bank
+	Given I have created Leasing and Click contract
+
+	
+	Scenarios:
+
+	| Role             | Country        | Role2          |
+	| Cloud MPS Dealer | United Kingdom | Cloud MPS Bank |

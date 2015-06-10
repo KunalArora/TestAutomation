@@ -1,3 +1,6 @@
+using Brother.Tests.Specs.BrotherOnline.Account;
+using Brother.Tests.Specs.MPSTwo.Bank;
+using Brother.Tests.Specs.MPSTwo.SendToBank;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
 using Brother.WebSites.Core.Pages.MPSTwo;
@@ -25,6 +28,31 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             WhenIFillProposalDescription();
         }
 
+        [Given(@"I have created Leasing and Click contract")]
+        public void GivenIHaveCreatedLeasingAndClickContract()
+        {
+            var instance4 = new CreateNewAccountSteps();
+            instance4.GivenISignIntoMpsasAFrom("Cloud MPS Dealer", "United Kingdom");
+            GivenIHaveCreatedLeasingAndClickProposal();
+            var instance = new ProposalCreateAProposalThatWillBeUsedForContractSteps();
+            instance.GivenIAmOnProposalListPage();
+            var instance2 = new SendProposalToApprover();
+            instance2.WhenIClickOnActionButtonAgainstTheProposalCreatedAbove();
+            instance2.ThenICanClickOnConvertToContractButtonUnderTheActionButton();
+            instance2.ThenIAmDirectedToCustomerDetailPageForMoreDataCapture();
+            instance2.ThenIAmTakenToTheProposalSummaryWhereICanEnterEnvisageContractStartDate();
+            instance2.ThenICanSuccessfullyConvertTheProposalToContract();
+            instance2.ThenTheNewlyConvertedContractIsAvailableUnderAwaitingApprovalTab();
+            var instance3 = new AccountManagementSteps();
+            instance3.ThenIfISignOutOfBrotherOnline();
+            instance4.GivenISignIntoMpsasAFrom("Cloud MPS Bank", "United Kingdom");
+            instance2.ThenINavigateToBankAwaitingApprovalScreenUnderOfferPage();
+            instance2.ThenTheConvertedLeasingAndClickAndServiceProposalAboveIsDisplayedOnTheScreen();
+            var instance5 = new BankSteps();
+            instance5.ThenISelectTheProposalOnAwaitingProposal();
+            instance5.ThenIShouldBeAbleToApproveThatProposal();
+            instance3.ThenIfISignOutOfBrotherOnline();
+        }
 
         [Given(@"I have created Leasing and Click proposal")]
         public void GivenIHaveCreatedLeasingAndClickProposal()
