@@ -31,7 +31,7 @@ Scenario Outline: Dealer Can Sign A Leasing And Click Contract
 
 
 @Ignore
-Scenario Outline: Dealer Can Sign A Leasing And Click Contract
+Scenario Outline: Dealer Can Sign A Purchase And Click Contract
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created Purchase and Click proposal 
 	And I am on Proposal List page
