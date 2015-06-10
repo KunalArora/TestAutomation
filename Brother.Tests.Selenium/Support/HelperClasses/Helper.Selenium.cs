@@ -143,6 +143,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                 {
                     var searchElement = wait.Until(dr => dr.FindElement(By.CssSelector(element)));
                     elementStatus = searchElement.Displayed;
+                    MsgOutput(string.Format("Element Status = [{0}]", elementStatus));
                     retries++;
                 }
                 catch (StaleElementReferenceException staleElement)
