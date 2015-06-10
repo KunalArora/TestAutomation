@@ -30,6 +30,12 @@ namespace Brother.Tests.Specs.MPSTwo.Bank
            NextPage = CurrentPage.As<BankOffersPage>().NavigateToViewSummary(name);
         }
 
+        [Then(@"I select the proposal on Awaiting Proposal")]
+        public void ThenISelectTheProposalOnAwaitingProposal()
+        {
+            NextPage = CurrentPage.As<BankOffersPage>().NavigateToViewSummary();
+        }
+
         [Then(@"I should be able to decline that proposal")]
         public void ThenIShouldBeAbleToDeclineThatProposal()
         {
