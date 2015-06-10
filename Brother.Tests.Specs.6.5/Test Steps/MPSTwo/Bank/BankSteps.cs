@@ -66,10 +66,18 @@ namespace Brother.Tests.Specs.MPSTwo.Bank
         }
 
         [When(@"I navigate to Contract Awaiting Acceptance page")]
+        [Then(@"I navigate to Contract Awaiting Acceptance page")]
         public void WhenINavigateToContractAwaitingAcceptancePage()
         {
-            NextPage = CurrentPage.As<BankDashBoardPage>().NavigateToContractsPage();
             CurrentPage.As<BankContractsPage>().NavigateToAwaitingAcceptancePage();
+        }
+
+        [When(@"I navigate to Contract Awaiting Acceptance page from Bank DashBoard")]
+        [Then(@"I navigate to Contract Awaiting Acceptance page from Bank DashBoard")]
+        public void WhenINavigateToContractAwaitingAcceptancePageFromBankDashBoard()
+        {
+            NextPage = CurrentPage.As<BankDashBoardPage>().NavigateToContractsPage();
+            WhenINavigateToContractAwaitingAcceptancePage();
         }
 
         [Then(@"I can view all the contracts that have been signed by dealer")]
@@ -85,6 +93,46 @@ namespace Brother.Tests.Specs.MPSTwo.Bank
             CurrentPage.As<BankContractsSummaryPage>().IsAcceptButtonAvailable();
             CurrentPage.As<BankContractsSummaryPage>().IsRejectButtonAvailable();
         }
+
+        [Then(@"I can successfully approve the contract")]
+        public void ThenICanSuccessfullyApproveTheContract()
+        {
+            NextPage = CurrentPage.As<BankContractsPage>().NavigateToViewSummary();
+            CurrentPage.As<BankContractsSummaryPage>().ClickAcceptButton();
+            NextPage = CurrentPage.As<BankContractsSummaryPage>().ClickFinalAcceptButton();
+        }
+
+        [Then(@"I can successfully reject the contract")]
+        public void ThenICanSuccessfullyRejectTheContract()
+        {
+            NextPage = CurrentPage.As<BankContractsPage>().NavigateToViewSummary();
+            CurrentPage.As<BankContractsSummaryPage>().ClickRejectButton();
+            CurrentPage.As<BankContractsSummaryPage>().SelectRejectionReason("Expired");
+            NextPage = CurrentPage.As<BankContractsSummaryPage>().ClickFinalRejectButton();
+        }
+
+        [Then(@"the accepted contract is displayed on contract Accepted screen")]
+        public void ThenTheAcceptedContractIsDisplayedOnContractAcceptedScreen()
+        {
+            CurrentPage.As<BankContractsPage>().NavigateToAcceptedPage();
+            CurrentPage.As<BankContractsPage>().IsContractsSignedByDealerDisplayed();
+        }
+
+        [Then(@"the rejected contract is displayed on contract Rejected screen")]
+        public void ThenTheRejectedContractIsDisplayedOnContractRejectedScreen()
+        {
+            CurrentPage.As<BankContractsPage>().NavigateToRejectedPage();
+            CurrentPage.As<BankContractsPage>().IsContractsSignedByDealerDisplayed();
+        }
+
+        [Then(@"the accepted contract is displayed on proposal Approved screen")]
+        public void ThenTheAcceptedContractIsDisplayedOnProposalApprovedScreen()
+        {
+
+        }
+
+
+
 
     }
 }
