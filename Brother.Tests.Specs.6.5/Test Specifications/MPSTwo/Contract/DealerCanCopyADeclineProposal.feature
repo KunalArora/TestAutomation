@@ -25,6 +25,7 @@ Scenario Outline: Dealer Can Copy A Declined Leasing and Click Proposal without 
 	| Cloud MPS Dealer | United Kingdom | Cloud MPS Bank |
 
 
+
 @Ignore
 Scenario Outline: Dealer Can Copy A Declined Leasing and Click Proposal with customer detail
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"

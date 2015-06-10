@@ -56,6 +56,7 @@ namespace Brother.Tests.Specs.MPSTwo.Bank
             CurrentPage.As<BankOffersPage>().VerifyApprovedProposalIsDisplayed();
         }
 
+        
         [Then(@"I should be able to approve that proposal")]
         public void ThenIShouldBeAbleToApproveThatProposal()
         {
@@ -63,5 +64,32 @@ namespace Brother.Tests.Specs.MPSTwo.Bank
             CurrentPage.As<BankProposalsSummaryPage>().EnterApprovalInformation();
             NextPage = CurrentPage.As<BankProposalsSummaryPage>().ClickAccpetButton();
         }
+
+        [Given(@"I approve the proposal created above")]
+        public void GivenIApproveTheProposalCreatedAbove()
+        {
+            WhenINavigateToOfferPage();
+            GivenINavigateToAwaitingApprovalScreenUnderOfferPage();
+            NextPage = CurrentPage.As<BankOffersPage>().NavigateToProposalSummary();
+            CurrentPage.As<BankProposalsSummaryPage>().ClickApproveButton();
+            CurrentPage.As<BankProposalsSummaryPage>().EnterApprovalInformation();
+            NextPage = CurrentPage.As<BankProposalsSummaryPage>().ClickAccpetButton();
+        }
+
+        [Then(@"navigate to bank contract Awaiting Acceptance page")]
+        public void ThenNavigateToBankContractAwaitingAcceptancePage()
+        {
+            NextPage = CurrentPage.As<BankDashBoardPage>().NavigateToContractApprovedProposalPage();
+            CurrentPage.As<BankContractsPage>().NavigateToAwaitingAcceptancePage();
+        }
+
+        [Then(@"the signed contract is displayed")]
+        public void ThenTheSignedContractIsDisplayed()
+        {
+            CurrentPage.As<BankContractsPage>().IsAwaitingAcceptancePageOpened();
+            CurrentPage.As<BankContractsPage>().IsSignedContractDisplayedUnderAwaitingAcceptancePage();
+        }
+
+
     }
 }
