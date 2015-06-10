@@ -103,11 +103,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PurchaseAndClickProposalUserJourney.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Proposal\BankHandleProposal.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BankHandleProposal.feature</DependentUpon>
-    </Compile>
     <Compile Include="Test Specifications\MPSTwo\Proposal\SummaryPageValidationForAllProposalTypes.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -560,10 +555,6 @@
     <None Include="Test Specifications\MPSTwo\Proposal\PurchaseAndClickProposalUserJourney.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>PurchaseAndClickProposalUserJourney.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPSTwo\Proposal\BankHandleProposal.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>BankHandleProposal.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwo\Proposal\SummaryPageValidationForAllProposalTypes.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
