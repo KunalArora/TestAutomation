@@ -52,13 +52,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetTabInstance<BankOffersPage>(Driver);
         }
 
+        public BankContractsPage NavigateToContractApprovedProposalPage()
+        {
+            IsOffersLinkAvailable();
+            ContractsLinkElement.Click();
+            return GetTabInstance<BankContractsPage>(Driver);
+        }
+	
         public BankContractsPage NavigateToContractsPage()
         {
             IsContractsLinkAvailable();
             ContractsLinkElement.Click();
             return GetTabInstance<BankContractsPage>(Driver);
         }
-
  
 
     }

@@ -26,6 +26,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private IWebElement RejectedLinkElement;
         [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/bank/contracts/invoices']")]
         private IWebElement InvoicesLinkElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/bank/contracts/awaiting-acceptance\"] span")]
+        private IWebElement OpenedAwaitingAcceptancLinkElement;
+
+        
 
         public void IsApprovedProposalsLinkAvailable()
         {
@@ -41,6 +45,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 throw new Exception("Unable to locate Approved");
 
             AssertElementPresent(AwaitingAcceptancLinkElement, "Create Awaiting Acceptance Link");
+        }
+
+        public void IsAwaitingAcceptancePageOpened()
+        {
+            if (OpenedAwaitingAcceptancLinkElement == null)
+                throw new Exception("Unable to locate Approved");
+
+            AssertElementPresent(OpenedAwaitingAcceptancLinkElement, "Opened Awaiting Acceptance Page");
         }
 
         public void IsAcceptedLinkAvailable()
@@ -77,6 +89,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             RejectedLinkElement.Click();
         }
 
+        public void IsSignedContractDisplayedUnderAwaitingAcceptancePage()
+        {
+            new CloudExistingProposalPage().IsNewProposalTemplateCreated();
+	}
+	
         public void IsContractsSignedByDealerDisplayed()
         {
             var createdContract = MpsUtil.CreatedProposal();

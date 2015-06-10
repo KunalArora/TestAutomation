@@ -151,6 +151,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetTabInstance<BankProposalsSummaryPage>(Driver);
         }
 
+        public BankProposalsSummaryPage NavigateToProposalSummary()
+        {
+            ActionsModule.SpecificClickOnTheActionsDropdown(Driver);
+            ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
+
+            return GetTabInstance<BankProposalsSummaryPage>(Driver);
+        }
+
         private void StoreProposalName(string name)
         {
             SpecFlow.SetContext("ProposalNameByBank", name);
