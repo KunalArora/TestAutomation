@@ -44,7 +44,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             {
                 throw new AssertionException(
                     string.Format(
-                        "AssertIsNotNull Failed: [{0}] validation didn't match expectations. Expected Null, Actual [{0}]",
+                        "AssertIsNotNull Failed: [{0}] validation didn't match expectations. Expected Null, Actual [{1}]",
                         validationMessage, itemToCheck));
             }
         }
