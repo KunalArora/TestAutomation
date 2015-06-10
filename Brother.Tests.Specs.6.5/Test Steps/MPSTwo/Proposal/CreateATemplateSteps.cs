@@ -28,7 +28,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             WhenIFillProposalDescription();
         }
 
-        [Given(@"I have created Leasing and Click contract")]
+        [Given(@"Dealer have created Leasing and Click contract")]
         public void GivenIHaveCreatedLeasingAndClickContract()
         {
             var instance4 = new CreateNewAccountSteps();
@@ -51,6 +51,9 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             var instance5 = new BankSteps();
             instance5.ThenISelectTheProposalOnAwaitingProposal();
             instance5.ThenIShouldBeAbleToApproveThatProposal();
+            instance3.ThenIfISignOutOfBrotherOnline();
+            instance4.GivenISignIntoMpsasAFrom("Cloud MPS Dealer", "United Kingdom");
+            instance.WhenISignTheContractAsADealer();
             instance3.ThenIfISignOutOfBrotherOnline();
         }
 

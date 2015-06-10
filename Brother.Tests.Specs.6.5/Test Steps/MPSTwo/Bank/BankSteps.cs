@@ -61,7 +61,30 @@ namespace Brother.Tests.Specs.MPSTwo.Bank
         {
             CurrentPage.As<BankProposalsSummaryPage>().ClickApproveButton();
             CurrentPage.As<BankProposalsSummaryPage>().EnterApprovalInformation();
-            NextPage = CurrentPage.As<BankProposalsSummaryPage>().ClickAccpetButton();
+            CurrentPage.As<BankProposalsSummaryPage>().ClickAccpetButton();
+            //NextPage = CurrentPage.As<BankProposalsSummaryPage>().ClickAccpetButton();
         }
+
+        [When(@"I navigate to Contract Awaiting Acceptance page")]
+        public void WhenINavigateToContractAwaitingAcceptancePage()
+        {
+            NextPage = CurrentPage.As<BankDashBoardPage>().NavigateToContractsPage();
+            CurrentPage.As<BankContractsPage>().NavigateToAwaitingAcceptancePage();
+        }
+
+        [Then(@"I can view all the contracts that have been signed by dealer")]
+        public void ThenICanViewAllTheContractsThatHaveBeenSignedByDealer()
+        {
+            CurrentPage.As<BankContractsPage>().IsContractsSignedByDealerDisplayed();
+        }
+
+        [Then(@"I can either reject or approve the contract")]
+        public void ThenICanEitherRejectOrApproveTheContract()
+        {
+            NextPage = CurrentPage.As<BankContractsPage>().NavigateToViewSummary();
+            CurrentPage.As<BankContractsSummaryPage>().IsAcceptButtonAvailable();
+            CurrentPage.As<BankContractsSummaryPage>().IsRejectButtonAvailable();
+        }
+
     }
 }

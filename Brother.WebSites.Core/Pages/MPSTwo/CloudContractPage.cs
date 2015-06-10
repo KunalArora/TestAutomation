@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
@@ -171,6 +172,21 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             PreInstallationCompleteButtonElement.Click();
             WebDriver.Wait(Helper.DurationType.Second, 5);
         }
-        
+
+        private IWebElement ActionButtonElementByName(string name, string tdcol)
+        {
+            string element = String.Format("//td[text()=\"{0}\"]/parent::tr/td[{1}]/div/button", name, tdcol);
+            return Driver.FindElement(By.XPath(element));
+        }
+
+        public DealerContractsSummaryPage NavigateToViewOffer()
+        {
+            string proposalname = MpsUtil.CreatedProposal();
+            IWebElement element = ActionButtonElementByName(proposalname, "9");
+            element.Click();
+            ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
+
+            return GetTabInstance<DealerContractsSummaryPage>(Driver);
+        }
     }
 }

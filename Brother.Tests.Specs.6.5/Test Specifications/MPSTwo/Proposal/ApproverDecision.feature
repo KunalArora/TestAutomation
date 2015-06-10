@@ -71,12 +71,13 @@ Scenario Outline: Bank Approve Proposal
 #
 # Approve Signed Contract
 #
-@ignore
 Scenario Outline: Send Leasing and Click proposal to bank
-	Given I have created Leasing and Click contract
-
-	
+	Given Dealer have created Leasing and Click contract
+	And I sign into Cloud MPS as a "<Role>" from "<Country>"
+	When I navigate to Contract Awaiting Acceptance page
+	Then I can view all the contracts that have been signed by dealer
+	And I can either reject or approve the contract
 	Scenarios:
 
 	| Role             | Country        | Role2          |
-	| Cloud MPS Dealer | United Kingdom | Cloud MPS Bank |
+	| Cloud MPS Bank   | United Kingdom | Cloud MPS Bank |
