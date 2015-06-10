@@ -63,6 +63,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DealerCanCopyADeclineProposal.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\MPSTwo\Contract\DealerCanSignContract.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DealerCanSignContract.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specifications\MPSTwo\Contract\PAYGPurchaseAndClickContract.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -512,6 +517,10 @@
     <None Include="Test Specifications\MPSTwo\Contract\DealerCanCopyADeclineProposal.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>DealerCanCopyADeclineProposal.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwo\Contract\DealerCanSignContract.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>DealerCanSignContract.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwo\Contract\PAYGPurchaseAndClickContract.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
