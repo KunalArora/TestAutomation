@@ -61,6 +61,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             ScrollTo(AcceptButtonElement);
             AcceptButtonElement.Click();
+            WebDriver.Wait(Helper.DurationType.Second, 5);
 
             return GetTabInstance<BankOffersPage>(Driver);
         }

@@ -260,16 +260,12 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         }
 
 
-        [When(@"I sign the contract")]
-        public void WhenISignTheContract()
+        [When(@"I sign the contract as a dealer")]
+        public void WhenISignTheContractAsADealer()
         {
-            NextPage = CurrentPage.As<WelcomeBackPage>().NavigateToDealerDashboard();
             NextPage = CurrentPage.As<DealerDashBoardPage>().NavigateToContractScreenFromDealerDashboard();
-            CurrentPage.As<CloudContractPage>().IsContractScreenDisplayed();
-            CurrentPage.As<CloudContractPage>().NavigateToConfirmedOfferScreen();
-            CurrentPage.As<CloudContractPage>().VerifyAcceptedContractIsDisplayed();
-
-            CurrentPage.As<CloudContractPage>().DealerSignNewContract(CurrentDriver);
+            NextPage = CurrentPage.As<CloudContractPage>().NavigateToViewOffer();
+            NextPage = CurrentPage.As<DealerContractsSummaryPage>().ClickSignButton();
         }
 
         [Then(@"the reject contract above is displayed on dealer rejected offer screen")]
