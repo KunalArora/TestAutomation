@@ -68,6 +68,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PAYGPurchaseAndClickContract.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\MPSTwo\Proposal\ApproverDecision.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ApproverDecision.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specifications\MPSTwo\Proposal\ClickPriceDeepDive.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -523,6 +528,10 @@
     <None Include="Test Specifications\MPSTwo\Contract\BankRejectsAContract.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>BankRejectsAContract.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwo\Proposal\ApproverDecision.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ApproverDecision.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwo\Proposal\ClickPriceDeepDive.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
