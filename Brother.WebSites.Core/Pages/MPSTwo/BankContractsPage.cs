@@ -1,4 +1,6 @@
 ﻿using System;
+using Brother.Tests.Selenium.Lib.Support;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -90,6 +92,33 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void IsSignedContractDisplayedUnderAwaitingAcceptancePage()
         {
             new CloudExistingProposalPage().IsNewProposalTemplateCreated();
+	}
+	
+        public void IsContractsSignedByDealerDisplayed()
+        {
+            var createdContract = MpsUtil.CreatedProposal();
+            var newlyAdded = @"//td[text()='{0}']";
+            newlyAdded = String.Format(newlyAdded, createdContract);
+
+            var newContract = Driver.FindElement(By.XPath(newlyAdded));
+
+            TestCheck.AssertIsEqual(true, newContract.Displayed, "Is new sent to bank awaiting contract page?");
+        }
+
+        private IWebElement ActionButtonElementByName(string name, string tdcol)
+        {
+            string element = String.Format("//td[text()=\"{0}\"]/parent::tr/td[{1}]/div/button", name, tdcol);
+            return Driver.FindElement(By.XPath(element));
+        }
+
+        public BankContractsSummaryPage NavigateToViewSummary()
+        {
+            string proposalname = MpsUtil.CreatedProposal();
+            IWebElement element = ActionButtonElementByName(proposalname, "7");
+            element.Click();
+            ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
+
+            return GetTabInstance<BankContractsSummaryPage>(Driver);
         }
     }
 }

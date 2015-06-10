@@ -111,6 +111,13 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             NextPage = GlobalNavigationModule.PaymentMethodsMenuClick(CurrentDriver, paymentMethodsButton);
         }
 
+        [Then(@"I can click on Orders")]
+        public void ThenICanClickOnOrders()
+        {
+            var ordersButton = GlobalNavigationModule.GetMyAccountMenuItem("Orders");
+            NextPage = GlobalNavigationModule.OrdersMenuClick(CurrentDriver, ordersButton);
+        }
+
         [Then(@"If I grant the user account the ""(.*)"" role")]
         public void ThenIfIGrantTheUserAccountTheRole(string userRole)
         {

@@ -21,13 +21,29 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
 
         [FindsBy(How = How.CssSelector, Using = ".btn-add-colleague.button-aqua")]
         public IWebElement AddNewCustomer;
-
+        
+        private const string AddCustomerDialog = ".box-out.generic-form";
+        private const string NextButton = ".check-email.button-blue";
+    
         [FindsBy(How = How.CssSelector, Using = "#txtEmail")]
         public IWebElement CustomerEmailAddress;
 
         public void AddNewCustomerButtonClick()
         {
             AddNewCustomer.Click();
+        }
+
+        public void NextButtonClick()
+        {
+            try
+            {
+                var nextButton = Driver.FindElement(By.CssSelector(NextButton));
+                nextButton.Click();
+            }
+            catch (Exception timeOut)
+            {
+                throw new WebDriverTimeoutException(string.Format("Timeout searching for Next button on Add Customer form {0}", timeOut));
+            }
         }
 
         public void AddNewCustomerEmailAddress(string emailAddress)
@@ -39,11 +55,22 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
             }
 
             // wait for popup form
-            if (WaitForElementToExistByCssSelector(".add-colleague.dp-pop-up.cf", 5, 5))
+            if (WaitForElementToExistByCssSelector(AddCustomerDialog, 5, 20))
             {
-                CustomerEmailAddress.SendKeys(emailAddress);
+                if (WaitForElementToExistByCssSelector(NextButton, 10, 10))
+                {
+                    CustomerEmailAddress.SendKeys(emailAddress);
+                }
+                else
+                {
+                    MsgOutput("Not visible");
+                }
             }
-            TestCheck.AssertIsEqual(emailAddress, GetTextBoxValue("EmailAddress"), "Customer Email Address");
+            else
+            {
+                MsgOutput("Not visible");
+            }
+            AssertElementValue(CustomerEmailAddress, emailAddress, "Validate Customer Email Address");
         }
     }
 }
