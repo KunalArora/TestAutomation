@@ -54,11 +54,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetTabInstance<LocalOfficeAdminProgramSettingPage>(Driver);
         }
 
-        public DealerDefaultsPage NavigateToDealerDefaultsPage()
+        public LocalOfficeAdminDealerDefaultsPage NavigateToDealerDefaultsPage()
         {
             IsDealerDefaultsLinkAvailable();
             DealerDefaultsElement.Click();
-            return GetTabInstance<DealerDefaultsPage>(Driver);
+            return GetTabInstance<LocalOfficeAdminDealerDefaultsPage>(Driver);
         }
 
         public LocalOfficeAdminProgramSettingPage NavigateToLeaseAndClickPage()

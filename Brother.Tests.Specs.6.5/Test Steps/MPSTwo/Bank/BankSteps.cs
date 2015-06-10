@@ -9,13 +9,13 @@ using TechTalk.SpecFlow;
 namespace Brother.Tests.Specs.MPSTwo.Bank
 {
     [Binding]
-    public class StepDefinition1 : BaseSteps
+    public class BankSteps : BaseSteps
     {
 
         [Given(@"I navigate to OfferPage")]
         public void WhenINavigateToOfferPage()
         {
-           NextPage = CurrentPage.As<BankDashBoardPage>().NavigateToOffersPage();
+            NextPage = CurrentPage.As<BankDashBoardPage>().NavigateToOffersPage();
         }
 
         [Given(@"I navigate to Awaiting Approval screen under Offer page")]
@@ -44,5 +44,18 @@ namespace Brother.Tests.Specs.MPSTwo.Bank
             CurrentPage.As<BankOffersPage>().VerifyDeclinedProposalIsDisplayed();
         }
 
+        [Then(@"the approved proposal should be displayed under Approved tab")]
+        public void ThenTheApprovedProposalShouldBeDisplayedUnderApprovedTab()
+        {
+            CurrentPage.As<BankOffersPage>().VerifyApprovedProposalIsDisplayed();
+        }
+
+        [Then(@"I should be able to approve that proposal")]
+        public void ThenIShouldBeAbleToApproveThatProposal()
+        {
+            CurrentPage.As<BankProposalsSummaryPage>().ClickApproveButton();
+            CurrentPage.As<BankProposalsSummaryPage>().EnterApprovalInformation();
+            NextPage = CurrentPage.As<BankProposalsSummaryPage>().ClickAccpetButton();
+        }
     }
 }

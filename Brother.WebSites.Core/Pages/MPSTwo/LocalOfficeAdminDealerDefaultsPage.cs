@@ -6,7 +6,7 @@ using OpenQA.Selenium.Support.PageObjects;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class DealerDefaultsPage : BasePage
+    public class LocalOfficeAdminDealerDefaultsPage : BasePage
     {
         public static string URL = "/mps/local-office/dealer-defaults/default";
 
@@ -44,7 +44,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetElementByCssSelector(element);
         }
 
-        public DealerDefaultsPage SaveDealerDefaults()
+        public LocalOfficeAdminDealerDefaultsPage SaveDealerDefaults()
         {
             IWebElement element = HardwareDefaultMarginElement();
             string hoge = element.GetAttribute("value");
@@ -54,7 +54,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 throw new NullReferenceException("Save button is not Dealer Defaults");
             DealerDefaultsSaveButton.Click();
 
-            return GetTabInstance<DealerDefaultsPage>(Driver);
+            return GetTabInstance<LocalOfficeAdminDealerDefaultsPage>(Driver);
         }
         
     }

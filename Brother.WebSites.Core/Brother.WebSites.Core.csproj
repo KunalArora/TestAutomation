@@ -142,7 +142,7 @@
     <Compile Include="Pages\MPSTwo\DealerProposalsCreateProductsPage.cs" />
     <Compile Include="Pages\MPSTwo\CreateNewProposalPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerDashBoardPage.cs" />
-    <Compile Include="Pages\MPSTwo\DealerDefaultsPage.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeAdminDealerDefaultsPage.cs" />
     <Compile Include="Pages\MPSTwo\EasyPrintProPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeAdminDashBoardPage.cs" />
     <Compile Include="Pages\MPSTwo\SendToBankPage.cs" />
