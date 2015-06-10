@@ -68,6 +68,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PAYGPurchaseAndClickContract.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\MPSTwo\Proposal\ApproverDecision.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ApproverDecision.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specifications\MPSTwo\Proposal\ClickPriceDeepDive.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
