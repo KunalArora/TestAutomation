@@ -34,7 +34,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if (OffersLinkElement == null)
                 throw new Exception("Unable to locate Offers link on dashboard page");
 
-            AssertElementPresent(LeasingFactorsLinkElement, "Create New Leasing Factors Link");
+            AssertElementPresent(OffersLinkElement, "Create New Offers Link");
+        }
+
+        public void IsContractsLinkAvailable()
+        {
+            if (ContractsLinkElement == null)
+                throw new Exception("Unable to locate Contracts link on dashboard page");
+
+            AssertElementPresent(ContractsLinkElement, "Create New Contracts Link");
         }
 
         public BankOffersPage NavigateToOffersPage()
@@ -44,6 +52,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetTabInstance<BankOffersPage>(Driver);
         }
 
+        public BankContractsPage NavigateToContractApprovedProposalPage()
+        {
+            IsOffersLinkAvailable();
+            ContractsLinkElement.Click();
+            return GetTabInstance<BankContractsPage>(Driver);
+        }
+	
+        public BankContractsPage NavigateToContractsPage()
+        {
+            IsContractsLinkAvailable();
+            ContractsLinkElement.Click();
+            return GetTabInstance<BankContractsPage>(Driver);
+        }
  
 
     }

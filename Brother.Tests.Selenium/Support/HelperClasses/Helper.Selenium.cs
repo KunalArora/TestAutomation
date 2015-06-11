@@ -128,7 +128,6 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
         public static bool WaitForElementToExistByCssSelector(string element, int retryCount, int timeOut)
         {
-            var timeOutSeconds = timeOut;
             WebDriver.SetWebDriverImplicitTimeout(new TimeSpan(0, 0, 0, timeOut));
             var wait = new DefaultWait<IWebDriver>(TestController.CurrentDriver);
             wait.Timeout = new TimeSpan(0, 0, 0, timeOut);
@@ -143,6 +142,8 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                 {
                     var searchElement = wait.Until(dr => dr.FindElement(By.CssSelector(element)));
                     elementStatus = searchElement.Displayed;
+                    MsgOutput(string.Format("Element Status = [{0}]", elementStatus));
+                    MsgOutput(string.Format("Retry count = [{0}]", retries));
                     retries++;
                 }
                 catch (StaleElementReferenceException staleElement)

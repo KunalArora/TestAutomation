@@ -1,5 +1,6 @@
 ﻿using System;
 using Brother.Tests.Selenium.Lib.Support;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -60,6 +61,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             ScrollTo(AcceptButtonElement);
             AcceptButtonElement.Click();
+            WebDriver.Wait(Helper.DurationType.Second, 5);
 
             return GetTabInstance<BankOffersPage>(Driver);
         }
@@ -89,6 +91,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             EnterCustomerReference("");
             EnterReference("");
             EnterValidUntil();
+            WebDriver.Wait(Helper.DurationType.Second, 3);
         }
 
     }

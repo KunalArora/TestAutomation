@@ -63,6 +63,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DealerCanCopyADeclineProposal.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\MPSTwo\Contract\DealerCanSignContract.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DealerCanSignContract.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specifications\MPSTwo\Contract\PAYGPurchaseAndClickContract.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -343,6 +348,7 @@
     <Compile Include="Test Steps\MPSOne\NewProposalProcessSteps.cs" />
     <Compile Include="Test Steps\MPSOne\TechnicalServiceSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Bank\BankSteps.cs" />
+    <Compile Include="Test Steps\MPSTwo\Contract\SigningContractsSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\DealerAdmin\DealerAdminProfileSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Proposal\ClickingAheadInProposalCreationProcessSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Proposal\CreateAProposalThatHasMoreThanOneDevicesSteps.cs" />
@@ -390,7 +396,7 @@
     <Compile Include="Test Steps\MPSTwo\Proposal\LocalOfficeAdminSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Proposal\ProposalSummaryPageSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Proposal\VerificationOnClickPricesVolumeAndMargin.cs" />
-    <Compile Include="Test Steps\MPSTwo\SendToBank\SendProposalToApprover.cs" />
+    <Compile Include="Test Steps\MPSTwo\SendToBank\SendProposalToApproverSteps.cs" />
     <Compile Include="Test Steps\OmniJoin Partner Portal\CustomerActionsSteps.cs" />
     <Compile Include="Test Steps\OmniJoin Partner Portal\DealerActionsSteps.cs" />
     <Compile Include="Test Steps\OmniJoin\FreeTrial\FreeTrialSteps.cs" />
@@ -512,6 +518,10 @@
     <None Include="Test Specifications\MPSTwo\Contract\DealerCanCopyADeclineProposal.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>DealerCanCopyADeclineProposal.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwo\Contract\DealerCanSignContract.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>DealerCanSignContract.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwo\Contract\PAYGPurchaseAndClickContract.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

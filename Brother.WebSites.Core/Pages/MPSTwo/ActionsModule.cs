@@ -84,6 +84,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return String.Format("//td[text()='{0}']/parent::tr/td[6]/div/button", MpsUtil.CreatedProposal());
         }
 
+        private static string ContractApprovedProposalActionButton()
+        {
+            return String.Format("//td[text()='{0}']/parent::tr/td[9]/div/button", MpsUtil.CreatedProposal());
+        }
+
         private static string DeclinedProposalActionButton()
         {
             return String.Format("//td[text()='{0}']/parent::tr/td[7]/div/button", MpsUtil.CreatedProposal());
@@ -111,6 +116,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return actionsElement;
         }
 
+        public static IWebElement ContractApprovedProposalActionDropdown(IWebDriver driver)
+        {
+            var actionsElement = driver.FindElement(By.XPath(ContractApprovedProposalActionButton()));
+            return actionsElement;
+        }
+
 
         public static IWebElement CopiedProposalActionButton(IWebDriver driver)
         {
@@ -121,6 +132,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public static void ClickOnSpecificCopiedProposalActionsDropdown(IWebDriver driver)
         {
             var actionsElement = CopiedProposalActionButton(driver);
+            actionsElement.Click();
+        }
+
+        public static void ClickOnSpecificContractApprovedProposalActionsDropdown(IWebDriver driver)
+        {
+            var actionsElement = ContractApprovedProposalActionDropdown(driver);
             actionsElement.Click();
         }
 

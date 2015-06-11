@@ -34,6 +34,12 @@ namespace Brother.Tests.Specs
             CurrentPage.As<ManageCustomersAndOrdersPage>().AddNewCustomerEmailAddress(emailAddress);
         }
 
+        [When(@"I click Next")]
+        public void WhenIClickNext()
+        {
+            CurrentPage.As<ManageCustomersAndOrdersPage>().NextButtonClick();
+        }
+
        
         [Then(@"I can see the Partner Portal Home Page")]
         public void ThenICanSeeThePartnerPortalHomePage()

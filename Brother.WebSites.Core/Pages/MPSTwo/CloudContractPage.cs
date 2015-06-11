@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
@@ -39,8 +40,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private IWebElement PreInstallationCompleteButtonElement;
         [FindsBy(How = How.CssSelector, Using = "label[id*='content_1_Printers_InstalledPrinters_0_SerialNumber']")]
         private IList<IWebElement> printerSerialNumberlabelElement;
-        [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/contracts/rejected-offers\"] span")]
-        private IWebElement DealerRejectOfferTabElement;
+        [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href=\"/mps/dealer/contracts/rejected\"]")]
+        private IWebElement RejectedLinkElement;
         
         
         
@@ -95,9 +96,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void NavigateToRejectedOfferScreen()
         {
-            if (DealerRejectOfferTabElement == null)
+            if (RejectedLinkElement == null)
                 throw new NullReferenceException("Rejected Offer tab is not displayed");
-            DealerRejectOfferTabElement.Click();
+            RejectedLinkElement.Click();
         }
 
         public void DealerSignNewContract(IWebDriver driver)
@@ -171,6 +172,51 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             PreInstallationCompleteButtonElement.Click();
             WebDriver.Wait(Helper.DurationType.Second, 5);
         }
-        
+
+        private IWebElement ActionButtonElementByName(string name, string tdcol)
+        {
+            string element = String.Format("//td[text()=\"{0}\"]/parent::tr/td[{1}]/div/button", name, tdcol);                
+
+            return Driver.FindElement(By.XPath(element));
+        }
+
+        public DealerContractsSummaryPage NavigateToViewOfferOnApprovedProposalsTab()
+        {
+            string proposalname = MpsUtil.CreatedProposal();
+            IWebElement element = ActionButtonElementByName(proposalname, "9");
+
+            element.Click();
+            ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
+
+            return GetTabInstance<DealerContractsSummaryPage>(Driver);
+        }
+
+        public DealerContractsSummaryPage NavigateToViewSummaryOnRejectedTab()
+        {
+            string proposalname = "";
+            foreach (KeyValuePair<string, object> pair in SpecFlow.GetEnumerator())
+            {
+                if (pair.Key.Equals("GeneratedProposalName"))
+                {
+                    proposalname = MpsUtil.CreatedProposal();                    
+                }
+
+            }
+
+            // @TODO: ContextKey not found, so avoid it here. But this is not good solution.
+            if (proposalname.Equals(string.Empty))
+            {
+                proposalname = Driver.FindElement(By.XPath("//td[contains(text(),'MPS_')]")).Text;
+                SpecFlow.SetContext("GeneratedProposalName", proposalname);
+                SpecFlow.SetContext("GeneratedLeadCodeReference", proposalname);
+            }
+
+            IWebElement element = ActionButtonElementByName(proposalname, "8");
+            element.Click();
+            ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
+
+            return GetTabInstance<DealerContractsSummaryPage>(Driver);
+        }
+
     }
 }

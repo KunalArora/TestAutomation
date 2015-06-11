@@ -178,6 +178,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             //MoveToClickPriceScreen();
             CalculateClickPrice(volume, colour);
             WebDriver.Wait(Helper.DurationType.Second, 5);
+            SpecFlow.SetContext("ClickPriceMonoValue", ClickPriceValue().First().Text);
+            SpecFlow.SetContext("ClickPriceColourValue", ClickPriceColourValue().First().Text);
 			VerifyClickPriceValueIsDisplayed();
             
             return ProceedToProposalSummaryFromClickPrice();
