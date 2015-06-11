@@ -88,7 +88,7 @@ namespace Brother.Tests.Specs.MPSTwo.Bank
         public void ThenTheSignedContractIsDisplayed()
         {
             CurrentPage.As<BankContractsPage>().IsAwaitingAcceptancePageOpened();
-            CurrentPage.As<BankContractsPage>().IsSignedContractDisplayedUnderAwaitingAcceptancePage();
+            CurrentPage.As<BankContractsPage>().IsContractsSignedByDealerDisplayed();
         }
         
         [When(@"I navigate to Contract Awaiting Acceptance page")]
