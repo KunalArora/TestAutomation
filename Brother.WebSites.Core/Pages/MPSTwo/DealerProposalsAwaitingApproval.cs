@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
@@ -38,6 +39,22 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var newProposal = Driver.FindElement(By.XPath(newlyAdded));
 
             TestCheck.AssertIsEqual(true, newProposal.Displayed, "Is new sent to dealer awaiting proposal page?");
+        }
+
+        private IWebElement ActionButtonElementByName(string name, string tdcol)
+        {
+            string element = String.Format("//td[text()=\"{0}\"]/parent::tr/td[{1}]/div/button", name, tdcol);
+            return Driver.FindElement(By.XPath(element));
+        }
+
+        public BankProposalsSummaryPage NavigateToViewSummary()
+        {
+            string proposalname = MpsUtil.CreatedProposal();
+            IWebElement element = ActionButtonElementByName(proposalname, "6");
+            element.Click();
+            ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
+
+            return GetTabInstance<BankProposalsSummaryPage>(Driver);
         }
     }
 }

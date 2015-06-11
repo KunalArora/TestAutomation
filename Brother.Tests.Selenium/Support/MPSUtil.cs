@@ -458,66 +458,6 @@ namespace Brother.Tests.Selenium.Lib.Support
             return generatedContractLength;
         }
 
-        public static string LeaseBillingCycle()
-        {
-            String[] leaseBillingCycle = {
-                                        "3 Monthly", 
-								        "4 Monthly"
-								       // "6 Monthly"
-								    };
-
-            var generatedLeaseBillingCycle = leaseBillingCycle[new Random().Next(2)];
-            ScenarioContext.Current["GeneratedLeaseBillingCycle"] = generatedLeaseBillingCycle;
-
-            switch (generatedLeaseBillingCycle)
-            {
-                case "3 Monthly":
-                    {
-                        generatedLeaseBillingCycle = "6";
-                        break;
-                    }
-                case "4 Monthly":
-                    {
-                        generatedLeaseBillingCycle = "7";
-                        break;
-                    }
-                //case "6 Monthly":
-                //    {
-                //        generatedLeaseBillingCycle = "3";
-                //        break;
-                //    }
-            }
-
-            return generatedLeaseBillingCycle;
-        }
-
-        public static string PayPerClickBillingCycle()
-        {
-            String[] payPerBillingCycle = { 
-								        "4 Monthly",
-								        "6 Monthly"
-								    };
-
-            var generatedPayLeaseBillingCycle = payPerBillingCycle[new Random().Next(2)];
-            ScenarioContext.Current["GeneratedPayLeaseBillingCycle"] = generatedPayLeaseBillingCycle;
-
-            switch (generatedPayLeaseBillingCycle)
-            {
-                case "4 Monthly":
-                    {
-                        generatedPayLeaseBillingCycle = "8";
-                        break;
-                    }
-                case "6 Monthly":
-                    {
-                        generatedPayLeaseBillingCycle = "9";
-                        break;
-                    }
-            }
-
-            return generatedPayLeaseBillingCycle;
-        }
-
         public static string ContactPosition()
         {
             String[] contactPosition = {

@@ -43,6 +43,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             instance2.ThenIAmTakenToTheProposalSummaryWhereICanEnterEnvisageContractStartDate();
             instance2.ThenICanSuccessfullyConvertTheProposalToContract();
             instance2.ThenTheNewlyConvertedContractIsAvailableUnderAwaitingApprovalTab();
+//            instance2.ThenINavigateToProposalSummaryPageUnderAwaitingApprovalTab();
             var instance3 = new AccountManagementSteps();
             instance3.ThenIfISignOutOfBrotherOnline();
             instance4.GivenISignIntoMpsasAFrom("Cloud MPS Bank", "United Kingdom");
@@ -65,7 +66,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             WhenIFillProposalDescriptionForContractType("Lease & Click with Service");
             WhenISelectButtonForCustomerDataCapture("Create new customer");
             WhenIEnterUsageTypeOfAndContractTermsLeasingAndBillingOnTermAndTypeDetails
-                ("Minimum Volume", "3 years", "4 Monthly Minimum Volume", "6 Monthly Minimum Volume");
+                ("Minimum Volume", "3 years", "Quarterly", "Quarterly");
             WhenIDisplayDeviceScreen("HL-L8350CDW");
             WhenIAcceptTheDefaultValuesOfTheDevice();
             WhenIEnterClickPriceVolumeOf("2000", "2000");
@@ -78,7 +79,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             WhenIFillProposalDescriptionForContractType("Purchase & Click with Service");
             WhenISelectButtonForCustomerDataCapture("Create new customer");
             WhenIEnterUsageTypeContractLengthAndBillingOnTermAndTypeDetails
-                ("3 years", "4 Monthly Minimum Volume", "6 Monthly Minimum Volume");
+                ("3 years", "Quarterly", "Quarterly");
             WhenIPriceHardwareRadioButton("Tick");
             WhenIDisplayDeviceScreen("MFC-L8650CDW");
             WhenIAcceptTheDefaultValuesOfTheDevice();

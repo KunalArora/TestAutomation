@@ -130,6 +130,12 @@ namespace Brother.Tests.Specs.MPSTwo.SendToBank
             CurrentPage.As<DealerProposalsAwaitingApproval>().IsProposalSentToDealerAwaitingProposalPage();
         }
 
+        [Then(@"I navigate to Proposal Summary Page under Awaiting Approval tab")]
+        public void ThenINavigateToProposalSummaryPageUnderAwaitingApprovalTab()
+        {
+            CurrentPage.As<DealerProposalsAwaitingApproval>().NavigateToViewSummary();
+        }
+
         [Then(@"I navigate to bank Awaiting Approval screen under Offer page")]
         public void ThenINavigateToBankAwaitingApprovalScreenUnderOfferPage()
         {
