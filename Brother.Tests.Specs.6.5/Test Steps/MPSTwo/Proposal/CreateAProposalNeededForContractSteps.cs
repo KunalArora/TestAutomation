@@ -264,8 +264,25 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         public void WhenISignTheContractAsADealer()
         {
             NextPage = CurrentPage.As<DealerDashBoardPage>().NavigateToContractScreenFromDealerDashboard();
-            NextPage = CurrentPage.As<CloudContractPage>().NavigateToViewOffer();
+            NextPage = CurrentPage.As<CloudContractPage>().NavigateToViewOfferOnApprovedProposalsTab();
             NextPage = CurrentPage.As<DealerContractsSummaryPage>().ClickSignButton();
+        }
+
+        [When(@"I navigate to Rejected screen")]
+        public void WhenINavigateToRejectedScreen()
+        {
+            NextPage = CurrentPage.As<DealerDashBoardPage>().NavigateToContractScreenFromDealerDashboard();
+            CurrentPage.As<CloudContractPage>().NavigateToRejectedOfferScreen();
+        }
+
+        [Then(@"I can successfully re-sign the rejected contract")]
+        public void ThenICanSuccessfullyResignTheRejectedContract()
+        {
+            NextPage = CurrentPage.As<CloudContractPage>().NavigateToViewSummaryOnRejectedTab();
+            CurrentPage.As<DealerContractsSummaryPage>().ClickReSignButton();
+            CurrentPage.As<DealerContractsSummaryPage>().TickResignInformationCheckbox();
+            NextPage = CurrentPage.As<DealerContractsSummaryPage>().ClickFinalReSignButton();
+            CurrentPage.As<CloudContractPage>().VerifyRejectedContractIsDisplayed();
         }
 
         [Then(@"the reject contract above is displayed on dealer rejected offer screen")]
