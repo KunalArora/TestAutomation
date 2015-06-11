@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
@@ -387,7 +388,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
            TestCheck.AssertIsEqual(true, EmailAddressErrorMessage.Displayed, "Is Error Message Displayed");
         }
         public void PasswordErrorMessageDisplayed()
-        {
+        {   
+            PasswordTextBox.SendKeys(Keys.Tab);
             TestCheck.AssertIsEqual(true, PasswordErrorMessage.Displayed, "Is Error Message Displayed");
         }
         public void ConfirmPasswordErrorMessageDisplayed()
@@ -398,5 +400,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         {
             TestCheck.AssertIsEqual(true, TermsAndConditionsErrorMessage.Displayed, "Is Error Message Displayed");
         }
-    }
+
+       }
 }
