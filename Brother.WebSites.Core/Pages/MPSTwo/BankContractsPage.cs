@@ -89,11 +89,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             RejectedLinkElement.Click();
         }
 
-        public void IsSignedContractDisplayedUnderAwaitingAcceptancePage()
-        {
-            new CloudExistingProposalPage().IsNewProposalTemplateCreated();
-	}
-	
+        
         public void IsContractsSignedByDealerDisplayed()
         {
             var createdContract = MpsUtil.CreatedProposal();

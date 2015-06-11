@@ -32,8 +32,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsSignedContractDisplayed()
         {
-           new CloudExistingProposalPage().IsNewProposalTemplateCreated();
+            var createdProposal = MpsUtil.CreatedProposal();
+            var newlyAdded = @"//td[text()='{0}']";
+            newlyAdded = String.Format(newlyAdded, createdProposal);
+
+            var newProposal = Driver.FindElement(By.XPath(newlyAdded));
+
+            TestCheck.AssertIsEqual(true, newProposal.Displayed, "Is new signed contract displayed?");
         }
+      
 
 
     }

@@ -100,8 +100,9 @@ Scenario Outline: Create different varieties of Leasing and Click proposal for a
 	
 
 	Scenarios: 
-	| Role             | Country        | ContractType               | UsageType      | Contract | Leasing                  | Billing                  | Printer     | DeviceScreen | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Minimum Volume | 4 years  | Quarterly | Quarterly | HL-L8350CDW | Full         | 750        | 750         |
+	| Role             | Country        | ContractType               | UsageType      | Contract | Leasing   | Billing   | Printer     | DeviceScreen | ClickVolume | ColourVolume |
+	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Minimum Volume | 4 years  | Quarterly | Quarterly | HL-L8350CDW | Full         | 750         | 750          |
+	
 	
 Scenario Outline: Create different varieties of Leasing and Click proposal for an existing customer on Pay As You Go
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
