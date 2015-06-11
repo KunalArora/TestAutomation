@@ -49,6 +49,7 @@ Scenario: Purchase a new Inkjet Cartridge with a valid supply code and valid cre
 	Then I should see the Order Confirmation page
 	And I can validate I have ordered "1" of "LC1000BK" @ "€25.31"
 	And If I click on My Account
+	And I can click on Orders
 	And I can validate the order "1" of "LC1000BK" @ "€25.31" on My Account page
 	And If I sign out of Brother Online
 	Then I am redirected to the Brother Home Page
@@ -96,6 +97,7 @@ Scenario: Purchase a new Inkjet Cartridge with a valid device code and valid cre
 	Then I should see the Order Confirmation page
 	And I can validate I have ordered "1" of "LC1100BK" @ "€22.53"
 	And If I click on My Account
+	And I can click on Orders
 	And I can validate the order "1" of "LC1100BK" @ "€22.53" on My Account page
 	And If I sign out of Brother Online
 	Then I am redirected to the Brother Home Page
@@ -172,6 +174,7 @@ Scenario Outline: Purchase a new Inkjet Cartridge with valid credit card details
 	Then I should see the Order Confirmation page
 	And I can validate I have ordered "1" of "<SupplyCode>" @ "€25.31"
 	And If I click on My Account
+	And I can click on Orders
 	And I can validate the order "1" of "<SupplyCode>" @ "€25.31" on My Account page
 	And If I sign out of Brother Online
 	Then I am redirected to the Brother Home Page

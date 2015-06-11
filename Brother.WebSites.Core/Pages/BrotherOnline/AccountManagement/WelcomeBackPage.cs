@@ -21,7 +21,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             get { return BrotherOnlineHomePages.Default["HomePage"].ToString(); }
         }
 
-        [FindsBy(How = How.CssSelector, Using = "a[href*='register-your-device']")]
+        //[FindsBy(How = How.CssSelector, Using = "a[href*='register-your-device']")]
+        [FindsBy(How = How.CssSelector, Using = ".add-device")]
         public IWebElement RegisterDeviceLink;
         [FindsBy(How = How.CssSelector, Using = "#content_2_CurrentControlPanelItem_ConferenceButtons.two-conference-buttons .conference-button.right")]
         public IWebElement OmniJoinTryNowButton;
