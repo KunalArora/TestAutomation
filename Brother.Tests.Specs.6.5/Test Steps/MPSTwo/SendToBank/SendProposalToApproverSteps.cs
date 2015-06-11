@@ -39,6 +39,7 @@ namespace Brother.Tests.Specs.MPSTwo.SendToBank
             ThenTheNewlyConvertedContractIsAvailableUnderAwaitingApprovalTab();
         }
 
+        [Given(@"I decline the proposal created above")]
         [When(@"I decline the proposal created above")]
         public void WhenIDeclineTheProposalCreatedAbove()
         {
