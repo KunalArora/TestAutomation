@@ -20,6 +20,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private IWebElement CancelButtonElement;
         [FindsBy(How = How.Id, Using = "content_1_ButtonSign")]
         private IWebElement SignButtonElement;
+        [FindsBy(How = How.Id, Using = "content_1_ButtonReSignProcess")]
+        private IWebElement ResignButtonElement;
+        [FindsBy(How = How.Id, Using = "content_1_ButtonReSignContractSubmit")]
+        private IWebElement FinalResignButtonElement;
+        [FindsBy(How = How.Id, Using = "content_1_mpsCheckboxReSignContract_Label")]
+        private IWebElement ResignInformationCheckboxElement;
 
         public void ClickCancelButton()
         {
@@ -33,6 +39,30 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             SignButtonElement.Click();
 
             return GetTabInstance<CloudContractPage>(Driver);
+        }
+
+        public void ClickReSignButton()
+        {
+            ScrollTo(ResignButtonElement);
+            ResignButtonElement.Click();
+            WebDriver.Wait(DurationType.Second, 3);
+        }
+
+        public CloudContractPage ClickFinalReSignButton()
+        {
+            ScrollTo(FinalResignButtonElement);
+            FinalResignButtonElement.Click();
+
+            WebDriver.Wait(DurationType.Second, 3);
+
+            return GetTabInstance<CloudContractPage>(Driver);
+        }
+
+        public void TickResignInformationCheckbox()
+        {
+            if (!ResignInformationCheckboxElement.Selected)
+                ResignInformationCheckboxElement.Click();
+            WebDriver.Wait(DurationType.Second, 3);
         }
     }
 }
