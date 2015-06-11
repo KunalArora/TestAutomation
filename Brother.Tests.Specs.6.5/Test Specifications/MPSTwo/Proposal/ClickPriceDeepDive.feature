@@ -24,7 +24,7 @@ Scenario Outline: Lease + Click, PAYG, Service Pack not displayed
 
 	Scenarios: 
 	| Role             | Country        | ContractType               | CreateOption        | UsageType     | Contract | Leasing   | Billing   | PriceHardware | Printer      | DeviceScreen | PaymentMethod | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Create new customer | Pay As You Go | 3 years  | 4 Monthly | 6 Monthly | Tick          | MFC-8510DN   | Full         |  Pay upfront  | 0        | 2000         |
+	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Create new customer | Pay As You Go | 3 years  | Quarterly | Quarterly | Tick          | MFC-8510DN   | Full         |  Pay upfront  | 0        | 2000         |
 
 # 2
 @ignore
@@ -43,7 +43,7 @@ Scenario Outline: Lease + Click, Minimum Volume, Service Pack not displayed
 
 	Scenarios: 
 	| Role             | Country        | ContractType               | CreateOption        | UsageType      | Contract | Leasing                  | Billing                  | PriceHardware | Printer      | DeviceScreen | PaymentMethod | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Create new customer | Minimum Volume | 3 years  | 4 Monthly Minimum Volume | 6 Monthly Minimum Volume | Tick          | MFC-8510DN   | Full         |  Pay upfront  | 0        | 2000         |
+	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Create new customer | Minimum Volume | 3 years  | Quarterly | Quarterly | Tick          | MFC-8510DN   | Full         |  Pay upfront  | 0        | 2000         |
 
 
 # 3
@@ -64,7 +64,7 @@ Scenario Outline: Purchase + Click, PAYG, Service Pack not displayed
 
 	Scenarios: 
 	| Role             | Country        | ContractType                  | CreateOption        | UsageType     | Contract | Leasing   | Billing   | PriceHardware | Printer      | DeviceScreen | PaymentMethod | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Create new customer | Pay As You Go | 3 years  | 4 Monthly | 6 Monthly | Tick          | MFC-8510DN   | Full         |  Pay upfront  | 0        | 2000         |
+	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Create new customer | Pay As You Go | 3 years  | Quarterly | Quarterly | Tick          | MFC-8510DN   | Full         |  Pay upfront  | 0        | 2000         |
 
 # 4
 @ignore
@@ -84,7 +84,7 @@ Scenario Outline: Purchase + Click, Minimum Volume, Service Pack not displayed
 
 	Scenarios: 
 	| Role             | Country        | ContractType                  | CreateOption        | UsageType      | Contract | Leasing                  | Billing                  | PriceHardware | Printer      | DeviceScreen | PaymentMethod | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Create new customer | Minimum Volume | 3 years  | 4 Monthly Minimum Volume | 6 Monthly Minimum Volume | Tick          | MFC-8510DN   | Full         |  Pay upfront  | 0        | 2000         |
+	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Create new customer | Minimum Volume | 3 years  | Quarterly | Quarterly | Tick          | MFC-8510DN   | Full         |  Pay upfront  | 0        | 2000         |
 
 
 # 5
@@ -106,7 +106,7 @@ Scenario Outline: Variation of "In Click" and "Upfront Payment" click price(1)
 
 	Scenarios: 
 	| Role             | Country        | ContractType                  | CreateOption        | UsageType      | Contract | Leasing                  | Billing                  | PriceHardware | Printer      | DeviceScreen | PaymentMethod | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Create new customer | Minimum Volume | 3 years  | 4 Monthly Minimum Volume | 6 Monthly Minimum Volume | Tick          | MFC-8510DN   | Full         |  Pay upfront  | 0        | 2000         |
+	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Create new customer | Minimum Volume | 3 years  | Quarterly | Quarterly | Tick          | MFC-8510DN   | Full         |  Pay upfront  | 0        | 2000         |
 
 # 6
 @ignore
@@ -132,7 +132,7 @@ Scenario Outline: Variation of "In Click" and "Upfront Payment" click price(2)
 
 	Scenarios: 
 	| Role             | Country        | ContractType                  | CreateOption        | UsageType      | Contract | Leasing                  | Billing                  | PriceHardware | Printer        | DeviceScreen | PaymentMethod             | MonoCoverage | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Create new customer | Minimum Volume | 3 years  | 4 Monthly Minimum Volume | 6 Monthly Minimum Volume | Tick          | MFC-8510DN     | Full         |  Included in Click Price  | 6            | 2000        | 2000         |
+	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Create new customer | Minimum Volume | 3 years  | Quarterly | Quarterly | Tick          | MFC-8510DN     | Full         |  Included in Click Price  | 6            | 2000        | 2000         |
 
 
 
@@ -154,7 +154,7 @@ Scenario Outline: Variation of "In Click" and "Upfront Payment" click price(3)
 
 	Scenarios: 
 	| Role             | Country        | ContractType                  | CreateOption        | UsageType      | Contract | Leasing                  | Billing                  | PriceHardware | Printer        | DeviceScreen | PaymentMethod | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Create new customer | Minimum Volume | 3 years  | 4 Monthly Minimum Volume | 6 Monthly Minimum Volume | Tick          | MFC-L8650CDW   | Full         |  Pay upfront  | 0        | 2000         |
+	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Create new customer | Minimum Volume | 3 years  | Quarterly | Quarterly | Tick          | MFC-L8650CDW   | Full         |  Pay upfront  | 0        | 2000         |
 
 
 # 8
@@ -181,7 +181,7 @@ Scenario Outline: Variation of "In Click" and "Upfront Payment" click price(4)
 
 	Scenarios: 
 	| Role             | Country        | ContractType                  | CreateOption        | UsageType      | Contract | Leasing                  | Billing                  | PriceHardware | Printer        | DeviceScreen | PaymentMethod             | MonoCoverage | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Create new customer | Minimum Volume | 3 years  | 4 Monthly Minimum Volume | 6 Monthly Minimum Volume | Tick          | MFC-L8650CDW   | Full         |  Included in Click Price  | 6            | 2000        | 2000         |
+	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Create new customer | Minimum Volume | 3 years  | Quarterly | Quarterly | Tick          | MFC-L8650CDW   | Full         |  Included in Click Price  | 6            | 2000        | 2000         |
 
 
 # 9-10
@@ -202,8 +202,8 @@ Scenario Outline: No Variation of "In Click" and "Upfront Payment" click price(P
 
 	Scenarios: 
 	| Role             | Country        | ContractType                  | CreateOption        | UsageType      | Contract | Leasing   | Billing   | PriceHardware | Printer      | DeviceScreen | PaymentMethod             | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Create new customer | Pay As You Go  | 3 years  | 4 Monthly | 6 Monthly | Tick          | MFC-8510DN   | Full         |  Included in Click Price  | 2000        | 2000         |
-	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Create new customer | Pay As You Go  | 3 years  | 4 Monthly | 6 Monthly | Tick          | MFC-L8650CDW | Full         |  Included in Click Price  | 2000        | 2000         |
+	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Create new customer | Pay As You Go  | 3 years  | Quarterly | Quarterly | Tick          | MFC-8510DN   | Full         |  Included in Click Price  | 2000        | 2000         |
+	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Create new customer | Pay As You Go  | 3 years  | Quarterly | Quarterly | Tick          | MFC-L8650CDW | Full         |  Included in Click Price  | 2000        | 2000         |
 
 # 11-14
 @ignore
@@ -222,10 +222,10 @@ Scenario Outline: Lease + Click, Minimum Volume, Service Pack Payment Method not
 
 	Scenarios: 
 	| Role             | Country        | ContractType               | CreateOption        | UsageType      | Contract | Leasing                  | Billing                  | PriceHardware | Printer      | DeviceScreen | PaymentMethod               | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Create new customer | Minimum Volume | 3 years  | 4 Monthly Minimum Volume | 6 Monthly Minimum Volume | Tick          | MFC-8510DN   | Full         |  Pay upfront                | 0           | 2000         |
-	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Create new customer | Minimum Volume | 3 years  | 4 Monthly Minimum Volume | 6 Monthly Minimum Volume | Tick          | MFC-L8650CDW | Full         |  Pay upfront                | 0           | 2000         |
-	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Create new customer | Pay As You Go  | 3 years  | 4 Monthly                | 6 Monthly                | Tick          | MFC-8510DN   | Full         |  Included in Click Price    | 2000        | 2000         |
-	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Create new customer | Pay As You Go  | 3 years  | 4 Monthly                | 6 Monthly                | Tick          | MFC-L8650CDW | Full         |  Included in Click Price    | 2000        | 2000         |
+	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Create new customer | Minimum Volume | 3 years  | Quarterly | Quarterly | Tick          | MFC-8510DN   | Full         |  Pay upfront                | 0           | 2000         |
+	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Create new customer | Minimum Volume | 3 years  | Quarterly | Quarterly | Tick          | MFC-L8650CDW | Full         |  Pay upfront                | 0           | 2000         |
+	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Create new customer | Pay As You Go  | 3 years  | Quarterly                | Quarterly                | Tick          | MFC-8510DN   | Full         |  Included in Click Price    | 2000        | 2000         |
+	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Create new customer | Pay As You Go  | 3 years  | Quarterly                | Quarterly                | Tick          | MFC-L8650CDW | Full         |  Included in Click Price    | 2000        | 2000         |
 
 # Click Price Boundaries
 # 15
@@ -252,7 +252,7 @@ Scenario Outline: Mono Volume Boundaries for Minimum Volume
 
 	Scenarios: 
 	| Role             | Country        | ContractType               | CreateOption        | UsageType       | Contract | Leasing                  | Billing                  | PriceHardware | Printer    | DeviceScreen | PaymentMethod | MonoCoverage | ClickVolume1 | ClickVolume2 | ClickVolume3 |
-	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Create new customer | Minimum Volume  | 3 years  | 4 Monthly Minimum Volume | 6 Monthly Minimum Volume | Tick          | MFC-8510DN | Full         | Pay upfront   | 6            | 500          | 1500         | 3500         | 
+	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Create new customer | Minimum Volume  | 3 years  | Quarterly | Quarterly | Tick          | MFC-8510DN | Full         | Pay upfront   | 6            | 500          | 1500         | 3500         | 
 
 #16
 @ignore
@@ -285,7 +285,7 @@ Scenario Outline: Colour and Mono Volume Boundaries for Minimum Volume
 
 	Scenarios: 
 	| Role             | Country        | ContractType               | CreateOption        | UsageType      | Contract | Leasing                  | Billing                  | PriceHardware | Printer1   | Printer2     | DeviceScreen | PaymentMethod | MonoCoverage | ClickVolume1 | ClickVolume2 | ClickVolume3 |
-	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Create new customer | Minimum Volume | 3 years  | 4 Monthly Minimum Volume | 6 Monthly Minimum Volume | Tick          | MFC-8510DN | MFC-L8650CDW |Full          | Pay upfront   | 6            | 500          | 1000         | 2000         | 
+	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Create new customer | Minimum Volume | 3 years  | Quarterly | Quarterly | Tick          | MFC-8510DN | MFC-L8650CDW |Full          | Pay upfront   | 6            | 500          | 1000         | 2000         | 
 
 #17
 @ignore
@@ -311,7 +311,7 @@ Scenario Outline: Mono Volume Boundaries for PAYG
 
 	Scenarios: 
 	| Role             | Country        | ContractType               | CreateOption        | UsageType      | Contract | Leasing     | Billing   | PriceHardware | Printer    | DeviceScreen | PaymentMethod | MonoCoverage | ClickVolume1 | ClickVolume2 | ClickVolume3 |
-	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Create new customer | Pay As You Go  | 3 years  | 4 Monthly   | 6 Monthly | Tick          | MFC-8510DN | Full         | Pay upfront   | 6            | 500          | 1500         | 3500         | 
+	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Create new customer | Pay As You Go  | 3 years  | Quarterly   | Quarterly | Tick          | MFC-8510DN | Full         | Pay upfront   | 6            | 500          | 1500         | 3500         | 
 
 
 #18
@@ -344,7 +344,7 @@ Scenario Outline: Colour and Mono Volume Boundaries for PAYG
 
 	Scenarios: 
 	| Role             | Country        | ContractType               | CreateOption        | UsageType      | Contract | Leasing   | Billing   | PriceHardware | Printer1   | Printer2     | DeviceScreen | PaymentMethod | MonoCoverage | ClickVolume1 | ClickVolume2 | ClickVolume3 |
-	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Create new customer | Pay As You Go  | 3 years  | 4 Monthly | 6 Monthly | Tick          | MFC-8510DN | MFC-L8650CDW |Full          | Pay upfront   | 6            | 800          | 1200         | 2000         | 
+	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Create new customer | Pay As You Go  | 3 years  | Quarterly | Quarterly | Tick          | MFC-8510DN | MFC-L8650CDW |Full          | Pay upfront   | 6            | 800          | 1200         | 2000         | 
 
 
 # 4. Coverage
@@ -368,8 +368,8 @@ Scenario Outline: Mono Coverage calculated correctly
 
 	Scenarios: 
 	| Role             | Country        | ContractType               | CreateOption        | UsageType     | Contract | Leasing   | Billing   | PriceHardware | Printer    | DeviceScreen | PaymentMethod | MonoCoverage | ClickVolume |
-	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Create new customer | Pay As You Go | 3 years  | 4 Monthly | 6 Monthly | Tick          | MFC-8510DN | Full         | Pay upfront   | 6            | 2           |
-	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Create new customer | Pay As You Go | 3 years  | 4 Monthly | 6 Monthly | Tick          | MFC-8510DN | Full         | Pay upfront   | 99           | 2           |
+	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Create new customer | Pay As You Go | 3 years  | Quarterly | Quarterly | Tick          | MFC-8510DN | Full         | Pay upfront   | 6            | 2           |
+	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Create new customer | Pay As You Go | 3 years  | Quarterly | Quarterly | Tick          | MFC-8510DN | Full         | Pay upfront   | 99           | 2           |
 
 # 21-22
 @ignore
@@ -391,8 +391,8 @@ Scenario Outline: Mono Coverage calculated correctly
 
 	Scenarios: 
 	| Role             | Country        | ContractType               | CreateOption        | UsageType     | Contract | Leasing   | Billing   | PriceHardware | Printer    | DeviceScreen | PaymentMethod | MonoCoverage | ClickVolume |
-	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Create new customer | Pay As You Go | 3 years  | 4 Monthly | 6 Monthly | Tick          | MFC-8510DN | Full         | Pay upfront   | 4            | 2           |
-	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Create new customer | Pay As You Go | 3 years  | 4 Monthly | 6 Monthly | Tick          | MFC-8510DN | Full         | Pay upfront   | 101          | 2           |
+	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Create new customer | Pay As You Go | 3 years  | Quarterly | Quarterly | Tick          | MFC-8510DN | Full         | Pay upfront   | 4            | 2           |
+	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Create new customer | Pay As You Go | 3 years  | Quarterly | Quarterly | Tick          | MFC-8510DN | Full         | Pay upfront   | 101          | 2           |
 
 # 23-24
 @ignore
@@ -414,8 +414,8 @@ Scenario Outline: Colour Coverage calculated correctly
 
 	Scenarios: 
 	| Role             | Country        | ContractType               | CreateOption        | UsageType     | Contract | Leasing   | Billing   | PriceHardware | Printer      | DeviceScreen | PaymentMethod | MonoCoverage | ClickVolume |
-	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Create new customer | Pay As You Go | 3 years  | 4 Monthly | 6 Monthly | Tick          | MFC-L8650CDW | Full         | Pay upfront   | 21           | 2           |
-	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Create new customer | Pay As You Go | 3 years  | 4 Monthly | 6 Monthly | Tick          | MFC-L8650CDW | Full         | Pay upfront   | 99           | 2           |
+	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Create new customer | Pay As You Go | 3 years  | Quarterly | Quarterly | Tick          | MFC-L8650CDW | Full         | Pay upfront   | 21           | 2           |
+	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Create new customer | Pay As You Go | 3 years  | Quarterly | Quarterly | Tick          | MFC-L8650CDW | Full         | Pay upfront   | 99           | 2           |
 
 # 25-26
 @ignore
@@ -437,5 +437,5 @@ Scenario Outline: Colour Coverage calculated then error occurs
 
 	Scenarios: 
 	| Role             | Country        | ContractType               | CreateOption        | UsageType     | Contract | Leasing   | Billing   | PriceHardware | Printer      | DeviceScreen | PaymentMethod | MonoCoverage | ClickVolume |
-	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Create new customer | Pay As You Go | 3 years  | 4 Monthly | 6 Monthly | Tick          | MFC-L8650CDW | Full         | Pay upfront   | 19           | 2           |
-	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Create new customer | Pay As You Go | 3 years  | 4 Monthly | 6 Monthly | Tick          | MFC-L8650CDW | Full         | Pay upfront   | 101          | 2           |
+	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Create new customer | Pay As You Go | 3 years  | Quarterly | Quarterly | Tick          | MFC-L8650CDW | Full         | Pay upfront   | 19           | 2           |
+	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Create new customer | Pay As You Go | 3 years  | Quarterly | Quarterly | Tick          | MFC-L8650CDW | Full         | Pay upfront   | 101          | 2           |
