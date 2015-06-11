@@ -88,13 +88,35 @@ Scenarios:
 @SMOKE
 Scenario Outline: Create an account for Brother Online for different language sites
 	Given I Need A Brother Online "<Country>" Account In Order To Use Brother Online Services
-
+	When I have clicked on Add Device
+	And I am redirected to the Register Device page
+	# Note: Invalid serial code will always produce error message
+	Given I have entered my Product Serial Code "U1T000000"
+	Then I can validate that an error message was displayed
+	Then I can sign out of Brother Online
+	Then I am redirected to the Brother Home Page
 Scenarios:
-	| Country |
-	| France  |
-	| Germany |
-	| Poland  |
-	| Spain   |          
+	| Country        |
+	| France         |
+	| Germany        |
+	| Netherlands    |
+	| Spain          |
+	| Denmark        |
+	| Belgium        |
+	| Russia         |
+	| Hungary        |
+	| Romania        |
+	| Portugal       |
+	| Switzerland    |
+	| Slovakia       |
+#	| Slovenia       | - Links for validation set of for UK so needs updating
+	| Czech Republic |
+	| Bulgaria       |
+	| Finland        |
+	| Norway         |
+	| Italy          |
+	| Austria        |
+
 
 @SMOKE
 # Create a new user account and check Add Device so that we know the user registration was successful
