@@ -26,7 +26,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private IWebElement ProposedStartDate;
         [FindsBy(How = How.Id, Using = "content_1_ButtonSaveAsContract")]
         private IWebElement SaveAsContractButton;
-
+        [FindsBy(How = How.Id, Using = "content_1_InputSendToBrother_Input")]
+        private IWebElement SendToBrotherElement;
+        
 
         public void IsConvertSummaryPageDisplayed()
         {

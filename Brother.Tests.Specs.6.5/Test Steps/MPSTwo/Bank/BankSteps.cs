@@ -124,6 +124,7 @@ namespace Brother.Tests.Specs.MPSTwo.Bank
         public void ThenICanSuccessfullyApproveTheContract()
         {
             NextPage = CurrentPage.As<BankContractsPage>().NavigateToViewSummary();
+            CurrentPage.As<BankContractsSummaryPage>().VerifyThatTheContractDataIsEqualToProposalCreatedByDealer();
             CurrentPage.As<BankContractsSummaryPage>().ClickAcceptButton();
             NextPage = CurrentPage.As<BankContractsSummaryPage>().ClickFinalAcceptButton();
         }
