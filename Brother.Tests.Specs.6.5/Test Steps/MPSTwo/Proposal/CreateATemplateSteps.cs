@@ -79,7 +79,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             WhenIFillProposalDescriptionForContractType("Purchase & Click with Service");
             WhenISelectButtonForCustomerDataCapture("Create new customer");
             WhenIEnterUsageTypeContractLengthAndBillingOnTermAndTypeDetails
-                ("3 years", "Quarterly", "Quarterly");
+                ("Minimum Volume", "3 years", "Quarterly");
             WhenIPriceHardwareRadioButton("Tick");
             WhenIDisplayDeviceScreen("MFC-L8650CDW");
             WhenIAcceptTheDefaultValuesOfTheDevice();

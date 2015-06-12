@@ -26,6 +26,16 @@ namespace Brother.Tests.Specs.MPSTwo.SendToBank
             CurrentPage.As<ConvertProposalSummaryPage>().IsConvertSummaryPageDisplayed();
             CurrentPage.As<ConvertProposalSummaryPage>().EnterProposedStartDateForContract();
             CurrentPage.As<ConvertProposalSummaryPage>().GiveThirdPartyCheckApproval();
+            CurrentPage.As<ConvertProposalSummaryPage>().GiveSchufaAuthorization();
+        }
+
+        [Then(@"I am taken to purchase and click summary where I can enter envisage contract start date")]
+        public void ThenIAmTakenToPurchaseAndClickSummaryWhereICanEnterEnvisageContractStartDate()
+        {
+            CurrentPage.As<ConvertProposalSummaryPage>().IsConvertSummaryPageDisplayed();
+            CurrentPage.As<ConvertProposalSummaryPage>().EnterProposedStartDateForContract();
+            CurrentPage.As<ConvertProposalSummaryPage>().GiveBrotherAuthorisation();
+            //CurrentPage.As<ConvertProposalSummaryPage>().GiveSchufaAuthorization();
         }
 
         [Given(@"I send the created proposal for approval")]
@@ -151,13 +161,14 @@ namespace Brother.Tests.Specs.MPSTwo.SendToBank
         [Then(@"I navigate to Local Approver Awaiting Approval screen under Offer page")]
         public void ThenINavigateToLocalApproverAwaitingApprovalScreenUnderOfferPage()
         {
+            NextPage = CurrentPage.As<LocalOfficeApproverDashBoardPage>().NavigateToProposalsPage();
             CurrentPage.As<LocalOfficeApproverProposalsPage>().IsProposalSentToLocalOfficeApproverAwaitingProposalPage();
         }
 
         [Then(@"the converted Purchase and Click and Service proposal above is displayed on the screen")]
         public void ThenTheConvertedPurchaseAndClickAndServiceProposalAboveIsDisplayedOnTheScreen()
         {
-            NextPage = CurrentPage.As<LocalOfficeApproverDashBoardPage>().NavigateToProposalsPage();
+            CurrentPage.As<LocalOfficeApproverProposalsPage>().IsProposalSentToLocalOfficeApproverAwaitingProposalPage();
         }
 
         [Then(@"I can view all the proposals declined by both Bank and LocalOffice Approver")]
