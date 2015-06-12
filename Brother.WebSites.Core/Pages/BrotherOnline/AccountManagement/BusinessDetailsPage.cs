@@ -20,7 +20,10 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
 
         [FindsBy(How = How.CssSelector, Using = "#content_2_innercontent_1_btnUpdateBasicDetails")]
         public IWebElement UpdateDetailsButton;
-        
+
+        [FindsBy(How = How.CssSelector, Using = "#content_2_innercontent_1_SubmitButton")]
+        public IWebElement UpdateButton;
+
         [FindsBy(How = How.Id, Using = "BusinessAccountYesRadioButton")]
         public IWebElement UseMyAccountForBusinessCheckbox;
         
@@ -42,12 +45,22 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
 
         public void IsUpdateButtonAvailable()
         {
-            if (UpdateDetailsButton == null)
+            if (UpdateButton == null)
             {
                 throw new Exception("Unable to locate button on page");
             }
-            AssertElementPresent(UpdateDetailsButton, "Update Details Button");
+            AssertElementPresent(UpdateButton, "Update Button");
         }
+
+        public void UpdateButtonClick()
+        {
+            if (UpdateButton == null)
+            {
+                throw new Exception("Unable to locate button on page");
+            }
+            AssertElementPresent(UpdateButton, "Update Button");
+        }
+
         public void UseAccountForBusiness()
         {
             UseMyAccountForBusinessCheckbox.Click();
@@ -77,6 +90,16 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         }
         public void ClickUpdateButton()
         {
+            if (UpdateButton == null)
+            {
+                throw new Exception("Unable to locate Update Button");
+            }
+            ScrollTo(UpdateButton);
+            UpdateButton.Click();
+        }
+
+        public void ClickUpdateDetailsButton()
+        {
             if (UpdateDetailsButton == null)
             {
                 throw new Exception("Unable to locate Update Details Button");
@@ -84,6 +107,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             ScrollTo(UpdateDetailsButton);
             UpdateDetailsButton.Click();
         }
+
         public void ValidateInformationMessageBarStatus(bool displayed)
         {
             if (InformationMessageBar == null)
