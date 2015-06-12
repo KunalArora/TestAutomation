@@ -17,8 +17,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         }
         [FindsBy(How = How.XPath, Using = ".//*[@id='content_2_navigationcontainer_0_MenuItemsRepeater_LeftMenuLink_6']")]
         public IWebElement BusinessDetailsLink;
-        
-        [FindsBy(How = How.CssSelector, Using = "#content_2_innercontent_1_SubmitButton")]
+
+        [FindsBy(How = How.CssSelector, Using = "#content_2_innercontent_1_btnUpdateBasicDetails")]
         public IWebElement UpdateDetailsButton;
         
         [FindsBy(How = How.Id, Using = "BusinessAccountYesRadioButton")]
@@ -36,9 +36,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         [FindsBy(How = How.Id, Using = "txtVatNumber")]
         public IWebElement VatNumberTextBox;
         
-        [FindsBy(How = How.CssSelector, Using = "#content_2_innercontent_1_SubmitButton")]
-        public IWebElement UpdateButton;
-        
         [FindsBy(How = How.CssSelector, Using = ".info-bar")]
         public IWebElement InformationMessageBar;
 
@@ -49,7 +46,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             {
                 throw new Exception("Unable to locate button on page");
             }
-            AssertElementPresent(UpdateDetailsButton, "Continue Button");
+            AssertElementPresent(UpdateDetailsButton, "Update Details Button");
         }
         public void UseAccountForBusiness()
         {
@@ -80,12 +77,12 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         }
         public void ClickUpdateButton()
         {
-            if (UpdateButton == null)
+            if (UpdateDetailsButton == null)
             {
                 throw new Exception("Unable to locate Update Details Button");
             }
-            ScrollTo(UpdateButton);
-            UpdateButton.Click();
+            ScrollTo(UpdateDetailsButton);
+            UpdateDetailsButton.Click();
         }
         public void ValidateInformationMessageBarStatus(bool displayed)
         {
@@ -97,9 +94,4 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
           //  TestCheck.AssertIsEqual(displayed, InformationMessageBar.Displayed, "Information Message Bar");
         }
     }
-
-
-
-
-
 }
