@@ -215,6 +215,7 @@ namespace Brother.WebSites.Core.Pages.Base
                     MsgOutput(string.Format("Attempting a retry....Retry {0} times", retries));
                 }
             }
+            MsgOutput(string.Format("WebDriver driverl.URL status value is [{0}]" , driver.Url));
             TestCheck.AssertIsEqual(true, driver.Url.Contains(partialUrl), string.Format("WebDriver could not navigate to URL {0}", url));
         }
     }
