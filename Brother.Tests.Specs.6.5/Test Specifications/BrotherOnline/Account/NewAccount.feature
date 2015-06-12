@@ -112,7 +112,7 @@ Scenarios:
 	| Slovakia       |
 #	| Slovenia       | - Links for validation set of for UK so needs updating
 #	| Czech          | - Links for validation set of for UK so needs updating
-#	| Bulgaria       | - Links for validation set of for UK so needs updating
+#	| Bulgaria       | - Links for validation set of for UK so needs updating - maybe no version in SiteCore on DV2
 	| Finland        |
 	| Norway         |
 	| Italy          |

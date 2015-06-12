@@ -196,7 +196,7 @@ namespace Brother.WebSites.Core.Pages.Base
             var timedOut = false;
             var retries = 0;
             var partialUrl = url.Replace("https", "").Replace("http", "");
-
+            driver.Url = "<unable to navigate to page>";
             while ((!driver.Url.Contains(partialUrl)) && (!timedOut))
             {
                 try
@@ -215,7 +215,7 @@ namespace Brother.WebSites.Core.Pages.Base
                     MsgOutput(string.Format("Attempting a retry....Retry {0} times", retries));
                 }
             }
-            MsgOutput(string.Format("WebDriver driverl.URL status value is [{0}]" , driver.Url));
+            MsgOutput(string.Format("WebDriver [driver.URL] value is [{0}]. Actual desired URL should have been [{1}]", driver.Url, url));
             TestCheck.AssertIsEqual(true, driver.Url.Contains(partialUrl), string.Format("WebDriver could not navigate to URL {0}", url));
         }
     }
