@@ -24,7 +24,12 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             try
             {
                 WebDriver.SetWebDriverImplicitTimeout(new TimeSpan(0,0,10));
-                if (WaitForElementToExistByCssSelector("#AcceptCookieLawHyperLink", 5, 3))
+                if (!WaitForElementToExistByCssSelector("#AcceptCookieLawHyperLink", 5, 3))
+                {
+                    MsgOutput(
+                        "Accept Cookie Button was not found and may have already been dismissed during this test session");
+                }
+                else
                 {
                     var acceptCookieLawButton = driver.FindElement(By.CssSelector("#AcceptCookieLawHyperLink"));
                     acceptCookieLawButton.Click();
@@ -36,7 +41,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             }
             catch (WebDriverException timeOutDriverException)
             {
-                MsgOutput(string.Format("Critical Error - Driver timed out whilst looking for Accept Cookie Law request button"));
+                MsgOutput(string.Format("Driver timed out whilst looking for Accept Cookie Law request button"));
             }
             WebDriver.SetWebDriverImplicitTimeout(WebDriver.ImplicitWaitDefaultTimeout);
         }
