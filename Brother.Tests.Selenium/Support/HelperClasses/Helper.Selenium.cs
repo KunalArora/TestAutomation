@@ -34,6 +34,10 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             {
                 MsgOutput(string.Format("AcceptCookieLaw : {0} [This error can be ignored]", elementNotVisible));
             }
+            catch (WebDriverException timeOutDriverException)
+            {
+                MsgOutput(string.Format("Critical Error - Driver timed out whilst looking for Accept Cookie Law request button"));
+            }
             WebDriver.SetWebDriverImplicitTimeout(WebDriver.ImplicitWaitDefaultTimeout);
         }
         
