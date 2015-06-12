@@ -44,16 +44,6 @@ namespace Brother.WebSites.Core.Pages.Base
             return GetInstance<MainSiteHomePage>(driver, baseUrl, "");
         }
 
-        #region MPS Home Page
-
-        public static CloudExistingProposalPage LoadMpsLandingPage(IWebDriver driver, string baseUrl)
-        {
-            driver = SetDriver(driver);
-            driver.Navigate().GoToUrl(baseUrl.TrimEnd(new char[] { '/' }) + CloudExistingProposalPage.URL);
-            return GetTabInstance<CloudExistingProposalPage>(driver, baseUrl, "");
-        }
-
-        #endregion
 
         #region ThirdParty Pages
         public static BrotherEmailConfirmationPage LoadEmailConfirmationPage(IWebDriver driver, string baseUrl)
