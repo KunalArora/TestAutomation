@@ -196,10 +196,19 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
 
         public void SwitchToCreditCardDetailsFrameOrderSummary()
         {
-            var element = Driver.FindElement(By.CssSelector("#content_0_checkoutcontent_0_PaymentGatewayIFrame"));
-            if (element == null)
+            try
             {
-                TestCheck.AssertFailTest("Unable to Switch to the Credit Card details frame. Could not find CssSelector");
+                var element = Driver.FindElement(By.CssSelector("#content_0_checkoutcontent_0_PaymentGatewayIFrame"));
+                if (element == null)
+                {
+                    TestCheck.AssertFailTest(
+                        "Unable to Switch to the Credit Card details frame. Could not find CssSelector");
+                }
+            }
+            catch (WebDriverException timeOutException)
+            {
+                MsgOutput("Unable to find Credit Card Payment Frame - Digital River Page - due to timeout");    
+                TestCheck.AssertFailTest("Unable to find Credit Card Payment Page");
             }
             MsgOutput("Switching to Credit Card details frame (Order Summary)");
             Driver.SwitchTo().Frame(CreditCardDetailsFramePageOrderSummaryPage);

@@ -69,7 +69,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                 var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(ElementSearchTimeout));
                 elementStatus = wait.Until(ExpectedConditions.ElementIsVisible(By.Id(element))).Displayed;
             }
-            catch (Exception elementSearchTimeout)
+            catch (WebDriverException elementSearchTimeout)
             {
                 MsgOutput(elementSearchTimeout.Message);
                 throw new WebDriverTimeoutException(string.Format("Timeout searching for Element [{0}]. Timeout after [{1}]", element, ElementSearchTimeout));
@@ -85,7 +85,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                 var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(ElementSearchTimeout));
                 elementStatus = wait.Until(ExpectedConditions.ElementIsVisible(By.ClassName(element))).Displayed;
             }
-            catch (Exception elementSearchTimeout)
+            catch (WebDriverException elementSearchTimeout)
             {
                 MsgOutput(elementSearchTimeout.Message);
                 throw new WebDriverTimeoutException(string.Format("Timeout searching for Element [{0}]. Timeout after [{1}]", element, ElementSearchTimeout));
@@ -101,9 +101,8 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                 var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(ElementSearchTimeout));
                 elementStatus = wait.Until(ExpectedConditions.ElementIsVisible(By.Name(element))).Displayed;
             }
-            catch (Exception elementSearchTimeout)
+            catch (WebDriverException elementSearchTimeout)
             {
-                MsgOutput(elementSearchTimeout.Message);
                 throw new WebDriverTimeoutException(string.Format("Timeout searching for Element [{0}]. Timeout after [{1}]", element, ElementSearchTimeout));
             }
             return elementStatus;
@@ -117,9 +116,8 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                 var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(ElementSearchTimeout));
                 elementStatus = wait.Until(ExpectedConditions.ElementIsVisible(By.TagName(element))).Displayed;
             }
-            catch (Exception elementSearchTimeout)
+            catch (WebDriverException elementSearchTimeout)
             {
-                MsgOutput(elementSearchTimeout.Message);
                 throw new WebDriverTimeoutException(string.Format("Timeout searching for Element [{0}]. Timeout after [{1}]", element, ElementSearchTimeout));
             }
             return elementStatus;
@@ -158,7 +156,6 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                 catch (WebDriverException timeOutException)
                 {
                     MsgOutput(string.Format("Element [{0}] Not Found after [{1}] seconds", element, wait.Timeout.Seconds));
-                    MsgOutput("Exception timeout thrown ", timeOutException.Message);
                     retries++;
                 }
             }
@@ -193,7 +190,6 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                 catch (WebDriverException timeOutException)
                 {
                     MsgOutput(string.Format("Element Not Found after [{0}] seconds", wait.Timeout.Seconds));
-                    MsgOutput("Exception timeout thrown ", timeOutException.Message);
                     retries++;
                 }
             }
