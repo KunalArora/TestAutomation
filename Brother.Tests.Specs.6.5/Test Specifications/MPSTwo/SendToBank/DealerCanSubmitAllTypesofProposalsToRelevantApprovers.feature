@@ -27,7 +27,7 @@ Scenario Outline: Send Leasing and Click proposal to bank
 	| Role             | Country        | Role2          |
 	| Cloud MPS Dealer | United Kingdom | Cloud MPS Bank |
 
-@Ignore
+
 Scenario Outline: Send Leasing and Click proposal to bank for Privately Liable Customer
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created Leasing and Click proposal
@@ -73,7 +73,7 @@ Scenario Outline: Send Leasing and Click proposal to bank for Customer who can o
 	| Cloud MPS Dealer | United Kingdom | Cloud MPS Bank |
 
 
-@Ignore
+
 Scenario Outline: Send Leasing and Click proposal to bank for Privately Liable Customer who can order consumables
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created Leasing and Click proposal
@@ -97,7 +97,7 @@ Scenario Outline: Send Leasing and Click proposal to bank for Privately Liable C
 	| Cloud MPS Dealer | United Kingdom | Cloud MPS Bank |
 
 
-@Ignore
+
 Scenario Outline: Send Purchase and Click proposal for approval
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created Purchase and Click proposal
@@ -105,7 +105,7 @@ Scenario Outline: Send Purchase and Click proposal for approval
 	When I click on Action button against the proposal created above
 	Then I can click on Convert to Contract button under the Action button
 	And I am directed to customer detail page for more data capture
-	And I am taken to the proposal summary where I can enter envisage contract start date
+	And I am taken to purchase and click summary where I can enter envisage contract start date
 	And I can successfully convert the proposal to contract
 	And the newly converted contract is available under Awaiting Approval tab
 	And I sign out of Cloud MPS
@@ -121,7 +121,7 @@ Scenario Outline: Send Purchase and Click proposal for approval
 	| Cloud MPS Dealer | United Kingdom | Cloud MPS Local Office Approver |
 
 
-@Ignore
+
 Scenario Outline: Send Purchase and Click proposal approval for Privately Liable Customer
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created Purchase and Click proposal
@@ -129,7 +129,7 @@ Scenario Outline: Send Purchase and Click proposal approval for Privately Liable
 	When I click on Action button against the proposal created above
 	Then I can click on Convert to Contract button under the Action button
 	And I am directed to customer detail page for privately liable data capture
-	And I am taken to the proposal summary where I can enter envisage contract start date
+	And I am taken to purchase and click summary where I can enter envisage contract start date
 	And I can successfully convert the proposal to contract
 	And the newly converted contract is available under Awaiting Approval tab
 	And I sign out of Cloud MPS
@@ -143,7 +143,7 @@ Scenario Outline: Send Purchase and Click proposal approval for Privately Liable
 	| Role             | Country        | Role2                           |
 	| Cloud MPS Dealer | United Kingdom | Cloud MPS Local Office Approver |
 
-@Ignore
+
 Scenario Outline: Send Purchase and Click proposal for Approval for Customer who can order consumables
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created Purchase and Click proposal
@@ -151,7 +151,7 @@ Scenario Outline: Send Purchase and Click proposal for Approval for Customer who
 	When I click on Action button against the proposal created above
 	Then I can click on Convert to Contract button under the Action button
 	And I am directed to customer detail page for can order data capture
-	And I am taken to the proposal summary where I can enter envisage contract start date
+	And I am taken to purchase and click summary where I can enter envisage contract start date
 	And I can successfully convert the proposal to contract
 	And the newly converted contract is available under Awaiting Approval tab
 	And I sign out of Cloud MPS
@@ -166,7 +166,7 @@ Scenario Outline: Send Purchase and Click proposal for Approval for Customer who
 	| Role             | Country        | Role2                           |
 	| Cloud MPS Dealer | United Kingdom | Cloud MPS Local Office Approver |
 
-@Ignore
+
 Scenario Outline: Send Purchase and Click proposal for Approval for Privately Liable Customer who can order consumables
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created Purchase and Click proposal
@@ -174,7 +174,7 @@ Scenario Outline: Send Purchase and Click proposal for Approval for Privately Li
 	When I click on Action button against the proposal created above
 	Then I can click on Convert to Contract button under the Action button
 	And I am directed to capture customer detail page for privately liable customer who can order
-	And I am taken to the proposal summary where I can enter envisage contract start date
+	And I am taken to purchase and click summary where I can enter envisage contract start date
 	And I can successfully convert the proposal to contract
 	And the newly converted contract is available under Awaiting Approval tab
 	And I sign out of Cloud MPS
