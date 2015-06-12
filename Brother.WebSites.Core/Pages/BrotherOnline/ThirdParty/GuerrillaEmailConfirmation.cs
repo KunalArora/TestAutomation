@@ -203,11 +203,11 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.ThirdParty
 
         public void CheckAllEmailLinks()
         {
-            WebDriver.Wait(Helper.DurationType.Second, 2); // brief pause for email to load
+            WebDriver.Wait(DurationType.Second, 2); // brief pause for email to load
             var emailLinks = Driver.FindElements(By.CssSelector(".email a[href]"));
             if (emailLinks.Count > 0)
             {
-                Helper.MsgOutput(string.Format("Checking {0} email links for valid responses", emailLinks.Count));
+                MsgOutput(string.Format("Checking {0} email links for valid responses", emailLinks.Count));
                 foreach (var emailLink in emailLinks)
                 {
                     var href = emailLink.GetAttribute("href");
@@ -215,18 +215,18 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.ThirdParty
                     if (href.ToLower().Contains("policy"))
                     {
                         //NOTE: Guerrilla mail intercepts the Brother Policy link and adds its own domain
-                        Helper.MsgOutput("Skipping Policy link as Guerrilla email intecepts with incorrect domain");
+                        MsgOutput("Skipping Policy link as Guerrilla email intecepts with incorrect domain");
                     }
                     else
                     {
-                        if ((href.ToLower().Contains("account")) || (href.ToLower().Contains("sign") || (href.ToLower().Contains("sc_")))
-)                        {
-                            Helper.MsgOutput("Skipping account and sign-in validation link checking as we will validate those anyway by using the link direct");
+                        if ((href.ToLower().Contains("account")) || (href.ToLower().Contains("sign") || (href.ToLower().Contains("sc_"))))
+                        {
+                            MsgOutput("Skipping account and sign-in validation link checking as we will validate those anyway by using the link direct");
                         }
                         else
                         {
-                            CheckCorrectUrlDomain(href);
-                            Helper.MsgOutput(string.Format("Validating Link [{0}]", href));
+                           // CheckCorrectUrlDomain(href);
+                            MsgOutput(string.Format("Validating Link [{0}]", href));
                             var responseCode = Utils.GetPageResponse(href, "HEAD", 10);
                             TestCheck.AssertIsEqual(HttpStatusCode.OK, responseCode, "HttpStatusCode");
                         }
@@ -235,7 +235,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.ThirdParty
             }
             else
             {
-                Helper.MsgOutput("Email contains no links to validate");
+                MsgOutput("Email contains no links to validate");
             }
         }
 
@@ -279,7 +279,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.ThirdParty
             // Set the email subject via jQuery as it is the only viable method
             PopulateEmailEditControl(email);
             SetCurrentEmail();
-            Helper.MsgOutput(string.Format("Setting email to [{0}]", email));
+            MsgOutput(string.Format("Setting email to [{0}]", email));
         }
 
         public void SelectEmailDomain(string domain)
@@ -290,7 +290,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.ThirdParty
                 throw new NullReferenceException("Unable to selection email domain from domain list");
             }
             SelectFromDropdownByValue(DomainSelectionList, domain);
-            Helper.MsgOutput(string.Format("Setting email Domain to [{0}]", domain));
+            MsgOutput(string.Format("Setting email Domain to [{0}]", domain));
         }
 
         private IWebElement ValidateEmailSubject(IWebElement emailItem, string emailSubject)
@@ -325,7 +325,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.ThirdParty
                 IsEmailListAvailable();
                 try
                 {
-                    WebDriver.Wait(Helper.DurationType.Second, 2);
+                    WebDriver.Wait(DurationType.Second, 2);
                     if (WaitForElementToExistByCssSelector(".mail_row"))
                     {
                         var inboxItems = Driver.FindElements(By.CssSelector(".mail_row"));
@@ -339,7 +339,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.ThirdParty
 
                     if (!emailFound)
                     {
-                        Helper.MsgOutput(string.Format("Unable to locate valid emails in Inbox, retrying [{0}] times", retryCount));
+                        MsgOutput(string.Format("Unable to locate valid emails in Inbox, retrying [{0}] times", retryCount));
                         retryCount++;
                     }
                     else
@@ -377,7 +377,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.ThirdParty
                 IsEmailListAvailable();
                 try
                 {
-                    WebDriver.Wait(Helper.DurationType.Second, 2);
+                    WebDriver.Wait(DurationType.Second, 2);
                     if (WaitForElementToExistByCssSelector("[id*=mr_] .td1 input"))
                     {
                         var inboxItems = Driver.FindElements(By.CssSelector("[id*=mr_]"));
@@ -393,7 +393,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.ThirdParty
 
                         if (!emailFound)
                         {
-                            Helper.MsgOutput(
+                            MsgOutput(
                                 string.Format("Unable to locate valid emails in Inbox, retrying [{0}] times",
                                     retryCount));
                             retryCount++;
