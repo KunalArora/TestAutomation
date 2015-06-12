@@ -83,7 +83,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
 
             foreach (var link in links)
             {
-                if (!link.TagName.Contains("a")) continue;
+                if (!link.TagName.Contains("li")) continue; // was tag contains 'a'
                 if (!link.Text.ToLower().Contains(searchString.ToLower())) continue;
                 AssertElementPresent(link, "Navigation Link");
                 return link;
@@ -100,7 +100,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             try
             {
                 navigationLinks =
-                MyAccountSideNavigationMenu(driver).FindElements(By.XPath(@"//*[contains(@id,'navigationcontainer')]"));
+                MyAccountSideNavigationMenu(driver).FindElements(By.XPath(@"//*[contains(@id,'navigationcontainer_0_MenuItemsRepeater_listItem_')]"));
             }
             catch (NoSuchElementException notSuchElement)
             {
@@ -352,6 +352,14 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             button.Click();
             return GetInstance<MyOrdersPage>(driver, "", "");
         }
+
+        public static BusinessDetailsPage BusinessDetailsMenuClick(IWebDriver driver, IWebElement button)
+        {
+            TestCheck.AssertIsNotNull(button, "Business Details Menu");
+            button.Click();
+            return GetInstance<BusinessDetailsPage>(driver, "", "");
+        }
+
         public static WelcomeBackPage MyAccountMenuItemClick(IWebDriver driver, IWebElement menuItem)
         {
             TestCheck.AssertIsNotNull(menuItem, "My Account Menu Item");

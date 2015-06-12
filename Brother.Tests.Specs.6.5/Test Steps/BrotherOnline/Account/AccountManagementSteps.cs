@@ -118,6 +118,13 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             NextPage = GlobalNavigationModule.OrdersMenuClick(CurrentDriver, ordersButton);
         }
 
+        //[Then(@"I can click on Business Details")]
+        //public void ThenICanClickOnBusinessDetails()
+        //{
+        //    var businessDetailsButton = GlobalNavigationModule.GetMyAccountMenuItem("BusinessDetails");
+        //    NextPage = GlobalNavigationModule.BusinessDetailsMenuClick(CurrentDriver, businessDetailsButton);
+        //}
+
         [Then(@"If I grant the user account the ""(.*)"" role")]
         public void ThenIfIGrantTheUserAccountTheRole(string userRole)
         {
@@ -137,7 +144,8 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [When(@"I clicked on Business Details")]
         public void WhenIClickedOnBusinessDetails()
         {
-            NextPage = CurrentPage.As<MyAccountPage>().ClickBusinessDetailsLink();
+            var businessDetailsButton = GlobalNavigationModule.GetMyAccountMenuItem("BusinessDetails");
+            NextPage = GlobalNavigationModule.BusinessDetailsMenuClick(CurrentDriver, businessDetailsButton);
         }
         [When(@"I am redirected to the Business Details Page")]
         public void WhenIAmRedirectedToTheBusinessDetailsPage()
