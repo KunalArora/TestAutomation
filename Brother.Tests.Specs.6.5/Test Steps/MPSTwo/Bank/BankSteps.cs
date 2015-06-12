@@ -77,6 +77,8 @@ namespace Brother.Tests.Specs.MPSTwo.Bank
             NextPage = CurrentPage.As<BankProposalsSummaryPage>().ClickAccpetButton();
         }
 
+
+        [Given(@"I navigate to bank contract Awaiting Acceptance page")]
         [Then(@"navigate to bank contract Awaiting Acceptance page")]
         public void ThenNavigateToBankContractAwaitingAcceptancePage()
         {
