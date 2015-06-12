@@ -156,7 +156,10 @@ namespace Brother.WebSites.Core.Pages.Base
             try
             {
                 MsgOutput("Attempting to navigate to page ", url);
-                driver.Navigate().GoToUrl(url);
+               // driver.Navigate().GoToUrl(url);
+                NavigateToUrl(driver, url);
+                MsgOutput(string.Format("Browser is on Page {0}", url));
+                MsgOutput("Looking for Accept Cookie Request");
                 AcceptCookieLaw(driver);
             }
             catch (WebDriverException driverException)
@@ -171,11 +174,14 @@ namespace Brother.WebSites.Core.Pages.Base
             try
             {
                 MsgOutput("Attempting to navigate to page ", url);
-                driver.Navigate().GoToUrl(url);
+                //driver.Navigate().GoToUrl(url);
+                NavigateToUrl(driver, url);
                 if (doRefresh)
                 {
                     driver.Navigate().Refresh();
                 }
+                MsgOutput(string.Format("Browser is on Page {0}", url));
+                MsgOutput("Looking for Accept Cookie Request");
                 AcceptCookieLaw(driver);
             }
             catch (WebDriverException driverException)
@@ -183,6 +189,33 @@ namespace Brother.WebSites.Core.Pages.Base
                 MsgOutput(string.Format("Web Driver Critcal Error!!!! {0}", driverException.Message));
                 MsgOutput(string.Format("Likelhood that WebDriver could not get to the URL {0}", url));
             }
+        }
+
+        private static void NavigateToUrl(IWebDriver driver, string url)
+        {
+            var timedOut = false;
+            var retries = 0;
+            var partialUrl = url.Replace("https", "").Replace("http", "");
+
+            while ((!driver.Url.Contains(partialUrl)) && (!timedOut))
+            {
+                try
+                {
+                    driver.Navigate().GoToUrl(url);
+                    retries++;
+                    if (retries == 10)
+                    {
+                        timedOut = true;
+                    }
+                }
+                catch (WebDriverException driverException)
+                {
+                    MsgOutput(string.Format("Web Driver Critcal Error!!!! {0}", driverException.Message));
+                    MsgOutput(string.Format("Likelhood that WebDriver could not get to the URL {0}", url));
+                    MsgOutput(string.Format("Attempting a retry....Retry {0} times", retries));
+                }
+            }
+            TestCheck.AssertIsEqual(true, driver.Url.Contains(partialUrl), string.Format("WebDriver could not navigate to URL {0}", url));
         }
     }
 }
