@@ -158,7 +158,10 @@ namespace Brother.Tests.Specs.MPSTwo.SendToBank
             CurrentPage.As<BankOffersPage>().IsProposalSentToBankAwaitingProposalPage();
         }
 
+        [Given(@"I navigate to Local Approver Awaiting Approval screen under Proposal page")]
+        [When(@"I navigate to Local Approver Awaiting Approval screen under Proposal page")]
         [Then(@"I navigate to Local Approver Awaiting Approval screen under Offer page")]
+        [Then(@"I navigate to Local Approver Awaiting Approval screen under Proposal page")]
         public void ThenINavigateToLocalApproverAwaitingApprovalScreenUnderOfferPage()
         {
             NextPage = CurrentPage.As<LocalOfficeApproverDashBoardPage>().NavigateToProposalsPage();
