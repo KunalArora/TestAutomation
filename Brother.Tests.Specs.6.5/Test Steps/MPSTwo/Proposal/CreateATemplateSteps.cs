@@ -1071,5 +1071,24 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<DealerProposalsCreateProductsPage>().VerifyThatProductQuantityElementChanged();
         }
 
+        [When(@"I navigate to dealer contract Approved Acceptance page")]
+        public void WhenINavigateToDealerContractApprovedAcceptancePage()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+        [When(@"I navigate to dealer contract Awaiting Acceptance page")]
+        public void WhenINavigateToDealerContractAwaitingAcceptancePage()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+        [When(@"I navigate to dealer contract Rejected page")]
+        public void WhenINavigateToDealerContractRejectedPage()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+
     }
 }

@@ -19,6 +19,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string MaintainOfferButton = @".open ul.dropdown-menu .js-mps-maintain-offer";
         private const string ProposalCopyElement = @".open .js-mps-copy";
         private const string ProposalCopyElementWithCustomer = @".open .js-mps-copy-with-customer";
+        private const string ContractDownloadPDF = @".open .js-mps-download-contract-pdf";
+        private const string ContractDownloadInvoicePDF = @".open .js-mps-download-contract-invoice-pdf";
 
 
         private static IWebElement CopyProposalButtonElement(ISearchContext driver)
@@ -39,6 +41,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private static IWebElement MaintainOfferElement(ISearchContext driver)
         {
             return driver.FindElement(By.CssSelector(MaintainOfferButton));
+        }
+
+        private static IWebElement DownloadContractPDFElement(ISearchContext driver)
+        {
+            return driver.FindElement(By.CssSelector(ContractDownloadPDF));
+        }
+
+        private static IWebElement DownloadContractInvoicePDFElement(ISearchContext driver)
+        {
+            return driver.FindElement(By.CssSelector(ContractDownloadInvoicePDF));
         }
 
         private static IWebElement PreInstallationElement(ISearchContext driver)
@@ -70,6 +82,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             var actionsElement = driver.FindElements(By.CssSelector(actionsButton));
             return actionsElement;
+        }
+
+        public static void DownloadContractPDFAction(IWebDriver driver)
+        {
+            var action = DownloadContractPDFElement(driver);
+            action.Click();
+            
+        }
+
+        public static void DownloadContractInvoicePDFAction(IWebDriver driver)
+        {
+            var action = DownloadContractInvoicePDFElement(driver);
+            action.Click();
+
         }
 
         public static IWebElement SpecificActionsDropdownElement(ISearchContext driver)
