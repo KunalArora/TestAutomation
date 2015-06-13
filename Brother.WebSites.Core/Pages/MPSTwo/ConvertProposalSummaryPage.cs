@@ -26,13 +26,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private IWebElement ProposedStartDate;
         [FindsBy(How = How.Id, Using = "content_1_ButtonSaveAsContract")]
         private IWebElement SaveAsContractButton;
+        [FindsBy(How = How.Id, Using = "content_1_InputSendToBrother_Input")]
+        private IWebElement SendToBrotherElement;
         [FindsBy(How = How.Id, Using = "content_1_InputSendToSchufa_Label")]
         private IWebElement SchufaAuthorisationButton;
         [FindsBy(How = How.Id, Using = "content_1_InputSendToBrother_Label")]
         private IWebElement BrotherAuthorisationButton;
         
         
-
+        
 
         public void IsConvertSummaryPageDisplayed()
         {

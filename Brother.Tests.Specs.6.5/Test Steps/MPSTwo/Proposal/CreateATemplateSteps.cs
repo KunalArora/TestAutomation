@@ -34,6 +34,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             var instance4 = new CreateNewAccountSteps();
             instance4.GivenISignIntoMpsasAFrom("Cloud MPS Dealer", "United Kingdom");
             GivenIHaveCreatedLeasingAndClickProposal();
+//            GivenIHaveCreatedPurchaseAndClickProposal();
             var instance = new ProposalCreateAProposalThatWillBeUsedForContractSteps();
             instance.GivenIAmOnProposalListPage();
             var instance2 = new SendProposalToApprover();
@@ -43,7 +44,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             instance2.ThenIAmTakenToTheProposalSummaryWhereICanEnterEnvisageContractStartDate();
             instance2.ThenICanSuccessfullyConvertTheProposalToContract();
             instance2.ThenTheNewlyConvertedContractIsAvailableUnderAwaitingApprovalTab();
-//            instance2.ThenINavigateToProposalSummaryPageUnderAwaitingApprovalTab();
+            instance2.ThenINavigateToProposalSummaryPageUnderAwaitingApprovalTab();
             var instance3 = new AccountManagementSteps();
             instance3.ThenIfISignOutOfBrotherOnline();
             instance4.GivenISignIntoMpsasAFrom("Cloud MPS Bank", "United Kingdom");

@@ -95,7 +95,7 @@ Scenario: Customer can change their Brother Online Ireland email address after r
 
 
 # Change Business details in your created account, go to my account and change/add your business details
-Scenario: Customer can change their business details after logging into account
+Scenario: Business Customer can change their business details after logging into account
 	Given I am logged into my Brother Online account
 	When I navigate to my account for "United Kingdom"
 	When I clicked on Business Details
@@ -108,16 +108,17 @@ Scenario: Customer can change their business details after logging into account
 	And I click on Update details on business details page
 	Then I can verify successfull update message appeared at the top
 	
-
+@ignore
+Scenario: Business Customer can reset their password 
 	# resetting a password
 
+@ignore
+Scenario: Business Customer can change their Email Address
 	# change email
 
+@ignore
+Scenario: Business Customer can change their Address
 	# changing address
-
-	# create account for different countries
-
-	# changing business details
 
 
 

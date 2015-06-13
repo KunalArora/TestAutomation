@@ -47,14 +47,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return Driver.FindElement(By.XPath(element));
         }
 
-        public BankProposalsSummaryPage NavigateToViewSummary()
+        public DealerProposalsCreateSummaryPage NavigateToViewSummary()
         {
             string proposalname = MpsUtil.CreatedProposal();
             IWebElement element = ActionButtonElementByName(proposalname, "6");
             element.Click();
             ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
 
-            return GetTabInstance<BankProposalsSummaryPage>(Driver);
+            return GetTabInstance<DealerProposalsCreateSummaryPage>(Driver);
         }
     }
 }

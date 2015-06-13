@@ -126,6 +126,11 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         // Clicks the Register Device link and proceeds to the RegisterYourDevice page
         public RegisterDevicePage ClickRegisterDeviceLink()
         {
+            if (!WaitForElementToExistByCssSelector(".add-device"))
+            {
+                TestCheck.AssertFailTest("Unable to locate the Add Device button");
+            }
+            RegisterDeviceLink = Driver.FindElement(By.CssSelector(".add-device"));
             ScrollTo(RegisterDeviceLink);
             RegisterDeviceLink.Click();
             return GetInstance<RegisterDevicePage>(Driver);
