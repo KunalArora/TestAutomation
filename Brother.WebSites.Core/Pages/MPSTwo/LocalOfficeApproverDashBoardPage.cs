@@ -41,5 +41,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ProposalLinkElement.Click();
             return GetTabInstance<LocalOfficeApproverProposalsPage>(Driver);
         }
+
+
+        public LocalOfficeApproverContractPage NavigateToContractPage()
+        {
+            IsContractsLinkAvailable();
+            ContractLinkElement.Click();
+            return GetTabInstance<LocalOfficeApproverContractPage>(Driver);
+        }
     }
 }
