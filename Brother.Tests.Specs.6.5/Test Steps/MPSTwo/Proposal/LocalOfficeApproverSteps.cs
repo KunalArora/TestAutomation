@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Brother.WebSites.Core.Pages.Base;
+using Brother.WebSites.Core.Pages.MPSTwo;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
@@ -13,14 +14,29 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
         [When(@"I navigate to Local Office Approver contract Awaiting Acceptance page")]
         public void WhenINavigateToLocalOfficeApproverContractAwaitingAcceptancePage()
         {
-            ScenarioContext.Current.Pending();
+            NextPage = CurrentPage.As<LocalOfficeApproverDashBoardPage>().NavigateToContractPage();
+            CurrentPage.As<LocalOfficeApproverContractPage>().NavigateToAwaitingAcceptanceTab();
         }
 
         [When(@"I navigate to Local Office Approver contract Rejected page")]
         public void WhenINavigateToLocalOfficeApproverContractRejectedPage()
         {
-            ScenarioContext.Current.Pending();
+            NextPage = CurrentPage.As<LocalOfficeApproverDashBoardPage>().NavigateToContractPage();
+            CurrentPage.As<LocalOfficeApproverContractPage>().NavigateToRejectTab();
         }
+
+        [Then(@"I can successfully download a Local Approver Contract PDF")]
+        public void ThenICanSuccessfullyDownloadALocalApproverContractPDF()
+        {
+            CurrentPage.As<LocalOfficeApproverContractPage>().DownloadPDFOnBankContractPages();
+        }
+
+        [Then(@"I can successfully download a Local Approver Contract Invoice PDF")]
+        public void ThenICanSuccessfullyDownloadALocalApproverContractInvoicePDF()
+        {
+            CurrentPage.As<LocalOfficeApproverContractPage>().DownloadInvoicePDFOnBankContractPages();
+        }
+
 
     }
 }

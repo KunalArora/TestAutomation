@@ -1074,20 +1074,38 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [When(@"I navigate to dealer contract Approved Acceptance page")]
         public void WhenINavigateToDealerContractApprovedAcceptancePage()
         {
-            ScenarioContext.Current.Pending();
+            NextPage = CurrentPage.As<DealerDashBoardPage>().NavigateToContractScreenFromDealerDashboard();
+            CurrentPage.As<CloudContractPage>().IsContractScreenDisplayed();
         }
 
         [When(@"I navigate to dealer contract Awaiting Acceptance page")]
         public void WhenINavigateToDealerContractAwaitingAcceptancePage()
         {
-            ScenarioContext.Current.Pending();
+            NextPage = CurrentPage.As<DealerDashBoardPage>().NavigateToContractScreenFromDealerDashboard();
+            CurrentPage.As<CloudContractPage>().NavigateToAwaitingAcceptance();
         }
 
         [When(@"I navigate to dealer contract Rejected page")]
         public void WhenINavigateToDealerContractRejectedPage()
         {
-            ScenarioContext.Current.Pending();
+            NextPage = CurrentPage.As<DealerDashBoardPage>().NavigateToContractScreenFromDealerDashboard();
+            CurrentPage.As<CloudContractPage>().NavigateToRejectedContract();
+
         }
+
+
+        [Then(@"I can successfully download a dealer Contract PDF")]
+        public void ThenICanSuccessfullyDownloadADealerContractPDF()
+        {
+            CurrentPage.As<CloudContractPage>().DownloadAContractPDF();
+        }
+
+        [Then(@"I can successfully download a dealer Contract Invoice PDF")]
+        public void ThenICanSuccessfullyDownloadADealerContractInvoicePDF()
+        {
+            CurrentPage.As<CloudContractPage>().DownloadAContractInvoicePDF();
+        }
+
 
 
     }

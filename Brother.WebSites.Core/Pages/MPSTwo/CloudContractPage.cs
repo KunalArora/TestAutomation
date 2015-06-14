@@ -42,14 +42,23 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private IList<IWebElement> printerSerialNumberlabelElement;
         [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href=\"/mps/dealer/contracts/rejected\"]")]
         private IWebElement RejectedLinkElement;
+        [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href=\"/mps/dealer/contracts/awaiting-acceptance\"]")]
+        private IWebElement AwaitingAcceptanceTabElement;
+        [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href=\"/mps/dealer/contracts/accepted\"]")]
+        private IWebElement AcceptedTabElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/contracts/approved-proposals\"]")]
+        private IWebElement ApprovedProposalTabElement;
+        [FindsBy(How = How.CssSelector, Using = ".active a[href=\"/mps/dealer/contracts/approved-proposals\"]")]
+        private IWebElement OpenedApprovedProposalTabElement;
+        
         
         
         
         public void IsContractScreenDisplayed()
         {
-            if(contractAwaitingProcessingElement == null)
+            if (OpenedApprovedProposalTabElement == null)
                 throw new NullReferenceException("Contract Screen is not displayed");
-            AssertElementPresent(contractAwaitingProcessingElement, "The opened contract screen");
+            AssertElementPresent(OpenedApprovedProposalTabElement, "The opened contract screen");
         }
 
         public void VerifyRejectedContractIsDisplayed()
@@ -137,6 +146,44 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             IsContractScreenDisplayed();
             
+        }
+
+        
+        public void DownloadAContractPDF()
+        {
+            ActionsModule.ClickOnTheActionsDropdown(Driver);
+            ActionsModule.DownloadContractPDFAction(Driver);
+        }
+
+
+        public void DownloadAContractInvoicePDF()
+        {
+            ActionsModule.ClickOnTheActionsDropdown(Driver);
+            ActionsModule.DownloadContractInvoicePDFAction(Driver);
+        }
+
+        public void NavigateToAwaitingAcceptance()
+        {
+            if(AwaitingAcceptanceTabElement == null)
+                throw new Exception("Awaiting Acceptance Tab is not displayed");
+
+            AwaitingAcceptanceTabElement.Click();
+        }
+
+        public void NavigateToAcceptedContract()
+        {
+            if (AcceptedTabElement == null)
+                throw new Exception("Accepted Tab is not displayed");
+
+            AcceptedTabElement.Click();
+        }
+
+        public void NavigateToRejectedContract()
+        {
+            if (RejectedLinkElement == null)
+                throw new Exception("Rejected Tab is not displayed");
+
+            RejectedLinkElement.Click();
         }
 
         private void EnterSerialNumber()
