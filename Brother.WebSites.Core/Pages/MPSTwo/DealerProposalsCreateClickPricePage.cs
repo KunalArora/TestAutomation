@@ -103,9 +103,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             SelectMonoVolume(volume, "0");
             SelectColorVolume(colour);
-            WebDriver.Wait(DurationType.Second, 3);
+            WebDriver.Wait(DurationType.Second, 5);
             CalculateClickPriceElement.Click();
-            WebDriver.Wait(DurationType.Second, 3);
+            //WebDriver.Wait(DurationType.Second, 3);
         }
 
 
@@ -168,6 +168,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerProposalsCreateSummaryPage ProceedToProposalSummaryFromClickPrice()
         {
+            
             ClickPriceNextButton().Click();
 
             return GetTabInstance<DealerProposalsCreateSummaryPage>(Driver);
@@ -177,11 +178,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             //MoveToClickPriceScreen();
             CalculateClickPrice(volume, colour);
-            WebDriver.Wait(Helper.DurationType.Second, 5);
+            //WebDriver.Wait(Helper.DurationType.Second, 1);
             SpecFlow.SetContext("ClickPriceMonoValue", ClickPriceValue().First().Text);
             SpecFlow.SetContext("ClickPriceColourValue", ClickPriceColourValue().First().Text);
-			VerifyClickPriceValueIsDisplayed();
-            
+			//VerifyClickPriceValueIsDisplayed();
+            WebDriver.Wait(Helper.DurationType.Second, 2);
             return ProceedToProposalSummaryFromClickPrice();
         }
 

@@ -107,27 +107,32 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private static string ProposalCreatedActionButton()
         {
-            return String.Format("//td[text()='{0}']/parent::tr/td[6]/div/button", MpsUtil.CreatedProposal());
+            return String.Format("//td[text()='{0}']/parent::tr/td[6]/div/button", 
+                MpsUtil.CreatedProposal());
         }
 
         private static string ContractApprovedProposalActionButton()
         {
-            return String.Format("//td[text()='{0}']/parent::tr/td[9]/div/button", MpsUtil.CreatedProposal());
+            return String.Format("//td[text()='{0}']/parent::tr/td[9]/div/button", 
+                MpsUtil.CreatedProposal());
         }
 
         private static string DeclinedProposalActionButton()
         {
-            return String.Format("//td[text()='{0}']/parent::tr/td[7]/div/button", MpsUtil.CreatedProposal());
+            return String.Format("//td[text()='{0}']/parent::tr/td[7]/div/button", 
+                MpsUtil.CreatedProposal());
         }
 
         private static string ProposalCopiedActionButton()
         {
-            return String.Format("//td[text()='{0}']/parent::tr/td[6]/div/button", MpsUtil.CopiedProposal());
+            return String.Format("//td[text()='{0}']/parent::tr/td[6]/div/button", 
+                MpsUtil.CopiedProposal());
         }
 
         private static string ProposalCustomer()
         {
-            return String.Format("//td[text()='{0}']/parent::tr/td[4]", MpsUtil.CopiedProposal());
+            return String.Format("//td[text()='{0}']/parent::tr/td[4]", 
+                MpsUtil.CopiedProposal());
         }
 
         public static IWebElement ProposalCustomerColumn(IWebDriver driver)
@@ -201,42 +206,36 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             var actionsElement = PreInstallationElement(driver);
             actionsElement.Click();
-            WebDriver.Wait(Helper.DurationType.Second, 5);
+           
         }
 
         public static void NavigateToMaintainOfferScreen(IWebDriver driver)
         {
             var actionsElement = MaintainOfferElement(driver);
             actionsElement.Click();
-            WebDriver.Wait(Helper.DurationType.Second, 5);
+            
         }
 
         public static void StartConvertToContractProcess(IWebDriver driver)
         {
-            WebDriver.Wait(Helper.DurationType.Second, 5); //Wait for the Action pop up to appear
             ConvertButtonElement(driver).Click();
         }
 
         public static void NavigateToSummaryPageUsingActionButton(IWebDriver driver)
         {
-            WebDriver.Wait(Helper.DurationType.Second, 2); //Wait for the Action pop up to appear
             OpenOfferViewSummaryElement(driver).Click();
-            WebDriver.Wait(Helper.DurationType.Second, 5); //Wait for the page to load
         }
 
         public static void StartTheProposalEditProcess(IWebDriver driver)
         {
-            WebDriver.Wait(Helper.DurationType.Second, 3); //Wait for the Action pop up to appear
             ProposalEditButtonElement(driver).Click();
         }
         public static void DeleteAProposal(IWebDriver driver)
         {
-            WebDriver.Wait(Helper.DurationType.Second, 3); //Wait for the Action pop up to appear
             ProposalDeleteButtonElement(driver).Click();
         }
         public static void SendProposalToBankButton(IWebDriver driver)
         {
-            WebDriver.Wait(Helper.DurationType.Second, 3); //Wait for the Action pop up to appear
             SendToBankButtonElement(driver).Last().Click();
         }
     }
