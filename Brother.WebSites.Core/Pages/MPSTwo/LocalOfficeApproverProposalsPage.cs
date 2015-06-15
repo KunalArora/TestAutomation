@@ -58,5 +58,91 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             TestCheck.AssertIsEqual(true, newProposal.Displayed, "Is new sent to bank awaiting proposal page?");
         }
 
+        private IWebElement ActionButtonElementByName(string name, string tdcol)
+        {
+            string element = String.Format("//td[text()=\"{0}\"]/parent::tr/td[{1}]/div/button", name, tdcol);
+            return Driver.FindElement(By.XPath(element));
+        }
+
+        public LocalOfficeApproverProposalsSummaryPage NavigateToViewSummary()
+        {
+            string proposalname = MpsUtil.CreatedProposal();
+            IWebElement element = ActionButtonElementByName(proposalname, "6");
+            element.Click();
+            ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
+
+            return GetTabInstance<LocalOfficeApproverProposalsSummaryPage>(Driver);
+        }
+
+        public LocalOfficeApproverProposalsSummaryPage NavigateToViewSummary(string name)
+        {
+            IWebElement element = ActionButtonElementByName(name, "6");
+            StoreProposalName(name);
+            element.Click();
+            ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
+
+            return GetTabInstance<LocalOfficeApproverProposalsSummaryPage>(Driver);
+        }
+
+        private void StoreProposalName(string name)
+        {
+            SpecFlow.SetContext("ProposalNameByApprover", name);
+        }
+
+        public LocalOfficeApproverProposalsSummaryPage NavigateToProposalSummary()
+        {
+            ActionsModule.SpecificClickOnTheActionsDropdown(Driver);
+            ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
+
+            return GetTabInstance<LocalOfficeApproverProposalsSummaryPage>(Driver);
+        }
+
+        public void NavigateToAwaitingApprovalPage()
+        {
+            IsAwaitingApprovalLinkAvailable();
+            AwaitingApprovalLinkElement.Click();
+        }
+
+        public void NavigateToDeclinedPage()
+        {
+            IsDeclinedLinkAvailable();
+            DeclinedLinkElement.Click();
+        }
+
+        public void NavigateToApprovedPage()
+        {
+            IsApprovedLinkAvailable();
+            ApprovedLinkElement.Click();
+        }
+
+        public void IsProposalSentToApproverAwaitingProposalPage()
+        {
+            var createdProposal = MpsUtil.CreatedProposal();
+            var newlyAdded = @"//td[text()='{0}']";
+            newlyAdded = String.Format(newlyAdded, createdProposal);
+
+            var newProposal = Driver.FindElement(By.XPath(newlyAdded));
+
+            TestCheck.AssertIsEqual(true, newProposal.Displayed, "Is new sent to bank awaiting proposal page?");
+        }
+
+        public void VerifyDeclinedProposalIsDisplayed()
+        {
+            string name = SpecFlow.GetContext("ProposalNameByApprover");
+
+            AssertElementPresent(ActionButtonElementByName(name, "7"), "The proposal is not found");
+        }
+
+        public void VerifyApprovedProposalIsDisplayed()
+        {
+            string name = SpecFlow.GetContext("ProposalNameByApprover");
+
+            AssertElementPresent(ActionButtonElementByName(name, "7"), "The proposal is not found");
+        }
+
+        public void IsAllTheDeclinedProposalDisplayed()
+        {
+
+        }
     }
 }

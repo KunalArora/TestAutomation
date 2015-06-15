@@ -1,5 +1,6 @@
 using Brother.Tests.Specs.BrotherOnline.Account;
 using Brother.Tests.Specs.MPSTwo.Bank;
+using Brother.Tests.Specs.MPSTwo.LocalOfficeApprover;
 using Brother.Tests.Specs.MPSTwo.SendToBank;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
@@ -28,13 +29,53 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             WhenIFillProposalDescription();
         }
 
+        [Given(@"Dealer have created Purchase and Click contract")]
+        public void GivenIHaveCreatedPurchaseAndClickContract()
+        {
+            var instance4 = new CreateNewAccountSteps();
+            instance4.GivenISignIntoMpsasAFrom("Cloud MPS Dealer", "United Kingdom");
+            //GivenIHaveCreatedLeasingAndClickProposal();
+            GivenIHaveCreatedPurchaseAndClickProposal();
+            var instance = new ProposalCreateAProposalThatWillBeUsedForContractSteps();
+            instance.GivenIAmOnProposalListPage();
+            var instance2 = new SendProposalToApprover();
+            instance2.WhenIClickOnActionButtonAgainstTheProposalCreatedAbove();
+            instance2.ThenICanClickOnConvertToContractButtonUnderTheActionButton();
+            instance2.ThenIAmDirectedToCustomerDetailPageForMoreDataCapture();
+            instance2.ThenIAmTakenToTheProposalSummaryWhereICanEnterEnvisageContractStartDate();
+            instance2.ThenICanSuccessfullyConvertTheProposalToContract();
+            instance2.ThenTheNewlyConvertedContractIsAvailableUnderAwaitingApprovalTab();
+            instance2.ThenINavigateToProposalSummaryPageUnderAwaitingApprovalTab();
+            var instance3 = new AccountManagementSteps();
+            instance3.ThenIfISignOutOfBrotherOnline();
+            //instance4.GivenISignIntoMpsasAFrom("Cloud MPS Bank", "United Kingdom");
+            instance4.GivenISignIntoMpsasAFrom("Cloud MPS Local Office Approver", "United Kingdom");
+            //instance2.ThenINavigateToBankAwaitingApprovalScreenUnderOfferPage();
+            instance2.ThenINavigateToLOApproverAwaitingApprovalScreenUnderProposalsPage();
+            //instance2.ThenTheConvertedLeasingAndClickAndServiceProposalAboveIsDisplayedOnTheScreen();
+            instance2.ThenTheConvertedPurchaseAndClickAndServiceProposalAboveIsDisplayedOnTheScreen();
+//            var instance5 = new BankSteps();
+//            instance5.ThenISelectTheProposalOnAwaitingProposal();
+//            instance5.ThenIShouldBeAbleToApproveThatProposal();
+//            instance3.ThenIfISignOutOfBrotherOnline();
+//            instance4.GivenISignIntoMpsasAFrom("Cloud MPS Dealer", "United Kingdom");
+//            instance.WhenISignTheContractAsADealer();
+//            instance3.ThenIfISignOutOfBrotherOnline();
+            var instance5 = new LocalOfficeApproverSteps();
+            instance5.ThenISelectTheProposalOnAwaitingProposal();
+            instance5.ThenIShouldBeAbleToApproveThatProposal();
+            instance3.ThenIfISignOutOfBrotherOnline();
+            instance4.GivenISignIntoMpsasAFrom("Cloud MPS Dealer", "United Kingdom");
+            instance.WhenISignTheContractAsADealer();
+            instance3.ThenIfISignOutOfBrotherOnline();
+        }
+
         [Given(@"Dealer have created Leasing and Click contract")]
         public void GivenIHaveCreatedLeasingAndClickContract()
         {
             var instance4 = new CreateNewAccountSteps();
             instance4.GivenISignIntoMpsasAFrom("Cloud MPS Dealer", "United Kingdom");
             GivenIHaveCreatedLeasingAndClickProposal();
-//            GivenIHaveCreatedPurchaseAndClickProposal();
             var instance = new ProposalCreateAProposalThatWillBeUsedForContractSteps();
             instance.GivenIAmOnProposalListPage();
             var instance2 = new SendProposalToApprover();

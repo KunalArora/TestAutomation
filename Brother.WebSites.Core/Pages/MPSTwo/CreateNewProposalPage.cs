@@ -797,8 +797,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     throw new InvalidEnumArgumentException(String.Format("{0} is not a valid contract type", contract));
             }
 
-            if(ContractTypeSelector.Displayed)
+            if (ContractTypeSelector.Displayed)
+            {
                 SelectFromDropdownByValue(ContractTypeSelector, selectable);
+                SpecFlow.SetContext("CreateContractType", contract);
+            }
         }
 
         public void SelectingContractUsageType(string contract)
@@ -808,11 +811,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
          
         }
 
-        public void SelectContractUsageType(string contract)
+        public void SelectContractUsageType(string usage)
         {
             var selectable = "";
 
-            switch (contract)
+            switch (usage)
             {
                 case "Minimum Volume" :
                     selectable = "1";
@@ -821,11 +824,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     selectable = "2";
                     break;
                 default:
-                    throw new InvalidEnumArgumentException(String.Format("{0} is not a valid contract type", contract));
+                    throw new InvalidEnumArgumentException(String.Format("{0} is not a valid contract type", usage));
             }
 
             if (UsageTypeSelector.Displayed)
+            {
                 SelectFromDropdownByValue(UsageTypeSelector, selectable);
+                SpecFlow.SetContext("CreateUsageType", usage);
+            }
         }
         
 

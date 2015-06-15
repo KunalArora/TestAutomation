@@ -307,7 +307,9 @@
     <Compile Include="Test Steps\MPSOne\MyAccountSteps.cs" />
     <Compile Include="Test Steps\MPSOne\NewProposalProcessSteps.cs" />
     <Compile Include="Test Steps\MPSOne\TechnicalServiceSteps.cs" />
-    <Compile Include="Test Steps\MPSTwo\Bank\BankSteps.cs" />
+    <Compile Include="Test Steps\MPSTwo\Approver\ApproverSteps.cs" />
+    <Compile Include="Test Steps\MPSTwo\Approver\BankSteps.cs" />
+    <Compile Include="Test Steps\MPSTwo\Approver\LocalOfficeApproverSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Contract\SigningContractsSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\DealerAdmin\DealerAdminProfileSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Proposal\ClickingAheadInProposalCreationProcessSteps.cs" />
