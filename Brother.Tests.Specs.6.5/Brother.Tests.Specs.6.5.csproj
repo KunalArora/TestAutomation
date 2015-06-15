@@ -249,11 +249,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DealerCanAddPreInstallationDetails.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Proposal\VerificationsOnProductsPage.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>VerificationsOnProductsPage.feature</DependentUpon>
-    </Compile>
     <Compile Include="Test Specifications\OmniJoinPartnerPortal\CustomerActions\CustomerActions.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -519,10 +514,6 @@
     <None Include="Test Specifications\MPSTwo\Contract\DealerCanAddPreInstallationDetails.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>DealerCanAddPreInstallationDetails.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPSTwo\Proposal\VerificationsOnProductsPage.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>VerificationsOnProductsPage.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwo\SendToBank\DealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

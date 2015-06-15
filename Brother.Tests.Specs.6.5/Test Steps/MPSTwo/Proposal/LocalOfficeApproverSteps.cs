@@ -37,6 +37,18 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
             CurrentPage.As<LocalOfficeApproverContractPage>().DownloadInvoicePDFOnBankContractPages();
         }
 
+        [When(@"I decline the proposal created above as a Local Office Approver")]
+        public void WhenIDeclineTheProposalCreatedAboveAsALocalOfficeApprover()
+        {
+            NextPage = CurrentPage.As<LocalOfficeApproverDashBoardPage>().NavigateToProposalsPage();
+            CurrentPage.As<LocalOfficeApproverProposalsPage>().ClickOnActionButtonAgainstRelevantProposal(CurrentDriver);
+            CurrentPage.As<LocalOfficeApproverProposalsPage>().NavigateToAwaitingApprovalSummaryPage(CurrentDriver);
+            CurrentPage.As<LocalOfficeApproverProposalsPage>().DeclineAnAwaitingApprovalProposal();
+            CurrentPage.As<LocalOfficeApproverProposalsPage>().IsProposalDeclined();
+
+        }
+
+
 
     }
 }

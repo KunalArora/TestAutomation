@@ -50,6 +50,19 @@ namespace Brother.Tests.Specs.MPSTwo.SendToBank
             ThenTheNewlyConvertedContractIsAvailableUnderAwaitingApprovalTab();
         }
 
+
+        [Given(@"I send the created proposal to local office approver for approval")]
+        public void GivenISendTheCreatedProposalToLocalOfficeApproverForApproval()
+        {
+            WhenIClickOnActionButtonAgainstTheProposalCreatedAbove();
+            ThenICanClickOnConvertToContractButtonUnderTheActionButton();
+            ThenIAmDirectedToCustomerDetailPageForMoreDataCapture();
+            ThenIAmTakenToPurchaseAndClickSummaryWhereICanEnterEnvisageContractStartDate();
+            ThenICanSuccessfullyConvertTheProposalToContract();
+            ThenTheNewlyConvertedContractIsAvailableUnderAwaitingApprovalTab();
+        }
+
+
         [Given(@"I decline the proposal created above")]
         [When(@"I decline the proposal created above")]
         public void WhenIDeclineTheProposalCreatedAbove()

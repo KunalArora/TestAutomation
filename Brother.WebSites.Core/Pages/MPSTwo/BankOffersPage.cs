@@ -93,7 +93,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             if(DeclineButtonElement == null)
                 throw new Exception("Proposal Decline Button not displayed, are you on Offer Summary page?");
-            WebDriver.Wait(DurationType.Second, 3);
+            //WebDriver.Wait(DurationType.Second, 3);
             ScrollTo(DeclineButtonElement);
             DeclineButtonElement.Click();
             WebDriver.Wait(DurationType.Second, 5);
