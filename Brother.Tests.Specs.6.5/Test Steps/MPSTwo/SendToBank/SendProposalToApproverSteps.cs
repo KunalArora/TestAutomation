@@ -1,4 +1,4 @@
-﻿using Brother.WebSites.Core.Pages.Base;
+using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using TechTalk.SpecFlow;
 
@@ -160,18 +160,26 @@ namespace Brother.Tests.Specs.MPSTwo.SendToBank
             CurrentPage.As<BankOffersPage>().IsProposalSentToBankAwaitingProposalPage();
         }
 
-        [Given(@"I navigate to Local Approver Awaiting Approval screen under Proposal page")]
-        [When(@"I navigate to Local Approver Awaiting Approval screen under Proposal page")]
-        [Then(@"I navigate to Local Approver Awaiting Approval screen under Offer page")]
-        [Then(@"I navigate to Local Approver Awaiting Approval screen under Proposal page")]
-        public void ThenINavigateToLocalApproverAwaitingApprovalScreenUnderOfferPage()
+        [Then(@"the converted Purchase and Click and Service proposal above is displayed on the screen")]
+        public void ThenTheConvertedPurchaseAndClickAndServiceProposalAboveIsDisplayedOnTheScreen()
+        {
+            NextPage = CurrentPage.As<LocalOfficeApproverDashBoardPage>().NavigateToProposalsPage();
+            CurrentPage.As<LocalOfficeApproverProposalsPage>().IsProposalSentToApproverAwaitingProposalPage();
+        }
+
+        [Then(@"I navigate to Local office Awaiting Approval screen under Proposals page")]
+        public void ThenINavigateToLOApproverAwaitingApprovalScreenUnderProposalsPage()
         {
             NextPage = CurrentPage.As<LocalOfficeApproverDashBoardPage>().NavigateToProposalsPage();
             CurrentPage.As<LocalOfficeApproverProposalsPage>().IsProposalSentToLocalOfficeApproverAwaitingProposalPage();
         }
 
-        [Then(@"the converted Purchase and Click and Service proposal above is displayed on the screen")]
-        public void ThenTheConvertedPurchaseAndClickAndServiceProposalAboveIsDisplayedOnTheScreen()
+        [Given(@"I navigate to Local Approver Awaiting Approval screen under Proposal page")]
+        [When(@"I navigate to Local Approver Awaiting Approval screen under Proposal page")]
+        [Then(@"I navigate to Local Approver Awaiting Approval screen under Offer page")]
+        [Then(@"I navigate to Local Approver Awaiting Approval screen under Proposal page")]
+        [Then(@"I navigate to Local Approver Awaiting Approval screen under Offer page")]
+        public void ThenINavigateToLocalApproverAwaitingApprovalScreenUnderOfferPage()
         {
             CurrentPage.As<LocalOfficeApproverProposalsPage>().IsProposalSentToLocalOfficeApproverAwaitingProposalPage();
         }
