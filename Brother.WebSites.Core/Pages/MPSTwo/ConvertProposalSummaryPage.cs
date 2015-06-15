@@ -63,7 +63,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void GiveSchufaAuthorization()
         {
-            const string schufa = @"content_1_InputSendToSchufa_Label";
+            const string schufa = @"#content_1_InputSendToSchufa_Input";
             var schufaElement = GetElementByCssSelector(schufa, 10);
             if (IsElementPresent(schufaElement))
                 schufaElement.Click();

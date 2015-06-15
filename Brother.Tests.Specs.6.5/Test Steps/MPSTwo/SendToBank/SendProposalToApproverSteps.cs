@@ -35,9 +35,10 @@ namespace Brother.Tests.Specs.MPSTwo.SendToBank
             CurrentPage.As<ConvertProposalSummaryPage>().IsConvertSummaryPageDisplayed();
             CurrentPage.As<ConvertProposalSummaryPage>().EnterProposedStartDateForContract();
             CurrentPage.As<ConvertProposalSummaryPage>().GiveBrotherAuthorisation();
-            //CurrentPage.As<ConvertProposalSummaryPage>().GiveSchufaAuthorization();
+            CurrentPage.As<ConvertProposalSummaryPage>().GiveSchufaAuthorization();
         }
 
+        
         [Given(@"I send the created proposal for approval")]
         public void GivenISendTheCreatedProposalForApproval()
         {

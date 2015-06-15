@@ -315,7 +315,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsProductScreenTextDisplayed()
         {
-            WebDriver.Wait(DurationType.Second, 5);
+            WebDriver.Wait(DurationType.Second, 1);
             if (ProductsScreenAlertElement == null) throw new
                 NullReferenceException("Unable to locate text on Product Screen");
 
@@ -324,7 +324,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsDeviceScreenDisplayed()
         {
-            WebDriver.Wait(DurationType.Second, 5);
+            WebDriver.Wait(DurationType.Second, 1);
             TestCheck.AssertIsEqual(true, 
                 DeviceScreenValidator.Displayed, 
                 "Device screen is not displayed");
@@ -332,7 +332,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void TypeIntoRHSFreeTextFilter(string model)
         {
-            WebDriver.Wait(Helper.DurationType.Second, 3);
+            WebDriver.Wait(Helper.DurationType.Second, 1);
             ClearAndType(InputSearchProductElement, model);
         }
 
@@ -373,13 +373,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyThatAllProductsDisplayedAsAFlatListWithNoImages()
         {
-            WebDriver.Wait(Helper.DurationType.Second, 3);
+            WebDriver.Wait(Helper.DurationType.Second, 1);
             AssertElementPresent(DisplayedAllPrintersAsFlatListElement()[0], "Displayed with images");
         }
 
         public void VerifyThatAllProductsDisplayedAsAWithImages()
         {
-            WebDriver.Wait(Helper.DurationType.Second, 3);
+            WebDriver.Wait(Helper.DurationType.Second, 1);
             AssertElementPresent(DisplayedAllPrintersWithImagesElement()[0], "Displayed as flat list");
         }
 
@@ -474,7 +474,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var printerClickable = GetElementByCssSelector(element);
 
             printerClickable.Click();
-            WebDriver.Wait(Helper.DurationType.Second, 5);
+            WebDriver.Wait(Helper.DurationType.Second, 2);
 
         }
 
@@ -518,7 +518,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             ScrollTo(AddToProposalElement);
             AddToProposalElement.Click();
-            WebDriver.Wait(Helper.DurationType.Second, 5);
+            WebDriver.Wait(Helper.DurationType.Second, 1);
         }
 
         private IWebElement AddToProposalButtonElement()
