@@ -14,14 +14,14 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
         [When(@"I navigate to Local Office Approver contract Awaiting Acceptance page")]
         public void WhenINavigateToLocalOfficeApproverContractAwaitingAcceptancePage()
         {
-            NextPage = CurrentPage.As<LocalOfficeApproverDashBoardPage>().NavigateToContractPage();
+            NextPage = CurrentPage.As<LocalOfficeApproverDashBoardPage>().NavigateToContractsPage();
             CurrentPage.As<LocalOfficeApproverContractPage>().NavigateToAwaitingAcceptanceTab();
         }
 
         [When(@"I navigate to Local Office Approver contract Rejected page")]
         public void WhenINavigateToLocalOfficeApproverContractRejectedPage()
         {
-            NextPage = CurrentPage.As<LocalOfficeApproverDashBoardPage>().NavigateToContractPage();
+            NextPage = CurrentPage.As<LocalOfficeApproverDashBoardPage>().NavigateToContractsPage();
             CurrentPage.As<LocalOfficeApproverContractPage>().NavigateToRejectTab();
         }
 
