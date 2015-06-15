@@ -131,7 +131,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             var newProposal = Driver.FindElement(By.XPath(newlyAdded));
 
-            TestCheck.AssertIsEqual(true, newProposal.Displayed, "Is new proposal template created?");
+            TestCheck.AssertIsEqual(true, newProposal.Displayed, 
+                "Is new proposal template created?");
         }
 
         public void IsProposalSuccessfullySentToBank()
@@ -145,7 +146,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 proposalContainer.Add(propopsalItem);
             }
 
-            TestCheck.AssertIsEqual(false, proposalContainer.Contains(createdProposal), "Is proposal successfully sent to bank?");
+            TestCheck.AssertIsEqual(false, proposalContainer.Contains(createdProposal), 
+                "Is proposal successfully sent to bank?");
         }
 
 
@@ -153,6 +155,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             ActionsModule.CopyAProposal(driver);
             IsProposalCopied();
+            WebDriver.Wait(DurationType.Second, 3);
         }
 
         public void CopyAProposalWithCustomer(IWebDriver driver)

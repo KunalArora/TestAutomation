@@ -249,11 +249,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DealerCanAddPreInstallationDetails.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Proposal\VerificationsOnProductsPage.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>VerificationsOnProductsPage.feature</DependentUpon>
-    </Compile>
     <Compile Include="Test Specifications\OmniJoinPartnerPortal\CustomerActions\CustomerActions.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -307,7 +302,9 @@
     <Compile Include="Test Steps\MPSOne\MyAccountSteps.cs" />
     <Compile Include="Test Steps\MPSOne\NewProposalProcessSteps.cs" />
     <Compile Include="Test Steps\MPSOne\TechnicalServiceSteps.cs" />
-    <Compile Include="Test Steps\MPSTwo\Bank\BankSteps.cs" />
+    <Compile Include="Test Steps\MPSTwo\Approver\ApproverSteps.cs" />
+    <Compile Include="Test Steps\MPSTwo\Approver\BankSteps.cs" />
+    <Compile Include="Test Steps\MPSTwo\Approver\LocalOfficeApproverSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Contract\SigningContractsSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\DealerAdmin\DealerAdminProfileSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Proposal\ClickingAheadInProposalCreationProcessSteps.cs" />
@@ -519,10 +516,6 @@
     <None Include="Test Specifications\MPSTwo\Contract\DealerCanAddPreInstallationDetails.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>DealerCanAddPreInstallationDetails.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPSTwo\Proposal\VerificationsOnProductsPage.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>VerificationsOnProductsPage.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwo\SendToBank\DealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

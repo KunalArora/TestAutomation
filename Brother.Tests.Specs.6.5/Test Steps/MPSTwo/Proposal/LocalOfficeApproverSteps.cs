@@ -14,14 +14,14 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
         [When(@"I navigate to Local Office Approver contract Awaiting Acceptance page")]
         public void WhenINavigateToLocalOfficeApproverContractAwaitingAcceptancePage()
         {
-            NextPage = CurrentPage.As<LocalOfficeApproverDashBoardPage>().NavigateToContractPage();
+            NextPage = CurrentPage.As<LocalOfficeApproverDashBoardPage>().NavigateToContractsPage();
             CurrentPage.As<LocalOfficeApproverContractPage>().NavigateToAwaitingAcceptanceTab();
         }
 
         [When(@"I navigate to Local Office Approver contract Rejected page")]
         public void WhenINavigateToLocalOfficeApproverContractRejectedPage()
         {
-            NextPage = CurrentPage.As<LocalOfficeApproverDashBoardPage>().NavigateToContractPage();
+            NextPage = CurrentPage.As<LocalOfficeApproverDashBoardPage>().NavigateToContractsPage();
             CurrentPage.As<LocalOfficeApproverContractPage>().NavigateToRejectTab();
         }
 
@@ -36,6 +36,18 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
         {
             CurrentPage.As<LocalOfficeApproverContractPage>().DownloadInvoicePDFOnBankContractPages();
         }
+
+        [When(@"I decline the proposal created above as a Local Office Approver")]
+        public void WhenIDeclineTheProposalCreatedAboveAsALocalOfficeApprover()
+        {
+            NextPage = CurrentPage.As<LocalOfficeApproverDashBoardPage>().NavigateToProposalsPage();
+            CurrentPage.As<LocalOfficeApproverProposalsPage>().ClickOnActionButtonAgainstRelevantProposal(CurrentDriver);
+            CurrentPage.As<LocalOfficeApproverProposalsPage>().NavigateToAwaitingApprovalSummaryPage(CurrentDriver);
+            CurrentPage.As<LocalOfficeApproverProposalsPage>().DeclineAnAwaitingApprovalProposal();
+            CurrentPage.As<LocalOfficeApproverProposalsPage>().IsProposalDeclined();
+
+        }
+
 
 
     }

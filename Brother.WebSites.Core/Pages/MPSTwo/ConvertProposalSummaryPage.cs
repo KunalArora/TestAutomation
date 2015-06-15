@@ -53,7 +53,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void GiveThirdPartyCheckApproval()
         {
-            ThirdPartyApproval.Click();
+            IWebElement element = GetElementByCssSelector("#content_1_InputSendToLeasingBank_Label", 5);
+            if (element != null)
+                ThirdPartyApproval.Click();
+            element = GetElementByCssSelector("#content_1_InputSendToBrother_Input", 5);
+            if (element != null)
+                SendToBrotherElement.Click();
         }
 
         public void GiveBrotherAuthorisation()

@@ -47,15 +47,15 @@ Scenario Outline: Dealer Can Copy A Declined Leasing and Click Proposal with cus
 	| Cloud MPS Dealer | United Kingdom | Cloud MPS Bank |
 
 
-@Ignore
+
 Scenario Outline: Dealer Can Copy A Declined Purchase and Click Proposal without customer detail
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created Purchase and Click proposal 
 	And I am on Proposal List page
-	And I send the created proposal for approval
+	And I send the created proposal to local office approver for approval
 	And I sign out of Cloud MPS
 	When I sign back into Cloud MPS as a "<Role2>" from "<Country>"
-	And I decline the proposal created above
+	And I decline the proposal created above as a Local Office Approver
 	And I sign out of Cloud MPS
 	And I sign back into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to decline proposal list page
@@ -73,10 +73,10 @@ Scenario Outline: Dealer Can Copy A Declined Purchase and Click Proposal with cu
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created Purchase and Click proposal 
 	And I am on Proposal List page
-	And I send the created proposal for approval
+	And I send the created proposal to local office approver for approval
 	And I sign out of Cloud MPS
 	When I sign back into Cloud MPS as a "<Role2>" from "<Country>"
-	And I decline the proposal created above
+	And I decline the proposal created above as a Local Office Approver
 	And I sign out of Cloud MPS
 	And I sign back into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to decline proposal list page
