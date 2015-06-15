@@ -104,7 +104,19 @@ Scenario Outline: Bank can approve the contract
 	| Role             | Country        |
 	| Cloud MPS Bank   | United Kingdom |
 # Accept5
-### LOApprover
+@ignore
+Scenario Outline: Local-office approver can approve the contract
+	Given Dealer have created Purchase and Click contract
+	And I sign into Cloud MPS as a "<Role>" from "<Country>"
+	When Approver navigate to Contract Awaiting Acceptance page from Dashboard
+	Then Approver can view all the contracts that have been signed by dealer
+	And Approver can successfully approve the contract
+	And the accepted contract by Approver is displayed on contract Accepted screen
+#	And the accepted contract is displayed on proposal Approved screen
+	Scenarios:
+
+	| Role                              | Country        |
+	| Cloud MPS Local Office Approver   | United Kingdom |
 
 # Accept6
 ### LOApprover
