@@ -59,7 +59,7 @@ Scenario: Customer creates a new account with Brother Online using valid credent
 
 # Create an account and sign in, change registered email address and sign out, try to Register a new account using
 # the changed email addrress. It should not be possible
-@ignore
+
 Scenario Outline: Customer cannot register for a Brother Online account using an invalid email address (BOL-180)
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
@@ -98,25 +98,25 @@ Scenario Outline: Create an account for Brother Online for different language si
 
 Scenarios:
 	| Country        |
-	| France         |
+	| Romania        | 
+"""	| France         |
 	| Germany        |
 	| Netherlands    |
 	| Spain          |
 	| Denmark        |
 	| Belgium        |
-#	| Russia         | - Red warning on page - look into
-#	| Hungary        | - unknown error - possibly cannot get to site
-#	| Romania        |- Links for validation set of for UK so needs updating
+	| Russia         |- Red warning on page - look into
+	| Hungary        |- unknown error - possibly cannot get to site 
 	| Portugal       |
-	| Switzerland    |
-	| Slovakia       |
-#	| Slovenia       | - Links for validation set of for UK so needs updating
-#	| Czech          | - Links for validation set of for UK so needs updating
-#	| Bulgaria       | - Links for validation set of for UK so needs updating - maybe no version in SiteCore on DV2
+	| Switzerland    | - need to add specific default language to URL
+	| Slovakia       | - Links for validation set of for UK so needs updating
+	| Slovenia       | - Links for validation set of for UK so needs updating
+	| Czech          | - Links for validation set of for UK so needs updating
+	| Bulgaria       | - Links for validation set of for UK so needs updating - maybe no version in SiteCore on DV2
 	| Finland        |
-	| Norway         |
-	| Italy          |
-	| Austria        |
+	| Norway         | - Link for validation of registration links to something completely different
+	| Italy          | - NEEDS to have Número de identificación fiscal added to test otherwise registration fails
+	| Austria        |"""
 
 
 @SMOKE
@@ -246,3 +246,7 @@ Scenario: Validate that the correct error messages are displayed when Terms and 
 	When I declare that I do not use this account for business
 	And I press create account button
 	Then I should get an error message displayed on the Terms and Conditions
+
+@ignore
+Scenario: Log in as a Printer On dealer and ensure that they can see the required permissions BBAU-2189
+# (ensure that a customer cannot see the same permissions
