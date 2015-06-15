@@ -132,6 +132,7 @@
 			<MyConnectedDevices>My Connected Devices</MyConnectedDevices>
       <PaymentMethods>Payment Methods</PaymentMethods>
       <SignInDetails>Sign In Details</SignInDetails>
+      <Orders>Orders</Orders>
 		</MyAccountSideNavMenu>
     <PrimaryNavTopMenu>
 			<MyAccount>My Account</MyAccount>

@@ -83,10 +83,14 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
 
             foreach (var link in links)
             {
-                if (!link.TagName.Contains("li")) continue; // was tag contains 'a'
-                if (!link.Text.ToLower().Contains(searchString.ToLower())) continue;
-                AssertElementPresent(link, "Navigation Link");
-                return link;
+                if (link.TagName.Contains("li") || (link.TagName.Contains("a")))
+                {
+                    if (link.Text.ToLower().Contains(searchString.ToLower()))
+                    {
+                        AssertElementPresent(link, "Navigation Link");
+                        return link;
+                    }
+                }
             }
             return null;
         }
@@ -100,7 +104,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             try
             {
                 navigationLinks =
-                MyAccountSideNavigationMenu(driver).FindElements(By.XPath(@"//*[contains(@id,'navigationcontainer_0_MenuItemsRepeater_listItem_')]"));
+                //MyAccountSideNavigationMenu(driver).FindElements(By.XPath(@"//*[contains(@id,'navigationcontainer_0_MenuItemsRepeater_listItem_')]"));
+                MyAccountSideNavigationMenu(driver).FindElements(By.XPath(@"//*[contains(@id,'navigationcontainer_0_MenuItemsRepeater_LeftMenuLink')]"));
             }
             catch (NoSuchElementException notSuchElement)
             {

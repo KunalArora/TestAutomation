@@ -8,7 +8,7 @@ Background:
 	Given I am logged onto Brother Online "United Kingdom" using valid credentials
 
 # Sign into Brother Online and change password
-@ignore @TEST @UAT @PROD
+@TEST @UAT @PROD
 Scenario: Customer has created a Brother Online account and wishes to change their password (BOL-164)
 	Given I am logged into my Brother Online account
 	When I navigate to my account for "United Kingdom"
