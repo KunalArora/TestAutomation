@@ -175,21 +175,6 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<CreateNewProposalPage>().SelectAPrinterFromTheList(selectedPrinter);
         }
 
-
-        [Then(@"I can successfully create the proposal above with ""(.*)"" and ""(.*)""")]
-        public void ThenICanSuccessfullyCreateTheProposalAboveWithAnd(string clickprice, string colour)
-        {
-            CurrentPage.As<CreateNewProposalPage>().ChooseADeviceFromProductFlatListScreen("", "80", "90");
-            CurrentPage.As<CreateNewProposalPage>().VerifyProductAdditionConfirmationMessage();
-            CurrentPage.As<CreateNewProposalPage>().CalculateClickPriceAndProceed(clickprice, colour);
-            CurrentPage.As<CreateNewProposalPage>().MoveToProposalSummaryScreen();
-            NextPage = CurrentPage.As<CreateNewProposalPage>().SaveProposal();
-
-            CurrentPage.As<CloudExistingProposalPage>().IsNewProposalTemplateCreated();
-
-
-        }
-
         [When(@"I select a product from the product flat list")]
         public void WhenISelectAProductFromTheProductFlatList()
         {
