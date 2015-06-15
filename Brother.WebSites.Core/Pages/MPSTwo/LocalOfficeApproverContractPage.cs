@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Brother.Tests.Selenium.Lib.Support;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -24,6 +26,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private IWebElement RejectedElement;
         [FindsBy(How = How.CssSelector, Using = ".active a[href=\"/mps/local-office/contracts/approved-proposals\"] span")]
         private IWebElement DisplayedApprovedProposalTabElement;
+        
 
 
 
@@ -62,6 +65,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ActionsModule.ClickOnTheActionsDropdown(Driver);
             ActionsModule.DownloadContractInvoicePDFAction(Driver);
         }
+
+        public void ClickOnActionButtonAgainstRelevantProposal(IWebDriver driver)
+        {
+            ScrollTo(ActionsModule.SpecificActionsDropdownElement(driver));
+            ActionsModule.SpecificClickOnTheActionsDropdown(driver);
+        }
+
+
+        public void NavigateToAwaitingApprovalSummaryPage(IWebDriver driver)
+        {
+            ActionsModule.NavigateToSummaryPageUsingActionButton(driver);
+        }
+
+        
 
 
     }
