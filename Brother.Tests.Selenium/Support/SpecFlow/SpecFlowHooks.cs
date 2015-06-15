@@ -14,6 +14,10 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
         public static void BeforeTestRun()
         {
             Helper.MsgOutput("Starting Test Run........");
+
+            // Clear old snapshots
+            Helper.MsgOutput("Purging old snapshots");
+            Helper.PurgeSnapshots();
         }
 
         [AfterTestRun]
@@ -38,7 +42,7 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
 
             Helper.MsgOutput(string.Format("This step caused the following error [{0}]", ScenarioContext.Current.TestError.Message));
             Helper.TakeSnapshot();
-            Helper.MsgOutput(string.Format("[AfterStep] SnapShot Taken : Location = [{0}]", Helper.SnapshotLocation));
+            Helper.MsgOutput(string.Format("[AfterStep] SnapShot Taken : Location = [{0}]", Helper.CurrentSnapShot));
         }
 
         [BeforeFeature]
