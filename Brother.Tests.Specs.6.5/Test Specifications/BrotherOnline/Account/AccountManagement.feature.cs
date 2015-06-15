@@ -80,7 +80,6 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.Account
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Customer has created a Brother Online account and wishes to change their password" +
             " (BOL-164)")]
-        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.CategoryAttribute("TEST")]
         [NUnit.Framework.CategoryAttribute("UAT")]
         [NUnit.Framework.CategoryAttribute("PROD")]
@@ -88,7 +87,6 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.Account
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer has created a Brother Online account and wishes to change their password" +
                     " (BOL-164)", new string[] {
-                        "ignore",
                         "TEST",
                         "UAT",
                         "PROD"});
