@@ -176,7 +176,7 @@ namespace Brother.Tests.Specs.MPSTwo.SendToBank
         [Then(@"the converted Purchase and Click and Service proposal above is displayed on the screen")]
         public void ThenTheConvertedPurchaseAndClickAndServiceProposalAboveIsDisplayedOnTheScreen()
         {
-            NextPage = CurrentPage.As<LocalOfficeApproverDashBoardPage>().NavigateToProposalsPage();
+            //NextPage = CurrentPage.As<LocalOfficeApproverDashBoardPage>().NavigateToProposalsPage();
             CurrentPage.As<LocalOfficeApproverProposalsPage>().IsProposalSentToApproverAwaitingProposalPage();
         }
 
@@ -194,6 +194,7 @@ namespace Brother.Tests.Specs.MPSTwo.SendToBank
         [Then(@"I navigate to Local Approver Awaiting Approval screen under Offer page")]
         public void ThenINavigateToLocalApproverAwaitingApprovalScreenUnderOfferPage()
         {
+            NextPage = CurrentPage.As<LocalOfficeApproverDashBoardPage>().NavigateToProposalsPage();
             CurrentPage.As<LocalOfficeApproverProposalsPage>().IsProposalSentToLocalOfficeApproverAwaitingProposalPage();
         }
 

@@ -7,7 +7,7 @@ Feature: OutputContractPDFAllUsers
 
 Scenario Outline: Bank can download Contract PDFs on Awaiting Acceptance page
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
-	When I navigate to bank contract Awaiting Acceptance page
+	When I navigate to Contract Awaiting Acceptance page from Bank DashBoard
 	Then I can successfully download a Contract PDF
 	And I can successfully download a Contract Invoice PDF
 	And I sign out of Cloud MPS

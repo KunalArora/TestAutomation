@@ -114,5 +114,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             return GetTabInstance<LocalOfficeApproverContractsSummaryPage>(Driver);
         }
+        public void DownloadPDFOnBankContractPages()
+        {
+            ActionsModule.ClickOnTheActionsDropdown(Driver);
+            ActionsModule.DownloadContractPDFAction(Driver);
+        }
+
+        public void DownloadInvoicePDFOnBankContractPages()
+        {
+            ActionsModule.ClickOnTheActionsDropdown(Driver);
+            ActionsModule.DownloadContractInvoicePDFAction(Driver);
+        }
     }
 }

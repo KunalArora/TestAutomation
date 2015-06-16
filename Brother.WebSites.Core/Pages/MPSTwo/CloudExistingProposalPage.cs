@@ -154,9 +154,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void CopyAProposalWithoutCustomer(IWebDriver driver)
         {
             ActionsModule.CopyAProposal(driver);
+            WebDriver.Wait(DurationType.Second, 5);
             IsProposalCopied();
-            WebDriver.Wait(DurationType.Second, 3);
-        }
+         }
 
         public void CopyAProposalWithCustomer(IWebDriver driver)
         {

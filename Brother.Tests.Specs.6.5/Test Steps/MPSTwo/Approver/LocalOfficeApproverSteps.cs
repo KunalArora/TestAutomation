@@ -66,8 +66,8 @@ namespace Brother.Tests.Specs.MPSTwo.LocalOfficeApprover
             //NextPage = CurrentPage.As<LocalOfficeApproverProposalsSummaryPage>().ClickAccpetButton();
         }
 
-        [Given(@"I approve the proposal created above")]
-        public void GivenIApproveTheProposalCreatedAbove()
+        [Given(@"I approve the purchase and click proposal created above")]
+        public void GivenIApproveThepurchaseAndClickProposalCreatedAbove()
         {
             WhenINavigateToOfferPage();
             GivenINavigateToAwaitingApprovalScreenUnderOfferPage();
@@ -77,15 +77,15 @@ namespace Brother.Tests.Specs.MPSTwo.LocalOfficeApprover
             NextPage = CurrentPage.As<LocalOfficeApproverProposalsSummaryPage>().ClickAccpetButton();
         }
 
-        [Then(@"navigate to bank contract Awaiting Acceptance page")]
-        public void ThenNavigateToBankContractAwaitingAcceptancePage()
+        [Then(@"navigate to Local Office Approver contract Awaiting Acceptance page")]
+        public void ThenNavigateToLocalOfficeApproverContractAwaitingAcceptancePage()
         {
-            NextPage = CurrentPage.As<BankDashBoardPage>().NavigateToContractApprovedProposalPage();
+            NextPage = CurrentPage.As<LocalOfficeApproverDashBoardPage>().NavigateToContractsPage();
             CurrentPage.As<LocalOfficeApproverContractsPage>().NavigateToAwaitingAcceptancePage();
         }
 
-        [Then(@"the signed contract is displayed")]
-        public void ThenTheSignedContractIsDisplayed()
+        [Then(@"the signed purchase and click contract is displayed")]
+        public void ThenTheSignedpurchaseAndClickContractIsDisplayed()
         {
             CurrentPage.As<LocalOfficeApproverContractsPage>().IsAwaitingAcceptancePageOpened();
             CurrentPage.As<LocalOfficeApproverContractsPage>().IsContractsSignedByDealerDisplayed();

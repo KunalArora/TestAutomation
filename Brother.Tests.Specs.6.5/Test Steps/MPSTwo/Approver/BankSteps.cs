@@ -155,8 +155,28 @@ namespace Brother.Tests.Specs.MPSTwo.Bank
         [Then(@"the accepted contract is displayed on proposal Approved screen")]
         public void ThenTheAcceptedContractIsDisplayedOnProposalApprovedScreen()
         {
-
+            CurrentPage.As<BankContractsPage>().IsContractsSignedByDealerDisplayed();
         }
+
+        [Then(@"I can successfully download a Contract PDF")]
+        public void ThenICanSuccessfullyDownloadAContractPDF()
+        {
+            CurrentPage.As<BankContractsPage>().DownloadPDFOnBankContractPages();
+        }
+
+        [Then(@"I can successfully download a Contract Invoice PDF")]
+        public void ThenICanSuccessfullyDownloadAContractInvoicePDF()
+        {
+           CurrentPage.As<BankContractsPage>().DownloadInvoicePDFOnBankContractPages();
+        }
+
+        [When(@"I navigate to bank contract Rejected page")]
+        public void WhenINavigateToBankContractRejectedPage()
+        {
+            NextPage = CurrentPage.As<BankDashBoardPage>().NavigateToContractsPage();
+            CurrentPage.As<BankContractsPage>().NavigateToRejectedPage();
+        }
+
 
 
 
