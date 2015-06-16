@@ -16,10 +16,6 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.Basket
         private const string RemoveFromBasketButton = ".remove-from-basket-button";
         private const string BasketNavigationIcon = "#primary-nav .cf .nav-basket";
 
-        //private static IWebElement BasketNavigation(ISearchContext driver)
-        //{
-        //    return driver.FindElement(By.CssSelector(BasketNavigationIcon));
-        //}
 
         private static IWebElement FindElement(ISearchContext driver, string element, string message)
         {
@@ -38,25 +34,21 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.Basket
         private static IWebElement BasketIcon(ISearchContext driver)
         {
             return FindElement(driver, BasketIconId, "Basket Icon Id");
-            //return driver.FindElement(By.CssSelector(BasketIconId));
         }
 
         private static IWebElement ProductInformationList(ISearchContext driver)
         {
             return FindElement(driver, ProductInformationListId, "Poduct Information Id");
-            //return driver.FindElement(By.CssSelector(ProductInformationListId));
         }
 
         private static IWebElement GoToBasketButton(ISearchContext driver)
         {
             return FindElement(driver, GoToBasketButtonId, "Go To Basket Button Id");
-            //return driver.FindElement(By.CssSelector(GoToBasketButtonId));
         }
 
         private static IWebElement RemoveFromBasket(ISearchContext driver)
         {
             return FindElement(driver, GoToBasketButtonId, "Go To Basket Button Id");
-            //return driver.FindElement(By.CssSelector(RemoveFromBasketButton));
         }
 
         private static IWebElement ItemPrice(ISearchContext driver)

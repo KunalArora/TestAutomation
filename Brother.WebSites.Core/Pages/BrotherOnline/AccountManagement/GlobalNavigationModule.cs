@@ -47,52 +47,44 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         private static IWebElement GetSignOutLink(ISearchContext driver)
         {
             return FindElement(driver, SignOutLink);
-            //return driver.FindElement(By.CssSelector(SignOutLink));
         }
 
         private static IWebElement GetBackToBrotherOnlineButton(ISearchContext driver)
         {
             return FindElement(driver, BackToBrotherOnlineButton);
-            //return driver.FindElement(By.CssSelector(BackToBrotherOnlineButton));
         }
 
         private static IWebElement MyAccountSideNavigationMenu(ISearchContext driver)
         {
             return FindElement(driver, SideNavMenu);
-            //return driver.FindElement(By.CssSelector(SideNavMenu));
         }
 
         private static IWebElement ProductListNavigationMenu(ISearchContext driver)
         {
             return FindElement(driver, ProductList);
-        //    return driver.FindElement(By.CssSelector(ProductList));
         }
 
         private static IWebElement TopNavigationMenu(ISearchContext driver)
         {
             return FindElement(driver, TopNavigationBar);
-            //return driver.FindElement(By.CssSelector(TopNavigationBar));
         }
 
         private static IWebElement MyAccountButtonSearch(ISearchContext driver, string searchString)
         {
             var button = MyAccountButtons.Replace("href*=''", string.Format("href*='{0}'", searchString.ToLower()));
             return FindElement(driver, button);
-            //return driver.FindElement(By.CssSelector(button));
         }
 
         private static IWebElement PartnerPortalButtonSearch(ISearchContext driver, string searchString)
         {
             var button = PartnerPortalButtons.Replace("href*=''", string.Format("href*='{0}'", searchString.ToLower()));
             return FindElement(driver, button);
-            //return driver.FindElement(By.CssSelector(button));
         }
 
         private static IWebElement InstantInkButtonSearch(ISearchContext driver, string searchString)
         {
             var button = InstankInkButtons.Replace("href*=''", string.Format("href*='{0}'", searchString.ToLower()));
             return FindElement(driver, button);
-            //return driver.FindElement(By.CssSelector(button));
         }
 
         private static IWebElement FindLink(IEnumerable<IWebElement> links, string searchString)
