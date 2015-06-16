@@ -18,7 +18,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
     {
         // Static Global Navigation class which services the Brother Online orders side navigation bar common
         // to Brother Online orders, and the global navigation such as the Brother Nav bar.
-        private const string SideNavMenu = @".side-nav";
+        private const string SideNavMenu = @".content-box.left-nav-container.cf .side-nav";
         private const string ProductList = @"#product-list";
         private const string BrotherHomePage = "#master-logo > a";
         private const string MyAccountButtons = ".conference-button[href*='']";
@@ -31,47 +31,68 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
 
 #region Menu Navigation (Private)
 
+        private static IWebElement FindElement(ISearchContext driver, string element)
+        {
+            try
+            {
+                return driver.FindElement(By.CssSelector(element));
+            }
+            catch (WebDriverException timedOut)
+            {
+                TestCheck.AssertFailTest(string.Format("Unable to locate Global Menu Navigation Item {0}", element));
+            }
+            return null;
+        }
+
         private static IWebElement GetSignOutLink(ISearchContext driver)
         {
-            return driver.FindElement(By.CssSelector(SignOutLink));
+            return FindElement(driver, SignOutLink);
+            //return driver.FindElement(By.CssSelector(SignOutLink));
         }
 
         private static IWebElement GetBackToBrotherOnlineButton(ISearchContext driver)
         {
-            return driver.FindElement(By.CssSelector(BackToBrotherOnlineButton));
+            return FindElement(driver, BackToBrotherOnlineButton);
+            //return driver.FindElement(By.CssSelector(BackToBrotherOnlineButton));
         }
 
         private static IWebElement MyAccountSideNavigationMenu(ISearchContext driver)
         {
-            return driver.FindElement(By.CssSelector(SideNavMenu));
+            return FindElement(driver, SideNavMenu);
+            //return driver.FindElement(By.CssSelector(SideNavMenu));
         }
 
         private static IWebElement ProductListNavigationMenu(ISearchContext driver)
         {
-            return driver.FindElement(By.CssSelector(ProductList));
+            return FindElement(driver, ProductList);
+        //    return driver.FindElement(By.CssSelector(ProductList));
         }
 
         private static IWebElement TopNavigationMenu(ISearchContext driver)
         {
-            return driver.FindElement(By.CssSelector(TopNavigationBar));
+            return FindElement(driver, TopNavigationBar);
+            //return driver.FindElement(By.CssSelector(TopNavigationBar));
         }
 
         private static IWebElement MyAccountButtonSearch(ISearchContext driver, string searchString)
         {
             var button = MyAccountButtons.Replace("href*=''", string.Format("href*='{0}'", searchString.ToLower()));
-            return driver.FindElement(By.CssSelector(button));
+            return FindElement(driver, button);
+            //return driver.FindElement(By.CssSelector(button));
         }
 
         private static IWebElement PartnerPortalButtonSearch(ISearchContext driver, string searchString)
         {
             var button = PartnerPortalButtons.Replace("href*=''", string.Format("href*='{0}'", searchString.ToLower()));
-            return driver.FindElement(By.CssSelector(button));
+            return FindElement(driver, button);
+            //return driver.FindElement(By.CssSelector(button));
         }
 
         private static IWebElement InstantInkButtonSearch(ISearchContext driver, string searchString)
         {
             var button = InstankInkButtons.Replace("href*=''", string.Format("href*='{0}'", searchString.ToLower()));
-            return driver.FindElement(By.CssSelector(button));
+            return FindElement(driver, button);
+            //return driver.FindElement(By.CssSelector(button));
         }
 
         private static IWebElement FindLink(IEnumerable<IWebElement> links, string searchString)

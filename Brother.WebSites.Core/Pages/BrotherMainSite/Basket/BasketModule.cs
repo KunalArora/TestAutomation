@@ -16,29 +16,47 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.Basket
         private const string RemoveFromBasketButton = ".remove-from-basket-button";
         private const string BasketNavigationIcon = "#primary-nav .cf .nav-basket";
 
-        private static IWebElement BasketNavigation(ISearchContext driver)
+        //private static IWebElement BasketNavigation(ISearchContext driver)
+        //{
+        //    return driver.FindElement(By.CssSelector(BasketNavigationIcon));
+        //}
+
+        private static IWebElement FindElement(ISearchContext driver, string element, string message)
         {
-            return driver.FindElement(By.CssSelector(BasketNavigationIcon));
+            try
+            {
+                return driver.FindElement(By.CssSelector(element));
+            }
+            catch (WebDriverException timedOutException)
+            {
+                Helper.MsgOutput(string.Format("Unable to find {0} [{1}]", message, element));
+            }
+            return null;
+
         }
 
         private static IWebElement BasketIcon(ISearchContext driver)
         {
-            return driver.FindElement(By.CssSelector(BasketIconId));
+            return FindElement(driver, BasketIconId, "Basket Icon Id");
+            //return driver.FindElement(By.CssSelector(BasketIconId));
         }
 
         private static IWebElement ProductInformationList(ISearchContext driver)
         {
-            return driver.FindElement(By.CssSelector(ProductInformationListId));
+            return FindElement(driver, ProductInformationListId, "Poduct Information Id");
+            //return driver.FindElement(By.CssSelector(ProductInformationListId));
         }
 
         private static IWebElement GoToBasketButton(ISearchContext driver)
         {
-            return driver.FindElement(By.CssSelector(GoToBasketButtonId));
+            return FindElement(driver, GoToBasketButtonId, "Go To Basket Button Id");
+            //return driver.FindElement(By.CssSelector(GoToBasketButtonId));
         }
 
         private static IWebElement RemoveFromBasket(ISearchContext driver)
         {
-            return driver.FindElement(By.CssSelector(RemoveFromBasketButton));
+            return FindElement(driver, GoToBasketButtonId, "Go To Basket Button Id");
+            //return driver.FindElement(By.CssSelector(RemoveFromBasketButton));
         }
 
         private static IWebElement ItemPrice(ISearchContext driver)
@@ -57,7 +75,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.Basket
                     }
                 }
             }
-            catch (NoSuchElementException noSuchElement)
+            catch (WebDriverException noSuchElement)
             {
                 Helper.MsgOutput("Unable to locate Price element on page", noSuchElement.Message);
             }
