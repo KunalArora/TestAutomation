@@ -15,26 +15,26 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
         public void WhenINavigateToLocalOfficeApproverContractAwaitingAcceptancePage()
         {
             NextPage = CurrentPage.As<LocalOfficeApproverDashBoardPage>().NavigateToContractsPage();
-            CurrentPage.As<LocalOfficeApproverContractPage>().NavigateToAwaitingAcceptanceTab();
+            CurrentPage.As<LocalOfficeApproverContractsPage>().NavigateToAwaitingAcceptancePage();
         }
 
         [When(@"I navigate to Local Office Approver contract Rejected page")]
         public void WhenINavigateToLocalOfficeApproverContractRejectedPage()
         {
             NextPage = CurrentPage.As<LocalOfficeApproverDashBoardPage>().NavigateToContractsPage();
-            CurrentPage.As<LocalOfficeApproverContractPage>().NavigateToRejectTab();
+            CurrentPage.As<LocalOfficeApproverContractsPage>().NavigateToRejectedPage();
         }
 
         [Then(@"I can successfully download a Local Approver Contract PDF")]
         public void ThenICanSuccessfullyDownloadALocalApproverContractPDF()
         {
-            CurrentPage.As<LocalOfficeApproverContractPage>().DownloadPDFOnBankContractPages();
+            CurrentPage.As<LocalOfficeApproverContractsPage>().DownloadPDFOnBankContractPages();
         }
 
         [Then(@"I can successfully download a Local Approver Contract Invoice PDF")]
         public void ThenICanSuccessfullyDownloadALocalApproverContractInvoicePDF()
         {
-            CurrentPage.As<LocalOfficeApproverContractPage>().DownloadInvoicePDFOnBankContractPages();
+            CurrentPage.As<LocalOfficeApproverContractsPage>().DownloadInvoicePDFOnBankContractPages();
         }
 
         [When(@"I decline the proposal created above as a Local Office Approver")]

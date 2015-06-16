@@ -168,6 +168,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerProposalsCreateSummaryPage ProceedToProposalSummaryFromClickPrice()
         {
+            SpecFlow.SetContext("ClickPriceMonoValue", ClickPriceValue().First().Text);
+            SpecFlow.SetContext("ClickPriceColourValue", ClickPriceColourValue().First().Text);
             
             ClickPriceNextButton().Click();
 
