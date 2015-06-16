@@ -36,7 +36,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private IWebElement CreditValueElement;
         [FindsBy(How = How.Id, Using = "content_1_InputProposalApproveValidUntil_Input")]
         private IWebElement ValidUntilElement;
-        [FindsBy(How = How.Id, Using = "content_1_InputProposalApproveCreditCheckNotNeeded_Label")]
+        [FindsBy(How = How.Id, Using = "content_1_InputProposalApproveCreditCheckNotNeeded_Input")]
         private IWebElement CreditCheckNotNeededElement;
         [FindsBy(How = How.Id, Using = "content_1_ButtonProposalApproveApprove")]
         private IWebElement AcceptButtonElement;
@@ -94,11 +94,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ValidUntilElement.SendKeys(MpsUtil.SomeDaysFromToday());
         }
 
+        public void TickCreditCheckNotNeeded()
+        {
+            if (!CreditCheckNotNeededElement.Selected)
+                CreditCheckNotNeededElement.Click();
+        }
         public void EnterApprovalInformation()
         {
             EnterCustomerReference("");
             EnterReference("");
             EnterValidUntil();
+            TickCreditCheckNotNeeded();
             WebDriver.Wait(Helper.DurationType.Second, 3);
         }
 
