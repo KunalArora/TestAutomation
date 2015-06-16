@@ -93,7 +93,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             string element = String.Format("#content_1_LineItems_InputMonoVolumeBreaks_{0}",row);
 
-            return GetElementByCssSelector(element);
+            return GetElementByCssSelector(element, 5);
         }
 
         private void SelectClickPriceAndCalculate(string volume, string colour)
@@ -168,6 +168,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerProposalsCreateSummaryPage ProceedToProposalSummaryFromClickPrice()
         {
+            SpecFlow.SetContext("ClickPriceMonoValue", ClickPriceValue().First().Text);
+            SpecFlow.SetContext("ClickPriceColourValue", ClickPriceColourValue().First().Text);
             
             ClickPriceNextButton().Click();
 
@@ -188,7 +190,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void CalculateClickPrice(string volume, string colour)
         {
-            SelectClickPriceAndCalculate(volume, colour);
+            if (MonoVolumeElement("0") != null)
+                EnterClickPriceValueAndCalculate(volume, colour);
+            if (MonoVolumeElementClickPrice("0") != null)
+                SelectClickPriceAndCalculate(volume, colour);
             //VerifyClickPriceValueIsDisplayed();
         }
 
@@ -281,6 +286,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ClearAndType(element, volume);
             WebDriver.Wait(Helper.DurationType.Second, 2);
             SpecFlow.SetContext(String.Format("ColourVolume{0}-{1}", row, DateTime.Now.ToString("yyyyMMddHHmmss")), volume);
+        }
+
+        private void EnterClickPriceValueAndCalculate(string volume, string colour)
+        {
+            EnterMonoVolume(volume, "0");
+            EnterColourVolume(colour, "0");
+            WebDriver.Wait(DurationType.Second, 5);
+            CalculateClickPriceElement.Click();
         }
 
         public DealerProposalsCreateSummaryPage CalculateEnteredClickPriceAndProceed(string volume)

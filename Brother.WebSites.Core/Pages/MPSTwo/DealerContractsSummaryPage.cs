@@ -37,7 +37,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             ScrollTo(SignButtonElement);
             SignButtonElement.Click();
-
+            WebDriver.Wait(DurationType.Second, 3);
             return GetTabInstance<CloudContractPage>(Driver);
         }
 

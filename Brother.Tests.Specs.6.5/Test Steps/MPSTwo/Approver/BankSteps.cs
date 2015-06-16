@@ -30,6 +30,7 @@ namespace Brother.Tests.Specs.MPSTwo.Bank
            NextPage = CurrentPage.As<BankOffersPage>().NavigateToViewSummary(name);
         }
 
+        [When(@"I select the proposal on Awaiting Proposal")]
         [Then(@"I select the proposal on Awaiting Proposal")]
         public void ThenISelectTheProposalOnAwaitingProposal()
         {
@@ -57,15 +58,6 @@ namespace Brother.Tests.Specs.MPSTwo.Bank
         }
 
         
-        [Then(@"I should be able to approve that proposal")]
-        public void ThenIShouldBeAbleToApproveThatProposal()
-        {
-            CurrentPage.As<BankProposalsSummaryPage>().ClickApproveButton();
-            CurrentPage.As<BankProposalsSummaryPage>().EnterApprovalInformation();
-            CurrentPage.As<BankProposalsSummaryPage>().ClickAccpetButton();
-            //NextPage = CurrentPage.As<BankProposalsSummaryPage>().ClickAccpetButton();
-        }
-
         [Given(@"I approve the proposal created above")]
         public void GivenIApproveTheProposalCreatedAbove()
         {
@@ -155,8 +147,28 @@ namespace Brother.Tests.Specs.MPSTwo.Bank
         [Then(@"the accepted contract is displayed on proposal Approved screen")]
         public void ThenTheAcceptedContractIsDisplayedOnProposalApprovedScreen()
         {
-
+            CurrentPage.As<BankContractsPage>().IsContractsSignedByDealerDisplayed();
         }
+
+        [Then(@"I can successfully download a Contract PDF")]
+        public void ThenICanSuccessfullyDownloadAContractPDF()
+        {
+            CurrentPage.As<BankContractsPage>().DownloadPDFOnBankContractPages();
+        }
+
+        [Then(@"I can successfully download a Contract Invoice PDF")]
+        public void ThenICanSuccessfullyDownloadAContractInvoicePDF()
+        {
+           CurrentPage.As<BankContractsPage>().DownloadInvoicePDFOnBankContractPages();
+        }
+
+        [When(@"I navigate to bank contract Rejected page")]
+        public void WhenINavigateToBankContractRejectedPage()
+        {
+            NextPage = CurrentPage.As<BankDashBoardPage>().NavigateToContractsPage();
+            CurrentPage.As<BankContractsPage>().NavigateToRejectedPage();
+        }
+
 
 
 
