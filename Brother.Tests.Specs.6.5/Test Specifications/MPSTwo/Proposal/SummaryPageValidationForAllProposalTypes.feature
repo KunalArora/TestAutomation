@@ -92,7 +92,7 @@ Scenario Outline: Summary Page Validation For Minimum Volume Purchase and Click 
 	And I enter click price volume of "<ClickVolume>" and "<ColourVolume>"
 	Then the billing basis for product is "Pay upfront"
 	And the billing basis for Accessory is "Pay upfront"
-	And the billing basis for Installation is "Included in Click Price"
+	And the billing basis for Installation is "Pay upfront"
 	And the billing basis for Service Pack is "Included in Click Price"
 	And the installation type displayed is correct
 	And the installation cost displayed is correct
