@@ -82,8 +82,9 @@ Scenarios:
 	| "CannotUseQuestionMark?@guerrillamail.com"  |
 	| "CannotUseOpenBrace(@guerrillamail.com"     |
 	| "CannotUseEquals=@guerrillamail.com"        |
-	| " LeadingSpace@guerrillamail.com"           |
-	| "TrailingSpace@guerrillamail.com "          |
+
+	# NOTE: Need to add a Positive test for emails with leading and trailing spaces as these are allowed but Brother validation
+	# simply trim them. No error message is displayed
 
 @SMOKE
 Scenario Outline: Create an account for Brother Online for different language sites
