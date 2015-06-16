@@ -176,7 +176,6 @@ namespace Brother.Tests.Specs.MPSTwo.SendToBank
         [Then(@"the converted Purchase and Click and Service proposal above is displayed on the screen")]
         public void ThenTheConvertedPurchaseAndClickAndServiceProposalAboveIsDisplayedOnTheScreen()
         {
-            //NextPage = CurrentPage.As<LocalOfficeApproverDashBoardPage>().NavigateToProposalsPage();
             CurrentPage.As<LocalOfficeApproverProposalsPage>().IsProposalSentToApproverAwaitingProposalPage();
         }
 

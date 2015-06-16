@@ -30,6 +30,7 @@ namespace Brother.Tests.Specs.MPSTwo.Bank
            NextPage = CurrentPage.As<BankOffersPage>().NavigateToViewSummary(name);
         }
 
+        [When(@"I select the proposal on Awaiting Proposal")]
         [Then(@"I select the proposal on Awaiting Proposal")]
         public void ThenISelectTheProposalOnAwaitingProposal()
         {
@@ -57,15 +58,6 @@ namespace Brother.Tests.Specs.MPSTwo.Bank
         }
 
         
-        [Then(@"I should be able to approve that proposal")]
-        public void ThenIShouldBeAbleToApproveThatProposal()
-        {
-            CurrentPage.As<BankProposalsSummaryPage>().ClickApproveButton();
-            CurrentPage.As<BankProposalsSummaryPage>().EnterApprovalInformation();
-            CurrentPage.As<BankProposalsSummaryPage>().ClickAccpetButton();
-            //NextPage = CurrentPage.As<BankProposalsSummaryPage>().ClickAccpetButton();
-        }
-
         [Given(@"I approve the proposal created above")]
         public void GivenIApproveTheProposalCreatedAbove()
         {

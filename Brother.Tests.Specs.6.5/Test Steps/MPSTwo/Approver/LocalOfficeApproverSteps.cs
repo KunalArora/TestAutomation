@@ -56,16 +56,6 @@ namespace Brother.Tests.Specs.MPSTwo.LocalOfficeApprover
             CurrentPage.As<LocalOfficeApproverProposalsPage>().VerifyApprovedProposalIsDisplayed();
         }
 
-        
-        [Then(@"I should be able to approve that proposal")]
-        public void ThenIShouldBeAbleToApproveThatProposal()
-        {
-            CurrentPage.As<LocalOfficeApproverProposalsSummaryPage>().ClickApproveButton();
-            CurrentPage.As<LocalOfficeApproverProposalsSummaryPage>().EnterApprovalInformation();
-            CurrentPage.As<LocalOfficeApproverProposalsSummaryPage>().ClickAccpetButton();
-            //NextPage = CurrentPage.As<LocalOfficeApproverProposalsSummaryPage>().ClickAccpetButton();
-        }
-
         [Given(@"I approve the purchase and click proposal created above")]
         public void GivenIApproveThepurchaseAndClickProposalCreatedAbove()
         {
