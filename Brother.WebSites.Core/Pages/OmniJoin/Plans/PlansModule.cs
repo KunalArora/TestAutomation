@@ -30,25 +30,21 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Plans
         private static IWebElement BuyNowButton(ISearchContext driver)
         {
             return FindElement(driver, BuyNowAtBrotherOnline, "Buy Now At Brother Online Button");
-            //return driver.FindElement(By.CssSelector(BuyNowAtBrotherOnline));
         }
 
         private static IWebElement BillingSwitchButton(ISearchContext driver)
         {
             return FindElement(driver, BillingSwitch, "Billing Switch Button");
-            //return driver.FindElement(By.CssSelector(BillingSwitch));
         }
 
         private static IWebElement TermsAndConditionsCheckbox(ISearchContext driver)
         {
             return FindElement(driver, TermsAndConditions, "Terms and Conditions Checkbox");
-            //return driver.FindElement(By.CssSelector(TermsAndConditions));
         }
 
         private static IWebElement PriceExcludingTaxText(ISearchContext driver)
         {
             return FindElement(driver, PriceExcludingTax, "Price Excluding tax");
-            //return driver.FindElement(By.CssSelector(PriceExcludingTax));
         }
 
         public static void IsBuyNowAtBrotherOnlineButtonAvailable(IWebDriver driver)
