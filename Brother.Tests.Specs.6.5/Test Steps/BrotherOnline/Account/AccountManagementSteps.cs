@@ -56,6 +56,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             var menu = GlobalNavigationModule.GetPrimaryNavigationMenuItem("MyAccount");
             NextPage = GlobalNavigationModule.MyAccountMenuItemClick(CurrentDriver, menu);
+            CurrentPage.As<WelcomeBackPage>().IsRegisterDeviceLinkAvailable();
         }
 
 		[When(@"I can sign out of Brother Online")]

@@ -1,4 +1,5 @@
-﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+﻿using System;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherMainSite.Basket;
 using OpenQA.Selenium;
@@ -13,24 +14,41 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Plans
         private const string TermsAndConditions = @"#ConfirmTOS";
         private const string PriceExcludingTax = @".priceexctax";
 
+        private static IWebElement FindElement(ISearchContext driver, string element, string message)
+        {
+            try
+            {
+                return driver.FindElement(By.CssSelector(element));
+            }
+            catch (WebDriverException elementNotFound)
+            {
+                Helper.MsgOutput(string.Format("Unable to locate element {0} [{1}]", element, message));
+            }
+            return null;
+        }
+
         private static IWebElement BuyNowButton(ISearchContext driver)
         {
-            return driver.FindElement(By.CssSelector(BuyNowAtBrotherOnline));
+            return FindElement(driver, BuyNowAtBrotherOnline, "Buy Now At Brother Online Button");
+            //return driver.FindElement(By.CssSelector(BuyNowAtBrotherOnline));
         }
 
         private static IWebElement BillingSwitchButton(ISearchContext driver)
         {
-            return driver.FindElement(By.CssSelector(BillingSwitch));
+            return FindElement(driver, BillingSwitch, "Billing Switch Button");
+            //return driver.FindElement(By.CssSelector(BillingSwitch));
         }
 
         private static IWebElement TermsAndConditionsCheckbox(ISearchContext driver)
         {
-            return driver.FindElement(By.CssSelector(TermsAndConditions));
+            return FindElement(driver, TermsAndConditions, "Terms and Conditions Checkbox");
+            //return driver.FindElement(By.CssSelector(TermsAndConditions));
         }
 
         private static IWebElement PriceExcludingTaxText(ISearchContext driver)
         {
-            return driver.FindElement(By.CssSelector(PriceExcludingTax));
+            return FindElement(driver, PriceExcludingTax, "Price Excluding tax");
+            //return driver.FindElement(By.CssSelector(PriceExcludingTax));
         }
 
         public static void IsBuyNowAtBrotherOnlineButtonAvailable(IWebDriver driver)
