@@ -55,6 +55,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private IWebElement proposalSummaryTabElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/proposals/declined\"] span")]
         private IWebElement proposalDeclinedTabElement;
+        [FindsBy(How = How.CssSelector, Using = "div.js-mps-proposal-list-container>table")]
+        private IWebElement proposalListContainerElement;
         
         
 
@@ -301,6 +303,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             productsTabElement.Click();
             return GetInstance<CreateNewProposalPage>(Driver);
+        }
+
+        public void FindExistingPoposalList()
+        {
+            TestCheck.AssertIsNotNull(proposalListContainerElement,
+                "Existing proposal table is not found.");
         }
 
     }
