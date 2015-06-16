@@ -19,10 +19,10 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Proposal
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.9.0.77")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("SummaryPageValidationForAllContractTypes")]
+    [NUnit.Framework.DescriptionAttribute("SummaryPageValidationForAllProposalTypes")]
     [NUnit.Framework.CategoryAttribute("TEST")]
     [NUnit.Framework.CategoryAttribute("UAT")]
-    public partial class SummaryPageValidationForAllContractTypesFeature
+    public partial class SummaryPageValidationForAllProposalTypesFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
@@ -34,7 +34,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Proposal
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "SummaryPageValidationForAllContractTypes", "In order to avoid ambiguity on contract summary page\r\nAs a dealer\r\nI want to be v" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "SummaryPageValidationForAllProposalTypes", "In order to avoid ambiguity on proposal summary page\r\nAs a dealer\r\nI want to be v" +
                     "erify that proposal summary page is correct for all types of proposal", ProgrammingLanguage.CSharp, new string[] {
                         "TEST",
                         "UAT"});
@@ -243,7 +243,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 94
  testRunner.And("the billing basis for Accessory is \"Pay upfront\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 95
- testRunner.And("the billing basis for Installation is \"Included in Click Price\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the billing basis for Installation is \"Pay upfront\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 96
  testRunner.And("the billing basis for Service Pack is \"Included in Click Price\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 97
