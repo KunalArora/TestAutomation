@@ -351,7 +351,7 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Summary Page Validation For Pay As you Go Purchase and Click proposal")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Purchase & Click with Service", "Create new customer", "Pay As You Go", "4 years", "Quarterly", "3 Monthly", "Tick", "MFC-8510DN", "Full", "800", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Purchase & Click with Service", "Create new customer", "Pay As You Go", "4 years", "Quarterly", "Quarterly", "Tick", "MFC-8510DN", "Full", "800", null)]
         public virtual void SummaryPageValidationForPayAsYouGoPurchaseAndClickProposal(string role, string country, string contractType, string createOption, string usageType, string contract, string leasing, string billing, string priceHardware, string printer, string deviceScreen, string clickVolume, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Summary Page Validation For Pay As you Go Purchase and Click proposal", exampleTags);
