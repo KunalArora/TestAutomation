@@ -86,7 +86,7 @@ Scenarios:
 	# NOTE: Need to add a Positive test for emails with leading and trailing spaces as these are allowed but Brother validation
 	# simply trim them. No error message is displayed
 
-@SMOKE
+@SMOKE @ignore
 Scenario Outline: Create an account for Brother Online for different language sites
 	Given I Need A Brother Online "<Country>" Account In Order To Use Brother Online Services
 	When I have clicked on Add Device
