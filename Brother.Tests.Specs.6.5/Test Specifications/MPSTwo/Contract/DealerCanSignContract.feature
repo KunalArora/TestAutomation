@@ -23,6 +23,7 @@ Scenario Outline: Dealer Can Sign A Leasing And Click Contract
 	And I sign back into Cloud MPS as a "<Role2>" from "<Country>"
 	And navigate to bank contract Awaiting Acceptance page
 	And the signed contract is displayed
+	And I sign out of Cloud MPS
 	
 	
 	Scenarios: 
@@ -48,6 +49,7 @@ Scenario Outline: Dealer Can Sign A Purchase And Click Contract
 	And I sign back into Cloud MPS as a "<Role2>" from "<Country>"
 	And navigate to Local Office Approver contract Awaiting Acceptance page
 	And the signed purchase and click contract is displayed
+	And I sign out of Cloud MPS
 	
 	
 	Scenarios: 

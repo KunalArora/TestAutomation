@@ -93,6 +93,7 @@ Scenario Outline: All Zero QTY fields are not displayed on summary page
 	And I enter click price volume of "1000" and "1000"
 	Then the selected devices <Printer> above are displayed on Summary Screen
 #	Then all the components of device with zero QTY are not displayed on summary page
+    And I sign out of Cloud MPS
 
 	Scenarios: 
 
