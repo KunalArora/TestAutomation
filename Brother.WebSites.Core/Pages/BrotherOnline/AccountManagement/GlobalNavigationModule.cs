@@ -35,12 +35,17 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         {
             try
             {
-                return driver.FindElement(By.CssSelector(element));
+                if (WaitForElementToExistByCssSelector(element, 5, 5))
+                {
+                    MsgOutput(string.Format("Global Navigation Module: Found {0} element correctly", element));
+                    return driver.FindElement(By.CssSelector(element));
+                }
             }
             catch (WebDriverException timedOut)
             {
-                TestCheck.AssertFailTest(string.Format("Unable to locate Global Menu Navigation Item {0}", element));
+                MsgOutput(string.Format("Unable to locate Global Menu Navigation Item {0}", element));
             }
+            TestCheck.AssertFailTest(string.Format("Unable to locate Global Menu Navigation Item {0}", element));
             return null;
         }
 
