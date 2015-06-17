@@ -36,14 +36,6 @@ namespace Brother.Tests.Specs.MPSTwo.LocalOfficeApprover
             NextPage = CurrentPage.As<LocalOfficeApproverProposalsPage>().NavigateToViewSummary();
         }
 
-        [Then(@"I should be able to decline that proposal")]
-        public void ThenIShouldBeAbleToDeclineThatProposal()
-        {
-            CurrentPage.As<LocalOfficeApproverProposalsSummaryPage>().ClickDeclineButton();
-            CurrentPage.As<LocalOfficeApproverProposalsSummaryPage>().SelectDeclineReason("Expired");
-            NextPage = CurrentPage.As<LocalOfficeApproverProposalsSummaryPage>().ClickRejectButton();
-        }
-
         [Then(@"the decline proposal should be displayed under Declined tab")]
         public void ThenTheDeclineProposalShouldBeDisplayedUnderDeclinedTab()
         {

@@ -233,5 +233,22 @@ namespace Brother.Tests.Specs.MPSTwo.Approver
                 CurrentPage.As<LocalOfficeApproverProposalsSummaryPage>().ClickAccpetButton();
             }
         }
+
+        [Then(@"I should be able to decline that proposal")]
+        public void ThenIShouldBeAbleToDeclineThatProposal()
+        {
+            if (LeaseAndClick)
+            {
+                CurrentPage.As<BankProposalsSummaryPage>().ClickDeclineButton();
+                CurrentPage.As<BankProposalsSummaryPage>().SelectDeclineReason("Expired");
+                NextPage = CurrentPage.As<BankProposalsSummaryPage>().ClickRejectButton();
+            }
+            else if (PurchaseAndClick)
+            {
+                CurrentPage.As<LocalOfficeApproverProposalsSummaryPage>().ClickDeclineButton();
+                CurrentPage.As<LocalOfficeApproverProposalsSummaryPage>().SelectDeclineReason("Expired");
+                NextPage = CurrentPage.As<LocalOfficeApproverProposalsSummaryPage>().ClickRejectButton();
+            }
+        }
     }
 }
