@@ -4,37 +4,23 @@ Feature: Approver decision feture
 	As a Approver
 	I want to decide about Proposal/Contract
 
-@ignore
-# Contract name should be removed by feature
-Scenario Outline: Bank Decline Proposal
-	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
-	And I navigate to OfferPage
-	And I navigate to Awaiting Approval screen under Offer page
-	When I select a proposal from "<Name>" of Proposal
-	Then I should be able to decline that proposal
-	And the decline proposal should be displayed under Declined tab
-
-	Scenarios: 
-	| Role           | Country        | Name    |
-	| Cloud MPS Bank | United Kingdom | TEST 23 |
-
 #
 # Decline
 #
-
-@ignore
-# Contract name should be removed by feature
-Scenario Outline: LO Approver Decline Proposal
-	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
-	And I navigate to OfferPage
-	And I navigate to Awaiting Approval screen under Offer page
-	When I select a proposal from "<Name>" of Proposal
-	Then I should be able to decline that proposal
-	And the decline proposal should be displayed under Declined tab
+Scenario Outline: Approver Decline Proposal
+    Given Dealer have created a Awaiting Approval proposal of "<ContractType>" and "<UsageType>"
+	And I sign into Cloud MPS as a "<Role>" from "<Country>"
+	And Approver navigate to ProposalsPage
+	And Approver navigate to Awaiting Approval screen under Proposals page
+	When Approver select the proposal on Awaiting Proposal
+	Then Approver should be able to decline that proposal
+	And the decline proposal should be displayed under Declined tab by Approver
+	And I sign out of Cloud MPS
 
 	Scenarios: 
-	| Role           | Country        | Name    |
-	| Cloud MPS Bank | United Kingdom | TEST 23 |
+	| Role                            | Country        | ContractType                  | UsageType      |
+	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume |
+	| Cloud MPS Bank                  | United Kingdom | Lease & Click with Service    | Pay As You Go  |
 
 @ignore
 Scenario Outline: Declined proposal is displayed on Declined Page
