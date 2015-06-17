@@ -4,40 +4,27 @@ Feature: AccessALLTestSites
 	As a sanity check
 	We need to receive a 200 OK request back from a list of selected sites
 
-# BrotherMainSite - Ireland
+# BrotherMainSite
 @SMOKE
-Scenario: Get 200 OK response back from Brother Main Site Ireland on the Test environment
-	Given The following site "http://ie.brotherdv2.eu/" to validate I should receive an Ok response back	
+Scenario Outline: Get 200 OK response back from Brother Main Site <"Language"> on the Test environment
+	Given The following site <"Language"> <"Main Site"> to validate I should receive an Ok response back	
 
-# BrotherMainSite - UK
-@SMOKE
-Scenario: Get 200 OK response back from Main Site United Kingdom on the Test environment
-	Given The following site "http://uk.brotherdv2.eu/" to validate I should receive an Ok response back
+	Scenarios:
+	| Language | Main Site|
+	| Ireland        | http://ie.brotherdv2.eu/ |
+	| United Kingdom | http://uk.brotherdv2.eu/ |
 
-# BrotherOnline - Ireland
+# BrotherOnline
 @SMOKE
-Scenario: Get 200 OK response back from Brother Online Ireland on the Test environment
-	Given The following site "https://online.ie.brotherdv2.eu/" to validate I should receive an Ok response back
-
-# BrotherOnline - UK
-@SMOKE
-Scenario: Get 200 OK response back from Brother Online United Kingdom on the Test environment
-	Given The following site "https://online.uk.brotherdv2.eu/" to validate I should receive an Ok response back
-
-# BrotherOnline - Spain
-@SMOKE
-Scenario: Get 200 OK response back from Brother Online Spain on the Test environment
-	Given The following site "https://online.es.brotherdv2.eu/" to validate I should receive an Ok response back
-
-# BrotherOnline - Poland
-@SMOKE
-Scenario: Get 200 OK response back from Brother Online Poland on the Test environment
-	mentGiven The following site "https://online.pl.brotherdv2.eu/" to validate I should receive an Ok response back
-
-# OmniJoin - UK
-@SMOKE
-Scenario: Get 200 OK response back from Web Conferencing United Kingdom on the Test environment
-	Given The following site "http://webconferencing.uk.brotherdv2.eu/" to validate I should receive an Ok response back
+Scenario: Get 200 OK response back from Brother Online <"Language"> on the Test environment
+	Given The following site <"Language"> <"Brother Online"> to validate I should receive an Ok response back
+	
+	Scenarios:
+	| Language       | Brother Online                   |
+	| Ireland        | https://online.ie.brotherdv2.eu/ |
+	| United Kingdom | https://online.uk.brotherdv2.eu/ |
+	| Spain          | https://online.es.brotherdv2.eu/ |
+	| Poland         | https://online.pl.brotherdv2.eu/ |
 
 # CreativeCentre - UK
 @SMOKE
