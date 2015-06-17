@@ -55,13 +55,14 @@ Scenario Outline: Declined proposal is displayed on Declined Page
 # Approve
 #
 Scenario Outline: Bank Approve Proposal
-    Given Dealer have created a contract of "<ContractType>" and "<UsageType>"
+    Given Dealer have created a Awaiting Approval proposal of "<ContractType>" and "<UsageType>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to OfferPage
 	And I navigate to Awaiting Approval screen under Offer page
 	When I select the proposal on Awaiting Proposal
 	Then I should be able to approve that proposal
 #	And the approved proposal should be displayed under Approved tab
+    And I sign out of Cloud MPS
 
 	Scenarios: 
 	| Role           | Country        | ContractType                | UsageType      |
@@ -77,6 +78,7 @@ Scenario Outline: Approver can decide to reject or approve the contract
 	When Approver navigate to Contract Awaiting Acceptance page from Dashboard
 	Then Approver can view all the contracts that have been signed by dealer
 	And Approver can either reject or approve the contract
+	And I sign out of Cloud MPS
 
 	Scenarios:
 	| Role                            | Country        | ContractType                  | UsageType      |
@@ -94,6 +96,8 @@ Scenario Outline: Bank can approve the contract
 	And Approver can successfully approve the contract
 	And the accepted contract by Approver is displayed on contract Accepted screen
 #	And the accepted contract is displayed on proposal Approved screen
+    And I sign out of Cloud MPS
+
 	Scenarios:
 
 	| Role             | Country        | ContractType                  | UsageType      |
@@ -137,6 +141,7 @@ Scenario Outline: Dealer can resign rejected contract
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When I navigate to Rejected screen
 	Then I can successfully re-sign the rejected contract
+	And I sign out of Cloud MPS
 
 	Scenarios: 
 	| Role               | Country        |
