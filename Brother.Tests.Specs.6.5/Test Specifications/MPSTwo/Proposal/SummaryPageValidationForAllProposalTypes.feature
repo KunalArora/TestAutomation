@@ -92,7 +92,7 @@ Scenario Outline: Summary Page Validation For Minimum Volume Purchase and Click 
 	And I enter click price volume of "<ClickVolume>" and "<ColourVolume>"
 	Then the billing basis for product is "Pay upfront"
 	And the billing basis for Accessory is "Pay upfront"
-	And the billing basis for Installation is "Included in Click Price"
+	And the billing basis for Installation is "Pay upfront"
 	And the billing basis for Service Pack is "Included in Click Price"
 	And the installation type displayed is correct
 	And the installation cost displayed is correct
@@ -180,4 +180,4 @@ Scenario Outline: Summary Page Validation For Pay As you Go Purchase and Click p
 
 	Scenarios: 
 	| Role             | Country        | ContractType                  | CreateOption        | UsageType     | Contract | Leasing   | Billing   | PriceHardware | Printer    | DeviceScreen | ClickVolume |
-	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Create new customer | Pay As You Go | 4 years  | Quarterly | 3 Monthly | Tick        | MFC-8510DN | Full     | 800        |
+	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Create new customer | Pay As You Go | 4 years  | Quarterly | Quarterly | Tick        | MFC-8510DN | Full     | 800        |

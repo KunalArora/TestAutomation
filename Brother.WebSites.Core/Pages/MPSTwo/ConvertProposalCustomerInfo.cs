@@ -80,11 +80,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void CustomerCanOrderConsumables()
         {
-            if (!CanOrderConsumablesTick.Selected)
-            {
-                CanOrderConsumablesTick.Click();
-            }
-        }
+            CanOrderConsumablesTick.Click();
+         }
 
         public void SelectALegalForm()
         {
@@ -122,6 +119,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void SelectAPaymentType()
         {
             SelectFromDropdown(PaymentTypeDropdown, "Direct Debit");
+            //WebDriver.
             WebDriver.Wait(DurationType.Second, 3);
         }
 

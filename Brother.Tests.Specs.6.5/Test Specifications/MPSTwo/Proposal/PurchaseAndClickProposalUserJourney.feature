@@ -64,7 +64,7 @@ Scenario Outline: Create different varieties of Purchase and Click proposal for 
 
 	Scenarios: 
 	| Role             | Country        | ContractType                  | CreateOption        | UsageType     | Contract | Leasing   | Billing   | PriceHardware | Printer    | DeviceScreen | ClickVolume |
-	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Create new customer | Pay As You Go | 4 years  | Quarterly | 3 Monthly | Untick        | MFC-8510DN | Reduced      | 750        |
+	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Create new customer | Pay As You Go | 4 years  | Quarterly | Quarterly | Untick        | MFC-8510DN | Reduced      | 750        |
 
 
 Scenario Outline: Create different varieties of Purchase and Click proposal for an existing customer
