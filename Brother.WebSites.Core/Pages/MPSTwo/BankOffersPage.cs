@@ -127,14 +127,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private IWebElement ActionButtonElementByName(string name, string tdcol)
         {
-            string element = String.Format("//td[text()=\"{0}\"]/parent::tr/td[{1}]/div/button", name, tdcol);
+            var element = String.Format("//td[text()=\"{0}\"]/parent::tr/td[{1}]/div/button", name, tdcol);
             return Driver.FindElement(By.XPath(element));
         }
 
         public BankProposalsSummaryPage NavigateToViewSummary()
         {
             string proposalname = MpsUtil.CreatedProposal();
-            IWebElement element = ActionButtonElementByName(proposalname, "6");
+            var element = ActionButtonElementByName(proposalname, "6");
             element.Click();
             ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
 
