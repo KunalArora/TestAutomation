@@ -61,4 +61,4 @@ Scenario Outline: Get 200 OK response back from the following Brother Online Sit
 # CreativeCentre - UK
 @SMOKE
 Scenario: Get 200 OK response back from Creative Centre United Kingdom on the Test environment
-	Given The following site "http://creativecenter.eu.brotherdv2.eu/" to validate I should receive an Ok response back
+	Given The following site "United Kingdom" "http://creativecenter.eu.brotherdv2.eu/" to validate I should receive an Ok response back

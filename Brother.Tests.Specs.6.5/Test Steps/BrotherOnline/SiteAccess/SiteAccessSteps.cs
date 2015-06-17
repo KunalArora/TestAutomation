@@ -22,14 +22,13 @@ namespace Brother.Tests.Specs.BrotherOnline.SiteAccess
             WebDriver.SetPageLoadTimeout(WebDriver.DefaultTimeout);
         }
 
-//        [Given(@"The following site ""(.*)"" to validate I should receive an Ok response back")]
         [Given(@"The following site (.*) (.*) to validate I should receive an Ok response back")]
-        public void GivenTheFollowingSiteToValidateIShouldReceiveAnOkResponseBack(string language, string url)
+        public void GivenTheFollowingSiteToValidateIShouldReceiveAnOkResponseBack(string country, string url)
         {
             const int maxTries = 5;
             var responseCode = HttpStatusCode.Ambiguous;
 
-            Helper.MsgOutput(string.Format("Navigating to Main Site [{0}]", language));
+            Helper.MsgOutput(string.Format("Navigating to  [{0}] Main Site", country));
             for (var attempts = 1; attempts < maxTries; attempts++)
             {
                 Helper.MsgOutput(string.Format("Website response attempt number [{0}]", attempts));
