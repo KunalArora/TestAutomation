@@ -81,7 +81,6 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherMainSite.PrinterSearch
         [NUnit.Framework.TestCaseAttribute("Netherlands", "printers/laserprinters", null)]
         [NUnit.Framework.TestCaseAttribute("Poland", "printers/laser-printers", null)]
         [NUnit.Framework.TestCaseAttribute("Romania", "printers/laser-printers", null)]
-        [NUnit.Framework.TestCaseAttribute("Russia", "printers/laser-printers", null)]
         [NUnit.Framework.TestCaseAttribute("Slovakia", "printers/laser-printers", null)]
         [NUnit.Framework.TestCaseAttribute("Slovenia", "printers/laser-printers", null)]
         public virtual void ViewTheListOfAvailableLaserPrintersOnBrotherMainSitesForLanguagesExceptSpainAndPortugal(string country, string site, string[] exampleTags)
@@ -111,13 +110,15 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("View the list of available Laser Printers on Brother Main sites for Spain and Por" +
             "tugal")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.CategoryAttribute("SMOKE")]
         [NUnit.Framework.TestCaseAttribute("Portugal", "printers/laser-printers", null)]
         [NUnit.Framework.TestCaseAttribute("Spain", "impresoras/laser-printers", null)]
         public virtual void ViewTheListOfAvailableLaserPrintersOnBrotherMainSitesForSpainAndPortugal(string country, string site, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "SMOKE"};
+                    "SMOKE",
+                    "ignore"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));

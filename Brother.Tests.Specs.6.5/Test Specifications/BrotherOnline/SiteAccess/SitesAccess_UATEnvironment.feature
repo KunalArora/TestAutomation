@@ -4,42 +4,60 @@ Feature: AccessAllUATSites
 	As a sanity check
 	We need to receive a 200 OK request back from a list of selected sites
 
-# BrotherMainSite - Ireland
+# BrotherMainSite
 @SMOKE
-Scenario: Get 200 OK response back from Brother Main Site Ireland on the QAS environment
-	Given The following site "http://ie.brotherqas.eu/" to validate I should receive an Ok response back	
+Scenario Outline: Get 200 OK response back from the following Brother Main Sites on the UAT environment
+	Given The following site <Country> <Main Site> to validate I should receive an Ok response back	
 
-# BrotherMainSite - UK
+	Scenarios:
+	| Country        | Main Site                |
+	| Ireland        | http://ie.brotherqas.eu/ |
+	| United Kingdom | http://uk.brotherqas.eu/ |
+	| Germany        | http://de.brotherqas.eu/ |
+	| Slovakia       | http://sk.brotherqas.eu/ |
+	| Poland         | http://pl.brotherqas.eu/ |
+	| France         | http://fr.brotherqas.eu/ |
+	| Netherlands    | http://nl.brotherqas.eu/ |
+	| Russia         | http://ru.brotherqas.eu/ |
+	| Portugal       | http://pt.brotherqas.eu/ |
+	| Romania        | http://ro.brotherqas.eu/ |
+	| Czech          | http://cz.brotherqas.eu/ |
+	| Hungary        | http://hr.brotherqas.eu/ |
+	| Belgium        | http://be.brotherqas.eu/ |
+	| Denmark        | http://dk.brotherqas.eu/ |
+	| Switzerland    | http://ch.brotherqas.eu/ |
+	| Austria        | http://as.brotherqas.eu/ |
+	| Slovenia       | http://si.brotherqas.eu/ |
+	| Spain          | http://es.brotherqas.eu/ |
+	| Italy          | http://it.brotherqas.eu/ |
+
+# BrotherOnline
 @SMOKE
-Scenario: Get 200 OK response back from Main Site United Kingdom on the QAS environment
-	Given The following site "http://uk.brotherqas.eu/" to validate I should receive an Ok response back
-
-# BrotherOnline - Ireland
-@SMOKE
-Scenario: Get 200 OK response back from Brother Online Ireland on the QAS environment
-	Given The following site "https://online.ie.brotherqas.eu/" to validate I should receive an Ok response back
-
-# BrotherOnline - UK
-@SMOKE
-Scenario: Get 200 OK response back from Brother Online United Kingdom on the QAS environment
-	Given The following site "https://online.uk.brotherqas.eu/" to validate I should receive an Ok response back
-
-# BrotherOnline - Spain
-@SMOKE
-Scenario: Get 200 OK response back from Brother Online Spain on the QAS environment
-	Given The following site "https://online.es.brotherqas.eu/" to validate I should receive an Ok response back
-
-# BrotherOnline - Poland
-@SMOKE
-Scenario: Get 200 OK response back from Brother Online Poland on the QAS environment
-	Given The following site "https://online.pl.brotherqas.eu/" to validate I should receive an Ok response back
-
-# OmniJoin - UK
-@SMOKE
-Scenario: Get 200 OK response back from Web Conferencing United Kingdom on the QAS environment
-	Given The following site "http://webconferencing.uk.brotherqas.eu/" to validate I should receive an Ok response back
-
+Scenario Outline: Get 200 OK response back from the following Brother Online Sites on the UAT environment
+	Given The following site <Country> <Brother Online> to validate I should receive an Ok response back
+	
+	Scenarios:
+	| Country        | Brother Online                   |
+	| Ireland        | https://online.ie.brotherqas.eu/ |
+	| United Kingdom | https://online.uk.brotherqas.eu/ |
+	| Spain          | https://online.es.brotherqas.eu/ |
+	| Poland         | https://online.pl.brotherqas.eu/ |
+	| Germany        | https://online.de.brotherqas.eu/ |
+	| Slovakia       | https://online.sk.brotherqas.eu/ |
+	| France         | https://online.fr.brotherqas.eu/ |
+	| Netherlands    | https://online.nl.brotherqas.eu/ |
+	| Russia         | https://online.ru.brotherqas.eu/ |
+	| Portugal       | https://online.pt.brotherqas.eu/ |
+	| Romania        | https://online.ro.brotherqas.eu/ |
+	| Czech          | https://online.cz.brotherqas.eu/ |
+	| Hungary        | https://online.hr.brotherqas.eu/ |
+	| Belgium        | https://online.be.brotherqas.eu/ |
+	| Denmark        | https://online.dk.brotherqas.eu/ |
+	| Switzerland    | https://online.ch.brotherqas.eu/ |
+	| Austria        | https://online.as.brotherqas.eu/ |
+	| Slovenia       | https://online.si.brotherqas.eu/ |
+	| Italy          | https://online.it.brotherqas.eu/ |
 # CreativeCentre - UK
 @SMOKE
 Scenario: Get 200 OK response back from Creative Centre United Kingdom on the QAS environment
-	Given The following site "http://creativecenter.eu.brotherqas.eu/" to validate I should receive an Ok response back
+	Given The following site "United Kingdom" "http://creativecenter.eu.brotherqas.eu/" to validate I should receive an Ok response back
