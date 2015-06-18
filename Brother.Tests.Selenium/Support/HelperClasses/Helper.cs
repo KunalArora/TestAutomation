@@ -163,6 +163,12 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             return isSmokeTest != null && isSmokeTest.Equals("TRUE");
         }
 
+        public static bool IsMpsTestScenarios()
+        {
+            var isSmokeTest = Environment.GetEnvironmentVariable("SmokeTestSet", EnvironmentVariableTarget.Machine);
+            return isSmokeTest != null && isSmokeTest.Equals("TRUE");
+        }
+
         public static bool CheckFeatureEnv(string env)
         {
             return FeatureContext.Current.FeatureInfo.Tags.Contains(env);
