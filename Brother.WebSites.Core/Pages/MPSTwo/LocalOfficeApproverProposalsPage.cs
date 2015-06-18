@@ -153,16 +153,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public LocalOfficeApproverProposalsSummaryPage NavigateToViewSummary(string name)
         {
             IWebElement element = ActionButtonElementByName(name, "6");
-            StoreProposalName(name);
             element.Click();
             ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
 
             return GetTabInstance<LocalOfficeApproverProposalsSummaryPage>(Driver);
-        }
-
-        private void StoreProposalName(string name)
-        {
-            SpecFlow.SetContext("ProposalNameByApprover", name);
         }
 
         public LocalOfficeApproverProposalsSummaryPage NavigateToProposalSummary()
@@ -204,14 +198,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyDeclinedProposalIsDisplayed()
         {
-            string name = SpecFlow.GetContext("ProposalNameByApprover");
+            string name = SpecFlow.GetContext("GeneratedProposalName");
 
             AssertElementPresent(ActionButtonElementByName(name, "7"), "The proposal is not found");
         }
 
         public void VerifyApprovedProposalIsDisplayed()
         {
-            string name = SpecFlow.GetContext("ProposalNameByApprover");
+            string name = SpecFlow.GetContext("GeneratedProposalName");
 
             AssertElementPresent(ActionButtonElementByName(name, "7"), "The proposal is not found");
         }

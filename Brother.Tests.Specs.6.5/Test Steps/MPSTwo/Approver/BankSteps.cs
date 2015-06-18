@@ -37,14 +37,6 @@ namespace Brother.Tests.Specs.MPSTwo.Bank
             NextPage = CurrentPage.As<BankOffersPage>().NavigateToViewSummary();
         }
 
-        [Then(@"I should be able to decline that proposal")]
-        public void ThenIShouldBeAbleToDeclineThatProposal()
-        {
-            CurrentPage.As<BankProposalsSummaryPage>().ClickDeclineButton();
-            CurrentPage.As<BankProposalsSummaryPage>().SelectDeclineReason("Expired");
-            NextPage = CurrentPage.As<BankProposalsSummaryPage>().ClickRejectButton();
-        }
-
         [Then(@"the decline proposal should be displayed under Declined tab")]
         public void ThenTheDeclineProposalShouldBeDisplayedUnderDeclinedTab()
         {

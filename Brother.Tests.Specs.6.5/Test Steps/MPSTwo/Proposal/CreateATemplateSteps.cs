@@ -204,7 +204,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<CreateNewProposalPage>().ClickNextButton_old();
 
             CurrentPage.As<CreateNewProposalPage>().SelectARandomExistingContact();
-            CurrentPage.As<CreateNewProposalPage>().ClickNextButton_old();
+            NextPage = CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
 //            CurrentPage.As<CreateNewProposalPage>().TickOrderConsumables();
 
 //            CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
@@ -224,8 +224,8 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<CreateNewProposalPage>().ClickNextButton_old();
 
             CurrentPage.As<CreateNewProposalPage>().SelectARandomExistingContact();
-            CurrentPage.As<CreateNewProposalPage>().ClickNextButton_old();
             NextPage = CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
+            NextPage = CurrentPage.As<DealerProposalsCreateTermAndTypePage>().ClickNextButton();
         }
 
         
@@ -268,17 +268,9 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         {
             CurrentPage.As<CreateNewProposalPage>().IsCustomerInfoTextDisplayed();
             CurrentPage.As<CreateNewProposalPage>().ClickSkipCustomerRadioButton();
-            CurrentPage.As<CreateNewProposalPage>().ClickNextButton_old();
+            NextPage = CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
 
         }
-
-        [When(@"I arrive at ""(.*)"" screen")]
-        public void WhenIArriveAtScreen(string screenToVerify)
-        {
-            WhenIEnterContractTermsLeasingAndBillingOnTermAndTypeDetails("", "", "");
-            CurrentPage.As<CreateNewProposalPage>().VerifyProposalScreenAfterNavigation(screenToVerify);
-        }
-
 
         [When(@"I enter Customer Information Detail for new customer")]
         public void WhenIEnterCustomerInformationDetailForNewCustomer()
@@ -294,7 +286,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<CreateNewProposalPage>().FillOrganisationContactDetail();
             //CurrentPage.As<CreateNewProposalPage>().TickOrderConsumables();
 
-            CurrentPage.As<CreateNewProposalPage>().ClickNextButton_old();
+            NextPage = CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
         }
 
         [When(@"I select ""(.*)"" button for customer data capture")]
@@ -305,7 +297,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
             CurrentPage.As<CreateNewProposalPage>().FillOrganisationContactDetail();
             CurrentPage.As<CreateNewProposalPage>().FillOrganisationDetails();
-            CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
+            NextPage = CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
         }
 
         [When(@"I ""(.*)"" Private Liable for Company Info")]
@@ -315,29 +307,15 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<CreateNewProposalPage>().CheckPrivateLiableBox(liable);
         }
 
-        [When(@"I ""(.*)"" Customer added can order consumables")]
-        public void WhenICustomerAddedCanOrderConsumables(string orderOption)
-        {
-            CurrentPage.As<CreateNewProposalPage>().FillOrganisationContactDetail();
-            CurrentPage.As<CreateNewProposalPage>().TickOrderConsumables(orderOption);
-
-            CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
-        }
-
-
-
-
         [Given(@"I Enter ""(.*)"" usage type ""(.*)"" contract length and ""(.*)"" billing on Term and Type details")]
         [When(@"I Enter ""(.*)"" usage type ""(.*)"" contract length and ""(.*)"" billing on Term and Type details")]
         public void WhenIEnterUsageTypeContractLengthAndBillingOnTermAndTypeDetails(string usage, string contract,
             string billing)
         {
-            CurrentPage.As<CreateNewProposalPage>().IsTermAndTypeTextDisplayed();
-            CurrentPage.As<CreateNewProposalPage>().SelectUsageType(usage);
-            CurrentPage.As<CreateNewProposalPage>().SelectContractLength(contract);
-            CurrentPage.As<CreateNewProposalPage>().SelectPayPerClickBillingCycle(billing);
-
-            //CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
+            CurrentPage.As<DealerProposalsCreateTermAndTypePage>().IsTermAndTypeTextDisplayed();
+            CurrentPage.As<DealerProposalsCreateTermAndTypePage>().SelectUsageType(usage);
+            CurrentPage.As<DealerProposalsCreateTermAndTypePage>().SelectContractLength(contract);
+            CurrentPage.As<DealerProposalsCreateTermAndTypePage>().SelectPayPerClickBillingCycle(billing);
         }
 
         [When(@"I choose to pay Service Packs ""(.*)""")]
@@ -349,11 +327,11 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         private void WhenIEnterContractTermsLeasingAndBillingOnTermAndTypeDetails(string contract, string leasing,
             string billing)
         {
-            CurrentPage.As<CreateNewProposalPage>().IsTermAndTypeTextDisplayed();
+            CurrentPage.As<DealerProposalsCreateTermAndTypePage>().IsTermAndTypeTextDisplayed();
 
-            CurrentPage.As<CreateNewProposalPage>().SelectContractLength(contract);
-            CurrentPage.As<CreateNewProposalPage>().SelectLeaseBillingCycle(leasing);
-            CurrentPage.As<CreateNewProposalPage>().SelectPayPerClickBillingCycle(billing);
+            CurrentPage.As<DealerProposalsCreateTermAndTypePage>().SelectContractLength(contract);
+            CurrentPage.As<DealerProposalsCreateTermAndTypePage>().SelectLeaseBillingCycle(leasing);
+            CurrentPage.As<DealerProposalsCreateTermAndTypePage>().SelectPayPerClickBillingCycle(billing);
         }
 
         [Given(@"I Enter ""(.*)"" contract terms ""(.*)"" leasing and ""(.*)"" billing on Term and Type details")]
@@ -363,7 +341,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         {
             WhenIEnterContractTermsLeasingAndBillingOnTermAndTypeDetails(contract, leasing, billing);
 
-            CurrentPage.As<CreateNewProposalPage>().ClickNextButton_old();
+            NextPage = CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
         }
 
         
@@ -379,53 +357,45 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [When(@"I Enter usage type of ""(.*)"" and ""(.*)"" contract terms ""(.*)"" leasing and ""(.*)"" billing on Term and Type details")]
         public void WhenIEnterUsageTypeOfAndContractTermsLeasingAndBillingOnTermAndTypeDetails(string usage, string contract, string leasing, string billing)
         {
-            CurrentPage.As<CreateNewProposalPage>().IsTermAndTypeTextDisplayed();
-            CurrentPage.As<CreateNewProposalPage>().SelectUsageType(usage);
-            CurrentPage.As<CreateNewProposalPage>().SelectLeaseBillingCycle(leasing);
-            CurrentPage.As<CreateNewProposalPage>().SelectPayPerClickBillingCycle(billing);
+            CurrentPage.As<DealerProposalsCreateTermAndTypePage>().IsTermAndTypeTextDisplayed();
+            CurrentPage.As<DealerProposalsCreateTermAndTypePage>().SelectUsageType(usage);
+            CurrentPage.As<DealerProposalsCreateTermAndTypePage>().SelectLeaseBillingCycle(leasing);
+            CurrentPage.As<DealerProposalsCreateTermAndTypePage>().SelectPayPerClickBillingCycle(billing);
 
-            NextPage = CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
+            NextPage = CurrentPage.As<DealerProposalsCreateTermAndTypePage>().ClickNextButton();
             
         }
-
-        [When(@"Price Hardware radio button is not displayed for leasing contract type")]
-        public void WhenPriceHardwareRadioButtonIsNotDisplayedForLeasingContractType()
-        {
-            CurrentPage.As<CreateNewProposalPage>().VerifyPriceHardwareIsNotDisplayed();
-        }
-
-
 
         [When(@"I Enter ""(.*)"" contract terms and ""(.*)"" billing on Term and Type details")]
         public void WhenIEnterContractTermsAndBillingOnTermAndTypeDetails(string contract, string billing)
         {
-            CurrentPage.As<CreateNewProposalPage>().IsTermAndTypeTextDisplayed();
+            CurrentPage.As<DealerProposalsCreateTermAndTypePage>().IsTermAndTypeTextDisplayed();
 
-            CurrentPage.As<CreateNewProposalPage>().SelectContractLength(contract);
-            CurrentPage.As<CreateNewProposalPage>().SelectPayPerClickBillingCycle(billing);
+            CurrentPage.As<DealerProposalsCreateTermAndTypePage>().SelectContractLength(contract);
+            CurrentPage.As<DealerProposalsCreateTermAndTypePage>().SelectPayPerClickBillingCycle(billing);
         }
 
         [When(@"I tick Price Hardware radio button")]
         public void WhenITickPriceHardwareRadioButton()
         {
-            CurrentPage.As<CreateNewProposalPage>().TickPriceHardware();
+            CurrentPage.As<DealerProposalsCreateTermAndTypePage>().TickPriceHardware();
 
-            NextPage = CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
+            NextPage = CurrentPage.As<DealerProposalsCreateTermAndTypePage>().ClickNextButton();
         }
 
         [When(@"I untick Price Hardware radio button")]
         public void WhenIUntickPriceHardwareRadioButton()
         {
-            CurrentPage.As<CreateNewProposalPage>().UntickPriceHardware();
+            CurrentPage.As<DealerProposalsCreateTermAndTypePage>().UntickPriceHardware();
 
-            NextPage = CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
+            NextPage = CurrentPage.As<DealerProposalsCreateTermAndTypePage>().ClickNextButton();
         }
         
         [Then(@"I should not see Price Hardware radio button on Term and Type screen")]
         public void ThenIShouldNotSeePriceHardwareRadioButtonOnTermAndTypeScreen()
         {
-            CurrentPage.As<CreateNewProposalPage>().IsNotPriceHardwareElement();
-            NextPage = CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
+            CurrentPage.As<DealerProposalsCreateTermAndTypePage>().IsNotPriceHardwareElement();
+            NextPage = CurrentPage.As<DealerProposalsCreateTermAndTypePage>().ClickNextButton();
         }
 
         [When(@"""(.*)"" device screen is displayed")]
@@ -547,8 +517,8 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [When(@"I ""(.*)"" Price Hardware radio button")]
         public void WhenIPriceHardwareRadioButton(string option)
         {
-            CurrentPage.As<CreateNewProposalPage>().TickPriceHardware(option);
-            NextPage = CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
+            CurrentPage.As<DealerProposalsCreateTermAndTypePage>().TickPriceHardware(option);
+            NextPage = CurrentPage.As<DealerProposalsCreateTermAndTypePage>().ClickNextButton();
         }
 
         [When(@"Service Pack payment method is displayed")]
@@ -750,26 +720,6 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<CreateNewProposalPage>().IsProductScreenDisplayed();
             CurrentPage.As<CreateNewProposalPage>().VerifyEarlierSelectedPrinter();
             CurrentPage.As<CreateNewProposalPage>().ClickBackButtonDuringProposalProcess();
-        }
-
-        [Then(@"I can go back to ""(.*)"" screen which retain earlier selected values")]
-        public void ThenICanGoBackToScreenWhichRetainEarlierSelectedValues(string screen)
-        {
-            CurrentPage.As<CreateNewProposalPage>().VerifyProposalScreensRetainValuesAfterbackNavigation(screen);
-
-        }
-
-        [Then(@"I can still create a proposal with the information above")]
-        public void ThenICanStillCreateAProposalWithTheInformationAbove()
-        {
-            CurrentPage.As<CreateNewProposalPage>().ClickNextButton_old();
-            CurrentPage.As<CreateNewProposalPage>().ClickNextButton_old();
-            CurrentPage.As<CreateNewProposalPage>().ClickNextButton_old();
-            CurrentPage.As<CreateNewProposalPage>().ClickNextButton_old();
-            CurrentPage.As<CreateNewProposalPage>().ClickNextButton_old();
-            CurrentPage.As<CreateNewProposalPage>().SaveProposal();
-
-            CurrentPage.As<CloudExistingProposalPage>().IsNewProposalTemplateCreated();
         }
 
         [Then(@"on product page all the device have full detail screen")]
