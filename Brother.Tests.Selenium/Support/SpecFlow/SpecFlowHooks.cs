@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using NUnit.Framework.Constraints;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.UnitTestProvider;
@@ -55,6 +56,15 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
             #endif
         }
 
+        private static void IgnoreThisTest(string why)
+        {
+             var testRunTimeSetting = new NUnitRuntimeProvider();
+
+             Helper.MsgOutput(why);
+                testRunTimeSetting.TestIgnore(why);
+        }
+
+
         public static void BeforeFeatureHeadlessAndInteractive()
         {
             #if DEBUG
@@ -78,8 +88,7 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
             // First check the Runtime environment for a valid value
             if (!CheckForValidRunTimeEnv(Helper.GetRunTimeEnv()))
             {
-                Helper.MsgOutput("Test could not be executed as the Run Time Environment is Invalid!");
-                testRunTimeSetting.TestIgnore("Test skipped as Run Time Environment is Invalid!");
+                IgnoreThisTest("Test skipped as Run Time Environment is Invalid!");
             }
 
             // Now check if this Scenario has Tagging present, and use this level in the first instance
@@ -91,9 +100,7 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
                 // if the run time environment does not match, do not run test
                 if (!Helper.CheckScenarioEnv(Helper.GetRunTimeEnv()))
                 {
-                    Helper.MsgOutput(
-                        "Test could not be executed as the Scenario Tags did not match Run Time Environment");
-                    testRunTimeSetting.TestIgnore("Test skipped as Run Time Environment invalid for this test");
+                    IgnoreThisTest("Test skipped as Run Time Environment invalid for this test - Scenario Tags did not match Run Time Environment");
                 }
             }
             else
@@ -101,16 +108,13 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
                 switch (FeatureContext.Current.FeatureInfo.Tags.Length)
                 {
                     case (0):
-                        Helper.MsgOutput("NO Feature Tags present - skipping all Scenarios under this Feature");
-                        testRunTimeSetting.TestIgnore("Test skipped as NO Feature Tags present");
+                        IgnoreThisTest("Test skipped - NO Feature Tags present - skipping all Scenarios under this Feature");
                         break;
 
                     default:
                         if (!Helper.CheckFeatureEnv(Helper.GetRunTimeEnv()))
                         {
-                            Helper.MsgOutput("Test could not be executed as the Run Time Environment did not match");
-                            var provider = new NUnitRuntimeProvider();
-                            provider.TestIgnore("Test skipped as Run Time Environment invalid for this test");
+                            IgnoreThisTest("Test skipped as Run Time Environment invalid for this test");
                         }
                         else
                         {
@@ -119,6 +123,12 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
                         break;
                 }
             }
+
+
+            //if (Helper.IsMPSTest())
+            //{
+            //    IgnoreThisTest("Coz its a Sayo MPS and its gonna kill Team City");
+            //}
 
             if (Helper.IsSmokeTest())
             {

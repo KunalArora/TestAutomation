@@ -318,14 +318,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             AssertElementPresent(ProductsScreenAlertElement, "Product Screen Instruction");
         }
 
-        public void IsTermAndTypeTextDisplayed()
-        {
-            if (TermAndTypeScreenTextElement == null) throw new 
-                NullReferenceException("Unable to locate text on Term and Type Screen");
-        
-            AssertElementPresent(TermAndTypeScreenTextElement, "Terms and Type Instruction");
-        }
-
         public void IsCustomerInfoTextDisplayed()
         {
             if (CustomerInfomationElement == null) throw new 
@@ -360,11 +352,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetTabInstance<CreateNewProposalPage>(Driver);
         }
 
-        public DealerProposalsCreateProductsPage ClickNextButton()
+        public DealerProposalsCreateTermAndTypePage ClickNextButton()
         {
             ScrollTo(NextButton);
             NextButton.Click();
-            return GetTabInstance<DealerProposalsCreateProductsPage>(Driver);
+            return GetTabInstance<DealerProposalsCreateTermAndTypePage>(Driver);
         }
 
         public void EnterProposalName(string proposalName)
@@ -507,31 +499,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
            TestCheck.AssertIsEqual(true, checkedCustomerInformationElement.Displayed, "Is customer information element displayed?");
         }
 
-        public void VerifyProposalScreensRetainValuesAfterbackNavigation(string tab)
-        {
-            switch (tab)
-            {
-                case "Proposal Description":
-                    IsPromptTextDisplayed();
-                    VerifyProposalDescriptionValuesAreRetained();
-                    break;
-                case "Customer Information":
-                    VerifyCustomerInformationRemainedChecked();
-                    ClickBackButtonDuringProposalProcess();
-                    IsCustomerInfoTextDisplayed();
-                    ClickBackButtonDuringProposalProcess();
-                    break;
-                case "Term & Type":
-                    IsTermAndTypeTextDisplayed();
-                    VerifyTermAndTypeValuesAreRetained();
-                    ClickBackButtonDuringProposalProcess();
-                    break;
-                default:
-                    throw new InvalidEnumArgumentException(String.Format("{0} is not a valid contract type", tab));
-            }
-
-        }
-
         public void VerifyFieldsOnScreensAreDisabled(string tab)
         {
             switch (tab)
@@ -593,28 +560,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             TestCheck.AssertIsEqual(retainedContractLength, selectedContractLength, "Retained Contract Length");
             TestCheck.AssertIsEqual(retainedLeaseBill, selectedLeaseBill, "Retianed Lease Bill");
             TestCheck.AssertIsEqual(retainedClickBill, selectedClickBill, "Retained Click Bill");
-        }
-
-        public void VerifyProposalScreenAfterNavigation(string tab)
-        {
-            switch (tab)
-            {
-                case "New Proposal":
-                    IsPromptTextDisplayed();
-                    break;
-                case "Customer Information":
-                    IsCustomerInfoTextDisplayed();
-                    break;
-                case "Term & Type":
-                    IsTermAndTypeTextDisplayed();
-                    break;
-                case "Summary":
-                    IsProposalSummaryTextDisplayed();
-                    break;
-                default:
-                    throw new InvalidEnumArgumentException(String.Format("{0} is not a valid contract type", tab));
-            }
-
         }
 
         public void ClickBackButtonDuringProposalProcess()
@@ -701,20 +646,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
 
-        private IWebElement PriceHardwareElementMissing()
-        {
-            return GetElementByCssSelector(priceHardwareTickBox, 10);
-        }
-
-        public void VerifyPriceHardwareIsNotDisplayed()
-        {
-            TestCheck.AssertIsEqual(false, PriceHardwareElementMissing().Displayed, "Price hardware checkbox is displayed");
-        }
-
-        public void VerifyPriceHardwareIsDisplayed()
-        {
-            TestCheck.AssertIsEqual(true, PriceHardwareElementMissing().Displayed, "Price hardware checkbox is displayed");
-        }
         public void FillClickPriceDetails()
         {
             EnterVolumeValue("1000");
@@ -866,66 +797,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 OrderConsumableElement.Click();
         }
 
-        public void TickPriceHardware()
-        {
-            if (PriceHardwareElement.Selected)
-            {
-                return;
-            }
-        }
 
-        public void UntickPriceHardware()
-        {
-            if (PriceHardwareElement.Selected)
-            {
-                PriceHardwareElement.Click();
-            }
-        }
-
-        public void IsNotPriceHardwareElement()
-        {
-            Boolean ret = IsElementPresent(GetElementByCssSelector("#content_1_InputPriceHardware_Input", 5));
-            TestCheck.AssertIsEqual(false, ret, "PriceHardwareElement is displayed");
-        }
-
-        private IWebElement PriceHardwareTickElement()
-        {
-            return GetElementByCssSelector(hardwareTick);
-        }
-
-        public void TickPriceHardware(string tickOption)
-        {
-            if (tickOption.Equals("Untick"))
-            {
-                PriceHardwareTickElement().Click();
-            }
-            else if (tickOption.Equals("Tick"))
-            {
-                //do nothing
-            }
-                 
-        }
-
-        public void SelectContractLength(string length)
-        {
-            SelectFromDropdown(ContractLengthElement, length);
-        }
-
-        public void SelectLeaseBillingCycle(string lease)
-        {
-            SelectFromDropdown(LeaseBillingCycleElement, lease);
-        }
-
-        public void SelectPayPerClickBillingCycle(string billing)
-        {
-            SelectFromDropdown(PayPerClickBillingElement, billing);
-        }
-
-        public void SelectUsageType(string usage)
-        {
-            SelectFromDropdown(UsageTypeElement, usage);
-            WebDriver.Wait(DurationType.Second, 5);
-        }
 
         private IWebElement ProductFlatListAddElement()
         {
