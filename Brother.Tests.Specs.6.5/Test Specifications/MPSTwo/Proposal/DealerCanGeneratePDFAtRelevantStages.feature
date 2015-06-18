@@ -1,4 +1,4 @@
-﻿@TEST @UAT
+﻿@MPS @TEST @UAT
 Feature: DealerCanGeneratePDFAtRelevantStages
 	In order to generate Proposal PDF
 	As a dealer

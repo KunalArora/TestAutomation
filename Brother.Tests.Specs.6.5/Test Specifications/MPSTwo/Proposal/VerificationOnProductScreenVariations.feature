@@ -1,4 +1,4 @@
-﻿@UAT @TEST
+﻿@MPS @UAT @TEST
 Feature: Proposal - Add a devices to a proposal during creation
 	In order to create a contract with a device 
 	As an MPS Dealer

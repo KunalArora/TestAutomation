@@ -20,6 +20,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Proposal
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("Proposal - Add a devices to a proposal during creation")]
+    [NUnit.Framework.CategoryAttribute("MPS")]
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("TEST")]
     public partial class Proposal_AddADevicesToAProposalDuringCreationFeature
@@ -36,6 +37,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Proposal
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Proposal - Add a devices to a proposal during creation", "In order to create a contract with a device \r\nAs an MPS Dealer\r\nI want to create " +
                     "a proposal that has a device", ProgrammingLanguage.CSharp, new string[] {
+                        "MPS",
                         "UAT",
                         "TEST"});
             testRunner.OnFeatureStart(featureInfo);

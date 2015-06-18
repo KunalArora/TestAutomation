@@ -1,4 +1,4 @@
-﻿@TEST @UAT
+﻿@TEST @UAT @MPS
 Feature: LeasingAndClickProposalUserJourney
 	In order to create different variety of leasing proposal
 	As a dealer 

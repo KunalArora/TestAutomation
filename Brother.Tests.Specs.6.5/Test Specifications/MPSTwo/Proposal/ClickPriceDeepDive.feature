@@ -1,4 +1,4 @@
-﻿@TEST @UAT
+﻿@MPS @TEST @UAT
 Feature: Click Price Deep Dive
 	In order to create different variety of click price
 	As a dealer 

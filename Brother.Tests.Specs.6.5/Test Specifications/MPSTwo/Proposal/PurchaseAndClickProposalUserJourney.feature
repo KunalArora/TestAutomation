@@ -1,4 +1,4 @@
-﻿@TEST @UAT
+﻿@TEST @UAT @MPS
 Feature: PurchaseAndClickProposalUserJourney
 	In order to create different variety of purchase and click proposal
 	As a dealer 

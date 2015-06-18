@@ -1,4 +1,4 @@
-﻿@Ignore @TEST @UAT
+﻿@Ignore @TEST @UAT @MPS
 Feature: PurchaseAndClickProposalGermanUserJourney
 	In order to create different variety of purchase and click proposal
 	As a dealer 

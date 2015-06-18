@@ -23,6 +23,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Proposal
     [NUnit.Framework.IgnoreAttribute()]
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("TEST")]
+    [NUnit.Framework.CategoryAttribute("MPS")]
     public partial class CompletedFieldsAreReadOnlyInConversionModeFeature
     {
         
@@ -40,7 +41,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Proposal
                     "ead-only during contract conversion", ProgrammingLanguage.CSharp, new string[] {
                         "Ignore",
                         "UAT",
-                        "TEST"});
+                        "TEST",
+                        "MPS"});
             testRunner.OnFeatureStart(featureInfo);
         }
         

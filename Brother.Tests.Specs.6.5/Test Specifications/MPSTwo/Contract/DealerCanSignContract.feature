@@ -1,4 +1,4 @@
-﻿@TEST @UAT
+﻿@MPS @TEST @UAT
 Feature: DealerCanSignContract
 	In order to progress an approved proposal to contract
 	As a dealer
