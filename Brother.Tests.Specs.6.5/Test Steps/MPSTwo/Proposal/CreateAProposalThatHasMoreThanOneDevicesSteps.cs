@@ -28,7 +28,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
 
             //Choose an existing contact
             CurrentPage.As<CreateNewProposalPage>().SelectARandomExistingContact();
-            CurrentPage.As<CreateNewProposalPage>().ClickNextButton_old();
+            NextPage = CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
         }
 
       
