@@ -12,11 +12,6 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         {
             CurrentPage.As<CreateNewProposalPage>().ClickOnProposalTabsTransform(tabToClick);
         }
-        
-        [Then(@"I am redirected to ""(.*)"" screen")]
-        public void ThenIAmRedirectedToScreen(string screenToConfirm)
-        {
-            CurrentPage.As<CreateNewProposalPage>().VerifyProposalScreenAfterNavigation(screenToConfirm);
-        }
+
     }
 }
