@@ -84,6 +84,7 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
         public void BeforeScenario()
         {
             var testRunTimeSetting = new NUnitRuntimeProvider();
+            var featureTag = Helper.CheckFeatureEnv("MPS");
 
             // First check the Runtime environment for a valid value
             if (!CheckForValidRunTimeEnv(Helper.GetRunTimeEnv()))
@@ -125,16 +126,37 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
             }
 
 
-            
-            if (Helper.MpsRunCondition().Equals("ONLY") || !Helper.MpsRunCondition().Equals(string.Empty))
+            if (featureTag)
             {
-                Helper.MsgOutput("!!!!MPS TESTS IN PROGRESS!!!!");
+
+                if (Helper.MpsRunCondition().Equals("ONLY") 
+                    || Helper.MpsRunCondition().Equals("ALL"))
+                {
+                    Helper.MsgOutput("!!!!MPS TESTS IN PROGRESS!!!!");
+                }
+                else if (Helper.MpsRunCondition().Equals("OFF") 
+                    || !Helper.MpsRunCondition().Equals(string.Empty))
+                {
+                    IgnoreThisTest("Test skipped as All MPS tests are switched off for this run");
+                }
             }
-            else if (Helper.MpsRunCondition().Equals("OFF") || !Helper.MpsRunCondition().Equals(string.Empty))
+            else
             {
-                IgnoreThisTest("Test skipped as All MPS tests are switched off for this run");
-            } 
-    
+                if (Helper.MpsRunCondition().Equals("ONLY"))
+                {
+                    IgnoreThisTest("Test skipped as ONLY MPS tests are switched ON for this run");
+                }
+                else if (Helper.MpsRunCondition().Equals("OFF") 
+                           || !Helper.MpsRunCondition().Equals(string.Empty) 
+                            || Helper.MpsRunCondition().Equals("ALL"))
+                {
+                    Helper.MsgOutput("!!!!TESTS RUN IN PROGRESS!!!!"); 
+                }
+                
+            }
+           
+            
+
 
             if (Helper.IsSmokeTest())
             {

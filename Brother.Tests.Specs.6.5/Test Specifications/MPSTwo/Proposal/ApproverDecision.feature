@@ -1,4 +1,4 @@
-﻿@TEST @UAT
+﻿@MPS @TEST @UAT
 Feature: Approver decision feture
 	In order to approve/decline Proposal/Contract
 	As a Approver

@@ -23,6 +23,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Contract
     [NUnit.Framework.IgnoreAttribute()]
     [NUnit.Framework.CategoryAttribute("TEST")]
     [NUnit.Framework.CategoryAttribute("UAT")]
+    [NUnit.Framework.CategoryAttribute("MPS")]
     public partial class DealerCanAddPreInstallationDetailsFeature
     {
         
@@ -39,7 +40,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Contract
                     "mplete the pre-installation detail", ProgrammingLanguage.CSharp, new string[] {
                         "Ignore",
                         "TEST",
-                        "UAT"});
+                        "UAT",
+                        "MPS"});
             testRunner.OnFeatureStart(featureInfo);
         }
         

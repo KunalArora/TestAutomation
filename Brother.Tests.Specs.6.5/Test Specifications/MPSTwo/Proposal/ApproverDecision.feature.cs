@@ -20,6 +20,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Proposal
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("Approver decision feture")]
+    [NUnit.Framework.CategoryAttribute("MPS")]
     [NUnit.Framework.CategoryAttribute("TEST")]
     [NUnit.Framework.CategoryAttribute("UAT")]
     public partial class ApproverDecisionFetureFeature
@@ -36,6 +37,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Proposal
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Approver decision feture", "In order to approve/decline Proposal/Contract\r\nAs a Approver\r\nI want to decide ab" +
                     "out Proposal/Contract", ProgrammingLanguage.CSharp, new string[] {
+                        "MPS",
                         "TEST",
                         "UAT"});
             testRunner.OnFeatureStart(featureInfo);

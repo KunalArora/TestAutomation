@@ -20,6 +20,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Proposal
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("Click Price Deep Dive")]
+    [NUnit.Framework.CategoryAttribute("MPS")]
     [NUnit.Framework.CategoryAttribute("TEST")]
     [NUnit.Framework.CategoryAttribute("UAT")]
     public partial class ClickPriceDeepDiveFeature
@@ -36,6 +37,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Proposal
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Click Price Deep Dive", "In order to create different variety of click price\r\nAs a dealer \r\nI want to be a" +
                     "ble to use different MPS parameters to derive different leasing proposal", ProgrammingLanguage.CSharp, new string[] {
+                        "MPS",
                         "TEST",
                         "UAT"});
             testRunner.OnFeatureStart(featureInfo);
