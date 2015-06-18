@@ -125,10 +125,16 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
             }
 
 
-            //if (Helper.IsMPSTest())
-            //{
-            //    IgnoreThisTest("Coz its a Sayo MPS and its gonna kill Team City");
-            //}
+            
+            if (Helper.MpsRunCondition().Equals("ONLY") || !Helper.MpsRunCondition().Equals(string.Empty))
+            {
+                Helper.MsgOutput("!!!!MPS TESTS IN PROGRESS!!!!");
+            }
+            else if (Helper.MpsRunCondition().Equals("OFF") || !Helper.MpsRunCondition().Equals(string.Empty))
+            {
+                IgnoreThisTest("Test skipped as All MPS tests are switched off for this run");
+            } 
+    
 
             if (Helper.IsSmokeTest())
             {
