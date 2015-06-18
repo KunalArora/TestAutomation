@@ -399,6 +399,26 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             flatListClickButtonElement.Click();
         }
 
+        private IWebElement OptionQuantity0Element()
+        {
+            return GetElementByCssSelector("OptionQuantity0", 5);
+        }
+
+        private IWebElement OptionCostPrice0Element()
+        {
+            return GetElementByCssSelector("OptionCostPrice0", 5);
+        }
+
+        private IWebElement OptionsSellPrice0Element()
+        {
+            return GetElementByCssSelector("OptionSellPrice0", 5);
+        }
+
+        private IWebElement OptionsMargin0Element()
+        {
+            return GetElementByCssSelector("OptionMargin0", 5);
+        }
+
         public void StoreDefaultProductConfiguration()
         {
             if (hogeIsFullDeviceScreenDisplayed())
@@ -411,7 +431,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     SpecFlow.SetContext("ProductMargin", ProductMarginElement.GetAttribute("value"));
                 if (IsElementPresent(ProductSellPriceElement))
                     SpecFlow.SetContext("ProductSellPrice", ProductSellPriceElement.GetAttribute("value"));
-                if (IsElementPresent(OptionsQuantityElement))
+                if (OptionQuantity0Element() != null)
                     SpecFlow.SetContext("OptionsQuantity", OptionsQuantityElement.GetAttribute("value"));
                 if (IsElementPresent(DeliveryCostPriceElement))
                     SpecFlow.SetContext("DeliveryCostPrice", DeliveryCostPriceElement.GetAttribute("value"));

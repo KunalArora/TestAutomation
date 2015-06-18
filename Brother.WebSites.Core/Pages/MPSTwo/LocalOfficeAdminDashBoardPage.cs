@@ -14,7 +14,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             get { return string.Empty; }
         }
 
-        [FindsBy(How = How.CssSelector, Using = "a[href='/mps/local-office/leasing-and-click'] .media-body")]
+        [FindsBy(How = How.CssSelector, Using = "a[href='/mps/local-office/lease-and-click'] .media-body")]
         private IWebElement LeasingContractLinkElement;
         [FindsBy(How = How.CssSelector, Using = "a[href='/mps/local-office/purchase-and-click'] .media-body")]
         private IWebElement PurchaseAndClickLinkElement;

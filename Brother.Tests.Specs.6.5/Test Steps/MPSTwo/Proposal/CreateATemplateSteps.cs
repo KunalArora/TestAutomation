@@ -1074,6 +1074,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         }
 
         [Then(@"the printers ""(.*)"" disabled in Local Office Admin are not displayed on product screen")]
+        [Then(@"the printers ""(.*)"" enabled in Local Office Admin are not displayed on product screen")]
         public void ThenThePrintersDisabledInLocalOfficeAdminAreNotDisplayedOnProductScreen(string model)
         {
             CurrentPage.As<DealerProposalsCreateProductsPage>().IsNotModelFound(model);

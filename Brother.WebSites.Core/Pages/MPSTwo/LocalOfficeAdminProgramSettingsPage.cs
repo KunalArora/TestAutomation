@@ -33,11 +33,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [FindsBy(How = How.Id, Using = "content_1_ButtonSave")]
         private IWebElement SaveButtonElement;
         [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/local-office/purchase-and-click/printers']")]
-        private IWebElement PrintersLinkElement;
+        private IWebElement PurchasePrintersLinkElement;
         [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/local-office/purchase-and-click/approval-defaults']")]
-        private IWebElement ApprovalDefaultsLinkElement;
+        private IWebElement PurchaseApprovalDefaultsLinkElement;
         [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/local-office/purchase-and-click/changable-items']")]
-        private IWebElement ChangableItemsElement;
+        private IWebElement PurchaseChangableItemsElement;
+        [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/local-office/lease-and-click/printers']")]
+        private IWebElement LeasingPrintersLinkElement;
+        [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/local-office/lease-and-click/approval-defaults']")]
+        private IWebElement LeasingApprovalDefaultsLinkElement;
+        [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/local-office/lease-and-click/leasing-banks']")]
+        private IWebElement LeasingBanksLinkElement;
 
         public void TickProgramEnabled()
         {
@@ -172,15 +178,29 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 SaveButtonElement.Click();
         }
 
-        private void IsPrintersLinkAvailable()
+        private void IsPurchasePrintersLinkAvailable()
         {
-            if (PrintersLinkElement == null)
-                throw new Exception("Unable to locate Printers link element");
+            if (PurchasePrintersLinkElement == null)
+                throw new Exception("Unable to locate Purchase Printers link element");
         }
-        public LocalOfficePrintersPage NavigateToLocalOfficePrintersPage()
+
+        public LocalOfficePrintersPage NavigateToLocalOfficePurchasePrintersPage()
         {
-            IsPrintersLinkAvailable();
-            PrintersLinkElement.Click();
+            IsPurchasePrintersLinkAvailable();
+            PurchasePrintersLinkElement.Click();
+            return GetTabInstance<LocalOfficePrintersPage>(Driver);
+        }
+
+        private void IsLeasePrintersLinkAvailable()
+        {
+            if (PurchasePrintersLinkElement == null)
+                throw new Exception("Unable to locate Lease Printers link element");
+        }
+
+        public LocalOfficePrintersPage NavigateToLocalOfficeLeasePrintersPage()
+        {
+            IsLeasePrintersLinkAvailable();
+            LeasingPrintersLinkElement.Click();
             return GetTabInstance<LocalOfficePrintersPage>(Driver);
         }
     }
