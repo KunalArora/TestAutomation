@@ -161,8 +161,8 @@ this.ScenarioSetup(scenarioInfo);
 #line 63
 this.ScenarioSetup(scenarioInfo);
 #line 64
- testRunner.Given("The following site \"United Kingdom\" \"http://creativecenter.eu.brotherdv2.eu/\" to " +
-                    "validate I should receive an Ok response back", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("The following site United Kingdom http://creativecenter.eu.brotherdv2.eu/ to vali" +
+                    "date I should receive an Ok response back", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             this.ScenarioCleanup();
         }
