@@ -1,4 +1,4 @@
-﻿@TEST @UAT
+﻿@MPS @TEST @UAT
 Feature: DealerCanUpdateProfile
 	In order to personalise detail
 	As a dealer

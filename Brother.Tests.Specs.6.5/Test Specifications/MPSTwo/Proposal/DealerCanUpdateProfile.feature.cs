@@ -20,6 +20,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Proposal
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("DealerCanUpdateProfile")]
+    [NUnit.Framework.CategoryAttribute("MPS")]
     [NUnit.Framework.CategoryAttribute("TEST")]
     [NUnit.Framework.CategoryAttribute("UAT")]
     public partial class DealerCanUpdateProfileFeature
@@ -36,6 +37,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Proposal
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "DealerCanUpdateProfile", "In order to personalise detail\r\nAs a dealer\r\nI want to be able to add dealer prof" +
                     "ile", ProgrammingLanguage.CSharp, new string[] {
+                        "MPS",
                         "TEST",
                         "UAT"});
             testRunner.OnFeatureStart(featureInfo);

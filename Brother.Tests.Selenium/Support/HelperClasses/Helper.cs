@@ -163,10 +163,21 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             return isSmokeTest != null && isSmokeTest.Equals("TRUE");
         }
 
-        public static bool IsMpsTestScenarios()
+        public static String MpsRunCondition()
         {
-            var isSmokeTest = Environment.GetEnvironmentVariable("SmokeTestSet", EnvironmentVariableTarget.Machine);
-            return isSmokeTest != null && isSmokeTest.Equals("TRUE");
+            return Environment.GetEnvironmentVariable("MpsTagRunner", EnvironmentVariableTarget.Machine);
+        }
+        
+        public static bool IsMpsTestOff()
+        {
+            var isSwitchedOff = Environment.GetEnvironmentVariable("MpsTagRunner", EnvironmentVariableTarget.Machine);
+            return isSwitchedOff != null && isSwitchedOff.Equals("OFF");
+        }
+
+        public static bool IsMpsOnlyRun()
+        {
+            var isSwitchedOff = Environment.GetEnvironmentVariable("MpsTagRunner", EnvironmentVariableTarget.Machine);
+            return isSwitchedOff != null && isSwitchedOff.Equals("ONLY");
         }
 
         public static bool CheckFeatureEnv(string env)
