@@ -84,7 +84,7 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
         public void BeforeScenario()
         {
             var testRunTimeSetting = new NUnitRuntimeProvider();
-            var featureTag = Helper.CheckFeatureEnv("MPS");
+            var mpsFeatureTag = Helper.CheckFeatureEnv("MPS");
 
             // First check the Runtime environment for a valid value
             if (!CheckForValidRunTimeEnv(Helper.GetRunTimeEnv()))
@@ -126,12 +126,7 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
             }
 
 
-<<<<<<< HEAD
-
-            if (Helper.MpsRunCondition().Equals("ONLY") || !Helper.MpsRunCondition().Equals(string.Empty))
-=======
-            if (featureTag)
->>>>>>> 0efd3d75d66a6df384a97ec47ba3914f6025aa58
+            if (mpsFeatureTag)
             {
 
                 if (Helper.MpsRunCondition().Equals("ONLY") 
