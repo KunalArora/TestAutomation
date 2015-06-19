@@ -126,7 +126,12 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
             }
 
 
+<<<<<<< HEAD
+
+            if (Helper.MpsRunCondition().Equals("ONLY") || !Helper.MpsRunCondition().Equals(string.Empty))
+=======
             if (featureTag)
+>>>>>>> 0efd3d75d66a6df384a97ec47ba3914f6025aa58
             {
 
                 if (Helper.MpsRunCondition().Equals("ONLY") 

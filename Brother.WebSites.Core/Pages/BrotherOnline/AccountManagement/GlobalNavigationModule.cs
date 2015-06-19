@@ -18,7 +18,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
     {
         // Static Global Navigation class which services the Brother Online orders side navigation bar common
         // to Brother Online orders, and the global navigation such as the Brother Nav bar.
-        private const string SideNavMenu = @".content-box.left-nav-container.cf .side-nav";
+        //private const string SideNavMenu = @".content-box.left-nav-container.cf .side-nav";
+        private const string SideNavMenu = @".side-nav";
         private const string ProductList = @"#product-list";
         private const string BrotherHomePage = "#master-logo > a";
         private const string MyAccountButtons = ".conference-button[href*='']";
@@ -305,7 +306,15 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
 
         public static WelcomeBackPage BrotherOnlineGoHome(IWebDriver driver)
         {
-            GetAccountMenuItem(driver, "BrotherOnlineHome").Click();
+            var accountMenuItem = GetAccountMenuItem(driver, "BrotherOnlineHome");
+            if (accountMenuItem != null)
+            {
+                accountMenuItem.Click();
+            }
+            else
+            {
+                MsgOutput("Unable to obtain the account menu item for Brother Online Home");
+            }
             return GetInstance<WelcomeBackPage>(driver, "", "");
         }
 

@@ -27,6 +27,8 @@ namespace Brother.Tests.Specs.OmniJoin.Plans
             And("If I click on My Account");
             And("I can click on Orders");
             And("I can validate the order \"1\" of \"OmniJoin Lite\" @ \"£18.00\" on My Account page");
+            When("If I sign out of Brother Online");
+            Then("I am redirected to the Brother Home Page");
             And("I can validate an Order Confirmation email was received");
         }
 
