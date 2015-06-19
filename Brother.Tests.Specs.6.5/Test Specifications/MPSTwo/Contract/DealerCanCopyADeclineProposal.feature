@@ -1,4 +1,4 @@
-﻿@TEST @UAT
+﻿@MPS @TEST @UAT
 Feature: DealerCanCopyADeclineProposal
 	In order to resubmit a declined proposal
 	As a dealer 

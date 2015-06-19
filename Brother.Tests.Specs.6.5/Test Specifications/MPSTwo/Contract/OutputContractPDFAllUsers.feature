@@ -1,4 +1,4 @@
-﻿@TEST @UAT
+﻿@MPS @TEST @UAT
 Feature: OutputContractPDFAllUsers
 	In order to view paper version of contract summary
 	As an MPS User

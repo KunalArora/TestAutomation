@@ -22,6 +22,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Proposal
     [NUnit.Framework.DescriptionAttribute("PurchaseAndClickProposalUserJourney")]
     [NUnit.Framework.CategoryAttribute("TEST")]
     [NUnit.Framework.CategoryAttribute("UAT")]
+    [NUnit.Framework.CategoryAttribute("MPS")]
     public partial class PurchaseAndClickProposalUserJourneyFeature
     {
         
@@ -38,7 +39,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Proposal
                     "\r\nI want to be able to use different MPS parameters to derive different leasing " +
                     "proposal", ProgrammingLanguage.CSharp, new string[] {
                         "TEST",
-                        "UAT"});
+                        "UAT",
+                        "MPS"});
             testRunner.OnFeatureStart(featureInfo);
         }
         

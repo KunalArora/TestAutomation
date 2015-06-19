@@ -1,4 +1,4 @@
-﻿@TEST @UAT
+﻿@MPS @TEST @UAT
 Feature: SubmitAllTypesofProposalsToRelevantApprovers
 	In order to progress a proposal to contract
 	As a dealer

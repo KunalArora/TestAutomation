@@ -22,6 +22,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Proposal
     [NUnit.Framework.DescriptionAttribute("SummaryPageValidationForAllProposalTypes")]
     [NUnit.Framework.CategoryAttribute("TEST")]
     [NUnit.Framework.CategoryAttribute("UAT")]
+    [NUnit.Framework.CategoryAttribute("MPS")]
     public partial class SummaryPageValidationForAllProposalTypesFeature
     {
         
@@ -37,7 +38,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Proposal
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "SummaryPageValidationForAllProposalTypes", "In order to avoid ambiguity on proposal summary page\r\nAs a dealer\r\nI want to be v" +
                     "erify that proposal summary page is correct for all types of proposal", ProgrammingLanguage.CSharp, new string[] {
                         "TEST",
-                        "UAT"});
+                        "UAT",
+                        "MPS"});
             testRunner.OnFeatureStart(featureInfo);
         }
         

@@ -23,6 +23,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Proposal
     [NUnit.Framework.IgnoreAttribute()]
     [NUnit.Framework.CategoryAttribute("TEST")]
     [NUnit.Framework.CategoryAttribute("UAT")]
+    [NUnit.Framework.CategoryAttribute("MPS")]
     public partial class PurchaseAndClickProposalGermanUserJourneyFeature
     {
         
@@ -40,7 +41,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Proposal
                     "proposal", ProgrammingLanguage.CSharp, new string[] {
                         "Ignore",
                         "TEST",
-                        "UAT"});
+                        "UAT",
+                        "MPS"});
             testRunner.OnFeatureStart(featureInfo);
         }
         

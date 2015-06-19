@@ -1,4 +1,4 @@
-﻿@UAT @TEST
+﻿@MPS @UAT @TEST
 Feature: Proposal - Add a devices to a proposal during creation
 	In order to create a contract with a device 
 	As an MPS Dealer
@@ -142,26 +142,73 @@ Scenario Outline: Lease and Click product screen validation
 #
 # Enable Printers Scenario 
 #
-# 8) under consideration
-@ignore
-Scenario Outline: asdf
-	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
-	And I navigate to the "Product screen" for "<ContractType>" Contract type
-	When hogehoge
-	Then the printers are not displayed in the Local Office are 
+Scenario Outline: Enable Printer of Lease + Click as a Local Office Admin, then can display in Lease + Click Service
+	Given I sign into Cloud MPS as a "<Role1>" from "<Country>"
+	And I navigate to Lease And Click page
+	And I navigate to Printers page on Lease And Click as a Local Office Admin
+	And I enabled "<Printer>" within the Printer screen
+	And I save printers on Available Printers page
+    And I sign out of Cloud MPS
+	When I sign back into Cloud MPS as a "<Role2>" from "<Country>"
+	And I am on MPS New Proposal Page
+	And I begin the proposal creation process for Lease + Click Service
+	And I display "<Printer>" device screen
+	Then the printers "<Printer>" enabled in Local Office Admin are displayed on product screen
+	And I sign out of Cloud MPS
+
+	Scenarios: 
+	| Role1                  | Country        | Role2            | Printer     |
+	| Cloud MPS Local Office | United Kingdom | Cloud MPS Dealer | MFC-J4510DW |
+
+Scenario Outline: Selected printer which is enabled on Lease + Click above can display in Purchase + Click Service
+	Given I sign into Cloud MPS as a "<Role1>" from "<Country>"
+	And I am on MPS New Proposal Page
+	When I begin the proposal creation process for Purchase + Click Service
+	And I tick Price Hardware radio button
+	Then the printers "<Printer>" enabled in Local Office Admin are not displayed on product screen
+	And I sign out of Cloud MPS
 
 	Scenarios: 
 
-	| Role                   | Country        | ContractType | Contract | Leasing                  | Billing                  | Printer      |
-	| Cloud MPS Local Office | United Kingdom | Lease & Click with Service      | 3 years  | 4 Monthly Minimum Volume | 6 Monthly Minimum Volume | DCP-8250DN   |
+	| Role1            | Country        | Printer      |
+	| Cloud MPS Dealer | United Kingdom | MFC-J4510DW  |
 
-# 9-11: under consideration
+Scenario Outline: Disable Printer of Lease + Click as a Local Office Admin, then can not display in Lease + Click Service
+	Given I sign into Cloud MPS as a "<Role1>" from "<Country>"
+	And I navigate to Lease And Click page
+	And I navigate to Printers page on Lease And Click as a Local Office Admin
+	And I disabled "<Printer>" within the Printer screen
+	And I save printers on Available Printers page
+    And I sign out of Cloud MPS
+	When I sign back into Cloud MPS as a "<Role2>" from "<Country>"
+	And I am on MPS New Proposal Page
+	And I begin the proposal creation process for Lease + Click Service
+	Then the printers "<Printer>" disabled in Local Office Admin are not displayed on product screen
+    And I sign out of Cloud MPS
+
+	Scenarios: 
+
+	| Role1                  | Country        | Role2            | Printer      |
+	| Cloud MPS Local Office | United Kingdom | Cloud MPS Dealer | MFC-J4510DW  |
 
 
-Scenario Outline: Enable Printer as a Local Office Admin, then can display in Purchase + Click Service
+Scenario Outline: Selected printer which is disabled on Lease + Click above can display in Purchase + Click Service
+	Given I sign into Cloud MPS as a "<Role1>" from "<Country>"
+	And I am on MPS New Proposal Page
+	When I begin the proposal creation process for Purchase + Click Service
+	And I tick Price Hardware radio button
+	Then the printers "<Printer>" disabled in Local Office Admin are not displayed on product screen
+	And I sign out of Cloud MPS
+
+	Scenarios: 
+
+	| Role1            | Country        | Printer      |
+	| Cloud MPS Dealer | United Kingdom | MFC-J4510DW  |
+
+Scenario Outline: Enable Printer of Purchase + Click as a Local Office Admin, then can display in Purchase + Click Service
 	Given I sign into Cloud MPS as a "<Role1>" from "<Country>"
 	And I navigate to Purchase And Click page
-	And I navigate to Printers page
+	And I navigate to Printers page on Purchase And Click as a Local Office Admin
 	And I enabled "<Printer>" within the Printer screen
 	And I save printers on Available Printers page
     And I sign out of Cloud MPS
@@ -175,11 +222,11 @@ Scenario Outline: Enable Printer as a Local Office Admin, then can display in Pu
 
 	Scenarios: 
 
-	| Role1                  | Country        | Role2            | Printer     |
-	| Cloud MPS Local Office | United Kingdom | Cloud MPS Dealer | DCP-8110DN  |
+	| Role1                  | Country        | Role2            | Printer      |
+	| Cloud MPS Local Office | United Kingdom | Cloud MPS Dealer | MFC-J4510DW  |
 
 
-Scenario Outline: Enable Printer as a Local Office Admin, then can display in Lease + Click Service
+Scenario Outline: Selected printer which is enabled on Purchase + Click above can display in Lease + Click Service
 	Given I sign into Cloud MPS as a "<Role1>" from "<Country>"
 	And I am on MPS New Proposal Page
 	When I begin the proposal creation process for Lease + Click Service
@@ -189,14 +236,14 @@ Scenario Outline: Enable Printer as a Local Office Admin, then can display in Le
 
 	Scenarios: 
 
-	| Role1            | Country        | Printer     |
-	| Cloud MPS Dealer | United Kingdom | DCP-8110DN  |
+	| Role1            | Country        | Printer      |
+	| Cloud MPS Dealer | United Kingdom | MFC-J4510DW  |
 
 
 Scenario Outline: Disable Printer as a Local Office Admin, then can display in Purchase + Click Service
 	Given I sign into Cloud MPS as a "<Role1>" from "<Country>"
 	And I navigate to Purchase And Click page
-	And I navigate to Printers page
+	And I navigate to Printers page on Purchase And Click as a Local Office Admin
 	And I disabled "<Printer>" within the Printer screen
 	And I save printers on Available Printers page
     And I sign out of Cloud MPS
@@ -209,11 +256,11 @@ Scenario Outline: Disable Printer as a Local Office Admin, then can display in P
 
 	Scenarios: 
 
-	| Role1                  | Country        | Role2            | Printer     |
-	| Cloud MPS Local Office | United Kingdom | Cloud MPS Dealer | DCP-8110DN  |
+	| Role1                  | Country        | Role2            | Printer      |
+	| Cloud MPS Local Office | United Kingdom | Cloud MPS Dealer | MFC-J4510DW  |
 
 
-Scenario Outline: Disable Printer as a Local Office Admin, then can display in Lease + Click Service
+Scenario Outline: Selected printer which is disabled on Purchase + Click above can not display in Lease + Click Service
 	Given I sign into Cloud MPS as a "<Role1>" from "<Country>"
 	And I am on MPS New Proposal Page
 	When I begin the proposal creation process for Lease + Click Service
@@ -222,8 +269,8 @@ Scenario Outline: Disable Printer as a Local Office Admin, then can display in L
 
 	Scenarios: 
 
-	| Role1            | Country        | Printer     |
-	| Cloud MPS Dealer | United Kingdom | DCP-8110DN  |
+	| Role1            | Country        | Printer      |
+	| Cloud MPS Dealer | United Kingdom | MFC-J4510DW  |
 
 #
 # 4 Installation Cost

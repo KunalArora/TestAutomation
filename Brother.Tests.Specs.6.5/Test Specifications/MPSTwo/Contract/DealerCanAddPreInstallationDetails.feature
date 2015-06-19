@@ -1,4 +1,4 @@
-﻿@Ignore @TEST @UAT
+﻿@Ignore @TEST @UAT @MPS
 Feature: DealerCanAddPreInstallationDetails
 	In order to fully set-up a contract
 	As a dealer
