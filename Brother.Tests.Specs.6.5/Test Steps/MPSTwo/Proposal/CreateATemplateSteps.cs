@@ -777,6 +777,12 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<DealerProposalsCreateProductsPage>().EnterDeliveryMargin("7");
         }
 
+        [When(@"I change all the margin")]
+        public void WhenIChangeAllTheMargin()
+        {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterAllMarginRandomly();
+        }
+
         [Then(@"the Unit Price changed accordingly")]
         public void ThenTheUnitPriceChangedAccordingly()
         {
@@ -869,6 +875,12 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         public void ThenTheSelectedDevicesAboveAreDisplayedOnSummaryScreen(string model)
         {
             CurrentPage.As<DealerProposalsCreateSummaryPage>().VerifySelectedDeviceIsDisplayed(model);
+        }
+
+        [Then(@"the entered margins on Product Screen are displayed on Summary Screen")]
+        public void ThenTheEnteredMarginsOnProductScreenAreDisplayedOnSummaryScreen()
+        {
+            CurrentPage.As<DealerProposalsCreateSummaryPage>().VerifyEnteredMarginsAreDisplayed();
         }
 
         [Then(@"the three devices selected above are displayed on Summary Screen")]
