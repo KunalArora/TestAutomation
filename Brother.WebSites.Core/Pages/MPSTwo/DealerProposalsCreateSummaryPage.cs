@@ -39,6 +39,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private IWebElement SaveProposalElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_HardwareBillingBasis_0")]
         private IWebElement ModelBillingBasisElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_HardwareMarginPercentage_0")]
+        private IWebElement ModelHardwareMarginElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_DeliveryMarginPercentage_0")]
+        private IWebElement ModelDeliveryMarginElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_RepeaterAccessories_0_AccessoryMarginPercentage_0")]
+        private IWebElement ModelAccessoryMarginElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_RepeaterInstallationPacks_0_InstallationPackMarginPercentage_0")]
+        private IWebElement ModelInstallationMarginElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_RepeaterServicePacks_0_ServicePackMarginPercentage_0")]
+        private IWebElement ModelServicePackMarginElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_RepeaterAccessories_0_AccessoryBillingBasis_0")]
         private IWebElement AccessoryBillingBasisElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_RepeaterInstallationPacks_0_InstallationPackBillingBasis_0")]
@@ -456,6 +466,54 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 elementname = string.Format(element, elementname, model);
                 AssertElementPresent(GetElementByCssSelector(elementname, 5), "model is not displayed");
             }
+        }
+
+        private void VerifyEnteredHardwareMarginIsDisplayed()
+        {
+            var before = Convert.ToDecimal(SpecFlow.GetContext("EnteredProductMargin"));
+            var after = Convert.ToDecimal(ModelHardwareMarginElement.Text.Trim(" %".ToCharArray()));
+            TestCheck.AssertIsEqual(before, after, "Product Margin invalid");
+        }
+
+        private void VerifyEnteredDeliveryMarginIsDisplayed()
+        {
+            var before = Convert.ToDecimal(SpecFlow.GetContext("EnteredDeliveryMargin"));
+            var after = Convert.ToDecimal(ModelDeliveryMarginElement.Text.Trim(" %".ToCharArray()));
+            TestCheck.AssertIsEqual(before, after, "Delivery Margin invalid");
+        }
+
+        private void VerifyEnteredInstallationPackMarginIsDisplayed()
+        {
+            var before = Convert.ToDecimal(SpecFlow.GetContext("EnteredInstallationPackMargin"));
+            var after = Convert.ToDecimal(ModelInstallationMarginElement.Text.Trim(" %".ToCharArray()));
+            TestCheck.AssertIsEqual(before, after, "InstallationPack Margin invalid");
+        }
+
+        private void VerifyEnteredServicePackMarginIsDisplayed()
+        {
+            var before = Convert.ToDecimal(SpecFlow.GetContext("EnteredServicePackMargin"));
+            var after = Convert.ToDecimal(ModelServicePackMarginElement.Text.Trim(" %".ToCharArray()));
+            TestCheck.AssertIsEqual(before, after, "ServicePack Margin invalid");
+        }
+
+        private void VerifyEnteredOptionMargin0IsDisplayed()
+        {
+            var before = Convert.ToDecimal(SpecFlow.GetContext("EnteredOptionMargin0"));
+            var after = Convert.ToDecimal(ModelAccessoryMarginElement.Text.Trim(" %".ToCharArray()));
+            foreach (KeyValuePair<string, object> item in SpecFlow.GetEnumerator())
+            {
+                if (item.Key.Equals("EnteredOptionMargin0"))
+                    TestCheck.AssertIsEqual(before, after, "OptionMargin invalid");
+            }
+        }
+
+        public void VerifyEnteredMarginsAreDisplayed()
+        {
+            VerifyEnteredHardwareMarginIsDisplayed();
+            VerifyEnteredDeliveryMarginIsDisplayed();
+            VerifyEnteredInstallationPackMarginIsDisplayed();
+            VerifyEnteredServicePackMarginIsDisplayed();
+            VerifyEnteredOptionMargin0IsDisplayed();
         }
 
         public void StoreProposalSummaryData()
