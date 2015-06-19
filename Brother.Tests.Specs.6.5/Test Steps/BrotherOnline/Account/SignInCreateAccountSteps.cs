@@ -517,7 +517,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
                 }
                 case "Cloud MPS Bank":
                 {
-                    WhenIEnterAValidEmailAddress("mpsbankUK@brother.co.uk");
+                    WhenIEnterAValidEmailAddress("mpsbankuk@mailinator.com");
                     WhenIEnterAValidPassword("P@$$w0rd");
                     break;
                 }
@@ -529,13 +529,13 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
                 }
                 case "Cloud MPS Local Office":
                 {
-                    WhenIEnterAValidEmailAddress("mpsloadminUK@brother.co.uk");
+                    WhenIEnterAValidEmailAddress("mpslocalofficeadminuk@mailinator.com");
                     WhenIEnterAValidPassword("P@$$w0rd");
                     break;
                 }
                 case "Cloud MPS Local Office Approver":
                 {
-                    WhenIEnterAValidEmailAddress("mpslocalofficeapprover@brother.co.uk");
+                    WhenIEnterAValidEmailAddress("mpslocalofficeapproveruk@mailinator.com");
                     WhenIEnterAValidPassword("P@$$w0rd");
                     break;
                 }
