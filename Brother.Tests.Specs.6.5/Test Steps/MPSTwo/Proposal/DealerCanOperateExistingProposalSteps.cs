@@ -31,12 +31,20 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
             page.ClickOnEditOnActionItem(CurrentDriver);
         }
 
-        [When(@"I click the delete button against an item on Exisiting Proposal table")]
-        public void WhenIClickTheDeleteButtonAgainstAnItemOnExisitingProposalTable()
+        [When(@"I click the delete button against ""(.*)"" on Exisiting Proposal table")]
+        public void WhenIClickTheDeleteButtonAgainstAnItemOnExisitingProposalTable(string targertitem)
         {
             var page = CurrentPage.As<CloudExistingProposalPage>();
             page.FindExistingPoposalList();
-            page.ClickOnDeleteOnActionItem(CurrentDriver);
+            if (targertitem == "NewlyCreatedItem")
+            {
+                page.ClickOnDeleteOnActionItemAgainstNewlyCreated(CurrentDriver);
+            }
+            else
+            {
+                page.ClickOnDeleteOnActionItem(CurrentDriver);
+            }
+
         }
 
         [When(@"I click the ""(.*)"" button on Confirmation Dialog")]

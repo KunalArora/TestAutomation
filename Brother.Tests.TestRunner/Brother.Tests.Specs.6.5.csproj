@@ -83,10 +83,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ClickPriceDeepDive.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Proposal\DealderCanOperateProposalOffers.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Proposal\DealerCanOperateProposalOffers.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DealderCanOperateProposalOffers.feature</DependentUpon>
+      <DependentUpon>DealerCanOperateProposalOffers.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Specifications\MPSTwo\Proposal\DealerCanGeneratePDFAtRelevantStages.feature.cs">
       <AutoGen>True</AutoGen>
@@ -343,7 +343,6 @@
     <Compile Include="Test Steps\MPSTwo\Proposal\DealerCanOperateExistingProposalSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Proposal\LocalOfficeAdminSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Proposal\LocalOfficeApproverSteps.cs" />
-    <Compile Include="Test Steps\MPSTwo\Proposal\OperateExistingProposalSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Proposal\ProposalSummaryPageSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\SendToBank\SendProposalToApproverSteps.cs" />
     <Compile Include="Test Steps\OmniJoin Partner Portal\CustomerActionsSteps.cs" />
@@ -488,9 +487,9 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CompletedFieldsAreReadOnlyInConversionMode.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Proposal\DealderCanOperateProposalOffers.feature">
+    <None Include="Test Specifications\MPSTwo\Proposal\DealerCanOperateProposalOffers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>DealderCanOperateProposalOffers.feature.cs</LastGenOutput>
+      <LastGenOutput>DealerCanOperateProposalOffers.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwo\Proposal\DealerCanGeneratePDFAtRelevantStages.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

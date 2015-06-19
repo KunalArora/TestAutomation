@@ -25,6 +25,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private const string proposalTableColumn = @".js-mps-delete-remove td";
         private const string actionsButton = @".js-mps-filter-ignore .dropdown-toggle";
+        private const string ProposalItemsSelecterFormat = "div.js-mps-proposal-list-container tr.js-mps-delete-remove";
         private const string ProposalNthItemSelecterFormat = "div.js-mps-proposal-list-container tr.js-mps-delete-remove:nth-child({0})";
 
         [FindsBy(How = How.CssSelector, Using = "li.separator a[href=\"/mps/proposals/create?new=true\"]")]
@@ -266,6 +267,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return driver.FindElement(By.CssSelector(format));
         }
 
+        private IWebElement GetNewlyCreatedProposalOfferElement(IWebDriver driver, int nth = 1)
+        {
+            var created = CreatedProposal();
+            return
+                driver.FindElements(By.CssSelector(ProposalItemsSelecterFormat))
+                .Reverse()
+                .First(x => x.FindElements(By.CssSelector("td"))
+                             .Select(y => y.Text)
+                             .Contains(created));
+        }
+
         private void ClickActionButtonOnOffer(IWebElement offerElement)
         {
             var actionitem = offerElement.FindElement(By.CssSelector(actionsButton));
@@ -275,6 +287,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void ClickOnDeleteOnActionItem(IWebDriver driver)
         {
             var offer = GetNthProposalOfferElement(driver);
+            ClickActionButtonOnOffer(offer);
+            var deleteElem = offer.FindElement(By.CssSelector(".js-mps-delete"));
+            var id = deleteElem.GetAttribute("data-proposal-id");
+            SpecFlow.SetContext(DealerLatestOperatingItemId, id);
+            deleteElem.Click();
+        }
+
+
+        public void ClickOnDeleteOnActionItemAgainstNewlyCreated(IWebDriver driver)
+        {
+            var offer = GetNewlyCreatedProposalOfferElement(driver);
             ClickActionButtonOnOffer(offer);
             var deleteElem = offer.FindElement(By.CssSelector(".js-mps-delete"));
             var id = deleteElem.GetAttribute("data-proposal-id");
