@@ -125,7 +125,7 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
             }
 
 
-            
+
             if (Helper.MpsRunCondition().Equals("ONLY") || !Helper.MpsRunCondition().Equals(string.Empty))
             {
                 Helper.MsgOutput("!!!!MPS TESTS IN PROGRESS!!!!");

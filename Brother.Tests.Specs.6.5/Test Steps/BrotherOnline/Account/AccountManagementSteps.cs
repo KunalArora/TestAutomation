@@ -47,8 +47,11 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [Then(@"I can navigate back to Brother Online home page")]
         public void ThenICanNavigateBackToBrotherOnlineHomePage()
         {
+            Helper.TakeSnapshot();
             Then("If I navigate back to the Brother Online My Account page");
+            Helper.TakeSnapshot();
             NextPage = GlobalNavigationModule.BrotherOnlineGoHome(CurrentDriver);
+            Helper.TakeSnapshot();
         }
 
         [Then(@"If I navigate back to the Brother Online My Account page")]
@@ -56,7 +59,6 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             var menu = GlobalNavigationModule.GetPrimaryNavigationMenuItem("MyAccount");
             NextPage = GlobalNavigationModule.MyAccountMenuItemClick(CurrentDriver, menu);
-            CurrentPage.As<WelcomeBackPage>().IsRegisterDeviceLinkAvailable();
         }
 
 		[When(@"I can sign out of Brother Online")]
