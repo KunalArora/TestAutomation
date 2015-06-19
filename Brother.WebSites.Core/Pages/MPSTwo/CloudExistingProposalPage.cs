@@ -20,8 +20,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             get { return string.Empty; }
         }
 
+        private const string DealerDeletingItem = "DealerDeletingItem";
+
+
         private const string proposalTableColumn = @".js-mps-delete-remove td";
         private const string actionsButton = @".js-mps-filter-ignore .dropdown-toggle";
+        private const string ProposalItemsSelecterFormat = "div.js-mps-proposal-list-container tr.js-mps-delete-remove";
+        private const string ProposalNthItemSelecterFormat = "div.js-mps-proposal-list-container tr.js-mps-delete-remove:nth-child({0})";
 
         [FindsBy(How = How.CssSelector, Using = "li.separator a[href=\"/mps/proposals/create?new=true\"]")]
         private IWebElement NewProposalButton;
@@ -55,6 +60,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private IWebElement proposalSummaryTabElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/proposals/declined\"] span")]
         private IWebElement proposalDeclinedTabElement;
+        [FindsBy(How = How.CssSelector, Using = "div.js-mps-proposal-list-container>table")]
+        private IWebElement proposalListContainerElement;
+        private const string DealerLatestOperatingItemId = "DealerLatestOperatingItemId";
+        [FindsBy(How = How.CssSelector, Using = ".js-mps-searchable tr:first-child")]
+        private IWebElement proposalTopItemElement;
         
         
 
@@ -245,7 +255,55 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             
         }
 
-        
+        public void ClickOnEditOnActionItem(IWebDriver driver)
+        {
+            ActionsModule.ClickOnTheActionsDropdown(Driver);
+            ActionsModule.StartTheProposalEditProcess(Driver);
+        }
+
+        private IWebElement GetNthProposalOfferElement(IWebDriver driver, int nth = 1)
+        {
+            var format = string.Format(ProposalNthItemSelecterFormat, nth);
+            return driver.FindElement(By.CssSelector(format));
+        }
+
+        private IWebElement GetNewlyCreatedProposalOfferElement(IWebDriver driver, int nth = 1)
+        {
+            var created = CreatedProposal();
+            return
+                driver.FindElements(By.CssSelector(ProposalItemsSelecterFormat))
+                .Reverse()
+                .First(x => x.FindElements(By.CssSelector("td"))
+                             .Select(y => y.Text)
+                             .Contains(created));
+        }
+
+        private void ClickActionButtonOnOffer(IWebElement offerElement)
+        {
+            var actionitem = offerElement.FindElement(By.CssSelector(actionsButton));
+            actionitem.Click();
+        }
+
+        public void ClickOnDeleteOnActionItem(IWebDriver driver)
+        {
+            var offer = GetNthProposalOfferElement(driver);
+            ClickActionButtonOnOffer(offer);
+            var deleteElem = offer.FindElement(By.CssSelector(".js-mps-delete"));
+            var id = deleteElem.GetAttribute("data-proposal-id");
+            SpecFlow.SetContext(DealerLatestOperatingItemId, id);
+            deleteElem.Click();
+        }
+
+
+        public void ClickOnDeleteOnActionItemAgainstNewlyCreated(IWebDriver driver)
+        {
+            var offer = GetNewlyCreatedProposalOfferElement(driver);
+            ClickActionButtonOnOffer(offer);
+            var deleteElem = offer.FindElement(By.CssSelector(".js-mps-delete"));
+            var id = deleteElem.GetAttribute("data-proposal-id");
+            SpecFlow.SetContext(DealerLatestOperatingItemId, id);
+            deleteElem.Click();
+        }
 
         public void SaveProposalAsAContract()
         {
@@ -303,5 +361,48 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetInstance<CreateNewProposalPage>(Driver);
         }
 
+        public void FindExistingPoposalList()
+        {
+            TestCheck.AssertIsNotNull(proposalListContainerElement,
+                "Existing proposal table is not found.");
+        }
+
+        public void ClickAcceptOnConfrimation(IWebDriver driver)
+        {
+            WebDriver.Wait(DurationType.Millisecond, 100);
+            ActionsModule.ClickAcceptOnJsAlert(driver);
+        }
+
+        public void ClickDismissOnConfrimation(IWebDriver driver)
+        {
+            WebDriver.Wait(DurationType.Millisecond, 100);
+            ActionsModule.ClickDismissOnJsAlert(driver);
+        }
+
+        public void NotExistTheDeletedItem(IWebDriver driver)
+        {
+            var id = SpecFlow.GetContext(DealerLatestOperatingItemId);
+            var exisitng = ContainsItemById(driver, id);
+
+            TestCheck.AssertIsEqual(false, exisitng,
+                "Deleted Item still exists on table.");
+        }
+
+        public void ExistsNotDeletedItem(IWebDriver driver)
+        {
+            var id = SpecFlow.GetContext(DealerLatestOperatingItemId);
+            var exisitng = ContainsItemById(driver, id);
+
+            TestCheck.AssertIsEqual(true, exisitng,
+                "Deleted Item does not exist on table.");
+        }
+
+        private static bool ContainsItemById(IWebDriver driver, string id)
+        {
+            return
+                driver.FindElements(By.CssSelector(".js-mps-delete"))
+                .Select(x => x.GetAttribute("data-proposal-id"))
+                .Contains(id);
+        }
     }
 }

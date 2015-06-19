@@ -86,7 +86,6 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess
         [NUnit.Framework.TestCaseAttribute("Belgium", "http://be.brotherdv2.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Denmark", "http://dk.brotherdv2.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Switzerland", "http://ch.brotherdv2.eu/", null)]
-        [NUnit.Framework.TestCaseAttribute("Austria", "http://as.brotherdv2.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Slovenia", "http://si.brotherdv2.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Spain", "http://es.brotherdv2.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Italy", "http://it.brotherdv2.eu/", null)]
@@ -128,7 +127,6 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestCaseAttribute("Belgium", "https://online.be.brotherdv2.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Denmark", "https://online.dk.brotherdv2.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Switzerland", "https://online.ch.brotherdv2.eu/", null)]
-        [NUnit.Framework.TestCaseAttribute("Austria", "https://online.as.brotherdv2.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Slovenia", "https://online.si.brotherdv2.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Italy", "https://online.it.brotherdv2.eu/", null)]
         public virtual void Get200OKResponseBackFromTheFollowingBrotherOnlineSitesOnTheTestEnvironment(string language, string brotherOnline, string[] exampleTags)
@@ -161,8 +159,8 @@ this.ScenarioSetup(scenarioInfo);
 #line 63
 this.ScenarioSetup(scenarioInfo);
 #line 64
- testRunner.Given("The following site \"United Kingdom\" \"http://creativecenter.eu.brotherdv2.eu/\" to " +
-                    "validate I should receive an Ok response back", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("The following site United Kingdom http://creativecenter.eu.brotherdv2.eu/ to vali" +
+                    "date I should receive an Ok response back", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             this.ScenarioCleanup();
         }

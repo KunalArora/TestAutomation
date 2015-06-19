@@ -26,7 +26,7 @@ Scenario Outline: Get 200 OK response back from the following Brother Main Sites
 	| Belgium        | http://be.brotherdv2.eu/ |
 	| Denmark        | http://dk.brotherdv2.eu/ |
 	| Switzerland    | http://ch.brotherdv2.eu/ |
-	| Austria        | http://as.brotherdv2.eu/ |
+	#| Austria        | http://as.brotherdv2.eu/ | - site not live
 	| Slovenia       | http://si.brotherdv2.eu/ |
 	| Spain          | http://es.brotherdv2.eu/ |
 	| Italy          | http://it.brotherdv2.eu/ |
@@ -54,11 +54,11 @@ Scenario Outline: Get 200 OK response back from the following Brother Online Sit
 	| Belgium        | https://online.be.brotherdv2.eu/ |
 	| Denmark        | https://online.dk.brotherdv2.eu/ |
 	| Switzerland    | https://online.ch.brotherdv2.eu/ |
-	| Austria        | https://online.as.brotherdv2.eu/ |
+	#| Austria        | https://online.as.brotherdv2.eu/ | - Site not live
 	| Slovenia       | https://online.si.brotherdv2.eu/ |
 	| Italy          | https://online.it.brotherdv2.eu/ |
 
 # CreativeCentre - UK
 @SMOKE
 Scenario: Get 200 OK response back from Creative Centre United Kingdom on the Test environment
-	Given The following site "United Kingdom" "http://creativecenter.eu.brotherdv2.eu/" to validate I should receive an Ok response back
+	Given The following site United Kingdom http://creativecenter.eu.brotherdv2.eu/ to validate I should receive an Ok response back
