@@ -135,20 +135,21 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
                     Helper.MsgOutput("!!!!MPS TESTS IN PROGRESS!!!!");
                 }
                 else if (Helper.MpsRunCondition().Equals("OFF") 
-                    || !Helper.MpsRunCondition().Equals(string.Empty))
+                    || Helper.MpsRunCondition().Equals(string.Empty))
                 {
                     IgnoreThisTest("Test skipped as All MPS tests are switched off for this run");
                 }
             }
             else
             {
-                if (Helper.MpsRunCondition().Equals("ONLY"))
+                if (Helper.MpsRunCondition().Equals("ONLY")
+                    || Helper.MpsRunCondition().Equals(string.Empty))
                 {
                     IgnoreThisTest("Test skipped as ONLY MPS tests are switched ON for this run");
+                    Helper.MsgOutput("!!!!Check if MpsTagRunner value is not empty!!!!");
                 }
                 else if (Helper.MpsRunCondition().Equals("OFF") 
-                           || !Helper.MpsRunCondition().Equals(string.Empty) 
-                            || Helper.MpsRunCondition().Equals("ALL"))
+                           || Helper.MpsRunCondition().Equals("ALL"))
                 {
                     Helper.MsgOutput("!!!!TESTS RUN IN PROGRESS!!!!"); 
                 }
