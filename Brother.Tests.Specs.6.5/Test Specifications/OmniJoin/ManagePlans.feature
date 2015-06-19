@@ -8,12 +8,14 @@ Background:
 	Given I am logged onto Brother Online "United Kingdom" using valid credentials
 
 # Order an OmniJoin plan, change the plan term to a different term (e.g Monthly to Annualy)
-@TEST @UAT @SMOKE @ignore
+@TEST @UAT @SMOKE
 Scenario: Change Plan Term
 	Given I have navigated to the OmniJoin home page
 	When I purchase an OmniJoin "Lite" plan with "Monthly" billing with valid payment details
+#	Then I can navigate to the Brother Online Home Page "United Kingdom"
+#	Then I can navigate back to Brother Online home page
 	Then I can navigate to the Brother Online Home Page "United Kingdom"
-	Then I can navigate back to Brother Online home page
+	When I sign back into Brother Online "United Kingdom" using the same credentials		
 	When I click on OmniJoin home
 	Then I can click on Manage Plan	
 	And If I click on Change Plan or Term
