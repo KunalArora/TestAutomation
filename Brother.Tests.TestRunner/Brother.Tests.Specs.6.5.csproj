@@ -83,6 +83,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ClickPriceDeepDive.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\MPSTwo\Proposal\DealerCanOperateProposalOffers.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DealerCanOperateProposalOffers.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specifications\MPSTwo\Proposal\DealerCanGeneratePDFAtRelevantStages.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -335,6 +340,7 @@
     <Compile Include="Test Steps\BrotherOnline\Product Registration\AddDeviceSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Proposal\CreateAProposalNeededForContractSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Proposal\CreateATemplateSteps.cs" />
+    <Compile Include="Test Steps\MPSTwo\Proposal\DealerCanOperateExistingProposalSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Proposal\LocalOfficeAdminSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Proposal\LocalOfficeApproverSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Proposal\ProposalSummaryPageSteps.cs" />
@@ -480,6 +486,10 @@
     <None Include="Test Specifications\MPSTwo\Proposal\CompletedFieldsAreReadOnlyInConversionMode.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CompletedFieldsAreReadOnlyInConversionMode.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwo\Proposal\DealerCanOperateProposalOffers.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>DealerCanOperateProposalOffers.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwo\Proposal\DealerCanGeneratePDFAtRelevantStages.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

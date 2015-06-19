@@ -238,5 +238,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             SendToBankButtonElement(driver).Last().Click();
         }
+
+        public static void ClickAcceptOnJsAlert(IWebDriver driver)
+        {
+            var alert = driver.SwitchTo().Alert();
+            alert.Accept();
+        }
+
+        public static void ClickDismissOnJsAlert(IWebDriver driver)
+        {
+            var alert = driver.SwitchTo().Alert();
+            alert.Dismiss();
+        }
     }
 }
