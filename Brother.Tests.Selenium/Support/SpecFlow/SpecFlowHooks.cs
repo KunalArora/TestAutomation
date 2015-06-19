@@ -146,7 +146,7 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
                     || Helper.MpsRunCondition().Equals(string.Empty))
                 {
                     IgnoreThisTest("Test skipped as ONLY MPS tests are switched ON for this run");
-                    Helper.MsgOutput("!!!!Check if MpsTagRunner value is not empty!!!!");
+                    Helper.MsgOutput("!!!!Check if MpsTagRunner value is empty!!!!");
                 }
                 else if (Helper.MpsRunCondition().Equals("OFF") 
                            || Helper.MpsRunCondition().Equals("ALL"))
