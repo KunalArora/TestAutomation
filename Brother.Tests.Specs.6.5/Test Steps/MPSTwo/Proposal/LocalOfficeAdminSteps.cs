@@ -58,7 +58,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         }
 
         [Given(@"I navigate to Lease And Click page")]
-        [When(@"I navigate to Lease And Click page")]
+        [When(@"I navigate to admin Lease And Click page")]
         public void WhenINavigateToLeaseAndClickPage()
         {
             NextPage = CurrentPage.As<LocalOfficeAdminDashBoardPage>().NavigateToLeaseAndClickPage();
