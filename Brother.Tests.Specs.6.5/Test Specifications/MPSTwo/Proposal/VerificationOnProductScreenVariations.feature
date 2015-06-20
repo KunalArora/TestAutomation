@@ -27,9 +27,6 @@ Scenario Outline: Should be able to display full detail screen
 Scenario Outline: Default value of full detail screen are verified
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
-#	When I fill Proposal Description for "<ContractType>" Contract type
-#	And I enter Customer Information Detail for new customer
-#	And I Enter "<Contract>" contract terms and "<Billing>" billing on Term and Type details
     When I begin the proposal creation process for Purchase + Click Service
 	And I tick Price Hardware radio button
 	And I display "<Printer>" device screen
@@ -46,9 +43,6 @@ Scenario Outline: Default value of full detail screen are verified
 Scenario Outline: Total Price calulation is verified
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
-#	When I fill Proposal Description for "<ContractType>" Contract type
-#	And I enter Customer Information Detail for new customer
-#	And I Enter "<Contract>" contract terms and "<Billing>" billing on Term and Type details
     When I begin the proposal creation process for Purchase + Click Service
 	And I tick Price Hardware radio button
 	And I display "<Printer>" device screen
@@ -82,9 +76,6 @@ Scenario Outline: The sum of Total Price is equal to the Grand Total Price
 Scenario Outline: All Zero QTY fields are not displayed on summary page
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
-#	When I fill Proposal Description for "<ContractType>" Contract type
-#	And I enter Customer Information Detail for new customer
-#	And I Enter "<Contract>" contract terms and "<Billing>" billing on Term and Type details
     When I begin the proposal creation process for Purchase + Click Service
 	And I tick Price Hardware radio button
 	And I display "<Printer>" device screen
@@ -100,13 +91,27 @@ Scenario Outline: All Zero QTY fields are not displayed on summary page
 	| Role             | Country        | ContractType       | Contract |  Billing                  | Printer      |
 	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | 3 years  |  Quarterly | MFC-L8850CDW |
 
+Scenario Outline: All input Margins on prodocut page is displayed on summary page
+	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
+	And I am on MPS New Proposal Page
+    When I begin the proposal creation process for Purchase + Click Service
+	And I tick Price Hardware radio button
+	And I display "<Printer>" device screen
+	And I change all the margin
+	And I Add the device to Proposal
+	And I enter click price volume of "1000" and "1000"
+	Then the entered margins on Product Screen are displayed on Summary Screen
+    And I sign out of Cloud MPS
+
+	Scenarios: 
+
+	| Role             | Country        | Printer      |
+	| Cloud MPS Dealer | United Kingdom | MFC-L8850CDW |
+
 
 Scenario Outline: Should be able to display Reduced detail screen
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
-#	When I fill Proposal Description for "<ContractType>" Contract type
-#	And I enter Customer Information Detail for new customer
-#	And I Enter "<Contract>" contract terms and "<Billing>" billing on Term and Type details
     When I begin the proposal creation process for Purchase + Click Service
 	And I untick Price Hardware radio button
 	And I display "<Printer>" device screen

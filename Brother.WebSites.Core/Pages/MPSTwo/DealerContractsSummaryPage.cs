@@ -60,8 +60,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void TickResignInformationCheckbox()
         {
-            if (!ResignInformationCheckboxElement.Selected)
-                ResignInformationCheckboxElement.Click();
+            ResignInformationCheckboxElement.Click();
             WebDriver.Wait(DurationType.Second, 3);
         }
     }
