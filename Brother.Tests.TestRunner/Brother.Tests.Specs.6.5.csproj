@@ -312,7 +312,6 @@
     <Compile Include="Test Steps\MPSTwo\Approver\LocalOfficeApproverSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Contract\SigningContractsSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\DealerAdmin\DealerAdminProfileSteps.cs" />
-    <Compile Include="Test Steps\MPSTwo\Proposal\ClickingAheadInProposalCreationProcessSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Proposal\CreateAProposalThatHasMoreThanOneDevicesSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\BrotherMainMap.Designer.cs">

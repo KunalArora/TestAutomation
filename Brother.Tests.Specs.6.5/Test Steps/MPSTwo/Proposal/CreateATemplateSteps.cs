@@ -23,14 +23,6 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             NextPage = CurrentPage.As<DealerDashBoardPage>().NavigateToCreateNewProposalPage();
         }
 
-
-        [When(@"I fill Proposal Description for ""(.*)"" program")]
-        public void WhenIFillProposalDescriptionForProgram(string program)
-        {
-            CurrentPage.As<CreateNewProposalPage>().SelectingContractType(program);
-            WhenIFillProposalDescription();
-        }
-
         [Given(@"Dealer have created a Open proposal of ""(.*)"" and ""(.*)""")]
         public void GivenDealerHaveCreatedProposalOfOpen(string ContractType, string UsageType)
         {
@@ -167,16 +159,6 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             GivenIHaveCreatedPurchaseAndClickProposal("Minimum Volume");
         }
 
-
-        [Given(@"I fill Proposal Description")]
-        [When(@"I fill Proposal Description")]
-        public void WhenIFillProposalDescription()
-        {
-            CurrentPage.As<CreateNewProposalPage>().IsPromptTextDisplayed();
-            CurrentPage.As<CreateNewProposalPage>().EnterProposalName("");
-            CurrentPage.As<CreateNewProposalPage>().EnterLeadCodeRef("");
-            CurrentPage.As<CreateNewProposalPage>().ClickNextButton_old();
-        }
 
         [When(@"I fill Proposal Description for ""(.*)"" Contract type")]
         public void WhenIFillProposalDescriptionForContractType(string contract)
@@ -366,15 +348,6 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             
         }
 
-        [When(@"I Enter ""(.*)"" contract terms and ""(.*)"" billing on Term and Type details")]
-        public void WhenIEnterContractTermsAndBillingOnTermAndTypeDetails(string contract, string billing)
-        {
-            CurrentPage.As<DealerProposalsCreateTermAndTypePage>().IsTermAndTypeTextDisplayed();
-
-            CurrentPage.As<DealerProposalsCreateTermAndTypePage>().SelectContractLength(contract);
-            CurrentPage.As<DealerProposalsCreateTermAndTypePage>().SelectPayPerClickBillingCycle(billing);
-        }
-
         [When(@"I tick Price Hardware radio button")]
         public void WhenITickPriceHardwareRadioButton()
         {
@@ -402,15 +375,6 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         public void WhenDeviceScreenIsDisplayed(string option)
         {
             CurrentPage.As<DealerProposalsCreateProductsPage>().VerifyTypeOfDeviceScreenDisplayed(option);
-        }
-
-        [When(@"I choose ""(.*)"" from Products screen")]
-        public void WhenIChooseFromProductsScreen(string printer)
-        {
-            CurrentPage.As<DealerProposalsCreateProductsPage>().IsProductScreenTextDisplayed();
-            CurrentPage.As<CreateNewProposalPage>().ChooseADeviceFromProductSelectionScreen(printer, "80", "90");
-            CurrentPage.As<DealerProposalsCreateProductsPage>().VerifyProductAdditionConfirmationMessage();
-
         }
 
         [When(@"I accept the default values of the device")]
@@ -468,12 +432,6 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<DealerProposalsCreateClickPricePage>().SelectMonoVolume(volume, row);
         }
 
-        [When(@"I select ""(.*)"" from Colour Volume field")]
-        public void WhenISelectFromColourVolumeField(string volume)
-        {
-            CurrentPage.As<DealerProposalsCreateClickPricePage>().SelectColorVolume(volume);
-        }
-
         [When(@"I select ""(.*)"" from Colour Volume field by indicating row(.*)")]
         public void WhenISelectFromColourVolumeFieldByIndicatingRow(string volume, string row)
         {
@@ -485,8 +443,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         {
             CurrentPage.As<DealerProposalsCreateClickPricePage>().EnterColourVolume(volume, row);
         }
-
-
+        
         [When(@"I enter ""(.*)"" from Mono Volume field by indicating row(.*)")]
         public void WhenIEnterFromMonoVolumeFieldByIndicatingRow(string volume, string row)
         {
@@ -549,24 +506,12 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             NextPage = CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateClickPriceAndProceed(clickprice, colour);
         }
 
-        [When(@"I enter click price volume of ""(.*)"" and ""(.*)"" and do not proceed")]
-        public void WhenIEnterClickPriceVolumeOfAndDoNotProceed(string clickprice, string colour)
-        {
-            CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateClickPrice(clickprice, colour);
-        }
-
         [When(@"I type in click price volume of ""(.*)""")]
         public void WhenITypeInClickPriceVolumeOf(string monoVol)
         {
             NextPage = CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateEnteredClickPriceAndProceed(monoVol);
         }
 
-
-        [When(@"I select click price volume of ""(.*)""")]
-        public void WhenISelectClickPriceVolumeOf(string monoVol)
-        {
-            CurrentPage.As<DealerProposalsCreateProductsPage>().CalculateEPPClickPriceAndProceed(monoVol);
-        }
 
         [When(@"I calculate click price for the printer")]
         public void WhenICalculateClickPriceForThePrinter()
@@ -629,13 +574,6 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<DealerProposalsCreateClickPricePage>().VerifyClickPriceValueForVolumeValueIsAllEqual();
         }
 
-
-        [When(@"I enter multiple click price volume of ""(.*)"" and ""(.*)""")]
-        public void WhenIEnterMultipleClickPriceVolumeOfAnd(string clickprice, string colour)
-        {
-            CurrentPage.As<CreateNewProposalPage>().CalculateMultipleClickPriceAndProceed(clickprice, colour);
-        }
-
         [When(@"I click Save as Template button on Summary screen")]
         public void WhenIClickSaveAsTemplateButtonOnSummaryScreen()
         {
@@ -663,38 +601,12 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
 
         }
 
-        [Then(@"the information entered into the fields are still retained")]
-        public void ThenTheInformationEnteredIntoTheFieldsAreStillRetained()
-        {
-            CurrentPage.As<CreateNewProposalPage>().VerifyProposalDescriptionValuesAreRetained();
-        }
-
-        [Given(@"I am on MPS New Proposal Summary Screen")]
-        public void GivenIamOnMpsNewProposalSummaryScreen()
-        {
-            //GivenIamOnMpsNewProposalPage();
-            //WhenIFillProposalDescription();
-            // WhenIEnterCustomerInformationDetailForNewCustomer();
-            //WhenIEnterTermAndTypeDetails();
-            // WhenIChooseADeviceFromProductsScreen();
-
-            Given("I am on MPS New Proposal Page");
-            When("I fill Proposal Description");
-            When("I enter Customer Information Detail for new customer");
-            When("I Enter Term and Type details");
-            When("I choose a device from Products screen");
-
-            CurrentPage.As<CreateNewProposalPage>().MoveToProposalSummaryScreen();
-
-        }
-
         [When(@"I navigate to Dealer Dashboard page")]
         [Given(@"I navigate to Dealer Dashboard page")]
         public void GivenINavigateToDealerDashboardPage()
         {
             NextPage = CurrentPage.As<WelcomeBackPage>().NavigateToDealerDashboard();
         }
-
 
         [When(@"I navigated to Term and Type page")]
         public void WhenINavigatedToTermAndTypePage()
@@ -704,22 +616,6 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             When(@"I fill Proposal Description");
             When(@"I enter Customer Information Detail for new customer");
 
-        }
-
-
-
-        [When(@"I click the back button on Proposal Summary Screen")]
-        public void WhenIClickTheBackButtonOnProposalSummaryScreen()
-        {
-            CurrentPage.As<CreateNewProposalPage>().ClickBackButtonDuringProposalProcess();
-        }
-
-        [Then(@"I am redirected to Products screen with earlier selected printer")]
-        public void ThenIAmRedirectedToProductsScreenWithEarlierSelectedPrinter()
-        {
-            CurrentPage.As<CreateNewProposalPage>().IsProductScreenDisplayed();
-            CurrentPage.As<CreateNewProposalPage>().VerifyEarlierSelectedPrinter();
-            CurrentPage.As<CreateNewProposalPage>().ClickBackButtonDuringProposalProcess();
         }
 
         [Then(@"on product page all the device have full detail screen")]

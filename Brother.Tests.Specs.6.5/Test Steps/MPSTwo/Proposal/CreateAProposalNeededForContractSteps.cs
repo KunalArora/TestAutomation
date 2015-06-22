@@ -156,19 +156,6 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<DealerProposalsCreateProductsPage>().IsProductScreenTextDisplayed();
         }
 
-        [Given(@"I changed the Product view to flat list")]
-        [When(@"I changed the Product view to flat list")]
-        public void WhenIChangedTheProductViewToFlatList()
-        {
-            CurrentPage.As<CreateNewProposalPage>().ChangeProductViewToFlatList();
-        }
-
-        [Then(@"Products are displayed in flat list mode")]
-        public void ThenProductsAreDisplayedInFlatListMode()
-        {
-            CurrentPage.As<CreateNewProposalPage>().VerifyThatFlatListIsDisplayed();
-        }
-
         [When(@"I select ""(.*)"" from the product flat list")]
         public void WhenISelectFromTheProductFlatList(string selectedPrinter)
         {
@@ -182,23 +169,6 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             
         }
 
-
-        [Then(@"the fields on ""(.*)"" screen are prepopulated")]
-        public void ThenTheFieldsOnScreenArePrepopulated(string productScreen)
-        {
-            CurrentPage.As<CreateNewProposalPage>().ProductFieldsArePopulatedWhereNecessary(productScreen);
-        }
-
-        [Given(@"I send a contract to bank for acceptance")]
-        public void GivenISendAContractToBankForAcceptance()
-        {
-            Given("I successfully created a new proposal");
-            When("I start the contract conversion process");
-            When("I add a date to the proposal");
-            When("I save the proposal as a contract");
-            Then("the newly converted contract is available on Ready for Bank screen");
-            Then("I can send the converted contract to bank");
-        }
 
         [When(@"I accept the contract above")]
         public void WhenIAcceptTheContractAbove()
