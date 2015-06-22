@@ -1,13 +1,9 @@
 using Brother.Tests.Specs.BrotherOnline.Account;
 using Brother.Tests.Specs.MPSTwo.Approver;
-using Brother.Tests.Specs.MPSTwo.Bank;
-using Brother.Tests.Specs.MPSTwo.LocalOfficeApprover;
 using Brother.Tests.Specs.MPSTwo.SendToBank;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
 using Brother.WebSites.Core.Pages.MPSTwo;
-using NUnit.Framework.Constraints;
-using OpenQA.Selenium.Remote;
 using TechTalk.SpecFlow;
 
 
@@ -167,7 +163,16 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<CreateNewProposalPage>().SelectingContractType(contract);
             CurrentPage.As<CreateNewProposalPage>().EnterProposalName("");
             CurrentPage.As<CreateNewProposalPage>().EnterLeadCodeRef("");
-            CurrentPage.As<CreateNewProposalPage>().ClickNextButton_old();
+            NextPage = CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
+        }
+
+        [When(@"I Enter ""(.*)"" contract terms and ""(.*)"" billing on Term and Type details")]
+        public void WhenIEnterContractTermsAndBillingOnTermAndTypeDetails(string contract, string billing)
+        {
+            CurrentPage.As<DealerProposalsCreateTermAndTypePage>().IsTermAndTypeTextDisplayed();
+
+            CurrentPage.As<DealerProposalsCreateTermAndTypePage>().SelectContractLength(contract);
+            CurrentPage.As<DealerProposalsCreateTermAndTypePage>().SelectPayPerClickBillingCycle(billing);
         }
 
         [When(@"I begin the proposal creation process for Purchase \+ Click Service")]
@@ -177,19 +182,14 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<CreateNewProposalPage>().SelectingContractType("Purchase & Click with Service");
             CurrentPage.As<CreateNewProposalPage>().EnterProposalName("");
             CurrentPage.As<CreateNewProposalPage>().EnterLeadCodeRef("");
-            CurrentPage.As<CreateNewProposalPage>().ClickNextButton_old();
+            NextPage = CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
 
 //            When(@"I enter Customer Information Detail for new customer");
             //@TODO: Choose an existing contact until the creating new customer sequence is fixed
-            CurrentPage.As<CreateNewProposalPage>().IsCustomerInfoTextDisplayed();
-            CurrentPage.As<CreateNewProposalPage>().ClickSelectExistingCustomerRadioButton();
-            CurrentPage.As<CreateNewProposalPage>().ClickNextButton_old();
-
-            CurrentPage.As<CreateNewProposalPage>().SelectARandomExistingContact();
-            NextPage = CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
-//            CurrentPage.As<CreateNewProposalPage>().TickOrderConsumables();
-
-//            CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
+            CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().IsCustomerInfoTextDisplayed();
+            CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().ClickSelectExistingCustomerButtonAndProceed();
+            CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().SelectARandomExistingContact();
+            NextPage = CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().ClickNextButton();
         }
 
         [When(@"I begin the proposal creation process for Lease \+ Click Service")]
@@ -199,14 +199,12 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<CreateNewProposalPage>().SelectingContractType("Lease & Click with Service");
             CurrentPage.As<CreateNewProposalPage>().EnterProposalName("");
             CurrentPage.As<CreateNewProposalPage>().EnterLeadCodeRef("");
-            CurrentPage.As<CreateNewProposalPage>().ClickNextButton_old();
-            //@TODO: Choose an existing contact until the creating new customer sequence is fixed
-            CurrentPage.As<CreateNewProposalPage>().IsCustomerInfoTextDisplayed();
-            CurrentPage.As<CreateNewProposalPage>().ClickSelectExistingCustomerRadioButton();
-            CurrentPage.As<CreateNewProposalPage>().ClickNextButton_old();
-
-            CurrentPage.As<CreateNewProposalPage>().SelectARandomExistingContact();
             NextPage = CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
+            //@TODO: Choose an existing contact until the creating new customer sequence is fixed
+            CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().IsCustomerInfoTextDisplayed();
+            CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().ClickSelectExistingCustomerButtonAndProceed();
+            CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().SelectARandomExistingContact();
+            NextPage = CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().ClickNextButton();
             NextPage = CurrentPage.As<DealerProposalsCreateTermAndTypePage>().ClickNextButton();
         }
 
@@ -248,45 +246,39 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [Given(@"I skip Customer Information Screen")]
         public void GivenISkipCustomerInformationScreen()
         {
-            CurrentPage.As<CreateNewProposalPage>().IsCustomerInfoTextDisplayed();
-            CurrentPage.As<CreateNewProposalPage>().ClickSkipCustomerRadioButton();
-            NextPage = CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
-
+            CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().IsCustomerInfoTextDisplayed();
+            NextPage = CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().ClickSkipCustomerRadioButtonAndProceed();
         }
 
         [When(@"I enter Customer Information Detail for new customer")]
         public void WhenIEnterCustomerInformationDetailForNewCustomer()
         {
-            CurrentPage.As<CreateNewProposalPage>().IsCustomerInfoTextDisplayed();
-            CurrentPage.As<CreateNewProposalPage>().ClickCreateNewCustomerRadioButton();
-            CurrentPage.As<CreateNewProposalPage>().ClickNextButton_old();
+            CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().IsCustomerInfoTextDisplayed();
+            CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().ClickCreateNewCustomerButtonAndProceed();
 
-            // CurrentPage.As<CreateNewProposalPage>().ClickNewOrganisationButton();
-//           CurrentPage.As<CreateNewProposalPage>().IsPrivateLiableCheckBoxDiplayed();
+            // CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().ClickNewOrganisationButton();
 
-            CurrentPage.As<CreateNewProposalPage>().FillOrganisationDetails();
-            CurrentPage.As<CreateNewProposalPage>().FillOrganisationContactDetail();
-            //CurrentPage.As<CreateNewProposalPage>().TickOrderConsumables();
-
-            NextPage = CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
+            CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().FillOrganisationDetails();
+            CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().FillOrganisationContactDetail();
+            NextPage = CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().ClickNextButton();
         }
 
         [When(@"I select ""(.*)"" button for customer data capture")]
         public void WhenISelectButtonForCustomerDataCapture(string customerOption)
         {
-            CurrentPage.As<CreateNewProposalPage>().IsCustomerInfoTextDisplayed();
-            CurrentPage.As<CreateNewProposalPage>().CustomerCreationOptions(customerOption);
-            CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
-            CurrentPage.As<CreateNewProposalPage>().FillOrganisationContactDetail();
-            CurrentPage.As<CreateNewProposalPage>().FillOrganisationDetails();
-            NextPage = CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
+            CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().IsCustomerInfoTextDisplayed();
+            CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().CustomerCreationOptions(customerOption);
+            CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().ClickNextButton();
+            CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().FillOrganisationContactDetail();
+            CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().FillOrganisationDetails();
+            NextPage = CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().ClickNextButton();
         }
 
         [When(@"I ""(.*)"" Private Liable for Company Info")]
         public void WhenIPrivateLiableForCompanyInfo(string liable)
         {
-            CurrentPage.As<CreateNewProposalPage>().FillOrganisationDetails();
-            CurrentPage.As<CreateNewProposalPage>().CheckPrivateLiableBox(liable);
+            CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().FillOrganisationDetails();
+            CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().CheckPrivateLiableBox(liable);
         }
 
         [Given(@"I Enter ""(.*)"" usage type ""(.*)"" contract length and ""(.*)"" billing on Term and Type details")]
@@ -323,7 +315,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         {
             WhenIEnterContractTermsLeasingAndBillingOnTermAndTypeDetails(contract, leasing, billing);
 
-            NextPage = CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
+            NextPage = CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().ClickNextButton();
         }
 
         
@@ -596,8 +588,8 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [When(@"I click the back button on Customer Information Screen")]
         public void WhenIClickTheBackButtonOnCustomerInformationScreen()
         {
-            CurrentPage.As<CreateNewProposalPage>().IsCustomerInfoTextDisplayed();
-            CurrentPage.As<CreateNewProposalPage>().ClickBackButtonDuringProposalProcess();
+            CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().IsCustomerInfoTextDisplayed();
+            CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().ClickBackButtonDuringProposalProcess();
 
         }
 
