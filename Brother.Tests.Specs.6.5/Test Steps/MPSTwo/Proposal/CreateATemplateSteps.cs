@@ -247,7 +247,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         public void GivenISkipCustomerInformationScreen()
         {
             CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().IsCustomerInfoTextDisplayed();
-            NextPage = CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().ClickSkipCustomerRadioButtonAndProceed();
+            NextPage = CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().ClickSkipCustomerButtonAndProceed();
         }
 
         [When(@"I enter Customer Information Detail for new customer")]
