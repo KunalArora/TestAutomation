@@ -61,7 +61,7 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
              var testRunTimeSetting = new NUnitRuntimeProvider();
 
              Helper.MsgOutput(why);
-                testRunTimeSetting.TestIgnore(why);
+             testRunTimeSetting.TestIgnore(why);
         }
 
 

@@ -29,13 +29,8 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
         public static void AssertIsEqual(object expectedValue, object actualValue, string validationMessage)
         {
-            if (!expectedValue.Equals(actualValue))
-            {
-                throw new AssertionException(
-                    string.Format(
-                        "AssertIsEqual Failed: [{0}] validation didn't match expectations. Expected [{1}], Actual [{2}]",
+            Assert.AreEqual(expectedValue, actualValue, string.Format("[{0}] validation didn't match expectations. Expected [{1}], Actual [{2}]",
                         validationMessage, expectedValue, actualValue));
-            }
         }
 
         public static void AssertIsNotNull(object itemToCheck, string validationMessage)

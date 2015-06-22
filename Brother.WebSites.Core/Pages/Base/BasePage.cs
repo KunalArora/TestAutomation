@@ -206,7 +206,7 @@ namespace Brother.WebSites.Core.Pages.Base
                 }
             }
             MsgOutput(string.Format("WebDriver [driver.URL] value is [{0}]. Actual desired URL should have been [{1}]", driver.Url, url));
-            TestCheck.AssertIsEqual(true, driver.Url.Contains(partialUrl), string.Format("WebDriver could not navigate to URL {0}", url));
+            TestCheck.AssertTextContains(partialUrl, driver.Url, string.Format("WebDriver could not navigate to URL {0}", url));
         }
     }
 }
