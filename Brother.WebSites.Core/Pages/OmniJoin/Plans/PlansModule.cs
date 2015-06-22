@@ -16,19 +16,13 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Plans
 
         private static IWebElement FindElement(ISearchContext driver, string element, string message)
         {
-            try
+            if (SeleniumHelper.WaitForElementToExistByCssSelector(element, 5, 5))
             {
-                if (SeleniumHelper.WaitForElementToExistByCssSelector(element, 5, 5))
-                {
-                    Helper.MsgOutput(string.Format("Plans Module : {0} found", element));
-                    return driver.FindElement(By.CssSelector(element));
-                }
+                Helper.MsgOutput(string.Format("Plans Module : {0} found", element));
+                return driver.FindElement(By.CssSelector(element));
             }
-            catch (WebDriverException elementNotFound)
-            {
-                Helper.MsgOutput(string.Format("Unable to locate element {0} [{1}]", element, message));
-            }
-            Helper.MsgOutput(string.Format("Unable to locate element {0} [{1}]", element, message));
+            
+            TestCheck.AssertFailTest(string.Format("Plans Module : Unable to locate Basket Item {0}", element));
             return null;
         }
 

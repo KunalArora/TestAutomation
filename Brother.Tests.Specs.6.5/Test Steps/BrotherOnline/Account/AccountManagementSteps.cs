@@ -83,7 +83,9 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [Then(@"If I click on My Account menu")]
         public void ThenIfIClickOnMyAccountMenu()
         {
-            GlobalNavigationModule.GetProductNavigationMenu("MyAccount").Click();
+            Helper.TakeSnapshot();
+            var menuMyAccount = GlobalNavigationModule.GetProductNavigationMenu("MyAccount");
+            menuMyAccount.Click();
         }
 
         [Then(@"I click on My Personal Details")]
