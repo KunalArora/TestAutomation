@@ -13,19 +13,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
     public class CreateNewProposalPage : BasePage
     {
         public static string URL = "/mps/proposals/create/description?new=true";
-        private const string optionTab = @"a[href='#tab-options']";
-        private const string colourElement = @"#ClickPriceColourCoverage";
-        private const string flatItemsIdentifier = @".mps-product-group";
         private const string contractSelector = @"#content_1_InputContractType_Input";
-        private const string clickPriceValue = @"[class='mps-col mps-top mps-clickprice-line2'][data-click-price-mono='true']";
-        private const string clickPriceColourValue = @"[data-mono-only='False'] [class='mps-col mps-top mps-clickprice-line2'][data-click-price-colour='true']";
-        private const string clickPricePageNext = @"#content_1_ButtonNext";
-        private const string installationCostPrice = @"#InstallationCostPrice";
-        private const string installationMargin = @"#InstallationMargin";
-        private const string priceHardwareTickBox = @"#content_1_InputPriceHardware_Input";
-        private const string monoVolume = @"#content_1_LineItems_InputMonoVolumeBreaks_0";
-        private const string colourVolume = @"#content_1_LineItems_InputColourVolumeBreaks_0";
-        private const string hardwareTick = @"#content_1_InputPriceHardware_Input";
 
         public override string DefaultTitle
         {
@@ -50,38 +38,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private IWebElement SkipCustomerElement;
         [FindsBy(How = How.Id, Using = "content_1_NewOrganisation")]
         private IWebElement NewOrganisationElement;
-        [FindsBy(How = How.Id, Using = "content_1_CustomerManage_InputIsPrivatelyLiable_Input")]
-        private IWebElement PrivateLiableElement;
-        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerName")]
-        private IWebElement CompanyNameElement;
-        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerPropertyNumber_Input")]
-        private IWebElement PropertyNumberElement;
-        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerPropertyStreet_Input")]
-        private IWebElement PropertyStreetElement;
-        [FindsBy(How = How.Id, Using = "content_1_CustomerManage_InputPropertyArea_Input")]
-        private IWebElement PropertyAreaElement;
-        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerPropertyTown_Input")]
-        private IWebElement PropertyTownElement;
-        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerPropertyPostCode_Input")]
-        private IWebElement PropertyPostcodeElement;
-        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerPropertyCounty_Input")]
-        private IWebElement PropertyCountyElement;
-        [FindsBy(How = How.Id, Using = "content_1_CustomerManage_InputRegion_Input")]
-        private IWebElement RegionElement;
-        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputPersonTitle_Input")]
-        private IWebElement ContactTitleElement;
-        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputPersonFirstName_Input")]
-        private IWebElement FirstNameElement;
-        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputPersonLastName_Input")]
-        private IWebElement LastNameElement;
-        [FindsBy(How = How.Id, Using = "content_1_CustomerManage_InputPosition_Input")]
-        private IWebElement PositionElement;
-        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputPersonTelephone_Input")]
-        private IWebElement TelephoneElement;
-        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputPersonEmail_Input")]
-        private IWebElement EmailElement;
-        [FindsBy(How = How.Id, Using = "content_1_CustomerManage_InputCanOrderConsumables_Input")]
-        private IWebElement OrderConsumableElement;
         [FindsBy(How = How.Id, Using = "content_1_InputContractLength_Input")]
         private IWebElement ContractLengthElement;
         [FindsBy(How = How.Id, Using = "content_1_InputLeasingRateBillingCycle_Input")]
@@ -126,28 +82,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private IWebElement OptionsScreenElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/proposals/create/click-price\"]")]
         private IWebElement ClickPriceScreenElement;
-        [FindsBy(How = How.Id, Using = "Options")]
-        private IWebElement OptionsDropDownElement;
-        [FindsBy(How = How.Id, Using = "OptionQuantity0")]
-        private IWebElement OptionsQuantityElement;
-        [FindsBy(How = How.Id, Using = "OptionCostPrice0")]
-        private IWebElement OptionsCostPriceElement;
-        [FindsBy(How = How.Id, Using = "OptionSellPrice0")]
-        private IWebElement OptionsSellPriceElement;
-        [FindsBy(How = How.Id, Using = "OptionMargin0")]
-        private IWebElement OptionsMarginElement;
-        [FindsBy(How = How.Id, Using = "DeliveryCostPrice")]
-        private IWebElement DeliveryCostPriceElement;
-        [FindsBy(How = How.Id, Using = "DeliveryMargin")]
-        private IWebElement DeliveryMarginElement;
-        [FindsBy(How = How.Id, Using = "DeliverySellPrice")]
-        private IWebElement DeliverySellPriceElement;
-        [FindsBy(How = How.Id, Using = "ClickPriceMonoCoverage")]
-        private IWebElement ClickPriceCoverageElement;
-        [FindsBy(How = How.Id, Using = "ClickPriceMonoVolume")]
-        private IWebElement ClickPriceVolumeElement;
-        [FindsBy(How = How.Id, Using = "ClickPriceMonoMargin")]
-        private IWebElement ClickPriceMarginElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-product-configuration-submit")]
         private IWebElement AddToProposalElement;
         [FindsBy(How = How.Id, Using = "content_1_ComponentIntroductionAlert")]
@@ -264,32 +198,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private IWebElement ClickColourCoverageElement;
         [FindsBy(How = How.CssSelector, Using = "[id='content_1_LineItems_InputColourMargin_0']")]
         private IWebElement ClickColourMarginElement;
-        [FindsBy(How = How.CssSelector, Using = "[id='content_1_LineItems_InputMonoVolume_0']")]
-        private IWebElement MonoVolumeInputFieldElement;
-        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_ContractType")]
-        private IWebElement SummaryContractTypeElement;
-        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_ContractTerm")]
-        private IWebElement SummaryContractTermElement;
-        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_UsageType")]
-        private IWebElement SummaryUsageTermElement;
-        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_UsageBillingFrequency")]
-        private IWebElement SummaryUsageBillingFrequencyElement;
-        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_LeaseRentalFrequency")]
-        private IWebElement SummaryLeaseRentalFrequencyElement;
-        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_HardwareBillingBasis")]
-        private IList<IWebElement> SummaryBillingBasisElement;
-        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_HardwareSku_0")]
-        private IWebElement SummaryItemizedPrinterElement;
-        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_HardwareSku")]
-        private IList<IWebElement> SummaryItemizedPrintersElement;
-        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_MonoVolume_0")]
-        private IWebElement SummaryMonoClickVolumeElement;
-        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_ColourVolume_0")]
-        private IWebElement SummaryColourClickVolumeElement;
-        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_MonoVolume")]
-        private IList<IWebElement> SummaryMonoClickVolumeElements;
-        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_ColourVolume")]
-        private IList<IWebElement> SummaryColourClickVolumeElements;
 
         
         public void IsPromptTextDisplayed()
@@ -301,36 +209,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
 
-        public void IsCustomerInfoTextDisplayed()
-        {
-            if (CustomerInfomationElement == null) throw new 
-                NullReferenceException("Unable to locate text on Customer Information Screen");
-
-            AssertElementPresent(CustomerInfomationElement, "Customer information leading instruction");
-        }
-
-
-        public void CheckPrivateLiableBox(string liable)
-        {
-            if (liable.Equals("tick"))
-            {
-                PrivateLiableElement.Click();
-            }
-            
-        }
-
-        public CreateNewProposalPage ClickNextButton_old()
+        public DealerProposalsCreateCustomerInformationPage ClickNextButton()
         {
             ScrollTo(NextButton);
             NextButton.Click();
-            return GetTabInstance<CreateNewProposalPage>(Driver);
-        }
-
-        public DealerProposalsCreateTermAndTypePage ClickNextButton()
-        {
-            ScrollTo(NextButton);
-            NextButton.Click();
-            return GetTabInstance<DealerProposalsCreateTermAndTypePage>(Driver);
+            return GetTabInstance<DealerProposalsCreateCustomerInformationPage>(Driver);
         }
 
         public void EnterProposalName(string proposalName)
@@ -459,124 +342,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             TestCheck.AssertIsEqual(false, ClickColourMarginElement.Enabled, "Click colour margin Element disabled?");
         }
 
-        public void ClickBackButtonDuringProposalProcess()
-        {
-            ScrollTo(proposalProcessBackButtonElement);
-            proposalProcessBackButtonElement.Click();
-        }
-
-        public void ClickCreateNewCustomerRadioButton()
-        {
-            ScrollTo(CreateNewCustomerElement);
-            CreateNewCustomerElement.Click();
-        }
-
-        public void ClickSelectExistingCustomerRadioButton()
-        {
-            ScrollTo(SelectExistingCustomerElement);
-            SelectExistingCustomerElement.Click();
-        }
-
-        public void ClickSkipCustomerRadioButton()
-        {
-            ScrollTo(SkipCustomerElement);
-            SkipCustomerElement.Click();
-        }
-
-        public void CustomerCreationOptions(string option)
-        {
-            switch (option)
-            {
-                case "Create new customer":
-                    ClickCreateNewCustomerRadioButton();
-                    break;
-                case "Selecting existing customer":
-                    ClickSelectExistingCustomerRadioButton();
-                    break;
-                case "Skip customer creation":
-                    ClickSkipCustomerRadioButton();
-                    break;
-                default:
-                    throw new InvalidEnumArgumentException(String.Format("{0} is not a valid contract type", option));
-            }
-        }
-
-        public void ClickNewOrganisationButton()
-        {
-            ScrollTo(NewOrganisationElement);
-            NewOrganisationElement.Click();
-        }
-
-        public void FillOrganisationDetails()
-        {
-            EnterCompanyName();
-            EnterPropertyNumber();
-            EnterPropertyStreet();
-            //EnterPropertyArea();
-            EnterPropertyTown();
-            EnterPropertyPostCode();
-            //SelectRegionFromDropdown("Greater Manchester");
-        }
-
-
-        public void FillOrganisationContactDetail()
-        {
-            SelectTitleFromDropdown();
-            EnterContactFirstName();
-            EnterContactSurName();
-            //EnterContactPosition();
-            EnterContactTelephone();
-            EnterContactEmailAdress();
-        }
-
-        private IWebElement ColourClickPriceElement()
-        {
-            return GetElementByCssSelector(colourElement, 10);
-        }
-
-
-        public void EnterCompanyName()
-        {
-            CompanyNameElement.SendKeys(MpsUtil.CompanyName());
-        }
-
-        public void EnterPropertyNumber()
-        {
-            PropertyNumberElement.SendKeys(MpsUtil.PropertyNumber());
-        }
-
-        public void EnterPropertyStreet()
-        {
-            PropertyStreetElement.SendKeys(MpsUtil.PropertyStreet());
-        }
-
-        public void EnterPropertyArea()
-        {
-            PropertyAreaElement.SendKeys(MpsUtil.FirstName());
-        }
-
-        public void EnterPropertyTown()
-        {
-            PropertyTownElement.SendKeys(MpsUtil.PropertyTown());
-        }
-
-        public void EnterPropertyPostCode()
-        {
-            PropertyPostcodeElement.SendKeys(MpsUtil.PostCode());
-        }
-
-        public void SelectRegionFromDropdown(string region)
-        {
-            SelectFromDropdown(RegionElement, region);
-        }
-
-        public void SelectTitleFromDropdown()
-        {
-            if (ContactTitleElement.Displayed) 
-                //SelectFromDropdownByValue(ContactTitleElement, MpsUtil.ContactTitle());
-                SelectFromDropdownByValue(ContactTitleElement, "2");
-        }
-
         private IWebElement ContractTypeSelectorDropdown()
         {
             return GetElementByCssSelector(contractSelector, 10);
@@ -645,27 +410,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 SpecFlow.SetContext("CreateUsageType", usage);
             }
         }
-        
-
-        public void EnterContactFirstName()
-        {
-            FirstNameElement.SendKeys(MpsUtil.FirstName());
-        }
-
-        public void EnterContactSurName()
-        {
-            LastNameElement.SendKeys(MpsUtil.SurName());
-        }
-
-        public void EnterContactTelephone()
-        {
-            TelephoneElement.SendKeys(MpsUtil.CompanyTelephone());
-        }
-
-        public void EnterContactEmailAdress()
-        {
-            EmailElement.SendKeys(MpsUtil.GenerateUniqueEmail());
-        }
 
         public void MoveToProposalSummaryScreen()
         {
@@ -693,18 +437,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void VerifyTheNumberOfPrintersOnSummaryPage(int printerNo)
         {
             TestCheck.AssertIsEqual(printerNo, SelectedPrintersOnSummaryPageElement.Count, "Verify number of printers on summary page");
-        }
-
-
-        public void SelectARandomExistingContact()
-        {
-            var noOfContacts = ExistingContactRadioButtonElement.Count;
-
-            var ranClick = new Random().Next(0, noOfContacts - 1);
-
-
-            ExistingContactRadioButtonElement[ranClick].Click();
-
         }
 
         public void SelectAPrinterFromTheList(string printer)

@@ -22,13 +22,12 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [When(@"I choose an existing contact from the list of available contacts")]
         public void WhenIChooseAnExistingContactFromTheListOfAvailableContacts()
         {
-            CurrentPage.As<CreateNewProposalPage>().IsCustomerInfoTextDisplayed();
-            CurrentPage.As<CreateNewProposalPage>().ClickSelectExistingCustomerRadioButton();
-            CurrentPage.As<CreateNewProposalPage>().ClickNextButton_old();
+            CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().IsCustomerInfoTextDisplayed();
+            CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().ClickSelectExistingCustomerButtonAndProceed();
 
             //Choose an existing contact
-            CurrentPage.As<CreateNewProposalPage>().SelectARandomExistingContact();
-            NextPage = CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
+            CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().SelectARandomExistingContact();
+            NextPage = CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().ClickNextButton();
         }
 
       
