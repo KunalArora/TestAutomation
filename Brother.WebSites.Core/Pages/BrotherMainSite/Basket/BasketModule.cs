@@ -19,14 +19,12 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.Basket
 
         private static IWebElement FindElement(ISearchContext driver, string element, string message)
         {
-            try
+            if (SeleniumHelper.WaitForElementToExistByCssSelector(element, 5, 5))
             {
+                Helper.MsgOutput(string.Format("Basket Module: Found {0} element correctly", element));
                 return driver.FindElement(By.CssSelector(element));
             }
-            catch (WebDriverException timedOutException)
-            {
-                Helper.MsgOutput(string.Format("Unable to find {0} [{1}]", message, element));
-            }
+            TestCheck.AssertFailTest(string.Format("Unable to locate Basket Item {0}", element));
             return null;
 
         }

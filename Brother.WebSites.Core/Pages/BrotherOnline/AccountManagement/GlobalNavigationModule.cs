@@ -34,17 +34,10 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
 
         private static IWebElement FindElement(ISearchContext driver, string element)
         {
-            try
+            if (WaitForElementToExistByCssSelector(element, 5, 5))
             {
-                if (WaitForElementToExistByCssSelector(element, 5, 5))
-                {
-                    MsgOutput(string.Format("Global Navigation Module: Found {0} element correctly", element));
-                    return driver.FindElement(By.CssSelector(element));
-                }
-            }
-            catch (WebDriverException timedOut)
-            {
-                MsgOutput(string.Format("Unable to locate Global Menu Navigation Item {0}", element));
+                MsgOutput(string.Format("Global Navigation Module: Found {0} element correctly", element));
+                return driver.FindElement(By.CssSelector(element));
             }
             TestCheck.AssertFailTest(string.Format("Unable to locate Global Menu Navigation Item {0}", element));
             return null;
@@ -102,10 +95,12 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
 
             foreach (var link in links)
             {
-                if (link.TagName.Contains("li") || (link.TagName.Contains("a")))
+                //if (link.TagName.Contains("li") || (link.TagName.Contains("a")))
+                if (link.TagName.Contains("a"))
                 {
                     if (link.Text.ToLower().Contains(searchString.ToLower()))
                     {
+                        
                         AssertElementPresent(link, "Navigation Link");
                         return link;
                     }
@@ -174,6 +169,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         {
             // searches for the correct language string
             var buttonName = Navigation.ConvertButtonNameForLocale(productString, buttonNameString);
+            TakeSnapshot();
             var button = MyAccountButtonSearch(driver, buttonName);
             if (button == null)
             {
