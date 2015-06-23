@@ -20,23 +20,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_ContractType")]
-        private IWebElement SummaryContractTypeElement;
-        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_ContractTerm")]
-        private IWebElement SummaryContractTermElement;
-        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_UsageType")]
-        private IWebElement SummaryUsageTermElement;
-        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_UsageBillingFrequency")]
-        private IWebElement SummaryUsageBillingFrequencyElement;
-        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_LeaseRentalFrequency")]
-        private IWebElement SummaryLeaseRentalFrequencyElement;
+        private IWebElement ContractTypeElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_HardwareBillingBasis")]
-        private IList<IWebElement> SummaryBillingBasisElement;
+        private IList<IWebElement> RepeaterModels_HardwareBillingBasis;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_HardwareSku_0")]
         private IWebElement SummaryItemizedPrinterElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_HardwareSku")]
         private IList<IWebElement> SummaryItemizedPrintersElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_MonoVolume_0")]
-        private IWebElement SummaryMonoClickVolumeElement;
+        private IWebElement RepeaterModels_MonoVolumeElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_ColourVolume_0")]
         private IWebElement SummaryColourClickVolumeElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_MonoVolume")]
@@ -47,6 +39,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private IWebElement SaveProposalElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_HardwareBillingBasis_0")]
         private IWebElement ModelBillingBasisElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_HardwareMarginPercentage_0")]
+        private IWebElement ModelHardwareMarginElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_DeliveryMarginPercentage_0")]
+        private IWebElement ModelDeliveryMarginElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_RepeaterAccessories_0_AccessoryMarginPercentage_0")]
+        private IWebElement ModelAccessoryMarginElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_RepeaterInstallationPacks_0_InstallationPackMarginPercentage_0")]
+        private IWebElement ModelInstallationMarginElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_RepeaterServicePacks_0_ServicePackMarginPercentage_0")]
+        private IWebElement ModelServicePackMarginElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_RepeaterAccessories_0_AccessoryBillingBasis_0")]
         private IWebElement AccessoryBillingBasisElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_RepeaterInstallationPacks_0_InstallationPackBillingBasis_0")]
@@ -89,12 +91,120 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement DownloadProposalPdfElement;
         [FindsBy(How = How.Id, Using = "content_1_ButtonDownloadProposalPdfWithCalcs")]
         private IWebElement DownloadProposalPdfWithCalcElement;
-
-
-
-
-
-
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_ProposalName")]
+        private IWebElement ProposalNameElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_LeadCodeReference")]
+        private IWebElement LeadCodeReferenceElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_CustomerName")]
+        private IWebElement CustomerNameElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_UsageType")]
+        private IWebElement UsageTypeElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_UsageBillingFrequency")]
+        private IWebElement UsageBillingFrequencyElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_ContractTerm")]
+        private IWebElement ContractTermElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_LeaseRentalFrequency")]
+        private IWebElement LeaseRentalFrequencyElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_DealershipName")]
+        private IWebElement DealershipNameElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_DealerName")]
+        private IWebElement DealerNameElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_DealerTelephone")]
+        private IWebElement DealerTelephoneElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_DealerEmail")]
+        private IWebElement DealerEmailElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_CustomerDetailsName")]
+        private IWebElement CustomerDetailsName;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_CustomerAddress")]
+        private IWebElement CustomerAddressName;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_CustomerCity")]
+        private IWebElement CustomerCityElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_CustomerCounty")]
+        private IWebElement CustomerCountyNameElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_CustomerPostCode")]
+        private IWebElement CustomerPostCodeElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_CustomerCountry")]
+        private IWebElement CustomerCountryElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_CustomerContact")]
+        private IWebElement CustomerContactElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_CustomerTelephone")]
+        private IWebElement CustomerTelephoneElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_CustomerEmail")]
+        private IWebElement CustomerEmailElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_CustomerTradingStyle")]
+        private IWebElement CustomerTradingStyleElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_CustomerPaymentType")]
+        private IWebElement CustomerPaymentTypeElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_CustomerCompanyRegistration")]
+        private IWebElement CustomerCompanyRegistrationElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_CustomerBankName")]
+        private IWebElement CustomerBankNameElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_CustomerBankAccount")]
+        private IWebElement CustomerBankAccountElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_CustomerIban")]
+        private IWebElement CustomerIbanElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_CustomerBic")]
+        private IWebElement CustomerBICElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_CustomerSortCode")]
+        private IWebElement CustomerSortCodeElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_CustomerAuthorisedSignatory")]
+        private IWebElement CustomerAuthorisedSignatoryElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_CustomerVatNumber")]
+        private IWebElement CustomerVatNumberElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_DeviceTotalPriceNet_0")]
+        private IWebElement RepeaterModels_DeviceTotalPriceNetElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_DeviceTotalPriceGross_0")]
+        private IWebElement RepeaterModels_DeviceTotalPriceGrossElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_DeviceLeasingTotalNet_0")]
+        private IWebElement RepeaterModels_DeviceLeasingTotalNetElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_DeviceLeasingTotalGross_0")]
+        private IWebElement RepeaterModels_DeviceLeasingTotalGrossElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_ConsumablesTotalPriceNet_0")]
+        private IWebElement RepeaterModels_ConsumablesTotalPriceNetElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_ConsumablesTotalPriceGross_0")]
+        private IWebElement RepeaterModels_ConsumablesTotalPriceGrossElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_DeviceTotalsTotalCostNet")]
+        private IWebElement DeviceTotalsTotalCostNetElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_DeviceTotalsTotalMarginNet")]
+        private IWebElement DeviceTotalsTotalMarginNetElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_ConsumableTotalsTotalMarginNet")]
+        private IWebElement ConsumableTotalsTotalMarginNetElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_ConsumableTotalsTotalPriceNet")]
+        private IWebElement ConsumableTotalsTotalPriceNetElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_ConsumableTotalsTotalMarginGross")]
+        private IWebElement ConsumableTotalsTotalMarginGrossElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_ConsumableTotalsTotalPriceGross")]
+        private IWebElement ConsumableTotalsTotalPriceGrossElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_GrandTotalMarginNet")]
+        private IWebElement GrandTotalMarginNetElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_GrandTotalPriceNet")]
+        private IWebElement GrandTotalPriceNetElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_BankName")]
+        private IWebElement BankNameElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_TermLength")]
+        private IWebElement TermLengthElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_PaymentFrequency")]
+        private IWebElement PaymentFrequencyElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_PaymentQuantity")]
+        private IWebElement PaymentQuantityElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_PaymentAmountNet")]
+        private IWebElement PaymentAmountNetElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_PaymentAmountGross")]
+        private IWebElement PaymentAmountGrossElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepaymentTotalNet")]
+        private IWebElement RepaymentTotalNetElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepaymentTotalGross")]
+        private IWebElement RepaymentTotalGrossElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_HardwareAccessoryPrice")]
+        private IWebElement HardwareAccessoryPriceElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_DeliveryInstallationPrice")]
+        private IWebElement DeliveryInstallationPriceElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_FinanceCharge")]
+        private IWebElement FinanceChargeElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_FinanceTotalNet")]
+        private IWebElement FinanceTotalNetElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_FinanceTotalGross")]
+        private IWebElement FinanceTotalGrossElement;
 
         public void DownloadDealersProposalDocument()
         {
@@ -286,7 +396,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private void VerifyCorrectMonoVolumeIsDisplayedOnSummaryPage(string contractType)
         {
             TestCheck.AssertIsEqual(true, 
-                SummaryMonoClickVolumeElement.Text.Equals(contractType), 
+                RepeaterModels_MonoVolumeElement.Text.Equals(contractType), 
                 "Printer Displayed on Summary page does not match");
         }
 
@@ -307,35 +417,35 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private void VerifyCorrectContractTypeIsDisplayedOnSummaryPage(string contractType)
         {
             TestCheck.AssertIsEqual(true, 
-                SummaryContractTypeElement.Text.Equals(contractType), 
+                ContractTypeElement.Text.Equals(contractType), 
                 "Contract Type does not match");
         }
 
         private void VerifyCorrectContractTermIsDisplayedOnSummaryPage(string contractTerm)
         {
             TestCheck.AssertIsEqual(true, 
-                SummaryContractTermElement.Text.Equals(contractTerm), 
+                ContractTermElement.Text.Equals(contractTerm), 
                 "Contract Term does not match");
         }
 
         private void VerifyCorrectUsageTypeIsDisplayedOnSummaryPage(string contractTerm)
         {
             TestCheck.AssertIsEqual(true, 
-                SummaryUsageTermElement.Text.Equals(contractTerm), 
+                UsageTypeElement.Text.Equals(contractTerm), 
                 "Usage Type does not match");
         }
 
         private void VerifyCorrectLeasingFrequencyIsDisplayedOnSummaryPage(string contractTerm)
         {
             TestCheck.AssertIsEqual(true, 
-                SummaryLeaseRentalFrequencyElement.Text.Equals(contractTerm), 
+                LeaseRentalFrequencyElement.Text.Equals(contractTerm), 
                 "Lease Frequency does not match");
         }
 
         private void VerifyCorrectBillingTermIsDisplayedOnSummaryPage(string contractTerm)
         {
             TestCheck.AssertIsEqual(true, 
-                SummaryUsageBillingFrequencyElement.Text.Equals(contractTerm), 
+                UsageBillingFrequencyElement.Text.Equals(contractTerm), 
                 "Usage Billing Frequency does not match");
         }
 
@@ -356,6 +466,126 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 elementname = string.Format(element, elementname, model);
                 AssertElementPresent(GetElementByCssSelector(elementname, 5), "model is not displayed");
             }
+        }
+
+        private void VerifyEnteredHardwareMarginIsDisplayed()
+        {
+            var before = Convert.ToDecimal(SpecFlow.GetContext("EnteredProductMargin"));
+            var after = Convert.ToDecimal(ModelHardwareMarginElement.Text.Trim(" %".ToCharArray()));
+            TestCheck.AssertIsEqual(before, after, "Product Margin invalid");
+        }
+
+        private void VerifyEnteredDeliveryMarginIsDisplayed()
+        {
+            var before = Convert.ToDecimal(SpecFlow.GetContext("EnteredDeliveryMargin"));
+            var after = Convert.ToDecimal(ModelDeliveryMarginElement.Text.Trim(" %".ToCharArray()));
+            TestCheck.AssertIsEqual(before, after, "Delivery Margin invalid");
+        }
+
+        private void VerifyEnteredInstallationPackMarginIsDisplayed()
+        {
+            var before = Convert.ToDecimal(SpecFlow.GetContext("EnteredInstallationPackMargin"));
+            var after = Convert.ToDecimal(ModelInstallationMarginElement.Text.Trim(" %".ToCharArray()));
+            TestCheck.AssertIsEqual(before, after, "InstallationPack Margin invalid");
+        }
+
+        private void VerifyEnteredServicePackMarginIsDisplayed()
+        {
+            var before = Convert.ToDecimal(SpecFlow.GetContext("EnteredServicePackMargin"));
+            var after = Convert.ToDecimal(ModelServicePackMarginElement.Text.Trim(" %".ToCharArray()));
+            TestCheck.AssertIsEqual(before, after, "ServicePack Margin invalid");
+        }
+
+        private void VerifyEnteredOptionMargin0IsDisplayed()
+        {
+            var before = Convert.ToDecimal(SpecFlow.GetContext("EnteredOptionMargin0"));
+            var after = Convert.ToDecimal(ModelAccessoryMarginElement.Text.Trim(" %".ToCharArray()));
+            foreach (KeyValuePair<string, object> item in SpecFlow.GetEnumerator())
+            {
+                if (item.Key.Equals("EnteredOptionMargin0"))
+                    TestCheck.AssertIsEqual(before, after, "OptionMargin invalid");
+            }
+        }
+
+        public void VerifyEnteredMarginsAreDisplayed()
+        {
+            VerifyEnteredHardwareMarginIsDisplayed();
+            VerifyEnteredDeliveryMarginIsDisplayed();
+            VerifyEnteredInstallationPackMarginIsDisplayed();
+            VerifyEnteredServicePackMarginIsDisplayed();
+            VerifyEnteredOptionMargin0IsDisplayed();
+        }
+
+        public void StoreProposalSummaryData()
+        {
+            if (IsElementPresent(CustomerCompanyRegistrationElement))
+                SpecFlow.SetContext("DealerProposalSummaryCustomerCompanyRegistrationElement", CustomerCompanyRegistrationElement.Text);
+            if (IsElementPresent(CustomerBankNameElement))
+                SpecFlow.SetContext("DealerProposalSummaryCustomerBankNameElement", CustomerBankNameElement.Text);
+            if (IsElementPresent(CustomerBankAccountElement))
+                SpecFlow.SetContext("DealerProposalSummaryCustomerBankAccountElement", CustomerBankAccountElement.Text);
+            if (IsElementPresent(CustomerIbanElement))
+                SpecFlow.SetContext("DealerProposalSummaryCustomerIbanElement", CustomerIbanElement.Text);
+            if (IsElementPresent(CustomerBICElement))
+                SpecFlow.SetContext("DealerProposalSummaryCustomerBICElement", CustomerBICElement.Text);
+            if (IsElementPresent(CustomerSortCodeElement))
+                SpecFlow.SetContext("DealerProposalSummaryCustomerSortCodeElement", CustomerSortCodeElement.Text);
+            if (IsElementPresent(CustomerAuthorisedSignatoryElement))
+                SpecFlow.SetContext("DealerProposalSummaryCustomerAuthorisedSignatoryElement", CustomerAuthorisedSignatoryElement.Text);
+            if (IsElementPresent(CustomerVatNumberElement))
+                SpecFlow.SetContext("DealerProposalSummaryCustomerVatNumberElement", CustomerVatNumberElement.Text);
+            if (IsElementPresent(RepeaterModels_DeviceTotalPriceNetElement))
+                SpecFlow.SetContext("DealerProposalSummaryRepeaterModels_DeviceTotalPriceNetElement", RepeaterModels_DeviceTotalPriceNetElement.Text);
+            if (IsElementPresent(RepeaterModels_DeviceTotalPriceGrossElement))
+                SpecFlow.SetContext("DealerProposalSummaryRepeaterModels_DeviceTotalPriceGrossElement", RepeaterModels_DeviceTotalPriceGrossElement.Text);
+//            if (IsElementPresent(RepeaterModels_DeviceLeasingTotalNetElement))
+//                SpecFlow.SetContext("DealerProposalSummaryDeviceRepeaterModels_DeviceLeasingTotalNetElement", RepeaterModels_DeviceLeasingTotalNetElement.Text);
+//            if (IsElementPresent(RepeaterModels_DeviceLeasingTotalGrossElement))
+//                SpecFlow.SetContext("DealerProposalSummaryRepeaterModels_DeviceLeasingTotalGrossElement", RepeaterModels_DeviceLeasingTotalGrossElement.Text);
+            if (IsElementPresent(RepeaterModels_ConsumablesTotalPriceNetElement))
+                SpecFlow.SetContext("DealerProposalSummaryRepeaterModels_ConsumablesTotalPriceNetElement", RepeaterModels_ConsumablesTotalPriceNetElement.Text);
+            if (IsElementPresent(RepeaterModels_ConsumablesTotalPriceGrossElement))
+                SpecFlow.SetContext("DealerProposalSummaryRepeaterModels_ConsumablesTotalPriceGrossElement", RepeaterModels_ConsumablesTotalPriceGrossElement.Text);
+            if (IsElementPresent(DeviceTotalsTotalCostNetElement))
+                SpecFlow.SetContext("DealerProposalSummaryDeviceTotalsTotalCostNetElement", DeviceTotalsTotalCostNetElement.Text);
+            if (IsElementPresent(DeviceTotalsTotalMarginNetElement))
+                SpecFlow.SetContext("DealerProposalSummaryDeviceTotalsTotalMarginNetElement", DeviceTotalsTotalMarginNetElement.Text);
+            if (IsElementPresent(ConsumableTotalsTotalMarginNetElement))
+                SpecFlow.SetContext("DealerProposalSummaryConsumableTotalsTotalMarginNetElement", ConsumableTotalsTotalMarginNetElement.Text);
+            if (IsElementPresent(ConsumableTotalsTotalPriceNetElement))
+                SpecFlow.SetContext("DealerProposalSummaryConsumableTotalsTotalPriceNetElement", ConsumableTotalsTotalPriceNetElement.Text);
+            if (IsElementPresent(ConsumableTotalsTotalMarginGrossElement))
+                SpecFlow.SetContext("DealerProposalSummaryConsumableTotalsTotalMarginGrossElement", ConsumableTotalsTotalMarginGrossElement.Text);
+            if (IsElementPresent(ConsumableTotalsTotalPriceGrossElement))
+                SpecFlow.SetContext("DealerProposalSummaryConsumableTotalsTotalPriceGrossElement", ConsumableTotalsTotalPriceGrossElement.Text);
+            if (IsElementPresent(GrandTotalMarginNetElement))
+                SpecFlow.SetContext("DealerProposalSummaryGrandTotalMarginNetElement", GrandTotalMarginNetElement.Text);
+            if (IsElementPresent(GrandTotalPriceNetElement))
+                SpecFlow.SetContext("DealerProposalSummaryGrandTotalPriceNetElement", GrandTotalPriceNetElement.Text);
+ //           if (IsElementPresent(BankNameElement))
+ //               SpecFlow.SetContext("DealerProposalSummaryBankNameElement", BankNameElement.Text);
+ //           if (IsElementPresent(TermLengthElement))
+ //               SpecFlow.SetContext("DealerProposalSummaryTermLengthElement", TermLengthElement.Text);
+ //           if (IsElementPresent(PaymentFrequencyElement))
+ //               SpecFlow.SetContext("DealerProposalSummaryPaymentFrequencyElement", PaymentFrequencyElement.Text);
+ //           if (IsElementPresent(PaymentQuantityElement))
+ //               SpecFlow.SetContext("DealerProposalSummaryPaymentQuantityElement", PaymentQuantityElement.Text);
+ //           if (IsElementPresent(PaymentAmountNetElement))
+ //               SpecFlow.SetContext("DealerProposalSummaryPaymentAmountNetElement", PaymentAmountNetElement.Text);
+ //           if (IsElementPresent(PaymentAmountGrossElement))
+ //               SpecFlow.SetContext("DealerProposalSummaryPaymentAmountGrossElement", PaymentAmountGrossElement.Text);
+ //           if (IsElementPresent(RepaymentTotalGrossElement))
+ //               SpecFlow.SetContext("DealerProposalSummaryRepaymentTotalGrossElement", RepaymentTotalGrossElement.Text);
+ //           if (IsElementPresent(HardwareAccessoryPriceElement))
+ //               SpecFlow.SetContext("DealerProposalSummaryHardwareAccessoryPriceElement", HardwareAccessoryPriceElement.Text);
+ //           if (IsElementPresent(DeliveryInstallationPriceElement))
+ //               SpecFlow.SetContext("DealerProposalSummaryDeliveryInstallationPriceElement", DeliveryInstallationPriceElement.Text);
+ //           if (IsElementPresent(FinanceChargeElement))
+ //               SpecFlow.SetContext("DealerProposalSummaryFinanceChargeElement", FinanceChargeElement.Text);
+ //           if (IsElementPresent(FinanceTotalNetElement))
+ //               SpecFlow.SetContext("DealerProposalSummaryFinanceTotalNetElement", FinanceTotalNetElement.Text);
+ //           if (IsElementPresent(FinanceTotalGrossElement))
+ //               SpecFlow.SetContext("DealerProposalSummaryFinanceGrossElement", FinanceTotalGrossElement.Text);
         }
     }
 }

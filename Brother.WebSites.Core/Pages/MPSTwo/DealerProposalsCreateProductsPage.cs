@@ -69,6 +69,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private IWebElement DeliveryMarginElement;
         [FindsBy(How = How.Id, Using = "DeliverySellPrice")]
         private IWebElement DeliverySellPriceElement;
+        [FindsBy(How = How.Id, Using = "ServicePackMargin")]
+        private IWebElement ServicePackMarginElement;
         [FindsBy(How = How.Id, Using = "ClickPriceMonoCoverage")]
         private IWebElement ClickPriceCoverageElement;
         [FindsBy(How = How.Id, Using = "ClickPriceMonoVolume")]
@@ -315,7 +317,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsProductScreenTextDisplayed()
         {
-            WebDriver.Wait(DurationType.Second, 5);
+            WebDriver.Wait(DurationType.Second, 1);
             if (ProductsScreenAlertElement == null) throw new
                 NullReferenceException("Unable to locate text on Product Screen");
 
@@ -324,7 +326,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsDeviceScreenDisplayed()
         {
-            WebDriver.Wait(DurationType.Second, 5);
+            WebDriver.Wait(DurationType.Second, 1);
             TestCheck.AssertIsEqual(true, 
                 DeviceScreenValidator.Displayed, 
                 "Device screen is not displayed");
@@ -332,7 +334,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void TypeIntoRHSFreeTextFilter(string model)
         {
-            WebDriver.Wait(Helper.DurationType.Second, 3);
+            WebDriver.Wait(Helper.DurationType.Second, 1);
             ClearAndType(InputSearchProductElement, model);
         }
 
@@ -373,13 +375,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyThatAllProductsDisplayedAsAFlatListWithNoImages()
         {
-            WebDriver.Wait(Helper.DurationType.Second, 3);
+            WebDriver.Wait(Helper.DurationType.Second, 1);
             AssertElementPresent(DisplayedAllPrintersAsFlatListElement()[0], "Displayed with images");
         }
 
         public void VerifyThatAllProductsDisplayedAsAWithImages()
         {
-            WebDriver.Wait(Helper.DurationType.Second, 3);
+            WebDriver.Wait(Helper.DurationType.Second, 1);
             AssertElementPresent(DisplayedAllPrintersWithImagesElement()[0], "Displayed as flat list");
         }
 
@@ -399,6 +401,26 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             flatListClickButtonElement.Click();
         }
 
+        private IWebElement OptionQuantity0Element()
+        {
+            return GetElementByCssSelector("OptionQuantity0", 5);
+        }
+
+        private IWebElement OptionCostPrice0Element()
+        {
+            return GetElementByCssSelector("OptionCostPrice0", 5);
+        }
+
+        private IWebElement OptionsSellPrice0Element()
+        {
+            return GetElementByCssSelector("OptionSellPrice0", 5);
+        }
+
+        private IWebElement OptionsMargin0Element()
+        {
+            return GetElementByCssSelector("OptionMargin0", 5);
+        }
+
         public void StoreDefaultProductConfiguration()
         {
             if (hogeIsFullDeviceScreenDisplayed())
@@ -411,7 +433,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     SpecFlow.SetContext("ProductMargin", ProductMarginElement.GetAttribute("value"));
                 if (IsElementPresent(ProductSellPriceElement))
                     SpecFlow.SetContext("ProductSellPrice", ProductSellPriceElement.GetAttribute("value"));
-                if (IsElementPresent(OptionsQuantityElement))
+                if (OptionQuantity0Element() != null)
                     SpecFlow.SetContext("OptionsQuantity", OptionsQuantityElement.GetAttribute("value"));
                 if (IsElementPresent(DeliveryCostPriceElement))
                     SpecFlow.SetContext("DeliveryCostPrice", DeliveryCostPriceElement.GetAttribute("value"));
@@ -474,7 +496,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var printerClickable = GetElementByCssSelector(element);
 
             printerClickable.Click();
-            WebDriver.Wait(Helper.DurationType.Second, 5);
+            WebDriver.Wait(Helper.DurationType.Second, 2);
 
         }
 
@@ -504,8 +526,35 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             string after = GetValueOfProductMarginValueElement();
             TestCheck.AssertIsEqual(before, after, "Hardware Default Margin value is not equal to the value of Local Office Dealer Default");
         }
-   
 
+        public void EnterAllMarginRandomly()
+        {
+            EnterProductMargin(Math.Round((new Random().NextDouble()+1) * new Random().Next(5, 20), 1).ToString());
+            EnterOptionMargin(Math.Round((new Random().NextDouble() + 1) * new Random().Next(5, 20), 1).ToString(), "0");
+            EnterOptionsQuantity0("1");
+            EnterDeliveryMargin(Math.Round((new Random().NextDouble() + 1) * new Random().Next(5, 20), 1).ToString());
+            EnterInstallationPackMargin(Math.Round((new Random().NextDouble() + 1) * new Random().Next(5, 20), 1).ToString());
+            EnterServicePackMargin(Math.Round((new Random().NextDouble() + 1) * new Random().Next(5, 20), 1).ToString());
+        }
+
+        public void EnterProductMargin(string value)
+        {
+            SpecFlow.SetContext("EnteredProductMargin", value);
+            ClearAndType(ProductMarginElement, value);
+            ProductMarginElement.SendKeys(Keys.Tab);
+        }
+
+        public void EnterOptionMargin(string value, string row)
+        {
+            string sel = String.Format("#OptionMargin{0}", row);
+            IWebElement element = GetElementByCssSelector(sel, 5);
+            if (element != null)
+            {
+                SpecFlow.SetContext(String.Format("EnteredOptionMargin{0}", row), value);
+                ClearAndType(element, value);
+                DeliveryMarginElement.SendKeys(Keys.Tab);
+            }
+        }
 
         public void EnterDeliveryMargin(string value)
         {
@@ -514,11 +563,52 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             DeliveryMarginElement.SendKeys(Keys.Tab);
         }
 
+        public void EnterInstallationPackMargin(string value)
+        {
+            SpecFlow.SetContext("EnteredInstallationPackMargin", value);
+            ClearAndType(InstallationPackMarginElement, value);
+            InstallationPackMarginElement.SendKeys(Keys.Tab);
+        }
+
+        public void EnterServicePackMargin(string value)
+        {
+            SpecFlow.SetContext("EnteredServicePackMargin", value);
+            ClearAndType(ServicePackMarginElement, value);
+            ServicePackMarginElement.SendKeys(Keys.Tab);
+        }
+
+        public void EnterProductQuantity(string value)
+        {
+            ClearAndType(ProductQuantityElement, value);
+        }
+
+        public void EnterProductCostPrice(string value)
+        {
+            ClearAndType(ProductCostPriceElement, value);
+        }
+
+        public void EnterProductSellPrice(string value)
+        {
+            ClearAndType(ProductSellPriceElement, value);
+            ProductSellPriceElement.SendKeys(Keys.Tab);
+        }
+
+        public void EnterOptionsQuantity0(string value)
+        {
+            ClearAndType(OptionsQuantityElement, value);
+        }
+
+        public void EnterDeliverySellPrice(string value)
+        {
+            ClearAndType(DeliverySellPriceElement, value);
+            DeliverySellPriceElement.SendKeys(Keys.Tab);
+        }
+
         public void AddAllDetailsToProposal()
         {
             ScrollTo(AddToProposalElement);
             AddToProposalElement.Click();
-            WebDriver.Wait(Helper.DurationType.Second, 5);
+            WebDriver.Wait(Helper.DurationType.Second, 1);
         }
 
         private IWebElement AddToProposalButtonElement()
@@ -676,33 +766,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             VerifyMarginFieldValues();
         }
 
-        public void EnterProductQuantity(string value)
-        {
-            ClearAndType(ProductQuantityElement, value);
-        }
-
-        public void EnterProductCostPrice(string value)
-        {
-            ClearAndType(ProductCostPriceElement, value);
-        }
-
-        public void EnterProductSellPrice(string value)
-        {
-            ClearAndType(ProductSellPriceElement, value);
-            ProductSellPriceElement.SendKeys(Keys.Tab);
-        }
-
-        public void EnterProductMargin(string value)
-        {
-            ClearAndType(ProductMarginElement, value);
-            ProductMarginElement.SendKeys(Keys.Tab);
-        }
-
-        public void EnterOptionsQuantity0(string value)
-        {
-            ClearAndType(OptionsQuantityElement, value);
-        }
-
         public void VerifyMarginFieldValues()
         {
             WebDriver.Wait(Helper.DurationType.Second, 2);
@@ -749,15 +812,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             TestCheck.AssertIsNotEqual(SpecFlow.GetContext("InstallationPackSellPrice"), 
                 InstallationPackSellPriceElement.GetAttribute("value"), "Installation Unit Price not changed");
         }
-
-        public void EnterDeliverySellPrice(string value)
-        {
-            ClearAndType(DeliverySellPriceElement, value);
-            DeliverySellPriceElement.SendKeys(Keys.Tab);
-        }
-
-
-
+        
         public void IsProductUnitPriceChanged()
         {
             string before = SpecFlow.GetContext("ProductSellPrice");

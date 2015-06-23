@@ -17,10 +17,13 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         }
         [FindsBy(How = How.XPath, Using = ".//*[@id='content_2_navigationcontainer_0_MenuItemsRepeater_LeftMenuLink_6']")]
         public IWebElement BusinessDetailsLink;
-        
-        [FindsBy(How = How.CssSelector, Using = "#content_2_innercontent_1_SubmitButton")]
+
+        [FindsBy(How = How.CssSelector, Using = "#content_2_innercontent_1_btnUpdateBasicDetails")]
         public IWebElement UpdateDetailsButton;
-        
+
+        [FindsBy(How = How.CssSelector, Using = "#content_2_innercontent_1_SubmitButton")]
+        public IWebElement UpdateButton;
+
         [FindsBy(How = How.Id, Using = "BusinessAccountYesRadioButton")]
         public IWebElement UseMyAccountForBusinessCheckbox;
         
@@ -36,21 +39,28 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         [FindsBy(How = How.Id, Using = "txtVatNumber")]
         public IWebElement VatNumberTextBox;
         
-        [FindsBy(How = How.CssSelector, Using = "#content_2_innercontent_1_SubmitButton")]
-        public IWebElement UpdateButton;
-        
         [FindsBy(How = How.CssSelector, Using = ".info-bar")]
         public IWebElement InformationMessageBar;
 
 
         public void IsUpdateButtonAvailable()
         {
-            if (UpdateDetailsButton == null)
+            if (UpdateButton == null)
             {
                 throw new Exception("Unable to locate button on page");
             }
-            AssertElementPresent(UpdateDetailsButton, "Continue Button");
+            AssertElementPresent(UpdateButton, "Update Button");
         }
+
+        public void UpdateButtonClick()
+        {
+            if (UpdateButton == null)
+            {
+                throw new Exception("Unable to locate button on page");
+            }
+            AssertElementPresent(UpdateButton, "Update Button");
+        }
+
         public void UseAccountForBusiness()
         {
             UseMyAccountForBusinessCheckbox.Click();
@@ -82,11 +92,22 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         {
             if (UpdateButton == null)
             {
-                throw new Exception("Unable to locate Update Details Button");
+                throw new Exception("Unable to locate Update Button");
             }
             ScrollTo(UpdateButton);
             UpdateButton.Click();
         }
+
+        public void ClickUpdateDetailsButton()
+        {
+            if (UpdateDetailsButton == null)
+            {
+                throw new Exception("Unable to locate Update Details Button");
+            }
+            ScrollTo(UpdateDetailsButton);
+            UpdateDetailsButton.Click();
+        }
+
         public void ValidateInformationMessageBarStatus(bool displayed)
         {
             if (InformationMessageBar == null)
@@ -97,9 +118,4 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
           //  TestCheck.AssertIsEqual(displayed, InformationMessageBar.Displayed, "Information Message Bar");
         }
     }
-
-
-
-
-
 }

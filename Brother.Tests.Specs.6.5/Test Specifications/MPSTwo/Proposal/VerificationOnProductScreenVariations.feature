@@ -1,4 +1,4 @@
-﻿@UAT @TEST
+﻿@MPS @UAT @TEST
 Feature: Proposal - Add a devices to a proposal during creation
 	In order to create a contract with a device 
 	As an MPS Dealer
@@ -27,9 +27,6 @@ Scenario Outline: Should be able to display full detail screen
 Scenario Outline: Default value of full detail screen are verified
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
-#	When I fill Proposal Description for "<ContractType>" Contract type
-#	And I enter Customer Information Detail for new customer
-#	And I Enter "<Contract>" contract terms and "<Billing>" billing on Term and Type details
     When I begin the proposal creation process for Purchase + Click Service
 	And I tick Price Hardware radio button
 	And I display "<Printer>" device screen
@@ -40,15 +37,12 @@ Scenario Outline: Default value of full detail screen are verified
 	Scenarios: 
 
 	| Role             | Country        | ContractType       | Contract |  Billing                  | Printer      |
-	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | 3 years  |  6 Monthly Minimum Volume | MFC-L8850CDW |
+	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | 3 years  |  Quarterly | MFC-L8850CDW |
 
 
 Scenario Outline: Total Price calulation is verified
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
-#	When I fill Proposal Description for "<ContractType>" Contract type
-#	And I enter Customer Information Detail for new customer
-#	And I Enter "<Contract>" contract terms and "<Billing>" billing on Term and Type details
     When I begin the proposal creation process for Purchase + Click Service
 	And I tick Price Hardware radio button
 	And I display "<Printer>" device screen
@@ -59,7 +53,7 @@ Scenario Outline: Total Price calulation is verified
 	Scenarios: 
 
 	| Role             | Country        | ContractType       | Contract |  Billing                  | Printer      |
-	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | 3 years  |  6 Monthly Minimum Volume | MFC-L8850CDW |
+	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | 3 years  |  Quarterly | MFC-L8850CDW |
 
 
 Scenario Outline: The sum of Total Price is equal to the Grand Total Price
@@ -76,15 +70,12 @@ Scenario Outline: The sum of Total Price is equal to the Grand Total Price
 	Scenarios: 
 
 	| Role             | Country        | ContractType       | Contract |  Billing                  | Printer      |
-	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | 3 years  |  6 Monthly Minimum Volume | MFC-L8850CDW |
+	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | 3 years  |  Quarterly | MFC-L8850CDW |
 
 
 Scenario Outline: All Zero QTY fields are not displayed on summary page
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
-#	When I fill Proposal Description for "<ContractType>" Contract type
-#	And I enter Customer Information Detail for new customer
-#	And I Enter "<Contract>" contract terms and "<Billing>" billing on Term and Type details
     When I begin the proposal creation process for Purchase + Click Service
 	And I tick Price Hardware radio button
 	And I display "<Printer>" device screen
@@ -93,19 +84,34 @@ Scenario Outline: All Zero QTY fields are not displayed on summary page
 	And I enter click price volume of "1000" and "1000"
 	Then the selected devices <Printer> above are displayed on Summary Screen
 #	Then all the components of device with zero QTY are not displayed on summary page
+    And I sign out of Cloud MPS
 
 	Scenarios: 
 
 	| Role             | Country        | ContractType       | Contract |  Billing                  | Printer      |
-	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | 3 years  |  6 Monthly Minimum Volume | MFC-L8850CDW |
+	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | 3 years  |  Quarterly | MFC-L8850CDW |
+
+Scenario Outline: All input Margins on prodocut page is displayed on summary page
+	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
+	And I am on MPS New Proposal Page
+    When I begin the proposal creation process for Purchase + Click Service
+	And I tick Price Hardware radio button
+	And I display "<Printer>" device screen
+	And I change all the margin
+	And I Add the device to Proposal
+	And I enter click price volume of "1000" and "1000"
+	Then the entered margins on Product Screen are displayed on Summary Screen
+    And I sign out of Cloud MPS
+
+	Scenarios: 
+
+	| Role             | Country        | Printer      |
+	| Cloud MPS Dealer | United Kingdom | MFC-L8850CDW |
 
 
 Scenario Outline: Should be able to display Reduced detail screen
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
-#	When I fill Proposal Description for "<ContractType>" Contract type
-#	And I enter Customer Information Detail for new customer
-#	And I Enter "<Contract>" contract terms and "<Billing>" billing on Term and Type details
     When I begin the proposal creation process for Purchase + Click Service
 	And I untick Price Hardware radio button
 	And I display "<Printer>" device screen
@@ -117,7 +123,7 @@ Scenario Outline: Should be able to display Reduced detail screen
 	Scenarios: 
 
 	| Role             | Country        | ContractType       | Contract |  Billing                  | Printer      |
-	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | 3 years  |  6 Monthly Minimum Volume | MFC-L8850CDW |
+	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | 3 years  |  Quarterly | MFC-L8850CDW |
 
 
 Scenario Outline: Lease and Click product screen validation
@@ -136,31 +142,78 @@ Scenario Outline: Lease and Click product screen validation
 	Scenarios: 
 
 	| Role             | Country        | ContractType | Contract | Leasing                  | Billing                  | Printer      |
-	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service      | 3 years  | 4 Monthly Minimum Volume | 6 Monthly Minimum Volume | DCP-8250DN   |
+	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service      | 3 years  | Quarterly | Quarterly | DCP-8250DN   |
 
 #
 # Enable Printers Scenario 
 #
-# 8) under consideration
-@ignore
-Scenario Outline: asdf
-	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
-	And I navigate to the "Product screen" for "<ContractType>" Contract type
-	When hogehoge
-	Then the printers are not displayed in the Local Office are 
+Scenario Outline: Enable Printer of Lease + Click as a Local Office Admin, then can display in Lease + Click Service
+	Given I sign into Cloud MPS as a "<Role1>" from "<Country>"
+	And I navigate to Lease And Click page
+	And I navigate to Printers page on Lease And Click as a Local Office Admin
+	And I enabled "<Printer>" within the Printer screen
+	And I save printers on Available Printers page
+    And I sign out of Cloud MPS
+	When I sign back into Cloud MPS as a "<Role2>" from "<Country>"
+	And I am on MPS New Proposal Page
+	And I begin the proposal creation process for Lease + Click Service
+	And I display "<Printer>" device screen
+	Then the printers "<Printer>" enabled in Local Office Admin are displayed on product screen
+	And I sign out of Cloud MPS
+
+	Scenarios: 
+	| Role1                  | Country        | Role2            | Printer     |
+	| Cloud MPS Local Office | United Kingdom | Cloud MPS Dealer | MFC-J4510DW |
+
+Scenario Outline: Selected printer which is enabled on Lease + Click above can display in Purchase + Click Service
+	Given I sign into Cloud MPS as a "<Role1>" from "<Country>"
+	And I am on MPS New Proposal Page
+	When I begin the proposal creation process for Purchase + Click Service
+	And I tick Price Hardware radio button
+	Then the printers "<Printer>" enabled in Local Office Admin are not displayed on product screen
+	And I sign out of Cloud MPS
 
 	Scenarios: 
 
-	| Role                   | Country        | ContractType | Contract | Leasing                  | Billing                  | Printer      |
-	| Cloud MPS Local Office | United Kingdom | Lease & Click with Service      | 3 years  | 4 Monthly Minimum Volume | 6 Monthly Minimum Volume | DCP-8250DN   |
+	| Role1            | Country        | Printer      |
+	| Cloud MPS Dealer | United Kingdom | MFC-J4510DW  |
 
-# 9-11: under consideration
+Scenario Outline: Disable Printer of Lease + Click as a Local Office Admin, then can not display in Lease + Click Service
+	Given I sign into Cloud MPS as a "<Role1>" from "<Country>"
+	And I navigate to Lease And Click page
+	And I navigate to Printers page on Lease And Click as a Local Office Admin
+	And I disabled "<Printer>" within the Printer screen
+	And I save printers on Available Printers page
+    And I sign out of Cloud MPS
+	When I sign back into Cloud MPS as a "<Role2>" from "<Country>"
+	And I am on MPS New Proposal Page
+	And I begin the proposal creation process for Lease + Click Service
+	Then the printers "<Printer>" disabled in Local Office Admin are not displayed on product screen
+    And I sign out of Cloud MPS
+
+	Scenarios: 
+
+	| Role1                  | Country        | Role2            | Printer      |
+	| Cloud MPS Local Office | United Kingdom | Cloud MPS Dealer | MFC-J4510DW  |
 
 
-Scenario Outline: Enable Printer as a Local Office Admin, then can display in Purchase + Click Service
+Scenario Outline: Selected printer which is disabled on Lease + Click above can display in Purchase + Click Service
+	Given I sign into Cloud MPS as a "<Role1>" from "<Country>"
+	And I am on MPS New Proposal Page
+	When I begin the proposal creation process for Purchase + Click Service
+	And I tick Price Hardware radio button
+	Then the printers "<Printer>" disabled in Local Office Admin are not displayed on product screen
+	And I sign out of Cloud MPS
+
+	Scenarios: 
+
+	| Role1            | Country        | Printer      |
+	| Cloud MPS Dealer | United Kingdom | MFC-J4510DW  |
+
+Scenario Outline: Enable Printer of Purchase + Click as a Local Office Admin, then can display in Purchase + Click Service
 	Given I sign into Cloud MPS as a "<Role1>" from "<Country>"
 	And I navigate to Purchase And Click page
-	And I navigate to Printers page
+	And I navigate to Printers page on Purchase And Click as a Local Office Admin
 	And I enabled "<Printer>" within the Printer screen
 	And I save printers on Available Printers page
     And I sign out of Cloud MPS
@@ -174,11 +227,11 @@ Scenario Outline: Enable Printer as a Local Office Admin, then can display in Pu
 
 	Scenarios: 
 
-	| Role1                  | Country        | Role2            | Printer     |
-	| Cloud MPS Local Office | United Kingdom | Cloud MPS Dealer | DCP-8110DN  |
+	| Role1                  | Country        | Role2            | Printer      |
+	| Cloud MPS Local Office | United Kingdom | Cloud MPS Dealer | MFC-J4510DW  |
 
 
-Scenario Outline: Enable Printer as a Local Office Admin, then can display in Lease + Click Service
+Scenario Outline: Selected printer which is enabled on Purchase + Click above can display in Lease + Click Service
 	Given I sign into Cloud MPS as a "<Role1>" from "<Country>"
 	And I am on MPS New Proposal Page
 	When I begin the proposal creation process for Lease + Click Service
@@ -188,14 +241,14 @@ Scenario Outline: Enable Printer as a Local Office Admin, then can display in Le
 
 	Scenarios: 
 
-	| Role1            | Country        | Printer     |
-	| Cloud MPS Dealer | United Kingdom | DCP-8110DN  |
+	| Role1            | Country        | Printer      |
+	| Cloud MPS Dealer | United Kingdom | MFC-J4510DW  |
 
 
 Scenario Outline: Disable Printer as a Local Office Admin, then can display in Purchase + Click Service
 	Given I sign into Cloud MPS as a "<Role1>" from "<Country>"
 	And I navigate to Purchase And Click page
-	And I navigate to Printers page
+	And I navigate to Printers page on Purchase And Click as a Local Office Admin
 	And I disabled "<Printer>" within the Printer screen
 	And I save printers on Available Printers page
     And I sign out of Cloud MPS
@@ -208,11 +261,11 @@ Scenario Outline: Disable Printer as a Local Office Admin, then can display in P
 
 	Scenarios: 
 
-	| Role1                  | Country        | Role2            | Printer     |
-	| Cloud MPS Local Office | United Kingdom | Cloud MPS Dealer | DCP-8110DN  |
+	| Role1                  | Country        | Role2            | Printer      |
+	| Cloud MPS Local Office | United Kingdom | Cloud MPS Dealer | MFC-J4510DW  |
 
 
-Scenario Outline: Disable Printer as a Local Office Admin, then can display in Lease + Click Service
+Scenario Outline: Selected printer which is disabled on Purchase + Click above can not display in Lease + Click Service
 	Given I sign into Cloud MPS as a "<Role1>" from "<Country>"
 	And I am on MPS New Proposal Page
 	When I begin the proposal creation process for Lease + Click Service
@@ -221,8 +274,8 @@ Scenario Outline: Disable Printer as a Local Office Admin, then can display in L
 
 	Scenarios: 
 
-	| Role1            | Country        | Printer     |
-	| Cloud MPS Dealer | United Kingdom | DCP-8110DN  |
+	| Role1            | Country        | Printer      |
+	| Cloud MPS Dealer | United Kingdom | MFC-J4510DW  |
 
 #
 # 4 Installation Cost

@@ -138,7 +138,7 @@ namespace Brother.Tests.Specs
            {
                 LaunchGuerrillaEmail(string.Empty);
                 CurrentPage.As<GuerillaEmailConfirmationPage>().SelectEmail("registration");
-                CurrentPage.As<GuerillaEmailConfirmationPage>().CheckAllEmailLinks();
+              //  CurrentPage.As<GuerillaEmailConfirmationPage>().CheckAllEmailLinks();
                 NextPage = CurrentPage.As<GuerillaEmailConfirmationPage>().ValidateRegistrationEmail();
             }
         }

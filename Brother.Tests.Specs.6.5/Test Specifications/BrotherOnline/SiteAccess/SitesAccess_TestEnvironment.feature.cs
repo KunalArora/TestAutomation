@@ -68,114 +68,81 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Get 200 OK response back from Brother Main Site Ireland on the Test environment")]
+        [NUnit.Framework.DescriptionAttribute("Get 200 OK response back from the following Brother Main Sites on the Test enviro" +
+            "nment")]
         [NUnit.Framework.CategoryAttribute("SMOKE")]
-        public virtual void Get200OKResponseBackFromBrotherMainSiteIrelandOnTheTestEnvironment()
+        [NUnit.Framework.TestCaseAttribute("Ireland", "http://ie.brotherdv2.eu/", null)]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "http://uk.brotherdv2.eu/", null)]
+        [NUnit.Framework.TestCaseAttribute("Germany", "http://de.brotherdv2.eu/", null)]
+        [NUnit.Framework.TestCaseAttribute("Slovakia", "http://sk.brotherdv2.eu/", null)]
+        [NUnit.Framework.TestCaseAttribute("Poland", "http://pl.brotherdv2.eu/", null)]
+        [NUnit.Framework.TestCaseAttribute("France", "http://fr.brotherdv2.eu/", null)]
+        [NUnit.Framework.TestCaseAttribute("Netherlands", "http://nl.brotherdv2.eu/", null)]
+        [NUnit.Framework.TestCaseAttribute("Russia", "http://ru.brotherdv2.eu/", null)]
+        [NUnit.Framework.TestCaseAttribute("Portugal", "http://pt.brotherdv2.eu/", null)]
+        [NUnit.Framework.TestCaseAttribute("Romania", "http://ro.brotherdv2.eu/", null)]
+        [NUnit.Framework.TestCaseAttribute("Czech", "http://cz.brotherdv2.eu/", null)]
+        [NUnit.Framework.TestCaseAttribute("Hungary", "http://hr.brotherdv2.eu/", null)]
+        [NUnit.Framework.TestCaseAttribute("Belgium", "http://be.brotherdv2.eu/", null)]
+        [NUnit.Framework.TestCaseAttribute("Denmark", "http://dk.brotherdv2.eu/", null)]
+        [NUnit.Framework.TestCaseAttribute("Switzerland", "http://ch.brotherdv2.eu/", null)]
+        [NUnit.Framework.TestCaseAttribute("Slovenia", "http://si.brotherdv2.eu/", null)]
+        [NUnit.Framework.TestCaseAttribute("Spain", "http://es.brotherdv2.eu/", null)]
+        [NUnit.Framework.TestCaseAttribute("Italy", "http://it.brotherdv2.eu/", null)]
+        public virtual void Get200OKResponseBackFromTheFollowingBrotherMainSitesOnTheTestEnvironment(string language, string mainSite, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get 200 OK response back from Brother Main Site Ireland on the Test environment", new string[] {
-                        "SMOKE"});
+            string[] @__tags = new string[] {
+                    "SMOKE"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get 200 OK response back from the following Brother Main Sites on the Test enviro" +
+                    "nment", @__tags);
 #line 9
 this.ScenarioSetup(scenarioInfo);
 #line 10
- testRunner.Given("The following site \"http://ie.brotherdv2.eu/\" to validate I should receive an Ok " +
-                    "response back", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given(string.Format("The following site {0} {1} to validate I should receive an Ok response back", language, mainSite), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Get 200 OK response back from Main Site United Kingdom on the Test environment")]
+        [NUnit.Framework.DescriptionAttribute("Get 200 OK response back from the following Brother Online Sites on the Test envi" +
+            "ronment")]
         [NUnit.Framework.CategoryAttribute("SMOKE")]
-        public virtual void Get200OKResponseBackFromMainSiteUnitedKingdomOnTheTestEnvironment()
+        [NUnit.Framework.TestCaseAttribute("Ireland", "https://online.ie.brotherdv2.eu/", null)]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "https://online.uk.brotherdv2.eu/", null)]
+        [NUnit.Framework.TestCaseAttribute("Spain", "https://online.es.brotherdv2.eu/", null)]
+        [NUnit.Framework.TestCaseAttribute("Poland", "https://online.pl.brotherdv2.eu/", null)]
+        [NUnit.Framework.TestCaseAttribute("Germany", "https://online.de.brotherdv2.eu/", null)]
+        [NUnit.Framework.TestCaseAttribute("Slovakia", "https://online.sk.brotherdv2.eu/", null)]
+        [NUnit.Framework.TestCaseAttribute("France", "https://online.fr.brotherdv2.eu/", null)]
+        [NUnit.Framework.TestCaseAttribute("Netherlands", "https://online.nl.brotherdv2.eu/", null)]
+        [NUnit.Framework.TestCaseAttribute("Russia", "https://online.ru.brotherdv2.eu/", null)]
+        [NUnit.Framework.TestCaseAttribute("Portugal", "https://online.pt.brotherdv2.eu/", null)]
+        [NUnit.Framework.TestCaseAttribute("Romania", "https://online.ro.brotherdv2.eu/", null)]
+        [NUnit.Framework.TestCaseAttribute("Czech", "https://online.cz.brotherdv2.eu/", null)]
+        [NUnit.Framework.TestCaseAttribute("Hungary", "https://online.hr.brotherdv2.eu/", null)]
+        [NUnit.Framework.TestCaseAttribute("Belgium", "https://online.be.brotherdv2.eu/", null)]
+        [NUnit.Framework.TestCaseAttribute("Denmark", "https://online.dk.brotherdv2.eu/", null)]
+        [NUnit.Framework.TestCaseAttribute("Switzerland", "https://online.ch.brotherdv2.eu/", null)]
+        [NUnit.Framework.TestCaseAttribute("Slovenia", "https://online.si.brotherdv2.eu/", null)]
+        [NUnit.Framework.TestCaseAttribute("Italy", "https://online.it.brotherdv2.eu/", null)]
+        public virtual void Get200OKResponseBackFromTheFollowingBrotherOnlineSitesOnTheTestEnvironment(string language, string brotherOnline, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get 200 OK response back from Main Site United Kingdom on the Test environment", new string[] {
-                        "SMOKE"});
-#line 14
+            string[] @__tags = new string[] {
+                    "SMOKE"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get 200 OK response back from the following Brother Online Sites on the Test envi" +
+                    "ronment", @__tags);
+#line 36
 this.ScenarioSetup(scenarioInfo);
-#line 15
- testRunner.Given("The following site \"http://uk.brotherdv2.eu/\" to validate I should receive an Ok " +
-                    "response back", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Get 200 OK response back from Brother Online Ireland on the Test environment")]
-        [NUnit.Framework.CategoryAttribute("SMOKE")]
-        public virtual void Get200OKResponseBackFromBrotherOnlineIrelandOnTheTestEnvironment()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get 200 OK response back from Brother Online Ireland on the Test environment", new string[] {
-                        "SMOKE"});
-#line 19
-this.ScenarioSetup(scenarioInfo);
-#line 20
- testRunner.Given("The following site \"https://online.ie.brotherdv2.eu/\" to validate I should receiv" +
-                    "e an Ok response back", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Get 200 OK response back from Brother Online United Kingdom on the Test environme" +
-            "nt")]
-        [NUnit.Framework.CategoryAttribute("SMOKE")]
-        public virtual void Get200OKResponseBackFromBrotherOnlineUnitedKingdomOnTheTestEnvironment()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get 200 OK response back from Brother Online United Kingdom on the Test environme" +
-                    "nt", new string[] {
-                        "SMOKE"});
-#line 24
-this.ScenarioSetup(scenarioInfo);
-#line 25
- testRunner.Given("The following site \"https://online.uk.brotherdv2.eu/\" to validate I should receiv" +
-                    "e an Ok response back", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Get 200 OK response back from Brother Online Spain on the Test environment")]
-        [NUnit.Framework.CategoryAttribute("SMOKE")]
-        public virtual void Get200OKResponseBackFromBrotherOnlineSpainOnTheTestEnvironment()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get 200 OK response back from Brother Online Spain on the Test environment", new string[] {
-                        "SMOKE"});
-#line 29
-this.ScenarioSetup(scenarioInfo);
-#line 30
- testRunner.Given("The following site \"https://online.es.brotherdv2.eu/\" to validate I should receiv" +
-                    "e an Ok response back", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Get 200 OK response back from Brother Online Poland on the Test environment")]
-        [NUnit.Framework.CategoryAttribute("SMOKE")]
-        public virtual void Get200OKResponseBackFromBrotherOnlinePolandOnTheTestEnvironment()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get 200 OK response back from Brother Online Poland on the Test environment", new string[] {
-                        "SMOKE"});
-#line 34
-this.ScenarioSetup(scenarioInfo);
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Get 200 OK response back from Web Conferencing United Kingdom on the Test environ" +
-            "ment")]
-        [NUnit.Framework.CategoryAttribute("SMOKE")]
-        public virtual void Get200OKResponseBackFromWebConferencingUnitedKingdomOnTheTestEnvironment()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get 200 OK response back from Web Conferencing United Kingdom on the Test environ" +
-                    "ment", new string[] {
-                        "SMOKE"});
-#line 39
-this.ScenarioSetup(scenarioInfo);
-#line 40
- testRunner.Given("The following site \"http://webconferencing.uk.brotherdv2.eu/\" to validate I shoul" +
-                    "d receive an Ok response back", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 37
+ testRunner.Given(string.Format("The following site {0} {1} to validate I should receive an Ok response back", language, brotherOnline), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -189,11 +156,11 @@ this.ScenarioSetup(scenarioInfo);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get 200 OK response back from Creative Centre United Kingdom on the Test environm" +
                     "ent", new string[] {
                         "SMOKE"});
-#line 44
+#line 63
 this.ScenarioSetup(scenarioInfo);
-#line 45
- testRunner.Given("The following site \"http://creativecenter.eu.brotherdv2.eu/\" to validate I should" +
-                    " receive an Ok response back", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 64
+ testRunner.Given("The following site United Kingdom http://creativecenter.eu.brotherdv2.eu/ to vali" +
+                    "date I should receive an Ok response back", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             this.ScenarioCleanup();
         }

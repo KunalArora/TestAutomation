@@ -18,6 +18,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
     {
         // Static Global Navigation class which services the Brother Online orders side navigation bar common
         // to Brother Online orders, and the global navigation such as the Brother Nav bar.
+        //private const string SideNavMenu = @".content-box.left-nav-container.cf .side-nav";
         private const string SideNavMenu = @".side-nav";
         private const string ProductList = @"#product-list";
         private const string BrotherHomePage = "#master-logo > a";
@@ -31,47 +32,58 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
 
 #region Menu Navigation (Private)
 
+        private static IWebElement FindElement(ISearchContext driver, string element)
+        {
+            if (WaitForElementToExistByCssSelector(element, 5, 5))
+            {
+                MsgOutput(string.Format("Global Navigation Module: Found {0} element correctly", element));
+                return driver.FindElement(By.CssSelector(element));
+            }
+            TestCheck.AssertFailTest(string.Format("Unable to locate Global Menu Navigation Item {0}", element));
+            return null;
+        }
+
         private static IWebElement GetSignOutLink(ISearchContext driver)
         {
-            return driver.FindElement(By.CssSelector(SignOutLink));
+            return FindElement(driver, SignOutLink);
         }
 
         private static IWebElement GetBackToBrotherOnlineButton(ISearchContext driver)
         {
-            return driver.FindElement(By.CssSelector(BackToBrotherOnlineButton));
+            return FindElement(driver, BackToBrotherOnlineButton);
         }
 
         private static IWebElement MyAccountSideNavigationMenu(ISearchContext driver)
         {
-            return driver.FindElement(By.CssSelector(SideNavMenu));
+            return FindElement(driver, SideNavMenu);
         }
 
         private static IWebElement ProductListNavigationMenu(ISearchContext driver)
         {
-            return driver.FindElement(By.CssSelector(ProductList));
+            return FindElement(driver, ProductList);
         }
 
         private static IWebElement TopNavigationMenu(ISearchContext driver)
         {
-            return driver.FindElement(By.CssSelector(TopNavigationBar));
+            return FindElement(driver, TopNavigationBar);
         }
 
         private static IWebElement MyAccountButtonSearch(ISearchContext driver, string searchString)
         {
             var button = MyAccountButtons.Replace("href*=''", string.Format("href*='{0}'", searchString.ToLower()));
-            return driver.FindElement(By.CssSelector(button));
+            return FindElement(driver, button);
         }
 
         private static IWebElement PartnerPortalButtonSearch(ISearchContext driver, string searchString)
         {
             var button = PartnerPortalButtons.Replace("href*=''", string.Format("href*='{0}'", searchString.ToLower()));
-            return driver.FindElement(By.CssSelector(button));
+            return FindElement(driver, button);
         }
 
         private static IWebElement InstantInkButtonSearch(ISearchContext driver, string searchString)
         {
             var button = InstankInkButtons.Replace("href*=''", string.Format("href*='{0}'", searchString.ToLower()));
-            return driver.FindElement(By.CssSelector(button));
+            return FindElement(driver, button);
         }
 
         private static IWebElement FindLink(IEnumerable<IWebElement> links, string searchString)
@@ -83,10 +95,15 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
 
             foreach (var link in links)
             {
-                if (!link.TagName.Contains("a")) continue;
-                if (!link.Text.ToLower().Contains(searchString.ToLower())) continue;
-                AssertElementPresent(link, "Navigation Link");
-                return link;
+                if (link.TagName.Contains("a"))
+                {
+                    if (link.Text.ToLower().Contains(searchString.ToLower()))
+                    {
+                        
+                        AssertElementPresent(link, "Navigation Link");
+                        return link;
+                    }
+                }
             }
             return null;
         }
@@ -100,7 +117,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             try
             {
                 navigationLinks =
-                MyAccountSideNavigationMenu(driver).FindElements(By.XPath(@"//*[contains(@id,'navigationcontainer')]"));
+                //MyAccountSideNavigationMenu(driver).FindElements(By.XPath(@"//*[contains(@id,'navigationcontainer_0_MenuItemsRepeater_listItem_')]"));
+                MyAccountSideNavigationMenu(driver).FindElements(By.XPath(@"//*[contains(@id,'navigationcontainer_0_MenuItemsRepeater_LeftMenuLink')]"));
             }
             catch (NoSuchElementException notSuchElement)
             {
@@ -150,6 +168,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         {
             // searches for the correct language string
             var buttonName = Navigation.ConvertButtonNameForLocale(productString, buttonNameString);
+            TakeSnapshot();
             var button = MyAccountButtonSearch(driver, buttonName);
             if (button == null)
             {
@@ -282,7 +301,15 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
 
         public static WelcomeBackPage BrotherOnlineGoHome(IWebDriver driver)
         {
-            GetAccountMenuItem(driver, "BrotherOnlineHome").Click();
+            var accountMenuItem = GetAccountMenuItem(driver, "BrotherOnlineHome");
+            if (accountMenuItem != null)
+            {
+                accountMenuItem.Click();
+            }
+            else
+            {
+                MsgOutput("Unable to obtain the account menu item for Brother Online Home");
+            }
             return GetInstance<WelcomeBackPage>(driver, "", "");
         }
 
@@ -352,6 +379,14 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             button.Click();
             return GetInstance<MyOrdersPage>(driver, "", "");
         }
+
+        public static BusinessDetailsPage BusinessDetailsMenuClick(IWebDriver driver, IWebElement button)
+        {
+            TestCheck.AssertIsNotNull(button, "Business Details Menu");
+            button.Click();
+            return GetInstance<BusinessDetailsPage>(driver, "", "");
+        }
+
         public static WelcomeBackPage MyAccountMenuItemClick(IWebDriver driver, IWebElement menuItem)
         {
             TestCheck.AssertIsNotNull(menuItem, "My Account Menu Item");

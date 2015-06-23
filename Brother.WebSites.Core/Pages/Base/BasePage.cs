@@ -44,16 +44,6 @@ namespace Brother.WebSites.Core.Pages.Base
             return GetInstance<MainSiteHomePage>(driver, baseUrl, "");
         }
 
-        #region MPS Home Page
-
-        public static CloudExistingProposalPage LoadMpsLandingPage(IWebDriver driver, string baseUrl)
-        {
-            driver = SetDriver(driver);
-            driver.Navigate().GoToUrl(baseUrl.TrimEnd(new char[] { '/' }) + CloudExistingProposalPage.URL);
-            return GetTabInstance<CloudExistingProposalPage>(driver, baseUrl, "");
-        }
-
-        #endregion
 
         #region ThirdParty Pages
         public static BrotherEmailConfirmationPage LoadEmailConfirmationPage(IWebDriver driver, string baseUrl)
@@ -156,7 +146,10 @@ namespace Brother.WebSites.Core.Pages.Base
             try
             {
                 MsgOutput("Attempting to navigate to page ", url);
-                driver.Navigate().GoToUrl(url);
+               // driver.Navigate().GoToUrl(url);
+                NavigateToUrl(driver, url);
+                MsgOutput(string.Format("Browser is on Page {0}", url));
+                MsgOutput("Looking for Accept Cookie Request");
                 AcceptCookieLaw(driver);
             }
             catch (WebDriverException driverException)
@@ -171,11 +164,14 @@ namespace Brother.WebSites.Core.Pages.Base
             try
             {
                 MsgOutput("Attempting to navigate to page ", url);
-                driver.Navigate().GoToUrl(url);
+                //driver.Navigate().GoToUrl(url);
+                NavigateToUrl(driver, url);
                 if (doRefresh)
                 {
                     driver.Navigate().Refresh();
                 }
+                MsgOutput(string.Format("Browser is on Page {0}", url));
+                MsgOutput("Looking for Accept Cookie Request");
                 AcceptCookieLaw(driver);
             }
             catch (WebDriverException driverException)
@@ -183,6 +179,34 @@ namespace Brother.WebSites.Core.Pages.Base
                 MsgOutput(string.Format("Web Driver Critcal Error!!!! {0}", driverException.Message));
                 MsgOutput(string.Format("Likelhood that WebDriver could not get to the URL {0}", url));
             }
+        }
+
+        private static void NavigateToUrl(IWebDriver driver, string url)
+        {
+            var timedOut = false;
+            var retries = 0;
+            var partialUrl = url.Replace("https", "").Replace("http", "");
+            driver.Url = "<unable to navigate to page>";
+            while ((!driver.Url.Contains(partialUrl)) && (!timedOut))
+            {
+                try
+                {
+                    driver.Navigate().GoToUrl(url);
+                    retries++;
+                    if (retries == 10)
+                    {
+                        timedOut = true;
+                    }
+                }
+                catch (WebDriverException driverException)
+                {
+                    MsgOutput(string.Format("Web Driver Critcal Error!!!! {0}", driverException.Message));
+                    MsgOutput(string.Format("Likelhood that WebDriver could not get to the URL {0}", url));
+                    MsgOutput(string.Format("Attempting a retry....Retry {0} times", retries));
+                }
+            }
+            MsgOutput(string.Format("WebDriver [driver.URL] value is [{0}]. Actual desired URL should have been [{1}]", driver.Url, url));
+            TestCheck.AssertTextContains(partialUrl, driver.Url, string.Format("WebDriver could not navigate to URL {0}", url));
         }
     }
 }

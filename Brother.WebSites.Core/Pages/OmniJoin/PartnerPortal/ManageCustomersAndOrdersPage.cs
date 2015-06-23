@@ -40,7 +40,7 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
                 var nextButton = Driver.FindElement(By.CssSelector(NextButton));
                 nextButton.Click();
             }
-            catch (Exception timeOut)
+            catch (WebDriverException timeOut)
             {
                 throw new WebDriverTimeoutException(string.Format("Timeout searching for Next button on Add Customer form {0}", timeOut));
             }

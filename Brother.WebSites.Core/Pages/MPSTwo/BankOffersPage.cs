@@ -93,7 +93,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             if(DeclineButtonElement == null)
                 throw new Exception("Proposal Decline Button not displayed, are you on Offer Summary page?");
-            WebDriver.Wait(DurationType.Second, 3);
+            //WebDriver.Wait(DurationType.Second, 3);
             ScrollTo(DeclineButtonElement);
             DeclineButtonElement.Click();
             WebDriver.Wait(DurationType.Second, 5);
@@ -127,14 +127,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private IWebElement ActionButtonElementByName(string name, string tdcol)
         {
-            string element = String.Format("//td[text()=\"{0}\"]/parent::tr/td[{1}]/div/button", name, tdcol);
+            var element = String.Format("//td[text()=\"{0}\"]/parent::tr/td[{1}]/div/button", name, tdcol);
             return Driver.FindElement(By.XPath(element));
         }
 
         public BankProposalsSummaryPage NavigateToViewSummary()
         {
             string proposalname = MpsUtil.CreatedProposal();
-            IWebElement element = ActionButtonElementByName(proposalname, "6");
+            var element = ActionButtonElementByName(proposalname, "6");
             element.Click();
             ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
 
@@ -144,7 +144,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public BankProposalsSummaryPage NavigateToViewSummary(string name)
         {
             IWebElement element = ActionButtonElementByName(name, "6");
-            StoreProposalName(name);
             element.Click();
             ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
 
@@ -157,11 +156,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
 
             return GetTabInstance<BankProposalsSummaryPage>(Driver);
-        }
-
-        private void StoreProposalName(string name)
-        {
-            SpecFlow.SetContext("ProposalNameByBank", name);
         }
 
         public void NavigateToAwaitingApprovalPage()
@@ -184,14 +178,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyDeclinedProposalIsDisplayed()
         {
-            string name = SpecFlow.GetContext("ProposalNameByBank");
+            string name = SpecFlow.GetContext("GeneratedProposalName");
 
             AssertElementPresent(ActionButtonElementByName(name, "7"), "The proposal is not found");
         }
 
         public void VerifyApprovedProposalIsDisplayed()
         {
-            string name = SpecFlow.GetContext("ProposalNameByBank");
+            string name = SpecFlow.GetContext("GeneratedProposalName");
 
             AssertElementPresent(ActionButtonElementByName(name, "7"), "The proposal is not found");
         }

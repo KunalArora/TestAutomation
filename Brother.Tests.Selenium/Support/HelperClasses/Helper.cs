@@ -70,7 +70,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             set { _pwd = value; }
         }
 
-        public static string SnapshotLocation { get; set; }
+        public static string CurrentSnapShot { get; set; }
         private static string ProductInfoFilePath { get; set; }
 
         public static string DefaultFirstName
@@ -112,6 +112,9 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             {"Spain", "es"},
             {"Switzerland", "ch"},
             {"Italy", "it"},
+            {"Bulgaria", "bg"},
+            {"Austria", "at"},
+
         };
 
         public static string CountryLookup(string locale)
@@ -160,6 +163,11 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             return isSmokeTest != null && isSmokeTest.Equals("TRUE");
         }
 
+        public static String MpsRunCondition()
+        {
+            return Environment.GetEnvironmentVariable("MpsTagRunner", EnvironmentVariableTarget.Machine);
+        }
+        
         public static bool CheckFeatureEnv(string env)
         {
             return FeatureContext.Current.FeatureInfo.Tags.Contains(env);
@@ -406,7 +414,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             return _address.TryGetValue(key, out addressInfo) ? addressInfo : String.Empty;
         }
 
-        public static void TakeSnapshot()
+        private static string SnapShotDirectory()
         {
             // Check if we are running on the build machine
             var snapshotLocation = DefaultSeleniumFolder;
@@ -417,10 +425,37 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                 // switch to E: drive on CI box
                 snapshotLocation = DefaultSeleniumFolder.Replace('C', 'E');
             }
+            return snapshotLocation;
+        }
 
-            if (!Directory.Exists(snapshotLocation))
+        public static void PurgeSnapshots()
+        {
+            var snapshotLocation = SnapShotDirectory();
+            var dirInfo = new DirectoryInfo(snapshotLocation);
+
+            var snapShots = dirInfo.GetFiles("*.jpg", SearchOption.TopDirectoryOnly);
+            foreach (var snapShot in snapShots)
             {
-                Directory.CreateDirectory(snapshotLocation);
+                if (snapShot.LastWriteTime < DateTime.Now.AddDays(-10))
+                {
+                    try
+                    {
+                        snapShot.Delete();
+                    }
+                    catch (IOException fileDeleteException)
+                    {
+                        MsgOutput(string.Format("Unable to delete snap shot {0} due to {1}", snapShot.Name, fileDeleteException.Message));
+                    }
+                    snapShot.Delete();
+                }
+            }
+        }
+
+        public static void TakeSnapshot()
+        {
+            if (!Directory.Exists(SnapShotDirectory()))
+            {
+                Directory.CreateDirectory(SnapShotDirectory());
             }
 
             var testName = TestContext.CurrentContext.Test.Name;
@@ -442,6 +477,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
            
             var snapShot = String.Format("{0}{1}.jpg", testName, DateTime.Now.TimeOfDay.ToString().Replace(@"/", "_").Replace(" ", "").Replace(":", "_").Replace(".", "_"));
             //var snapShot = String.Format("{0}{1}.jpg", ScenarioContext.Current.ScenarioInfo.Title.Replace(" ", ""), DateTime.Now.TimeOfDay.ToString().Replace(@"/", "_").Replace(" ", "").Replace(":", "_"));
+            var snapshotLocation = SnapShotDirectory();
             snapshotLocation += "\\" + snapShot;
 
             if (snapshotLocation.Length > MaxFileNameSize)
@@ -452,7 +488,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
             try
             {
-                SnapshotLocation = snapshotLocation;
+                CurrentSnapShot = snapshotLocation;
                 MsgOutput("Taking Snapshot......");
                 ((ITakesScreenshot)TestController.CurrentDriver).GetScreenshot().SaveAsFile(snapshotLocation, ImageFormat.Jpeg);
                 MsgOutput("Snapshot Location", snapshotLocation);

@@ -82,19 +82,43 @@ Scenarios:
 	| "CannotUseQuestionMark?@guerrillamail.com"  |
 	| "CannotUseOpenBrace(@guerrillamail.com"     |
 	| "CannotUseEquals=@guerrillamail.com"        |
-	#| "    LeadingSpace@guerrillamail.com"        | these are valid email id's, it will trim the space in the front and at the back.
+	#| "  LeadingSpace@guerrillamail.com"        | these are valid email id's, it will trim the space in the front and at the back.
 	#| "TrailingSpace@guerrillamail.com     "      |
+	# simply trim them. No error message is displayed
 
-@SMOKE
+@SMOKE @ignore
 Scenario Outline: Create an account for Brother Online for different language sites
 	Given I Need A Brother Online "<Country>" Account In Order To Use Brother Online Services
+	When I have clicked on Add Device
+	And I am redirected to the Register Device page
+	# Note: Invalid serial code will always produce error message
+	Given I have entered my Product Serial Code "U1T000000"
+	Then I can validate that an error message was displayed
+	Then I can sign out of Brother Online
+	Then I am redirected to the Brother Home Page
 
 Scenarios:
-	| Country |
-	| France  |
-	| Germany |
-	| Poland  |
-	| Spain   |          
+	| Country        |
+	| Romania        | 
+"""	| France         |
+	| Germany        |
+	| Netherlands    |
+	| Spain          |
+	| Denmark        |
+	| Belgium        |
+	| Russia         |- Red warning on page - look into
+	| Hungary        |- unknown error - possibly cannot get to site 
+	| Portugal       |
+	| Switzerland    | - need to add specific default language to URL
+	| Slovakia       | - Links for validation set of for UK so needs updating
+	| Slovenia       | - Links for validation set of for UK so needs updating
+	| Czech          | - Links for validation set of for UK so needs updating
+	| Bulgaria       | - Links for validation set of for UK so needs updating - maybe no version in SiteCore on DV2
+	| Finland        |
+	| Norway         | - Link for validation of registration links to something completely different
+	| Italy          | - NEEDS to have Número de identificación fiscal added to test otherwise registration fails
+	| Austria        |"""
+
 
 @SMOKE
 # Create a new user account and check Add Device so that we know the user registration was successful
@@ -223,3 +247,7 @@ Scenario: Validate that the correct error messages are displayed when Terms and 
 	When I declare that I do not use this account for business
 	And I press create account button
 	Then I should get an error message displayed on the Terms and Conditions
+
+@ignore
+Scenario: Log in as a Printer On dealer and ensure that they can see the required permissions BBAU-2189
+# (ensure that a customer cannot see the same permissions

@@ -82,6 +82,7 @@
 			<MyConnectedDevices>My Connected Devices</MyConnectedDevices>
 			<PaymentMethods>Payment Methods</PaymentMethods>
 			<SignInDetails>Sign In Details</SignInDetails>
+      <BusinessDetails>Business details</BusinessDetails>
 			<Orders>Orders</Orders>
 		</MyAccountSideNavMenu>
 		<PrimaryNavTopMenu>
@@ -131,6 +132,7 @@
 			<MyConnectedDevices>My Connected Devices</MyConnectedDevices>
       <PaymentMethods>Payment Methods</PaymentMethods>
       <SignInDetails>Sign In Details</SignInDetails>
+      <Orders>Orders</Orders>
 		</MyAccountSideNavMenu>
     <PrimaryNavTopMenu>
 			<MyAccount>My Account</MyAccount>

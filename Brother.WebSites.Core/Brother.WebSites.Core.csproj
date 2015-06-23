@@ -127,6 +127,11 @@
     <Compile Include="Pages\MPSTwo\ConvertProposalSummaryPage.cs" />
     <Compile Include="Pages\MPSTwo\ConvertProposalTermAndType.cs" />
     <Compile Include="Pages\MPSTwo\BankProposalsSummaryPage.cs" />
+    <Compile Include="Pages\MPSTwo\DealerProposalsCreateCustomerInformationPage.cs" />
+    <Compile Include="Pages\MPSTwo\DealerProposalsCreateTermAndTypePage.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeApproverContractsSummaryPage.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeApproverContractsPage.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeApproverProposalsSummaryPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerAcceptedContractsPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerContractsApprovedProposalsPage.cs" />
     <Compile Include="Pages\MPSTwo\BankContractsSummaryPage.cs" />
@@ -136,6 +141,7 @@
     <Compile Include="Pages\MPSTwo\DealerProposalsAwaitingApproval.cs" />
     <Compile Include="Pages\MPSTwo\DealerRejectedContractsPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeAdminServiceDeskPage.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeApproverContractPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeApproverContractsMaintenancePage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeApproverProposalsPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeApproverDashBoardPage.cs" />

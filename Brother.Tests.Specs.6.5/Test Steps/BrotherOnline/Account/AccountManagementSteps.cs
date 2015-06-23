@@ -47,8 +47,11 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [Then(@"I can navigate back to Brother Online home page")]
         public void ThenICanNavigateBackToBrotherOnlineHomePage()
         {
+            Helper.TakeSnapshot();
             Then("If I navigate back to the Brother Online My Account page");
+            Helper.TakeSnapshot();
             NextPage = GlobalNavigationModule.BrotherOnlineGoHome(CurrentDriver);
+            Helper.TakeSnapshot();
         }
 
         [Then(@"If I navigate back to the Brother Online My Account page")]
@@ -80,7 +83,9 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [Then(@"If I click on My Account menu")]
         public void ThenIfIClickOnMyAccountMenu()
         {
-            GlobalNavigationModule.GetProductNavigationMenu("MyAccount").Click();
+            Helper.TakeSnapshot();
+            var menuMyAccount = GlobalNavigationModule.GetProductNavigationMenu("MyAccount");
+            menuMyAccount.Click();
         }
 
         [Then(@"I click on My Personal Details")]
@@ -118,6 +123,13 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             NextPage = GlobalNavigationModule.OrdersMenuClick(CurrentDriver, ordersButton);
         }
 
+        //[Then(@"I can click on Business Details")]
+        //public void ThenICanClickOnBusinessDetails()
+        //{
+        //    var businessDetailsButton = GlobalNavigationModule.GetMyAccountMenuItem("BusinessDetails");
+        //    NextPage = GlobalNavigationModule.BusinessDetailsMenuClick(CurrentDriver, businessDetailsButton);
+        //}
+
         [Then(@"If I grant the user account the ""(.*)"" role")]
         public void ThenIfIGrantTheUserAccountTheRole(string userRole)
         {
@@ -137,7 +149,8 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [When(@"I clicked on Business Details")]
         public void WhenIClickedOnBusinessDetails()
         {
-            NextPage = CurrentPage.As<MyAccountPage>().ClickBusinessDetailsLink();
+            var businessDetailsButton = GlobalNavigationModule.GetMyAccountMenuItem("BusinessDetails");
+            NextPage = GlobalNavigationModule.BusinessDetailsMenuClick(CurrentDriver, businessDetailsButton);
         }
         [When(@"I am redirected to the Business Details Page")]
         public void WhenIAmRedirectedToTheBusinessDetailsPage()

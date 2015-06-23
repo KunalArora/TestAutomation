@@ -57,7 +57,8 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             NextPage = CurrentPage.As<LocalOfficeAdminDashBoardPage>().NavigateToPurchaseAndClickPage();
         }
 
-        [When(@"I navigate to Lease And Click page")]
+        [Given(@"I navigate to Lease And Click page")]
+        [When(@"I navigate to admin Lease And Click page")]
         public void WhenINavigateToLeaseAndClickPage()
         {
             NextPage = CurrentPage.As<LocalOfficeAdminDashBoardPage>().NavigateToLeaseAndClickPage();
@@ -69,11 +70,18 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<LocalOfficeAdminProgramSettingPage>().TickDisplayProductsAsList();
         }
 
-        [Given(@"I navigate to Printers page")]
-        [When(@"I navigate to Printers page")]
-        public void WhenINavigateToPrintersPage()
+        [Given(@"I navigate to Printers page on Purchase And Click as a Local Office Admin")]
+        [When(@"I navigate to Printers page on Purchase And Click as a Local Office Admin")]
+        public void WhenINavigateToPurchasePrintersPage()
         {
-            NextPage = CurrentPage.As<LocalOfficeAdminProgramSettingPage>().NavigateToLocalOfficePrintersPage();
+            NextPage = CurrentPage.As<LocalOfficeAdminProgramSettingPage>().NavigateToLocalOfficePurchasePrintersPage();
+        }
+
+        [Given(@"I navigate to Printers page on Lease And Click as a Local Office Admin")]
+        [When(@"I navigate to Printers page on Lease And Click as a Local Office Admin")]
+        public void WhenINavigateToLeasePrintersPage()
+        {
+            NextPage = CurrentPage.As<LocalOfficeAdminProgramSettingPage>().NavigateToLocalOfficeLeasePrintersPage();
         }
 
         [Given(@"I enabled ""(.*)"" within the Printer screen")]

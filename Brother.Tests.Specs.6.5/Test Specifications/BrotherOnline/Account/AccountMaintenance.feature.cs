@@ -20,7 +20,6 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.Account
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("Account Maintenance")]
-    [NUnit.Framework.IgnoreAttribute()]
     [NUnit.Framework.CategoryAttribute("TEST")]
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("PROD")]
@@ -75,7 +74,24 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.Account
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Check Forget Password with various invalid scenarios options (BOL-177)")]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "\" InvalidPassword@mailinator.com\"", null)]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "\"InvalidPasswordContaining aspace@mailinator.com\"", null)]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "\"InvalidPasswordForUser@mailinator.com\"", null)]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "\"InvalidPasswordForUser\"", null)]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "\"ThisIsAVeryLargeEmailAddressWhichExceeds80CharactersAndThisIsNotSupported@mailin" +
+            "ator.com\"", null)]
+        [NUnit.Framework.TestCaseAttribute("France", "\"InvalidPassword@mailinator.com \"", null)]
+        [NUnit.Framework.TestCaseAttribute("France", "\"InvalidPasswordForUser\"", null)]
+        [NUnit.Framework.TestCaseAttribute("Germany", "\"InvalidPassword@mailinator.com \"", null)]
+        [NUnit.Framework.TestCaseAttribute("Germany", "\"InvalidPasswordForUser\"", null)]
+        [NUnit.Framework.TestCaseAttribute("Germany", "\"ThisIsAVeryLargeEmailAddressWhichExceeds80CharactersAndThisIsNotSupported@mailin" +
+            "ator.com\"", null)]
+        [NUnit.Framework.TestCaseAttribute("Netherlands", "\"InvalidPassword@mailinator.com \"", null)]
+        [NUnit.Framework.TestCaseAttribute("Netherlands", "\"InvalidPasswordForUser\"", null)]
+        [NUnit.Framework.TestCaseAttribute("Netherlands", "\"ThisIsAVeryLargeEmailAddressWhichExceeds80CharactersAndThisIsNotSupported@mailin" +
+            "ator.com\"", null)]
+        [NUnit.Framework.TestCaseAttribute("Spain", "\"InvalidPasswordForUser\"", null)]
+        [NUnit.Framework.TestCaseAttribute("Spain", "\"ThisIsAVeryLargeEmailAddressWhichExceeds80CharactersAndThisIsNotSupported@mailin" +
+            "ator.com\"", null)]
         public virtual void CheckForgetPasswordWithVariousInvalidScenariosOptionsBOL_177(string country, string invalidEmailAddress, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Check Forget Password with various invalid scenarios options (BOL-177)", exampleTags);

@@ -20,7 +20,8 @@ namespace Brother.Tests.Specs.BrotherOnline
         public void WhenIAmRedirectedToTheRegisterDevicePage()
         {
             CurrentPage.As<RegisterDevicePage>().IsContinueButtonAvailable();
-        }
+            TestCheck.AssertIsEqual(true, Validation.ValidateWarningMessageBarStatus(false), "Account Not Validated Warning Message Present");
+       }
 
         [When(@"I have entered my product information")]
         public void WhenIHaveEnteredMyProductInformation(Table table)

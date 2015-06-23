@@ -1,4 +1,4 @@
-﻿@TEST @UAT
+﻿@TEST @UAT @MPS
 Feature: SummaryPageValidationForAllProposalTypes
 	In order to avoid ambiguity on proposal summary page
 	As a dealer
@@ -39,7 +39,7 @@ Scenario Outline: Summary Page Validation For Minimum Volume Leasing and Click p
 
 	Scenarios: 
 	| Role             | Country        | ContractType               | UsageType      | Contract | Leasing                  | Billing                  | Printer     | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Minimum Volume | 3 years  | 4 Monthly Minimum Volume | 6 Monthly Minimum Volume | HL-L8350CDW | 750         | 750          |
+	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Minimum Volume | 3 years  | Quarterly | Quarterly | HL-L8350CDW | 750         | 750          |
 	
 
 
@@ -73,7 +73,7 @@ Scenario Outline: Summary Page Validation For Pay As You Go Leasing and Click pr
 
 	Scenarios: 
 	| Role             | Country        | ContractType               | CreateOption        | UsageType     | Contract | Leasing   | Billing   | Printer    | DeviceScreen | ClickVolume |
-	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Create new customer | Pay As You Go | 4 years  | 6 Monthly | 4 Monthly | DCP-8110DN | Full         | 750        |
+	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Create new customer | Pay As You Go | 4 years  | Quarterly | Quarterly | DCP-8110DN | Full         | 750        |
 
 
 
@@ -92,7 +92,7 @@ Scenario Outline: Summary Page Validation For Minimum Volume Purchase and Click 
 	And I enter click price volume of "<ClickVolume>" and "<ColourVolume>"
 	Then the billing basis for product is "Pay upfront"
 	And the billing basis for Accessory is "Pay upfront"
-	And the billing basis for Installation is "Included in Click Price"
+	And the billing basis for Installation is "Pay upfront"
 	And the billing basis for Service Pack is "Included in Click Price"
 	And the installation type displayed is correct
 	And the installation cost displayed is correct
@@ -111,7 +111,7 @@ Scenario Outline: Summary Page Validation For Minimum Volume Purchase and Click 
 
 	Scenarios: 
 	| Role             | Country        | ContractType                  | UsageType      | Contract | Leasing                  | Billing                  | PriceHardware | Printer      | DeviceScreen | PaymentMethod           | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Minimum Volume | 3 years  | 4 Monthly Minimum Volume | 6 Monthly Minimum Volume | Tick          | MFC-L8650CDW | Full         | Included in Click Price | 800        | 800         |
+	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Minimum Volume | 3 years  | Quarterly | Quarterly | Tick          | MFC-L8650CDW | Full         | Included in Click Price | 800        | 800         |
 
 
 Scenario Outline: Summary Page Validation For Minimum Volume Purchase and Click proposal Upfront Payment
@@ -148,7 +148,7 @@ Scenario Outline: Summary Page Validation For Minimum Volume Purchase and Click 
 
 	Scenarios: 
 	| Role             | Country        | ContractType                  | UsageType      | Contract | Leasing                  | Billing                  | PriceHardware | Printer      | DeviceScreen | PaymentMethod           | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Minimum Volume | 3 years  | 4 Monthly Minimum Volume | 6 Monthly Minimum Volume | Tick          | MFC-L8650CDW | Full         | Pay Upfront | 800        | 800         |
+	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Minimum Volume | 3 years  | Quarterly | Quarterly | Tick          | MFC-L8650CDW | Full         | Pay Upfront | 800        | 800         |
 
 Scenario Outline: Summary Page Validation For Pay As you Go Purchase and Click proposal
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
@@ -180,4 +180,4 @@ Scenario Outline: Summary Page Validation For Pay As you Go Purchase and Click p
 
 	Scenarios: 
 	| Role             | Country        | ContractType                  | CreateOption        | UsageType     | Contract | Leasing   | Billing   | PriceHardware | Printer    | DeviceScreen | ClickVolume |
-	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Create new customer | Pay As You Go | 4 years  | 6 Monthly | 3 Monthly | Tick        | MFC-8510DN | Full     | 800        |
+	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Create new customer | Pay As You Go | 4 years  | Quarterly | Quarterly | Tick        | MFC-8510DN | Full     | 800        |

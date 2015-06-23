@@ -77,6 +77,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             AwaitingAcceptancLinkElement.Click();
         }
 
+        public void DownloadPDFOnBankContractPages()
+        {
+            ActionsModule.ClickOnTheActionsDropdown(Driver);
+            ActionsModule.DownloadContractPDFAction(Driver);
+        }
+
+        public void DownloadInvoicePDFOnBankContractPages()
+        {
+            ActionsModule.ClickOnTheActionsDropdown(Driver);
+            ActionsModule.DownloadContractInvoicePDFAction(Driver);
+        }
+
         public void NavigateToAcceptedPage()
         {
             IsAcceptedLinkAvailable();
@@ -89,11 +101,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             RejectedLinkElement.Click();
         }
 
-        public void IsSignedContractDisplayedUnderAwaitingAcceptancePage()
-        {
-            new CloudExistingProposalPage().IsNewProposalTemplateCreated();
-	}
-	
+        
         public void IsContractsSignedByDealerDisplayed()
         {
             var createdContract = MpsUtil.CreatedProposal();

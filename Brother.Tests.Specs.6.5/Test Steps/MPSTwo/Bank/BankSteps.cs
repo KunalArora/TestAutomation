@@ -77,6 +77,8 @@ namespace Brother.Tests.Specs.MPSTwo.Bank
             NextPage = CurrentPage.As<BankProposalsSummaryPage>().ClickAccpetButton();
         }
 
+        [When(@"I navigate to bank contract Awaiting Acceptance page")]
+        [Given(@"I navigate to bank contract Awaiting Acceptance page")]
         [Then(@"navigate to bank contract Awaiting Acceptance page")]
         public void ThenNavigateToBankContractAwaitingAcceptancePage()
         {
@@ -88,8 +90,28 @@ namespace Brother.Tests.Specs.MPSTwo.Bank
         public void ThenTheSignedContractIsDisplayed()
         {
             CurrentPage.As<BankContractsPage>().IsAwaitingAcceptancePageOpened();
-            CurrentPage.As<BankContractsPage>().IsSignedContractDisplayedUnderAwaitingAcceptancePage();
+            CurrentPage.As<BankContractsPage>().IsContractsSignedByDealerDisplayed();
         }
+
+        [Then(@"I can successfully download a Contract PDF")]
+        public void ThenICanSuccessfullyDownloadAContractPDF()
+        {
+            CurrentPage.As<BankContractsPage>().DownloadPDFOnBankContractPages();
+        }
+
+        [Then(@"I can successfully download a Contract Invoice PDF")]
+        public void ThenICanSuccessfullyDownloadAContractInvoicePDF()
+        {
+            CurrentPage.As<BankContractsPage>().DownloadInvoicePDFOnBankContractPages();
+        }
+
+        [When(@"I navigate to bank contract Rejected page")]
+        public void WhenINavigateToBankContractRejectedPage()
+        {
+            NextPage = CurrentPage.As<BankDashBoardPage>().NavigateToContractApprovedProposalPage();
+            CurrentPage.As<BankContractsPage>().NavigateToRejectedPage();
+        }
+
         
         [When(@"I navigate to Contract Awaiting Acceptance page")]
         [Then(@"I navigate to Contract Awaiting Acceptance page")]
@@ -124,6 +146,7 @@ namespace Brother.Tests.Specs.MPSTwo.Bank
         public void ThenICanSuccessfullyApproveTheContract()
         {
             NextPage = CurrentPage.As<BankContractsPage>().NavigateToViewSummary();
+            CurrentPage.As<BankContractsSummaryPage>().VerifyThatTheContractDataIsEqualToProposalCreatedByDealer();
             CurrentPage.As<BankContractsSummaryPage>().ClickAcceptButton();
             NextPage = CurrentPage.As<BankContractsSummaryPage>().ClickFinalAcceptButton();
         }
