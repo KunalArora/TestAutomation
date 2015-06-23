@@ -105,10 +105,10 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             var validationStringList = new List<ValidationSet>();
             validationStringList.Clear();
             var doc = new XmlDocument();
-            var directoryInfo = Directory.GetParent(Directory.GetCurrentDirectory()).Parent;
+            var directoryInfo = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent;
             if (directoryInfo == null) return validationStringList;
 
-            var validationFile = directoryInfo.FullName + Helper.SupportingFilesLocation + validationLookupFile;
+            var validationFile = directoryInfo.FullName + SupportingFilesLocation + validationLookupFile;
 
             try
             {
