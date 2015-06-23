@@ -334,8 +334,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void TypeIntoRHSFreeTextFilter(string model)
         {
-            WebDriver.Wait(Helper.DurationType.Second, 1);
+            WebDriver.Wait(Helper.DurationType.Second, 2);
             ClearAndType(InputSearchProductElement, model);
+            WebDriver.Wait(Helper.DurationType.Second, 1);
         }
 
         private IList<IWebElement> DisplayedAllPrintersByFilteringOfFreeTextElement()

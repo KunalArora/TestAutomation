@@ -74,7 +74,7 @@ Scenario Outline: Purchase + Click, Minimum Volume, Service Pack not displayed
 	And I display "<Printer>" device screen
 	And "<DeviceScreen>" device screen is displayed
 	And I accept the default values of the device
-	Then Service Pack payment method is displayed
+	Then Service Pack payment method is not displayed
 	And I sign out of Cloud MPS
 	
 
