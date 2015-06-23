@@ -67,7 +67,6 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Field Validation for Delivery Address")]
-        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.CategoryAttribute("PROD")]
         [NUnit.Framework.CategoryAttribute("UAT")]
         [NUnit.Framework.CategoryAttribute("TEST")]
@@ -75,7 +74,6 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline
         public virtual void FieldValidationForDeliveryAddress(string country, string emailAddress, string fields, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "ignore",
                     "PROD",
                     "UAT",
                     "TEST"};

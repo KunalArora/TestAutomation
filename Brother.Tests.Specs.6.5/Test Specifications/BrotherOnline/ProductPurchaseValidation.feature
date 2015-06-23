@@ -3,7 +3,7 @@
 	As an Automated Test
 	I want to validate Address Field information
 
-@ignore @PROD @UAT @TEST
+@PROD @UAT @TEST
 Scenario Outline: Field Validation for Delivery Address
 	Given I am logged into Brother Online <Country> using <Email Address>
 	Given I have navigated to the Brother Main Site <Country> products pages

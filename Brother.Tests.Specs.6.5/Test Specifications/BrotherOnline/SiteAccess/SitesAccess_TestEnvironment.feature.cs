@@ -110,6 +110,7 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Get 200 OK response back from the following Brother Online Sites on the Test envi" +
             "ronment")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.CategoryAttribute("SMOKE")]
         [NUnit.Framework.TestCaseAttribute("Ireland", "https://online.ie.brotherdv2.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "https://online.uk.brotherdv2.eu/", null)]
@@ -132,6 +133,7 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void Get200OKResponseBackFromTheFollowingBrotherOnlineSitesOnTheTestEnvironment(string language, string brotherOnline, string[] exampleTags)
         {
             string[] @__tags = new string[] {
+                    "ignore",
                     "SMOKE"};
             if ((exampleTags != null))
             {
@@ -139,9 +141,9 @@ this.ScenarioSetup(scenarioInfo);
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get 200 OK response back from the following Brother Online Sites on the Test envi" +
                     "ronment", @__tags);
-#line 36
-this.ScenarioSetup(scenarioInfo);
 #line 37
+this.ScenarioSetup(scenarioInfo);
+#line 38
  testRunner.Given(string.Format("The following site {0} {1} to validate I should receive an Ok response back", language, brotherOnline), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             this.ScenarioCleanup();
@@ -156,9 +158,9 @@ this.ScenarioSetup(scenarioInfo);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get 200 OK response back from Creative Centre United Kingdom on the Test environm" +
                     "ent", new string[] {
                         "SMOKE"});
-#line 63
-this.ScenarioSetup(scenarioInfo);
 #line 64
+this.ScenarioSetup(scenarioInfo);
+#line 65
  testRunner.Given("The following site United Kingdom http://creativecenter.eu.brotherdv2.eu/ to vali" +
                     "date I should receive an Ok response back", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
