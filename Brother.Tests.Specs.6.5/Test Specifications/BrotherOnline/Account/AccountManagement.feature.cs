@@ -154,7 +154,7 @@ this.FeatureBackground();
 #line 35
  testRunner.When("I click on Reset Your Password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 36
- testRunner.And("I am redirected to the Brother Login/Register page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I am redirected to the Brothemapr Login/Register page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 37
  testRunner.Then("I can sign back into Brother Online \"United Kingdom\" using the updated credential" +
                     "s", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

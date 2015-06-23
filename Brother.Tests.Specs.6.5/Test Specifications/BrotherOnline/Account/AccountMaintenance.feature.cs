@@ -37,6 +37,7 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.Account
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Account Maintenance", "In order to change maintain by Brother Online Account\r\nAs a customer\r\nI need to b" +
                     "e able to have account management maintenance options", ProgrammingLanguage.CSharp, new string[] {
+                        "ignore",
                         "TEST",
                         "UAT",
                         "PROD"});

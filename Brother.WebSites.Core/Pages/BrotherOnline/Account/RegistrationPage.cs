@@ -93,7 +93,10 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         [FindsBy(How = How.CssSelector, Using = "#content_1_ResetPasswordButton")]
         public IWebElement ResetYourPasswordButton;
 
-         [FindsBy(How = How.CssSelector, Using = ".form-section.cf.validation-failed.load .error")]
+        //[FindsBy(How = How.ClassName, Using = ".button-blue")]
+        //public IWebElement ResetYourPasswordButton;
+
+        [FindsBy(How = How.CssSelector, Using = ".form-section.cf.validation-failed.load .error")]
         public IWebElement TermsAndConditionsErrorMessage;
         
 
@@ -132,11 +135,33 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             if (!WaitForElementToExistByCssSelector("#content_1_ResetPasswordButton"))
             {
                 ResetYourPasswordButton = Driver.FindElement(By.CssSelector("#content_1_ResetPasswordButton"));
-                TestCheck.AssertIsNotEqual(null, ResetYourPasswordButton, "Reset Password Button");
+                //TestCheck.AssertIsNotEqual(null, ResetYourPasswordButton, "Reset Password Button");
             }
             ScrollTo(ResetYourPasswordButton);
             ResetYourPasswordButton.Click();
         }
+
+        //public void ResetYourPasswordButtonClick()
+        //{
+        //    if (!WaitForElementToExistById("#content_1_ResetPasswordButton"))
+        //    {
+        //        ResetYourPasswordButton = Driver.FindElement(By.Id("#content_1_ResetPasswordButton"));
+        //        TestCheck.AssertIsNotEqual(null, ResetYourPasswordButton, "Reset Password Button");
+        //    }
+        //    ScrollTo(ResetYourPasswordButton);
+        //    ResetYourPasswordButton.Click();
+        //}
+       
+        //public void ResetYourPasswordButtonClick()
+        //{
+        //    if (!WaitForElementToExistByClassName(".button-blue"))
+        //    {
+        //        ResetYourPasswordButton = Driver.FindElement(By.ClassName(".button-blue"));
+        //        TestCheck.AssertIsNotEqual(null, ResetYourPasswordButton, "Reset Password Button");
+        //    }
+        //    ScrollTo(ResetYourPasswordButton);
+        //    ResetYourPasswordButton.Click();
+        //}
 
         public void IsEmailResetTextBoxAvailable()
         {

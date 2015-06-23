@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+﻿@ignore @TEST @UAT @PROD 
+=======
 ﻿@TEST @UAT @PROD
+>>>>>>> b5e3bf0df09f8d49e729983433299357195ded68
 Feature: Account Maintenance
 	In order to change maintain by Brother Online Account
 	As a customer
@@ -15,7 +19,6 @@ Scenario Outline: Check Forget Password with various invalid scenarios options (
 Scenarios:
 
 	| Country        | Invalid Email Address                                                                      |
-#	| United Kingdom | "InvalidPassword@mailinator.com "                                                          |
 	| United Kingdom | "InvalidPasswordContaining aspace@mailinator.com"                                          |
 	| United Kingdom | "InvalidPasswordForUser@mailinator.com"                                                    |
 	| United Kingdom | "InvalidPasswordForUser"                                                                   |

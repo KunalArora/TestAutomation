@@ -33,7 +33,7 @@ Scenario: Customer has created a Brother Online account but has forgotten their 
 	Then If I Click the Reset Password Email Link
 	And I reset my password with "ChangedPassword123"
 	When I click on Reset Your Password
-	And I am redirected to the Brother Login/Register page
+	And I am redirected to the Brothemapr Login/Register page
 	Then I can sign back into Brother Online "United Kingdom" using the updated credentials
 	Then I can sign out of Brother Online
 
@@ -119,6 +119,9 @@ Scenario: Business Customer can change their Email Address
 @ignore
 Scenario: Business Customer can change their Address
 	# changing address
+
+
+	#BBAU-2196
 
 
 
