@@ -166,13 +166,11 @@ this.FeatureBackground();
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Customer or Dealer role persists after email address change (BOL-176)")]
-        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.CategoryAttribute("TEST")]
         [NUnit.Framework.CategoryAttribute("UAT")]
         public virtual void CustomerOrDealerRolePersistsAfterEmailAddressChangeBOL_176()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer or Dealer role persists after email address change (BOL-176)", new string[] {
-                        "ignore",
                         "TEST",
                         "UAT"});
 #line 43
