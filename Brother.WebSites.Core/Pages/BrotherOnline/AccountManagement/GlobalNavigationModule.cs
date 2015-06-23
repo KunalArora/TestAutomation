@@ -95,7 +95,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
 
             foreach (var link in links)
             {
-                //if (link.TagName.Contains("li") || (link.TagName.Contains("a")))
                 if (link.TagName.Contains("a"))
                 {
                     if (link.Text.ToLower().Contains(searchString.ToLower()))

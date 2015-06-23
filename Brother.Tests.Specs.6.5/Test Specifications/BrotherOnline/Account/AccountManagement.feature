@@ -39,7 +39,7 @@ Scenario: Customer has created a Brother Online account but has forgotten their 
 
 # Create account, sign in, note missing menu option, add role to user, sign out and in again, note menu option present
 # Instant Ink role used as a baseline
-@ignore @TEST @UAT
+@TEST @UAT
 Scenario: Customer or Dealer role persists after email address change (BOL-176)
 	Given I am logged into my Brother Online account
 	Then I can sign out of Brother Online
