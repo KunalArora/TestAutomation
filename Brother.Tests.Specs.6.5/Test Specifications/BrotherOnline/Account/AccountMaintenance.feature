@@ -1,4 +1,4 @@
-﻿@TEST @UAT @PROD @ignore
+﻿@ignore @TEST @UAT @PROD 
 Feature: Account Maintenance
 	In order to change maintain by Brother Online Account
 	As a customer

@@ -59,7 +59,7 @@ Scenario: Customer creates a new account with Brother Online using valid credent
 
 # Create an account and sign in, change registered email address and sign out, try to Register a new account using
 # the changed email addrress. It should not be possible
-@ignore
+
 Scenario Outline: Customer cannot register for a Brother Online account using an invalid email address (BOL-180)
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
@@ -82,8 +82,8 @@ Scenarios:
 	| "CannotUseQuestionMark?@guerrillamail.com"  |
 	| "CannotUseOpenBrace(@guerrillamail.com"     |
 	| "CannotUseEquals=@guerrillamail.com"        |
-	| " LeadingSpace@guerrillamail.com"           |
-	| "TrailingSpace@guerrillamail.com "          |
+	#| "    LeadingSpace@guerrillamail.com"        | these are valid email id's, it will trim the space in the front and at the back.
+	#| "TrailingSpace@guerrillamail.com     "      |
 
 @SMOKE
 Scenario Outline: Create an account for Brother Online for different language sites

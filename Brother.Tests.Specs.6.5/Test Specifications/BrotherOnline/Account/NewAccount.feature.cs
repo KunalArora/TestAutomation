@@ -200,7 +200,6 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Customer cannot register for a Brother Online account using an invalid email addr" +
             "ess (BOL-180)")]
-        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("\"This is a space@guerrillamail.com\"", null)]
         [NUnit.Framework.TestCaseAttribute("\"CannotUsePercent%@guerrillamail.com\"", null)]
         [NUnit.Framework.TestCaseAttribute("\"CannotUseCurlyBraces{}@guerrillamail.com\"", null)]
@@ -213,18 +212,10 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestCaseAttribute("\"CannotUseQuestionMark?@guerrillamail.com\"", null)]
         [NUnit.Framework.TestCaseAttribute("\"CannotUseOpenBrace(@guerrillamail.com\"", null)]
         [NUnit.Framework.TestCaseAttribute("\"CannotUseEquals=@guerrillamail.com\"", null)]
-        [NUnit.Framework.TestCaseAttribute("\" LeadingSpace@guerrillamail.com\"", null)]
-        [NUnit.Framework.TestCaseAttribute("\"TrailingSpace@guerrillamail.com \"", null)]
         public virtual void CustomerCannotRegisterForABrotherOnlineAccountUsingAnInvalidEmailAddressBOL_180(string emailAddress, string[] exampleTags)
         {
-            string[] @__tags = new string[] {
-                    "ignore"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer cannot register for a Brother Online account using an invalid email addr" +
-                    "ess (BOL-180)", @__tags);
+                    "ess (BOL-180)", exampleTags);
 #line 63
 this.ScenarioSetup(scenarioInfo);
 #line 64
