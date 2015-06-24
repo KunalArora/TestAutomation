@@ -8,14 +8,15 @@ Scenario Outline: Check Forget Password with various invalid scenarios options (
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
 	And I click on Forgot Password
-	Then I enter an email address with trailing spaces as <Invalid Email Address>
+	Then I enter an invalid email address as <Invalid Email Address>
 	And I click on Reset Your Password
 	Then I should see the Warning Bar activated and displaying a warning message
+	And I can navigate to the Brother Online Home Page "<Country>"
 
 Scenarios:
 
 	| Country        | Invalid Email Address                                                                      |
-#	| United Kingdom | "InvalidPassword@mailinator.com "                                                          |
+	| United Kingdom | "InvalidPassword@mailinator.com "                                                          |
 	| United Kingdom | "InvalidPasswordContaining aspace@mailinator.com"                                          |
 	| United Kingdom | "InvalidPasswordForUser@mailinator.com"                                                    |
 	| United Kingdom | "InvalidPasswordForUser"                                                                   |
