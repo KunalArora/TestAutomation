@@ -134,6 +134,7 @@ Scenario Outline: Dealer can resign rejected contract
 	| Cloud MPS Dealer   | United Kingdom |
 
 # View open offers
+@Ignore
 Scenario Outline: Bank can view opened offers
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When I navigate to OfferPage
@@ -146,6 +147,7 @@ Scenario Outline: Bank can view opened offers
 	| Cloud MPS Bank | United Kingdom |
 
 # View confirmed/rejected/signed offers
+@Ignore
 Scenario Outline: Bank can view confirmed/rejected/signed offers
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When I navigate to Contracts screen on "<Contract>" Tab
