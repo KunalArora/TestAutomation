@@ -155,7 +155,11 @@ Scenario Outline: Bank can view confirmed/rejected/signed offers
   And I sign out of Cloud MPS
 
 	Scenarios: 
-	| Role           | Country        | Contract           |
-	| Cloud MPS Bank | United Kingdom | Awating Acceptance |
-	| Cloud MPS Bank | United Kingdom | Rejected           |
-	| Cloud MPS Bank | United Kingdom | Accepted           |
+	| Role                            | Country        | Contract           |
+	| Cloud MPS Bank                  | United Kingdom | Awating Acceptance |
+	| Cloud MPS Bank                  | United Kingdom | Rejected           |
+	| Cloud MPS Bank                  | United Kingdom | Accepted           |
+	| Cloud MPS Local Office Approver | United Kingdom | Awating Acceptance |
+	| Cloud MPS Local Office Approver | United Kingdom | Rejected           |
+	| Cloud MPS Local Office Approver | United Kingdom | Accepted           |
+

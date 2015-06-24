@@ -311,6 +311,9 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Bank", "United Kingdom", "Awating Acceptance", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Bank", "United Kingdom", "Rejected", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Bank", "United Kingdom", "Accepted", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Awating Acceptance", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Rejected", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Accepted", null)]
         public virtual void BankCanViewConfirmedRejectedSignedOffers(string role, string country, string contract, string[] exampleTags)
         {
             string[] @__tags = new string[] {
