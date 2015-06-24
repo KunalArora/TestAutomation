@@ -1,4 +1,4 @@
-﻿@TEST @UAT @MPS
+﻿@MPS @TEST @UAT 
 Feature: SummaryPageValidationForAllProposalTypes
 	In order to avoid ambiguity on proposal summary page
 	As a dealer
