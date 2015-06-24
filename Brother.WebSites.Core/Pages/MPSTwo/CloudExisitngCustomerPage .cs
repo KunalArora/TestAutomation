@@ -12,6 +12,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [FindsBy(How = How.CssSelector, Using = "div.js-mps-customer-list-container>table")]
         private IWebElement customerListContainerElement;
 
+        [FindsBy(How = How.CssSelector, Using = "input[type=\"submit\"]#content_1_CustomerListActions_ActionList_Button_0")]
+        private IWebElement createCustomerButtonElement;
+
         public override string DefaultTitle
         {
             get { return string.Empty; }
@@ -21,6 +24,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             TestCheck.AssertIsNotNull(customerListContainerElement,
                 "Existing customer table is not found.");
+        }
+
+        public void FindCreateCustomerButton()
+        {
+            TestCheck.AssertIsNotNull(createCustomerButtonElement,
+                "Create Customer Button is not found.");
+        }
+
+        public CloudManageCustomerPage ClickCreateCustomerPage()
+        {
+            createCustomerButtonElement.Click();
+            return GetInstance<CloudManageCustomerPage>();
         }
     }
 }
