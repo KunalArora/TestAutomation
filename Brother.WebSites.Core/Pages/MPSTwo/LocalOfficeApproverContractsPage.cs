@@ -26,6 +26,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private IWebElement RejectedLinkElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/local-office/contracts/awaiting-acceptance\"] span")]
         private IWebElement OpenedAwaitingAcceptancLinkElement;
+        [FindsBy(How = How.CssSelector, Using = ".js-mps-contract-list-container .js-mps-fix-column-widths")]
+        private IWebElement ContractListContainerElement;
 
         
 
@@ -124,6 +126,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             ActionsModule.ClickOnTheActionsDropdown(Driver);
             ActionsModule.DownloadContractInvoicePDFAction(Driver);
+        }
+
+        public void IsContractsListAvailable()
+        {
+            if (ContractListContainerElement == null)
+                throw new Exception("Unable to locate Contract List");
+
+            AssertElementPresent(ContractListContainerElement, "Contract List");
         }
     }
 }
