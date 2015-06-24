@@ -1,4 +1,4 @@
-﻿@Ignore	@TEST @UAT
+﻿@Ignore @TEST @UAT
 Feature: DealerCanOperateProposalOffers
 	In order to view/edit/delete/copy existing proposals
 	As an MPS Dealer
@@ -51,8 +51,8 @@ Scenario Outline: Dealer can cansel deleting proposal offer
 	| Role             | Country        | Confirm | TargetItem |
 	| Cloud MPS Dealer | United Kingdom | Dismiss | AnyItem    |
 
-@Ignore	
-Scenario Outline: Dealer can copy an existing proposal offer without customer
+@Ignore
+Scenario Outline: Dealer can copy an existing proposal offer
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to existing proposal screen
 	When I can Copy "<Operation>" Customer an item of Exisiting Proposal table "<Target>" Customer

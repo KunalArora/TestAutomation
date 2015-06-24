@@ -357,6 +357,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ExistsCopiedProposalOffer(IWebDriver driver, string operation)
         {
+            WebDriver.Wait(DurationType.Millisecond, 4000);
             var name = SpecFlow.GetContext(DealerLatestOperatingItemName);
             var copiedOffer = FindCopiedPoposalOfferByName(driver, name);
             var copiedname = copiedOffer.FindElement(By.CssSelector("td:nth-child(1)")).Text;
