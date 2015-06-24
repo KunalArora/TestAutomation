@@ -163,17 +163,17 @@ namespace Brother.Tests.Specs.MPSTwo.Bank
             CurrentPage.As<BankContractsPage>().NavigateToRejectedPage();
         }
 
-        [Then(@"I should see a list of Offers on Awaiting Approbal Tab")]
-        public void ThenIShouldSeeAListOfOffersOnAwaitingApprobalTab()
+        [Then(@"I should see a list of Offers on Awaiting Approval Tab")]
+        public void ThenIShouldSeeAListOfOffersOnAwaitingApprovalTab()
         {
             CurrentPage.As<BankOffersPage>().IsProposalListAvailable();
         }
 
-        [When(@"I navigate to Contracts screen on ""(.*)"" Tab")]
-        public void WhenINavigateToContractsScreenOnTab(string p0)
+        [When(@"I navigate to Bank Contracts screen on ""(.*)"" Tab")]
+        public void WhenINavigateToBankContractsScreenOnTab(string acceptance)
         {
             NextPage = CurrentPage.As<BankDashBoardPage>().NavigateToContractsPage();
-            switch (p0)
+            switch (acceptance)
             {
                 case "Awating Acceptance":
                     CurrentPage.As<BankContractsPage>().NavigateToAwaitingAcceptancePage();
