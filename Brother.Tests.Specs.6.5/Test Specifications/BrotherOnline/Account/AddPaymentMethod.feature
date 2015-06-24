@@ -41,3 +41,22 @@ Scenario: Add payment method with existing address
 	And I can click on Payment Methods
 	Then I can add a new payment method
 
+@ignore
+Scenario: Update Credit Card from expired card
+
+#BBAU-121 - need to add a test for this scenario
+
+"""If the payment card for an OmniJoin subscription expires and the new card has the same number but a different expiry date then when the Manage Plan screen is updated to use the new card the Orders table in the Sitecore database is not updated to use the new payment method and SAP is not informed either.
+
+Switching to a different card number works okay so the hypothesis is that the problem is that this fails because the card number is the same for the old and new cards.
+
+*EDIT: Adding steps to replicate*
+1. Purchase any OJ plan using one of the fake Digital River cards
+2. In the database (PaymentMethods table I think) set the credit card's expiry date to be in the past
+3. Add a new credit card to the BOL account using the same number but a different expiry date
+4. Change the credit card used for OJ in the payment part of the Manage Subscription screens
+5. The credit card used for OJ should now be the new card not the expired card and this should have also been passed to SAP (you'll need someone in the SAP team to verify) for the next automated billing cycle.
+
+If in step 3 you use a different fake Digital River credit card with a different number it all works okay.
+
+This has only been looked at in Production as far as I know - with live customer data. Hopefully it can be replicated okay in local dev environments!"""
