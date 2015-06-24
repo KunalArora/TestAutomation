@@ -172,8 +172,36 @@ this.FeatureBackground();
  testRunner.And("I click on My Personal Details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 41
  testRunner.And("I can click on Payment Methods", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
 #line 42
- testRunner.Then("I can add a new payment method", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I can add a new payment method", @"
+Switching to a different card number works okay so the hypothesis is that the problem is that this fails because the card number is the same for the old and new cards.
+
+*EDIT: Adding steps to replicate*
+1. Purchase any OJ plan using one of the fake Digital River cards
+2. In the database (PaymentMethods table I think) set the credit card's expiry date to be in the past
+3. Add a new credit card to the BOL account using the same number but a different expiry date
+4. Change the credit card used for OJ in the payment part of the Manage Subscription screens
+5. The credit card used for OJ should now be the new card not the expired card and this should have also been passed to SAP (you'll need someone in the SAP team to verify) for the next automated billing cycle.
+
+If in step 3 you use a different fake Digital River credit card with a different number it all works okay.
+
+This has only been looked at in Production as far as I know - with live customer data. Hopefully it can be replicated okay in local dev environments!", ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Update Credit Card from expired card")]
+        [NUnit.Framework.IgnoreAttribute()]
+        public virtual void UpdateCreditCardFromExpiredCard()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Update Credit Card from expired card", new string[] {
+                        "ignore"});
+#line 45
+this.ScenarioSetup(scenarioInfo);
+#line 7
+this.FeatureBackground();
 #line hidden
             this.ScenarioCleanup();
         }
