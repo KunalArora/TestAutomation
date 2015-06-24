@@ -132,3 +132,30 @@ Scenario Outline: Dealer can resign rejected contract
 	Scenarios: 
 	| Role               | Country        |
 	| Cloud MPS Dealer   | United Kingdom |
+
+# View open offers
+@Ignore
+Scenario Outline: Bank can view opened offers
+	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
+	When I navigate to OfferPage
+	And I navigate to Awaiting Approval screen under Offer page
+  Then I should see a list of Offers on Awaiting Approbal Tab
+  And I sign out of Cloud MPS
+
+	Scenarios: 
+	| Role           | Country        |
+	| Cloud MPS Bank | United Kingdom |
+
+# View confirmed/rejected/signed offers
+@Ignore
+Scenario Outline: Bank can view confirmed/rejected/signed offers
+	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
+	When I navigate to Contracts screen on "<Contract>" Tab
+  Then I should see a list of Offers
+  And I sign out of Cloud MPS
+
+	Scenarios: 
+	| Role           | Country        | Contract           |
+	| Cloud MPS Bank | United Kingdom | Awating Acceptance |
+	| Cloud MPS Bank | United Kingdom | Rejected           |
+	| Cloud MPS Bank | United Kingdom | Accepted           |
