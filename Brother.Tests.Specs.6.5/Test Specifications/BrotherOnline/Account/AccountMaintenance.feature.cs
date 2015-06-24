@@ -37,7 +37,6 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.Account
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Account Maintenance", "In order to change maintain by Brother Online Account\r\nAs a customer\r\nI need to b" +
                     "e able to have account management maintenance options", ProgrammingLanguage.CSharp, new string[] {
-                        "ignore",
                         "TEST",
                         "UAT",
                         "PROD"});
@@ -74,6 +73,7 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.Account
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Check Forget Password with various invalid scenarios options (BOL-177)")]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "\"InvalidPassword@mailinator.com \"", null)]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "\"InvalidPasswordContaining aspace@mailinator.com\"", null)]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "\"InvalidPasswordForUser@mailinator.com\"", null)]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "\"InvalidPasswordForUser\"", null)]
@@ -104,11 +104,13 @@ this.ScenarioSetup(scenarioInfo);
 #line 10
  testRunner.And("I click on Forgot Password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
- testRunner.Then(string.Format("I enter an email address with trailing spaces as {0}", invalidEmailAddress), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("I enter an invalid email address as {0}", invalidEmailAddress), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 12
  testRunner.And("I click on Reset Your Password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 13
  testRunner.Then("I should see the Warning Bar activated and displaying a warning message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 14
+ testRunner.And(string.Format("I can navigate to the Brother Online Home Page \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
