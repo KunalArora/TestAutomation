@@ -96,8 +96,16 @@ this.FeatureBackground();
  testRunner.When("I sign back into Brother Online \"United Kingdom\" using the same credentials", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 17
  testRunner.Then("I can see the Instant Ink menu option from the BOL home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
 #line 18
- testRunner.Then("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I can sign out of Brother Online", @"Observed that the user does not have access to the Instant Ink menu option
+Logged out
+in CMS, added the Brother Instant Ink supply role to Bol-176@mailinator.com
+Logged back into Brother Online with Bol-176@mailinator.com and observed that the user can see the Instant Ink menu
+Changed the Bol-176@mailinator.com email to changedBol-176@mailinator.com
+Logged out with the old user, validated the new changes via Mailinator and logged back into Brother Online using changedBol-176@mailinator.com.
+Observed the user no longer has access to Instant Ink when it should have.
+Logged into CMS and searched for the new user changedBol-176@mailinator.com, and the Brother Instant Ink supply role is no longer granted to that user", ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
