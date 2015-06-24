@@ -19,14 +19,12 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.Basket
 
         private static IWebElement FindElement(ISearchContext driver, string element, string message)
         {
-            try
+            if (SeleniumHelper.WaitForElementToExistByCssSelector(element, 5, 5))
             {
+                Helper.MsgOutput(string.Format("Basket Module: Found {0} element correctly", element));
                 return driver.FindElement(By.CssSelector(element));
             }
-            catch (WebDriverException timedOutException)
-            {
-                Helper.MsgOutput(string.Format("Unable to find {0} [{1}]", message, element));
-            }
+            TestCheck.AssertFailTest(string.Format("Unable to locate Basket Item {0}", element));
             return null;
 
         }
@@ -48,7 +46,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.Basket
 
         private static IWebElement RemoveFromBasket(ISearchContext driver)
         {
-            return FindElement(driver, GoToBasketButtonId, "Go To Basket Button Id");
+            return FindElement(driver, RemoveFromBasketButton, "Remove From Basket Button Id");
         }
 
         private static IWebElement ItemPrice(ISearchContext driver)
@@ -80,7 +78,8 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.Basket
             SeleniumHelper.MoveToElement(driver, BasketIcon(driver));
             WebDriver.Wait(Helper.DurationType.Second, 2);
             SeleniumHelper.WaitForElementToExistByCssSelector(RemoveFromBasketButton, 3, 5);
-            RemoveFromBasket(driver).Click();
+            var removeBasketLink = RemoveFromBasket(driver);
+            removeBasketLink.Click();
             TestCheck.AssertIsEqual(0, GetBasketItemsCount(driver), "Basket is not empty");
         }
 

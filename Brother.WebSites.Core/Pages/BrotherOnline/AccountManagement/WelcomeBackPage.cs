@@ -120,6 +120,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             {
                 throw new Exception("Unable to locate link on page");
             }
+            ScrollTo(RegisterDeviceLink);
             AssertElementPresent(RegisterDeviceLink, "Register Device Link");
         }
 

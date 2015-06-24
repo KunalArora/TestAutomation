@@ -34,7 +34,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private IWebElement RejectButtonElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_ButtonProposalDeclineCancel")]
         private IWebElement RejectionCancelButtonElement;
-        
+        [FindsBy(How = How.CssSelector, Using = ".js-mps-proposal-list-container .js-mps-fix-column-widths")]
+        private IWebElement ProposalListElement;
         
 
         public void IsAwaitingApprovalLinkAvailable()
@@ -193,6 +194,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void IsAllTheDeclinedProposalDisplayed()
         {
             
+        }
+
+        public void IsProposalListAvailable()
+        {
+            if (ProposalListElement == null)
+                throw new Exception("Unable to locate Proposal List");
+
+            AssertElementPresent(ProposalListElement, "Proposal List");
         }
     }
 }

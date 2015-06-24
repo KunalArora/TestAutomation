@@ -82,8 +82,13 @@ Scenarios:
 	| "CannotUseQuestionMark?@guerrillamail.com"  |
 	| "CannotUseOpenBrace(@guerrillamail.com"     |
 	| "CannotUseEquals=@guerrillamail.com"        |
-	#| "  LeadingSpace@guerrillamail.com"        | these are valid email id's, it will trim the space in the front and at the back.
+<<<<<<< HEAD
+	#| "    LeadingSpace@guerrillamail.com"        | these are valid email id's, it will trim the space in the front and at the back.
 	#| "TrailingSpace@guerrillamail.com     "      |
+=======
+>>>>>>> b5e3bf0df09f8d49e729983433299357195ded68
+
+	# NOTE: Need to add a Positive test for emails with leading and trailing spaces as these are allowed but Brother validation
 	# simply trim them. No error message is displayed
 
 @SMOKE @ignore

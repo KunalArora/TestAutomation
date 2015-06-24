@@ -74,5 +74,22 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
             var page = CurrentPage.As<CloudExistingProposalPage>();
             page.ExistsNotDeletedItem(CurrentDriver);
         }
+
+        [When(@"I can Copy ""(.*)"" Customer an item of Exisiting Proposal table ""(.*)"" Customer")]
+        public void WhenICanCopyCustomerAnItemOfExisitingProposalTableCustomer(string operation, string target)
+        {
+            var page = CurrentPage.As<CloudExistingProposalPage>();
+            page.FindExistingPoposalList();
+            page.ClickOnCopyOnActionItemWithoutCustomer(CurrentDriver, operation, target);
+
+        }
+
+        [Then(@"I can see the Proposal offer which copied ""(.*)"" Customer")]
+        public void ThenICanSeeTheProposalOfferWhichCopiedCustomer(string operation)
+        {
+            var page = CurrentPage.As<CloudExistingProposalPage>();
+            page.FindExistingPoposalList();
+            page.ExistsCopiedProposalOffer(CurrentDriver, operation);
+        }
     }
 }

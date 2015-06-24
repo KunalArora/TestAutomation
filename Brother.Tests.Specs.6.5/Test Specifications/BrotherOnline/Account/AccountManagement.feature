@@ -39,7 +39,7 @@ Scenario: Customer has created a Brother Online account but has forgotten their 
 
 # Create account, sign in, note missing menu option, add role to user, sign out and in again, note menu option present
 # Instant Ink role used as a baseline
-@ignore @TEST @UAT
+@TEST @UAT # -need to add additional scenario (see ticket number for steps) or ValidateRole Feature test
 Scenario: Customer or Dealer role persists after email address change (BOL-176)
 	Given I am logged into my Brother Online account
 	Then I can sign out of Brother Online
@@ -60,7 +60,7 @@ Scenario: Customer or Dealer role persists after email address change (BOL-176)
 	Then I can sign out of Brother Online
 
 # Create an account and sign in, change registered email address and sign out, re-sign in again using new address
-@ignore @TEST @UAT @PROD 
+@ignore @TEST @UAT @PROD - Consolidate with Ireland test and add Scenarios 
 Scenario: Customer can change their Brother Online UK email address after registration (BBAU - find out the number )
 	Given I am logged into my Brother Online account
 	When I navigate to my account for "United Kingdom"
@@ -78,7 +78,7 @@ Scenario: Customer can change their Brother Online UK email address after regist
 	Then I can sign out of Brother Online
 
 # Create an account and sign in, change registered email address and sign out, re-sign in again using new address
-@TEST @UAT @PROD @ignore
+@TEST @UAT @PROD
 Scenario: Customer can change their Brother Online Ireland email address after registration 
 	Given I am logged into my Brother Online account
 	When I navigate to my account for "Ireland"
@@ -119,6 +119,9 @@ Scenario: Business Customer can change their Email Address
 @ignore
 Scenario: Business Customer can change their Address
 	# changing address
+
+
+	#BBAU-2196
 
 
 

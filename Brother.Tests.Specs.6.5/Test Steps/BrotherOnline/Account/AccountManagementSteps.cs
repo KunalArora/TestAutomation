@@ -47,11 +47,8 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [Then(@"I can navigate back to Brother Online home page")]
         public void ThenICanNavigateBackToBrotherOnlineHomePage()
         {
-            Helper.TakeSnapshot();
             Then("If I navigate back to the Brother Online My Account page");
-            Helper.TakeSnapshot();
             NextPage = GlobalNavigationModule.BrotherOnlineGoHome(CurrentDriver);
-            Helper.TakeSnapshot();
         }
 
         [Then(@"If I navigate back to the Brother Online My Account page")]
@@ -83,7 +80,8 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [Then(@"If I click on My Account menu")]
         public void ThenIfIClickOnMyAccountMenu()
         {
-            GlobalNavigationModule.GetProductNavigationMenu("MyAccount").Click();
+            var menuMyAccount = GlobalNavigationModule.GetProductNavigationMenu("MyAccount");
+            menuMyAccount.Click();
         }
 
         [Then(@"I click on My Personal Details")]
