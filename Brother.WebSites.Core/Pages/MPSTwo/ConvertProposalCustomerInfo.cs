@@ -45,6 +45,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private IWebElement IBANElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputBankBic_Input")]
         private IWebElement BICElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputBankPropertyNumber_Input")]
+        private IWebElement BankPropertyNumberElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputBankPropertyStreet_Input")]
+        private IWebElement BankPropertyStreetElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputBankPropertyTown_Input")]
+        private IWebElement BankPropertyTownElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputBankPropertyPostCode_Input")]
+        private IWebElement BankPropertyPostcodeElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_ButtonNext")]
         private IWebElement NextElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputPersonalLiabilityTitle_Input")]
@@ -148,6 +156,26 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ClearAndType(BICElement, "MIDLGB22");
         }
 
+        public void EnterBankPropertyNumber()
+        {
+            ClearAndType(BankPropertyNumberElement, "12345");
+        }
+
+        public void EnterBankPropertyStreet()
+        {
+            ClearAndType(BankPropertyStreetElement, "abc");
+        }
+
+        public void EnterBankPropertyTown()
+        {
+            ClearAndType(BankPropertyTownElement, "abc");
+        }
+
+        public void EnterBankPropertyPostcode()
+        {
+            ClearAndType(BankPropertyPostcodeElement, "M1 3ED");
+        }
+
         public void EnterRemainingCustomerInfo()
         {
             SelectALegalForm();
@@ -174,6 +202,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             EnterBankSortCode();
             EnterIbanNumber();
             EnterBicNumber();
+            EnterBankPropertyNumber();
+            EnterBankPropertyStreet();
+            EnterBankPropertyTown();
+            EnterBankPropertyPostcode();
         }
 
         private void SelectPrivateLiableTitle()
