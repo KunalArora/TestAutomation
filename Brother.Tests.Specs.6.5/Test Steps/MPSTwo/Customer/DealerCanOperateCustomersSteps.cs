@@ -49,5 +49,49 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Customer
             var page = CurrentPage.As<DealerCustomersExistingPage>();
             page.ConfirmCreatedCustomer(CurrentDriver);
         }
+		        [When(@"I click the delete button against ""(.*)"" on Exisiting Customers table")]
+        public void WhenIClickTheDeleteButtonAgainstOnExisitingCustomersTable(string targertitem)
+        {
+            var page = CurrentPage.As<DealerCustomersExistingPage>();
+            page.FindExistingCustomerList();
+
+            if (targertitem == "NewlyCreatedItem")
+            {
+                page.ClickOnDeleteOnActionItemAgainstNewlyCreated(CurrentDriver);
+            }
+            else
+            {
+                page.ClickOnDeleteOnActionItem(CurrentDriver);
+            }
+        }
+		
+        [When(@"I click the ""(.*)"" button on Confirmation Dialog in Customers")]
+        public void WhenIClickTheButtonOnConfirmationDialogInCustomers(string confirm)
+        {
+            var page = CurrentPage.As<DealerCustomersExistingPage>();
+            if (confirm == "OK")
+            {
+                page.ClickAcceptOnConfrimation(CurrentDriver);
+            }
+            else
+            {
+                page.ClickDismissOnConfrimation(CurrentDriver);
+            }
+        }
+
+        [Then(@"I can see the deleted customer does not exist on the table")]
+        public void ThenICanSeeTheDeletedCustomerDoesNotExistOnTheTable()
+        {
+            var page = CurrentPage.As<DealerCustomersExistingPage>();
+            page.NotExistTheDeletedItem(CurrentDriver);
+        }
+
+        [Then(@"I can see the deleted item still exists on the customer table")]
+        public void ThenICanSeeTheDeletedItemStillExistsOnTheCustomerTable()
+        {
+            var page = CurrentPage.As<DealerCustomersExistingPage>();
+            page.ExistsNotDeletedItem(CurrentDriver);
+        }
+		
     }
 }
