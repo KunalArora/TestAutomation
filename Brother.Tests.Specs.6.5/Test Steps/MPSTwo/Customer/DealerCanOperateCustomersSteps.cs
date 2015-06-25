@@ -33,6 +33,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Customer
 
 
         [When(@"I create new Customer")]
+        [When(@"I edit the customer")]
         public void WhenICreateNewCustomer()
         {
             var page = CurrentPage.As<DealerCustomersMangePage>();
@@ -44,6 +45,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Customer
         }
 
         [Then(@"I can see the Created Customer")]
+        [Then(@"I can see the edited Customer")]
         public void ThenICanSeeTheCreatedCustomer()
         {
             var page = CurrentPage.As<DealerCustomersExistingPage>();
@@ -92,6 +94,13 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Customer
             var page = CurrentPage.As<DealerCustomersExistingPage>();
             page.ExistsNotDeletedItem(CurrentDriver);
         }
-		
+
+        [When(@"I click the edit button against ""(.*)"" on Exisiting Customers table")]
+        public void WhenIClickTheEditButtonAgainstOnExisitingCustomersTable(string p0)
+        {
+            var page = CurrentPage.As<DealerCustomersExistingPage>();
+            NextPage = page.ClickOnEditOnActionItemAgainstNewlyCreated(CurrentDriver);
+        }
+
     }
 }

@@ -143,5 +143,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             TestCheck.AssertIsEqual(true, exisitng,
                 "Cancelled Item does not exist on table.");
         }
+
+        public CloudManageCustomerPage ClickOnEditOnActionItemAgainstNewlyCreated(IWebDriver driver)
+        {
+            var json1 = SpecFlow.GetContext(DealerLatestCreatedContact);
+            var contact = ModelUtils.JsonDeserialize<OrganisationContactDetail>(json1);
+
+            var customerelem = FindExistingCustomerByEmail(driver, contact.Email);
+            ClickActionButtonOnOffer(customerelem);
+            var editElem = customerelem.FindElement(By.CssSelector(".js-mps-edit"));
+            var id = editElem.GetAttribute("data-person-id");
+            SpecFlow.SetContext(DealerLatestOperatingCustomerItemId, id);
+            editElem.Click();
+            return GetInstance<CloudManageCustomerPage>();
+        }
     }
 }
