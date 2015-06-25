@@ -20,6 +20,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Customer
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("DealerCanOperateCustomers")]
+    [NUnit.Framework.IgnoreAttribute()]
     [NUnit.Framework.CategoryAttribute("TEST")]
     [NUnit.Framework.CategoryAttribute("UAT")]
     public partial class DealerCanOperateCustomersFeature
@@ -36,6 +37,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Customer
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "DealerCanOperateCustomers", "In order to view/create/edit/delete customers\r\nAs an MPS Dealer or Sub-Dealer\r\nI " +
                     "want to operate customers", ProgrammingLanguage.CSharp, new string[] {
+                        "ignore",
                         "TEST",
                         "UAT"});
             testRunner.OnFeatureStart(featureInfo);
@@ -129,10 +131,17 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Dealer can edit a new customer")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "NewlyCreatedItem", null)]
         public virtual void DealerCanEditANewCustomer(string role, string country, string targetItem, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer can edit a new customer", exampleTags);
+            string[] @__tags = new string[] {
+                    "ignore"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer can edit a new customer", @__tags);
 #line 34
 this.ScenarioSetup(scenarioInfo);
 #line 35
