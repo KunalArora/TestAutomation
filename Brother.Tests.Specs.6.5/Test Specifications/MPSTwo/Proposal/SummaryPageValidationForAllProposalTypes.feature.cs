@@ -20,9 +20,9 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Proposal
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("SummaryPageValidationForAllProposalTypes")]
+    [NUnit.Framework.CategoryAttribute("MPS")]
     [NUnit.Framework.CategoryAttribute("TEST")]
     [NUnit.Framework.CategoryAttribute("UAT")]
-    [NUnit.Framework.CategoryAttribute("MPS")]
     public partial class SummaryPageValidationForAllProposalTypesFeature
     {
         
@@ -37,9 +37,9 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Proposal
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "SummaryPageValidationForAllProposalTypes", "In order to avoid ambiguity on proposal summary page\r\nAs a dealer\r\nI want to be v" +
                     "erify that proposal summary page is correct for all types of proposal", ProgrammingLanguage.CSharp, new string[] {
+                        "MPS",
                         "TEST",
-                        "UAT",
-                        "MPS"});
+                        "UAT"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
