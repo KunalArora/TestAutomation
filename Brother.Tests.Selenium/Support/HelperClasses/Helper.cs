@@ -61,7 +61,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         private static string _locale = "uk"; // default locale
 
         private const string DefaultSeleniumFolder = "C:\\TestAutomation\\SnapShots";
-        private const int MaxFileNameSize = 260;
+        private const int MaxFileNameSize = 245;
         public static string CreditCardType  { get; set; }
 
         public static string Password
@@ -483,7 +483,9 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             if (snapshotLocation.Length > MaxFileNameSize)
             {
                 // snapshot length too long so we'll have to shorten it
-
+                snapshotLocation = snapshotLocation.Substring(0, MaxFileNameSize - 4);
+                snapshotLocation = string.Format(snapshotLocation + "{0}", ".jpg");
+                MsgOutput("Trimming Snapshot as length is too long (large scenario description)......");
             }
 
             try
