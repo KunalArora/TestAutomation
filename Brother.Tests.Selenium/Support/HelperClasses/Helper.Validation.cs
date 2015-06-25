@@ -84,8 +84,10 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         {
             var errorsPresent = false;
             var errors = TestController.CurrentDriver.FindElements(By.CssSelector(ErrorMsg));
+            MsgOutput("Looking for visible error message elements");
             foreach (var error in errors)
             {
+                MsgOutput(string.Format("Error message element status = {0}", error.Displayed));
                 if (error.Displayed)
                 {
                     errorsPresent = true;
