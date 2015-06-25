@@ -341,7 +341,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private IList<IWebElement> DisplayedAllPrintersByFilteringOfFreeTextElement()
         {
-            string element = ".js-mps-product-open-container[style=\"display: list-item;\"";
+            string element = ".js-mps-product-open-container[style=\"display: list-item;\"]";
 
             return GetElementsByCssSelector(element);
         }
