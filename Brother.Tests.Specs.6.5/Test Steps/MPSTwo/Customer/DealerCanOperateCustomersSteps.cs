@@ -47,6 +47,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Customer
         public void ThenICanSeeTheCreatedCustomer()
         {
             var page = CurrentPage.As<CloudExisitngCustomerPage>();
+            page.ConfirmCreatedCustomer(CurrentDriver);
         }
 
     }

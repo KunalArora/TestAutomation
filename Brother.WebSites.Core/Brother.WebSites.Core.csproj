@@ -34,6 +34,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -56,6 +57,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ViewModels\ModelUtils.cs" />
+    <Compile Include="ViewModels\MPSTwo\OrganisationContactDetail.cs" />
+    <Compile Include="ViewModels\MPSTwo\OrganisationBankDetail.cs" />
+    <Compile Include="ViewModels\MPSTwo\OrganisationDetail.cs" />
     <Compile Include="Pages\Base\BasePage.Common.cs" />
     <Compile Include="Pages\Base\BasePage.cs" />
     <Compile Include="Pages\Base\BaseSteps.cs" />

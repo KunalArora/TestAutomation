@@ -1,6 +1,8 @@
 ﻿using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
+using Brother.WebSites.Core.ViewModels;
+using Brother.WebSites.Core.ViewModels.MPSTwo;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
@@ -10,6 +12,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
     public class CloudManageCustomerPage : BasePage
     {
         public static string URL = "/mps/dealer/customers/manage";
+        public const string DealerLatestCreatedOrganization = "DealerLatestCreatedOrganization";
+        public const string DealerLatestCreatedContact = "DealerLatestCreatedContact";
+        public const string DealerLatestCreatedBank = "DealerLatestCreatedBank";
 
         [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputPersonTitle_Input")]
         private IWebElement ContactTitleElement;
@@ -59,75 +64,106 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void FillOrganisationDetails()
         {
-            EnterCompanyName();
-            EnterPropertyNumber();
-            EnterPropertyStreet();
-            EnterPropertyArea();
-            EnterPropertyTown();
-            EnterPropertyPostCode();
-            EnterPropertyLegalForm();
-            WebDriver.Wait(Helper.DurationType.Millisecond, 3000);
-            EnterPropertyTradingStyle();
-            EnterPropertyAuthorisedSignatory();
+            var org = new OrganisationDetail
+            {
+                Name = MpsUtil.CompanyName(),
+                PropertyNumber = MpsUtil.PropertyNumber(),
+                PropertyStreet = MpsUtil.PropertyStreet(),
+                PropertyArea = MpsUtil.FirstName(),
+                PropertyTown = MpsUtil.PropertyTown(),
+                PropertyPostcode = MpsUtil.PostCode(),
+                LegalForm = "1",
+                TradingStyle = "1",
+                AuthorisedSignatory = "abcdefg"
+            };
+
+            var json = ModelUtils.JsonSerialize(org);
+            SpecFlow.SetContext(DealerLatestCreatedOrganization, json);
+
+            EnterCompanyName(org.Name);
+            EnterPropertyNumber(org.PropertyNumber);
+            EnterPropertyStreet(org.PropertyStreet);
+            EnterPropertyArea(org.PropertyArea);
+            EnterPropertyTown(org.PropertyTown);
+            EnterPropertyPostCode(org.PropertyPostcode);
+            EnterPropertyLegalForm(org.LegalForm);
+            EnterPropertyTradingStyle(org.TradingStyle);
+            EnterPropertyAuthorisedSignatory(org.AuthorisedSignatory);
         }
 
         public void FillOrganisationContactDetail()
         {
-            SelectTitleFromDropdown();
-            EnterContactFirstName();
-            EnterContactSurName();
-            EnterContactTelephone();
-            EnterContactEmailAdress();
+            var contact = new OrganisationContactDetail
+            {
+                Title = "2",
+                FirstName = MpsUtil.FirstName(),
+                LastName = MpsUtil.SurName(),
+                Telephone = MpsUtil.CompanyTelephone(),
+                Email = MpsUtil.GenerateUniqueEmail()
+            };
+
+            var json = ModelUtils.JsonSerialize(contact);
+            SpecFlow.SetContext(DealerLatestCreatedContact, json);
+
+            SelectTitleFromDropdown(contact.Title);
+            EnterContactFirstName(contact.FirstName);
+            EnterContactSurName(contact.LastName);
+            EnterContactTelephone(contact.Telephone);
+            EnterContactEmailAdress(contact.Email);
         }
 
         public void FillOrganisationBankDetail(string payment)
         {
+            var bank = new OrganisationBankDetail();
             switch (payment)
             {
                 case "DirectDebit":
-                    SelectPaymentTypeFromDropdown("1");
-                    WebDriver.Wait(Helper.DurationType.Millisecond, 3000);
+                    bank.PaymentType = "1";
                     throw new System.NotImplementedException();
-                    break;;
+                    break; ;
 
                 case "Invoice":
-                    SelectPaymentTypeFromDropdown("2");
-                    WebDriver.Wait(Helper.DurationType.Millisecond, 3000);
+                    bank.PaymentType = "2";
                     break;
 
                 default:
                     throw new System.NotSupportedException(payment);
             }
+
+            var json = ModelUtils.JsonSerialize(bank);
+            SpecFlow.SetContext(DealerLatestCreatedBank, json);
+
+            SelectPaymentTypeFromDropdown(bank.PaymentType);
         }
 
-        private void EnterCompanyName()
+        private void EnterCompanyName(string companyname)
         {
-            CompanyNameElement.SendKeys(MpsUtil.CompanyName());
+            CompanyNameElement.SendKeys(companyname);
         }
 
-        private void EnterPropertyNumber()
+        private void EnterPropertyNumber(string propertyNumber)
         {
-            PropertyNumberElement.SendKeys(MpsUtil.PropertyNumber());
+            PropertyNumberElement.SendKeys(propertyNumber);
         }
 
-        private void EnterPropertyStreet()
+        private void EnterPropertyStreet(string propertyStreet)
         {
-            PropertyStreetElement.SendKeys(MpsUtil.PropertyStreet());
+            PropertyStreetElement.SendKeys(propertyStreet);
         }
 
-        private void EnterPropertyArea()
+        private void EnterPropertyArea(string propertyArea)
         {
-            PropertyAreaElement.SendKeys(MpsUtil.FirstName());
+            PropertyAreaElement.SendKeys(propertyArea);
         }
 
-        private void EnterPropertyTown()
+        private void EnterPropertyTown(string propertyTown)
         {
-            PropertyTownElement.SendKeys(MpsUtil.PropertyTown());
+            PropertyTownElement.SendKeys(propertyTown);
         }
 
-        private void EnterPropertyPostCode()
+        private void EnterPropertyPostCode(string postcode)
         {
-            PropertyPostcodeElement.SendKeys(MpsUtil.PostCode());
+            PropertyPostcodeElement.SendKeys(postcode);
         }
 
         private void SelectRegionFromDropdown(string region)
@@ -138,6 +174,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private void EnterPropertyLegalForm(string value = "1")
         {
             SelectFromDropdownByValue(PropertyLegalFormElement, value);
+            WebDriver.Wait(Helper.DurationType.Millisecond, 3000);
         }
 
         private void EnterPropertyTradingStyle(string value = "1")
@@ -145,42 +182,43 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             SelectFromDropdownByValue(PropertyTradingStyleElement, value);
         }
 
-        private void EnterPropertyAuthorisedSignatory()
+        private void EnterPropertyAuthorisedSignatory(string authsig)
         {
-            var authsig = "abcdefg";
             PropertyyAuthorisedSignatoryElement.SendKeys(authsig);
         }
 
-        private void SelectTitleFromDropdown()
+        private void SelectTitleFromDropdown(string value = "2")
         {
             if (ContactTitleElement.Displayed)
-                SelectFromDropdownByValue(ContactTitleElement, "2");
+                SelectFromDropdownByValue(ContactTitleElement, value);
         }
 
-        private void EnterContactFirstName()
+        private void EnterContactFirstName(string firstname)
         {
-            FirstNameElement.SendKeys(MpsUtil.FirstName());
+            FirstNameElement.SendKeys(firstname);
         }
 
-        private void EnterContactSurName()
+        private void EnterContactSurName(string surname)
         {
-            LastNameElement.SendKeys(MpsUtil.SurName());
+            LastNameElement.SendKeys(surname);
         }
 
-        private void EnterContactTelephone()
+        private void EnterContactTelephone(string telephone)
         {
-            TelephoneElement.SendKeys(MpsUtil.CompanyTelephone());
+            TelephoneElement.SendKeys(telephone);
         }
 
-        private void EnterContactEmailAdress()
+        private void EnterContactEmailAdress(string email)
         {
-            EmailElement.SendKeys(MpsUtil.GenerateUniqueEmail());
+            EmailElement.SendKeys(email);
         }
 
         private void SelectPaymentTypeFromDropdown(string value = "2")
         {
             if (PaymentTypeElement.Displayed)
                 SelectFromDropdownByValue(PaymentTypeElement, value);
+
+            WebDriver.Wait(Helper.DurationType.Millisecond, 3000);
         }
 
         public CloudExisitngCustomerPage ClickSaveButton()
