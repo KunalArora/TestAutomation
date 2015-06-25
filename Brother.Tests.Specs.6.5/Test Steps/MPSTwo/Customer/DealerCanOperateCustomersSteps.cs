@@ -19,14 +19,14 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Customer
         [Then(@"I can see the Existing Customers table")]
         public void ThenICanSeeTheExistingCustomersTable()
         {
-            var page = CurrentPage.As<CloudExisitngCustomerPage>();
+            var page = CurrentPage.As<DealerCustomersExistingPage>();
             page.FindExistingCustomerList();
         }
 
         [Given(@"I click Create Customer Button")]
         public void GivenIClickCreateCustomerButton()
         {
-            var page = CurrentPage.As<CloudExisitngCustomerPage>();
+            var page = CurrentPage.As<DealerCustomersExistingPage>();
             page.FindCreateCustomerButton();
             NextPage = page.ClickCreateCustomerPage();
         }
@@ -46,7 +46,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Customer
         [Then(@"I can see the Created Customer")]
         public void ThenICanSeeTheCreatedCustomer()
         {
-            var page = CurrentPage.As<CloudExisitngCustomerPage>();
+            var page = CurrentPage.As<DealerCustomersExistingPage>();
             page.ConfirmCreatedCustomer(CurrentDriver);
         }
 

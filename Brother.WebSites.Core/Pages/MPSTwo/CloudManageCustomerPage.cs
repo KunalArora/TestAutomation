@@ -221,10 +221,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             WebDriver.Wait(Helper.DurationType.Millisecond, 3000);
         }
 
-        public CloudExisitngCustomerPage ClickSaveButton()
+        public DealerCustomersExistingPage ClickSaveButton()
         {
             saveButtonElement.Click();
-            return GetInstance<CloudExisitngCustomerPage>();
+            return GetInstance<DealerCustomersExistingPage>();
         }
     }
 }

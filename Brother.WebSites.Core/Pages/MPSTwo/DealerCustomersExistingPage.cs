@@ -8,7 +8,7 @@ using OpenQA.Selenium.Support.PageObjects;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class CloudExisitngCustomerPage : BasePage
+    public class DealerCustomersExistingPage : BasePage
     {
         public static string URL = "/mps/dealer/customers/existing";
 

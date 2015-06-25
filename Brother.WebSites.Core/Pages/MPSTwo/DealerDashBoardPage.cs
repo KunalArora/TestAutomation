@@ -123,13 +123,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetInstance<CloudExistingProposalPage>(Driver);
         }
 
-        public CloudExisitngCustomerPage NavigateToExistingCustomerPage()
+        public DealerCustomersExistingPage NavigateToExistingCustomerPage()
         {
             if (ExistingCustomerLinkElement == null)
                 throw new Exception("Are you sure you on dealer dashboard page?");
             ExistingCustomerLinkElement.Click();
 
-            return GetInstance<CloudExisitngCustomerPage>(Driver);
+            return GetInstance<DealerCustomersExistingPage>(Driver);
         }
 
     }

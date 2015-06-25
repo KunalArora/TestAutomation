@@ -127,7 +127,7 @@
     <Compile Include="Pages\MPSTwo\CloudContractPage.cs" />
     <Compile Include="Pages\MPSTwo\CloudCustomersPage.cs" />
     <Compile Include="Pages\MPSTwo\CloudManageCustomerPage.cs" />
-    <Compile Include="Pages\MPSTwo\CloudExisitngCustomerPage .cs" />
+    <Compile Include="Pages\MPSTwo\DealerCustomersExistingPage.cs" />
     <Compile Include="Pages\MPSTwo\CloudExistingProposalPage.cs" />
     <Compile Include="Pages\MPSTwo\CloudMpsNavigationHeaderTabs.cs" />
     <Compile Include="Pages\MPSTwo\ConvertProposalCustomerInfo.cs" />
