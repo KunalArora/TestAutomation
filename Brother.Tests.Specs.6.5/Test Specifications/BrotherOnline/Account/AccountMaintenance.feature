@@ -9,21 +9,20 @@ Scenario Outline: Check Forget Password with various invalid scenarios options (
 	When I click on Create Account for "<Country>"
 	And I click on Forgot Password
 	Then I enter an invalid email address as <Invalid Email Address>
-#	And I click on Reset Your Password
-	Then I should see the Warning Bar activated and displaying a warning message
+	Then I should see the Error Message activated and displaying an Error message
 	And I can navigate to the Brother Online Home Page "<Country>"
 
 Scenarios:
 
 	| Country        | Invalid Email Address                                                                      |
-	| United Kingdom | "InvalidPasswordContaining aspace@mailinator.com"                                          |
-	| United Kingdom | "InvalidPasswordForUser@mailinator.com"                                                    |
-	| United Kingdom | "InvalidPasswordForUser"                                                                   |
+	| United Kingdom | "InvalidEmailContaining aspace@mailinator.com"                                             |
+	| United Kingdom | "InvalidEmailForUser@mailinator.com"                                                       |
+	| United Kingdom | "InvalidEmailForUser"                                                                      |
 	| United Kingdom | "ThisIsAVeryLargeEmailAddressWhichExceeds80CharactersAndThisIsNotSupported@mailinator.com" |
-	| France         | "InvalidPasswordForUser"                                                                   |
-	| Germany        | "InvalidPasswordForUser"                                                                   |
+	| France         | "InvalidEmailForUser"                                                                      |
+	| Germany        | "InvalidEmailForUser"                                                                      |
 	| Germany        | "ThisIsAVeryLargeEmailAddressWhichExceeds80CharactersAndThisIsNotSupported@mailinator.com" |
-	| Netherlands    | "InvalidPasswordForUser"                                                                   |
+	| Netherlands    | "InvalidEmailForUser"                                                                      |
 	| Netherlands    | "ThisIsAVeryLargeEmailAddressWhichExceeds80CharactersAndThisIsNotSupported@mailinator.com" |
-	| Spain          | "InvalidPasswordForUser"                                                                   |
+	| Spain          | "InvalidEmailForUser"                                                                      |
 	| Spain          | "ThisIsAVeryLargeEmailAddressWhichExceeds80CharactersAndThisIsNotSupported@mailinator.com" |
