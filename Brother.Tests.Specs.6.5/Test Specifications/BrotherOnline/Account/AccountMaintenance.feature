@@ -16,17 +16,13 @@ Scenario Outline: Check Forget Password with various invalid scenarios options (
 Scenarios:
 
 	| Country        | Invalid Email Address                                                                      |
-	| United Kingdom | "InvalidPassword@mailinator.com "                                                          |
 	| United Kingdom | "InvalidPasswordContaining aspace@mailinator.com"                                          |
 	| United Kingdom | "InvalidPasswordForUser@mailinator.com"                                                    |
 	| United Kingdom | "InvalidPasswordForUser"                                                                   |
 	| United Kingdom | "ThisIsAVeryLargeEmailAddressWhichExceeds80CharactersAndThisIsNotSupported@mailinator.com" |
-	| France         | "InvalidPassword@mailinator.com "                                                          |
 	| France         | "InvalidPasswordForUser"                                                                   |
-	| Germany        | "InvalidPassword@mailinator.com "                                                          |
 	| Germany        | "InvalidPasswordForUser"                                                                   |
 	| Germany        | "ThisIsAVeryLargeEmailAddressWhichExceeds80CharactersAndThisIsNotSupported@mailinator.com" |
-	| Netherlands    | "InvalidPassword@mailinator.com "                                                          |
 	| Netherlands    | "InvalidPasswordForUser"                                                                   |
 	| Netherlands    | "ThisIsAVeryLargeEmailAddressWhichExceeds80CharactersAndThisIsNotSupported@mailinator.com" |
 	| Spain          | "InvalidPasswordForUser"                                                                   |

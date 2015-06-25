@@ -57,6 +57,32 @@ Scenario: Customer creates a new account with Brother Online using valid credent
 	And I can sign out of Brother Online
 	Then I am redirected to the Brother Home Page
 
+@IGNORE
+# Create a new user account - NEED TO ADD SCENARIOS for emails with Leading and Trailing spaces
+Scenario: Customer creates a new account with Brother Online using valid credentials specified, confirm by email
+																				sign in and Sign Out
+	Given I want to create a new account with Brother Online "United Kingdom"
+	When I click on Create Account for "United Kingdom"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I fill in the registration information using a valid email address 
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Password        | @@@@@	       |
+	| ConfirmPassword | @@@@@		   |
+
+	And I have Agreed to the Terms and Conditions
+	And I declare that I do not use this account for business
+	When I press Create Your Account
+	Then I should see my account confirmation page
+	And When I Click Go Back
+	And Once I have Validated an Email was received and verified my account
+	Then I should be able to log into "United Kingdom" Brother Online using my account details
+	And I can sign out of Brother Online
+	Then I am redirected to the Brother Home Page
+
+
 # Create an account and sign in, change registered email address and sign out, try to Register a new account using
 # the changed email addrress. It should not be possible
 
