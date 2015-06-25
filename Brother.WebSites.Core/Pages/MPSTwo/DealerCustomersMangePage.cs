@@ -1,16 +1,98 @@
 ﻿using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
-using Brother.WebSites.Core.ViewModels;
-using Brother.WebSites.Core.ViewModels.MPSTwo;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class CloudManageCustomerPage : BasePage
+    public class DealerCustomersMangePage : BasePage
     {
+#region ViewModels
+        internal class OrganisationBankDetail
+        {
+            public string PaymentType { get; set; }
+
+            public string BankAccountNumber { get; set; }
+
+            public string BankSortCode { get; set; }
+
+            public string IBAN { get; set; }
+
+            public string BIC { get; set; }
+
+            public string BankName { get; set; }
+
+            public string PropertyNaumber { get; set; }
+
+            public string PropertyStreet { get; set; }
+
+            public string PropertyArea { get; set; }
+
+            public string PropertyTown { get; set; }
+
+            public string PropertyPostcode { get; set; }
+
+            public string PropertyCountry { get; set; }
+
+            public string Region { get; set; }
+        }
+
+        internal class OrganisationContactDetail
+        {
+            public string Title { get; set; }
+
+            public string FirstName { get; set; }
+
+            public string LastName { get; set; }
+
+            public string Position { get; set; }
+
+            public string Telephone { get; set; }
+
+            public string Mobile { get; set; }
+
+            public string Email { get; set; }
+
+            public string CanOrderConsumablesForAllDevices { get; set; }
+        }
+
+        internal class OrganisationDetail
+        {
+            public string Name { get; set; }
+
+            public string PropertyNumber { get; set; }
+
+            public string PropertyStreet { get; set; }
+
+            public string PropertyArea { get; set; }
+
+            public string PropertyTown { get; set; }
+
+            public string PropertyPostcode { get; set; }
+
+            public string PropertyCountry { get; set; }
+
+            public string Region { get; set; }
+
+            public string CostCentre { get; set; }
+
+            public string LegalForm { get; set; }
+
+            public string CompanyRegistrationNumber { get; set; }
+
+            public string VatRegistrationNumber { get; set; }
+
+            public string TradingStyle { get; set; }
+
+            public string AuthorisedSignatory { get; set; }
+        }
+
+#endregion
+
+
+
         public static string URL = "/mps/dealer/customers/manage";
         public const string DealerLatestCreatedOrganization = "DealerLatestCreatedOrganization";
         public const string DealerLatestCreatedContact = "DealerLatestCreatedContact";
@@ -77,8 +159,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 AuthorisedSignatory = "abcdefg"
             };
 
-            var json = ModelUtils.JsonSerialize(org);
-            SpecFlow.SetContext(DealerLatestCreatedOrganization, json);
+            SpecFlow.SetObject(DealerLatestCreatedOrganization, org);
 
             EnterCompanyName(org.Name);
             EnterPropertyNumber(org.PropertyNumber);
@@ -102,8 +183,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 Email = MpsUtil.GenerateUniqueEmail()
             };
 
-            var json = ModelUtils.JsonSerialize(contact);
-            SpecFlow.SetContext(DealerLatestCreatedContact, json);
+            SpecFlow.SetObject(DealerLatestCreatedContact, contact);
 
             SelectTitleFromDropdown(contact.Title);
             EnterContactFirstName(contact.FirstName);
@@ -130,8 +210,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     throw new System.NotSupportedException(payment);
             }
 
-            var json = ModelUtils.JsonSerialize(bank);
-            SpecFlow.SetContext(DealerLatestCreatedBank, json);
+            SpecFlow.SetObject(DealerLatestCreatedBank, bank);
 
             SelectPaymentTypeFromDropdown(bank.PaymentType);
         }

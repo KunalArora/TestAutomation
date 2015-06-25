@@ -1,8 +1,6 @@
 ﻿using System.Linq;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
-using Brother.WebSites.Core.ViewModels;
-using Brother.WebSites.Core.ViewModels.MPSTwo;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
@@ -41,19 +39,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 "Create Customer Button is not found.");
         }
 
-        public CloudManageCustomerPage ClickCreateCustomerPage()
+        public DealerCustomersMangePage ClickCreateCustomerPage()
         {
             createCustomerButtonElement.Click();
-            return GetInstance<CloudManageCustomerPage>();
+            return GetInstance<DealerCustomersMangePage>();
         }
 
         public void ConfirmCreatedCustomer(IWebDriver driver)
         {
-            var json1 = SpecFlow.GetContext(DealerLatestCreatedContact);
-            var contact = ModelUtils.JsonDeserialize<OrganisationContactDetail>(json1);
+            var contact = SpecFlow.GetObject<DealerCustomersMangePage.OrganisationContactDetail>(DealerLatestCreatedContact);
 
-            var json2 = SpecFlow.GetContext(DealerLatestCreatedOrganization);
-            var org = ModelUtils.JsonDeserialize<OrganisationDetail>(json2);
+            var org = SpecFlow.GetObject<DealerCustomersMangePage.OrganisationDetail>(DealerLatestCreatedOrganization);
 
             var email = contact.Email;
 

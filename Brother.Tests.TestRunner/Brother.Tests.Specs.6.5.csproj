@@ -83,6 +83,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ClickPriceDeepDive.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\MPSTwo\Customer\DealerCanOperateCustomers.feature.cs">
+      <DependentUpon>DealerCanOperateCustomers.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Test Specifications\MPSTwo\Proposal\DealerCanOperateProposalOffers.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -311,6 +316,7 @@
     <Compile Include="Test Steps\MPSTwo\Approver\BankSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Approver\LocalOfficeApproverSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Contract\SigningContractsSteps.cs" />
+    <Compile Include="Test Steps\MPSTwo\Customer\DealerCanOperateCustomersSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\DealerAdmin\DealerAdminProfileSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Proposal\CreateAProposalThatHasMoreThanOneDevicesSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -485,6 +491,10 @@
     <None Include="Test Specifications\MPSTwo\Proposal\CompletedFieldsAreReadOnlyInConversionMode.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CompletedFieldsAreReadOnlyInConversionMode.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwo\Customer\DealerCanOperateCustomers.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>DealerCanOperateCustomers.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwo\Proposal\DealerCanOperateProposalOffers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

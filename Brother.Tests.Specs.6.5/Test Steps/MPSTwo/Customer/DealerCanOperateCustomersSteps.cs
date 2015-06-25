@@ -35,7 +35,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Customer
         [When(@"I create new Customer")]
         public void WhenICreateNewCustomer()
         {
-            var page = CurrentPage.As<CloudManageCustomerPage>();
+            var page = CurrentPage.As<DealerCustomersMangePage>();
             page.FillOrganisationDetails();
             page.FillOrganisationContactDetail();
             page.FillOrganisationBankDetail("Invoice");
@@ -49,6 +49,5 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Customer
             var page = CurrentPage.As<DealerCustomersExistingPage>();
             page.ConfirmCreatedCustomer(CurrentDriver);
         }
-
     }
 }
