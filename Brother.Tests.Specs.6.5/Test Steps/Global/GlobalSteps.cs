@@ -19,5 +19,11 @@ namespace Brother.Tests.Specs.Global
         {
             TestCheck.AssertIsEqual(true, Validation.ValidateInformationMessageBarStatus(true), "Information Message Bar");
         }
+
+        [Then(@"I should see the Error Message activated and displaying an Error message")]
+        public void ThenIShouldSeeTheErrorMessageActivatedAndDisplayingAnErrorMessage()
+        {
+            Validation.CheckForErrorNotifications(true);
+        }
     }
 }
