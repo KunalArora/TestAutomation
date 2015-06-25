@@ -105,14 +105,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void StoreMarginConfiguration()
         {
-            SpecFlow.SetContext("DealerAdminHardwareDefaultMargin", HardwareDefaultMargin.GetAttribute("value"));
-            SpecFlow.SetContext("DealerAdminAccesoriesDefaultMargin", AccesoriesDefaultMargin.GetAttribute("value"));
-            SpecFlow.SetContext("DealerAdminDeliveryDefaultMargin", DeliveryDefaultMargin.GetAttribute("value"));
-            SpecFlow.SetContext("DealerAdminInstallationDefaultMargin", InstallationDefaultMargin.GetAttribute("value"));
-            SpecFlow.SetContext("DealerAdminServicePackDefaultMargin", ServicePackDefaultMargin.GetAttribute("value"));
-            SpecFlow.SetContext("DealerAdminMonoClickDefaultMargin", MonoClickDefaultMargin.GetAttribute("value"));
-            SpecFlow.SetContext("DealerAdminColourClickDefaultMargin", ColourClickDefaultMargin.GetAttribute("value"));
-            SpecFlow.SetContext("DealerAdminAllInclusiveMargin", AllInclusiveMargin.GetAttribute("value"));
+            SpecFlow.SetContext("DealerAdminHardwareDefaultMargin", HardwareDefaultMargin.GetAttribute("value") + ".00");
+            SpecFlow.SetContext("DealerAdminAccesoriesDefaultMargin", AccesoriesDefaultMargin.GetAttribute("value") + ".00");
+            SpecFlow.SetContext("DealerAdminDeliveryDefaultMargin", DeliveryDefaultMargin.GetAttribute("value") + ".00");
+            SpecFlow.SetContext("DealerAdminInstallationDefaultMargin", InstallationDefaultMargin.GetAttribute("value") + ".00");
+            SpecFlow.SetContext("DealerAdminServicePackDefaultMargin", ServicePackDefaultMargin.GetAttribute("value") + ".00");
+            SpecFlow.SetContext("DealerAdminMonoClickDefaultMargin", MonoClickDefaultMargin.GetAttribute("value") + ".00");
+            SpecFlow.SetContext("DealerAdminColourClickDefaultMargin", ColourClickDefaultMargin.GetAttribute("value") + ".00");
+            SpecFlow.SetContext("DealerAdminAllInclusiveMargin", AllInclusiveMargin.GetAttribute("value") + ".00");
         }
     }
 }
