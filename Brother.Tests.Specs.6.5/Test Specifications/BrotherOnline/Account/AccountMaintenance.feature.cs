@@ -77,33 +77,18 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.Account
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "\"InvalidEmailContaining aspace@mailinator.com\"", null)]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "\"InvalidEmailForUser@mailinator\"", null)]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "\"InvalidEmailForUser\"", null)]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "\"ThisIsAVeryLargeEmailAddressWhichExceeds241CharactersAndThisIsNotSupportedaaaaaa" +
-            "aaaaaThisIsAVeryLargeEmailAddressWhichExceeds241CharactersAndThisIsNotSupporteda" +
-            "aaaaaaaaaaThisIsAVeryLargeEmailAddressWhichExceed@mailinator.com\"", null)]
         [NUnit.Framework.TestCaseAttribute("France", "\"InvalidEmailContaining aspace@mailinator.com\"", null)]
         [NUnit.Framework.TestCaseAttribute("France", "\"InvalidEmailForUser\"", null)]
         [NUnit.Framework.TestCaseAttribute("France", "\"InvalidEmailForUser@mailinator\"", null)]
-        [NUnit.Framework.TestCaseAttribute("France", "\"ThisIsAVeryLargeEmailAddressWhichExceeds241CharactersAndThisIsNotSupportedaaaaaa" +
-            "aaaaaThisIsAVeryLargeEmailAddressWhichExceeds241CharactersAndThisIsNotSupporteda" +
-            "aaaaaaaaaaThisIsAVeryLargeEmailAddressWhichExceed@mailinator.com\"", null)]
         [NUnit.Framework.TestCaseAttribute("Germany", "\"InvalidEmailContaining aspace@mailinator.com\"", null)]
         [NUnit.Framework.TestCaseAttribute("Germany", "\"InvalidEmailForUser\"", null)]
         [NUnit.Framework.TestCaseAttribute("Germany", "\"InvalidEmailForUser@mailinator\"", null)]
-        [NUnit.Framework.TestCaseAttribute("Germany", "\"ThisIsAVeryLargeEmailAddressWhichExceeds241CharactersAndThisIsNotSupportedaaaaaa" +
-            "aaaaaThisIsAVeryLargeEmailAddressWhichExceeds241CharactersAndThisIsNotSupporteda" +
-            "aaaaaaaaaaThisIsAVeryLargeEmailAddressWhichExceed@mailinator.com\"", null)]
         [NUnit.Framework.TestCaseAttribute("Netherlands", "\"InvalidEmailContaining aspace@mailinator.com\"", null)]
         [NUnit.Framework.TestCaseAttribute("Netherlands", "\"InvalidEmailForUser@mailinator\"", null)]
         [NUnit.Framework.TestCaseAttribute("Netherlands", "\"InvalidEmailForUser\"", null)]
-        [NUnit.Framework.TestCaseAttribute("Netherlands", "\"ThisIsAVeryLargeEmailAddressWhichExceeds241CharactersAndThisIsNotSupportedaaaaaa" +
-            "aaaaaThisIsAVeryLargeEmailAddressWhichExceeds241CharactersAndThisIsNotSupporteda" +
-            "aaaaaaaaaaThisIsAVeryLargeEmailAddressWhichExceed@mailinator.com\"", null)]
         [NUnit.Framework.TestCaseAttribute("Spain", "\"InvalidEmailContaining aspace@mailinator.com\"", null)]
         [NUnit.Framework.TestCaseAttribute("Spain", "\"InvalidEmailForUser@mailinator\"", null)]
         [NUnit.Framework.TestCaseAttribute("Spain", "\"InvalidEmailForUser\"", null)]
-        [NUnit.Framework.TestCaseAttribute("Spain", "\"ThisIsAVeryLargeEmailAddressWhichExceeds241CharactersAndThisIsNotSupportedaaaaaa" +
-            "aaaaaThisIsAVeryLargeEmailAddressWhichExceeds241CharactersAndThisIsNotSupporteda" +
-            "aaaaaaaaaaThisIsAVeryLargeEmailAddressWhichExceed@mailinator.com\"", null)]
         public virtual void CheckForgetPasswordWithVariousInvalidScenariosOptionsBOL_177BBAU_2339(string country, string invalidEmailAddress, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Check Forget Password with various invalid scenarios options (BOL-177, BBAU-2339)" +

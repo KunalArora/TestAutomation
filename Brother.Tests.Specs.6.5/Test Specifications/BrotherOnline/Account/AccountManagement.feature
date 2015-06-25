@@ -113,7 +113,6 @@ Scenario: Business Customer can change their Address
 	# changing address
 
 
-	#BBAU-2196
 
 
 
