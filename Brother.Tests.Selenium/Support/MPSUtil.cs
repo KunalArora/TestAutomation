@@ -2,6 +2,7 @@
 using System.Globalization;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Selenium.Lib.Support
@@ -641,6 +642,22 @@ namespace Brother.Tests.Selenium.Lib.Support
             poundNumberFormatInfo.CurrencySymbol = "£";
 
             return decimal.Parse(money, NumberStyles.Currency, poundNumberFormatInfo);
+        }
+
+        public static void ClickButtonThenNavigateToOtherUrl(IWebDriver driver, IWebElement element)
+        {
+            var previousUrl = driver.Url;
+            element.Click();
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            wait.Until(ExpectedConditionsEx.UrlChangeFrom(previousUrl));
+        }
+
+        public static void ClickButtonThenNavigateToSameUrl(IWebDriver driver, IWebElement element)
+        {
+            var previousUrl = driver.Url;
+            element.Click();
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            wait.Until(ExpectedConditionsEx.UrlNotChangeFrom(previousUrl));
         }
     }
 }
