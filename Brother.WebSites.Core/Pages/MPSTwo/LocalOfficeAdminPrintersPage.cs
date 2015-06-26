@@ -6,7 +6,7 @@ using OpenQA.Selenium.Support.PageObjects;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class LocalOfficePrintersPage : BasePage
+    public class LocalOfficeAdminPrintersPage : BasePage
     {
         public static string Url = "/";
 
