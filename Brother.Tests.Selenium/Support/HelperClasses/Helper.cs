@@ -184,6 +184,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             return url.ToLower().Replace("http", "https");
         }
 
+        
         public static void MsgOutput(string message)
         {
             #if DEBUG

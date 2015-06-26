@@ -54,7 +54,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ScrollTo(RejectButtonElement);
             RejectButtonElement.Click();
 
-            return GetTabInstance<BankOffersPage>(Driver);
+            return GetTabInstance<BankOffersPage>(Driver, BaseURL, true);
         }
 
         public BankOffersPage ClickAccpetButton()
@@ -63,7 +63,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             AcceptButtonElement.Click();
             WebDriver.Wait(Helper.DurationType.Second, 5);
 
-            return GetTabInstance<BankOffersPage>(Driver);
+            return GetTabInstance<BankOffersPage>(Driver, BaseURL, true);
         }
 
         public void EnterCustomerReference(string str)

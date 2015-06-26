@@ -39,14 +39,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             IsProposalsLinkAvailable();
             ProposalLinkElement.Click();
-            return GetTabInstance<LocalOfficeApproverProposalsPage>(Driver);
+            return GetTabInstance<LocalOfficeApproverProposalsPage>(Driver, BaseURL, true);
         }
 
         public LocalOfficeApproverContractsPage NavigateToContractsPage()
         {
             IsContractsLinkAvailable();
             ContractLinkElement.Click();
-            return GetTabInstance<LocalOfficeApproverContractsPage>(Driver);
+            return GetTabInstance<LocalOfficeApproverContractsPage>(Driver, BaseURL, true);
         }
     }
 }

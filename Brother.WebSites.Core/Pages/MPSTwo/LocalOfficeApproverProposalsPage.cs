@@ -149,7 +149,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             element.Click();
             ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
 
-            return GetTabInstance<LocalOfficeApproverProposalsSummaryPage>(Driver);
+            return GetTabInstance<LocalOfficeApproverProposalsSummaryPage>(Driver, BaseURL, true);
         }
 
         public LocalOfficeApproverProposalsSummaryPage NavigateToViewSummary(string name)
@@ -158,7 +158,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             element.Click();
             ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
 
-            return GetTabInstance<LocalOfficeApproverProposalsSummaryPage>(Driver);
+            return GetTabInstance<LocalOfficeApproverProposalsSummaryPage>(Driver, BaseURL, true);
         }
 
         public LocalOfficeApproverProposalsSummaryPage NavigateToProposalSummary()
@@ -166,7 +166,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ActionsModule.SpecificClickOnTheActionsDropdown(Driver);
             ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
 
-            return GetTabInstance<LocalOfficeApproverProposalsSummaryPage>(Driver);
+            return GetTabInstance<LocalOfficeApproverProposalsSummaryPage>(Driver, BaseURL, true);
         }
 
         public void NavigateToAwaitingApprovalPage()

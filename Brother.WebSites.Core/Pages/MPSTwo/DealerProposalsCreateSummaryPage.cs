@@ -454,7 +454,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             WebDriver.Wait(Helper.DurationType.Second, 3);
             ScrollTo(SaveProposalElement);
             SaveProposalElement.Click();
-            return GetTabInstance<CloudExistingProposalPage>(Driver);
+            return GetTabInstance<CloudExistingProposalPage>(Driver, BaseURL, true);
         }
 
         public void VerifySelectedDeviceIsDisplayed(string model)
