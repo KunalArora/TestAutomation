@@ -230,8 +230,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public ConvertProposalCustomerInfo ClickOnConvertToContractButton(IWebDriver driver)
         {
             ActionsModule.StartConvertToContractProcess(driver);
-            //VerifyThatTheCorrectProposalOpened();
-            return GetTabInstance<ConvertProposalCustomerInfo>(Driver, BaseURL, true);
+            return GetTabInstance<ConvertProposalCustomerInfo>(Driver);
 
         }
 
@@ -239,7 +238,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             ActionsModule.StartConvertToContractProcess(driver);
             //VerifyThatTheCorrectProposalOpened();
-            return GetTabInstance<ConvertProposalSummaryPage>(Driver, BaseURL, true);
+            return GetTabInstance<ConvertProposalSummaryPage>(Driver);
 
         }
 

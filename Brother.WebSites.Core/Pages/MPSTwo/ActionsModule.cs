@@ -33,7 +33,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return driver.FindElement(By.CssSelector(ProposalCopyElementWithCustomer));
         }
 
-        private static IWebElement ConvertButtonElement(ISearchContext driver)
+        public static IWebElement ConvertButtonElement(ISearchContext driver)
         {
             return driver.FindElement(By.CssSelector(ConvertToContractButton));
         }
@@ -218,12 +218,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public static void StartConvertToContractProcess(IWebDriver driver)
         {
-            ConvertButtonElement(driver).Click();
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(driver, ConvertButtonElement(driver));
         }
 
         public static void NavigateToSummaryPageUsingActionButton(IWebDriver driver)
         {
-            OpenOfferViewSummaryElement(driver).Click();
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(driver, OpenOfferViewSummaryElement(driver));
         }
 
         public static void StartTheProposalEditProcess(IWebDriver driver)

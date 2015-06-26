@@ -118,8 +118,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public DealerProposalsCreateProductsPage ClickNextButton()
         {
             ScrollTo(NextButton);
-            NextButton.Click();
-            return GetTabInstance<DealerProposalsCreateProductsPage>(Driver, BaseURL, true);
+            //NextButton.Click();
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, NextButton);
+            return GetTabInstance<DealerProposalsCreateProductsPage>(Driver);
         }
     }
 }
