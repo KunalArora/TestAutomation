@@ -8,13 +8,6 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
     [Binding]
     public class LocalOfficeAdminSteps : BaseSteps
     {
-        [Given(@"I enable Easy Print Pro contract")]
-        public void GivenIEnableEasyPrintProContract()
-        {
-            NextPage = CurrentPage.As<LocalOfficeAdminDashBoardPage>().NavigateToPurchaseAndClickPage();
-            CurrentPage.As<EasyPrintProPage>().EnableContractType();
-        }
-
         [Given(@"I navigate to Local Office Admin Dashboard page")]
         public void GivenINavigateToLocalOfficeAdminDashboardPage()
         {

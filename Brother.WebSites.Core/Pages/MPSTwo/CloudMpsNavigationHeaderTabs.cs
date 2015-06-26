@@ -18,10 +18,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return driver.FindElement(By.CssSelector(CustomerNavTab));
         }
 
-        public static CloudCustomersPage NavigateToCustomerScreen(IWebDriver driver)
+        public static DealerCustomersExistingPage NavigateToCustomerScreen(IWebDriver driver)
         {
             CustomerTab(driver).Click();
-            return BasePage.GetInstance<CloudCustomersPage>(driver, "", "");
+            return BasePage.GetInstance<DealerCustomersExistingPage>(driver, "", "");
         }
 
         private static IWebElement ContractTab(ISearchContext driver)
