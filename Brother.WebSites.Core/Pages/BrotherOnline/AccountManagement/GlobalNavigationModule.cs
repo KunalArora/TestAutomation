@@ -168,7 +168,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         {
             // searches for the correct language string
             var buttonName = Navigation.ConvertButtonNameForLocale(productString, buttonNameString);
-            TakeSnapshot();
             var button = MyAccountButtonSearch(driver, buttonName);
             if (button == null)
             {
