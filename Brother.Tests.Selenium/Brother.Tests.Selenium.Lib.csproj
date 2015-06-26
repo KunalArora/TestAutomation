@@ -89,6 +89,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>SeleniumGlobal.settings</DependentUpon>
     </Compile>
+    <Compile Include="Support\HelperClasses\Helper.ExpectedConditionsEx.cs" />
     <Compile Include="Support\HelperClasses\Helper.Screenshot.cs" />
     <Compile Include="Support\HelperClasses\Helper.SpecFlow.cs" />
     <Compile Include="Support\HelperClasses\Helper.TestCheck.cs" />
