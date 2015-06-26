@@ -150,7 +150,7 @@
     <Compile Include="Pages\MPSTwo\DealerProposalsCreateSummaryPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerProposalsCreateClickPricePage.cs" />
     <Compile Include="Pages\MPSTwo\DealerAdminDealershipProfilePage.cs" />
-    <Compile Include="Pages\MPSTwo\LocalOfficePrintersPage.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeAdminPrintersPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerAdminDefaultMarginsPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerAdminDashBoardPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeAdminProgramSettingsPage.cs" />

@@ -87,19 +87,19 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [Given(@"I enabled ""(.*)"" within the Printer screen")]
         public void GivenIEnabledWithinThePrinterScreen(string model)
         {
-            CurrentPage.As<LocalOfficePrintersPage>().EnablePrinter(model);
+            CurrentPage.As<LocalOfficeAdminPrintersPage>().EnablePrinter(model);
         }
 
         [Given(@"I disabled ""(.*)"" within the Printer screen")]
         public void GivenIDisabledWithinThePrinterScreen(string model)
         {
-            CurrentPage.As<LocalOfficePrintersPage>().DisablePrinter(model);
+            CurrentPage.As<LocalOfficeAdminPrintersPage>().DisablePrinter(model);
         }
 
         [Given(@"I save printers on Available Printers page")]
         public void GivenISavePrintersOnAvailablePrintersPage()
         {
-            CurrentPage.As<LocalOfficePrintersPage>().ClickSaveButton();
+            CurrentPage.As<LocalOfficeAdminPrintersPage>().ClickSaveButton();
         }
 
     }
