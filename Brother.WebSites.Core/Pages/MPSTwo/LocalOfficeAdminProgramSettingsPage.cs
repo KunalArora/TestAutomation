@@ -184,11 +184,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 throw new Exception("Unable to locate Purchase Printers link element");
         }
 
-        public LocalOfficePrintersPage NavigateToLocalOfficePurchasePrintersPage()
+        public LocalOfficeAdminPrintersPage NavigateToLocalOfficePurchasePrintersPage()
         {
             IsPurchasePrintersLinkAvailable();
             PurchasePrintersLinkElement.Click();
-            return GetTabInstance<LocalOfficePrintersPage>(Driver);
+            return GetTabInstance<LocalOfficeAdminPrintersPage>(Driver);
         }
 
         private void IsLeasePrintersLinkAvailable()
@@ -197,11 +197,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 throw new Exception("Unable to locate Lease Printers link element");
         }
 
-        public LocalOfficePrintersPage NavigateToLocalOfficeLeasePrintersPage()
+        public LocalOfficeAdminPrintersPage NavigateToLocalOfficeLeasePrintersPage()
         {
             IsLeasePrintersLinkAvailable();
             LeasingPrintersLinkElement.Click();
-            return GetTabInstance<LocalOfficePrintersPage>(Driver);
+            return GetTabInstance<LocalOfficeAdminPrintersPage>(Driver);
         }
     }
 }

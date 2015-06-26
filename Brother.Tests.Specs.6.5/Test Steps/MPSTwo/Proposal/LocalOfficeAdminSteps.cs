@@ -8,13 +8,6 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
     [Binding]
     public class LocalOfficeAdminSteps : BaseSteps
     {
-        [Given(@"I enable Easy Print Pro contract")]
-        public void GivenIEnableEasyPrintProContract()
-        {
-            NextPage = CurrentPage.As<LocalOfficeAdminDashBoardPage>().NavigateToPurchaseAndClickPage();
-            CurrentPage.As<EasyPrintProPage>().EnableContractType();
-        }
-
         [Given(@"I navigate to Local Office Admin Dashboard page")]
         public void GivenINavigateToLocalOfficeAdminDashboardPage()
         {
@@ -87,19 +80,19 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [Given(@"I enabled ""(.*)"" within the Printer screen")]
         public void GivenIEnabledWithinThePrinterScreen(string model)
         {
-            CurrentPage.As<LocalOfficePrintersPage>().EnablePrinter(model);
+            CurrentPage.As<LocalOfficeAdminPrintersPage>().EnablePrinter(model);
         }
 
         [Given(@"I disabled ""(.*)"" within the Printer screen")]
         public void GivenIDisabledWithinThePrinterScreen(string model)
         {
-            CurrentPage.As<LocalOfficePrintersPage>().DisablePrinter(model);
+            CurrentPage.As<LocalOfficeAdminPrintersPage>().DisablePrinter(model);
         }
 
         [Given(@"I save printers on Available Printers page")]
         public void GivenISavePrintersOnAvailablePrintersPage()
         {
-            CurrentPage.As<LocalOfficePrintersPage>().ClickSaveButton();
+            CurrentPage.As<LocalOfficeAdminPrintersPage>().ClickSaveButton();
         }
 
     }
