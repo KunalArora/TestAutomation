@@ -341,7 +341,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private IList<IWebElement> DisplayedAllPrintersByFilteringOfFreeTextElement()
         {
-            string element = ".js-mps-product-open-container[style=\"display: list-item;\"";
+            string element = ".js-mps-product-open-container[style=\"display: list-item;\"]";
 
             return GetElementsByCssSelector(element);
         }
@@ -661,17 +661,26 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ClearAndType(InstallationPackCostPriceElement, value);
         }
 
-        public int InstallationPackCostPrice()
+        public decimal InstallationPackCostPrice()
         {
+
             var priceText = InstallationPackCostPriceElement.GetAttribute("value");
 
-            return Convert.ToInt32(priceText);
+            try
+            {
+                return Convert.ToDecimal(priceText);
+            }
+            catch (FormatException formatException)
+            {
+                throw new Exception(formatException.ToString());
+            }
+
         }
 
         public void EnterInstallationPackCostPriceLessThanDefault()
         {
-            int price = InstallationPackCostPrice();
-            EnterInstallationPackCostPrice(Convert.ToString(price - 1));
+            var price = InstallationPackCostPrice();
+            EnterInstallationPackCostPrice((price - 1).ToString());
         }
 
                 public void IsNotTheProductAddedToTheProposal()
@@ -858,7 +867,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private IList<IWebElement> ModelNameElement()
         {
-            string element = ".mps-product-configuration .media-heading";
+            string element = ".mps-product-configuration .col-xs-8 h4";
 
             return GetElementsByCssSelector(element);
         }
