@@ -19,24 +19,24 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
         [FindsBy(How = How.Id, Using = "content_1_InputStartDate_Input")]
-        private IWebElement StartDateElement;
+        public IWebElement StartDateElement;
         [FindsBy(How = How.Id, Using = "content_1_InputContractReference_Input")]
-        private IWebElement ContractReferenceElement;
+        public IWebElement ContractReferenceElement;
         [FindsBy(How = How.Id, Using = "content_1_InputSentByPost_Input")]
-        private IWebElement SentByPostElement;
+        public IWebElement SentByPostElement;
         [FindsBy(How = How.Id, Using = "content_1_InputStartDateConfirmed_Input")]
-        private IWebElement ServiceContractSignedElement;
+        public IWebElement ServiceContractSignedElement;
         [FindsBy(How = How.Id, Using = "content_1_InputTermsAndConditionsSigned_Input")]
-        private IWebElement TermsAndConditionsSignedElement;
+        public IWebElement TermsAndConditionsSignedElement;
         [FindsBy(How = How.Id, Using = "content_1_InputMachinesHandedOver_Input")]
-        private IWebElement MachinesHandedOverElement;
+        public IWebElement MachinesHandedOverElement;
         [FindsBy(How = How.Id, Using = "content_1_InputResellerInvoicing_Input")]
-        private IWebElement ResellerInvoicingElement;
+        public IWebElement ResellerInvoicingElement;
         [FindsBy(How = How.Id, Using = "content_1_InputBrotherInvoicing_Input")]
-        private IWebElement BrotherInvoicingElement;
+        public IWebElement BrotherInvoicingElement;
         [FindsBy(How = How.Id, Using = "content_1_ButtonSave")]
-        private IWebElement SaveButtonElement;
+        public IWebElement SaveButtonElement;
         [FindsBy(How = How.Id, Using = "content_1_ButtonBack")]
-        private IWebElement BackButtonElement;
+        public IWebElement BackButtonElement;
     }
 }

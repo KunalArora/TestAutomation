@@ -21,7 +21,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
         [FindsBy(How = How.CssSelector, Using = ".active a[href=\"/mps/dealer/contracts/awaiting-acceptance\"]")]
-        private IWebElement OpenedAwaitingAcceptanceTabElement;
+        public IWebElement OpenedAwaitingAcceptanceTabElement;
 
         public void IsAwaitingAcceptanceContractDisplayed()
         {

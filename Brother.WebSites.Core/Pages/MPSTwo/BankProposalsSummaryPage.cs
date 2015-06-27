@@ -17,21 +17,21 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
         [FindsBy(How = How.Id, Using = "content_1_ButtonApprove")]
-        private IWebElement ApproveButtonElement;
+        public IWebElement ApproveButtonElement;
         [FindsBy(How = How.Id, Using = "content_1_ButtonDecline")]
-        private IWebElement DeclineButtonElement;
+        public IWebElement DeclineButtonElement;
         [FindsBy(How = How.Id, Using = "content_1_InputProposalDeclineReason_Input")]
-        private IWebElement DeclineReasonElement;
+        public IWebElement DeclineReasonElement;
         [FindsBy(How = How.Id, Using = "content_1_ButtonProposalDeclineDecline")]
-        private IWebElement RejectButtonElement;
+        public IWebElement RejectButtonElement;
         [FindsBy(How = How.Id, Using = "content_1_InputProposalApproveCustomerReference_Input")]
-        private IWebElement CustomerReferenceElement;
+        public IWebElement CustomerReferenceElement;
         [FindsBy(How = How.Id, Using = "content_1_InputProposalApproveContractReference_Input")]
-        private IWebElement ReferenceElement;
+        public IWebElement ReferenceElement;
         [FindsBy(How = How.Id, Using = "content_1_InputProposalApproveValidUntil_Input")]
-        private IWebElement ValidUntilElement;
+        public IWebElement ValidUntilElement;
         [FindsBy(How = How.Id, Using = "content_1_ButtonProposalApproveApprove")]
-        private IWebElement AcceptButtonElement;
+        public IWebElement AcceptButtonElement;
 
         public void ClickApproveButton()
         {

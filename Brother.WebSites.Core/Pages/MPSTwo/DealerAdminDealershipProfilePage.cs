@@ -22,9 +22,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
         [FindsBy(How = How.CssSelector, Using = "#content_1_InputProfile_Input")]
-        private IWebElement ProfileBoxElement;
+        public IWebElement ProfileBoxElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_ButtonSave")]
-        private IWebElement ProfileSaveButtonElement;
+        public IWebElement ProfileSaveButtonElement;
         
 
         private void IsDealershopProfilePageDisplayed()

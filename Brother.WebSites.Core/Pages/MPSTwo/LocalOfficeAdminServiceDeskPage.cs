@@ -16,13 +16,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
         [FindsBy(How = How.Id, Using = "content_1_InputEmailAddress_Input")]
-        private IWebElement EmailAddressElement;
+        public IWebElement EmailAddressElement;
         [FindsBy(How = How.Id, Using = "content_1_ButtonNext")]
-        private IWebElement SaveButtonElement;
+        public IWebElement SaveButtonElement;
         [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/local-office/service-desk/users]")]
-        private IWebElement ServiceDeskUsersLinkElement;
+        public IWebElement ServiceDeskUsersLinkElement;
         [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/local-office/service-desk/settings']")]
-        private IWebElement ServiceDeskSettingsLinkElement;
+        public IWebElement ServiceDeskSettingsLinkElement;
 
         private void IsServiceDeskUsersLinkElementAvailable()
         {

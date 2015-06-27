@@ -20,7 +20,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
         [FindsBy(How = How.CssSelector, Using = "#content_1_ContractList_List_HeaderValidUntil")]
-        private IWebElement ValidUntilLabelElement;
+        public IWebElement ValidUntilLabelElement;
 
 
 

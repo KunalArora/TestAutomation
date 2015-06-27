@@ -22,59 +22,59 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
 
         [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputPersonCanOrderConsumables_Label")]
-        private IWebElement CanOrderConsumablesTick;
+        public IWebElement CanOrderConsumablesTick;
         [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputCustomerLegalForm_Input")]
-        private IWebElement LegalFormDropdown;
+        public IWebElement LegalFormDropdown;
         [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputCustomerCompanyRegistrationNumber_Input")]
-        private IWebElement CompanyRegistrationNumberField;
+        public IWebElement CompanyRegistrationNumberField;
         [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputCustomerVatRegistrationNumber_Input")]
-        private IWebElement VATNumberField;
+        public IWebElement VATNumberField;
         [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputCustomerTradingStyle_Input")]
-        private IWebElement TradingStyleElement;
+        public IWebElement TradingStyleElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputCustomerAuthorisedSignatory_Input")]
-        private IWebElement AuthorizedSignatoryElement;
+        public IWebElement AuthorizedSignatoryElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputBankPaymentType_Input")]
-        private IWebElement PaymentTypeDropdown;
+        public IWebElement PaymentTypeDropdown;
         [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputBankName_Input")]
-        private IWebElement BankNameElement;
+        public IWebElement BankNameElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputBankAccountNumber_Input")]
-        private IWebElement BankAccountNumberElement;
+        public IWebElement BankAccountNumberElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputBankSortCode_Input")]
-        private IWebElement BankSortCodeElement;
+        public IWebElement BankSortCodeElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputBankIban_Input")]
-        private IWebElement IBANElement;
+        public IWebElement IBANElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputBankBic_Input")]
-        private IWebElement BICElement;
+        public IWebElement BICElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputBankPropertyNumber_Input")]
-        private IWebElement BankPropertyNumberElement;
+        public IWebElement BankPropertyNumberElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputBankPropertyStreet_Input")]
-        private IWebElement BankPropertyStreetElement;
+        public IWebElement BankPropertyStreetElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputBankPropertyTown_Input")]
-        private IWebElement BankPropertyTownElement;
+        public IWebElement BankPropertyTownElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputBankPropertyPostCode_Input")]
-        private IWebElement BankPropertyPostcodeElement;
+        public IWebElement BankPropertyPostcodeElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_ButtonNext")]
-        private IWebElement NextElement;
+        public IWebElement NextElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputPersonalLiabilityTitle_Input")]
-        private IWebElement PrivateLiableTitleElement;
+        public IWebElement PrivateLiableTitleElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputPersonalLiabilityFirstName_Input")]
-        private IWebElement PrivateLiableFirstNameElement;
+        public IWebElement PrivateLiableFirstNameElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputPersonalLiabilityLastName_Input")]
-        private IWebElement PrivateLiableLastNameElement;
+        public IWebElement PrivateLiableLastNameElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputPersonalLiabilityDateOfBirth_Input")]
-        private IWebElement PrivateLiableDOBElement;
+        public IWebElement PrivateLiableDOBElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputPersonalLiabilityPropertyNumber_Input")]
-        private IWebElement PrivateLiablePropertyNumberElement;
+        public IWebElement PrivateLiablePropertyNumberElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputPersonalLiabilityPropertyStreet_Input")]
-        private IWebElement PrivateLiablePropertyStreetElement;
+        public IWebElement PrivateLiablePropertyStreetElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputPersonalLiabilityPropertyTown_Input")]
-        private IWebElement PrivateLiablePropertyTownElement;
+        public IWebElement PrivateLiablePropertyTownElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputPersonalLiabilityPropertyPostCode_Input")]
-        private IWebElement PrivateLiablePropertyPostCodeElement;
+        public IWebElement PrivateLiablePropertyPostCodeElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputPersonalLiabilityRegion_Input")]
-        private IWebElement PrivateLiablePropertyRegionElement;
+        public IWebElement PrivateLiablePropertyRegionElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_InputCustomerChoiceNew")]
-        private IWebElement CreateNewCustomerRadioButtonElement;
+        public IWebElement CreateNewCustomerRadioButtonElement;
 
 
 

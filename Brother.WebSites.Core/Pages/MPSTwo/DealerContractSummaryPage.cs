@@ -21,7 +21,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
         [FindsBy(How = How.CssSelector, Using = "#content_1_ButtonSign")]
-        private IWebElement DealerSignElement;
+        public IWebElement DealerSignElement;
 
 
         public void IsContractSummaryPageDisplayed()
