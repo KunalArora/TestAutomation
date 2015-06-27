@@ -8,7 +8,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 {
     public class BankDashBoardPage : BasePage
     {
-        public static string Url = "/";
+        public static string Url = "/mps/bank/dashboard";
 
         public override string DefaultTitle
         {
