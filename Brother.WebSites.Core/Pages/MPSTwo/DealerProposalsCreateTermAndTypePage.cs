@@ -13,7 +13,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 {
     public class DealerProposalsCreateTermAndTypePage : BasePage
     {
-        public static string URL = "/mps/dealer/proposals/create/click-price";
+        public static string URL = "/mps/dealer/proposals/create/term-type";
 
         public override string DefaultTitle
         {

@@ -11,7 +11,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 {
     class LocalOfficeApproverContractsMaintenancePage: BasePage
     {
-        public static string Url = "/";
+        public static string Url = "/mps/local-office/contracts/maintenance";
 
         public override string DefaultTitle
         {

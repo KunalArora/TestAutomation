@@ -8,7 +8,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 {
     public class LocalOfficeApproverContractsSummaryPage : BasePage
     {
-        public static string Url = "/";
+        public static string Url = "/mps/local-office/contracts/summary";
 
         public override string DefaultTitle
         {

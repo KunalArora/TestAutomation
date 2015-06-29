@@ -8,7 +8,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 {
     public class BankContractsSummaryPage : BasePage
     {
-        public static string Url = "/";
+        public static string Url = "/mps/bank/contracts/summary";
 
         public override string DefaultTitle
         {

@@ -14,7 +14,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
     public class DealerAdminDealershipProfilePage : BasePage
     {
 
-        public static string Url = "/mps/dealer/admin/dashboard";
+        public static string Url = "/mps/dealer/admin/profile/dealership";
 
         public override string DefaultTitle
         {

@@ -8,7 +8,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 {
     public class LocalOfficeApproverDashBoardPage : BasePage
     {
-        public static string Url = "/";
+        public static string Url = "/mps/local-office/dashboard";
 
         public override string DefaultTitle
         {
