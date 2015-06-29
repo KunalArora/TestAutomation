@@ -24,9 +24,49 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
         
         private const string AddCustomerDialog = ".box-out.generic-form";
         private const string NextButton = ".check-email.button-blue";
-    
+
+        [FindsBy(How = How.CssSelector, Using = "#txtFirstName")] 
+        public IWebElement FirstNameTextField;
+
+        [FindsBy(How = How.CssSelector, Using = "#txtLastName")]
+        public IWebElement LastNameTextField;
+
         [FindsBy(How = How.CssSelector, Using = "#txtEmail")]
         public IWebElement CustomerEmailAddress;
+
+        [FindsBy(How = How.CssSelector, Using = "#txtCompanyName")] 
+        public IWebElement CompanyNameField;
+
+        [FindsBy(How = How.CssSelector, Using = "#content_1_innercontent_2_btnSumbit")] 
+        public IWebElement AddCustomerButton;
+
+
+        public void AddFirstName(string firstName)
+        {
+            FirstNameTextField.SendKeys(firstName + Keys.Tab);
+        }
+
+        public ManageCustomersAndOrdersPage AddCustomerButtonClick()
+        {
+            if (AddCustomerButton == null)
+            {
+                throw new NullReferenceException("Add Customer Button");
+            }
+
+            AddNewCustomer.Click();
+            return GetInstance<ManageCustomersAndOrdersPage>(Driver);
+        }
+        
+
+        public void AddLastName(string lastName)
+        {
+            LastNameTextField.SendKeys(lastName + Keys.Tab);
+        }
+
+        public void AddCompanyName(string companyName)
+        {
+            CompanyNameField.SendKeys(companyName + Keys.Tab);
+        }
 
         public void AddNewCustomerButtonClick()
         {
