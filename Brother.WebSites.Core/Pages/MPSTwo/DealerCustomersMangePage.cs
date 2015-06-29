@@ -150,6 +150,45 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             get { return string.Empty; }
         }
 
+        public void ConfirmOrganisationDetails()
+        {
+            var org = SpecFlow.GetObject<OrganisationDetail>(DealerLatestCreatedOrganization);
+
+            AssertElementValue(CompanyNameElement, org.Name);
+            AssertElementValue(PropertyNumberElement, org.PropertyNumber);
+            AssertElementValue(PropertyStreetElement, org.PropertyStreet);
+            AssertElementValue(PropertyAreaElement, org.PropertyArea);
+            AssertElementValue(PropertyTownElement, org.PropertyTown);
+            AssertElementValue(PropertyPostcodeElement, org.PropertyPostcode);
+            AssertElementValue(PropertyLegalFormElement, org.LegalForm);
+            AssertElementValue(PropertyTradingStyleElement, org.TradingStyle);
+            AssertElementValue(PropertyyAuthorisedSignatoryElement, org.AuthorisedSignatory);
+        }
+
+        public void ConfirmOrganisationContactDetail()
+        {
+            var contact = SpecFlow.GetObject<OrganisationContactDetail>(DealerLatestCreatedContact);
+
+            AssertElementValue(ContactTitleElement, contact.Title);
+            AssertElementValue(FirstNameElement, contact.FirstName);
+            AssertElementValue(LastNameElement, contact.LastName);
+            AssertElementValue(TelephoneElement, contact.Telephone);
+            AssertElementValue(EmailElement, contact.Email);
+        }
+
+        public void ConfirmOrganisationBankDetail()
+        {
+            var bank = SpecFlow.GetObject<OrganisationBankDetail>(DealerLatestCreatedBank);
+
+            AssertElementValue(PaymentTypeElement, bank.PaymentType);
+        }
+
+        private void AssertElementValue(IWebElement elem, string expected)
+        {
+            var value = elem.GetAttribute("value");
+            TestCheck.AssertIsEqual(expected, value, "Input item is not matched");
+        }
+
         public void FillOrganisationDetails()
         {
             var org = new OrganisationDetail

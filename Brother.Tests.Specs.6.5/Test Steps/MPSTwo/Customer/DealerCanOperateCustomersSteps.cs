@@ -51,7 +51,8 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Customer
             var page = CurrentPage.As<DealerCustomersExistingPage>();
             page.ConfirmCreatedCustomer(CurrentDriver);
         }
-		        [When(@"I click the delete button against ""(.*)"" on Exisiting Customers table")]
+
+		[When(@"I click the delete button against ""(.*)"" on Exisiting Customers table")]
         public void WhenIClickTheDeleteButtonAgainstOnExisitingCustomersTable(string targertitem)
         {
             var page = CurrentPage.As<DealerCustomersExistingPage>();
@@ -96,10 +97,20 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Customer
         }
 
         [When(@"I click the edit button against ""(.*)"" on Exisiting Customers table")]
+        [Then(@"I click the edit button against ""(.*)"" on Exisiting Customers table")]
         public void WhenIClickTheEditButtonAgainstOnExisitingCustomersTable(string p0)
         {
             var page = CurrentPage.As<DealerCustomersExistingPage>();
             NextPage = page.ClickOnEditOnActionItemAgainstNewlyCreated(CurrentDriver);
+        }
+
+        [Then(@"I can confirm the edited Cusotemr in detail")]
+        public void ThenICanConfirmTheEditedCusotemrInDetail()
+        {
+            var page = CurrentPage.As<DealerCustomersMangePage>();
+            page.ConfirmOrganisationDetails();
+            page.ConfirmOrganisationContactDetail();
+            page.ConfirmOrganisationBankDetail();
         }
 
     }

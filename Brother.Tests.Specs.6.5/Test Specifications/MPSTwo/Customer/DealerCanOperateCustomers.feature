@@ -1,4 +1,4 @@
-﻿@ignore @TEST @UAT
+﻿ @TEST @UAT
 Feature: DealerCanOperateCustomers
 	In order to view/create/edit/delete customers
 	As an MPS Dealer or Sub-Dealer
@@ -30,7 +30,7 @@ Scenario Outline: Dealer can create a new customer
 	| Cloud MPS Dealer | United Kingdom |
 #	| Sub Dealer | United Kingdom |
 
-@ignore
+
 Scenario Outline: Dealer can edit a new customer 
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to existing customer screen
@@ -39,6 +39,8 @@ Scenario Outline: Dealer can edit a new customer
 	And I click the edit button against "<TargetItem>" on Exisiting Customers table
 	And I edit the customer
 	Then I can see the edited Customer
+	And I click the edit button against "<TargetItem>" on Exisiting Customers table
+	And I can confirm the edited Cusotemr in detail
 	And I can sign out of Brother Online
 
 	Scenarios: 
