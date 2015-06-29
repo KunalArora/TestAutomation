@@ -208,9 +208,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public DealerProposalsCreateSummaryPage MoveToProposalSummaryScreen()
         {
             ScrollTo(ProposalSummaryScreenElement);
-            ProposalSummaryScreenElement.Click();
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ProposalSummaryScreenElement);
 //            AssertElementPresent(SummaryConfirmationTextElement, "Product Confirmation Message");
-            return GetTabInstance<DealerProposalsCreateSummaryPage>(Driver, BaseURL, true);
+            return GetTabInstance<DealerProposalsCreateSummaryPage>(Driver);
 
         }
 

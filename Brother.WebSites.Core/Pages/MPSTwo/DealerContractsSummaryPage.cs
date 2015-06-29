@@ -51,7 +51,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public CloudContractPage ClickFinalReSignButton()
         {
             ScrollTo(FinalResignButtonElement);
-            FinalResignButtonElement.Click();
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, FinalResignButtonElement);
 
             WebDriver.Wait(DurationType.Second, 3);
 
@@ -60,7 +60,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void TickResignInformationCheckbox()
         {
-            ResignInformationCheckboxElement.Click();
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ResignInformationCheckboxElement);
             WebDriver.Wait(DurationType.Second, 3);
         }
     }

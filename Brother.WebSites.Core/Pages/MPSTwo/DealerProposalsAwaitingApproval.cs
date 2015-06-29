@@ -54,7 +54,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             element.Click();
             ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
 
-            return GetTabInstance<DealerProposalsCreateSummaryPage>(Driver, BaseURL, true);
+            return GetTabInstance<DealerProposalsCreateSummaryPage>(Driver);
         }
     }
 }
