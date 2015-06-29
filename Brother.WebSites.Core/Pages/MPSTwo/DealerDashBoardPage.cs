@@ -16,19 +16,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
         [FindsBy(How = How.CssSelector, Using = "a[href='/mps/dealer/create-proposal'] .media-body")] 
-        private IWebElement CreateProposalLinkElement;
+        public IWebElement CreateProposalLinkElement;
         [FindsBy(How = How.CssSelector, Using = "a[href='/mps/dealer/proposals'] .media-body")] 
-        private IWebElement ExistingProposalLinkElement;
+        public IWebElement ExistingProposalLinkElement;
         [FindsBy(How = How.CssSelector, Using = "a[href='/mps/dealer/contracts'] .media-body")]
         public IWebElement ExistingContractLinkElement;
         [FindsBy(How = How.CssSelector, Using = "a[href='/mps/dealer/customers'] .media-body")]
         public IWebElement ExistingCustomerLinkElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/contracts\"] .media-heading")]
-        private IWebElement DashboardContractLinkElement;
+        public IWebElement DashboardContractLinkElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/admin\"] .media-body")]
-        private IWebElement AdminLinkElement;
+        public IWebElement AdminLinkElement;
         [FindsBy(How = How.CssSelector, Using = ".separator a[href='/mps/dealer/admin']")]
-        private IWebElement DealerAdminTabElement;
+        public IWebElement DealerAdminTabElement;
 
         public void IsCreateNewProposalLinkAvailable()
         {

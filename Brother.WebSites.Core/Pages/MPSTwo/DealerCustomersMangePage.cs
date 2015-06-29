@@ -106,44 +106,44 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public const string DealerLatestCreatedBank = "DealerLatestCreatedBank";
 
         [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputPersonTitle_Input")]
-        private IWebElement ContactTitleElement;
+        public IWebElement ContactTitleElement;
         [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputPersonFirstName_Input")]
-        private IWebElement FirstNameElement;
+        public IWebElement FirstNameElement;
         [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputPersonLastName_Input")]
-        private IWebElement LastNameElement;
+        public IWebElement LastNameElement;
         [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputPersonTelephone_Input")]
-        private IWebElement TelephoneElement;
+        public IWebElement TelephoneElement;
         [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputPersonEmail_Input")]
-        private IWebElement EmailElement;
+        public IWebElement EmailElement;
 
         [FindsBy(How = How.Id, Using = "content_1_NewOrganisation")]
-        private IWebElement NewOrganisationElement;
+        public IWebElement NewOrganisationElement;
         [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerName")]
-        private IWebElement CompanyNameElement;
+        public IWebElement CompanyNameElement;
         [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerPropertyNumber_Input")]
-        private IWebElement PropertyNumberElement;
+        public IWebElement PropertyNumberElement;
         [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerPropertyStreet_Input")]
-        private IWebElement PropertyStreetElement;
+        public IWebElement PropertyStreetElement;
         [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerPropertyArea_Input")]
-        private IWebElement PropertyAreaElement;
+        public IWebElement PropertyAreaElement;
         [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerPropertyTown_Input")]
-        private IWebElement PropertyTownElement;
+        public IWebElement PropertyTownElement;
         [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerPropertyPostCode_Input")]
-        private IWebElement PropertyPostcodeElement;
+        public IWebElement PropertyPostcodeElement;
         [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerRegion_Input")]
-        private IWebElement RegionElement;
+        public IWebElement RegionElement;
         [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerLegalForm_Input")]
-        private IWebElement PropertyLegalFormElement;
+        public IWebElement PropertyLegalFormElement;
         [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerTradingStyle_Input")]
-        private IWebElement PropertyTradingStyleElement;
+        public IWebElement PropertyTradingStyleElement;
         [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerAuthorisedSignatory_Input")]
-        private IWebElement PropertyyAuthorisedSignatoryElement;
+        public IWebElement PropertyyAuthorisedSignatoryElement;
 
         [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputBankPaymentType_Input")]
-        private IWebElement PaymentTypeElement;
+        public IWebElement PaymentTypeElement;
 
         [FindsBy(How = How.CssSelector, Using = "input[type=\"submit\"]#content_1_ButtonSave")]
-        private IWebElement saveButtonElement;
+        public IWebElement saveButtonElement;
 
         public override string DefaultTitle
         {

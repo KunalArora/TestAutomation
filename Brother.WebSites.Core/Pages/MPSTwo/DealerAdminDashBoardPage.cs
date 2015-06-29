@@ -16,11 +16,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
         [FindsBy(How = How.CssSelector, Using = "a[href='/mps/dealer/admin/staff'] .media-body")] 
-        private IWebElement CreateAndManagerStaffElement;
+        public IWebElement CreateAndManagerStaffElement;
         [FindsBy(How = How.CssSelector, Using = "a[href='/mps/dealer/admin/default-margins'] .media-body")] 
-        private IWebElement DefaultMarginsElement;
+        public IWebElement DefaultMarginsElement;
         [FindsBy(How = How.CssSelector, Using = "a[href='/mps/dealer/admin/profile'] .media-body")]
-        private IWebElement DealershipProfileElement;
+        public IWebElement DealershipProfileElement;
        
 
         private void IsDefaultMarginsLinkAvailable()

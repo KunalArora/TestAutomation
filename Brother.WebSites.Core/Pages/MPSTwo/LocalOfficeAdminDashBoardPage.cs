@@ -15,11 +15,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
         [FindsBy(How = How.CssSelector, Using = "a[href='/mps/local-office/lease-and-click'] .media-body")]
-        private IWebElement LeasingContractLinkElement;
+        public IWebElement LeasingContractLinkElement;
         [FindsBy(How = How.CssSelector, Using = "a[href='/mps/local-office/purchase-and-click'] .media-body")]
-        private IWebElement PurchaseAndClickLinkElement;
+        public IWebElement PurchaseAndClickLinkElement;
         [FindsBy(How = How.CssSelector, Using = "a[href='/mps/local-office/dealer-defaults'] .media-body")]
-        private IWebElement DealerDefaultsElement;        
+        public IWebElement DealerDefaultsElement;        
 
 
         public void IsLeasingContractLinkAvailable()

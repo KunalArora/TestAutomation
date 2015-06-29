@@ -28,83 +28,83 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
         [FindsBy(How = How.Id, Using = "content_1_InputSearchProduct")]
-        private IWebElement InputSearchProductElement;
+        public IWebElement InputSearchProductElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-product-display-option[data-display-option=\"flat\"]")]
-        private IWebElement flatListClickButtonElement;
+        public IWebElement flatListClickButtonElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-product-display-option[data-display-option=\"default\"]")]
-        private IWebElement withImagesClickButtonElement;
+        public IWebElement withImagesClickButtonElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-alert")]
-        private IWebElement ProductsScreenAlertElement;
+        public IWebElement ProductsScreenAlertElement;
         [FindsBy(How = How.Id, Using = "Quantity")]
-        private IWebElement ProductQuantityElement;
+        public IWebElement ProductQuantityElement;
         [FindsBy(How = How.Id, Using = "content_1_LineItems_InputMonoVolumeBreaks_0")]
-        private IWebElement monoVolumeDropdownElement;
+        public IWebElement monoVolumeDropdownElement;
         [FindsBy(How = How.Id, Using = "content_1_LineItems_InputColourVolumeBreaks_0")]
-        private IWebElement colourVolumeDropdownElement;
+        public IWebElement colourVolumeDropdownElement;
         [FindsBy(How = How.Id, Using = "CostPrice")]
-        private IWebElement ProductCostPriceElement;
+        public IWebElement ProductCostPriceElement;
         [FindsBy(How = How.Id, Using = "SellPrice")]
-        private IWebElement ProductSellPriceElement;
+        public IWebElement ProductSellPriceElement;
         [FindsBy(How = How.Id, Using = "Margin")]
-        private IWebElement ProductMarginElement;
+        public IWebElement ProductMarginElement;
         [FindsBy(How = How.Name, Using = "MarginFullPrecision")]
-        private IWebElement ProductMarginValueElement;
+        public IWebElement ProductMarginValueElement;
         [FindsBy(How = How.Id, Using = "InstallationPackCostPrice")]
-        private IWebElement InstallationPackCostPriceElement;
+        public IWebElement InstallationPackCostPriceElement;
         [FindsBy(How = How.Id, Using = "InstallationPackMargin")]
-        private IWebElement InstallationPackMarginElement;
+        public IWebElement InstallationPackMarginElement;
         [FindsBy(How = How.Id, Using = "InstallationPackSellPrice")]
-        private IWebElement InstallationPackSellPriceElement;
+        public IWebElement InstallationPackSellPriceElement;
         [FindsBy(How = How.Id, Using = "OptionQuantity0")]
-        private IWebElement OptionsQuantityElement;
+        public IWebElement OptionsQuantityElement;
         [FindsBy(How = How.Id, Using = "OptionCostPrice0")]
-        private IWebElement OptionsCostPriceElement;
+        public IWebElement OptionsCostPriceElement;
         [FindsBy(How = How.Id, Using = "OptionSellPrice0")]
-        private IWebElement OptionsSellPriceElement;
+        public IWebElement OptionsSellPriceElement;
         [FindsBy(How = How.Id, Using = "OptionMargin0")]
-        private IWebElement OptionsMarginElement;
+        public IWebElement OptionsMarginElement;
         [FindsBy(How = How.Id, Using = "DeliveryCostPrice")]
-        private IWebElement DeliveryCostPriceElement;
+        public IWebElement DeliveryCostPriceElement;
         [FindsBy(How = How.Id, Using = "DeliveryMargin")]
-        private IWebElement DeliveryMarginElement;
+        public IWebElement DeliveryMarginElement;
         [FindsBy(How = How.Id, Using = "DeliverySellPrice")]
-        private IWebElement DeliverySellPriceElement;
+        public IWebElement DeliverySellPriceElement;
         [FindsBy(How = How.Id, Using = "ServicePackMargin")]
-        private IWebElement ServicePackMarginElement;
+        public IWebElement ServicePackMarginElement;
         [FindsBy(How = How.Id, Using = "ClickPriceMonoCoverage")]
-        private IWebElement ClickPriceCoverageElement;
+        public IWebElement ClickPriceCoverageElement;
         [FindsBy(How = How.Id, Using = "ClickPriceMonoVolume")]
-        private IWebElement ClickPriceVolumeElement;
+        public IWebElement ClickPriceVolumeElement;
         [FindsBy(How = How.Id, Using = "ClickPriceMonoMargin")]
-        private IWebElement ClickPriceMarginElement;
+        public IWebElement ClickPriceMarginElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-product-configuration-submit")]
-        private IWebElement AddToProposalElement;
+        public IWebElement AddToProposalElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-product-configuration-close")]
-        private IWebElement CloseWithoutSavingElement;
+        public IWebElement CloseWithoutSavingElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/proposals/create/summary\"]")]
-        private IWebElement ProposalSummaryScreenElement;
+        public IWebElement ProposalSummaryScreenElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/proposals/create/click-price\"]")]
-        private IWebElement ClickPriceScreenElement;
+        public IWebElement ClickPriceScreenElement;
         [FindsBy(How = How.Id, Using = "content_1_ComponentIntroductionAlert")]
-        private IWebElement SummaryConfirmationTextElement;
+        public IWebElement SummaryConfirmationTextElement;
         [FindsBy(How = How.Id, Using = "content_1_ButtonNext")]
-        private IWebElement NextButtonElement;
+        public IWebElement NextButtonElement;
         [FindsBy(How = How.Id, Using = "content_1_ButtonCalculate")]
-        private IWebElement CalculateClickPriceElement;
+        public IWebElement CalculateClickPriceElement;
         [FindsBy(How = How.CssSelector, Using = ".mps-qa-installation .mps-qa-srp")]
-        private IWebElement InstallationSRPElement;
+        public IWebElement InstallationSRPElement;
         [FindsBy(How = How.CssSelector, Using = "[id='content_1_LineItems_InputMonoVolume_0']")]
-        private IWebElement MonoVolumeInputFieldElement;
+        public IWebElement MonoVolumeInputFieldElement;
         [FindsBy(How = How.CssSelector, Using = "#InstallationPackId [selected=\"true\"]")]
-        private IWebElement SelectedInstallationTypeElement;
+        public IWebElement SelectedInstallationTypeElement;
         [FindsBy(How = How.CssSelector, Using = ".mps-qa-installation [data-total-price=\"true\"]")]
-        private IWebElement SelectedInstallationPriceElement;
+        public IWebElement SelectedInstallationPriceElement;
         [FindsBy(How = How.CssSelector, Using = ".mps-qa-service-pack td")]
-        private IList<IWebElement> SelectedServicePackNameElement;
+        public IList<IWebElement> SelectedServicePackNameElement;
         [FindsBy(How = How.CssSelector, Using = ".mps-qa-service-pack [data-total-price=\"true\"]")]
-        private IWebElement SelectedServicePackPriceElement;
+        public IWebElement SelectedServicePackPriceElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-tab")]
-        private IWebElement DeviceScreenValidator;
+        public IWebElement DeviceScreenValidator;
         
         
 

@@ -16,119 +16,119 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
         [FindsBy(How = How.Id, Using = "content_1_ButtonReject")]
-        private IWebElement RjectButtonElement;
+        public IWebElement RjectButtonElement;
         [FindsBy(How = How.Id, Using = "content_1_ButtonAccept")]
-        private IWebElement AcceptButtonElement;
+        public IWebElement AcceptButtonElement;
         [FindsBy(How = How.Id, Using = "content_1_ButtonOpenOfferRejectReject")]
-        private IWebElement FinalRejectButtonElement;
+        public IWebElement FinalRejectButtonElement;
         [FindsBy(How = How.Id, Using = "content_1_ButtonContractAcceptAccept")]
-        private IWebElement FinalAcceptButtonElement;
+        public IWebElement FinalAcceptButtonElement;
         [FindsBy(How = How.Id, Using = "content_1_InputOpenOfferRejectReason_Input")]
         public IWebElement BankRejectReasonElement;
         [FindsBy(How = How.Id, Using = "content_1_InputOpenOfferRejectComment_Input")]
         public IWebElement BankRejectCommentElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_LeaseRentalFrequency")]
-        private IWebElement LeaseRentalFrequencyElement;
+        public IWebElement LeaseRentalFrequencyElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_DealershipName")]
-        private IWebElement DealershipNameElement;
+        public IWebElement DealershipNameElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_DealerName")]
-        private IWebElement DealerNameElement;
+        public IWebElement DealerNameElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_DealerTelephone")]
-        private IWebElement DealerTelephoneElement;
+        public IWebElement DealerTelephoneElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_DealerEmail")]
-        private IWebElement DealerEmailElement;
+        public IWebElement DealerEmailElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_CustomerDetailsName")]
-        private IWebElement CustomerDetailsName;
+        public IWebElement CustomerDetailsName;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_CustomerAddress")]
-        private IWebElement CustomerAddressName;
+        public IWebElement CustomerAddressName;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_CustomerCity")]
-        private IWebElement CustomerCityElement;
+        public IWebElement CustomerCityElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_CustomerCounty")]
-        private IWebElement CustomerCountyNameElement;
+        public IWebElement CustomerCountyNameElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_CustomerPostCode")]
-        private IWebElement CustomerPostCodeElement;
+        public IWebElement CustomerPostCodeElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_CustomerCountry")]
-        private IWebElement CustomerCountryElement;
+        public IWebElement CustomerCountryElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_CustomerContact")]
-        private IWebElement CustomerContactElement;
+        public IWebElement CustomerContactElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_CustomerTelephone")]
-        private IWebElement CustomerTelephoneElement;
+        public IWebElement CustomerTelephoneElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_CustomerEmail")]
-        private IWebElement CustomerEmailElement;
+        public IWebElement CustomerEmailElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_CustomerTradingStyle")]
-        private IWebElement CustomerTradingStyleElement;
+        public IWebElement CustomerTradingStyleElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_CustomerPaymentType")]
-        private IWebElement CustomerPaymentTypeElement;
+        public IWebElement CustomerPaymentTypeElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_CustomerCompanyRegistration")]
-        private IWebElement CustomerCompanyRegistrationElement;
+        public IWebElement CustomerCompanyRegistrationElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_CustomerBankName")]
-        private IWebElement CustomerBankNameElement;
+        public IWebElement CustomerBankNameElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_CustomerBankAccount")]
-        private IWebElement CustomerBankAccountElement;
+        public IWebElement CustomerBankAccountElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_CustomerIban")]
-        private IWebElement CustomerIbanElement;
+        public IWebElement CustomerIbanElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_CustomerBic")]
-        private IWebElement CustomerBICElement;
+        public IWebElement CustomerBICElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_CustomerSortCode")]
-        private IWebElement CustomerSortCodeElement;
+        public IWebElement CustomerSortCodeElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_CustomerAuthorisedSignatory")]
-        private IWebElement CustomerAuthorisedSignatoryElement;
+        public IWebElement CustomerAuthorisedSignatoryElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_CustomerVatNumber")]
-        private IWebElement CustomerVatNumberElement;
+        public IWebElement CustomerVatNumberElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_DeviceTotalPriceNet_0")]
-        private IWebElement RepeaterModels_DeviceTotalPriceNetElement;
+        public IWebElement RepeaterModels_DeviceTotalPriceNetElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_DeviceTotalPriceGross_0")]
-        private IWebElement RepeaterModels_DeviceTotalPriceGrossElement;
+        public IWebElement RepeaterModels_DeviceTotalPriceGrossElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_DeviceLeasingTotalNet_0")]
-        private IWebElement RepeaterModels_DeviceLeasingTotalNetElement;
+        public IWebElement RepeaterModels_DeviceLeasingTotalNetElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_DeviceLeasingTotalGross_0")]
-        private IWebElement RepeaterModels_DeviceLeasingTotalGrossElement;
+        public IWebElement RepeaterModels_DeviceLeasingTotalGrossElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_ConsumablesTotalPriceNet_0")]
-        private IWebElement RepeaterModels_ConsumablesTotalPriceNetElement;
+        public IWebElement RepeaterModels_ConsumablesTotalPriceNetElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_ConsumablesTotalPriceGross_0")]
-        private IWebElement RepeaterModels_ConsumablesTotalPriceGrossElement;
+        public IWebElement RepeaterModels_ConsumablesTotalPriceGrossElement;
 //        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_DeviceTotalsTotalCostNet")]
-//        private IWebElement DeviceTotalsTotalCostNetElement;
+//        public IWebElement DeviceTotalsTotalCostNetElement;
 //        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_DeviceTotalsTotalMarginNet")]
-//        private IWebElement DeviceTotalsTotalMarginNetElement;
+//        public IWebElement DeviceTotalsTotalMarginNetElement;
 //        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_ConsumableTotalsTotalMarginNet")]
-//        private IWebElement ConsumableTotalsTotalMarginNetElement;
+//        public IWebElement ConsumableTotalsTotalMarginNetElement;
 //        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_ConsumableTotalsTotalPriceNet")]
-//        private IWebElement ConsumableTotalsTotalPriceNetElement;
+//        public IWebElement ConsumableTotalsTotalPriceNetElement;
 //        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_ConsumableTotalsTotalMarginGross")]
-//        private IWebElement ConsumableTotalsTotalMarginGrossElement;
+//        public IWebElement ConsumableTotalsTotalMarginGrossElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_ConsumableTotalsTotalPriceGross")]
-        private IWebElement ConsumableTotalsTotalPriceGrossElement;
+        public IWebElement ConsumableTotalsTotalPriceGrossElement;
 //        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_GrandTotalMarginNet")]
-//        private IWebElement GrandTotalMarginNetElement;
+//        public IWebElement GrandTotalMarginNetElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_GrandTotalPriceNet")]
-        private IWebElement GrandTotalPriceNetElement;
+        public IWebElement GrandTotalPriceNetElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_BankName")]
-        private IWebElement BankNameElement;
+        public IWebElement BankNameElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_TermLength")]
-        private IWebElement TermLengthElement;
+        public IWebElement TermLengthElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_PaymentFrequency")]
-        private IWebElement PaymentFrequencyElement;
+        public IWebElement PaymentFrequencyElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_PaymentQuantity")]
-        private IWebElement PaymentQuantityElement;
+        public IWebElement PaymentQuantityElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_PaymentAmountNet")]
-        private IWebElement PaymentAmountNetElement;
+        public IWebElement PaymentAmountNetElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_PaymentAmountGross")]
-        private IWebElement PaymentAmountGrossElement;
+        public IWebElement PaymentAmountGrossElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepaymentTotalNet")]
-        private IWebElement RepaymentTotalNetElement;
+        public IWebElement RepaymentTotalNetElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepaymentTotalGross")]
-        private IWebElement RepaymentTotalGrossElement;
+        public IWebElement RepaymentTotalGrossElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_HardwareAccessoryPrice")]
-        private IWebElement HardwareAccessoryPriceElement;
+        public IWebElement HardwareAccessoryPriceElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_DeliveryInstallationPrice")]
-        private IWebElement DeliveryInstallationPriceElement;
+        public IWebElement DeliveryInstallationPriceElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_FinanceCharge")]
-        private IWebElement FinanceChargeElement;
+        public IWebElement FinanceChargeElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_FinanceTotalNet")]
-        private IWebElement FinanceTotalNetElement;
+        public IWebElement FinanceTotalNetElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_FinanceTotalGross")]
-        private IWebElement FinanceTotalGrossElement;
+        public IWebElement FinanceTotalGrossElement;
 
         public void ClickRejectButton()
         {
