@@ -105,8 +105,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ClickOnDeleteOnActionItemAgainstNewlyCreated(IWebDriver driver)
         {
-            var json1 = SpecFlow.GetContext(DealerLatestCreatedContact);
-            var contact = ModelUtils.JsonDeserialize<OrganisationContactDetail>(json1);
+            var contact = SpecFlow.GetObject<DealerCustomersMangePage.OrganisationContactDetail>(DealerLatestCreatedContact);
 
             var customerelem = FindExistingCustomerByEmail(driver, contact.Email);
             ClickActionButtonOnOffer(customerelem);
@@ -144,10 +143,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 "Cancelled Item does not exist on table.");
         }
 
-        public CloudManageCustomerPage ClickOnEditOnActionItemAgainstNewlyCreated(IWebDriver driver)
+        public DealerCustomersMangePage ClickOnEditOnActionItemAgainstNewlyCreated(IWebDriver driver)
         {
-            var json1 = SpecFlow.GetContext(DealerLatestCreatedContact);
-            var contact = ModelUtils.JsonDeserialize<OrganisationContactDetail>(json1);
+            var contact = SpecFlow.GetObject<DealerCustomersMangePage.OrganisationContactDetail>(DealerLatestCreatedContact);
 
             var customerelem = FindExistingCustomerByEmail(driver, contact.Email);
             ClickActionButtonOnOffer(customerelem);
@@ -155,7 +153,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var id = editElem.GetAttribute("data-person-id");
             SpecFlow.SetContext(DealerLatestOperatingCustomerItemId, id);
             editElem.Click();
-            return GetInstance<CloudManageCustomerPage>();
+            return GetInstance<DealerCustomersMangePage>();
         }
     }
 }

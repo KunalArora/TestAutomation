@@ -4,88 +4,95 @@ using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
+using System.Runtime.Serialization;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
     public class DealerCustomersMangePage : BasePage
     {
-#region ViewModels
+        #region ViewModels
+        [DataContract]
         internal class OrganisationBankDetail
         {
+            [DataMember]
             public string PaymentType { get; set; }
-
+            [DataMember]
             public string BankAccountNumber { get; set; }
-
+            [DataMember]
             public string BankSortCode { get; set; }
-
+            [DataMember]
             public string IBAN { get; set; }
-
+            [DataMember]
             public string BIC { get; set; }
-
+            [DataMember]
             public string BankName { get; set; }
-
+            [DataMember]
             public string PropertyNaumber { get; set; }
-
+            [DataMember]
             public string PropertyStreet { get; set; }
-
+            [DataMember]
             public string PropertyArea { get; set; }
-
+            [DataMember]
             public string PropertyTown { get; set; }
-
+            [DataMember]
             public string PropertyPostcode { get; set; }
-
+            [DataMember]
             public string PropertyCountry { get; set; }
-
+            [DataMember]
             public string Region { get; set; }
         }
 
+        [DataContract]
         internal class OrganisationContactDetail
         {
+            [DataMember]
             public string Title { get; set; }
-
+            [DataMember]
             public string FirstName { get; set; }
-
+            [DataMember]
             public string LastName { get; set; }
-
+            [DataMember]
             public string Position { get; set; }
-
+            [DataMember]
             public string Telephone { get; set; }
-
+            [DataMember]
             public string Mobile { get; set; }
-
+            [DataMember]
             public string Email { get; set; }
-
+            [DataMember]
             public string CanOrderConsumablesForAllDevices { get; set; }
         }
 
+        [DataContract]
         internal class OrganisationDetail
         {
+            [DataMember]
             public string Name { get; set; }
-
+            [DataMember]
             public string PropertyNumber { get; set; }
-
+            [DataMember]
             public string PropertyStreet { get; set; }
-
+            [DataMember]
             public string PropertyArea { get; set; }
-
+            [DataMember]
             public string PropertyTown { get; set; }
-
+            [DataMember]
             public string PropertyPostcode { get; set; }
-
+            [DataMember]
             public string PropertyCountry { get; set; }
-
+            [DataMember]
             public string Region { get; set; }
-
+            [DataMember]
             public string CostCentre { get; set; }
-
+            [DataMember]
             public string LegalForm { get; set; }
-
+            [DataMember]
             public string CompanyRegistrationNumber { get; set; }
-
+            [DataMember]
             public string VatRegistrationNumber { get; set; }
-
+            [DataMember]
             public string TradingStyle { get; set; }
-
+            [DataMember]
             public string AuthorisedSignatory { get; set; }
         }
 
