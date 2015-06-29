@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
@@ -32,7 +33,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerAwaitingAcceptanceContractsPage DealerSignsApprovedProposal()
         {
-            DealerSignElement.Click();
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, DealerSignElement);
             WebDriver.Wait(DurationType.Second, 3);
 
             return GetInstance<DealerAwaitingAcceptanceContractsPage>(Driver);
