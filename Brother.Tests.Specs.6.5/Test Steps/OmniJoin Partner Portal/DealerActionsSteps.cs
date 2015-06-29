@@ -40,11 +40,18 @@ namespace Brother.Tests.Specs
             CurrentPage.As<ManageCustomersAndOrdersPage>().NextButtonClick();
         }
 
-        [Then(@"I can enter further customer information such as First Name as ""(.*)"" and Last Name as ""(.*)""")]
-        public void ThenICanEnterFurtherCustomerInformationSuchAsFirstNameAsAndLastNameAs(string firstName, string lastName)
+        [Then(@"I can click Add Customer")]
+        public void ThenICanClickAddCustomer()
+        {
+            NextPage = CurrentPage.As<ManageCustomersAndOrdersPage>().AddCustomerButtonClick();
+        }
+
+        [Then(@"I can enter further customer information such as First Name as ""(.*)"", Last Name as ""(.*)"", Company Name as ""(.*)""")]
+        public void ThenICanEnterFurtherCustomerInformationSuchAsFirstNameAsLastNameAsCompanyNameAs(string firstName, string lastName, string companyName)
         {
             CurrentPage.As<ManageCustomersAndOrdersPage>().AddFirstName(firstName);
             CurrentPage.As<ManageCustomersAndOrdersPage>().AddLastName(lastName);
+            CurrentPage.As<ManageCustomersAndOrdersPage>().AddCompanyName(companyName);
         }
 
         [Then(@"I can see the Partner Portal Home Page")]
