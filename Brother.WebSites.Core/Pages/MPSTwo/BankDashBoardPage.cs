@@ -1,4 +1,5 @@
 ﻿using System;
+using Brother.Tests.Selenium.Lib.Support;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -48,22 +49,22 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public BankOffersPage NavigateToOffersPage()
         {
             IsOffersLinkAvailable();
-            OffersLinkElement.Click();
-            return GetTabInstance<BankOffersPage>(Driver, BaseURL, true);
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, OffersLinkElement);
+            return GetTabInstance<BankOffersPage>(Driver);
         }
 
         public BankContractsPage NavigateToContractApprovedProposalPage()
         {
             IsOffersLinkAvailable();
-            ContractsLinkElement.Click();
-            return GetTabInstance<BankContractsPage>(Driver, BaseURL, true);
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ContractsLinkElement);
+            return GetTabInstance<BankContractsPage>(Driver);
         }
 	
         public BankContractsPage NavigateToContractsPage()
         {
             IsContractsLinkAvailable();
-            ContractsLinkElement.Click();
-            return GetTabInstance<BankContractsPage>(Driver, BaseURL, true);
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ContractsLinkElement);
+            return GetTabInstance<BankContractsPage>(Driver);
         }
  
 

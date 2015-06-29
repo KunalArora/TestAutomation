@@ -1,4 +1,5 @@
 ﻿using System;
+using Brother.Tests.Selenium.Lib.Support;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -80,45 +81,45 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public CreateNewProposalPage NavigateToCreateNewProposalPage()
         {
             IsCreateNewProposalLinkAvailable();
-            CreateProposalLinkElement.Click();
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, CreateProposalLinkElement);
             return GetTabInstance<CreateNewProposalPage>(Driver);
         }
 
         public DealerAdminDashBoardPage NavigateToAdminPage()
         {
             IsAdminLinkAvailable();
-            AdminLinkElement.Click();
-            return GetTabInstance<DealerAdminDashBoardPage>(Driver, BaseURL, true);
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, AdminLinkElement);
+            return GetTabInstance<DealerAdminDashBoardPage>(Driver);
         }
 
         public CloudContractPage NavigateToContractScreenFromDealerDashboard()
         {
             if (DashboardContractLinkElement == null)
                 throw new NullReferenceException("Contract link is not Dealer Dashboard");
-            DashboardContractLinkElement.Click();
-            return GetTabInstance<CloudContractPage>(Driver, BaseURL, true);
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, DashboardContractLinkElement);
+            return GetTabInstance<CloudContractPage>(Driver);
         }
 
         public DealerContractsApprovedProposalsPage NavigateToContractApprovedProposalPage()
         {
             if (DashboardContractLinkElement == null)
                 throw new NullReferenceException("Contract link is not Dealer Dashboard");
-            DashboardContractLinkElement.Click();
-            return GetTabInstance<DealerContractsApprovedProposalsPage>(Driver, BaseURL, true);
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, DashboardContractLinkElement);
+            return GetTabInstance<DealerContractsApprovedProposalsPage>(Driver);
         }
 
         public DealerAdminDashBoardPage NavigateToAdminPageUsingTab()
         {
             IsAdminTabAvailable();
-            DealerAdminTabElement.Click();
-            return GetTabInstance<DealerAdminDashBoardPage>(Driver, BaseURL, true);
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, DealerAdminTabElement);
+            return GetTabInstance<DealerAdminDashBoardPage>(Driver);
         }
 
         public CloudExistingProposalPage NavigateToExistingProposalPage()
         {
             if(ExistingProposalLinkElement == null)
                 throw new Exception("Are you sure you on dealer dashboard page?");
-            ExistingProposalLinkElement.Click();
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ExistingProposalLinkElement);
 
             return GetInstance<CloudExistingProposalPage>(Driver);
         }
@@ -127,7 +128,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             if (ExistingCustomerLinkElement == null)
                 throw new Exception("Are you sure you on dealer dashboard page?");
-            ExistingCustomerLinkElement.Click();
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ExistingCustomerLinkElement);
 
             return GetInstance<DealerCustomersExistingPage>(Driver);
         }

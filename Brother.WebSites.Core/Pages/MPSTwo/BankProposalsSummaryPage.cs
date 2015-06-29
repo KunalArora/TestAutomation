@@ -52,18 +52,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public BankOffersPage ClickRejectButton()
         {
             ScrollTo(RejectButtonElement);
-            RejectButtonElement.Click();
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, RejectButtonElement);
 
-            return GetTabInstance<BankOffersPage>(Driver, BaseURL, true);
+            return GetTabInstance<BankOffersPage>(Driver);
         }
 
         public BankOffersPage ClickAccpetButton()
         {
             ScrollTo(AcceptButtonElement);
-            AcceptButtonElement.Click();
-            WebDriver.Wait(Helper.DurationType.Second, 5);
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, AcceptButtonElement);
+            //WebDriver.Wait(Helper.DurationType.Second, 5);
 
-            return GetTabInstance<BankOffersPage>(Driver, BaseURL, true);
+            return GetTabInstance<BankOffersPage>(Driver);
         }
 
         public void EnterCustomerReference(string str)

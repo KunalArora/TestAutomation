@@ -60,24 +60,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public LocalOfficeApproverProposalsPage ClickRejectButton()
         {
             ScrollTo(RejectButtonElement);
-            RejectButtonElement.Click();
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, RejectButtonElement);
 
             return GetTabInstance<LocalOfficeApproverProposalsPage>(Driver, BaseURL, true);
         }
 
         public LocalOfficeApproverProposalsPage ClickAccpetButton()
         {
-            //var initialUrl = GetUrl();      
+                
             ScrollTo(AcceptButtonElement);
-           AcceptButtonElement.Click();
-            WebDriver.Wait(Helper.DurationType.Second, 5);
-
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, AcceptButtonElement);
             
-            var result = GetTabInstance<LocalOfficeApproverProposalsPage>(Driver, BaseURL, true);
-
-            //var finalUrl = GetUrl(); 
-
-            //TestCheck.AssertIsEqual(false, finalUrl.Equals(initialUrl), "Initial Url is equal to the final Url");
+            var result = GetTabInstance<LocalOfficeApproverProposalsPage>(Driver);
 
             return result;
         }
