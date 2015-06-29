@@ -54,6 +54,13 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             Driver.Manage().Cookies.DeleteAllCookies();
         }
 
+        
+        public string GetUrl()
+        {
+            return Driver.Url;
+        }
+
+
         /// <summary>
         /// Clears the field and types in new data
         /// </summary>

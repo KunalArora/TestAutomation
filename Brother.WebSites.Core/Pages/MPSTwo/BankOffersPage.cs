@@ -139,7 +139,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             element.Click();
             ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
 
-            return GetTabInstance<BankProposalsSummaryPage>(Driver);
+            return GetTabInstance<BankProposalsSummaryPage>(Driver, BaseURL, true);
         }
 
         public BankProposalsSummaryPage NavigateToViewSummary(string name)

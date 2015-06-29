@@ -128,7 +128,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             element.Click();
             ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
 
-            return GetTabInstance<BankContractsSummaryPage>(Driver);
+            return GetTabInstance<BankContractsSummaryPage>(Driver, BaseURL, true);
         }
 
         public void IsContractsListAvailable()

@@ -453,7 +453,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             WebDriver.Wait(Helper.DurationType.Second, 3);
             ScrollTo(SaveProposalElement);
-            SaveProposalElement.Click();
+            //SaveProposalElement.Click();
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, SaveProposalElement);
             return GetTabInstance<CloudExistingProposalPage>(Driver);
         }
 

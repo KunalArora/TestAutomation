@@ -112,7 +112,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public CreateNewProposalPage ClickOnNewProposalTab()
         {
             NewProposalButton.Click();
-            return GetTabInstance<CreateNewProposalPage>(Driver);
+            return GetTabInstance<CreateNewProposalPage>(Driver, BaseURL, true);
         }
 
         public void NavigateToDeclinedProposalScreen()
@@ -230,7 +230,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public ConvertProposalCustomerInfo ClickOnConvertToContractButton(IWebDriver driver)
         {
             ActionsModule.StartConvertToContractProcess(driver);
-            //VerifyThatTheCorrectProposalOpened();
             return GetTabInstance<ConvertProposalCustomerInfo>(Driver);
 
         }
