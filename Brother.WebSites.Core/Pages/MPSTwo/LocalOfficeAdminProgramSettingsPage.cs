@@ -203,5 +203,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             LeasingPrintersLinkElement.Click();
             return GetTabInstance<LocalOfficeAdminPrintersPage>(Driver);
         }
+
+        private void IsLeasingBanksLinkAvailable()
+        {
+            if (LeasingBanksLinkElement == null)
+                throw new Exception("Unable to locate Leasing Banks link element");
+
+            AssertElementPresent(LeasingBanksLinkElement, "Leasing Banks Link");
+        }
+
+        public LocalOfficeAdminLeasingBanks NavigateToLocalOfficeLeasingBanksPage()
+        {
+            IsLeasingBanksLinkAvailable();
+            LeasingBanksLinkElement.Click();
+            return GetTabInstance<LocalOfficeAdminLeasingBanks>(Driver);
+        }
     }
 }
