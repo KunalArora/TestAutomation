@@ -1,4 +1,5 @@
 ﻿using System;
+using Brother.Tests.Selenium.Lib.Support;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -41,15 +42,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public DealerAdminDefaultMarginsPage NavigateToDealerAdminDefaultMarginsPage()
         {
             IsDefaultMarginsLinkAvailable();
-            DefaultMarginsElement.Click();
-            return GetTabInstance<DealerAdminDefaultMarginsPage>(Driver, BaseURL, true);
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, DefaultMarginsElement);
+            return GetTabInstance<DealerAdminDefaultMarginsPage>(Driver);
         }
 
         public DealerAdminDealershipProfilePage NavigateToDealerAdminDealershipProfilePage()
         {
             IsDealershipProfileLinkAvailable();
-            DealershipProfileElement.Click();
-            return GetTabInstance<DealerAdminDealershipProfilePage>(Driver, BaseURL, true);
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, DealershipProfileElement);
+            return GetTabInstance<DealerAdminDealershipProfilePage>(Driver);
         }
 
     }
