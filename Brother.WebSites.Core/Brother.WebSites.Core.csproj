@@ -34,6 +34,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -131,6 +132,7 @@
     <Compile Include="Pages\MPSTwo\BankProposalsSummaryPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerProposalsCreateCustomerInformationPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerProposalsCreateTermAndTypePage.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeAdminLeasingBanks.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeApproverContractsSummaryPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeApproverContractsPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeApproverProposalsSummaryPage.cs" />

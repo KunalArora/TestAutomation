@@ -95,5 +95,21 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<LocalOfficeAdminPrintersPage>().ClickSaveButton();
         }
 
+        [When(@"I navigate to Leasing Bank screen")]
+        public void WhenINavigateToLeasingBankScreen()
+        {
+            NextPage = CurrentPage.As<LocalOfficeAdminProgramSettingPage>().NavigateToLocalOfficeLeasingBanksPage();
+        }
+
+        [Then(@"I can edit the Sell Price vs SRP Constraint % for an existing Leasing bank")]
+        public void ThenICanEditTheSellPriceVsSRPConstraintForAnExistingLeasingBank()
+        {
+            var page = CurrentPage.As<LocalOfficeAdminLeasingBanks>();
+            page.ClickEditButton();
+            page.EditSellPriceVsSrpConstraint();
+            page.ClickSaveButton();
+            page.ClickEditButton();
+            page.VerifyEditedSellPriceValue();
+        }
     }
 }

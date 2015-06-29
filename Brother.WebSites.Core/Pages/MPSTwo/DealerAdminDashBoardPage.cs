@@ -42,14 +42,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             IsDefaultMarginsLinkAvailable();
             DefaultMarginsElement.Click();
-            return GetTabInstance<DealerAdminDefaultMarginsPage>(Driver);
+            return GetTabInstance<DealerAdminDefaultMarginsPage>(Driver, BaseURL, true);
         }
 
         public DealerAdminDealershipProfilePage NavigateToDealerAdminDealershipProfilePage()
         {
             IsDealershipProfileLinkAvailable();
             DealershipProfileElement.Click();
-            return GetTabInstance<DealerAdminDealershipProfilePage>(Driver);
+            return GetTabInstance<DealerAdminDealershipProfilePage>(Driver, BaseURL, true);
         }
 
     }

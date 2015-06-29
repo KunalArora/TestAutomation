@@ -72,7 +72,7 @@ namespace Brother.Tests.Selenium.Lib.Support
 
         public static IWebDriver StartNewRemoteWebDriver(string ipAddress, string port)
         {
-            var uri = string.Format(@"http://{0}:{1}/wd/hub", ipAddress, port);
+            var uri = String.Format(@"http://{0}:{1}/wd/hub", ipAddress, port);
             var capabilities = SetDesiredCapabilities();
             IWebDriver newDriver;
             try
@@ -81,7 +81,7 @@ namespace Brother.Tests.Selenium.Lib.Support
             }
             catch (WebDriverException ex)
             {
-                throw new SpecFlowSeleniumException(string.Format("{0} - {1}", "Unable to Connect to GhostDriver via RemoteWebDriver", ex.Message));
+                throw new SpecFlowSeleniumException(String.Format("{0} - {1}", "Unable to Connect to GhostDriver via RemoteWebDriver", ex.Message));
             }
             return newDriver;
         }
@@ -179,6 +179,7 @@ namespace Brother.Tests.Selenium.Lib.Support
             }
         }
 
+
         private static void KillPhantomJsIfRunning()
         {
             var phantomJsProcessList = Process.GetProcessesByName("phantomJS");
@@ -207,14 +208,14 @@ namespace Brother.Tests.Selenium.Lib.Support
             const string localToRemoteAccess = @" --local-to-remote-url-access=true";
             const string noSecurity = @" --web-security=no";
             var loggingLevel = SeleniumGlobal.Default.PhantomJSLoggingLevel;
-            var logLevel = string.Format(@" --webdriver-loglevel={0}", loggingLevel); // ERROR, WARN, INFO(default), DEBUG
+            var logLevel = String.Format(@" --webdriver-loglevel={0}", loggingLevel); // ERROR, WARN, INFO(default), DEBUG
 
             var driverLog = SetDriverLog();
-            var log = string.Format(@" --webdriver-logfile={0}", driverLog);
-            var useRemoteWebDriver = string.Format(@" --webdriver={0}:{1}", ipAddress, port);
-            phantomJsProcess.Arguments = string.Format("{0}{1}{2}{3}{4}{5}{6}", ignoreSsl, sslProtocol, noSecurity, logLevel, log, useRemoteWebDriver, localToRemoteAccess);
-            phantomJsProcess.FileName = string.Format("{0}\\Drivers\\phantomJS.exe", Directory.GetCurrentDirectory());
-            Helper.MsgOutput(string.Format("Starting PhantomJS for **HEADLESS** browsing [IP = {0}][Port={1}]", ipAddress, port));
+            var log = String.Format(@" --webdriver-logfile={0}", driverLog);
+            var useRemoteWebDriver = String.Format(@" --webdriver={0}:{1}", ipAddress, port);
+            phantomJsProcess.Arguments = String.Format("{0}{1}{2}{3}{4}{5}{6}", ignoreSsl, sslProtocol, noSecurity, logLevel, log, useRemoteWebDriver, localToRemoteAccess);
+            phantomJsProcess.FileName = String.Format("{0}\\Drivers\\phantomJS.exe", Directory.GetCurrentDirectory());
+            Helper.MsgOutput(String.Format("Starting PhantomJS for **HEADLESS** browsing [IP = {0}][Port={1}]", ipAddress, port));
             Helper.MsgOutput("With arguments ", phantomJsProcess.Arguments);
 
             try
@@ -249,7 +250,7 @@ namespace Brother.Tests.Selenium.Lib.Support
             phantomJsService.WebSecurity = false;
             phantomJsService.AddArgument("--web-security=no");
             phantomJsService.AddArgument("--ignore-ssl-errors=yes");
-            phantomJsService.AddArgument(string.Format("--webdriver={0}:{1}", _ipAddress, _driverPort));
+            phantomJsService.AddArgument(String.Format("--webdriver={0}:{1}", _ipAddress, _driverPort));
             phantomJsService.LogFile = SetDriverLog();
 
             return phantomJsService;

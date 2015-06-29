@@ -210,7 +210,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ScrollTo(ProposalSummaryScreenElement);
             ProposalSummaryScreenElement.Click();
 //            AssertElementPresent(SummaryConfirmationTextElement, "Product Confirmation Message");
-            return GetTabInstance<DealerProposalsCreateSummaryPage>(Driver);
+            return GetTabInstance<DealerProposalsCreateSummaryPage>(Driver, BaseURL, true);
 
         }
 

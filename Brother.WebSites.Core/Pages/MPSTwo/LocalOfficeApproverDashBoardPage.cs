@@ -1,4 +1,5 @@
 using System;
+using Brother.Tests.Selenium.Lib.Support;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -38,14 +39,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public LocalOfficeApproverProposalsPage NavigateToProposalsPage()
         {
             IsProposalsLinkAvailable();
-            ProposalLinkElement.Click();
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ProposalLinkElement);
             return GetTabInstance<LocalOfficeApproverProposalsPage>(Driver);
         }
 
         public LocalOfficeApproverContractsPage NavigateToContractsPage()
         {
             IsContractsLinkAvailable();
-            ContractLinkElement.Click();
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ContractLinkElement);
             return GetTabInstance<LocalOfficeApproverContractsPage>(Driver);
         }
     }
