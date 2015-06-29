@@ -147,10 +147,11 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             {
                 try
                 {
-                    var searchElement = wait.Until(dr => dr.FindElement(By.CssSelector(element)));
-                    elementStatus = searchElement.Displayed;
+                    var searchElement = wait.Until(dr => dr.FindElement(By.CssSelector(element)).Displayed);
+                    elementStatus = searchElement;
                     MsgOutput(string.Format("Element Status = [{0}]", elementStatus));
                     MsgOutput(string.Format("Retry count = [{0}]", retries));
+                    MsgOutput(string.Format("Timeout waited = [{0}]", wait.Timeout.TotalSeconds));
                     retries++;
                 }
                 catch (StaleElementReferenceException staleElement)

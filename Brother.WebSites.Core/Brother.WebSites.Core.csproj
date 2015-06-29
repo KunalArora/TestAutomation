@@ -167,6 +167,7 @@
     <Compile Include="Pages\OmniJoin\PartnerPortal\ManageCustomersAndOrdersPage.cs" />
     <Compile Include="Pages\OmniJoin\PartnerPortal\ManageServicePage.cs" />
     <Compile Include="Pages\OmniJoin\PartnerPortal\MyCustomers.cs" />
+    <Compile Include="Pages\OmniJoin\PartnerPortal\Navigation.cs" />
     <Compile Include="Pages\OmniJoin\PartnerPortal\PartnerPortalPage.cs" />
     <Compile Include="Pages\OmniJoin\PartnerPortal\SuccessPage.cs" />
     <Compile Include="Pages\OmniJoin\Plans\BusinessPlanPage.cs" />

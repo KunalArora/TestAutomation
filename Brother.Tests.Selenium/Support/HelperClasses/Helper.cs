@@ -22,6 +22,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         public static Guid OrpDealerId { get; set; }
         public static string OrpDealerEmail { get; set; }
         public static string OrpComment { get; set; }
+        public static string OrpCustomerEmailAddress { get; set; }
         // Runtime environment constants
         public const string RunTimeLive = @"PROD";
         public const string RunTimeTest = @"TEST";

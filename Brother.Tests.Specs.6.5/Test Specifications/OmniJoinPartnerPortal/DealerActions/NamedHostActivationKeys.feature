@@ -36,9 +36,11 @@ Scenario: Order and validate a new subscription activation code for Named Host l
 	When I click Next
 	Then I can enter further customer information such as First Name as "ORP_Customer", Last Name as "ORP_Customer", Company Name as "ORP_CompanyName"
 	And I can click Add Customer
-	And I can store the Customer Account information for use later
+#	And I can store the Customer Account information for use later
+	Then I can navigate back to the Partner Portal Home Page using breadcrumbs
+	Then I can navigate back to my account from Partner Portal Home Page
 	When I can sign out of Brother Online
-	And I can verify that the Customer account association email is received
+#	And I can verify that the Customer account association email is received
 	Then I can validate the correct order emails were received for "AutomatedTesterDealer1@guerrillamail.com" as "order" and as "activation"
 	Given I am logged into Brother Online "United Kingdom" using "ORP_GENERATED_CUSTOMER"
 	Then I can navigate to the Activate Code page
