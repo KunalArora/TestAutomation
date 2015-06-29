@@ -200,10 +200,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Dealer can cansel deleting customer")]
+        [NUnit.Framework.DescriptionAttribute("Dealer can cancel deleting customer")]
         [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "AnyItem", "Dismiss", null)]
-        public virtual void DealerCanCanselDeletingCustomer(string role, string country, string targetItem, string confirm, string[] exampleTags)
+        public virtual void DealerCanCancelDeletingCustomer(string role, string country, string targetItem, string confirm, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "ignore"};
@@ -211,7 +211,7 @@ this.ScenarioSetup(scenarioInfo);
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer can cansel deleting customer", @__tags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer can cancel deleting customer", @__tags);
 #line 66
 this.ScenarioSetup(scenarioInfo);
 #line 67

@@ -63,7 +63,7 @@ Scenario Outline: Dealer can delete a customer
 #	| Sub Dealer | United Kingdom |NewlyCreatedItem | OK      |
 
 @ignore
-Scenario Outline: Dealer can cansel deleting customer 
+Scenario Outline: Dealer can cancel deleting customer 
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to existing customer screen
 	When I click the delete button against "<TargetItem>" on Exisiting Customers table
