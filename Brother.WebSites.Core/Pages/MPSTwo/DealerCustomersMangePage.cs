@@ -4,88 +4,95 @@ using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
+using System.Runtime.Serialization;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
     public class DealerCustomersMangePage : BasePage
     {
-#region ViewModels
+        #region ViewModels
+        [DataContract]
         internal class OrganisationBankDetail
         {
+            [DataMember]
             public string PaymentType { get; set; }
-
+            [DataMember]
             public string BankAccountNumber { get; set; }
-
+            [DataMember]
             public string BankSortCode { get; set; }
-
+            [DataMember]
             public string IBAN { get; set; }
-
+            [DataMember]
             public string BIC { get; set; }
-
+            [DataMember]
             public string BankName { get; set; }
-
+            [DataMember]
             public string PropertyNaumber { get; set; }
-
+            [DataMember]
             public string PropertyStreet { get; set; }
-
+            [DataMember]
             public string PropertyArea { get; set; }
-
+            [DataMember]
             public string PropertyTown { get; set; }
-
+            [DataMember]
             public string PropertyPostcode { get; set; }
-
+            [DataMember]
             public string PropertyCountry { get; set; }
-
+            [DataMember]
             public string Region { get; set; }
         }
 
+        [DataContract]
         internal class OrganisationContactDetail
         {
+            [DataMember]
             public string Title { get; set; }
-
+            [DataMember]
             public string FirstName { get; set; }
-
+            [DataMember]
             public string LastName { get; set; }
-
+            [DataMember]
             public string Position { get; set; }
-
+            [DataMember]
             public string Telephone { get; set; }
-
+            [DataMember]
             public string Mobile { get; set; }
-
+            [DataMember]
             public string Email { get; set; }
-
+            [DataMember]
             public string CanOrderConsumablesForAllDevices { get; set; }
         }
 
+        [DataContract]
         internal class OrganisationDetail
         {
+            [DataMember]
             public string Name { get; set; }
-
+            [DataMember]
             public string PropertyNumber { get; set; }
-
+            [DataMember]
             public string PropertyStreet { get; set; }
-
+            [DataMember]
             public string PropertyArea { get; set; }
-
+            [DataMember]
             public string PropertyTown { get; set; }
-
+            [DataMember]
             public string PropertyPostcode { get; set; }
-
+            [DataMember]
             public string PropertyCountry { get; set; }
-
+            [DataMember]
             public string Region { get; set; }
-
+            [DataMember]
             public string CostCentre { get; set; }
-
+            [DataMember]
             public string LegalForm { get; set; }
-
+            [DataMember]
             public string CompanyRegistrationNumber { get; set; }
-
+            [DataMember]
             public string VatRegistrationNumber { get; set; }
-
+            [DataMember]
             public string TradingStyle { get; set; }
-
+            [DataMember]
             public string AuthorisedSignatory { get; set; }
         }
 
@@ -143,12 +150,50 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             get { return string.Empty; }
         }
 
+        public void ConfirmOrganisationDetails()
+        {
+            var org = SpecFlow.GetObject<OrganisationDetail>(DealerLatestCreatedOrganization);
+
+            AssertElementValue(CompanyNameElement, org.Name);
+            AssertElementValue(PropertyNumberElement, org.PropertyNumber);
+            AssertElementValue(PropertyStreetElement, org.PropertyStreet);
+            AssertElementValue(PropertyAreaElement, org.PropertyArea);
+            AssertElementValue(PropertyTownElement, org.PropertyTown);
+            AssertElementValue(PropertyPostcodeElement, org.PropertyPostcode);
+            AssertElementValue(PropertyLegalFormElement, org.LegalForm);
+            AssertElementValue(PropertyTradingStyleElement, org.TradingStyle);
+            AssertElementValue(PropertyyAuthorisedSignatoryElement, org.AuthorisedSignatory);
+        }
+
+        public void ConfirmOrganisationContactDetail()
+        {
+            var contact = SpecFlow.GetObject<OrganisationContactDetail>(DealerLatestCreatedContact);
+
+            AssertElementValue(ContactTitleElement, contact.Title);
+            AssertElementValue(FirstNameElement, contact.FirstName);
+            AssertElementValue(LastNameElement, contact.LastName);
+            AssertElementValue(TelephoneElement, contact.Telephone);
+            AssertElementValue(EmailElement, contact.Email);
+        }
+
+        public void ConfirmOrganisationBankDetail()
+        {
+            var bank = SpecFlow.GetObject<OrganisationBankDetail>(DealerLatestCreatedBank);
+
+            AssertElementValue(PaymentTypeElement, bank.PaymentType);
+        }
+
+        private void AssertElementValue(IWebElement elem, string expected)
+        {
+            var value = elem.GetAttribute("value");
+            TestCheck.AssertIsEqual(expected, value, "Input item is not matched");
+        }
 
         public void FillOrganisationDetails()
         {
             var org = new OrganisationDetail
             {
-                Name = MpsUtil.CompanyName(),
+                Name = "__Deletable__" + MpsUtil.CompanyName(), // in order to boost linear search.
                 PropertyNumber = MpsUtil.PropertyNumber(),
                 PropertyStreet = MpsUtil.PropertyStreet(),
                 PropertyArea = MpsUtil.FirstName(),
@@ -161,6 +206,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             SpecFlow.SetObject(DealerLatestCreatedOrganization, org);
 
+
             EnterCompanyName(org.Name);
             EnterPropertyNumber(org.PropertyNumber);
             EnterPropertyStreet(org.PropertyStreet);
@@ -170,6 +216,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             EnterPropertyLegalForm(org.LegalForm);
             EnterPropertyTradingStyle(org.TradingStyle);
             EnterPropertyAuthorisedSignatory(org.AuthorisedSignatory);
+
+            //EnterTextboxArea(CompanyNameElement, org.Name);
+            //EnterTextboxArea(PropertyNumberElement, org.PropertyNumber);
+            //EnterTextboxArea(PropertyStreetElement, org.PropertyStreet);
+            //EnterTextboxArea(PropertyTownElement, org.PropertyTown);
+            //EnterTextboxArea(PropertyPostcodeElement, org.PropertyPostcode);
         }
 
         public void FillOrganisationContactDetail()
@@ -215,34 +267,53 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             SelectPaymentTypeFromDropdown(bank.PaymentType);
         }
 
+        private void EnterTextboxArea(IWebElement textbox, string text)
+        {
+            textbox.Clear();
+            textbox.SendKeys(text);
+            WebDriver.Wait(Helper.DurationType.Millisecond, 100);
+        }
+
         private void EnterCompanyName(string companyname)
         {
+            CompanyNameElement.Clear();
             CompanyNameElement.SendKeys(companyname);
+            WebDriver.Wait(Helper.DurationType.Millisecond, 100);
         }
 
         private void EnterPropertyNumber(string propertyNumber)
         {
+            PropertyNumberElement.Clear();
             PropertyNumberElement.SendKeys(propertyNumber);
+            WebDriver.Wait(Helper.DurationType.Millisecond, 100);
         }
 
         private void EnterPropertyStreet(string propertyStreet)
         {
+            PropertyStreetElement.Clear();
             PropertyStreetElement.SendKeys(propertyStreet);
+            WebDriver.Wait(Helper.DurationType.Millisecond, 100);
         }
 
         private void EnterPropertyArea(string propertyArea)
         {
+            PropertyAreaElement.Clear();
             PropertyAreaElement.SendKeys(propertyArea);
+            WebDriver.Wait(Helper.DurationType.Millisecond, 100);
         }
 
         private void EnterPropertyTown(string propertyTown)
         {
+            PropertyTownElement.Clear();
             PropertyTownElement.SendKeys(propertyTown);
+            WebDriver.Wait(Helper.DurationType.Millisecond, 100);
         }
 
         private void EnterPropertyPostCode(string postcode)
         {
+            PropertyPostcodeElement.Clear();
             PropertyPostcodeElement.SendKeys(postcode);
+            WebDriver.Wait(Helper.DurationType.Millisecond, 100);
         }
 
         private void SelectRegionFromDropdown(string region)
@@ -263,7 +334,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void EnterPropertyAuthorisedSignatory(string authsig)
         {
+            PropertyyAuthorisedSignatoryElement.Clear();
             PropertyyAuthorisedSignatoryElement.SendKeys(authsig);
+            WebDriver.Wait(Helper.DurationType.Millisecond, 100);
         }
 
         private void SelectTitleFromDropdown(string value = "2")
@@ -274,22 +347,30 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void EnterContactFirstName(string firstname)
         {
+            FirstNameElement.Clear();
             FirstNameElement.SendKeys(firstname);
+            WebDriver.Wait(Helper.DurationType.Millisecond, 100);
         }
 
         private void EnterContactSurName(string surname)
         {
+            LastNameElement.Clear();
             LastNameElement.SendKeys(surname);
+            WebDriver.Wait(Helper.DurationType.Millisecond, 100);
         }
 
         private void EnterContactTelephone(string telephone)
         {
+            TelephoneElement.Clear();
             TelephoneElement.SendKeys(telephone);
+            WebDriver.Wait(Helper.DurationType.Millisecond, 100);
         }
 
         private void EnterContactEmailAdress(string email)
         {
+            EmailElement.Clear();
             EmailElement.SendKeys(email);
+            WebDriver.Wait(Helper.DurationType.Millisecond, 100);
         }
 
         private void SelectPaymentTypeFromDropdown(string value = "2")
@@ -305,5 +386,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             saveButtonElement.Click();
             return GetInstance<DealerCustomersExistingPage>();
         }
+
     }
 }
