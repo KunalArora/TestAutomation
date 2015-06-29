@@ -9,7 +9,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 {
     public class LocalOfficeApproverProposalsSummaryPage : BasePage
     {
-        public static string Url = "/";
+        public static string Url = "/mps/local-office/proposals/summary";
 
         public override string DefaultTitle
         {
@@ -17,29 +17,29 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
         [FindsBy(How = How.Id, Using = "content_1_ButtonApprove")]
-        private IWebElement ApproveButtonElement;
+        public IWebElement ApproveButtonElement;
         [FindsBy(How = How.Id, Using = "content_1_ButtonDecline")]
-        private IWebElement DeclineButtonElement;
+        public IWebElement DeclineButtonElement;
         [FindsBy(How = How.Id, Using = "content_1_InputProposalDeclineReason_Input")]
-        private IWebElement DeclineReasonElement;
+        public IWebElement DeclineReasonElement;
         [FindsBy(How = How.Id, Using = "content_1_ButtonProposalDeclineDecline")]
-        private IWebElement RejectButtonElement;
+        public IWebElement RejectButtonElement;
         [FindsBy(How = How.Id, Using = "content_1_InputProposalApproveCustomerReference_Input")]
-        private IWebElement CustomerReferenceElement;
+        public IWebElement CustomerReferenceElement;
         [FindsBy(How = How.Id, Using = "content_1_InputProposalApproveContractReference_Input")]
-        private IWebElement ReferenceElement;
+        public IWebElement ReferenceElement;
         [FindsBy(How = How.Id, Using = "content_1_InputProposalApproveCompanyName_Input")]
-        private IWebElement CompanyNameElement;
+        public IWebElement CompanyNameElement;
         [FindsBy(How = How.Id, Using = "content_1_InputProposalApproveCreditCheckCompleted_Input")]
-        private IWebElement CreditCheckCompletedElement;
+        public IWebElement CreditCheckCompletedElement;
         [FindsBy(How = How.Id, Using = "content_1_InputProposalApproveCreditValue_Input")]
-        private IWebElement CreditValueElement;
+        public IWebElement CreditValueElement;
         [FindsBy(How = How.Id, Using = "content_1_InputProposalApproveValidUntil_Input")]
-        private IWebElement ValidUntilElement;
+        public IWebElement ValidUntilElement;
         [FindsBy(How = How.Id, Using = "content_1_InputProposalApproveCreditCheckNotNeeded_Input")]
-        private IWebElement CreditCheckNotNeededElement;
+        public IWebElement CreditCheckNotNeededElement;
         [FindsBy(How = How.Id, Using = "content_1_ButtonProposalApproveApprove")]
-        private IWebElement AcceptButtonElement;
+        public IWebElement AcceptButtonElement;
 
         public void ClickApproveButton()
         {

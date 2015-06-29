@@ -22,11 +22,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
         [FindsBy(How = How.CssSelector, Using =@".js-mps-edit-leasing-bank")]
-        private IList<IWebElement> EditButtonElements;
+        public IList<IWebElement> EditButtonElements;
         [FindsBy(How = How.Id, Using = @"content_1_InputSRPConstraintPercentage_Input")]
-        private IWebElement SellPriceVsSrpConstraintTextboxElement;
+        public IWebElement SellPriceVsSrpConstraintTextboxElement;
         [FindsBy(How = How.Id, Using =@"content_1_ButtonNext")]
-        private IWebElement SaveButtonElement;
+        public IWebElement SaveButtonElement;
 
 
         private void IsEditButtonElementAvaialble()

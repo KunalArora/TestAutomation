@@ -21,17 +21,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
         [FindsBy(How = How.CssSelector, Using = "#content_1_InputSendToLeasingBank_Label")]
-        private IWebElement ThirdPartyApproval;
+        public IWebElement ThirdPartyApproval;
         [FindsBy(How = How.Id, Using = "content_1_InputEnvisagedStartDate_Input")]
-        private IWebElement ProposedStartDate;
+        public IWebElement ProposedStartDate;
         [FindsBy(How = How.Id, Using = "content_1_ButtonSaveAsContract")]
-        private IWebElement SaveAsContractButton;
+        public IWebElement SaveAsContractButton;
         [FindsBy(How = How.Id, Using = "content_1_InputSendToBrother_Input")]
-        private IWebElement SendToBrotherElement;
+        public IWebElement SendToBrotherElement;
         [FindsBy(How = How.Id, Using = "content_1_InputSendToSchufa_Label")]
-        private IWebElement SchufaAuthorisationButton;
+        public IWebElement SchufaAuthorisationButton;
         [FindsBy(How = How.Id, Using = "content_1_InputSendToBrother_Label")]
-        private IWebElement BrotherAuthorisationButton;
+        public IWebElement BrotherAuthorisationButton;
         
         
         

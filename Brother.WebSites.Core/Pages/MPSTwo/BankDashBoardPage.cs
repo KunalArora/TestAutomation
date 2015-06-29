@@ -8,7 +8,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 {
     public class BankDashBoardPage : BasePage
     {
-        public static string Url = "/";
+        public static string Url = "/mps/bank/dashboard";
 
         public override string DefaultTitle
         {
@@ -16,11 +16,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
         [FindsBy(How = How.CssSelector, Using = "a[href='/mps/bank/leasing-factors'] .media-body")]
-        private IWebElement LeasingFactorsLinkElement;
+        public IWebElement LeasingFactorsLinkElement;
         [FindsBy(How = How.CssSelector, Using = "a[href='/mps/bank/proposals'] .media-body")]
-        private IWebElement OffersLinkElement;
+        public IWebElement OffersLinkElement;
         [FindsBy(How = How.CssSelector, Using = "a[href='/mps/bank/contracts'] .media-body")]
-        private IWebElement ContractsLinkElement;
+        public IWebElement ContractsLinkElement;
 
         public void IsLeasingFactorsLinkAvailable()
         {
