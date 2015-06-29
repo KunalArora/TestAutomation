@@ -200,59 +200,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement ClickColourMarginElement;
 
         
-        public void IsPromptTextDisplayed()
-        {
-            if (PromptText == null) throw new 
-                NullReferenceException("Unable to locate text on New Proposal Process Screen");
-           
-            AssertElementPresent(PromptText, "Leading Instruction");
-        }
-
-
-        public DealerProposalsCreateCustomerInformationPage ClickNextButton()
-        {
-            ScrollTo(NextButton);
-            NextButton.Click();
-            return GetTabInstance<DealerProposalsCreateCustomerInformationPage>(Driver);
-        }
-
-        public void EnterProposalName(string proposalName)
-        {
-            if (proposalName.Equals(string.Empty))
-            {
-                proposalName = MpsUtil.GenerateUniqueProposalName();
-                try
-                {
-                    SpecFlow.SetContext("GeneratedProposalName", proposalName);
-                }
-                catch
-                {
-                    throw new NullReferenceException("Session cannot store proposalName");
-                }
-                
-            }
-
-            ProposalNameField.SendKeys(proposalName);
-        }
-
-        public void EnterLeadCodeRef(string leadCodeRef)
-        {
-            if (leadCodeRef.Equals(string.Empty))
-            {
-                leadCodeRef = MpsUtil.GenerateUniqueLeadCodeRef();
-                try
-                {
-                    SpecFlow.SetContext("GeneratedLeadCodeReference", leadCodeRef);
-                }
-                catch
-                {
-                    throw new NullReferenceException("Session cannot store leadCodeRef");
-                }
-            }
-
-            LeadCodeRef.SendKeys(leadCodeRef);
-        }
-
         private void VerifyProposalDescriptionFieldsAreDisabled()
         {
             TestCheck.AssertIsEqual(false, ProposalNameField.Enabled, "Is proposal name field disabled?");
@@ -342,101 +289,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             TestCheck.AssertIsEqual(false, ClickColourMarginElement.Enabled, "Click colour margin Element disabled?");
         }
 
-        private IWebElement ContractTypeSelectorDropdown()
-        {
-            return GetElementByCssSelector(contractSelector, 10);
-        }
 
-
-        public void SelectingContractType(string contract)
-        {
-            if (IsElementPresent(ContractTypeSelectorDropdown()))
-                    SelectContractType(contract);
-         
-        }
-
-        public void SelectContractType(string contract)
-        {
-            var selectable = "";
-
-            switch (contract)
-            {
-                case "AIC" :
-                    selectable = "1";
-                    break;
-                case "Purchase & Click with Service":
-                    selectable = "3";
-                    break;
-                case "Lease & Click with Service":
-                    selectable = "2";
-                    break;
-                default:
-                    throw new InvalidEnumArgumentException(String.Format("{0} is not a valid contract type", contract));
-            }
-
-            if (ContractTypeSelector.Displayed)
-            {
-                SelectFromDropdownByValue(ContractTypeSelector, selectable);
-                SpecFlow.SetContext("CreateContractType", contract);
-            }
-        }
-
-        public void SelectingContractUsageType(string contract)
-        {
-            if (IsElementPresent(ContractTypeSelectorDropdown()))
-                SelectContractUsageType(contract);
-         
-        }
-
-        public void SelectContractUsageType(string usage)
-        {
-            var selectable = "";
-
-            switch (usage)
-            {
-                case "Minimum Volume" :
-                    selectable = "1";
-                    break;
-                case "Pay As You Go" :
-                    selectable = "2";
-                    break;
-                default:
-                    throw new InvalidEnumArgumentException(String.Format("{0} is not a valid contract type", usage));
-            }
-
-            if (UsageTypeSelector.Displayed)
-            {
-                SelectFromDropdownByValue(UsageTypeSelector, selectable);
-                SpecFlow.SetContext("CreateUsageType", usage);
-            }
-        }
 
         public void MoveToProposalSummaryScreen()
         {
             ScrollTo(ProposalSummaryScreenElement);
             ProposalSummaryScreenElement.Click();
             AssertElementPresent(SummaryConfirmationTextElement, "Product Confirmation Message");
-        }
-
-        public CloudExistingProposalPage SaveProposalAsTemplate()
-        {
-            WebDriver.Wait(Helper.DurationType.Second, 3);
-            ScrollTo(SaveAsTemplateElement);
-            SaveAsTemplateElement.Click();
-            return GetTabInstance<CloudExistingProposalPage>(Driver);
-        }
-
-        public CloudExistingProposalPage SaveProposal()
-        {
-            WebDriver.Wait(Helper.DurationType.Second, 3);
-            ScrollTo(SaveProposalElement);
-            SaveProposalElement.Click();
-            return GetTabInstance<CloudExistingProposalPage>(Driver);
-        }
-
-        public void VerifyTheNumberOfPrintersOnSummaryPage(int printerNo)
-        {
-            TestCheck.AssertIsEqual(printerNo, SelectedPrintersOnSummaryPageElement.Count, "Verify number of printers on summary page");
         }
 
         public void SelectAPrinterFromTheList(string printer)

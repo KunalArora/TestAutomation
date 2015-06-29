@@ -159,11 +159,11 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [When(@"I fill Proposal Description for ""(.*)"" Contract type")]
         public void WhenIFillProposalDescriptionForContractType(string contract)
         {
-            CurrentPage.As<CreateNewProposalPage>().IsPromptTextDisplayed();
-            CurrentPage.As<CreateNewProposalPage>().SelectingContractType(contract);
-            CurrentPage.As<CreateNewProposalPage>().EnterProposalName("");
-            CurrentPage.As<CreateNewProposalPage>().EnterLeadCodeRef("");
-            NextPage = CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
+            CurrentPage.As<DealerProposalsCreateDescriptionPage>().IsPromptTextDisplayed();
+            CurrentPage.As<DealerProposalsCreateDescriptionPage>().SelectingContractType(contract);
+            CurrentPage.As<DealerProposalsCreateDescriptionPage>().EnterProposalName("");
+            CurrentPage.As<DealerProposalsCreateDescriptionPage>().EnterLeadCodeRef("");
+            NextPage = CurrentPage.As<DealerProposalsCreateDescriptionPage>().ClickNextButton();
         }
 
         [When(@"I Enter ""(.*)"" contract terms and ""(.*)"" billing on Term and Type details")]
@@ -178,11 +178,11 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [When(@"I begin the proposal creation process for Purchase \+ Click Service")]
         public void WhenIBeginTheProposalCreationProcessForPurchaseClickService()
         {
-            CurrentPage.As<CreateNewProposalPage>().IsPromptTextDisplayed();
-            CurrentPage.As<CreateNewProposalPage>().SelectingContractType("Purchase & Click with Service");
-            CurrentPage.As<CreateNewProposalPage>().EnterProposalName("");
-            CurrentPage.As<CreateNewProposalPage>().EnterLeadCodeRef("");
-            NextPage = CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
+            CurrentPage.As<DealerProposalsCreateDescriptionPage>().IsPromptTextDisplayed();
+            CurrentPage.As<DealerProposalsCreateDescriptionPage>().SelectingContractType("Purchase & Click with Service");
+            CurrentPage.As<DealerProposalsCreateDescriptionPage>().EnterProposalName("");
+            CurrentPage.As<DealerProposalsCreateDescriptionPage>().EnterLeadCodeRef("");
+            NextPage = CurrentPage.As<DealerProposalsCreateDescriptionPage>().ClickNextButton();
 
 //            When(@"I enter Customer Information Detail for new customer");
             //@TODO: Choose an existing contact until the creating new customer sequence is fixed
@@ -195,11 +195,11 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [When(@"I begin the proposal creation process for Lease \+ Click Service")]
         public void WhenIBeginTheProposalCreationProcessForLeaseClickService()
         {
-            CurrentPage.As<CreateNewProposalPage>().IsPromptTextDisplayed();
-            CurrentPage.As<CreateNewProposalPage>().SelectingContractType("Lease & Click with Service");
-            CurrentPage.As<CreateNewProposalPage>().EnterProposalName("");
-            CurrentPage.As<CreateNewProposalPage>().EnterLeadCodeRef("");
-            NextPage = CurrentPage.As<CreateNewProposalPage>().ClickNextButton();
+            CurrentPage.As<DealerProposalsCreateDescriptionPage>().IsPromptTextDisplayed();
+            CurrentPage.As<DealerProposalsCreateDescriptionPage>().SelectingContractType("Lease & Click with Service");
+            CurrentPage.As<DealerProposalsCreateDescriptionPage>().EnterProposalName("");
+            CurrentPage.As<DealerProposalsCreateDescriptionPage>().EnterLeadCodeRef("");
+            NextPage = CurrentPage.As<DealerProposalsCreateDescriptionPage>().ClickNextButton();
             //@TODO: Choose an existing contact until the creating new customer sequence is fixed
             CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().IsCustomerInfoTextDisplayed();
             CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().ClickSelectExistingCustomerButtonAndProceed();
@@ -566,13 +566,6 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<DealerProposalsCreateClickPricePage>().VerifyClickPriceValueForVolumeValueIsAllEqual();
         }
 
-        [When(@"I click Save as Template button on Summary screen")]
-        public void WhenIClickSaveAsTemplateButtonOnSummaryScreen()
-        {
-            CurrentPage.As<CreateNewProposalPage>().MoveToProposalSummaryScreen();
-            NextPage = CurrentPage.As<CreateNewProposalPage>().SaveProposalAsTemplate();
-        }
-
         [Then(@"I am directed to Templates screen of Proposal List page")]
         public void ThenIAmDirectedToTemplatesScreenOfProposalListPage()
         {
@@ -769,17 +762,6 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         public void ThenTheEnteredMarginsOnProductScreenAreDisplayedOnSummaryScreen()
         {
             CurrentPage.As<DealerProposalsCreateSummaryPage>().VerifyEnteredMarginsAreDisplayed();
-        }
-
-        [Then(@"the three devices selected above are displayed on Summary Screen")]
-        public void ThenTheThreeDevicesSelectedAboveAreDisplayedOnSummaryScreen()
-        {
-            CurrentPage.As<CreateNewProposalPage>().MoveToProposalSummaryScreen();
-            CurrentPage.As<CreateNewProposalPage>().VerifyTheNumberOfPrintersOnSummaryPage(3);
-
-            NextPage = CurrentPage.As<CreateNewProposalPage>().SaveProposal();
-
-            CurrentPage.As<CloudExistingProposalPage>().IsProposalListProposalScreenDiplayed();
         }
 
         [Then(@"all the margin set above should be displayed in the right fields")]

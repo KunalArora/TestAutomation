@@ -156,20 +156,6 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<DealerProposalsCreateProductsPage>().IsProductScreenTextDisplayed();
         }
 
-        [When(@"I select ""(.*)"" from the product flat list")]
-        public void WhenISelectFromTheProductFlatList(string selectedPrinter)
-        {
-            CurrentPage.As<CreateNewProposalPage>().SelectAPrinterFromTheList(selectedPrinter);
-        }
-
-        [When(@"I select a product from the product flat list")]
-        public void WhenISelectAProductFromTheProductFlatList()
-        {
-            CurrentPage.As<CreateNewProposalPage>().SelectAPrinterFromTheList("");
-            
-        }
-
-
         [When(@"I accept the contract above")]
         public void WhenIAcceptTheContractAbove()
         {

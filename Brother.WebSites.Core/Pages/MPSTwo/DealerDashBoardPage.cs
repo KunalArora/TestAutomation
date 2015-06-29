@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
@@ -78,11 +78,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             AssertElementPresent(DealerAdminTabElement, "Create Admin Tab");
         }
 
-        public CreateNewProposalPage NavigateToCreateNewProposalPage()
+        public DealerProposalsCreateDescriptionPage NavigateToCreateNewProposalPage()
         {
             IsCreateNewProposalLinkAvailable();
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, CreateProposalLinkElement);
-            return GetTabInstance<CreateNewProposalPage>(Driver);
+            return GetTabInstance<DealerProposalsCreateDescriptionPage>(Driver);
         }
 
         public DealerAdminDashBoardPage NavigateToAdminPage()
