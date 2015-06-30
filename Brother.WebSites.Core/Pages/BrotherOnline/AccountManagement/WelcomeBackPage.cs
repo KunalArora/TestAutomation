@@ -219,14 +219,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             return GetInstance<LocalOfficeAdminDashBoardPage>(Driver);
         }
 
-        public BankUserLandingPage NavigateToBankLandingPage()
-        {
-            ClickOnManagedPrintServices("mps");
-            IsBankLandingPageLinkDisplayed();
-            BankUserLandingPageButton.Click();
-            return GetInstance<BankUserLandingPage>(Driver);
-        }
-
         public ListOfOrganisationsPage NavigateToListOfOrganisationsPage(string country)
         {
             NewProposalButton.Click();
