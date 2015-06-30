@@ -117,7 +117,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         private void WhenISignTheContractAsADealer()
         {
             NextPage = CurrentPage.As<DealerDashBoardPage>().NavigateToContractScreenFromDealerDashboard();
-            NextPage = CurrentPage.As<CloudContractPage>().NavigateToViewOfferOnApprovedProposalsTab();
+            NextPage = CurrentPage.As<DealerContractsPage>().NavigateToViewOfferOnApprovedProposalsTab();
             NextPage = CurrentPage.As<DealerContractsSummaryPage>().ClickSignButton();
         }
 
@@ -994,21 +994,21 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         public void WhenINavigateToDealerContractApprovedAcceptancePage()
         {
             NextPage = CurrentPage.As<DealerDashBoardPage>().NavigateToContractScreenFromDealerDashboard();
-            CurrentPage.As<CloudContractPage>().IsContractScreenDisplayed();
+            CurrentPage.As<DealerContractsPage>().IsContractScreenDisplayed();
         }
 
         [When(@"I navigate to dealer contract Awaiting Acceptance page")]
         public void WhenINavigateToDealerContractAwaitingAcceptancePage()
         {
             NextPage = CurrentPage.As<DealerDashBoardPage>().NavigateToContractScreenFromDealerDashboard();
-            CurrentPage.As<CloudContractPage>().NavigateToAwaitingAcceptance();
+            CurrentPage.As<DealerContractsPage>().NavigateToAwaitingAcceptance();
         }
 
         [When(@"I navigate to dealer contract Rejected page")]
         public void WhenINavigateToDealerContractRejectedPage()
         {
             NextPage = CurrentPage.As<DealerDashBoardPage>().NavigateToContractScreenFromDealerDashboard();
-            CurrentPage.As<CloudContractPage>().NavigateToRejectedContract();
+            CurrentPage.As<DealerContractsPage>().NavigateToRejectedContract();
 
         }
 
@@ -1016,13 +1016,13 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [Then(@"I can successfully download a dealer Contract PDF")]
         public void ThenICanSuccessfullyDownloadADealerContractPDF()
         {
-            CurrentPage.As<CloudContractPage>().DownloadAContractPDF();
+            CurrentPage.As<DealerContractsPage>().DownloadAContractPDF();
         }
 
         [Then(@"I can successfully download a dealer Contract Invoice PDF")]
         public void ThenICanSuccessfullyDownloadADealerContractInvoicePDF()
         {
-            CurrentPage.As<CloudContractPage>().DownloadAContractInvoicePDF();
+            CurrentPage.As<DealerContractsPage>().DownloadAContractInvoicePDF();
         }
 
 

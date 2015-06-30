@@ -11,9 +11,9 @@ using TechTalk.SpecFlow;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class CloudContractPage : BasePage
+    public class DealerContractsPage : BasePage
     {
-        public static string URL = "/mps/dealer/contract";
+        public static string URL = "/mps/dealer/contracts";
 
         public override string DefaultTitle
         {
