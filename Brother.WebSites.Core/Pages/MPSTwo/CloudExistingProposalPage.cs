@@ -114,7 +114,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public CreateNewProposalPage ClickOnNewProposalTab()
         {
             NewProposalButton.Click();
-            return GetTabInstance<CreateNewProposalPage>(Driver, BaseURL, true);
+            return GetTabInstance<CreateNewProposalPage>(Driver);
         }
 
         public void NavigateToDeclinedProposalScreen()

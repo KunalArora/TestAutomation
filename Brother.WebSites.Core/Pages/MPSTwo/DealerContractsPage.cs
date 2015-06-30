@@ -263,7 +263,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             element.Click();
             ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
 
-            return GetTabInstance<DealerContractsSummaryPage>(Driver, BaseURL, true);
+            return GetTabInstance<DealerContractsSummaryPage>(Driver);
         }
 
         public void IsApprovedProposalContractPageDisplayed()
