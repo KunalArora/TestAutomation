@@ -73,14 +73,6 @@ namespace Brother.Tests.Specs.TestSpecifications.OmniJoin
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void FeatureBackground()
-        {
-#line 7
-#line 9
- testRunner.Given("I am logged onto Brother Online \"United Kingdom\" using valid credentials", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-        }
-        
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Sign Up for 14 day Free trial already signed into Brother Online")]
         [NUnit.Framework.CategoryAttribute("SMOKE")]
@@ -88,37 +80,35 @@ namespace Brother.Tests.Specs.TestSpecifications.OmniJoin
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Sign Up for 14 day Free trial already signed into Brother Online", new string[] {
                         "SMOKE"});
-#line 12
+#line 8
 this.ScenarioSetup(scenarioInfo);
-#line 7
-this.FeatureBackground();
-#line 13
- testRunner.Given("I am logged into my Brother Online account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 14
+#line 10
+ testRunner.Given("I am logged onto Brother Online \"United Kingdom\" using valid credentials", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 12
  testRunner.And("I have navigated to the OmniJoin WebConferencing Home Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 15
+#line 13
  testRunner.And("If I click on Start Free Trial", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 16
+#line 14
  testRunner.Then("I should be directed to the OmniJoin Free Trial page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 17
+#line 15
  testRunner.When("I have entered a valid First and Last name, \"AutoTest\", \"AutoTest\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 18
+#line 16
  testRunner.And("I have entered a valid email address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 19
+#line 17
  testRunner.And("I have entered a valid phone number \"01555 522522\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 20
+#line 18
  testRunner.And("I have Agreed to the Free Trial Terms and Conditions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 21
+#line 19
  testRunner.And("if I click Submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 22
+#line 20
  testRunner.Then("I should be directed to the download page indicating I have 14 days Free trial", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 23
+#line 21
  testRunner.And("Once I have Validated a Free Trial confirmation Email was received", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 24
+#line 22
  testRunner.Then("If I go back to Brother Online Home Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 26
+#line 24
  testRunner.Then("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 27
+#line 25
  testRunner.Then("I am redirected to the Brother Home Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -133,10 +123,8 @@ this.FeatureBackground();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Sign Up for 14 day Free trial with a Brother Online account but start from Purcha" +
                     "se plans page", new string[] {
                         "ignore"});
-#line 30
+#line 28
 this.ScenarioSetup(scenarioInfo);
-#line 7
-this.FeatureBackground();
 #line hidden
             this.ScenarioCleanup();
         }
@@ -144,24 +132,28 @@ this.FeatureBackground();
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Sign Up for 14 day Free trial without an existing Brother Online account")]
         [NUnit.Framework.IgnoreAttribute()]
+        [NUnit.Framework.CategoryAttribute("SMOKE")]
         public virtual void SignUpFor14DayFreeTrialWithoutAnExistingBrotherOnlineAccount()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Sign Up for 14 day Free trial without an existing Brother Online account", new string[] {
-                        "ignore"});
-#line 33
+                        "ignore",
+                        "SMOKE"});
+#line 31
 this.ScenarioSetup(scenarioInfo);
-#line 7
-this.FeatureBackground();
-#line 34
+#line 32
  testRunner.Given("I have navigated to the OmniJoin WebConferencing Home Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 35
+#line 33
  testRunner.And("If I click on Start Free Trial", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 36
+#line 34
  testRunner.Then("I should be directed to the OmniJoin Free Trial page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 37
+#line 35
  testRunner.When("I have entered a valid First and Last name, \"AutoTest\", \"AutoTest\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 36
+ testRunner.And("I have entered a Free Trial AutoGenerated email address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 37
+ testRunner.And("I enter a Free Trial Password of \"Abcd1234\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 38
- testRunner.And("I have entered a valid AutoGenerated email address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I enter a Free Trial Password confirmation of \"Abcd1234\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 39
  testRunner.And("I have entered a valid phone number \"01555 522522\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 40
@@ -193,8 +185,6 @@ this.FeatureBackground();
                         "ignore"});
 #line 51
 this.ScenarioSetup(scenarioInfo);
-#line 7
-this.FeatureBackground();
 #line hidden
             this.ScenarioCleanup();
         }
@@ -210,8 +200,6 @@ this.FeatureBackground();
                         "ignore"});
 #line 54
 this.ScenarioSetup(scenarioInfo);
-#line 7
-this.FeatureBackground();
 #line hidden
             this.ScenarioCleanup();
         }
@@ -227,8 +215,6 @@ this.FeatureBackground();
                         "ignore"});
 #line 57
 this.ScenarioSetup(scenarioInfo);
-#line 7
-this.FeatureBackground();
 #line hidden
             this.ScenarioCleanup();
         }
@@ -244,8 +230,6 @@ this.FeatureBackground();
                         "ignore"});
 #line 60
 this.ScenarioSetup(scenarioInfo);
-#line 7
-this.FeatureBackground();
 #line hidden
             this.ScenarioCleanup();
         }
@@ -261,8 +245,6 @@ this.FeatureBackground();
                         "ignore"});
 #line 63
 this.ScenarioSetup(scenarioInfo);
-#line 7
-this.FeatureBackground();
 #line hidden
             this.ScenarioCleanup();
         }
@@ -276,8 +258,6 @@ this.FeatureBackground();
                         "ignore"});
 #line 66
 this.ScenarioSetup(scenarioInfo);
-#line 7
-this.FeatureBackground();
 #line hidden
             this.ScenarioCleanup();
         }
@@ -293,8 +273,6 @@ this.FeatureBackground();
                         "ignore"});
 #line 69
 this.ScenarioSetup(scenarioInfo);
-#line 7
-this.FeatureBackground();
 #line hidden
             this.ScenarioCleanup();
         }
@@ -310,8 +288,6 @@ this.FeatureBackground();
                         "ignore"});
 #line 72
 this.ScenarioSetup(scenarioInfo);
-#line 7
-this.FeatureBackground();
 #line hidden
             this.ScenarioCleanup();
         }
@@ -327,8 +303,6 @@ this.FeatureBackground();
                         "ignore"});
 #line 75
 this.ScenarioSetup(scenarioInfo);
-#line 7
-this.FeatureBackground();
 #line hidden
             this.ScenarioCleanup();
         }
@@ -344,8 +318,6 @@ this.FeatureBackground();
                         "ignore"});
 #line 78
 this.ScenarioSetup(scenarioInfo);
-#line 7
-this.FeatureBackground();
 #line hidden
             this.ScenarioCleanup();
         }
