@@ -483,6 +483,10 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ClickPriceDeepDive.feature.cs</LastGenOutput>
     </None>
+    <None Include="Test Specifications\MPSTwo\Proposal\CompletedFieldsAreReadOnlyInConversionMode.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CompletedFieldsAreReadOnlyInConversionMode.feature.cs</LastGenOutput>
+    </None>
     <None Include="Test Specifications\MPSTwo\Customer\DealerCanOperateCustomers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>DealerCanOperateCustomers.feature.cs</LastGenOutput>
@@ -526,6 +530,10 @@
     <None Include="Test Specifications\MPSTwo\Proposal\VerificationOnProductScreenVariations.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>VerificationOnProductScreenVariations.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwo\Contract\DealerCanAddPreInstallationDetails.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>DealerCanAddPreInstallationDetails.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwo\SendToBank\DealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
