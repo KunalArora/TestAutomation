@@ -91,7 +91,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
                 instance5.ThenIShouldBeAbleToApproveThatProposal();
                 instance3.ThenIfISignOutOfBrotherOnline();
                 instance4.GivenISignIntoMpsasAFrom("Cloud MPS Dealer", "United Kingdom");
-                instance.WhenISignTheContractAsADealer();
+                WhenISignTheContractAsADealer();
                 instance3.ThenIfISignOutOfBrotherOnline();
             }
             else if (ContractType.Equals("Purchase & Click with Service"))
@@ -109,9 +109,16 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
                 instance5.ThenIShouldBeAbleToApproveThatProposal();
                 instance3.ThenIfISignOutOfBrotherOnline();
                 instance4.GivenISignIntoMpsasAFrom("Cloud MPS Dealer", "United Kingdom");
-                instance.WhenISignTheContractAsADealer();
+                WhenISignTheContractAsADealer();
                 instance3.ThenIfISignOutOfBrotherOnline();
             }
+        }
+
+        private void WhenISignTheContractAsADealer()
+        {
+            NextPage = CurrentPage.As<DealerDashBoardPage>().NavigateToContractScreenFromDealerDashboard();
+            NextPage = CurrentPage.As<CloudContractPage>().NavigateToViewOfferOnApprovedProposalsTab();
+            NextPage = CurrentPage.As<DealerContractsSummaryPage>().ClickSignButton();
         }
 
         private void GivenIHaveCreatedLeasingAndClickProposal(string UsageType)
