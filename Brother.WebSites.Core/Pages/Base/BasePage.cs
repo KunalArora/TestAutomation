@@ -208,9 +208,10 @@ namespace Brother.WebSites.Core.Pages.Base
                     MsgOutput(string.Format("Attempting a retry....Retry {0} times", retries));
                 }
             }
-            MsgOutput(string.Format("WebDriver [driver.URL] value is [{0}]. Actual desired URL should have been [{1}]", driver.Url, url));
+            MsgOutput(string.Format("Current WebDriver [driver.URL] value is [{0}]. Actual desired URL should be [{1}]", driver.Url, url));
             //TestCheck.AssertTextContains(partialUrl, driver.Url, string.Format("WebDriver could not navigate to URL {0}", url));
-            TestCheck.AssertIsEqual(true, (currentPageSource != driver.PageSource), string.Format("WebDriver could not navigate to URL {0}", url));
+            MsgOutput(string.Format("Current Page Source length = [{0}], new Page Source length = [{1}]", currentPageSource.Length,driver.PageSource.Length));
+            TestCheck.AssertIsEqual(true, (currentPageSource != driver.PageSource), string.Format("Page Source Mismatch - could not navigate to URL {0}", url));
         }
     }
 }

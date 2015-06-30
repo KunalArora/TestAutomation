@@ -8,7 +8,6 @@ Feature: FreeTrial
 Scenario: Sign Up for 14 day Free trial already signed into Brother Online
 	# Create an account on BOL and sign in
 	Given I am logged onto Brother Online "United Kingdom" using valid credentials
-#	Given I am logged into my Brother Online account
 	And I have navigated to the OmniJoin WebConferencing Home Page
 	And If I click on Start Free Trial
 	Then I should be directed to the OmniJoin Free Trial page
@@ -20,14 +19,13 @@ Scenario: Sign Up for 14 day Free trial already signed into Brother Online
 	Then I should be directed to the download page indicating I have 14 days Free trial
 	And Once I have Validated a Free Trial confirmation Email was received
 	Then If I go back to Brother Online Home Page 
-	#And If I navigate back to the Brother Online My Account page
 	Then I can sign out of Brother Online
 	Then I am redirected to the Brother Home Page
 
 @ignore
 Scenario: Sign Up for 14 day Free trial with a Brother Online account but start from Purchase plans page
 
-@ignore @SMOKE
+@SMOKE
 Scenario: Sign Up for 14 day Free trial without an existing Brother Online account
 	Given I have navigated to the OmniJoin WebConferencing Home Page
 	And If I click on Start Free Trial
@@ -42,7 +40,6 @@ Scenario: Sign Up for 14 day Free trial without an existing Brother Online accou
 	Then I should be directed to the download page indicating I have 14 days Free trial
 	And Once I have Validated a Free Trial confirmation Email was received
 	Then If I go back to Brother Online Home Page 
-	#And If I navigate back to the Brother Online My Account page
 	Then I can sign out of Brother Online
 	Then I am redirected to the Brother Home Page
 
