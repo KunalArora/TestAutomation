@@ -77,3 +77,17 @@ Scenario Outline: Dealer can cancel deleting customer
 	| Role             | Country        | TargetItem | Confirm |
 	| Cloud MPS Dealer | United Kingdom | AnyItem    | Dismiss |
 #	| Sub Dealer | United Kingdom | AnyItem    | Dismiss |
+
+@ignore
+Scenario Outline: Dealer cannot delete a customer who is bound to an existing proposal
+    Given Dealer have created a Open proposal of "<ContractType>" and "<UsageType>"
+	And I navigate to Dealer Dashboard page from Dealer Proposal page
+	And I navigate to existing customer screen
+	When I click the delete button against "<TargetItem>" on Exisiting Customers table
+	And I click the "<Confirm>" button on Confirmation Dialog in Customers
+	Then I can see the deleted item still exists on the customer table
+	And I can sign out of Brother Online
+
+	Scenarios: 
+	| ContractType               | UsageType      | Confirm | TargetItem       |
+	| Lease & Click with Service | Minimum Volume | OK		| NewlyCreatedProposalCustomer |
