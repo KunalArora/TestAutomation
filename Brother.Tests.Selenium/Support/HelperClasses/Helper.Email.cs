@@ -21,6 +21,8 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             get { return _AutoTestEmailPrefix; }
         }
 
+        public static string CurrentEmailInUseForTest { get; set; }
+
         /// <summary>
         /// Generates a unique email address
         /// </summary>
