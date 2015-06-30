@@ -130,7 +130,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 throw new NullReferenceException("Cannot actually send a proposal to bank");
 
             FinalButtonForSendToBankElement.Click();
-            return GetTabInstance<CloudExistingProposalPage>(Driver, BaseURL, true);
+            return GetTabInstance<CloudExistingProposalPage>(Driver);
         }
 
     }

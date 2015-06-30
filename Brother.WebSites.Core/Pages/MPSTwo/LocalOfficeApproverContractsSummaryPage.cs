@@ -148,7 +148,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ScrollTo(FinalRejectButtonElement);
             FinalRejectButtonElement.Click();
 
-            return GetTabInstance<LocalOfficeApproverContractsPage>(Driver, BaseURL, true);
+            return GetTabInstance<LocalOfficeApproverContractsPage>(Driver);
         }
 
         public LocalOfficeApproverContractsPage ClickFinalAcceptButton()
@@ -156,7 +156,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ScrollTo(FinalAcceptButtonElement);
             FinalAcceptButtonElement.Click();
 
-            return GetTabInstance<LocalOfficeApproverContractsPage>(Driver, BaseURL, true);
+            return GetTabInstance<LocalOfficeApproverContractsPage>(Driver);
         }
 
         public void SelectRejectionReason(string reason)
