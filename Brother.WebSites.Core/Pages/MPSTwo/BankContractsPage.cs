@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
@@ -28,8 +30,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement InvoicesLinkElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/bank/contracts/awaiting-acceptance\"] span")]
         public IWebElement OpenedAwaitingAcceptancLinkElement;
-        [FindsBy(How = How.CssSelector, Using = ".js-mps-contract-list-container .js-mps-fix-column-widths")]
-        public IWebElement ContractListContainerElement;
+        [FindsBy(How = How.CssSelector, Using = ".js-mps-contract-list-container .table .js-mps-searchable tr")]
+        public IList<IWebElement> ContractListContainerElement;
 
         
 
@@ -133,10 +135,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsContractsListAvailable()
         {
-            if (ContractListContainerElement == null)
+            if (ContractListContainerElement == null || !ContractListContainerElement.Any())
                 throw new Exception("Unable to locate Contract List");
 
-            AssertElementPresent(ContractListContainerElement, "Contract List");
+            AssertElementsPresent(ContractListContainerElement.ToArray(), "Contract List");
         }
     }
 }
