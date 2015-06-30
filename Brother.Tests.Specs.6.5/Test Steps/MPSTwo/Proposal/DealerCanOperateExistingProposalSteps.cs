@@ -2,6 +2,7 @@
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using NUnit.Framework.Constraints;
+using OpenQA.Selenium.Support.PageObjects;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
@@ -91,5 +92,13 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
             page.FindExistingPoposalList();
             page.ExistsCopiedProposalOffer(CurrentDriver, operation);
         }
+
+        [Given(@"I navigate to Dealer Dashboard page from Dealer Proposal page")]
+        public void GivenINavigateToDealerDashboardPageFromDealerProposalPage()
+        {
+            var page = CurrentPage.As<CloudExistingProposalPage>();
+            NextPage = page.NavigateToDashboard(CurrentDriver);
+        }
+
     }
 }

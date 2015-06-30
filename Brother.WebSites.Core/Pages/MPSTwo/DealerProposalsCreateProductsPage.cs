@@ -1003,6 +1003,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyProductAdditionConfirmationMessage()
         {
+            WebDriver.Wait(Helper.DurationType.Millisecond, 2000);
             ScrollTo(ProductsScreenAlertElement);
             var storedProductScreenText = SpecFlow.GetContext("InitialProductPageText");
             var finalProductScreenText = ProductsScreenAlertElement.Text;
