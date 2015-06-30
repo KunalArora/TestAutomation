@@ -18,14 +18,6 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
             @"#content_1_breadcrumb_0_rptBreadcrumb_hlkBreadcrumb_0[href*='/partner-portal']";
 
         private const string OrpHome = ".button-aqua[href='/']";
-        private const string ProductList = @"#product-list";
-        private const string BrotherHomePage = "#master-logo > a";
-        private const string MyAccountButtons = ".conference-button[href*='']";
-        private const string InstankInkButtons = ".dp-button-aqua[href*='']";
-        private const string PartnerPortalButtons = ".dp-button-aqua[href*='']";
-        private const string TopNavigationBar = "#primary-nav .wrapper .cf";
-        private const string SignOutLink = "a[href*='sign-out']";
-        private const string BackToBrotherOnlineButton = ".back-button-holder";
 
         public static PartnerPortalPage PartnerPortalBreadcrumbClick(IWebDriver driver)
         {

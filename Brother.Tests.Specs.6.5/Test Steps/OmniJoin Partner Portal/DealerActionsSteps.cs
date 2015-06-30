@@ -141,6 +141,7 @@ namespace Brother.Tests.Specs
         public void ThenICanStoreTheOrderDetailsForAsTheyAreRequiredLater(string dealerEmailAddress)
         {
             Helper.OrpDealerEmail = dealerEmailAddress;
+            Email.CurrentEmailInUseForTest = dealerEmailAddress;
             Helper.OrpActivationCode = Utils.GetOrpActivationCode(Utils.GetOrpDealerId(Helper.OrpDealerEmail),
                 Helper.OrpLicenseTerm, Helper.OrpNumLicenses, Helper.OrpComment);
         }
