@@ -21,238 +21,185 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
         [FindsBy(How = How.Id, Using = "content_1_ComponentIntroductionAlert")]
-        private IWebElement PromptText;
+        public IWebElement PromptText;
         [FindsBy(How = How.Id, Using = "content_1_ComponentIntroductionAlert")]
-        private IWebElement CustomerInfomationElement;
+        public IWebElement CustomerInfomationElement;
         [FindsBy(How = How.Id, Using = "content_1_InputProposalName_Input")]
-        private IWebElement ProposalNameField;
+        public IWebElement ProposalNameField;
         [FindsBy(How = How.Id, Using = "content_1_InputLeadCodeReference_Input")]
-        private IWebElement LeadCodeRef;
+        public IWebElement LeadCodeRef;
         [FindsBy(How = How.Id, Using = "content_1_ButtonNext")]
-        private IWebElement NextButton;
+        public IWebElement NextButton;
         [FindsBy(How = How.Id, Using = "content_1_InputCustomerChoiceNew")]
-        private IWebElement CreateNewCustomerElement;
+        public IWebElement CreateNewCustomerElement;
         [FindsBy(How = How.Id, Using = "content_1_InputCustomerChoiceExisting")]
-        private IWebElement SelectExistingCustomerElement;
+        public IWebElement SelectExistingCustomerElement;
         [FindsBy(How = How.Id, Using = "content_1_InputCustomerChoiceSkip")]
-        private IWebElement SkipCustomerElement;
+        public IWebElement SkipCustomerElement;
         [FindsBy(How = How.Id, Using = "content_1_NewOrganisation")]
-        private IWebElement NewOrganisationElement;
+        public IWebElement NewOrganisationElement;
         [FindsBy(How = How.Id, Using = "content_1_InputContractLength_Input")]
-        private IWebElement ContractLengthElement;
+        public IWebElement ContractLengthElement;
         [FindsBy(How = How.Id, Using = "content_1_InputLeasingRateBillingCycle_Input")]
-        private IWebElement LeaseBillingCycleElement;
+        public IWebElement LeaseBillingCycleElement;
         [FindsBy(How = How.Id, Using = "content_1_InputClickRateBillingCycle_Input")]
-        private IWebElement PayPerClickBillingElement;
+        public IWebElement PayPerClickBillingElement;
         [FindsBy(How = How.Id, Using = "content_1_InputUsageType_Input")]
-        private IWebElement UsageTypeElement;
+        public IWebElement UsageTypeElement;
         [FindsBy(How = How.Id, Using = "content_1_InputPriceHardware_Input")]
-        private IWebElement PriceHardwareElement;        
+        public IWebElement PriceHardwareElement;        
         [FindsBy(How = How.Id, Using = "content_1_ComponentIntroductionAlert")]
-        private IWebElement TermAndTypeScreenTextElement;
+        public IWebElement TermAndTypeScreenTextElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-alert")]
-        private IWebElement ProductsScreenAlertElement;
+        public IWebElement ProductsScreenAlertElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-product-option-save")]
-        private IWebElement OptionsSaveButtonElement;
+        public IWebElement OptionsSaveButtonElement;
         [FindsBy(How = How.Id, Using = "Quantity")]
-        private IWebElement ProductQuantityElement;
+        public IWebElement ProductQuantityElement;
         [FindsBy(How = How.Id, Using = "CostPrice")]
-        private IWebElement ProductCostPriceElement;
+        public IWebElement ProductCostPriceElement;
         [FindsBy(How = How.Id, Using = "SellPrice")]
-        private IWebElement ProductSellPriceElement;
+        public IWebElement ProductSellPriceElement;
         [FindsBy(How = How.Id, Using = "Margin")]
-        private IWebElement ProductMarginElement;
+        public IWebElement ProductMarginElement;
         [FindsBy(How = How.Id, Using = "InstallationPackCostPrice")]
-        private IWebElement InstallationPackCostPriceElement;
+        public IWebElement InstallationPackCostPriceElement;
         [FindsBy(How = How.Id, Using = "InstallationPackMargin")]
-        private IWebElement InstallationPackMarginElement;
+        public IWebElement InstallationPackMarginElement;
         [FindsBy(How = How.Id, Using = "InstallationPackSellPrice")]
-        private IWebElement InstallationPackSellPriceElement;
+        public IWebElement InstallationPackSellPriceElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"#tab-installation\"]")]
-        private IWebElement InstallationScreenElement;
+        public IWebElement InstallationScreenElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/proposals/create/summary\"]")]
-        private IWebElement ProposalSummaryScreenElement;
+        public IWebElement ProposalSummaryScreenElement;
         [FindsBy(How = How.Id, Using = "InstallationCostPrice")]
-        private IWebElement InstallationCostPriceElement;
+        public IWebElement InstallationCostPriceElement;
         [FindsBy(How = How.Id, Using = "InstallationSellPrice")]
-        private IWebElement InstallationSellPriceElement;
+        public IWebElement InstallationSellPriceElement;
         [FindsBy(How = How.Id, Using = "InstallationMargin")]
-        private IWebElement InstallationMarginElement;
+        public IWebElement InstallationMarginElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"#tab-options\"]")]
-        private IWebElement OptionsScreenElement;
+        public IWebElement OptionsScreenElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/proposals/create/click-price\"]")]
-        private IWebElement ClickPriceScreenElement;
+        public IWebElement ClickPriceScreenElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-product-configuration-submit")]
-        private IWebElement AddToProposalElement;
+        public IWebElement AddToProposalElement;
         [FindsBy(How = How.Id, Using = "content_1_ComponentIntroductionAlert")]
-        private IWebElement SummaryConfirmationTextElement;
+        public IWebElement SummaryConfirmationTextElement;
         [FindsBy(How = How.Id, Using = "content_1_ButtonSaveProposal")]
-        private IWebElement SaveProposalElement;
+        public IWebElement SaveProposalElement;
         [FindsBy(How = How.Id, Using = "content_1_ButtonSaveAsTemplate")]
-        private IWebElement SaveAsTemplateElement;
+        public IWebElement SaveAsTemplateElement;
         [FindsBy(How = How.CssSelector, Using = "#ClickPriceColourCoverage")]
-        private IWebElement ColourCoverageElement;
+        public IWebElement ColourCoverageElement;
         [FindsBy(How = How.Id, Using = "ClickPriceColourVolume")]
-        private IWebElement ColourVolumeElement;
+        public IWebElement ColourVolumeElement;
         [FindsBy(How = How.Id, Using = "ClickPriceColourMargin")]
-        private IWebElement ColourMarginElement;
+        public IWebElement ColourMarginElement;
         [FindsBy(How = How.CssSelector, Using = "input[id*=\"content_1_PersonList_List_InputChoice\"]")]
-        private IList<IWebElement> ExistingContactRadioButtonElement;
+        public IList<IWebElement> ExistingContactRadioButtonElement;
         [FindsBy(How = How.CssSelector, Using = "[class='alert-link js-mps-product-link']")]
-        private IList<IWebElement> SelectedPrintersElement;
+        public IList<IWebElement> SelectedPrintersElement;
         [FindsBy(How = How.CssSelector, Using = "[class*=\"panel panel-default mps-summary-panel mps-qa-printer mps-qa-printer-\"]")]
-        private IList<IWebElement> SelectedPrintersOnSummaryPageElement;
+        public IList<IWebElement> SelectedPrintersOnSummaryPageElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/proposals/create/customer-information\"]")]
-        private IWebElement customerInformationTabElement;
+        public IWebElement customerInformationTabElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/proposals/create/description\"]")]
-        private IWebElement proposalDescriptionTabElement;
+        public IWebElement proposalDescriptionTabElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/proposals/create/term-type\"]")]
-        private IWebElement termsAndTypeTabElement;
+        public IWebElement termsAndTypeTabElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/proposals/create/products\"]")]
-        private IWebElement productsTabElement;
+        public IWebElement productsTabElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/proposals/create/summary\"]")]
-        private IWebElement proposalSummaryTabElement;
+        public IWebElement proposalSummaryTabElement;
         [FindsBy(How = How.Id, Using = "content_1_ButtonBack")]
-        private IWebElement proposalProcessBackButtonElement;
+        public IWebElement proposalProcessBackButtonElement;
         [FindsBy(How = How.CssSelector, Using = "a[class*=\"js-mps-product-link\"]")]
-        private IWebElement selectedPrinterElement;
+        public IWebElement selectedPrinterElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_InputContractLength_Input [selected]")]
-        private IWebElement retainedContractLengthElement;
+        public IWebElement retainedContractLengthElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_InputLeasingRateBillingCycle_Input [selected]")]
-        private IWebElement retainedLeaseBillingCycleElement;
+        public IWebElement retainedLeaseBillingCycleElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_InputClickRateBillingCycle_Input [selected]")]
-        private IWebElement retainedClickRateElement;
+        public IWebElement retainedClickRateElement;
         [FindsBy(How = How.CssSelector, Using = "[id*=\"content_1_CustomerList_InputCustomerChoice\"][checked]")]
-        private IWebElement checkedCustomerInformationElement;
+        public IWebElement checkedCustomerInformationElement;
         [FindsBy(How = How.CssSelector, Using = "[id*='content_1_CustomerList_List_InputChoice'][checked]")]
-        private IWebElement checkedCustomerInformationConversionMode;
+        public IWebElement checkedCustomerInformationConversionMode;
         [FindsBy(How = How.CssSelector, Using = "[class='mps-product-col mps-product-model']")]
-        private IWebElement flatListVerificationElement;
+        public IWebElement flatListVerificationElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-product-display-option[data-display-option='flat']")]
-        private IWebElement flatListClickButtonElement;
+        public IWebElement flatListClickButtonElement;
         [FindsBy(How = How.CssSelector, Using = "[name='CostPriceFullPrecision']")]
-        private IWebElement modelCostPriceValueElement;
+        public IWebElement modelCostPriceValueElement;
         [FindsBy(How = How.CssSelector, Using = "[name='SellPriceFullPrecision']")]
-        private IWebElement modelSellPriceValueElement;
+        public IWebElement modelSellPriceValueElement;
         [FindsBy(How = How.CssSelector, Using = "[name='MarginFullPrecision']")]
-        private IWebElement modelMarginValueElement;
+        public IWebElement modelMarginValueElement;
         [FindsBy(How = How.CssSelector, Using = "[name='InstallationCostPriceFullPrecision']")]
-        private IWebElement installationCostPriceValueElement;
+        public IWebElement installationCostPriceValueElement;
         [FindsBy(How = How.CssSelector, Using = "[name='InstallationSellPriceFullPrecision']")]
-        private IWebElement installationSellPriceValueElement;
+        public IWebElement installationSellPriceValueElement;
         [FindsBy(How = How.CssSelector, Using = "[name='InstallationMarginFullPrecision']")]
-        private IWebElement installationMarginValueElement;
+        public IWebElement installationMarginValueElement;
         [FindsBy(How = How.CssSelector, Using = "[name='OptionCostPriceFullPrecision']")]
-        private IWebElement optionCostPriceValueElement;
+        public IWebElement optionCostPriceValueElement;
         [FindsBy(How = How.CssSelector, Using = "[name='OptionSellPriceFullPrecision']")]
-        private IWebElement optionSellPriceValueElement;
+        public IWebElement optionSellPriceValueElement;
         [FindsBy(How = How.CssSelector, Using = "span[data-click-price-mono='true']")]
-        private IWebElement clickPriceMonoCostElement;
+        public IWebElement clickPriceMonoCostElement;
         [FindsBy(How = How.CssSelector, Using = "#SellClickPriceMono[data-sale-click-price-mono='true']")]
-        private IWebElement clickPriceMonoSellElement;
+        public IWebElement clickPriceMonoSellElement;
         [FindsBy(How = How.CssSelector, Using = "span[data-click-price-colour='true']")]
-        private IWebElement clickPriceColourCostElement;
+        public IWebElement clickPriceColourCostElement;
         [FindsBy(How = How.CssSelector, Using = "#SellClickPriceColour[data-sale-click-price-colour='true']")]
-        private IWebElement clickPriceColourSellElement;
+        public IWebElement clickPriceColourSellElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-product-open-edit")]
-        private IList<IWebElement> productImageEditElement;
+        public IList<IWebElement> productImageEditElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-product-open-add.hidden")]
-        private IList<IWebElement> productAddElement;
+        public IList<IWebElement> productAddElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/proposals/convert/customer-information\"]")]
-        private IWebElement customerInformationTabConversionMode;
+        public IWebElement customerInformationTabConversionMode;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/proposals/convert/description\"]")]
-        private IWebElement proposalDescriptionTabConversionMode;
+        public IWebElement proposalDescriptionTabConversionMode;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/proposals/convert/click-price\"]")]
-        private IWebElement clickPriceTabConversionMode;
+        public IWebElement clickPriceTabConversionMode;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/proposals/convert/term-type\"]")]
-        private IWebElement termsAndTypeTabConversionMode;
+        public IWebElement termsAndTypeTabConversionMode;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/proposals/convert/products\"]")]
-        private IWebElement productsTabConversionMode;
+        public IWebElement productsTabConversionMode;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/proposals/convert/summary\"]")]
-        private IWebElement proposalSummaryTabConversionMode;
+        public IWebElement proposalSummaryTabConversionMode;
         [FindsBy(How = How.CssSelector, Using = "#content_1_InputContractType_Input")]
-        private IWebElement ContractTypeSelector;
+        public IWebElement ContractTypeSelector;
         [FindsBy(How = How.CssSelector, Using = "#content_1_InputUsageType_Input")]
-        private IWebElement UsageTypeSelector;
+        public IWebElement UsageTypeSelector;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"#tab-service-pack\"]")]
-        private IWebElement PrinterServicePack;
+        public IWebElement PrinterServicePack;
         [FindsBy(How = How.Id, Using = "ServicePackMargin")]
-        private IWebElement servicePackMarginElement;
+        public IWebElement servicePackMarginElement;
         [FindsBy(How = How.Id, Using = "content_1_LineItems_InputMonoVolumeBreaks_0")]
-        private IWebElement monoVolumeDropdownElement;
+        public IWebElement monoVolumeDropdownElement;
         [FindsBy(How = How.Id, Using = "content_1_LineItems_InputColourVolumeBreaks_0")]
-        private IWebElement colourVolumeDropdownElement;
+        public IWebElement colourVolumeDropdownElement;
         [FindsBy(How = How.Id, Using = "content_1_ButtonCalculate")]
-        private IWebElement CalculateClickPriceElement;
+        public IWebElement CalculateClickPriceElement;
         [FindsBy(How = How.Id, Using = "content_1_ButtonNext")]
-        private IWebElement ProceedOnClickPricePageElement;
+        public IWebElement ProceedOnClickPricePageElement;
         [FindsBy(How = How.CssSelector, Using = "[id*='content_1_LineItems_InputMonoVolumeBreaks_']")]
-        private IList<IWebElement> MultipleColourVolumeDropdownElement;
+        public IList<IWebElement> MultipleColourVolumeDropdownElement;
         [FindsBy(How = How.CssSelector, Using = "[id*='content_1_LineItems_InputColourVolumeBreaks_']")]
-        private IList<IWebElement> MultipleClickVolumeElement;
+        public IList<IWebElement> MultipleClickVolumeElement;
         [FindsBy(How = How.CssSelector, Using = "[id='content_1_LineItems_InputMonoCoverage_0']")]
-        private IWebElement ClickCoverageElement;
+        public IWebElement ClickCoverageElement;
         [FindsBy(How = How.CssSelector, Using = "[id='content_1_LineItems_InputMonoMargin_0']")]
-        private IWebElement ClickMarginElement;
+        public IWebElement ClickMarginElement;
         [FindsBy(How = How.CssSelector, Using = "[id='content_1_LineItems_InputColourCoverage_0']")]
-        private IWebElement ClickColourCoverageElement;
+        public IWebElement ClickColourCoverageElement;
         [FindsBy(How = How.CssSelector, Using = "[id='content_1_LineItems_InputColourMargin_0']")]
-        private IWebElement ClickColourMarginElement;
+        public IWebElement ClickColourMarginElement;
 
         
-        public void IsPromptTextDisplayed()
-        {
-            if (PromptText == null) throw new 
-                NullReferenceException("Unable to locate text on New Proposal Process Screen");
-           
-            AssertElementPresent(PromptText, "Leading Instruction");
-        }
-
-
-        public DealerProposalsCreateCustomerInformationPage ClickNextButton()
-        {
-            ScrollTo(NextButton);
-            NextButton.Click();
-            return GetTabInstance<DealerProposalsCreateCustomerInformationPage>(Driver);
-        }
-
-        public void EnterProposalName(string proposalName)
-        {
-            if (proposalName.Equals(string.Empty))
-            {
-                proposalName = MpsUtil.GenerateUniqueProposalName();
-                try
-                {
-                    SpecFlow.SetContext("GeneratedProposalName", proposalName);
-                }
-                catch
-                {
-                    throw new NullReferenceException("Session cannot store proposalName");
-                }
-                
-            }
-
-            ProposalNameField.SendKeys(proposalName);
-        }
-
-        public void EnterLeadCodeRef(string leadCodeRef)
-        {
-            if (leadCodeRef.Equals(string.Empty))
-            {
-                leadCodeRef = MpsUtil.GenerateUniqueLeadCodeRef();
-                try
-                {
-                    SpecFlow.SetContext("GeneratedLeadCodeReference", leadCodeRef);
-                }
-                catch
-                {
-                    throw new NullReferenceException("Session cannot store leadCodeRef");
-                }
-            }
-
-            LeadCodeRef.SendKeys(leadCodeRef);
-        }
-
         private void VerifyProposalDescriptionFieldsAreDisabled()
         {
             TestCheck.AssertIsEqual(false, ProposalNameField.Enabled, "Is proposal name field disabled?");
@@ -342,101 +289,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             TestCheck.AssertIsEqual(false, ClickColourMarginElement.Enabled, "Click colour margin Element disabled?");
         }
 
-        private IWebElement ContractTypeSelectorDropdown()
-        {
-            return GetElementByCssSelector(contractSelector, 10);
-        }
 
-
-        public void SelectingContractType(string contract)
-        {
-            if (IsElementPresent(ContractTypeSelectorDropdown()))
-                    SelectContractType(contract);
-         
-        }
-
-        public void SelectContractType(string contract)
-        {
-            var selectable = "";
-
-            switch (contract)
-            {
-                case "AIC" :
-                    selectable = "1";
-                    break;
-                case "Purchase & Click with Service":
-                    selectable = "3";
-                    break;
-                case "Lease & Click with Service":
-                    selectable = "2";
-                    break;
-                default:
-                    throw new InvalidEnumArgumentException(String.Format("{0} is not a valid contract type", contract));
-            }
-
-            if (ContractTypeSelector.Displayed)
-            {
-                SelectFromDropdownByValue(ContractTypeSelector, selectable);
-                SpecFlow.SetContext("CreateContractType", contract);
-            }
-        }
-
-        public void SelectingContractUsageType(string contract)
-        {
-            if (IsElementPresent(ContractTypeSelectorDropdown()))
-                SelectContractUsageType(contract);
-         
-        }
-
-        public void SelectContractUsageType(string usage)
-        {
-            var selectable = "";
-
-            switch (usage)
-            {
-                case "Minimum Volume" :
-                    selectable = "1";
-                    break;
-                case "Pay As You Go" :
-                    selectable = "2";
-                    break;
-                default:
-                    throw new InvalidEnumArgumentException(String.Format("{0} is not a valid contract type", usage));
-            }
-
-            if (UsageTypeSelector.Displayed)
-            {
-                SelectFromDropdownByValue(UsageTypeSelector, selectable);
-                SpecFlow.SetContext("CreateUsageType", usage);
-            }
-        }
 
         public void MoveToProposalSummaryScreen()
         {
             ScrollTo(ProposalSummaryScreenElement);
             ProposalSummaryScreenElement.Click();
             AssertElementPresent(SummaryConfirmationTextElement, "Product Confirmation Message");
-        }
-
-        public CloudExistingProposalPage SaveProposalAsTemplate()
-        {
-            WebDriver.Wait(Helper.DurationType.Second, 3);
-            ScrollTo(SaveAsTemplateElement);
-            SaveAsTemplateElement.Click();
-            return GetTabInstance<CloudExistingProposalPage>(Driver);
-        }
-
-        public CloudExistingProposalPage SaveProposal()
-        {
-            WebDriver.Wait(Helper.DurationType.Second, 3);
-            ScrollTo(SaveProposalElement);
-            SaveProposalElement.Click();
-            return GetTabInstance<CloudExistingProposalPage>(Driver);
-        }
-
-        public void VerifyTheNumberOfPrintersOnSummaryPage(int printerNo)
-        {
-            TestCheck.AssertIsEqual(printerNo, SelectedPrintersOnSummaryPageElement.Count, "Verify number of printers on summary page");
         }
 
         public void SelectAPrinterFromTheList(string printer)

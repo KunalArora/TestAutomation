@@ -26,30 +26,30 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string clickPricePageNext = @"#content_1_ButtonNext";
 
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/proposals/create/summary\"]")]
-        private IWebElement ProposalSummaryScreenElement;
+        public IWebElement ProposalSummaryScreenElement;
         [FindsBy(How = How.Id, Using = "content_1_ComponentIntroductionAlert")]
-        private IWebElement SummaryConfirmationTextElement;
+        public IWebElement SummaryConfirmationTextElement;
         [FindsBy(How = How.Id, Using = "content_1_InputServicePaymentOptions_Input_0")]
-        private IWebElement PayUpfrontElement;
+        public IWebElement PayUpfrontElement;
         [FindsBy(How = How.Id, Using = "content_1_InputServicePaymentOptions_Input_1")]
-        private IWebElement InClickPriceElement;
+        public IWebElement InClickPriceElement;
         [FindsBy(How = How.Id, Using = "content_1_LineItems_InputMonoVolumeBreaks_0")]
-        private IWebElement monoVolumeDropdownElement;
+        public IWebElement monoVolumeDropdownElement;
         [FindsBy(How = How.Id, Using = "content_1_LineItems_InputColourVolumeBreaks_0")]
-        private IWebElement colourVolumeDropdownElement;
+        public IWebElement colourVolumeDropdownElement;
         [FindsBy(How = How.CssSelector, Using = "[id='content_1_LineItems_InputMonoVolume_0']")]
-        private IWebElement MonoVolumeInputFieldElement;
+        public IWebElement MonoVolumeInputFieldElement;
         [FindsBy(How = How.CssSelector, Using = "[id='content_1_LineItems_InputColourVolume_0']")]
-        private IWebElement ColourVolumeInputFieldElement;
+        public IWebElement ColourVolumeInputFieldElement;
         [FindsBy(How = How.CssSelector, Using = "[id='content_1_LineItems_InputMonoCoverage_0']")]
-        private IWebElement MonoCoverageInputFieldElement;
+        public IWebElement MonoCoverageInputFieldElement;
         [FindsBy(How = How.CssSelector, Using = "[id='content_1_LineItems_InputColourCoverage_0']")]
-        private IWebElement ColourCoverageInputFieldElement;
+        public IWebElement ColourCoverageInputFieldElement;
         
         [FindsBy(How = How.Id, Using = "content_1_ButtonCalculate")]
-        private IWebElement CalculateClickPriceElement;
+        public IWebElement CalculateClickPriceElement;
         [FindsBy(How = How.Id, Using = "content_1_ButtonNext")]
-        private IWebElement ProceedOnClickPricePageElement;
+        public IWebElement ProceedOnClickPricePageElement;
 
         private IWebElement PaymentMethodElement()
         {
@@ -208,9 +208,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public DealerProposalsCreateSummaryPage MoveToProposalSummaryScreen()
         {
             ScrollTo(ProposalSummaryScreenElement);
-            ProposalSummaryScreenElement.Click();
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ProposalSummaryScreenElement);
 //            AssertElementPresent(SummaryConfirmationTextElement, "Product Confirmation Message");
-            return GetTabInstance<DealerProposalsCreateSummaryPage>(Driver, BaseURL, true);
+            return GetTabInstance<DealerProposalsCreateSummaryPage>(Driver);
 
         }
 

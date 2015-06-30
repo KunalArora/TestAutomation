@@ -30,44 +30,44 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string ProposalNthItemSelecterFormat = "div.js-mps-proposal-list-container tr.js-mps-delete-remove:nth-child({0})";
 
         [FindsBy(How = How.CssSelector, Using = "li.separator a[href=\"/mps/proposals/create?new=true\"]")]
-        private IWebElement NewProposalButton;
+        public IWebElement NewProposalButton;
         [FindsBy(How = How.CssSelector, Using = ".active a[href=\"/mps/dealer/proposals/templates\"] span")]
-        private IWebElement ProposalListTemplateScreenElement;
+        public IWebElement ProposalListTemplateScreenElement;
         [FindsBy(How = How.CssSelector, Using = ".active a[href=\"/mps/dealer/proposals/in-progress\"] span")]
-        private IWebElement ProposalListProposalsScreenElement;
+        public IWebElement ProposalListProposalsScreenElement;
         [FindsBy(How = How.CssSelector, Using = "tr.js-mps-delete-remove td")]
-        private IList<IWebElement> ProposalListProposalNameElement;
+        public IList<IWebElement> ProposalListProposalNameElement;
         [FindsBy(How = How.Id, Using = "content_1_ProposalListFilter_InputFilterBy")]
-        private IWebElement ProposalFilter;
+        public IWebElement ProposalFilter;
         [FindsBy(How = How.CssSelector, Using = ".panel-default .panel-body [class='col-sm-3']")]
-        private IList<IWebElement> ProposalName;
+        public IList<IWebElement> ProposalName;
         [FindsBy(How = How.Id, Using = "content_1_InputEnvisagedStartDate_Input")]
-        private IWebElement ProposedStartDate;
+        public IWebElement ProposedStartDate;
         [FindsBy(How = How.Id, Using = "content_1_ButtonSaveAsContract")]
-        private IWebElement SaveAsContractButton;
+        public IWebElement SaveAsContractButton;
         [FindsBy(How = How.CssSelector, Using = ".active a[href=\"/mps/dealer/proposals/ready-for-approver\"] span")]
-        private IWebElement SendToBankScreenElement;
+        public IWebElement SendToBankScreenElement;
         [FindsBy(How = How.CssSelector, Using = "a[href='/mps/dealer/proposals/in-progress']")]
-        private IWebElement InActiveProposalListProposalsScreenElement;
+        public IWebElement InActiveProposalListProposalsScreenElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/proposals/convert/customer-information\"]")]
-        private IWebElement customerInformationTabElement;
+        public IWebElement customerInformationTabElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/proposals/convert/description\"]")]
-        private IWebElement proposalDescriptionTabElement;
+        public IWebElement proposalDescriptionTabElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/proposals/convert/term-type\"]")]
-        private IWebElement termsAndTypeTabElement;
+        public IWebElement termsAndTypeTabElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/proposals/convert/products\"]")]
-        private IWebElement productsTabElement;
+        public IWebElement productsTabElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/proposals/convert/summary\"]")]
-        private IWebElement proposalSummaryTabElement;
+        public IWebElement proposalSummaryTabElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/proposals/declined\"] span")]
-        private IWebElement proposalDeclinedTabElement;
+        public IWebElement proposalDeclinedTabElement;
         [FindsBy(How = How.CssSelector, Using = "div.js-mps-proposal-list-container>table")]
-        private IWebElement proposalListContainerElement;
+        public IWebElement proposalListContainerElement;
         private const string DealerLatestOperatingItemId = "DealerLatestOperatingItemId";
         private const string DealerLatestOperatingItemName = "DealerLatestOperatingItemName";
         private const string DealerLatestOperatingItemCustomer = "DealerLatestOperatingItemCustomer";
         [FindsBy(How = How.CssSelector, Using = ".js-mps-searchable tr:first-child")]
-        private IWebElement proposalTopItemElement;
+        public IWebElement proposalTopItemElement;
         
         
 

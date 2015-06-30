@@ -9,7 +9,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 {
     public class DealerContractsSummaryPage : BasePage
     {
-        public static string Url = "/";
+        public static string Url = "/mps/dealer/contracts/summary";
 
         public override string DefaultTitle
         {
@@ -17,15 +17,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
         [FindsBy(How = How.Id, Using = "content_1_ButtonCancel")]
-        private IWebElement CancelButtonElement;
+        public IWebElement CancelButtonElement;
         [FindsBy(How = How.Id, Using = "content_1_ButtonSign")]
-        private IWebElement SignButtonElement;
+        public IWebElement SignButtonElement;
         [FindsBy(How = How.Id, Using = "content_1_ButtonReSignProcess")]
-        private IWebElement ResignButtonElement;
+        public IWebElement ResignButtonElement;
         [FindsBy(How = How.Id, Using = "content_1_ButtonReSignContractSubmit")]
-        private IWebElement FinalResignButtonElement;
+        public IWebElement FinalResignButtonElement;
         [FindsBy(How = How.Id, Using = "content_1_mpsCheckboxReSignContract_Label")]
-        private IWebElement ResignInformationCheckboxElement;
+        public IWebElement ResignInformationCheckboxElement;
 
         public void ClickCancelButton()
         {
@@ -51,7 +51,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public CloudContractPage ClickFinalReSignButton()
         {
             ScrollTo(FinalResignButtonElement);
-            FinalResignButtonElement.Click();
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, FinalResignButtonElement);
 
             WebDriver.Wait(DurationType.Second, 3);
 
@@ -60,7 +60,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void TickResignInformationCheckbox()
         {
-            ResignInformationCheckboxElement.Click();
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ResignInformationCheckboxElement);
             WebDriver.Wait(DurationType.Second, 3);
         }
     }

@@ -13,7 +13,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 {
     public class DealerProposalsCreateTermAndTypePage : BasePage
     {
-        public static string URL = "/mps/dealer/proposals/create/click-price";
+        public static string URL = "/mps/dealer/proposals/create/term-type";
 
         public override string DefaultTitle
         {
@@ -23,19 +23,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string priceHardwareTickBox = @"#content_1_InputPriceHardware_Input";
 
         [FindsBy(How = How.Id, Using = "content_1_InputContractLength_Input")]
-        private IWebElement ContractLengthElement;
+        public IWebElement ContractLengthElement;
         [FindsBy(How = How.Id, Using = "content_1_InputLeasingRateBillingCycle_Input")]
-        private IWebElement LeaseBillingCycleElement;
+        public IWebElement LeaseBillingCycleElement;
         [FindsBy(How = How.Id, Using = "content_1_InputClickRateBillingCycle_Input")]
-        private IWebElement PayPerClickBillingElement;
+        public IWebElement PayPerClickBillingElement;
         [FindsBy(How = How.Id, Using = "content_1_InputUsageType_Input")]
-        private IWebElement UsageTypeElement;
+        public IWebElement UsageTypeElement;
         [FindsBy(How = How.Id, Using = "content_1_InputPriceHardware_Input")]
-        private IWebElement PriceHardwareElement;
+        public IWebElement PriceHardwareElement;
         [FindsBy(How = How.Id, Using = "content_1_ButtonNext")]
-        private IWebElement NextButton;
+        public IWebElement NextButton;
         [FindsBy(How = How.Id, Using = "content_1_ComponentIntroductionAlert")]
-        private IWebElement TermAndTypeScreenTextElement;
+        public IWebElement TermAndTypeScreenTextElement;
 
         public void IsTermAndTypeTextDisplayed()
         {

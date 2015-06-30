@@ -20,10 +20,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string CustomerNthItemSelecterFormat = "div.js-mps-customer-list-container tr.js-mps-delete-remove:nth-child({0})";
 
         [FindsBy(How = How.CssSelector, Using = "div.js-mps-customer-list-container>table")]
-        private IWebElement customerListContainerElement;
+        public IWebElement customerListContainerElement;
 
         [FindsBy(How = How.CssSelector, Using = "input[type=\"submit\"]#content_1_CustomerListActions_ActionList_Button_0")]
-        private IWebElement createCustomerButtonElement;
+        public IWebElement createCustomerButtonElement;
 
         public override string DefaultTitle
         {

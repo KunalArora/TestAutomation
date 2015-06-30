@@ -8,7 +8,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 {
     public class LocalOfficeApproverDashBoardPage : BasePage
     {
-        public static string Url = "/";
+        public static string Url = "/mps/local-office/dashboard";
 
         public override string DefaultTitle
         {
@@ -16,9 +16,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
         [FindsBy(How = How.CssSelector, Using = "a[href='/mps/local-office/proposals'] .media-body")]
-        private IWebElement ProposalLinkElement;
+        public IWebElement ProposalLinkElement;
         [FindsBy(How = How.CssSelector, Using = "a[href='/mps/local-office/contracts'] .media-body")]
-        private IWebElement ContractLinkElement;
+        public IWebElement ContractLinkElement;
 
         public void IsProposalsLinkAvailable()
         {

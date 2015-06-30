@@ -21,25 +21,25 @@ namespace Brother.WebSites.Core.Pages.MPSOne
         }
 
         [FindsBy(How = How.Id, Using = "contract-search")] 
-        private IWebElement ContractHeader;
-        [FindsBy(How = How.CssSelector, Using = ".active .organisation")] 
-        private IList<IWebElement> ExistingOrganisations;
-        [FindsBy(How = How.CssSelector, Using = ".active .contract-number")] 
-        private IList<IWebElement> ExistingContractId;
-        [FindsBy(How = How.Id, Using = "content_0_interface_0_fullwidthcontent_0_ddlStatusC")]
-        private IWebElement ContractStatusSelector;
-        [FindsBy(How = How.CssSelector, Using = ".my-contract-search-container .contract-input-search")]
-        private IWebElement ContractSearchBox;
-        [FindsBy(How = How.CssSelector, Using = ".my-contract-header label")]
-        private IWebElement ContractHeaderLabel;
-        [FindsBy(How = How.CssSelector, Using = ".active .contract-number")]
-        private IList<IWebElement> SearchedContractId;
+        public IWebElement ContractHeader;
         [FindsBy(How = How.CssSelector, Using = ".active .organisation")]
-        private IList<IWebElement> SearchedContractOrganisation;
+        public IList<IWebElement> ExistingOrganisations;
+        [FindsBy(How = How.CssSelector, Using = ".active .contract-number")]
+        public IList<IWebElement> ExistingContractId;
+        [FindsBy(How = How.Id, Using = "content_0_interface_0_fullwidthcontent_0_ddlStatusC")]
+        public IWebElement ContractStatusSelector;
+        [FindsBy(How = How.CssSelector, Using = ".my-contract-search-container .contract-input-search")]
+        public IWebElement ContractSearchBox;
+        [FindsBy(How = How.CssSelector, Using = ".my-contract-header label")]
+        public IWebElement ContractHeaderLabel;
+        [FindsBy(How = How.CssSelector, Using = ".active .contract-number")]
+        public IList<IWebElement> SearchedContractId;
+        [FindsBy(How = How.CssSelector, Using = ".active .organisation")]
+        public IList<IWebElement> SearchedContractOrganisation;
         [FindsBy(How = How.CssSelector, Using = ".active .my-contract-status")]
-        private IList<IWebElement> SearchedContractStatus;
+        public IList<IWebElement> SearchedContractStatus;
         [FindsBy(How = How.ClassName, Using = "rows")]
-        private IWebElement ContractRows;
+        public IWebElement ContractRows;
 
 
 
