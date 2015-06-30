@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
@@ -34,8 +36,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement RejectButtonElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_ButtonProposalDeclineCancel")]
         public IWebElement RejectionCancelButtonElement;
-        [FindsBy(How = How.CssSelector, Using = ".js-mps-proposal-list-container .js-mps-fix-column-widths")]
-        public IWebElement ProposalListElement;
+        [FindsBy(How = How.CssSelector, Using = ".js-mps-proposal-list-container .table .js-mps-searchable tr")]
+        public IList<IWebElement> ProposalListContainerElement;
         
 
         public void IsAwaitingApprovalLinkAvailable()
@@ -198,10 +200,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsProposalListAvailable()
         {
-            if (ProposalListElement == null)
+            if (ProposalListContainerElement == null || !ProposalListContainerElement.Any())
                 throw new Exception("Unable to locate Proposal List");
 
-            AssertElementPresent(ProposalListElement, "Proposal List");
+            AssertElementsPresent(ProposalListContainerElement.ToArray(), "Proposal List");
         }
     }
 }
