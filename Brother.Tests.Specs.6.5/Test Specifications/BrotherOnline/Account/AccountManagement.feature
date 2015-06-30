@@ -101,16 +101,15 @@ Scenario: Business Customer can change their business details after logging into
 	Then I can verify successfull update message appeared at the top
 	
 @ignore
+#Change Personal details in your created account, go to my account and change/add your new password
 Scenario: Business Customer can reset their password 
-	# resetting a password
 
-@ignore
-Scenario: Business Customer can change their Email Address
-	# change email
 
-@ignore
-Scenario: Business Customer can change their Address
-	# changing address
+
+
+	
+	
+	
 
 
 

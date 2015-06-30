@@ -296,33 +296,7 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Business Customer can reset their password", new string[] {
                         "ignore"});
-#line 104
-this.ScenarioSetup(scenarioInfo);
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Business Customer can change their Email Address")]
-        [NUnit.Framework.IgnoreAttribute()]
-        public virtual void BusinessCustomerCanChangeTheirEmailAddress()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Business Customer can change their Email Address", new string[] {
-                        "ignore"});
-#line 108
-this.ScenarioSetup(scenarioInfo);
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Business Customer can change their Address")]
-        [NUnit.Framework.IgnoreAttribute()]
-        public virtual void BusinessCustomerCanChangeTheirAddress()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Business Customer can change their Address", new string[] {
-                        "ignore"});
-#line 112
+#line 105
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
