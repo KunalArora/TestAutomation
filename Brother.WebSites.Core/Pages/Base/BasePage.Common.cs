@@ -89,15 +89,16 @@ namespace Brother.WebSites.Core.Pages.Base
         #endregion
         #region Tab GetInstance
 
-        protected TPage GetTabInstance<TPage>(IWebDriver driver = null, string expectedTitle = "")
+        protected TPage GetTabInstance<TPage>(IWebDriver driver = null)
             where TPage : BasePage, new()
         {
-            return GetTabInstance<TPage>(driver ?? Driver, BaseURL, expectedTitle);
+            return GetTabInstance<TPage>(driver ?? Driver, BaseURL);
         }
 
-        protected static TPage GetTabInstance<TPage>(IWebDriver driver, string baseUrl, string expectedTitle = "")
+        protected static TPage GetTabInstance<TPage>(IWebDriver driver, string baseUrl, bool assertUrlHasChanged = false)
             where TPage : BasePage, new()
         {
+            var initialUrl = driver.Url;
             var timeSpan = WebDriver.DefaultTimeout;
             var pageInstance = new TPage
             {
@@ -107,6 +108,12 @@ namespace Brother.WebSites.Core.Pages.Base
 
             PageFactory.InitElements(driver, pageInstance);
             new WebDriverWait(driver, timeSpan).Until(d => d.FindElement(By.TagName("body")));
+
+            var finalUrl = driver.Url;
+
+            if (assertUrlHasChanged)
+                TestCheck.AssertIsEqual(false, initialUrl.Equals(finalUrl), 
+                    String.Format("{0} did not redirected to expected new page", initialUrl));
 
             return pageInstance;
         }

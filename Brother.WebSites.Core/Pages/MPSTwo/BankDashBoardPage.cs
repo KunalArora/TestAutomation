@@ -1,4 +1,5 @@
 ﻿using System;
+using Brother.Tests.Selenium.Lib.Support;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -7,7 +8,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 {
     public class BankDashBoardPage : BasePage
     {
-        public static string Url = "/";
+        public static string Url = "/mps/bank/dashboard";
 
         public override string DefaultTitle
         {
@@ -15,11 +16,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
         [FindsBy(How = How.CssSelector, Using = "a[href='/mps/bank/leasing-factors'] .media-body")]
-        private IWebElement LeasingFactorsLinkElement;
+        public IWebElement LeasingFactorsLinkElement;
         [FindsBy(How = How.CssSelector, Using = "a[href='/mps/bank/proposals'] .media-body")]
-        private IWebElement OffersLinkElement;
+        public IWebElement OffersLinkElement;
         [FindsBy(How = How.CssSelector, Using = "a[href='/mps/bank/contracts'] .media-body")]
-        private IWebElement ContractsLinkElement;
+        public IWebElement ContractsLinkElement;
 
         public void IsLeasingFactorsLinkAvailable()
         {
@@ -48,21 +49,21 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public BankOffersPage NavigateToOffersPage()
         {
             IsOffersLinkAvailable();
-            OffersLinkElement.Click();
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, OffersLinkElement);
             return GetTabInstance<BankOffersPage>(Driver);
         }
 
         public BankContractsPage NavigateToContractApprovedProposalPage()
         {
             IsOffersLinkAvailable();
-            ContractsLinkElement.Click();
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ContractsLinkElement);
             return GetTabInstance<BankContractsPage>(Driver);
         }
 	
         public BankContractsPage NavigateToContractsPage()
         {
             IsContractsLinkAvailable();
-            ContractsLinkElement.Click();
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ContractsLinkElement);
             return GetTabInstance<BankContractsPage>(Driver);
         }
  

@@ -1,4 +1,5 @@
 ﻿using System;
+using Brother.Tests.Selenium.Lib.Support;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -15,11 +16,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
         [FindsBy(How = How.CssSelector, Using = "a[href='/mps/dealer/admin/staff'] .media-body")] 
-        private IWebElement CreateAndManagerStaffElement;
+        public IWebElement CreateAndManagerStaffElement;
         [FindsBy(How = How.CssSelector, Using = "a[href='/mps/dealer/admin/default-margins'] .media-body")] 
-        private IWebElement DefaultMarginsElement;
+        public IWebElement DefaultMarginsElement;
         [FindsBy(How = How.CssSelector, Using = "a[href='/mps/dealer/admin/profile'] .media-body")]
-        private IWebElement DealershipProfileElement;
+        public IWebElement DealershipProfileElement;
        
 
         private void IsDefaultMarginsLinkAvailable()
@@ -41,14 +42,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public DealerAdminDefaultMarginsPage NavigateToDealerAdminDefaultMarginsPage()
         {
             IsDefaultMarginsLinkAvailable();
-            DefaultMarginsElement.Click();
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, DefaultMarginsElement);
             return GetTabInstance<DealerAdminDefaultMarginsPage>(Driver);
         }
 
         public DealerAdminDealershipProfilePage NavigateToDealerAdminDealershipProfilePage()
         {
             IsDealershipProfileLinkAvailable();
-            DealershipProfileElement.Click();
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, DealershipProfileElement);
             return GetTabInstance<DealerAdminDealershipProfilePage>(Driver);
         }
 

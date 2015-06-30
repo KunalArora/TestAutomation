@@ -91,6 +91,7 @@ Scenario Outline: All Zero QTY fields are not displayed on summary page
 	| Role             | Country        | ContractType       | Contract |  Billing                  | Printer      |
 	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | 3 years  |  Quarterly | MFC-L8850CDW |
 
+	@Ignore
 Scenario Outline: All input Margins on prodocut page is displayed on summary page
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page

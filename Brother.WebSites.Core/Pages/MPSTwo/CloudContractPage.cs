@@ -21,35 +21,35 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
         [FindsBy(How = How.CssSelector, Using = "[id*='content_1_ContractList_List_ContractName']")]
-        private IList<IWebElement> newContractNameElement;
+        public IList<IWebElement> newContractNameElement;
         [FindsBy(How = How.CssSelector, Using = "[id*='content_1_ContractList_List_LeadCodeReference']")]
-        private IList<IWebElement> newContractReferenceElement;
+        public IList<IWebElement> newContractReferenceElement;
         [FindsBy(How = How.CssSelector, Using = "li.active [href='/mps/dealer/contracts/awaiting-processing'] span")]
-        private IWebElement contractAwaitingProcessingElement;
+        public IWebElement contractAwaitingProcessingElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/contracts/confirmed-offers\"] span")]
-        private IWebElement DealerConfirmedOfferTabElement;
+        public IWebElement DealerConfirmedOfferTabElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_ButtonSign")]
-        private IWebElement DealerContractSignButtonElement;
+        public IWebElement DealerContractSignButtonElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/contracts/signed-offers\"] span")]
-        private IWebElement DealerSignedOfferTabElement;
+        public IWebElement DealerSignedOfferTabElement;
         [FindsBy(How = How.CssSelector, Using = "input[id*='content_1_Printers_InstalledPrinters_0_SerialNumber']")]
-        private IList<IWebElement> printerSerialNumberFieldElement;
+        public IList<IWebElement> printerSerialNumberFieldElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_ButtonNext")]
-        private IWebElement PreInstallationNextButtonElement;
+        public IWebElement PreInstallationNextButtonElement;
         [FindsBy(How = How.Id, Using = "content_1_ButtonCompletePreInstallation")]
-        private IWebElement PreInstallationCompleteButtonElement;
+        public IWebElement PreInstallationCompleteButtonElement;
         [FindsBy(How = How.CssSelector, Using = "label[id*='content_1_Printers_InstalledPrinters_0_SerialNumber']")]
-        private IList<IWebElement> printerSerialNumberlabelElement;
+        public IList<IWebElement> printerSerialNumberlabelElement;
         [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href=\"/mps/dealer/contracts/rejected\"]")]
-        private IWebElement RejectedLinkElement;
+        public IWebElement RejectedLinkElement;
         [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href=\"/mps/dealer/contracts/awaiting-acceptance\"]")]
-        private IWebElement AwaitingAcceptanceTabElement;
+        public IWebElement AwaitingAcceptanceTabElement;
         [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href=\"/mps/dealer/contracts/accepted\"]")]
-        private IWebElement AcceptedTabElement;
+        public IWebElement AcceptedTabElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/contracts/approved-proposals\"]")]
-        private IWebElement ApprovedProposalTabElement;
+        public IWebElement ApprovedProposalTabElement;
         [FindsBy(How = How.CssSelector, Using = ".active a[href=\"/mps/dealer/contracts/approved-proposals\"]")]
-        private IWebElement OpenedApprovedProposalTabElement;
+        public IWebElement OpenedApprovedProposalTabElement;
         
         
         
@@ -262,7 +262,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             element.Click();
             ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
 
-            return GetTabInstance<DealerContractsSummaryPage>(Driver);
+            return GetTabInstance<DealerContractsSummaryPage>(Driver, BaseURL, true);
         }
 
     }

@@ -17,21 +17,21 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
         [FindsBy(How = How.Id, Using = "content_1_DealerMarginTable_InputDeviceMargin_Input")]
-        private IWebElement HardwareDefaultMargin;
+        public IWebElement HardwareDefaultMargin;
         [FindsBy(How = How.Id, Using = "content_1_DealerMarginTable_InputOptionMargin_Input")]
-        private IWebElement AccesoriesDefaultMargin;
+        public IWebElement AccesoriesDefaultMargin;
         [FindsBy(How = How.Id, Using = "content_1_DealerMarginTable_InputDeliveryMargin_Input")]
-        private IWebElement DeliveryDefaultMargin;
+        public IWebElement DeliveryDefaultMargin;
         [FindsBy(How = How.Id, Using = "content_1_DealerMarginTable_InputInstallationMargin_Input")]
-        private IWebElement InstallationDefaultMargin;
+        public IWebElement InstallationDefaultMargin;
         [FindsBy(How = How.Id, Using = "content_1_DealerMarginTable_InputServicePackMargin_Input")]
-        private IWebElement ServicePackDefaultMargin;
+        public IWebElement ServicePackDefaultMargin;
         [FindsBy(How = How.Id, Using = "content_1_DealerMarginTable_InputMonoClickRateMargin_Input")]
-        private IWebElement MonoClickDefaultMargin;
+        public IWebElement MonoClickDefaultMargin;
         [FindsBy(How = How.Id, Using = "content_1_DealerMarginTable_InputColourClickRateMargin_Input")]
-        private IWebElement ColourClickDefaultMargin;
+        public IWebElement ColourClickDefaultMargin;
         [FindsBy(How = How.Id, Using = "content_1_DealerMarginTable_InputAllInclusiveMargin_Input")]
-        private IWebElement AllInclusiveMargin;
+        public IWebElement AllInclusiveMargin;
         [FindsBy(How = How.Id, Using = "content_1_ButtonNext")]
         public IWebElement DealerDefaultsSaveButton;
 
@@ -105,14 +105,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void StoreMarginConfiguration()
         {
-            SpecFlow.SetContext("DealerAdminHardwareDefaultMargin", HardwareDefaultMargin.GetAttribute("value"));
-            SpecFlow.SetContext("DealerAdminAccesoriesDefaultMargin", AccesoriesDefaultMargin.GetAttribute("value"));
-            SpecFlow.SetContext("DealerAdminDeliveryDefaultMargin", DeliveryDefaultMargin.GetAttribute("value"));
-            SpecFlow.SetContext("DealerAdminInstallationDefaultMargin", InstallationDefaultMargin.GetAttribute("value"));
-            SpecFlow.SetContext("DealerAdminServicePackDefaultMargin", ServicePackDefaultMargin.GetAttribute("value"));
-            SpecFlow.SetContext("DealerAdminMonoClickDefaultMargin", MonoClickDefaultMargin.GetAttribute("value"));
-            SpecFlow.SetContext("DealerAdminColourClickDefaultMargin", ColourClickDefaultMargin.GetAttribute("value"));
-            SpecFlow.SetContext("DealerAdminAllInclusiveMargin", AllInclusiveMargin.GetAttribute("value"));
+            SpecFlow.SetContext("DealerAdminHardwareDefaultMargin", HardwareDefaultMargin.GetAttribute("value") + ".00");
+            SpecFlow.SetContext("DealerAdminAccesoriesDefaultMargin", AccesoriesDefaultMargin.GetAttribute("value") + ".00");
+            SpecFlow.SetContext("DealerAdminDeliveryDefaultMargin", DeliveryDefaultMargin.GetAttribute("value") + ".00");
+            SpecFlow.SetContext("DealerAdminInstallationDefaultMargin", InstallationDefaultMargin.GetAttribute("value") + ".00");
+            SpecFlow.SetContext("DealerAdminServicePackDefaultMargin", ServicePackDefaultMargin.GetAttribute("value") + ".00");
+            SpecFlow.SetContext("DealerAdminMonoClickDefaultMargin", MonoClickDefaultMargin.GetAttribute("value") + ".00");
+            SpecFlow.SetContext("DealerAdminColourClickDefaultMargin", ColourClickDefaultMargin.GetAttribute("value") + ".00");
+            SpecFlow.SetContext("DealerAdminAllInclusiveMargin", AllInclusiveMargin.GetAttribute("value") + ".00");
         }
     }
 }

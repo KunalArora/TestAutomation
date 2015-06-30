@@ -69,8 +69,8 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<RegistrationPage>().ResetPasswordLinkClick();
         }
 
-        [Then(@"I enter an email address with trailing spaces as ""(.*)""")]
-        public void ThenIEnterAnEmailAddressWithTrailingSpacesAs(string emailAddress)
+        [Then(@"I enter an invalid email address as ""(.*)""")]
+        public void ThenIEnterAnInvalidEmailAddressAs(string emailAddress)
         {
            When(string.Format("Enter Email Address as \"{0}\"", emailAddress));
         }

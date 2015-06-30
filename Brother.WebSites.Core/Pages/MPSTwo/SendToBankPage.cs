@@ -16,35 +16,35 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
         [FindsBy(How = How.CssSelector, Using = "#content_1_legalFormInput")]
-        private IWebElement legalFormDropdownElement;
+        public IWebElement legalFormDropdownElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_companyNumberInput_Input")]
-        private IWebElement companyNumberFieldElement;
+        public IWebElement companyNumberFieldElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_vatNumberInput_Input")]
-        private IWebElement ustNumberFieldElement;
+        public IWebElement ustNumberFieldElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_creditReformNumberInput_Input")]
-        private IWebElement creditReformNumberElement;
+        public IWebElement creditReformNumberElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_accountNameInput_Input")]
-        private IWebElement accountNameElement;
+        public IWebElement accountNameElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_accountKeyInput_Input")]
-        private IWebElement accountKeyInputElement;
+        public IWebElement accountKeyInputElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_accountNumberInput_Input")]
-        private IWebElement accountNumberInputElement;
+        public IWebElement accountNumberInputElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_iBanInput_Input")]
-        private IWebElement iBanNumberInputElement;
+        public IWebElement iBanNumberInputElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_biCInput_Input")]
-        private IWebElement biCNumberInputElement;
+        public IWebElement biCNumberInputElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_companyInfo")]
-        private IWebElement companyLegendElement;
+        public IWebElement companyLegendElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_bankInfo")]
-        private IWebElement bankLegendElement;
+        public IWebElement bankLegendElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_ButtonNext")]
-        private IWebElement sendToBankNextButtonElement;
+        public IWebElement sendToBankNextButtonElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_InputLeasingBank")]
-        private IWebElement leasingBankDropdownElement;
+        public IWebElement leasingBankDropdownElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_InputAllowToSendToThirdParty")]
-        private IWebElement thirdPartyElement;
+        public IWebElement thirdPartyElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_ButtonSendToBank")]
-        private IWebElement FinalButtonForSendToBankElement;
+        public IWebElement FinalButtonForSendToBankElement;
         
         
         
@@ -130,7 +130,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 throw new NullReferenceException("Cannot actually send a proposal to bank");
 
             FinalButtonForSendToBankElement.Click();
-            return GetTabInstance<CloudExistingProposalPage>(Driver);
+            return GetTabInstance<CloudExistingProposalPage>(Driver, BaseURL, true);
         }
 
     }

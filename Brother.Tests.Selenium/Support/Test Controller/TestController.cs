@@ -179,6 +179,7 @@ namespace Brother.Tests.Selenium.Lib.Support
             }
         }
 
+
         private static void KillPhantomJsIfRunning()
         {
             var phantomJsProcessList = Process.GetProcessesByName("phantomJS");

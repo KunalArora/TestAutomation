@@ -10,7 +10,7 @@ Create an account on BOL and add Ink Supply user role to it
 	 Given I am logged onto "United Kingdom" BOL with "inktestmarko@mailinator.com" username and "Password999" password
 	 #Given I am logged onto Brother Online "United Kingdom" using valid credentials	
 
-@TEST @ignore
+@TEST
 Scenario:Validate a valid user can sign in to Ink
    
 	And I can see the Ink Supply menu option from the Bol home page

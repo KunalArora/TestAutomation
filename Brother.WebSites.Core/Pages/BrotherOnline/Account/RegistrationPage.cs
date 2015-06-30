@@ -292,7 +292,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         {
             EmailAddressPasswordResetTextBox.Clear();
             EmailAddressPasswordResetTextBox.SendKeys(emailAddress);
-            TestCheck.AssertIsEqual(emailAddress, GetTextBoxValue("EmailTextBox"), "Email For Password Reset Text Box");
+            EmailAddressPasswordResetTextBox.SendKeys(Keys.Tab); // Tab out to trigger warning bar message
         }
 
         public void PopulateFirstNameTextBox(string firstName)

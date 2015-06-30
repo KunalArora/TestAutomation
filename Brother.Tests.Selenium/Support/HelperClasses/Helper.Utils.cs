@@ -158,7 +158,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             return ConfirmSapOrder(orderNumber, out xmlResponseData);
         }
 
-
+        
         // Returns a 200 OK response if the given order number is present on the SAP server
         // for the relevant environment
         public static bool ConfirmSapOrder(string orderNumber, out string xmlResponseData)

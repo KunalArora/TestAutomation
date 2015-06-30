@@ -34,7 +34,8 @@ Scenario: Order and validate a new subscription activation code for Named Host l
 	When I Click Add New Customer
 	And I enter a new Customer Email Address As "ORP_GENERATED_CUSTOMER"
 	When I click Next
-	Then I can enter further customer information such as First Name as "ORP_Customer" and Last Name as "ORP_Customer"
+	Then I can enter further customer information such as First Name as "ORP_Customer", Last Name as "ORP_Customer", Company Name as "ORP_CompanyName"
+	And I can click Add Customer
 	And I can store the Customer Account information for use later
 	When I can sign out of Brother Online
 	And I can verify that the Customer account association email is received

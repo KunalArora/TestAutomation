@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
@@ -17,17 +19,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
         [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/bank/contracts/approved-proposals']")]
-        private IWebElement ApprovedProposalsLinkElement;
+        public IWebElement ApprovedProposalsLinkElement;
         [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/bank/contracts/awaiting-acceptance']")]
-        private IWebElement AwaitingAcceptancLinkElement;
+        public IWebElement AwaitingAcceptancLinkElement;
         [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/bank/contracts/accepted']")]
-        private IWebElement AcceptedLinkElement;
+        public IWebElement AcceptedLinkElement;
         [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/bank/contracts/rejected']")]
-        private IWebElement RejectedLinkElement;
+        public IWebElement RejectedLinkElement;
         [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/bank/contracts/invoices']")]
-        private IWebElement InvoicesLinkElement;
+        public IWebElement InvoicesLinkElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/bank/contracts/awaiting-acceptance\"] span")]
-        private IWebElement OpenedAwaitingAcceptancLinkElement;
+        public IWebElement OpenedAwaitingAcceptancLinkElement;
+        [FindsBy(How = How.CssSelector, Using = ".js-mps-contract-list-container .table .js-mps-searchable tr")]
+        public IList<IWebElement> ContractListContainerElement;
 
         
 
@@ -126,7 +130,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             element.Click();
             ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
 
-            return GetTabInstance<BankContractsSummaryPage>(Driver);
+            return GetTabInstance<BankContractsSummaryPage>(Driver, BaseURL, true);
+        }
+
+        public void IsContractsListAvailable()
+        {
+            if (ContractListContainerElement == null || !ContractListContainerElement.Any())
+                throw new Exception("Unable to locate Contract List");
+
+            AssertElementsPresent(ContractListContainerElement.ToArray(), "Contract List");
         }
     }
 }

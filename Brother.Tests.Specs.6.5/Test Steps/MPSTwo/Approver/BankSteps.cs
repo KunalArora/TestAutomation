@@ -13,12 +13,14 @@ namespace Brother.Tests.Specs.MPSTwo.Bank
     {
 
         [Given(@"I navigate to OfferPage")]
+        [When(@"I navigate to OfferPage")]
         public void WhenINavigateToOfferPage()
         {
             NextPage = CurrentPage.As<BankDashBoardPage>().NavigateToOffersPage();
         }
 
         [Given(@"I navigate to Awaiting Approval screen under Offer page")]
+        [When(@"I navigate to Awaiting Approval screen under Offer page")]
         public void GivenINavigateToAwaitingApprovalScreenUnderOfferPage()
         {
             CurrentPage.As<BankOffersPage>().NavigateToAwaitingApprovalPage();
@@ -161,9 +163,36 @@ namespace Brother.Tests.Specs.MPSTwo.Bank
             CurrentPage.As<BankContractsPage>().NavigateToRejectedPage();
         }
 
+        [Then(@"I should see a list of Offers on Awaiting Approval Tab")]
+        public void ThenIShouldSeeAListOfOffersOnAwaitingApprovalTab()
+        {
+            CurrentPage.As<BankOffersPage>().IsProposalListAvailable();
+        }
 
+        [When(@"I navigate to Bank Contracts screen on ""(.*)"" Tab")]
+        public void WhenINavigateToBankContractsScreenOnTab(string acceptance)
+        {
+            NextPage = CurrentPage.As<BankDashBoardPage>().NavigateToContractsPage();
+            switch (acceptance)
+            {
+                case "Awating Acceptance":
+                    CurrentPage.As<BankContractsPage>().NavigateToAwaitingAcceptancePage();
+                    break;
 
+                case "Rejected":
+                    CurrentPage.As<BankContractsPage>().NavigateToRejectedPage();
+                    break;
 
+                case "Accepted":
+                    CurrentPage.As<BankContractsPage>().NavigateToAcceptedPage();
+                    break;
+            }
+        }
 
+        [Then(@"I should see a list of Offers")]
+        public void ThenIShouldSeeAListOfOffers()
+        {
+            CurrentPage.As<BankContractsPage>().IsContractsListAvailable();
+        }
     }
 }

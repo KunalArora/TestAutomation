@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.Design;
 using System.Linq;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
@@ -28,43 +29,47 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string ProposalItemsSelecterFormat = "div.js-mps-proposal-list-container tr.js-mps-delete-remove";
         private const string ProposalNthItemSelecterFormat = "div.js-mps-proposal-list-container tr.js-mps-delete-remove:nth-child({0})";
 
+        [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/dashboard\"]")]
+        private IWebElement DashboradLink;
         [FindsBy(How = How.CssSelector, Using = "li.separator a[href=\"/mps/proposals/create?new=true\"]")]
-        private IWebElement NewProposalButton;
+        public IWebElement NewProposalButton;
         [FindsBy(How = How.CssSelector, Using = ".active a[href=\"/mps/dealer/proposals/templates\"] span")]
-        private IWebElement ProposalListTemplateScreenElement;
+        public IWebElement ProposalListTemplateScreenElement;
         [FindsBy(How = How.CssSelector, Using = ".active a[href=\"/mps/dealer/proposals/in-progress\"] span")]
-        private IWebElement ProposalListProposalsScreenElement;
+        public IWebElement ProposalListProposalsScreenElement;
         [FindsBy(How = How.CssSelector, Using = "tr.js-mps-delete-remove td")]
-        private IList<IWebElement> ProposalListProposalNameElement;
+        public IList<IWebElement> ProposalListProposalNameElement;
         [FindsBy(How = How.Id, Using = "content_1_ProposalListFilter_InputFilterBy")]
-        private IWebElement ProposalFilter;
+        public IWebElement ProposalFilter;
         [FindsBy(How = How.CssSelector, Using = ".panel-default .panel-body [class='col-sm-3']")]
-        private IList<IWebElement> ProposalName;
+        public IList<IWebElement> ProposalName;
         [FindsBy(How = How.Id, Using = "content_1_InputEnvisagedStartDate_Input")]
-        private IWebElement ProposedStartDate;
+        public IWebElement ProposedStartDate;
         [FindsBy(How = How.Id, Using = "content_1_ButtonSaveAsContract")]
-        private IWebElement SaveAsContractButton;
+        public IWebElement SaveAsContractButton;
         [FindsBy(How = How.CssSelector, Using = ".active a[href=\"/mps/dealer/proposals/ready-for-approver\"] span")]
-        private IWebElement SendToBankScreenElement;
+        public IWebElement SendToBankScreenElement;
         [FindsBy(How = How.CssSelector, Using = "a[href='/mps/dealer/proposals/in-progress']")]
-        private IWebElement InActiveProposalListProposalsScreenElement;
+        public IWebElement InActiveProposalListProposalsScreenElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/proposals/convert/customer-information\"]")]
-        private IWebElement customerInformationTabElement;
+        public IWebElement customerInformationTabElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/proposals/convert/description\"]")]
-        private IWebElement proposalDescriptionTabElement;
+        public IWebElement proposalDescriptionTabElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/proposals/convert/term-type\"]")]
-        private IWebElement termsAndTypeTabElement;
+        public IWebElement termsAndTypeTabElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/proposals/convert/products\"]")]
-        private IWebElement productsTabElement;
+        public IWebElement productsTabElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/proposals/convert/summary\"]")]
-        private IWebElement proposalSummaryTabElement;
+        public IWebElement proposalSummaryTabElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/proposals/declined\"] span")]
-        private IWebElement proposalDeclinedTabElement;
+        public IWebElement proposalDeclinedTabElement;
         [FindsBy(How = How.CssSelector, Using = "div.js-mps-proposal-list-container>table")]
-        private IWebElement proposalListContainerElement;
+        public IWebElement proposalListContainerElement;
         private const string DealerLatestOperatingItemId = "DealerLatestOperatingItemId";
+        private const string DealerLatestOperatingItemName = "DealerLatestOperatingItemName";
+        private const string DealerLatestOperatingItemCustomer = "DealerLatestOperatingItemCustomer";
         [FindsBy(How = How.CssSelector, Using = ".js-mps-searchable tr:first-child")]
-        private IWebElement proposalTopItemElement;
+        public IWebElement proposalTopItemElement;
         
         
 
@@ -109,7 +114,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public CreateNewProposalPage ClickOnNewProposalTab()
         {
             NewProposalButton.Click();
-            return GetTabInstance<CreateNewProposalPage>(Driver);
+            return GetTabInstance<CreateNewProposalPage>(Driver, BaseURL, true);
         }
 
         public void NavigateToDeclinedProposalScreen()
@@ -227,7 +232,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public ConvertProposalCustomerInfo ClickOnConvertToContractButton(IWebDriver driver)
         {
             ActionsModule.StartConvertToContractProcess(driver);
-            //VerifyThatTheCorrectProposalOpened();
             return GetTabInstance<ConvertProposalCustomerInfo>(Driver);
 
         }
@@ -267,7 +271,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return driver.FindElement(By.CssSelector(format));
         }
 
-        private IWebElement GetNewlyCreatedProposalOfferElement(IWebDriver driver, int nth = 1)
+        private IWebElement GetNewlyCreatedProposalOfferElement(IWebDriver driver)
         {
             var created = CreatedProposal();
             return
@@ -276,6 +280,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 .First(x => x.FindElements(By.CssSelector("td"))
                              .Select(y => y.Text)
                              .Contains(created));
+        }
+
+        private IWebElement GetProposalOfferWithoutCustomerElement(IWebDriver driver)
+        {
+            return
+                driver.FindElements(By.CssSelector(ProposalItemsSelecterFormat))
+                .First(x => x.FindElement(By.CssSelector("td:nth-child(4)")).Text == "-");
+        }
+
+        private IWebElement GetProposalOfferWithCustomerElement(IWebDriver driver)
+        {
+            return
+                driver.FindElements(By.CssSelector(ProposalItemsSelecterFormat))
+                .First(x => x.FindElement(By.CssSelector("td:nth-child(4)")).Text != "-");
         }
 
         private void ClickActionButtonOnOffer(IWebElement offerElement)
@@ -303,6 +321,70 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var id = deleteElem.GetAttribute("data-proposal-id");
             SpecFlow.SetContext(DealerLatestOperatingItemId, id);
             deleteElem.Click();
+        }
+
+        public void ClickOnCopyOnActionItemWithoutCustomer(IWebDriver driver, string operation, string target)
+        {
+            IWebElement offer;
+            if (target == "With")
+            {
+                offer = GetProposalOfferWithCustomerElement(driver);
+            }
+            else
+            {
+                offer = GetProposalOfferWithoutCustomerElement(driver);
+            }
+
+            string selector;
+            if (operation == "With")
+            {
+                selector = ".js-mps-copy-with-customer";
+            }
+            else
+            {
+                selector = ".js-mps-copy";
+            }
+
+            ClickActionButtonOnOffer(offer);
+            var copyElem = offer.FindElement(By.CssSelector(selector));
+            var id = copyElem.GetAttribute("data-proposal-id");
+            var name = offer.FindElement(By.CssSelector("td:nth-child(1)")).Text;
+            var customer = offer.FindElement(By.CssSelector("td:nth-child(4)")).Text;
+            SpecFlow.SetContext(DealerLatestOperatingItemId, id);
+            SpecFlow.SetContext(DealerLatestOperatingItemName, name);
+            SpecFlow.SetContext(DealerLatestOperatingItemCustomer, customer);
+            copyElem.Click();
+        }
+
+        public void ExistsCopiedProposalOffer(IWebDriver driver, string operation)
+        {
+            WebDriver.Wait(DurationType.Millisecond, 4000);
+            var name = SpecFlow.GetContext(DealerLatestOperatingItemName);
+            var copiedOffer = FindCopiedPoposalOfferByName(driver, name);
+            var copiedname = copiedOffer.FindElement(By.CssSelector("td:nth-child(1)")).Text;
+
+            TestCheck.AssertIsNotNull(copiedname,
+                "Copied Item does not exist on table.");
+
+            var customer = SpecFlow.GetContext(DealerLatestOperatingItemCustomer);
+            var copiedcustomer = copiedOffer.FindElement(By.CssSelector("td:nth-child(4)")).Text;
+
+            if (operation == "With")
+            {
+                TestCheck.AssertIsEqual(customer, copiedcustomer, "CopyWithCustomer does not copy customer.");
+            }
+            else
+            {
+                TestCheck.AssertIsEqual("-", copiedcustomer, "CopyWithoutCustomer does not work.");
+            }
+        }
+
+        private IWebElement FindCopiedPoposalOfferByName(IWebDriver driver, string name)
+        {
+            return
+                driver.FindElements(By.CssSelector(ProposalItemsSelecterFormat))
+                .Reverse()
+                .First(x => x.FindElement(By.CssSelector("td:nth-child(1)")).Text.Contains(name));
         }
 
         public void SaveProposalAsAContract()
@@ -403,6 +485,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 driver.FindElements(By.CssSelector(".js-mps-delete"))
                 .Select(x => x.GetAttribute("data-proposal-id"))
                 .Contains(id);
+        }
+
+        public DealerDashBoardPage NavigateToDashboard(IWebDriver driver)
+        {
+            DashboradLink.Click();
+            return GetInstance<DealerDashBoardPage>();
         }
     }
 }
