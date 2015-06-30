@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using Brother.Tests.Selenium.Lib.Support;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -98,6 +99,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerProposalsCreateTermAndTypePage ClickNextButton()
         {
+            WebDriver.Wait(Helper.DurationType.Millisecond, 2000);
             ScrollTo(NextButton);
             NextButton.Click();
             return GetTabInstance<DealerProposalsCreateTermAndTypePage>(Driver);
@@ -183,7 +185,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
        public void EnterContactEmailAdress()
        {
-           EmailElement.SendKeys(MpsUtil.GenerateUniqueEmail());
+           var email = MpsUtil.GenerateUniqueEmail();
+           SpecFlow.SetContext("DealerLatestCreatedCustomerEmail", email);
+           EmailElement.SendKeys(email);
        }
 
        public void FillOrganisationContactDetail()

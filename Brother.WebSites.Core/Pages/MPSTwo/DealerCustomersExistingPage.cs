@@ -107,7 +107,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             var contact = SpecFlow.GetObject<DealerCustomersMangePage.OrganisationContactDetail>(DealerLatestCreatedContact);
 
-            var customerelem = FindExistingCustomerByEmail(driver, contact.Email);
+            ClickDelete(driver, contact.Email);
+        }
+
+        public void ClickOnDeleteOnActionItemAgainstNewlyCreatedProposalCustomer(IWebDriver driver)
+        {
+            var email = SpecFlow.GetContext("DealerLatestCreatedCustomerEmail");
+
+            ClickDelete(driver, email);
+        }
+
+        private void ClickDelete(IWebDriver driver, string email)
+        {
+            var customerelem = FindExistingCustomerByEmail(driver, email);
             ClickActionButtonOnOffer(customerelem);
             var deleteElem = customerelem.FindElement(By.CssSelector(".js-mps-delete"));
             var id = deleteElem.GetAttribute("data-person-id");
@@ -155,5 +167,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             editElem.Click();
             return GetInstance<DealerCustomersMangePage>();
         }
+
     }
 }

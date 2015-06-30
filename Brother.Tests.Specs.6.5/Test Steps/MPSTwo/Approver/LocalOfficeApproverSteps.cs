@@ -148,12 +148,6 @@ namespace Brother.Tests.Specs.MPSTwo.LocalOfficeApprover
             CurrentPage.As<LocalOfficeApproverProposalsPage>().IsProposalListAvailable();
         }
 
-        [Then(@"I should see a list of Proposals")]
-        public void ThenIShouldSeeAListOfProposals()
-        {
-            CurrentPage.As<LocalOfficeApproverContractsPage>().IsContractsListAvailable();
-        }
-
         [When(@"I navigate to Local Office Approver Contracts screen on ""(.*)"" Tab")]
         public void WhenINavigateToLocalOfficeApproverContractsScreenOnTab(string acceptance)
         {
@@ -172,6 +166,12 @@ namespace Brother.Tests.Specs.MPSTwo.LocalOfficeApprover
                     CurrentPage.As<LocalOfficeApproverContractsPage>().NavigateToAcceptedPage();
                     break;
             }
+        }
+
+        [Then(@"I should see a list of Proposals")]
+        public void ThenIShouldSeeAListOfProposals()
+        {
+            CurrentPage.As<LocalOfficeApproverContractsPage>().IsContractsListAvailable();
         }
     }
 }

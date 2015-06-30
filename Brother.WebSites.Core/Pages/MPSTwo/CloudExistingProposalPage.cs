@@ -29,6 +29,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string ProposalItemsSelecterFormat = "div.js-mps-proposal-list-container tr.js-mps-delete-remove";
         private const string ProposalNthItemSelecterFormat = "div.js-mps-proposal-list-container tr.js-mps-delete-remove:nth-child({0})";
 
+        [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/dashboard\"]")]
+        private IWebElement DashboradLink;
         [FindsBy(How = How.CssSelector, Using = "li.separator a[href=\"/mps/proposals/create?new=true\"]")]
         public IWebElement NewProposalButton;
         [FindsBy(How = How.CssSelector, Using = ".active a[href=\"/mps/dealer/proposals/templates\"] span")]
@@ -483,6 +485,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 driver.FindElements(By.CssSelector(".js-mps-delete"))
                 .Select(x => x.GetAttribute("data-proposal-id"))
                 .Contains(id);
+        }
+
+        public DealerDashBoardPage NavigateToDashboard(IWebDriver driver)
+        {
+            DashboradLink.Click();
+            return GetInstance<DealerDashBoardPage>();
         }
     }
 }
