@@ -62,6 +62,10 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Customer
             {
                 page.ClickOnDeleteOnActionItemAgainstNewlyCreated(CurrentDriver);
             }
+            else if (targertitem == "NewlyCreatedProposalCustomer")
+            {
+                page.ClickOnDeleteOnActionItemAgainstNewlyCreatedProposalCustomer(CurrentDriver);
+            }
             else
             {
                 page.ClickOnDeleteOnActionItem(CurrentDriver);
