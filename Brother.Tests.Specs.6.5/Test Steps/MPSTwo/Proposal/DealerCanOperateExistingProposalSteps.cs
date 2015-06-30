@@ -1,8 +1,5 @@
-﻿using System;
-using Brother.WebSites.Core.Pages.Base;
+﻿using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.MPSTwo;
-using NUnit.Framework.Constraints;
-using OpenQA.Selenium.Support.PageObjects;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
@@ -45,7 +42,6 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
             {
                 page.ClickOnDeleteOnActionItem(CurrentDriver);
             }
-
         }
 
         [When(@"I click the ""(.*)"" button on Confirmation Dialog")]
@@ -82,7 +78,6 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
             var page = CurrentPage.As<CloudExistingProposalPage>();
             page.FindExistingPoposalList();
             page.ClickOnCopyOnActionItemWithoutCustomer(CurrentDriver, operation, target);
-
         }
 
         [Then(@"I can see the Proposal offer which copied ""(.*)"" Customer")]
@@ -99,6 +94,5 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
             var page = CurrentPage.As<CloudExistingProposalPage>();
             NextPage = page.NavigateToDashboard(CurrentDriver);
         }
-
     }
 }
