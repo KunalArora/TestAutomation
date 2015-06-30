@@ -60,11 +60,18 @@ Scenario: Customer or Dealer role persists after email address change (BOL-176)
 	Then I can sign out of Brother Online
 
 # Create an account and sign in, change registered email address and sign out, re-sign in again using new address
+<<<<<<< HEAD
+@ignore @TEST @UAT @PROD 
+Scenario: Customer can change their Brother Online UK email address after registration (BBAU - 2377, 2355)
+	Given I am logged into my Brother Online account
+	When I navigate to my account for "United Kingdom"
+=======
 @TEST @UAT @PROD 
 Scenario Outline: Customer can change their Brother Online email address after registration (BBAU - 2337)
 	Given I am logged onto Brother Online "<Country>" using valid credentials
 	#Given I am logged into my Brother Online account
 	When I navigate to my account for "<Country>"
+>>>>>>> fa56b805336195f022b138d6301b623484daded3
 	And I click on Sign In Details
 	And If I enter a new email address "<EmailPrefixForChange>"
 	And If I enter the current password for email change
@@ -101,16 +108,15 @@ Scenario: Business Customer can change their business details after logging into
 	Then I can verify successfull update message appeared at the top
 	
 @ignore
+#Change Personal details in your created account, go to my account and change/add your new password
 Scenario: Business Customer can reset their password 
-	# resetting a password
 
-@ignore
-Scenario: Business Customer can change their Email Address
-	# change email
 
-@ignore
-Scenario: Business Customer can change their Address
-	# changing address
+
+
+	
+	
+	
 
 
 

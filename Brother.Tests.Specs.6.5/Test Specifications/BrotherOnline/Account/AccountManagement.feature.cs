@@ -144,6 +144,13 @@ this.ScenarioSetup(scenarioInfo);
 #line 34
  testRunner.And("I am redirected to the Brother Login/Register page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 35
+<<<<<<< HEAD
+ testRunner.When("I click on Reset Your Password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 36
+ testRunner.And("I am redirected to the Brother Login/Register page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 37
+=======
+>>>>>>> fa56b805336195f022b138d6301b623484daded3
  testRunner.Then("I can sign back into Brother Online \"United Kingdom\" using the updated credential" +
                     "s", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 36
@@ -202,6 +209,22 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
+<<<<<<< HEAD
+        [NUnit.Framework.DescriptionAttribute("Customer can change their Brother Online UK email address after registration (BBA" +
+            "U - 2377, 2355)")]
+        [NUnit.Framework.IgnoreAttribute()]
+        [NUnit.Framework.CategoryAttribute("TEST")]
+        [NUnit.Framework.CategoryAttribute("UAT")]
+        [NUnit.Framework.CategoryAttribute("PROD")]
+        public virtual void CustomerCanChangeTheirBrotherOnlineUKEmailAddressAfterRegistrationBBAU_23772355()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer can change their Brother Online UK email address after registration (BBA" +
+                    "U - 2377, 2355)", new string[] {
+                        "ignore",
+                        "TEST",
+                        "UAT",
+                        "PROD"});
+=======
         [NUnit.Framework.DescriptionAttribute("Customer can change their Brother Online email address after registration (BBAU -" +
             " 2337)")]
         [NUnit.Framework.CategoryAttribute("TEST")]
@@ -221,6 +244,7 @@ this.ScenarioSetup(scenarioInfo);
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer can change their Brother Online email address after registration (BBAU -" +
                     " 2337)", @__tags);
+>>>>>>> fa56b805336195f022b138d6301b623484daded3
 #line 64
 this.ScenarioSetup(scenarioInfo);
 #line 65
@@ -296,6 +320,9 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Business Customer can reset their password", new string[] {
                         "ignore"});
+<<<<<<< HEAD
+#line 113
+=======
 #line 104
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -323,6 +350,7 @@ this.ScenarioSetup(scenarioInfo);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Business Customer can change their Address", new string[] {
                         "ignore"});
 #line 112
+>>>>>>> fa56b805336195f022b138d6301b623484daded3
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
