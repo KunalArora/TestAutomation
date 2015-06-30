@@ -33,7 +33,7 @@ Scenario: Customer has created a Brother Online account but has forgotten their 
 	Then If I Click the Reset Password Email Link
 	And I reset my password with "ChangedPassword123"
 	When I click on Reset Your Password
-	And I am redirected to the Brothemapr Login/Register page
+	And I am redirected to the Brother Login/Register page
 	Then I can sign back into Brother Online "United Kingdom" using the updated credentials
 	Then I can sign out of Brother Online
 
@@ -61,7 +61,7 @@ Scenario: Customer or Dealer role persists after email address change (BOL-176)
 
 # Create an account and sign in, change registered email address and sign out, re-sign in again using new address
 @ignore @TEST @UAT @PROD 
-Scenario: Customer can change their Brother Online UK email address after registration (BBAU - find out the number )
+Scenario: Customer can change their Brother Online UK email address after registration (BBAU - 2377, 2355)
 	Given I am logged into my Brother Online account
 	When I navigate to my account for "United Kingdom"
 	And I click on Sign In Details
@@ -109,16 +109,15 @@ Scenario: Business Customer can change their business details after logging into
 	Then I can verify successfull update message appeared at the top
 	
 @ignore
+#Change Personal details in your created account, go to my account and change/add your new password
 Scenario: Business Customer can reset their password 
-	# resetting a password
 
-@ignore
-Scenario: Business Customer can change their Email Address
-	# change email
 
-@ignore
-Scenario: Business Customer can change their Address
-	# changing address
+
+
+	
+	
+	
 
 
 	#BBAU-2196

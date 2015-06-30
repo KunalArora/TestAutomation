@@ -120,7 +120,6 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             Helper.SetCountry(country);
             CurrentPage = BasePage.LoadBolHomePage(CurrentDriver, BasePage.BaseUrl, "");
         }
-
         [Given(@"I Need A Brother Online ""(.*)"" Account In Order To Use Brother Online Services")]
         public void GivenINeedABrotherOnlineAccountInOrderToUseBrotherOnlineServices(string country)
         {
@@ -220,6 +219,11 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             // special case override the Loading of the sign in page
             //NextPage = BasePage.LoadRegistrationPage(CurrentDriver, BasePage.BaseUrl);
             CurrentPage.As<RegistrationPage>().IsSignInButtonAvailable();
+        }
+        [Given(@"I am redirected to the Brother Login/Register page")]
+        public void GivenIAmRedirectedToTheBrotherLoginRegisterPage()
+        {
+            CurrentPage.As<RegistrationPage>().IsSignInButtonAvailable(); ;
         }
 
         [When(@"I have Checked Yes I Do Have An Account Checkbox")]

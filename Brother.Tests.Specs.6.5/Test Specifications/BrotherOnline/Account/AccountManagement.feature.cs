@@ -154,7 +154,7 @@ this.FeatureBackground();
 #line 35
  testRunner.When("I click on Reset Your Password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 36
- testRunner.And("I am redirected to the Brothemapr Login/Register page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I am redirected to the Brother Login/Register page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 37
  testRunner.Then("I can sign back into Brother Online \"United Kingdom\" using the updated credential" +
                     "s", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -217,15 +217,15 @@ this.FeatureBackground();
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Customer can change their Brother Online UK email address after registration (BBA" +
-            "U - find out the number )")]
+            "U - 2377, 2355)")]
         [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.CategoryAttribute("TEST")]
         [NUnit.Framework.CategoryAttribute("UAT")]
         [NUnit.Framework.CategoryAttribute("PROD")]
-        public virtual void CustomerCanChangeTheirBrotherOnlineUKEmailAddressAfterRegistrationBBAU_FindOutTheNumber()
+        public virtual void CustomerCanChangeTheirBrotherOnlineUKEmailAddressAfterRegistrationBBAU_23772355()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer can change their Brother Online UK email address after registration (BBA" +
-                    "U - find out the number )", new string[] {
+                    "U - 2377, 2355)", new string[] {
                         "ignore",
                         "TEST",
                         "UAT",
@@ -356,37 +356,7 @@ this.FeatureBackground();
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Business Customer can reset their password", new string[] {
                         "ignore"});
-#line 112
-this.ScenarioSetup(scenarioInfo);
-#line 7
-this.FeatureBackground();
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Business Customer can change their Email Address")]
-        [NUnit.Framework.IgnoreAttribute()]
-        public virtual void BusinessCustomerCanChangeTheirEmailAddress()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Business Customer can change their Email Address", new string[] {
-                        "ignore"});
-#line 116
-this.ScenarioSetup(scenarioInfo);
-#line 7
-this.FeatureBackground();
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Business Customer can change their Address")]
-        [NUnit.Framework.IgnoreAttribute()]
-        public virtual void BusinessCustomerCanChangeTheirAddress()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Business Customer can change their Address", new string[] {
-                        "ignore"});
-#line 120
+#line 113
 this.ScenarioSetup(scenarioInfo);
 #line 7
 this.FeatureBackground();
