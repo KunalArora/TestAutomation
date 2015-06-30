@@ -1,7 +1,9 @@
-﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+﻿using System.Threading;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherOnline.Account;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
+using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
@@ -118,7 +120,6 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             Helper.SetCountry(country);
             CurrentPage = BasePage.LoadBolHomePage(CurrentDriver, BasePage.BaseUrl, "");
         }
-
         [Given(@"I Need A Brother Online ""(.*)"" Account In Order To Use Brother Online Services")]
         public void GivenINeedABrotherOnlineAccountInOrderToUseBrotherOnlineServices(string country)
         {
@@ -170,6 +171,8 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
 
         [When(@"I return to Cloud MPS as a ""(.*)"" from ""(.*)""")]
         [When(@"I sign back into Cloud MPS as a ""(.*)"" from ""(.*)""")]
+        [Then(@"I sign back into Cloud MPS as a ""(.*)"" from ""(.*)""")]
+        [Given(@"I sign back into Cloud MPS as a ""(.*)"" from ""(.*)""")]
         [Given(@"I sign into Cloud MPS as a ""(.*)"" from ""(.*)""")]
         [Given(@"I sign into MPS as a ""(.*)"" from ""(.*)""")]
         public void GivenISignIntoMpsasAFrom(string role, string country)
@@ -177,6 +180,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             GivenILaunchBrotherOnlineFor(country);
             WhenIClickOnSignInCreateAnAccount(country);
             WhenISignInAsA(role, country);
+            
         }
 
         
@@ -215,6 +219,11 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             // special case override the Loading of the sign in page
             //NextPage = BasePage.LoadRegistrationPage(CurrentDriver, BasePage.BaseUrl);
             CurrentPage.As<RegistrationPage>().IsSignInButtonAvailable();
+        }
+        [Given(@"I am redirected to the Brother Login/Register page")]
+        public void GivenIAmRedirectedToTheBrotherLoginRegisterPage()
+        {
+            CurrentPage.As<RegistrationPage>().IsSignInButtonAvailable(); ;
         }
 
         [When(@"I have Checked Yes I Do Have An Account Checkbox")]
@@ -281,11 +290,21 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<RegistrationPage>().PopulateCompanyNameTextBox(companyName);
         }
+        [When(@"I add my company name as ""(.*)"" on Business Details page")]
+        public void WhenIAddMyCompanyNameAsOnBusinessDetailsPage(string companyName)
+        {
+            CurrentPage.As<BusinessDetailsPage>().PopulateCompanyNameTextBox(companyName);
+        }
 
         [When(@"I add my company VAT number as ""(.*)""")]
         public void WhenIAddMyCompanyVatNumberAs(string vatNumber)
         {
             CurrentPage.As<RegistrationPage>().PopulateVatNumberTextBox(vatNumber);
+        }
+        [When(@"I add my company VAT number as ""(.*)"" on Business Details Page")]
+        public void WhenIAddMyCompanyVatNumberAsOnBusinessDetailsPage(string vatNumber)
+        {
+            CurrentPage.As<BusinessDetailsPage>().PopulateVatNumberTextBox(vatNumber);
         }
 
         [When(@"I select my Business Sector as ""(.*)""")]
@@ -293,17 +312,32 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<RegistrationPage>().PopulateBusinessSectorDropDown(businessSector);
         }
+        [When(@"I select my Business Sector as ""(.*)"" on Business Details Page")]
+        public void WhenISelectMyBusinessSectorAsOnBusinessDetailsPage(string businessSector)
+        {
+            CurrentPage.As<BusinessDetailsPage>().PopulateBusinessSectorDropDown(businessSector);
+        }
 
         [When(@"I select number of Employees as ""(.*)""")]
         public void WhenISelectNumberOfEmployeesAs(string numberOfEmployees)
         {
             CurrentPage.As<RegistrationPage>().PopulateEmployeeCountDropDown(numberOfEmployees);
         }
-        
+        [When(@"I select number of Employees as ""(.*)"" on Business Details Page")]
+        public void WhenISelectNumberOfEmployeesAsOnBusinessDetailsPage(string numberOfEmployees)
+        {
+            CurrentPage.As<BusinessDetailsPage>().PopulateEmployeeCountDropDown(numberOfEmployees);
+        }
+
         [When(@"I declare that I do use this account for business")]
         public void WhenIDeclareThatIDoUseThisAccountForBusiness()
         {
             CurrentPage.As<RegistrationPage>().UseAccountForBusiness();
+        }
+        [When(@"I declare that I do use this account for business on my account page")]
+        public void WhenIDeclareThatIDoUseThisAccountForBusinessOnMyAccountPage()
+        {
+            CurrentPage.As<BusinessDetailsPage>().UseAccountForBusiness();
         }
 
         [When(@"I have Agreed to the Terms and Conditions")]
@@ -317,7 +351,6 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             NextPage = CurrentPage.As<RegistrationPage>().ClickCreateAccountButton();
         }
-        
         [When(@"I press create account button")]
         public void WhenIPressCreateAccountButton()
         {
@@ -359,6 +392,8 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             NextPage = CurrentPage.As<RegistrationPage>().ClickSignInButton(country);
         }
+
+
 
         [When(@"I enter an email address containing ""(.*)""")]
         public void WhenIEnterAnEmailAddressContaining(string emailAddress)
@@ -425,8 +460,35 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             SignInAsARoleType(role);
             //WhenIClickOnSignIn(country);
-            NextPage = CurrentPage.As<RegistrationPage>().SignInButtonToDealerDashboard(country);
+            SignInButtonToAsARoleType(role, country);
             //CurrentPage.As<WelcomeBackPage>().ClickOnManagedPrintServices("print");
+        }
+
+        private void SignInButtonToAsARoleType(string role, string country)
+        {
+            switch (role)
+            {
+                case "Cloud MPS Dealer":
+                {
+                    NextPage = CurrentPage.As<RegistrationPage>().SignInButtonToDealerDashboard(country);
+                    break;
+                }
+                case "Cloud MPS Local Office":
+                {
+                    NextPage = CurrentPage.As<RegistrationPage>().SignInButtonToLocalOfficeDashboard(country);
+                    break;
+                }
+                case "Cloud MPS Bank":
+                {
+                    NextPage = CurrentPage.As<RegistrationPage>().SignInButtonToBankUser(country);
+                    break;
+                }
+                case "Cloud MPS Local Office Approver":
+                {
+                    NextPage = CurrentPage.As<RegistrationPage>().SignInButtonToLocalOfficeApproverDashboard(country);
+                    break;
+                }
+            }
         }
 
         private void SignInAsARoleType(string role)
@@ -459,7 +521,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
                 }
                 case "Cloud MPS Bank":
                 {
-                    WhenIEnterAValidEmailAddress("mpsbankDE@brother.co.uk");
+                    WhenIEnterAValidEmailAddress("mpsbankuk@mailinator.com");
                     WhenIEnterAValidPassword("P@$$w0rd");
                     break;
                 }
@@ -471,7 +533,13 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
                 }
                 case "Cloud MPS Local Office":
                 {
-                    WhenIEnterAValidEmailAddress("mpsloadminDE@brother.co.uk");
+                    WhenIEnterAValidEmailAddress("mpslocalofficeadminuk@mailinator.com");
+                    WhenIEnterAValidPassword("P@$$w0rd");
+                    break;
+                }
+                case "Cloud MPS Local Office Approver":
+                {
+                    WhenIEnterAValidEmailAddress("mpslocalofficeapproveruk@mailinator.com");
                     WhenIEnterAValidPassword("P@$$w0rd");
                     break;
                 }

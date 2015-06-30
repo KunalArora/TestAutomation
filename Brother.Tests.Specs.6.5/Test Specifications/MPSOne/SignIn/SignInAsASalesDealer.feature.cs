@@ -20,7 +20,6 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSOne.SignIn
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("SignInAsASalesDealer")]
-    [NUnit.Framework.CategoryAttribute("UAT")]
     public partial class SignInAsASalesDealerFeature
     {
         
@@ -34,8 +33,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSOne.SignIn
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "SignInAsASalesDealer", "In order to use MPS One successfully\r\nAs a dealer\r\nI want to be able to sign in t" +
-                    "o MPS", ProgrammingLanguage.CSharp, new string[] {
-                        "UAT"});
+                    "o MPS", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -72,15 +70,15 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSOne.SignIn
         public virtual void SignInToMPSOneAsASalesDealer()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Sign in to MPS one as a Sales Dealer", ((string[])(null)));
-#line 7
+#line 6
 this.ScenarioSetup(scenarioInfo);
-#line 9
+#line 8
  testRunner.Given("I launch Brother Online for \"Spain\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 10
+#line 9
  testRunner.When("I click on Sign In / Create An Account for \"Spain\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 11
+#line 10
  testRunner.When("I sign in as a \"Sales Dealer\" from \"Spain\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 12
+#line 11
  testRunner.Then("I am signed in with \"Dealer\" priviledges", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

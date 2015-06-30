@@ -21,7 +21,6 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSOne.MyAccount
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("MPSAuthorisedDealerAccountSetupPortalAuthorisationCheckADMINDealer")]
     [NUnit.Framework.IgnoreAttribute()]
-    [NUnit.Framework.CategoryAttribute("UAT")]
     public partial class MPSAuthorisedDealerAccountSetupPortalAuthorisationCheckADMINDealerFeature
     {
         
@@ -36,8 +35,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSOne.MyAccount
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "MPSAuthorisedDealerAccountSetupPortalAuthorisationCheckADMINDealer", "In order to navigate to Contract Overview page\r\nAs a Dealer\r\nI want to be able si" +
                     "gn in with relevant privileges that will enable me to view contract", ProgrammingLanguage.CSharp, new string[] {
-                        "Ignore",
-                        "UAT"});
+                        "Ignore"});
             testRunner.OnFeatureStart(featureInfo);
         }
         

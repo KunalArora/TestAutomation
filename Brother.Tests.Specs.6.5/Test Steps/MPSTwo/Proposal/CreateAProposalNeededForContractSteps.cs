@@ -9,11 +9,11 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
     [Binding]
     public class ProposalCreateAProposalThatWillBeUsedForContractSteps : BaseSteps
     {
+        [Then(@"I click Save Proposal button on Summary screen")]
         [When(@"I click Save Proposal button on Summary screen")]
         public void WhenIClickSaveProposalButtonOnSummaryScreen()
         {
-            CurrentPage.As<CreateNewProposalPage>().MoveToProposalSummaryScreen();
-            NextPage = CurrentPage.As<CreateNewProposalPage>().SaveProposal();
+            NextPage = CurrentPage.As<DealerProposalsCreateSummaryPage>().SaveProposal();
         }
         
         [Then(@"I am directed to Proposals screen of Proposal List page")]
@@ -38,6 +38,15 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             When("I enter Customer Information Detail for new customer");
         }
 
+        [Given(@"I am on Proposal List page")]
+        public void GivenIAmOnProposalListPage()
+        {
+            WhenIClickSaveProposalButtonOnSummaryScreen();
+            ThenIAmDirectedToProposalsScreenOfProposalListPage();
+            ThenTheNewlyCreatedProposalIsDisplayedOnTheList();
+        }
+
+
         [Given(@"I create the proposal with details above")]
         [When(@"I create the proposal with details above")]
         public void WhenICreateTheProposalWithDetailsAbove()
@@ -52,10 +61,29 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [Then(@"I start the contract conversion process")]
         public void ThenIStartTheContractConversionProcess()
         {
-            CurrentPage.As<CloudExistingProposalPage>().ClickOnActionButtonAgainstRelevantProposal();
-            CurrentPage.As<CloudExistingProposalPage>().NavigateToConversionSummaryScreen(CurrentDriver);
+            CurrentPage.As <CloudExistingProposalPage>().ClickOnActionButtonAgainstRelevantProposal(CurrentDriver);
+            CurrentPage.As<CloudExistingProposalPage>().ClickOnConvertToContractButton(CurrentDriver);
             
         }
+
+
+        [Then(@"I am redirected to Customer screen when I start proposal conversion process")]
+        public void ThenRedirectedToCustomerScreenWhenIAmStartProposalConversionProcess()
+        {
+            CurrentPage.As<CloudExistingProposalPage>().ClickOnActionButtonAgainstCopiedProposal(CurrentDriver);
+            NextPage = CurrentPage.As<CloudExistingProposalPage>().ClickOnConvertToContractButton(CurrentDriver);
+            CurrentPage.As<ConvertProposalCustomerInfo>().IsConvertCustomerInfoScreenDisplayed();
+        }
+
+
+        [Then(@"I am redirected to Summary page when I start proposal conversion process")]
+        public void ThenRedirectedToSummaryPageWhenIStartProposalConversionProcess()
+        {
+            CurrentPage.As<CloudExistingProposalPage>().ClickOnActionButtonAgainstCopiedProposal(CurrentDriver);
+            NextPage = CurrentPage.As<CloudExistingProposalPage>().ClickOnConvertToContractButtonForCopiedProposalWithCustomer(CurrentDriver);
+            CurrentPage.As<ConvertProposalSummaryPage>().IsConvertSummaryPageDisplayed();
+        }
+
 
         [When(@"I add a date to the proposal")]
         [Then(@"I add a date to the proposal")]
@@ -77,6 +105,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<CloudExistingProposalPage>().IsTheProposalSuccessfullyConverted();
         }
 
+       
         [Then(@"I can send the converted contract to bank")]
         public void ThenICanSendTheConvertedContractToBank()
         {
@@ -124,41 +153,13 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             When("I enter Customer Information Detail for new customer");
             When("I Enter Term and Type details");
 
-            CurrentPage.As<CreateNewProposalPage>().IsProductScreenTextDisplayed();
-        }
-
-        [Given(@"I changed the Product view to flat list")]
-        [When(@"I changed the Product view to flat list")]
-        public void WhenIChangedTheProductViewToFlatList()
-        {
-            CurrentPage.As<CreateNewProposalPage>().ChangeProductViewToFlatList();
-        }
-
-        [Then(@"Products are displayed in flat list mode")]
-        public void ThenProductsAreDisplayedInFlatListMode()
-        {
-            CurrentPage.As<CreateNewProposalPage>().VerifyThatFlatListIsDisplayed();
+            CurrentPage.As<DealerProposalsCreateProductsPage>().IsProductScreenTextDisplayed();
         }
 
         [When(@"I select ""(.*)"" from the product flat list")]
         public void WhenISelectFromTheProductFlatList(string selectedPrinter)
         {
             CurrentPage.As<CreateNewProposalPage>().SelectAPrinterFromTheList(selectedPrinter);
-        }
-
-
-        [Then(@"I can successfully create the proposal above with ""(.*)"" and ""(.*)""")]
-        public void ThenICanSuccessfullyCreateTheProposalAboveWithAnd(string clickprice, string colour)
-        {
-            CurrentPage.As<CreateNewProposalPage>().ChooseADeviceFromProductFlatListScreen("", "80", "90");
-            CurrentPage.As<CreateNewProposalPage>().VerifyProductAdditionConfirmationMessage();
-            CurrentPage.As<CreateNewProposalPage>().CalculateClickPriceAndProceed(clickprice, colour);
-            CurrentPage.As<CreateNewProposalPage>().MoveToProposalSummaryScreen();
-            NextPage = CurrentPage.As<CreateNewProposalPage>().SaveProposal();
-
-            CurrentPage.As<CloudExistingProposalPage>().IsNewProposalTemplateCreated();
-
-
         }
 
         [When(@"I select a product from the product flat list")]
@@ -168,23 +169,6 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             
         }
 
-
-        [Then(@"the fields on ""(.*)"" screen are prepopulated")]
-        public void ThenTheFieldsOnScreenArePrepopulated(string productScreen)
-        {
-            CurrentPage.As<CreateNewProposalPage>().ProductFieldsArePopulatedWhereNecessary(productScreen);
-        }
-
-        [Given(@"I send a contract to bank for acceptance")]
-        public void GivenISendAContractToBankForAcceptance()
-        {
-            Given("I successfully created a new proposal");
-            When("I start the contract conversion process");
-            When("I add a date to the proposal");
-            When("I save the proposal as a contract");
-            Then("the newly converted contract is available on Ready for Bank screen");
-            Then("I can send the converted contract to bank");
-        }
 
         [When(@"I accept the contract above")]
         public void WhenIAcceptTheContractAbove()
@@ -231,16 +215,29 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         }
 
 
-        [When(@"I sign the contract")]
-        public void WhenISignTheContract()
+        [When(@"I sign the contract as a dealer")]
+        public void WhenISignTheContractAsADealer()
         {
-            NextPage = CurrentPage.As<WelcomeBackPage>().NavigateToDealerDashboard();
             NextPage = CurrentPage.As<DealerDashBoardPage>().NavigateToContractScreenFromDealerDashboard();
-            CurrentPage.As<CloudContractPage>().IsContractScreenDisplayed();
-            CurrentPage.As<CloudContractPage>().NavigateToConfirmedOfferScreen();
-            CurrentPage.As<CloudContractPage>().VerifyAcceptedContractIsDisplayed();
+            NextPage = CurrentPage.As<CloudContractPage>().NavigateToViewOfferOnApprovedProposalsTab();
+            NextPage = CurrentPage.As<DealerContractsSummaryPage>().ClickSignButton();
+        }
 
-            CurrentPage.As<CloudContractPage>().DealerSignNewContract(CurrentDriver);
+        [When(@"I navigate to Rejected screen")]
+        public void WhenINavigateToRejectedScreen()
+        {
+            NextPage = CurrentPage.As<DealerDashBoardPage>().NavigateToContractScreenFromDealerDashboard();
+            CurrentPage.As<CloudContractPage>().NavigateToRejectedOfferScreen();
+        }
+
+        [Then(@"I can successfully re-sign the rejected contract")]
+        public void ThenICanSuccessfullyResignTheRejectedContract()
+        {
+            NextPage = CurrentPage.As<CloudContractPage>().NavigateToViewSummaryOnRejectedTab();
+            CurrentPage.As<DealerContractsSummaryPage>().ClickReSignButton();
+            CurrentPage.As<DealerContractsSummaryPage>().TickResignInformationCheckbox();
+            NextPage = CurrentPage.As<DealerContractsSummaryPage>().ClickFinalReSignButton();
+            CurrentPage.As<CloudContractPage>().VerifyRejectedContractIsDisplayed();
         }
 
         [Then(@"the reject contract above is displayed on dealer rejected offer screen")]

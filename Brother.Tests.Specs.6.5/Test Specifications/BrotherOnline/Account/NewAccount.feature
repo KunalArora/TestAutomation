@@ -82,19 +82,43 @@ Scenarios:
 	| "CannotUseQuestionMark?@guerrillamail.com"  |
 	| "CannotUseOpenBrace(@guerrillamail.com"     |
 	| "CannotUseEquals=@guerrillamail.com"        |
-	| " LeadingSpace@guerrillamail.com"           |
-	| "TrailingSpace@guerrillamail.com "          |
+	#| "  LeadingSpace@guerrillamail.com"        | these are valid email id's, it will trim the space in the front and at the back.
+	#| "TrailingSpace@guerrillamail.com     "      |
+	# simply trim them. No error message is displayed
 
-@SMOKE
+@SMOKE @ignore
 Scenario Outline: Create an account for Brother Online for different language sites
 	Given I Need A Brother Online "<Country>" Account In Order To Use Brother Online Services
+	When I have clicked on Add Device
+	And I am redirected to the Register Device page
+	# Note: Invalid serial code will always produce error message
+	Given I have entered my Product Serial Code "U1T000000"
+	Then I can validate that an error message was displayed
+	Then I can sign out of Brother Online
+	Then I am redirected to the Brother Home Page
 
 Scenarios:
-	| Country |
-	| France  |
-	| Germany |
-	| Poland  |
-	| Spain   |          
+	| Country        |
+	| Romania        | 
+"""	| France         |
+	| Germany        |
+	| Netherlands    |
+	| Spain          |
+	| Denmark        |
+	| Belgium        |
+	| Russia         |- Red warning on page - look into
+	| Hungary        |- unknown error - possibly cannot get to site 
+	| Portugal       |
+	| Switzerland    | - need to add specific default language to URL
+	| Slovakia       | - Links for validation set of for UK so needs updating
+	| Slovenia       | - Links for validation set of for UK so needs updating
+	| Czech          | - Links for validation set of for UK so needs updating
+	| Bulgaria       | - Links for validation set of for UK so needs updating - maybe no version in SiteCore on DV2
+	| Finland        |
+	| Norway         | - Link for validation of registration links to something completely different
+	| Italy          | - NEEDS to have Número de identificación fiscal added to test otherwise registration fails
+	| Austria        |"""
+
 
 @SMOKE
 # Create a new user account and check Add Device so that we know the user registration was successful
@@ -178,7 +202,7 @@ Scenario Outline: Validate that the correct error messages are displayed when a 
 	Then I should see an error message on the password field
 Scenarios:
 	| Email Address                     |
-	| "aaa@yahoo.com"				|
+	| "aaa@yahoo.com"					 |
 
 @ignore
  Scenario Outline: Validate that the correct error messages are displayed when a Confirm Password field contains different passwpord than actual Password (BBAU-2209)
@@ -223,3 +247,74 @@ Scenario: Validate that the correct error messages are displayed when Terms and 
 	When I declare that I do not use this account for business
 	And I press create account button
 	Then I should get an error message displayed on the Terms and Conditions
+
+@ignore
+Scenario: Log in as a Printer On dealer and ensure that they can see the required permissions BBAU-2189
+# (ensure that a customer cannot see the same permissions)
+
+# Change Personal details in your created account, go to my account and add your new Email address
+Scenario: Business Customer can change their Email Address   (BBAU - 2377, 2355)
+Given I want to create a new account with Brother Online "United Kingdom"
+	When I click on Create Account for "United Kingdom"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I declare that I do use this account for business
+	And I fill in the registration information using a valid email address 
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Password        | @@@@@	       |
+	| ConfirmPassword | @@@@@		   |
+
+	And I add my company name as "AutoTestLtd"
+	And I select my Business Sector as "IT and telecommunications services"
+	And I select number of Employees as "11 - 50"
+	And I have Agreed to the Terms and Conditions
+	When I press Create Your Account
+	Then I should see my account confirmation page
+	And When I Click Go Back
+	And Once I have Validated an Email was received and verified my account
+	Then I should be able to log into "United Kingdom" Brother Online using my account details
+	When I navigate to my account for "United Kingdom"
+	And I click on Sign In Details
+	And If I enter a new email address "changed"
+	And If I enter the current password for email change
+	And I click on Update details
+	Then I can verify the email change occurred
+	And If I validate the new changes via email
+	Then I can validate the update was successful
+	And I can sign out of Brother Online
+	Then If I sign back into Brother Online "United Kingdom" using the same credentials
+
+#Change Personal details in your created account, go to my account and change/add your new password
+Scenario: Business Customer can reset their password 
+Given I want to create a new account with Brother Online "United Kingdom"
+	When I click on Create Account for "United Kingdom"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I declare that I do use this account for business
+	And I fill in the registration information using a valid email address 
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Password        | @@@@@	       |
+	| ConfirmPassword | @@@@@		   |
+
+	And I add my company name as "AutoTestLtd"
+	And I select my Business Sector as "IT and telecommunications services"
+	And I select number of Employees as "11 - 50"
+	And I have Agreed to the Terms and Conditions
+	When I press Create Your Account
+	Then I should see my account confirmation page
+	And When I Click Go Back
+	And Once I have Validated an Email was received and verified my account
+	Then I should be able to log into "United Kingdom" Brother Online using my account details
+	When I navigate to my account for "United Kingdom"
+	And I click on Sign In Details
+	Then If I enter the current password
+	And I enter a new password of "ChangedPassword123"
+	When I click on Update Password
+	Then My password will be updated 
+	Then If I sign out of Brother Online
+	And If I sign back into Brother Online "United Kingdom" using the same credentials
+	Then I can sign out of Brother Online

@@ -21,12 +21,11 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             get { return BrotherOnlineHomePages.Default["HomePage"].ToString(); }
         }
 
-        [FindsBy(How = How.CssSelector, Using = "a[href*='register-your-device']")]
+        //[FindsBy(How = How.CssSelector, Using = "a[href*='register-your-device']")]
+        [FindsBy(How = How.CssSelector, Using = ".add-device")]
         public IWebElement RegisterDeviceLink;
-
         [FindsBy(How = How.CssSelector, Using = "#content_2_CurrentControlPanelItem_ConferenceButtons.two-conference-buttons .conference-button.right")]
         public IWebElement OmniJoinTryNowButton;
-
         [FindsBy(How = How.CssSelector, Using = "#content_2_CurrentControlPanelItem_ConferenceButtons.two-conference-buttons .conference-button.left")]
         public IWebElement OmniJoinBuyNowButton;
         [FindsBy(How = How.CssSelector, Using = "[id*=\"content_2_ProductsTabRepeater_ProductLinkButton\"] p strong")]
@@ -127,13 +126,16 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         // Clicks the Register Device link and proceeds to the RegisterYourDevice page
         public RegisterDevicePage ClickRegisterDeviceLink()
         {
+            if (!WaitForElementToExistByCssSelector(".add-device"))
+            {
+                TestCheck.AssertFailTest("Unable to locate the Add Device button");
+            }
+            RegisterDeviceLink = Driver.FindElement(By.CssSelector(".add-device"));
             ScrollTo(RegisterDeviceLink);
             RegisterDeviceLink.Click();
             return GetInstance<RegisterDevicePage>(Driver);
         }
-
-
-        public PlansHomePage OmniJoinBuyNowButtonClick()
+      public PlansHomePage OmniJoinBuyNowButtonClick()
         {
             OmniJoinBuyNowButton.Click();
             return GetInstance<PlansHomePage>(Driver);

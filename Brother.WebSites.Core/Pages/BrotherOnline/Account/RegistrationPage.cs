@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
@@ -92,7 +93,10 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         [FindsBy(How = How.CssSelector, Using = "#content_1_ResetPasswordButton")]
         public IWebElement ResetYourPasswordButton;
 
-         [FindsBy(How = How.CssSelector, Using = ".form-section.cf.validation-failed.load .error")]
+        //[FindsBy(How = How.ClassName, Using = ".button-blue")]
+        //public IWebElement ResetYourPasswordButton;
+
+        [FindsBy(How = How.CssSelector, Using = ".form-section.cf.validation-failed.load .error")]
         public IWebElement TermsAndConditionsErrorMessage;
         
 
@@ -131,11 +135,33 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             if (!WaitForElementToExistByCssSelector("#content_1_ResetPasswordButton"))
             {
                 ResetYourPasswordButton = Driver.FindElement(By.CssSelector("#content_1_ResetPasswordButton"));
-                TestCheck.AssertIsNotEqual(null, ResetYourPasswordButton, "Reset Password Button");
+                //TestCheck.AssertIsNotEqual(null, ResetYourPasswordButton, "Reset Password Button");
             }
             ScrollTo(ResetYourPasswordButton);
             ResetYourPasswordButton.Click();
         }
+
+        //public void ResetYourPasswordButtonClick()
+        //{
+        //    if (!WaitForElementToExistById("#content_1_ResetPasswordButton"))
+        //    {
+        //        ResetYourPasswordButton = Driver.FindElement(By.Id("#content_1_ResetPasswordButton"));
+        //        TestCheck.AssertIsNotEqual(null, ResetYourPasswordButton, "Reset Password Button");
+        //    }
+        //    ScrollTo(ResetYourPasswordButton);
+        //    ResetYourPasswordButton.Click();
+        //}
+       
+        //public void ResetYourPasswordButtonClick()
+        //{
+        //    if (!WaitForElementToExistByClassName(".button-blue"))
+        //    {
+        //        ResetYourPasswordButton = Driver.FindElement(By.ClassName(".button-blue"));
+        //        TestCheck.AssertIsNotEqual(null, ResetYourPasswordButton, "Reset Password Button");
+        //    }
+        //    ScrollTo(ResetYourPasswordButton);
+        //    ResetYourPasswordButton.Click();
+        //}
 
         public void IsEmailResetTextBoxAvailable()
         {
@@ -209,7 +235,46 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             return GetInstance<DealerDashBoardPage>(Driver, BasePage.BaseUrl, title);
         }
 
-    public RegistrationPage ClickSignUpButton()
+        public LocalOfficeAdminDashBoardPage SignInButtonToLocalOfficeDashboard(string country)
+        {
+            ScrollTo(SignInButton);
+            SignInButton.Click();
+            // added for Firefox HTTPS warning
+            if (IsFireFoxBrowser())
+            {
+                DismissAlert();
+            }
+            var title = HomePage.WelcomePageCountryTitle(country);
+            return GetInstance<LocalOfficeAdminDashBoardPage>(Driver, BasePage.BaseUrl, title);
+        }
+
+        public LocalOfficeApproverDashBoardPage SignInButtonToLocalOfficeApproverDashboard(string country)
+        {
+            ScrollTo(SignInButton);
+            SignInButton.Click();
+            // added for Firefox HTTPS warning
+            if (IsFireFoxBrowser())
+            {
+                DismissAlert();
+            }
+            var title = HomePage.WelcomePageCountryTitle(country);
+            return GetInstance<LocalOfficeApproverDashBoardPage>(Driver, BasePage.BaseUrl, title);
+        }
+
+        public BankDashBoardPage SignInButtonToBankUser(string country)
+        {
+            ScrollTo(SignInButton);
+            SignInButton.Click();
+            // added for Firefox HTTPS warning
+            if (IsFireFoxBrowser())
+            {
+                DismissAlert();
+            }
+            var title = HomePage.WelcomePageCountryTitle(country);
+            return GetInstance<BankDashBoardPage>(Driver, BasePage.BaseUrl, title);
+        }
+
+        public RegistrationPage ClickSignUpButton()
         {
             ScrollTo(CreateYourAccountButton);
             CreateYourAccountButton.Click();
@@ -348,7 +413,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
            TestCheck.AssertIsEqual(true, EmailAddressErrorMessage.Displayed, "Is Error Message Displayed");
         }
         public void PasswordErrorMessageDisplayed()
-        {
+        {   
+            PasswordTextBox.SendKeys(Keys.Tab);
             TestCheck.AssertIsEqual(true, PasswordErrorMessage.Displayed, "Is Error Message Displayed");
         }
         public void ConfirmPasswordErrorMessageDisplayed()
@@ -359,5 +425,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         {
             TestCheck.AssertIsEqual(true, TermsAndConditionsErrorMessage.Displayed, "Is Error Message Displayed");
         }
-    }
+
+       }
 }

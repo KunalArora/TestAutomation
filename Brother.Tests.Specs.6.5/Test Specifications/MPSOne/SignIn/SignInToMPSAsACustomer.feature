@@ -1,5 +1,4 @@
-﻿@UAT
-Feature: SignInToMPSAsACustomer
+﻿Feature: SignInToMPSAsACustomer
 	In order to use MPS One successfully
 	As a dealer
 	I want to be able to sign in to MPS

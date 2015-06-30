@@ -58,10 +58,75 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Test Specifications\MPSTwo\Contract\PAYGPurchaseAndClickContract.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Contract\DealerCanCopyADeclineProposal.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>PAYGPurchaseAndClickContract.feature</DependentUpon>
+      <DependentUpon>DealerCanCopyADeclineProposal.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPSTwo\Contract\DealerCanSignContract.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DealerCanSignContract.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPSTwo\Contract\OutputContractPDFAllUsers.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OutputContractPDFAllUsers.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPSTwo\Proposal\ApproverDecision.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ApproverDecision.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPSTwo\Proposal\ClickPriceDeepDive.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ClickPriceDeepDive.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPSTwo\Proposal\DealerCanOperateProposalOffers.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DealerCanOperateProposalOffers.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPSTwo\Proposal\DealerCanGeneratePDFAtRelevantStages.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DealerCanGeneratePDFAtRelevantStages.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPSTwo\Proposal\DealerCanUpdateProfile.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DealerCanUpdateProfile.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPSTwo\Proposal\LeasingAndClickProposalGermanUserJourney.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LeasingAndClickProposalGermanUserJourney.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPSTwo\Proposal\LeasingAndClickProposalUserJourney.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LeasingAndClickProposalUserJourney.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPSTwo\Proposal\PurchaseAndClickProposalGermanUserJourney.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PurchaseAndClickProposalGermanUserJourney.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPSTwo\Proposal\PurchaseAndClickProposalUserJourney.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PurchaseAndClickProposalUserJourney.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPSTwo\Proposal\SummaryPageValidationForAllProposalTypes.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SummaryPageValidationForAllProposalTypes.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPSTwo\SendToBank\DealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Specifications\Smart Supply\BrotherSupplyClubProductBenefits.feature.cs">
       <AutoGen>True</AutoGen>
@@ -72,6 +137,11 @@
       <DependentUpon>VerificationOnProductScreenVariations.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Test Specifications\Smart Supply\BrotherSupplyClubAnonymousUserProductBenefits.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BrotherSupplyClubAnonymousUserProductBenefits.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Steps\Global\GlobalSteps.cs" />
     <Compile Include="Test Specifications\BrotherMainSite\Printer Search\Printers.feature.cs">
@@ -174,60 +244,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SignInToMPSAsADealer.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Contract\BankCanMaintainOfferAfterADealerSignsContract.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BankCanMaintainOfferAfterADealerSignsContract.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Contract\BankRejectsAContract.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BankRejectsAContract.feature</DependentUpon>
-    </Compile>
     <Compile Include="Test Specifications\MPSTwo\Proposal\CompletedFieldsAreReadOnlyInConversionMode.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CompletedFieldsAreReadOnlyInConversionMode.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Proposal\CreateAProposalViaFlatListView.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CreateAProposalViaFlatListView.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Proposal\CreatePurchaseAndClickProposal.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CreatePurchaseAndClickProposal.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Contract\CreateProposalWithExistingContact.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CreateProposalWithExistingContact.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Proposal\ClickingAheadInProposalProcess.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ClickingAheadInProposalProcess.feature</DependentUpon>
-    </Compile>
     <Compile Include="Test Specifications\MPSTwo\Contract\DealerCanAddPreInstallationDetails.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DealerCanAddPreInstallationDetails.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Proposal\MovingBetweenPagesDuringProposalCreation.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MovingBetweenPagesDuringProposalCreation.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Proposal\VerificationOnClickPricesVolumeMarginChanges.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>VerificationOnClickPricesVolumeMarginChanges.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Proposal\VerificationsOnProductsPage.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>VerificationsOnProductsPage.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Specifications\OmniJoinPartnerPortal\CustomerActions\CustomerActions.feature.cs">
       <AutoGen>True</AutoGen>
@@ -282,7 +307,11 @@
     <Compile Include="Test Steps\MPSOne\MyAccountSteps.cs" />
     <Compile Include="Test Steps\MPSOne\NewProposalProcessSteps.cs" />
     <Compile Include="Test Steps\MPSOne\TechnicalServiceSteps.cs" />
-    <Compile Include="Test Steps\MPSTwo\Proposal\ClickingAheadInProposalCreationProcessSteps.cs" />
+    <Compile Include="Test Steps\MPSTwo\Approver\ApproverSteps.cs" />
+    <Compile Include="Test Steps\MPSTwo\Approver\BankSteps.cs" />
+    <Compile Include="Test Steps\MPSTwo\Approver\LocalOfficeApproverSteps.cs" />
+    <Compile Include="Test Steps\MPSTwo\Contract\SigningContractsSteps.cs" />
+    <Compile Include="Test Steps\MPSTwo\DealerAdmin\DealerAdminProfileSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Proposal\CreateAProposalThatHasMoreThanOneDevicesSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\BrotherMainMap.Designer.cs">
@@ -305,28 +334,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AddDevice.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Proposal\AddMultipleDevicesToAProposal.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AddMultipleDevicesToAProposal.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Proposal\CreateATemplate.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CreateATemplate.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Contract\CreateProposalToConvertToContract.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CreateProposalToConvertToContract.feature</DependentUpon>
-    </Compile>
     <Compile Include="Test Steps\BrotherOnline\Account\AccountManagementSteps.cs" />
     <Compile Include="Test Steps\BrotherOnline\Account\SignInCreateAccountSteps.cs" />
     <Compile Include="Test Steps\BrotherOnline\Product Registration\AddDeviceSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Proposal\CreateAProposalNeededForContractSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Proposal\CreateATemplateSteps.cs" />
+    <Compile Include="Test Steps\MPSTwo\Proposal\DealerCanOperateExistingProposalSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Proposal\LocalOfficeAdminSteps.cs" />
-    <Compile Include="Test Steps\MPSTwo\Proposal\VerificationOnClickPricesVolumeAndMargin.cs" />
+    <Compile Include="Test Steps\MPSTwo\Proposal\LocalOfficeApproverSteps.cs" />
+    <Compile Include="Test Steps\MPSTwo\Proposal\ProposalSummaryPageSteps.cs" />
+    <Compile Include="Test Steps\MPSTwo\SendToBank\SendProposalToApproverSteps.cs" />
     <Compile Include="Test Steps\OmniJoin Partner Portal\CustomerActionsSteps.cs" />
     <Compile Include="Test Steps\OmniJoin Partner Portal\DealerActionsSteps.cs" />
     <Compile Include="Test Steps\OmniJoin\FreeTrial\FreeTrialSteps.cs" />
@@ -445,69 +462,73 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>SignInToMPSAsADealer.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Contract\PAYGPurchaseAndClickContract.feature">
+    <None Include="Test Specifications\MPSTwo\Contract\DealerCanCopyADeclineProposal.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>PAYGPurchaseAndClickContract.feature.cs</LastGenOutput>
+      <LastGenOutput>DealerCanCopyADeclineProposal.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Proposal\AddMultipleDevicesToAProposal.feature">
+    <None Include="Test Specifications\MPSTwo\Contract\DealerCanSignContract.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>AddMultipleDevicesToAProposal.feature.cs</LastGenOutput>
+      <LastGenOutput>DealerCanSignContract.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Contract\BankCanMaintainOfferAfterADealerSignsContract.feature">
+    <None Include="Test Specifications\MPSTwo\Contract\OutputContractPDFAllUsers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>BankCanMaintainOfferAfterADealerSignsContract.feature.cs</LastGenOutput>
+      <LastGenOutput>OutputContractPDFAllUsers.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Contract\BankRejectsAContract.feature">
+    <None Include="Test Specifications\MPSTwo\Proposal\ApproverDecision.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>BankRejectsAContract.feature.cs</LastGenOutput>
+      <LastGenOutput>ApproverDecision.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwo\Proposal\ClickPriceDeepDive.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ClickPriceDeepDive.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwo\Proposal\CompletedFieldsAreReadOnlyInConversionMode.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CompletedFieldsAreReadOnlyInConversionMode.feature.cs</LastGenOutput>
     </None>
+    <None Include="Test Specifications\MPSTwo\Proposal\DealerCanOperateProposalOffers.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>DealerCanOperateProposalOffers.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwo\Proposal\DealerCanGeneratePDFAtRelevantStages.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>DealerCanGeneratePDFAtRelevantStages.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwo\Proposal\DealerCanUpdateProfile.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>DealerCanUpdateProfile.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwo\Proposal\LeasingAndClickProposalGermanUserJourney.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>LeasingAndClickProposalGermanUserJourney.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwo\Proposal\LeasingAndClickProposalUserJourney.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>LeasingAndClickProposalUserJourney.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwo\Proposal\PurchaseAndClickProposalGermanUserJourney.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>PurchaseAndClickProposalGermanUserJourney.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwo\Proposal\PurchaseAndClickProposalUserJourney.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>PurchaseAndClickProposalUserJourney.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwo\Proposal\SummaryPageValidationForAllProposalTypes.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>SummaryPageValidationForAllProposalTypes.feature.cs</LastGenOutput>
+    </None>
     <None Include="Test Specifications\MPSTwo\Proposal\VerificationOnProductScreenVariations.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>VerificationOnProductScreenVariations.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPSTwo\Proposal\CreateAProposalViaFlatListView.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CreateAProposalViaFlatListView.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPSTwo\Proposal\CreateATemplate.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CreateATemplate.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPSTwo\Proposal\CreatePurchaseAndClickProposal.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CreatePurchaseAndClickProposal.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPSTwo\Contract\CreateProposalToConvertToContract.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CreateProposalToConvertToContract.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPSTwo\Contract\CreateProposalWithExistingContact.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CreateProposalWithExistingContact.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPSTwo\Proposal\ClickingAheadInProposalProcess.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>ClickingAheadInProposalProcess.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwo\Contract\DealerCanAddPreInstallationDetails.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>DealerCanAddPreInstallationDetails.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Proposal\MovingBetweenPagesDuringProposalCreation.feature">
+    <None Include="Test Specifications\MPSTwo\SendToBank\DealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>MovingBetweenPagesDuringProposalCreation.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPSTwo\Proposal\VerificationOnClickPricesVolumeMarginChanges.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>VerificationOnClickPricesVolumeMarginChanges1.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPSTwo\Proposal\VerificationsOnProductsPage.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>VerificationsOnProductsPage.feature.cs</LastGenOutput>
+      <LastGenOutput>DealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\OmniJoinPartnerPortal\CustomerActions\CustomerActions.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
@@ -536,6 +557,10 @@
     <None Include="Test Specifications\Smart Supply\BrotherSupplyClubProductBenefits.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>BrotherSupplyClubProductBenefits.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\Smart Supply\BrotherSupplyClubAnonymousUserProductBenefits.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>BrotherSupplyClubAnonymousUserProductBenefits.feature.cs</LastGenOutput>
     </None>
     <None Include="tmpScratch\TestTmpTest.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

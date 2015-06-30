@@ -22,6 +22,13 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
             return GetInstance<ManageServicePage>();
         }
 
+        public ManageCustomersAndOrdersPage ManageCustomersAndOrdersButtonClick()
+        {
+            var manageCustomersAndOrdersButton = Driver.FindElement(By.CssSelector(partnerButtonsSearchString.Replace("href*=", "href*='my-customers'")));
+            manageCustomersAndOrdersButton.Click();
+            return GetInstance<ManageCustomersAndOrdersPage>();
+        }
+
         public void IsHomeButtonAvailable()
         {
             var homeButton = Driver.FindElement(By.CssSelector(partnerButtonsSearchString.Replace("href*=", "href*='partner-portal'")));

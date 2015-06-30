@@ -12,7 +12,14 @@ namespace Brother.Tests.Specs
         [Given(@"SqlCall")]
         public void GivenSqlCall()
         {
-            var foo = Utils.GetOrpActivationCode("SQL");
+            var dealerEmail = "ORP_Cushty_Dealer_001@guerrillamail.com";
+            var dealerId = Utils.GetOrpDealerId(dealerEmail);
+
+            var activationCode = Utils.GetOrpActivationCode(dealerId, 12, 1, "Order28052015");
+            if (activationCode == string.Empty)
+            {
+                Helper.MsgOutput(string.Format("Unable to retrieve Activation Code for Dealer {0}", dealerEmail));
+            }
         }
 
         [Given(@"Setup")]

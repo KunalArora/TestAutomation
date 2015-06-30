@@ -79,7 +79,7 @@ namespace Brother.Tests.Selenium.Lib.Support
             {
                 newDriver = new RemoteWebDriver(new Uri(uri), capabilities);
             }
-            catch (Exception ex)
+            catch (WebDriverException ex)
             {
                 throw new SpecFlowSeleniumException(string.Format("{0} - {1}", "Unable to Connect to GhostDriver via RemoteWebDriver", ex.Message));
             }

@@ -1,5 +1,4 @@
-﻿@UAT
-Feature: MPSBOLMyAccountCheckForMPSCustomer
+﻿Feature: MPSBOLMyAccountCheckForMPSCustomer
 	In order to view the account for an MPS Customer
 	As an MPS Customer
 	I want to be able to log in to MPS and see My Account

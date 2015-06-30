@@ -29,17 +29,18 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
         public static void AssertIsEqual(object expectedValue, object actualValue, string validationMessage)
         {
-            if (!expectedValue.Equals(actualValue))
-            {
-                throw new AssertionException(string.Format("AssertIsEqual Failed: [{0}] validation didn't match expectations. Expected [{1}], Actual [{2}]", validationMessage, expectedValue, actualValue));
-            }
+            Assert.AreEqual(expectedValue, actualValue, string.Format("[{0}] validation didn't match expectations. Expected [{1}], Actual [{2}]",
+                        validationMessage, expectedValue, actualValue));
         }
 
         public static void AssertIsNotNull(object itemToCheck, string validationMessage)
         {
             if (itemToCheck == null)
             {
-                throw new AssertionException(string.Format("AssertIsNotNull Failed: [{0}] validation didn't match expectations. Expected Null, Actual [{0}]", validationMessage, itemToCheck));
+                throw new AssertionException(
+                    string.Format(
+                        "AssertIsNotNull Failed: [{0}] validation didn't match expectations. Expected Null, Actual [{1}]",
+                        validationMessage, itemToCheck));
             }
         }
 
@@ -52,23 +53,27 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         {
             if (!actualText.Contains(expectedText))
             {
-                throw new AssertionException(string.Format("AssetTextContains Failed: Value for [{0}] did not match expectations. Expected: [{1}] ", actualText, expectedText));
+                throw new AssertionException(
+                    string.Format(
+                        "AssetTextContains Failed: Value for [{0}] did not match expectations. Expected: [{1}] ",
+                        actualText, expectedText));
             }
         }
 
         public static void AssertIsNotEqual(object expectedValue, object actualValue, string validationMessage)
         {
-            if (expectedValue.Equals(actualValue))
-            {
-                throw new AssertionException(string.Format("AssertIsNotEqual Failed: [{0}] validation didn't match expectations. Expected [{1}], Actual [{2}]", validationMessage, expectedValue, actualValue));
-            }
+            Assert.AreNotEqual(expectedValue, actualValue, string.Format("AssertIsNotEqual Failed: [{0}] validation didn't match expectations. Expected [{1}], Actual [{2}]",
+                        validationMessage, expectedValue, actualValue));
         }
 
         public static void AssertTextContains(string textSnippet, string containingString, string validationMessage)
         {
             if (!containingString.Contains(textSnippet))
             {
-                throw new AssertionException(string.Format("AssertTextContains Failed: [{0}] didn't match expectations. String [{1}] should have contained the text snippet [{2}]", validationMessage, containingString, textSnippet));
+                throw new AssertionException(
+                    string.Format(
+                        "AssertTextContains Failed: [{0}] didn't match expectations. String [{1}] should have contained the text snippet [{2}]",
+                        validationMessage, containingString, textSnippet));
             }
         }
     }

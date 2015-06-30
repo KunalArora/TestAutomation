@@ -45,7 +45,7 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
             return GetInstance<CreateActivationCodesPage>();
         }
 
-        public void IsSuccessAvailable()
+        public SuccessPage IsSuccessAvailable()
         {
             var success = Driver.FindElement(By.CssSelector(".content-unit.six h2"));
             if (success == null)
@@ -53,6 +53,7 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
                 throw new NullReferenceException("Success is NULL");
             }
             AssertElementPresent(success, "Success Page");
+            return GetInstance<SuccessPage>();
         }
 
         public CreateActivationCodesPage PurchaseCodesButtonClick()

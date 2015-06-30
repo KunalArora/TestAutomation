@@ -1,6 +1,8 @@
-﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+﻿using System;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
+using OpenQA.Selenium.Support.UI;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.BrotherOnline.Account
@@ -21,7 +23,6 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             var menu = GlobalNavigationModule.GetProductNavigationMenu("PartnerPortal");
             NextPage = GlobalNavigationModule.MyAccountMenuItemClick(CurrentDriver, menu);
         }
-
         [When(@"I click on the Partner Portal button")]
         public void WhenIClickOnThePartnerPortalButton()
         {
@@ -35,9 +36,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             var managePlanButton = GlobalNavigationModule.GetMyAccountInfoButton("OmniJoin", "ManagePlan");
             NextPage = GlobalNavigationModule.ManageOmniJoinPlanButtonClick(CurrentDriver, managePlanButton);
         }
-
-
-        [Given(@"I am logged into my Brother Online account")]
+       [Given(@"I am logged into my Brother Online account")]
         [Then(@"I am redirected to the Welcome Back page")]
         [Given(@"I am redirected to the Welcome Back page")]
         public void GivenIAmRedirectedToTheWelcomeBackPage()
@@ -48,8 +47,11 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [Then(@"I can navigate back to Brother Online home page")]
         public void ThenICanNavigateBackToBrotherOnlineHomePage()
         {
+            Helper.TakeSnapshot();
             Then("If I navigate back to the Brother Online My Account page");
+            Helper.TakeSnapshot();
             NextPage = GlobalNavigationModule.BrotherOnlineGoHome(CurrentDriver);
+            Helper.TakeSnapshot();
         }
 
         [Then(@"If I navigate back to the Brother Online My Account page")]
@@ -81,7 +83,9 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [Then(@"If I click on My Account menu")]
         public void ThenIfIClickOnMyAccountMenu()
         {
-            GlobalNavigationModule.GetProductNavigationMenu("MyAccount").Click();
+            Helper.TakeSnapshot();
+            var menuMyAccount = GlobalNavigationModule.GetProductNavigationMenu("MyAccount");
+            menuMyAccount.Click();
         }
 
         [Then(@"I click on My Personal Details")]
@@ -112,6 +116,20 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             NextPage = GlobalNavigationModule.PaymentMethodsMenuClick(CurrentDriver, paymentMethodsButton);
         }
 
+        [Then(@"I can click on Orders")]
+        public void ThenICanClickOnOrders()
+        {
+            var ordersButton = GlobalNavigationModule.GetMyAccountMenuItem("Orders");
+            NextPage = GlobalNavigationModule.OrdersMenuClick(CurrentDriver, ordersButton);
+        }
+
+        //[Then(@"I can click on Business Details")]
+        //public void ThenICanClickOnBusinessDetails()
+        //{
+        //    var businessDetailsButton = GlobalNavigationModule.GetMyAccountMenuItem("BusinessDetails");
+        //    NextPage = GlobalNavigationModule.BusinessDetailsMenuClick(CurrentDriver, businessDetailsButton);
+        //}
+
         [Then(@"If I grant the user account the ""(.*)"" role")]
         public void ThenIfIGrantTheUserAccountTheRole(string userRole)
         {
@@ -123,11 +141,21 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             NextPage = CurrentPage.As<WelcomeBackPage>().NavigateToMyAccountPage(country);
         }
-
         [Then(@"If I enter the current password")]
         public void ThenIfIEnterTheCurrentPassword()
         {
             CurrentPage.As<MySignInDetailsPage>().EnterExistingPassword(Helper.Password);
+        }
+        [When(@"I clicked on Business Details")]
+        public void WhenIClickedOnBusinessDetails()
+        {
+            var businessDetailsButton = GlobalNavigationModule.GetMyAccountMenuItem("BusinessDetails");
+            NextPage = GlobalNavigationModule.BusinessDetailsMenuClick(CurrentDriver, businessDetailsButton);
+        }
+        [When(@"I am redirected to the Business Details Page")]
+        public void WhenIAmRedirectedToTheBusinessDetailsPage()
+        {
+            CurrentPage.As<BusinessDetailsPage>().IsUpdateButtonAvailable();
         }
 
         [Then(@"I can validate the update was successful")]
@@ -174,7 +202,11 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<MySignInDetailsPage>().ClickUpdateDetailsButton();
         }
-
+        [When(@"I click on Update details on business details page")]
+        public void WhenIClickOnUpdateDetailsOnBusinessDetailsPage()
+        {
+            CurrentPage.As<BusinessDetailsPage>().ClickUpdateButton();
+        }
         [Then(@"My password will be updated")]
         public void ThenMyPasswordWillBeUpdated()
         {
@@ -186,5 +218,11 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<MySignInDetailsPage>().ValidateInformationMessageBarStatus(true);
         }
+        [Then(@"I can verify successfull update message appeared at the top")]
+        public void ThenICanVerifySuccessfullUpdateMessageAppearedAtTheTop()
+        {
+            CurrentPage.As<BusinessDetailsPage>().ValidateInformationMessageBarStatus(true);
+        }
+
     }
 }

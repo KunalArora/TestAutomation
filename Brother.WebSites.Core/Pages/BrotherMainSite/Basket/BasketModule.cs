@@ -16,29 +16,37 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.Basket
         private const string RemoveFromBasketButton = ".remove-from-basket-button";
         private const string BasketNavigationIcon = "#primary-nav .cf .nav-basket";
 
-        private static IWebElement BasketNavigation(ISearchContext driver)
+
+        private static IWebElement FindElement(ISearchContext driver, string element, string message)
         {
-            return driver.FindElement(By.CssSelector(BasketNavigationIcon));
+            if (SeleniumHelper.WaitForElementToExistByCssSelector(element, 5, 5))
+            {
+                Helper.MsgOutput(string.Format("Basket Module: Found {0} element correctly", element));
+                return driver.FindElement(By.CssSelector(element));
+            }
+            TestCheck.AssertFailTest(string.Format("Unable to locate Basket Item {0}", element));
+            return null;
+
         }
 
         private static IWebElement BasketIcon(ISearchContext driver)
         {
-            return driver.FindElement(By.CssSelector(BasketIconId));
+            return FindElement(driver, BasketIconId, "Basket Icon Id");
         }
 
         private static IWebElement ProductInformationList(ISearchContext driver)
         {
-            return driver.FindElement(By.CssSelector(ProductInformationListId));
+            return FindElement(driver, ProductInformationListId, "Poduct Information Id");
         }
 
         private static IWebElement GoToBasketButton(ISearchContext driver)
         {
-            return driver.FindElement(By.CssSelector(GoToBasketButtonId));
+            return FindElement(driver, GoToBasketButtonId, "Go To Basket Button Id");
         }
 
         private static IWebElement RemoveFromBasket(ISearchContext driver)
         {
-            return driver.FindElement(By.CssSelector(RemoveFromBasketButton));
+            return FindElement(driver, GoToBasketButtonId, "Go To Basket Button Id");
         }
 
         private static IWebElement ItemPrice(ISearchContext driver)
@@ -57,7 +65,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.Basket
                     }
                 }
             }
-            catch (NoSuchElementException noSuchElement)
+            catch (WebDriverException noSuchElement)
             {
                 Helper.MsgOutput("Unable to locate Price element on page", noSuchElement.Message);
             }

@@ -1,11 +1,14 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using System.IO;
 using System.Net;
+using System.Runtime.Remoting;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Threading;
 using NUnit.Framework;
 
 namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
@@ -294,19 +297,49 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             }
             return sqlConnection;
         }
-        
+
+        /// <summary>
+        /// GetOrpDealerId()
+        /// 
+        /// </summary>
+        public static Guid GetOrpDealerId(string emailAddress)
+        {
+            var sqlConnection = GetSqlConnection();
+            var sql = string.Format("SELECT DealershipId FROM Dealership WHERE (Email = '{0}')", emailAddress);
+            var sqlCmd = new SqlCommand(sql, sqlConnection);
+            var dealershipId = Guid.Empty;
+
+            using (sqlConnection)
+            {
+                using (var reader = sqlCmd.ExecuteReader())
+                {
+                    // Check is the reader has any rows at all before starting to read.
+                    if (!reader.HasRows) return Guid.Empty;
+                    // Read advances to the next row.
+                    while (reader.Read())
+                    {
+                        dealershipId = reader.GetGuid(reader.GetOrdinal("DealershipId"));
+                    }
+                    reader.Close();
+                }
+            }
+            sqlConnection.Close();
+            return dealershipId;
+        }
+
         /// <summary>
         /// GetOrpActivationCode()
         /// 
         /// </summary>
-        public static string GetOrpActivationCode(string dealershipId)
+        public static string GetOrpActivationCode(Guid dealershipId, int licenseTerm, int numLicenses, string comment)
         {
             var sqlConnection = GetSqlConnection();
 
-            var sql = string.Format("SELECT ActivationCode, DealershipId, LicenceType, TermInMonths, DateActivated, DateCreated, NumberOfLicences, Comment FROM ActivationCode WHERE DealershipId = '{0}' ORDER BY DateCreated DESC", dealershipId); 
+            var sql = string.Format("SELECT ActivationCode, DealershipId, LicenceType, TermInMonths, DateActivated, DateCreated, NumberOfLicences, Comment FROM ActivationCode WHERE DealershipId = '{0}' AND (DateActivated IS NULL) AND (Comment ='{1}') ORDER BY DateCreated DESC", dealershipId, comment); 
 
-            //sqlConnection.BeginTransaction();
             var sqlCmd = new SqlCommand(sql, sqlConnection);
+            var codeActivated = false;
+            var activationCode = string.Empty;
 
             using (sqlConnection)
             {
@@ -317,29 +350,21 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                     // Read advances to the next row.
                     while (reader.Read())
                     {
-                        // To avoid unexpected bugs access columns by name.
-                        var activationCode = reader.GetString(reader.GetOrdinal("ActivationCode"));
-
-                        var dealerShipId = reader.GetGuid(reader.GetOrdinal("DealershipId"));
-                        var licenseType = reader.GetInt32(reader.GetOrdinal("LicenceType"));
-                        var term = reader.GetInt32(reader.GetOrdinal("TermInMonths"));
-                        var dateCreated = reader.GetDateTime(reader.GetOrdinal("DateCreated"));
-                        var numLicenses = reader.GetInt32(reader.GetOrdinal("NumberOfLicences"));
-                        var comment = reader.GetString(reader.GetOrdinal("Comment"));
-
+                        activationCode = reader.GetString(reader.GetOrdinal("ActivationCode"));
                         try
                         {
+                            // Double check the code has not already been activated
                             var dateActivated = reader.GetDateTime(reader.GetOrdinal("DateActivated"));
+                            codeActivated = true;
                         }
                         catch (SqlNullValueException fieldIsNull)
                         {
-                            MsgOutput("Activation code was not activated");
+                            MsgOutput("Activation code has not activated");
                         }
                     }
                 }
             }
-            return "";
-
+            return !codeActivated ? activationCode : string.Empty;
         }
         
         /// <summary>

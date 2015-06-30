@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using NUnit.Framework.Constraints;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.UnitTestProvider;
@@ -14,6 +15,10 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
         public static void BeforeTestRun()
         {
             Helper.MsgOutput("Starting Test Run........");
+
+            // Clear old snapshots
+            Helper.MsgOutput("Purging old snapshots");
+            Helper.PurgeSnapshots();
         }
 
         [AfterTestRun]
@@ -38,7 +43,7 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
 
             Helper.MsgOutput(string.Format("This step caused the following error [{0}]", ScenarioContext.Current.TestError.Message));
             Helper.TakeSnapshot();
-            Helper.MsgOutput(string.Format("[AfterStep] SnapShot Taken : Location = [{0}]", Helper.SnapshotLocation));
+            Helper.MsgOutput(string.Format("[AfterStep] SnapShot Taken : Location = [{0}]", Helper.CurrentSnapShot));
         }
 
         [BeforeFeature]
@@ -50,6 +55,15 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
                 TestController.HeadlessRunning();
             #endif
         }
+
+        private static void IgnoreThisTest(string why)
+        {
+             var testRunTimeSetting = new NUnitRuntimeProvider();
+
+             Helper.MsgOutput(why);
+             testRunTimeSetting.TestIgnore(why);
+        }
+
 
         public static void BeforeFeatureHeadlessAndInteractive()
         {
@@ -70,12 +84,12 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
         public void BeforeScenario()
         {
             var testRunTimeSetting = new NUnitRuntimeProvider();
+            var mpsFeatureTag = Helper.CheckFeatureEnv("MPS");
 
             // First check the Runtime environment for a valid value
             if (!CheckForValidRunTimeEnv(Helper.GetRunTimeEnv()))
             {
-                Helper.MsgOutput("Test could not be executed as the Run Time Environment is Invalid!");
-                testRunTimeSetting.TestIgnore("Test skipped as Run Time Environment is Invalid!");
+                IgnoreThisTest("Test skipped as Run Time Environment is Invalid!");
             }
 
             // Now check if this Scenario has Tagging present, and use this level in the first instance
@@ -87,9 +101,7 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
                 // if the run time environment does not match, do not run test
                 if (!Helper.CheckScenarioEnv(Helper.GetRunTimeEnv()))
                 {
-                    Helper.MsgOutput(
-                        "Test could not be executed as the Scenario Tags did not match Run Time Environment");
-                    testRunTimeSetting.TestIgnore("Test skipped as Run Time Environment invalid for this test");
+                    IgnoreThisTest("Test skipped as Run Time Environment invalid for this test - Scenario Tags did not match Run Time Environment");
                 }
             }
             else
@@ -97,16 +109,13 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
                 switch (FeatureContext.Current.FeatureInfo.Tags.Length)
                 {
                     case (0):
-                        Helper.MsgOutput("NO Feature Tags present - skipping all Scenarios under this Feature");
-                        testRunTimeSetting.TestIgnore("Test skipped as NO Feature Tags present");
+                        IgnoreThisTest("Test skipped - NO Feature Tags present - skipping all Scenarios under this Feature");
                         break;
 
                     default:
                         if (!Helper.CheckFeatureEnv(Helper.GetRunTimeEnv()))
                         {
-                            Helper.MsgOutput("Test could not be executed as the Run Time Environment did not match");
-                            var provider = new NUnitRuntimeProvider();
-                            provider.TestIgnore("Test skipped as Run Time Environment invalid for this test");
+                            IgnoreThisTest("Test skipped as Run Time Environment invalid for this test");
                         }
                         else
                         {
@@ -115,6 +124,38 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
                         break;
                 }
             }
+
+
+            if (mpsFeatureTag)
+            {
+
+                if (Helper.MpsRunCondition().Equals("ONLY") 
+                    || Helper.MpsRunCondition().Equals("ALL"))
+                {
+                    Helper.MsgOutput("!!!!MPS TESTS IN PROGRESS!!!!");
+                }
+                else if (Helper.MpsRunCondition().Equals("OFF") 
+                    || Helper.MpsRunCondition().Equals(string.Empty))
+                {
+                    IgnoreThisTest("Test skipped as All MPS tests are switched off for this run");
+                }
+            }
+            else
+            {
+                if (Helper.MpsRunCondition().Equals("ONLY")
+                    || Helper.MpsRunCondition().Equals(string.Empty))
+                {
+                    IgnoreThisTest("Test skipped as ONLY MPS tests are switched ON for this run");
+                    Helper.MsgOutput("!!!!Check if MpsTagRunner value is empty!!!!");
+                }
+                else if (Helper.MpsRunCondition().Equals("OFF") 
+                           || Helper.MpsRunCondition().Equals("ALL"))
+                {
+                    Helper.MsgOutput("!!!!TESTS RUN IN PROGRESS!!!!"); 
+                }
+                
+            }
+           
 
             if (Helper.IsSmokeTest())
             {

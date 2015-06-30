@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Globalization;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
@@ -14,7 +16,8 @@ namespace Brother.Tests.Selenium.Lib.Support
         /// <returns>Generated proposal Name as string</returns>
         public static string GenerateUniqueProposalName()
         {
-            var generatedProposalName = "MPS_" + SurName()+ "-" + FirstName();
+            var generatedProposalName = "MPS_" + SurName() + 
+                "-" + DateTime.Now.ToString("yyyyMMdHHmmss");
             return generatedProposalName;
         }
 
@@ -26,12 +29,33 @@ namespace Brother.Tests.Selenium.Lib.Support
             return generatedEmailAddress;
         }
 
+        public static string CreatedProposal()
+        {
+            var createdProposal = HelperClasses.SpecFlow.GetContext("GeneratedProposalName");
+            return createdProposal;
+        }
+
+        public static string CopiedProposal()
+        {
+            var createdProposal = HelperClasses.SpecFlow.GetContext("GeneratedProposalName");
+            return createdProposal + " (1)";
+        }
+
         public static string SomeDaysFromToday()
         {
             var todayDate = DateTime.Now;
             var someDaysIntheFuture = todayDate.AddDays(30);
 
             return someDaysIntheFuture.ToString("dd/MM/yyyy");
+
+        }
+
+        public static string DateOfBirth()
+        {
+            var todayDate = DateTime.Now;
+            var someDaysInthePast = todayDate.AddDays(-9000);
+
+            return someDaysInthePast.ToString("dd/MM/yyyy");
 
         }
 
@@ -48,6 +72,16 @@ namespace Brother.Tests.Selenium.Lib.Support
             var todayDate = DateTime.Now;
 
             return "INTER" + todayDate.ToString("yyyyMMdHHmmss");
+
+        }
+
+        public static string DealerProfileSample()
+        {
+            var todayDate = DateTime.Now;
+
+            var profile= "Profile Dealer For now " + todayDate.ToString("yyyyMMdHHmmss");
+            
+            return profile;
 
         }
 
@@ -424,66 +458,6 @@ namespace Brother.Tests.Selenium.Lib.Support
             return generatedContractLength;
         }
 
-        public static string LeaseBillingCycle()
-        {
-            String[] leaseBillingCycle = {
-                                        "3 Monthly", 
-								        "4 Monthly"
-								       // "6 Monthly"
-								    };
-
-            var generatedLeaseBillingCycle = leaseBillingCycle[new Random().Next(2)];
-            ScenarioContext.Current["GeneratedLeaseBillingCycle"] = generatedLeaseBillingCycle;
-
-            switch (generatedLeaseBillingCycle)
-            {
-                case "3 Monthly":
-                    {
-                        generatedLeaseBillingCycle = "6";
-                        break;
-                    }
-                case "4 Monthly":
-                    {
-                        generatedLeaseBillingCycle = "7";
-                        break;
-                    }
-                //case "6 Monthly":
-                //    {
-                //        generatedLeaseBillingCycle = "3";
-                //        break;
-                //    }
-            }
-
-            return generatedLeaseBillingCycle;
-        }
-
-        public static string PayPerClickBillingCycle()
-        {
-            String[] payPerBillingCycle = { 
-								        "4 Monthly",
-								        "6 Monthly"
-								    };
-
-            var generatedPayLeaseBillingCycle = payPerBillingCycle[new Random().Next(2)];
-            ScenarioContext.Current["GeneratedPayLeaseBillingCycle"] = generatedPayLeaseBillingCycle;
-
-            switch (generatedPayLeaseBillingCycle)
-            {
-                case "4 Monthly":
-                    {
-                        generatedPayLeaseBillingCycle = "8";
-                        break;
-                    }
-                case "6 Monthly":
-                    {
-                        generatedPayLeaseBillingCycle = "9";
-                        break;
-                    }
-            }
-
-            return generatedPayLeaseBillingCycle;
-        }
-
         public static string ContactPosition()
         {
             String[] contactPosition = {
@@ -659,6 +633,14 @@ namespace Brother.Tests.Selenium.Lib.Support
                 var postCode = zip[new Random().Next(20)];
 
             return postCode;
+        }
+
+        public static decimal GetValue(string money)
+        {
+            NumberFormatInfo poundNumberFormatInfo = new NumberFormatInfo();
+            poundNumberFormatInfo.CurrencySymbol = "£";
+
+            return decimal.Parse(money, NumberStyles.Currency, poundNumberFormatInfo);
         }
     }
 }

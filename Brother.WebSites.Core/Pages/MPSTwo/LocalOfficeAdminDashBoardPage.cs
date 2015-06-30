@@ -14,11 +14,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             get { return string.Empty; }
         }
 
-        [FindsBy(How = How.CssSelector, Using = "a[href='/mps/local-office/leasing'] .media-body")]
+        [FindsBy(How = How.CssSelector, Using = "a[href='/mps/local-office/lease-and-click'] .media-body")]
         private IWebElement LeasingContractLinkElement;
         [FindsBy(How = How.CssSelector, Using = "a[href='/mps/local-office/purchase-and-click'] .media-body")]
-        private IWebElement EasyPrintProContractLinkElement;
-        
+        private IWebElement PurchaseAndClickLinkElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href='/mps/local-office/dealer-defaults'] .media-body")]
+        private IWebElement DealerDefaultsElement;        
 
 
         public void IsLeasingContractLinkAvailable()
@@ -29,12 +30,42 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             AssertElementPresent(LeasingContractLinkElement, "Create New Proposal Link");
         }
 
-        public EasyPrintProPage NavigateToEasyPrintProPage()
+        public void IsPurchaseAndClickLinkAvailable()
         {
-            if (EasyPrintProContractLinkElement == null)
+            if (PurchaseAndClickLinkElement == null) 
+                throw new Exception("Unable to locate Purchase And Click link on dashboard page");
+
+            AssertElementPresent(PurchaseAndClickLinkElement, "Create New Proposal Link");
+        }
+
+        public void IsDealerDefaultsLinkAvailable()
+        {
+            if (DealerDefaultsElement == null)
+                throw new Exception("Unable to locate dealer defaults link on dashboard page");
+
+            AssertElementPresent(DealerDefaultsElement, "Create Dealer Defaults Link");
+        }
+
+        public LocalOfficeAdminProgramSettingPage NavigateToPurchaseAndClickPage()
+        {
+            if (PurchaseAndClickLinkElement == null)
                 throw new NullReferenceException("EPP link is not LOAdmin Dashboard");
-            EasyPrintProContractLinkElement.Click();
-            return GetTabInstance<EasyPrintProPage>(Driver);
+            PurchaseAndClickLinkElement.Click();
+            return GetTabInstance<LocalOfficeAdminProgramSettingPage>(Driver);
+        }
+
+        public LocalOfficeAdminDealerDefaultsPage NavigateToDealerDefaultsPage()
+        {
+            IsDealerDefaultsLinkAvailable();
+            DealerDefaultsElement.Click();
+            return GetTabInstance<LocalOfficeAdminDealerDefaultsPage>(Driver);
+        }
+
+        public LocalOfficeAdminProgramSettingPage NavigateToLeaseAndClickPage()
+        {
+            IsLeasingContractLinkAvailable();
+            LeasingContractLinkElement.Click();
+            return GetTabInstance<LocalOfficeAdminProgramSettingPage>(Driver);
         }
 
     }

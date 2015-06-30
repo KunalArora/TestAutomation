@@ -1,4 +1,4 @@
-﻿@Ignore @UAT
+﻿@Ignore
 Feature: MPSContractSearch
 	In order to select a specific contract from a list
 	As a math an MPS Dealer
