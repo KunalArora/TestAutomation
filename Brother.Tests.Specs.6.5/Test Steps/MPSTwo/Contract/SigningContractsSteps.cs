@@ -10,14 +10,14 @@ namespace Brother.Tests.Specs.MPSTwo.Contract
         [When(@"I navigate to dealer contract approved proposal page")]
         public void WhenINavigateToDealerContractApprovedProposalPage()
         {
-            NextPage = CurrentPage.As<DealerDashBoardPage>().NavigateToContractApprovedProposalPage();
-            CurrentPage.As<DealerContractsApprovedProposalsPage>().IsApprovedProposalContractPageDisplayed();
+            NextPage = CurrentPage.As<DealerDashBoardPage>().NavigateToContractScreenFromDealerDashboard();
+            CurrentPage.As<CloudContractPage>().IsApprovedProposalContractPageDisplayed();
         }
 
         [Then(@"I can start the process of signing the contract")]
         public void ThenICanStartTheProcessOfSigningTheContract()
         {
-            NextPage = CurrentPage.As<DealerContractsApprovedProposalsPage>().NavigateToDealerContractSummaryPage(CurrentDriver);
+            NextPage = CurrentPage.As<CloudContractPage>().NavigateToDealerContractSummaryPage(CurrentDriver);
         }
 
         [Then(@"I can successfully sign the contract")]

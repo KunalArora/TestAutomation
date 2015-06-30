@@ -100,14 +100,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetTabInstance<CloudContractPage>(Driver);
         }
 
-        public DealerContractsApprovedProposalsPage NavigateToContractApprovedProposalPage()
-        {
-            if (DashboardContractLinkElement == null)
-                throw new NullReferenceException("Contract link is not Dealer Dashboard");
-            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, DashboardContractLinkElement);
-            return GetTabInstance<DealerContractsApprovedProposalsPage>(Driver);
-        }
-
         public DealerAdminDashBoardPage NavigateToAdminPageUsingTab()
         {
             IsAdminTabAvailable();

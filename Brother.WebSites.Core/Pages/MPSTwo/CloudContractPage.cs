@@ -50,7 +50,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement ApprovedProposalTabElement;
         [FindsBy(How = How.CssSelector, Using = ".active a[href=\"/mps/dealer/contracts/approved-proposals\"]")]
         public IWebElement OpenedApprovedProposalTabElement;
-        
+        [FindsBy(How = How.CssSelector, Using = "#content_1_ContractList_List_HeaderValidUntil")]
+        public IWebElement ValidUntilLabelElement;
         
         
         
@@ -265,5 +266,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetTabInstance<DealerContractsSummaryPage>(Driver, BaseURL, true);
         }
 
+        public void IsApprovedProposalContractPageDisplayed()
+        {
+            if (ValidUntilLabelElement == null)
+                throw new Exception("Contracts Approved Proposal page not opened");
+
+            AssertElementPresent(ValidUntilLabelElement, "is Contracts Approved Proposal page?");
+        }
+
+        public DealerContractSummaryPage NavigateToDealerContractSummaryPage(IWebDriver driver)
+        {
+            ActionsModule.ClickOnSpecificContractApprovedProposalActionsDropdown(driver);
+            WebDriver.Wait(DurationType.Second, 3);
+            ActionsModule.NavigateToSummaryPageUsingActionButton(driver);
+            return GetInstance<DealerContractSummaryPage>(Driver);
+        }
     }
 }
