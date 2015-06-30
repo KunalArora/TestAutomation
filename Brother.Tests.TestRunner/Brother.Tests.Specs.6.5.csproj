@@ -58,11 +58,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Test Specifications\InstantInk\BOL-176.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BOL-176.feature</DependentUpon>
-    </Compile>
     <Compile Include="Test Specifications\MPSTwo\Contract\DealerCanCopyADeclineProposal.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -254,16 +249,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SignInToMPSAsADealer.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Proposal\CompletedFieldsAreReadOnlyInConversionMode.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CompletedFieldsAreReadOnlyInConversionMode.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Contract\DealerCanAddPreInstallationDetails.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DealerCanAddPreInstallationDetails.feature</DependentUpon>
-    </Compile>
     <Compile Include="Test Specifications\OmniJoinPartnerPortal\CustomerActions\CustomerActions.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -433,10 +418,6 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>LoginWithValidCredential.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\InstantInk\BOL-176.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>BOL-176.feature.cs</LastGenOutput>
-    </None>
     <None Include="Test Specifications\InstantInk\StatusMonitor.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>StatusMonitor.feature.cs</LastGenOutput>
@@ -497,10 +478,6 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ClickPriceDeepDive.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Proposal\CompletedFieldsAreReadOnlyInConversionMode.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CompletedFieldsAreReadOnlyInConversionMode.feature.cs</LastGenOutput>
-    </None>
     <None Include="Test Specifications\MPSTwo\Customer\DealerCanOperateCustomers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>DealerCanOperateCustomers.feature.cs</LastGenOutput>
@@ -540,10 +517,6 @@
     <None Include="Test Specifications\MPSTwo\Proposal\VerificationOnProductScreenVariations.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>VerificationOnProductScreenVariations.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPSTwo\Contract\DealerCanAddPreInstallationDetails.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>DealerCanAddPreInstallationDetails.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwo\SendToBank\DealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
