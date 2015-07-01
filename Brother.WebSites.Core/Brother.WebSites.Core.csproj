@@ -152,7 +152,6 @@
     <Compile Include="Pages\MPSTwo\DealerAdminDashBoardPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeAdminProgramSettingsPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerProposalsCreateProductsPage.cs" />
-    <Compile Include="Pages\MPSTwo\CreateNewProposalPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerDashBoardPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeAdminDealerDefaultsPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeAdminDashBoardPage.cs" />

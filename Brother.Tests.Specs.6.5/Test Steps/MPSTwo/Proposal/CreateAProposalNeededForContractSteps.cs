@@ -72,13 +72,5 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<DealerContractsPage>().VerifyRejectedContractIsDisplayed();
         }
 
-        [Then(@"fields on ""(.*)"" screen are disabled")]
-        public void ThenFieldsOnScreenAreDisabled(string screens)
-        {
-            CurrentPage.As<CreateNewProposalPage>().ClickOnProposalTabsDuringContractConversionTransform(screens);
-            CurrentPage.As<CreateNewProposalPage>().VerifyFieldsOnScreensAreDisabled(screens);
-        }
-
-
     }
 }
