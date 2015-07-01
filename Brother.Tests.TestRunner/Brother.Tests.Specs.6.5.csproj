@@ -113,11 +113,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LeasingAndClickProposalUserJourney.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Proposal\LocalOfficeAdminCanManageBanks.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LocalOfficeAdminCanManageBanks.feature</DependentUpon>
-    </Compile>
     <Compile Include="Test Specifications\MPSTwo\Proposal\PurchaseAndClickProposalGermanUserJourney.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -483,10 +478,6 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ClickPriceDeepDive.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Proposal\CompletedFieldsAreReadOnlyInConversionMode.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CompletedFieldsAreReadOnlyInConversionMode.feature.cs</LastGenOutput>
-    </None>
     <None Include="Test Specifications\MPSTwo\Customer\DealerCanOperateCustomers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>DealerCanOperateCustomers.feature.cs</LastGenOutput>
@@ -511,10 +502,6 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>LeasingAndClickProposalUserJourney.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Proposal\LocalOfficeAdminCanManageBanks.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>LocalOfficeAdminCanManageBanks.feature.cs</LastGenOutput>
-    </None>
     <None Include="Test Specifications\MPSTwo\Proposal\PurchaseAndClickProposalGermanUserJourney.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>PurchaseAndClickProposalGermanUserJourney.feature.cs</LastGenOutput>
@@ -530,10 +517,6 @@
     <None Include="Test Specifications\MPSTwo\Proposal\VerificationOnProductScreenVariations.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>VerificationOnProductScreenVariations.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPSTwo\Contract\DealerCanAddPreInstallationDetails.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>DealerCanAddPreInstallationDetails.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwo\SendToBank\DealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
