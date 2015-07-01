@@ -42,17 +42,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 "Create Customer Button is not found.");
         }
 
-        public DealerCustomersMangePage ClickCreateCustomerPage()
+        public DealerCustomersManagePage ClickCreateCustomerPage()
         {
             createCustomerButtonElement.Click();
-            return GetInstance<DealerCustomersMangePage>();
+            return GetInstance<DealerCustomersManagePage>();
         }
 
         public void ConfirmCreatedCustomer(IWebDriver driver)
         {
-            var contact = SpecFlow.GetObject<DealerCustomersMangePage.OrganisationContactDetail>(DealerLatestCreatedContact);
+            var contact = SpecFlow.GetObject<DealerCustomersManagePage.OrganisationContactDetail>(DealerLatestCreatedContact);
 
-            var org = SpecFlow.GetObject<DealerCustomersMangePage.OrganisationDetail>(DealerLatestCreatedOrganization);
+            var org = SpecFlow.GetObject<DealerCustomersManagePage.OrganisationDetail>(DealerLatestCreatedOrganization);
 
             var email = contact.Email;
 
@@ -105,7 +105,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ClickOnDeleteOnActionItemAgainstNewlyCreated(IWebDriver driver)
         {
-            var contact = SpecFlow.GetObject<DealerCustomersMangePage.OrganisationContactDetail>(DealerLatestCreatedContact);
+            var contact = SpecFlow.GetObject<DealerCustomersManagePage.OrganisationContactDetail>(DealerLatestCreatedContact);
 
             ClickDelete(driver, contact.Email);
         }
@@ -155,9 +155,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 "Cancelled Item does not exist on table.");
         }
 
-        public DealerCustomersMangePage ClickOnEditOnActionItemAgainstNewlyCreated(IWebDriver driver)
+        public DealerCustomersManagePage ClickOnEditOnActionItemAgainstNewlyCreated(IWebDriver driver)
         {
-            var contact = SpecFlow.GetObject<DealerCustomersMangePage.OrganisationContactDetail>(DealerLatestCreatedContact);
+            var contact = SpecFlow.GetObject<DealerCustomersManagePage.OrganisationContactDetail>(DealerLatestCreatedContact);
 
             var customerelem = FindExistingCustomerByEmail(driver, contact.Email);
             ClickActionButtonOnOffer(customerelem);
@@ -165,7 +165,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var id = editElem.GetAttribute("data-person-id");
             SpecFlow.SetContext(DealerLatestOperatingCustomerItemId, id);
             editElem.Click();
-            return GetInstance<DealerCustomersMangePage>();
+            return GetInstance<DealerCustomersManagePage>();
         }
 
     }

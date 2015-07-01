@@ -36,7 +36,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Customer
         [When(@"I edit the customer")]
         public void WhenICreateNewCustomer()
         {
-            var page = CurrentPage.As<DealerCustomersMangePage>();
+            var page = CurrentPage.As<DealerCustomersManagePage>();
             page.FillOrganisationDetails();
             page.FillOrganisationContactDetail();
             page.FillOrganisationBankDetail("Invoice");
@@ -111,7 +111,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Customer
         [Then(@"I can confirm the edited Cusotemr in detail")]
         public void ThenICanConfirmTheEditedCusotemrInDetail()
         {
-            var page = CurrentPage.As<DealerCustomersMangePage>();
+            var page = CurrentPage.As<DealerCustomersManagePage>();
             page.ConfirmOrganisationDetails();
             page.ConfirmOrganisationContactDetail();
             page.ConfirmOrganisationBankDetail();
