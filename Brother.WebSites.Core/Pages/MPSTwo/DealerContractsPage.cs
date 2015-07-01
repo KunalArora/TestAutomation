@@ -274,12 +274,30 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             AssertElementPresent(ValidUntilLabelElement, "is Contracts Approved Proposal page?");
         }
 
-        public DealerContractSummaryPage NavigateToDealerContractSummaryPage(IWebDriver driver)
+        public DealerContractsSummaryPage NavigateToDealerContractSummaryPage(IWebDriver driver)
         {
             ActionsModule.ClickOnSpecificContractApprovedProposalActionsDropdown(driver);
             WebDriver.Wait(DurationType.Second, 3);
             ActionsModule.NavigateToSummaryPageUsingActionButton(driver);
-            return GetInstance<DealerContractSummaryPage>(Driver);
+            return GetInstance<DealerContractsSummaryPage>(Driver);
+        }
+
+        public void IsAwaitingAcceptanceContractDisplayed()
+        {
+            if (AwaitingAcceptanceTabElement == null)
+                throw new Exception("Opened Awaiting Acceptance Tab not displayed");
+            AssertElementPresent(AwaitingAcceptanceTabElement, "Is Opened Awaiting Acceptance Tab displayed?");
+        }
+
+        public void IsSignedContractDisplayed()
+        {
+            var createdProposal = MpsUtil.CreatedProposal();
+            var newlyAdded = @"//td[text()='{0}']";
+            newlyAdded = String.Format(newlyAdded, createdProposal);
+
+            var newProposal = Driver.FindElement(By.XPath(newlyAdded));
+
+            TestCheck.AssertIsEqual(true, newProposal.Displayed, "Is new signed contract displayed?");
         }
     }
 }

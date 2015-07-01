@@ -23,10 +23,10 @@ namespace Brother.Tests.Specs.MPSTwo.Contract
         [Then(@"I can successfully sign the contract")]
         public void ThenICanSuccessfullySignTheContract()
         {
-            CurrentPage.As<DealerContractSummaryPage>().IsContractSummaryPageDisplayed();
-            NextPage = CurrentPage.As<DealerContractSummaryPage>().DealerSignsApprovedProposal();
-            CurrentPage.As<DealerAwaitingAcceptanceContractsPage>().IsAwaitingAcceptanceContractDisplayed();
-            CurrentPage.As<DealerAwaitingAcceptanceContractsPage>().IsSignedContractDisplayed();
+            CurrentPage.As<DealerContractsSummaryPage>().IsContractSummaryPageDisplayed();
+            NextPage = CurrentPage.As<DealerContractsSummaryPage>().DealerSignsApprovedProposal();
+            CurrentPage.As<DealerContractsPage>().IsAwaitingAcceptanceContractDisplayed();
+            CurrentPage.As<DealerContractsPage>().IsSignedContractDisplayed();
 
         }
 

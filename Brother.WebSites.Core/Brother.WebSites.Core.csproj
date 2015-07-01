@@ -121,7 +121,6 @@
     <Compile Include="Pages\MPSTwo\BankOffersPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerContractsPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerProposalsCreateDescriptionPage.cs" />
-    <Compile Include="Pages\MPSTwo\DealerContractSummaryPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerCustomersManagePage.cs" />
     <Compile Include="Pages\MPSTwo\DealerCustomersExistingPage.cs" />
     <Compile Include="Pages\MPSTwo\CloudExistingProposalPage.cs" />
@@ -138,7 +137,6 @@
     <Compile Include="Pages\MPSTwo\LocalOfficeApproverProposalsSummaryPage.cs" />
     <Compile Include="Pages\MPSTwo\BankContractsSummaryPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerContractsSummaryPage.cs" />
-    <Compile Include="Pages\MPSTwo\DealerAwaitingAcceptanceContractsPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerProposalsAwaitingApproval.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeAdminServiceDeskPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeApproverContractsMaintenancePage.cs" />
