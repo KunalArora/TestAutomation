@@ -137,7 +137,6 @@
     <Compile Include="Pages\MPSTwo\LocalOfficeApproverProposalsSummaryPage.cs" />
     <Compile Include="Pages\MPSTwo\BankContractsSummaryPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerContractsSummaryPage.cs" />
-    <Compile Include="Pages\MPSTwo\DealerAwaitingAcceptanceContractsPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerProposalsAwaitingApproval.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeAdminServiceDeskPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeApproverContractsMaintenancePage.cs" />

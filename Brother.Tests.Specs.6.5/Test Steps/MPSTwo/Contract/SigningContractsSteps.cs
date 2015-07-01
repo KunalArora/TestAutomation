@@ -25,8 +25,8 @@ namespace Brother.Tests.Specs.MPSTwo.Contract
         {
             CurrentPage.As<DealerContractsSummaryPage>().IsContractSummaryPageDisplayed();
             NextPage = CurrentPage.As<DealerContractsSummaryPage>().DealerSignsApprovedProposal();
-            CurrentPage.As<DealerAwaitingAcceptanceContractsPage>().IsAwaitingAcceptanceContractDisplayed();
-            CurrentPage.As<DealerAwaitingAcceptanceContractsPage>().IsSignedContractDisplayed();
+            CurrentPage.As<DealerContractsPage>().IsAwaitingAcceptanceContractDisplayed();
+            CurrentPage.As<DealerContractsPage>().IsSignedContractDisplayed();
 
         }
 

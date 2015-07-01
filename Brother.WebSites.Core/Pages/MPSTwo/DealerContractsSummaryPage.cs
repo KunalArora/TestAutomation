@@ -71,12 +71,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             AssertElementPresent(SignButtonElement, "Is Contract Summary displayed");
         }
 
-        public DealerAwaitingAcceptanceContractsPage DealerSignsApprovedProposal()
+        public DealerContractsPage DealerSignsApprovedProposal()
         {
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, SignButtonElement);
             WebDriver.Wait(DurationType.Second, 3);
 
-            return GetInstance<DealerAwaitingAcceptanceContractsPage>(Driver);
+            return GetInstance<DealerContractsPage>(Driver);
         }
     }
 }
