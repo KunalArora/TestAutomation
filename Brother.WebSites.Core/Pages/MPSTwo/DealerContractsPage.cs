@@ -274,12 +274,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             AssertElementPresent(ValidUntilLabelElement, "is Contracts Approved Proposal page?");
         }
 
-        public DealerContractSummaryPage NavigateToDealerContractSummaryPage(IWebDriver driver)
+        public DealerContractsSummaryPage NavigateToDealerContractSummaryPage(IWebDriver driver)
         {
             ActionsModule.ClickOnSpecificContractApprovedProposalActionsDropdown(driver);
             WebDriver.Wait(DurationType.Second, 3);
             ActionsModule.NavigateToSummaryPageUsingActionButton(driver);
-            return GetInstance<DealerContractSummaryPage>(Driver);
+            return GetInstance<DealerContractsSummaryPage>(Driver);
         }
     }
 }

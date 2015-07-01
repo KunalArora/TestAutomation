@@ -121,7 +121,6 @@
     <Compile Include="Pages\MPSTwo\BankOffersPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerContractsPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerProposalsCreateDescriptionPage.cs" />
-    <Compile Include="Pages\MPSTwo\DealerContractSummaryPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerCustomersManagePage.cs" />
     <Compile Include="Pages\MPSTwo\DealerCustomersExistingPage.cs" />
     <Compile Include="Pages\MPSTwo\CloudExistingProposalPage.cs" />

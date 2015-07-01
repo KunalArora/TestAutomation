@@ -63,5 +63,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ResignInformationCheckboxElement);
             WebDriver.Wait(DurationType.Second, 3);
         }
+
+        public void IsContractSummaryPageDisplayed()
+        {
+            if (SignButtonElement == null)
+                throw new Exception("Contract Summary not displayed");
+            AssertElementPresent(SignButtonElement, "Is Contract Summary displayed");
+        }
+
+        public DealerAwaitingAcceptanceContractsPage DealerSignsApprovedProposal()
+        {
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, SignButtonElement);
+            WebDriver.Wait(DurationType.Second, 3);
+
+            return GetInstance<DealerAwaitingAcceptanceContractsPage>(Driver);
+        }
     }
 }
