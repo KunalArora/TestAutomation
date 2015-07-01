@@ -344,3 +344,7 @@ Given I want to create a new account with Brother Online "United Kingdom"
 	Then If I sign out of Brother Online
 	And If I sign back into Brother Online "United Kingdom" using the same credentials
 	Then I can sign out of Brother Online
+
+@ignore
+Scenario: Create a user but test for BPID 
+	# Create a new user account but add a check for the Users BPID in the dbo.Users table
