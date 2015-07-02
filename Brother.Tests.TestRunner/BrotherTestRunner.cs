@@ -275,7 +275,8 @@ namespace TestRunner
         {
             if (NUnitAPIOption.Checked)
             {
-                ExecuteWithNunitApi();
+                TestHelpers.Runner = new Thread(ExecuteWithNunitApi);
+                TestHelpers.Runner.Start();
             }
             else
             {

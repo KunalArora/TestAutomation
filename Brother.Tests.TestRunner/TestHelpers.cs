@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
@@ -21,6 +22,7 @@ namespace TestRunner
         public static bool TestRunCancelled { get; set; }
         public static int TestRunProcessId { get; set; }
         public static bool TestRunInProgress { get; set; }
+        public static Thread Runner = null;
 
         private static readonly List<string> _checkedItems = new List<string>();
         private static readonly string _specFlowProjectFile;
