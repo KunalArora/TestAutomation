@@ -245,7 +245,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             if (ContactTitleElement.Displayed) 
                 //SelectFromDropdownByValue(ContactTitleElement, MpsUtil.ContactTitle());
-                SelectFromDropdownByValue(ContactTitleElement, "2");
+                SelectFromDropdownByValue(ContactTitleElement, "0002");
         }
 
 

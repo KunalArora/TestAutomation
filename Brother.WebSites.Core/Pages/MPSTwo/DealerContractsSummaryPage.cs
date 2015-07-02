@@ -60,7 +60,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void TickResignInformationCheckbox()
         {
-            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ResignInformationCheckboxElement);
+            ResignInformationCheckboxElement.Click();
             WebDriver.Wait(DurationType.Second, 3);
         }
 
