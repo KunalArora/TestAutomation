@@ -1,9 +1,11 @@
 ﻿Feature: ProductPurchaseValidation
 	In order to prevent incorrect purchase process information
-	As an Automated Test
+	As an Automated Tester
 	I want to validate Address Field information
 
-@ignore @PROD @UAT @TEST
+@PROD @UAT @TEST @ignore
+# Need to add Product stock to Products Imported table
+# need to add some users to DV2 and QAS
 Scenario Outline: Field Validation for Delivery Address
 	Given I am logged into Brother Online <Country> using <Email Address>
 	Given I have navigated to the Brother Main Site <Country> products pages

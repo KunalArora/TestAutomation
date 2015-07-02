@@ -20,9 +20,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
 
         [FindsBy(How = How.CssSelector, Using = "#content_1_InputUsageType_Label")]
-        private IWebElement usageTypeElement;
+        public IWebElement usageTypeElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/proposals/convert/summary\"] span")]
-        private IWebElement SummaryTabElement;
+        public IWebElement SummaryTabElement;
 
 
 

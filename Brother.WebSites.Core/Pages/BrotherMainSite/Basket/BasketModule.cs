@@ -46,7 +46,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.Basket
 
         private static IWebElement RemoveFromBasket(ISearchContext driver)
         {
-            return FindElement(driver, GoToBasketButtonId, "Go To Basket Button Id");
+            return FindElement(driver, RemoveFromBasketButton, "Remove From Basket Button Id");
         }
 
         private static IWebElement ItemPrice(ISearchContext driver)
@@ -78,7 +78,8 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.Basket
             SeleniumHelper.MoveToElement(driver, BasketIcon(driver));
             WebDriver.Wait(Helper.DurationType.Second, 2);
             SeleniumHelper.WaitForElementToExistByCssSelector(RemoveFromBasketButton, 3, 5);
-            RemoveFromBasket(driver).Click();
+            var removeBasketLink = RemoveFromBasket(driver);
+            removeBasketLink.Click();
             TestCheck.AssertIsEqual(0, GetBasketItemsCount(driver), "Basket is not empty");
         }
 

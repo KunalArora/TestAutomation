@@ -15,35 +15,35 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
         [FindsBy(How = How.Id, Using = "content_1_InputProgramEnabled_Input")]
-        private IWebElement ProgramEnabledElement;
+        public IWebElement ProgramEnabledElement;
         [FindsBy(How = How.Id, Using = "content_1_InputDisplayProductAsList_Input")]
-        private IWebElement DisplayProductAsListElement;
+        public IWebElement DisplayProductAsListElement;
         [FindsBy(How = How.Id, Using = "content_1_InputHideProposalCustomerCreationStep_Input")]
-        private IWebElement HideProposalCustomerCreationStepElement;
+        public IWebElement HideProposalCustomerCreationStepElement;
         [FindsBy(How = How.Id, Using = "content_1_InputUsageTypes_Input_0")]
-        private IWebElement MinimumVolumeElement;
+        public IWebElement MinimumVolumeElement;
         [FindsBy(How = How.Id, Using = "content_1_InputUsageTypes_Input_1")]
-        private IWebElement PayAsYouGoElement;
+        public IWebElement PayAsYouGoElement;
         [FindsBy(How = How.Id, Using = "content_1_InputDurations_Input_0")]
-        private IWebElement ContactTerm3YearsElement;
+        public IWebElement ContactTerm3YearsElement;
         [FindsBy(How = How.Id, Using = "content_1_InputDurations_Input_1")]
-        private IWebElement ContactTerm4YearsElement;
+        public IWebElement ContactTerm4YearsElement;
         [FindsBy(How = How.Id, Using = "content_1_InputDurations_Input_2")]
-        private IWebElement ContactTerm5YearsElement;
+        public IWebElement ContactTerm5YearsElement;
         [FindsBy(How = How.Id, Using = "content_1_ButtonSave")]
-        private IWebElement SaveButtonElement;
+        public IWebElement SaveButtonElement;
         [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/local-office/purchase-and-click/printers']")]
-        private IWebElement PurchasePrintersLinkElement;
+        public IWebElement PurchasePrintersLinkElement;
         [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/local-office/purchase-and-click/approval-defaults']")]
-        private IWebElement PurchaseApprovalDefaultsLinkElement;
+        public IWebElement PurchaseApprovalDefaultsLinkElement;
         [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/local-office/purchase-and-click/changable-items']")]
-        private IWebElement PurchaseChangableItemsElement;
+        public IWebElement PurchaseChangableItemsElement;
         [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/local-office/lease-and-click/printers']")]
-        private IWebElement LeasingPrintersLinkElement;
+        public IWebElement LeasingPrintersLinkElement;
         [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/local-office/lease-and-click/approval-defaults']")]
-        private IWebElement LeasingApprovalDefaultsLinkElement;
+        public IWebElement LeasingApprovalDefaultsLinkElement;
         [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/local-office/lease-and-click/leasing-banks']")]
-        private IWebElement LeasingBanksLinkElement;
+        public IWebElement LeasingBanksLinkElement;
 
         public void TickProgramEnabled()
         {
@@ -184,11 +184,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 throw new Exception("Unable to locate Purchase Printers link element");
         }
 
-        public LocalOfficePrintersPage NavigateToLocalOfficePurchasePrintersPage()
+        public LocalOfficeAdminPrintersPage NavigateToLocalOfficePurchasePrintersPage()
         {
             IsPurchasePrintersLinkAvailable();
             PurchasePrintersLinkElement.Click();
-            return GetTabInstance<LocalOfficePrintersPage>(Driver);
+            return GetTabInstance<LocalOfficeAdminPrintersPage>(Driver);
         }
 
         private void IsLeasePrintersLinkAvailable()
@@ -197,11 +197,26 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 throw new Exception("Unable to locate Lease Printers link element");
         }
 
-        public LocalOfficePrintersPage NavigateToLocalOfficeLeasePrintersPage()
+        public LocalOfficeAdminPrintersPage NavigateToLocalOfficeLeasePrintersPage()
         {
             IsLeasePrintersLinkAvailable();
             LeasingPrintersLinkElement.Click();
-            return GetTabInstance<LocalOfficePrintersPage>(Driver);
+            return GetTabInstance<LocalOfficeAdminPrintersPage>(Driver);
+        }
+
+        private void IsLeasingBanksLinkAvailable()
+        {
+            if (LeasingBanksLinkElement == null)
+                throw new Exception("Unable to locate Leasing Banks link element");
+
+            AssertElementPresent(LeasingBanksLinkElement, "Leasing Banks Link");
+        }
+
+        public LocalOfficeAdminLeasingBanks NavigateToLocalOfficeLeasingBanksPage()
+        {
+            IsLeasingBanksLinkAvailable();
+            LeasingBanksLinkElement.Click();
+            return GetTabInstance<LocalOfficeAdminLeasingBanks>(Driver);
         }
     }
 }

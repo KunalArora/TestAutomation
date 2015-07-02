@@ -84,8 +84,10 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         {
             var errorsPresent = false;
             var errors = TestController.CurrentDriver.FindElements(By.CssSelector(ErrorMsg));
+            MsgOutput("Looking for visible error message elements");
             foreach (var error in errors)
             {
+                MsgOutput(string.Format("Error message element status = {0}", error.Displayed));
                 if (error.Displayed)
                 {
                     errorsPresent = true;
@@ -105,10 +107,10 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             var validationStringList = new List<ValidationSet>();
             validationStringList.Clear();
             var doc = new XmlDocument();
-            var directoryInfo = Directory.GetParent(Directory.GetCurrentDirectory()).Parent;
+            var directoryInfo = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent;
             if (directoryInfo == null) return validationStringList;
 
-            var validationFile = directoryInfo.FullName + Helper.SupportingFilesLocation + validationLookupFile;
+            var validationFile = directoryInfo.FullName + SupportingFilesLocation + validationLookupFile;
 
             try
             {

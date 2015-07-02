@@ -16,23 +16,23 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
         [FindsBy(How = How.CssSelector, Using = "content_1_InputDeviceDefaultMargin_Input")]
-        private IWebElement HardwareDefaultMargin;
+        public IWebElement HardwareDefaultMargin;
         [FindsBy(How = How.Id, Using = "content_1_InputDeliveryDefaultMargin_Input")]
-        private IWebElement DeliveryDefaultMargin;
+        public IWebElement DeliveryDefaultMargin;
         [FindsBy(How = How.Id, Using = "content_1_InputOptionsDefaultMargin_Input")]
-        private IWebElement AccesoriesDefaultMargin;
+        public IWebElement AccesoriesDefaultMargin;
         [FindsBy(How = How.Id, Using = "content_1_InputInstallationDefaultMargin_Input")]
-        private IWebElement InstallationDefaultMargin;
+        public IWebElement InstallationDefaultMargin;
         [FindsBy(How = How.Id, Using = "content_1_InputServicePackDefaultMargin_Input")]
-        private IWebElement ServicePackDefaultMargin;
+        public IWebElement ServicePackDefaultMargin;
         [FindsBy(How = How.Id, Using = "content_1_InputMonoClickDefaultMargin_Input")]
-        private IWebElement MonoClickDefaultMargin;
+        public IWebElement MonoClickDefaultMargin;
         [FindsBy(How = How.Id, Using = "content_1_InputColourClickDefaultMargin_Input")]
-        private IWebElement ColourClickDefaultMargin;
+        public IWebElement ColourClickDefaultMargin;
         [FindsBy(How = How.Id, Using = "content_1_InputAllInclusiveDefaultMargin_Input")]
-        private IWebElement AllInclusiveMargin;
+        public IWebElement AllInclusiveMargin;
         [FindsBy(How = How.Id, Using = "content_1_InputMinimumMonthlyContractValue_Input")]
-        private IWebElement MinimumMonthlyContractValue;
+        public IWebElement MinimumMonthlyContractValue;
         [FindsBy(How = How.Id, Using = "content_1_ButtonNext")]
         public IWebElement DealerDefaultsSaveButton;
 

@@ -13,12 +13,14 @@ namespace Brother.Tests.Specs.MPSTwo.LocalOfficeApprover
     {
 
         [Given(@"I navigate to ProposalPage")]
+        [When(@"I navigate to ProposalPage")]
         public void WhenINavigateToOfferPage()
         {
             NextPage = CurrentPage.As<LocalOfficeApproverDashBoardPage>().NavigateToProposalsPage();
         }
 
         [Given(@"I navigate to Awaiting Approval screen under Proposals page")]
+        [When(@"I navigate to Awaiting Approval screen under Proposals page")]
         public void GivenINavigateToAwaitingApprovalScreenUnderOfferPage()
         {
             CurrentPage.As<LocalOfficeApproverProposalsPage>().NavigateToAwaitingApprovalPage();
@@ -140,8 +142,36 @@ namespace Brother.Tests.Specs.MPSTwo.LocalOfficeApprover
 
         }
 
+        [Then(@"I should see a list of Proposals on Awaiting Approval Tab")]
+        public void ThenIShouldSeeAListOfProposalsOnAwaitingApprovalTab()
+        {
+            CurrentPage.As<LocalOfficeApproverProposalsPage>().IsProposalListAvailable();
+        }
 
+        [When(@"I navigate to Local Office Approver Contracts screen on ""(.*)"" Tab")]
+        public void WhenINavigateToLocalOfficeApproverContractsScreenOnTab(string acceptance)
+        {
+            NextPage = CurrentPage.As<LocalOfficeApproverDashBoardPage>().NavigateToContractsPage();
+            switch (acceptance)
+            {
+                case "Awating Acceptance":
+                    CurrentPage.As<LocalOfficeApproverContractsPage>().NavigateToAwaitingAcceptancePage();
+                    break;
 
+                case "Rejected":
+                    CurrentPage.As<LocalOfficeApproverContractsPage>().NavigateToRejectedPage();
+                    break;
 
+                case "Accepted":
+                    CurrentPage.As<LocalOfficeApproverContractsPage>().NavigateToAcceptedPage();
+                    break;
+            }
+        }
+
+        [Then(@"I should see a list of Proposals")]
+        public void ThenIShouldSeeAListOfProposals()
+        {
+            CurrentPage.As<LocalOfficeApproverContractsPage>().IsContractsListAvailable();
+        }
     }
 }

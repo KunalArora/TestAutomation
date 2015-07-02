@@ -1,4 +1,5 @@
 ﻿using System;
+using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal;
@@ -19,9 +20,15 @@ namespace Brother.Tests.Specs
         [Then(@"I can navigate back to the Partner Portal Home Page using breadcrumbs")]
         public void ThenICanNavigateBackToThePartnerPortalHomePageUsingBreadcrumbs()
         {
-            NextPage = CurrentPage.As<SuccessPage>().PartnerPortalBreadcrumbClick();
+            NextPage = NavigationModule.PartnerPortalBreadcrumbClick(TestController.CurrentDriver);
         }
-        
+
+        [Then(@"I can navigate back to my account from Partner Portal Home Page")]
+        public void ThenICanNavigateBackToMyAccountFromPartnerPortalHomePage()
+        {
+            NextPage = NavigationModule.PartnerPortalReturnToMyAccount(TestController.CurrentDriver);
+        }
+
         [When(@"I Click Add New Customer")]
         public void WhenIClickAddNewCustomer()
         {
@@ -32,6 +39,7 @@ namespace Brother.Tests.Specs
         public void WhenIEnterANewCustomerEmailAddressAs(string emailAddress)
         {
             CurrentPage.As<ManageCustomersAndOrdersPage>().AddNewCustomerEmailAddress(emailAddress);
+            Helper.OrpCustomerEmailAddress = emailAddress;
         }
 
         [When(@"I click Next")]
@@ -40,7 +48,20 @@ namespace Brother.Tests.Specs
             CurrentPage.As<ManageCustomersAndOrdersPage>().NextButtonClick();
         }
 
-       
+        [Then(@"I can click Add Customer")]
+        public void ThenICanClickAddCustomer()
+        {
+            NextPage = CurrentPage.As<ManageCustomersAndOrdersPage>().AddCustomerButtonClick();
+        }
+
+        [Then(@"I can enter further customer information such as First Name as ""(.*)"", Last Name as ""(.*)"", Company Name as ""(.*)""")]
+        public void ThenICanEnterFurtherCustomerInformationSuchAsFirstNameAsLastNameAsCompanyNameAs(string firstName, string lastName, string companyName)
+        {
+            CurrentPage.As<ManageCustomersAndOrdersPage>().AddFirstName(firstName);
+            CurrentPage.As<ManageCustomersAndOrdersPage>().AddLastName(lastName);
+            CurrentPage.As<ManageCustomersAndOrdersPage>().AddCompanyName(companyName);
+        }
+
         [Then(@"I can see the Partner Portal Home Page")]
         public void ThenICanSeeThePartnerPortalHomePage()
         {
@@ -120,6 +141,7 @@ namespace Brother.Tests.Specs
         public void ThenICanStoreTheOrderDetailsForAsTheyAreRequiredLater(string dealerEmailAddress)
         {
             Helper.OrpDealerEmail = dealerEmailAddress;
+            Email.CurrentEmailInUseForTest = dealerEmailAddress;
             Helper.OrpActivationCode = Utils.GetOrpActivationCode(Utils.GetOrpDealerId(Helper.OrpDealerEmail),
                 Helper.OrpLicenseTerm, Helper.OrpNumLicenses, Helper.OrpComment);
         }

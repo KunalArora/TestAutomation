@@ -1,14 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Runtime.InteropServices;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-using OpenQA.Selenium.Support.UI;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
@@ -24,47 +21,47 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string colourElement = @"#ClickPriceColourCoverage";
 
         [FindsBy(How = How.CssSelector, Using = "input[id*=\"content_1_PersonList_List_InputChoice\"]")]
-        private IList<IWebElement> ExistingContactRadioButtonElement;
+        public IList<IWebElement> ExistingContactRadioButtonElement;
         [FindsBy(How = How.Id, Using = "content_1_ComponentIntroductionAlert")]
-        private IWebElement CustomerInfomationElement;
+        public IWebElement CustomerInfomationElement;
         [FindsBy(How = How.Id, Using = "content_1_CustomerManage_InputIsPrivatelyLiable_Input")]
-        private IWebElement PrivateLiableElement;
+        public IWebElement PrivateLiableElement;
         [FindsBy(How = How.Id, Using = "content_1_ButtonNext")]
-        private IWebElement NextButton;
+        public IWebElement NextButton;
         [FindsBy(How = How.Id, Using = "content_1_ButtonBack")]
-        private IWebElement proposalProcessBackButtonElement;
+        public IWebElement proposalProcessBackButtonElement;
         [FindsBy(How = How.Id, Using = "content_1_InputCustomerChoiceNew")]
-        private IWebElement CreateNewCustomerElement;
+        public IWebElement CreateNewCustomerElement;
         [FindsBy(How = How.Id, Using = "content_1_InputCustomerChoiceExisting")]
-        private IWebElement SelectExistingCustomerElement;
+        public IWebElement SelectExistingCustomerElement;
         [FindsBy(How = How.Id, Using = "content_1_InputCustomerChoiceSkip")]
-        private IWebElement SkipCustomerElement;
+        public IWebElement SkipCustomerElement;
         [FindsBy(How = How.Id, Using = "content_1_NewOrganisation")]
-        private IWebElement NewOrganisationElement;
+        public IWebElement NewOrganisationElement;
         [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputPersonFirstName_Input")]
-        private IWebElement FirstNameElement;
+        public IWebElement FirstNameElement;
         [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputPersonLastName_Input")]
-        private IWebElement LastNameElement;
+        public IWebElement LastNameElement;
         [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputPersonTelephone_Input")]
-        private IWebElement TelephoneElement;
+        public IWebElement TelephoneElement;
         [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputPersonEmail_Input")]
-        private IWebElement EmailElement;
+        public IWebElement EmailElement;
         [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerName")]
-        private IWebElement CompanyNameElement;
+        public IWebElement CompanyNameElement;
         [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerPropertyNumber_Input")]
-        private IWebElement PropertyNumberElement;
+        public IWebElement PropertyNumberElement;
         [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerPropertyStreet_Input")]
-        private IWebElement PropertyStreetElement;
+        public IWebElement PropertyStreetElement;
         [FindsBy(How = How.Id, Using = "content_1_CustomerManage_InputPropertyArea_Input")]
-        private IWebElement PropertyAreaElement;
+        public IWebElement PropertyAreaElement;
         [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerPropertyTown_Input")]
-        private IWebElement PropertyTownElement;
+        public IWebElement PropertyTownElement;
         [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerPropertyPostCode_Input")]
-        private IWebElement PropertyPostcodeElement;
+        public IWebElement PropertyPostcodeElement;
         [FindsBy(How = How.Id, Using = "content_1_CustomerManage_InputRegion_Input")]
-        private IWebElement RegionElement;
+        public IWebElement RegionElement;
         [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputPersonTitle_Input")]
-        private IWebElement ContactTitleElement;
+        public IWebElement ContactTitleElement;
 
         public void SelectARandomExistingContact()
         {
@@ -74,7 +71,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
 
             ExistingContactRadioButtonElement[ranClick].Click();
-
         }
 
         public void IsCustomerInfoTextDisplayed()
@@ -103,6 +99,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerProposalsCreateTermAndTypePage ClickNextButton()
         {
+            WebDriver.Wait(Helper.DurationType.Millisecond, 2000);
             ScrollTo(NextButton);
             NextButton.Click();
             return GetTabInstance<DealerProposalsCreateTermAndTypePage>(Driver);
@@ -188,7 +185,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
        public void EnterContactEmailAdress()
        {
-           EmailElement.SendKeys(MpsUtil.GenerateUniqueEmail());
+           var email = MpsUtil.GenerateUniqueEmail();
+           SpecFlow.SetContext("DealerLatestCreatedCustomerEmail", email);
+           EmailElement.SendKeys(email);
        }
 
        public void FillOrganisationContactDetail()

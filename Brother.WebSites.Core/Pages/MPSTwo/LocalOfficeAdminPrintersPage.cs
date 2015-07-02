@@ -6,7 +6,7 @@ using OpenQA.Selenium.Support.PageObjects;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class LocalOfficePrintersPage : BasePage
+    public class LocalOfficeAdminPrintersPage : BasePage
     {
         public static string Url = "/";
 
@@ -16,7 +16,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
         [FindsBy(How = How.Id, Using = "content_1_ButtonNext")]
-        private IWebElement SaveButtonElement;
+        public IWebElement SaveButtonElement;
 
 
         private IWebElement GetPrinterElement(string model)

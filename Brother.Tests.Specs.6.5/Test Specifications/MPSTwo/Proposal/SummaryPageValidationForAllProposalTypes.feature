@@ -1,4 +1,4 @@
-﻿@TEST @UAT @MPS
+﻿@MPS @TEST @UAT 
 Feature: SummaryPageValidationForAllProposalTypes
 	In order to avoid ambiguity on proposal summary page
 	As a dealer
@@ -38,9 +38,8 @@ Scenario Outline: Summary Page Validation For Minimum Volume Leasing and Click p
 	
 
 	Scenarios: 
-	| Role             | Country        | ContractType               | UsageType      | Contract | Leasing                  | Billing                  | Printer     | ClickVolume | ColourVolume |
+	| Role             | Country        | ContractType               | UsageType      | Contract | Leasing   | Billing   | Printer     | ClickVolume | ColourVolume |
 	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Minimum Volume | 3 years  | Quarterly | Quarterly | HL-L8350CDW | 750         | 750          |
-	
 
 
 Scenario Outline: Summary Page Validation For Pay As You Go Leasing and Click proposal

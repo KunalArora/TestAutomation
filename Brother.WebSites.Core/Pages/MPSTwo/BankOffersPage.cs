@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
@@ -17,24 +19,25 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
         [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/bank/proposals/awaiting-approval']")]
-        private IWebElement AwaitingApprovalLinkElement;
+        public IWebElement AwaitingApprovalLinkElement;
         [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/bank/proposals/approved']")]
-        private IWebElement ApprovedLinkElement;
+        public IWebElement ApprovedLinkElement;
         [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/bank/proposals/declined']")]
-        private IWebElement DeclinedLinkElement;
+        public IWebElement DeclinedLinkElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_ButtonDecline")]
-        private IWebElement DeclineButtonElement;
+        public IWebElement DeclineButtonElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_ButtonApprove")]
-        private IWebElement ApproveButtonElement;
+        public IWebElement ApproveButtonElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_InputProposalDeclineReason_Input")]
-        private IWebElement RejectionReasonDropdownElement;
+        public IWebElement RejectionReasonDropdownElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_InputProposalDeclineComment_Input")]
-        private IWebElement RejectionCommentBoxElement;
+        public IWebElement RejectionCommentBoxElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_ButtonProposalDeclineDecline")]
-        private IWebElement RejectButtonElement;
+        public IWebElement RejectButtonElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_ButtonProposalDeclineCancel")]
-        private IWebElement RejectionCancelButtonElement;
-        
+        public IWebElement RejectionCancelButtonElement;
+        [FindsBy(How = How.CssSelector, Using = ".js-mps-proposal-list-container .table .js-mps-searchable tr")]
+        public IList<IWebElement> ProposalListContainerElement;
         
 
         public void IsAwaitingApprovalLinkAvailable()
@@ -193,6 +196,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void IsAllTheDeclinedProposalDisplayed()
         {
             
+        }
+
+        public void IsProposalListAvailable()
+        {
+            if (ProposalListContainerElement == null || !ProposalListContainerElement.Any())
+                throw new Exception("Unable to locate Proposal List");
+
+            AssertElementsPresent(ProposalListContainerElement.ToArray(), "Proposal List");
         }
     }
 }

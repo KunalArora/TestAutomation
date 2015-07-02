@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
@@ -17,15 +19,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
         [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/local-office/contracts/approved-proposals']")]
-        private IWebElement ApprovedProposalsLinkElement;
+        public IWebElement ApprovedProposalsLinkElement;
         [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/local-office/contracts/awaiting-acceptance']")]
-        private IWebElement AwaitingAcceptancLinkElement;
+        public IWebElement AwaitingAcceptancLinkElement;
         [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/local-office/contracts/accepted']")]
-        private IWebElement AcceptedLinkElement;
+        public IWebElement AcceptedLinkElement;
         [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/local-office/contracts/rejected']")]
-        private IWebElement RejectedLinkElement;
+        public IWebElement RejectedLinkElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/local-office/contracts/awaiting-acceptance\"] span")]
-        private IWebElement OpenedAwaitingAcceptancLinkElement;
+        public IWebElement OpenedAwaitingAcceptancLinkElement;
+        [FindsBy(How = How.CssSelector, Using = ".js-mps-contract-list-container .table .js-mps-searchable tr")]
+        public IList<IWebElement> ContractListContainerElement;
 
         
 
@@ -124,6 +128,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             ActionsModule.ClickOnTheActionsDropdown(Driver);
             ActionsModule.DownloadContractInvoicePDFAction(Driver);
+        }
+
+        public void IsContractsListAvailable()
+        {
+            if (ContractListContainerElement == null || !ContractListContainerElement.Any())
+                throw new Exception("Unable to locate Contract List");
+
+            AssertElementsPresent(ContractListContainerElement.ToArray(), "Contract List");
         }
     }
 }

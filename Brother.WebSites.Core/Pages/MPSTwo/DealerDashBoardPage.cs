@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using Brother.Tests.Selenium.Lib.Support;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -15,19 +16,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
         [FindsBy(How = How.CssSelector, Using = "a[href='/mps/dealer/create-proposal'] .media-body")] 
-        private IWebElement CreateProposalLinkElement;
+        public IWebElement CreateProposalLinkElement;
         [FindsBy(How = How.CssSelector, Using = "a[href='/mps/dealer/proposals'] .media-body")] 
-        private IWebElement ExistingProposalLinkElement;
+        public IWebElement ExistingProposalLinkElement;
         [FindsBy(How = How.CssSelector, Using = "a[href='/mps/dealer/contracts'] .media-body")]
         public IWebElement ExistingContractLinkElement;
         [FindsBy(How = How.CssSelector, Using = "a[href='/mps/dealer/customers'] .media-body")]
         public IWebElement ExistingCustomerLinkElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/contracts\"] .media-heading")]
-        private IWebElement DashboardContractLinkElement;
+        public IWebElement DashboardContractLinkElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/admin\"] .media-body")]
-        private IWebElement AdminLinkElement;
+        public IWebElement AdminLinkElement;
         [FindsBy(How = How.CssSelector, Using = ".separator a[href='/mps/dealer/admin']")]
-        private IWebElement DealerAdminTabElement;
+        public IWebElement DealerAdminTabElement;
 
         public void IsCreateNewProposalLinkAvailable()
         {
@@ -77,40 +78,32 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             AssertElementPresent(DealerAdminTabElement, "Create Admin Tab");
         }
 
-        public CreateNewProposalPage NavigateToCreateNewProposalPage()
+        public DealerProposalsCreateDescriptionPage NavigateToCreateNewProposalPage()
         {
             IsCreateNewProposalLinkAvailable();
-            CreateProposalLinkElement.Click();
-            return GetTabInstance<CreateNewProposalPage>(Driver);
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, CreateProposalLinkElement);
+            return GetTabInstance<DealerProposalsCreateDescriptionPage>(Driver);
         }
 
         public DealerAdminDashBoardPage NavigateToAdminPage()
         {
             IsAdminLinkAvailable();
-            AdminLinkElement.Click();
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, AdminLinkElement);
             return GetTabInstance<DealerAdminDashBoardPage>(Driver);
         }
 
-        public CloudContractPage NavigateToContractScreenFromDealerDashboard()
+        public DealerContractsPage NavigateToContractScreenFromDealerDashboard()
         {
             if (DashboardContractLinkElement == null)
                 throw new NullReferenceException("Contract link is not Dealer Dashboard");
-            DashboardContractLinkElement.Click();
-            return GetTabInstance<CloudContractPage>(Driver);
-        }
-
-        public DealerContractsApprovedProposalsPage NavigateToContractApprovedProposalPage()
-        {
-            if (DashboardContractLinkElement == null)
-                throw new NullReferenceException("Contract link is not Dealer Dashboard");
-            DashboardContractLinkElement.Click();
-            return GetTabInstance<DealerContractsApprovedProposalsPage>(Driver);
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, DashboardContractLinkElement);
+            return GetTabInstance<DealerContractsPage>(Driver);
         }
 
         public DealerAdminDashBoardPage NavigateToAdminPageUsingTab()
         {
             IsAdminTabAvailable();
-            DealerAdminTabElement.Click();
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, DealerAdminTabElement);
             return GetTabInstance<DealerAdminDashBoardPage>(Driver);
         }
 
@@ -118,9 +111,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             if(ExistingProposalLinkElement == null)
                 throw new Exception("Are you sure you on dealer dashboard page?");
-            ExistingProposalLinkElement.Click();
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ExistingProposalLinkElement);
 
             return GetInstance<CloudExistingProposalPage>(Driver);
+        }
+
+        public DealerCustomersExistingPage NavigateToExistingCustomerPage()
+        {
+            if (ExistingCustomerLinkElement == null)
+                throw new Exception("Are you sure you on dealer dashboard page?");
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ExistingCustomerLinkElement);
+
+            return GetInstance<DealerCustomersExistingPage>(Driver);
         }
 
     }

@@ -24,11 +24,11 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Trial
         [FindsBy(How = How.CssSelector, Using = "#txtEmailAddress")]
         public IWebElement EmailAddressTextBox;
 
-        //[FindsBy(How = How.CssSelector, Using = "#content_0_maincontent_2_txtPassword")]
-        //public IWebElement PasswordTextBox;
+        [FindsBy(How = How.CssSelector, Using = "#content_0_maincontent_2_txtPassword")]
+        public IWebElement PasswordTextBox;
 
-        //[FindsBy(How = How.CssSelector, Using = "#txtConfirmPassword")]
-        //public IWebElement PasswordTextBox;
+        [FindsBy(How = How.CssSelector, Using = "#txtConfirmPassword")]
+        public IWebElement ConfirmPasswordTextBox;
 
         [FindsBy(How = How.CssSelector, Using = "#content_0_maincontent_2_txtPhoneNumber")]
         public IWebElement PhoneNumberTextBox;
@@ -71,8 +71,25 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Trial
 
         public void PopulateEmailAddressTextBox(string emailAddress)
         {
+            if (emailAddress.Equals(string.Empty))
+            {
+                emailAddress = Email.GenerateUniqueEmailAddress();
+            }
+
+            EmailAddressTextBox.Clear();
             EmailAddressTextBox.SendKeys(emailAddress);
+            EmailAddressTextBox.SendKeys(Keys.Tab);
             TestCheck.AssertIsEqual(emailAddress, GetTextBoxValue("txtEmailAddress"), "Email Address Text Box");
+        }
+
+        public void PopulateConfirmPasswordTextBox(string password)
+        {
+            ConfirmPasswordTextBox.SendKeys(password);
+        }
+
+        public void PopulatePasswordTextBox(string password)
+        {
+            PasswordTextBox.SendKeys(password);
         }
 
         public void PopulatePhoneNumberTextBox(string phoneNumber)

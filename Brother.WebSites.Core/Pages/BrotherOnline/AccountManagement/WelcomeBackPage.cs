@@ -120,6 +120,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             {
                 throw new Exception("Unable to locate link on page");
             }
+            ScrollTo(RegisterDeviceLink);
             AssertElementPresent(RegisterDeviceLink, "Register Device Link");
         }
 
@@ -216,14 +217,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             IsLOAdminDashboardDisplayed();
             CloudLocalOfficeAdminDashboardButton.Click();
             return GetInstance<LocalOfficeAdminDashBoardPage>(Driver);
-        }
-
-        public BankUserLandingPage NavigateToBankLandingPage()
-        {
-            ClickOnManagedPrintServices("mps");
-            IsBankLandingPageLinkDisplayed();
-            BankUserLandingPageButton.Click();
-            return GetInstance<BankUserLandingPage>(Driver);
         }
 
         public ListOfOrganisationsPage NavigateToListOfOrganisationsPage(string country)
