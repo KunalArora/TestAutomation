@@ -453,5 +453,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             DashboradLink.Click();
             return GetInstance<DealerDashBoardPage>();
         }
+
+        public DealerProposalsCreateDescriptionPage NavigateToEditProposalPage()
+        {
+            return GetTabInstance<DealerProposalsCreateDescriptionPage>(Driver);
+        }
     }
 }

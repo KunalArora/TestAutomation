@@ -588,5 +588,28 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
  //           if (IsElementPresent(FinanceTotalGrossElement))
  //               SpecFlow.SetContext("DealerProposalSummaryFinanceGrossElement", FinanceTotalGrossElement.Text);
         }
+
+        public void VerifyProposalName(string proposalName)
+        {
+            TestCheck.AssertIsEqual(ProposalNameElement.Text,
+                proposalName,
+                "Description-ProposalName did not match");
+        }
+
+        public void VerifyLeadCodeReference(string leadCodeRef)
+        {
+            TestCheck.AssertIsEqual(LeadCodeReferenceElement.Text,
+                leadCodeRef,
+                "Description-LeadCodeReference did not match");
+        }
+
+        public void VerifyDescriptionTabInput()
+        {
+            var proposalName = SpecFlow.GetContext("GeneratedProposalName");
+            VerifyProposalName(proposalName);
+
+            var leadCodeRef = SpecFlow.GetContext("GeneratedLeadCodeReference");
+            VerifyLeadCodeReference(leadCodeRef);
+        }
     }
 }

@@ -21,13 +21,57 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
             page.FindExistingPoposalList();
         }
 
-        [When(@"I can edit an item of Exisiting Proposal table")]
-        public void WhenICanEditTheTopItemOfExisitingProposalTable()
+        [When(@"I can click edit button on proposal item of Exisiting Proposal table")]
+        public void WhenICanClickEditButtonOnProposalItemOfExisitingProposalTable()
         {
             var page = CurrentPage.As<CloudExistingProposalPage>();
             page.FindExistingPoposalList();
             page.ClickOnEditOnActionItem(CurrentDriver);
+            NextPage = page.NavigateToEditProposalPage();
         }
+
+        [When(@"I edit Proposal Description for ""(.*)"" Contract type")]
+        public void WhenIFillProposalDescriptionForContractType(string contract)
+        {
+            var page = CurrentPage.As<DealerProposalsCreateDescriptionPage>();
+            page.IsPromptTextDisplayed();
+            page.SelectingContractType(contract);
+            page.EnterProposalName("");
+            page.EnterLeadCodeRef("");
+            NextPage = page.ClickNextButton();
+        }
+
+        [When(@"I go to ""(.*)"" Tab in Proposal")]
+        public void WhenIGoToTabInProposal(string tabname)
+        {
+            switch (tabname)
+            {
+                case "Description":
+                    NextPage = DealerProposalsCreateNavTabs.NavigateToDescriptionTab(CurrentDriver);
+                    break;
+
+                case "Summary":
+                    NextPage = DealerProposalsCreateNavTabs.NavigateToSummaryTab(CurrentDriver);
+                    break;
+            }
+        }
+
+        [Then(@"I can confirm ""(.*)"" on Summary Tab in Proposal")]
+        public void ThenICanConfirmOnSummaryTabInProposal(string tabname)
+        {
+            var page = CurrentPage.As<DealerProposalsCreateSummaryPage>();
+            switch (tabname)
+            {
+                case "Description":
+                    page.VerifyDescriptionTabInput();
+                    break;
+
+                case "Summary":
+                    NextPage = DealerProposalsCreateNavTabs.NavigateToSummaryTab(CurrentDriver);
+                    break;
+            }
+        }
+
 
         [When(@"I click the delete button against ""(.*)"" on Exisiting Proposal table")]
         public void WhenIClickTheDeleteButtonAgainstAnItemOnExisitingProposalTable(string targertitem)

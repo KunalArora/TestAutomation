@@ -32,6 +32,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [FindsBy(How = How.Id, Using = "content_1_ButtonNext")]
         public IWebElement NextButton;
 
+
         public void IsPromptTextDisplayed()
         {
             if (PromptText == null) throw new
@@ -55,6 +56,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 }
             }
 
+            LeadCodeRef.Clear();
             LeadCodeRef.SendKeys(leadCodeRef);
         }
 
@@ -143,6 +145,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             }
 
+            ProposalNameField.Clear();
             ProposalNameField.SendKeys(proposalName);
         }
 
