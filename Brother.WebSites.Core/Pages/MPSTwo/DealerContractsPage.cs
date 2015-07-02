@@ -11,9 +11,9 @@ using TechTalk.SpecFlow;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class CloudContractPage : BasePage
+    public class DealerContractsPage : BasePage
     {
-        public static string URL = "/mps/dealer/contract";
+        public static string URL = "/mps/dealer/contracts";
 
         public override string DefaultTitle
         {
@@ -50,7 +50,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement ApprovedProposalTabElement;
         [FindsBy(How = How.CssSelector, Using = ".active a[href=\"/mps/dealer/contracts/approved-proposals\"]")]
         public IWebElement OpenedApprovedProposalTabElement;
-        
+        [FindsBy(How = How.CssSelector, Using = "#content_1_ContractList_List_HeaderValidUntil")]
+        public IWebElement ValidUntilLabelElement;
         
         
         
@@ -262,8 +263,41 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             element.Click();
             ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
 
-            return GetTabInstance<DealerContractsSummaryPage>(Driver, BaseURL, true);
+            return GetTabInstance<DealerContractsSummaryPage>(Driver);
         }
 
+        public void IsApprovedProposalContractPageDisplayed()
+        {
+            if (ValidUntilLabelElement == null)
+                throw new Exception("Contracts Approved Proposal page not opened");
+
+            AssertElementPresent(ValidUntilLabelElement, "is Contracts Approved Proposal page?");
+        }
+
+        public DealerContractsSummaryPage NavigateToDealerContractSummaryPage(IWebDriver driver)
+        {
+            ActionsModule.ClickOnSpecificContractApprovedProposalActionsDropdown(driver);
+            WebDriver.Wait(DurationType.Second, 3);
+            ActionsModule.NavigateToSummaryPageUsingActionButton(driver);
+            return GetInstance<DealerContractsSummaryPage>(Driver);
+        }
+
+        public void IsAwaitingAcceptanceContractDisplayed()
+        {
+            if (AwaitingAcceptanceTabElement == null)
+                throw new Exception("Opened Awaiting Acceptance Tab not displayed");
+            AssertElementPresent(AwaitingAcceptanceTabElement, "Is Opened Awaiting Acceptance Tab displayed?");
+        }
+
+        public void IsSignedContractDisplayed()
+        {
+            var createdProposal = MpsUtil.CreatedProposal();
+            var newlyAdded = @"//td[text()='{0}']";
+            newlyAdded = String.Format(newlyAdded, createdProposal);
+
+            var newProposal = Driver.FindElement(By.XPath(newlyAdded));
+
+            TestCheck.AssertIsEqual(true, newProposal.Displayed, "Is new signed contract displayed?");
+        }
     }
 }

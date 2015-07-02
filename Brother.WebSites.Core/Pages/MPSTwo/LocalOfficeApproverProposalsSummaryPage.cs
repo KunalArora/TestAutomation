@@ -62,7 +62,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ScrollTo(RejectButtonElement);
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, RejectButtonElement);
 
-            return GetTabInstance<LocalOfficeApproverProposalsPage>(Driver, BaseURL, true);
+            return GetTabInstance<LocalOfficeApproverProposalsPage>(Driver);
         }
 
         public LocalOfficeApproverProposalsPage ClickAccpetButton()

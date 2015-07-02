@@ -71,7 +71,14 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Trial
 
         public void PopulateEmailAddressTextBox(string emailAddress)
         {
+            if (emailAddress.Equals(string.Empty))
+            {
+                emailAddress = Email.GenerateUniqueEmailAddress();
+            }
+
+            EmailAddressTextBox.Clear();
             EmailAddressTextBox.SendKeys(emailAddress);
+            EmailAddressTextBox.SendKeys(Keys.Tab);
             TestCheck.AssertIsEqual(emailAddress, GetTextBoxValue("txtEmailAddress"), "Email Address Text Box");
         }
 

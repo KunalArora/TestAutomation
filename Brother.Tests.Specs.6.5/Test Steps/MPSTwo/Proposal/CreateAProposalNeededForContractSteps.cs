@@ -59,26 +59,18 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         public void WhenINavigateToRejectedScreen()
         {
             NextPage = CurrentPage.As<DealerDashBoardPage>().NavigateToContractScreenFromDealerDashboard();
-            CurrentPage.As<CloudContractPage>().NavigateToRejectedOfferScreen();
+            CurrentPage.As<DealerContractsPage>().NavigateToRejectedOfferScreen();
         }
 
         [Then(@"I can successfully re-sign the rejected contract")]
         public void ThenICanSuccessfullyResignTheRejectedContract()
         {
-            NextPage = CurrentPage.As<CloudContractPage>().NavigateToViewSummaryOnRejectedTab();
+            NextPage = CurrentPage.As<DealerContractsPage>().NavigateToViewSummaryOnRejectedTab();
             CurrentPage.As<DealerContractsSummaryPage>().ClickReSignButton();
             CurrentPage.As<DealerContractsSummaryPage>().TickResignInformationCheckbox();
             NextPage = CurrentPage.As<DealerContractsSummaryPage>().ClickFinalReSignButton();
-            CurrentPage.As<CloudContractPage>().VerifyRejectedContractIsDisplayed();
+            CurrentPage.As<DealerContractsPage>().VerifyRejectedContractIsDisplayed();
         }
-
-        [Then(@"fields on ""(.*)"" screen are disabled")]
-        public void ThenFieldsOnScreenAreDisabled(string screens)
-        {
-            CurrentPage.As<CreateNewProposalPage>().ClickOnProposalTabsDuringContractConversionTransform(screens);
-            CurrentPage.As<CreateNewProposalPage>().VerifyFieldsOnScreensAreDisabled(screens);
-        }
-
 
     }
 }

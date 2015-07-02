@@ -10,6 +10,18 @@ namespace Brother.Tests.Specs.BrotherOnline.SiteAccess
     [Binding]
     public class SiteAccessSteps : BaseSteps
     {
+        [Given(@"The following site ""(.*)"" to validate I should receive an Ok response back")]
+        public void GivenTheFollowingSiteToValidateIShouldReceiveAnOkResponseBack(string url)
+        {
+            // Perform a page GET
+            TestCheck.AssertIsEqual(HttpStatusCode.OK, GetWebPageResponse(url), "Incorrect Http Status Code returned");
+
+            WebDriver.SetPageLoadTimeout(TimeSpan.FromSeconds(120));
+
+            WebSites.Core.Pages.General.SiteAccess.ValidateSiteUrl(url);
+            WebDriver.SetPageLoadTimeout(WebDriver.DefaultTimeout);
+        }
+
         [Given(@"The following site test site ""(.*)"" to validate I should receive an Ok response back")]
         public void GivenTheFollowingSiteTestSiteToValidateIShouldReceiveAnOkResponseBack(string url)
         {

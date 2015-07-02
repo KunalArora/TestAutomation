@@ -8,7 +8,7 @@ using System.Runtime.Serialization;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class DealerCustomersMangePage : BasePage
+    public class DealerCustomersManagePage : BasePage
     {
         #region ViewModels
         [DataContract]

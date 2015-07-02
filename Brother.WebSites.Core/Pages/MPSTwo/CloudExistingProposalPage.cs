@@ -111,12 +111,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             AssertElementPresent(ProposalFilter, "Search box for proposal list");
         }
 
-        public CreateNewProposalPage ClickOnNewProposalTab()
-        {
-            NewProposalButton.Click();
-            return GetTabInstance<CreateNewProposalPage>(Driver, BaseURL, true);
-        }
-
         public void NavigateToDeclinedProposalScreen()
         {
             if(proposalDeclinedTabElement == null)
@@ -408,39 +402,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             actionsElement.Last().Click();
             ActionsModule.SendProposalToBankButton(driver);
             return GetInstance<SendToBankPage>(Driver);
-        }
-
-        public CreateNewProposalPage ClickOnProposalTabsDuringContractConversionTransform(string tab)
-        {
-            //Use this method only if the workflow goes 
-            //from conversion summary screen to any other proposal screens
-            switch (tab)
-            {
-                case "Customer Information":
-                    customerInformationTabElement.Click();
-                    WebDriver.Wait(Helper.DurationType.Second, 3);
-                    break;
-                case "Term & Type":
-                    termsAndTypeTabElement.Click();
-                    WebDriver.Wait(Helper.DurationType.Second, 3);
-                    break;
-                case "Products":
-                    productsTabElement.Click();
-                    WebDriver.Wait(Helper.DurationType.Second, 3);
-                    break;
-                case "Proposal Description":
-                    proposalDescriptionTabElement.Click();
-                    WebDriver.Wait(Helper.DurationType.Second, 3);
-                    break;
-            }
-            return GetInstance<CreateNewProposalPage>(Driver);
-
-        }
-
-        private CreateNewProposalPage ClickOnProductsPage()
-        {
-            productsTabElement.Click();
-            return GetInstance<CreateNewProposalPage>(Driver);
         }
 
         public void FindExistingPoposalList()

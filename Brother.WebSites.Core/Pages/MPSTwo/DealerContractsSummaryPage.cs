@@ -33,12 +33,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             CancelButtonElement.Click();
         }
 
-        public CloudContractPage ClickSignButton()
+        public DealerContractsPage ClickSignButton()
         {
             ScrollTo(SignButtonElement);
             SignButtonElement.Click();
             WebDriver.Wait(DurationType.Second, 3);
-            return GetTabInstance<CloudContractPage>(Driver);
+            return GetTabInstance<DealerContractsPage>(Driver);
         }
 
         public void ClickReSignButton()
@@ -48,20 +48,35 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             WebDriver.Wait(DurationType.Second, 3);
         }
 
-        public CloudContractPage ClickFinalReSignButton()
+        public DealerContractsPage ClickFinalReSignButton()
         {
             ScrollTo(FinalResignButtonElement);
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, FinalResignButtonElement);
 
             WebDriver.Wait(DurationType.Second, 3);
 
-            return GetTabInstance<CloudContractPage>(Driver);
+            return GetTabInstance<DealerContractsPage>(Driver);
         }
 
         public void TickResignInformationCheckbox()
         {
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ResignInformationCheckboxElement);
             WebDriver.Wait(DurationType.Second, 3);
+        }
+
+        public void IsContractSummaryPageDisplayed()
+        {
+            if (SignButtonElement == null)
+                throw new Exception("Contract Summary not displayed");
+            AssertElementPresent(SignButtonElement, "Is Contract Summary displayed");
+        }
+
+        public DealerContractsPage DealerSignsApprovedProposal()
+        {
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, SignButtonElement);
+            WebDriver.Wait(DurationType.Second, 3);
+
+            return GetInstance<DealerContractsPage>(Driver);
         }
     }
 }

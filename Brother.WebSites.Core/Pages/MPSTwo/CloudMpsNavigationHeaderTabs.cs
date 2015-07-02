@@ -29,10 +29,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return driver.FindElement(By.CssSelector(ContractNavTab));
         }
 
-        public static CloudContractPage NavigateToContractScreen(IWebDriver driver)
+        public static DealerContractsPage NavigateToContractScreen(IWebDriver driver)
         {
             ContractTab(driver).Click();
-            return BasePage.GetInstance<CloudContractPage>(driver, "", "");
+            return BasePage.GetInstance<DealerContractsPage>(driver, "", "");
         }
 
         private static IWebElement DashboardTab(ISearchContext driver)
