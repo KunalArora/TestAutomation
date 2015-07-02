@@ -73,8 +73,8 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.ProductRegistrati
         
         public virtual void FeatureBackground()
         {
+#line 7
 #line 9
-#line 11
  testRunner.Given("I am logged onto Brother Online \"United Kingdom\" using valid credentials", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
         }
@@ -86,15 +86,15 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.ProductRegistrati
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add My Device with no extended warranty", new string[] {
                         "ignore"});
-#line 14
+#line 12
 this.ScenarioSetup(scenarioInfo);
-#line 9
+#line 7
 this.FeatureBackground();
-#line 15
+#line 13
  testRunner.Given("I am redirected to the Welcome Back page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 16
+#line 14
  testRunner.When("I have clicked on Add Device", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 17
+#line 15
  testRunner.And("I am redirected to the Register Device page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
@@ -115,19 +115,19 @@ this.FeatureBackground();
             table1.AddRow(new string[] {
                         "ExtendedWarranty",
                         "False"});
-#line 18
+#line 16
  testRunner.And("I have entered my product information", ((string)(null)), table1, "And ");
-#line 25
+#line 23
  testRunner.And("I have Agreed to Brothers Warranty Conditions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 26
+#line 24
  testRunner.When("I click Continue", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 27
+#line 25
  testRunner.Then("my device should be successfully registered", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 28
+#line 26
  testRunner.And("If I click Back To Brother online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 29
+#line 27
  testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 30
+#line 28
  testRunner.Then("I am redirected to the Brother Home Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -144,15 +144,15 @@ this.FeatureBackground();
                         "ignore",
                         "UAT",
                         "TEST"});
-#line 33
+#line 31
 this.ScenarioSetup(scenarioInfo);
-#line 9
+#line 7
 this.FeatureBackground();
-#line 34
+#line 32
  testRunner.Given("I am redirected to the Welcome Back page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 35
+#line 33
  testRunner.When("I have clicked on Add Device", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 36
+#line 34
  testRunner.And("I am redirected to the Register Device page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
@@ -173,82 +173,43 @@ this.FeatureBackground();
             table2.AddRow(new string[] {
                         "ExtendedWarranty",
                         "True"});
-#line 37
+#line 35
  testRunner.And("I have entered my product information", ((string)(null)), table2, "And ");
-#line 44
+#line 42
  testRunner.And("I have Agreed to Brothers Warranty Conditions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 43
+ testRunner.When("I click Continue", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 44
+ testRunner.And("I have entered my extended warranty pack details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 45
  testRunner.When("I click Continue", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 46
- testRunner.And("I have entered my extended warranty pack details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 47
- testRunner.When("I click Continue", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 48
  testRunner.Then("I should be able to see my device registered with the warranty details attached", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 49
+#line 47
  testRunner.And("If I click Back To Brother online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 50
+#line 48
  testRunner.And("If I sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 51
+#line 49
  testRunner.Then("I am redirected to the Brother Home Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Add My Device with an promotional code (work in progress)")]
+        [NUnit.Framework.DescriptionAttribute("Add My Device with an promotional code")]
         [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.CategoryAttribute("UAT")]
         [NUnit.Framework.CategoryAttribute("TEST")]
-        public virtual void AddMyDeviceWithAnPromotionalCodeWorkInProgress()
+        public virtual void AddMyDeviceWithAnPromotionalCode()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add My Device with an promotional code (work in progress)", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add My Device with an promotional code", new string[] {
                         "ignore",
                         "UAT",
                         "TEST"});
-#line 54
+#line 52
 this.ScenarioSetup(scenarioInfo);
-#line 9
+#line 7
 this.FeatureBackground();
-#line 55
-testRunner.Given("I am redirected to the Welcome Back page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 56
- testRunner.When("I have clicked on Add Device", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 57
- testRunner.And("I am redirected to the Register Device page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
-                        "field",
-                        "value"});
-            table3.AddRow(new string[] {
-                        "SerialNumber",
-                        "- FromFile"});
-            table3.AddRow(new string[] {
-                        "Purchase Date",
-                        "01/01/2015"});
-            table3.AddRow(new string[] {
-                        "PromoCode",
-                        "CASH 50"});
-            table3.AddRow(new string[] {
-                        "Supplier",
-                        "PrintersRUs.Com"});
-            table3.AddRow(new string[] {
-                        "ExtendedWarranty",
-                        "False"});
-#line 58
- testRunner.And("I have entered my product information", ((string)(null)), table3, "And ");
-#line 65
- testRunner.And("I have Agreed to Brothers Warranty Conditions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 66
- testRunner.When("I click Continue", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 67
- testRunner.Then("my device should be successfully registered", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 68
- testRunner.And("If I click Back To Brother online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 69
- testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 70
- testRunner.Then("I am redirected to the Brother Home Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -264,9 +225,9 @@ testRunner.Given("I am redirected to the Welcome Back page", ((string)(null)), (
                         "ignore",
                         "UAT",
                         "TEST"});
-#line 75
+#line 55
 this.ScenarioSetup(scenarioInfo);
-#line 9
+#line 7
 this.FeatureBackground();
 #line hidden
             this.ScenarioCleanup();
