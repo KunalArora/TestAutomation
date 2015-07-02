@@ -1,4 +1,4 @@
-﻿ @ignore @TEST @UAT
+﻿@ignore @TEST @UAT
 Feature: DealerCanOperateProposalOffers
 	In order to view/edit/delete/copy existing proposals
 	As an MPS Dealer
@@ -16,31 +16,25 @@ Scenario Outline: Dealer can see proposal offers
 	| Cloud MPS Dealer | United Kingdom |
 
 @ignore
-Scenario Outline: Dealer can edit description of existing proposal offer
+Scenario Outline: Dealer can edit an existing proposal offer
 	Given Dealer have created a Open proposal of "<ContractType>" and "<UsageType>"
 	And I navigate to Dealer Dashboard page from Dealer Proposal page
+	#Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to existing proposal screen
 	When I can click edit button on proposal item of Exisiting Proposal table
 	And I go to "<TabName>" Tab in Proposal
-	And I edit Proposal Description for "<ContractType>" Contract type
+	And I edit "<TabName>" Tab in Proposal
 	And I go to "Summary" Tab in Proposal
 	Then I can confirm "<TabName>" on Summary Tab in Proposal
 	And I can sign out of Brother Online
 
 	Scenarios:
-	| ContractType               | UsageType      | Role             | Country        | TabName     |
-	| Lease & Click with Service | Minimum Volume | Cloud MPS Dealer | United Kingdom | Description |
-	
-	#Given I sign into Cloud MPS as a "<Role>" from "<Country>"
-	#And I select next button for customer data capture on editing
-	#And I Enter usage type of "<Usage>" and "<ContractType>" contract terms "<Leasing>" leasing and "<Billing>" billing on Term and Type details
-	#And I edit "<Printer1>" to "<Printer2>" device screen
-	#And I accept the default values of the device
-	#And I enter click price volume of "<ClickPrice>" and "<Colour>"
-	#Then I can sign out of Brother Online
-#	| ContractType               | UsageType      | Role             | Country        | Usage   | Leasing   | Billing   | Printer1    | Printer2     | ClickPrice | Colour |
-#	| Lease & Click with Service | Minimum Volume | Cloud MPS Dealer | United Kingdom | 4 years | Quarterly | Quarterly | HL-L8350CDW | HL-L9200CDWT | 1000       | 1000   |
-#	| Lease & Click with Service | Minimum Volume | Cloud MPS Dealer | United Kingdom | 4 years | Quarterly | Quarterly | HL-L9200CDWT | HL-L8350CDW | 1000       | 1000   |
+	| ContractType               | UsageType      | Role             | Country        | TabName             |
+	| Lease & Click with Service | Minimum Volume | Cloud MPS Dealer | United Kingdom | Description         |
+	| Lease & Click with Service | Minimum Volume | Cloud MPS Dealer | United Kingdom | CustomerInformation |
+	#| Lease & Click with Service | Minimum Volume | Cloud MPS Dealer | United Kingdom | TermAndType |
+	#| Lease & Click with Service | Minimum Volume | Cloud MPS Dealer | United Kingdom | Products |
+	| Lease & Click with Service | Minimum Volume | Cloud MPS Dealer | United Kingdom | ClickPrice |
 
 @ignore
 Scenario Outline: Dealer can delete an existing proposal offer

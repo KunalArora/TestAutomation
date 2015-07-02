@@ -346,7 +346,8 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         public void WhenIEnterUsageTypeOfAndContractTermsLeasingAndBillingOnTermAndTypeDetails(string usage, string contract, string leasing, string billing)
         {
             CurrentPage.As<DealerProposalsCreateTermAndTypePage>().IsTermAndTypeTextDisplayed();
-            //CurrentPage.As<DealerProposalsCreateTermAndTypePage>().SelectUsageType(usage);
+            CurrentPage.As<DealerProposalsCreateTermAndTypePage>().SelectUsageType(usage);
+            CurrentPage.As<DealerProposalsCreateTermAndTypePage>().SelectContractLength(contract);
             CurrentPage.As<DealerProposalsCreateTermAndTypePage>().SelectLeaseBillingCycle(leasing);
             CurrentPage.As<DealerProposalsCreateTermAndTypePage>().SelectPayPerClickBillingCycle(billing);
 

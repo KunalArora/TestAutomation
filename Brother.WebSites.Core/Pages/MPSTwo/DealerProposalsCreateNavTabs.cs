@@ -9,7 +9,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         //This module has been designed to cater for the navigation that will occur on the MPS2 top navigational tabs
 
         private const string DescriptionNavTab = @".nav-tabs a[href='/mps/dealer/proposals/create/description']";
-        private const string CustomerInformationNavTab = @".nav-tabs a[href=''/mps/dealer/proposals/create/customer-information']";
+        private const string CustomerInformationNavTab = @".nav-tabs a[href='/mps/dealer/proposals/create/customer-information']";
         private const string TermAndTypeNavTab = @".nav-tabs a[href='/mps/dealer/proposals/create/term-type']";
         private const string ProductsNavTab = @".nav-tabs a[href='/mps/dealer/proposals/create/products']";
         private const string ClickPriceNavTab = @".nav-tabs a[href='/mps/dealer/proposals/create/click-price']";
