@@ -100,7 +100,9 @@ Scenario: Business Customer can change their business details after logging into
 	And I click on Update details on business details page
 	Then I can verify successfull update message appeared at the top
 	
-
+@ignore
+#Change Personal details in your created account, go to my account and change/add your new password
+Scenario: Business Customer can reset their password 
 
 
 

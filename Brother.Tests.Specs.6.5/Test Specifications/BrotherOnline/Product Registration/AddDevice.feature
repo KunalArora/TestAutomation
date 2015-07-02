@@ -1,6 +1,4 @@
-﻿# Device tests cannot be automated due to lack of device codes and everytime new device code has to be generated.
-
-@ignore @UAT @TEST
+﻿@ignore @UAT @TEST
 Feature: AddDevice 
 	In order to register my product with Brother
 	As a customer
@@ -51,25 +49,7 @@ Scenario: Add My Device with an extended warranty pack
 	Then I am redirected to the Brother Home Page  
 		
 @ignore @UAT @TEST 
-Scenario: Add My Device with an promotional code (work in progress)
-Given I am redirected to the Welcome Back page
-	When I have clicked on Add Device
-	And I am redirected to the Register Device page
-	And I have entered my product information
-	| field            | value           |
-	| SerialNumber     | - FromFile      |
-	| Purchase Date    | 01/01/2015      |
-	| PromoCode        | CASH 50         |
-	| Supplier         | PrintersRUs.Com |
-	| ExtendedWarranty | False           |
-	And I have Agreed to Brothers Warranty Conditions
-	When I click Continue
-	Then my device should be successfully registered	
-	And If I click Back To Brother online
-	And I can sign out of Brother Online
-	Then I am redirected to the Brother Home Page  
-
-
+Scenario: Add My Device with an promotional code
 
 @ignore @UAT @TEST
 Scenario: Add an Invalid device and check for correct error messages
