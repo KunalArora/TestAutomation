@@ -400,16 +400,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<DealerProposalsCreateProductsPage>().StoreDefaultProductConfiguration();
         }
 
-        
-        [When(@"I edit ""(.*)"" to ""(.*)"" device screen")]
-        public void WhenIEditToDeviceScreen(string printer1, string printer2)
-        {
-            CurrentPage.As<DealerProposalsCreateProductsPage>().IsProductScreenTextDisplayed();
-            CurrentPage.As<DealerProposalsCreateProductsPage>().ClickOnAPrinter(printer1, true);
-            CurrentPage.As<DealerProposalsCreateProductsPage>().RemovePrinter(CurrentDriver, printer1);
-            CurrentPage.As<DealerProposalsCreateProductsPage>().ClickOnAPrinter(printer2);
-            CurrentPage.As<DealerProposalsCreateProductsPage>().StoreDefaultProductConfiguration();
-        }
+   
 
         [When(@"I enter ""(.*)"" into Mono Coverage field")]
         public void WhenIEnterIntoMonoCoverageField(string coverage)
