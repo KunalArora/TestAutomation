@@ -1,10 +1,9 @@
-﻿@ignore @TEST @UAT
+﻿@MPS @TEST @UAT
 Feature: DealerCanOperateProposalOffers
 	In order to view/edit/delete/copy existing proposals
 	As an MPS Dealer
 	I want to operate existing proposals
 
-@ignore
 Scenario Outline: Dealer can see proposal offers 
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to existing proposal screen
@@ -15,7 +14,6 @@ Scenario Outline: Dealer can see proposal offers
 	| Role             | Country        |
 	| Cloud MPS Dealer | United Kingdom |
 
-@ignore
 Scenario Outline: Dealer can edit an existing proposal offer
 	Given Dealer have created a Open proposal of "<ContractType>" and "<UsageType>"
 	And I navigate to Dealer Dashboard page from Dealer Proposal page
@@ -36,7 +34,6 @@ Scenario Outline: Dealer can edit an existing proposal offer
 	#| Lease & Click with Service | Minimum Volume | Cloud MPS Dealer | United Kingdom | Products |
 	| Lease & Click with Service | Minimum Volume | Cloud MPS Dealer | United Kingdom | ClickPrice |
 
-@ignore
 Scenario Outline: Dealer can delete an existing proposal offer
     Given Dealer have created a Open proposal of "<ContractType>" and "<UsageType>"
 	When I click the delete button against "<TargetItem>" on Exisiting Proposal table
@@ -48,7 +45,6 @@ Scenario Outline: Dealer can delete an existing proposal offer
 	| ContractType               | UsageType      | Confirm | TargetItem       |
 	| Lease & Click with Service | Minimum Volume | OK		| NewlyCreatedItem |
 	
-@ignore	
 Scenario Outline: Dealer can cansel deleting proposal offer
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to existing proposal screen
@@ -61,7 +57,6 @@ Scenario Outline: Dealer can cansel deleting proposal offer
 	| Role             | Country        | Confirm | TargetItem |
 	| Cloud MPS Dealer | United Kingdom | Dismiss | AnyItem    |
 
-@ignore
 Scenario Outline: Dealer can copy an existing proposal offer
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to existing proposal screen
