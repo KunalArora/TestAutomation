@@ -89,5 +89,5 @@ Scenario Outline: Dealer cannot delete a customer who is bound to an existing pr
 	And I can sign out of Brother Online
 
 	Scenarios: 
-	| ContractType               | UsageType      | Confirm | TargetItem       |
-	| Lease & Click with Service | Minimum Volume | OK		| NewlyCreatedProposalCustomer |
+	| ContractType               | UsageType      | Confirm | TargetItem                   |
+	| Lease & Click with Service | Minimum Volume | OK      | NewlyCreatedProposalCustomer |

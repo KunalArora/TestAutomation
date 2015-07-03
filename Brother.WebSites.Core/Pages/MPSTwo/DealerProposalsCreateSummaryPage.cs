@@ -7,6 +7,7 @@ using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
+using TechTalk.SpecFlow.Assist;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
@@ -18,6 +19,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             get { return string.Empty; }
         }
+
+        private const string VolumeFormat = "#content_1_SummaryTable_RepeaterModels_{0}Volume_{1}";
+        private const string QuantityFormat = "#content_1_SummaryTable_RepeaterModels_{0}Quantity_{1}";
+        private const string MarginFormat = "#content_1_SummaryTable_RepeaterModels_{0}MarginPercentage_{1}";
+        private const string ClickRateFormat = "#content_1_SummaryTable_RepeaterModels_{0}ClickRate_{1}";
 
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_ContractType")]
         public IWebElement ContractTypeElement;
@@ -587,6 +593,80 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
  //               SpecFlow.SetContext("DealerProposalSummaryFinanceTotalNetElement", FinanceTotalNetElement.Text);
  //           if (IsElementPresent(FinanceTotalGrossElement))
  //               SpecFlow.SetContext("DealerProposalSummaryFinanceGrossElement", FinanceTotalGrossElement.Text);
+        }
+
+        public void VerifyProposalName(string proposalName)
+        {
+            TestCheck.AssertIsEqual(ProposalNameElement.Text,
+                proposalName,
+                "Description-ProposalName did not match");
+        }
+
+        public void VerifyLeadCodeReference(string leadCodeRef)
+        {
+            TestCheck.AssertIsEqual(LeadCodeReferenceElement.Text,
+                leadCodeRef,
+                "Description-LeadCodeReference did not match");
+        }
+
+        public void VerifyCustomerOrgName(string orgname)
+        {
+            TestCheck.AssertIsEqual(CustomerNameElement.Text,
+                orgname,
+                "CustomerInformation-Organization did not match");
+        }
+
+        public void VerifyDescriptionTabInput()
+        {
+            var proposalName = SpecFlow.GetContext("GeneratedProposalName");
+            VerifyProposalName(proposalName);
+
+            var leadCodeRef = SpecFlow.GetContext("GeneratedLeadCodeReference");
+            VerifyLeadCodeReference(leadCodeRef);
+        }
+
+        public void VerifyCustomerInformationTabInput()
+        {
+            var orgName = SpecFlow.GetContext("DealerLatestEditedCustomerOrg");
+            VerifyCustomerOrgName(orgName);
+        }
+
+        public void VerifyTermAndTypeTabInput()
+        {
+            throw new NotImplementedException();
+        }
+
+        private static IWebElement FindItem(IWebDriver driver, string format, string type, int row)
+        {
+            var selector = string.Format(format, type, row);
+            return driver.FindElement(By.CssSelector(selector));
+        }
+
+
+        public void VerifyProductsTabInput(IWebDriver CurrentDriver)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void VerifyClickPriceTabInput(IWebDriver driver)
+        {
+            var count = 1;
+            for (var i = 0; i < count; i++)
+            {
+                foreach (var type in new[] { "Mono", "Colour" })
+                {
+                    //var volume = FindItem(driver, VolumeFormat, type, i);
+                    //var margin = FindItem(driver, MarginFormat, type, i);
+                    var clickrate = FindItem(driver, ClickRateFormat, type, i);
+
+                    var context = string.Format("ClickPrice{0}Value#{1}", type, i);
+                    var expected = SpecFlow.GetContext(context);
+
+                    TestCheck.AssertIsEqual(expected,
+                        clickrate.Text.Replace("£", ""),
+                        string.Format("ClickPrice-{0}ClickPrice did not match", type));
+                }
+            }
         }
     }
 }

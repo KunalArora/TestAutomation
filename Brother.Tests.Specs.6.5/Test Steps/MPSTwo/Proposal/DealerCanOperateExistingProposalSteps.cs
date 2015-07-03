@@ -21,13 +21,144 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
             page.FindExistingPoposalList();
         }
 
-        [When(@"I can edit an item of Exisiting Proposal table")]
-        public void WhenICanEditTheTopItemOfExisitingProposalTable()
+        [When(@"I can click edit button on proposal item of Exisiting Proposal table")]
+        public void WhenICanClickEditButtonOnProposalItemOfExisitingProposalTable()
         {
             var page = CurrentPage.As<CloudExistingProposalPage>();
             page.FindExistingPoposalList();
             page.ClickOnEditOnActionItem(CurrentDriver);
+            NextPage = page.NavigateToEditProposalPage();
         }
+
+        private void EditDescriptionTab(string contract)
+        {
+            var page = CurrentPage.As<DealerProposalsCreateDescriptionPage>();
+            page.IsPromptTextDisplayed();
+            page.SelectingContractType(contract);
+            page.EnterProposalName("");
+            page.EnterLeadCodeRef("");
+            NextPage = page.ClickNextButton();
+        }
+
+        private void EditCustomerInformationTab()
+        {
+            var page = CurrentPage.As<DealerProposalsCreateCustomerInformationPage>();
+            page.EditProposalCustomerInformation(CurrentDriver);
+            NextPage = page.ClickNextButton();
+        }
+
+        private void EditTermAndTypeTab(string usage, string contract, string leasing, string billing)
+        {
+            var page = CurrentPage.As<DealerProposalsCreateTermAndTypePage>();
+            
+            page.IsTermAndTypeTextDisplayed();
+            page.SelectUsageType(usage);
+            page.SelectContractLength(contract);
+            page.SelectLeaseBillingCycle(leasing);
+            page.SelectPayPerClickBillingCycle(billing);
+
+            NextPage = page.ClickNextButton();
+        }
+
+        private void EditClickPrice(string clickprice, string colour, string row)
+        {
+            var page = CurrentPage.As<DealerProposalsCreateClickPricePage>();
+            page.CalculateClickPrice(clickprice, colour, "0");
+            NextPage = page.ProceedToProposalSummaryFromClickPrice();
+        }
+
+        [When(@"I edit ""(.*)"" Tab in Proposal")]
+        public void WhenIEditTabInProposal(string tabname)
+        {
+            switch (tabname)
+            {
+                case "Description":
+                    EditDescriptionTab("Lease & Click with Service");
+                    break;
+
+                case "CustomerInformation":
+                    EditCustomerInformationTab();
+                    break;
+
+                case "TermAndType":
+                    EditTermAndTypeTab("Pay As You Go", "5 years", "Quarterly", "Quarterly");
+                    break;
+
+                case "Procucts":
+                    //EditProducts();
+                    break;
+
+                case "ClickPrice":
+                    EditClickPrice("1000", "1000", "0");
+                    break;
+
+                case "Summary":
+                    break;
+            }
+        }
+
+        [When(@"I go to ""(.*)"" Tab in Proposal")]
+        public void WhenIGoToTabInProposal(string tabname)
+        {
+            switch (tabname)
+            {
+                case "Description":
+                    NextPage = DealerProposalsCreateNavTabs.NavigateToDescriptionTab(CurrentDriver);
+                    break;
+
+                case"CustomerInformation":
+                    NextPage = DealerProposalsCreateNavTabs.NavigateToCustomerInformationTab(CurrentDriver);
+                    break;
+
+                case "TermAndType":
+                    NextPage = DealerProposalsCreateNavTabs.NavigateToTermAndTypeTab(CurrentDriver);
+                    break;
+
+                case "Procucts":
+                    NextPage = DealerProposalsCreateNavTabs.NavigateToProductsTab(CurrentDriver);
+                    break;
+
+                case "ClickPrice":
+                    NextPage = DealerProposalsCreateNavTabs.NavigateToClickPriceTab(CurrentDriver);
+                    break;
+
+                case "Summary":
+                    NextPage = DealerProposalsCreateNavTabs.NavigateToSummaryTab(CurrentDriver);
+                    break;
+            }
+        }
+
+        [Then(@"I can confirm ""(.*)"" on Summary Tab in Proposal")]
+        public void ThenICanConfirmOnSummaryTabInProposal(string tabname)
+        {
+            var page = CurrentPage.As<DealerProposalsCreateSummaryPage>();
+            switch (tabname)
+            {
+                case "Description":
+                    page.VerifyDescriptionTabInput();
+                    break;
+
+                case "CustomerInformation":
+                    page.VerifyCustomerInformationTabInput();
+                    break;
+
+                case "TermAndType":
+                    page.VerifyTermAndTypeTabInput();
+                    break;
+
+                case "Procucts":
+                    page.VerifyProductsTabInput(CurrentDriver);
+                    break;
+
+                case "ClickPrice":
+                    page.VerifyClickPriceTabInput(CurrentDriver);
+                    break;
+
+                case "Summary":
+                    break;
+            }
+        }
+
 
         [When(@"I click the delete button against ""(.*)"" on Exisiting Proposal table")]
         public void WhenIClickTheDeleteButtonAgainstAnItemOnExisitingProposalTable(string targertitem)

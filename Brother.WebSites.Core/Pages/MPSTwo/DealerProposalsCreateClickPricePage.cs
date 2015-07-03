@@ -96,18 +96,23 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetElementByCssSelector(element, 5);
         }
 
-        private void SelectClickPriceAndCalculate(string volume, string colour)
+        private void SelectClickPriceAndCalculate(string volume, string colour, string row)
         {
             if (CalculateClickPriceElement == null)
                 throw new NullReferenceException("CalculateClickPriceElement can not be found");
 
-            SelectMonoVolume(volume, "0");
-            SelectColorVolume(colour);
-            WebDriver.Wait(DurationType.Second, 5);
+            SelectMonoVolume(volume, row);
+            SelectColorVolume(colour, row);
+            WebDriver.Wait(DurationType.Second, 1);
             CalculateClickPriceElement.Click();
-            //WebDriver.Wait(DurationType.Second, 3);
-        }
+            WebDriver.Wait(DurationType.Second, 4);
 
+            int r = int.Parse(row);
+            var monovalue = ClickPriceValue().Skip(r).First().Text;
+            var colourvalue = ClickPriceColourValue().Skip(r).First().Text;
+            SpecFlow.SetContext("ClickPriceMonoValue#" + row, monovalue);
+            SpecFlow.SetContext("ClickPriceColourValue#" + row, colourvalue);
+        }
 
         public void SelectMonoVolume(string volume, string row)
         {
@@ -116,14 +121,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             IWebElement element = MonoVolumeElementClickPrice(row);
             if (IsElementPresent(element))
                 SelectFromDropdown(element, volume);
-        }
-
-        public void SelectColorVolume(string volume)
-        {
-            if (colourVolumeDropdownElement == null)
-                throw new NullReferenceException("colourVolumeDropdownElement can not be found");
-            if (IsElementPresent(ColourVolumeElementClickPrice("0")))
-                SelectFromDropdown(colourVolumeDropdownElement, volume);
         }
 
         public void SelectColorVolume(string volume, string row)
@@ -168,8 +165,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerProposalsCreateSummaryPage ProceedToProposalSummaryFromClickPrice()
         {
-            SpecFlow.SetContext("ClickPriceMonoValue", ClickPriceValue().First().Text);
-            SpecFlow.SetContext("ClickPriceColourValue", ClickPriceColourValue().First().Text);
+            var mono = ClickPriceValue().First().Text;
+            var colour = ClickPriceColourValue().First().Text;
+            SpecFlow.SetContext("ClickPriceMonoValue", mono);
+            SpecFlow.SetContext("ClickPriceColourValue", colour);
             
             ClickPriceNextButton().Click();
 
@@ -179,7 +178,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public DealerProposalsCreateSummaryPage CalculateClickPriceAndProceed(string volume, string colour)
         {
             //MoveToClickPriceScreen();
-            CalculateClickPrice(volume, colour);
+            CalculateClickPrice(volume, colour, "0");
             //WebDriver.Wait(Helper.DurationType.Second, 1);
             SpecFlow.SetContext("ClickPriceMonoValue", ClickPriceValue().First().Text);
             SpecFlow.SetContext("ClickPriceColourValue", ClickPriceColourValue().First().Text);
@@ -188,13 +187,24 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return ProceedToProposalSummaryFromClickPrice();
         }
 
-        public void CalculateClickPrice(string volume, string colour)
+        public void CalculateClickPrice(string volume, string colour, string row, bool resetBeforeInput = false)
         {
-            if (MonoVolumeElement("0") != null)
-                EnterClickPriceValueAndCalculate(volume, colour);
-            if (MonoVolumeElementClickPrice("0") != null)
-                SelectClickPriceAndCalculate(volume, colour);
+            if (MonoVolumeElement(row) != null)
+                EnterClickPriceValueAndCalculate(volume, colour, row);
+            if (MonoVolumeElementClickPrice(row) != null)
+            {
+                if (resetBeforeInput)
+                    ResetClickPrice(row);
+
+                SelectClickPriceAndCalculate(volume, colour, row);
+            }
             //VerifyClickPriceValueIsDisplayed();
+        }
+
+        private void ResetClickPrice(string row)
+        {
+            SelectMonoVolume("0", row);
+            SelectColorVolume("250", row);
         }
 
         public void CalculateClickPrice()
@@ -288,10 +298,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             SpecFlow.SetContext(String.Format("ColourVolume{0}-{1}", row, DateTime.Now.ToString("yyyyMMddHHmmss")), volume);
         }
 
-        private void EnterClickPriceValueAndCalculate(string volume, string colour)
+        private void EnterClickPriceValueAndCalculate(string volume, string colour, string row)
         {
-            EnterMonoVolume(volume, "0");
-            EnterColourVolume(colour, "0");
+            EnterMonoVolume(volume, row);
+            EnterColourVolume(colour, row);
             WebDriver.Wait(DurationType.Second, 5);
             CalculateClickPriceElement.Click();
         }
