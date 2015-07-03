@@ -648,7 +648,7 @@ namespace Brother.Tests.Selenium.Lib.Support
         {
             var previousUrl = driver.Url;
             element.Click();
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
             wait.Until(ExpectedConditionsEx.UrlChangeFrom(previousUrl));
         }
 
@@ -656,7 +656,7 @@ namespace Brother.Tests.Selenium.Lib.Support
         {
             var previousUrl = driver.Url;
             element.Click();
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
             wait.Until(ExpectedConditionsEx.UrlNotChangeFrom(previousUrl));
         }
     }
