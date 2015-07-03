@@ -1,5 +1,8 @@
-﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+﻿using System;
+using System.Threading;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
+using Brother.WebSites.Core.Pages.BrotherOnline.Account;
 using Brother.WebSites.Core.Pages.BrotherOnline.ThirdParty;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
@@ -105,6 +108,7 @@ namespace Brother.Tests.Specs
         [Then(@"Once I have Validated an Email was received and verified my account")]
         public void ThenOnceIHaveValidatedAnEmailWasReceivedAndVerifiedMyAccount()
         {
+            Thread.Sleep(new TimeSpan(0, 0, 0, 30)); //  deliberate wait for account to finalise before validation
             ValidateAccountEmail();
         }
 
@@ -140,7 +144,8 @@ namespace Brother.Tests.Specs
                 CurrentPage.As<GuerillaEmailConfirmationPage>().SelectEmail("registration");
               //  CurrentPage.As<GuerillaEmailConfirmationPage>().CheckAllEmailLinks();
                 NextPage = CurrentPage.As<GuerillaEmailConfirmationPage>().ValidateRegistrationEmail();
-            }
+                TestCheck.AssertIsNotEqual(true, CurrentPage.As<RegistrationPage>().IsWarningBarPresent(), "Warning Bar detected - Account could not be validated");
+           }
         }
 
         [Then(@"Once I have Validated an Email Token")]
