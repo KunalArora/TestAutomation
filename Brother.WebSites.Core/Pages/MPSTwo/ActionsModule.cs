@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class ActionsModule
+    public class ActionsModule : BasePage
     {
         private const string ConvertToContractButton = @".open .js-mps-convert";
         private const string ProposalEditButton = @".open .js-mps-edit";
@@ -237,18 +238,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public static void SendProposalToBankButton(IWebDriver driver)
         {
             SendToBankButtonElement(driver).Last().Click();
-        }
-
-        public static void ClickAcceptOnJsAlert(IWebDriver driver)
-        {
-            var alert = driver.SwitchTo().Alert();
-            alert.Accept();
-        }
-
-        public static void ClickDismissOnJsAlert(IWebDriver driver)
-        {
-            var alert = driver.SwitchTo().Alert();
-            alert.Dismiss();
         }
     }
 }
