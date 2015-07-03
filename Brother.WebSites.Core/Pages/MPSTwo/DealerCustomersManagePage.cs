@@ -228,7 +228,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             var contact = new OrganisationContactDetail
             {
-                Title = "2",
+                Title = "0002",
                 FirstName = MpsUtil.FirstName(),
                 LastName = MpsUtil.SurName(),
                 Telephone = MpsUtil.CompanyTelephone(),
@@ -339,7 +339,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             WebDriver.Wait(Helper.DurationType.Millisecond, 100);
         }
 
-        private void SelectTitleFromDropdown(string value = "2")
+        private void SelectTitleFromDropdown(string value = "0002")
         {
             if (ContactTitleElement.Displayed)
                 SelectFromDropdownByValue(ContactTitleElement, value);
