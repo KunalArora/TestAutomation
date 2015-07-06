@@ -125,7 +125,7 @@ namespace Brother.Tests.Specs.MPSTwo.SendToBank
         {
             CurrentPage.As<ConvertProposalCustomerInfo>().EnterPrivateLiableCustomerInfo();
             CurrentPage.As<ConvertProposalCustomerInfo>().EnterAllBankInformation();
-            CurrentPage.As<ConvertProposalCustomerInfo>().EnterPrivateLiableInfo();
+            //CurrentPage.As<ConvertProposalCustomerInfo>().EnterPrivateLiableInfo();
             NextPage = CurrentPage.As<ConvertProposalCustomerInfo>().ProceedToConvertProposalTermAndType();
             NextPage = CurrentPage.As<ConvertProposalTermAndType>().NavigateToSummaryPageUsingTab();
         }
@@ -136,7 +136,7 @@ namespace Brother.Tests.Specs.MPSTwo.SendToBank
             CurrentPage.As<ConvertProposalCustomerInfo>().EnterPrivateLiableCustomerInfo();
             CurrentPage.As<ConvertProposalCustomerInfo>().CustomerCanOrderConsumables();
             CurrentPage.As<ConvertProposalCustomerInfo>().EnterAllBankInformation();
-            CurrentPage.As<ConvertProposalCustomerInfo>().EnterPrivateLiableInfo();
+            //CurrentPage.As<ConvertProposalCustomerInfo>().EnterPrivateLiableInfo();
             NextPage = CurrentPage.As<ConvertProposalCustomerInfo>().ProceedToConvertProposalTermAndType();
             NextPage = CurrentPage.As<ConvertProposalTermAndType>().NavigateToSummaryPageUsingTab();
         }

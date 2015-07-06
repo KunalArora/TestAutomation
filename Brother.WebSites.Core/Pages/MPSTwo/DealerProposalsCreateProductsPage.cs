@@ -614,7 +614,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private IWebElement AddToProposalButtonElement()
         {
-            const string element = ".js-mps-product-configuration-submit[disabled=\"disabled\"]";
+            const string element = ".js-mps-product-configuration-submit.disabled";
 
             return GetElementByCssSelector(element);
         }

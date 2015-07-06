@@ -708,6 +708,24 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             return capabilities.BrowserName.Equals("phantomjs");
         }
 
+        public void ClickAcceptOnJsAlert(IWebDriver driver)
+        {
+            if (!IsPhantomJsBrowser())
+            {
+                var alert = driver.SwitchTo().Alert();
+                alert.Accept();
+            }
+        }
+
+        public void ClickDismissOnJsAlert(IWebDriver driver)
+        {
+            if (!IsPhantomJsBrowser())
+            {
+                var alert = driver.SwitchTo().Alert();
+                alert.Dismiss();
+            }
+        }
+
         /// <summary>
         /// Dismisses the HTTPS warning dialog
         /// </summary>

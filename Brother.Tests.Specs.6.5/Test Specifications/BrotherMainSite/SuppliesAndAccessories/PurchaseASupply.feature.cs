@@ -295,15 +295,13 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("Purchase a product by product number on Brother \"Ireland\" but click Cancel before" +
             " submitting payment")]
         [NUnit.Framework.CategoryAttribute("PROD")]
-        [NUnit.Framework.CategoryAttribute("UAT")]
-        [NUnit.Framework.CategoryAttribute("TEST")]
+        [NUnit.Framework.CategoryAttribute("SMOKE")]
         public virtual void PurchaseAProductByProductNumberOnBrotherIrelandButClickCancelBeforeSubmittingPayment()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Purchase a product by product number on Brother \"Ireland\" but click Cancel before" +
                     " submitting payment", new string[] {
                         "PROD",
-                        "UAT",
-                        "TEST"});
+                        "SMOKE"});
 #line 108
 this.ScenarioSetup(scenarioInfo);
 #line 109

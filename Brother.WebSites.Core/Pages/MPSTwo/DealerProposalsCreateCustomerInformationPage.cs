@@ -20,6 +20,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private const string colourElement = @"#ClickPriceColourCoverage";
 
+        private const string nthCustomerChoice = @"input#content_1_PersonList_List_InputChoice_{0}";
+        private const string nthCustomerOrg = @"#content_1_PersonList_List_Organisation_{0}";
+        private const string nthCustomerName = @"#content_1_PersonList_List_CustomerName_{0}";
+        private const string nthCustomerEmail = @"#content_1_PersonList_List_CustomerEmail_{0}";
+
         [FindsBy(How = How.CssSelector, Using = "input[id*=\"content_1_PersonList_List_InputChoice\"]")]
         public IList<IWebElement> ExistingContactRadioButtonElement;
         [FindsBy(How = How.Id, Using = "content_1_ComponentIntroductionAlert")]
@@ -245,9 +250,28 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             if (ContactTitleElement.Displayed) 
                 //SelectFromDropdownByValue(ContactTitleElement, MpsUtil.ContactTitle());
-                SelectFromDropdownByValue(ContactTitleElement, "2");
+                SelectFromDropdownByValue(ContactTitleElement, "0002");
         }
 
 
+
+        public void EditProposalCustomerInformation(IWebDriver driver, int nth = 0)
+        {
+            var choiceselector = string.Format(nthCustomerChoice, nth);
+            var orgselector = string.Format(nthCustomerOrg, nth);
+            var nameselector = string.Format(nthCustomerName, nth);
+            var emailselector = string.Format(nthCustomerEmail, nth);
+
+            driver.FindElement(By.CssSelector(choiceselector)).Click();
+
+            var org = driver.FindElement(By.CssSelector(orgselector)).Text;
+            SpecFlow.SetContext("DealerLatestEditedCustomerOrg", org);
+
+            var name = driver.FindElement(By.CssSelector(nameselector)).Text;
+            SpecFlow.SetContext("DealerLatestEditedCustomerName", name);
+
+            var email = driver.FindElement(By.CssSelector(emailselector)).Text;
+            SpecFlow.SetContext("DealerLatestEditedCustomerEmail", email);
+        }
     }
 }

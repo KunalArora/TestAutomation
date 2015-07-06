@@ -281,6 +281,13 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             NextPage = CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().ClickNextButton();
         }
 
+        [When(@"I select next button for customer data capture on editing")]
+        public void WhenISelectNextButtonForCustomerDataCaptureOnEditing()
+        {
+            NextPage = CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().ClickNextButton();
+
+        }
+
         [When(@"I ""(.*)"" Private Liable for Company Info")]
         public void WhenIPrivateLiableForCompanyInfo(string liable)
         {
@@ -340,11 +347,11 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         {
             CurrentPage.As<DealerProposalsCreateTermAndTypePage>().IsTermAndTypeTextDisplayed();
             CurrentPage.As<DealerProposalsCreateTermAndTypePage>().SelectUsageType(usage);
+            CurrentPage.As<DealerProposalsCreateTermAndTypePage>().SelectContractLength(contract);
             CurrentPage.As<DealerProposalsCreateTermAndTypePage>().SelectLeaseBillingCycle(leasing);
             CurrentPage.As<DealerProposalsCreateTermAndTypePage>().SelectPayPerClickBillingCycle(billing);
 
             NextPage = CurrentPage.As<DealerProposalsCreateTermAndTypePage>().ClickNextButton();
-            
         }
 
         [When(@"I tick Price Hardware radio button")]
@@ -394,8 +401,8 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<DealerProposalsCreateProductsPage>().StoreDefaultProductConfiguration();
         }
 
+   
 
-        
         [When(@"I enter ""(.*)"" into Mono Coverage field")]
         public void WhenIEnterIntoMonoCoverageField(string coverage)
         {

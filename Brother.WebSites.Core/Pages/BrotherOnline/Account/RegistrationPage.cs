@@ -104,12 +104,15 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         {
             try
             {
-                var warningBar = Driver.FindElement(By.CssSelector(".warning-bar"));
-                if (warningBar != null)
+                if (WaitForElementToExistByCssSelector(".warning-bar", 2, 5))
                 {
-                    if (warningBar.Displayed)
+                    var warningBar = Driver.FindElement(By.CssSelector(".warning-bar"));
+                    if (warningBar != null)
                     {
-                        return true;
+                        if (warningBar.Displayed)
+                        {
+                            return true;
+                        }
                     }
                 }
             }

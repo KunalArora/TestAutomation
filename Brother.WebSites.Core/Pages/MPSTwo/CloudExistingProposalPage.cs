@@ -111,12 +111,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             AssertElementPresent(ProposalFilter, "Search box for proposal list");
         }
 
-        public CreateNewProposalPage ClickOnNewProposalTab()
-        {
-            NewProposalButton.Click();
-            return GetTabInstance<CreateNewProposalPage>(Driver);
-        }
-
         public void NavigateToDeclinedProposalScreen()
         {
             if(proposalDeclinedTabElement == null)
@@ -410,39 +404,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetInstance<SendToBankPage>(Driver);
         }
 
-        public CreateNewProposalPage ClickOnProposalTabsDuringContractConversionTransform(string tab)
-        {
-            //Use this method only if the workflow goes 
-            //from conversion summary screen to any other proposal screens
-            switch (tab)
-            {
-                case "Customer Information":
-                    customerInformationTabElement.Click();
-                    WebDriver.Wait(Helper.DurationType.Second, 3);
-                    break;
-                case "Term & Type":
-                    termsAndTypeTabElement.Click();
-                    WebDriver.Wait(Helper.DurationType.Second, 3);
-                    break;
-                case "Products":
-                    productsTabElement.Click();
-                    WebDriver.Wait(Helper.DurationType.Second, 3);
-                    break;
-                case "Proposal Description":
-                    proposalDescriptionTabElement.Click();
-                    WebDriver.Wait(Helper.DurationType.Second, 3);
-                    break;
-            }
-            return GetInstance<CreateNewProposalPage>(Driver);
-
-        }
-
-        private CreateNewProposalPage ClickOnProductsPage()
-        {
-            productsTabElement.Click();
-            return GetInstance<CreateNewProposalPage>(Driver);
-        }
-
         public void FindExistingPoposalList()
         {
             TestCheck.AssertIsNotNull(proposalListContainerElement,
@@ -452,13 +413,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void ClickAcceptOnConfrimation(IWebDriver driver)
         {
             WebDriver.Wait(DurationType.Millisecond, 100);
-            ActionsModule.ClickAcceptOnJsAlert(driver);
+            ClickAcceptOnJsAlert(driver);
         }
 
         public void ClickDismissOnConfrimation(IWebDriver driver)
         {
             WebDriver.Wait(DurationType.Millisecond, 100);
-            ActionsModule.ClickDismissOnJsAlert(driver);
+            ClickDismissOnJsAlert(driver);
         }
 
         public void NotExistTheDeletedItem(IWebDriver driver)
@@ -491,6 +452,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             DashboradLink.Click();
             return GetInstance<DealerDashBoardPage>();
+        }
+
+        public DealerProposalsCreateDescriptionPage NavigateToEditProposalPage()
+        {
+            return GetTabInstance<DealerProposalsCreateDescriptionPage>(Driver);
         }
     }
 }

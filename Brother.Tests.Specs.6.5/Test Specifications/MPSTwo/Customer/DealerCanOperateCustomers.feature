@@ -1,10 +1,10 @@
-﻿@ignore @TEST @UAT
+﻿@MPS @TEST @UAT
 Feature: DealerCanOperateCustomers
 	In order to view/create/edit/delete customers
 	As an MPS Dealer or Sub-Dealer
 	I want to operate customers
 
-@ignore
+
 Scenario Outline: Dealer can see customers 
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to existing customer screen
@@ -16,7 +16,7 @@ Scenario Outline: Dealer can see customers
 	| Cloud MPS Dealer | United Kingdom |
 #	| Sub Dealer | United Kingdom |
 
-@ignore
+
 Scenario Outline: Dealer can create a new customer 
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to existing customer screen
@@ -29,6 +29,7 @@ Scenario Outline: Dealer can create a new customer
 	| Role             | Country        |
 	| Cloud MPS Dealer | United Kingdom |
 #	| Sub Dealer | United Kingdom |
+
 
 @ignore
 Scenario Outline: Dealer can edit a new customer 
@@ -48,7 +49,7 @@ Scenario Outline: Dealer can edit a new customer
 	| Cloud MPS Dealer | United Kingdom | NewlyCreatedItem |
 #	| Sub Dealer | United Kingdom |
 
-@ignore
+
 Scenario Outline: Dealer can delete a customer 
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to existing customer screen
@@ -64,7 +65,7 @@ Scenario Outline: Dealer can delete a customer
 	| Cloud MPS Dealer | United Kingdom |NewlyCreatedItem | OK      |
 #	| Sub Dealer | United Kingdom |NewlyCreatedItem | OK      |
 
-@ignore
+
 Scenario Outline: Dealer can cancel deleting customer 
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to existing customer screen
@@ -78,7 +79,7 @@ Scenario Outline: Dealer can cancel deleting customer
 	| Cloud MPS Dealer | United Kingdom | AnyItem    | Dismiss |
 #	| Sub Dealer | United Kingdom | AnyItem    | Dismiss |
 
-@ignore
+
 Scenario Outline: Dealer cannot delete a customer who is bound to an existing proposal
     Given Dealer have created a Open proposal of "<ContractType>" and "<UsageType>"
 	And I navigate to Dealer Dashboard page from Dealer Proposal page
@@ -89,5 +90,5 @@ Scenario Outline: Dealer cannot delete a customer who is bound to an existing pr
 	And I can sign out of Brother Online
 
 	Scenarios: 
-	| ContractType               | UsageType      | Confirm | TargetItem       |
-	| Lease & Click with Service | Minimum Volume | OK		| NewlyCreatedProposalCustomer |
+	| ContractType               | UsageType      | Confirm | TargetItem                   |
+	| Lease & Click with Service | Minimum Volume | OK      | NewlyCreatedProposalCustomer |

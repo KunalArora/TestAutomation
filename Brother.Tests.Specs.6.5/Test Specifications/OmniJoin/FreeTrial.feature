@@ -39,9 +39,6 @@ Scenario: Sign Up for 14 day Free trial without an existing Brother Online accou
 	And if I click Submit
 	Then I should be directed to the download page indicating I have 14 days Free trial
 	And Once I have Validated a Free Trial confirmation Email was received
-	Then If I go back to Brother Online Home Page 
-	Then I can sign out of Brother Online
-	Then I am redirected to the Brother Home Page
 
 
 @ignore

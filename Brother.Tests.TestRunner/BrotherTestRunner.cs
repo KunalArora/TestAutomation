@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using NUnit.Core;
+using NUnit.Core.Extensibility;
 using NUnit.Core.Filters;
 using NUnit.Framework;
 using CategoryAttribute = NUnit.Framework.CategoryAttribute;
@@ -275,7 +276,11 @@ namespace TestRunner
         {
             if (NUnitAPIOption.Checked)
             {
-                ExecuteWithNunitApi();
+//                NUnitFileLoggerAddin.Install();
+                TestHelpers.Runner = new Thread(ExecuteWithNunitApi);
+                TestHelpers.Runner.IsBackground = true;
+                TestHelpers.Runner.SetApartmentState(ApartmentState.STA);
+                TestHelpers.Runner.Start();
             }
             else
             {
@@ -323,10 +328,6 @@ namespace TestRunner
         public void ExecuteWithCmdLine()
         {
             LaunchNUnit();
-            //var newWindowThread = new Thread(LaunchNUnit);
-            //newWindowThread.SetApartmentState(ApartmentState.STA);
-            //newWindowThread.IsBackground = true;
-            //newWindowThread.Start();
         }
 
         private void LaunchNUnit()

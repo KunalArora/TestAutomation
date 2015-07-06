@@ -9,6 +9,7 @@ using System.IO;
 using System.Net;
 using System.Net.Security;
 using System.Runtime.Remoting;
+using System.Security;
 using System.Security.AccessControl;
 using Brother.Tests.Selenium.Lib.Properties;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
@@ -220,12 +221,29 @@ namespace Brother.Tests.Selenium.Lib.Support
 
             try
             {
-                var process = Process.Start(phantomJsProcess);
-                if (process != null)
+              //  phantomJsProcess.UserName = "EUSiteCoreTestAuto";
+               // phantomJsProcess.Domain = "eu";
+               // string prePassword = "Ferry1Loft2Lighter3";
+               // var passwordSecure = new SecureString();
+              //  char[] passwordChars = prePassword.ToCharArray();
+              //  foreach (char c in passwordChars)
+              //  {
+              //      passwordSecure.AppendChar(c);
+              //  }
+              //  phantomJsProcess.Password = passwordSecure;
+              //  phantomJsProcess.UseShellExecute = false;
+
+                var phantomJSProc = new Process();
+                phantomJSProc.StartInfo = phantomJsProcess;
+                var process = phantomJSProc.Start();
+                if (process)
                 {
-                    // brief pause to allow PhantomJS process to load
-                    WebDriver.Wait(Helper.DurationType.Second, 3);
-                    return process.Id;
+                    if (phantomJSProc != null)
+                    {
+                        // brief pause to allow PhantomJS process to load
+                        WebDriver.Wait(Helper.DurationType.Second, 3);
+                        return phantomJSProc.Id;
+                    }
                 }
             }
             catch (Win32Exception win32Exception)
