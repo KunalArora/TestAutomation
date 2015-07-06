@@ -125,7 +125,6 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
                 }
             }
 
-
             if (mpsFeatureTag)
             {
 
@@ -155,7 +154,6 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
                 }
                 
             }
-           
 
             if (Helper.IsSmokeTest())
             {
