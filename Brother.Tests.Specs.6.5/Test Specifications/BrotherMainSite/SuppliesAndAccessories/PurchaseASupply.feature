@@ -103,7 +103,7 @@ Scenario: Purchase a new Inkjet Cartridge with a valid device code and valid cre
 	Then I am redirected to the Brother Home Page
 	And I can validate an Order Confirmation email was received
 
-@PROD @UAT @TEST
+@PROD @SMOKE
 ## Product Purchase by Product ID - see main BrotherMainSite->SuppliesAndAccessories->PurchaseASupply feature file for TEST and UAT versions
 Scenario: Purchase a product by product number on Brother "Ireland" but click Cancel before submitting payment
 	Given I am logged onto Brother Online "Ireland" using valid credentials
