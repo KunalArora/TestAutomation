@@ -133,6 +133,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [When(@"I confirm the values entered for the device")]
         public void WhenIconfirmTheValuesEntereForTheDevice()
         {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterModelUnitCost();
             CurrentPage.As<DealerProposalsCreateProductsPage>().AddAllDetailsToProposal();
             //CurrentPage.As<DealerProposalsCreateProductsPage>().VerifyProductAdditionConfirmationMessage();
             NextPage = CurrentPage.As<DealerProposalsCreateProductsPage>().MoveToClickPriceScreen();
