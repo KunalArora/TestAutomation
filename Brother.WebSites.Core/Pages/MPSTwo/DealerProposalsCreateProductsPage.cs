@@ -105,10 +105,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement SelectedServicePackPriceElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-tab")]
         public IWebElement DeviceScreenValidator;
-        
-        
+        [FindsBy(How = How.CssSelector, Using = ".mps-qa-model .mps-qa-srp")]
+        public IWebElement ModelSrpElement;
 
-       
+        
+        
+        
 
         private const string QuantityElementString = "[data-quantity=\"true\"]";
         private const string ServicePackElementString = ".mps-qa-service-pack";
@@ -927,6 +929,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             TestCheck.AssertIsNotEqual(0, DeliveryQuantityElement(), "Unable to locate Delivery Quantity field");
             if (GetElementByCssSelector(element, 5) == null)
                 TestCheck.AssertIsNotNull(DeliveryQuantityElement(), "Delivery Quantity is editable");
+        }
+
+        public void EnterModelUnitCost()
+        {
+            var srpCost = MpsUtil.GetValue(ModelSrpElement.Text);
+            var costText = srpCost.ToString();
+
+            ClearAndType(ProductCostPriceElement, costText);
         }
 
         private IWebElement InstallationQuantityElement()

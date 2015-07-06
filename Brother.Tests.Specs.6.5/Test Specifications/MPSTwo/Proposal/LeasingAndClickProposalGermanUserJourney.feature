@@ -36,7 +36,7 @@ Scenario Outline: Create different varieties of German Leasing and Click proposa
 
 	Scenarios: 
 	| Role             | Country        | ContractType               | CreateOption        | UsageType      | Contract | Leasing                  | Billing                  | Printer     | DeviceScreen | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | Germany | Lease & Click with Service | Create new customer | Minimum Volume | 3 years  | Quarterly | Quarterly | HL-L8350CDW | Full         | 2000        | 2000         |
+	| Cloud MPS Dealer | Germany | Lease & Click with Service | Create new customer | Minimum Volume | 3 years  | Quarterly | Quarterly | HLL8350CDW | Full         | 2000        | 2000         |
 	
 
 Scenario Outline: Create different varieties of German Leasing and Click proposal for new customer on Pay As You Go Term
@@ -70,7 +70,7 @@ Scenario Outline: Create different varieties of German Leasing and Click proposa
 
 	Scenarios: 
 	| Role             | Country        | ContractType               | CreateOption        | UsageType     | Contract | Leasing   | Billing   | Printer    | DeviceScreen | ClickVolume |
-	| Cloud MPS Dealer | Germany | Lease & Click with Service | Create new customer | Pay As You Go | 4 years  | Quarterly | Quarterly | DCP-8110DN | Full         | 2000        |
+	| Cloud MPS Dealer | Germany | Lease & Click with Service | Create new customer | Pay As You Go | 4 years  | Quarterly | Quarterly | DCP8110DN | Full         | 2000        |
 
 
 Scenario Outline: Create different varieties of German Leasing and Click proposal for an existing customer
@@ -101,7 +101,7 @@ Scenario Outline: Create different varieties of German Leasing and Click proposa
 
 	Scenarios: 
 	| Role             | Country        | ContractType               | UsageType      | Contract | Leasing                  | Billing                  | Printer     | DeviceScreen | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | Germany | Lease & Click with Service | Minimum Volume | 4 years  | Quarterly | Quarterly | HL-L8350CDW | Full         | 2000        | 2000         |
+	| Cloud MPS Dealer | Germany | Lease & Click with Service | Minimum Volume | 4 years  | Quarterly | Quarterly | HLL8350CDW | Full         | 2000        | 2000         |
 	
 Scenario Outline: Create different varieties of German Leasing and Click proposal for an existing customer on Pay As You Go
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
@@ -131,5 +131,5 @@ Scenario Outline: Create different varieties of German Leasing and Click proposa
 
 	Scenarios: 
 	| Role             | Country        | ContractType               | UsageType     | Contract | Leasing   | Billing   | Printer    | DeviceScreen | ClickVolume |
-	| Cloud MPS Dealer | Germany | Lease & Click with Service | Pay As You Go | 5 years  | Quarterly | Quarterly | DCP-8110DN | Full         | 2000        |
+	| Cloud MPS Dealer | Germany | Lease & Click with Service | Pay As You Go | 5 years  | Quarterly | Quarterly | DCP8110DN | Full         | 2000        |
 

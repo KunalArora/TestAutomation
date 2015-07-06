@@ -130,7 +130,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             WhenISelectButtonForCustomerDataCapture("Create new customer");
             WhenIEnterUsageTypeOfAndContractTermsLeasingAndBillingOnTermAndTypeDetails
                 (UsageType, "3 years", "Quarterly", "Quarterly");
-            WhenIDisplayDeviceScreen("HL-L8350CDW");
+            WhenIDisplayDeviceScreen("HLL8350CDW");
             WhenIAcceptTheDefaultValuesOfTheDevice();
             WhenIEnterClickPriceVolumeOf("2000", "2000");
         }
@@ -386,6 +386,8 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [When(@"I accept the default values of the device")]
         public void WhenIAcceptTheDefaultValuesOfTheDevice()
         {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterProductQuantity("10");
+            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterModelUnitCost();
             CurrentPage.As<DealerProposalsCreateProductsPage>().AddAllDetailsToProposal();
             CurrentPage.As<DealerProposalsCreateProductsPage>().VerifyProductAdditionConfirmationMessage();
             NextPage = CurrentPage.As<DealerProposalsCreateProductsPage>().MoveToClickPriceScreen();

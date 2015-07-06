@@ -101,7 +101,7 @@ namespace Brother.Tests.Selenium.Lib.Support
         public static string PrinterUnderTest()
         {
             String[] printerName ={
-                                        "DCP-8110DN",
+                                        "DCP8110DN",
                                         "DCP-8250DN",
                                         "HL-5450DN",
                                         //"HL-5450DNT",
@@ -115,7 +115,7 @@ namespace Brother.Tests.Selenium.Lib.Support
                                         "DCP-L8400CDN",
                                         "DCP-L8450CDW",
                                         "HL-L8250CDN",
-                                        "HL-L8350CDW",
+                                        "HLL8350CDW",
                                         "HL-L9200CDWT",
                                         "MFC-L8650CDW",
                                         "MFC-L8850CDW",
