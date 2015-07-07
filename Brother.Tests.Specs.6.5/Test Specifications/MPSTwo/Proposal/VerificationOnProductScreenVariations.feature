@@ -21,7 +21,7 @@ Scenario Outline: Should be able to display full detail screen
 	Scenarios: 
 
 	| Role             | Country        | Printer      |
-	| Cloud MPS Dealer | United Kingdom | MFC-L8850CDW |
+	| Cloud MPS Dealer | United Kingdom | MFCL8850CDW |
 
 
 Scenario Outline: Default value of full detail screen are verified
@@ -37,7 +37,7 @@ Scenario Outline: Default value of full detail screen are verified
 	Scenarios: 
 
 	| Role             | Country        | ContractType       | Contract |  Billing                  | Printer      |
-	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | 3 years  |  Quarterly | MFC-L8850CDW |
+	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | 3 years  |  Quarterly | MFCL8850CDW |
 
 
 Scenario Outline: Total Price calulation is verified
@@ -53,7 +53,7 @@ Scenario Outline: Total Price calulation is verified
 	Scenarios: 
 
 	| Role             | Country        | ContractType       | Contract |  Billing                  | Printer      |
-	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | 3 years  |  Quarterly | MFC-L8850CDW |
+	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | 3 years  |  Quarterly | MFCL8850CDW |
 
 
 Scenario Outline: The sum of Total Price is equal to the Grand Total Price
@@ -70,7 +70,7 @@ Scenario Outline: The sum of Total Price is equal to the Grand Total Price
 	Scenarios: 
 
 	| Role             | Country        | ContractType       | Contract |  Billing                  | Printer      |
-	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | 3 years  |  Quarterly | MFC-L8850CDW |
+	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | 3 years  |  Quarterly | MFCL8850CDW |
 
 
 Scenario Outline: All Zero QTY fields are not displayed on summary page
@@ -89,7 +89,7 @@ Scenario Outline: All Zero QTY fields are not displayed on summary page
 	Scenarios: 
 
 	| Role             | Country        | ContractType       | Contract |  Billing                  | Printer      |
-	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | 3 years  |  Quarterly | MFC-L8850CDW |
+	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | 3 years  |  Quarterly | MFCL8850CDW |
 
 	@Ignore
 Scenario Outline: All input Margins on prodocut page is displayed on summary page
@@ -107,7 +107,7 @@ Scenario Outline: All input Margins on prodocut page is displayed on summary pag
 	Scenarios: 
 
 	| Role             | Country        | Printer      |
-	| Cloud MPS Dealer | United Kingdom | MFC-L8850CDW |
+	| Cloud MPS Dealer | United Kingdom | MFCL8850CDW |
 
 
 Scenario Outline: Should be able to display Reduced detail screen
@@ -124,7 +124,7 @@ Scenario Outline: Should be able to display Reduced detail screen
 	Scenarios: 
 
 	| Role             | Country        | ContractType       | Contract |  Billing                  | Printer      |
-	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | 3 years  |  Quarterly | MFC-L8850CDW |
+	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | 3 years  |  Quarterly | MFCL8850CDW |
 
 
 Scenario Outline: Lease and Click product screen validation
@@ -143,7 +143,7 @@ Scenario Outline: Lease and Click product screen validation
 	Scenarios: 
 
 	| Role             | Country        | ContractType | Contract | Leasing                  | Billing                  | Printer      |
-	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service      | 3 years  | Quarterly | Quarterly | DCP-8250DN   |
+	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service      | 3 years  | Quarterly | Quarterly | DCP8250DN   |
 
 #
 # Enable Printers Scenario 
@@ -164,7 +164,7 @@ Scenario Outline: Enable Printer of Lease + Click as a Local Office Admin, then 
 
 	Scenarios: 
 	| Role1                  | Country        | Role2            | Printer     |
-	| Cloud MPS Local Office | United Kingdom | Cloud MPS Dealer | MFC-J4510DW |
+	| Cloud MPS Local Office | United Kingdom | Cloud MPS Dealer | MFCJ4510DW |
 
 Scenario Outline: Selected printer which is enabled on Lease + Click above can display in Purchase + Click Service
 	Given I sign into Cloud MPS as a "<Role1>" from "<Country>"
@@ -177,7 +177,7 @@ Scenario Outline: Selected printer which is enabled on Lease + Click above can d
 	Scenarios: 
 
 	| Role1            | Country        | Printer      |
-	| Cloud MPS Dealer | United Kingdom | MFC-J4510DW  |
+	| Cloud MPS Dealer | United Kingdom | MFCJ4510DW  |
 
 Scenario Outline: Disable Printer of Lease + Click as a Local Office Admin, then can not display in Lease + Click Service
 	Given I sign into Cloud MPS as a "<Role1>" from "<Country>"
@@ -195,7 +195,7 @@ Scenario Outline: Disable Printer of Lease + Click as a Local Office Admin, then
 	Scenarios: 
 
 	| Role1                  | Country        | Role2            | Printer      |
-	| Cloud MPS Local Office | United Kingdom | Cloud MPS Dealer | MFC-J4510DW  |
+	| Cloud MPS Local Office | United Kingdom | Cloud MPS Dealer | MFCJ4510DW  |
 
 
 Scenario Outline: Selected printer which is disabled on Lease + Click above can display in Purchase + Click Service
@@ -209,7 +209,7 @@ Scenario Outline: Selected printer which is disabled on Lease + Click above can 
 	Scenarios: 
 
 	| Role1            | Country        | Printer      |
-	| Cloud MPS Dealer | United Kingdom | MFC-J4510DW  |
+	| Cloud MPS Dealer | United Kingdom | MFCJ4510DW  |
 
 Scenario Outline: Enable Printer of Purchase + Click as a Local Office Admin, then can display in Purchase + Click Service
 	Given I sign into Cloud MPS as a "<Role1>" from "<Country>"
@@ -229,7 +229,7 @@ Scenario Outline: Enable Printer of Purchase + Click as a Local Office Admin, th
 	Scenarios: 
 
 	| Role1                  | Country        | Role2            | Printer      |
-	| Cloud MPS Local Office | United Kingdom | Cloud MPS Dealer | MFC-J4510DW  |
+	| Cloud MPS Local Office | United Kingdom | Cloud MPS Dealer | MFCJ4510DW  |
 
 
 Scenario Outline: Selected printer which is enabled on Purchase + Click above can display in Lease + Click Service
@@ -243,7 +243,7 @@ Scenario Outline: Selected printer which is enabled on Purchase + Click above ca
 	Scenarios: 
 
 	| Role1            | Country        | Printer      |
-	| Cloud MPS Dealer | United Kingdom | MFC-J4510DW  |
+	| Cloud MPS Dealer | United Kingdom | MFCJ4510DW  |
 
 
 Scenario Outline: Disable Printer as a Local Office Admin, then can display in Purchase + Click Service
@@ -263,7 +263,7 @@ Scenario Outline: Disable Printer as a Local Office Admin, then can display in P
 	Scenarios: 
 
 	| Role1                  | Country        | Role2            | Printer      |
-	| Cloud MPS Local Office | United Kingdom | Cloud MPS Dealer | MFC-J4510DW  |
+	| Cloud MPS Local Office | United Kingdom | Cloud MPS Dealer | MFCJ4510DW  |
 
 
 Scenario Outline: Selected printer which is disabled on Purchase + Click above can not display in Lease + Click Service
@@ -276,7 +276,7 @@ Scenario Outline: Selected printer which is disabled on Purchase + Click above c
 	Scenarios: 
 
 	| Role1            | Country        | Printer      |
-	| Cloud MPS Dealer | United Kingdom | MFC-J4510DW  |
+	| Cloud MPS Dealer | United Kingdom | MFCJ4510DW  |
 
 #
 # 4 Installation Cost
@@ -294,7 +294,7 @@ Scenario Outline: Change Installation cost type
 	Scenarios: 
 
 	| Role             | Country        | Printer      |
-	| Cloud MPS Dealer | United Kingdom | MFC-L8850CDW |
+	| Cloud MPS Dealer | United Kingdom | MFCL8850CDW |
 
 #
 # 5 Product-Accessories Relationship
@@ -315,7 +315,7 @@ Scenario Outline: asd
 	Scenarios: 
 
 	| Role             | Country        | Printer      |
-	| Cloud MPS Dealer | United Kingdom | MFC-L8850CDW |
+	| Cloud MPS Dealer | United Kingdom | MFCL8850CDW |
 
 #
 # 6 Service Pack
@@ -335,7 +335,7 @@ Scenario Outline: Cannot input Installation Pack Unit Cost less than default
 	Scenarios: 
 
 	| Role             | Country        | Printer      |
-	| Cloud MPS Dealer | United Kingdom | MFC-L8850CDW |
+	| Cloud MPS Dealer | United Kingdom | MFCL8850CDW |
 
 
 Scenario Outline: When input 100% into Margin field, "Add to proposal" button become grayout
@@ -351,7 +351,7 @@ Scenario Outline: When input 100% into Margin field, "Add to proposal" button be
 	Scenarios: 
 
 	| Role             | Country        | Printer      |
-	| Cloud MPS Dealer | United Kingdom | MFC-L8850CDW |
+	| Cloud MPS Dealer | United Kingdom | MFCL8850CDW |
 
 
 Scenario Outline: When change Unit Price so that Margin is 100, "Add to proposal" button become grayout
@@ -367,7 +367,7 @@ Scenario Outline: When change Unit Price so that Margin is 100, "Add to proposal
 	Scenarios: 
 
 	| Role             | Country        | Printer      |
-	| Cloud MPS Dealer | United Kingdom | MFC-L8850CDW |
+	| Cloud MPS Dealer | United Kingdom | MFCL8850CDW |
 
 #
 # 7 Margin Defaults
@@ -389,7 +389,7 @@ Scenario Outline: As a Local Office Admin, sign-in and enable printer for Purcha
 	Scenarios: 
 
 	| Role1                  | Country        | Role2            | Printer      |
-	| Cloud MPS Local Office | United Kingdom | Cloud MPS Dealer | MFC-L8850CDW |
+	| Cloud MPS Local Office | United Kingdom | Cloud MPS Dealer | MFCL8850CDW |
 
 
 Scenario Outline: Can be set-up as often as possible but used as a one-off margin
@@ -411,7 +411,7 @@ Scenario Outline: Can be set-up as often as possible but used as a one-off margi
 	Scenarios: 
 
 	| Role             | Country        | Printer      |
-	| Cloud MPS Dealer | United Kingdom | MFC-L8850CDW |
+	| Cloud MPS Dealer | United Kingdom | MFCL8850CDW |
 
 
 Scenario Outline: One-off set-up by a dealer and used by just the dealer
@@ -431,7 +431,7 @@ Scenario Outline: One-off set-up by a dealer and used by just the dealer
 	Scenarios: 
 
 	| Role             | Country        | Printer      |
-	| Cloud MPS Dealer | United Kingdom | MFC-L8850CDW |
+	| Cloud MPS Dealer | United Kingdom | MFCL8850CDW |
 
 #
 # 8 Unit Cost vs Margin% vs Unit Price
@@ -450,7 +450,7 @@ Scenario Outline: Change in Unit Cost impacts Unit Price
 	Scenarios: 
 
 	| Role             | Country        | Printer      |
-	| Cloud MPS Dealer | United Kingdom | MFC-L8850CDW |
+	| Cloud MPS Dealer | United Kingdom | MFCL8850CDW |
 
 
 Scenario Outline: Change in Unit Price impacts Margin
@@ -467,7 +467,7 @@ Scenario Outline: Change in Unit Price impacts Margin
 	Scenarios: 
 
 	| Role             | Country        | Printer      |
-	| Cloud MPS Dealer | United Kingdom | MFC-L8850CDW |
+	| Cloud MPS Dealer | United Kingdom | MFCL8850CDW |
 
 
 Scenario Outline: Change in Margin impacts Unit Price (1)
@@ -484,7 +484,7 @@ Scenario Outline: Change in Margin impacts Unit Price (1)
 	Scenarios: 
 
 	| Role             | Country        | Printer      |
-	| Cloud MPS Dealer | United Kingdom | MFC-L8850CDW |
+	| Cloud MPS Dealer | United Kingdom | MFCL8850CDW |
 
 
 Scenario Outline: Change in Margin impacts Unit Price (2)
@@ -500,7 +500,7 @@ Scenario Outline: Change in Margin impacts Unit Price (2)
 	Scenarios: 
 
 	| Role             | Country        | Printer      |
-	| Cloud MPS Dealer | United Kingdom | MFC-L8850CDW |
+	| Cloud MPS Dealer | United Kingdom | MFCL8850CDW |
 #
 # 9 Filters
 #
@@ -517,7 +517,7 @@ Scenario Outline: Free Text Filter
 	Scenarios: 
 
 	| Role             | Country        | Printer      |
-	| Cloud MPS Dealer | United Kingdom | MFC-L8850CDW |
+	| Cloud MPS Dealer | United Kingdom | MFCL8850CDW |
 
 
 Scenario Outline: Fax filter checkbox 

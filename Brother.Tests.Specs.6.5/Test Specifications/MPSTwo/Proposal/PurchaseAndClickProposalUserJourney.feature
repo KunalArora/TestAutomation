@@ -34,7 +34,7 @@ Scenario Outline: Create different varieties of Purchase and Click proposal for 
 
 	Scenarios: 
 	| Role             | Country        | ContractType                  | CreateOption        | UsageType      | Contract | Leasing   | Billing   | PriceHardware | Printer      | DeviceScreen | PaymentMethod | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Create new customer | Minimum Volume | 3 years  | Quarterly | Quarterly | Tick          | MFC-L8650CDW | Full         | Pay upfront   | 800         | 800          |
+	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Create new customer | Minimum Volume | 3 years  | Quarterly | Quarterly | Tick          | MFCL8650CDW | Full         | Pay upfront   | 800         | 800          |
 
 Scenario Outline: Create different varieties of Purchase and Click proposal for new customer on Pay As You Go Term
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
@@ -64,7 +64,7 @@ Scenario Outline: Create different varieties of Purchase and Click proposal for 
 
 	Scenarios: 
 	| Role             | Country        | ContractType                  | CreateOption        | UsageType     | Contract | Leasing   | Billing   | PriceHardware | Printer    | DeviceScreen | ClickVolume |
-	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Create new customer | Pay As You Go | 4 years  | Quarterly | Quarterly | Untick        | MFC-8510DN | Reduced      | 750        |
+	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Create new customer | Pay As You Go | 4 years  | Quarterly | Quarterly | Untick        | MFC8510DN | Reduced      | 750        |
 
 
 Scenario Outline: Create different varieties of Purchase and Click proposal for an existing customer
@@ -96,7 +96,7 @@ Scenario Outline: Create different varieties of Purchase and Click proposal for 
 
 	Scenarios: 
 	| Role             | Country        | ContractType                  | UsageType      | Contract | Leasing                  | Billing                  | PriceHardware | Printer      | DeviceScreen | PaymentMethod           | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Minimum Volume | 3 years  | Quarterly | Quarterly | Untick          | MFC-L8650CDW | Reduced         | Included in Click Price | 800        | 800         |
+	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Minimum Volume | 3 years  | Quarterly | Quarterly | Untick          | MFCL8650CDW | Reduced         | Included in Click Price | 800        | 800         |
 
 
 Scenario Outline: Create different varieties of Purchase and Click proposal for an existing customer on Pay As You Go Term
@@ -127,6 +127,6 @@ Scenario Outline: Create different varieties of Purchase and Click proposal for 
 
 	Scenarios: 
 	| Role             | Country        | ContractType                  | UsageType     | Contract | Leasing   | Billing   | PriceHardware | Printer    | DeviceScreen | ClickVolume |
-	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Pay As You Go | 5 years  | Quarterly | Quarterly | Tick          | MFC-8510DN | Full         | 750        |
+	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Pay As You Go | 5 years  | Quarterly | Quarterly | Tick          | MFC8510DN | Full         | 750        |
 	
 	
