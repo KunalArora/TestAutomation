@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel.Design;
 using System.Linq;
+using System.Net.Mime;
+using System.Runtime.Serialization;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
@@ -12,6 +16,50 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 {
     public class DealerProposalsCreateProductsPage : BasePage
     {
+
+        #region ViewModels
+
+        [DataContract]
+        public class ItemDetail
+        {
+            [DataMember]
+            public string Name { get; set; }
+            [DataMember]
+            public string SRP { get; set; }
+            [DataMember]
+            public string Quantity { get; set; }
+            [DataMember]
+            public string UnitCost { get; set; }
+            [DataMember]
+            public string Margin { get; set; }
+            [DataMember]
+            public string UnitPrice { get; set; }
+            [DataMember]
+            public string TotalPrice { get; set; }
+        }
+
+        [DataContract]
+        public class ProductDetail
+        {
+            [DataMember]
+            public string TotalPrice { get; set; }
+            [DataMember]
+            public ItemDetail Model { get; set; }
+            [DataMember]
+            public ItemDetail LowerTray { get; set; }
+            [DataMember]
+            public ItemDetail Usb2Cable { get; set; }
+            [DataMember]
+            public ItemDetail Delivery { get; set; }
+            [DataMember]
+            public ItemDetail Brother { get; set; }
+            [DataMember]
+            public ItemDetail Dealer { get; set; }
+            [DataMember]
+            public ItemDetail MpsServicePack { get; set; }
+        }
+        #endregion 
+
         private const string flatItemsIdentifier = @".mps-product-group";
 
         public static string URL = "/mps/dealer/proposals/create/products";
@@ -1161,5 +1209,216 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         }
 
+        public DealerProposalsCreateClickPricePage EditAndUpdateExistingProducts(IWebDriver driver)
+        {
+            string infoalertselector = @"div.alert-info.js-mps-alert";
+            var infoalert = driver.TryFindElement(By.CssSelector(infoalertselector));
+            if (infoalert != null)
+            {
+                EditProducts(driver, infoalertselector);
+            }
+            else
+            {
+                //danger
+                string dangeralertselector = @"div.alert-danger.js-mps-alert";
+                var dangeralert = driver.TryFindElement(By.CssSelector(dangeralertselector));
+
+                if (dangeralert != null)
+                {
+                    UpdateExistingProduxts(driver, dangeralertselector);
+                }
+            }
+
+            ProceedToProposalSummaryFromClickPrice();
+            return GetInstance<DealerProposalsCreateClickPricePage>();
+        }
+
+
+        public DealerProposalsCreateClickPricePage ForceGoThrowThisTab(IWebDriver driver)
+        {
+            //danger
+            string selector = @"div.alert-danger.js-mps-alert";
+            var alert = driver.TryFindElement(By.CssSelector(selector));
+
+            if (alert != null)
+            {
+                UpdateExistingProduxts(driver, selector);
+            }
+
+            ProceedToProposalSummaryFromClickPrice();
+            return GetInstance<DealerProposalsCreateClickPricePage>();
+        }
+
+        private void EditProducts(IWebDriver driver, string infoalertselector)
+        {
+            string linkselector = @"a.alert-link.js-mps-product-link";
+
+            var links = driver.TryFindElements(By.CssSelector(linkselector));
+
+            if (links != null && links.Any())
+            {
+                var productlink = links.First();
+                var name = productlink.Text;
+                productlink.Click();
+                var product = EditProduct(driver, name);
+
+                SpecFlow.SetObject("DealerRecentEditProduct", product);
+            }
+            else
+            {
+                
+            }
+        }
+
+        private ProductDetail EditProduct(IWebDriver driver, string name)
+        {
+            var productselector = string.Format(@"li#pc-{0}", name);
+            var productlistitem = driver.TryFindElement(By.CssSelector(productselector));
+            var producttable = productlistitem.TryFindElement( By.CssSelector("table.table-condensed"));
+
+            var product = new ProductDetail
+            {
+                Model = EditItemDetail(producttable, 1),
+                LowerTray = EditItemDetail(producttable, 2),
+                Usb2Cable = EditItemDetail(producttable, 3),
+                Delivery = EditItemDetail(producttable, 4),
+                Brother = EditItemDetail(producttable, 5),
+                //Dealer = EditItemDetail(producttable,5),
+                MpsServicePack = EditItemDetail(producttable, 6)
+            };
+
+            string buttonselector = @"button.btn.js-mps-product-configuration-submit";
+            var button = driver.TryFindElement(By.CssSelector(buttonselector));
+            button.Click();
+            WebDriver.Wait(DurationType.Millisecond, 2000);
+
+            return product;
+        }
+
+        private ItemDetail EditItemDetail(IWebElement table, int row)
+        {
+            var rowselector = string.Format(@"tbody>tr:nth-child({0})", row);
+            var tr = table.TryFindElement(By.CssSelector(rowselector));
+
+            var item = new ItemDetail();
+
+            item.Name = tr.TryFindElement(By.CssSelector("td:nth-child(1)")).Text;
+            item.SRP = RemoveUnites(tr.TryFindElement(By.CssSelector("td:nth-child(2)")).Text);
+
+            
+
+            var quantity = tr.TryFindElement(By.CssSelector("td:nth-child(3)")).Text;
+            if (string.IsNullOrEmpty(quantity))
+            {
+                var quantityelem = tr.TryFindElement(By.CssSelector("td:nth-child(3)>input"));
+                quantity = UpdateIntegerNumber(quantityelem.GetAttribute("value"));
+
+                ClearAndType(quantityelem, quantity);
+                WebDriver.Wait(DurationType.Millisecond, 100);
+            }
+            item.Quantity = quantity;
+
+            var unitcostelem = tr.TryFindElement(By.CssSelector("td:nth-child(4)>input"));
+            item.UnitCost = UpdateDoubleNumber(unitcostelem.GetAttribute("value"));
+            ClearAndType(unitcostelem, item.UnitCost);
+            WebDriver.Wait(DurationType.Millisecond, 100);
+
+            var marginelem = tr.TryFindElement(By.CssSelector("td:nth-child(5)>input"));
+            item.Margin = UpdateDoubleNumber(marginelem.GetAttribute("value"));
+            ClearAndType(marginelem, item.Margin);
+            WebDriver.Wait(DurationType.Millisecond, 100);
+
+            item.UnitPrice = tr.TryFindElement(By.CssSelector("td:nth-child(6)>input")).GetAttribute("value");
+            item.TotalPrice = RemoveUnites(tr.TryFindElement(By.CssSelector("td:nth-child(7)")).Text);
+
+            return item;
+        }
+
+        private string UpdateIntegerNumber(string item)
+        {
+            var str = RemoveUnites(item);
+            var d = int.Parse(str);
+            d += 1;
+            return d.ToString();
+        }
+
+        private string UpdateDoubleNumber(string item)
+        {
+            var str = RemoveUnites(item);
+            var d = double.Parse(str);
+            d += 0.1;
+            return d.ToString("F2");
+        }
+
+        private string RemoveUnites(string str)
+        {
+            string[] units = {"£", " %"};
+
+            return units.Aggregate(str, (current, u) => current.Replace(u, ""));
+        }
+
+        private void UpdateExistingProduxts(IWebDriver driver, string selector)
+        {
+            string linkselector = @"a.alert-link.js-mps-product-link";
+            while (true)
+            {
+                IWebElement alert = driver.TryFindElement(By.CssSelector(selector));
+                if (alert == null) break;
+
+                var links = driver.TryFindElements(By.CssSelector(linkselector));
+
+                if (links == null || !links.Any()) break;
+
+                var link = links.First();
+                link.Click();
+                WebDriver.Wait(DurationType.Millisecond, 2000);
+                string buttonselector = @"button.btn.js-mps-product-configuration-submit";
+                var button = driver.TryFindElement(By.CssSelector(buttonselector));
+                button.Click();
+                WebDriver.Wait(DurationType.Millisecond, 2000);
+            }
+        }
+
+
+        public void AddNewProduct(IWebDriver driver)
+        {
+            var printer = "DCP-8110DN";
+
+            ClickOnAPrinter(printer);
+
+            string buttonselector = @"button.btn.js-mps-product-configuration-submit";
+            var button = driver.TryFindElement(By.CssSelector(buttonselector));
+            button.Click();
+
+        }
+
+        public DealerProposalsCreateClickPricePage GoNextPage(IWebDriver driver)
+        {
+            WebDriver.Wait(DurationType.Millisecond, 5000);
+
+            var linkselector = @"a.alert-link.js-mps-product-link";
+
+            var count = driver.TryFindElements(By.CssSelector(linkselector)).Count();
+
+            SpecFlow.SetContext("DealerEditProductCount", count.ToString());
+
+            ProceedToProposalSummaryFromClickPrice();
+            return GetInstance<DealerProposalsCreateClickPricePage>();
+        }
+
+        public void RemoveOldProduct(IWebDriver driver)
+        {
+            var linkselector = @"a.alert-link.js-mps-product-link";
+
+            var links = driver.TryFindElements(By.CssSelector(linkselector));
+            links.First().Click();
+
+            string removebuttonselector = @"button.btn.js-mps-product-configuration-remove";
+            var removebutton = driver.TryFindElement(By.CssSelector(removebuttonselector));
+            removebutton.Click();
+
+            //alert
+            ClickAcceptOnJsAlert(driver);
+        }
     }
 }

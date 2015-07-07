@@ -712,6 +712,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         {
             if (!IsPhantomJsBrowser())
             {
+                WebDriver.Wait(DurationType.Millisecond, 200);
                 var alert = driver.SwitchTo().Alert();
                 alert.Accept();
             }
