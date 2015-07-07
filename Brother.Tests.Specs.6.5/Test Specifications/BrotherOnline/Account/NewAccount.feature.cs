@@ -300,6 +300,15 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.CategoryAttribute("SMOKE")]
         [NUnit.Framework.TestCaseAttribute("Romania", null)]
+        [NUnit.Framework.TestCaseAttribute("France", null)]
+        [NUnit.Framework.TestCaseAttribute("Germany", null)]
+        [NUnit.Framework.TestCaseAttribute("Netherlands", null)]
+        [NUnit.Framework.TestCaseAttribute("Spain", null)]
+        [NUnit.Framework.TestCaseAttribute("Denmark", null)]
+        [NUnit.Framework.TestCaseAttribute("Belgium", null)]
+        [NUnit.Framework.TestCaseAttribute("Portugal", null)]
+        [NUnit.Framework.TestCaseAttribute("Finland", null)]
+        [NUnit.Framework.TestCaseAttribute("Austria", null)]
         public virtual void CreateAnAccountForBrotherOnlineForDifferentLanguageSites(string country, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -324,25 +333,8 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.Then("I can validate that an error message was displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 124
  testRunner.Then("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
 #line 125
- testRunner.Then("I am redirected to the Brother Home Page", @"	| Germany        |
-	| Netherlands    |
-	| Spain          |
-	| Denmark        |
-	| Belgium        |
-	| Russia         |- Red warning on page - look into
-	| Hungary        |- unknown error - possibly cannot get to site 
-	| Portugal       |
-	| Switzerland    | - need to add specific default language to URL
-	| Slovakia       | - Links for validation set of for UK so needs updating
-	| Slovenia       | - Links for validation set of for UK so needs updating
-	| Czech          | - Links for validation set of for UK so needs updating
-	| Bulgaria       | - Links for validation set of for UK so needs updating - maybe no version in SiteCore on DV2
-	| Finland        |
-	| Norway         | - Link for validation of registration links to something completely different
-	| Italy          | - NEEDS to have Número de identificación fiscal added to test otherwise registration fails
-	| Austria        |", ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I am redirected to the Brother Home Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

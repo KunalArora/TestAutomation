@@ -127,24 +127,24 @@ Scenario Outline: Create an account for Brother Online for different language si
 Scenarios:
 	| Country        |
 	| Romania        | 
-"""	| France         |
+	| France         |
 	| Germany        |
 	| Netherlands    |
 	| Spain          |
 	| Denmark        |
 	| Belgium        |
-	| Russia         |- Red warning on page - look into
-	| Hungary        |- unknown error - possibly cannot get to site 
+#	| Russia         |- Red warning on page - look into
+#	| Hungary        |- unknown error - possibly cannot get to site 
 	| Portugal       |
-	| Switzerland    | - need to add specific default language to URL
-	| Slovakia       | - Links for validation set of for UK so needs updating
-	| Slovenia       | - Links for validation set of for UK so needs updating
-	| Czech          | - Links for validation set of for UK so needs updating
-	| Bulgaria       | - Links for validation set of for UK so needs updating - maybe no version in SiteCore on DV2
+#	| Switzerland    | - need to add specific default language to URL
+#	| Slovakia       | - Links for validation set of for UK so needs updating
+#	| Slovenia       | - Links for validation set of for UK so needs updating
+#	| Czech          | - Links for validation set of for UK so needs updating
+#	| Bulgaria       | - Links for validation set of for UK so needs updating - maybe no version in SiteCore on DV2
 	| Finland        |
-	| Norway         | - Link for validation of registration links to something completely different
-	| Italy          | - NEEDS to have Número de identificación fiscal added to test otherwise registration fails
-	| Austria        |"""
+#	| Norway         | - Link for validation of registration links to something completely different
+#	| Italy          | - NEEDS to have Número de identificación fiscal added to test otherwise registration fails
+	| Austria        |
 
 
 @SMOKE
