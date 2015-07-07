@@ -34,6 +34,7 @@ Scenario Outline: Dealer can edit an existing proposal offer
 	#| Lease & Click with Service | Minimum Volume | Cloud MPS Dealer | United Kingdom | Products |
 	| Lease & Click with Service | Minimum Volume | Cloud MPS Dealer | United Kingdom | ClickPrice |
 
+@ignore
 Scenario Outline: Dealer can delete an existing proposal offer
     Given Dealer have created a Open proposal of "<ContractType>" and "<UsageType>"
 	When I click the delete button against "<TargetItem>" on Exisiting Proposal table
