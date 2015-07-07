@@ -42,6 +42,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         [FindsBy(How = How.CssSelector, Using = "#warranty")] 
         public IWebElement BrotherTermsAndConditionsTickBox;
 
+        public static string continueButtonId = "#content_2_innercontent_2_GoToNextStepButton";
+
         public bool IsErrorIconPresent()
         {
             // override current time outs
@@ -69,11 +71,15 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
 
         public void IsContinueButtonAvailable()
         {
-            if (ContinueButton == null)
-            {
-                throw new Exception("Unable to locate button on page");
-            }
-            AssertElementPresent(ContinueButton, "Continue Button");
+            WaitForElementToExistByCssSelector(continueButtonId, 5, 5);
+            var continueButton = GetElementByCssSelector(continueButtonId);
+            AssertElementPresent(continueButton, "Welcome Page Register Device - Continue Button");
+
+            //if (ContinueButton == null)
+            //{
+            //    throw new Exception("Unable to locate button on page");
+            //}
+            //AssertElementPresent(ContinueButton, "Continue Button");
         }
 
         public MyPrintersAndDevicesPage ClickContinueButton()
