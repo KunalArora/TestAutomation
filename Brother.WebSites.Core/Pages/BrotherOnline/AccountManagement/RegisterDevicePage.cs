@@ -69,11 +69,18 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             AssertElementText(BackToHomeButton, "Back to home page >", "Back to Welcome Page Button");
         }
 
+        public void IsSerialNumberTextBoxAvailable()
+        {
+            WaitForElementToExistByCssSelector("#content_2_innercontent_2_Row1_txtSerial", 5, 5);
+            var serialCodeTextBox = GetElementByCssSelector("#content_2_innercontent_2_Row1_txtSerial");
+            AssertElementPresent(serialCodeTextBox, "Welcome Page Register Device - Continue Button");    
+        }
+
         public void IsContinueButtonAvailable()
         {
             WaitForElementToExistByCssSelector(continueButtonId, 5, 5);
             var continueButton = GetElementByCssSelector(continueButtonId);
-            AssertElementPresent(continueButton, "Welcome Page Register Device - Continue Button");
+            AssertElementPresent(continueButton, "Register a Device page - Supplier Code Text Box");
 
             //if (ContinueButton == null)
             //{
@@ -164,9 +171,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
 
         private void StoreModelNumber()
         {
-            WebDriver.Wait(Helper.DurationType.Second, 6); // pause for element to be populated. Explicit wait can cause StaleElement exception
-            Helper.CurrentDeviceModelNumber = ModelNumberTextBox.Text;
-        }
+            WebDriver.Wait(DurationType.Second, 6); // pause for element to be populated. Explicit wait can cause StaleElement exception
+            CurrentDeviceModelNumber = ModelNumberTextBox.Text;        }
 
         public void EnterPurchaseDate(string purchaseDate)
         {

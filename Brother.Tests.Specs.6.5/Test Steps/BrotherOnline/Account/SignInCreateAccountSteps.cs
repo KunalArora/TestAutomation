@@ -39,9 +39,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
                 WhenIEnterAValidPassword(pwd);
                 WhenIClickOnSignIn(country);
             }
-
         }
-
 
         [Then(@"I reset my password with ""(.*)""")]
         public void ThenIResetMyPasswordWith(string newPassword)
@@ -250,12 +248,13 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<RegistrationPage>().EmptyEmailAddressTextBox();
         }
         
-       [When(@"I press tab in the password field")]
+        [When(@"I press tab in the password field")]
         public void WhenIPressTabInThePasswordField()
         {
             CurrentPage.As<RegistrationPage>().EmptyPasswordTextBox();
         }
-      [Then(@"If I sign back into Brother Online ""(.*)"" using the same credentials")]
+
+        [Then(@"If I sign back into Brother Online ""(.*)"" using the same credentials")]
         [When(@"I sign back into Brother Online ""(.*)"" using the same credentials")]
         public void ThenIfISignBackIntoBrotherOnlineUsingTheSameCredentials(string country)
         {

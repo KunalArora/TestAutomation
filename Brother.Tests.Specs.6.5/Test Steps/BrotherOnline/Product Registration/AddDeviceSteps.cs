@@ -21,7 +21,7 @@ namespace Brother.Tests.Specs.BrotherOnline
         {
             CurrentPage.As<RegisterDevicePage>().IsContinueButtonAvailable();
             TestCheck.AssertIsEqual(true, Validation.ValidateWarningMessageBarStatus(false), "Account Not Validated Warning Message Present");
-       }
+        }
 
         [When(@"I have entered my product information")]
         public void WhenIHaveEnteredMyProductInformation(Table table)
@@ -47,7 +47,6 @@ namespace Brother.Tests.Specs.BrotherOnline
         {
             TestCheck.AssertIsEqual(true, CurrentPage.As<RegisterDevicePage>().IsErrorIconPresent(), "Is Error Icon Present");
         }
-
 
         [Given(@"I have entered my Product Serial Code ""(.*)""")]
         public void GivenIHaveEnteredMyProductSerialCode(string productSerialCode)
