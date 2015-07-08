@@ -19,7 +19,7 @@ namespace Brother.Tests.Specs.BrotherOnline
         [When(@"I am redirected to the Register Device page")]
         public void WhenIAmRedirectedToTheRegisterDevicePage()
         {
-            CurrentPage.As<RegisterDevicePage>().IsContinueButtonAvailable();
+            CurrentPage.As<RegisterDevicePage>().IsSerialNumberTextBoxAvailable();
             TestCheck.AssertIsEqual(true, Validation.ValidateWarningMessageBarStatus(false), "Account Not Validated Warning Message Present");
         }
 
