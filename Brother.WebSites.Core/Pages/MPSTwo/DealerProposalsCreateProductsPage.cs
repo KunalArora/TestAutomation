@@ -155,7 +155,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement DeviceScreenValidator;
         [FindsBy(How = How.CssSelector, Using = ".mps-qa-model .mps-qa-srp")]
         public IWebElement ModelSrpElement;
-
+        [FindsBy(How = How.CssSelector, Using = ".mps-qa-option .mps-qa-srp")]
+        public IWebElement OptionSrpElement;
         
         
         
@@ -384,7 +385,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void TypeIntoRHSFreeTextFilter(string model)
         {
-            WebDriver.Wait(Helper.DurationType.Second, 2);
+            WebDriver.Wait(Helper.DurationType.Second, 4);
             ClearAndType(InputSearchProductElement, model);
             WebDriver.Wait(Helper.DurationType.Second, 1);
         }
@@ -454,12 +455,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private IWebElement OptionQuantity0Element()
         {
-            return GetElementByCssSelector("OptionQuantity0", 5);
+            return GetElementByCssSelector("#OptionQuantity0", 5);
         }
 
         private IWebElement OptionCostPrice0Element()
         {
-            return GetElementByCssSelector("OptionCostPrice0", 5);
+            return GetElementByCssSelector("#OptionCostPrice0", 5);
         }
 
         private IWebElement OptionsSellPrice0Element()
@@ -979,6 +980,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 TestCheck.AssertIsNotNull(DeliveryQuantityElement(), "Delivery Quantity is editable");
         }
 
+        public void EnterOptionCostPrice()
+        {
+            var srpOption = MpsUtil.GetValue(OptionSrpElement.Text);
+            var OptionText = srpOption.ToString();
+
+            if (OptionCostPrice0Element() != null)
+                ClearAndType(OptionCostPrice0Element(), OptionText);
+        }
         public void EnterModelUnitCost()
         {
             var srpCost = MpsUtil.GetValue(ModelSrpElement.Text);

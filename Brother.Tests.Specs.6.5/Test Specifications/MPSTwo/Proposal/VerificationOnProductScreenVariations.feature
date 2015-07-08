@@ -80,7 +80,7 @@ Scenario Outline: All Zero QTY fields are not displayed on summary page
 	And I tick Price Hardware radio button
 	And I display "<Printer>" device screen
 	And on product page all the accessories all left with zero QTY
-	And I Add the device to Proposal
+	And I accept the default values of the device
 	And I enter click price volume of "1000" and "1000"
 	Then the selected devices <Printer> above are displayed on Summary Screen
 #	Then all the components of device with zero QTY are not displayed on summary page
@@ -164,7 +164,7 @@ Scenario Outline: Enable Printer of Lease + Click as a Local Office Admin, then 
 
 	Scenarios: 
 	| Role1                  | Country        | Role2            | Printer     |
-	| Cloud MPS Local Office | United Kingdom | Cloud MPS Dealer | MFCJ4510DW |
+	| Cloud MPS Local Office | United Kingdom | Cloud MPS Dealer | MFCJ4420DW |
 
 Scenario Outline: Selected printer which is enabled on Lease + Click above can display in Purchase + Click Service
 	Given I sign into Cloud MPS as a "<Role1>" from "<Country>"
@@ -177,7 +177,7 @@ Scenario Outline: Selected printer which is enabled on Lease + Click above can d
 	Scenarios: 
 
 	| Role1            | Country        | Printer      |
-	| Cloud MPS Dealer | United Kingdom | MFCJ4510DW  |
+	| Cloud MPS Dealer | United Kingdom | MFCJ4420DW   |
 
 Scenario Outline: Disable Printer of Lease + Click as a Local Office Admin, then can not display in Lease + Click Service
 	Given I sign into Cloud MPS as a "<Role1>" from "<Country>"
@@ -195,7 +195,7 @@ Scenario Outline: Disable Printer of Lease + Click as a Local Office Admin, then
 	Scenarios: 
 
 	| Role1                  | Country        | Role2            | Printer      |
-	| Cloud MPS Local Office | United Kingdom | Cloud MPS Dealer | MFCJ4510DW  |
+	| Cloud MPS Local Office | United Kingdom | Cloud MPS Dealer | MFCJ4420DW  |
 
 
 Scenario Outline: Selected printer which is disabled on Lease + Click above can display in Purchase + Click Service
@@ -208,8 +208,8 @@ Scenario Outline: Selected printer which is disabled on Lease + Click above can 
 
 	Scenarios: 
 
-	| Role1            | Country        | Printer      |
-	| Cloud MPS Dealer | United Kingdom | MFCJ4510DW  |
+	| Role1            | Country        | Printer     |
+	| Cloud MPS Dealer | United Kingdom | MFCJ4420DW  |
 
 Scenario Outline: Enable Printer of Purchase + Click as a Local Office Admin, then can display in Purchase + Click Service
 	Given I sign into Cloud MPS as a "<Role1>" from "<Country>"
@@ -228,8 +228,8 @@ Scenario Outline: Enable Printer of Purchase + Click as a Local Office Admin, th
 
 	Scenarios: 
 
-	| Role1                  | Country        | Role2            | Printer      |
-	| Cloud MPS Local Office | United Kingdom | Cloud MPS Dealer | MFCJ4510DW  |
+	| Role1                  | Country        | Role2            | Printer     |
+	| Cloud MPS Local Office | United Kingdom | Cloud MPS Dealer | MFCJ4420DW  |
 
 
 Scenario Outline: Selected printer which is enabled on Purchase + Click above can display in Lease + Click Service
@@ -242,8 +242,8 @@ Scenario Outline: Selected printer which is enabled on Purchase + Click above ca
 
 	Scenarios: 
 
-	| Role1            | Country        | Printer      |
-	| Cloud MPS Dealer | United Kingdom | MFCJ4510DW  |
+	| Role1            | Country        | Printer     |
+	| Cloud MPS Dealer | United Kingdom | MFCJ4420DW  |
 
 
 Scenario Outline: Disable Printer as a Local Office Admin, then can display in Purchase + Click Service
@@ -262,10 +262,11 @@ Scenario Outline: Disable Printer as a Local Office Admin, then can display in P
 
 	Scenarios: 
 
-	| Role1                  | Country        | Role2            | Printer      |
-	| Cloud MPS Local Office | United Kingdom | Cloud MPS Dealer | MFCJ4510DW  |
+	| Role1                  | Country        | Role2            | Printer     |
+	| Cloud MPS Local Office | United Kingdom | Cloud MPS Dealer | MFCJ4420DW  |
 
 
+@ignore
 Scenario Outline: Selected printer which is disabled on Purchase + Click above can not display in Lease + Click Service
 	Given I sign into Cloud MPS as a "<Role1>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -275,8 +276,8 @@ Scenario Outline: Selected printer which is disabled on Purchase + Click above c
 
 	Scenarios: 
 
-	| Role1            | Country        | Printer      |
-	| Cloud MPS Dealer | United Kingdom | MFCJ4510DW  |
+	| Role1            | Country        | Printer     |
+	| Cloud MPS Dealer | United Kingdom | MFCJ4420DW  |
 
 #
 # 4 Installation Cost
