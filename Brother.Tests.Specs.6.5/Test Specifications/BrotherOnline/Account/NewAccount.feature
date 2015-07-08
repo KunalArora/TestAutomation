@@ -229,7 +229,7 @@ Scenario Outline: Validate that the correct error messages are displayed when a 
 	Then I should see an error message on the password field
 Scenarios:
 	| Email Address                     |
-	| "aaa@yahoo.com"					 |
+	| "aaa@yahoo.com"					|
 
 @ignore
  Scenario Outline: Validate that the correct error messages are displayed when a Confirm Password field contains different passwpord than actual Password (BBAU-2209)
@@ -292,7 +292,7 @@ Given I want to create a new account with Brother Online "United Kingdom"
 	| LastName        | AutoTest       |
 	| Password        | @@@@@	       |
 	| ConfirmPassword | @@@@@		   |
-
+	
 	And I add my company name as "AutoTestLtd"
 	And I select my Business Sector as "IT and telecommunications services"
 	And I select number of Employees as "11 - 50"
@@ -349,3 +349,4 @@ Given I want to create a new account with Brother Online "United Kingdom"
 @ignore
 Scenario: Create a user but test for BPID 
 	# Create a new user account but add a check for the Users BPID in the dbo.Users table
+
