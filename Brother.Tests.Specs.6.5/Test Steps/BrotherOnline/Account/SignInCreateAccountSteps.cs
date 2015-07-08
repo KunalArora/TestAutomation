@@ -359,6 +359,8 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [Then(@"I should be able to log into ""(.*)"" Brother Online using my account details")]
         public void ThenIShouldBeAbleToLogIntoBrotherOnlineUsingMyAccountDetails(string country)
         {
+            Helper.TakeSnapshot();
+
             // Check for validation warning or confirmation message
             TestCheck.AssertIsEqual(true, CurrentPage.As<RegistrationPage>().IsAccountValidationSuccessMessagePresent(5, 5),
                 "Account validation success message");
