@@ -18,6 +18,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement LeasingContractLinkElement;
         [FindsBy(How = How.CssSelector, Using = "a[href='/mps/local-office/purchase-and-click'] .media-body")]
         public IWebElement PurchaseAndClickLinkElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href='/mps/local-office/all-in-click'] .media-body")]
+        public IWebElement AllInClickLinkElement;
         [FindsBy(How = How.CssSelector, Using = "a[href='/mps/local-office/dealers'] .media-body")]
         public IWebElement DealerDefaultsElement;        
 
@@ -36,6 +38,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 throw new Exception("Unable to locate Purchase And Click link on dashboard page");
 
             AssertElementPresent(PurchaseAndClickLinkElement, "Create New Proposal Link");
+        }
+
+        private void IsAllInClickLinkAvailable()
+        {
+            if (AllInClickLinkElement == null)
+                throw new Exception("Unable to locate All In Click link on dashboard page");
+
+            AssertElementPresent(AllInClickLinkElement, "Create New Proposal Link");
         }
 
         public void IsDealerDefaultsLinkAvailable()
@@ -68,5 +78,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetTabInstance<LocalOfficeAdminProgramSettingPage>(Driver);
         }
 
+        public LocalOfficeAdminProgramSettingPage NavigateToAllInClickPage()
+        {
+            IsAllInClickLinkAvailable();
+            AllInClickLinkElement.Click();
+            return GetTabInstance<LocalOfficeAdminProgramSettingPage>(Driver);
+        }
     }
 }

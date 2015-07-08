@@ -114,7 +114,6 @@
       <DependentUpon>LeasingAndClickProposalUserJourney.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Specifications\MPSTwo\Proposal\LocalOfficeAdminCanManageBanks.feature.cs">
-      <SubType>Code</SubType>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>LocalOfficeAdminCanManageBanks.feature</DependentUpon>
