@@ -136,7 +136,6 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("Dealer can edit products in an existing proposal offer")]
         [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Lease & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "United Kingdom", "Products", "Add", null)]
-        [NUnit.Framework.TestCaseAttribute("Lease & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "United Kingdom", "Products", "Remove", null)]
         public virtual void DealerCanEditProductsInAnExistingProposalOffer(string contractType, string usageType, string role, string country, string tabName, string action, string[] exampleTags)
         {
             string[] @__tags = new string[] {

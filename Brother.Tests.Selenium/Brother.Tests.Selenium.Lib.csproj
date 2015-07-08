@@ -94,7 +94,6 @@
     <Compile Include="Support\HelperClasses\Helper.SpecFlow.cs" />
     <Compile Include="Support\HelperClasses\Helper.SQL.cs" />
     <Compile Include="Support\HelperClasses\Helper.TestCheck.cs" />
-    <Compile Include="Support\HelperClasses\Helper.Extenstions.cs" />
     <Compile Include="Support\SpecFlow\SpecFlowHooks.cs" />
     <Compile Include="Support\HelperClasses\Helper.Email.cs" />
     <Compile Include="Support\HelperClasses\Helper.Language.cs" />

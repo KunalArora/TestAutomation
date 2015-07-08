@@ -1212,7 +1212,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public DealerProposalsCreateClickPricePage EditAndUpdateExistingProducts(IWebDriver driver)
         {
             string infoalertselector = @"div.alert-info.js-mps-alert";
-            var infoalert = driver.TryFindElement(By.CssSelector(infoalertselector));
+            var infoalert = GetElementByCssSelector(infoalertselector, 5);
             if (infoalert != null)
             {
                 EditProducts(driver, infoalertselector);
@@ -1221,7 +1221,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 //danger
                 string dangeralertselector = @"div.alert-danger.js-mps-alert";
-                var dangeralert = driver.TryFindElement(By.CssSelector(dangeralertselector));
+                var dangeralert = GetElementByCssSelector(dangeralertselector, 5);
 
                 if (dangeralert != null)
                 {
@@ -1238,7 +1238,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             //danger
             string selector = @"div.alert-danger.js-mps-alert";
-            var alert = driver.TryFindElement(By.CssSelector(selector));
+            var alert = GetElementByCssSelector(selector, 5);
 
             if (alert != null)
             {
@@ -1253,7 +1253,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             string linkselector = @"a.alert-link.js-mps-product-link";
 
-            var links = driver.TryFindElements(By.CssSelector(linkselector));
+            var links = GetElementsByCssSelector(linkselector);
 
             if (links != null && links.Any())
             {
@@ -1273,8 +1273,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private ProductDetail EditProduct(IWebDriver driver, string name)
         {
             var productselector = string.Format(@"li#pc-{0}", name);
-            var productlistitem = driver.TryFindElement(By.CssSelector(productselector));
-            var producttable = productlistitem.TryFindElement( By.CssSelector("table.table-condensed"));
+            var productlistitem = GetElementByCssSelector(productselector, 5);
+            var producttable = GetElementByCssSelector(productlistitem, "table.table-condensed", 5);
 
             var product = new ProductDetail
             {
@@ -1288,7 +1288,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             };
 
             string buttonselector = @"button.btn.js-mps-product-configuration-submit";
-            var button = driver.TryFindElement(By.CssSelector(buttonselector));
+            var button = driver.FindElement(By.CssSelector(buttonselector));
             button.Click();
             WebDriver.Wait(DurationType.Millisecond, 2000);
 
@@ -1298,19 +1298,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private ItemDetail EditItemDetail(IWebElement table, int row)
         {
             var rowselector = string.Format(@"tbody>tr:nth-child({0})", row);
-            var tr = table.TryFindElement(By.CssSelector(rowselector));
+            var tr = table.FindElement(By.CssSelector(rowselector));
 
             var item = new ItemDetail();
 
-            item.Name = tr.TryFindElement(By.CssSelector("td:nth-child(1)")).Text;
-            item.SRP = RemoveUnites(tr.TryFindElement(By.CssSelector("td:nth-child(2)")).Text);
+            item.Name = tr.FindElement(By.CssSelector("td:nth-child(1)")).Text;
+            item.SRP = RemoveUnites(tr.FindElement(By.CssSelector("td:nth-child(2)")).Text);
 
-            
-
-            var quantity = tr.TryFindElement(By.CssSelector("td:nth-child(3)")).Text;
+            var quantity = tr.FindElement(By.CssSelector("td:nth-child(3)")).Text;
             if (string.IsNullOrEmpty(quantity))
             {
-                var quantityelem = tr.TryFindElement(By.CssSelector("td:nth-child(3)>input"));
+                var quantityelem = tr.FindElement(By.CssSelector("td:nth-child(3)>input"));
                 quantity = UpdateIntegerNumber(quantityelem.GetAttribute("value"));
 
                 ClearAndType(quantityelem, quantity);
@@ -1318,18 +1316,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
             item.Quantity = quantity;
 
-            var unitcostelem = tr.TryFindElement(By.CssSelector("td:nth-child(4)>input"));
+            var unitcostelem = tr.FindElement(By.CssSelector("td:nth-child(4)>input"));
             item.UnitCost = UpdateDoubleNumber(unitcostelem.GetAttribute("value"));
             ClearAndType(unitcostelem, item.UnitCost);
             WebDriver.Wait(DurationType.Millisecond, 100);
 
-            var marginelem = tr.TryFindElement(By.CssSelector("td:nth-child(5)>input"));
+            var marginelem = tr.FindElement(By.CssSelector("td:nth-child(5)>input"));
             item.Margin = UpdateDoubleNumber(marginelem.GetAttribute("value"));
             ClearAndType(marginelem, item.Margin);
             WebDriver.Wait(DurationType.Millisecond, 100);
 
-            item.UnitPrice = tr.TryFindElement(By.CssSelector("td:nth-child(6)>input")).GetAttribute("value");
-            item.TotalPrice = RemoveUnites(tr.TryFindElement(By.CssSelector("td:nth-child(7)")).Text);
+            item.UnitPrice = tr.FindElement(By.CssSelector("td:nth-child(6)>input")).GetAttribute("value");
+            item.TotalPrice = RemoveUnites(tr.FindElement(By.CssSelector("td:nth-child(7)")).Text);
 
             return item;
         }
@@ -1362,10 +1360,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             string linkselector = @"a.alert-link.js-mps-product-link";
             while (true)
             {
-                IWebElement alert = driver.TryFindElement(By.CssSelector(selector));
+                IWebElement alert = GetElementByCssSelector(selector, 5);
                 if (alert == null) break;
 
-                var links = driver.TryFindElements(By.CssSelector(linkselector));
+                var links = GetElementsByCssSelector(linkselector);
 
                 if (links == null || !links.Any()) break;
 
@@ -1373,7 +1371,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 link.Click();
                 WebDriver.Wait(DurationType.Millisecond, 2000);
                 string buttonselector = @"button.btn.js-mps-product-configuration-submit";
-                var button = driver.TryFindElement(By.CssSelector(buttonselector));
+                var button = driver.FindElement(By.CssSelector(buttonselector));
                 button.Click();
                 WebDriver.Wait(DurationType.Millisecond, 2000);
             }
@@ -1387,7 +1385,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ClickOnAPrinter(printer);
 
             string buttonselector = @"button.btn.js-mps-product-configuration-submit";
-            var button = driver.TryFindElement(By.CssSelector(buttonselector));
+            var button = driver.FindElement(By.CssSelector(buttonselector));
             button.Click();
 
         }
@@ -1398,7 +1396,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             var linkselector = @"a.alert-link.js-mps-product-link";
 
-            var count = driver.TryFindElements(By.CssSelector(linkselector)).Count();
+            var count = GetElementsByCssSelector(linkselector).Count();
 
             SpecFlow.SetContext("DealerEditProductCount", count.ToString());
 
@@ -1410,11 +1408,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             var linkselector = @"a.alert-link.js-mps-product-link";
 
-            var links = driver.TryFindElements(By.CssSelector(linkselector));
+            var links = GetElementsByCssSelector(linkselector);
             links.First().Click();
 
             string removebuttonselector = @"button.btn.js-mps-product-configuration-remove";
-            var removebutton = driver.TryFindElement(By.CssSelector(removebuttonselector));
+            var removebutton = driver.FindElement(By.CssSelector(removebuttonselector));
             removebutton.Click();
 
             //alert

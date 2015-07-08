@@ -674,11 +674,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             var modelselector = string.Format(@".panel.mps-qa-printer.mps-qa-printer-{0}", product.Model.Name);
 
-            var modeldiv = driver.TryFindElement(By.CssSelector(modelselector));
+            var modeldiv = driver.FindElement(By.CssSelector(modelselector));
 
             var pricetalbleselector = "table.mps-table-model-pricing";
 
-            var pricetable = modeldiv.TryFindElement(By.CssSelector(pricetalbleselector));
+            var pricetable = modeldiv.FindElement(By.CssSelector(pricetalbleselector));
 
             VerifyPrices(pricetable, product.Model, 1);
             VerifyPrices(pricetable, product.LowerTray, 2);
@@ -691,21 +691,21 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private void VerifyPrices(IWebElement pricetable, DealerProposalsCreateProductsPage.ItemDetail itemDetail, int row)
         {
             var rowselector = string.Format(@"tbody>tr:nth-child({0})", row);
-            var tr = pricetable.TryFindElement(By.CssSelector(rowselector));
+            var tr = pricetable.FindElement(By.CssSelector(rowselector));
 
-            var quantity = tr.TryFindElement(By.CssSelector("td:nth-child(2)")).Text;
+            var quantity = tr.FindElement(By.CssSelector("td:nth-child(2)")).Text;
             TestCheck.AssertIsEqual(itemDetail.Quantity, quantity, "Quantity did not match.");
 
-            var unitcost = RemoveUnites(tr.TryFindElement(By.CssSelector("td:nth-child(3)")).Text);
+            var unitcost = RemoveUnites(tr.FindElement(By.CssSelector("td:nth-child(3)")).Text);
             TestCheck.AssertIsEqual(itemDetail.UnitCost, unitcost, "UnitCost did not match.");
 
-            //var margin = RemoveUnites(tr.TryFindElement(By.CssSelector("td:nth-child(4)")).Text);
+            //var margin = RemoveUnites(tr.FindElement(By.CssSelector("td:nth-child(4)")).Text);
             //TestCheck.AssertIsEqual(itemDetail.Margin, margin, "Margin did not match.");
 
-            var unitprice = RemoveUnites(tr.TryFindElement(By.CssSelector("td:nth-child(5)")).Text);
+            var unitprice = RemoveUnites(tr.FindElement(By.CssSelector("td:nth-child(5)")).Text);
             TestCheck.AssertIsEqual(itemDetail.UnitPrice, unitprice, "UnitPrice did not match.");
 
-            //var totalprice = RemoveUnites(tr.TryFindElement(By.CssSelector("td:nth-child(8)")).Text);
+            //var totalprice = RemoveUnites(tr.FindElement(By.CssSelector("td:nth-child(8)")).Text);
             //TestCheck.AssertIsEqual(itemDetail.TotalPrice, totalprice, "TotalPrice did not match.");
         }
 
