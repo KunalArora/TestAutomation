@@ -1,6 +1,9 @@
-﻿using Brother.WebSites.Core.Pages.Base;
+﻿using System.Diagnostics;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
 using Brother.WebSites.Core.Pages.MPSTwo;
+using NUnit.Framework;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.MPSTwo.Proposal
@@ -110,6 +113,14 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             page.ClickSaveButton();
             page.ClickEditButton();
             page.VerifyEditedSellPriceValue();
+        }
+
+        [Then(@"I can set one-off dealer margins")]
+        public void ThenICanSetOne_OffDealerMargins()
+        {
+            CurrentPage.As<LocalOfficeAdminDealerDefaultsPage>().SelectHardwareDefaultMargin();
+            CurrentPage.As<LocalOfficeAdminDealerDefaultsPage>().ReloadPage();
+            CurrentPage.As<LocalOfficeAdminDealerDefaultsPage>().CheckHardwareDefaultMargin();
         }
     }
 }

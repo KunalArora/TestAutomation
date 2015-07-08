@@ -16,3 +16,14 @@ Scenario Outline: Local Office Admin Can Sell PriceVsSRPConstraint
 	Scenarios: 
 	| Role                   | Country        |
 	| Cloud MPS Local Office | United Kingdom |
+
+@ignore
+Scenario Outline: Local Office Admin Can Set Default Dealer Margin
+	Given I sign into MPS as a "<Role>" from "<Country>"
+	When I navigate to Dealer Defaults page
+	Then I can set one-off dealer margins
+	And I sign out of Cloud MPS
+
+	Scenarios: 
+	| Role                   | Country        |
+	| Cloud MPS Local Office | United Kingdom |
