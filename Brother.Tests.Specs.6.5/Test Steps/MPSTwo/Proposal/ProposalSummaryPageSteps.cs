@@ -95,16 +95,6 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<DealerProposalsCreateProductsPage>().IsDeviceScreenDisplayed();
         }
 
-        [When(@"enter a quantity of ""(.*)"" for accessory for ""(.*)""")]
-        public void WhenEnterAQuantityOfForAccessoryFor(string quantity, string printer)
-        {
-            CurrentPage.As<DealerProposalsCreateProductsPage>().ClickOnAPrinter(printer);
-            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterModelUnitCost();
-            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterOptionCostPrice();
-            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterOptionsQuantity0(quantity);
-            CurrentPage.As<DealerProposalsCreateProductsPage>().AddAllDetailsToProposal();
-        }
-
         [Then(@"the displayed mono click price is correct")]
         public void ThenTheDisplayedMonoClickPriceIsCorrect()
         {
@@ -118,39 +108,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         }
 
 
-        [When(@"enter a quantity of ""(.*)"" for model")]
-        public void WhenEnterAQuantityOfForModel(string quantity)
-        {
-            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterProductQuantity(quantity);
-        }
 
-        [When(@"enter a quantity of ""(.*)"" for accessory")]
-        public void WhenEnterAQuantityOfForAccessory(string quantity)
-        {
-            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterOptionsQuantity0(quantity);
-        }
-
-        
-
-        [When(@"I confirm the values entered for the device")]
-        public void WhenIconfirmTheValuesEntereForTheDevice()
-        {
-            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterModelUnitCost();
-            CurrentPage.As<DealerProposalsCreateProductsPage>().AddAllDetailsToProposal();
-            //CurrentPage.As<DealerProposalsCreateProductsPage>().VerifyProductAdditionConfirmationMessage();
-            NextPage = CurrentPage.As<DealerProposalsCreateProductsPage>().MoveToClickPriceScreen();
-        }
-
-
-        
-
-        [When(@"I redisplay ""(.*)"" device screen")]
-        [Then(@"I redisplay ""(.*)"" device screen")]
-        public void WhenIRedisplayDeviceScreen(string printer)
-        {
-            CurrentPage.As<DealerProposalsCreateProductsPage>().ClickOnAPrinter(printer);
-            CurrentPage.As<DealerProposalsCreateProductsPage>().StoreExtraValuesOnProductPage();
-        }
 
         
 

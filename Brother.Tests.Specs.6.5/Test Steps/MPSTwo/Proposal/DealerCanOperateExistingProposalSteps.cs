@@ -1,4 +1,5 @@
-﻿using Brother.WebSites.Core.Pages.Base;
+using Brother.Tests.Specs.MPSTwo.Proposal;
+using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using TechTalk.SpecFlow;
@@ -74,31 +75,6 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
             NextPage = page.ClickNextButton();
         }
 
-        private void EditProducts()
-        {
-            var page = CurrentPage.As<DealerProposalsCreateProductsPage>();
-            NextPage = page.EditAndUpdateExistingProducts(CurrentDriver);
-        }
-
-        private void EditProducts(string action)
-        {
-            var page = CurrentPage.As<DealerProposalsCreateProductsPage>();
-
-            switch (action)
-            {
-                case "Add":
-                    page.AddNewProduct(CurrentDriver);
-                    NextPage = page.GoNextPage(CurrentDriver);
-
-                    break;
-                case "Remove":
-                    page.AddNewProduct(CurrentDriver);
-                    page.RemoveOldProduct(CurrentDriver);
-                    NextPage = page.GoNextPage(CurrentDriver);
-                    break;
-            }
-        }
-
         private void EditClickPrice(string clickprice, string colour, string row)
         {
             var page = CurrentPage.As<DealerProposalsCreateClickPricePage>();
@@ -112,20 +88,6 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
             NextPage = page.ForceGoThrowThisTab(CurrentDriver);
         }
 
-        private void GoThrowClickPriceTab(bool fillVolume = false)
-        {
-            var page = CurrentPage.As<DealerProposalsCreateClickPricePage>();
-            NextPage = page.ForceGoThrowThisTab( CurrentDriver, fillVolume);
-        }
-
-
-        [When(@"I edit Products Tab and ""(.*)"" in Proposal")]
-        public void WhenIEditProductsTabAndInProposal(string action)
-        {
-            EditProducts(action);
-            GoThrowClickPriceTab(false);
-        }
-
         [Then(@"I can confirm Products and ""(.*)"" on Summary Tab in Proposal")]
         public void ThenICanConfirmProductsAndOnSummaryTabInProposal(string action)
         {
@@ -136,6 +98,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
         [When(@"I edit ""(.*)"" Tab in Proposal of ""(.*)""")]
         public void WhenIEditTabInProposalOf(string tabname, string contractType)
         {
+            ProductsPageStep stepInstance = new ProductsPageStep();
             switch (tabname)
             {
                 case "Description":
@@ -147,7 +110,6 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
                     break;
 
                 case "TermAndType":
-
                     if (contractType == "Lease & Click with Service")
                     {
                         EditTermAndTypeTab("Pay As You Go", "5 years", "Quarterly", "Quarterly");
@@ -163,8 +125,8 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
                     break;
 
                 case "Products":
-                    EditProducts();
-                    GoThrowClickPriceTab();
+                    stepInstance.EditProducts();
+                    stepInstance.GoThrowClickPriceTab();
                     break;
 
                 case "ClickPrice":
