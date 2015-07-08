@@ -1,6 +1,9 @@
-﻿using Brother.WebSites.Core.Pages.Base;
+﻿using System.Diagnostics;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
 using Brother.WebSites.Core.Pages.MPSTwo;
+using NUnit.Framework;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.MPSTwo.Proposal
@@ -110,6 +113,55 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             page.ClickSaveButton();
             page.ClickEditButton();
             page.VerifyEditedSellPriceValue();
+        }
+
+        [Then(@"I can set one-off dealer ""(.*)"" margin")]
+        public void ThenICanSetOne_OffDealerMargin(string marginType)
+        {
+            var page = CurrentPage.As<LocalOfficeAdminDealerDefaultsPage>();
+            switch (marginType)
+            {
+                case "Hardware":
+                    page.SelectHardwareDefaultMargin();
+                    page.ReloadPage();
+                    page.CheckHardwareDefaultMargin();
+                    break;
+                case "Delivery":
+                    page.SelectDeliveryDefaultMargin();
+                    page.ReloadPage();
+                    page.CheckDeliveryDefaultMargin();
+                    break;
+                case "Accessories":
+                    page.SelectAccesoriesDefaultMargin();
+                    page.ReloadPage();
+                    page.CheckAccesoriesDefaultMargin();
+                    break;
+                case "Installation":
+                    page.SelectInstallationDefaultMargin();
+                    page.ReloadPage();
+                    page.CheckInstallationDefaultMargin();
+                    break;
+                case "Service Pack":
+                    page.SelectServicePackDefaultMargin();
+                    page.ReloadPage();
+                    page.CheckServicePackDefaultMargin();
+                    break;
+                case "Mono Click":
+                    page.SelectMonoClickDefaultMargin();
+                    page.ReloadPage();
+                    page.CheckMonoClickDefaultMargin();
+                    break;
+                case "Colour Click":
+                    page.SelectColourClickDefaultMargin();
+                    page.ReloadPage();
+                    page.CheckColourClickDefaultMargin();
+                    break;
+                case "All Inclusive":
+                    page.SelectAllInclusiveDefaultMargin();
+                    page.ReloadPage();
+                    page.CheckAllInclusiveDefaultMargin();
+                    break;
+            }
         }
     }
 }
