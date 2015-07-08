@@ -99,6 +99,8 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         public void WhenEnterAQuantityOfForAccessoryFor(string quantity, string printer)
         {
             CurrentPage.As<DealerProposalsCreateProductsPage>().ClickOnAPrinter(printer);
+            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterModelUnitCost();
+            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterOptionCostPrice();
             CurrentPage.As<DealerProposalsCreateProductsPage>().EnterOptionsQuantity0(quantity);
             CurrentPage.As<DealerProposalsCreateProductsPage>().AddAllDetailsToProposal();
         }
