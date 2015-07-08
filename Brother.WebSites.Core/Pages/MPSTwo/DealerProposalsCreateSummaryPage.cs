@@ -631,8 +631,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             VerifyCustomerOrgName(orgName);
         }
 
-        public void VerifyTermAndTypeTabInput()
+        public void VerifyTermAndTypeTabInput(string contractType)
         {
+            VerifyCorrectContractTypeIsDisplayedOnSummaryPage(contractType);
+
             var usagetype = SpecFlow.GetContext("DealerLatestEditedUsageType");
             VerifyCorrectUsageTypeIsDisplayedOnSummaryPage(usagetype);
 

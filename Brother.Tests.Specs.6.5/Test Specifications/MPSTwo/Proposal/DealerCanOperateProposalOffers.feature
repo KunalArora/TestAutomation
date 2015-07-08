@@ -22,18 +22,19 @@ Scenario Outline: Dealer can edit an existing proposal offer
 	And I navigate to existing proposal screen
 	When I can click edit button on proposal item of Exisiting Proposal table
 	And I go to "<TabName>" Tab in Proposal
-	And I edit "<TabName>" Tab in Proposal
+	And I edit "<TabName>" Tab in Proposal of "<ContractType>"
 	And I go to "Summary" Tab in Proposal
-	Then I can confirm "<TabName>" on Summary Tab in Proposal
+	Then I can confirm "<TabName>" on Summary Tab in Proposal of "<ContractType>"
 	And I can sign out of Brother Online
 
 	Scenarios:
-	| ContractType               | UsageType      | Role             | Country        | TabName             |
-	| Lease & Click with Service | Minimum Volume | Cloud MPS Dealer | United Kingdom | Description         |
-	| Lease & Click with Service | Minimum Volume | Cloud MPS Dealer | United Kingdom | CustomerInformation |
-	| Lease & Click with Service | Minimum Volume | Cloud MPS Dealer | United Kingdom | TermAndType         |
-	| Lease & Click with Service | Minimum Volume | Cloud MPS Dealer | United Kingdom | Products            |
-	| Lease & Click with Service | Minimum Volume | Cloud MPS Dealer | United Kingdom | ClickPrice          |
+	| ContractType                  | UsageType      | Role             | Country        | TabName             |
+	| Lease & Click with Service    | Minimum Volume | Cloud MPS Dealer | United Kingdom | Description         |
+	| Lease & Click with Service    | Minimum Volume | Cloud MPS Dealer | United Kingdom | CustomerInformation |
+	| Lease & Click with Service    | Minimum Volume | Cloud MPS Dealer | United Kingdom | TermAndType         |
+	| Lease & Click with Service    | Minimum Volume | Cloud MPS Dealer | United Kingdom | Products            |
+	| Lease & Click with Service    | Minimum Volume | Cloud MPS Dealer | United Kingdom | ClickPrice          |
+	| Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | United Kingdom | TermAndType         |
 
 @ignore
 Scenario Outline: Dealer can edit products in an existing proposal offer
