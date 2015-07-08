@@ -215,8 +215,6 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [When(@"I am redirected to the Brother Login/Register page")]
         public void WhenIAmRedirectedToTheBrotherLoginRegisterPage()
         {
-            // special case override the Loading of the sign in page
-            //NextPage = BasePage.LoadRegistrationPage(CurrentDriver, BasePage.BaseUrl);
             CurrentPage.As<RegistrationPage>().IsSignInButtonAvailable();
         }
 
@@ -361,6 +359,11 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [Then(@"I should be able to log into ""(.*)"" Brother Online using my account details")]
         public void ThenIShouldBeAbleToLogIntoBrotherOnlineUsingMyAccountDetails(string country)
         {
+            // Check for validation warning or confirmation message
+            TestCheck.AssertIsEqual(true, CurrentPage.As<RegistrationPage>().IsAccountValidationSuccessMessagePresent(2, 5),
+                "Account validation success message");
+            TestCheck.AssertIsNotEqual(true, CurrentPage.As<RegistrationPage>().IsWarningBarPresent(0, 5), "Warning Bar - account validation");
+
             WhenIAmRedirectedToTheBrotherLoginRegisterPage();
             WhenIEnterAValidEmailAddress(Email.RegistrationEmailAddress);
             WhenIEnterAValidPassword(Helper.Password);

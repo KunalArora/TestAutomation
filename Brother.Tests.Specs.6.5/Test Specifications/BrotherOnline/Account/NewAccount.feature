@@ -281,7 +281,7 @@ Scenario: Log in as a Printer On dealer and ensure that they can see the require
 
 # Change Personal details in your created account, go to my account and add your new Email address
 Scenario: Business Customer can change their Email Address   (BBAU - 2377, 2355)
-Given I want to create a new account with Brother Online "United Kingdom"
+	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
 	And I am redirected to the Brother Login/Register page
 	And I have Checked No I Do Not Have An Account Checkbox
@@ -315,7 +315,7 @@ Given I want to create a new account with Brother Online "United Kingdom"
 
 #Change Personal details in your created account, go to my account and change/add your new password
 Scenario: Business Customer can reset their password 
-Given I want to create a new account with Brother Online "United Kingdom"
+	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
 	And I am redirected to the Brother Login/Register page
 	And I have Checked No I Do Not Have An Account Checkbox

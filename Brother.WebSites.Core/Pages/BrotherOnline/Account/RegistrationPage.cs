@@ -23,6 +23,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             get { return BrotherOnlineHomePages.Default["LoginRegisterPage"].ToString(); }
         }
 
+        private string accountVerificationMessage = "content_0_twocolumnsformtop_2_VerificationSuccess";
+        private string accountVerificationMessageClass = ".box-out.email-success";
+
         [FindsBy(How = How.Id, Using = "SignInButton")]
         public IWebElement SignInButton;
 
@@ -100,11 +103,11 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         public IWebElement TermsAndConditionsErrorMessage;
         
 
-        public bool IsWarningBarPresent()
+        public bool IsWarningBarPresent(int retry, int timeToWait)
         {
             try
             {
-                if (WaitForElementToExistByCssSelector(".warning-bar", 2, 5))
+                if (WaitForElementToExistByCssSelector(".warning-bar", retry, timeToWait))
                 {
                     var warningBar = Driver.FindElement(By.CssSelector(".warning-bar"));
                     if (warningBar != null)
@@ -119,6 +122,23 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             catch (ElementNotVisibleException elementNotVisible)
             {
                 MsgOutput(string.Format("Warning bar could not be located [{0}]", elementNotVisible.Message));
+                return false;
+            }
+            return false;
+        }
+
+        public bool IsAccountValidationSuccessMessagePresent(int retry, int timeToWait)
+        {
+            try
+            {
+                if (WaitForElementToExistByCssSelector(".box-out.email-success", retry, timeToWait))
+                {
+                    return true;
+                }
+            }
+            catch (ElementNotVisibleException elementNotVisible)
+            {
+                MsgOutput(string.Format("Account Verification Sucess message could not be located [{0}]", elementNotVisible.Message));
                 return false;
             }
             return false;
