@@ -17,6 +17,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             get { return string.Empty; }
         }
 
+        [FindsBy(How = How.CssSelector, Using = "a[href='/mps/local-office/dealers']")]
+        public IWebElement DealerDefaultsElement;        
         [FindsBy(How = How.Id, Using = "content_1_InputDeviceDefaultMargin_Input")]
         public IWebElement HardwareDefaultMargin;
         [FindsBy(How = How.Id, Using = "content_1_InputDeliveryDefaultMargin_Input")]
@@ -71,15 +73,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             IsHardwareDefaultMarginAvailable();
 
+            SpecFlow.SetContext("DefaultMarginBackup", new SelectElement(HardwareDefaultMargin).SelectedOption.Text);
             var newValue = MpsUtil.DefaultMargins();
             SelectFromDropdown(HardwareDefaultMargin, newValue);
             SpecFlow.SetContext("HardwareDefaultMargin", newValue);
+            DealerDefaultsSaveButton.Click();
         }
 
         public void CheckHardwareDefaultMargin()
         {
             var newValue = SpecFlow.GetContext("HardwareDefaultMargin");
             AssertElementValue(HardwareDefaultMargin, newValue, "Hardware Default Margin");
+            SelectFromDropdown(HardwareDefaultMargin, SpecFlow.GetContext("DefaultMarginBackup"));
+            DealerDefaultsSaveButton.Click();
         }
 
         private void IsDeliveryDefaultMarginAvailable()
@@ -94,15 +100,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             IsDeliveryDefaultMarginAvailable();
 
+            SpecFlow.SetContext("DefaultMarginBackup", new SelectElement(HardwareDefaultMargin).SelectedOption.Text);
             var newValue = MpsUtil.DefaultMargins();
             SelectFromDropdown(DeliveryDefaultMargin, newValue);
             SpecFlow.SetContext("DeliveryDefaultMargin", newValue);
+            DealerDefaultsSaveButton.Click();
         }
 
         public void CheckDeliveryDefaultMargin()
         {
             var newValue = SpecFlow.GetContext("DeliveryDefaultMargin");
             AssertElementValue(DeliveryDefaultMargin, newValue, "Delivery Default Margin");
+            SelectFromDropdown(DeliveryDefaultMargin, SpecFlow.GetContext("DefaultMarginBackup"));
+            DealerDefaultsSaveButton.Click();
         }
 
         private void IsAccesoriesDefaultMarginAvailable()
@@ -117,15 +127,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             IsAccesoriesDefaultMarginAvailable();
 
+            SpecFlow.SetContext("DefaultMarginBackup", new SelectElement(HardwareDefaultMargin).SelectedOption.Text);
             var newValue = MpsUtil.DefaultMargins();
             SelectFromDropdown(AccesoriesDefaultMargin, newValue);
             SpecFlow.SetContext("AccesoriesDefaultMargin", newValue);
+            DealerDefaultsSaveButton.Click();
         }
 
         public void CheckAccesoriesDefaultMargin()
         {
             var newValue = SpecFlow.GetContext("AccesoriesDefaultMargin");
             AssertElementValue(AccesoriesDefaultMargin, newValue, "Accesories Default Margin");
+            SelectFromDropdown(AccesoriesDefaultMargin, SpecFlow.GetContext("DefaultMarginBackup"));
+            DealerDefaultsSaveButton.Click();
         }
 
         private void IsInstallationDefaultMarginAvailable()
@@ -140,15 +154,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             IsInstallationDefaultMarginAvailable();
 
+            SpecFlow.SetContext("DefaultMarginBackup", new SelectElement(HardwareDefaultMargin).SelectedOption.Text);
             var newValue = MpsUtil.DefaultMargins();
             SelectFromDropdown(InstallationDefaultMargin, newValue);
             SpecFlow.SetContext("InstallationDefaultMargin", newValue);
+            DealerDefaultsSaveButton.Click();
         }
 
         public void CheckInstallationDefaultMargin()
         {
             var newValue = SpecFlow.GetContext("InstallationDefaultMargin");
             AssertElementValue(InstallationDefaultMargin, newValue, "Installation Default Margin");
+            SelectFromDropdown(InstallationDefaultMargin, SpecFlow.GetContext("DefaultMarginBackup"));
+            DealerDefaultsSaveButton.Click();
         }
 
         private void IsServicePackDefaultMarginAvailable()
@@ -163,15 +181,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             IsServicePackDefaultMarginAvailable();
 
+            SpecFlow.SetContext("DefaultMarginBackup", new SelectElement(HardwareDefaultMargin).SelectedOption.Text);
             var newValue = MpsUtil.DefaultMargins();
             SelectFromDropdown(ServicePackDefaultMargin, newValue);
             SpecFlow.SetContext("ServicePackDefaultMargin", newValue);
+            DealerDefaultsSaveButton.Click();
         }
 
         public void CheckServicePackDefaultMargin()
         {
             var newValue = SpecFlow.GetContext("ServicePackDefaultMargin");
             AssertElementValue(ServicePackDefaultMargin, newValue, "ServicePack Default Margin");
+            SelectFromDropdown(ServicePackDefaultMargin, SpecFlow.GetContext("DefaultMarginBackup"));
+            DealerDefaultsSaveButton.Click();
         }
 
         private void IsMonoClickDefaultMarginAvailable()
@@ -186,15 +208,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             IsMonoClickDefaultMarginAvailable();
 
+            SpecFlow.SetContext("DefaultMarginBackup", new SelectElement(HardwareDefaultMargin).SelectedOption.Text);
             var newValue = MpsUtil.DefaultMargins();
             SelectFromDropdown(MonoClickDefaultMargin, newValue);
             SpecFlow.SetContext("MonoClickDefaultMargin", newValue);
+            DealerDefaultsSaveButton.Click();
         }
 
         public void CheckMonoClickDefaultMargin()
         {
             var newValue = SpecFlow.GetContext("MonoClickDefaultMargin");
             AssertElementValue(MonoClickDefaultMargin, newValue, "MonoClick Default Margin");
+            SelectFromDropdown(MonoClickDefaultMargin, SpecFlow.GetContext("DefaultMarginBackup"));
+            DealerDefaultsSaveButton.Click();
         }
 
         private void IsColourClickDefaultMarginAvailable()
@@ -209,16 +235,21 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             IsColourClickDefaultMarginAvailable();
 
+            SpecFlow.SetContext("DefaultMarginBackup", new SelectElement(HardwareDefaultMargin).SelectedOption.Text);
             var newValue = MpsUtil.DefaultMargins();
             SelectFromDropdown(ColourClickDefaultMargin, newValue);
             SpecFlow.SetContext("ColourClickDefaultMargin", newValue);
+            DealerDefaultsSaveButton.Click();
         }
 
         public void CheckColourClickDefaultMargin()
         {
             var newValue = SpecFlow.GetContext("ColourClickDefaultMargin");
             AssertElementValue(ColourClickDefaultMargin, newValue, "ColourClick Default Margin");
+            SelectFromDropdown(ColourClickDefaultMargin, SpecFlow.GetContext("DefaultMarginBackup"));
+            DealerDefaultsSaveButton.Click();
         }
+
         private void IsAllInclusiveDefaultMarginAvailable()
         {
             if (AllInclusiveMargin == null)
@@ -231,20 +262,33 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             IsAllInclusiveDefaultMarginAvailable();
 
+            SpecFlow.SetContext("DefaultMarginBackup", new SelectElement(HardwareDefaultMargin).SelectedOption.Text);
             var newValue = MpsUtil.DefaultMargins();
             SelectFromDropdown(AllInclusiveMargin, newValue);
             SpecFlow.SetContext("AllInclusiveMargin", newValue);
+            DealerDefaultsSaveButton.Click();
         }
 
         public void CheckAllInclusiveDefaultMargin()
         {
             var newValue = SpecFlow.GetContext("AllInclusiveMargin");
             AssertElementValue(AllInclusiveMargin, newValue, "AllInclusive Default Margin");
+            SelectFromDropdown(AllInclusiveMargin, SpecFlow.GetContext("DefaultMarginBackup"));
+            DealerDefaultsSaveButton.Click();
+        }
+
+        public void IsDealerDefaultsLinkAvailable()
+        {
+            if (DealerDefaultsElement == null)
+                throw new Exception("Unable to locate dealer defaults link on dashboard page");
+
+            AssertElementPresent(DealerDefaultsElement, "Create Dealer Defaults Link");
         }
 
         public void ReloadPage()
         {
-            PageFactory.InitElements(Driver, this);
+            IsDealerDefaultsLinkAvailable();
+            DealerDefaultsElement.Click();
         }
 
     }
