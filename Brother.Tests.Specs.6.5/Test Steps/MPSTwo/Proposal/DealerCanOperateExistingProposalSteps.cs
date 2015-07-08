@@ -1,5 +1,6 @@
 ﻿using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.MPSTwo;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
@@ -50,14 +51,39 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
         private void EditTermAndTypeTab(string usage, string contract, string leasing, string billing)
         {
             var page = CurrentPage.As<DealerProposalsCreateTermAndTypePage>();
-            
+
             page.IsTermAndTypeTextDisplayed();
             page.SelectUsageType(usage);
             page.SelectContractLength(contract);
-            page.SelectLeaseBillingCycle(leasing);
+            //page.SelectLeaseBillingCycle(leasing);
             page.SelectPayPerClickBillingCycle(billing);
 
             NextPage = page.ClickNextButton();
+        }
+
+        private void EditProducts()
+        {
+            var page = CurrentPage.As<DealerProposalsCreateProductsPage>();
+            NextPage = page.EditAndUpdateExistingProducts(CurrentDriver);
+        }
+
+        private void EditProducts(string action)
+        {
+            var page = CurrentPage.As<DealerProposalsCreateProductsPage>();
+
+            switch (action)
+            {
+                case "Add":
+                    page.AddNewProduct(CurrentDriver);
+                    NextPage = page.GoNextPage(CurrentDriver);
+
+                    break;
+                case "Remove":
+                    page.AddNewProduct(CurrentDriver);
+                    page.RemoveOldProduct(CurrentDriver);
+                    NextPage = page.GoNextPage(CurrentDriver);
+                    break;
+            }
         }
 
         private void EditClickPrice(string clickprice, string colour, string row)
@@ -65,6 +91,33 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
             var page = CurrentPage.As<DealerProposalsCreateClickPricePage>();
             page.CalculateClickPrice(clickprice, colour, "0");
             NextPage = page.ProceedToProposalSummaryFromClickPrice();
+        }
+
+        private void GoThrowProductsTab()
+        {
+            var page = CurrentPage.As<DealerProposalsCreateProductsPage>();
+            NextPage = page.ForceGoThrowThisTab(CurrentDriver);
+        }
+
+        private void GoThrowClickPriceTab(bool fillVolume = false)
+        {
+            var page = CurrentPage.As<DealerProposalsCreateClickPricePage>();
+            NextPage = page.ForceGoThrowThisTab( CurrentDriver, fillVolume);
+        }
+
+
+        [When(@"I edit Products Tab and ""(.*)"" in Proposal")]
+        public void WhenIEditProductsTabAndInProposal(string action)
+        {
+            EditProducts(action);
+            GoThrowClickPriceTab(false);
+        }
+
+        [Then(@"I can confirm Products and ""(.*)"" on Summary Tab in Proposal")]
+        public void ThenICanConfirmProductsAndOnSummaryTabInProposal(string action)
+        {
+            var page = CurrentPage.As<DealerProposalsCreateSummaryPage>();
+            page.VerifyProductsCount(CurrentDriver, action);
         }
 
         [When(@"I edit ""(.*)"" Tab in Proposal")]
@@ -82,10 +135,13 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
 
                 case "TermAndType":
                     EditTermAndTypeTab("Pay As You Go", "5 years", "Quarterly", "Quarterly");
+                    GoThrowProductsTab();
+                    GoThrowClickPriceTab();
                     break;
 
-                case "Procucts":
-                    //EditProducts();
+                case "Products":
+                    EditProducts();
+                    GoThrowClickPriceTab();
                     break;
 
                 case "ClickPrice":
@@ -114,7 +170,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
                     NextPage = DealerProposalsCreateNavTabs.NavigateToTermAndTypeTab(CurrentDriver);
                     break;
 
-                case "Procucts":
+                case "Products":
                     NextPage = DealerProposalsCreateNavTabs.NavigateToProductsTab(CurrentDriver);
                     break;
 
@@ -146,7 +202,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
                     page.VerifyTermAndTypeTabInput();
                     break;
 
-                case "Procucts":
+                case "Products":
                     page.VerifyProductsTabInput(CurrentDriver);
                     break;
 
