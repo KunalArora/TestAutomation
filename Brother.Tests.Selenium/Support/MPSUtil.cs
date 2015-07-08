@@ -659,5 +659,21 @@ namespace Brother.Tests.Selenium.Lib.Support
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
             wait.Until(ExpectedConditionsEx.UrlNotChangeFrom(previousUrl));
         }
+
+        public static string DefaultMargins()
+        {
+            String[] margins =
+            {
+                "0",
+                "5",
+                "10",
+                "15",
+                "20",
+                "25"
+            };
+            var margin = margins[new Random().Next(6)];
+            return margin;
+        }
+
     }
 }

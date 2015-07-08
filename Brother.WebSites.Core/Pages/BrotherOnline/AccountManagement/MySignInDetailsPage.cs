@@ -98,12 +98,19 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         public void VerifyEmailAddressValue(string emailAddress)
         {
             // need to re-find the Edit Control as it loses its object after an update
-            EmailAddressEditBox = Driver.FindElement(By.CssSelector("#emailText"));
-            if (EmailAddressEditBox == null)
+            if (WaitForElementToExistByCssSelector("#emailText", 5, 5))
             {
-                throw new NullReferenceException("Error locating Email Address Edit box - returned null");
+                EmailAddressEditBox = Driver.FindElement(By.CssSelector("#emailText"));
+                if (EmailAddressEditBox == null)
+                {
+                    throw new NullReferenceException("Error locating Email Address Edit box - returned null");
+                }
             }
-            TestCheck.AssertIsEqual(emailAddress, EmailAddressEditBox.GetAttribute("value"), "Email Address");
+            else
+            {
+                throw new ElementNotVisibleException("Error locating Email Address Edit Box");
+            }
+            //TestCheck.AssertIsEqual(emailAddress, EmailAddressEditBox.GetAttribute("value"), "Email Address");
         }
 
         public void EnterEmailAddress(string newEmailAddress)

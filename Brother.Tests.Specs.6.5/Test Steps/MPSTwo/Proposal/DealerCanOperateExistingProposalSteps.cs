@@ -1,5 +1,6 @@
 ﻿using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.MPSTwo;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
@@ -50,7 +51,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
         private void EditTermAndTypeTab(string usage, string contract, string leasing, string billing)
         {
             var page = CurrentPage.As<DealerProposalsCreateTermAndTypePage>();
-            
+
             page.IsTermAndTypeTextDisplayed();
             page.SelectUsageType(usage);
             page.SelectContractLength(contract);
@@ -60,6 +61,44 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
             NextPage = page.ClickNextButton();
         }
 
+        private void EditTermAndTypeTabForPurchaseOffer(string usage, string contract, string billing)
+        {
+            var page = CurrentPage.As<DealerProposalsCreateTermAndTypePage>();
+
+            page.IsTermAndTypeTextDisplayed();
+            page.SelectUsageType(usage);
+            page.SelectContractLength(contract);
+            //page.SelectLeaseBillingCycle(leasing);
+            page.SelectPayPerClickBillingCycle(billing);
+
+            NextPage = page.ClickNextButton();
+        }
+
+        private void EditProducts()
+        {
+            var page = CurrentPage.As<DealerProposalsCreateProductsPage>();
+            NextPage = page.EditAndUpdateExistingProducts(CurrentDriver);
+        }
+
+        private void EditProducts(string action)
+        {
+            var page = CurrentPage.As<DealerProposalsCreateProductsPage>();
+
+            switch (action)
+            {
+                case "Add":
+                    page.AddNewProduct(CurrentDriver);
+                    NextPage = page.GoNextPage(CurrentDriver);
+
+                    break;
+                case "Remove":
+                    page.AddNewProduct(CurrentDriver);
+                    page.RemoveOldProduct(CurrentDriver);
+                    NextPage = page.GoNextPage(CurrentDriver);
+                    break;
+            }
+        }
+
         private void EditClickPrice(string clickprice, string colour, string row)
         {
             var page = CurrentPage.As<DealerProposalsCreateClickPricePage>();
@@ -67,8 +106,35 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
             NextPage = page.ProceedToProposalSummaryFromClickPrice();
         }
 
-        [When(@"I edit ""(.*)"" Tab in Proposal")]
-        public void WhenIEditTabInProposal(string tabname)
+        private void GoThrowProductsTab()
+        {
+            var page = CurrentPage.As<DealerProposalsCreateProductsPage>();
+            NextPage = page.ForceGoThrowThisTab(CurrentDriver);
+        }
+
+        private void GoThrowClickPriceTab(bool fillVolume = false)
+        {
+            var page = CurrentPage.As<DealerProposalsCreateClickPricePage>();
+            NextPage = page.ForceGoThrowThisTab( CurrentDriver, fillVolume);
+        }
+
+
+        [When(@"I edit Products Tab and ""(.*)"" in Proposal")]
+        public void WhenIEditProductsTabAndInProposal(string action)
+        {
+            EditProducts(action);
+            GoThrowClickPriceTab(false);
+        }
+
+        [Then(@"I can confirm Products and ""(.*)"" on Summary Tab in Proposal")]
+        public void ThenICanConfirmProductsAndOnSummaryTabInProposal(string action)
+        {
+            var page = CurrentPage.As<DealerProposalsCreateSummaryPage>();
+            page.VerifyProductsCount(CurrentDriver, action);
+        }
+
+        [When(@"I edit ""(.*)"" Tab in Proposal of ""(.*)""")]
+        public void WhenIEditTabInProposalOf(string tabname, string contractType)
         {
             switch (tabname)
             {
@@ -81,15 +147,38 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
                     break;
 
                 case "TermAndType":
-                    EditTermAndTypeTab("Pay As You Go", "5 years", "Quarterly", "Quarterly");
+
+                    if (contractType == "Lease & Click with Service")
+                    {
+                        EditTermAndTypeTab("Pay As You Go", "5 years", "Quarterly", "Quarterly");
+                        GoThrowProductsTab();
+                        GoThrowClickPriceTab();
+                    }
+                    else if (contractType == "Purchase & Click with Service")
+                    {
+                        EditTermAndTypeTabForPurchaseOffer("Pay As You Go", "5 years", "Quarterly");
+                        GoThrowProductsTab();
+                        GoThrowClickPriceTab();
+                    }
                     break;
 
-                case "Procucts":
-                    //EditProducts();
+                case "Products":
+                    EditProducts();
+                    GoThrowClickPriceTab();
                     break;
 
                 case "ClickPrice":
+                    //TODO: UI could be changed by contractType
+                    //if (contractType == "Lease & Click with Service")
+                    //{
+                    //    EditClickPrice("1000", "1000", "0");
+                    //}
+                    //else if (contractType == "Purchase & Click with Service")
+                    //{
+                    //}
+
                     EditClickPrice("1000", "1000", "0");
+                    
                     break;
 
                 case "Summary":
@@ -114,7 +203,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
                     NextPage = DealerProposalsCreateNavTabs.NavigateToTermAndTypeTab(CurrentDriver);
                     break;
 
-                case "Procucts":
+                case "Products":
                     NextPage = DealerProposalsCreateNavTabs.NavigateToProductsTab(CurrentDriver);
                     break;
 
@@ -128,8 +217,8 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
             }
         }
 
-        [Then(@"I can confirm ""(.*)"" on Summary Tab in Proposal")]
-        public void ThenICanConfirmOnSummaryTabInProposal(string tabname)
+        [Then(@"I can confirm ""(.*)"" on Summary Tab in Proposal of ""(.*)""")]
+        public void ThenICanConfirmOnSummaryTabInProposalOf(string tabname, string contractType)
         {
             var page = CurrentPage.As<DealerProposalsCreateSummaryPage>();
             switch (tabname)
@@ -143,10 +232,10 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
                     break;
 
                 case "TermAndType":
-                    page.VerifyTermAndTypeTabInput();
+                    page.VerifyTermAndTypeTabInput(contractType);
                     break;
 
-                case "Procucts":
+                case "Products":
                     page.VerifyProductsTabInput(CurrentDriver);
                     break;
 
@@ -158,7 +247,6 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
                     break;
             }
         }
-
 
         [When(@"I click the delete button against ""(.*)"" on Exisiting Proposal table")]
         public void WhenIClickTheDeleteButtonAgainstAnItemOnExisitingProposalTable(string targertitem)

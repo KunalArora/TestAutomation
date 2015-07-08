@@ -215,6 +215,37 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ColourClickPriceValue();
         }
 
+        public DealerProposalsCreateSummaryPage ForceGoThrowThisTab(IWebDriver driver, bool fillVolume = false)
+        {
+            if (fillVolume)
+            {
+                FillVolume(driver, ".mps-line1", "Mono");
+                FillVolume(driver, ".mps-line2", "Colour");
+            }
+
+            if (CalculateClickPriceElement != null && CalculateClickPriceElement.Displayed)
+                CalculateClickPrice();
+
+            return ProceedToProposalSummaryFromClickPrice();
+        }
+
+        private void FillVolume(IWebDriver driver, string lineselector, string type)
+        {
+            var lines = GetElementsByCssSelector(lineselector);
+            var inputselectorformat = "#content_1_LineItems_Input{0}Volume_{1}";
+
+            for (int i = 0; i < lines.Count(); i++)
+            {
+                var inputselector = string.Format(inputselectorformat, type, i);
+                var input = GetElementByCssSelector(lines[i], inputselector, 5);
+                if(input == null) continue;
+
+                if (IsElementPresent(input))
+                    SelectFromDropdown(input, "1000");
+                WebDriver.Wait(DurationType.Millisecond, 100);
+            }
+        }
+
         public DealerProposalsCreateSummaryPage MoveToProposalSummaryScreen()
         {
             ScrollTo(ProposalSummaryScreenElement);
