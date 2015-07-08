@@ -360,7 +360,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         public void ThenIShouldBeAbleToLogIntoBrotherOnlineUsingMyAccountDetails(string country)
         {
             // Check for validation warning or confirmation message
-            TestCheck.AssertIsEqual(true, CurrentPage.As<RegistrationPage>().IsAccountValidationSuccessMessagePresent(2, 5),
+            TestCheck.AssertIsEqual(true, CurrentPage.As<RegistrationPage>().IsAccountValidationSuccessMessagePresent(5, 5),
                 "Account validation success message");
             TestCheck.AssertIsNotEqual(true, CurrentPage.As<RegistrationPage>().IsWarningBarPresent(0, 5), "Warning Bar - account validation");
 
