@@ -128,7 +128,8 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             GivenIamOnMpsNewProposalPage();
             WhenIFillProposalDescriptionForContractType("Lease & Click with Service");
             WhenISelectButtonForCustomerDataCapture("Create new customer");
-            WhenIEnterUsageTypeOfAndContractTermsLeasingAndBillingOnTermAndTypeDetails
+            DealerProposalsCreateTermAndTypeStep stepInstance = new DealerProposalsCreateTermAndTypeStep();
+            stepInstance.WhenIEnterUsageTypeOfAndContractTermsLeasingAndBillingOnTermAndTypeDetails
                 (UsageType, "3 years", "Quarterly", "Quarterly");
 
             DealerProposalsCreateProductsStep instance = new DealerProposalsCreateProductsStep();
@@ -150,9 +151,10 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             GivenIamOnMpsNewProposalPage();
             WhenIFillProposalDescriptionForContractType("Purchase & Click with Service");
             WhenISelectButtonForCustomerDataCapture("Create new customer");
-            WhenIEnterUsageTypeContractLengthAndBillingOnTermAndTypeDetails
+            DealerProposalsCreateTermAndTypeStep stepInstance = new DealerProposalsCreateTermAndTypeStep();
+            stepInstance.WhenIEnterUsageTypeContractLengthAndBillingOnTermAndTypeDetails
                 (UsageType, "3 years", "Quarterly");
-            WhenIPriceHardwareRadioButton("Tick");
+            stepInstance.WhenIPriceHardwareRadioButton("Tick");
 
             DealerProposalsCreateProductsStep instance = new DealerProposalsCreateProductsStep();
             instance.WhenIDisplayDeviceScreen("MFCL8650CDW");
@@ -175,15 +177,6 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<DealerProposalsCreateDescriptionPage>().EnterProposalName("");
             CurrentPage.As<DealerProposalsCreateDescriptionPage>().EnterLeadCodeRef("");
             NextPage = CurrentPage.As<DealerProposalsCreateDescriptionPage>().ClickNextButton();
-        }
-
-        [When(@"I Enter ""(.*)"" contract terms and ""(.*)"" billing on Term and Type details")]
-        public void WhenIEnterContractTermsAndBillingOnTermAndTypeDetails(string contract, string billing)
-        {
-            CurrentPage.As<DealerProposalsCreateTermAndTypePage>().IsTermAndTypeTextDisplayed();
-
-            CurrentPage.As<DealerProposalsCreateTermAndTypePage>().SelectContractLength(contract);
-            CurrentPage.As<DealerProposalsCreateTermAndTypePage>().SelectPayPerClickBillingCycle(billing);
         }
 
         [When(@"I begin the proposal creation process for Purchase \+ Click Service")]
@@ -299,88 +292,12 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().CheckPrivateLiableBox(liable);
         }
 
-        [Given(@"I Enter ""(.*)"" usage type ""(.*)"" contract length and ""(.*)"" billing on Term and Type details")]
-        [When(@"I Enter ""(.*)"" usage type ""(.*)"" contract length and ""(.*)"" billing on Term and Type details")]
-        public void WhenIEnterUsageTypeContractLengthAndBillingOnTermAndTypeDetails(string usage, string contract,
-            string billing)
-        {
-            CurrentPage.As<DealerProposalsCreateTermAndTypePage>().IsTermAndTypeTextDisplayed();
-            CurrentPage.As<DealerProposalsCreateTermAndTypePage>().SelectUsageType(usage);
-            CurrentPage.As<DealerProposalsCreateTermAndTypePage>().SelectContractLength(contract);
-            CurrentPage.As<DealerProposalsCreateTermAndTypePage>().SelectPayPerClickBillingCycle(billing);
-        }
-
         [When(@"I choose to pay Service Packs ""(.*)""")]
         public void WhenIChooseToPayServicePacks(string pay)
         {
             CurrentPage.As<DealerProposalsCreateClickPricePage>().PayServicePackMethod(pay);
         }
         
-        private void WhenIEnterContractTermsLeasingAndBillingOnTermAndTypeDetails(string contract, string leasing,
-            string billing)
-        {
-            CurrentPage.As<DealerProposalsCreateTermAndTypePage>().IsTermAndTypeTextDisplayed();
-
-            CurrentPage.As<DealerProposalsCreateTermAndTypePage>().SelectContractLength(contract);
-            CurrentPage.As<DealerProposalsCreateTermAndTypePage>().SelectLeaseBillingCycle(leasing);
-            CurrentPage.As<DealerProposalsCreateTermAndTypePage>().SelectPayPerClickBillingCycle(billing);
-        }
-
-        [Given(@"I Enter ""(.*)"" contract terms ""(.*)"" leasing and ""(.*)"" billing on Term and Type details")]
-        [When(@"I Enter ""(.*)"" contract terms ""(.*)"" leasing and ""(.*)"" billing on Term and Type details")]
-        public void WhenIEnterContractTermsLeasingAndBillingOnTermAndTypeDetailsAndClick(string contract, string leasing,
-            string billing)
-        {
-            WhenIEnterContractTermsLeasingAndBillingOnTermAndTypeDetails(contract, leasing, billing);
-
-            NextPage = CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().ClickNextButton();
-        }
-
-        
-
-        [When(@"I Enter ""(.*)"" contract terms ""(.*)"" leasing and ""(.*)"" billing on Term and Type details\(only input\)")]
-        public void WhenIEnterContractTermsLeasingAndBillingOnTermAndTypeDetailsOnlyInput(string contract, string leasing,
-            string billing)
-        {
-            WhenIEnterContractTermsLeasingAndBillingOnTermAndTypeDetails(contract, leasing, billing);
-        }
-
-
-        [When(@"I Enter usage type of ""(.*)"" and ""(.*)"" contract terms ""(.*)"" leasing and ""(.*)"" billing on Term and Type details")]
-        public void WhenIEnterUsageTypeOfAndContractTermsLeasingAndBillingOnTermAndTypeDetails(string usage, string contract, string leasing, string billing)
-        {
-            CurrentPage.As<DealerProposalsCreateTermAndTypePage>().IsTermAndTypeTextDisplayed();
-            CurrentPage.As<DealerProposalsCreateTermAndTypePage>().SelectUsageType(usage);
-            CurrentPage.As<DealerProposalsCreateTermAndTypePage>().SelectContractLength(contract);
-            CurrentPage.As<DealerProposalsCreateTermAndTypePage>().SelectLeaseBillingCycle(leasing);
-            CurrentPage.As<DealerProposalsCreateTermAndTypePage>().SelectPayPerClickBillingCycle(billing);
-
-            NextPage = CurrentPage.As<DealerProposalsCreateTermAndTypePage>().ClickNextButton();
-        }
-
-        [When(@"I tick Price Hardware radio button")]
-        public void WhenITickPriceHardwareRadioButton()
-        {
-            CurrentPage.As<DealerProposalsCreateTermAndTypePage>().TickPriceHardware();
-
-            NextPage = CurrentPage.As<DealerProposalsCreateTermAndTypePage>().ClickNextButton();
-        }
-
-        [When(@"I untick Price Hardware radio button")]
-        public void WhenIUntickPriceHardwareRadioButton()
-        {
-            CurrentPage.As<DealerProposalsCreateTermAndTypePage>().UntickPriceHardware();
-
-            NextPage = CurrentPage.As<DealerProposalsCreateTermAndTypePage>().ClickNextButton();
-        }
-        
-        [Then(@"I should not see Price Hardware radio button on Term and Type screen")]
-        public void ThenIShouldNotSeePriceHardwareRadioButtonOnTermAndTypeScreen()
-        {
-            CurrentPage.As<DealerProposalsCreateTermAndTypePage>().IsNotPriceHardwareElement();
-            NextPage = CurrentPage.As<DealerProposalsCreateTermAndTypePage>().ClickNextButton();
-        }
-
         [When(@"I enter ""(.*)"" into Mono Coverage field")]
         public void WhenIEnterIntoMonoCoverageField(string coverage)
         {
@@ -446,14 +363,6 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         public void ThenTheCoverageErrorIsDisplayed()
         {
             CurrentPage.As<DealerProposalsCreateClickPricePage>().IsCoverageErrorDisplayed();
-        }
-
-
-        [When(@"I ""(.*)"" Price Hardware radio button")]
-        public void WhenIPriceHardwareRadioButton(string option)
-        {
-            CurrentPage.As<DealerProposalsCreateTermAndTypePage>().TickPriceHardware(option);
-            NextPage = CurrentPage.As<DealerProposalsCreateTermAndTypePage>().ClickNextButton();
         }
 
         [When(@"Service Pack payment method is displayed")]

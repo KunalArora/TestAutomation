@@ -49,32 +49,6 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
             NextPage = page.ClickNextButton();
         }
 
-        private void EditTermAndTypeTab(string usage, string contract, string leasing, string billing)
-        {
-            var page = CurrentPage.As<DealerProposalsCreateTermAndTypePage>();
-
-            page.IsTermAndTypeTextDisplayed();
-            page.SelectUsageType(usage);
-            page.SelectContractLength(contract);
-            page.SelectLeaseBillingCycle(leasing);
-            page.SelectPayPerClickBillingCycle(billing);
-
-            NextPage = page.ClickNextButton();
-        }
-
-        private void EditTermAndTypeTabForPurchaseOffer(string usage, string contract, string billing)
-        {
-            var page = CurrentPage.As<DealerProposalsCreateTermAndTypePage>();
-
-            page.IsTermAndTypeTextDisplayed();
-            page.SelectUsageType(usage);
-            page.SelectContractLength(contract);
-            //page.SelectLeaseBillingCycle(leasing);
-            page.SelectPayPerClickBillingCycle(billing);
-
-            NextPage = page.ClickNextButton();
-        }
-
         private void EditClickPrice(string clickprice, string colour, string row)
         {
             var page = CurrentPage.As<DealerProposalsCreateClickPricePage>();
@@ -98,7 +72,8 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
         [When(@"I edit ""(.*)"" Tab in Proposal of ""(.*)""")]
         public void WhenIEditTabInProposalOf(string tabname, string contractType)
         {
-            DealerProposalsCreateProductsStep stepInstance = new DealerProposalsCreateProductsStep();
+            DealerProposalsCreateProductsStep productsStepInstance = new DealerProposalsCreateProductsStep();
+            DealerProposalsCreateTermAndTypeStep termAndTypeStepInstance = new DealerProposalsCreateTermAndTypeStep();
             switch (tabname)
             {
                 case "Description":
@@ -112,21 +87,21 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
                 case "TermAndType":
                     if (contractType == "Lease & Click with Service")
                     {
-                        EditTermAndTypeTab("Pay As You Go", "5 years", "Quarterly", "Quarterly");
+                        termAndTypeStepInstance.EditTermAndTypeTab("Pay As You Go", "5 years", "Quarterly", "Quarterly");
                         GoThrowProductsTab();
-                        stepInstance.GoThrowClickPriceTab();
+                        productsStepInstance.GoThrowClickPriceTab();
                     }
                     else if (contractType == "Purchase & Click with Service")
                     {
-                        EditTermAndTypeTabForPurchaseOffer("Pay As You Go", "5 years", "Quarterly");
+                        termAndTypeStepInstance.EditTermAndTypeTabForPurchaseOffer("Pay As You Go", "5 years", "Quarterly");
                         GoThrowProductsTab();
-                        stepInstance.GoThrowClickPriceTab();
+                        productsStepInstance.GoThrowClickPriceTab();
                     }
                     break;
 
                 case "Products":
-                    stepInstance.EditProducts();
-                    stepInstance.GoThrowClickPriceTab();
+                    productsStepInstance.EditProducts();
+                    productsStepInstance.GoThrowClickPriceTab();
                     break;
 
                 case "ClickPrice":
