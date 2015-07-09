@@ -39,7 +39,7 @@ Scenario Outline: Summary Page Validation For Minimum Volume Leasing and Click p
 
 	Scenarios: 
 	| Role             | Country        | ContractType               | UsageType      | Contract | Leasing   | Billing   | Printer     | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Minimum Volume | 3 years  | Quarterly | Quarterly | HLL8350CDW | 750         | 750          |
+	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Minimum Volume | 3 years  | Quarterly | Quarterly | HL-L8350CDW | 750         | 750          |
 
 
 Scenario Outline: Summary Page Validation For Pay As You Go Leasing and Click proposal
@@ -72,7 +72,7 @@ Scenario Outline: Summary Page Validation For Pay As You Go Leasing and Click pr
 
 	Scenarios: 
 	| Role             | Country        | ContractType               | CreateOption        | UsageType     | Contract | Leasing   | Billing   | Printer    | DeviceScreen | ClickVolume |
-	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Create new customer | Pay As You Go | 4 years  | Quarterly | Quarterly | DCP8110DN | Full         | 750        |
+	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Create new customer | Pay As You Go | 4 years  | Quarterly | Quarterly | DCP-8110DN | Full         | 750        |
 
 
 
@@ -110,7 +110,7 @@ Scenario Outline: Summary Page Validation For Minimum Volume Purchase and Click 
 
 	Scenarios: 
 	| Role             | Country        | ContractType                  | UsageType      | Contract | Leasing                  | Billing                  | PriceHardware | Printer      | DeviceScreen | PaymentMethod           | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Minimum Volume | 3 years  | Quarterly | Quarterly | Tick          | MFCL8650CDW | Full         | Included in Click Price | 800        | 800         |
+	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Minimum Volume | 3 years  | Quarterly | Quarterly | Tick          | MFC-L8650CDW | Full         | Included in Click Price | 800        | 800         |
 
 
 Scenario Outline: Summary Page Validation For Minimum Volume Purchase and Click proposal Upfront Payment
@@ -147,7 +147,7 @@ Scenario Outline: Summary Page Validation For Minimum Volume Purchase and Click 
 
 	Scenarios: 
 	| Role             | Country        | ContractType                  | UsageType      | Contract | Leasing                  | Billing                  | PriceHardware | Printer      | DeviceScreen | PaymentMethod           | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Minimum Volume | 3 years  | Quarterly | Quarterly | Tick          | MFCL8650CDW | Full         | Pay Upfront | 800        | 800         |
+	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Minimum Volume | 3 years  | Quarterly | Quarterly | Tick          | MFC-L8650CDW | Full         | Pay Upfront | 800        | 800         |
 
 Scenario Outline: Summary Page Validation For Pay As you Go Purchase and Click proposal
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
@@ -179,4 +179,4 @@ Scenario Outline: Summary Page Validation For Pay As you Go Purchase and Click p
 
 	Scenarios: 
 	| Role             | Country        | ContractType                  | CreateOption        | UsageType     | Contract | Leasing   | Billing   | PriceHardware | Printer    | DeviceScreen | ClickVolume |
-	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Create new customer | Pay As You Go | 4 years  | Quarterly | Quarterly | Tick        | MFC8510DN | Full     | 800        |
+	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Create new customer | Pay As You Go | 4 years  | Quarterly | Quarterly | Tick        | MFC-8510DN | Full     | 800        |

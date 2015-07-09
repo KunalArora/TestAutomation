@@ -130,7 +130,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             WhenISelectButtonForCustomerDataCapture("Create new customer");
             WhenIEnterUsageTypeOfAndContractTermsLeasingAndBillingOnTermAndTypeDetails
                 (UsageType, "3 years", "Quarterly", "Quarterly");
-            WhenIDisplayDeviceScreen("HLL8350CDW");
+            WhenIDisplayDeviceScreen("HL-L8350CDW");
             WhenIAcceptTheDefaultValuesOfTheDevice();
             WhenIEnterClickPriceVolumeOf("2000", "2000");
         }
@@ -151,7 +151,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             WhenIEnterUsageTypeContractLengthAndBillingOnTermAndTypeDetails
                 (UsageType, "3 years", "Quarterly");
             WhenIPriceHardwareRadioButton("Tick");
-            WhenIDisplayDeviceScreen("MFCL8650CDW");
+            WhenIDisplayDeviceScreen("MFC-L8650CDW");
             WhenIAcceptTheDefaultValuesOfTheDevice();
             WhenIEnterClickPriceVolumeOf("800", "800");  
         }
