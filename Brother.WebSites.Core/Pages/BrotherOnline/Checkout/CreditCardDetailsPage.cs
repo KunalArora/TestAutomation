@@ -185,10 +185,19 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
 
         public void SwitchToCreditCardDetailsFrameAddCard()
         {
-            var element = Driver.FindElement(By.CssSelector("#content_2_innercontent_1_PaymentControl_PaymentGatewayIFrame"));
-            if (element == null)
+            if (WaitForElementToExistByCssSelector("#content_2_innercontent_1_PaymentControl_PaymentGatewayIFrame", 2, 10))
             {
-                TestCheck.AssertFailTest(string.Format("Unable to Switch to the Credit Card details frame. Could not find CssSelector"));
+                var element = Driver.FindElement(By.CssSelector("#content_2_innercontent_1_PaymentControl_PaymentGatewayIFrame"));
+                if (element == null)
+                {
+                    TestCheck.AssertFailTest(
+                        string.Format("Unable to Switch to the Credit Card details frame. Could not find CssSelector"));
+                }
+            }
+            else
+            {
+                TestCheck.AssertFailTest(
+                    string.Format("Unable to Switch to the Credit Card details frame. Could not find CssSelector"));
             }
             MsgOutput("Switching to Credit Card details frame (Add New Card)");
             Driver.SwitchTo().Frame(CreditCardDetailsFramePageAddNewCardPage);
@@ -198,17 +207,23 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
         {
             try
             {
-                var element = Driver.FindElement(By.CssSelector("#content_0_checkoutcontent_0_PaymentGatewayIFrame"));
-                if (element == null)
+                if (WaitForElementToExistByCssSelector("#content_0_checkoutcontent_0_PaymentGatewayIFrame", 2, 10))
                 {
-                    TestCheck.AssertFailTest(
-                        "Unable to Switch to the Credit Card details frame. Could not find CssSelector");
+                    var element = Driver.FindElement(By.CssSelector("#content_0_checkoutcontent_0_PaymentGatewayIFrame"));
+                    if (element == null)
+                    {
+                        TestCheck.AssertFailTest(
+                            "Unable to Switch to the Credit Card details frame. Could not find CssSelector");
+                    }
+                }
+                else
+                {
+                    TestCheck.AssertFailTest("Unable to find Credit Card Payment Frame - Digital River Page - due to timeout");
                 }
             }
             catch (WebDriverException timeOutException)
             {
-                MsgOutput("Unable to find Credit Card Payment Frame - Digital River Page - due to timeout");    
-                TestCheck.AssertFailTest("Unable to find Credit Card Payment Page");
+                TestCheck.AssertFailTest("Unable to find Credit Card Payment Frame - Digital River Page - due to timeout");
             }
             MsgOutput("Switching to Credit Card details frame (Order Summary)");
             Driver.SwitchTo().Frame(CreditCardDetailsFramePageOrderSummaryPage);
