@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 namespace Brother.Tests.Specs.MPSTwo.Proposal
 {
     [Binding]
-    public class ProductsPageStep : BaseSteps
+    public class DealerProposalsCreateProductsStep : BaseSteps
     {
         [Then(@"all the margin set above should be displayed in the right fields")]
         public void ThenPartOfMarginSetAboveShouldBeDisplayedInTheRightFields()

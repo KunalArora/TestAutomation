@@ -131,7 +131,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             WhenIEnterUsageTypeOfAndContractTermsLeasingAndBillingOnTermAndTypeDetails
                 (UsageType, "3 years", "Quarterly", "Quarterly");
 
-            ProductsPageStep instance = new ProductsPageStep();
+            DealerProposalsCreateProductsStep instance = new DealerProposalsCreateProductsStep();
             instance.WhenIDisplayDeviceScreen("HLL8350CDW");
             instance.WhenIAcceptTheDefaultValuesOfTheDevice();
             WhenIEnterClickPriceVolumeOf("2000", "2000");
@@ -154,7 +154,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
                 (UsageType, "3 years", "Quarterly");
             WhenIPriceHardwareRadioButton("Tick");
 
-            ProductsPageStep instance = new ProductsPageStep();
+            DealerProposalsCreateProductsStep instance = new DealerProposalsCreateProductsStep();
             instance.WhenIDisplayDeviceScreen("MFCL8650CDW");
             instance.WhenIAcceptTheDefaultValuesOfTheDevice();
             WhenIEnterClickPriceVolumeOf("800", "800");  

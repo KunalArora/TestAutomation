@@ -98,7 +98,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
         [When(@"I edit ""(.*)"" Tab in Proposal of ""(.*)""")]
         public void WhenIEditTabInProposalOf(string tabname, string contractType)
         {
-            ProductsPageStep stepInstance = new ProductsPageStep();
+            DealerProposalsCreateProductsStep stepInstance = new DealerProposalsCreateProductsStep();
             switch (tabname)
             {
                 case "Description":
@@ -114,13 +114,13 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
                     {
                         EditTermAndTypeTab("Pay As You Go", "5 years", "Quarterly", "Quarterly");
                         GoThrowProductsTab();
-                        GoThrowClickPriceTab();
+                        stepInstance.GoThrowClickPriceTab();
                     }
                     else if (contractType == "Purchase & Click with Service")
                     {
                         EditTermAndTypeTabForPurchaseOffer("Pay As You Go", "5 years", "Quarterly");
                         GoThrowProductsTab();
-                        GoThrowClickPriceTab();
+                        stepInstance.GoThrowClickPriceTab();
                     }
                     break;
 
