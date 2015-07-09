@@ -49,13 +49,6 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
             NextPage = page.ClickNextButton();
         }
 
-        private void EditClickPrice(string clickprice, string colour, string row)
-        {
-            var page = CurrentPage.As<DealerProposalsCreateClickPricePage>();
-            page.CalculateClickPrice(clickprice, colour, "0");
-            NextPage = page.ProceedToProposalSummaryFromClickPrice();
-        }
-
         private void GoThrowProductsTab()
         {
             var page = CurrentPage.As<DealerProposalsCreateProductsPage>();
@@ -74,6 +67,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
         {
             DealerProposalsCreateProductsStep productsStepInstance = new DealerProposalsCreateProductsStep();
             DealerProposalsCreateTermAndTypeStep termAndTypeStepInstance = new DealerProposalsCreateTermAndTypeStep();
+            DealerProposalsCreateClickPriceStep clickPriceStepInstance = new DealerProposalsCreateClickPriceStep();
             switch (tabname)
             {
                 case "Description":
@@ -114,7 +108,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
                     //{
                     //}
 
-                    EditClickPrice("1000", "1000", "0");
+                    clickPriceStepInstance.EditClickPrice("1000", "1000", "0");
                     
                     break;
 

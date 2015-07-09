@@ -135,7 +135,9 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             DealerProposalsCreateProductsStep instance = new DealerProposalsCreateProductsStep();
             instance.WhenIDisplayDeviceScreen("HLL8350CDW");
             instance.WhenIAcceptTheDefaultValuesOfTheDevice();
-            WhenIEnterClickPriceVolumeOf("2000", "2000");
+
+            DealerProposalsCreateClickPriceStep clickPricestepInstance = new DealerProposalsCreateClickPriceStep();
+            clickPricestepInstance.WhenIEnterClickPriceVolumeOf("2000", "2000");
         }
 
         [Given(@"I have created Leasing and Click proposal")]
@@ -159,7 +161,9 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             DealerProposalsCreateProductsStep instance = new DealerProposalsCreateProductsStep();
             instance.WhenIDisplayDeviceScreen("MFCL8650CDW");
             instance.WhenIAcceptTheDefaultValuesOfTheDevice();
-            WhenIEnterClickPriceVolumeOf("800", "800");  
+
+            DealerProposalsCreateClickPriceStep clickPriceStepInstance = new DealerProposalsCreateClickPriceStep();
+            clickPriceStepInstance.WhenIEnterClickPriceVolumeOf("800", "800");  
         }
 
         [Given(@"I have created Purchase and Click proposal")]
@@ -292,87 +296,6 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().CheckPrivateLiableBox(liable);
         }
 
-        [When(@"I choose to pay Service Packs ""(.*)""")]
-        public void WhenIChooseToPayServicePacks(string pay)
-        {
-            CurrentPage.As<DealerProposalsCreateClickPricePage>().PayServicePackMethod(pay);
-        }
-        
-        [When(@"I enter ""(.*)"" into Mono Coverage field")]
-        public void WhenIEnterIntoMonoCoverageField(string coverage)
-        {
-            CurrentPage.As<DealerProposalsCreateClickPricePage>().EnterMonoCoverage(coverage);
-        }
-
-        [When(@"I enter ""(.*)"" into Mono Volume field")]
-        public void WhenIEnterIntoMonoVolumeField(string volume)
-        {
-            CurrentPage.As<DealerProposalsCreateClickPricePage>().EnterMonoVolume(volume, "0");
-        }
-
-        [When(@"I enter ""(.*)"" into Colour Coverage field")]
-        public void WhenIEnterIntoColourCoverageField(string coverage)
-        {
-            CurrentPage.As<DealerProposalsCreateClickPricePage>().EnterColourCoverage(coverage);
-        }
-
-        [When(@"I enter ""(.*)"" into Colour Volume field")]
-        public void WhenIEnterIntoColourVolumeField(string volume)
-        {
-            CurrentPage.As<DealerProposalsCreateClickPricePage>().EnterColourVolume(volume, "0");
-        }
-
-        [When(@"I select ""(.*)"" from Mono Volume field")]
-        public void WhenISelectFromMonoVolumeField(string volume)
-        {
-            CurrentPage.As<DealerProposalsCreateClickPricePage>().SelectMonoVolume(volume, "0");
-        }
-
-        [When(@"I select ""(.*)"" from Mono Volume field by indicating row(.*)")]
-        public void WhenISelectFromMonoVolumeFieldByIndicatingRow(string volume, string row)
-        {
-            CurrentPage.As<DealerProposalsCreateClickPricePage>().SelectMonoVolume(volume, row);
-        }
-
-        [When(@"I select ""(.*)"" from Colour Volume field by indicating row(.*)")]
-        public void WhenISelectFromColourVolumeFieldByIndicatingRow(string volume, string row)
-        {
-            CurrentPage.As<DealerProposalsCreateClickPricePage>().SelectColorVolume(volume, row);
-        }
-
-        [When(@"I enter ""(.*)"" from Colour Volume field by indicating row(.*)")]
-        public void WhenIEnterFromColourVolumeFieldByIndicatingRow(string volume, string row)
-        {
-            CurrentPage.As<DealerProposalsCreateClickPricePage>().EnterColourVolume(volume, row);
-        }
-        
-        [When(@"I enter ""(.*)"" from Mono Volume field by indicating row(.*)")]
-        public void WhenIEnterFromMonoVolumeFieldByIndicatingRow(string volume, string row)
-        {
-            CurrentPage.As<DealerProposalsCreateClickPricePage>().EnterMonoVolume(volume, row);
-        }
-
-        [When(@"Service Pack payment method is not displayed")]
-        [Then(@"Service Pack payment method is not displayed")]
-        public void WhenServicePackPaymentMethodIsNotDisplayed()
-        {
-            CurrentPage.As<DealerProposalsCreateClickPricePage>().VerifyPaymentMethodIsNotDisplayed();
-        }
-
-        [Then(@"the coverage error is displayed")]
-        public void ThenTheCoverageErrorIsDisplayed()
-        {
-            CurrentPage.As<DealerProposalsCreateClickPricePage>().IsCoverageErrorDisplayed();
-        }
-
-        [When(@"Service Pack payment method is displayed")]
-        [Then(@"Service Pack payment method is displayed")]
-        public void WhenServicePackPaymentMethodIsDisplayed()
-        {
-            CurrentPage.As<DealerProposalsCreateClickPricePage>().VerifyPaymentMethodIsDisplayed();
-        }
-
-
         [Then(@"I can generate dealer PDF for the proposal")]
         public void ThenICanGenerateDealerPDFForTheProposal()
         {
@@ -385,80 +308,6 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         {
             //It is assumed that if pdf downloads normally then one is able to save the proposal
             CurrentPage.As<DealerProposalsCreateSummaryPage>().DownloadCustomersProposalDocument();
-        }
-
-        [When(@"I enter click price volume of ""(.*)"" and ""(.*)""")]
-        public void WhenIEnterClickPriceVolumeOf(string clickprice, string colour)
-        {
-            NextPage = CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateClickPriceAndProceed(clickprice, colour);
-        }
-
-        [When(@"I type in click price volume of ""(.*)""")]
-        public void WhenITypeInClickPriceVolumeOf(string monoVol)
-        {
-            NextPage = CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateEnteredClickPriceAndProceed(monoVol);
-        }
-
-
-        [When(@"I calculate click price for the printer")]
-        public void WhenICalculateClickPriceForThePrinter()
-        {
-            CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateClickPrice();
-        }
-
-        [Then(@"the click price displayed for the Colour is changed accordingly")]
-        public void ThenTheClickPriceDisplayedForTheColourIsChangedAccordingly()
-        {
-            CurrentPage.As<DealerProposalsCreateClickPricePage>().VerifyThatClickPriceDisplayedForTheColourIsChangedAccordingly();
-        }
-
-        [Then(@"the click price displayed for the Mono is changed accordingly")]
-        public void ThenTheClickPriceDisplayedForTheMonoIsChangedAccordingly()
-        {
-            CurrentPage.As<DealerProposalsCreateClickPricePage>().VerifyThatClickPriceDisplayedForTheMonoIsChangedAccordingly();
-        }
-
-        [Then(@"the click price for Mono is not changed")]
-        public void ThenTheClickPriceForMonoIsNotChanged()
-        {
-            CurrentPage.As<DealerProposalsCreateClickPricePage>().VerifyThatClickPriceForMonoIsNotChanged("0");
-        }
-
-        [Then(@"the click price for Mono field(.*) is changed")]
-        public void ThenTheClickPriceForMonoFieldIsChanged(string row)
-        {
-            CurrentPage.As<DealerProposalsCreateClickPricePage>().VerifyThatClickPriceForMonoIsChanged(row);
-        }
-
-        [Then(@"the click price for Mono field(.*) is not changed")]
-        public void ThenTheClickPriceForMonoFieldIsNotChanged(string row)
-        {
-            CurrentPage.As<DealerProposalsCreateClickPricePage>().VerifyThatClickPriceForMonoIsNotChanged(row);
-        }
-
-        [Then(@"the click price for Colour field(.*) is changed")]
-        public void ThenTheClickPriceForColourFieldIsChanged(string row)
-        {
-            CurrentPage.As<DealerProposalsCreateClickPricePage>().VerifyThatClickPriceForColourIsChanged(row);
-        }
-
-        [Then(@"the click price for Colour field(.*) is not changed")]
-        public void ThenTheClickPriceForColourFieldIsNotChanged(string row)
-        {
-            CurrentPage.As<DealerProposalsCreateClickPricePage>().VerifyThatClickPriceForColourIsNotChanged(row);
-        }
-
-
-        [Then(@"the Click Price value for Volume value become smaller and smaller")]
-        public void ThenTheClickPriceValueForVolumeValueBecomeSmallerAndSmaller()
-        {
-            CurrentPage.As<DealerProposalsCreateClickPricePage>().VerifyThatClickPriceValueForVolumeValueBecomeSmallerAndSmaller();
-        }
-
-        [Then(@"the Click Price value for Volume value is all equal")]
-        public void ThenTheClickPriceValueForVolumeValueIsAllEqual()
-        {
-            CurrentPage.As<DealerProposalsCreateClickPricePage>().VerifyClickPriceValueForVolumeValueIsAllEqual();
         }
 
         [Then(@"I am directed to Templates screen of Proposal List page")]
