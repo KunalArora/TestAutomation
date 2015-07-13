@@ -134,7 +134,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
                 (UsageType, "3 years", "Quarterly", "Quarterly");
 
             DealerProposalsCreateProductsStep instance = new DealerProposalsCreateProductsStep();
-            instance.WhenIDisplayDeviceScreen("HLL8350CDW");
+            instance.WhenIDisplayDeviceScreen("HL-L8350CDW");
             instance.WhenIAcceptTheDefaultValuesOfTheDevice();
 
             DealerProposalsCreateClickPriceStep clickPricestepInstance = new DealerProposalsCreateClickPriceStep();
@@ -161,7 +161,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             stepInstance.WhenIPriceHardwareRadioButton("Tick");
 
             DealerProposalsCreateProductsStep instance = new DealerProposalsCreateProductsStep();
-            instance.WhenIDisplayDeviceScreen("MFCL8650CDW");
+            instance.WhenIDisplayDeviceScreen("MFC-L8650CDW");
             instance.WhenIAcceptTheDefaultValuesOfTheDevice();
 
             DealerProposalsCreateClickPriceStep clickPriceStepInstance = new DealerProposalsCreateClickPriceStep();

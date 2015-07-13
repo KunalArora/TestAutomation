@@ -435,6 +435,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             var snapshotLocation = SnapShotDirectory();
             var dirInfo = new DirectoryInfo(snapshotLocation);
 
+            var snapShotCount = 0;
             var snapShots = dirInfo.GetFiles("*.jpg", SearchOption.TopDirectoryOnly);
             foreach (var snapShot in snapShots)
             {
@@ -443,14 +444,15 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                     try
                     {
                         snapShot.Delete();
+                        snapShotCount++;
                     }
                     catch (IOException fileDeleteException)
                     {
                         MsgOutput(string.Format("Unable to delete snap shot {0} due to {1}", snapShot.Name, fileDeleteException.Message));
                     }
-                    snapShot.Delete();
                 }
             }
+            MsgOutput(string.Format("Successfully Deleted {0} old SnapShots", snapShotCount));
         }
 
         public static void TakeSnapshot()

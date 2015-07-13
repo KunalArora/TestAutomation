@@ -365,7 +365,6 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
 //                "Account validation success message");
             TestCheck.AssertIsNotEqual(true, CurrentPage.As<RegistrationPage>().IsWarningBarPresent(0, 5), "Warning Bar - account validation");
 
-            Helper.TakeSnapshot();
             WhenIAmRedirectedToTheBrotherLoginRegisterPage();
             WhenIEnterAValidEmailAddress(Email.RegistrationEmailAddress);
             WhenIEnterAValidPassword(Helper.Password);
