@@ -42,13 +42,6 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
             NextPage = page.ClickNextButton();
         }
 
-        private void EditCustomerInformationTab()
-        {
-            var page = CurrentPage.As<DealerProposalsCreateCustomerInformationPage>();
-            page.EditProposalCustomerInformation(CurrentDriver);
-            NextPage = page.ClickNextButton();
-        }
-
         private void GoThrowProductsTab()
         {
             var page = CurrentPage.As<DealerProposalsCreateProductsPage>();
@@ -68,6 +61,8 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
             DealerProposalsCreateProductsStep productsStepInstance = new DealerProposalsCreateProductsStep();
             DealerProposalsCreateTermAndTypeStep termAndTypeStepInstance = new DealerProposalsCreateTermAndTypeStep();
             DealerProposalsCreateClickPriceStep clickPriceStepInstance = new DealerProposalsCreateClickPriceStep();
+            DealerProposalsCreateCustomerInformationStep customerInformationStepInstance =
+                new DealerProposalsCreateCustomerInformationStep();
             switch (tabname)
             {
                 case "Description":
@@ -75,7 +70,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
                     break;
 
                 case "CustomerInformation":
-                    EditCustomerInformationTab();
+                    customerInformationStepInstance.EditCustomerInformationTab();
                     break;
 
                 case "TermAndType":

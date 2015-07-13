@@ -313,6 +313,8 @@
     <Compile Include="Test Steps\MPSTwo\Contract\SigningContractsSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Customer\DealerCanOperateCustomersSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\DealerAdmin\DealerAdminProfileSteps.cs" />
+    <Compile Include="Test Steps\MPSTwo\Proposal\DealerProposalsCreateCustomerInformationStep.cs" />
+    <Compile Include="Test Steps\MPSTwo\Proposal\DealerProposalsCreateClickPriceStep.cs" />
     <Compile Include="Test Steps\MPSTwo\Proposal\DealerProposalsCreateTermAndTypeStep.cs" />
     <Compile Include="Test Steps\MPSTwo\Proposal\DealerProposalsCreateProductsStep.cs" />
     <Compile Include="Test Steps\MPSTwo\Proposal\CreateAProposalThatHasMoreThanOneDevicesSteps.cs" />

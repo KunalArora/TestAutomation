@@ -127,9 +127,10 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
                 UsageType = "Minimum Volume";
             GivenIamOnMpsNewProposalPage();
             WhenIFillProposalDescriptionForContractType("Lease & Click with Service");
-            WhenISelectButtonForCustomerDataCapture("Create new customer");
-            DealerProposalsCreateTermAndTypeStep stepInstance = new DealerProposalsCreateTermAndTypeStep();
-            stepInstance.WhenIEnterUsageTypeOfAndContractTermsLeasingAndBillingOnTermAndTypeDetails
+            DealerProposalsCreateCustomerInformationStep customerInformationStepInstance = new DealerProposalsCreateCustomerInformationStep();
+            customerInformationStepInstance.WhenISelectButtonForCustomerDataCapture("Create new customer");
+            DealerProposalsCreateTermAndTypeStep termAndTypeStepInstance = new DealerProposalsCreateTermAndTypeStep();
+            termAndTypeStepInstance.WhenIEnterUsageTypeOfAndContractTermsLeasingAndBillingOnTermAndTypeDetails
                 (UsageType, "3 years", "Quarterly", "Quarterly");
 
             DealerProposalsCreateProductsStep instance = new DealerProposalsCreateProductsStep();
@@ -152,7 +153,8 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
                 UsageType = "Minimum Volume";
             GivenIamOnMpsNewProposalPage();
             WhenIFillProposalDescriptionForContractType("Purchase & Click with Service");
-            WhenISelectButtonForCustomerDataCapture("Create new customer");
+            DealerProposalsCreateCustomerInformationStep customerInformationStepInstance = new DealerProposalsCreateCustomerInformationStep();
+            customerInformationStepInstance.WhenISelectButtonForCustomerDataCapture("Create new customer");
             DealerProposalsCreateTermAndTypeStep stepInstance = new DealerProposalsCreateTermAndTypeStep();
             stepInstance.WhenIEnterUsageTypeContractLengthAndBillingOnTermAndTypeDetails
                 (UsageType, "3 years", "Quarterly");
@@ -194,10 +196,9 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
 
 //            When(@"I enter Customer Information Detail for new customer");
             //@TODO: Choose an existing contact until the creating new customer sequence is fixed
-            CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().IsCustomerInfoTextDisplayed();
-            CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().ClickSelectExistingCustomerButtonAndProceed();
-            CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().SelectARandomExistingContact();
-            NextPage = CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().ClickNextButton();
+            DealerProposalsCreateCustomerInformationStep stepInstance =
+                new DealerProposalsCreateCustomerInformationStep();
+            stepInstance.SelectExistingCustmerByRandomly();
         }
 
         [When(@"I begin the proposal creation process for Lease \+ Click Service")]
@@ -209,10 +210,9 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<DealerProposalsCreateDescriptionPage>().EnterLeadCodeRef("");
             NextPage = CurrentPage.As<DealerProposalsCreateDescriptionPage>().ClickNextButton();
             //@TODO: Choose an existing contact until the creating new customer sequence is fixed
-            CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().IsCustomerInfoTextDisplayed();
-            CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().ClickSelectExistingCustomerButtonAndProceed();
-            CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().SelectARandomExistingContact();
-            NextPage = CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().ClickNextButton();
+            DealerProposalsCreateCustomerInformationStep stepInstance =
+                new DealerProposalsCreateCustomerInformationStep(); 
+            stepInstance.SelectExistingCustmerByRandomly();
             NextPage = CurrentPage.As<DealerProposalsCreateTermAndTypePage>().ClickNextButton();
         }
 
@@ -250,52 +250,6 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<DealerAdminDefaultMarginsPage>().StoreMarginConfiguration();
         }
 
-
-        [Given(@"I skip Customer Information Screen")]
-        public void GivenISkipCustomerInformationScreen()
-        {
-            CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().IsCustomerInfoTextDisplayed();
-            NextPage = CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().ClickSkipCustomerButtonAndProceed();
-        }
-
-        [When(@"I enter Customer Information Detail for new customer")]
-        public void WhenIEnterCustomerInformationDetailForNewCustomer()
-        {
-            CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().IsCustomerInfoTextDisplayed();
-            CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().ClickCreateNewCustomerButtonAndProceed();
-
-            // CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().ClickNewOrganisationButton();
-
-            CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().FillOrganisationDetails();
-            CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().FillOrganisationContactDetail();
-            NextPage = CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().ClickNextButton();
-        }
-
-        [When(@"I select ""(.*)"" button for customer data capture")]
-        public void WhenISelectButtonForCustomerDataCapture(string customerOption)
-        {
-            CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().IsCustomerInfoTextDisplayed();
-            CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().CustomerCreationOptions(customerOption);
-            CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().ClickNextButton();
-            CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().FillOrganisationContactDetail();
-            CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().FillOrganisationDetails();
-            NextPage = CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().ClickNextButton();
-        }
-
-        [When(@"I select next button for customer data capture on editing")]
-        public void WhenISelectNextButtonForCustomerDataCaptureOnEditing()
-        {
-            NextPage = CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().ClickNextButton();
-
-        }
-
-        [When(@"I ""(.*)"" Private Liable for Company Info")]
-        public void WhenIPrivateLiableForCompanyInfo(string liable)
-        {
-            CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().FillOrganisationDetails();
-            CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().CheckPrivateLiableBox(liable);
-        }
-
         [Then(@"I can generate dealer PDF for the proposal")]
         public void ThenICanGenerateDealerPDFForTheProposal()
         {
@@ -320,14 +274,6 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         public void ThenTheNewlyCreatedTemplateIsDisplayedOnTheList()
         {
             CurrentPage.As<CloudExistingProposalPage>().IsNewProposalTemplateCreated();
-        }
-
-        [When(@"I click the back button on Customer Information Screen")]
-        public void WhenIClickTheBackButtonOnCustomerInformationScreen()
-        {
-            CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().IsCustomerInfoTextDisplayed();
-            CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().ClickBackButtonDuringProposalProcess();
-
         }
 
         [When(@"I navigate to Dealer Dashboard page")]
