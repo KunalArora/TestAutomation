@@ -88,7 +88,7 @@ Scenarios:
 	| Country        | Site Url                          |
 	| United Kingdom | https://creativecenter.brother.eu |
 
-@PROD @SMOKE
+@PROD @SMOKE @ignore
 Scenario Outline: Test all CD servers on Live Environment
 		Given The following site "<Brother Site>" to validate I should receive an Ok response back
 
