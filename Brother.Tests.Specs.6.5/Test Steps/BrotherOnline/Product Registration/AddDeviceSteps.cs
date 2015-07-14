@@ -1,5 +1,6 @@
 ﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
+using Brother.WebSites.Core.Pages.BrotherOnline.Account;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
@@ -13,7 +14,9 @@ namespace Brother.Tests.Specs.BrotherOnline
         [When(@"I have clicked on Add Device")]
         public void WhenIHaveClickedOnAddDevice()
         {
+            TestCheck.AssertIsNotEqual(true, CurrentPage.As<WelcomeBackPage>().IsWarningBarPresent(0, 5), "Warning Bar - account validation");
             NextPage = CurrentPage.As<WelcomeBackPage>().ClickRegisterDeviceLink();
+            //TestCheck.AssertIsNotEqual(true, CurrentPage.As<RegistrationPage>().IsWarningBarPresent(0, 5), "Warning Bar - account validation");
         }
 
         [When(@"I am redirected to the Register Device page")]

@@ -3,6 +3,7 @@ using System.Net;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using NUnit.Framework;
+using OpenQA.Selenium.Remote;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.BrotherOnline.SiteAccess

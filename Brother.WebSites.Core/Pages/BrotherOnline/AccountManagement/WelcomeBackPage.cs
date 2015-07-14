@@ -54,9 +54,31 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         public IWebElement InkDevicePropertiesContainer;
         [FindsBy(How = How.CssSelector, Using = ".container-dp-header")]
         public IWebElement Containerheader;
-        
 
-        
+
+        public bool IsWarningBarPresent(int retry, int timeToWait)
+        {
+            try
+            {
+                if (WaitForElementToExistByCssSelector(".warning-bar", retry, timeToWait))
+                {
+                    var warningBar = Driver.FindElement(By.CssSelector(".warning-bar"));
+                    if (warningBar != null)
+                    {
+                        if (warningBar.Displayed)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            catch (ElementNotVisibleException elementNotVisible)
+            {
+                MsgOutput(string.Format("Warning bar could not be located [{0}]", elementNotVisible.Message));
+                return false;
+            }
+            return false;
+        }
 
         public void IsDealerDashboardDisplayed()
         {
