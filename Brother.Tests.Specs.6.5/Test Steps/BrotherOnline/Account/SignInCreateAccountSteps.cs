@@ -461,10 +461,8 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [When(@"I sign in as a ""(.*)"" from ""(.*)""")]
         public void WhenISignInAsA(string role, string country)
         {
-            SignInAsARoleType(role);
-            //WhenIClickOnSignIn(country);
+            SignInAsARoleType(role, country);
             SignInButtonToAsARoleType(role, country);
-            //CurrentPage.As<WelcomeBackPage>().ClickOnManagedPrintServices("print");
         }
 
         private void SignInButtonToAsARoleType(string role, string country)
@@ -494,7 +492,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             }
         }
 
-        private void SignInAsARoleType(string role)
+        private void SignInAsARoleType(string role, string country)
         {
             switch (role)
             {
@@ -503,12 +501,13 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
                     WhenIEnterAValidEmailAddress("laies_es_qas@mailinator.com");
                     WhenIEnterAValidPassword("Welcome1");
                     break;
+                        
                 }
                 case "Customer" :
                 {
                     WhenIEnterAValidEmailAddress("esqacustomer2nd0604@mailinator.com");
                     WhenIEnterAValidPassword("Lucasis3");
-                    break; 
+                    break;
                 }
                 case "Sales Dealer":
                 {
@@ -518,32 +517,75 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
                 }
                 case "Cloud MPS Dealer":
                 {
-                    WhenIEnterAValidEmailAddress("mpsdealer_uk_automation@mailinator.com");
-                    WhenIEnterAValidPassword("P@$$w0rd");
+                    switch (country)
+                    {
+                        case "United Kingdom":
+                            WhenIEnterAValidEmailAddress("mpsdealer_uk_automation@mailinator.com");
+                            WhenIEnterAValidPassword("P@$$w0rd");
+                            break;
+                        case "Germany":
+                            WhenIEnterAValidEmailAddress("mpsdealer_de_automation@mailinator.com");
+                            WhenIEnterAValidPassword("P@$$w0rd");
+                            break;
+                    }
                     break;
                 }
                 case "Cloud MPS Bank":
                 {
-                    WhenIEnterAValidEmailAddress("mpsbankuk@mailinator.com");
-                    WhenIEnterAValidPassword("P@$$w0rd");
+                    switch (country)
+                    {
+                        case "United Kingdom":
+                            WhenIEnterAValidEmailAddress("MPS-BUK-UAT-Bank@brother.co.uk");
+                            WhenIEnterAValidPassword("UKleasingbank1");
+                            break;
+                        case "Germany":
+                            WhenIEnterAValidEmailAddress("MPS-BIG-UAT-Bank@brother.co.uk");
+                            WhenIEnterAValidPassword("DEleasingbank1");
+                            break;
+                    }
                     break;
                 }
                 case "Cloud MPS Customer":
                 {
-                    WhenIEnterAValidEmailAddress("mpscustomerDE@brother.co.uk");
-                    WhenIEnterAValidPassword("P@$$w0rd");
+                    switch (country)
+                    {
+                        case "United Kingdom":
+                            WhenIEnterAValidEmailAddress("mpscustomerDE@brother.co.uk");
+                            WhenIEnterAValidPassword("P@$$w0rd");
+                            break;
+                        case "Germany":
+                            break;
+                    }
                     break;
                 }
                 case "Cloud MPS Local Office":
                 {
-                    WhenIEnterAValidEmailAddress("mpslocalofficeadminuk@mailinator.com");
-                    WhenIEnterAValidPassword("P@$$w0rd");
+                    switch (country)
+                    {
+                        case "United Kingdom":
+                            WhenIEnterAValidEmailAddress("mpslocalofficeadminuk@mailinator.com");
+                            WhenIEnterAValidPassword("P@$$w0rd");
+                            break;
+                        case "Germany":
+                            WhenIEnterAValidEmailAddress("mpslocalofficeadminde@mailinator.com");
+                            WhenIEnterAValidPassword("P@$$w0rd");
+                            break;
+                    }
                     break;
                 }
                 case "Cloud MPS Local Office Approver":
                 {
-                    WhenIEnterAValidEmailAddress("mpslocalofficeapproveruk@mailinator.com");
-                    WhenIEnterAValidPassword("P@$$w0rd");
+                    switch (country)
+                    {
+                        case "United Kingdom":
+                            WhenIEnterAValidEmailAddress("MPS-BUK-UAT-LOApprover@brother.co.uk");
+                            WhenIEnterAValidPassword("UKloapprover1");
+                            break;
+                        case "Germany":
+                            WhenIEnterAValidEmailAddress("MPS-BIG-UAT-LOApprover@brother.co.uk");
+                            WhenIEnterAValidPassword("DEloapprover1");
+                            break;
+                    }
                     break;
                 }
             }
