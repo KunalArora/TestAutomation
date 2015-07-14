@@ -26,7 +26,7 @@ Scenario Outline: Get 200 OK response back from the following Brother Main Sites
 	| Belgium        | http://be.brotherqas.eu/ |
 	| Denmark        | http://dk.brotherqas.eu/ |
 	| Switzerland    | http://ch.brotherqas.eu/ |
-	| Austria        | http://as.brotherqas.eu/ |
+#	| Austria        | http://as.brotherqas.eu/ |
 	| Slovenia       | http://si.brotherqas.eu/ |
 	| Spain          | http://es.brotherqas.eu/ |
 	| Italy          | http://it.brotherqas.eu/ |
@@ -54,10 +54,11 @@ Scenario Outline: Get 200 OK response back from the following Brother Online Sit
 	| Belgium        | https://online.be.brotherqas.eu/ |
 	| Denmark        | https://online.dk.brotherqas.eu/ |
 	| Switzerland    | https://online.ch.brotherqas.eu/ |
-	| Austria        | https://online.as.brotherqas.eu/ |
+#	| Austria        | https://online.as.brotherqas.eu/ |
 	| Slovenia       | https://online.si.brotherqas.eu/ |
 	| Italy          | https://online.it.brotherqas.eu/ |
+
 # CreativeCentre - UK
 @SMOKE
-Scenario: Get 200 OK response back from Creative Centre United Kingdom on the QAS environment
-	Given The following site "United Kingdom" "http://creativecenter.eu.brotherqas.eu/" to validate I should receive an Ok response back
+Scenario: Get 200 OK response back from Creative Centre United Kingdom on the UAT environment
+	Given The following site "United Kingdom" https://creativecenter.eu.brotherqas.eu/ to validate I should receive an Ok response back
