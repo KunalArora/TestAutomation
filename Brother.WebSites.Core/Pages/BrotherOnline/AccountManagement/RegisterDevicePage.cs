@@ -71,9 +71,12 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
 
         public void IsSerialNumberTextBoxAvailable()
         {
-            WaitForElementToExistByCssSelector("#content_2_innercontent_2_Row1_txtSerial", 5, 5);
-            var serialCodeTextBox = GetElementByCssSelector("#content_2_innercontent_2_Row1_txtSerial");
-            AssertElementPresent(serialCodeTextBox, "Welcome Page Register Device - Continue Button");    
+            IWebElement serialCodeTextBox = null;
+            if (WaitForElementToExistByCssSelector("#content_2_innercontent_2_Row1_txtSerial", 5, 5))
+            {
+               serialCodeTextBox = GetElementByCssSelector("#content_2_innercontent_2_Row1_txtSerial");
+            }
+            AssertElementPresent(serialCodeTextBox, "Welcome Page Register Device - Serial Number Text Box");    
         }
 
         public void IsContinueButtonAvailable()
