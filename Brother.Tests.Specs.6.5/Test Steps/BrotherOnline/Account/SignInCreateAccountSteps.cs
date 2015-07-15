@@ -425,10 +425,36 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<RegistrationPage>().IsErrorMessageDisplayed();
         }
+        [Then(@"I should see an error message on the email field")]
+        public void ThenIShouldSeeAnErrorMessageOnTheEmailField()
+        {
+            //CurrentPage.As<RegistrationPage>().EmailFieldErrorMessage();
+            CurrentPage.As<RegistrationPage>().EmailFieldErrorMessage();
+        }
         [Then(@"I should see an error message on the password field")]
         public void ThenIShouldSeeAnErrorMessageOnThePasswordField()
         {
             CurrentPage.As<RegistrationPage>().PasswordErrorMessageDisplayed();
+        }
+        [Then(@"I should see an error message on the firstname field")]
+        public void ThenIShouldSeeAnErrorMessageOnTheFirstnameField()
+        {
+            CurrentPage.As<RegistrationPage>().FirstnameErrorMessage();
+        }
+        [Then(@"I should see an error message on the lastname field")]
+        public void ThenIShouldSeeAnErrorMessageOnTheLastnameField()
+        {
+            CurrentPage.As<RegistrationPage>().LastnameErrorMessage();
+        }
+        [Then(@"I should see an error message on the company name field")]
+        public void ThenIShouldSeeAnErrorMessageOnTheCompanynameField()
+        {
+            CurrentPage.As<RegistrationPage>().CompanynameErrorMessage();
+        }
+        [Then(@"I should see an error message on the business sector field")]
+        public void ThenIShouldSeeAnErrorMessageOnTheBusinessSectorField()
+        {
+            CurrentPage.As<RegistrationPage>().BusinessSectorErrorMessage();
         }
        [Then(@"I should get an error message displayed on the Terms and Conditions")]
         public void ThenIShouldGetAnErrorMessageDisplayedOnTheTermsAndConditions()
