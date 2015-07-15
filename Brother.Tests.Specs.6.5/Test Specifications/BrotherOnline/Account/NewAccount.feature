@@ -232,7 +232,7 @@ Scenarios:
 	| "aaa@yahoo.com"					|
 
 @ignore
- Scenario Outline: Validate that the correct error messages are displayed when a Confirm Password field contains different passwpord than actual Password (BBAU-2209)
+ Scenario Outline: Validate that the correct error messages are displayed when a Confirm Password field contains different password than actual Password (BBAU-2209)
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
 	And I am redirected to the Brother Login/Register page
@@ -274,6 +274,24 @@ Scenario: Validate that the correct error messages are displayed when Terms and 
 	When I declare that I do not use this account for business
 	And I press create account button
 	Then I should get an error message displayed on the Terms and Conditions
+
+
+# Test to verify mandatory fields when creating a business account
+Scenario: Validate that the correct error messages are displayed for all mandatory fields that are required when creating a new business account
+	Given I want to create a new account with Brother Online "United Kingdom"
+	When I click on Create Account for "United Kingdom"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I declare that I do use this account for business
+	And I press create account button
+	Then I should see an error message on the email field
+	And I should see an error message on the password field
+	And I should see an error message on the firstname field
+	And I should see an error message on the lastname field
+	And I should see an error message on the company name field
+	And I should see an error message on the business sector field
+	And I should get an error message displayed on the Terms and Conditions
+
 
 @ignore
 Scenario: Log in as a Printer On dealer and ensure that they can see the required permissions BBAU-2189
