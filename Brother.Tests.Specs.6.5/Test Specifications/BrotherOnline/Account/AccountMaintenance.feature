@@ -34,3 +34,18 @@ Scenarios:
 	| Spain          | "InvalidEmailForUser@mailinator"                                                                                                                                                                                                                                   |
 	| Spain          | "InvalidEmailForUser"                                                                                                                                                                                                                                              |
 	| Spain          | "ThisIsAVeryLargeEmailAddressWhichExceeds241CharactersAndThisIsNotSupportedaaaaaaaaaaaThisIsAVeryLargeEmailAddressWhichExceeds241CharactersAndThisIsNotSupportedaaaaaaaaaaaThisIsAVeryLargeEmailAddressWhichExceed241CharactersExceed241Characters@mailinator.com" |
+
+#Change Personal details in your created account, go to my account and add your new Email address
+
+Scenario Outline: Customer create a new account and amend their personal details by going into my account page
+	Given I am logged onto Brother Online "United Kingdom" using valid credentials
+	When I navigate to my account for "United Kingdom"
+	And I enter First Name containing <FirstName>
+	And I enter the Last Name containing <LastName>
+	And I click on update details
+	Then my personal details should get updated
+
+Scenarios: 
+	| FirstName						|LastName							|
+	| Test						    |Test								|
+

@@ -76,11 +76,11 @@ namespace Brother.Tests.Specs.TmpScratch
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Test Code")]
+        [NUnit.Framework.DescriptionAttribute("Test Code Two")]
         [NUnit.Framework.CategoryAttribute("STAGING")]
-        public virtual void TestCode()
+        public virtual void TestCodeTwo()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Test Code", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Test Code Two", new string[] {
                         "STAGING"});
 #line 28
 this.ScenarioSetup(scenarioInfo);
@@ -89,25 +89,6 @@ this.FeatureBackground();
 #line 30
  testRunner.Given("SqlCall", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 31
- testRunner.Given("Setup", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Test Code Two")]
-        [NUnit.Framework.CategoryAttribute("STAGING")]
-        public virtual void TestCodeTwo()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Test Code Two", new string[] {
-                        "STAGING"});
-#line 34
-this.ScenarioSetup(scenarioInfo);
-#line 7
-this.FeatureBackground();
-#line 36
- testRunner.Given("SqlCall", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 37
  testRunner.Given("Setup", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             this.ScenarioCleanup();
