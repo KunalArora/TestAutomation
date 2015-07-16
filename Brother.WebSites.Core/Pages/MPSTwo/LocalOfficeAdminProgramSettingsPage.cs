@@ -1,7 +1,9 @@
 ﻿using System;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using OpenQA.Selenium.Support.UI;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
@@ -109,6 +111,47 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
+        public void TryTickMinimumVolume()
+        {
+            SpecFlow.SetContext("OriginalMinimumVolume", MinimumVolumeElement.Selected.ToString());
+            TickMinimumVolume();
+        }
+
+        public void TryUntickMinimumVolume()
+        {
+            SpecFlow.SetContext("OriginalMinimumVolume", MinimumVolumeElement.Selected.ToString());
+            untickMinimumVolume();
+        }
+
+        public void IsMinimumVolumeTicked()
+        {
+            AssertElementIsChecked(MinimumVolumeElement, "true", "Minimum Volume");
+            TeardownMinimumVolumeState();
+        }
+
+        public void IsMinimumVolumeUnticked()
+        {
+            AssertElementIsChecked(MinimumVolumeElement, null, "Minimum Volume");
+            TeardownMinimumVolumeState();
+        }
+
+        private void TeardownMinimumVolumeState()
+        {
+            bool value;
+            if (bool.TryParse(SpecFlow.GetContext("OriginalMinimumVolume"), out value))
+            {
+                if (value)
+                {
+                    TickMinimumVolume();
+                }
+                else
+                {
+                    untickMinimumVolume();
+                }
+                SaveButtonElement.Click();
+            }
+        }
+
         public void TickPayAsYouGo()
         {
             if (!PayAsYouGoElement.Selected)
@@ -122,6 +165,47 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if (PayAsYouGoElement.Selected)
             {
                 PayAsYouGoElement.Click();
+            }
+        }
+
+        public void TryTickPayAsYouGo()
+        {
+            SpecFlow.SetContext("OriginalPayAsYouGo", PayAsYouGoElement.Selected.ToString());
+            TickPayAsYouGo();
+        }
+
+        public void TryUntickPayAsYouGo()
+        {
+            SpecFlow.SetContext("OriginalPayAsYouGo", PayAsYouGoElement.Selected.ToString());
+            untickPayAsYouGo();
+        }
+
+        public void IsPayAsYouGoTicked()
+        {
+            AssertElementIsChecked(PayAsYouGoElement, "true", "Pay As You Go");
+            TeardownPayAsYouGoState();
+        }
+
+        public void IsPayAsYouGoUnticked()
+        {
+            AssertElementIsChecked(PayAsYouGoElement, null, "Pay As You Go");
+            TeardownPayAsYouGoState();
+        }
+
+        private void TeardownPayAsYouGoState()
+        {
+            bool value;
+            if (bool.TryParse(SpecFlow.GetContext("OriginalPayAsYouGo"), out value))
+            {
+                if (value)
+                {
+                    TickPayAsYouGo();
+                }
+                else
+                {
+                    untickPayAsYouGo();
+                }
+                SaveButtonElement.Click();
             }
         }
 

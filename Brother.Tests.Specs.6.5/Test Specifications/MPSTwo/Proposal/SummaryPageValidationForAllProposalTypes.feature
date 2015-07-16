@@ -39,7 +39,7 @@ Scenario Outline: Summary Page Validation For Minimum Volume Leasing and Click p
 
 	Scenarios: 
 	| Role             | Country        | ContractType               | UsageType      | Contract | Leasing   | Billing   | Printer     | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Minimum Volume | 3 years  | Quarterly | Quarterly | HLL8350CDW | 750         | 750          |
+	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Minimum Volume | 3 years  | Quarterly | Quarterly | HL-L8350CDW | 750         | 750          |
 
 
 Scenario Outline: Summary Page Validation For Pay As You Go Leasing and Click proposal
@@ -72,7 +72,7 @@ Scenario Outline: Summary Page Validation For Pay As You Go Leasing and Click pr
 
 	Scenarios: 
 	| Role             | Country        | ContractType               | CreateOption        | UsageType     | Contract | Leasing   | Billing   | Printer    | DeviceScreen | ClickVolume |
-	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Create new customer | Pay As You Go | 4 years  | Quarterly | Quarterly | DCP8110DN | Full         | 750        |
+	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Create new customer | Pay As You Go | 4 years  | Quarterly | Quarterly | DCP-8110DN | Full         | 750        |
 
 
 

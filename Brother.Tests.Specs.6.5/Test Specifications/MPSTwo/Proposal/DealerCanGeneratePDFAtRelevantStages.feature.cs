@@ -73,7 +73,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Proposal
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Dealer Can Generate PDF on Leasing Minimum Volume Summary Page")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Lease & Click with Service", "Minimum Volume", "4 years", "Quarterly", "Quarterly", "HLL8350CDW", "Full", "2000", "2000", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Lease & Click with Service", "Minimum Volume", "4 years", "Quarterly", "Quarterly", "HL-L8350CDW", "Full", "2000", "2000", null)]
         public virtual void DealerCanGeneratePDFOnLeasingMinimumVolumeSummaryPage(string role, string country, string contractType, string usageType, string contract, string leasing, string billing, string printer, string deviceScreen, string clickVolume, string colourVolume, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer Can Generate PDF on Leasing Minimum Volume Summary Page", exampleTags);
@@ -116,7 +116,7 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Dealer Can Generate PDF Leasing PAYG Summary Page")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Lease & Click with Service", "Pay As You Go", "5 years", "Quarterly", "Quarterly", "DCP8110DN", "Full", "2000", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Lease & Click with Service", "Pay As You Go", "5 years", "Quarterly", "Quarterly", "DCP-8110DN", "Full", "2000", null)]
         public virtual void DealerCanGeneratePDFLeasingPAYGSummaryPage(string role, string country, string contractType, string usageType, string contract, string leasing, string billing, string printer, string deviceScreen, string clickVolume, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer Can Generate PDF Leasing PAYG Summary Page", exampleTags);

@@ -144,7 +144,7 @@ namespace Brother.Tests.Specs
                 CurrentPage.As<GuerillaEmailConfirmationPage>().SelectEmail("registration");
               //  CurrentPage.As<GuerillaEmailConfirmationPage>().CheckAllEmailLinks();
                 NextPage = CurrentPage.As<GuerillaEmailConfirmationPage>().ValidateRegistrationEmail();
-                TestCheck.AssertIsNotEqual(true, CurrentPage.As<RegistrationPage>().IsWarningBarPresent(), "Warning Bar detected - Account could not be validated");
+                TestCheck.AssertIsNotEqual(true, CurrentPage.As<RegistrationPage>().IsWarningBarPresent(2,5), "Warning Bar detected - Account could not be validated");
            }
         }
 

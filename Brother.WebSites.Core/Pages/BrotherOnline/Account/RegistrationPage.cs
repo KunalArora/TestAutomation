@@ -23,6 +23,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             get { return BrotherOnlineHomePages.Default["LoginRegisterPage"].ToString(); }
         }
 
+        private string accountVerificationMessage = "content_0_twocolumnsformtop_2_VerificationSuccess";
+        private string accountVerificationMessageClass = ".box-out.email-success";
+
         [FindsBy(How = How.Id, Using = "SignInButton")]
         public IWebElement SignInButton;
 
@@ -75,8 +78,23 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         [FindsBy(How = How.Id, Using = "Email")]
         public IWebElement EmailAddressTextBox;
 
+        [FindsBy(How = How.CssSelector, Using = "#main > div > div > div:nth-child(4) > div > div > div.form-section.validation-failed.load > span")]
+        public IWebElement EmailFieldErrorMessageDisplayed;
+
         [FindsBy(How = How.CssSelector, Using = ".half-col.validation-failed.blur .error")]
         public IWebElement PasswordErrorMessage;
+
+        [FindsBy(How = How.CssSelector, Using = ".half-col.validation-failed.blur .error")]
+        public IWebElement FirstnameErrorMessageDisplayed;
+
+        [FindsBy(How = How.CssSelector, Using = "#form-sign-up > div:nth-child(2) > span:nth-child(2) > span")]
+        public IWebElement LastnameErrorMessageDisplayed;
+
+        [FindsBy(How = How.CssSelector, Using = "#content_0_twocolumnsformright_0_CompanyNameRequiredValidator")]
+        public IWebElement CompanynameErrorMessageDisplayed;
+
+        [FindsBy(How = How.CssSelector, Using = "#content_0_twocolumnsformright_0_valBusinessSector")]
+        public IWebElement BusinessSectorErrorMessageDisplayed;
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='form-sign-up']/div[1]/span[2]/div")]
         public IWebElement ConfirmPasswordErrorMessage;
@@ -100,11 +118,11 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         public IWebElement TermsAndConditionsErrorMessage;
         
 
-        public bool IsWarningBarPresent()
+        public bool IsWarningBarPresent(int retry, int timeToWait)
         {
             try
             {
-                if (WaitForElementToExistByCssSelector(".warning-bar", 2, 5))
+                if (WaitForElementToExistByCssSelector(".warning-bar", retry, timeToWait))
                 {
                     var warningBar = Driver.FindElement(By.CssSelector(".warning-bar"));
                     if (warningBar != null)
@@ -119,6 +137,23 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             catch (ElementNotVisibleException elementNotVisible)
             {
                 MsgOutput(string.Format("Warning bar could not be located [{0}]", elementNotVisible.Message));
+                return false;
+            }
+            return false;
+        }
+
+        public bool IsAccountValidationSuccessMessagePresent(int retry, int timeToWait)
+        {
+            try
+            {
+                if (WaitForElementToExistByCssSelector(".box-out.email-success", retry, timeToWait))
+                {
+                    return true;
+                }
+            }
+            catch (ElementNotVisibleException elementNotVisible)
+            {
+                MsgOutput(string.Format("Account Verification Sucess message could not be located [{0}]", elementNotVisible.Message));
                 return false;
             }
             return false;
@@ -415,10 +450,31 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         {
            TestCheck.AssertIsEqual(true, EmailAddressErrorMessage.Displayed, "Is Error Message Displayed");
         }
+        public void EmailFieldErrorMessage()
+        {
+            TestCheck.AssertIsEqual(true, EmailFieldErrorMessageDisplayed.Displayed, "Is Error Message Displayed");
+        }
         public void PasswordErrorMessageDisplayed()
         {   
             PasswordTextBox.SendKeys(Keys.Tab);
             TestCheck.AssertIsEqual(true, PasswordErrorMessage.Displayed, "Is Error Message Displayed");
+        }
+        public void FirstnameErrorMessage()
+        {
+            TestCheck.AssertIsEqual(true, FirstnameErrorMessageDisplayed.Displayed, "Is Error Message Displayed");
+        }
+        public void LastnameErrorMessage()
+        {
+            TestCheck.AssertIsEqual(true, LastnameErrorMessageDisplayed.Displayed, "Is Error Message Displayed");
+        }
+        public void CompanynameErrorMessage()
+        {
+            TestCheck.AssertIsEqual(true, CompanynameErrorMessageDisplayed.Displayed, "Is Error Message Displayed");
+        }
+
+        public void BusinessSectorErrorMessage()
+        {
+            TestCheck.AssertIsEqual(true, BusinessSectorErrorMessageDisplayed.Displayed, "Is Error Message Displayed");
         }
         public void ConfirmPasswordErrorMessageDisplayed()
         {

@@ -127,24 +127,24 @@ Scenario Outline: Create an account for Brother Online for different language si
 Scenarios:
 	| Country        |
 	| Romania        | 
-"""	| France         |
+	| France         |
 	| Germany        |
 	| Netherlands    |
 	| Spain          |
 	| Denmark        |
 	| Belgium        |
-	| Russia         |- Red warning on page - look into
-	| Hungary        |- unknown error - possibly cannot get to site 
+#	| Russia         |- Red warning on page - look into
+#	| Hungary        |- unknown error - possibly cannot get to site 
 	| Portugal       |
-	| Switzerland    | - need to add specific default language to URL
-	| Slovakia       | - Links for validation set of for UK so needs updating
-	| Slovenia       | - Links for validation set of for UK so needs updating
-	| Czech          | - Links for validation set of for UK so needs updating
-	| Bulgaria       | - Links for validation set of for UK so needs updating - maybe no version in SiteCore on DV2
+#	| Switzerland    | - need to add specific default language to URL
+#	| Slovakia       | - Links for validation set of for UK so needs updating
+#	| Slovenia       | - Links for validation set of for UK so needs updating
+#	| Czech          | - Links for validation set of for UK so needs updating
+#	| Bulgaria       | - Links for validation set of for UK so needs updating - maybe no version in SiteCore on DV2
 	| Finland        |
-	| Norway         | - Link for validation of registration links to something completely different
-	| Italy          | - NEEDS to have Número de identificación fiscal added to test otherwise registration fails
-	| Austria        |"""
+#	| Norway         | - Link for validation of registration links to something completely different
+#	| Italy          | - NEEDS to have Número de identificación fiscal added to test otherwise registration fails
+	| Austria        |
 
 
 @SMOKE
@@ -232,7 +232,7 @@ Scenarios:
 	| "aaa@yahoo.com"					|
 
 @ignore
- Scenario Outline: Validate that the correct error messages are displayed when a Confirm Password field contains different passwpord than actual Password (BBAU-2209)
+ Scenario Outline: Validate that the correct error messages are displayed when a Confirm Password field contains different password than actual Password (BBAU-2209)
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
 	And I am redirected to the Brother Login/Register page
@@ -275,6 +275,24 @@ Scenario: Validate that the correct error messages are displayed when Terms and 
 	And I press create account button
 	Then I should get an error message displayed on the Terms and Conditions
 
+
+# Test to verify mandatory fields when creating a business account
+Scenario: Validate that the correct error messages are displayed for all mandatory fields that are required when creating a new business account
+	Given I want to create a new account with Brother Online "United Kingdom"
+	When I click on Create Account for "United Kingdom"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I declare that I do use this account for business
+	And I press create account button
+	Then I should see an error message on the email field
+	And I should see an error message on the password field
+	And I should see an error message on the firstname field
+	And I should see an error message on the lastname field
+	And I should see an error message on the company name field
+	And I should see an error message on the business sector field
+	And I should get an error message displayed on the Terms and Conditions
+
+
 @ignore
 Scenario: Log in as a Printer On dealer and ensure that they can see the required permissions BBAU-2189
 # (ensure that a customer cannot see the same permissions)
@@ -282,7 +300,7 @@ Scenario: Log in as a Printer On dealer and ensure that they can see the require
 
 # Change Personal details in your created account, go to my account and add your new Email address
 Scenario: Business Customer can change their Email Address   (BBAU - 2377, 2355)
-Given I want to create a new account with Brother Online "United Kingdom"
+	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
 	And I am redirected to the Brother Login/Register page
 	And I have Checked No I Do Not Have An Account Checkbox
@@ -316,7 +334,7 @@ Given I want to create a new account with Brother Online "United Kingdom"
 
 #Change Sign In details in your created account, go to my account and change/add your new password
 Scenario: Business Customer can reset their password 
-Given I want to create a new account with Brother Online "United Kingdom"
+	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
 	And I am redirected to the Brother Login/Register page
 	And I have Checked No I Do Not Have An Account Checkbox

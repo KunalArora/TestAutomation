@@ -96,6 +96,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SelectContractLength(string length)
         {
+            SpecFlow.SetContext("DealerLatestEditedContractTerm", length);
+
             SelectFromDropdown(ContractLengthElement, length);
         }
 
@@ -111,6 +113,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SelectUsageType(string usage)
         {
+           SpecFlow.SetContext("DealerLatestEditedUsageType", usage);
             SelectFromDropdown(UsageTypeElement, usage);
             WebDriver.Wait(DurationType.Second, 5);
         }

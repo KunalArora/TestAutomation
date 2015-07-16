@@ -154,10 +154,10 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             {
                 try
                 {
+                    MsgOutput(string.Format("Retry count = [{0}]", retries));
                     var searchElement = wait.Until(dr => dr.FindElement(By.CssSelector(element)).Displayed);
                     elementStatus = searchElement;
                     MsgOutput(string.Format("Element Status = [{0}]", elementStatus));
-                    MsgOutput(string.Format("Retry count = [{0}]", retries));
                     MsgOutput(string.Format("Timeout waited = [{0}]", wait.Timeout.TotalSeconds));
                     retries++;
                 }
@@ -168,7 +168,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                 }
                 catch (WebDriverException timeOutException)
                 {
-                    MsgOutput(string.Format("Element [{0}] Not Found after [{1}] seconds", element, wait.Timeout.Seconds));
+                    MsgOutput(string.Format("Element [{0}] Not Found after [{1}] seconds. Retrying [{2}] times", element, wait.Timeout.Seconds, retries));
                     retries++;
                 }
             }
@@ -511,6 +511,30 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             return element;
         }
 
+        public IWebElement GetElementByCssSelector(ISearchContext context, string elementName)
+        {
+            IWebElement element = null;
+            try
+            {
+                MsgOutput(string.Format("Looking for Element {0} by Css Selector", elementName));
+                element = context.FindElement(By.CssSelector(elementName));
+                if (element == null)
+                {
+                    throw new SpecFlowSeleniumException("No element named \"" + elementName +
+                                                        "\" have been found in html page. You should check the accessor.");
+                }
+            }
+            catch (NoSuchElementException elementNotFound)
+            {
+                MsgOutput(string.Format("Element not found", elementNotFound.Message));
+            }
+            catch (WebDriverTimeoutException timeoutException)
+            {
+                MsgOutput(string.Format("Element not found", timeoutException.Message));
+            }
+            return element;
+        }
+
         public IList<IWebElement> GetElementsByCssSelector(string elementName)
         {
             IList<IWebElement> element = null;
@@ -546,6 +570,32 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             {
                 MsgOutput(string.Format("Looking for Element {0} by Css Selector. Waiting for {1} seconds", elementName, timeOut));
                 element = FindElementByCssSelector(elementName);
+            }
+            catch (NoSuchElementException elementNotFound)
+            {
+                MsgOutput(string.Format("Element not found", elementNotFound.Message));
+            }
+            catch (WebDriverTimeoutException timeoutException)
+            {
+                MsgOutput(string.Format("Element not found", timeoutException.Message));
+            }
+            WebDriver.SetPageLoadTimeout(defaultTimeout);
+            WebDriver.SetWebDriverImplicitTimeout(implicitTimeout);
+
+            return element;
+        }
+
+        public IWebElement GetElementByCssSelector(ISearchContext context, string elementName, int timeOut)
+        {
+            IWebElement element = null;
+            var implicitTimeout = WebDriver.ImplicitWaitDefaultTimeout;
+            var defaultTimeout = WebDriver.DefaultTimeout;
+            WebDriver.SetPageLoadTimeout(new TimeSpan(0, 0, 0, timeOut));
+            WebDriver.SetWebDriverImplicitTimeout(new TimeSpan(0, 0, 0, timeOut));
+            try
+            {
+                MsgOutput(string.Format("Looking for Element {0} by Css Selector. Waiting for {1} seconds", elementName, timeOut));
+                element = context.FindElement(By.CssSelector(elementName));
             }
             catch (NoSuchElementException elementNotFound)
             {
@@ -712,6 +762,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         {
             if (!IsPhantomJsBrowser())
             {
+                WebDriver.Wait(DurationType.Millisecond, 200);
                 var alert = driver.SwitchTo().Alert();
                 alert.Accept();
             }

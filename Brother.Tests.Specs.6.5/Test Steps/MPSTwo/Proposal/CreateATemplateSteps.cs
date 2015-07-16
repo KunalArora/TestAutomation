@@ -130,7 +130,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             WhenISelectButtonForCustomerDataCapture("Create new customer");
             WhenIEnterUsageTypeOfAndContractTermsLeasingAndBillingOnTermAndTypeDetails
                 (UsageType, "3 years", "Quarterly", "Quarterly");
-            WhenIDisplayDeviceScreen("HLL8350CDW");
+            WhenIDisplayDeviceScreen("HL-L8350CDW");
             WhenIAcceptTheDefaultValuesOfTheDevice();
             WhenIEnterClickPriceVolumeOf("2000", "2000");
         }
@@ -381,6 +381,15 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         public void WhenDeviceScreenIsDisplayed(string option)
         {
             CurrentPage.As<DealerProposalsCreateProductsPage>().VerifyTypeOfDeviceScreenDisplayed(option);
+        }
+
+        [When(@"I add the device that changed the default values")]
+        public void WhenIChangeTheDefaultValuesOfTheDevice()
+        {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterProductQuantity("10");
+            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterModelUnitCost();
+            CurrentPage.As<DealerProposalsCreateProductsPage>().AddAllDetailsToProposal();
+            CurrentPage.As<DealerProposalsCreateProductsPage>().VerifyProductAdditionConfirmationMessage();
         }
 
         [When(@"I accept the default values of the device")]

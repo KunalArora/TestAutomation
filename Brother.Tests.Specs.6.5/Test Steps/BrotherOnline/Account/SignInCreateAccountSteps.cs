@@ -39,9 +39,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
                 WhenIEnterAValidPassword(pwd);
                 WhenIClickOnSignIn(country);
             }
-
         }
-
 
         [Then(@"I reset my password with ""(.*)""")]
         public void ThenIResetMyPasswordWith(string newPassword)
@@ -217,8 +215,6 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [When(@"I am redirected to the Brother Login/Register page")]
         public void WhenIAmRedirectedToTheBrotherLoginRegisterPage()
         {
-            // special case override the Loading of the sign in page
-            //NextPage = BasePage.LoadRegistrationPage(CurrentDriver, BasePage.BaseUrl);
             CurrentPage.As<RegistrationPage>().IsSignInButtonAvailable();
         }
 
@@ -250,12 +246,13 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<RegistrationPage>().EmptyEmailAddressTextBox();
         }
         
-       [When(@"I press tab in the password field")]
+        [When(@"I press tab in the password field")]
         public void WhenIPressTabInThePasswordField()
         {
             CurrentPage.As<RegistrationPage>().EmptyPasswordTextBox();
         }
-      [Then(@"If I sign back into Brother Online ""(.*)"" using the same credentials")]
+
+        [Then(@"If I sign back into Brother Online ""(.*)"" using the same credentials")]
         [When(@"I sign back into Brother Online ""(.*)"" using the same credentials")]
         public void ThenIfISignBackIntoBrotherOnlineUsingTheSameCredentials(string country)
         {
@@ -362,6 +359,12 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [Then(@"I should be able to log into ""(.*)"" Brother Online using my account details")]
         public void ThenIShouldBeAbleToLogIntoBrotherOnlineUsingMyAccountDetails(string country)
         {
+            // Check for validation warning or confirmation message 
+            //***NOTE: For some reason on Team City, PhantomJS surpresses (or appears to surpress) the validation message
+//            TestCheck.AssertIsEqual(true, CurrentPage.As<RegistrationPage>().IsAccountValidationSuccessMessagePresent(5, 5),
+//                "Account validation success message");
+            TestCheck.AssertIsNotEqual(true, CurrentPage.As<RegistrationPage>().IsWarningBarPresent(0, 5), "Warning Bar - account validation");
+
             WhenIAmRedirectedToTheBrotherLoginRegisterPage();
             WhenIEnterAValidEmailAddress(Email.RegistrationEmailAddress);
             WhenIEnterAValidPassword(Helper.Password);
@@ -422,10 +425,36 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<RegistrationPage>().IsErrorMessageDisplayed();
         }
+        [Then(@"I should see an error message on the email field")]
+        public void ThenIShouldSeeAnErrorMessageOnTheEmailField()
+        {
+            //CurrentPage.As<RegistrationPage>().EmailFieldErrorMessage();
+            CurrentPage.As<RegistrationPage>().EmailFieldErrorMessage();
+        }
         [Then(@"I should see an error message on the password field")]
         public void ThenIShouldSeeAnErrorMessageOnThePasswordField()
         {
             CurrentPage.As<RegistrationPage>().PasswordErrorMessageDisplayed();
+        }
+        [Then(@"I should see an error message on the firstname field")]
+        public void ThenIShouldSeeAnErrorMessageOnTheFirstnameField()
+        {
+            CurrentPage.As<RegistrationPage>().FirstnameErrorMessage();
+        }
+        [Then(@"I should see an error message on the lastname field")]
+        public void ThenIShouldSeeAnErrorMessageOnTheLastnameField()
+        {
+            CurrentPage.As<RegistrationPage>().LastnameErrorMessage();
+        }
+        [Then(@"I should see an error message on the company name field")]
+        public void ThenIShouldSeeAnErrorMessageOnTheCompanynameField()
+        {
+            CurrentPage.As<RegistrationPage>().CompanynameErrorMessage();
+        }
+        [Then(@"I should see an error message on the business sector field")]
+        public void ThenIShouldSeeAnErrorMessageOnTheBusinessSectorField()
+        {
+            CurrentPage.As<RegistrationPage>().BusinessSectorErrorMessage();
         }
        [Then(@"I should get an error message displayed on the Terms and Conditions")]
         public void ThenIShouldGetAnErrorMessageDisplayedOnTheTermsAndConditions()
@@ -458,10 +487,8 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [When(@"I sign in as a ""(.*)"" from ""(.*)""")]
         public void WhenISignInAsA(string role, string country)
         {
-            SignInAsARoleType(role);
-            //WhenIClickOnSignIn(country);
+            SignInAsARoleType(role, country);
             SignInButtonToAsARoleType(role, country);
-            //CurrentPage.As<WelcomeBackPage>().ClickOnManagedPrintServices("print");
         }
 
         private void SignInButtonToAsARoleType(string role, string country)
@@ -491,7 +518,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             }
         }
 
-        private void SignInAsARoleType(string role)
+        private void SignInAsARoleType(string role, string country)
         {
             switch (role)
             {
@@ -500,12 +527,13 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
                     WhenIEnterAValidEmailAddress("laies_es_qas@mailinator.com");
                     WhenIEnterAValidPassword("Welcome1");
                     break;
+                        
                 }
                 case "Customer" :
                 {
                     WhenIEnterAValidEmailAddress("esqacustomer2nd0604@mailinator.com");
                     WhenIEnterAValidPassword("Lucasis3");
-                    break; 
+                    break;
                 }
                 case "Sales Dealer":
                 {
@@ -515,32 +543,75 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
                 }
                 case "Cloud MPS Dealer":
                 {
-                    WhenIEnterAValidEmailAddress("mpsdealer_uk_automation@mailinator.com");
-                    WhenIEnterAValidPassword("P@$$w0rd");
+                    switch (country)
+                    {
+                        case "United Kingdom":
+                            WhenIEnterAValidEmailAddress("mpsdealer_uk_automation@mailinator.com");
+                            WhenIEnterAValidPassword("P@$$w0rd");
+                            break;
+                        case "Germany":
+                            WhenIEnterAValidEmailAddress("mpsdealer_de_automation@mailinator.com");
+                            WhenIEnterAValidPassword("P@$$w0rd");
+                            break;
+                    }
                     break;
                 }
                 case "Cloud MPS Bank":
                 {
-                    WhenIEnterAValidEmailAddress("mpsbankuk@mailinator.com");
-                    WhenIEnterAValidPassword("P@$$w0rd");
+                    switch (country)
+                    {
+                        case "United Kingdom":
+                            WhenIEnterAValidEmailAddress("MPS-BUK-UAT-Bank@brother.co.uk");
+                            WhenIEnterAValidPassword("UKleasingbank1");
+                            break;
+                        case "Germany":
+                            WhenIEnterAValidEmailAddress("MPS-BIG-UAT-Bank@brother.co.uk");
+                            WhenIEnterAValidPassword("DEleasingbank1");
+                            break;
+                    }
                     break;
                 }
                 case "Cloud MPS Customer":
                 {
-                    WhenIEnterAValidEmailAddress("mpscustomerDE@brother.co.uk");
-                    WhenIEnterAValidPassword("P@$$w0rd");
+                    switch (country)
+                    {
+                        case "United Kingdom":
+                            WhenIEnterAValidEmailAddress("mpscustomerDE@brother.co.uk");
+                            WhenIEnterAValidPassword("P@$$w0rd");
+                            break;
+                        case "Germany":
+                            break;
+                    }
                     break;
                 }
                 case "Cloud MPS Local Office":
                 {
-                    WhenIEnterAValidEmailAddress("mpslocalofficeadminuk@mailinator.com");
-                    WhenIEnterAValidPassword("P@$$w0rd");
+                    switch (country)
+                    {
+                        case "United Kingdom":
+                            WhenIEnterAValidEmailAddress("mpslocalofficeadminuk@mailinator.com");
+                            WhenIEnterAValidPassword("P@$$w0rd");
+                            break;
+                        case "Germany":
+                            WhenIEnterAValidEmailAddress("mpslocalofficeadminde@mailinator.com");
+                            WhenIEnterAValidPassword("P@$$w0rd");
+                            break;
+                    }
                     break;
                 }
                 case "Cloud MPS Local Office Approver":
                 {
-                    WhenIEnterAValidEmailAddress("mpslocalofficeapproveruk@mailinator.com");
-                    WhenIEnterAValidPassword("P@$$w0rd");
+                    switch (country)
+                    {
+                        case "United Kingdom":
+                            WhenIEnterAValidEmailAddress("MPS-BUK-UAT-LOApprover@brother.co.uk");
+                            WhenIEnterAValidPassword("UKloapprover1");
+                            break;
+                        case "Germany":
+                            WhenIEnterAValidEmailAddress("MPS-BIG-UAT-LOApprover@brother.co.uk");
+                            WhenIEnterAValidPassword("DEloapprover1");
+                            break;
+                    }
                     break;
                 }
             }

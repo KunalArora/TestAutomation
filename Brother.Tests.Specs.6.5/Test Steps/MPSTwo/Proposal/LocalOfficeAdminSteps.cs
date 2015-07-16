@@ -1,6 +1,9 @@
-﻿using Brother.WebSites.Core.Pages.Base;
+﻿using System.Diagnostics;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
 using Brother.WebSites.Core.Pages.MPSTwo;
+using NUnit.Framework;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.MPSTwo.Proposal
@@ -25,7 +28,6 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         {
             NextPage = CurrentPage.As<LocalOfficeAdminDealerDefaultsPage>().SaveDealerDefaults();
         }
-
 
         [Given(@"I enable product to be displayed as a flat list for a paticular contract type")]
         public void GivenIEnableProductToBeDisplayedAsAFlatListForAPaticularContractType()
@@ -55,6 +57,12 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         public void WhenINavigateToLeaseAndClickPage()
         {
             NextPage = CurrentPage.As<LocalOfficeAdminDashBoardPage>().NavigateToLeaseAndClickPage();
+        }
+
+        [When(@"I navigate to All In Click Page")]
+        public void WhenINavigateToAllInClickPage()
+        {
+            NextPage = CurrentPage.As<LocalOfficeAdminDashBoardPage>().NavigateToAllInClickPage();
         }
 
         [When(@"I tick Dispaly Product as List Button")]
@@ -110,6 +118,113 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             page.ClickSaveButton();
             page.ClickEditButton();
             page.VerifyEditedSellPriceValue();
+        }
+
+        [Then(@"I can set one-off dealer ""(.*)"" margin")]
+        public void ThenICanSetOne_OffDealerMargin(string marginType)
+        {
+            var page = CurrentPage.As<LocalOfficeAdminDealerDefaultsPage>();
+            switch (marginType)
+            {
+                case "Hardware":
+                    page.SelectHardwareDefaultMargin();
+                    page.ReloadPage();
+                    page.CheckHardwareDefaultMargin();
+                    break;
+                case "Delivery":
+                    page.SelectDeliveryDefaultMargin();
+                    page.ReloadPage();
+                    page.CheckDeliveryDefaultMargin();
+                    break;
+                case "Accessories":
+                    page.SelectAccesoriesDefaultMargin();
+                    page.ReloadPage();
+                    page.CheckAccesoriesDefaultMargin();
+                    break;
+                case "Installation":
+                    page.SelectInstallationDefaultMargin();
+                    page.ReloadPage();
+                    page.CheckInstallationDefaultMargin();
+                    break;
+                case "Service Pack":
+                    page.SelectServicePackDefaultMargin();
+                    page.ReloadPage();
+                    page.CheckServicePackDefaultMargin();
+                    break;
+                case "Mono Click":
+                    page.SelectMonoClickDefaultMargin();
+                    page.ReloadPage();
+                    page.CheckMonoClickDefaultMargin();
+                    break;
+                case "Colour Click":
+                    page.SelectColourClickDefaultMargin();
+                    page.ReloadPage();
+                    page.CheckColourClickDefaultMargin();
+                    break;
+                case "All Inclusive":
+                    page.SelectAllInclusiveDefaultMargin();
+                    page.ReloadPage();
+                    page.CheckAllInclusiveDefaultMargin();
+                    break;
+            }
+        }
+
+        [When(@"I navigate to Program Setting page of ""(.*)"" page")]
+        public void WhenINavigateToProgramSettingPageOfPage(string page)
+        {
+            switch (page)
+            {
+                case "Lease and Click":
+                    When(@"I navigate to admin Lease And Click page");
+                    break;
+
+                case "Purchase and Click":
+                    When(@"I navigate to Purchase And Click page");
+                    break;
+
+                case "All In Click":
+                    When(@"I navigate to All In Click Page");
+                    break;
+            }
+        }
+
+        [Then(@"I can switch ""(.*)"" ""(.*)"" Usage Type")]
+        public void ThenICanSwitchUsageType(string newState, string usageType)
+        {
+            var page = CurrentPage.As<LocalOfficeAdminProgramSettingPage>();
+            switch (usageType)
+            {
+                case "Minimum Volume":
+                    if (newState == "On")
+                    {
+                        page.TryTickMinimumVolume();
+                        page.ClickSave();
+                        page.IsMinimumVolumeTicked();
+
+                    }
+                    else
+                    {
+                        page.TryUntickMinimumVolume();
+                        page.ClickSave();
+                        page.IsMinimumVolumeUnticked();
+                    }
+                    break;
+
+                case "Pay As You Go":
+                    if (newState == "On")
+                    {
+                        page.TryTickPayAsYouGo();
+                        page.ClickSave();
+                        page.IsPayAsYouGoTicked();
+                    }
+                    else
+                    {
+                        page.TryUntickPayAsYouGo();
+                        page.ClickSave();
+                        page.IsPayAsYouGoUnticked();
+                    }
+                    break;
+            }
         }
     }
 }

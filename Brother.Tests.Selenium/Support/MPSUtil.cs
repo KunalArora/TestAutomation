@@ -101,10 +101,10 @@ namespace Brother.Tests.Selenium.Lib.Support
         public static string PrinterUnderTest()
         {
             String[] printerName ={
-                                        "DCP8110DN",
+                                        "DCP-8110DN",
                                         "DCP-8250DN",
-                                        "HL-5450DN",
-                                        //"HL-5450DNT",
+                                        "HL5450DN",
+                                        //"HL5450DNT",
                                         "HL-5470DW",
                                         //"HL-6180DW",
                                        // "HL-6180DWT",
@@ -115,7 +115,7 @@ namespace Brother.Tests.Selenium.Lib.Support
                                         "DCP-L8400CDN",
                                         "DCP-L8450CDW",
                                         "HL-L8250CDN",
-                                        "HLL8350CDW",
+                                        "HL-L8350CDW",
                                         "HL-L9200CDWT",
                                         "MFC-L8650CDW",
                                         "MFC-L8850CDW",
@@ -659,5 +659,21 @@ namespace Brother.Tests.Selenium.Lib.Support
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
             wait.Until(ExpectedConditionsEx.UrlNotChangeFrom(previousUrl));
         }
+
+        public static string DefaultMargins()
+        {
+            String[] margins =
+            {
+                "0",
+                "5",
+                "10",
+                "15",
+                "20",
+                "25"
+            };
+            var margin = margins[new Random().Next(6)];
+            return margin;
+        }
+
     }
 }

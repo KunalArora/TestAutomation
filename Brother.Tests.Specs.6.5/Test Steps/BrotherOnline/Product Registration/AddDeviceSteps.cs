@@ -1,5 +1,6 @@
 ﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
+using Brother.WebSites.Core.Pages.BrotherOnline.Account;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
@@ -13,15 +14,17 @@ namespace Brother.Tests.Specs.BrotherOnline
         [When(@"I have clicked on Add Device")]
         public void WhenIHaveClickedOnAddDevice()
         {
+            TestCheck.AssertIsNotEqual(true, CurrentPage.As<WelcomeBackPage>().IsWarningBarPresent(0, 5), "Warning Bar - account validation");
             NextPage = CurrentPage.As<WelcomeBackPage>().ClickRegisterDeviceLink();
+            //TestCheck.AssertIsNotEqual(true, CurrentPage.As<RegistrationPage>().IsWarningBarPresent(0, 5), "Warning Bar - account validation");
         }
 
         [When(@"I am redirected to the Register Device page")]
         public void WhenIAmRedirectedToTheRegisterDevicePage()
         {
-            CurrentPage.As<RegisterDevicePage>().IsContinueButtonAvailable();
+            CurrentPage.As<RegisterDevicePage>().IsSerialNumberTextBoxAvailable();
             TestCheck.AssertIsEqual(true, Validation.ValidateWarningMessageBarStatus(false), "Account Not Validated Warning Message Present");
-       }
+        }
 
         [When(@"I have entered my product information")]
         public void WhenIHaveEnteredMyProductInformation(Table table)
@@ -47,7 +50,6 @@ namespace Brother.Tests.Specs.BrotherOnline
         {
             TestCheck.AssertIsEqual(true, CurrentPage.As<RegisterDevicePage>().IsErrorIconPresent(), "Is Error Icon Present");
         }
-
 
         [Given(@"I have entered my Product Serial Code ""(.*)""")]
         public void GivenIHaveEnteredMyProductSerialCode(string productSerialCode)

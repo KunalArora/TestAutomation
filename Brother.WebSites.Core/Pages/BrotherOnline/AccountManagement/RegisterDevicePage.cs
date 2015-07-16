@@ -42,6 +42,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         [FindsBy(How = How.CssSelector, Using = "#warranty")] 
         public IWebElement BrotherTermsAndConditionsTickBox;
 
+        public static string continueButtonId = "#content_2_innercontent_2_GoToNextStepButton";
+
         public bool IsErrorIconPresent()
         {
             // override current time outs
@@ -67,13 +69,27 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             AssertElementText(BackToHomeButton, "Back to home page >", "Back to Welcome Page Button");
         }
 
+        public void IsSerialNumberTextBoxAvailable()
+        {
+            IWebElement serialCodeTextBox = null;
+            if (WaitForElementToExistByCssSelector("#content_2_innercontent_2_Row1_txtSerial", 5, 5))
+            {
+               serialCodeTextBox = GetElementByCssSelector("#content_2_innercontent_2_Row1_txtSerial");
+            }
+            AssertElementPresent(serialCodeTextBox, "Welcome Page Register Device - Serial Number Text Box");    
+        }
+
         public void IsContinueButtonAvailable()
         {
-            if (ContinueButton == null)
-            {
-                throw new Exception("Unable to locate button on page");
-            }
-            AssertElementPresent(ContinueButton, "Continue Button");
+            WaitForElementToExistByCssSelector(continueButtonId, 5, 5);
+            var continueButton = GetElementByCssSelector(continueButtonId);
+            AssertElementPresent(continueButton, "Register a Device page - Supplier Code Text Box");
+
+            //if (ContinueButton == null)
+            //{
+            //    throw new Exception("Unable to locate button on page");
+            //}
+            //AssertElementPresent(ContinueButton, "Continue Button");
         }
 
         public MyPrintersAndDevicesPage ClickContinueButton()
@@ -158,9 +174,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
 
         private void StoreModelNumber()
         {
-            WebDriver.Wait(Helper.DurationType.Second, 6); // pause for element to be populated. Explicit wait can cause StaleElement exception
-            Helper.CurrentDeviceModelNumber = ModelNumberTextBox.Text;
-        }
+            WebDriver.Wait(DurationType.Second, 6); // pause for element to be populated. Explicit wait can cause StaleElement exception
+            CurrentDeviceModelNumber = ModelNumberTextBox.Text;        }
 
         public void EnterPurchaseDate(string purchaseDate)
         {
