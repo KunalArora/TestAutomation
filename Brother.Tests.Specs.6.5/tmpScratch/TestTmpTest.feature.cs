@@ -20,7 +20,8 @@ namespace Brother.Tests.Specs.TmpScratch
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("TestTmpTest")]
-    [NUnit.Framework.IgnoreAttribute()]
+    [NUnit.Framework.CategoryAttribute("UAT")]
+    [NUnit.Framework.CategoryAttribute("TEST")]
     public partial class TestTmpTestFeature
     {
         
@@ -35,7 +36,8 @@ namespace Brother.Tests.Specs.TmpScratch
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "TestTmpTest", "In order to test snippets of code\r\nAs a Developer\r\nI want to be able to run code " +
                     "in isolation", ProgrammingLanguage.CSharp, new string[] {
-                        "ignore"});
+                        "UAT",
+                        "TEST"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -75,17 +77,11 @@ namespace Brother.Tests.Specs.TmpScratch
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Test Code")]
-        [NUnit.Framework.IgnoreAttribute()]
-        [NUnit.Framework.CategoryAttribute("TEST")]
-        [NUnit.Framework.CategoryAttribute("UAT")]
-        [NUnit.Framework.CategoryAttribute("PROD")]
+        [NUnit.Framework.CategoryAttribute("STAGING")]
         public virtual void TestCode()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Test Code", new string[] {
-                        "ignore",
-                        "TEST",
-                        "UAT",
-                        "PROD"});
+                        "STAGING"});
 #line 28
 this.ScenarioSetup(scenarioInfo);
 #line 7
@@ -93,6 +89,25 @@ this.FeatureBackground();
 #line 30
  testRunner.Given("SqlCall", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 31
+ testRunner.Given("Setup", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Test Code Two")]
+        [NUnit.Framework.CategoryAttribute("STAGING")]
+        public virtual void TestCodeTwo()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Test Code Two", new string[] {
+                        "STAGING"});
+#line 34
+this.ScenarioSetup(scenarioInfo);
+#line 7
+this.FeatureBackground();
+#line 36
+ testRunner.Given("SqlCall", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 37
  testRunner.Given("Setup", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             this.ScenarioCleanup();
