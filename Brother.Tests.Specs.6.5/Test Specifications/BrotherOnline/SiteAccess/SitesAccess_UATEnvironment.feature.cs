@@ -86,7 +86,6 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess
         [NUnit.Framework.TestCaseAttribute("Belgium", "http://be.brotherqas.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Denmark", "http://dk.brotherqas.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Switzerland", "http://ch.brotherqas.eu/", null)]
-        [NUnit.Framework.TestCaseAttribute("Austria", "http://as.brotherqas.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Slovenia", "http://si.brotherqas.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Spain", "http://es.brotherqas.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Italy", "http://it.brotherqas.eu/", null)]
@@ -128,7 +127,6 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestCaseAttribute("Belgium", "https://online.be.brotherqas.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Denmark", "https://online.dk.brotherqas.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Switzerland", "https://online.ch.brotherqas.eu/", null)]
-        [NUnit.Framework.TestCaseAttribute("Austria", "https://online.as.brotherqas.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Slovenia", "https://online.si.brotherqas.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Italy", "https://online.it.brotherqas.eu/", null)]
         public virtual void Get200OKResponseBackFromTheFollowingBrotherOnlineSitesOnTheUATEnvironment(string country, string brotherOnline, string[] exampleTags)
@@ -150,19 +148,19 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Get 200 OK response back from Creative Centre United Kingdom on the QAS environme" +
+        [NUnit.Framework.DescriptionAttribute("Get 200 OK response back from Creative Centre United Kingdom on the UAT environme" +
             "nt")]
         [NUnit.Framework.CategoryAttribute("SMOKE")]
-        public virtual void Get200OKResponseBackFromCreativeCentreUnitedKingdomOnTheQASEnvironment()
+        public virtual void Get200OKResponseBackFromCreativeCentreUnitedKingdomOnTheUATEnvironment()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get 200 OK response back from Creative Centre United Kingdom on the QAS environme" +
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get 200 OK response back from Creative Centre United Kingdom on the UAT environme" +
                     "nt", new string[] {
                         "SMOKE"});
-#line 62
-this.ScenarioSetup(scenarioInfo);
 #line 63
- testRunner.Given("The following site \"United Kingdom\" \"http://creativecenter.eu.brotherqas.eu/\" to " +
-                    "validate I should receive an Ok response back", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioSetup(scenarioInfo);
+#line 64
+ testRunner.Given("The following site \"United Kingdom\" https://creativecenter.eu.brotherqas.eu/ to v" +
+                    "alidate I should receive an Ok response back", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             this.ScenarioCleanup();
         }

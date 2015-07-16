@@ -210,6 +210,7 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Test all CD servers on Live Environment")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.CategoryAttribute("PROD")]
         [NUnit.Framework.CategoryAttribute("SMOKE")]
         [NUnit.Framework.TestCaseAttribute("10.91.0.131", "https://web1.online.brother.at", null)]
@@ -423,7 +424,8 @@ this.ScenarioSetup(scenarioInfo);
         {
             string[] @__tags = new string[] {
                     "PROD",
-                    "SMOKE"};
+                    "SMOKE",
+                    "ignore"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
