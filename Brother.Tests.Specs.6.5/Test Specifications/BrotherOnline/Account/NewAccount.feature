@@ -275,22 +275,86 @@ Scenario: Validate that the correct error messages are displayed when Terms and 
 	And I press create account button
 	Then I should get an error message displayed on the Terms and Conditions
 
-
-# Test to verify mandatory fields when creating a business account
-Scenario: Validate that the correct error messages are displayed for all mandatory fields that are required when creating a new business account
+# Check mandatory email field when creating business account
+Scenario: Validate that an error message is displayed for mandatory email field if it is missing during creation of a business account
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
 	And I am redirected to the Brother Login/Register page
 	And I have Checked No I Do Not Have An Account Checkbox
 	And I declare that I do use this account for business
+	When I press tab in the email address field
+	Then I should see an error message
+
+# Check mandatory password field when creating business account
+Scenario: Validate that an error message is displayed for mandatory password field if it is missing during creation of a business account
+	Given I want to create a new account with Brother Online "United Kingdom"
+	When I click on Create Account for "United Kingdom"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I declare that I do use this account for business
+	When I press tab in the password field
+	Then I should see an error message on the password field
+
+# Check mandatory first name field when creating a business account
+Scenario: Validate that an error message is displayed for mandatory first name field if it is missing during creation of a business account
+	Given I want to create a new account with Brother Online "United Kingdom"
+	When I click on Create Account for "United Kingdom"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I declare that I do use this account for business
+	When I press tab in the first name field
+	Then I should see an error message on the first name field
+
+# Check mandatory last name field when creating a business account
+Scenario: Validate that an error message is displayed for mandatory last name field if it is missing during creation of a business account
+	Given I want to create a new account with Brother Online "United Kingdom"
+	When I click on Create Account for "United Kingdom"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I declare that I do use this account for business
+	When I press tab in the last name field
+	Then I should see an error message on the last name field
+
+# Check mandatory comnpany name field when creating a business account
+Scenario: Validate that an error message is displayed for mandatory company name field if it is missing during creation of a business account
+	Given I want to create a new account with Brother Online "United Kingdom"
+	When I click on Create Account for "United Kingdom"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I declare that I do use this account for business
+	When I press tab in the company name field
+	Then I should see an error message on the company name field
+	
+# Check mandatory business sector field when creating a business account
+Scenario: Validate that an error message is displayed for mandatory business sector field if it is missing during creation of a business account
+	Given I want to create a new account with Brother Online "United Kingdom"
+	When I click on Create Account for "United Kingdom"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I declare that I do use this account for business
+	When I press tab in the business sector field
+	Then I should see an error message on the business sector field
+
+# Check mandatory terms and conditions are accepted when creating a business account
+Scenario: Validate that an error message is displayed for mandatory terms and conditions if they are not accepted during creation of a business account
+	Given I want to create a new account with Brother Online "United Kingdom"
+	When I click on Create Account for "United Kingdom"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I fill in the registration information using a valid email address 
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Password        | @@@@@	       |
+	| ConfirmPassword | @@@@@		   |
+
+	And I declare that I do use this account for business
+	And I add my company name as "AutoTestLtd"
+	And I select my Business Sector as "IT and telecommunications services"
+	And I select number of Employees as "11 - 50"
+	When I add my company VAT number as "GB145937540" 
 	And I press create account button
-	Then I should see an error message on the email field
-	And I should see an error message on the password field
-	And I should see an error message on the firstname field
-	And I should see an error message on the lastname field
-	And I should see an error message on the company name field
-	And I should see an error message on the business sector field
-	And I should get an error message displayed on the Terms and Conditions
+	Then I should get an error message displayed on the Terms and Conditions
 
 
 @ignore
