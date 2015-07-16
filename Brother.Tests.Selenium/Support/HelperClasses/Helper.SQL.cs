@@ -32,15 +32,19 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         private static SqlConnection GetSqlConnection()
         {
             var server = GetSqlServer(); 
+            MsgOutput(string.Format("SQL: Connecting to SQL Server [{0}]", server));
             //const string username = @"EU\EUSiteCoreTestAuto";
             const string username = @"AutoTestLocalUser";
             const string password = "@utoT3stL0c@lUs3r";
-            const string database = "Brother_MM_UserData";
+            //const string database = "Brother_MM_UserData";
+            const string database = "Brother_UserData";
 
             var connectionString = "Data Source=" + server + ";";
             connectionString += "User ID=" + username + ";";
             connectionString += "Password=" + password + ";";
             connectionString += "Initial Catalog=" + database;
+
+            MsgOutput(string.Format("SQL: SQL Connection string = [{0}]", connectionString));
 
             var sqlConnection = new SqlConnection();
             try
