@@ -158,6 +158,12 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             return ScenarioContext.Current.ScenarioInfo.Tags.Contains(env);
         }
 
+        public static bool CheckForStagingTestFlag()
+        {
+            var isSmokeTest = Environment.GetEnvironmentVariable("IsStagingTest", EnvironmentVariableTarget.Machine);
+            return isSmokeTest != null && isSmokeTest.Equals("TRUE");
+        }
+
         public static bool IsSmokeTest()
         {
             var isSmokeTest = Environment.GetEnvironmentVariable("SmokeTestSet", EnvironmentVariableTarget.Machine);

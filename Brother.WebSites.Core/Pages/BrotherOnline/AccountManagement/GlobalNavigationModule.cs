@@ -351,7 +351,11 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             button.Click();
             return GetInstance<MyPersonalDetailsPage>(driver, "", "");
         }
-        
+        public static MyPersonalDetailsPage MyPersonalDetailsMenuOptionClick(IWebDriver driver, IWebElement personalDetailsMenuItem)
+        {
+            personalDetailsMenuItem.Click();
+            return GetInstance<MyPersonalDetailsPage>(driver, "", "");
+        }
         public static MySignInDetailsPage MySignInDetailsMenuOptionClick(IWebDriver driver, IWebElement signInDetailsMenuItem)
         {
             signInDetailsMenuItem.Click();

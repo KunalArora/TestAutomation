@@ -41,7 +41,6 @@ Scenario: Customer has created a Brother Online account but has forgotten their 
 @TEST @UAT
 Scenario: Customer or Dealer role persists after email address change (BOL-176)
 	Given I am logged onto Brother Online "United Kingdom" using valid credentials
-	#Given I am logged into my Brother Online account
 	Then I can sign out of Brother Online
 	And If I grant the user account the "Extranet\Brother Online Ink Supply User" role
 	When I sign back into Brother Online "United Kingdom" using the same credentials
@@ -63,7 +62,6 @@ Scenario: Customer or Dealer role persists after email address change (BOL-176)
 @TEST @UAT @PROD 
 Scenario Outline: Customer can change their Brother Online email address after registration (BBAU - 2337)
 	Given I am logged onto Brother Online "<Country>" using valid credentials
-	#Given I am logged into my Brother Online account
 	When I navigate to my account for "<Country>"
 	And I click on Sign In Details
 	And If I enter a new email address "<EmailPrefixForChange>"
@@ -82,7 +80,6 @@ Scenarios:
 	| Country        | EmailPrefixForChange |
 	| United Kingdom | changed              |
 	| Ireland        | changed              |
-
 
 
 # Change Business details in your created account, go to my account and change/add your business details
@@ -118,7 +115,21 @@ Scenario: Customer creates a new account with Brother Online and add Business de
 	And I click on Update details on business details page
 	Then I can verify successfull update message appeared at the top
 
-	
+@ignore
+#Change Personal details in your created account, go to my account and add your new Email address
+Scenario Outline: Customer create a new account and amend their personal details by going into my account page
+Given I want to create a new account with Brother Online "United Kingdom"
+	When I click on Create Account for "United Kingdom"
+	And I click on Personal Details
+	And I enter First Name containing <FirstName>
+	And I enter the Last Name containing <LastName>
+	And I click on update details
+	Then my personal details should get updated
+Scenarios: 
+	| FirstName						|LastName							|
+	| "Test"						|"Test"								|
+
+
 	
 	
 

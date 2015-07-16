@@ -361,6 +361,7 @@ Scenario: Validate that an error message is displayed for mandatory terms and co
 Scenario: Log in as a Printer On dealer and ensure that they can see the required permissions BBAU-2189
 # (ensure that a customer cannot see the same permissions)
 
+
 # Change Personal details in your created account, go to my account and add your new Email address
 Scenario: Business Customer can change their Email Address   (BBAU - 2377, 2355)
 	Given I want to create a new account with Brother Online "United Kingdom"
@@ -395,7 +396,7 @@ Scenario: Business Customer can change their Email Address   (BBAU - 2377, 2355)
 	And I can sign out of Brother Online
 	Then If I sign back into Brother Online "United Kingdom" using the same credentials
 
-#Change Personal details in your created account, go to my account and change/add your new password
+#Change Sign In details in your created account, go to my account and change/add your new password
 Scenario: Business Customer can reset their password 
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
@@ -427,8 +428,11 @@ Scenario: Business Customer can reset their password
 	Then If I sign out of Brother Online
 	And If I sign back into Brother Online "United Kingdom" using the same credentials
 	Then I can sign out of Brother Online
+	
 
+
+
+	
 @ignore
 Scenario: Create a user but test for BPID 
 	# Create a new user account but add a check for the Users BPID in the dbo.Users table
-

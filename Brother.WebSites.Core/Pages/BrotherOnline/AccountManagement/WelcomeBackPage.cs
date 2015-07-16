@@ -158,6 +158,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             RegisterDeviceLink.Click();
             return GetInstance<RegisterDevicePage>(Driver);
         }
+       
       public PlansHomePage OmniJoinBuyNowButtonClick()
         {
             OmniJoinBuyNowButton.Click();
@@ -169,15 +170,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
            OmniJoinTryNowButton.Click();
            return GetInstance<FreeTrialPage>(Driver);
         }
-
-        public MyPersonalDetailsPage PersonalDetailsButtonClick(IWebElement button)
-        {
-            TestCheck.AssertIsNotNull(button, "Personal Details Button");
-            button.Click();
-            return GetInstance<MyPersonalDetailsPage>(Driver);
-        }
-
-        public void ClickOnManagedPrintServices(string navigation)
+     public void ClickOnManagedPrintServices(string navigation)
         {
             try
             {
