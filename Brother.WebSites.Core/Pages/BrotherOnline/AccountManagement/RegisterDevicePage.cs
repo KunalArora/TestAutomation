@@ -12,7 +12,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
 
         public override string DefaultTitle
         {
-            get { return BrotherOnlineHomePages.Default["RegisterYourDevice"].ToString(); }
+            get { return BrotherOnlineHomePages.Default["MyPersonalDetails"].ToString(); }
         }
 
         [FindsBy(How = How.CssSelector, Using = @"a.button-grey[href='/']")]

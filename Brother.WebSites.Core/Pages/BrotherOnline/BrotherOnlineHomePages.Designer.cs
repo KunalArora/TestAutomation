@@ -260,6 +260,20 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline {
                 this["MyBusinessDetails"] = value;
             }
         }
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("my personal details ")]
+        public string MyPersonalDetails
+        {
+            get
+            {
+                return ((string)(this["MyPersonalDetails"]));
+            }
+            set
+            {
+                this["MyPersonalDetails"] = value;
+            }
+        }
        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Order Details")]
