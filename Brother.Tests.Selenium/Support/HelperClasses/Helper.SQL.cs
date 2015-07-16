@@ -17,16 +17,12 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         /// </summary>
         private static string GetSqlServer()
         {
-            if ((GetRunTimeEnv() == "TEST") || (GetRunTimeEnv() == "UAT"))
-            {
+            return GetRunTimeEnv() == "TEST" ? "PRDAT204V" : (GetRunTimeEnv() == "UAT" ? "PRDAT168V" : string.Empty);
 
-            
-            }
-            else
-            {
-                return Environment.GetEnvironmentVariable("SqlServerInstance");
-            }
-            return string.Empty;
+            //else
+            //{
+            //    return Environment.GetEnvironmentVariable("COMPUTERNAME");
+            //}
         }
 
         /// <summary>
