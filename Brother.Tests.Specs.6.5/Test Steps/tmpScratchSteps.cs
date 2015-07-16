@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
+using NUnit.Framework;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs
@@ -14,11 +15,12 @@ namespace Brother.Tests.Specs
         {
             var dealerEmail = "ORP_Cushty_Dealer_001@guerrillamail.com";
             var dealerId = Sql.GetOrpDealerId(dealerEmail);
+            TestCheck.AssertIsNotEqual(Guid.Empty, dealerId, "Dealer Id");
 
             var activationCode = Sql.GetOrpActivationCode(dealerId, 12, 1, "Order28052015");
             if (activationCode == string.Empty)
             {
-                Helper.MsgOutput(string.Format("Unable to retrieve Activation Code for Dealer {0}", dealerEmail));
+                TestCheck.AssertFailTest(string.Format("Unable to retrieve Activation Code for Dealer [{0}]", dealerEmail));
             }
         }
 
