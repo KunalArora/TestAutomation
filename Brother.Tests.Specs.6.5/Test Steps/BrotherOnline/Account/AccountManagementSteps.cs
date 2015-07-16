@@ -83,14 +83,6 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             var menuMyAccount = GlobalNavigationModule.GetProductNavigationMenu("MyAccount");
             menuMyAccount.Click();
         }
-
-        [Then(@"I click on My Personal Details")]
-        public void ThenIClickOnMyPersonalDetails()
-        {
-            var personalDetailsButton = GlobalNavigationModule.GetMyAccountInfoButton("MyAccount", "PersonalDetails");
-            NextPage = GlobalNavigationModule.PersonalDetailsButtonClick(CurrentDriver, personalDetailsButton);
-        }
-
         [When(@"I click on Sign In Preferences")]
         public void WhenIClickOnSignInPreferences()
         {
@@ -104,7 +96,14 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             var signInDetailsMenu = GlobalNavigationModule.GetMyAccountMenuItem("SignInDetails");
             NextPage = GlobalNavigationModule.MySignInDetailsMenuOptionClick(CurrentDriver, signInDetailsMenu);
         }
+        [When(@"I click on Personal Details")]
+        public void WhenIClickOnPersonalDetails()
+        {
+          var personalDetailsButton = GlobalNavigationModule.GetMyAccountInfoButton("MyAccount", "PersonalDetails");
+          NextPage = GlobalNavigationModule.PersonalDetailsButtonClick(CurrentDriver, personalDetailsButton);
+          
 
+        }
         [Then(@"I can click on Payment Methods")]
         public void ThenICanClickOnPaymentMethods()
         {
@@ -152,6 +151,11 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         public void WhenIAmRedirectedToTheBusinessDetailsPage()
         {
             CurrentPage.As<BusinessDetailsPage>().IsUpdateButtonAvailable();
+        }
+        [When(@"I am redirected to the Personal Details Page")]
+        public void WhenIAmRedirectedToThePersonalDetailsPage()
+        {
+            CurrentPage.As<MyPersonalDetailsPage>().IsUpdateButtonAvailable();
         }
 
         [Then(@"I can validate the update was successful")]
@@ -219,6 +223,28 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<BusinessDetailsPage>().ValidateInformationMessageBarStatus(true);
         }
+        [When(@"I enter First Name containing (.*)")]
+        public void WhenIEnterFirstNameContaining(string firstname)
+        {
+            CurrentPage.As<MyPersonalDetailsPage>().PopulateFirstNameTextBox(firstname);
+        }
+
+        [When(@"I enter the Last Name containing (.*)")]
+        public void WhenIEnterTheLastNameContaining(string lastname)
+        {
+            CurrentPage.As<MyPersonalDetailsPage>().PopulateLastNameTextBox(lastname);
+        }
+        [When(@"I click on update details")]
+        public void WhenIClickOnUpdateDetails()
+        {
+            CurrentPage.As<MyPersonalDetailsPage>().ClickUpdateDetailsButton();
+        }
+        [Then(@"my personal details should get updated")]
+        public void ThenMyPersonalDetailsShouldGetUpdated()
+        {
+            CurrentPage.As<MyPersonalDetailsPage>().ValidateInformationMessageBarStatus(true);
+        }
+
 
     }
 }
