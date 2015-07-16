@@ -115,8 +115,9 @@ Scenario: Customer creates a new account with Brother Online and add Business de
 	And I click on Update details on business details page
 	Then I can verify successfull update message appeared at the top
 
+@ignore
 #Change Personal details in your created account, go to my account and add your new Email address
-Scenario: Customer create a new account and amend their personal details by going into my account page
+Scenario Outline: Customer create a new account and amend their personal details by going into my account page
 Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
 	And I click on Personal Details
