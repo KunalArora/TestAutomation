@@ -151,18 +151,31 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             catch (ElementNotVisibleException elementNotVisible)
             {
                 MsgOutput(string.Format("Account Verification Sucess message could not be located [{0}]", elementNotVisible.Message));
-                return false;
             }
             return false;
         }
 
-        public void IsResetYourPasswordButtonAvailable()
+        public bool IsResetYourPasswordButtonAvailable(int retry, int timeToWait)
         {
-            if (ResetYourPasswordButton == null)
+            try
             {
-                throw new NullReferenceException("Unable to locate button on page");
+                if (WaitForElementToExistByCssSelector("#content_1_ResetPasswordButton", retry, timeToWait))
+                {
+                    var resetPasswordButton = Driver.FindElement(By.CssSelector("#content_1_ResetPasswordButton"));
+                    if (resetPasswordButton != null)
+                    {
+                        if (resetPasswordButton.Displayed)
+                        {
+                            return true;
+                        }
+                    }
+                }
             }
-            AssertElementPresent(ResetYourPasswordButton, "Reset Password Button");
+            catch (ElementNotVisibleException elementNotVisible)
+            {
+                MsgOutput(string.Format("Reset Password Button could not be located [{0}]", elementNotVisible.Message));
+            }
+            return false;
         }
 
         public void ResetYourPasswordButtonClick()
@@ -170,34 +183,11 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             if (!WaitForElementToExistByCssSelector("#content_1_ResetPasswordButton"))
             {
                 ResetYourPasswordButton = Driver.FindElement(By.CssSelector("#content_1_ResetPasswordButton"));
-                //TestCheck.AssertIsNotEqual(null, ResetYourPasswordButton, "Reset Password Button");
             }
             ScrollTo(ResetYourPasswordButton);
             ResetYourPasswordButton.Click();
         }
-
-        //public void ResetYourPasswordButtonClick()
-        //{
-        //    if (!WaitForElementToExistById("#content_1_ResetPasswordButton"))
-        //    {
-        //        ResetYourPasswordButton = Driver.FindElement(By.Id("#content_1_ResetPasswordButton"));
-        //        TestCheck.AssertIsNotEqual(null, ResetYourPasswordButton, "Reset Password Button");
-        //    }
-        //    ScrollTo(ResetYourPasswordButton);
-        //    ResetYourPasswordButton.Click();
-        //}
-       
-        //public void ResetYourPasswordButtonClick()
-        //{
-        //    if (!WaitForElementToExistByClassName(".button-blue"))
-        //    {
-        //        ResetYourPasswordButton = Driver.FindElement(By.ClassName(".button-blue"));
-        //        TestCheck.AssertIsNotEqual(null, ResetYourPasswordButton, "Reset Password Button");
-        //    }
-        //    ScrollTo(ResetYourPasswordButton);
-        //    ResetYourPasswordButton.Click();
-        //}
-
+    
         public void IsEmailResetTextBoxAvailable()
         {
             if (EmailAddressPasswordResetTextBox == null)
