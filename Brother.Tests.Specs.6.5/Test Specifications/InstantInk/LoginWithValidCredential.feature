@@ -26,6 +26,8 @@ Scenario:Validate a valid user can sign in to Ink
 	#Then the device contract should be displayed.
 	And I can navigate back to Brother Online home page
 	Then I can sign out of Brother Online
+
+	#Git stash test the change
 	
 
 
