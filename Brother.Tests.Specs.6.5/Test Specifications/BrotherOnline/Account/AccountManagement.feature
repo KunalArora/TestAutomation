@@ -98,7 +98,7 @@ Scenario: Business Customer can change their business details after logging into
 	Then I can verify successfull update message appeared at the top
 	
 
-# Create a new user account - Add business details for new user
+# Create a new user account - Add business details for new user (Should not be executed on Production)
 Scenario: Customer creates a new account with Brother Online and add Business details in My account page
 	Given I am logged onto Brother Online "United Kingdom" using valid credentials
 	Then I can sign out of Brother Online
