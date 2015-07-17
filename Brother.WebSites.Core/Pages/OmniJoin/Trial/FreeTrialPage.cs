@@ -87,8 +87,18 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Trial
             ConfirmPasswordTextBox.SendKeys(password);
         }
 
+        public void IsPopulatePasswordTextBoxAvailable()
+        {
+            if (PasswordTextBox == null)
+            {
+                throw new NullReferenceException("Unable to locate Password Text Box on page");
+            }
+            AssertElementPresent(PasswordTextBox, "Password Text Box (Free-trial)");
+        }
+
         public void PopulatePasswordTextBox(string password)
         {
+            IsPopulatePasswordTextBoxAvailable();
             PasswordTextBox.SendKeys(password);
         }
 

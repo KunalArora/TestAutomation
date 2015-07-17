@@ -27,10 +27,10 @@ Scenarios:
 	| Sweden         | http://www.brother.se/    |
 	| Portugal       | http://www.brother.pt/    |
 	| Czech Republic | http://www.brother.cz/    |
-	| Hungary        | http://www.brother.hu/    |
+#	| Hungary        | http://www.brother.hu/    |
 	| Russia         | http://www.brother.ru/    |
-	| Bulgaria       | http://www.brother.bg/    |
-	| Romania        | http://www.brother.ro/    |
+#	| Bulgaria       | http://www.brother.bg/    |
+#	| Romania        | http://www.brother.ro/    |
 	| Slovenia       | http://www.brother.si/    |
 	| Luxembourg     | http://www.brother.lu/    |
 
