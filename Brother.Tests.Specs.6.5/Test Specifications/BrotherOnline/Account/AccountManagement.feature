@@ -19,7 +19,8 @@ Scenario: Customer has created a Brother Online account and wishes to change the
 	Then I can sign out of Brother Online
 
 # Create an account and use the "Forgotten Password" utility
-@TEST @UAT @PROD
+#@TEST @UAT @PROD
+@STAGING
 Scenario: Customer has created a Brother Online account but has forgotten their password and requires a new one
 	Given I am logged onto Brother Online "United Kingdom" using valid credentials
 	#Given I am logged into my Brother Online account
