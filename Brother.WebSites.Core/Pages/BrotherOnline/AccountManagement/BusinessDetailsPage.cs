@@ -42,14 +42,16 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         [FindsBy(How = How.CssSelector, Using = ".info-bar")]
         public IWebElement InformationMessageBar;
 
+        public string UpdateButtonId = "#content_2_innercontent_1_SubmitButton";
 
         public void IsUpdateButtonAvailable()
         {
-            if (UpdateButton == null)
+            IWebElement updateButton = null;
+            if (WaitForElementToExistByCssSelector(UpdateButtonId, 5, 5))
             {
-                throw new Exception("Unable to locate button on page");
+                updateButton = Driver.FindElement(By.CssSelector(UpdateButtonId));
             }
-            AssertElementPresent(UpdateButton, "Update Button");
+            AssertElementPresent(updateButton, "Update Button");
         }
 
         public void UpdateButtonClick()
