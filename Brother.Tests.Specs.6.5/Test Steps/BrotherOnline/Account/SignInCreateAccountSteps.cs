@@ -252,6 +252,30 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<RegistrationPage>().EmptyPasswordTextBox();
         }
 
+        [When(@"I press tab in the first name field")]
+        public void WhenIPressTabInTheFirstNameField()
+        {
+            CurrentPage.As<RegistrationPage>().EmptyFirstNameTextBox();
+        }
+
+        [When(@"I press tab in the last name field")]
+        public void WhenIPressTabInTheLastNameField()
+        {
+            CurrentPage.As<RegistrationPage>().EmptyLastNameTextBox();
+        }
+
+        [When(@"I press tab in the company name field")]
+        public void WhenIPressTabInTheCompanyNameField()
+        {
+            CurrentPage.As<RegistrationPage>().EmptyCompanyNameTextBox();
+        }
+
+        [When(@"I press tab in the business sector field")]
+        public void WhenIPressTabInTheBusinessSectorField()
+        {
+            CurrentPage.As<RegistrationPage>().EmptyBusinessSectorTextBox();
+        }
+
         [Then(@"If I sign back into Brother Online ""(.*)"" using the same credentials")]
         [When(@"I sign back into Brother Online ""(.*)"" using the same credentials")]
         public void ThenIfISignBackIntoBrotherOnlineUsingTheSameCredentials(string country)
@@ -425,31 +449,25 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<RegistrationPage>().IsErrorMessageDisplayed();
         }
-        [Then(@"I should see an error message on the email field")]
-        public void ThenIShouldSeeAnErrorMessageOnTheEmailField()
-        {
-            //CurrentPage.As<RegistrationPage>().EmailFieldErrorMessage();
-            CurrentPage.As<RegistrationPage>().EmailFieldErrorMessage();
-        }
         [Then(@"I should see an error message on the password field")]
         public void ThenIShouldSeeAnErrorMessageOnThePasswordField()
         {
             CurrentPage.As<RegistrationPage>().PasswordErrorMessageDisplayed();
         }
-        [Then(@"I should see an error message on the firstname field")]
+        [Then(@"I should see an error message on the first name field")]
         public void ThenIShouldSeeAnErrorMessageOnTheFirstnameField()
         {
-            CurrentPage.As<RegistrationPage>().FirstnameErrorMessage();
+            CurrentPage.As<RegistrationPage>().FirstNameErrorMessage();
         }
-        [Then(@"I should see an error message on the lastname field")]
+        [Then(@"I should see an error message on the last name field")]
         public void ThenIShouldSeeAnErrorMessageOnTheLastnameField()
         {
-            CurrentPage.As<RegistrationPage>().LastnameErrorMessage();
+            CurrentPage.As<RegistrationPage>().LastNameErrorMessage();
         }
         [Then(@"I should see an error message on the company name field")]
         public void ThenIShouldSeeAnErrorMessageOnTheCompanynameField()
         {
-            CurrentPage.As<RegistrationPage>().CompanynameErrorMessage();
+            CurrentPage.As<RegistrationPage>().CompanyNameErrorMessage();
         }
         [Then(@"I should see an error message on the business sector field")]
         public void ThenIShouldSeeAnErrorMessageOnTheBusinessSectorField()
