@@ -180,6 +180,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public void ResetYourPasswordButtonClick()
         {
+            TakeSnapshot();//TEMP
             if (!WaitForElementToExistByCssSelector("#content_1_ResetPasswordButton"))
             {
                 ResetYourPasswordButton = Driver.FindElement(By.CssSelector("#content_1_ResetPasswordButton"));
