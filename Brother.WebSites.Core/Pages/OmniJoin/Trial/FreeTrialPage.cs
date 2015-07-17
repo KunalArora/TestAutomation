@@ -84,21 +84,35 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Trial
 
         public void PopulateConfirmPasswordTextBox(string password)
         {
+            IsPopulateConfirmPasswordTextBoxAvailable();
+            ScrollTo(ConfirmPasswordTextBox);
             ConfirmPasswordTextBox.SendKeys(password);
         }
 
         public void IsPopulatePasswordTextBoxAvailable()
         {
-            if (PasswordTextBox == null)
+            // Override PageFactory loader
+            if (WaitForElementToExistByCssSelector("#content_0_maincontent_2_txtPassword", 5, 5));
             {
-                throw new NullReferenceException("Unable to locate Password Text Box on page");
+                PasswordTextBox = Driver.FindElement(By.CssSelector("#content_0_maincontent_2_txtPassword"));
             }
             AssertElementPresent(PasswordTextBox, "Password Text Box (Free-trial)");
+        }
+
+        public void IsPopulateConfirmPasswordTextBoxAvailable()
+        {
+            // Override PageFactory loader
+            if (WaitForElementToExistByCssSelector("#txtConfirmPassword", 5, 5)) ;
+            {
+                ConfirmPasswordTextBox = Driver.FindElement(By.CssSelector("#txtConfirmPassword"));
+            }
+            AssertElementPresent(ConfirmPasswordTextBox, "Confirm Password Text Box (Free-trial)");
         }
 
         public void PopulatePasswordTextBox(string password)
         {
             IsPopulatePasswordTextBoxAvailable();
+            ScrollTo(PasswordTextBox);
             PasswordTextBox.SendKeys(password);
         }
 
