@@ -44,7 +44,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [Then(@"I reset my password with ""(.*)""")]
         public void ThenIResetMyPasswordWith(string newPassword)
         {
-            CurrentPage.As<RegistrationPage>().IsResetYourPasswordButtonAvailable(3, 5);
+            CurrentPage.As<RegistrationPage>().IsResetYourPasswordButtonAvailable(5, 5);
             CurrentPage.As<RegistrationPage>().PopulatePasswordTextBox(newPassword);
             CurrentPage.As<RegistrationPage>().PopulateConfirmPasswordTextBox(newPassword);
             // Set new password so we can sign in again using the updated password
