@@ -96,7 +96,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         {
             if (!WaitForElementToExistByCssSelector("#content_2_innercontent_2_GoToNextStepButton"))
             {
-                ContinueButton = Driver.FindElement(By.CssSelector("#content_1_ResetPasswordButton"));
+                ContinueButton = Driver.FindElement(By.CssSelector("#content_2_innercontent_2_GoToNextStepButton"));
                 TestCheck.AssertIsEqual(null, ContinueButton, "Check Continue Button");
             }
             ScrollTo(ContinueButton);
