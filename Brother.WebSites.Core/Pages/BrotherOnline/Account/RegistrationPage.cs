@@ -159,9 +159,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         {
             try
             {
-                if (WaitForElementToExistByCssSelector("#content_1_ResetPasswordButton", retry, timeToWait))
+                if (WaitForElementToExistByCssSelector("#content_1_ResetPasswordButton.button-blue", retry, timeToWait))
                 {
-                    var resetPasswordButton = Driver.FindElement(By.CssSelector("#content_1_ResetPasswordButton"));
+                    var resetPasswordButton = Driver.FindElement(By.CssSelector("#content_1_ResetPasswordButton.button-blue"));
                     if (resetPasswordButton != null)
                     {
                         if (resetPasswordButton.Displayed)
@@ -181,9 +181,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         public void ResetYourPasswordButtonClick()
         {
             TakeSnapshot();//TEMP
-            if (!WaitForElementToExistByCssSelector("#content_1_ResetPasswordButton", 5, 5))
+            if (!WaitForElementToExistByCssSelector("#content_1_ResetPasswordButton.button-blue", 5, 5))
             {
-                ResetYourPasswordButton = Driver.FindElement(By.CssSelector("#content_1_ResetPasswordButton"));
+                ResetYourPasswordButton = Driver.FindElement(By.CssSelector("#content_1_ResetPasswordButton.button-blue"));
             }
             ScrollTo(ResetYourPasswordButton);
             ResetYourPasswordButton.Click();
