@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using System.IO;
 using System.Net;
+using System.Net.Security;
 using System.Runtime.Remoting;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -108,6 +109,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             if (webPage.Contains("https:"))
             {
                 ServicePointManager.CertificatePolicy = new TrustAllCertificatePolicy();
+                //ServicePointManager.ServerCertificateValidationCallback = new RemoteCertificateValidationCallback();
             }
 
             try
