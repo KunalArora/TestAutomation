@@ -23,8 +23,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             get { return BrotherOnlineHomePages.Default["LoginRegisterPage"].ToString(); }
         }
 
-        private string accountVerificationMessage = "content_0_twocolumnsformtop_2_VerificationSuccess";
-        private string accountVerificationMessageClass = ".box-out.email-success";
+//Throwing warning as its not used so taking out for now
+//        private string accountVerificationMessage = "content_0_twocolumnsformtop_2_VerificationSuccess";
+//        private string accountVerificationMessageClass = ".box-out.email-success";
 
         [FindsBy(How = How.Id, Using = "SignInButton")]
         public IWebElement SignInButton;
@@ -40,7 +41,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         // Note: there are Three password fields, one for Sign In, Two for Sign Up
         [FindsBy(How = How.Id, Using = "Password")]
-        public IWebElement Password;
+        public new IWebElement Password;
 
         [FindsBy(How = How.Id, Using = "PasswordTextBox")]
         public IWebElement PasswordTextBox;

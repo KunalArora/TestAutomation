@@ -386,7 +386,6 @@ namespace TestRunner
         #endregion
 
         private ComboBox RunTimeEnv;
-        private Button GetTests;
         private Label label1;
         private Label TestList;
         private Button StartTestRun;

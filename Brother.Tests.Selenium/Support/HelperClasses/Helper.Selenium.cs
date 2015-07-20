@@ -42,6 +42,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             catch (WebDriverException timeOutDriverException)
             {
                 MsgOutput(string.Format("Driver timed out whilst looking for Accept Cookie Law request button"));
+                MsgOutput(string.Format("Exception was [{0}]", timeOutDriverException));
             }
             WebDriver.SetWebDriverImplicitTimeout(WebDriver.ImplicitWaitDefaultTimeout);
         }
@@ -115,6 +116,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             }
             catch (WebDriverException elementSearchTimeout)
             {
+                MsgOutput(string.Format("Exception was [{0}]", elementSearchTimeout));
                 throw new WebDriverTimeoutException(string.Format("Timeout searching for Element [{0}]. Timeout after [{1}]", element, ElementSearchTimeout));
             }
             return elementStatus;
@@ -130,6 +132,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             }
             catch (WebDriverException elementSearchTimeout)
             {
+                MsgOutput(string.Format("Exception was [{0}]", elementSearchTimeout));
                 throw new WebDriverTimeoutException(string.Format("Timeout searching for Element [{0}]. Timeout after [{1}]", element, ElementSearchTimeout));
             }
             return elementStatus;
@@ -169,6 +172,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                 catch (WebDriverException timeOutException)
                 {
                     MsgOutput(string.Format("Element [{0}] Not Found after [{1}] seconds. Retrying [{2}] times", element, wait.Timeout.Seconds, retries));
+                    MsgOutput(string.Format("Exception was [{0}]", timeOutException));
                     retries++;
                 }
             }
@@ -203,6 +207,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                 catch (WebDriverException timeOutException)
                 {
                     MsgOutput(string.Format("Element Not Found after [{0}] seconds", wait.Timeout.Seconds));
+                    MsgOutput(string.Format("Exception was [{0}]", timeOutException));
                     retries++;
                 }
             }

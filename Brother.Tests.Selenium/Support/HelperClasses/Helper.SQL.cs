@@ -151,7 +151,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                         }
                         catch (SqlNullValueException fieldIsNull)
                         {
-                            MsgOutput("Activation code has not activated");
+                            MsgOutput(string.Format("Activation code has not activated [{0}]", fieldIsNull));
                         }
                     }
                 }

@@ -223,6 +223,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
             }
             catch (WebDriverException timeOutException)
             {
+                MsgOutput(string.Format("Exception was [{0}]", timeOutException));
                 TestCheck.AssertFailTest("Unable to find Credit Card Payment Frame - Digital River Page - due to timeout");
             }
             MsgOutput("Switching to Credit Card details frame (Order Summary)");

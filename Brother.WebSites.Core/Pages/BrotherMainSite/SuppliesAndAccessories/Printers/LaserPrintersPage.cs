@@ -161,7 +161,6 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.SuppliesAndAccessories.Pri
             try
             {
                 // get the last printer in the list and move to that last element
-                ReadOnlyCollection<IWebElement> printerArray = null;
 
                 var printerCount = 0;
                 var printerCountReCheck = 0;
