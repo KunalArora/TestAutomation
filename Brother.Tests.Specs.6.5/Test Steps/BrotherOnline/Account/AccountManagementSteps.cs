@@ -97,6 +97,13 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             var signInDetailsMenu = GlobalNavigationModule.GetMyAccountMenuItem("SignInDetails");
             NextPage = GlobalNavigationModule.MySignInDetailsMenuOptionClick(CurrentDriver, signInDetailsMenu);
         }
+        [When(@"I click on My Address")]
+        public void WhenIClickOnMyAddress()
+        {
+            var myaddressmenubutton = GlobalNavigationModule.GetMyAccountMenuItem("MyAddress");
+            NextPage = GlobalNavigationModule.AdressBookButtonClick(CurrentDriver, myaddressmenubutton);
+           }
+
         [Then(@"I can click on Payment Methods")]
         public void ThenICanClickOnPaymentMethods()
         {
