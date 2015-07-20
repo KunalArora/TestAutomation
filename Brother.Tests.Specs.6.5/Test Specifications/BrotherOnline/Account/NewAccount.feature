@@ -411,6 +411,54 @@ Scenarios:
 	| "existingbusinessaccount@guerrillamail.com"         |
 	| "existinguseraccount@guerrillamail.com"       |
 
+# Check that a user account which is not validated does not have the ability to register a device
+Scenario: User account which is not validated does not permit device registration
+	Given I want to create a new account with Brother Online "United Kingdom"
+	When I click on Create Account for "United Kingdom"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I fill in the registration information using a valid email address 
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Password        | @@@@@	       |
+	| ConfirmPassword | @@@@@		   |
+
+	And I have Agreed to the Terms and Conditions
+	And I declare that I do not use this account for business
+	When I press Create Your Account
+	Then I should see my account confirmation page
+	And When I Click Go Back
+	Then I should be able to log into "United Kingdom" Brother Online using my account details
+	When I have clicked on Add Device
+	Then I should see the account not validated error message preventing device registration
+
+# Check that a business account which is not validated does not have the ability to register a device		
+Scenario: Business account which is not validated does not permit device registration
+	Given I want to create a new account with Brother Online "United Kingdom"
+	When I click on Create Account for "United Kingdom"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I fill in the registration information using a valid email address 
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Password        | @@@@@	       |
+	| ConfirmPassword | @@@@@		   |
+
+	And I declare that I do use this account for business
+	And I add my company name as "AutoTestLtd"
+	And I select my Business Sector as "IT and telecommunications services"
+	And I select number of Employees as "11 - 50"
+	When I add my company VAT number as "GB145937540" 
+	And I have Agreed to the Terms and Conditions
+	When I press Create Your Account
+	Then I should see my account confirmation page
+	And When I Click Go Back
+	Then I should be able to log into "United Kingdom" Brother Online using my account details
+	When I have clicked on Add Device
+	Then I should see the account not validated error message preventing device registration
+
 @ignore
 Scenario: Log in as a Printer On dealer and ensure that they can see the required permissions BBAU-2189
 # (ensure that a customer cannot see the same permissions)
