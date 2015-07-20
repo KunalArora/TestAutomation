@@ -64,8 +64,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
         [FindsBy(How = How.CssSelector, Using = "#content_1_innercontent_2_billingedit_btnPaymentContinue")] 
         public IWebElement SaveAddressAndReturnToPaymentMethodsButton;
 
-        private string useThisAddressButton =
-            ".content.cf .content-box.left-nav-container.cf .content-wrapper.cf.saved-payment-cards .lightbox .box-out .lightbox-address-list .cf #content_1_innercontent_1_ChangeaddressLB_ChangeInvoiceaddressLB_AddressRepeater_useAsDeliveryAddressButton_0";
+// Throwing warning as its not used so taking out for now
+//        private string useThisAddressButton =
+//            ".content.cf .content-box.left-nav-container.cf .content-wrapper.cf.saved-payment-cards .lightbox .box-out .lightbox-address-list .cf #content_1_innercontent_1_ChangeaddressLB_ChangeInvoiceaddressLB_AddressRepeater_useAsDeliveryAddressButton_0";
 
         public void AddNewAddressButtonClick()
         {

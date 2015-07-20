@@ -92,7 +92,7 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Trial
         public void IsPopulatePasswordTextBoxAvailable()
         {
             // Override PageFactory loader
-            if (WaitForElementToExistByCssSelector("#content_0_maincontent_2_txtPassword", 5, 5));
+            if (WaitForElementToExistByCssSelector("#content_0_maincontent_2_txtPassword",5,5))
             {
                 PasswordTextBox = Driver.FindElement(By.CssSelector("#content_0_maincontent_2_txtPassword"));
             }
@@ -102,7 +102,7 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Trial
         public void IsPopulateConfirmPasswordTextBoxAvailable()
         {
             // Override PageFactory loader
-            if (WaitForElementToExistByCssSelector("#txtConfirmPassword", 5, 5)) ;
+            if (WaitForElementToExistByCssSelector("#txtConfirmPassword", 5, 5))
             {
                 ConfirmPasswordTextBox = Driver.FindElement(By.CssSelector("#txtConfirmPassword"));
             }
