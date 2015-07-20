@@ -240,6 +240,15 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<RegistrationPage>().PopulateConfirmPasswordTextBox(form.Password);
             WhenIEnterAValidEmailAddress(string.Empty); // Auto Generates with an empty string
         }
+        [When(@"I fill in the registration information excluding email address")]
+        public void WhenIFillInTheRegistrationInformationExcludingEmailAddress(Table table)
+        {
+            dynamic form = table.CreateDynamicInstance();
+            CurrentPage.As<RegistrationPage>().PopulateFirstNameTextBox(form.FirstName);
+            CurrentPage.As<RegistrationPage>().PopulateLastNameTextBox(form.LastName);
+            CurrentPage.As<RegistrationPage>().PopulatePasswordTextBox(form.Password);
+            CurrentPage.As<RegistrationPage>().PopulateConfirmPasswordTextBox(form.Password);
+        }
         [When(@"I press tab in the email address field")]
         public void WhenIPressTabInTheEmailAddressField()
         {
@@ -484,6 +493,13 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<RegistrationPage>().ConfirmPasswordErrorMessageDisplayed();
         }
+
+        [Then(@"I should see the duplicate email error message preventing account creation")]
+        public void ThenIShouldSeeDuplicateEmailErrorMessage()
+        {
+            CurrentPage.As<RegistrationPage>().DuplicateEmailErrorMessageDisplayed();
+        }
+
         [When(@"I enter a valid Email Address ""(.*)""")]
         public void WhenIEnterAValidEmailAddress(string validEmailAddress)
         {

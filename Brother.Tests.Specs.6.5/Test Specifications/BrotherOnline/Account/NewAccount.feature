@@ -357,6 +357,59 @@ Scenario: Validate that an error message is displayed for mandatory terms and co
 	And I press create account button
 	Then I should get an error message displayed on the Terms and Conditions
 
+# Check that a user account cannot be created with an email address that already exists for another user account 
+# Check that a user account cannot be created with an email address that already exists for another business account
+Scenario Outline: Customer cannot register for a new user account using an email address that already exists for another user or business account
+	Given I want to create a new account with Brother Online "United Kingdom"
+	When I click on Create Account for "United Kingdom"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I fill in the registration information excluding email address
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Password        | @@@@@	       |
+	| ConfirmPassword | @@@@@		   |
+	
+	And I declare that I do not use this account for business
+	And I have Agreed to the Terms and Conditions
+	And I enter an email address containing <Email Address>
+	And I press create account button
+	Then I should see the duplicate email error message preventing account creation
+
+Scenarios:
+	| Email Address                               |
+	| "existinguseraccount@guerrillamail.com"         |
+	| "existingbusinessaccount@guerrillamail.com"       |
+
+# Check that a business account cannot be created with an email address that already exists for another business account
+# Check that a business account cannot be created with an email address that already exists for another user account
+Scenario Outline: Customer cannot register for a new business account using an email address that already exists for another business or user account
+	Given I want to create a new account with Brother Online "United Kingdom"
+	When I click on Create Account for "United Kingdom"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I fill in the registration information excluding email address
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Password        | @@@@@	       |
+	| ConfirmPassword | @@@@@		   |
+	
+	And I declare that I do use this account for business
+	And I add my company name as "AutoTestLtd"
+	And I select my Business Sector as "IT and telecommunications services"
+	And I select number of Employees as "11 - 50"
+	When I add my company VAT number as "GB145937540" 
+	And I have Agreed to the Terms and Conditions
+	And I enter an email address containing <Email Address>
+	And I press create account button
+	Then I should see the duplicate email error message preventing account creation	
+
+Scenarios:
+	| Email Address                               |
+	| "existingbusinessaccount@guerrillamail.com"         |
+	| "existinguseraccount@guerrillamail.com"       |
 
 @ignore
 Scenario: Log in as a Printer On dealer and ensure that they can see the required permissions BBAU-2189
