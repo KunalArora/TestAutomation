@@ -80,7 +80,6 @@
     <Compile Include="Pages\BrotherOnline\AccountManagement\ExtendedWarrantyPage.cs" />
     <Compile Include="Pages\BrotherOnline\AccountManagement\GlobalNavigationModule.cs" />
     <Compile Include="Pages\BrotherOnline\AccountManagement\MyAccountPage.cs" />
-    <Compile Include="Pages\BrotherOnline\AccountManagement\MyAddressPage.cs" />
     <Compile Include="Pages\BrotherOnline\AccountManagement\MyOrdersPage.cs" />
     <Compile Include="Pages\BrotherOnline\AccountManagement\MyPersonalDetailsPage.cs" />
     <Compile Include="Pages\BrotherOnline\AccountManagement\MyPrintersAndDevicesPage.cs" />

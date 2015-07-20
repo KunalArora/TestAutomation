@@ -118,37 +118,9 @@ Scenario: Customer creates a new account with Brother Online and add Business de
 	Then I can verify successfull update message appeared at the top
 
 
-#Change Personal details in your created account, amend your first name and last name
-Scenario Outline: Customer create a new account and amend their personal details by going into my account page
-Given I am logged onto Brother Online "United Kingdom" using valid credentials
-	When I navigate to my account for "United Kingdom"
-	And I enter First Name containing <FirstName>
-	And I enter the Last Name containing <LastName>
-	And I click on update details
-	Then my personal details should get updated
-Scenarios: 
-	| FirstName						|LastName							|
-	| Test						    |Test								|
 
-
-#Customer User can add a new address to their acocunt by manually entering address details
-Scenario: Customer User can add a new address to their acocunt by manually entering address details
-Given I am logged onto Brother Online "United Kingdom" using valid credentials
-When I navigate to my account for "United Kingdom"	
-When I click on My Address 
-#Then I should be redirected to address book page
-#And I click on Add a New Address Button
-#Then I should be able to see all the address book fields
-#And I enter all the mandatory fields
-#And I click on the save address button
-#Then I should be able to see the confirmation message that addressh has been entered
 	
-
-
-
-
-
-
+	
 
 
 
