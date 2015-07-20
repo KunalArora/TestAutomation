@@ -51,6 +51,12 @@ namespace Brother.Tests.Specs.BrotherOnline
             TestCheck.AssertIsEqual(true, CurrentPage.As<RegisterDevicePage>().IsErrorIconPresent(), "Is Error Icon Present");
         }
 
+        [Then(@"I should see the account not validated error message preventing device registration")]
+        public void ThenIShouldSeeAccountNotValidatedErrorMessage()
+        {
+            CurrentPage.As<RegisterDevicePage>().AccountNotValidatedErrorMessageDisplayed();
+        }
+
         [Given(@"I have entered my Product Serial Code ""(.*)""")]
         public void GivenIHaveEnteredMyProductSerialCode(string productSerialCode)
         {
