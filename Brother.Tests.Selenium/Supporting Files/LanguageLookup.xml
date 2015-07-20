@@ -74,7 +74,6 @@
 				<BusinessDetails>business-details</BusinessDetails>
 				<ConnectedDevices>connected-devices</ConnectedDevices>
         <Orders>my-order-list</Orders>
-        <AddressBook>address-book</AddressBook>
 			</MyAccount>
 		</ProductButtons>
 		<MyAccountSideNavMenu>
@@ -85,7 +84,6 @@
 			<SignInDetails>Sign In Details</SignInDetails>
       <BusinessDetails>Business details</BusinessDetails>
 			<Orders>Orders</Orders>
-      <MyAddress>My Address</MyAddress>
 		</MyAccountSideNavMenu>
 		<PrimaryNavTopMenu>
 			<MyAccount>My Account</MyAccount>
@@ -126,7 +124,6 @@
 				<AddressBook>address-book</AddressBook>
 				<BusinessDetails>business-details</BusinessDetails>
 				<ConnectedDevices>connected-devices</ConnectedDevices>
-        <AddressBook>address-book</AddressBook>
 			</MyAccount>
 		</ProductButtons>
 		<MyAccountSideNavMenu>
@@ -135,7 +132,6 @@
 			<MyConnectedDevices>My Connected Devices</MyConnectedDevices>
       <PaymentMethods>Payment Methods</PaymentMethods>
       <SignInDetails>Sign In Details</SignInDetails>
-      <MyAddress>My Address</MyAddress>
       <Orders>Orders</Orders>
 		</MyAccountSideNavMenu>
     <PrimaryNavTopMenu>
