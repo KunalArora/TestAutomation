@@ -113,6 +113,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         [FindsBy(How = How.CssSelector, Using = ".form-section.cf.validation-failed.load .error")]
         public IWebElement TermsAndConditionsErrorMessage;
+
+        [FindsBy(How = How.CssSelector, Using = "#Warnings > p")]
+        public IWebElement DuplicateEmailErrorMessage;
         
 
         public bool IsWarningBarPresent(int retry, int timeToWait)
@@ -483,6 +486,11 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         public void TermsAndConditionsErrorMessageDisplayed()
         {
             TestCheck.AssertIsEqual(true, TermsAndConditionsErrorMessage.Displayed, "Is Error Message Displayed");
+        }
+
+        public void DuplicateEmailErrorMessageDisplayed()
+        {
+            TestCheck.AssertIsEqual(true, DuplicateEmailErrorMessage.Displayed, "Is Error Message Displayed");
         }
 
        }
