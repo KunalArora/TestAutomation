@@ -89,25 +89,23 @@ this.FeatureBackground();
 #line 11
  testRunner.Given("I am logged into my Brother Online account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 12
- testRunner.Then("If I click on My Account menu", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("If I go to My Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 13
- testRunner.And("I click on My Personal Details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 14
  testRunner.And("I can click on Payment Methods", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 15
+#line 14
  testRunner.Then("I can add a new payment method", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 16
+#line 15
  testRunner.And("If I click on Add New Address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 17
+#line 16
  testRunner.Then("I can add a new billing address details for Country \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 18
+#line 17
  testRunner.When("I enter valid credit card details for a Visa Credit Card with an expired date of " +
                     "\"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 19
+#line 18
  testRunner.When("I click Send to commit the new card details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 20
+#line 19
  testRunner.Then("I can see the Credit Card details I have added", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 21
+#line 20
  testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -124,30 +122,28 @@ this.FeatureBackground();
                         "PROD",
                         "UAT",
                         "TEST"});
-#line 24
+#line 23
 this.ScenarioSetup(scenarioInfo);
 #line 7
 this.FeatureBackground();
-#line 25
+#line 24
  testRunner.Given("I am logged into my Brother Online account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 25
+ testRunner.Then("If I go to My Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 26
- testRunner.Then("If I click on My Account menu", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 27
- testRunner.And("I click on My Personal Details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 28
  testRunner.And("I can click on Payment Methods", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 29
+#line 27
  testRunner.Then("I can add a new payment method", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 30
+#line 28
  testRunner.And("If I click on Add New Address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 31
+#line 29
  testRunner.Then("I can add a new billing address details for Country \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 32
+#line 30
  testRunner.When("I enter valid credit card details for a Visa Credit Card with an expired date of " +
                     "\"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 33
+#line 31
  testRunner.When("I click Cancel submit card details I should return to the My Payment Method page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 34
+#line 32
  testRunner.Then("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -160,20 +156,18 @@ this.FeatureBackground();
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add payment method with existing address", new string[] {
                         "ignore"});
-#line 37
+#line 35
 this.ScenarioSetup(scenarioInfo);
 #line 7
 this.FeatureBackground();
-#line 38
+#line 36
  testRunner.Given("I am logged into my Brother Online account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 39
- testRunner.Then("If I click on My Account menu", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 40
- testRunner.And("I click on My Personal Details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 41
+#line 37
+ testRunner.Then("If I go to My Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 38
  testRunner.And("I can click on Payment Methods", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 42
+#line 39
  testRunner.Then("I can add a new payment method", @"
 Switching to a different card number works okay so the hypothesis is that the problem is that this fails because the card number is the same for the old and new cards.
 
@@ -198,7 +192,7 @@ This has only been looked at in Production as far as I know - with live customer
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Update Credit Card from expired card", new string[] {
                         "ignore"});
-#line 45
+#line 42
 this.ScenarioSetup(scenarioInfo);
 #line 7
 this.FeatureBackground();

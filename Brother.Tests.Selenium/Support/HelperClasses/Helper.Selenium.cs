@@ -23,16 +23,20 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         {
             try
             {
-                WebDriver.SetWebDriverImplicitTimeout(new TimeSpan(0,0,10));
-                if (!WaitForElementToExistByCssSelector("#AcceptCookieLawHyperLink", 5, 3))
+                if (!TestController.IsAcceptCookiesDismissed)
                 {
-                    MsgOutput(
-                        "Accept Cookie Button was not found and may have already been dismissed during this test session");
-                }
-                else
-                {
-                    var acceptCookieLawButton = driver.FindElement(By.CssSelector("#AcceptCookieLawHyperLink"));
-                    acceptCookieLawButton.Click();
+                    WebDriver.SetWebDriverImplicitTimeout(new TimeSpan(0, 0, 10));
+                    if (!WaitForElementToExistByCssSelector("#AcceptCookieLawHyperLink", 3, 3))
+                    {
+                        MsgOutput(
+                            "Accept Cookie Button was not found and may have already been dismissed during this test session");
+                    }
+                    else
+                    {
+                        var acceptCookieLawButton = driver.FindElement(By.CssSelector("#AcceptCookieLawHyperLink"));
+                        acceptCookieLawButton.Click();
+                        TestController.IsAcceptCookiesDismissed = true;
+                    }
                 }
             }
             catch (ElementNotVisibleException elementNotVisible)
