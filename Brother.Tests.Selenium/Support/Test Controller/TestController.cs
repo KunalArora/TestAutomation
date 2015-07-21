@@ -33,9 +33,14 @@ namespace Brother.Tests.Selenium.Lib.Support
         static int PhantomJsProcId { get; set; }
         static readonly string _driverPort = SeleniumGlobal.Default.DriverPortNumber;
         static readonly string _ipAddress = SeleniumGlobal.Default.DriverIPAddress;
-        private static bool _cookieResponse = false;
+
+        static TestController()
+        {
+            IsAcceptCookiesDismissed = false;
+        }
+
         public static bool IsHeadlessRunning { get; set; }
-        public static bool IsAcceptCookiesDismissed { get { return _cookieResponse; } set { _cookieResponse = value; } }
+        public static bool IsAcceptCookiesDismissed { get; set; }
 
         private const string DefaultLogFolder = "C:\\TestAutomation\\SeleniumLogging";
         private const string DefaultSeleniumFolder = "C:\\TestAutomation\\SnapShots";
@@ -46,6 +51,7 @@ namespace Brother.Tests.Selenium.Lib.Support
         public static void HeadlessRunning()
         {
             IsHeadlessRunning = true;
+            IsAcceptCookiesDismissed = false;
             // NOTE: Unable to use without larger changes to project, including IWebDriver references replaced with PhantomJSDriver
             var usePhantomJsService = SeleniumGlobal.Default.UsePhantomJsService;
             if (Convert.ToBoolean(usePhantomJsService))
