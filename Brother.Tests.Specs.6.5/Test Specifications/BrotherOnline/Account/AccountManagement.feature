@@ -119,6 +119,27 @@ Scenario: Customer creates a new account with Brother Online and add Business de
 
 
 
+
+
+#Customer User can add a new address to their acocunt by manually entering address details
+Scenario: Customer User can add a new address to their acocunt by manually entering address details
+Given I am logged onto Brother Online "United Kingdom" using valid credentials
+When I navigate to my account for "United Kingdom"	
+When I click on My Address 
+And I click on Add a New Address Button
+And I enter all the mandatory fields
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Postcode        | m34 5je	       |
+	| HouseNumber	  | appt 1		   |
+	| HouseName		  | Brother		   |
+	| Addressline1	  | TameSt		   |
+	| Addressline2	  | Audenshaw	   |
+	| City			  | Manchester	   |
+	| PhoneNumber	  | 0161 330 6531	   |
+And I click on the save address button
+
 	
 	
 
