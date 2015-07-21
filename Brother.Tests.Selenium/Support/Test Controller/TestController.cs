@@ -34,7 +34,7 @@ namespace Brother.Tests.Selenium.Lib.Support
         static readonly string _driverPort = SeleniumGlobal.Default.DriverPortNumber;
         static readonly string _ipAddress = SeleniumGlobal.Default.DriverIPAddress;
         public static bool IsHeadlessRunning { get; set; }
-    
+        public static bool IsAcceptCookiesDismissed { get; set; }
 
         private const string DefaultLogFolder = "C:\\TestAutomation\\SeleniumLogging";
         private const string DefaultSeleniumFolder = "C:\\TestAutomation\\SnapShots";
@@ -91,6 +91,7 @@ namespace Brother.Tests.Selenium.Lib.Support
         {
             var browserType = WebDriver.GetBrowserType();
             IsHeadlessRunning = false;
+            IsAcceptCookiesDismissed = false;
             switch (browserType)
             {
                 case "IE":

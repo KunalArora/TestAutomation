@@ -9,8 +9,7 @@ Background:
 
 Scenario: Add payment method with new address
 	Given I am logged into my Brother Online account
-	Then If I click on My Account menu
-	And I click on My Personal Details
+	Then If I go to My Account
 	And I can click on Payment Methods
 	Then I can add a new payment method
 	And If I click on Add New Address
@@ -23,8 +22,7 @@ Scenario: Add payment method with new address
 @PROD @UAT @TEST
 Scenario: Add payment method with new address and Cancel before submitting
 	Given I am logged into my Brother Online account
-	Then If I click on My Account menu
-	And I click on My Personal Details
+	Then If I go to My Account
 	And I can click on Payment Methods
 	Then I can add a new payment method
 	And If I click on Add New Address
@@ -36,8 +34,7 @@ Scenario: Add payment method with new address and Cancel before submitting
 @ignore
 Scenario: Add payment method with existing address
 	Given I am logged into my Brother Online account
-	Then If I click on My Account menu
-	And I click on My Personal Details
+	Then If I go to My Account
 	And I can click on Payment Methods
 	Then I can add a new payment method
 

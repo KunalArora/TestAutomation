@@ -52,7 +52,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             Then("If I navigate back to the Brother Online My Account page");
             NextPage = GlobalNavigationModule.BrotherOnlineGoHome(CurrentDriver);
         }
-
+        [Then(@"If I go to My Account")]
         [Then(@"If I navigate back to the Brother Online My Account page")]
         public void ThenIfINavigateBackToTheBrotherOnlineMyAccountPage()
         {
@@ -98,6 +98,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             var signInDetailsMenu = GlobalNavigationModule.GetMyAccountMenuItem("SignInDetails");
             NextPage = GlobalNavigationModule.MySignInDetailsMenuOptionClick(CurrentDriver, signInDetailsMenu);
         }
+        
         [Then(@"I can click on Payment Methods")]
         public void ThenICanClickOnPaymentMethods()
         {
@@ -111,13 +112,6 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             var ordersButton = GlobalNavigationModule.GetMyAccountMenuItem("Orders");
             NextPage = GlobalNavigationModule.OrdersMenuClick(CurrentDriver, ordersButton);
         }
-
-        //[Then(@"I can click on Business Details")]
-        //public void ThenICanClickOnBusinessDetails()
-        //{
-        //    var businessDetailsButton = GlobalNavigationModule.GetMyAccountMenuItem("BusinessDetails");
-        //    NextPage = GlobalNavigationModule.BusinessDetailsMenuClick(CurrentDriver, businessDetailsButton);
-        //}
 
         [Then(@"If I grant the user account the ""(.*)"" role")]
         public void ThenIfIGrantTheUserAccountTheRole(string userRole)
