@@ -25,6 +25,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             {
                 if (!TestController.IsAcceptCookiesDismissed)
                 {
+                    MsgOutput("Looking for Accept Cookie Request");
                     WebDriver.SetWebDriverImplicitTimeout(new TimeSpan(0, 0, 10));
                     if (!WaitForElementToExistByCssSelector("#AcceptCookieLawHyperLink", 3, 3))
                     {
@@ -36,7 +37,12 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                         var acceptCookieLawButton = driver.FindElement(By.CssSelector("#AcceptCookieLawHyperLink"));
                         acceptCookieLawButton.Click();
                         TestController.IsAcceptCookiesDismissed = true;
+                        MsgOutput("Cookie Request was dismissed");
                     }
+                }
+                else
+                {
+                    MsgOutput("Cookie Request already dismissed");
                 }
             }
             catch (ElementNotVisibleException elementNotVisible)
