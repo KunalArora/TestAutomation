@@ -33,8 +33,9 @@ namespace Brother.Tests.Selenium.Lib.Support
         static int PhantomJsProcId { get; set; }
         static readonly string _driverPort = SeleniumGlobal.Default.DriverPortNumber;
         static readonly string _ipAddress = SeleniumGlobal.Default.DriverIPAddress;
+        private static bool _cookieResponse = false;
         public static bool IsHeadlessRunning { get; set; }
-        public static bool IsAcceptCookiesDismissed { get; set; }
+        public static bool IsAcceptCookiesDismissed { get { return _cookieResponse; } set { _cookieResponse = value; } }
 
         private const string DefaultLogFolder = "C:\\TestAutomation\\SeleniumLogging";
         private const string DefaultSeleniumFolder = "C:\\TestAutomation\\SnapShots";
