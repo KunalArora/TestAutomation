@@ -96,6 +96,13 @@ namespace Brother.WebSites.Core.Pages.Base
             return GetInstance<HomePage>(driver, baseUrl, defaultTitleOverride);
         }
 
+        public static HomePage LoadWebBoxes(IWebDriver driver, string baseUrl, string defaultTitleOverride)
+        {
+            driver = SetDriver(driver);
+            driver.Navigate().GoToUrl(baseUrl);
+            return GetInstance<HomePage>(driver, baseUrl, defaultTitleOverride);
+        }
+
         // Specific to Email Token validation. Need to Switch to separate tab due to Email Validation page
         // taking presidence
         public static RegistrationPage LoadSignInPage(IWebDriver driver, string baseUrl)

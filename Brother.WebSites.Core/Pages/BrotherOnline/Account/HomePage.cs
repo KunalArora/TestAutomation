@@ -27,12 +27,11 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             AssertElementPresent(SignInCreateAccountButton, "Sign in / Create an account");
         }
 
-        public RegistrationPage ClickSignInCreateAccountButton(string country)
+        public RegistrationPage ClickSignInCreateAccountButton()
         {
             MoveToElement(SignInCreateAccountButton);
             SignInCreateAccountButton.Click();
-            var title = ValidateCountryTitle(country);
-            return GetInstance<RegistrationPage>(Driver, BasePage.BaseUrl, title);
+            return GetInstance<RegistrationPage>(Driver);
         }
 
         //public RegistrationPage ClickCreateAccountButton()
@@ -64,11 +63,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             return _welcomePageTitle.TryGetValue(country, out title) ? title : string.Empty;
         }
 
-        public static String ValidateCountryTitle(string country)
-        {
-            string title;
-            return _pageTitle.TryGetValue(country, out title) ? title : string.Empty;
-        }
+       
 
     }
 

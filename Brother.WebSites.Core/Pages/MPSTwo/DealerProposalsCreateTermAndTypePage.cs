@@ -96,24 +96,33 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SelectContractLength(string length)
         {
+            if (!IsElementPresent(GetElementByCssSelector("#content_1_InputContractLength_Input", 10))) return;
             SpecFlow.SetContext("DealerLatestEditedContractTerm", length);
-
             SelectFromDropdown(ContractLengthElement, length);
         }
 
         public void SelectLeaseBillingCycle(string lease)
         {
-            SelectFromDropdown(LeaseBillingCycleElement, lease);
+            if (IsElementPresent(GetElementByCssSelector("#content_1_InputLeasingRateBillingCycle_Input", 10)))
+            {
+                SelectFromDropdown(LeaseBillingCycleElement, lease);
+            }
+                    
         }
 
         public void SelectPayPerClickBillingCycle(string billing)
         {
-            SelectFromDropdown(PayPerClickBillingElement, billing);
+            if (IsElementPresent(GetElementByCssSelector("#content_1_InputClickRateBillingCycle_Input", 10)))
+            {
+                SelectFromDropdown(PayPerClickBillingElement, billing);
+            }
+                    
         }
 
         public void SelectUsageType(string usage)
         {
-           SpecFlow.SetContext("DealerLatestEditedUsageType", usage);
+            if (!IsElementPresent(GetElementByCssSelector("#content_1_InputUsageType_Input", 10))) return;
+            SpecFlow.SetContext("DealerLatestEditedUsageType", usage);
             SelectFromDropdown(UsageTypeElement, usage);
             WebDriver.Wait(DurationType.Second, 5);
         }

@@ -37,8 +37,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             if (PromptText == null) throw new
                 NullReferenceException("Unable to locate text on New Proposal Process Screen");
-
+           
             AssertElementPresent(PromptText, "Leading Instruction");
+        }
+
+        public void SetServerName(string refe)
+        {
+           SpecFlow.SetContext("servername", refe); 
+        }
+
+        public String GetServerName()
+        {
+            return SpecFlow.GetContext("servername");
         }
 
         public void EnterLeadCodeRef(string leadCodeRef)

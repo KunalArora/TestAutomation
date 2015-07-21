@@ -990,9 +990,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
         public void EnterModelUnitCost()
         {
+            if (!ModelSrpElement.Text.Contains("£")) return;
             var srpCost = MpsUtil.GetValue(ModelSrpElement.Text);
             var costText = srpCost.ToString();
-
             ClearAndType(ProductCostPriceElement, costText);
         }
 
