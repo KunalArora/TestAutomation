@@ -1,10 +1,10 @@
-﻿@Ignore @TEST @UAT @MPS
+﻿@TEST @UAT @MPS
 Feature: PurchaseAndClickProposalGermanUserJourney
 	In order to create different variety of purchase and click proposal
 	As a dealer 
 	I want to be able to use different MPS parameters to derive different leasing proposal
 
-@Ignore
+
 Scenario Outline: Create different varieties of German Purchase and Click proposal for new customer on Minimum Volume Term
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -33,8 +33,8 @@ Scenario Outline: Create different varieties of German Purchase and Click propos
 	
 
 	Scenarios: 
-	| Role             | Country        | ContractType                  | CreateOption        | UsageType      | Contract | Leasing                  | Billing                  | PriceHardware | Printer      | DeviceScreen | PaymentMethod | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | Germany | Purchase & Click with Service | Create new customer | Minimum Volume | 3 years  | Quarterly | Quarterly | Tick          | MFC-L8650CDW | Full         |  Pay upfront  | 2000        | 2000         |
+	| Role             | Country | ContractType                  | CreateOption        | UsageType      | Contract | Billing         | PriceHardware | Printer      | DeviceScreen | PaymentMethod | ClickVolume | ColourVolume |
+	| Cloud MPS Dealer | Germany | Purchase & Click with Service | Create new customer | Minimum Volume | 5 Jahre  | Vierteljährlich | Tick          | MFC-L8650CDW | Full         | Pay upfront   | 800        | 800         |
 
 @Ignore
 Scenario Outline: Create different varieties of German Purchase and Click proposal for new customer on Pay As You Go Term
@@ -46,7 +46,7 @@ Scenario Outline: Create different varieties of German Purchase and Click propos
 	And I "<PriceHardware>" Price Hardware radio button
 	And I display "<Printer>" device screen
 	And "<DeviceScreen>" device screen is displayed
-	And enter a quantity of "2" for model
+	#And enter a quantity of "2" for model
 	And I accept the default values of the device
 	And I type in click price volume of "<ClickVolume>"
 	Then "<ContractType>" displayed on proposal Summary Page corresponds to "<ContractType>"
@@ -64,11 +64,10 @@ Scenario Outline: Create different varieties of German Purchase and Click propos
 	
 
 	Scenarios: 
-	| Role             | Country        | ContractType                  | CreateOption        | UsageType     | Contract | Leasing   | Billing   | PriceHardware | Printer    | DeviceScreen | ClickVolume |
-	| Cloud MPS Dealer | Germany | Purchase & Click with Service | Create new customer | Pay As You Go | 4 years  | Quarterly | 3 Monthly | Untick        | MFC-8510DN | Reduced      | 5000        |
+	| Role             | Country | ContractType                  | CreateOption        | UsageType     | Contract | Billing      | PriceHardware | Printer    | DeviceScreen | ClickVolume |
+	| Cloud MPS Dealer | Germany | Purchase & Click with Service | Create new customer | Pay As You Go | 3 Jahre  | Halbjährlich | Tick          | MFC-8510DN | Full      | 750         |
 
 
-@Ignore
 Scenario Outline: Create different varieties of German Purchase and Click proposal for an existing customer
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -97,9 +96,8 @@ Scenario Outline: Create different varieties of German Purchase and Click propos
 	
 
 	Scenarios: 
-	| Role             | Country        | ContractType                  | UsageType      | Contract | Leasing                  | Billing                  | PriceHardware | Printer      | DeviceScreen | PaymentMethod           | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | Germany | Purchase & Click with Service | Minimum Volume | 3 years  | Quarterly | Quarterly | Untick          | MFC-L8650CDW | Full         | Included in Click Price | 2000        | 2000         |
-
+	| Role             | Country | ContractType                  | CreateOption        | UsageType      | Contract | Billing         | PriceHardware | Printer      | DeviceScreen | PaymentMethod           | ClickVolume | ColourVolume |
+	| Cloud MPS Dealer | Germany | Purchase & Click with Service | Create new customer | Minimum Volume | 5 Jahre  | Vierteljährlich | Tick          | MFC-L8650CDW | Full         | Included in Click Price | 800         | 800          |
 
 @Ignore
 Scenario Outline: Create different varieties of German Purchase and Click proposal for an existing customer on Pay As You Go Term

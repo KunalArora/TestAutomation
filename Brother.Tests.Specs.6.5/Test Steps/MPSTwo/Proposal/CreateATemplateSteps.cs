@@ -1,3 +1,4 @@
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Specs.BrotherOnline.Account;
 using Brother.Tests.Specs.MPSTwo.Approver;
 using Brother.Tests.Specs.MPSTwo.SendToBank;
@@ -5,6 +6,7 @@ using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using TechTalk.SpecFlow;
+using SpecFlow = Brother.Tests.Selenium.Lib.Support.HelperClasses.SpecFlow;
 
 
 namespace Brother.Tests.Specs.MPSTwo.Proposal
@@ -147,6 +149,55 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             GivenIHaveCreatedLeasingAndClickProposal("Minimum Volume");
         }
 
+        [Given(@"I have created Leasing and Click proposal for ""(.*)""")]
+        public void GivenIHaveCreatedLeasingAndClickProposalFor(string refs)
+        {
+            GivenIamOnMpsNewProposalPage();
+            CurrentPage.As<DealerProposalsCreateDescriptionPage>().SetServerName(refs);
+            WhenIFillProposalDescriptionForContractType("Lease & Click with Service");
+            DealerProposalsCreateCustomerInformationStep customerInformationStepInstance = new DealerProposalsCreateCustomerInformationStep();
+            customerInformationStepInstance.WhenISelectButtonForCustomerDataCapture("Create new customer");
+            DealerProposalsCreateTermAndTypeStep termAndTypeStepInstance = new DealerProposalsCreateTermAndTypeStep();
+            termAndTypeStepInstance.WhenIEnterUsageTypeOfAndContractTermsLeasingAndBillingOnTermAndTypeDetails
+                ("Minimum Volume", "3 years", "Quarterly", "Quarterly");
+            DealerProposalsCreateProductsStep instance = new DealerProposalsCreateProductsStep();
+            instance.WhenIDisplayDeviceScreen("HL-L8350CDW");
+            instance.WhenIAcceptTheDefaultValuesOfTheDevice();
+
+            DealerProposalsCreateClickPriceStep clickPricestepInstance = new DealerProposalsCreateClickPriceStep();
+            clickPricestepInstance.WhenIEnterClickPriceVolumeOf("2000", "2000");
+        }
+
+        [Given(@"I have created Purchase and Click proposal for ""(.*)""")]
+        public void GivenIHaveCreatedPurchaseAndClickProposalFor(string refs)
+        {
+            GivenIamOnMpsNewProposalPage();
+            CurrentPage.As<DealerProposalsCreateDescriptionPage>().SetServerName(refs);
+            //WhenIFillProposalDescriptionForContractType("Purchase & Click with Service");
+            //WhenISelectButtonForCustomerDataCapture("Create new customer");
+            //WhenIEnterUsageTypeContractLengthAndBillingOnTermAndTypeDetails
+            //    ("Minimum Volume", "3 years", "Quarterly");
+            //WhenIPriceHardwareRadioButton("Tick");
+            //WhenIDisplayDeviceScreen("MFC-L8650CDW");
+            //WhenIAcceptTheDefaultValuesOfTheDevice();
+            //WhenIEnterClickPriceVolumeOf("800", "800"); 
+
+            DealerProposalsCreateCustomerInformationStep customerInformationStepInstance = new DealerProposalsCreateCustomerInformationStep();
+            customerInformationStepInstance.WhenISelectButtonForCustomerDataCapture("Create new customer");
+            DealerProposalsCreateTermAndTypeStep stepInstance = new DealerProposalsCreateTermAndTypeStep();
+            stepInstance.WhenIEnterUsageTypeContractLengthAndBillingOnTermAndTypeDetails
+                ("Minimum Volume", "3 years", "Quarterly");
+            stepInstance.WhenIPriceHardwareRadioButton("Tick");
+
+            DealerProposalsCreateProductsStep instance = new DealerProposalsCreateProductsStep();
+            instance.WhenIDisplayDeviceScreen("MFC-L8650CDW");
+            instance.WhenIAcceptTheDefaultValuesOfTheDevice();
+
+            DealerProposalsCreateClickPriceStep clickPriceStepInstance = new DealerProposalsCreateClickPriceStep();
+            clickPriceStepInstance.WhenIEnterClickPriceVolumeOf("800", "800"); 
+        }
+
+
         private void GivenIHaveCreatedPurchaseAndClickProposal(string UsageType)
         {
             if (UsageType.Equals(string.Empty))
@@ -178,6 +229,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [When(@"I fill Proposal Description for ""(.*)"" Contract type")]
         public void WhenIFillProposalDescriptionForContractType(string contract)
         {
+            //var refs = CurrentPage.As<DealerProposalsCreateDescriptionPage>().GetServerName();
             CurrentPage.As<DealerProposalsCreateDescriptionPage>().IsPromptTextDisplayed();
             CurrentPage.As<DealerProposalsCreateDescriptionPage>().SelectingContractType(contract);
             CurrentPage.As<DealerProposalsCreateDescriptionPage>().EnterProposalName("");

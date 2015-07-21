@@ -10,14 +10,10 @@ Scenario Outline: Create different varieties of German Leasing and Click proposa
 	And I am on MPS New Proposal Page
 	When I fill Proposal Description for "<ContractType>" Contract type
 	And I select "<CreateOption>" button for customer data capture
-	#And I "<Liable>" Private Liable for Company Info
-	#And I "<OrderConsumable>" Customer added can order consumables
-	And I Enter usage type of "<UsageType>" and "<Contract>" contract terms "<Leasing>" leasing and "<Billing>" billing on Term and Type details  
-	#And Price Hardware radio button is not displayed for leasing contract type
+	And I Enter usage type of "<UsageType>" and "<Contract>" contract terms "<Leasing>" leasing and "<Billing>" billing on Term and Type details
 	And I display "<Printer>" device screen
 	And "<DeviceScreen>" device screen is displayed
 	And I accept the default values of the device
-	#And Service Pack payment method is not displayed
 	And I enter click price volume of "<ClickVolume>" and "<ColourVolume>"
 	Then "<ContractType>" displayed on proposal Summary Page corresponds to "<ContractType>"
 	And "<UsageType>" displayed on proposal Summary Page corresponds to "<UsageType>"

@@ -226,82 +226,40 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             ResetPasswordLink.Click();
         }
 
-        // Clicks the Sign In button 
-        public void ClickSignInButtonStandAlone()
-        {
-            ScrollTo(SignInButton);
-            SignInButton.Click();
-            // added for Firefox HTTPS warning
-            if (IsFireFoxBrowser())
-            {
-                DismissAlert();
-            }
-        }
-
         // Clicks the Sign In button and returns a Welcome Back page
-        public WelcomeBackPage ClickSignInButton(string country)
+        public WelcomeBackPage ClickSignInButton()
         {
             ScrollTo(SignInButton);
             SignInButton.Click();
-            // added for Firefox HTTPS warning
-            if (IsFireFoxBrowser())
-            {
-                DismissAlert();
-            }
-            var title = HomePage.WelcomePageCountryTitle(country);
-            return GetInstance<WelcomeBackPage>(Driver, BasePage.BaseUrl, title);
+            return GetInstance<WelcomeBackPage>(Driver);
         }
 
-        public DealerDashBoardPage SignInButtonToDealerDashboard(string country)
+        public DealerDashBoardPage SignInButtonToDealerDashboard()
         {
             ScrollTo(SignInButton);
             SignInButton.Click();
-            // added for Firefox HTTPS warning
-            if (IsFireFoxBrowser())
-            {
-                DismissAlert();
-            }
-            var title = HomePage.WelcomePageCountryTitle(country);
-            return GetInstance<DealerDashBoardPage>(Driver, BasePage.BaseUrl, title);
+            return GetInstance<DealerDashBoardPage>(Driver);
         }
 
-        public LocalOfficeAdminDashBoardPage SignInButtonToLocalOfficeDashboard(string country)
+        public LocalOfficeAdminDashBoardPage SignInButtonToLocalOfficeDashboard()
         {
             ScrollTo(SignInButton);
             SignInButton.Click();
-            // added for Firefox HTTPS warning
-            if (IsFireFoxBrowser())
-            {
-                DismissAlert();
-            }
-            var title = HomePage.WelcomePageCountryTitle(country);
-            return GetInstance<LocalOfficeAdminDashBoardPage>(Driver, BasePage.BaseUrl, title);
+            return GetInstance<LocalOfficeAdminDashBoardPage>(Driver);
         }
 
-        public LocalOfficeApproverDashBoardPage SignInButtonToLocalOfficeApproverDashboard(string country)
+        public LocalOfficeApproverDashBoardPage SignInButtonToLocalOfficeApproverDashboard()
         {
             ScrollTo(SignInButton);
             SignInButton.Click();
-            // added for Firefox HTTPS warning
-            if (IsFireFoxBrowser())
-            {
-                DismissAlert();
-            }
-            var title = HomePage.WelcomePageCountryTitle(country);
-            return GetInstance<LocalOfficeApproverDashBoardPage>(Driver, BasePage.BaseUrl, title);
+            return GetInstance<LocalOfficeApproverDashBoardPage>(Driver);
         }
 
-        public BankDashBoardPage SignInButtonToBankUser(string country)
+        public BankDashBoardPage SignInButtonToBankUser()
         {
             ScrollTo(SignInButton);
             SignInButton.Click();
-            // added for Firefox HTTPS warning
-            if (IsFireFoxBrowser())
-            {
-                DismissAlert();
-            }
-            var title = HomePage.WelcomePageCountryTitle(country);
-            return GetInstance<BankDashBoardPage>(Driver, BasePage.BaseUrl, title);
+            return GetInstance<BankDashBoardPage>(Driver);
         }
 
         public RegistrationPage ClickSignUpButton()

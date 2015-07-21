@@ -105,7 +105,6 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             return GetBrowserType().Equals(browserType);
         }
 
-
         /// <summary>
         /// Waits the specified duration.
         /// </summary>
