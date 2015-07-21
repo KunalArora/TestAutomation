@@ -21,39 +21,29 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
         public static void AcceptCookieLaw(IWebDriver driver)
         {
-            try
+            MsgOutput(string.Format("Cookie request status = [{0}]", TestController.IsAcceptCookiesDismissed));
+            if (!TestController.IsAcceptCookiesDismissed)
             {
-                if (!TestController.IsAcceptCookiesDismissed)
+                MsgOutput("Looking for Accept Cookie Request");
+                WebDriver.SetWebDriverImplicitTimeout(new TimeSpan(0, 0, 10));
+                if (!WaitForElementToExistByCssSelector("#AcceptCookieLawHyperLink", 3, 3))
                 {
-                    MsgOutput("Looking for Accept Cookie Request");
-                    WebDriver.SetWebDriverImplicitTimeout(new TimeSpan(0, 0, 10));
-                    if (!WaitForElementToExistByCssSelector("#AcceptCookieLawHyperLink", 3, 3))
-                    {
-                        MsgOutput(
-                            "Accept Cookie Button was not found and may have already been dismissed during this test session");
-                    }
-                    else
-                    {
-                        var acceptCookieLawButton = driver.FindElement(By.CssSelector("#AcceptCookieLawHyperLink"));
-                        acceptCookieLawButton.Click();
-                        TestController.IsAcceptCookiesDismissed = true;
-                        MsgOutput("Cookie Request was dismissed");
-                    }
+                    MsgOutput(
+                        "Accept Cookie Button was not found for this session");
                 }
                 else
                 {
-                    MsgOutput("Cookie Request already dismissed");
+                    var acceptCookieLawButton = driver.FindElement(By.CssSelector("#AcceptCookieLawHyperLink"));
+                    acceptCookieLawButton.Click();
+                    TestController.IsAcceptCookiesDismissed = true;
+                    MsgOutput("**Cookie Request Found and dismissed");
                 }
             }
-            catch (ElementNotVisibleException elementNotVisible)
+            else
             {
-                MsgOutput(string.Format("AcceptCookieLaw : {0} [This error can be ignored]", elementNotVisible));
+                MsgOutput("Cookie Request already dismissed");
             }
-            catch (WebDriverException timeOutDriverException)
-            {
-                MsgOutput(string.Format("Driver timed out whilst looking for Accept Cookie Law request button"));
-                MsgOutput(string.Format("Exception was [{0}]", timeOutDriverException));
-            }
+ 
             WebDriver.SetWebDriverImplicitTimeout(WebDriver.ImplicitWaitDefaultTimeout);
         }
         
