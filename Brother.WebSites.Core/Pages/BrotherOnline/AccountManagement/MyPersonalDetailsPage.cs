@@ -1,4 +1,6 @@
-﻿using Brother.WebSites.Core.Pages.Base;
+﻿using System;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
@@ -10,12 +12,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
 
         public override string DefaultTitle
         {
-            get { return string.Empty; }
+            get { return BrotherOnlineHomePages.Default["MyPersonalDetails"].ToString(); }
         }
-
-        [FindsBy(How = How.CssSelector, Using = ".submit.button-blue")]
-        public IWebElement UpdateDetailsButton;
-
-
+      
     }
 }

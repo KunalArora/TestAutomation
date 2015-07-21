@@ -1,4 +1,4 @@
-﻿@ignore
+﻿@UAT @TEST
 Feature: TestTmpTest
 	In order to test snippets of code
 	As a Developer
@@ -23,10 +23,9 @@ Background:
 	#When I click on "United Kingdom" Sign In
 	#Then I am redirected to the Welcome Back page
 	#Given I am logged onto Brother Online "United Kingdom" using valid credentials
-
-@ignore @TEST @UAT @PROD
-Scenario: Test Code
+	
+@STAGING
+Scenario: Test Code Two
 	#Given I want to open a new tab
 	Given SqlCall
 	Given Setup
-	

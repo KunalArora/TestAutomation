@@ -1,9 +1,11 @@
 ﻿using System;
+using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
 using OpenQA.Selenium.Support.UI;
 using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Assist;
 
 namespace Brother.Tests.Specs.BrotherOnline.Account
 {
@@ -50,7 +52,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             Then("If I navigate back to the Brother Online My Account page");
             NextPage = GlobalNavigationModule.BrotherOnlineGoHome(CurrentDriver);
         }
-
+        [Then(@"If I go to My Account")]
         [Then(@"If I navigate back to the Brother Online My Account page")]
         public void ThenIfINavigateBackToTheBrotherOnlineMyAccountPage()
         {
@@ -83,14 +85,6 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             var menuMyAccount = GlobalNavigationModule.GetProductNavigationMenu("MyAccount");
             menuMyAccount.Click();
         }
-
-        [Then(@"I click on My Personal Details")]
-        public void ThenIClickOnMyPersonalDetails()
-        {
-            var personalDetailsButton = GlobalNavigationModule.GetMyAccountInfoButton("MyAccount", "PersonalDetails");
-            NextPage = GlobalNavigationModule.PersonalDetailsButtonClick(CurrentDriver, personalDetailsButton);
-        }
-
         [When(@"I click on Sign In Preferences")]
         public void WhenIClickOnSignInPreferences()
         {
@@ -104,7 +98,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             var signInDetailsMenu = GlobalNavigationModule.GetMyAccountMenuItem("SignInDetails");
             NextPage = GlobalNavigationModule.MySignInDetailsMenuOptionClick(CurrentDriver, signInDetailsMenu);
         }
-
+        
         [Then(@"I can click on Payment Methods")]
         public void ThenICanClickOnPaymentMethods()
         {
@@ -118,13 +112,6 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             var ordersButton = GlobalNavigationModule.GetMyAccountMenuItem("Orders");
             NextPage = GlobalNavigationModule.OrdersMenuClick(CurrentDriver, ordersButton);
         }
-
-        //[Then(@"I can click on Business Details")]
-        //public void ThenICanClickOnBusinessDetails()
-        //{
-        //    var businessDetailsButton = GlobalNavigationModule.GetMyAccountMenuItem("BusinessDetails");
-        //    NextPage = GlobalNavigationModule.BusinessDetailsMenuClick(CurrentDriver, businessDetailsButton);
-        //}
 
         [Then(@"If I grant the user account the ""(.*)"" role")]
         public void ThenIfIGrantTheUserAccountTheRole(string userRole)
@@ -148,12 +135,18 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             var businessDetailsButton = GlobalNavigationModule.GetMyAccountMenuItem("BusinessDetails");
             NextPage = GlobalNavigationModule.BusinessDetailsMenuClick(CurrentDriver, businessDetailsButton);
         }
+        [When(@"I click on My Address")]
+        public void WhenIClickOnMyAddress()
+        {
+            var myaddressdetailsButton = GlobalNavigationModule.GetMyAccountMenuItem("AddressDetails");
+            NextPage = GlobalNavigationModule.MyAdressDetailsMenuOptionClick(CurrentDriver, myaddressdetailsButton);
+        }
+
         [When(@"I am redirected to the Business Details Page")]
         public void WhenIAmRedirectedToTheBusinessDetailsPage()
         {
             CurrentPage.As<BusinessDetailsPage>().IsUpdateButtonAvailable();
         }
-
         [Then(@"I can validate the update was successful")]
         public void ThenICanValidateTheUpdateWasSuccessful()
         {
@@ -203,6 +196,12 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<BusinessDetailsPage>().ClickUpdateButton();
         }
+        [When(@"I click on Add a New Address Button")]
+        public void WhenIClickOnAddANewAddressButton()
+        {
+            CurrentPage.As<MyAddressDetailsPage>().ClickonAddanewaddressButton();
+        }
+
         [Then(@"My password will be updated")]
         public void ThenMyPasswordWillBeUpdated()
         {
@@ -219,6 +218,46 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<BusinessDetailsPage>().ValidateInformationMessageBarStatus(true);
         }
+        [When(@"I enter First Name containing (.*)")]
+        public void WhenIEnterFirstNameContaining(string firstname)
+        {
+            CurrentPage.As<MyAccountPage>().PopulateFirstNameTextBox(firstname);
+        }
+        [When(@"I enter the Last Name containing (.*)")]
+        public void WhenIEnterTheLastNameContaining(string lastname)
+        {
+            CurrentPage.As<MyAccountPage>().PopulateLastNameTextBox(lastname);
+        }
+        [When(@"I click on update details")]
+        public void WhenIClickOnUpdateDetails()
+        {
+            CurrentPage.As<MyAccountPage>().ClickUpdateDetailsButton();
+        }
+        [Then(@"my personal details should get updated")]
+        public void ThenMyPersonalDetailsShouldGetUpdated()
+        {
+            CurrentPage.As<MyAccountPage>().ValidateInformationMessageBarStatus(true);
+        }
+        [When(@"I enter all the mandatory fields")]
+        public void WhenIEnterAllTheMandatoryFields(Table table)
+        {
+            dynamic form = table.CreateDynamicInstance();
+            CurrentPage.As<MyAddressDetailsPage>().PopulateFirstNameTextBox(form.FirstName);
+            CurrentPage.As<MyAddressDetailsPage>().PopulateLastNameTextBox(form.LastName);
+            CurrentPage.As<MyAddressDetailsPage>().PopulatePostcodeTextBox(form.Postcode);
+            CurrentPage.As<MyAddressDetailsPage>().PopulateHouseNumberTextBox(form.HouseNumber);
+            CurrentPage.As<MyAddressDetailsPage>().PopulateHouseNameTextBox(form.HouseName);
+            CurrentPage.As<MyAddressDetailsPage>().PopulateAddressLine1TextBox(form.Addressline1);
+            CurrentPage.As<MyAddressDetailsPage>().PopulateAddressLine2TextBox(form.Addressline2);
+            CurrentPage.As<MyAddressDetailsPage>().PopulateCityTownTextBox(form.City);
+            CurrentPage.As<MyAddressDetailsPage>().PopulatePhoneTextBox(form.PhoneNumber); 
+        }
+        [When(@"I click on the save address button")]
+        public void WhenIClickOnTheSaveAddressButton()
+        {
+            CurrentPage.As<MyAddressDetailsPage>().ClickOnSaveAddress();
+        }
+
 
     }
 }

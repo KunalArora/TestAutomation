@@ -90,10 +90,7 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess
         [NUnit.Framework.TestCaseAttribute("Sweden", "http://www.brother.se/", null)]
         [NUnit.Framework.TestCaseAttribute("Portugal", "http://www.brother.pt/", null)]
         [NUnit.Framework.TestCaseAttribute("Czech Republic", "http://www.brother.cz/", null)]
-        [NUnit.Framework.TestCaseAttribute("Hungary", "http://www.brother.hu/", null)]
         [NUnit.Framework.TestCaseAttribute("Russia", "http://www.brother.ru/", null)]
-        [NUnit.Framework.TestCaseAttribute("Bulgaria", "http://www.brother.bg/", null)]
-        [NUnit.Framework.TestCaseAttribute("Romania", "http://www.brother.ro/", null)]
         [NUnit.Framework.TestCaseAttribute("Slovenia", "http://www.brother.si/", null)]
         [NUnit.Framework.TestCaseAttribute("Luxembourg", "http://www.brother.lu/", null)]
         public virtual void Get200OKResponseBackFromBrotherMainSiteCountryOnTheLIVEEnvironment(string country, string siteUrl, string[] exampleTags)
@@ -210,6 +207,7 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Test all CD servers on Live Environment")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.CategoryAttribute("PROD")]
         [NUnit.Framework.CategoryAttribute("SMOKE")]
         [NUnit.Framework.TestCaseAttribute("10.91.0.131", "https://web1.online.brother.at", null)]
@@ -423,7 +421,8 @@ this.ScenarioSetup(scenarioInfo);
         {
             string[] @__tags = new string[] {
                     "PROD",
-                    "SMOKE"};
+                    "SMOKE",
+                    "ignore"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));

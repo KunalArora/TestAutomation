@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Brother.Tests.Specs.TmpScratch
+namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.Account
 {
     using TechTalk.SpecFlow;
     
@@ -19,25 +19,23 @@ namespace Brother.Tests.Specs.TmpScratch
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.9.0.77")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("TestTmpTest")]
-    [NUnit.Framework.CategoryAttribute("UAT")]
-    [NUnit.Framework.CategoryAttribute("TEST")]
-    public partial class TestTmpTestFeature
+    [NUnit.Framework.DescriptionAttribute("Account Management")]
+    [NUnit.Framework.CategoryAttribute("Test")]
+    public partial class AccountManagementFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "TestTmpTest.feature"
+#line 1 "AccountManagementExtension.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "TestTmpTest", "In order to test snippets of code\r\nAs a Developer\r\nI want to be able to run code " +
-                    "in isolation", ProgrammingLanguage.CSharp, new string[] {
-                        "UAT",
-                        "TEST"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Account Management", "In order to change my Brother Online account details\r\nAs a customer\r\nI need to be" +
+                    " able to have account management options", ProgrammingLanguage.CSharp, new string[] {
+                        "Test"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -67,31 +65,6 @@ namespace Brother.Tests.Specs.TmpScratch
         public virtual void ScenarioCleanup()
         {
             testRunner.CollectScenarioErrors();
-        }
-        
-        public virtual void FeatureBackground()
-        {
-#line 7
-#line hidden
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Test Code Two")]
-        [NUnit.Framework.CategoryAttribute("STAGING")]
-        public virtual void TestCodeTwo()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Test Code Two", new string[] {
-                        "STAGING"});
-#line 28
-this.ScenarioSetup(scenarioInfo);
-#line 7
-this.FeatureBackground();
-#line 30
- testRunner.Given("SqlCall", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 31
- testRunner.Given("Setup", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-            this.ScenarioCleanup();
         }
     }
 }

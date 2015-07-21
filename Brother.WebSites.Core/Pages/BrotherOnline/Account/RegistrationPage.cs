@@ -23,8 +23,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             get { return BrotherOnlineHomePages.Default["LoginRegisterPage"].ToString(); }
         }
 
-        private string accountVerificationMessage = "content_0_twocolumnsformtop_2_VerificationSuccess";
-        private string accountVerificationMessageClass = ".box-out.email-success";
+//Throwing warning as its not used so taking out for now
+//        private string accountVerificationMessage = "content_0_twocolumnsformtop_2_VerificationSuccess";
+//        private string accountVerificationMessageClass = ".box-out.email-success";
 
         [FindsBy(How = How.Id, Using = "SignInButton")]
         public IWebElement SignInButton;
@@ -40,7 +41,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         // Note: there are Three password fields, one for Sign In, Two for Sign Up
         [FindsBy(How = How.Id, Using = "Password")]
-        public IWebElement Password;
+        public new IWebElement Password;
 
         [FindsBy(How = How.Id, Using = "PasswordTextBox")]
         public IWebElement PasswordTextBox;
@@ -81,6 +82,18 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         [FindsBy(How = How.CssSelector, Using = ".half-col.validation-failed.blur .error")]
         public IWebElement PasswordErrorMessage;
 
+        [FindsBy(How = How.CssSelector, Using = ".half-col.validation-failed.blur .error")]
+        public IWebElement FirstNameErrorMessageDisplayed;
+
+        [FindsBy(How = How.CssSelector, Using = "#form-sign-up > div:nth-child(2) > span.half-col.validation-failed.blur > div")]
+        public IWebElement LastNameErrorMessageDisplayed;
+
+        [FindsBy(How = How.CssSelector, Using = "#form-sign-up > div:nth-child(5) > span.half-col.validation-failed.blur > div")]
+        public IWebElement CompanyNameErrorMessageDisplayed;
+
+        [FindsBy(How = How.CssSelector, Using = "#form-sign-up > div:nth-child(6) > span.half-col.validation-failed.blur > div")]
+        public IWebElement BusinessSectorErrorMessageDisplayed;
+
         [FindsBy(How = How.XPath, Using = ".//*[@id='form-sign-up']/div[1]/span[2]/div")]
         public IWebElement ConfirmPasswordErrorMessage;
 
@@ -101,6 +114,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         [FindsBy(How = How.CssSelector, Using = ".form-section.cf.validation-failed.load .error")]
         public IWebElement TermsAndConditionsErrorMessage;
+
+        [FindsBy(How = How.CssSelector, Using = "#Warnings > p")]
+        public IWebElement DuplicateEmailErrorMessage;
         
 
         public bool IsWarningBarPresent(int retry, int timeToWait)
@@ -139,53 +155,44 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             catch (ElementNotVisibleException elementNotVisible)
             {
                 MsgOutput(string.Format("Account Verification Sucess message could not be located [{0}]", elementNotVisible.Message));
-                return false;
             }
             return false;
         }
 
-        public void IsResetYourPasswordButtonAvailable()
+        public bool IsResetYourPasswordButtonAvailable(int retry, int timeToWait)
         {
-            if (ResetYourPasswordButton == null)
+            try
             {
-                throw new NullReferenceException("Unable to locate button on page");
+                if (WaitForElementToExistByCssSelector("#content_1_ResetPasswordButton.button-blue", retry, timeToWait))
+                {
+                    var resetPasswordButton = Driver.FindElement(By.CssSelector("#content_1_ResetPasswordButton.button-blue"));
+                    if (resetPasswordButton != null)
+                    {
+                        if (resetPasswordButton.Displayed)
+                        {
+                            return true;
+                        }
+                    }
+                }
             }
-            AssertElementPresent(ResetYourPasswordButton, "Reset Password Button");
+            catch (ElementNotVisibleException elementNotVisible)
+            {
+                MsgOutput(string.Format("Reset Password Button could not be located [{0}]", elementNotVisible.Message));
+            }
+            return false;
         }
 
         public void ResetYourPasswordButtonClick()
         {
-            if (!WaitForElementToExistByCssSelector("#content_1_ResetPasswordButton"))
+            TakeSnapshot();//TEMP
+            if (!WaitForElementToExistByCssSelector("#content_1_ResetPasswordButton.button-blue", 5, 5))
             {
-                ResetYourPasswordButton = Driver.FindElement(By.CssSelector("#content_1_ResetPasswordButton"));
-                //TestCheck.AssertIsNotEqual(null, ResetYourPasswordButton, "Reset Password Button");
+                ResetYourPasswordButton = Driver.FindElement(By.CssSelector("#content_1_ResetPasswordButton.button-blue"));
             }
             ScrollTo(ResetYourPasswordButton);
             ResetYourPasswordButton.Click();
         }
-
-        //public void ResetYourPasswordButtonClick()
-        //{
-        //    if (!WaitForElementToExistById("#content_1_ResetPasswordButton"))
-        //    {
-        //        ResetYourPasswordButton = Driver.FindElement(By.Id("#content_1_ResetPasswordButton"));
-        //        TestCheck.AssertIsNotEqual(null, ResetYourPasswordButton, "Reset Password Button");
-        //    }
-        //    ScrollTo(ResetYourPasswordButton);
-        //    ResetYourPasswordButton.Click();
-        //}
-       
-        //public void ResetYourPasswordButtonClick()
-        //{
-        //    if (!WaitForElementToExistByClassName(".button-blue"))
-        //    {
-        //        ResetYourPasswordButton = Driver.FindElement(By.ClassName(".button-blue"));
-        //        TestCheck.AssertIsNotEqual(null, ResetYourPasswordButton, "Reset Password Button");
-        //    }
-        //    ScrollTo(ResetYourPasswordButton);
-        //    ResetYourPasswordButton.Click();
-        //}
-
+    
         public void IsEmailResetTextBoxAvailable()
         {
             if (EmailAddressPasswordResetTextBox == null)
@@ -378,15 +385,32 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         
         public void EmptyEmailAddressTextBox()
         {
-            EmailAddressTextBox.SendKeys(Keys.Tab);
             EmailAddressTextBox.Clear();
             EmailAddressTextBox.SendKeys(Keys.Tab);
         }
         public void EmptyPasswordTextBox()
         {
-            PasswordTextBox.SendKeys(Keys.Tab);
             PasswordTextBox.Clear();
             PasswordTextBox.SendKeys(Keys.Tab);
+        }
+        public void EmptyFirstNameTextBox()
+        {
+            FirstNameTextBox.Clear();
+            FirstNameTextBox.SendKeys(Keys.Tab);
+        }
+        public void EmptyLastNameTextBox()
+        {
+            LastNameTextBox.Clear();
+            LastNameTextBox.SendKeys(Keys.Tab);
+        }
+        public void EmptyCompanyNameTextBox()
+        {
+            CompanyNameTextBox.Clear();
+            CompanyNameTextBox.SendKeys(Keys.Tab);
+        }
+        public void EmptyBusinessSectorTextBox()
+        {
+            BusinessSectorDropDownList.SendKeys(Keys.Tab);
         }
         
         public void IsErrorMessageDisplayed()
@@ -398,6 +422,22 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             PasswordTextBox.SendKeys(Keys.Tab);
             TestCheck.AssertIsEqual(true, PasswordErrorMessage.Displayed, "Is Error Message Displayed");
         }
+        public void FirstNameErrorMessage()
+        {
+            TestCheck.AssertIsEqual(true, FirstNameErrorMessageDisplayed.Displayed, "Is Error Message Displayed");
+        }
+        public void LastNameErrorMessage()
+        {
+            TestCheck.AssertIsEqual(true, LastNameErrorMessageDisplayed.Displayed, "Is Error Message Displayed");
+        }
+        public void CompanyNameErrorMessage()
+        {
+            TestCheck.AssertIsEqual(true, CompanyNameErrorMessageDisplayed.Displayed, "Is Error Message Displayed");
+        }
+        public void BusinessSectorErrorMessage()
+        {
+            TestCheck.AssertIsEqual(true, BusinessSectorErrorMessageDisplayed.Displayed, "Is Error Message Displayed");
+        }
         public void ConfirmPasswordErrorMessageDisplayed()
         {
             TestCheck.AssertIsEqual(true, ConfirmPasswordErrorMessage.Displayed, "Is Error Message Displayed");
@@ -405,6 +445,11 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         public void TermsAndConditionsErrorMessageDisplayed()
         {
             TestCheck.AssertIsEqual(true, TermsAndConditionsErrorMessage.Displayed, "Is Error Message Displayed");
+        }
+
+        public void DuplicateEmailErrorMessageDisplayed()
+        {
+            TestCheck.AssertIsEqual(true, DuplicateEmailErrorMessage.Displayed, "Is Error Message Displayed");
         }
 
        }

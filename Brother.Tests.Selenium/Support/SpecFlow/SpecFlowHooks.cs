@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Diagnostics.Eventing.Reader;
+using System.Dynamic;
 using System.Linq;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using NUnit.Framework;
 using NUnit.Framework.Constraints;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
@@ -11,6 +14,10 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
     [Binding]
     public class Initialise
     {
+        private bool IsStagingTest { get; set; }
+        
+    #region "Before And After Test Run Tags"
+
         [BeforeTestRun]
         public static void BeforeTestRun()
         {
@@ -27,17 +34,22 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
             Helper.MsgOutput("........Ending Test Run");
         }
 
+#endregion "Before And After Test Run Tags"
+
+#region "Before And After Step Tags"
+
         [BeforeStep]
         public static void BeforeStep()
         {
-            Helper.MsgOutput("Step start time ", DateTime.Now.TimeOfDay.ToString());
         }
 
         [AfterStep]
         public static void AfterStep()
         {
+            // No Error - move on
             if (ScenarioContext.Current.TestError == null)
             {
+                Helper.MsgOutput("Test Step completed");
                 return;
             }
 
@@ -45,6 +57,16 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
             Helper.TakeSnapshot();
             Helper.MsgOutput(string.Format("[AfterStep] SnapShot Taken : Location = [{0}]", Helper.CurrentSnapShot));
         }
+
+#endregion "Before And After Step Tags"
+
+        #region "Before And After Feature Tags"
+
+        //[BeforeFeature("STAGING")]
+        //public static void BeforeFeature()
+        //{
+        //    Helper.MsgOutput("Staging Feature Test - Running In Development test cases");
+        //}
 
         [BeforeFeature]
         public static void BeforeFeatureHeadless()
@@ -56,23 +78,6 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
             #endif
         }
 
-        private static void IgnoreThisTest(string why)
-        {
-             var testRunTimeSetting = new NUnitRuntimeProvider();
-
-             Helper.MsgOutput(why);
-             testRunTimeSetting.TestIgnore(why);
-        }
-
-
-        public static void BeforeFeatureHeadlessAndInteractive()
-        {
-            #if DEBUG
-                TestController.Test_Setup();
-                Helper.MsgOutput("Feature start - Starting Selenium");
-            #endif
-        }
-
         [AfterFeature]
         public static void AfterFeature()
         {
@@ -80,20 +85,50 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
             TestController.Test_Teardown();
         }
 
+        #endregion "Before And After Feature Tags"
+
+        #region "Before and After Scenario Tags"
+
+        [BeforeScenario("STAGING")]
+        public void BeforeScenarioStaging()
+        {
+            IsStagingTest = true;
+            if (!Helper.CheckForStagingTestFlag())
+            {
+                IgnoreThisTest("Skipping this test as Staging flag is not set");
+            }
+            Helper.MsgOutput("Staging Scenario Found");
+        }
+
+        [BeforeScenario("MPS")]
+        public void BeforeScenarioMps()
+        {
+            Helper.MsgOutput("MPS Test found");
+        }
+
         [BeforeScenario()]
         public void BeforeScenario()
         {
-            var testRunTimeSetting = new NUnitRuntimeProvider();
-            var mpsFeatureTag = Helper.CheckFeatureEnv("MPS");
-
-            // First check the Runtime environment for a valid value
+            // First check the Runtime environment for a valid value. If the Environment variable contains an invalid Test Environment
+            // then END TEST RUN
             if (!CheckForValidRunTimeEnv(Helper.GetRunTimeEnv()))
             {
-                IgnoreThisTest("Test skipped as Run Time Environment is Invalid!");
+                Helper.MsgOutput("********************************************************************");
+                Helper.MsgOutput("** CRITICAL ERROR : Test Environment is invalid for this test run **");
+                Helper.MsgOutput("********************************************************************");
+                IgnoreThisTest("Skipping Test - Run Time Environment is Invalid!");
+                return;
+            }
+
+            if (Helper.CheckForStagingTestFlag() && !IsStagingTest)
+            {
+                IgnoreThisTest("Skipping this test as it is not a Staging test");
+                IsStagingTest = false;
+                return;
             }
 
             // Now check if this Scenario has Tagging present, and use this level in the first instance
-            if ((ScenarioContext.Current.ScenarioInfo.Tags.Length > 0) && (!ScenarioContext.Current.ScenarioInfo.Tags.Contains("SMOKE")))
+            if ((ScenarioContext.Current.ScenarioInfo.Tags.Length > 0) && (!ScenarioContext.Current.ScenarioInfo.Tags.Contains("SMOKE") && (!ScenarioContext.Current.ScenarioInfo.Tags.Contains("STAGING"))))
             {
                 Helper.MsgOutput("Scenario Tags present - using these to determine Runtime Environment");
 
@@ -101,7 +136,7 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
                 // if the run time environment does not match, do not run test
                 if (!Helper.CheckScenarioEnv(Helper.GetRunTimeEnv()))
                 {
-                    IgnoreThisTest("Test skipped as Run Time Environment invalid for this test - Scenario Tags did not match Run Time Environment");
+                    IgnoreThisTest(string.Format("Test skipped - Test Environment Mismatch for this test - Target [{0}]", Helper.GetRunTimeEnv()));
                 }
             }
             else
@@ -115,7 +150,7 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
                     default:
                         if (!Helper.CheckFeatureEnv(Helper.GetRunTimeEnv()))
                         {
-                            IgnoreThisTest("Test skipped as Run Time Environment invalid for this test");
+                            IgnoreThisTest(string.Format("Test skipped - Test Environment Mismatch for this test - Target [{0}]", Helper.GetRunTimeEnv()));
                         }
                         else
                         {
@@ -125,57 +160,9 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
                 }
             }
 
-            if (mpsFeatureTag)
-            {
-
-                if (Helper.MpsRunCondition().Equals("ONLY") 
-                    || Helper.MpsRunCondition().Equals("ALL"))
-                {
-                    Helper.MsgOutput("!!!!MPS TESTS IN PROGRESS!!!!");
-                }
-                else if (Helper.MpsRunCondition().Equals("OFF") 
-                    || Helper.MpsRunCondition().Equals(string.Empty))
-                {
-                    IgnoreThisTest("Test skipped as All MPS tests are switched off for this run");
-                }
-            }
-            else
-            {
-                if (Helper.MpsRunCondition().Equals("ONLY")
-                    || Helper.MpsRunCondition().Equals(string.Empty))
-                {
-                    IgnoreThisTest("Test skipped as ONLY MPS tests are switched ON for this run");
-                    Helper.MsgOutput("!!!!Check if MpsTagRunner value is empty!!!!");
-                }
-                else if (Helper.MpsRunCondition().Equals("OFF") 
-                           || Helper.MpsRunCondition().Equals("ALL"))
-                {
-                    Helper.MsgOutput("!!!!TESTS RUN IN PROGRESS!!!!"); 
-                }
-                
-            }
-
-            if (Helper.IsSmokeTest())
-            {
-                if (ScenarioContext.Current.ScenarioInfo.Tags.Contains("SMOKE"))
-                {
-                    Helper.MsgOutput("!!!!SMOKE TEST IN PROGRESS!!!!");
-                }
-                else
-                {
-                    Helper.MsgOutput("Skipping test for Smoke Test run");
-                    testRunTimeSetting.TestIgnore("Test skipped as NO Smoke Tag present and this is a Smoke Test Run"); 
-                }
-            }
-
-            if (!ScenarioContext.Current.ContainsKey("CurrentDriver"))
-            {
-                ScenarioContext.Current.Add("CurrentDriver", TestController.CurrentDriver);
-            }
-            else
-            {
-                TestController.CurrentDriver = (IWebDriver)ScenarioContext.Current["CurrentDriver"];
-            }
+            DoMpsTestEval(Helper.CheckFeatureEnv("MPS"));
+            DoSmokeTestEval(Helper.IsSmokeTest());
+            SetCurrentDriver();
         }
 
         [AfterScenario()]
@@ -199,9 +186,88 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
             BeforeFeatureHeadless();
         }
 
+        #endregion "Before and After Scenario Tags"
+
+        #region "Utility Methods"
+
+        private static void SetCurrentDriver()
+        {
+            if (!ScenarioContext.Current.ContainsKey("CurrentDriver"))
+            {
+                ScenarioContext.Current.Add("CurrentDriver", TestController.CurrentDriver);
+            }
+            else
+            {
+                TestController.CurrentDriver = (IWebDriver)ScenarioContext.Current["CurrentDriver"];
+            }    
+        }
+
         private static bool CheckForValidRunTimeEnv(string runTimeEnv)
         {
             return (runTimeEnv.Equals(Helper.RunTimeLive)) || (runTimeEnv.Equals(Helper.RunTimeTest)) || (runTimeEnv.Equals(Helper.RunTimeUat)) || (runTimeEnv.Equals(Helper.RunTimeDev));
         }
+
+        private static void IgnoreThisTest(string why)
+        {
+            var testRunTimeSetting = new NUnitRuntimeProvider();
+
+            Helper.MsgOutput(why);
+            testRunTimeSetting.TestIgnore(why);
+        }
+
+        public static void BeforeFeatureHeadlessAndInteractive()
+        {
+            #if DEBUG
+                TestController.Test_Setup();
+                Helper.MsgOutput("Feature start - Starting Selenium");
+            #endif
+        }
+
+        private static void DoSmokeTestEval(bool smokeTest)
+        {
+            if (!smokeTest) return;
+            if (ScenarioContext.Current.ScenarioInfo.Tags.Contains("SMOKE"))
+            {
+                Helper.MsgOutput("!!!!SMOKE TEST IN PROGRESS!!!!");
+            }
+            else
+            {
+                Helper.MsgOutput("Skipping test for Smoke Test run");
+                IgnoreThisTest("Test skipped as NO Smoke Tag present and this is a Smoke Test Run");
+            }
+        }
+
+        private static void DoMpsTestEval(bool runMps)
+        {
+            if (runMps)
+            {
+                if (Helper.MpsRunCondition().Equals("ONLY")
+                    || Helper.MpsRunCondition().Equals("ALL"))
+                {
+                    Helper.MsgOutput("!!!!MPS TESTS IN PROGRESS!!!!");
+                }
+                else if (Helper.MpsRunCondition().Equals("OFF")
+                    || Helper.MpsRunCondition().Equals(string.Empty))
+                {
+                    IgnoreThisTest("Test skipped as All MPS tests are switched off for this run");
+                }
+            }
+            else
+            {
+                if (Helper.MpsRunCondition().Equals("ONLY")
+                    || Helper.MpsRunCondition().Equals(string.Empty))
+                {
+                    IgnoreThisTest("Test skipped as ONLY MPS tests are switched ON for this run");
+                    Helper.MsgOutput("!!!!Check if MpsTagRunner value is empty!!!!");
+                }
+                else if (Helper.MpsRunCondition().Equals("OFF")
+                           || Helper.MpsRunCondition().Equals("ALL"))
+                {
+                    Helper.MsgOutput("!!!!TESTS RUN IN PROGRESS!!!!");
+                }
+            }
+        }
+
+        #endregion "Utility Methods"
     }
 }

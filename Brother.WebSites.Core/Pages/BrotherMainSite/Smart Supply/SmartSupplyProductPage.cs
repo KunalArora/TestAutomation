@@ -32,8 +32,8 @@ namespace Brother.Tests.Selenium.Lib.Pages.BrotherMainSite.Smart_Supply
             }
             catch (NotFoundException notFoundException)
             {
+                MsgOutput(string.Format("Exception was [{0}]", notFoundException));
                 AssertElementPresent(BSCProductbenefit, "Benefits on Product and delivery mentioned");
-                
             }
         }
 

@@ -45,7 +45,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [Then(@"I reset my password with ""(.*)""")]
         public void ThenIResetMyPasswordWith(string newPassword)
         {
-            CurrentPage.As<RegistrationPage>().IsResetYourPasswordButtonAvailable();
+            CurrentPage.As<RegistrationPage>().IsResetYourPasswordButtonAvailable(5, 10);
             CurrentPage.As<RegistrationPage>().PopulatePasswordTextBox(newPassword);
             CurrentPage.As<RegistrationPage>().PopulateConfirmPasswordTextBox(newPassword);
             // Set new password so we can sign in again using the updated password
@@ -264,6 +264,15 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<RegistrationPage>().PopulateConfirmPasswordTextBox(form.Password);
             WhenIEnterAValidEmailAddress(string.Empty); // Auto Generates with an empty string
         }
+        [When(@"I fill in the registration information excluding email address")]
+        public void WhenIFillInTheRegistrationInformationExcludingEmailAddress(Table table)
+        {
+            dynamic form = table.CreateDynamicInstance();
+            CurrentPage.As<RegistrationPage>().PopulateFirstNameTextBox(form.FirstName);
+            CurrentPage.As<RegistrationPage>().PopulateLastNameTextBox(form.LastName);
+            CurrentPage.As<RegistrationPage>().PopulatePasswordTextBox(form.Password);
+            CurrentPage.As<RegistrationPage>().PopulateConfirmPasswordTextBox(form.Password);
+        }
         [When(@"I press tab in the email address field")]
         public void WhenIPressTabInTheEmailAddressField()
         {
@@ -274,6 +283,30 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         public void WhenIPressTabInThePasswordField()
         {
             CurrentPage.As<RegistrationPage>().EmptyPasswordTextBox();
+        }
+
+        [When(@"I press tab in the first name field")]
+        public void WhenIPressTabInTheFirstNameField()
+        {
+            CurrentPage.As<RegistrationPage>().EmptyFirstNameTextBox();
+        }
+
+        [When(@"I press tab in the last name field")]
+        public void WhenIPressTabInTheLastNameField()
+        {
+            CurrentPage.As<RegistrationPage>().EmptyLastNameTextBox();
+        }
+
+        [When(@"I press tab in the company name field")]
+        public void WhenIPressTabInTheCompanyNameField()
+        {
+            CurrentPage.As<RegistrationPage>().EmptyCompanyNameTextBox();
+        }
+
+        [When(@"I press tab in the business sector field")]
+        public void WhenIPressTabInTheBusinessSectorField()
+        {
+            CurrentPage.As<RegistrationPage>().EmptyBusinessSectorTextBox();
         }
 
         [Then(@"If I sign back into Brother Online ""(.*)"" using the same credentials")]
@@ -454,6 +487,26 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<RegistrationPage>().PasswordErrorMessageDisplayed();
         }
+        [Then(@"I should see an error message on the first name field")]
+        public void ThenIShouldSeeAnErrorMessageOnTheFirstnameField()
+        {
+            CurrentPage.As<RegistrationPage>().FirstNameErrorMessage();
+        }
+        [Then(@"I should see an error message on the last name field")]
+        public void ThenIShouldSeeAnErrorMessageOnTheLastnameField()
+        {
+            CurrentPage.As<RegistrationPage>().LastNameErrorMessage();
+        }
+        [Then(@"I should see an error message on the company name field")]
+        public void ThenIShouldSeeAnErrorMessageOnTheCompanynameField()
+        {
+            CurrentPage.As<RegistrationPage>().CompanyNameErrorMessage();
+        }
+        [Then(@"I should see an error message on the business sector field")]
+        public void ThenIShouldSeeAnErrorMessageOnTheBusinessSectorField()
+        {
+            CurrentPage.As<RegistrationPage>().BusinessSectorErrorMessage();
+        }
        [Then(@"I should get an error message displayed on the Terms and Conditions")]
         public void ThenIShouldGetAnErrorMessageDisplayedOnTheTermsAndConditions()
         {
@@ -464,6 +517,13 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<RegistrationPage>().ConfirmPasswordErrorMessageDisplayed();
         }
+
+        [Then(@"I should see the duplicate email error message preventing account creation")]
+        public void ThenIShouldSeeDuplicateEmailErrorMessage()
+        {
+            CurrentPage.As<RegistrationPage>().DuplicateEmailErrorMessageDisplayed();
+        }
+
         [When(@"I enter a valid Email Address ""(.*)""")]
         public void WhenIEnterAValidEmailAddress(string validEmailAddress)
         {

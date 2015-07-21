@@ -77,6 +77,7 @@ namespace Brother.WebSites.Core.Pages.Base
             }
             catch (WebDriverException timeOutDriverException)
             {
+                MsgOutput(string.Format("Exception was [{0}]", timeOutDriverException));
                 TestCheck.AssertFailTest("Unable to get IFrame Instance. WebDriver timed out");
             }
             

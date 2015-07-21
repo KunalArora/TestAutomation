@@ -156,7 +156,6 @@ namespace Brother.WebSites.Core.Pages.Base
                // driver.Navigate().GoToUrl(url);
                 NavigateToUrl(driver, url);
                 MsgOutput(string.Format("Browser is on Page {0}", url));
-                MsgOutput("Looking for Accept Cookie Request");
                 AcceptCookieLaw(driver);
             }
             catch (WebDriverException driverException)
@@ -178,7 +177,6 @@ namespace Brother.WebSites.Core.Pages.Base
                     driver.Navigate().Refresh();
                 }
                 MsgOutput(string.Format("Browser is on Page {0}", url));
-                MsgOutput("Looking for Accept Cookie Request");
                 AcceptCookieLaw(driver);
             }
             catch (WebDriverException driverException)

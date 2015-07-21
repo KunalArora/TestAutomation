@@ -66,15 +66,16 @@
 				  <MyContracts></MyContracts>
 				  <CustomerInformation></CustomerInformation>
 			</PrintSmart>
-			<MyAccount>
-				<Preferences>sign-in-details</Preferences>
-				<PersonalDetails>personal-details</PersonalDetails>
-				<MyInvoices>my-invoices</MyInvoices>
-				<AddressBook>address-book</AddressBook>
-				<BusinessDetails>business-details</BusinessDetails>
-				<ConnectedDevices>connected-devices</ConnectedDevices>
+      <MyAccount>
+        <Preferences>sign-in-details</Preferences>
+        <PersonalDetails>personal-details</PersonalDetails>
+        <MyInvoices>my-invoices</MyInvoices>
+        <AddressBook>address-book</AddressBook>
+        <BusinessDetails>business-details</BusinessDetails>
+        <ConnectedDevices>connected-devices</ConnectedDevices>
         <Orders>my-order-list</Orders>
-			</MyAccount>
+        <AddressDetails>address-book</AddressDetails>
+      </MyAccount>
 		</ProductButtons>
 		<MyAccountSideNavMenu>
 			<BrotherOnlineHome>Brother Online Home</BrotherOnlineHome>
@@ -84,6 +85,7 @@
 			<SignInDetails>Sign In Details</SignInDetails>
       <BusinessDetails>Business details</BusinessDetails>
 			<Orders>Orders</Orders>
+      <AddressDetails>My Address</AddressDetails>
 		</MyAccountSideNavMenu>
 		<PrimaryNavTopMenu>
 			<MyAccount>My Account</MyAccount>

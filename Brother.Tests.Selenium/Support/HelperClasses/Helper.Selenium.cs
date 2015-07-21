@@ -21,28 +21,29 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
         public static void AcceptCookieLaw(IWebDriver driver)
         {
-            try
+            MsgOutput(string.Format("Cookie request status = [{0}]", TestController.IsAcceptCookiesDismissed));
+            if (!TestController.IsAcceptCookiesDismissed)
             {
-                WebDriver.SetWebDriverImplicitTimeout(new TimeSpan(0,0,10));
-                if (!WaitForElementToExistByCssSelector("#AcceptCookieLawHyperLink", 5, 3))
+                MsgOutput("Looking for Accept Cookie Request");
+                WebDriver.SetWebDriverImplicitTimeout(new TimeSpan(0, 0, 10));
+                if (!WaitForElementToExistByCssSelector("#AcceptCookieLawHyperLink", 3, 3))
                 {
                     MsgOutput(
-                        "Accept Cookie Button was not found and may have already been dismissed during this test session");
+                        "Accept Cookie Button was not found for this session");
                 }
                 else
                 {
                     var acceptCookieLawButton = driver.FindElement(By.CssSelector("#AcceptCookieLawHyperLink"));
                     acceptCookieLawButton.Click();
+                    TestController.IsAcceptCookiesDismissed = true;
+                    MsgOutput("**Cookie Request Found and dismissed");
                 }
             }
-            catch (ElementNotVisibleException elementNotVisible)
+            else
             {
-                MsgOutput(string.Format("AcceptCookieLaw : {0} [This error can be ignored]", elementNotVisible));
+                MsgOutput("Cookie Request already dismissed");
             }
-            catch (WebDriverException timeOutDriverException)
-            {
-                MsgOutput(string.Format("Driver timed out whilst looking for Accept Cookie Law request button"));
-            }
+ 
             WebDriver.SetWebDriverImplicitTimeout(WebDriver.ImplicitWaitDefaultTimeout);
         }
         
@@ -115,6 +116,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             }
             catch (WebDriverException elementSearchTimeout)
             {
+                MsgOutput(string.Format("Exception was [{0}]", elementSearchTimeout));
                 throw new WebDriverTimeoutException(string.Format("Timeout searching for Element [{0}]. Timeout after [{1}]", element, ElementSearchTimeout));
             }
             return elementStatus;
@@ -130,6 +132,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             }
             catch (WebDriverException elementSearchTimeout)
             {
+                MsgOutput(string.Format("Exception was [{0}]", elementSearchTimeout));
                 throw new WebDriverTimeoutException(string.Format("Timeout searching for Element [{0}]. Timeout after [{1}]", element, ElementSearchTimeout));
             }
             return elementStatus;
@@ -169,6 +172,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                 catch (WebDriverException timeOutException)
                 {
                     MsgOutput(string.Format("Element [{0}] Not Found after [{1}] seconds. Retrying [{2}] times", element, wait.Timeout.Seconds, retries));
+                    MsgOutput(string.Format("Exception was [{0}]", timeOutException));
                     retries++;
                 }
             }
@@ -203,6 +207,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                 catch (WebDriverException timeOutException)
                 {
                     MsgOutput(string.Format("Element Not Found after [{0}] seconds", wait.Timeout.Seconds));
+                    MsgOutput(string.Format("Exception was [{0}]", timeOutException));
                     retries++;
                 }
             }

@@ -19,7 +19,8 @@ Scenario: Customer has created a Brother Online account and wishes to change the
 	Then I can sign out of Brother Online
 
 # Create an account and use the "Forgotten Password" utility
-@TEST @UAT @PROD
+#@TEST @UAT @PROD
+@STAGING
 Scenario: Customer has created a Brother Online account but has forgotten their password and requires a new one
 	Given I am logged onto Brother Online "United Kingdom" using valid credentials
 	#Given I am logged into my Brother Online account
@@ -41,7 +42,6 @@ Scenario: Customer has created a Brother Online account but has forgotten their 
 @TEST @UAT
 Scenario: Customer or Dealer role persists after email address change (BOL-176)
 	Given I am logged onto Brother Online "United Kingdom" using valid credentials
-	#Given I am logged into my Brother Online account
 	Then I can sign out of Brother Online
 	And If I grant the user account the "Extranet\Brother Online Ink Supply User" role
 	When I sign back into Brother Online "United Kingdom" using the same credentials
@@ -63,7 +63,6 @@ Scenario: Customer or Dealer role persists after email address change (BOL-176)
 @TEST @UAT @PROD 
 Scenario Outline: Customer can change their Brother Online email address after registration (BBAU - 2337)
 	Given I am logged onto Brother Online "<Country>" using valid credentials
-	#Given I am logged into my Brother Online account
 	When I navigate to my account for "<Country>"
 	And I click on Sign In Details
 	And If I enter a new email address "<EmailPrefixForChange>"
@@ -84,8 +83,8 @@ Scenarios:
 	| Ireland        | changed              |
 
 
-
 # Change Business details in your created account, go to my account and change/add your business details
+@TEST @UAT @PROD
 Scenario: Business Customer can change their business details after logging into account
 	Given I am logged onto Brother Online "United Kingdom" using valid credentials
 	When I navigate to my account for "United Kingdom"
@@ -100,7 +99,7 @@ Scenario: Business Customer can change their business details after logging into
 	Then I can verify successfull update message appeared at the top
 	
 
-# Create a new user account - Add business details for new user
+# Create a new user account - Add business details for new user (Should not be executed on Production)
 Scenario: Customer creates a new account with Brother Online and add Business details in My account page
 	Given I am logged onto Brother Online "United Kingdom" using valid credentials
 	Then I can sign out of Brother Online
@@ -118,12 +117,25 @@ Scenario: Customer creates a new account with Brother Online and add Business de
 	And I click on Update details on business details page
 	Then I can verify successfull update message appeared at the top
 
-	
-	
-	
 
-
-
+#Customer User can add their address to their acocunt by manually entering their personal details
+Scenario: Customer User can add a new address to their acocunt by manually entering address details
+Given I am logged onto Brother Online "United Kingdom" using valid credentials
+When I navigate to my account for "United Kingdom"	
+When I click on My Address 
+And I click on Add a New Address Button
+And I enter all the mandatory fields
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Postcode        | m34 5je	       |
+	| HouseNumber	  | appt 1		   |
+	| HouseName		  | Brother		   |
+	| Addressline1	  | TameSt		   |
+	| Addressline2	  | Audenshaw	   |
+	| City			  | Manchester	   |
+	| PhoneNumber	  | 0161 330 6531	   |
+And I click on the save address button
 
 
 

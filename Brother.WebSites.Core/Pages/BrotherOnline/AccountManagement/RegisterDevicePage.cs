@@ -12,7 +12,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
 
         public override string DefaultTitle
         {
-            get { return BrotherOnlineHomePages.Default["RegisterYourDevice"].ToString(); }
+            get { return BrotherOnlineHomePages.Default["MyPersonalDetails"].ToString(); }
         }
 
         [FindsBy(How = How.CssSelector, Using = @"a.button-grey[href='/']")]
@@ -42,6 +42,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         [FindsBy(How = How.CssSelector, Using = "#warranty")] 
         public IWebElement BrotherTermsAndConditionsTickBox;
 
+        [FindsBy(How = How.CssSelector, Using = "#Warnings > p")]
+        public IWebElement AccountNotValidatedErrorMessage;
+
         public static string continueButtonId = "#content_2_innercontent_2_GoToNextStepButton";
 
         public bool IsErrorIconPresent()
@@ -57,6 +60,11 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             WebDriver.SetWebDriverDefaultTimeOuts(WebDriver.DefaultTimeOut.Implicit);
 
             return errorIcon != null;
+        }
+
+        public void AccountNotValidatedErrorMessageDisplayed()
+        {
+            TestCheck.AssertIsEqual(true, AccountNotValidatedErrorMessage.Displayed, "Is Error Message Displayed");
         }
 
         // Back to Brother Online Home Page
@@ -96,7 +104,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         {
             if (!WaitForElementToExistByCssSelector("#content_2_innercontent_2_GoToNextStepButton"))
             {
-                ContinueButton = Driver.FindElement(By.CssSelector("#content_1_ResetPasswordButton"));
+                ContinueButton = Driver.FindElement(By.CssSelector("#content_2_innercontent_2_GoToNextStepButton"));
                 TestCheck.AssertIsEqual(null, ContinueButton, "Check Continue Button");
             }
             ScrollTo(ContinueButton);

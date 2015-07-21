@@ -232,7 +232,7 @@ Scenarios:
 	| "aaa@yahoo.com"					|
 
 @ignore
- Scenario Outline: Validate that the correct error messages are displayed when a Confirm Password field contains different passwpord than actual Password (BBAU-2209)
+ Scenario Outline: Validate that the correct error messages are displayed when a Confirm Password field contains different password than actual Password (BBAU-2209)
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
 	And I am redirected to the Brother Login/Register page
@@ -275,9 +275,194 @@ Scenario: Validate that the correct error messages are displayed when Terms and 
 	And I press create account button
 	Then I should get an error message displayed on the Terms and Conditions
 
+
+# Check mandatory email field when creating business account
+Scenario: Validate that an error message is displayed for mandatory email field if it is missing during creation of a business account
+	Given I want to create a new account with Brother Online "United Kingdom"
+	When I click on Create Account for "United Kingdom"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I declare that I do use this account for business
+	When I press tab in the email address field
+	Then I should see an error message
+
+# Check mandatory password field when creating business account
+Scenario: Validate that an error message is displayed for mandatory password field if it is missing during creation of a business account
+	Given I want to create a new account with Brother Online "United Kingdom"
+	When I click on Create Account for "United Kingdom"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I declare that I do use this account for business
+	When I press tab in the password field
+	Then I should see an error message on the password field
+
+# Check mandatory first name field when creating a business account
+Scenario: Validate that an error message is displayed for mandatory first name field if it is missing during creation of a business account
+	Given I want to create a new account with Brother Online "United Kingdom"
+	When I click on Create Account for "United Kingdom"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I declare that I do use this account for business
+	When I press tab in the first name field
+	Then I should see an error message on the first name field
+
+# Check mandatory last name field when creating a business account
+Scenario: Validate that an error message is displayed for mandatory last name field if it is missing during creation of a business account
+	Given I want to create a new account with Brother Online "United Kingdom"
+	When I click on Create Account for "United Kingdom"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I declare that I do use this account for business
+	When I press tab in the last name field
+	Then I should see an error message on the last name field
+
+# Check mandatory company name field when creating a business account
+Scenario: Validate that an error message is displayed for mandatory company name field if it is missing during creation of a business account
+	Given I want to create a new account with Brother Online "United Kingdom"
+	When I click on Create Account for "United Kingdom"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I declare that I do use this account for business
+	When I press tab in the company name field
+	Then I should see an error message on the company name field
+	
+# Check mandatory business sector field when creating a business account
+Scenario: Validate that an error message is displayed for mandatory business sector field if it is missing during creation of a business account
+	Given I want to create a new account with Brother Online "United Kingdom"
+	When I click on Create Account for "United Kingdom"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I declare that I do use this account for business
+	When I press tab in the business sector field
+	Then I should see an error message on the business sector field
+
+# Check mandatory terms and conditions are accepted when creating a business account
+Scenario: Validate that an error message is displayed for mandatory terms and conditions if they are not accepted during creation of a business account
+	Given I want to create a new account with Brother Online "United Kingdom"
+	When I click on Create Account for "United Kingdom"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I fill in the registration information using a valid email address 
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Password        | @@@@@	       |
+	| ConfirmPassword | @@@@@		   |
+
+	And I declare that I do use this account for business
+	And I add my company name as "AutoTestLtd"
+	And I select my Business Sector as "IT and telecommunications services"
+	And I select number of Employees as "11 - 50"
+	When I add my company VAT number as "GB145937540" 
+	And I press create account button
+	Then I should get an error message displayed on the Terms and Conditions
+
+# Check that a user account cannot be created with an email address that already exists for another user account 
+# Check that a user account cannot be created with an email address that already exists for another business account
+Scenario Outline: Customer cannot register for a new user account using an email address that already exists for another user or business account
+	Given I want to create a new account with Brother Online "United Kingdom"
+	When I click on Create Account for "United Kingdom"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I fill in the registration information excluding email address
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Password        | @@@@@	       |
+	| ConfirmPassword | @@@@@		   |
+	
+	And I declare that I do not use this account for business
+	And I have Agreed to the Terms and Conditions
+	And I enter an email address containing <Email Address>
+	And I press create account button
+	Then I should see the duplicate email error message preventing account creation
+
+Scenarios:
+	| Email Address                               |
+	| "existinguseraccount@guerrillamail.com"         |
+	| "existingbusinessaccount@guerrillamail.com"       |
+
+# Check that a business account cannot be created with an email address that already exists for another business account
+# Check that a business account cannot be created with an email address that already exists for another user account
+Scenario Outline: Customer cannot register for a new business account using an email address that already exists for another business or user account
+	Given I want to create a new account with Brother Online "United Kingdom"
+	When I click on Create Account for "United Kingdom"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I fill in the registration information excluding email address
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Password        | @@@@@	       |
+	| ConfirmPassword | @@@@@		   |
+	
+	And I declare that I do use this account for business
+	And I add my company name as "AutoTestLtd"
+	And I select my Business Sector as "IT and telecommunications services"
+	And I select number of Employees as "11 - 50"
+	When I add my company VAT number as "GB145937540" 
+	And I have Agreed to the Terms and Conditions
+	And I enter an email address containing <Email Address>
+	And I press create account button
+	Then I should see the duplicate email error message preventing account creation	
+
+Scenarios:
+	| Email Address                               |
+	| "existingbusinessaccount@guerrillamail.com"         |
+	| "existinguseraccount@guerrillamail.com"       |
+
+# Check that a user account which is not validated does not have the ability to register a device
+Scenario: User account which is not validated does not permit device registration
+	Given I want to create a new account with Brother Online "United Kingdom"
+	When I click on Create Account for "United Kingdom"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I fill in the registration information using a valid email address 
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Password        | @@@@@	       |
+	| ConfirmPassword | @@@@@		   |
+
+	And I have Agreed to the Terms and Conditions
+	And I declare that I do not use this account for business
+	When I press Create Your Account
+	Then I should see my account confirmation page
+	And When I Click Go Back
+	Then I should be able to log into "United Kingdom" Brother Online using my account details
+	When I have clicked on Add Device
+	Then I should see the account not validated error message preventing device registration
+
+# Check that a business account which is not validated does not have the ability to register a device		
+Scenario: Business account which is not validated does not permit device registration
+	Given I want to create a new account with Brother Online "United Kingdom"
+	When I click on Create Account for "United Kingdom"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I fill in the registration information using a valid email address 
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Password        | @@@@@	       |
+	| ConfirmPassword | @@@@@		   |
+
+	And I declare that I do use this account for business
+	And I add my company name as "AutoTestLtd"
+	And I select my Business Sector as "IT and telecommunications services"
+	And I select number of Employees as "11 - 50"
+	When I add my company VAT number as "GB145937540" 
+	And I have Agreed to the Terms and Conditions
+	When I press Create Your Account
+	Then I should see my account confirmation page
+	And When I Click Go Back
+	Then I should be able to log into "United Kingdom" Brother Online using my account details
+	When I have clicked on Add Device
+	Then I should see the account not validated error message preventing device registration
+
 @ignore
 Scenario: Log in as a Printer On dealer and ensure that they can see the required permissions BBAU-2189
 # (ensure that a customer cannot see the same permissions)
+
 
 # Change Personal details in your created account, go to my account and add your new Email address
 Scenario: Business Customer can change their Email Address   (BBAU - 2377, 2355)
@@ -313,7 +498,7 @@ Scenario: Business Customer can change their Email Address   (BBAU - 2377, 2355)
 	And I can sign out of Brother Online
 	Then If I sign back into Brother Online "United Kingdom" using the same credentials
 
-#Change Personal details in your created account, go to my account and change/add your new password
+#Change Sign In details in your created account, go to my account and change/add your new password
 Scenario: Business Customer can reset their password 
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
@@ -345,8 +530,11 @@ Scenario: Business Customer can reset their password
 	Then If I sign out of Brother Online
 	And If I sign back into Brother Online "United Kingdom" using the same credentials
 	Then I can sign out of Brother Online
+	
 
+
+
+	
 @ignore
 Scenario: Create a user but test for BPID 
 	# Create a new user account but add a check for the Users BPID in the dbo.Users table
-
