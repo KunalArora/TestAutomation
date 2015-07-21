@@ -5,6 +5,7 @@ using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
 using OpenQA.Selenium.Support.UI;
 using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Assist;
 
 namespace Brother.Tests.Specs.BrotherOnline.Account
 {
@@ -140,6 +141,13 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             var businessDetailsButton = GlobalNavigationModule.GetMyAccountMenuItem("BusinessDetails");
             NextPage = GlobalNavigationModule.BusinessDetailsMenuClick(CurrentDriver, businessDetailsButton);
         }
+        [When(@"I click on My Address")]
+        public void WhenIClickOnMyAddress()
+        {
+            var myaddressdetailsButton = GlobalNavigationModule.GetMyAccountMenuItem("AddressDetails");
+            NextPage = GlobalNavigationModule.MyAdressDetailsMenuOptionClick(CurrentDriver, myaddressdetailsButton);
+        }
+
         [When(@"I am redirected to the Business Details Page")]
         public void WhenIAmRedirectedToTheBusinessDetailsPage()
         {
@@ -194,6 +202,12 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<BusinessDetailsPage>().ClickUpdateButton();
         }
+        [When(@"I click on Add a New Address Button")]
+        public void WhenIClickOnAddANewAddressButton()
+        {
+            CurrentPage.As<MyAddressDetailsPage>().ClickonAddanewaddressButton();
+        }
+
         [Then(@"My password will be updated")]
         public void ThenMyPasswordWillBeUpdated()
         {
@@ -229,6 +243,25 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         public void ThenMyPersonalDetailsShouldGetUpdated()
         {
             CurrentPage.As<MyAccountPage>().ValidateInformationMessageBarStatus(true);
+        }
+        [When(@"I enter all the mandatory fields")]
+        public void WhenIEnterAllTheMandatoryFields(Table table)
+        {
+            dynamic form = table.CreateDynamicInstance();
+            CurrentPage.As<MyAddressDetailsPage>().PopulateFirstNameTextBox(form.FirstName);
+            CurrentPage.As<MyAddressDetailsPage>().PopulateLastNameTextBox(form.LastName);
+            CurrentPage.As<MyAddressDetailsPage>().PopulatePostcodeTextBox(form.Postcode);
+            CurrentPage.As<MyAddressDetailsPage>().PopulateHouseNumberTextBox(form.HouseNumber);
+            CurrentPage.As<MyAddressDetailsPage>().PopulateHouseNameTextBox(form.HouseName);
+            CurrentPage.As<MyAddressDetailsPage>().PopulateAddressLine1TextBox(form.Addressline1);
+            CurrentPage.As<MyAddressDetailsPage>().PopulateAddressLine2TextBox(form.Addressline2);
+            CurrentPage.As<MyAddressDetailsPage>().PopulateCityTownTextBox(form.City);
+            CurrentPage.As<MyAddressDetailsPage>().PopulatePhoneTextBox(form.PhoneNumber); 
+        }
+        [When(@"I click on the save address button")]
+        public void WhenIClickOnTheSaveAddressButton()
+        {
+            CurrentPage.As<MyAddressDetailsPage>().clickonsaveaddress();
         }
 
 

@@ -334,6 +334,62 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Customer User can add a new address to their acocunt by manually entering address" +
+            " details")]
+        public virtual void CustomerUserCanAddANewAddressToTheirAcocuntByManuallyEnteringAddressDetails()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer User can add a new address to their acocunt by manually entering address" +
+                    " details", ((string[])(null)));
+#line 125
+this.ScenarioSetup(scenarioInfo);
+#line 126
+testRunner.Given("I am logged onto Brother Online \"United Kingdom\" using valid credentials", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 127
+testRunner.When("I navigate to my account for \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 128
+testRunner.When("I click on My Address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 129
+testRunner.And("I click on Add a New Address Button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                        "field",
+                        "value"});
+            table1.AddRow(new string[] {
+                        "FirstName",
+                        "AutoTest"});
+            table1.AddRow(new string[] {
+                        "LastName",
+                        "AutoTest"});
+            table1.AddRow(new string[] {
+                        "Postcode",
+                        "m34 5je"});
+            table1.AddRow(new string[] {
+                        "HouseNumber",
+                        "appt 1"});
+            table1.AddRow(new string[] {
+                        "HouseName",
+                        "Brother"});
+            table1.AddRow(new string[] {
+                        "Addressline1",
+                        "TameSt"});
+            table1.AddRow(new string[] {
+                        "Addressline2",
+                        "Audenshaw"});
+            table1.AddRow(new string[] {
+                        "City",
+                        "Manchester"});
+            table1.AddRow(new string[] {
+                        "PhoneNumber",
+                        "0161 330 6531"});
+#line 130
+testRunner.And("I enter all the mandatory fields", ((string)(null)), table1, "And ");
+#line 141
+testRunner.And("I click on the save address button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore
