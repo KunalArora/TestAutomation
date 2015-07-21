@@ -342,15 +342,15 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer User can add a new address to their acocunt by manually entering address" +
                     " details", ((string[])(null)));
-#line 125
+#line 122
 this.ScenarioSetup(scenarioInfo);
-#line 126
+#line 123
 testRunner.Given("I am logged onto Brother Online \"United Kingdom\" using valid credentials", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 127
+#line 124
 testRunner.When("I navigate to my account for \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 128
+#line 125
 testRunner.When("I click on My Address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 129
+#line 126
 testRunner.And("I click on Add a New Address Button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
@@ -383,9 +383,9 @@ testRunner.And("I click on Add a New Address Button", ((string)(null)), ((TechTa
             table1.AddRow(new string[] {
                         "PhoneNumber",
                         "0161 330 6531"});
-#line 130
+#line 127
 testRunner.And("I enter all the mandatory fields", ((string)(null)), table1, "And ");
-#line 141
+#line 138
 testRunner.And("I click on the save address button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();

@@ -255,7 +255,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [When(@"I click on the save address button")]
         public void WhenIClickOnTheSaveAddressButton()
         {
-            CurrentPage.As<MyAddressDetailsPage>().clickonsaveaddress();
+            CurrentPage.As<MyAddressDetailsPage>().ClickOnSaveAddress();
         }
 
 

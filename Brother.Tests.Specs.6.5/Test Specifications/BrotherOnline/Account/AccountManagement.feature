@@ -118,10 +118,7 @@ Scenario: Customer creates a new account with Brother Online and add Business de
 	Then I can verify successfull update message appeared at the top
 
 
-
-
-
-#Customer User can add a new address to their acocunt by manually entering address details
+#Customer User can add their address to their acocunt by manually entering their personal details
 Scenario: Customer User can add a new address to their acocunt by manually entering address details
 Given I am logged onto Brother Online "United Kingdom" using valid credentials
 When I navigate to my account for "United Kingdom"	
@@ -139,12 +136,6 @@ And I enter all the mandatory fields
 	| City			  | Manchester	   |
 	| PhoneNumber	  | 0161 330 6531	   |
 And I click on the save address button
-
-	
-	
-
-
-
 
 
 

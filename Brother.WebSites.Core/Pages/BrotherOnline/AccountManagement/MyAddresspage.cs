@@ -51,7 +51,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         
          public void ClickonAddanewaddressButton()
         {
-
             ScrollTo(AddanewaddressButton);
             AddanewaddressButton.Click();
         }
@@ -75,13 +74,11 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             HouseNumberTextBox.SendKeys(houseNumber);
             HouseNumberTextBox.SendKeys(Keys.Tab);
         }
-
         public void PopulateHouseNameTextBox(string houseName)
         {
             HouseNameTextBox.SendKeys(houseName);
             HouseNameTextBox.SendKeys(Keys.Tab);
         }
-
         public void PopulateAddressLine1TextBox(string addressLine1)
         {
             AddressLine1TextBox.SendKeys(addressLine1);
@@ -102,7 +99,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         {
             PhoneNumberTextBox.SendKeys(phone);
         }
-        public void clickonsaveaddress()
+        public void ClickOnSaveAddress()
         {
             if (SaveAndUseAddressButton == null)
             {
@@ -113,5 +110,5 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             SaveAndUseAddressButton.Click();
         }
         
-                }
-            }
+    }
+}
