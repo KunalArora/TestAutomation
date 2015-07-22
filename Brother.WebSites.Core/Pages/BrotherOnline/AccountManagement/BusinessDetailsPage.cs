@@ -42,6 +42,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         [FindsBy(How = How.CssSelector, Using = ".info-bar")]
         public IWebElement InformationMessageBar;
 
+        [FindsBy(How = How.Id, Using = "BusinessAccountNoRadioButton")]
+        public IWebElement DoNotUseMyAccountForBusinessCheckbox;
+
         public string UpdateButtonId = "#content_2_innercontent_1_SubmitButton";
 
         public void IsUpdateButtonAvailable()
@@ -89,6 +92,11 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             ScrollTo(VatNumberTextBox);
             VatNumberTextBox.SendKeys(vatNumber);
            // TestCheck.AssertIsEqual(vatNumber, GetTextBoxValue("VatNumberTextBox"), "Vat number Text Box");
+        }
+        public void DoNotUseAccountForBusiness()
+        {
+            DoNotUseMyAccountForBusinessCheckbox.Click();
+            TestCheck.AssertIsEqual("True", DoNotUseMyAccountForBusinessCheckbox.Selected.ToString(), "Do Not Use Account For Business Button");
         }
         public void ClickUpdateButton()
         {
