@@ -89,7 +89,10 @@ namespace Brother.Tests.Selenium.Lib.Support
             }
             catch (WebDriverException ex)
             {
-                throw new SpecFlowSeleniumException(string.Format("{0} - {1}", "Unable to Connect to GhostDriver via RemoteWebDriver", ex.Message));
+                Test_Teardown();
+                throw new SpecFlowSeleniumException(string.Format("{0} - {1}",
+                    "Unable to Connect to GhostDriver via RemoteWebDriver", ex.Message));
+
             }
             return newDriver;
         }
