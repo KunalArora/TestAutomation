@@ -173,15 +173,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         {
             GivenIamOnMpsNewProposalPage();
             CurrentPage.As<DealerProposalsCreateDescriptionPage>().SetServerName(refs);
-            //WhenIFillProposalDescriptionForContractType("Purchase & Click with Service");
-            //WhenISelectButtonForCustomerDataCapture("Create new customer");
-            //WhenIEnterUsageTypeContractLengthAndBillingOnTermAndTypeDetails
-            //    ("Minimum Volume", "3 years", "Quarterly");
-            //WhenIPriceHardwareRadioButton("Tick");
-            //WhenIDisplayDeviceScreen("MFC-L8650CDW");
-            //WhenIAcceptTheDefaultValuesOfTheDevice();
-            //WhenIEnterClickPriceVolumeOf("800", "800"); 
-
+            
             DealerProposalsCreateCustomerInformationStep customerInformationStepInstance = new DealerProposalsCreateCustomerInformationStep();
             customerInformationStepInstance.WhenISelectButtonForCustomerDataCapture("Create new customer");
             DealerProposalsCreateTermAndTypeStep stepInstance = new DealerProposalsCreateTermAndTypeStep();

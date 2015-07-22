@@ -604,14 +604,18 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
                     switch (country)
                     {
                         case "United Kingdom":
-                            WhenIEnterAValidEmailAddress("mpsdealer_uk_automation@mailinator.com");
-                            WhenIEnterAValidPassword("P@$$w0rd");
+                            //WhenIEnterAValidEmailAddress("mpsdealer_uk_automation@mailinator.com");
+                            //WhenIEnterAValidPassword("P@$$w0rd");
                            //WhenIEnterAValidEmailAddress("MPS-BUK-Prod-Dealer1@brother.co.uk");
                            //WhenIEnterAValidPassword("UKdealer1");
+                            
+                            WhenIEnterAValidEmailAddress("MPS-BUK-UAT-Dealer1@brother.co.uk");
+                            WhenIEnterAValidPassword("UKdealer1");
+
                             break;
                         case "Germany":
-                            WhenIEnterAValidEmailAddress("mpsdealer_de_automation@mailinator.com");
-                            WhenIEnterAValidPassword("P@$$w0rd");
+                            WhenIEnterAValidEmailAddress("MPS-BIG-UAT-Dealer3@brother.co.uk");
+                            WhenIEnterAValidPassword("DEdealer3");
                             break;
                     }
                     break;
@@ -657,8 +661,8 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
                             WhenIEnterAValidPassword("UKloadmin1");
                             break;
                         case "Germany":
-                            WhenIEnterAValidEmailAddress("mpslocalofficeadminde@mailinator.com");
-                            WhenIEnterAValidPassword("P@$$w0rd");
+                            WhenIEnterAValidEmailAddress("MPS-BIG-UAT-LOAdmin@brother.co.uk");
+                            WhenIEnterAValidPassword("DEloadmin1");
                             break;
                     }
                     break;

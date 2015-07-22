@@ -397,17 +397,23 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetElementsByCssSelector(element);
         }
 
+        private IList<IWebElement> DisplayedPrintersAfterFreeTextFiltering(string model)
+        {
+            var element = String.Format("#pc-{0}", model);
+            return GetElementsByCssSelector(element);
+        }
+
         public void IsAllPrintersReturnedThatSearched(string model)
         {
             int count = 0;
 
-            foreach (IWebElement element in DisplayedAllPrintersByFilteringOfFreeTextElement())
+            foreach (IWebElement element in DisplayedPrintersAfterFreeTextFiltering(model))
             {
-                string modelWithPC = element.GetAttribute("id");
-                if (modelWithPC.Contains(model)) count++;
+                var modelWithPC = element;
+                if (modelWithPC.Displayed) count++;
             }
 
-            TestCheck.AssertIsEqual(count, DisplayedAllPrintersByFilteringOfFreeTextElement().Count,
+            TestCheck.AssertIsEqual(count, DisplayedPrintersAfterFreeTextFiltering(model).Count,
                 "Displayed all printers are not invalid");
         }
 
@@ -479,8 +485,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 if (IsElementPresent(ProductQuantityElement))
                     SpecFlow.SetContext("ProductQuantity", ProductQuantityElement.GetAttribute("value"));
-                if (IsElementPresent(ProductCostPriceElement))
-                    SpecFlow.SetContext("ProductCostPrice", ProductCostPriceElement.GetAttribute("value"));
+
+                SetProductCostPrice();
+
                 if (IsElementPresent(ProductMarginElement))
                     SpecFlow.SetContext("ProductMargin", ProductMarginElement.GetAttribute("value"));
                 if (IsElementPresent(ProductSellPriceElement))
@@ -493,16 +500,21 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     SpecFlow.SetContext("DeliveryMargin", DeliveryMarginElement.GetAttribute("value"));
                 if (IsElementPresent(DeliverySellPriceElement))
                     SpecFlow.SetContext("DeliverySellPrice", DeliverySellPriceElement.GetAttribute("value"));
-                if (IsElementPresent(InstallationSRPElement))
-                    SpecFlow.SetContext("InstallationSRP", GetValueInstallationSRPElement());
-                if (IsElementPresent(InstallationPackCostPriceElement))
-                    SpecFlow.SetContext("InstallationPackCostPrice", InstallationPackCostPriceElement.GetAttribute("value"));
-                if (IsElementPresent(InstallationPackMarginElement))
-                    SpecFlow.SetContext("InstallationPackMargin", InstallationPackMarginElement.GetAttribute("value"));
-                if (IsElementPresent(InstallationPackSellPriceElement))
-                    SpecFlow.SetContext("InstallationPackSellPrice", InstallationPackSellPriceElement.GetAttribute("value"));
                 
+                SetInstallationDetails();
             }
+        }
+
+        public void SetInstallationDetails()
+        {
+            if (IsElementPresent(InstallationSRPElement))
+                SpecFlow.SetContext("InstallationSRP", GetValueInstallationSRPElement());
+            if (IsElementPresent(InstallationPackCostPriceElement))
+                SpecFlow.SetContext("InstallationPackCostPrice", InstallationPackCostPriceElement.GetAttribute("value"));
+            if (IsElementPresent(InstallationPackMarginElement))
+                SpecFlow.SetContext("InstallationPackMargin", InstallationPackMarginElement.GetAttribute("value"));
+            if (IsElementPresent(InstallationPackSellPriceElement))
+                SpecFlow.SetContext("InstallationPackSellPrice", InstallationPackSellPriceElement.GetAttribute("value"));
         }
 
 
@@ -660,7 +672,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             ScrollTo(AddToProposalElement);
             AddToProposalElement.Click();
-            WebDriver.Wait(Helper.DurationType.Second, 1);
+            WebDriver.Wait(Helper.DurationType.Second, 2);
         }
 
         private IWebElement AddToProposalButtonElement()
@@ -715,11 +727,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public decimal InstallationPackCostPrice()
         {
 
-            var priceText = InstallationPackCostPriceElement.GetAttribute("value");
+            //var priceText = InstallationPackCostPriceElement.GetAttribute("value");
+            var priceText = InstallationSRPElement.Text;
+
+            var priceTag = MpsUtil.GetValue(priceText);
 
             try
             {
-                return Convert.ToDecimal(priceText);
+                return Convert.ToDecimal(priceTag);
             }
             catch (FormatException formatException)
             {
@@ -727,6 +742,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
 
         }
+
 
         public void EnterInstallationPackCostPriceLessThanDefault()
         {
@@ -856,7 +872,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ChangeDeviceInstallationType()
         {
-            SelectFromDropdownByValue(GetElementByCssSelector("#InstallationPackId"), "2");
+            SelectFromDropdownByValue(GetElementByCssSelector("#InstallationPackId"), "1");
+            var installationCost = InstallationSRPElement.Text;
+
+            ClearAndType(InstallationPackCostPriceElement, MpsUtil.GetValue(installationCost).ToString());
+            WebDriver.Wait(DurationType.Second, 1);
+
+            SetInstallationDetails();
         }
 
         private string GetValueInstallationSRPElement()
@@ -994,6 +1016,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var srpCost = MpsUtil.GetValue(ModelSrpElement.Text);
             var costText = srpCost.ToString();
             ClearAndType(ProductCostPriceElement, costText);
+            SetProductCostPrice();
+
+        }
+
+        public void SetProductCostPrice()
+        {
+            if (IsElementPresent(ProductCostPriceElement))
+                SpecFlow.SetContext("ProductCostPrice", ProductCostPriceElement.GetAttribute("value"));
         }
 
         private IWebElement InstallationQuantityElement()

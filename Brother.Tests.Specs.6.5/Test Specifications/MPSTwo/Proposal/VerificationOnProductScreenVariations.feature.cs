@@ -365,25 +365,32 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Selected printer which is enabled on Lease + Click above can display in Purchase " +
             "+ Click Service")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "MFC-J4420DW", null)]
         public virtual void SelectedPrinterWhichIsEnabledOnLeaseClickAboveCanDisplayInPurchaseClickService(string role1, string country, string printer, string[] exampleTags)
         {
+            string[] @__tags = new string[] {
+                    "Ignore"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Selected printer which is enabled on Lease + Click above can display in Purchase " +
-                    "+ Click Service", exampleTags);
-#line 169
-this.ScenarioSetup(scenarioInfo);
-#line 170
- testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role1, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 171
- testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 172
- testRunner.When("I begin the proposal creation process for Purchase + Click Service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 173
- testRunner.And("I tick Price Hardware radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+                    "+ Click Service", @__tags);
 #line 174
+this.ScenarioSetup(scenarioInfo);
+#line 175
+ testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role1, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 176
+ testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 177
+ testRunner.When("I begin the proposal creation process for Purchase + Click Service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 178
+ testRunner.And("I tick Price Hardware radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 179
  testRunner.Then(string.Format("the printers \"{0}\" enabled in Local Office Admin are not displayed on product scr" +
                         "een", printer), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 175
+#line 180
  testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -397,30 +404,30 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Disable Printer of Lease + Click as a Local Office Admin, then can not display in" +
                     " Lease + Click Service", exampleTags);
-#line 182
-this.ScenarioSetup(scenarioInfo);
-#line 183
- testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role1, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 184
- testRunner.And("I navigate to Lease And Click page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 185
- testRunner.And("I navigate to Printers page on Lease And Click as a Local Office Admin", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 186
- testRunner.And(string.Format("I disabled \"{0}\" within the Printer screen", printer), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 187
- testRunner.And("I save printers on Available Printers page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+this.ScenarioSetup(scenarioInfo);
 #line 188
-    testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role1, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 189
- testRunner.When(string.Format("I sign back into Cloud MPS as a \"{0}\" from \"{1}\"", role2, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("I navigate to Lease And Click page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 190
- testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I navigate to Printers page on Lease And Click as a Local Office Admin", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 191
- testRunner.And("I begin the proposal creation process for Lease + Click Service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("I disabled \"{0}\" within the Printer screen", printer), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 192
+ testRunner.And("I save printers on Available Printers page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 193
+    testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 194
+ testRunner.When(string.Format("I sign back into Cloud MPS as a \"{0}\" from \"{1}\"", role2, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 195
+ testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 196
+ testRunner.And("I begin the proposal creation process for Lease + Click Service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 197
  testRunner.Then(string.Format("the printers \"{0}\" disabled in Local Office Admin are not displayed on product sc" +
                         "reen", printer), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 193
+#line 198
     testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -429,25 +436,32 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Selected printer which is disabled on Lease + Click above can display in Purchase" +
             " + Click Service")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "MFC-J4420DW", null)]
         public virtual void SelectedPrinterWhichIsDisabledOnLeaseClickAboveCanDisplayInPurchaseClickService(string role1, string country, string printer, string[] exampleTags)
         {
+            string[] @__tags = new string[] {
+                    "Ignore"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Selected printer which is disabled on Lease + Click above can display in Purchase" +
-                    " + Click Service", exampleTags);
-#line 201
+                    " + Click Service", @__tags);
+#line 210
 this.ScenarioSetup(scenarioInfo);
-#line 202
+#line 211
  testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role1, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 203
+#line 212
  testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 204
+#line 213
  testRunner.When("I begin the proposal creation process for Purchase + Click Service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 205
+#line 214
  testRunner.And("I tick Price Hardware radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 206
+#line 215
  testRunner.Then(string.Format("the printers \"{0}\" disabled in Local Office Admin are not displayed on product sc" +
                         "reen", printer), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 207
+#line 216
  testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -461,33 +475,33 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Enable Printer of Purchase + Click as a Local Office Admin, then can display in P" +
                     "urchase + Click Service", exampleTags);
-#line 214
-this.ScenarioSetup(scenarioInfo);
-#line 215
- testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role1, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 216
- testRunner.And("I navigate to Purchase And Click page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 217
- testRunner.And("I navigate to Printers page on Purchase And Click as a Local Office Admin", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 218
- testRunner.And(string.Format("I enabled \"{0}\" within the Printer screen", printer), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 219
- testRunner.And("I save printers on Available Printers page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 220
-    testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 221
- testRunner.When(string.Format("I sign back into Cloud MPS as a \"{0}\" from \"{1}\"", role2, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 222
- testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 223
- testRunner.And("I begin the proposal creation process for Purchase + Click Service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+this.ScenarioSetup(scenarioInfo);
 #line 224
- testRunner.And("I tick Price Hardware radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role1, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 225
- testRunner.And(string.Format("I display \"{0}\" device screen", printer), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I navigate to Purchase And Click page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 226
- testRunner.Then(string.Format("the printers \"{0}\" enabled in Local Office Admin are displayed on product screen", printer), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("I navigate to Printers page on Purchase And Click as a Local Office Admin", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 227
+ testRunner.And(string.Format("I enabled \"{0}\" within the Printer screen", printer), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 228
+ testRunner.And("I save printers on Available Printers page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 229
+    testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 230
+ testRunner.When(string.Format("I sign back into Cloud MPS as a \"{0}\" from \"{1}\"", role2, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 231
+ testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 232
+ testRunner.And("I begin the proposal creation process for Purchase + Click Service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 233
+ testRunner.And("I tick Price Hardware radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 234
+ testRunner.And(string.Format("I display \"{0}\" device screen", printer), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 235
+ testRunner.Then(string.Format("the printers \"{0}\" enabled in Local Office Admin are displayed on product screen", printer), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 236
  testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -501,19 +515,19 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Selected printer which is enabled on Purchase + Click above can display in Lease " +
                     "+ Click Service", exampleTags);
-#line 235
+#line 244
 this.ScenarioSetup(scenarioInfo);
-#line 236
+#line 245
  testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role1, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 237
+#line 246
  testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 238
+#line 247
  testRunner.When("I begin the proposal creation process for Lease + Click Service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 239
+#line 248
  testRunner.And(string.Format("I display \"{0}\" device screen", printer), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 240
+#line 249
  testRunner.Then(string.Format("the printers \"{0}\" enabled in Local Office Admin are displayed on product screen", printer), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 241
+#line 250
  testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -527,32 +541,32 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Disable Printer as a Local Office Admin, then can display in Purchase + Click Ser" +
                     "vice", exampleTags);
-#line 249
-this.ScenarioSetup(scenarioInfo);
-#line 250
- testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role1, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 251
- testRunner.And("I navigate to Purchase And Click page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 252
- testRunner.And("I navigate to Printers page on Purchase And Click as a Local Office Admin", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 253
- testRunner.And(string.Format("I disabled \"{0}\" within the Printer screen", printer), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 254
- testRunner.And("I save printers on Available Printers page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 255
-    testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 256
- testRunner.When(string.Format("I sign back into Cloud MPS as a \"{0}\" from \"{1}\"", role2, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 257
- testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 258
- testRunner.And("I begin the proposal creation process for Purchase + Click Service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+this.ScenarioSetup(scenarioInfo);
 #line 259
- testRunner.And("I tick Price Hardware radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role1, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 260
+ testRunner.And("I navigate to Purchase And Click page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 261
+ testRunner.And("I navigate to Printers page on Purchase And Click as a Local Office Admin", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 262
+ testRunner.And(string.Format("I disabled \"{0}\" within the Printer screen", printer), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 263
+ testRunner.And("I save printers on Available Printers page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 264
+    testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 265
+ testRunner.When(string.Format("I sign back into Cloud MPS as a \"{0}\" from \"{1}\"", role2, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 266
+ testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 267
+ testRunner.And("I begin the proposal creation process for Purchase + Click Service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 268
+ testRunner.And("I tick Price Hardware radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 269
  testRunner.Then(string.Format("the printers \"{0}\" disabled in Local Office Admin are not displayed on product sc" +
                         "reen", printer), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 261
+#line 270
     testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -573,18 +587,18 @@ this.ScenarioSetup(scenarioInfo);
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Selected printer which is disabled on Purchase + Click above can not display in L" +
                     "ease + Click Service", @__tags);
-#line 270
+#line 279
 this.ScenarioSetup(scenarioInfo);
-#line 271
+#line 280
  testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role1, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 272
+#line 281
  testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 273
+#line 282
  testRunner.When("I begin the proposal creation process for Lease + Click Service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 274
+#line 283
  testRunner.Then(string.Format("the printers \"{0}\" disabled in Local Office Admin are not displayed on product sc" +
                         "reen", printer), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 275
+#line 284
  testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -592,27 +606,34 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Change Installation cost type")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "MFC-L8850CDW", null)]
         public virtual void ChangeInstallationCostType(string role, string country, string printer, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Change Installation cost type", exampleTags);
-#line 285
+            string[] @__tags = new string[] {
+                    "Ignore"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Change Installation cost type", @__tags);
+#line 295
 this.ScenarioSetup(scenarioInfo);
-#line 286
+#line 296
  testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 287
+#line 297
  testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 288
+#line 298
     testRunner.When("I begin the proposal creation process for Purchase + Click Service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 289
+#line 299
  testRunner.And("I tick Price Hardware radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 290
+#line 300
  testRunner.And(string.Format("I display \"{0}\" device screen", printer), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 291
+#line 301
  testRunner.And("I change device installation type", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 292
+#line 302
  testRunner.Then("installation SRP value should change", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 293
+#line 303
  testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -631,19 +652,19 @@ this.ScenarioSetup(scenarioInfo);
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("asd", @__tags);
-#line 307
+#line 317
 this.ScenarioSetup(scenarioInfo);
-#line 308
+#line 318
  testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 309
+#line 319
  testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 310
+#line 320
     testRunner.When("I begin the proposal creation process for Purchase + Click Service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 311
+#line 321
  testRunner.And("I tick Price Hardware radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 312
+#line 322
  testRunner.And(string.Format("I display \"{0}\" device screen", printer), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 314
+#line 324
  testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -655,28 +676,28 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void CannotInputInstallationPackUnitCostLessThanDefault(string role, string country, string printer, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cannot input Installation Pack Unit Cost less than default", exampleTags);
-#line 324
+#line 334
 this.ScenarioSetup(scenarioInfo);
-#line 325
+#line 335
  testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 326
+#line 336
  testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 327
+#line 337
     testRunner.When("I begin the proposal creation process for Purchase + Click Service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 328
+#line 338
  testRunner.And("I tick Price Hardware radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 329
+#line 339
  testRunner.And(string.Format("I display \"{0}\" device screen", printer), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 330
+#line 340
  testRunner.And("I change the Installation Pack Unit Cost displayed to a value lower than the disp" +
                     "layed Unit Cost", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 331
+#line 341
  testRunner.And("I Click Add to Proposal button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 332
+#line 342
  testRunner.Then("InstallationPackUnitCostLessThanError is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 333
+#line 343
  testRunner.And("the product can not be added to the proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 334
+#line 344
  testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -688,23 +709,23 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void WhenInput100IntoMarginFieldAddToProposalButtonBecomeGrayout(string role, string country, string printer, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("When input 100% into Margin field, \"Add to proposal\" button become grayout", exampleTags);
-#line 342
+#line 352
 this.ScenarioSetup(scenarioInfo);
-#line 343
+#line 353
  testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 344
+#line 354
  testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 345
+#line 355
     testRunner.When("I begin the proposal creation process for Purchase + Click Service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 346
+#line 356
  testRunner.And("I tick Price Hardware radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 347
+#line 357
  testRunner.And(string.Format("I display \"{0}\" device screen", printer), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 348
+#line 358
  testRunner.And("I changed the Margin on any field to 100", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 349
+#line 359
  testRunner.Then("Add to proposal button become grayout", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 350
+#line 360
  testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -718,23 +739,23 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("When change Unit Price so that Margin is 100, \"Add to proposal\" button become gra" +
                     "yout", exampleTags);
-#line 358
+#line 368
 this.ScenarioSetup(scenarioInfo);
-#line 359
+#line 369
  testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 360
+#line 370
  testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 361
+#line 371
     testRunner.When("I begin the proposal creation process for Purchase + Click Service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 362
+#line 372
  testRunner.And("I tick Price Hardware radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 363
+#line 373
  testRunner.And(string.Format("I display \"{0}\" device screen", printer), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 364
+#line 374
  testRunner.And("I changed a Unit Price 10 so that Margin is 100", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 365
+#line 375
  testRunner.Then("Add to proposal button become grayout", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 366
+#line 376
  testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -746,31 +767,31 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void AsALocalOfficeAdminSign_InAndEnablePrinterForPurchaseClickService(string role1, string country, string role2, string printer, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As a Local Office Admin, sign-in and enable printer for Purchase + Click Service", exampleTags);
-#line 376
-this.ScenarioSetup(scenarioInfo);
-#line 377
- testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role1, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 378
- testRunner.When("I navigate to Dealer Defaults page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 379
- testRunner.And("I can set the default margins for all contracts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 380
- testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 381
- testRunner.And(string.Format("I sign back into Cloud MPS as a \"{0}\" from \"{1}\"", role2, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 382
- testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 383
- testRunner.And("I begin the proposal creation process for Purchase + Click Service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 384
- testRunner.And("I tick Price Hardware radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 385
- testRunner.And(string.Format("I display \"{0}\" device screen", printer), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 386
- testRunner.And("on product page all the accessories all left with zero QTY", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+this.ScenarioSetup(scenarioInfo);
 #line 387
- testRunner.Then("all the margin set above should be displayed in the right fields", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role1, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 388
+ testRunner.When("I navigate to Dealer Defaults page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 389
+ testRunner.And("I can set the default margins for all contracts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 390
+ testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 391
+ testRunner.And(string.Format("I sign back into Cloud MPS as a \"{0}\" from \"{1}\"", role2, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 392
+ testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 393
+ testRunner.And("I begin the proposal creation process for Purchase + Click Service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 394
+ testRunner.And("I tick Price Hardware radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 395
+ testRunner.And(string.Format("I display \"{0}\" device screen", printer), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 396
+ testRunner.And("on product page all the accessories all left with zero QTY", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 397
+ testRunner.Then("all the margin set above should be displayed in the right fields", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 398
  testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -782,35 +803,35 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void CanBeSet_UpAsOftenAsPossibleButUsedAsAOne_OffMargin(string role, string country, string printer, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Can be set-up as often as possible but used as a one-off margin", exampleTags);
-#line 396
-this.ScenarioSetup(scenarioInfo);
-#line 397
- testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 398
- testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 399
- testRunner.When("I begin the proposal creation process for Purchase + Click Service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 400
- testRunner.And("I tick Price Hardware radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 401
- testRunner.And(string.Format("I display \"{0}\" device screen", printer), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 402
- testRunner.And("I changed the Margin on any field to 30", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 403
- testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 404
- testRunner.And(string.Format("I sign back into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 405
- testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 406
- testRunner.And("I begin the proposal creation process for Purchase + Click Service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+this.ScenarioSetup(scenarioInfo);
 #line 407
- testRunner.And("I tick Price Hardware radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 408
- testRunner.And(string.Format("I display \"{0}\" device screen", printer), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 409
- testRunner.Then("this change to dealer margin is reverted to the original value", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("I begin the proposal creation process for Purchase + Click Service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 410
+ testRunner.And("I tick Price Hardware radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 411
+ testRunner.And(string.Format("I display \"{0}\" device screen", printer), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 412
+ testRunner.And("I changed the Margin on any field to 30", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 413
+ testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 414
+ testRunner.And(string.Format("I sign back into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 415
+ testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 416
+ testRunner.And("I begin the proposal creation process for Purchase + Click Service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 417
+ testRunner.And("I tick Price Hardware radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 418
+ testRunner.And(string.Format("I display \"{0}\" device screen", printer), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 419
+ testRunner.Then("this change to dealer margin is reverted to the original value", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 420
  testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -822,31 +843,31 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void One_OffSet_UpByADealerAndUsedByJustTheDealer(string role, string country, string printer, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("One-off set-up by a dealer and used by just the dealer", exampleTags);
-#line 418
-this.ScenarioSetup(scenarioInfo);
-#line 419
- testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 420
- testRunner.When("I navigate to Admin page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 421
- testRunner.And("I navigate to Dealer Admin Default Margin page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 422
- testRunner.And("I can change the dealer margin for use of the dealer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 423
- testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 424
- testRunner.And(string.Format("I sign back into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 425
- testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 426
- testRunner.And("I begin the proposal creation process for Purchase + Click Service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 427
- testRunner.And("I tick Price Hardware radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 428
- testRunner.And(string.Format("I display \"{0}\" device screen", printer), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+this.ScenarioSetup(scenarioInfo);
 #line 429
- testRunner.Then("this change to dealer margin is retained", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 430
+ testRunner.When("I navigate to Admin page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 431
+ testRunner.And("I navigate to Dealer Admin Default Margin page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 432
+ testRunner.And("I can change the dealer margin for use of the dealer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 433
+ testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 434
+ testRunner.And(string.Format("I sign back into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 435
+ testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 436
+ testRunner.And("I begin the proposal creation process for Purchase + Click Service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 437
+ testRunner.And("I tick Price Hardware radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 438
+ testRunner.And(string.Format("I display \"{0}\" device screen", printer), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 439
+ testRunner.Then("this change to dealer margin is retained", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 440
  testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -858,25 +879,25 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void ChangeInUnitCostImpactsUnitPrice(string role, string country, string printer, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Change in Unit Cost impacts Unit Price", exampleTags);
-#line 440
+#line 450
 this.ScenarioSetup(scenarioInfo);
-#line 441
+#line 451
  testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 442
+#line 452
  testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 443
+#line 453
     testRunner.When("I begin the proposal creation process for Purchase + Click Service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 444
+#line 454
  testRunner.And("I tick Price Hardware radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 445
+#line 455
  testRunner.And(string.Format("I display \"{0}\" device screen", printer), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 446
+#line 456
  testRunner.And("I change the Unit Cost of an item", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 447
+#line 457
  testRunner.Then("the Unit Price changed accordingly", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 448
+#line 458
  testRunner.And("the associated margin does not changed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 449
+#line 459
  testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -888,25 +909,25 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void ChangeInUnitPriceImpactsMargin(string role, string country, string printer, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Change in Unit Price impacts Margin", exampleTags);
-#line 457
+#line 467
 this.ScenarioSetup(scenarioInfo);
-#line 458
+#line 468
  testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 459
+#line 469
  testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 460
+#line 470
     testRunner.When("I begin the proposal creation process for Purchase + Click Service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 461
+#line 471
  testRunner.And("I tick Price Hardware radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 462
+#line 472
  testRunner.And(string.Format("I display \"{0}\" device screen", printer), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 463
+#line 473
  testRunner.And("I change the Unit Price of an item", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 464
+#line 474
  testRunner.Then("the Margin changes accordingly", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 465
+#line 475
  testRunner.And("the associated Unit Cost dos not changed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 466
+#line 476
  testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -918,25 +939,25 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void ChangeInMarginImpactsUnitPrice1(string role, string country, string printer, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Change in Margin impacts Unit Price (1)", exampleTags);
-#line 474
+#line 484
 this.ScenarioSetup(scenarioInfo);
-#line 475
+#line 485
  testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 476
+#line 486
  testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 477
+#line 487
     testRunner.When("I begin the proposal creation process for Purchase + Click Service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 478
+#line 488
  testRunner.And("I tick Price Hardware radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 479
+#line 489
  testRunner.And(string.Format("I display \"{0}\" device screen", printer), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 480
+#line 490
  testRunner.And("I change the Margin of an item whose Unit Cost bigger than zero", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 481
+#line 491
  testRunner.Then("the Unit Price changed accordingly", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 482
+#line 492
  testRunner.And("the associated Unit Cost dos not changed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 483
+#line 493
  testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -948,23 +969,23 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void ChangeInMarginImpactsUnitPrice2(string role, string country, string printer, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Change in Margin impacts Unit Price (2)", exampleTags);
-#line 491
+#line 501
 this.ScenarioSetup(scenarioInfo);
-#line 492
+#line 502
  testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 493
+#line 503
  testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 494
+#line 504
     testRunner.When("I begin the proposal creation process for Purchase + Click Service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 495
+#line 505
  testRunner.And("I tick Price Hardware radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 496
+#line 506
  testRunner.And(string.Format("I display \"{0}\" device screen", printer), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 497
+#line 507
  testRunner.And("I change the Margin of an item whose Unit Cost is equal to zero", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 498
+#line 508
  testRunner.Then("the Unit Price and Unit Cost does not change", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 499
+#line 509
  testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -976,21 +997,21 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void FreeTextFilter(string role, string country, string printer, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Free Text Filter", exampleTags);
-#line 509
+#line 519
 this.ScenarioSetup(scenarioInfo);
-#line 510
+#line 520
  testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 511
+#line 521
  testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 512
+#line 522
     testRunner.When("I begin the proposal creation process for Purchase + Click Service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 513
+#line 523
  testRunner.And("I tick Price Hardware radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 514
+#line 524
  testRunner.And(string.Format("I type in \"{0}\" into the top RHS free-text filter", printer), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 515
+#line 525
  testRunner.Then(string.Format("All printers that contain \"{0}\" is returned", printer), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 516
+#line 526
  testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -1002,21 +1023,21 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void FaxFilterCheckbox(string role, string country, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Fax filter checkbox", exampleTags);
-#line 524
+#line 534
 this.ScenarioSetup(scenarioInfo);
-#line 525
+#line 535
  testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 526
+#line 536
  testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 527
+#line 537
     testRunner.When("I begin the proposal creation process for Purchase + Click Service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 528
+#line 538
  testRunner.And("I tick Price Hardware radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 529
+#line 539
  testRunner.And("I check Fax checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 530
+#line 540
  testRunner.Then("All printers that have Fax facility are returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 531
+#line 541
  testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -1028,21 +1049,21 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void ScannerFilterCheckbox(string role, string country, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Scanner filter checkbox", exampleTags);
-#line 539
+#line 549
 this.ScenarioSetup(scenarioInfo);
-#line 540
+#line 550
  testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 541
+#line 551
  testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 542
+#line 552
     testRunner.When("I begin the proposal creation process for Purchase + Click Service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 543
+#line 553
  testRunner.And("I tick Price Hardware radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 544
+#line 554
  testRunner.And("I check Scanner checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 545
+#line 555
  testRunner.Then("All printers that have Scanner facility are returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 546
+#line 556
  testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -1054,21 +1075,21 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void DuplexFilterCheckbox(string role, string country, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Duplex filter checkbox", exampleTags);
-#line 554
+#line 564
 this.ScenarioSetup(scenarioInfo);
-#line 555
+#line 565
  testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 556
+#line 566
  testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 557
+#line 567
     testRunner.When("I begin the proposal creation process for Purchase + Click Service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 558
+#line 568
  testRunner.And("I tick Price Hardware radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 559
+#line 569
  testRunner.And("I check Duplex checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 560
+#line 570
  testRunner.Then("All printers that have Duplex facility are returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 561
+#line 571
  testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -1080,21 +1101,21 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void AdditionalTrayFilterCheckbox(string role, string country, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Additional Tray filter checkbox", exampleTags);
-#line 569
+#line 579
 this.ScenarioSetup(scenarioInfo);
-#line 570
+#line 580
  testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 571
+#line 581
  testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 572
+#line 582
     testRunner.When("I begin the proposal creation process for Purchase + Click Service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 573
+#line 583
  testRunner.And("I tick Price Hardware radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 574
+#line 584
  testRunner.And("I check Additional Tray checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 575
+#line 585
  testRunner.Then("All printers that have Additional Tray facility are returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 576
+#line 586
  testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -1106,21 +1127,21 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void A4FilterCheckbox(string role, string country, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A4 filter checkbox", exampleTags);
-#line 584
+#line 594
 this.ScenarioSetup(scenarioInfo);
-#line 585
+#line 595
  testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 586
+#line 596
  testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 587
+#line 597
     testRunner.When("I begin the proposal creation process for Purchase + Click Service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 588
+#line 598
  testRunner.And("I tick Price Hardware radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 589
+#line 599
  testRunner.And("I check A4 checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 590
+#line 600
  testRunner.Then("All printers that have A4 facility are returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 591
+#line 601
  testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -1132,21 +1153,21 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void A3FilterCheckbox(string role, string country, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A3 filter checkbox", exampleTags);
-#line 600
+#line 610
 this.ScenarioSetup(scenarioInfo);
-#line 601
+#line 611
  testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 602
+#line 612
  testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 603
+#line 613
     testRunner.When("I begin the proposal creation process for Purchase + Click Service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 604
+#line 614
  testRunner.And("I tick Price Hardware radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 605
+#line 615
  testRunner.And("I check A3 checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 606
+#line 616
  testRunner.Then("All printers that have A3 facility are returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 607
+#line 617
  testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -1158,21 +1179,21 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void MonoFilterCheckbox(string role, string country, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Mono filter checkbox", exampleTags);
-#line 615
+#line 625
 this.ScenarioSetup(scenarioInfo);
-#line 616
+#line 626
  testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 617
+#line 627
  testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 618
+#line 628
     testRunner.When("I begin the proposal creation process for Purchase + Click Service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 619
+#line 629
  testRunner.And("I tick Price Hardware radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 620
+#line 630
  testRunner.And("I check Mono checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 621
+#line 631
  testRunner.Then("All printers that have Mono facility are returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 622
+#line 632
  testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -1184,21 +1205,21 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void ColourFilterCheckbox(string role, string country, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Colour filter checkbox", exampleTags);
-#line 630
+#line 640
 this.ScenarioSetup(scenarioInfo);
-#line 631
+#line 641
  testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 632
+#line 642
  testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 633
+#line 643
     testRunner.When("I begin the proposal creation process for Purchase + Click Service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 634
+#line 644
  testRunner.And("I tick Price Hardware radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 635
+#line 645
  testRunner.And("I check Colour checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 636
+#line 646
  testRunner.Then("All printers that have Colour facility are returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 637
+#line 647
  testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -1210,21 +1231,21 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void FaxAndScannerFilterCheckbox(string role, string country, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Fax and Scanner filter checkbox", exampleTags);
-#line 645
+#line 655
 this.ScenarioSetup(scenarioInfo);
-#line 646
+#line 656
  testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 647
+#line 657
  testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 648
+#line 658
     testRunner.When("I begin the proposal creation process for Purchase + Click Service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 649
+#line 659
  testRunner.And("I tick Price Hardware radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 650
+#line 660
  testRunner.And("I check Fax and Scanner checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 651
+#line 661
  testRunner.Then("All printers that have Fax and Scanner facility are returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 652
+#line 662
  testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -1236,21 +1257,21 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void DuplexAndColourFilterCheckbox(string role, string country, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Duplex and Colour filter checkbox", exampleTags);
-#line 660
+#line 670
 this.ScenarioSetup(scenarioInfo);
-#line 661
+#line 671
  testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 662
+#line 672
  testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 663
+#line 673
     testRunner.When("I begin the proposal creation process for Purchase + Click Service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 664
+#line 674
  testRunner.And("I tick Price Hardware radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 665
+#line 675
  testRunner.And("I check Duplex and Colour checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 666
+#line 676
  testRunner.Then("All printers that have Duplex and Colour facility are returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 667
+#line 677
  testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -1262,25 +1283,25 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void VerifyThatProductsAreDisplayedAccordingToLOSelectionFlatList(string role1, string country, string role2, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("verify that Products are displayed according to LO selection (flat list)", exampleTags);
-#line 678
+#line 688
 this.ScenarioSetup(scenarioInfo);
-#line 679
+#line 689
  testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role1, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 680
+#line 690
  testRunner.And("I enable product to be displayed as a flat list for a paticular contract type", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 681
+#line 691
  testRunner.When("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 682
+#line 692
  testRunner.And(string.Format("I sign back into Cloud MPS as a \"{0}\" from \"{1}\"", role2, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 683
+#line 693
  testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 684
+#line 694
  testRunner.And("I begin the proposal creation process for Purchase + Click Service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 685
+#line 695
  testRunner.And("I tick Price Hardware radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 686
+#line 696
  testRunner.Then("all products are displayed as a flat list with no images", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 687
+#line 697
  testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -1292,29 +1313,29 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void VerifyThatProductsAreDisplayedAccordingToLOSelectionWithImages(string role1, string country, string role2, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("verify that Products are displayed according to LO selection (with images)", exampleTags);
-#line 695
-this.ScenarioSetup(scenarioInfo);
-#line 696
- testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role1, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 697
- testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 698
-    testRunner.When("I begin the proposal creation process for Purchase + Click Service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 699
- testRunner.And("I tick Price Hardware radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 700
- testRunner.And("the products are displayed as Flat List", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 701
- testRunner.And("I changed the Product view to with images", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 702
- testRunner.Then("all products are displayed with images", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 703
- testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 704
- testRunner.And(string.Format("I sign back into Cloud MPS as a \"{0}\" from \"{1}\"", role2, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 705
- testRunner.And("I enable product to be displayed with images for a paticular contract type", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+this.ScenarioSetup(scenarioInfo);
 #line 706
+ testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role1, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 707
+ testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 708
+    testRunner.When("I begin the proposal creation process for Purchase + Click Service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 709
+ testRunner.And("I tick Price Hardware radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 710
+ testRunner.And("the products are displayed as Flat List", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 711
+ testRunner.And("I changed the Product view to with images", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 712
+ testRunner.Then("all products are displayed with images", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 713
+ testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 714
+ testRunner.And(string.Format("I sign back into Cloud MPS as a \"{0}\" from \"{1}\"", role2, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 715
+ testRunner.And("I enable product to be displayed with images for a paticular contract type", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 716
  testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
