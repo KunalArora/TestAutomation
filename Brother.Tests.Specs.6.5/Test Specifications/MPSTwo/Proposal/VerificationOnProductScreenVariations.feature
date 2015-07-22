@@ -166,6 +166,11 @@ Scenario Outline: Enable Printer of Lease + Click as a Local Office Admin, then 
 	| Role1                  | Country        | Role2            | Printer     |
 	| Cloud MPS Local Office | United Kingdom | Cloud MPS Dealer | MFC-J4420DW |
 
+
+#
+# The test below is too exposed to human interference as such is not very reliable
+#
+@Ignore
 Scenario Outline: Selected printer which is enabled on Lease + Click above can display in Purchase + Click Service
 	Given I sign into Cloud MPS as a "<Role1>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -198,6 +203,10 @@ Scenario Outline: Disable Printer of Lease + Click as a Local Office Admin, then
 	| Cloud MPS Local Office | United Kingdom | Cloud MPS Dealer | MFC-J4420DW  |
 
 
+#
+# The test below is too exposed to human interference as such is not very reliable
+#
+@Ignore
 Scenario Outline: Selected printer which is disabled on Lease + Click above can display in Purchase + Click Service
 	Given I sign into Cloud MPS as a "<Role1>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -280,8 +289,9 @@ Scenario Outline: Selected printer which is disabled on Purchase + Click above c
 	| Cloud MPS Dealer | United Kingdom | MFC-J4420DW  |
 
 #
-# 4 Installation Cost
+# 4 Installation Cost - The logic to this test has changed
 #
+@Ignore
 Scenario Outline: Change Installation cost type
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page

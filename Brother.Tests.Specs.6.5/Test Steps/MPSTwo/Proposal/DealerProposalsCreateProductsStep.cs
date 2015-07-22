@@ -272,6 +272,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [When(@"I change the Margin of an item whose Unit Cost bigger than zero")]
         public void WhenIChangeTheMarginOfAnItemWhoseUnitCost()
         {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterModelUnitCost();
             CurrentPage.As<DealerProposalsCreateProductsPage>().EnterProductMargin("7");
         }
 
