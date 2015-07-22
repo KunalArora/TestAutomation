@@ -94,6 +94,13 @@ namespace Brother.Tests.Specs
             if (CurrentPage != null) CurrentPage.As<WelcomeBackPage>().VerifyInkDeviceName(devicename);
         }
 
+        [Then(@"device serial number ""(.*)"" should be displayed")]
+        public void ThenDeviceSerialNumberShouldBeDisplayed(string serialnumber)
+        {
+            if (CurrentPage != null) CurrentPage.As<WelcomeBackPage>().VerifyInkDeviceSerialNumber(serialnumber);
+        }
+
+
         [Then(@"the device nw status should be shown as online")]
         public void ThenTheDeviceNwStatusShouldBeShownAsOnline()
         {

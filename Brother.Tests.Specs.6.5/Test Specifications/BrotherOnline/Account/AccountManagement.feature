@@ -33,7 +33,7 @@ Scenario: Customer has created a Brother Online account but has forgotten their 
 	And I reset my password with "ChangedPassword123"
 	When I click on Reset Your Password
 	And I am redirected to the Brother Login/Register page
-	Then I can sign back into Brother Online "United Kingdom" using the updated credentials
+	Then I can sign back into Brother Online "United Kingdom" using the updated credential
 	Then I can sign out of Brother Online
 
 # Create account, sign in, note missing menu option, add role to user, sign out and in again, note menu option present
