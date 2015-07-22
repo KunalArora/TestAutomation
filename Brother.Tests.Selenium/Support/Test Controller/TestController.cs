@@ -51,7 +51,6 @@ namespace Brother.Tests.Selenium.Lib.Support
         public static void HeadlessRunning()
         {
             IsHeadlessRunning = true;
-            IsAcceptCookiesDismissed = false;
             // NOTE: Unable to use without larger changes to project, including IWebDriver references replaced with PhantomJSDriver
             var usePhantomJsService = SeleniumGlobal.Default.UsePhantomJsService;
             if (Convert.ToBoolean(usePhantomJsService))
@@ -63,6 +62,7 @@ namespace Brother.Tests.Selenium.Lib.Support
             }
             else
             {
+                IsAcceptCookiesDismissed = false;
                 StartPhantomJsProcess();
                 CurrentDriver = StartNewRemoteWebDriver(_ipAddress, _driverPort);
                 SetWebDriverTimeouts(CurrentDriver);
