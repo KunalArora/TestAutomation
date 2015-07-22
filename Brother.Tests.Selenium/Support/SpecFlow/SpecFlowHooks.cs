@@ -41,6 +41,7 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
         [BeforeStep]
         public static void BeforeStep()
         {
+            Helper.MsgOutput(string.Format("[BeforeStep] The current page is [{0}]", TestController.CurrentDriver.Title));
         }
 
         [AfterStep]
@@ -56,6 +57,8 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
             Helper.MsgOutput(string.Format("This step caused the following error [{0}]", ScenarioContext.Current.TestError.Message));
             Helper.TakeSnapshot();
             Helper.MsgOutput(string.Format("[AfterStep] SnapShot Taken : Location = [{0}]", Helper.CurrentSnapShot));
+
+            Helper.MsgOutput(string.Format("[AfterStep] The current page is [{0}]", TestController.CurrentDriver.Title));
         }
 
 #endregion "Before And After Step Tags"
@@ -109,6 +112,10 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
         [BeforeScenario()]
         public void BeforeScenario()
         {
+            Helper.MsgOutput("*************COOKIE INFORMATION for this session******************");
+            Helper.MsgOutput(TestController.CurrentDriver.Manage().Cookies.AllCookies.ToString());
+            Helper.MsgOutput("*************END COOKIE INFORMATION*******************************");
+
             // First check the Runtime environment for a valid value. If the Environment variable contains an invalid Test Environment
             // then END TEST RUN
             if (!CheckForValidRunTimeEnv(Helper.GetRunTimeEnv()))

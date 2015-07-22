@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Authentication;
 using System.Threading;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
@@ -115,8 +116,11 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         [FindsBy(How = How.CssSelector, Using = ".form-section.cf.validation-failed.load .error")]
         public IWebElement TermsAndConditionsErrorMessage;
 
-        [FindsBy(How = How.CssSelector, Using = "#Warnings > p")]
+        [FindsBy(How = How.CssSelector, Using = "#Warnings")]
         public IWebElement DuplicateEmailErrorMessage;
+
+        [FindsBy(How = How.CssSelector, Using = "#Warnings.warning-bar p")]
+        public IWebElement InvalidCredentialsErrorMessage;
         
 
         public bool IsWarningBarPresent(int retry, int timeToWait)
@@ -184,7 +188,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public void ResetYourPasswordButtonClick()
         {
-            TakeSnapshot();//TEMP
             if (!WaitForElementToExistByCssSelector("#content_1_ResetPasswordButton.button-blue", 5, 5))
             {
                 ResetYourPasswordButton = Driver.FindElement(By.CssSelector("#content_1_ResetPasswordButton.button-blue"));
@@ -274,6 +277,13 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             ScrollTo(CreateYourAccountButton);
             CreateYourAccountButton.Click();
             return GetInstance<RegistrationConfirmationPage>(Driver);
+        }
+
+        public RegistrationPage ClickSignInWithInvalidDetails()
+        {
+            ScrollTo(SignInButton);
+            SignInButton.Click();
+            return GetInstance<RegistrationPage>(Driver);
         }
 
         public void PopulateEmailAdressForChangeOfPassword(string emailAddress)
@@ -450,6 +460,11 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         public void DuplicateEmailErrorMessageDisplayed()
         {
             TestCheck.AssertIsEqual(true, DuplicateEmailErrorMessage.Displayed, "Is Error Message Displayed");
+        }
+        
+        public void InvalidCredentialsErrorMessageDisplayed()
+        {
+            TestCheck.AssertIsEqual(true, InvalidCredentialsErrorMessage.Displayed, "Is Error Message Displayed");
         }
 
        }
