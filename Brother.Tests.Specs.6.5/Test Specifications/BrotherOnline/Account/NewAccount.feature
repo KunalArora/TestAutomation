@@ -465,14 +465,13 @@ Scenario: Business account which is not validated does not permit device registr
 # Check that an existing brother online user account holder cannot login with valid username and invalid password
 # Check that an existing brother online business account holder cannot login with invalid username and valid password
 
-
 Scenario Outline: Validate that user or business account holders are unable to login to brother online with invalid credentials
 Given I launch Brother Online for "United Kingdom"
 When I click on Create Account for "United Kingdom"
 And I am redirected to the Brother Login/Register page
 And I enter an email address containing <Email Address>
 When I enter a valid Password <Password>
-And I click on "United Kingdom" Sign In
+And I press sign in with invalid details
 Then I should see the invalid credentials error message preventing login to brother online
 
 Scenarios:

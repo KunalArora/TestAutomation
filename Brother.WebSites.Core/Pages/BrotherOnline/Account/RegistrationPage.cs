@@ -119,7 +119,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         [FindsBy(How = How.CssSelector, Using = "#Warnings")]
         public IWebElement DuplicateEmailErrorMessage;
 
-        [FindsBy(How = How.CssSelector, Using = "#Warnings>p")]
+        [FindsBy(How = How.CssSelector, Using = "#Warnings.warning-bar p")]
         public IWebElement InvalidCredentialsErrorMessage;
         
 
@@ -277,6 +277,13 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             ScrollTo(CreateYourAccountButton);
             CreateYourAccountButton.Click();
             return GetInstance<RegistrationConfirmationPage>(Driver);
+        }
+
+        public RegistrationPage ClickSignInWithInvalidDetails()
+        {
+            ScrollTo(SignInButton);
+            SignInButton.Click();
+            return GetInstance<RegistrationPage>(Driver);
         }
 
         public void PopulateEmailAdressForChangeOfPassword(string emailAddress)
@@ -457,7 +464,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         
         public void InvalidCredentialsErrorMessageDisplayed()
         {
-            //TestCheck.AssertIsEqual(true, InvalidCredentialsErrorMessage.Displayed, "Is Error Message Displayed");
+            TestCheck.AssertIsEqual(true, InvalidCredentialsErrorMessage.Displayed, "Is Error Message Displayed");
         }
 
        }
