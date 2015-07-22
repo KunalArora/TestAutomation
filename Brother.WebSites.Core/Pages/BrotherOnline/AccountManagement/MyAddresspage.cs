@@ -48,6 +48,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
 
         [FindsBy(How = How.Id, Using = "content_1_innercontent_2_billingedit_btnAddressBookContinue")]
         public IWebElement SaveAndUseAddressButton;
+
+        [FindsBy(How = How.CssSelector, Using = ".error")] 
+        public IWebElement FirstNameErrorMessage;
         
          public void ClickonAddanewaddressButton()
         {
@@ -109,6 +112,15 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             ScrollTo(SaveAndUseAddressButton);
             SaveAndUseAddressButton.Click();
         }
-        
+        public void EmptyFirstNameTextBox()
+        {
+            FirstNameTextBox.Clear();
+            FirstNameTextBox.SendKeys(Keys.Tab);
+        }
+        public void FirstNameErrorMessageDisplayed()
+        {
+            TestCheck.AssertIsEqual(true, FirstNameErrorMessage.Displayed, "Is Error Message Displayed");
+
+        }
     }
 }
