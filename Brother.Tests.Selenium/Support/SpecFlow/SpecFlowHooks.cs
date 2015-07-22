@@ -112,6 +112,10 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
         [BeforeScenario()]
         public void BeforeScenario()
         {
+            Helper.MsgOutput("*************COOKIE INFORMATION for this session******************");
+            Helper.MsgOutput(TestController.CurrentDriver.Manage().Cookies.AllCookies.ToString());
+            Helper.MsgOutput("*************END COOKIE INFORMATION*******************************");
+
             // First check the Runtime environment for a valid value. If the Environment variable contains an invalid Test Environment
             // then END TEST RUN
             if (!CheckForValidRunTimeEnv(Helper.GetRunTimeEnv()))
