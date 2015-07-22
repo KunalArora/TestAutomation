@@ -213,9 +213,12 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
 
         public MyAccountPage NavigateToMyAccountPage(string country)
         {
+            //TEMP
+            TakeSnapshot();
             MyAccountNavigationButton.Click();
-            var title = ValidateMyAccountCountryTitle(country);
-            return GetInstance<MyAccountPage>(Driver, BasePage.BaseUrl, title);
+            //TEMP
+            TakeSnapshot();
+            return GetInstance<MyAccountPage>(Driver, BasePage.BaseUrl, string.Empty);
         }
 
         public DealerDashBoardPage NavigateToDealerDashboard()
