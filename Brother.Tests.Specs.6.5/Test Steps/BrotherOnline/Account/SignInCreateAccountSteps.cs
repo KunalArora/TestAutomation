@@ -432,6 +432,12 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             WhenIClickOnSignIn(country);
         }
 
+        [Then(@"I should be able to successfully log into brother online")]
+        public void ThenIShouldBeAbleToSuccessfullyLogIntoBrotherOnline()
+        {
+            TestCheck.AssertIsNotEqual(true, CurrentPage.As<RegistrationPage>().IsWarningBarPresent(0, 5), "Warning Bar - account validation");
+        }
+
         [Given(@"I already have a set of Brother Online ""(.*)"" account credentials")]
         public void GivenIAlreadyHaveASetOfBrotherOnlineAccountCredentials(string country)
         {
