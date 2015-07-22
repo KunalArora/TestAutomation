@@ -334,7 +334,11 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<RegistrationPage>().DoNotUseAccountForBusiness();
         }
-
+        [When(@"I declare that I do not use this account for business on my account page")]
+        public void WhenIDeclareThatIDoNotUseThisAccountForBusinessOnMyAccountPage()
+        {
+            CurrentPage.As<BusinessDetailsPage>().DoNotUseAccountForBusiness();
+        }
         [When(@"I add my company name as ""(.*)""")]
         public void WhenIAddMyCompanyNameAs(string companyName)
         {
