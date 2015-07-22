@@ -138,6 +138,16 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             AssertElementText(InkStatusSummaryListElement.First(), device, "Ink Device Container");
         }
 
+        public void VerifyInkDeviceSerialNumber(string serialnumber)
+        {
+            if (InkStatusSummaryListElement == null)
+            {
+                throw new Exception("Unable to find ink device container on page");
+            }
+            AssertElementText(InkStatusSummaryListElement.ElementAt(1), serialnumber, "Ink Device Serialnumber");
+        }
+
+
         public void IsRegisterDeviceLinkAvailable()
         {
             if (RegisterDeviceLink == null)
