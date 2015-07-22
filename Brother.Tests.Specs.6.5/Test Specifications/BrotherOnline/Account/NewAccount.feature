@@ -357,6 +357,7 @@ Scenario: Validate that an error message is displayed for mandatory terms and co
 	And I press create account button
 	Then I should get an error message displayed on the Terms and Conditions
 
+# Accounts created on DV2, QAS and Prod for the following test - existinguseraccount@guerrillamail.com/existingbusinessaccount@guerrillamail.com/Password100
 # Check that a user account cannot be created with an email address that already exists for another user account 
 # Check that a user account cannot be created with an email address that already exists for another business account
 Scenario Outline: Customer cannot register for a new user account using an email address that already exists for another user or business account
@@ -382,6 +383,7 @@ Scenarios:
 	| "existinguseraccount@guerrillamail.com"         |
 	| "existingbusinessaccount@guerrillamail.com"       |
 
+# Accounts created on DV2, QAS and Prod for the following test - existinguseraccount@guerrillamail.com/existingbusinessaccount@guerrillamail.com/Password100
 # Check that a business account cannot be created with an email address that already exists for another business account
 # Check that a business account cannot be created with an email address that already exists for another user account
 Scenario Outline: Customer cannot register for a new business account using an email address that already exists for another business or user account
@@ -458,6 +460,33 @@ Scenario: Business account which is not validated does not permit device registr
 	Then I should be able to log into "United Kingdom" Brother Online using my account details
 	When I have clicked on Add Device
 	Then I should see the account not validated error message preventing device registration
+
+# Accounts created on DV2, QAS and Prod for the following test - existinguseraccount@guerrillamail.com/existingbusinessaccount@guerrillamail.com/Password100
+# Check that an existing brother online user account holder cannot login with valid username and invalid password
+# Check that an existing brother online business account holder cannot login with invalid username and valid password
+
+@ignore
+Scenario Outline: Validate that user or business account holders are unable to login to brother online with invalid credentials
+Given I launch Brother Online for "United Kingdom"
+When I click on Create Account for "United Kingdom"
+And I am redirected to the Brother Login/Register page
+And I enter an email address containing <Email Address>
+When I enter a valid Password <Password>
+And I click on "United Kingdom" Sign In
+Then I should see the invalid credentials error message preventing login to brother online
+
+Scenarios:
+	| Email Address									| Password                 |
+	| "existinguseraccount@guerrillamail.com"		| "InvalidPasswordEntered" |
+	| "existingbusinessaccount@guerrillamail.wrong" | "Password100"            |
+	 		
+# Accounts created on DV2, QAS and Prod for the following test - existinguseraccount@guerrillamail.com/existingbusinessaccount@guerrillamail.com/Password100
+# Check that an existing brother online user account holder can still login with a username that has leading or trailing spaces
+# Check that an existing brother online business account holder can still login with a username that has mixed case
+
+# Check min and max username length when creating a user account
+# Check min and max password length when creating a business account
+
 
 @ignore
 Scenario: Log in as a Printer On dealer and ensure that they can see the required permissions BBAU-2189
