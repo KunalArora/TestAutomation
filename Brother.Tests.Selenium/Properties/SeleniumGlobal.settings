@@ -6,7 +6,7 @@
       <Value Profile="(Default)">127.0.0.1</Value>
     </Setting>
     <Setting Name="DriverPortNumber" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">4444</Value>
+      <Value Profile="(Default)">5555</Value>
     </Setting>
     <Setting Name="CurrentDriverType" Type="System.String" Scope="User">
       <Value Profile="(Default)">CH</Value>
