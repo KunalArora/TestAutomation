@@ -25,8 +25,7 @@ Scenario: Sign Up for 14 day Free trial already signed into Brother Online
 @ignore
 Scenario: Sign Up for 14 day Free trial with a Brother Online account but start from Purchase plans page
 
-# @SMOKE
-@STAGING 
+@SMOKE
 Scenario: Sign Up for 14 day Free trial without an existing Brother Online account
 	Given I have navigated to the OmniJoin WebConferencing Home Page
 	And If I click on Start Free Trial

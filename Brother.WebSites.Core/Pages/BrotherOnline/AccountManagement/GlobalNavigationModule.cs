@@ -39,9 +39,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
                 MsgOutput(string.Format("Global Navigation Module: Found {0} element correctly", element));
                 return driver.FindElement(By.CssSelector(element));
             }
-            MsgOutput("***CRITICAL ERROR - Taking additional Snapshot and PageSource dump");
-            TakeSnapshot();
-            MsgOutput(TestController.CurrentDriver.PageSource);
             TestCheck.AssertFailTest(string.Format("Unable to locate Global Menu Navigation Item {0}", element));
             return null;
         }

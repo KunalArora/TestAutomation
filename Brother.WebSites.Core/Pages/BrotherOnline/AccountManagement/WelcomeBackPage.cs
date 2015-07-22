@@ -213,11 +213,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
 
         public MyAccountPage NavigateToMyAccountPage(string country)
         {
-            //TEMP
-            TakeSnapshot();
             MyAccountNavigationButton.Click();
-            //TEMP
-            TakeSnapshot();
             return GetInstance<MyAccountPage>(Driver, BasePage.BaseUrl, string.Empty);
         }
 
