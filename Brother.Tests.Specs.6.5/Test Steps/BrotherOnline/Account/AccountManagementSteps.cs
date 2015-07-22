@@ -257,6 +257,16 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<MyAddressDetailsPage>().ClickOnSaveAddress();
         }
+        [When(@"I enter tab on the first name field")]
+        public void WhenIEnterTabOnTheFirstNameField()
+        {
+            CurrentPage.As<MyAddressDetailsPage>().EmptyFirstNameTextBox(); ;
+        }
+       [Then(@"I should see an error message on the first name field on my address page")]
+       public void ThenIShouldSeeAnErrorMessageOnTheFirstNameFieldOnMyAddressPage()
+       {
+           CurrentPage.As<MyAddressDetailsPage>().FirstNameErrorMessageDisplayed();
+       }
 
 
     }

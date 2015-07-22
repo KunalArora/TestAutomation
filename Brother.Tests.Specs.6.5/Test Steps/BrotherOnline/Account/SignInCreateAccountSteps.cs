@@ -531,9 +531,8 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [Then(@"I should see the invalid credentials error message preventing login to brother online")]
         public void ThenIShouldSeeInvalidCredentialsErrorMessage()
         {
-            CurrentPage.As<RegistrationPage>().InvalidCredentialsErrorMessageDisplayed();
+              CurrentPage.As<RegistrationPage>().InvalidCredentialsErrorMessageDisplayed();
         }
-
         [When(@"I enter a valid Email Address ""(.*)""")]
         public void WhenIEnterAValidEmailAddress(string validEmailAddress)
         {

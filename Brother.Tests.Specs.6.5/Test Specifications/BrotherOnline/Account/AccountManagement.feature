@@ -119,8 +119,8 @@ Scenario: Customer creates a new account with Brother Online and add Business de
 	Then I can verify successfull update message appeared at the top
 
 
-#Customer User can add their address to their acocunt by manually entering their personal details
-Scenario: Customer User can add a new address to their acocunt by manually entering address details
+#User can add their address to their acocunt by manually entering their personal details
+Scenario: Customer can add a new address to their acocunt by manually entering address details
 Given I am logged onto Brother Online "United Kingdom" using valid credentials
 When I navigate to my account for "United Kingdom"	
 When I click on My Address 
@@ -139,5 +139,12 @@ And I enter all the mandatory fields
 And I click on the save address button
 
 
-
+#Validate that the correct error messages are displayed when address details mandatory fields are not completed
+Scenario: Customer get the correct error messages when address details mandatory fields are not completed on my address page
+Given I am logged onto Brother Online "United Kingdom" using valid credentials
+When I navigate to my account for "United Kingdom"	
+When I click on My Address 
+And I click on Add a New Address Button 
+And I enter tab on the first name field
+Then I should see an error message on the first name field on my address page
 
