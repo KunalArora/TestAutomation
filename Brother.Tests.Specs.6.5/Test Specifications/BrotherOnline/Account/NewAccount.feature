@@ -462,9 +462,7 @@ Scenario: Business account which is not validated does not permit device registr
 	Then I should see the account not validated error message preventing device registration
 
 # Accounts created on DV2, QAS and Prod for the following test - existinguseraccount@guerrillamail.com/existingbusinessaccount@guerrillamail.com/Password100
-# Check that an existing brother online user account holder cannot login with valid username and invalid password
-# Check that an existing brother online business account holder cannot login with invalid username and valid password
-
+# Check that existing brother online user and business account holders cannot login with valid/invalid username/password combinations
 Scenario Outline: Validate that user or business account holders are unable to login to brother online with invalid credentials
 Given I launch Brother Online for "United Kingdom"
 When I click on Create Account for "United Kingdom"
@@ -475,13 +473,32 @@ And I press sign in with invalid details
 Then I should see the invalid credentials error message preventing login to brother online
 
 Scenarios:
-	| Email Address									| Password                 |
-	| "existinguseraccount@guerrillamail.com"		| "InvalidPasswordEntered" |
+	| Email Address                                 | Password                 |
+	| "existinguseraccount@guerrillamail.com"       | "InvalidPasswordEntered" |
 	| "existingbusinessaccount@guerrillamail.wrong" | "Password100"            |
+	| "existinguseraccount@guerrillamail.com"       | "PaSsWoRd100"			   |
+	| "existingbusinessaccount@guerrillamail.com"	| "   Password100   "      |
+	| "existinguseraccount@guerrillamail.com"       | "Pass  word  100"	       |
 	 		
 # Accounts created on DV2, QAS and Prod for the following test - existinguseraccount@guerrillamail.com/existingbusinessaccount@guerrillamail.com/Password100
-# Check that an existing brother online user account holder can still login with a username that has leading or trailing spaces
-# Check that an existing brother online business account holder can still login with a username that has mixed case
+# Check that existing brother online user and business account holders can still login with a username that leading/trailing spaces or mixed letter casing
+Scenario Outline: Validate that user or business account holders can still login to brother online with spaces or different case in the username providing the password is correct
+Given I launch Brother Online for "United Kingdom"
+When I click on Create Account for "United Kingdom"
+And I am redirected to the Brother Login/Register page
+And I enter an email address containing <Email Address>
+When I enter a valid Password <Password>
+And I press sign in with invalid details
+Then I should be able to successfully log into brother online
+And I can sign out of Brother Online
+Then I am redirected to the Brother Home Page
+
+Scenarios:
+	| Email Address											| Password      |
+	| "     existinguseraccount@guerrillamail.com    "		| "Password100" |
+	| "ExIsTiNgBuSiNeSsAcCoUnT@gUeRrIlLaMaIl.CoM"			| "Password100" |
+
+
 
 # Check min and max username length when creating a user account
 # Check min and max password length when creating a business account

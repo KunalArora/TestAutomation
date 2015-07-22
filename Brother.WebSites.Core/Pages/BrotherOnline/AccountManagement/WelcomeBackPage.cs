@@ -22,6 +22,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         }
 
         //[FindsBy(How = How.CssSelector, Using = "a[href*='register-your-device']")]
+        [FindsBy(How = How.CssSelector, Using = ".button-blue")]
+        public IWebElement SignOutButton;
         [FindsBy(How = How.CssSelector, Using = ".add-device")]
         public IWebElement RegisterDeviceLink;
         [FindsBy(How = How.CssSelector, Using = "#content_2_CurrentControlPanelItem_ConferenceButtons.two-conference-buttons .conference-button.right")]
@@ -342,6 +344,15 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         {
             string title;
             return _myAccountPageTitle.TryGetValue(country, out title) ? title : string.Empty;
+        }
+
+        public void IsSignOutButtonDisplayed()
+        {
+            if (SignOutButton == null)
+            {
+                throw new Exception("Unable to locate Sign Out Button on page");
+            }
+            AssertElementPresent(SignOutButton, "Sign Out Button");
         }
 
     }
