@@ -386,31 +386,6 @@ testRunner.And("I click on the save address button", ((string)(null)), ((TechTal
 #line hidden
             this.ScenarioCleanup();
         }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Customer get the correct error messages when address details mandatory fields are" +
-            " not completed on my address page")]
-        public virtual void CustomerGetTheCorrectErrorMessagesWhenAddressDetailsMandatoryFieldsAreNotCompletedOnMyAddressPage()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer get the correct error messages when address details mandatory fields are" +
-                    " not completed on my address page", ((string[])(null)));
-#line 143
-this.ScenarioSetup(scenarioInfo);
-#line 144
-testRunner.Given("I am logged onto Brother Online \"United Kingdom\" using valid credentials", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 145
-testRunner.When("I navigate to my account for \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 146
-testRunner.When("I click on My Address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 147
-testRunner.And("I click on Add a New Address Button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 148
-testRunner.And("I enter tab on the first name field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 149
-testRunner.Then("I should see an error message on the first name field on my address page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            this.ScenarioCleanup();
-        }
     }
 }
 #pragma warning restore

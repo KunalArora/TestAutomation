@@ -33,3 +33,24 @@ Given I want to create a new account with Brother Online "United Kingdom"
 	And I declare that I do not use this account for business on my account page
 	And I click on Update details on business details page
 	Then I can verify successfull update message appeared at the top
+
+# Validate that the correct error messages are displayed when address details mandatory fields are not completed
+Scenario: Customer get the correct error messages when address details mandatory fields are not completed on my address page
+Given I am logged onto Brother Online "United Kingdom" using valid credentials
+When I navigate to my account for "United Kingdom"	
+When I click on My Address 
+And I click on Add a New Address Button 
+And I enter tab on the first name field
+Then I should see an error message on the first name field on my address page
+And I enter tab on last name field
+Then I should see an error message on Last name field on my address page
+And I enter tab on postcode field
+Then I should see an error message on postcode field on my address page
+And I enter tab on House number 
+Then I should an error message on house number field on my address page
+And I enter tab on address line one
+Then I should see an error message on Address Line one field on my address page
+And I enter tab on City/Town field
+Then I should see an error message on City/town field on my address page
+And I enter tab on Phone number field
+Then I should see an error message on phone number field on my address page
