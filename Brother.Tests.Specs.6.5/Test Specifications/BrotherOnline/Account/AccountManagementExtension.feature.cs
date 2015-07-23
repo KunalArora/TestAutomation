@@ -136,6 +136,55 @@ testRunner.Given("I want to create a new account with Brother Online \"United Ki
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Customer get the correct error messages when address details mandatory fields are" +
+            " not completed on my address page")]
+        public virtual void CustomerGetTheCorrectErrorMessagesWhenAddressDetailsMandatoryFieldsAreNotCompletedOnMyAddressPage()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer get the correct error messages when address details mandatory fields are" +
+                    " not completed on my address page", ((string[])(null)));
+#line 38
+this.ScenarioSetup(scenarioInfo);
+#line 39
+testRunner.Given("I am logged onto Brother Online \"United Kingdom\" using valid credentials", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 40
+testRunner.When("I navigate to my account for \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 41
+testRunner.When("I click on My Address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 42
+testRunner.And("I click on Add a New Address Button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 43
+testRunner.And("I enter tab on the first name field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 44
+testRunner.Then("I should see an error message on the first name field on my address page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 45
+testRunner.And("I enter tab on last name field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 46
+testRunner.Then("I should see an error message on Last name field on my address page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 47
+testRunner.And("I enter tab on postcode field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 48
+testRunner.Then("I should see an error message on postcode field on my address page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 49
+testRunner.And("I enter tab on House number", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 50
+testRunner.Then("I should an error message on house number field on my address page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 51
+testRunner.And("I enter tab on address line one", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 52
+testRunner.Then("I should see an error message on Address Line one field on my address page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 53
+testRunner.And("I enter tab on City/Town field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 54
+testRunner.Then("I should see an error message on City/town field on my address page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 55
+testRunner.And("I enter tab on Phone number field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 56
+testRunner.Then("I should see an error message on phone number field on my address page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore
