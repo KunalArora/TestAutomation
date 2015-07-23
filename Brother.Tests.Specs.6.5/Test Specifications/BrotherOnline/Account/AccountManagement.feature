@@ -80,7 +80,7 @@ Scenario Outline: Customer can change their Brother Online email address after r
 
 Scenarios:
 	| Country        | EmailPrefixForChange |
-	| United Kingdom | changed              |
+#	| United Kingdom | changed              |
 	| Ireland        | changed              |
 
 
