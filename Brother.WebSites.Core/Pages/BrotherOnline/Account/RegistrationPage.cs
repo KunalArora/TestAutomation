@@ -389,6 +389,21 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             EmailAddressTextBox.SendKeys(Keys.Tab);
             TestCheck.AssertIsEqual(emailAddress, GetTextBoxValue("Email"), "Email Text Box");
         }
+
+        public void PopulateEmailAddressTextBoxWithMaxLengthEmail(string emailAddress)
+        {
+            TestCheck.AssertIsEqual(false, EmailAddressErrorMessage.Displayed, "Is Email Error message displayed");
+            if (emailAddress.Equals(string.Empty))
+            {
+                emailAddress = Email.GenerateUniqueMaxLengthEmailAddress();
+            }
+
+            EmailAddressTextBox.Clear();
+            EmailAddressTextBox.SendKeys(emailAddress);
+            EmailAddressTextBox.SendKeys(Keys.Tab);
+            TestCheck.AssertIsEqual(emailAddress, GetTextBoxValue("Email"), "Email Text Box");
+        }
+
         
         public void EmptyEmailAddressTextBox()
         {

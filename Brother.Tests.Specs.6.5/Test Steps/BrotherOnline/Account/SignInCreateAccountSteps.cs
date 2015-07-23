@@ -264,6 +264,18 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<RegistrationPage>().PopulateConfirmPasswordTextBox(form.Password);
             WhenIEnterAValidEmailAddress(string.Empty); // Auto Generates with an empty string
         }
+
+        [When(@"I fill in the registration information using a maximum length email address")]
+        public void WhenIFillInTheRegistrationInformationUsingAMaxLengthEmailAddress(Table table)
+        {
+            dynamic form = table.CreateDynamicInstance();
+            CurrentPage.As<RegistrationPage>().PopulateFirstNameTextBox(form.FirstName);
+            CurrentPage.As<RegistrationPage>().PopulateLastNameTextBox(form.LastName);
+            CurrentPage.As<RegistrationPage>().PopulatePasswordTextBox(form.Password);
+            CurrentPage.As<RegistrationPage>().PopulateConfirmPasswordTextBox(form.Password);    
+            WhenIEnterAValidMaxLengthEmailAddress(string.Empty); // Auto Generates with an empty string
+        }
+
         [When(@"I fill in the registration information excluding email address")]
         public void WhenIFillInTheRegistrationInformationExcludingEmailAddress(Table table)
         {
@@ -551,6 +563,12 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         public void WhenIEnterAValidEmailAddress(string validEmailAddress)
         {
             CurrentPage.As<RegistrationPage>().PopulateEmailAddressTextBox(validEmailAddress);
+        }
+
+        [When(@"I enter a valid maximum length Email Address ""(.*)""")]
+        public void WhenIEnterAValidMaxLengthEmailAddress(string validEmailAddress)
+        {
+            CurrentPage.As<RegistrationPage>().PopulateEmailAddressTextBoxWithMaxLengthEmail(validEmailAddress);
         }
 
         [When(@"I enter a valid Password ""(.*)""")]

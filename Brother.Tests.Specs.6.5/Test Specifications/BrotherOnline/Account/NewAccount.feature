@@ -460,9 +460,55 @@ Scenarios:
 
 
 
-# Check min and max username length when creating a user account
-# Check min and max password length when creating a business account
+# Check maximun username(241) and password(30) length when creating a user account
+Scenario: Validate that a user account can be created using the maximun 241 username and 30 password character lengths (Failing due to BBAU-2522)																				
+	Given I want to create a new account with Brother Online "United Kingdom"
+	When I click on Create Account for "United Kingdom"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I fill in the registration information using a maximum length email address 
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Password        | Max30CharacterPasswooooooooord |
+	| ConfirmPassword | Max30CharacterPasswooooooooord |
 
+	And I have Agreed to the Terms and Conditions
+	And I declare that I do not use this account for business
+	When I press Create Your Account
+	Then I should see my account confirmation page
+	And When I Click Go Back
+	And Once I have Validated an Email was received and verified my account
+	Then I should be able to log into "United Kingdom" Brother Online using my account details
+	And I can sign out of Brother Online
+	Then I am redirected to the Brother Home Page
+
+# Check maximun username(241) and password(30) length when creating a business account
+Scenario: Validate that a business account can be created using the maximun 241 username and 30 password character lengths (Failing due to BBAU-2522)																				
+	Given I want to create a new account with Brother Online "United Kingdom"
+	When I click on Create Account for "United Kingdom"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I fill in the registration information using a maximum length email address 
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Password        | Max30CharacterPasswooooooooord |
+	| ConfirmPassword | Max30CharacterPasswooooooooord |
+
+	And I declare that I do use this account for business
+	And I add my company name as "AutoTestLtd"
+	And I select my Business Sector as "IT and telecommunications services"
+	And I select number of Employees as "11 - 50"
+	When I add my company VAT number as "GB145937540" 
+	And I have Agreed to the Terms and Conditions	
+	When I press Create Your Account
+	Then I should see my account confirmation page
+	And When I Click Go Back
+	And Once I have Validated an Email was received and verified my account
+	Then I should be able to log into "United Kingdom" Brother Online using my account details
+	And I can sign out of Brother Online
+	Then I am redirected to the Brother Home Page
 
 @ignore
 Scenario: Log in as a Printer On dealer and ensure that they can see the required permissions BBAU-2189

@@ -9,6 +9,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         private const string _AutoTestEmailPrefix = @"AutoTest_";
         public static string RegistrationEmailAddress { get; set; }
         private static string _emailDomain = "guerrillamail.com";
+        private static string _AutoTestMaxEmailLengthPrefix = @"Maaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaax";
 
         public static string RegistrationEmailDomain
         {
@@ -19,6 +20,11 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         public static string AutoTestEmailPrefix
         {
             get { return _AutoTestEmailPrefix; }
+        }
+
+        public static string AutoTestMaxEmailLengthPrefix
+        {
+            get { return _AutoTestMaxEmailLengthPrefix; }
         }
 
         public static string CurrentEmailInUseForTest { get; set; }
@@ -49,6 +55,34 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                     .Replace(":", "-");
             EmailSuffix = String.Format("{0}{1}", AutoTestEmailPrefix, emailDateTime);
             var generatedEmailAddress = String.Format("{0}{1}{2}", AutoTestEmailPrefix, emailDateTime, emailDomain);
+            RegistrationEmailAddress = generatedEmailAddress;
+            RegistrationEmailDomain = emailDomain;
+            return generatedEmailAddress;
+        }
+
+        public static string GenerateUniqueMaxLengthEmailAddress()
+        {
+            string emailDomain;
+
+            if (!CheckEmailPackage("MailinatorEmail"))
+            {
+                emailDomain = CheckEmailPackage("BrotherEmail") ? "@BrotherAutoTest.com" : "@Guerrillamail.com";
+            }
+            else
+            {
+                emailDomain = "@Mailinator.com";
+            }
+
+
+            // NEEDS A REGULAR EXPRESSION HERE!
+            var emailDateTime =
+                DateTime.Now.ToString(CultureInfo.InvariantCulture)
+
+                    .Replace(@"/", "-")
+                    .Replace(" ", "_")
+                    .Replace(":", "-");
+            EmailSuffix = String.Format("{0}{1}", AutoTestMaxEmailLengthPrefix, emailDateTime);
+            var generatedEmailAddress = String.Format("{0}{1}{2}", AutoTestMaxEmailLengthPrefix, emailDateTime, emailDomain);
             RegistrationEmailAddress = generatedEmailAddress;
             RegistrationEmailDomain = emailDomain;
             return generatedEmailAddress;
