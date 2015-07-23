@@ -313,7 +313,9 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [When(@"I sign back into Brother Online ""(.*)"" using the same credentials")]
         public void ThenIfISignBackIntoBrotherOnlineUsingTheSameCredentials(string country)
         {
+            Helper.TakeSnapshot("ClickSignInCreateAccountButton");
             NextPage = CurrentPage.As<HomePage>().ClickSignInCreateAccountButton();
+            Helper.TakeSnapshot("Registration Page");
             CurrentPage.As<RegistrationPage>().DoHaveAnAccountOption();
             CurrentPage.As<RegistrationPage>().PopulateEmailAddressTextBox(Email.RegistrationEmailAddress);
             CurrentPage.As<RegistrationPage>().PopulatePassword(Helper.Password);
