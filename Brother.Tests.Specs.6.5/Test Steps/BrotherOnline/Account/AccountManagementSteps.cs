@@ -95,8 +95,6 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [When(@"I click on Sign In Details")]
         public void WhenIClickOnSignInDetails()
         {
-            // TEMP
-            Helper.TakeSnapshot("Before WhenIClickOnSignInDetails step");
             var signInDetailsMenu = GlobalNavigationModule.GetMyAccountMenuItem("SignInDetails");
             NextPage = GlobalNavigationModule.MySignInDetailsMenuOptionClick(CurrentDriver, signInDetailsMenu);
         }
@@ -124,7 +122,9 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [When(@"I navigate to my account for ""(.*)""")]
         public void WhenINavigateToMyAccountFor(string country)
         {
+            Helper.TakeSnapshot("WhenINavigateToMyAccountFor");
             NextPage = CurrentPage.As<WelcomeBackPage>().NavigateToMyAccountPage(country);
+            Helper.TakeSnapshot("WhenINavigateToMyAccountFor");
         }
         [Then(@"If I enter the current password")]
         public void ThenIfIEnterTheCurrentPassword()
