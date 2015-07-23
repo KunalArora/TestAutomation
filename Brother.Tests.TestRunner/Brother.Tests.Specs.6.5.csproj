@@ -184,11 +184,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ProductPurchaseValidation.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\BrotherOnline\SiteAccess\SiteAccess_TestSites.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SiteAccess_TestSites.feature</DependentUpon>
-    </Compile>
     <Compile Include="Test Specifications\BrotherMainSite\SuppliesAndAccessories\PurchaseASupply.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -416,10 +411,6 @@
     <None Include="Test Specifications\BrotherOnline\ProductPurchaseValidation.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ProductPurchaseValidation.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\BrotherOnline\SiteAccess\SiteAccess_TestSites.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>SiteAccess_TestSites.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\BrotherMainSite\SuppliesAndAccessories\PurchaseASupply.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
