@@ -340,6 +340,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<RegistrationPage>().PopulatePassword(Helper.Password);
             Helper.TakeSnapshot("ThenICanThenSignBackIntoBrotherOnlineUsingTheUpdatedCredentials");
             WhenIClickOnSignIn(country);
+            Helper.TakeSnapshot("ThenICanThenSignBackIntoBrotherOnlineUsingTheUpdatedCredentials After sign in");
         }
 
         [When(@"I declare that I do not use this account for business")]
