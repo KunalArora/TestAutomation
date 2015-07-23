@@ -201,7 +201,6 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("Customer can change their Brother Online email address after registration (BBAU -" +
             " 2337)")]
         [NUnit.Framework.CategoryAttribute("STAGING")]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "changed", null)]
         [NUnit.Framework.TestCaseAttribute("Ireland", "changed", null)]
         public virtual void CustomerCanChangeTheirBrotherOnlineEmailAddressAfterRegistrationBBAU_2337(string country, string emailPrefixForChange, string[] exampleTags)
         {
