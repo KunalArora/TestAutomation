@@ -69,6 +69,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             Helper.TakeSnapshot("ThenIfISignOutOfBrotherOnline");
             NextPage = GlobalNavigationModule.ClickSignOutLink(CurrentDriver);
+            Helper.TakeSnapshot("ThenIfISignOutOfBrotherOnline");
         }
 
         [When(@"If I sign out of Brother Online")]
