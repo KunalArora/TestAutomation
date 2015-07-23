@@ -54,3 +54,6 @@ And I enter tab on City/Town field
 Then I should see an error message on City/town field on my address page
 And I enter tab on Phone number field
 Then I should see an error message on phone number field on my address page
+
+# Validate that an existing user has the option to change their sign in preferences to social login
+ 

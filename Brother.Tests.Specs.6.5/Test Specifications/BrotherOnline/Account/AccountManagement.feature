@@ -100,15 +100,11 @@ Scenario: Business Customer can change their business details after logging into
 	Then I can verify successfull update message appeared at the top
 	
 
-# Create a new user account - Add business details for new user (Should not be executed on Production)
+# Create a new user account - Add business details for new user 
 Scenario: Customer creates a new account with Brother Online and add Business details in My account page
 	Given I am logged onto Brother Online "United Kingdom" using valid credentials
-	Then I can sign out of Brother Online
-	And If I grant the user account the "Extranet\Brother Online Ink Supply User" role
-	When I sign back into Brother Online "United Kingdom" using the same credentials
-	Then I can see the Instant Ink menu option from the BOL home page
-	When I navigate to my account for "United Kingdom"
-	When I clicked on Business Details
+	When I navigate to my account for "United Kingdom"	
+	And I clicked on Business Details
 	And I am redirected to the Business Details Page
 	And I declare that I do use this account for business on my account page
 	And I add my company name as "AutoTestLtd" on Business Details page
