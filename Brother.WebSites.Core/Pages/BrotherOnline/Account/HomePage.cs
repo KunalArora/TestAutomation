@@ -15,7 +15,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             get { return string.Empty; }
         }
 
-        [FindsBy(How = How.CssSelector, Using = ".button.blue")]
+        [FindsBy(How = How.CssSelector, Using = ".content.cf .wrapper .hero .hero-buttons .button")]
         public IWebElement SignInCreateAccountButton;
 
         public void IsSignInCreateAccountButtonAvailable()
