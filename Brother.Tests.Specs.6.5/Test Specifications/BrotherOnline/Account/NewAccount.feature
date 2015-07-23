@@ -276,8 +276,8 @@ Scenario: Validate that the correct error messages are displayed when Terms and 
 	Then I should get an error message displayed on the Terms and Conditions
 
 
-# Check mandatory email field when creating business account
-Scenario: Validate that an error message is displayed for mandatory email field if it is missing during creation of a business account
+# Check mandatory email/password/first name/ last name/company name/business sector fields when creating business account
+Scenario: Validate that an error message is displayed for all mandatory fields during creation of a business account
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
 	And I am redirected to the Brother Login/Register page
@@ -285,54 +285,14 @@ Scenario: Validate that an error message is displayed for mandatory email field 
 	And I declare that I do use this account for business
 	When I press tab in the email address field
 	Then I should see an error message
-
-# Check mandatory password field when creating business account
-Scenario: Validate that an error message is displayed for mandatory password field if it is missing during creation of a business account
-	Given I want to create a new account with Brother Online "United Kingdom"
-	When I click on Create Account for "United Kingdom"
-	And I am redirected to the Brother Login/Register page
-	And I have Checked No I Do Not Have An Account Checkbox
-	And I declare that I do use this account for business
 	When I press tab in the password field
 	Then I should see an error message on the password field
-
-# Check mandatory first name field when creating a business account
-Scenario: Validate that an error message is displayed for mandatory first name field if it is missing during creation of a business account
-	Given I want to create a new account with Brother Online "United Kingdom"
-	When I click on Create Account for "United Kingdom"
-	And I am redirected to the Brother Login/Register page
-	And I have Checked No I Do Not Have An Account Checkbox
-	And I declare that I do use this account for business
 	When I press tab in the first name field
 	Then I should see an error message on the first name field
-
-# Check mandatory last name field when creating a business account
-Scenario: Validate that an error message is displayed for mandatory last name field if it is missing during creation of a business account
-	Given I want to create a new account with Brother Online "United Kingdom"
-	When I click on Create Account for "United Kingdom"
-	And I am redirected to the Brother Login/Register page
-	And I have Checked No I Do Not Have An Account Checkbox
-	And I declare that I do use this account for business
 	When I press tab in the last name field
 	Then I should see an error message on the last name field
-
-# Check mandatory company name field when creating a business account
-Scenario: Validate that an error message is displayed for mandatory company name field if it is missing during creation of a business account
-	Given I want to create a new account with Brother Online "United Kingdom"
-	When I click on Create Account for "United Kingdom"
-	And I am redirected to the Brother Login/Register page
-	And I have Checked No I Do Not Have An Account Checkbox
-	And I declare that I do use this account for business
 	When I press tab in the company name field
 	Then I should see an error message on the company name field
-	
-# Check mandatory business sector field when creating a business account
-Scenario: Validate that an error message is displayed for mandatory business sector field if it is missing during creation of a business account
-	Given I want to create a new account with Brother Online "United Kingdom"
-	When I click on Create Account for "United Kingdom"
-	And I am redirected to the Brother Login/Register page
-	And I have Checked No I Do Not Have An Account Checkbox
-	And I declare that I do use this account for business
 	When I press tab in the business sector field
 	Then I should see an error message on the business sector field
 
