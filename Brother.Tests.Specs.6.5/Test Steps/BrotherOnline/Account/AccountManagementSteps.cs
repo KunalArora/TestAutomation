@@ -95,6 +95,8 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [When(@"I click on Sign In Details")]
         public void WhenIClickOnSignInDetails()
         {
+            // TEMP
+            Helper.TakeSnapshot("Before WhenIClickOnSignInDetails step");
             var signInDetailsMenu = GlobalNavigationModule.GetMyAccountMenuItem("SignInDetails");
             NextPage = GlobalNavigationModule.MySignInDetailsMenuOptionClick(CurrentDriver, signInDetailsMenu);
         }
