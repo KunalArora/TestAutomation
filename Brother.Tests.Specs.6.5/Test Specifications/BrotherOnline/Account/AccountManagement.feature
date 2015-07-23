@@ -74,10 +74,10 @@ Scenario Outline: Customer can change their Brother Online email address after r
 	When I validate the new changes via email
 	And I can sign out of Brother Online
 	Then If I sign back into Brother Online "<Country>" using the same credentials
-	When I navigate to my account for "<Country>"
-	And I click on Sign In Details
-	Then I can validate the update was successful
-	Then I can sign out of Brother Online
+#	When I navigate to my account for "<Country>"
+#	And I click on Sign In Details
+#	Then I can validate the update was successful
+#	Then I can sign out of Brother Online
 
 Scenarios:
 	| Country        | EmailPrefixForChange |

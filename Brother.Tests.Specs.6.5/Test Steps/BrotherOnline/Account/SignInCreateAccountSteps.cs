@@ -338,6 +338,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<RegistrationPage>().DoHaveAnAccountOption();
             CurrentPage.As<RegistrationPage>().PopulateEmailAddressTextBox(Email.RegistrationEmailAddress);
             CurrentPage.As<RegistrationPage>().PopulatePassword(Helper.Password);
+            Helper.TakeSnapshot("ThenICanThenSignBackIntoBrotherOnlineUsingTheUpdatedCredentials");
             WhenIClickOnSignIn(country);
         }
 
