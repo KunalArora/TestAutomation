@@ -16,22 +16,19 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public override string DefaultTitle
         {
-            get { return BrotherOnlineHomePages.Default["LoginRegisterPage"].ToString(); }
+            get { return string.Empty; }
         }
 
         public static string PageTitle
         {
-            get { return BrotherOnlineHomePages.Default["LoginRegisterPage"].ToString(); }
+            get { return string.Empty; }
         }
 
-//Throwing warning as its not used so taking out for now
-//        private string accountVerificationMessage = "content_0_twocolumnsformtop_2_VerificationSuccess";
-//        private string accountVerificationMessageClass = ".box-out.email-success";
-
-        [FindsBy(How = How.Id, Using = "SignInButton")]
+        [FindsBy(How = How.CssSelector, Using = ".content.cf .content-box.login-register.cf .box-out.regular-sign-in.cf .generic-form #form-sign-in .button-blue")]
         public IWebElement SignInButton;
 
-        [FindsBy(How = How.Id, Using = "content_0_twocolumnsformright_0_SignUpButton")]
+        [FindsBy(How = How.CssSelector, Using = ".content.cf .content-box.login-register.cf .box-out.regular-sign-in.cf .generic-form #form-sign-up .button-blue")]
+//        [FindsBy(How = How.Id, Using = "content_0_twocolumnsformright_0_SignUpButton")]
         public IWebElement CreateYourAccountButton;
 
         [FindsBy(How = How.Id, Using = "FirstNameTextBox")]
