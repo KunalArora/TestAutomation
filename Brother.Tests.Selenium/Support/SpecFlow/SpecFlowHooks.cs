@@ -65,12 +65,6 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
 
         #region "Before And After Feature Tags"
 
-        //[BeforeFeature("STAGING")]
-        //public static void BeforeFeature()
-        //{
-        //    Helper.MsgOutput("Staging Feature Test - Running In Development test cases");
-        //}
-
         [BeforeFeature]
         public static void BeforeFeatureHeadless()
         {
@@ -113,8 +107,9 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
         public void BeforeScenario()
         {
             Helper.MsgOutput("*************COOKIE INFORMATION for this session******************");
-            Helper.MsgOutput(TestController.CurrentDriver.Manage().Cookies.AllCookies.ToString());
+            WebDriver.ShowAllCookies();
             Helper.MsgOutput("*************END COOKIE INFORMATION*******************************");
+
 
             // First check the Runtime environment for a valid value. If the Environment variable contains an invalid Test Environment
             // then END TEST RUN
