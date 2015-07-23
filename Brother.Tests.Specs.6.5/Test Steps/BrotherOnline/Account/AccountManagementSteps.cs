@@ -122,10 +122,9 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [When(@"I navigate to my account for ""(.*)""")]
         public void WhenINavigateToMyAccountFor(string country)
         {
-            Helper.TakeSnapshot("WhenINavigateToMyAccountFor");
             NextPage = CurrentPage.As<WelcomeBackPage>().NavigateToMyAccountPage(country);
-            Helper.TakeSnapshot("WhenINavigateToMyAccountFor");
         }
+
         [Then(@"If I enter the current password")]
         public void ThenIfIEnterTheCurrentPassword()
         {
