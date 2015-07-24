@@ -20,6 +20,7 @@ namespace Brother.Tests.Specs.TmpScratch
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("TestTmpTest")]
+    [NUnit.Framework.IgnoreAttribute()]
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("TEST")]
     public partial class TestTmpTestFeature
@@ -36,6 +37,7 @@ namespace Brother.Tests.Specs.TmpScratch
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "TestTmpTest", "In order to test snippets of code\r\nAs a Developer\r\nI want to be able to run code " +
                     "in isolation", ProgrammingLanguage.CSharp, new string[] {
+                        "IGNORE",
                         "UAT",
                         "TEST"});
             testRunner.OnFeatureStart(featureInfo);
