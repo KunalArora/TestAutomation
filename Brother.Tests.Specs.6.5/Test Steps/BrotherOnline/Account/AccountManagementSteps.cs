@@ -325,13 +325,21 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
       {
           CurrentPage.As<MyAddressDetailsPage>().EmptyPhoneNumberTextBox();
       }
-     [Then(@"I should see an error message on phone number field on my address page")]
-     public void ThenIShouldSeeAnErrorMessageOnPhoneNumberFieldOnMyAddressPage()
-     {
+      [Then(@"I should see an error message on phone number field on my address page")]
+      public void ThenIShouldSeeAnErrorMessageOnPhoneNumberFieldOnMyAddressPage()
+      {
          CurrentPage.As<MyAddressDetailsPage>().PhoneNumberErrorMessageDisplayed();
-     }
-
-
-
+      }
+      [When(@"I click on Social Login Radio button")]
+      public void WhenIClickOnSocialLoginRadioButton()
+      {
+          CurrentPage.As<MySignInDetailsPage>().ClickRadioButtonSocialLogin();
+      }
+    [Then(@"I should be able to see social login buttons")]
+      public void ThenIShouldBeAbleToSeeSocialLoginButtons()
+      {
+          CurrentPage.As<MySignInDetailsPage>().VerifySocialButtonsExist(true);
+      }
+        
     }
 }

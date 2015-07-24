@@ -146,7 +146,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             return Environment.GetEnvironmentVariable("AutoTestRunTimeEnv", EnvironmentVariableTarget.Machine) ?? RunTimeDefault;
         }
 
-        public static bool SetRunTimeEnv(string runTimeEnv)
+       public static bool SetRunTimeEnv(string runTimeEnv)
         {
             Environment.SetEnvironmentVariable("AutoTestRunTimeEnv", runTimeEnv, EnvironmentVariableTarget.Machine);
             var environmentVariable = Environment.GetEnvironmentVariable("AutoTestRunTimeEnv", EnvironmentVariableTarget.Machine);
@@ -191,8 +191,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             return url.ToLower().Replace("http", "https");
         }
 
-        
-        public static void MsgOutput(string message)
+       public static void MsgOutput(string message)
         {
             #if DEBUG
                 Trace.WriteLine(String.Format("@@TESTMSG - {0}", message));

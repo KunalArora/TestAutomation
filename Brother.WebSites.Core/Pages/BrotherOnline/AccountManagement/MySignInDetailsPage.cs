@@ -43,6 +43,18 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         [FindsBy(How = How.CssSelector, Using = "#emailText")]
         public IWebElement EmailAddressEditBox;
         
+        [FindsBy(How = How.Id, Using = "social")]
+        public IWebElement SocialLoginRadioButton;
+
+        [FindsBy(How = How.Id, Using = "content_1_innercontent_1_innerbottom_0_LinkedInBtn")]
+        public IWebElement LinkedinButton;
+
+        [FindsBy(How = How.Id, Using = "content_1_innercontent_1_innerbottom_0_googleBtn")]
+        public IWebElement Google;
+
+        [FindsBy(How = How.Id, Using = "content_1_innercontent_1_innerbottom_0_facebookBtn")]
+        public IWebElement Facebook;
+
         public void IsSignOutLinkAvailable()
         {
             if (SignOutLink == null)
@@ -164,6 +176,18 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             }
             ScrollTo(InformationMessageBar);
             TestCheck.AssertIsEqual(displayed, InformationMessageBar.Displayed, "Information Message Bar");
+        }
+        public void ClickRadioButtonSocialLogin()
+        {
+            ScrollTo(SocialLoginRadioButton);
+            SocialLoginRadioButton.Click();
+        }
+        public void VerifySocialButtonsExist(bool displayed)
+        {
+            TestCheck.AssertIsEqual(displayed, LinkedinButton.Displayed, "linkedin button");
+            TestCheck.AssertIsEqual(displayed, Google.Displayed, "Google button");
+            TestCheck.AssertIsEqual(displayed, Facebook.Displayed, "Facebook button");
+           
         }
     }
 }
