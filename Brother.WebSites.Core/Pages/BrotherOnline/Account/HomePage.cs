@@ -38,6 +38,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         [FindsBy(How = How.CssSelector, Using = "#AcceptCookieLawHyperLink")]
         public IWebElement AcceptCookiesButton;
 
+        [FindsBy(How = How.CssSelector, Using = "#cookieLawBar > div > p")]
+        public IWebElement CookiesInformationBar;
+
         //public RegistrationPage ClickCreateAccountButton()
         //{
         //    MoveToElement(CreateAccountButton);
@@ -81,15 +84,21 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             TestCheck.AssertIsNotEqual("True", AcceptCookiesButton.Displayed.ToString(), "Use Account For Business Button");
         }
 
-
         public void AcceptCookiesButtonClick()
         {
             ScrollTo(AcceptCookiesButton);
             AcceptCookiesButton.Click();
         }
 
+        public void IsCookiesInformationBarAvailable()
+        {
+            if (CookiesInformationBar == null)
+            {
+                throw new NullReferenceException("Unable to locate accept cookies button on page");
+            }
+            AssertElementPresent(CookiesInformationBar, "Accept Cookies Button", 80);
+        }
        
-
     }
 
 }

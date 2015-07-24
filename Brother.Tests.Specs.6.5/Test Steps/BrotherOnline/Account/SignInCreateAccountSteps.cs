@@ -59,10 +59,17 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         }
 
         [Then(@"I can see and click the accept cookies button")]
-        public void CanSeeTheAcceptCookiesButton()
+        public void CanSeeAndClickTheAcceptCookiesButton()
         {
             CurrentPage.As<HomePage>().IsAcceptCookieButtonAvailable();
             CurrentPage.As<HomePage>().AcceptCookiesButtonClick();
+        }
+
+        [Then(@"I can see the cookies information bar")]
+        [Then(@"I continue to see the cookies information bar")]
+        public void CanSeeTheCookiesInformationBar()
+        {
+            CurrentPage.As<HomePage>().IsCookiesInformationBarAvailable();
         }
 
         [Then(@"I can no longer see the accept cookies button")]
@@ -520,6 +527,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         }
         [Then(@"I should refresh the current page to clear all error messages")]
         [Then(@"I refresh the current page")]
+        [Then(@"I refresh the current page again")]
         public void ThenIShouldRefreshTheCurrentPageToClearAllErrorMessages()
         {
             CurrentDriver.Navigate().Refresh();
