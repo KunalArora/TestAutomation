@@ -139,7 +139,7 @@ namespace Brother.Tests.Selenium.Lib.Support
                 {
                     try
                     {
-                        CurrentDriver.Manage().Cookies.DeleteAllCookies();
+                        WebDriver.DeleteAllCookies();
                         CurrentDriver.Close();
                         CurrentDriver.Quit();
                     }

@@ -47,15 +47,6 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             WebDriver.SetWebDriverImplicitTimeout(WebDriver.ImplicitWaitDefaultTimeout);
         }
         
-        /// <summary>
-        /// Removes all browser cookies
-        /// </summary>
-        public void DeleteAllCookies()
-        {
-            Driver.Manage().Cookies.DeleteAllCookies();
-        }
-
-        
         public string GetUrl()
         {
             return Driver.Url;
