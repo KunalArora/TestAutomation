@@ -36,6 +36,7 @@ Given I want to create a new account with Brother Online "United Kingdom"
 
 
 # Validate that the correct error messages are displayed when address details mandatory fields are not completed
+@STAGING
 Scenario: Customer get the correct error messages when address details mandatory fields are not completed on my address page
 Given I am logged onto Brother Online "United Kingdom" using valid credentials
 	When I navigate to my account for "United Kingdom"	

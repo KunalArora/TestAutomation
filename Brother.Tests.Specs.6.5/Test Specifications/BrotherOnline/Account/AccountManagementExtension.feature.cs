@@ -142,10 +142,12 @@ testRunner.Given("I want to create a new account with Brother Online \"United Ki
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Customer get the correct error messages when address details mandatory fields are" +
             " not completed on my address page")]
+        [NUnit.Framework.CategoryAttribute("STAGING")]
         public virtual void CustomerGetTheCorrectErrorMessagesWhenAddressDetailsMandatoryFieldsAreNotCompletedOnMyAddressPage()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer get the correct error messages when address details mandatory fields are" +
-                    " not completed on my address page", ((string[])(null)));
+                    " not completed on my address page", new string[] {
+                        "STAGING"});
 #line 39
 this.ScenarioSetup(scenarioInfo);
 #line 40
@@ -193,17 +195,17 @@ testRunner.Given("I am logged onto Brother Online \"United Kingdom\" using valid
         public virtual void CustomerHasTheOptionToChangeTheirSignInPreferencesToSocialLogin()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer has the option to change their sign in preferences to social login", ((string[])(null)));
-#line 61
+#line 60
 this.ScenarioSetup(scenarioInfo);
-#line 62
+#line 61
 testRunner.Given("I am logged onto Brother Online \"United Kingdom\" using valid credentials", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 63
+#line 62
  testRunner.When("I navigate to my account for \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 64
+#line 63
  testRunner.And("I click on Sign In Details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 65
+#line 64
  testRunner.When("I click on Social Login Radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 66
+#line 65
  testRunner.Then("I should be able to see social login buttons", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

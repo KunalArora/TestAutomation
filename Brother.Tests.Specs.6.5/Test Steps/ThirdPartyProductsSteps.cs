@@ -108,6 +108,7 @@ namespace Brother.Tests.Specs
         [Then(@"Once I have Validated an Email was received and verified my account")]
         public void ThenOnceIHaveValidatedAnEmailWasReceivedAndVerifiedMyAccount()
         {
+            // NEED TO REMOVE THIS AND REPLACE WITH A DYNAMIC WAIT
             Thread.Sleep(new TimeSpan(0, 0, 0, 30)); //  deliberate wait for account to finalise before validation
             ValidateAccountEmail();
         }

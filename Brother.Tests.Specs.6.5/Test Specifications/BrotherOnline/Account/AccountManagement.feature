@@ -5,7 +5,8 @@ Feature: Account Management
 	I need to be able to have account management options
 
 # Sign into Brother Online and change password
-@TEST @UAT @PROD
+#@TEST @UAT @PROD
+@STAGING
 Scenario: Customer has created a Brother Online account and wishes to change their password (BOL-164)
 	Given I am logged onto Brother Online "United Kingdom" using valid credentials
 	When I navigate to my account for "United Kingdom"
@@ -39,7 +40,8 @@ Scenario: Customer has created a Brother Online account but has forgotten their 
 # Create account, sign in, note missing menu option, add role to user, sign out and in again, note menu option present
 # Instant Ink role used as a baseline
 # ***-need to add additional scenario (see ticket number for steps) or ValidateRole Feature test
-@TEST @UAT
+#@TEST @UAT
+@STAGING
 Scenario: Customer or Dealer role persists after email address change (BOL-176)
 	Given I am logged onto Brother Online "United Kingdom" using valid credentials
 	Then I can sign out of Brother Online
@@ -114,7 +116,8 @@ Scenario: Customer creates a new account with Brother Online and add Business de
 	And I click on Update details on business details page
 	Then I can verify successfull update message appeared at the top
 
-@TEST @UAT @PROD
+#@TEST @UAT @PROD
+@STAGING
 #User can add their address to their account by manually entering their personal details
 Scenario: Customer can add a new address to their acocunt by manually entering address details
 Given I am logged onto Brother Online "United Kingdom" using valid credentials

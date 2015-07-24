@@ -37,6 +37,14 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             return sessionId;
         }
 
+        /// <summary>
+        /// Removes all browser cookies
+        /// </summary>
+        public static void DeleteAllCookies()
+        {
+            TestController.CurrentDriver.Manage().Cookies.DeleteAllCookies();
+        }
+
         public static void ShowAllCookies()
         {
             var cookies = TestController.CurrentDriver.Manage().Cookies.AllCookies;

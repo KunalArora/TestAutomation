@@ -177,6 +177,8 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
 
             if (ScenarioContext.Current.TestError == null)
             {
+                // Clear the session
+                WebDriver.DeleteAllCookies();
                 return;
             }
 
