@@ -296,7 +296,7 @@ Scenario: Validate that an error message is displayed for all mandatory fields d
 	When I press tab in the business sector field
 	Then I should see an error message on the business sector field
 
-# Check mandatory terms and conditions are accepted when creating a business account
+# Check mandatory terms and conditions when creating a business account
 Scenario: Validate that an error message is displayed for mandatory terms and conditions if they are not accepted during creation of a business account
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
@@ -394,6 +394,7 @@ Scenario: User account which is not validated does not permit device registratio
 	Then I should be able to log into "United Kingdom" Brother Online using my account details
 	When I have clicked on Add Device
 	Then I should see the account not validated error message preventing device registration
+	And I can sign out of Brother Online
 
 # Check that a business account which is not validated does not have the ability to register a device		
 Scenario: Business account which is not validated does not permit device registration
@@ -420,6 +421,7 @@ Scenario: Business account which is not validated does not permit device registr
 	Then I should be able to log into "United Kingdom" Brother Online using my account details
 	When I have clicked on Add Device
 	Then I should see the account not validated error message preventing device registration
+	And I can sign out of Brother Online
 
 # Accounts created on DV2, QAS and Prod for the following test - existinguseraccount@guerrillamail.com/existingbusinessaccount@guerrillamail.com/Password100
 # Check that existing brother online user and business account holders cannot login with valid/invalid username/password combinations
@@ -525,6 +527,17 @@ Scenario: Validate that a user of Brother online will always see cookie informat
 	Then I can see the cookies information bar
 	And I refresh the current page again
 	Then I continue to see the cookies information bar
+
+# Validate that a user can click to find out more information about the cookie privacy policy and then go on to view company terms and conditions
+Scenario: Validate that a user of Brother online can view the cookie privacy policy and terms and conditions information prior to accepting cookies
+	Given I launch Brother Online for "United Kingdom"
+	Then I delete all page cookies
+	And I refresh the current page
+	Then I can see the cookies information bar
+	And I can see and click the find out more button on the cookies information bar
+	Then I am navigated to the privacy policy for cookies
+	And I click to view the company terms and conditions
+	Then I am navigated to the company terms and conditions page
 
 
 @ignore

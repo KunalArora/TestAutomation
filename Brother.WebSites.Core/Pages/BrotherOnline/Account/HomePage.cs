@@ -41,6 +41,20 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         [FindsBy(How = How.CssSelector, Using = "#cookieLawBar > div > p")]
         public IWebElement CookiesInformationBar;
 
+        [FindsBy(How = How.CssSelector, Using = "#cookieLawBar > div > a.button-grey")]
+        public IWebElement FindOutMoreCookiesButton;
+
+        [FindsBy(How = How.CssSelector, Using = "#main > div > div > div > p:nth-child(3) > a")]
+        public IWebElement PrivacyPolicyLink;
+
+        //[FindsBy(How = How.CssSelector, Using = "#main > div > div.content-box.article-page.cf > div > p:nth-child(4) > a")]
+        [FindsBy(How = How.CssSelector, Using = ".content-unit.six>p>a")]
+        public IWebElement TermsAndConditionsLink;
+
+        [FindsBy(How = How.CssSelector, Using = "#main > div > div > div > p:nth-child(3) > a")]
+        public IWebElement ContactUsLink;
+
+        
         private static readonly Dictionary<string, string> _pageTitle = new Dictionary<string, string>
         {
             {"Spain", "Inicio de sesión / Cree una cuenta"},
@@ -74,13 +88,28 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public void IsAcceptCookieButtonNotAvailable()
         {
-            TestCheck.AssertIsNotEqual("True", AcceptCookiesButton.Displayed.ToString(), "Use Account For Business Button");
+            TestCheck.AssertIsNotEqual("True", AcceptCookiesButton.Displayed.ToString(), "Cookie button incorrectly displayed");
         }
 
         public void AcceptCookiesButtonClick()
         {
             ScrollTo(AcceptCookiesButton);
             AcceptCookiesButton.Click();
+        }
+
+        public void IsFindOutMoreCookiesButtonAvailable()
+        {
+            if (FindOutMoreCookiesButton == null)
+            {
+                throw new NullReferenceException("Unable to locate accept cookies button on page");
+            }
+            AssertElementPresent(FindOutMoreCookiesButton, "Accept Cookies Button", 80);
+        }
+
+        public void FindOutMoreCookiesButtonClick()
+        {
+            ScrollTo(FindOutMoreCookiesButton);
+            FindOutMoreCookiesButton.Click();
         }
 
         public void IsCookiesInformationBarAvailable()
@@ -91,6 +120,53 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             }
             AssertElementPresent(CookiesInformationBar, "Accept Cookies Button", 80);
         }
+
+        public void IsPrivacyPolicyLinkAvailable()
+        {
+            if (PrivacyPolicyLink == null)
+            {
+                throw new NullReferenceException("Unable to locate privacy policy link on page");
+            }
+            AssertElementPresent(PrivacyPolicyLink, "Privacy policy link", 80);
+        }
+
+        public void PrivacyPolicyLinkClick()
+        {
+            ScrollTo(PrivacyPolicyLink);
+            PrivacyPolicyLink.Click();
+        }
+
+        public void IsCompanyTermsAndConditionsLinkAvailable()
+        {
+            if (TermsAndConditionsLink == null)
+            {
+                throw new NullReferenceException("Unable to locate terms and conditions link on page");
+            }
+            AssertElementPresent(TermsAndConditionsLink, "Terms and conditions link", 80);
+        }
+
+        public void CompanyTermsAndConditionsLinkClick()
+        {
+            ScrollTo(TermsAndConditionsLink);
+            TermsAndConditionsLink.Click();
+        }
+
+
+        public void IsContactUsLinkAvailable()
+        {
+            if (ContactUsLink == null)
+            {
+                throw new NullReferenceException("Unable to locate contact us link on page");
+            }
+            AssertElementPresent(ContactUsLink, "Contact us link", 80);
+        }
+
+        public void ContactUsLinkClick()
+        {
+            ScrollTo(ContactUsLink);
+            ContactUsLink.Click();
+        }
+
        
     }
 
