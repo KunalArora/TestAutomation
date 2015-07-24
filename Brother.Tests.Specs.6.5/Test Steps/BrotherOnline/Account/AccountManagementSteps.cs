@@ -335,11 +335,22 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
       {
           CurrentPage.As<MySignInDetailsPage>().ClickRadioButtonSocialLogin();
       }
-    [Then(@"I should be able to see social login buttons")]
+      [Then(@"I should be able to see social login buttons")]
       public void ThenIShouldBeAbleToSeeSocialLoginButtons()
       {
           CurrentPage.As<MySignInDetailsPage>().VerifySocialButtonsExist(true);
       }
-        
+      [Then(@"I get the error message displayed on your company name field")]
+      public void ThenIGetTheErrorMessageDisplayedOnYourCompanyNameField()
+      {
+          CurrentPage.As<BusinessDetailsPage>().CompanyNameErrorMessageDisplayed();
+      }
+      [Then(@"I get the error message displayed on Business sector field")]
+      public void ThenIGetTheErrorMessageDisplayedOnBusinessSectorField()
+      {
+          CurrentPage.As<BusinessDetailsPage>().BusinessSectorErrorMessageDisplayed();
+      }
+
+      
     }
 }

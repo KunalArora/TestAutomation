@@ -34,6 +34,7 @@ Given I want to create a new account with Brother Online "United Kingdom"
 	And I click on Update details on business details page
 	Then I can verify successfull update message appeared at the top
 
+
 # Validate that the correct error messages are displayed when address details mandatory fields are not completed
 @STAGING
 Scenario: Customer get the correct error messages when address details mandatory fields are not completed on my address page
@@ -56,6 +57,7 @@ Given I am logged onto Brother Online "United Kingdom" using valid credentials
 	And I enter tab on Phone number field
 	Then I should see an error message on phone number field on my address page
 
+
 # Validate that an existing user has the option to change their sign in preferences to social login 
 Scenario: Customer has the option to change their sign in preferences to social login
 Given I am logged onto Brother Online "United Kingdom" using valid credentials
@@ -63,7 +65,16 @@ Given I am logged onto Brother Online "United Kingdom" using valid credentials
 	And I click on Sign In Details
 	When I click on Social Login Radio button
 	Then I should be able to see social login buttons
-	
 
 
+# Validate that the correct error messages are displayed when business details mandatory fields are not completed
+Scenario: : Customer get the correct error message when business details mandator fields are not completed
+Given I am logged onto Brother Online "United Kingdom" using valid credentials
+	When I navigate to my account for "United Kingdom"	
+	And I clicked on Business Details
+	And I am redirected to the Business Details Page
+	And I declare that I do use this account for business on my account page
+	And I click on Update details on business details page
+	Then I get the error message displayed on your company name field
+	And I get the error message displayed on Business sector field
  
