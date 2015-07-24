@@ -136,5 +136,7 @@ And I enter all the mandatory fields
 	| City			  | Manchester	   |
 	| PhoneNumber	  | 0161 330 6531	   |
 And I click on the save address button
+Then I can navigate back to Brother Online home page
+And I can sign out of Brother Online
 
 
