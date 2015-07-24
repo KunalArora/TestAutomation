@@ -33,10 +33,11 @@ Given I want to create a new account with Brother Online "United Kingdom"
 	And I declare that I do not use this account for business on my account page
 	And I click on Update details on business details page
 	Then I can verify successfull update message appeared at the top
+	And I can navigate back to Brother Online home page
+	And I can sign out of Brother Online
 
-
-# Validate that the correct error messages are displayed when address details mandatory fields are not completed
 @STAGING
+# Validate that the correct error messages are displayed when address details mandatory fields are not completed
 Scenario: Customer get the correct error messages when address details mandatory fields are not completed on my address page
 Given I am logged onto Brother Online "United Kingdom" using valid credentials
 	When I navigate to my account for "United Kingdom"	
@@ -56,6 +57,8 @@ Given I am logged onto Brother Online "United Kingdom" using valid credentials
 	Then I should see an error message on City/town field on my address page
 	And I enter tab on Phone number field
 	Then I should see an error message on phone number field on my address page
+	And I can navigate back to Brother Online home page
+	And I can sign out of Brother Online
 
 
 # Validate that an existing user has the option to change their sign in preferences to social login 
@@ -65,6 +68,8 @@ Given I am logged onto Brother Online "United Kingdom" using valid credentials
 	And I click on Sign In Details
 	When I click on Social Login Radio button
 	Then I should be able to see social login buttons
+	And I can navigate back to Brother Online home page
+	And I can sign out of Brother Online
 
 
 # Validate that the correct error messages are displayed when business details mandatory fields are not completed
@@ -77,4 +82,6 @@ Given I am logged onto Brother Online "United Kingdom" using valid credentials
 	And I click on Update details on business details page
 	Then I get the error message displayed on your company name field
 	And I get the error message displayed on Business sector field
+	And I can navigate back to Brother Online home page
+	And I can sign out of Brother Online
  
