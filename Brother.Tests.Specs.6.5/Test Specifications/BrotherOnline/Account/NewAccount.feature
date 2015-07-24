@@ -517,6 +517,15 @@ Scenario: Validate that a user can view cookie information on first visit to bro
 	And I refresh the current page
 	Then I can no longer see the accept cookies button
 
+# Validate that a user always sees the cookie information bar on subsequent visits to the site unless the information is accepted
+Scenario: Validate that a user of Brother online will always see cookie information on subsequent visits to the site if cookies are not accepted
+	Given I launch Brother Online for "United Kingdom"
+	Then I delete all page cookies
+	And I refresh the current page
+	Then I can see the cookies information bar
+	And I refresh the current page again
+	Then I continue to see the cookies information bar
+
 
 @ignore
 Scenario: Log in as a Printer On dealer and ensure that they can see the required permissions BBAU-2189
