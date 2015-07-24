@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -34,6 +35,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             return GetInstance<RegistrationPage>(Driver);
         }
 
+        [FindsBy(How = How.CssSelector, Using = "#AcceptCookieLawHyperLink")]
+        public IWebElement AcceptCookiesButton;
+
         //public RegistrationPage ClickCreateAccountButton()
         //{
         //    MoveToElement(CreateAccountButton);
@@ -61,6 +65,27 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         {
             string title;
             return _welcomePageTitle.TryGetValue(country, out title) ? title : string.Empty;
+        }
+
+        public void IsAcceptCookieButtonAvailable()
+        {
+            if (AcceptCookiesButton == null)
+            {
+                throw new NullReferenceException("Unable to locate accept cookies button on page");
+            }
+            AssertElementPresent(AcceptCookiesButton, "Accept Cookies Button", 80);
+        }
+
+        public void IsAcceptCookieButtonNotAvailable()
+        {
+            TestCheck.AssertIsNotEqual("True", AcceptCookiesButton.Displayed.ToString(), "Use Account For Business Button");
+        }
+
+
+        public void AcceptCookiesButtonClick()
+        {
+            ScrollTo(AcceptCookiesButton);
+            AcceptCookiesButton.Click();
         }
 
        

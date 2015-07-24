@@ -458,8 +458,6 @@ Scenarios:
 	| "     existinguseraccount@guerrillamail.com    "		| "Password100" |
 	| "ExIsTiNgBuSiNeSsAcCoUnT@gUeRrIlLaMaIl.CoM"			| "Password100" |
 
-
-
 # Check maximun username(241) and password(30) length when creating a user account
 Scenario: Validate that a user account can be created using the maximun 241 username and 30 password character lengths (Failing due to BBAU-2522)																				
 	Given I want to create a new account with Brother Online "United Kingdom"
@@ -510,10 +508,19 @@ Scenario: Validate that a business account can be created using the maximun 241 
 	And I can sign out of Brother Online
 	Then I am redirected to the Brother Home Page
 
+# Validate that a user is able to accept the cookie information on first visit to brother online to prevent it from being displayed again
+Scenario: Validate that a user can view cookie information on first visit to brother online and once accepted does not see it again
+	Given I launch Brother Online for "United Kingdom"
+	Then I delete all page cookies
+	And I refresh the current page
+	Then I can see and click the accept cookies button
+	And I refresh the current page
+	Then I can no longer see the accept cookies button
+
+
 @ignore
 Scenario: Log in as a Printer On dealer and ensure that they can see the required permissions BBAU-2189
 # (ensure that a customer cannot see the same permissions)
-
 
 # Change Personal details in your created account, go to my account and add your new Email address
 Scenario: Business Customer can change their Email Address   (BBAU - 2377, 2355)
