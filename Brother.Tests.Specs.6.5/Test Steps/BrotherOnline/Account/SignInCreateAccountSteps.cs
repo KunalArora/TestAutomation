@@ -72,6 +72,32 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<HomePage>().IsCookiesInformationBarAvailable();
         }
 
+        [Then(@"I can see and click the find out more button on the cookies information bar")]
+        public void CanSeeAndClickTheFindOutMoreCookiesButton()
+        {
+            CurrentPage.As<HomePage>().IsFindOutMoreCookiesButtonAvailable();
+            CurrentPage.As<HomePage>().FindOutMoreCookiesButtonClick();
+        }
+
+        [Then(@"I click to view the company terms and conditions")]
+        public void CanSeeAndClickTheCompanyTermsAndConditionsLink()
+        {
+            CurrentPage.As<HomePage>().IsCompanyTermsAndConditionsLinkAvailable();
+            CurrentPage.As<HomePage>().CompanyTermsAndConditionsLinkClick();
+        }
+
+        [Then(@"I am navigated to the company terms and conditions page")]
+        public void IsNavigatedToTheCompanyTermsAndConditionsPage()
+        {
+            CurrentPage.As<HomePage>().IsContactUsLinkAvailable();
+        }
+
+        [Then(@"I am navigated to the privacy policy for cookies")]
+        public void IsNavigatedToThePrivacyPolicyPage()
+        {
+            CurrentPage.As<HomePage>().IsCompanyTermsAndConditionsLinkAvailable();
+        }
+
         [Then(@"I can no longer see the accept cookies button")]
         public void CannotSeeTheAcceptCookiesButton()
         {
