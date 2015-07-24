@@ -4,6 +4,12 @@ Feature: Purchase A Plan
 	As a Customer
 	I need to purchase one of the available purchase plans
 
+# Add check for an OmnoJoin license using Web Service 
+# Notes from Markus as follows 
+
+#There is a web service for OJ which can check licenses:
+#Get Account service – field WClicense 
+
 Background: 
 	# Create an account on BOL and log in
 	Given I am logged onto Brother Online "United Kingdom" using valid credentials
