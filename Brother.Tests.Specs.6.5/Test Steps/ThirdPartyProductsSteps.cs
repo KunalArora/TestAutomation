@@ -49,8 +49,34 @@ namespace Brother.Tests.Specs
                 Helper.MsgOutput("Skipping Email Validation for this step");
             }
         }
+
+        [When(@"I validate the new Customer Email changes via email")]
+        [Then(@"I validate the new Customer Email changes via email")]
+        public void WhenIValidateTheNewCustomerEmailChangesViaEmail()
+        {
+            if (Email.CheckEmailPackage("GuerrillaEmail"))
+            {
+                LaunchGuerrillaEmail(string.Empty);
+                CurrentPage.As<GuerillaEmailConfirmationPage>().SelectEmail("Update");
+                CurrentPage.As<GuerillaEmailConfirmationPage>().CheckAllEmailLinks();
+                NextPage = CurrentPage.As<GuerillaEmailConfirmationPage>().ValidateCustomerAccountDetailsChangeEmail();
+            }
+        }
+
+        [When(@"I validate the new Business Email changes via email")]
+        [Then(@"I validate the new Business Email changes via email")]
+        public void WhenIValidateTheNewBusinessEmailChangesViaEmail()
+        {
+            if (Email.CheckEmailPackage("GuerrillaEmail"))
+            {
+                LaunchGuerrillaEmail(string.Empty);
+                CurrentPage.As<GuerillaEmailConfirmationPage>().SelectEmail("Update");
+                CurrentPage.As<GuerillaEmailConfirmationPage>().CheckAllEmailLinks();
+                NextPage = CurrentPage.As<GuerillaEmailConfirmationPage>().ValidateBusinessAccountDetailsChangeEmail();
+            }
+        }
+
         [Then(@"If I validate the new changes via email")]
-        [When(@"I validate the new changes via email")]
         public void ThenIfIValidateTheNewChangesViaEmail()
         {
             if (Email.CheckEmailPackage("GuerrillaEmail"))
@@ -58,7 +84,7 @@ namespace Brother.Tests.Specs
                 LaunchGuerrillaEmail(string.Empty);
                 CurrentPage.As<GuerillaEmailConfirmationPage>().SelectEmail("Update");
                 CurrentPage.As<GuerillaEmailConfirmationPage>().CheckAllEmailLinks();
-                NextPage = CurrentPage.As<GuerillaEmailConfirmationPage>().ValidateAccountDetailsChangeEmail();
+                NextPage = CurrentPage.As<GuerillaEmailConfirmationPage>().ValidateCustomerAccountDetailsChangeEmail();
             }
         }
 

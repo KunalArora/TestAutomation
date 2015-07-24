@@ -616,12 +616,17 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.ThirdParty
             //Assert.AreEqual();
         }
 
-        public MySignInDetailsPage ValidateAccountDetailsChangeEmail()
+        public MySignInDetailsPage ValidateBusinessAccountDetailsChangeEmail()
         {
             ValidateEmailUrl("Account Details Change", true, true);
             return GetInstance<MySignInDetailsPage>(Driver, "", "");
         }
 
+        public WelcomeBackPage ValidateCustomerAccountDetailsChangeEmail()
+        {
+            ValidateEmailUrl("Account Details Change", true, true);
+            return GetInstance<WelcomeBackPage>(Driver, "", "");
+        }
 
         public RegistrationPage ValidateRegistrationEmail()
         {

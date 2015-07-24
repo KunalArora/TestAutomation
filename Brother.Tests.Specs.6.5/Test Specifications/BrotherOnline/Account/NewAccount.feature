@@ -560,7 +560,7 @@ Scenario: Business Customer can change their Email Address   (BBAU - 2377, 2355)
 	And If I enter the current password for email change
 	And I click on Update details
 	Then I can verify the email change occurred
-	And If I validate the new changes via email
+	Then I validate the new Business Email changes via email 
 	Then I can validate the update was successful
 	And I can sign out of Brother Online
 	Then If I sign back into Brother Online "United Kingdom" using the same credentials
