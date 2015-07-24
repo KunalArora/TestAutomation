@@ -76,18 +76,6 @@ namespace Brother.Tests.Specs
             }
         }
 
-        [Then(@"If I validate the new changes via email")]
-        public void ThenIfIValidateTheNewChangesViaEmail()
-        {
-            if (Email.CheckEmailPackage("GuerrillaEmail"))
-            {
-                LaunchGuerrillaEmail(string.Empty);
-                CurrentPage.As<GuerillaEmailConfirmationPage>().SelectEmail("Update");
-                CurrentPage.As<GuerillaEmailConfirmationPage>().CheckAllEmailLinks();
-                NextPage = CurrentPage.As<GuerillaEmailConfirmationPage>().ValidateCustomerAccountDetailsChangeEmail();
-            }
-        }
-
         [Then(@"I can validate that an OmniJoin Plan Change email was received")]
         public void TheICanValidateThatAnOmniJoinPlanChangeEmailWasReceived()
         {
