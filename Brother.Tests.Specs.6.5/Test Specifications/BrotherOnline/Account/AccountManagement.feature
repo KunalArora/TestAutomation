@@ -98,8 +98,8 @@ Scenario: Business Customer can change their business details after logging into
 	And I select number of Employees as "11 - 50" on Business Details Page
 	And I click on Update details on business details page
 	Then I can verify successfull update message appeared at the top
-	
 
+@TEST @UAT @PROD
 # Create a new user account - Add business details for new user 
 Scenario: Customer creates a new account with Brother Online and add Business details in My account page
 	Given I am logged onto Brother Online "United Kingdom" using valid credentials
@@ -114,7 +114,7 @@ Scenario: Customer creates a new account with Brother Online and add Business de
 	And I click on Update details on business details page
 	Then I can verify successfull update message appeared at the top
 
-
+@TEST @UAT @PROD
 #User can add their address to their account by manually entering their personal details
 Scenario: Customer can add a new address to their acocunt by manually entering address details
 Given I am logged onto Brother Online "United Kingdom" using valid credentials

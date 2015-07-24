@@ -279,10 +279,16 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Customer creates a new account with Brother Online and add Business details in My" +
             " account page")]
+        [NUnit.Framework.CategoryAttribute("TEST")]
+        [NUnit.Framework.CategoryAttribute("UAT")]
+        [NUnit.Framework.CategoryAttribute("PROD")]
         public virtual void CustomerCreatesANewAccountWithBrotherOnlineAndAddBusinessDetailsInMyAccountPage()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer creates a new account with Brother Online and add Business details in My" +
-                    " account page", ((string[])(null)));
+                    " account page", new string[] {
+                        "TEST",
+                        "UAT",
+                        "PROD"});
 #line 104
 this.ScenarioSetup(scenarioInfo);
 #line 105
@@ -315,10 +321,16 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Customer can add a new address to their acocunt by manually entering address deta" +
             "ils")]
+        [NUnit.Framework.CategoryAttribute("TEST")]
+        [NUnit.Framework.CategoryAttribute("UAT")]
+        [NUnit.Framework.CategoryAttribute("PROD")]
         public virtual void CustomerCanAddANewAddressToTheirAcocuntByManuallyEnteringAddressDetails()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer can add a new address to their acocunt by manually entering address deta" +
-                    "ils", ((string[])(null)));
+                    "ils", new string[] {
+                        "TEST",
+                        "UAT",
+                        "PROD"});
 #line 119
 this.ScenarioSetup(scenarioInfo);
 #line 120
