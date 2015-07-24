@@ -381,6 +381,10 @@ testRunner.And("I click on Add a New Address Button", ((string)(null)), ((TechTa
 testRunner.And("I enter all the mandatory fields", ((string)(null)), table1, "And ");
 #line 138
 testRunner.And("I click on the save address button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 139
+testRunner.Then("I can navigate back to Brother Online home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 140
+testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
