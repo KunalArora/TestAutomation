@@ -52,6 +52,24 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             Helper.Password = newPassword;
         }
 
+        [Then(@"I delete all page cookies")]
+        public void DeleteAllPageCookies()
+        {
+            CurrentPage.As<HomePage>().DeleteAllCookies();
+        }
+
+        [Then(@"I can see and click the accept cookies button")]
+        public void CanSeeTheAcceptCookiesButton()
+        {
+            CurrentPage.As<HomePage>().IsAcceptCookieButtonAvailable();
+            CurrentPage.As<HomePage>().AcceptCookiesButtonClick();
+        }
+
+        [Then(@"I can no longer see the accept cookies button")]
+        public void CannotSeeTheAcceptCookiesButton()
+        {
+            CurrentPage.As<HomePage>().IsAcceptCookieButtonNotAvailable();
+        }
 
         [When(@"I click on Reset Your Password")]
         [Then(@"I click on Reset Your Password")]
@@ -501,6 +519,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<RegistrationPage>().PopulateConfirmPasswordTextBox(Keys.Tab);
         }
         [Then(@"I should refresh the current page to clear all error messages")]
+        [Then(@"I refresh the current page")]
         public void ThenIShouldRefreshTheCurrentPageToClearAllErrorMessages()
         {
             CurrentDriver.Navigate().Refresh();
