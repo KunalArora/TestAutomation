@@ -41,13 +41,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         [FindsBy(How = How.CssSelector, Using = "#cookieLawBar > div > p")]
         public IWebElement CookiesInformationBar;
 
-        //public RegistrationPage ClickCreateAccountButton()
-        //{
-        //    MoveToElement(CreateAccountButton);
-        //    CreateAccountButton.Click();
-        //    return GetInstance<RegistrationPage>(Driver);
-        //}
-
         private static readonly Dictionary<string, string> _pageTitle = new Dictionary<string, string>
         {
             {"Spain", "Inicio de sesión / Cree una cuenta"},

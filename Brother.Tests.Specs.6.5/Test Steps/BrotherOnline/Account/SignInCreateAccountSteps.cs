@@ -55,7 +55,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [Then(@"I delete all page cookies")]
         public void DeleteAllPageCookies()
         {
-            CurrentPage.As<HomePage>().DeleteAllCookies();
+            WebDriver.DeleteAllCookies();
         }
 
         [Then(@"I can see and click the accept cookies button")]
