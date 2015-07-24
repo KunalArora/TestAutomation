@@ -146,11 +146,13 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Customer or Dealer role persists after email address change (BOL-176)")]
-        [NUnit.Framework.CategoryAttribute("STAGING")]
+        [NUnit.Framework.CategoryAttribute("TEST")]
+        [NUnit.Framework.CategoryAttribute("UAT")]
         public virtual void CustomerOrDealerRolePersistsAfterEmailAddressChangeBOL_176()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer or Dealer role persists after email address change (BOL-176)", new string[] {
-                        "STAGING"});
+                        "TEST",
+                        "UAT"});
 #line 45
 this.ScenarioSetup(scenarioInfo);
 #line 46
@@ -176,7 +178,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 56
  testRunner.Then("I can verify the email change occurred", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 57
- testRunner.And("If I validate the new changes via email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("I validate the new Business Email changes via email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 58
  testRunner.Then("I can validate the update was successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 59
