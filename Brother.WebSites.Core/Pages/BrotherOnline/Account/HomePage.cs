@@ -54,12 +54,30 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         [FindsBy(How = How.CssSelector, Using = "#main > div > div > div > p:nth-child(3) > a")]
         public IWebElement ContactUsLink;
 
+        [FindsBy(How = How.CssSelector, Using = "#services > div.carousel-outer > div > div > div:nth-child(2) > p > strong > span > a")]
+        public IWebElement CreativeCenterLink;
+
+        [FindsBy(How = How.CssSelector, Using = "#cccontent_0_landingpagecontent_1_CenterRepeater_CenterOptionLink_1")]
+        public IWebElement CreativeCenterFamilyLink;
+
+        [FindsBy(How = How.CssSelector, Using = "#cccontent_0_landingpagecontent_1_CenterRepeater_CenterOptionLink_0")]
+        public IWebElement CreativeCenterBusinessLink;
+
+        [FindsBy(How = How.CssSelector, Using = "#cccontent_1_pagetop_0_RegisterLink")]
+        public IWebElement CreativeCenterRegisterLoginLink;
+
+        [FindsBy(How = How.CssSelector, Using = "#cccontent_1_singlecolumnform_1_SignUpButton")]
+        public IWebElement CreativeCenterCreateAccountLink;
+
+        [FindsBy(How = How.CssSelector, Using = "#cccontent_1_singlecolumnform_1_SignUpButton")]
+        public IWebElement CreativeCenterLogoutLink;
+
         
         private static readonly Dictionary<string, string> _pageTitle = new Dictionary<string, string>
         {
             {"Spain", "Inicio de sesión / Cree una cuenta"},
 	        {"Poland", "Zaloguj się / Utwórz konto"},    
-	        {"United Kingdom", "Sign in / Create an account"},
+	        {"United Kingdom", "Sign in / Create an account"},  
 	        {"Ireland", "Sign in / Create an account"},
         };
 
@@ -77,6 +95,43 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             return _welcomePageTitle.TryGetValue(country, out title) ? title : string.Empty;
         }
 
+        public void IsCreativeCenterLinkAvailable()
+        {
+            if (CreativeCenterLink == null)
+            {
+                throw new NullReferenceException("Unable to locate creative center link on page");
+            }
+            AssertElementPresent(CreativeCenterLink, "Reset Password Link", 80);
+        }
+
+
+        public void IsCreativeCenterFamilyLinkAvailable()
+        {
+            if (CreativeCenterFamilyLink == null)
+            {
+                throw new NullReferenceException("Unable to locate creative center family link on page");
+            }
+            AssertElementPresent(CreativeCenterFamilyLink, "Reset Password Link", 80);
+        }
+
+        public void IsCreativeCenterBusinessLinkAvailable()
+        {
+            if (CreativeCenterBusinessLink == null)
+            {
+                throw new NullReferenceException("Unable to locate creative center business link on page");
+            }
+            AssertElementPresent(CreativeCenterBusinessLink, "Reset Password Link", 80);
+        }
+
+        public void IsCreativeCenterRegisterLoginLinkAvailable()
+        {
+            if (CreativeCenterRegisterLoginLink == null)
+            {
+                throw new NullReferenceException("Unable to locate creative center register login link on page");
+            }
+            AssertElementPresent(CreativeCenterRegisterLoginLink, "Reset Password Link", 80);
+        }
+
         public void IsAcceptCookieButtonAvailable()
         {
             if (AcceptCookiesButton == null)
@@ -84,6 +139,15 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
                 throw new NullReferenceException("Unable to locate accept cookies button on page");
             }
             AssertElementPresent(AcceptCookiesButton, "Accept Cookies Button", 80);
+        }
+
+        public void IsCreativeCenterLogoutLinkAvailable()
+        {
+            if (CreativeCenterLogoutLink == null)
+            {
+                throw new NullReferenceException("Unable to locate creative center logout button on page");
+            }
+            AssertElementPresent(CreativeCenterLogoutLink, "Accept Cookies Button", 80);
         }
 
         public void IsAcceptCookieButtonNotAvailable()
@@ -165,6 +229,30 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         {
             ScrollTo(ContactUsLink);
             ContactUsLink.Click();
+        }
+
+        public void CreativeCenterLinkClick()
+        {
+            ScrollTo(CreativeCenterLink);
+            CreativeCenterLink.Click();
+        }
+
+        public void CreativeCenterFamilyLinkClick()
+        {
+            ScrollTo(CreativeCenterFamilyLink);
+            CreativeCenterFamilyLink.Click();
+        }
+
+        public void CreativeCenterRegisterLoginLinkClick()
+        {
+            ScrollTo(CreativeCenterRegisterLoginLink);
+            CreativeCenterRegisterLoginLink.Click();
+        }
+
+        public void CreativeCenterCreateAccountClick()
+        {
+            ScrollTo(CreativeCenterCreateAccountLink);
+            CreativeCenterCreateAccountLink.Click();
         }
 
        

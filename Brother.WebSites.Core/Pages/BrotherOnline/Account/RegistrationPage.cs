@@ -118,7 +118,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         [FindsBy(How = How.CssSelector, Using = "#Warnings.warning-bar p")]
         public IWebElement InvalidCredentialsErrorMessage;
-        
+
+
 
         public bool IsWarningBarPresent(int retry, int timeToWait)
         {
@@ -220,6 +221,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             AssertElementPresent(ResetPasswordLink, "Reset Password Link", 80);
         }
 
+
+
         public void ResetPasswordLinkClick()
         {
             ScrollTo(ResetPasswordLink);
@@ -282,6 +285,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             SignInButton.Click();
             return GetInstance<RegistrationPage>(Driver);
         }
+
+
 
         public void PopulateEmailAdressForChangeOfPassword(string emailAddress)
         {
