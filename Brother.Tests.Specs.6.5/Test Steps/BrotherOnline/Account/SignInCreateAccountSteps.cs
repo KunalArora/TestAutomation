@@ -104,6 +104,52 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<HomePage>().IsAcceptCookieButtonNotAvailable();
         }
 
+        [Then(@"I navigate to and click the creative center link")]
+        public void CanSeeAndClickCreativeCenterLink()
+        {
+            CurrentPage.As<HomePage>().IsCreativeCenterLinkAvailable();
+            CurrentPage.As<HomePage>().CreativeCenterLinkClick();
+        }
+
+        [Then(@"I am taken to the creative center landing page")]
+        public void AmTakenToCreativeCenterLandingPage()
+        {
+            CurrentPage.As<HomePage>().IsCreativeCenterFamilyLinkAvailable();
+            CurrentPage.As<HomePage>().IsCreativeCenterBusinessLinkAvailable();
+        }
+
+        [Then(@"I click the family center link")]
+        public void ClickTheFamilyCenterLink()
+        {
+            CurrentPage.As<HomePage>().IsCreativeCenterFamilyLinkAvailable();
+            CurrentPage.As<HomePage>().CreativeCenterFamilyLinkClick();
+        }
+
+        [Then(@"I am taken to the creative center home page")]
+        public void TakenToCreativeCenterHomepage()
+        {
+            CurrentPage.As<HomePage>().IsCreativeCenterRegisterLoginLinkAvailable();
+        }
+
+        [Then(@"I click the creative center register/login link")]
+        public void ClickTheCreativeCenterFamilyLink()
+        {            
+            CurrentPage.As<HomePage>().CreativeCenterRegisterLoginLinkClick();
+        }
+
+        [Then(@"I click the creative center create your account button")]
+        public void ClickCreateCreativeCenterAccount()
+        {            
+            CurrentPage.As<HomePage>().CreativeCenterCreateAccountClick();
+        }
+
+        [Then(@"I am logged into creative center")]
+        public void AmLoggedIntoCreativeCenter()
+        {
+            CurrentPage.As<HomePage>().IsCreativeCenterLogoutLinkAvailable();
+        }
+
+
         [When(@"I click on Reset Your Password")]
         [Then(@"I click on Reset Your Password")]
         public void ThenIClickOnResetYourPassword()
