@@ -72,6 +72,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         [FindsBy(How = How.CssSelector, Using = "#cccontent_1_singlecolumnform_1_SignUpButton")]
         public IWebElement CreativeCenterLogoutLink;
 
+        [FindsBy(How = How.Id, Using = "hide")]
+        public IWebElement NoToCreativeCenterSurveyButton;
+        
         
         private static readonly Dictionary<string, string> _pageTitle = new Dictionary<string, string>
         {
@@ -101,7 +104,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             {
                 throw new NullReferenceException("Unable to locate creative center link on page");
             }
-            AssertElementPresent(CreativeCenterLink, "Reset Password Link", 80);
+            AssertElementPresent(CreativeCenterLink, "creative center link", 80);
         }
 
 
@@ -111,7 +114,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             {
                 throw new NullReferenceException("Unable to locate creative center family link on page");
             }
-            AssertElementPresent(CreativeCenterFamilyLink, "Reset Password Link", 80);
+            AssertElementPresent(CreativeCenterFamilyLink, "creative center family link", 80);
         }
 
         public void IsCreativeCenterBusinessLinkAvailable()
@@ -120,7 +123,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             {
                 throw new NullReferenceException("Unable to locate creative center business link on page");
             }
-            AssertElementPresent(CreativeCenterBusinessLink, "Reset Password Link", 80);
+            AssertElementPresent(CreativeCenterBusinessLink, "creative center business link", 80);
         }
 
         public void IsCreativeCenterRegisterLoginLinkAvailable()
@@ -129,16 +132,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             {
                 throw new NullReferenceException("Unable to locate creative center register login link on page");
             }
-            AssertElementPresent(CreativeCenterRegisterLoginLink, "Reset Password Link", 80);
-        }
-
-        public void IsAcceptCookieButtonAvailable()
-        {
-            if (AcceptCookiesButton == null)
-            {
-                throw new NullReferenceException("Unable to locate accept cookies button on page");
-            }
-            AssertElementPresent(AcceptCookiesButton, "Accept Cookies Button", 80);
+            AssertElementPresent(CreativeCenterRegisterLoginLink, "creative center register login link", 80);
         }
 
         public void IsCreativeCenterLogoutLinkAvailable()
@@ -147,7 +141,28 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             {
                 throw new NullReferenceException("Unable to locate creative center logout button on page");
             }
-            AssertElementPresent(CreativeCenterLogoutLink, "Accept Cookies Button", 80);
+            AssertElementPresent(CreativeCenterLogoutLink, "creative center logout link", 80);
+        }
+
+        public void DoNotWantToParticipateInCreativeCenterSurvey()
+        {
+            //if (CreativeCenterLogoutLink == null)
+            //{
+             //   throw new NullReferenceException("Unable to locate creative center survey dialogue on page");
+            //}
+            //AssertElementPresent(CreativeCenterLogoutLink, "creative center survey dialogue", 80);
+
+            ScrollTo(NoToCreativeCenterSurveyButton);
+            NoToCreativeCenterSurveyButton.Click();
+        }
+        
+        public void IsAcceptCookieButtonAvailable()
+        {
+            if (AcceptCookiesButton == null)
+            {
+                throw new NullReferenceException("Unable to locate accept cookies button on page");
+            }
+            AssertElementPresent(AcceptCookiesButton, "Accept Cookies Button", 80);
         }
 
         public void IsAcceptCookieButtonNotAvailable()
