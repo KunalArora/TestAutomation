@@ -130,11 +130,13 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Sign Up for 14 day Free trial without an existing Brother Online account")]
+        [NUnit.Framework.DescriptionAttribute("Sign Up for 14 day Free trial without an existing Brother Online account(BBAU-253" +
+            "3)")]
         [NUnit.Framework.CategoryAttribute("SMOKE")]
-        public virtual void SignUpFor14DayFreeTrialWithoutAnExistingBrotherOnlineAccount()
+        public virtual void SignUpFor14DayFreeTrialWithoutAnExistingBrotherOnlineAccountBBAU_2533()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Sign Up for 14 day Free trial without an existing Brother Online account", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Sign Up for 14 day Free trial without an existing Brother Online account(BBAU-253" +
+                    "3)", new string[] {
                         "SMOKE"});
 #line 31
 this.ScenarioSetup(scenarioInfo);
