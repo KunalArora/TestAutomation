@@ -149,6 +149,11 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<HomePage>().IsCreativeCenterLogoutLinkAvailable();
         }
 
+        [Then (@"I click to not participate in the survey")]
+        public void ClickNoToCreativeCenterSurvey()
+        {
+            CurrentPage.As<HomePage>().DoNotWantToParticipateInCreativeCenterSurvey();
+        }
 
         [When(@"I click on Reset Your Password")]
         [Then(@"I click on Reset Your Password")]

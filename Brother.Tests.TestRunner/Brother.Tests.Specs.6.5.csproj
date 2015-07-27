@@ -63,6 +63,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AccountManagementExtension.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\BrotherOnline\Account\CreativeCenter.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreativeCenter.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specifications\MPSTwo\Contract\DealerCanCopyADeclineProposal.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -403,6 +408,10 @@
     <None Include="Test Specifications\BrotherOnline\Account\AccountManagementExtension.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>AccountManagementExtension.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\BrotherOnline\Account\CreativeCenter.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CreativeCenter.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\BrotherOnline\Product Registration\AddDevice.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
