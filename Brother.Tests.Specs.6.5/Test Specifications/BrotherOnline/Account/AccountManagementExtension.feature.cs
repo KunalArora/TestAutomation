@@ -259,8 +259,24 @@ testRunner.Given("I am logged onto Brother Online \"United Kingdom\" using valid
         public virtual void CustomerCannotUpdatethePersonalDetailsIfMandatoryFieldsAreLeftBlank()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer cannot updatethe personal details if mandatory fields are left blank", ((string[])(null)));
-#line 90
+#line 89
 this.ScenarioSetup(scenarioInfo);
+#line 90
+testRunner.Given("I am logged onto Brother Online \"United Kingdom\" using valid credentials", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 91
+ testRunner.When("I navigate to my account for \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 92
+ testRunner.And("I clear the first name field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 93
+ testRunner.Then("error message should appear on the first name field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 94
+ testRunner.And("I clear the last name field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 95
+ testRunner.Then("error mesage should appear on the last name field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 96
+ testRunner.And("I can navigate back to Brother Online home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 97
+ testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

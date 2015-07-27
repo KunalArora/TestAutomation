@@ -224,6 +224,26 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<MyAccountPage>().PopulateFirstNameTextBox(firstname);
         }
+        [When(@"I clear the first name field")]
+        public void WhenIClearTheFirstNameField()
+        {
+            CurrentPage.As<MyAccountPage>().ClearFirstNameTextBox();
+        }
+        [Then(@"error message should appear on the first name field")]
+        public void ThenErrorMessageShouldAppearOnTheFirstNameField()
+        {
+            CurrentPage.As<MyAccountPage>().FirstNameErrorMessageDisplayed();
+        }
+        [Then(@"I clear the last name field")]
+        public void ThenIClearTheLastNameField()
+        {
+            CurrentPage.As<MyAccountPage>().ClearLastNameTextBox();
+        }
+        [Then(@"error mesage should appear on the last name field")]
+        public void ThenErrorMesageShouldAppearOnTheLastNameField()
+        {
+            CurrentPage.As<MyAccountPage>().LastNameErrorMessageDisplayed();
+        }
         [When(@"I enter the Last Name containing (.*)")]
         public void WhenIEnterTheLastNameContaining(string lastname)
         {
