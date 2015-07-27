@@ -5,8 +5,8 @@ Feature: Account Management
 	I need to be able to have account management options
 
 # Sign into Brother Online and change password
-#@TEST @UAT @PROD
-@STAGING
+@TEST @UAT @PROD
+#@STAGING
 Scenario: Customer has created a Brother Online account and wishes to change their password (BOL-164)
 	Given I am logged onto Brother Online "United Kingdom" using valid credentials
 	When I navigate to my account for "United Kingdom"
@@ -20,8 +20,8 @@ Scenario: Customer has created a Brother Online account and wishes to change the
 	Then I can sign out of Brother Online
 
 # Create an account and use the "Forgotten Password" utility
-#@TEST @UAT @PROD
-@STAGING
+@TEST @UAT @PROD
+#@STAGING
 Scenario: Customer has created a Brother Online account but has forgotten their password and requires a new one
 	Given I am logged onto Brother Online "United Kingdom" using valid credentials
 	#Given I am logged into my Brother Online account
@@ -100,6 +100,7 @@ Scenario: Business Customer can change their business details after logging into
 	And I select number of Employees as "11 - 50" on Business Details Page
 	And I click on Update details on business details page
 	Then I can verify successfull update message appeared at the top
+	Then I can sign out of Brother Online
 
 @TEST @UAT @PROD
 # Create a new user account - Add business details for new user 
@@ -115,11 +116,12 @@ Scenario: Customer creates a new account with Brother Online and add Business de
 	And I select number of Employees as "11 - 50" on Business Details Page
 	And I click on Update details on business details page
 	Then I can verify successfull update message appeared at the top
+	Then I can sign out of Brother Online
 
-#@TEST @UAT @PROD
-@STAGING
+@TEST @UAT @PROD
+#@STAGING
 #User can add their address to their account by manually entering their personal details
-Scenario: Customer can add a new address to their acocunt by manually entering address details
+Scenario: Customer can add a new address to their account by manually entering address details
 Given I am logged onto Brother Online "United Kingdom" using valid credentials
 When I navigate to my account for "United Kingdom"	
 When I click on My Address 

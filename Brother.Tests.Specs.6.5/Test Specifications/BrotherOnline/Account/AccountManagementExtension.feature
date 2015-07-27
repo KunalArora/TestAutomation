@@ -36,7 +36,7 @@ Given I want to create a new account with Brother Online "United Kingdom"
 	And I can navigate back to Brother Online home page
 	And I can sign out of Brother Online
 
-@STAGING
+#@STAGING
 # Validate that the correct error messages are displayed when address details mandatory fields are not completed
 Scenario: Customer get the correct error messages when address details mandatory fields are not completed on my address page
 Given I am logged onto Brother Online "United Kingdom" using valid credentials

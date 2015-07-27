@@ -146,12 +146,10 @@ testRunner.Given("I want to create a new account with Brother Online \"United Ki
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Customer get the correct error messages when address details mandatory fields are" +
             " not completed on my address page")]
-        [NUnit.Framework.CategoryAttribute("STAGING")]
         public virtual void CustomerGetTheCorrectErrorMessagesWhenAddressDetailsMandatoryFieldsAreNotCompletedOnMyAddressPage()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer get the correct error messages when address details mandatory fields are" +
-                    " not completed on my address page", new string[] {
-                        "STAGING"});
+                    " not completed on my address page", ((string[])(null)));
 #line 41
 this.ScenarioSetup(scenarioInfo);
 #line 42
