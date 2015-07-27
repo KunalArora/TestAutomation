@@ -5,7 +5,7 @@ Feature: Account Management Test Extension
 	I need to be able to have account management options
 
 
-# Validate that a Business Account holder is able to swap to a Customer Account
+#Validate that a Business Account holder is able to swap to a Customer Account
 Scenario: Create a business account change the business account to be Customer Account
 Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
@@ -85,7 +85,14 @@ Given I am logged onto Brother Online "United Kingdom" using valid credentials
 	And I can navigate back to Brother Online home page
 	And I can sign out of Brother Online
 
-
-# Validate that a user with a Customer Account can amend their personal details
+#Validate that a user with a Customer Account can amend their personal details
 Scenario: Customer cannot updatethe personal details if mandatory fields are left blank
- 
+Given I am logged onto Brother Online "United Kingdom" using valid credentials
+	When I navigate to my account for "United Kingdom"
+	And I clear the first name field
+	Then error message should appear on the first name field
+	And I clear the last name field
+	Then error mesage should appear on the last name field
+	And I can navigate back to Brother Online home page
+	And I can sign out of Brother Online
+

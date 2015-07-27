@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Specialized;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
@@ -38,6 +39,12 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         [FindsBy(How = How.CssSelector, Using = ".info-bar")]
         public IWebElement InformationMessageBar;
 
+        [FindsBy(How = How.CssSelector, Using = ".error")]
+        public IWebElement FirstNameErrorMessage;
+
+        [FindsBy(How = How.CssSelector, Using = ".error")]
+        public IWebElement LastNameErrorMessage;
+        
         public void IsInvoiceSectionAvailable()
         {
             if (InvoiceSection == null)
@@ -62,6 +69,18 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             ScrollTo(FirstNameTextBox);
             FirstNameTextBox.SendKeys(firstname);
             
+        }
+        public void ClearFirstNameTextBox()
+        {   
+            ScrollTo(FirstNameTextBox);
+            FirstNameTextBox.Clear();
+            FirstNameTextBox.SendKeys(Keys.Tab);
+        }
+        public void ClearLastNameTextBox()
+        {
+            ScrollTo(LastNameTextBox);
+            LastNameTextBox.Clear();
+            LastNameTextBox.SendKeys(Keys.Tab);
         }
         public void PopulateLastNameTextBox(string lastname)
         {
@@ -102,6 +121,14 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             }
             ScrollTo(InformationMessageBar);
            // TestCheck.AssertIsEqual(displayed, InformationMessageBar.Displayed, "Information Message Bar");
+        }
+        public void FirstNameErrorMessageDisplayed()
+        {
+            TestCheck.AssertIsEqual(true, FirstNameErrorMessage.Displayed, "Is Error Message Displayed");
+        }
+        public void LastNameErrorMessageDisplayed()
+        {
+            TestCheck.AssertIsEqual(true, LastNameErrorMessage.Displayed, "Is Error Message Displayed");
         }
     }
 }
