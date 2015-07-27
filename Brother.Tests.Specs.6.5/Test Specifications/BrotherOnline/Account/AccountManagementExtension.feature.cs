@@ -255,6 +255,17 @@ testRunner.Given("I am logged onto Brother Online \"United Kingdom\" using valid
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Customer cannot updatethe personal details if mandatory fields are left blank")]
+        public virtual void CustomerCannotUpdatethePersonalDetailsIfMandatoryFieldsAreLeftBlank()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer cannot updatethe personal details if mandatory fields are left blank", ((string[])(null)));
+#line 90
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

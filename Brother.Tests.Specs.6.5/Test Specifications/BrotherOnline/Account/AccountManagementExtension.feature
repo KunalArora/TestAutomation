@@ -84,4 +84,8 @@ Given I am logged onto Brother Online "United Kingdom" using valid credentials
 	And I get the error message displayed on Business sector field
 	And I can navigate back to Brother Online home page
 	And I can sign out of Brother Online
+
+
+# Validate that a user with a Customer Account can amend their personal details
+Scenario: Customer cannot updatethe personal details if mandatory fields are left blank
  
