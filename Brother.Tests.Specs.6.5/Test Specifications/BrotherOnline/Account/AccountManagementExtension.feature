@@ -1,11 +1,11 @@
-﻿@TEST @UAT
+﻿@TEST @UAT @PROD
 Feature: Account Management Test Extension
 	In order to change my Brother Online account details
 	As a customer
 	I need to be able to have account management options
 
 
-# Validate that a Business Account holder is able to swap to a Customer Account
+#Validate that a Business Account holder is able to swap to a Customer Account
 Scenario: Create a business account change the business account to be Customer Account
 Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
@@ -33,3 +33,66 @@ Given I want to create a new account with Brother Online "United Kingdom"
 	And I declare that I do not use this account for business on my account page
 	And I click on Update details on business details page
 	Then I can verify successfull update message appeared at the top
+	And I can navigate back to Brother Online home page
+	And I can sign out of Brother Online
+
+#@STAGING
+# Validate that the correct error messages are displayed when address details mandatory fields are not completed
+Scenario: Customer get the correct error messages when address details mandatory fields are not completed on my address page
+Given I am logged onto Brother Online "United Kingdom" using valid credentials
+	When I navigate to my account for "United Kingdom"	
+	When I click on My Address 
+	And I click on Add a New Address Button 
+	And I enter tab on the first name field
+	Then I should see an error message on the first name field on my address page
+	And I enter tab on last name field
+	Then I should see an error message on Last name field on my address page
+	And I enter tab on postcode field
+	Then I should see an error message on postcode field on my address page
+	And I enter tab on House number 
+	Then I should an error message on house number field on my address page
+	And I enter tab on address line one
+	Then I should see an error message on Address Line one field on my address page
+	And I enter tab on City/Town field
+	Then I should see an error message on City/town field on my address page
+	And I enter tab on Phone number field
+	Then I should see an error message on phone number field on my address page
+	And I can navigate back to Brother Online home page
+	And I can sign out of Brother Online
+
+
+# Validate that an existing user has the option to change their sign in preferences to social login 
+Scenario: Customer has the option to change their sign in preferences to social login
+Given I am logged onto Brother Online "United Kingdom" using valid credentials
+	When I navigate to my account for "United Kingdom"	
+	And I click on Sign In Details
+	When I click on Social Login Radio button
+	Then I should be able to see social login buttons
+	And I can navigate back to Brother Online home page
+	And I can sign out of Brother Online
+
+
+# Validate that the correct error messages are displayed when business details mandatory fields are not completed
+Scenario: : Customer get the correct error message when business details mandator fields are not completed
+Given I am logged onto Brother Online "United Kingdom" using valid credentials
+	When I navigate to my account for "United Kingdom"	
+	And I clicked on Business Details
+	And I am redirected to the Business Details Page
+	And I declare that I do use this account for business on my account page
+	And I click on Update details on business details page
+	Then I get the error message displayed on your company name field
+	And I get the error message displayed on Business sector field
+	And I can navigate back to Brother Online home page
+	And I can sign out of Brother Online
+
+#Validate that a user with a Customer Account can amend their personal details
+Scenario: Customer cannot updatethe personal details if mandatory fields are left blank
+Given I am logged onto Brother Online "United Kingdom" using valid credentials
+	When I navigate to my account for "United Kingdom"
+	And I clear the first name field
+	Then error message should appear on the first name field
+	And I clear the last name field
+	Then error mesage should appear on the last name field
+	And I can navigate back to Brother Online home page
+	And I can sign out of Brother Online
+

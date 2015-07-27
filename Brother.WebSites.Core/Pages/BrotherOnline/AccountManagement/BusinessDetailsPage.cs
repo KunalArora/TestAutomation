@@ -47,6 +47,13 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
 
         public string UpdateButtonId = "#content_2_innercontent_1_SubmitButton";
 
+        [FindsBy(How = How.Id, Using = "content_2_innercontent_1_CompanyNameRequiredValidator")]
+        public IWebElement CompanyNameErrorMessage;
+
+        [FindsBy(How = How.Id, Using = "content_2_innercontent_1_valBusinessSector")]
+        public IWebElement BusinessSectorErrorMessage;
+        
+        
         public void IsUpdateButtonAvailable()
         {
             IWebElement updateButton = null;
@@ -126,6 +133,14 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             }
             ScrollTo(InformationMessageBar);
           //  TestCheck.AssertIsEqual(displayed, InformationMessageBar.Displayed, "Information Message Bar");
+        }
+        public void CompanyNameErrorMessageDisplayed()
+        {
+            TestCheck.AssertIsEqual(true, CompanyNameErrorMessage.Displayed, "Is Error Message Displayed");
+        }
+        public void BusinessSectorErrorMessageDisplayed()
+        {
+            TestCheck.AssertIsEqual(true, BusinessSectorErrorMessage.Displayed, "Is Error Message Displayed");
         }
     }
 }

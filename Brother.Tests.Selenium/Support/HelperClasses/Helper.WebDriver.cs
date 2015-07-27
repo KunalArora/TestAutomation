@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Threading;
 using Brother.Tests.Selenium.Lib.Support.Misc;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.UI;
 
 namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
@@ -28,6 +30,29 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         //{
         //    action.Flick()
         //}
+
+        public static string GetSessionInfo()
+        {
+            var sessionId = (string)((RemoteWebDriver)TestController.CurrentDriver).Capabilities.GetCapability("webdriver.remote.sessionid");
+            return sessionId;
+        }
+
+        /// <summary>
+        /// Removes all browser cookies
+        /// </summary>
+        public static void DeleteAllCookies()
+        {
+            TestController.CurrentDriver.Manage().Cookies.DeleteAllCookies();
+        }
+
+        public static void ShowAllCookies()
+        {
+            var cookies = TestController.CurrentDriver.Manage().Cookies.AllCookies;
+            foreach (var cookie in cookies)
+            {
+                MsgOutput(string.Format("COOKIE INFO: [{0}]", cookie));                                
+            }
+        }
 
         public static TimeSpan SetWebDriverImplicitTimeout(TimeSpan timeout)
         {

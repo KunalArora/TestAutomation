@@ -276,8 +276,8 @@ Scenario: Validate that the correct error messages are displayed when Terms and 
 	Then I should get an error message displayed on the Terms and Conditions
 
 
-# Check mandatory email field when creating business account
-Scenario: Validate that an error message is displayed for mandatory email field if it is missing during creation of a business account
+# Check mandatory email/password/first name/ last name/company name/business sector fields when creating business account
+Scenario: Validate that an error message is displayed for all mandatory fields during creation of a business account
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
 	And I am redirected to the Brother Login/Register page
@@ -285,58 +285,18 @@ Scenario: Validate that an error message is displayed for mandatory email field 
 	And I declare that I do use this account for business
 	When I press tab in the email address field
 	Then I should see an error message
-
-# Check mandatory password field when creating business account
-Scenario: Validate that an error message is displayed for mandatory password field if it is missing during creation of a business account
-	Given I want to create a new account with Brother Online "United Kingdom"
-	When I click on Create Account for "United Kingdom"
-	And I am redirected to the Brother Login/Register page
-	And I have Checked No I Do Not Have An Account Checkbox
-	And I declare that I do use this account for business
 	When I press tab in the password field
 	Then I should see an error message on the password field
-
-# Check mandatory first name field when creating a business account
-Scenario: Validate that an error message is displayed for mandatory first name field if it is missing during creation of a business account
-	Given I want to create a new account with Brother Online "United Kingdom"
-	When I click on Create Account for "United Kingdom"
-	And I am redirected to the Brother Login/Register page
-	And I have Checked No I Do Not Have An Account Checkbox
-	And I declare that I do use this account for business
 	When I press tab in the first name field
 	Then I should see an error message on the first name field
-
-# Check mandatory last name field when creating a business account
-Scenario: Validate that an error message is displayed for mandatory last name field if it is missing during creation of a business account
-	Given I want to create a new account with Brother Online "United Kingdom"
-	When I click on Create Account for "United Kingdom"
-	And I am redirected to the Brother Login/Register page
-	And I have Checked No I Do Not Have An Account Checkbox
-	And I declare that I do use this account for business
 	When I press tab in the last name field
 	Then I should see an error message on the last name field
-
-# Check mandatory company name field when creating a business account
-Scenario: Validate that an error message is displayed for mandatory company name field if it is missing during creation of a business account
-	Given I want to create a new account with Brother Online "United Kingdom"
-	When I click on Create Account for "United Kingdom"
-	And I am redirected to the Brother Login/Register page
-	And I have Checked No I Do Not Have An Account Checkbox
-	And I declare that I do use this account for business
 	When I press tab in the company name field
 	Then I should see an error message on the company name field
-	
-# Check mandatory business sector field when creating a business account
-Scenario: Validate that an error message is displayed for mandatory business sector field if it is missing during creation of a business account
-	Given I want to create a new account with Brother Online "United Kingdom"
-	When I click on Create Account for "United Kingdom"
-	And I am redirected to the Brother Login/Register page
-	And I have Checked No I Do Not Have An Account Checkbox
-	And I declare that I do use this account for business
 	When I press tab in the business sector field
 	Then I should see an error message on the business sector field
 
-# Check mandatory terms and conditions are accepted when creating a business account
+# Check mandatory terms and conditions when creating a business account
 Scenario: Validate that an error message is displayed for mandatory terms and conditions if they are not accepted during creation of a business account
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
@@ -434,6 +394,7 @@ Scenario: User account which is not validated does not permit device registratio
 	Then I should be able to log into "United Kingdom" Brother Online using my account details
 	When I have clicked on Add Device
 	Then I should see the account not validated error message preventing device registration
+	And I can sign out of Brother Online
 
 # Check that a business account which is not validated does not have the ability to register a device		
 Scenario: Business account which is not validated does not permit device registration
@@ -460,6 +421,7 @@ Scenario: Business account which is not validated does not permit device registr
 	Then I should be able to log into "United Kingdom" Brother Online using my account details
 	When I have clicked on Add Device
 	Then I should see the account not validated error message preventing device registration
+	And I can sign out of Brother Online
 
 # Accounts created on DV2, QAS and Prod for the following test - existinguseraccount@guerrillamail.com/existingbusinessaccount@guerrillamail.com/Password100
 # Check that existing brother online user and business account holders cannot login with valid/invalid username/password combinations
@@ -498,16 +460,88 @@ Scenarios:
 	| "     existinguseraccount@guerrillamail.com    "		| "Password100" |
 	| "ExIsTiNgBuSiNeSsAcCoUnT@gUeRrIlLaMaIl.CoM"			| "Password100" |
 
+# Check maximun username(241) and password(30) length when creating a user account
+Scenario: Validate that a user account can be created using the maximun 241 username and 30 password character lengths (Failing due to BBAU-2522)																				
+	Given I want to create a new account with Brother Online "United Kingdom"
+	When I click on Create Account for "United Kingdom"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I fill in the registration information using a maximum length email address 
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Password        | Max30CharacterPasswooooooooord |
+	| ConfirmPassword | Max30CharacterPasswooooooooord |
 
+	And I have Agreed to the Terms and Conditions
+	And I declare that I do not use this account for business
+	When I press Create Your Account
+	Then I should see my account confirmation page
+	And When I Click Go Back
+	And Once I have Validated an Email was received and verified my account
+	Then I should be able to log into "United Kingdom" Brother Online using my account details
+	And I can sign out of Brother Online
+	Then I am redirected to the Brother Home Page
 
-# Check min and max username length when creating a user account
-# Check min and max password length when creating a business account
+# Check maximun username(241) and password(30) length when creating a business account
+Scenario: Validate that a business account can be created using the maximun 241 username and 30 password character lengths (Failing due to BBAU-2522)																				
+	Given I want to create a new account with Brother Online "United Kingdom"
+	When I click on Create Account for "United Kingdom"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I fill in the registration information using a maximum length email address 
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Password        | Max30CharacterPasswooooooooord |
+	| ConfirmPassword | Max30CharacterPasswooooooooord |
 
+	And I declare that I do use this account for business
+	And I add my company name as "AutoTestLtd"
+	And I select my Business Sector as "IT and telecommunications services"
+	And I select number of Employees as "11 - 50"
+	When I add my company VAT number as "GB145937540" 
+	And I have Agreed to the Terms and Conditions	
+	When I press Create Your Account
+	Then I should see my account confirmation page
+	And When I Click Go Back
+	And Once I have Validated an Email was received and verified my account
+	Then I should be able to log into "United Kingdom" Brother Online using my account details
+	And I can sign out of Brother Online
+	Then I am redirected to the Brother Home Page
+
+# Validate that a user is able to accept the cookie information on first visit to brother online to prevent it from being displayed again
+Scenario: Validate that a user can view cookie information on first visit to brother online and once accepted does not see it again
+	Given I launch Brother Online for "United Kingdom"
+	Then I delete all page cookies
+	And I refresh the current page
+	Then I can see and click the accept cookies button
+	And I refresh the current page
+	Then I can no longer see the accept cookies button
+
+# Validate that a user always sees the cookie information bar on subsequent visits to the site unless the information is accepted
+Scenario: Validate that a user of Brother online will always see cookie information on subsequent visits to the site if cookies are not accepted
+	Given I launch Brother Online for "United Kingdom"
+	Then I delete all page cookies
+	And I refresh the current page
+	Then I can see the cookies information bar
+	And I refresh the current page again
+	Then I continue to see the cookies information bar
+
+# Validate that a user can click to find out more information about the cookie privacy policy and then go on to view company terms and conditions
+Scenario: Validate that a user of Brother online can view the cookie privacy policy and terms and conditions information prior to accepting cookies
+	Given I launch Brother Online for "United Kingdom"
+	Then I delete all page cookies
+	And I refresh the current page
+	Then I can see the cookies information bar
+	And I can see and click the find out more button on the cookies information bar
+	Then I am navigated to the privacy policy for cookies
+	And I click to view the company terms and conditions
+	Then I am navigated to the company terms and conditions page
 
 @ignore
 Scenario: Log in as a Printer On dealer and ensure that they can see the required permissions BBAU-2189
 # (ensure that a customer cannot see the same permissions)
-
 
 # Change Personal details in your created account, go to my account and add your new Email address
 Scenario: Business Customer can change their Email Address   (BBAU - 2377, 2355)
@@ -538,7 +572,7 @@ Scenario: Business Customer can change their Email Address   (BBAU - 2377, 2355)
 	And If I enter the current password for email change
 	And I click on Update details
 	Then I can verify the email change occurred
-	And If I validate the new changes via email
+	Then I validate the new Business Email changes via email 
 	Then I can validate the update was successful
 	And I can sign out of Brother Online
 	Then If I sign back into Brother Online "United Kingdom" using the same credentials

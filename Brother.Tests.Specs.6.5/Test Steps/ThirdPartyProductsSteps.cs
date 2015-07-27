@@ -49,16 +49,30 @@ namespace Brother.Tests.Specs
                 Helper.MsgOutput("Skipping Email Validation for this step");
             }
         }
-        [Then(@"If I validate the new changes via email")]
-        [When(@"I validate the new changes via email")]
-        public void ThenIfIValidateTheNewChangesViaEmail()
+
+        [When(@"I validate the new Customer Email changes via email")]
+        [Then(@"I validate the new Customer Email changes via email")]
+        public void WhenIValidateTheNewCustomerEmailChangesViaEmail()
         {
             if (Email.CheckEmailPackage("GuerrillaEmail"))
             {
                 LaunchGuerrillaEmail(string.Empty);
                 CurrentPage.As<GuerillaEmailConfirmationPage>().SelectEmail("Update");
                 CurrentPage.As<GuerillaEmailConfirmationPage>().CheckAllEmailLinks();
-                NextPage = CurrentPage.As<GuerillaEmailConfirmationPage>().ValidateAccountDetailsChangeEmail();
+                NextPage = CurrentPage.As<GuerillaEmailConfirmationPage>().ValidateCustomerAccountDetailsChangeEmail();
+            }
+        }
+
+        [When(@"I validate the new Business Email changes via email")]
+        [Then(@"I validate the new Business Email changes via email")]
+        public void WhenIValidateTheNewBusinessEmailChangesViaEmail()
+        {
+            if (Email.CheckEmailPackage("GuerrillaEmail"))
+            {
+                LaunchGuerrillaEmail(string.Empty);
+                CurrentPage.As<GuerillaEmailConfirmationPage>().SelectEmail("Update");
+                CurrentPage.As<GuerillaEmailConfirmationPage>().CheckAllEmailLinks();
+                NextPage = CurrentPage.As<GuerillaEmailConfirmationPage>().ValidateBusinessAccountDetailsChangeEmail();
             }
         }
 
@@ -108,7 +122,8 @@ namespace Brother.Tests.Specs
         [Then(@"Once I have Validated an Email was received and verified my account")]
         public void ThenOnceIHaveValidatedAnEmailWasReceivedAndVerifiedMyAccount()
         {
-            Thread.Sleep(new TimeSpan(0, 0, 0, 30)); //  deliberate wait for account to finalise before validation
+            // NEED TO REMOVE THIS AND REPLACE WITH A DYNAMIC WAIT
+            Thread.Sleep(new TimeSpan(0, 0, 0, 10)); //  deliberate wait for account to finalise before validation
             ValidateAccountEmail();
         }
 

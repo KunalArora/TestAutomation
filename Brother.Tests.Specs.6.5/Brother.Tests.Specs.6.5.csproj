@@ -63,6 +63,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AccountManagementExtension.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\BrotherOnline\Account\CreativeCenter.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreativeCenter.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specifications\MPSTwo\Contract\DealerCanCopyADeclineProposal.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -183,11 +188,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ProductPurchaseValidation.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Test Specifications\BrotherOnline\SiteAccess\SiteAccess_TestSites.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SiteAccess_TestSites.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Specifications\BrotherMainSite\SuppliesAndAccessories\PurchaseASupply.feature.cs">
       <AutoGen>True</AutoGen>
@@ -409,6 +409,10 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>AccountManagementExtension.feature.cs</LastGenOutput>
     </None>
+    <None Include="Test Specifications\BrotherOnline\Account\CreativeCenter.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CreativeCenter.feature.cs</LastGenOutput>
+    </None>
     <None Include="Test Specifications\BrotherOnline\Product Registration\AddDevice.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>AddDevice.feature.cs</LastGenOutput>
@@ -416,10 +420,6 @@
     <None Include="Test Specifications\BrotherOnline\ProductPurchaseValidation.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ProductPurchaseValidation.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\BrotherOnline\SiteAccess\SiteAccess_TestSites.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>SiteAccess_TestSites.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\BrotherMainSite\SuppliesAndAccessories\PurchaseASupply.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

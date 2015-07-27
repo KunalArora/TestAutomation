@@ -16,22 +16,19 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public override string DefaultTitle
         {
-            get { return BrotherOnlineHomePages.Default["LoginRegisterPage"].ToString(); }
+            get { return string.Empty; }
         }
 
         public static string PageTitle
         {
-            get { return BrotherOnlineHomePages.Default["LoginRegisterPage"].ToString(); }
+            get { return string.Empty; }
         }
 
-//Throwing warning as its not used so taking out for now
-//        private string accountVerificationMessage = "content_0_twocolumnsformtop_2_VerificationSuccess";
-//        private string accountVerificationMessageClass = ".box-out.email-success";
-
-        [FindsBy(How = How.Id, Using = "SignInButton")]
+        [FindsBy(How = How.CssSelector, Using = ".content.cf .content-box.login-register.cf .box-out.regular-sign-in.cf .generic-form #form-sign-in .button-blue")]
         public IWebElement SignInButton;
 
-        [FindsBy(How = How.Id, Using = "content_0_twocolumnsformright_0_SignUpButton")]
+        [FindsBy(How = How.CssSelector, Using = ".content.cf .content-box.login-register.cf .box-out.regular-sign-in.cf .generic-form #form-sign-up .button-blue")]
+//        [FindsBy(How = How.Id, Using = "content_0_twocolumnsformright_0_SignUpButton")]
         public IWebElement CreateYourAccountButton;
 
         [FindsBy(How = How.Id, Using = "FirstNameTextBox")]
@@ -121,7 +118,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         [FindsBy(How = How.CssSelector, Using = "#Warnings.warning-bar p")]
         public IWebElement InvalidCredentialsErrorMessage;
-        
+
+
 
         public bool IsWarningBarPresent(int retry, int timeToWait)
         {
@@ -188,9 +186,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public void ResetYourPasswordButtonClick()
         {
-            if (!WaitForElementToExistByCssSelector("#content_1_ResetPasswordButton.button-blue", 5, 5))
+            if (!WaitForElementToExistByCssSelector(".content.cf .wrapper .content-box.password-reset.cf .content-unit.six .box-out.reset-pass-container .generic-form .button-blue", 5, 5))
             {
-                ResetYourPasswordButton = Driver.FindElement(By.CssSelector("#content_1_ResetPasswordButton.button-blue"));
+                ResetYourPasswordButton = Driver.FindElement(By.CssSelector(".content.cf .wrapper .content-box.password-reset.cf .content-unit.six .box-out.reset-pass-container .generic-form .button-blue"));
             }
             ScrollTo(ResetYourPasswordButton);
             ResetYourPasswordButton.Click();
@@ -222,6 +220,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             }
             AssertElementPresent(ResetPasswordLink, "Reset Password Link", 80);
         }
+
+
 
         public void ResetPasswordLinkClick()
         {
@@ -285,6 +285,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             SignInButton.Click();
             return GetInstance<RegistrationPage>(Driver);
         }
+
+
 
         public void PopulateEmailAdressForChangeOfPassword(string emailAddress)
         {
@@ -392,6 +394,21 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             EmailAddressTextBox.SendKeys(Keys.Tab);
             TestCheck.AssertIsEqual(emailAddress, GetTextBoxValue("Email"), "Email Text Box");
         }
+
+        public void PopulateEmailAddressTextBoxWithMaxLengthEmail(string emailAddress)
+        {
+            TestCheck.AssertIsEqual(false, EmailAddressErrorMessage.Displayed, "Is Email Error message displayed");
+            if (emailAddress.Equals(string.Empty))
+            {
+                emailAddress = Email.GenerateUniqueMaxLengthEmailAddress();
+            }
+
+            EmailAddressTextBox.Clear();
+            EmailAddressTextBox.SendKeys(emailAddress);
+            EmailAddressTextBox.SendKeys(Keys.Tab);
+            TestCheck.AssertIsEqual(emailAddress, GetTextBoxValue("Email"), "Email Text Box");
+        }
+
         
         public void EmptyEmailAddressTextBox()
         {

@@ -52,6 +52,108 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             Helper.Password = newPassword;
         }
 
+        [Then(@"I delete all page cookies")]
+        public void DeleteAllPageCookies()
+        {
+            WebDriver.DeleteAllCookies();
+        }
+
+        [Then(@"I can see and click the accept cookies button")]
+        public void CanSeeAndClickTheAcceptCookiesButton()
+        {
+            CurrentPage.As<HomePage>().IsAcceptCookieButtonAvailable();
+            CurrentPage.As<HomePage>().AcceptCookiesButtonClick();
+        }
+
+        [Then(@"I can see the cookies information bar")]
+        [Then(@"I continue to see the cookies information bar")]
+        public void CanSeeTheCookiesInformationBar()
+        {
+            CurrentPage.As<HomePage>().IsCookiesInformationBarAvailable();
+        }
+
+        [Then(@"I can see and click the find out more button on the cookies information bar")]
+        public void CanSeeAndClickTheFindOutMoreCookiesButton()
+        {
+            CurrentPage.As<HomePage>().IsFindOutMoreCookiesButtonAvailable();
+            CurrentPage.As<HomePage>().FindOutMoreCookiesButtonClick();
+        }
+
+        [Then(@"I click to view the company terms and conditions")]
+        public void CanSeeAndClickTheCompanyTermsAndConditionsLink()
+        {
+            CurrentPage.As<HomePage>().IsCompanyTermsAndConditionsLinkAvailable();
+            CurrentPage.As<HomePage>().CompanyTermsAndConditionsLinkClick();
+        }
+
+        [Then(@"I am navigated to the company terms and conditions page")]
+        public void IsNavigatedToTheCompanyTermsAndConditionsPage()
+        {
+            CurrentPage.As<HomePage>().IsContactUsLinkAvailable();
+        }
+
+        [Then(@"I am navigated to the privacy policy for cookies")]
+        public void IsNavigatedToThePrivacyPolicyPage()
+        {
+            CurrentPage.As<HomePage>().IsCompanyTermsAndConditionsLinkAvailable();
+        }
+
+        [Then(@"I can no longer see the accept cookies button")]
+        public void CannotSeeTheAcceptCookiesButton()
+        {
+            CurrentPage.As<HomePage>().IsAcceptCookieButtonNotAvailable();
+        }
+
+        [Then(@"I navigate to and click the creative center link")]
+        public void CanSeeAndClickCreativeCenterLink()
+        {
+            CurrentPage.As<HomePage>().IsCreativeCenterLinkAvailable();
+            CurrentPage.As<HomePage>().CreativeCenterLinkClick();
+        }
+
+        [Then(@"I am taken to the creative center landing page")]
+        public void AmTakenToCreativeCenterLandingPage()
+        {
+            CurrentPage.As<HomePage>().IsCreativeCenterFamilyLinkAvailable();
+            CurrentPage.As<HomePage>().IsCreativeCenterBusinessLinkAvailable();
+        }
+
+        [Then(@"I click the family center link")]
+        public void ClickTheFamilyCenterLink()
+        {
+            CurrentPage.As<HomePage>().IsCreativeCenterFamilyLinkAvailable();
+            CurrentPage.As<HomePage>().CreativeCenterFamilyLinkClick();
+        }
+
+        [Then(@"I am taken to the creative center home page")]
+        public void TakenToCreativeCenterHomepage()
+        {
+            CurrentPage.As<HomePage>().IsCreativeCenterRegisterLoginLinkAvailable();
+        }
+
+        [Then(@"I click the creative center register/login link")]
+        public void ClickTheCreativeCenterFamilyLink()
+        {            
+            CurrentPage.As<HomePage>().CreativeCenterRegisterLoginLinkClick();
+        }
+
+        [Then(@"I click the creative center create your account button")]
+        public void ClickCreateCreativeCenterAccount()
+        {            
+            CurrentPage.As<HomePage>().CreativeCenterCreateAccountClick();
+        }
+
+        [Then(@"I am logged into creative center")]
+        public void AmLoggedIntoCreativeCenter()
+        {
+            CurrentPage.As<HomePage>().IsCreativeCenterLogoutLinkAvailable();
+        }
+
+        [Then (@"I click to not participate in the survey")]
+        public void ClickNoToCreativeCenterSurvey()
+        {
+            CurrentPage.As<HomePage>().DoNotWantToParticipateInCreativeCenterSurvey();
+        }
 
         [When(@"I click on Reset Your Password")]
         [Then(@"I click on Reset Your Password")]
@@ -264,6 +366,18 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<RegistrationPage>().PopulateConfirmPasswordTextBox(form.Password);
             WhenIEnterAValidEmailAddress(string.Empty); // Auto Generates with an empty string
         }
+
+        [When(@"I fill in the registration information using a maximum length email address")]
+        public void WhenIFillInTheRegistrationInformationUsingAMaxLengthEmailAddress(Table table)
+        {
+            dynamic form = table.CreateDynamicInstance();
+            CurrentPage.As<RegistrationPage>().PopulateFirstNameTextBox(form.FirstName);
+            CurrentPage.As<RegistrationPage>().PopulateLastNameTextBox(form.LastName);
+            CurrentPage.As<RegistrationPage>().PopulatePasswordTextBox(form.Password);
+            CurrentPage.As<RegistrationPage>().PopulateConfirmPasswordTextBox(form.Password);    
+            WhenIEnterAValidMaxLengthEmailAddress(string.Empty); // Auto Generates with an empty string
+        }
+
         [When(@"I fill in the registration information excluding email address")]
         public void WhenIFillInTheRegistrationInformationExcludingEmailAddress(Table table)
         {
@@ -489,6 +603,8 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<RegistrationPage>().PopulateConfirmPasswordTextBox(Keys.Tab);
         }
         [Then(@"I should refresh the current page to clear all error messages")]
+        [Then(@"I refresh the current page")]
+        [Then(@"I refresh the current page again")]
         public void ThenIShouldRefreshTheCurrentPageToClearAllErrorMessages()
         {
             CurrentDriver.Navigate().Refresh();
@@ -549,6 +665,12 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         public void WhenIEnterAValidEmailAddress(string validEmailAddress)
         {
             CurrentPage.As<RegistrationPage>().PopulateEmailAddressTextBox(validEmailAddress);
+        }
+
+        [When(@"I enter a valid maximum length Email Address ""(.*)""")]
+        public void WhenIEnterAValidMaxLengthEmailAddress(string validEmailAddress)
+        {
+            CurrentPage.As<RegistrationPage>().PopulateEmailAddressTextBoxWithMaxLengthEmail(validEmailAddress);
         }
 
         [When(@"I enter a valid Password ""(.*)""")]

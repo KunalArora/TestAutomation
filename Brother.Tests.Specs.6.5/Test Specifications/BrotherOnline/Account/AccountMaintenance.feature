@@ -36,7 +36,6 @@ Scenarios:
 	| Spain          | "ThisIsAVeryLargeEmailAddressWhichExceeds241CharactersAndThisIsNotSupportedaaaaaaaaaaaThisIsAVeryLargeEmailAddressWhichExceeds241CharactersAndThisIsNotSupportedaaaaaaaaaaaThisIsAVeryLargeEmailAddressWhichExceed241CharactersExceed241Characters@mailinator.com" |
 
 #Change Personal details in your created account, go to my account and add your new Email address
-
 Scenario Outline: Customer create a new account and amend their personal details by going into my account page
 	Given I am logged onto Brother Online "United Kingdom" using valid credentials
 	When I navigate to my account for "United Kingdom"
@@ -44,6 +43,8 @@ Scenario Outline: Customer create a new account and amend their personal details
 	And I enter the Last Name containing <LastName>
 	And I click on update details
 	Then my personal details should get updated
+	Then I can navigate back to Brother Online home page
+	And I can sign out of Brother Online
 
 Scenarios: 
 	| FirstName						|LastName							|

@@ -146,7 +146,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             return Environment.GetEnvironmentVariable("AutoTestRunTimeEnv", EnvironmentVariableTarget.Machine) ?? RunTimeDefault;
         }
 
-        public static bool SetRunTimeEnv(string runTimeEnv)
+       public static bool SetRunTimeEnv(string runTimeEnv)
         {
             Environment.SetEnvironmentVariable("AutoTestRunTimeEnv", runTimeEnv, EnvironmentVariableTarget.Machine);
             var environmentVariable = Environment.GetEnvironmentVariable("AutoTestRunTimeEnv", EnvironmentVariableTarget.Machine);
@@ -191,8 +191,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             return url.ToLower().Replace("http", "https");
         }
 
-        
-        public static void MsgOutput(string message)
+       public static void MsgOutput(string message)
         {
             #if DEBUG
                 Trace.WriteLine(String.Format("@@TESTMSG - {0}", message));
@@ -461,7 +460,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             MsgOutput(string.Format("Successfully Deleted {0} old SnapShots", snapShotCount));
         }
 
-        public static void TakeSnapshot()
+        public static void TakeSnapshot(string additionalInformation)
         {
             if (!Directory.Exists(SnapShotDirectory()))
             {
@@ -501,7 +500,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             try
             {
                 CurrentSnapShot = snapshotLocation;
-                MsgOutput("Taking Snapshot......");
+                MsgOutput(string.Format("Taking Snapshot ->[{0}]<-", additionalInformation));
                 ((ITakesScreenshot)TestController.CurrentDriver).GetScreenshot().SaveAsFile(snapshotLocation, ImageFormat.Jpeg);
                 MsgOutput("Snapshot Location", snapshotLocation);
             }

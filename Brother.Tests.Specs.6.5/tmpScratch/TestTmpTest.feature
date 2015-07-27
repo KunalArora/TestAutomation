@@ -1,4 +1,4 @@
-﻿@UAT @TEST
+﻿@IGNORE @UAT @TEST
 Feature: TestTmpTest
 	In order to test snippets of code
 	As a Developer

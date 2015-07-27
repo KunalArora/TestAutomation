@@ -6,6 +6,7 @@ Feature: Account Management
 
 # Sign into Brother Online and change password
 @TEST @UAT @PROD
+#@STAGING
 Scenario: Customer has created a Brother Online account and wishes to change their password (BOL-164)
 	Given I am logged onto Brother Online "United Kingdom" using valid credentials
 	When I navigate to my account for "United Kingdom"
@@ -19,8 +20,8 @@ Scenario: Customer has created a Brother Online account and wishes to change the
 	Then I can sign out of Brother Online
 
 # Create an account and use the "Forgotten Password" utility
-#@TEST @UAT @PROD
-@STAGING
+@TEST @UAT @PROD
+#@STAGING
 Scenario: Customer has created a Brother Online account but has forgotten their password and requires a new one
 	Given I am logged onto Brother Online "United Kingdom" using valid credentials
 	#Given I am logged into my Brother Online account
@@ -40,6 +41,7 @@ Scenario: Customer has created a Brother Online account but has forgotten their 
 # Instant Ink role used as a baseline
 # ***-need to add additional scenario (see ticket number for steps) or ValidateRole Feature test
 @TEST @UAT
+#@STAGING
 Scenario: Customer or Dealer role persists after email address change (BOL-176)
 	Given I am logged onto Brother Online "United Kingdom" using valid credentials
 	Then I can sign out of Brother Online
@@ -52,7 +54,7 @@ Scenario: Customer or Dealer role persists after email address change (BOL-176)
 	And If I enter the current password for email change
 	And I click on Update details
 	Then I can verify the email change occurred
-	And If I validate the new changes via email
+	Then I validate the new Business Email changes via email 
 	Then I can validate the update was successful
 	And I can sign out of Brother Online
 	Then If I sign back into Brother Online "United Kingdom" using the same credentials
@@ -60,8 +62,8 @@ Scenario: Customer or Dealer role persists after email address change (BOL-176)
 	Then I can sign out of Brother Online
 
 # Create an account and sign in, change registered email address and sign out, re-sign in again using new address
-#@TEST @UAT @PROD 
-@STAGING
+@TEST @UAT @PROD 
+#@STAGING
 Scenario Outline: Customer can change their Brother Online email address after registration (BBAU - 2337)
 	Given I am logged onto Brother Online "<Country>" using valid credentials
 	When I navigate to my account for "<Country>"
@@ -70,7 +72,7 @@ Scenario Outline: Customer can change their Brother Online email address after r
 	And If I enter the current password for email change
 	And I click on Update details
 	Then I can verify the email change occurred
-	When I validate the new changes via email
+	When I validate the new Customer Email changes via email
 	And I can sign out of Brother Online
 	Then If I sign back into Brother Online "<Country>" using the same credentials
 	When I navigate to my account for "<Country>"
@@ -98,17 +100,14 @@ Scenario: Business Customer can change their business details after logging into
 	And I select number of Employees as "11 - 50" on Business Details Page
 	And I click on Update details on business details page
 	Then I can verify successfull update message appeared at the top
-	
+	Then I can sign out of Brother Online
 
-# Create a new user account - Add business details for new user (Should not be executed on Production)
+@TEST @UAT @PROD
+# Create a new user account - Add business details for new user 
 Scenario: Customer creates a new account with Brother Online and add Business details in My account page
 	Given I am logged onto Brother Online "United Kingdom" using valid credentials
-	Then I can sign out of Brother Online
-	And If I grant the user account the "Extranet\Brother Online Ink Supply User" role
-	When I sign back into Brother Online "United Kingdom" using the same credentials
-	Then I can see the Instant Ink menu option from the BOL home page
-	When I navigate to my account for "United Kingdom"
-	When I clicked on Business Details
+	When I navigate to my account for "United Kingdom"	
+	And I clicked on Business Details
 	And I am redirected to the Business Details Page
 	And I declare that I do use this account for business on my account page
 	And I add my company name as "AutoTestLtd" on Business Details page
@@ -117,10 +116,12 @@ Scenario: Customer creates a new account with Brother Online and add Business de
 	And I select number of Employees as "11 - 50" on Business Details Page
 	And I click on Update details on business details page
 	Then I can verify successfull update message appeared at the top
+	Then I can sign out of Brother Online
 
-
-#User can add their address to their acocunt by manually entering their personal details
-Scenario: Customer can add a new address to their acocunt by manually entering address details
+@TEST @UAT @PROD
+#@STAGING
+#User can add their address to their account by manually entering their personal details
+Scenario: Customer can add a new address to their account by manually entering address details
 Given I am logged onto Brother Online "United Kingdom" using valid credentials
 When I navigate to my account for "United Kingdom"	
 When I click on My Address 
@@ -137,14 +138,7 @@ And I enter all the mandatory fields
 	| City			  | Manchester	   |
 	| PhoneNumber	  | 0161 330 6531	   |
 And I click on the save address button
+Then I can navigate back to Brother Online home page
+And I can sign out of Brother Online
 
-
-#Validate that the correct error messages are displayed when address details mandatory fields are not completed
-Scenario: Customer get the correct error messages when address details mandatory fields are not completed on my address page
-Given I am logged onto Brother Online "United Kingdom" using valid credentials
-When I navigate to my account for "United Kingdom"	
-When I click on My Address 
-And I click on Add a New Address Button 
-And I enter tab on the first name field
-Then I should see an error message on the first name field on my address page
 

@@ -124,6 +124,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             NextPage = CurrentPage.As<WelcomeBackPage>().NavigateToMyAccountPage(country);
         }
+
         [Then(@"If I enter the current password")]
         public void ThenIfIEnterTheCurrentPassword()
         {
@@ -223,6 +224,26 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<MyAccountPage>().PopulateFirstNameTextBox(firstname);
         }
+        [When(@"I clear the first name field")]
+        public void WhenIClearTheFirstNameField()
+        {
+            CurrentPage.As<MyAccountPage>().ClearFirstNameTextBox();
+        }
+        [Then(@"error message should appear on the first name field")]
+        public void ThenErrorMessageShouldAppearOnTheFirstNameField()
+        {
+            CurrentPage.As<MyAccountPage>().FirstNameErrorMessageDisplayed();
+        }
+        [Then(@"I clear the last name field")]
+        public void ThenIClearTheLastNameField()
+        {
+            CurrentPage.As<MyAccountPage>().ClearLastNameTextBox();
+        }
+        [Then(@"error mesage should appear on the last name field")]
+        public void ThenErrorMesageShouldAppearOnTheLastNameField()
+        {
+            CurrentPage.As<MyAccountPage>().LastNameErrorMessageDisplayed();
+        }
         [When(@"I enter the Last Name containing (.*)")]
         public void WhenIEnterTheLastNameContaining(string lastname)
         {
@@ -260,14 +281,94 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [When(@"I enter tab on the first name field")]
         public void WhenIEnterTabOnTheFirstNameField()
         {
-            CurrentPage.As<MyAddressDetailsPage>().EmptyFirstNameTextBox(); ;
+            CurrentPage.As<MyAddressDetailsPage>().EmptyFirstNameTextBox(); 
         }
        [Then(@"I should see an error message on the first name field on my address page")]
        public void ThenIShouldSeeAnErrorMessageOnTheFirstNameFieldOnMyAddressPage()
        {
            CurrentPage.As<MyAddressDetailsPage>().FirstNameErrorMessageDisplayed();
        }
+       [Then(@"I enter tab on last name field")]
+       public void ThenIEnterTabOnLastNameField()
+       {
+           CurrentPage.As<MyAddressDetailsPage>().EmptyLastNameTextBox(); 
+       }
+       [Then(@"I should see an error message on Last name field on my address page")]
+       public void ThenIShouldSeeAnErrorMessageOnLastNameFieldOnMyAddressPage()
+       {
+           CurrentPage.As<MyAddressDetailsPage>().LastNameErrorMessageDisplayed();
+       }
+       [Then(@"I enter tab on postcode field")]
+       public void ThenIEnterTabOnPostcodeField()
+       {
+           CurrentPage.As<MyAddressDetailsPage>().EmptyPostcodeField();
+       }
+      [Then(@"I should see an error message on postcode field on my address page")]
+       public void ThenIShouldSeeAnErrorMessageOnPostcodeFieldOnMyAddressPage()
+       {
+           CurrentPage.As<MyAddressDetailsPage>().PostcodeErrorMessageDisplayed();
+       }
+      [Then(@"I enter tab on House number")]
+      public void ThenIEnterTabOnHouseNumber()
+      {
+          CurrentPage.As<MyAddressDetailsPage>().EmptyHouseNumberTextBox();
+      }
+      [Then(@"I should an error message on house number field on my address page")]
+      public void ThenIShouldAnErrorMessageOnHouseNumberFieldOnMyAddressPage()
+      {
+          CurrentPage.As<MyAddressDetailsPage>().HouseNumberErrorMessageDisplayed();
+      }
+      [Then(@"I enter tab on address line one")]
+      public void ThenIEnterTabOnAddressLineOne()
+      {
+          CurrentPage.As<MyAddressDetailsPage>().EmptyAddressLineTextBox();
+      }
+      [Then(@"I should see an error message on Address Line one field on my address page")]
+      public void ThenIShouldSeeAnErrorMessageOnAddressLineOneFieldOnMyAddressPage()
+      {
+          CurrentPage.As<MyAddressDetailsPage>().AddressLine1ErrorMessageDisplayed();
+      }
+      [Then(@"I enter tab on City/Town field")]
+      public void ThenIEnterTabOnCityTownField()
+      {
+          CurrentPage.As<MyAddressDetailsPage>().EmptyCityTextBox();
+      }
+      [Then(@"I should see an error message on City/town field on my address page")]
+      public void ThenIShouldSeeAnErrorMessageOnCityTownFieldOnMyAddressPage()
+      {
+          CurrentPage.As<MyAddressDetailsPage>().CityTownErrorMessageDisplayed(); 
+      }
+      [Then(@"I enter tab on Phone number field")]
+      public void ThenIEnterTabOnPhoneNumberField()
+      {
+          CurrentPage.As<MyAddressDetailsPage>().EmptyPhoneNumberTextBox();
+      }
+      [Then(@"I should see an error message on phone number field on my address page")]
+      public void ThenIShouldSeeAnErrorMessageOnPhoneNumberFieldOnMyAddressPage()
+      {
+         CurrentPage.As<MyAddressDetailsPage>().PhoneNumberErrorMessageDisplayed();
+      }
+      [When(@"I click on Social Login Radio button")]
+      public void WhenIClickOnSocialLoginRadioButton()
+      {
+          CurrentPage.As<MySignInDetailsPage>().ClickRadioButtonSocialLogin();
+      }
+      [Then(@"I should be able to see social login buttons")]
+      public void ThenIShouldBeAbleToSeeSocialLoginButtons()
+      {
+          CurrentPage.As<MySignInDetailsPage>().VerifySocialButtonsExist(true);
+      }
+      [Then(@"I get the error message displayed on your company name field")]
+      public void ThenIGetTheErrorMessageDisplayedOnYourCompanyNameField()
+      {
+          CurrentPage.As<BusinessDetailsPage>().CompanyNameErrorMessageDisplayed();
+      }
+      [Then(@"I get the error message displayed on Business sector field")]
+      public void ThenIGetTheErrorMessageDisplayedOnBusinessSectorField()
+      {
+          CurrentPage.As<BusinessDetailsPage>().BusinessSectorErrorMessageDisplayed();
+      }
 
-
+      
     }
 }

@@ -18,15 +18,15 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
     {
         // Static Global Navigation class which services the Brother Online orders side navigation bar common
         // to Brother Online orders, and the global navigation such as the Brother Nav bar.
-        //private const string SideNavMenu = @".content-box.left-nav-container.cf .side-nav";
-        private const string SideNavMenu = @".side-nav";
+        private const string SideNavMenu = @".content-box.left-nav-container.cf .side-nav";
+        //private const string SideNavMenu = @".side-nav";
         private const string ProductList = @"#product-list";
         private const string BrotherHomePage = "#master-logo > a";
         private const string MyAccountButtons = ".conference-button[href*='']";
         private const string InstankInkButtons = ".dp-button-aqua[href*='']";
         private const string PartnerPortalButtons = ".dp-button-aqua[href*='']";
         private const string TopNavigationBar = "#primary-nav .wrapper .cf";
-        private const string SignOutLink = "a[href*='sign-out']";
+        private const string SignOutLink = "a[href='/sign-out']";
         private const string BackToBrotherOnlineButton = ".back-button-holder";
 
 

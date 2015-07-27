@@ -20,7 +20,8 @@ Scenario:Validate a valid user can sign in to Ink
 	#Then I can see the Status Monitor page
 	#When there is an online connected device
 	#Then device name should be displayed 
-	Then device name "MFC-J5720DW"should be displayed 
+	Then device name "MFC-J5720DW"should be displayed
+	Then device serial number "E73183G4F387882" should be displayed
 	#Then the device nw status should be shown as online 
 	#Then the device serial no. should be displayed.
 	#Then the device contract should be displayed.

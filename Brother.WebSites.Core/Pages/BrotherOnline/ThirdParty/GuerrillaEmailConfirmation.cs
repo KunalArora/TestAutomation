@@ -616,34 +616,22 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.ThirdParty
             //Assert.AreEqual();
         }
 
-        public MySignInDetailsPage ValidateAccountDetailsChangeEmail()
+        public MySignInDetailsPage ValidateBusinessAccountDetailsChangeEmail()
         {
             ValidateEmailUrl("Account Details Change", true, true);
             return GetInstance<MySignInDetailsPage>(Driver, "", "");
         }
 
+        public WelcomeBackPage ValidateCustomerAccountDetailsChangeEmail()
+        {
+            ValidateEmailUrl("Account Details Change", true, true);
+            return GetInstance<WelcomeBackPage>(Driver, "", "");
+        }
 
         public RegistrationPage ValidateRegistrationEmail()
         {
             ValidateEmailUrl("Account Validation", true, true);
             return GetInstance<RegistrationPage>(Driver, "", "");
-        }
-
-        public bool CheckDealerPortalActivationCodes(int qty)
-        {
-            var emailDisplay = Driver.FindElement(By.CssSelector("#display_email"));
-            WaitUpTo(40, () => IsElementPresent(emailDisplay), "Email Display Window");
-            if (!emailDisplay.Displayed) return false;
-            try
-            {
-                //var url = Driver.FindElement(By.CssSelector("[href*='online']")).GetAttribute("href");
-                //return url;
-            }
-            catch (StaleElementReferenceException staleElement)
-            {
-                MsgOutput("Error retrieving account validation url", staleElement.Message);
-            }
-            return false;
         }
 
         public void DeleteEmail(string emailSubject)
