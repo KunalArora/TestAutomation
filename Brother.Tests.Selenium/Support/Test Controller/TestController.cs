@@ -272,6 +272,12 @@ namespace Brother.Tests.Selenium.Lib.Support
                     }
                     catch (ArgumentException)
                     {
+                        Helper.MsgOutput(string.Format("Error launching PhantomJS. [{0}]", "ArgumentException thrown"));
+                        return 0;
+                    }
+                    catch (InvalidOperationException)
+                    {
+                        Helper.MsgOutput(string.Format("Error launching PhantomJS. [{0}]", "InvalidOperationException thrown"));
                         return 0;
                     }
                     //// brief pause to allow PhantomJS process to load
