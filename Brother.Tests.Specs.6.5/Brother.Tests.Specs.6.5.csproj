@@ -58,15 +58,25 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Test Specifications\BrotherOnline\Account\AccountManagementExtension.feature.cs">
+    <Compile Include="Test Specifications\BrotherOnline\Account\Business Account.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AccountManagementExtension.feature</DependentUpon>
+      <DependentUpon>Business Account.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\BrotherOnline\Account\CreativeCenter.feature.cs">
+    <Compile Include="Test Specifications\BrotherOnline\Account\CC_AccountCreation.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CreativeCenter.feature</DependentUpon>
+      <DependentUpon>CC_AccountCreation.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\BrotherOnline\Account\New Account - Business Customers.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>New Account - Business Customers.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\BrotherOnline\Account\Customer Account.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Customer Account.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Specifications\MPSTwo\Contract\DealerCanCopyADeclineProposal.feature.cs">
       <AutoGen>True</AutoGen>
@@ -334,15 +344,10 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Test Specifications\BrotherOnline\Account\NewAccount.feature.cs">
+    <Compile Include="Test Specifications\BrotherOnline\Account\MyAccountCustomer.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>NewAccount.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Test Specifications\BrotherOnline\Account\AccountManagement.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AccountManagement.feature</DependentUpon>
+      <DependentUpon>MyAccountCustomer.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Specifications\BrotherOnline\Product Registration\AddDevice.feature.cs">
       <AutoGen>True</AutoGen>
@@ -393,25 +398,29 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>AddPaymentMethod.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\BrotherOnline\Account\NewAccount.feature">
+    <None Include="Test Specifications\BrotherOnline\Account\New Account - Business Customers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>NewAccount.feature.cs</LastGenOutput>
+      <LastGenOutput>New Account - Business Customers.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\BrotherOnline\Account\AccountManagement.feature">
+    <None Include="Test Specifications\BrotherOnline\Account\Customer Account.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>AccountManagement.feature.cs</LastGenOutput>
+      <LastGenOutput>Customer Account.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\BrotherOnline\Account\MyAccountCustomer.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>MyAccountCustomer.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\BrotherOnline\Account\AccountMaintenance.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>AccountMaintenance.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\BrotherOnline\Account\AccountManagementExtension.feature">
+    <None Include="Test Specifications\BrotherOnline\Account\Business Account.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>AccountManagementExtension.feature.cs</LastGenOutput>
+      <LastGenOutput>Business Account.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\BrotherOnline\Account\CreativeCenter.feature">
+    <None Include="Test Specifications\BrotherOnline\Account\CC_AccountCreation.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CreativeCenter.feature.cs</LastGenOutput>
+      <LastGenOutput>CC_AccountCreation.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\BrotherOnline\Product Registration\AddDevice.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
@@ -603,11 +612,6 @@
     </Content>
     <Content Include="Drivers\phantomjs.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Supporting Files_old\DeliveryAddressFieldValidation.xml" />
-    <Content Include="Supporting Files_old\LanguageLookup.xml" />
-    <Content Include="Supporting Files_old\ProductInfo.xml">
-      <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
