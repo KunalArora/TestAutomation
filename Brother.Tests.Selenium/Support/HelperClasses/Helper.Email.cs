@@ -88,6 +88,34 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             return generatedEmailAddress;
         }
 
+        public static string GenerateUniqueCCEmailAddress()
+        {
+            string emailDomain;
+
+            if (!CheckEmailPackage("MailinatorEmail"))
+            {
+                emailDomain = CheckEmailPackage("BrotherEmail") ? "@BrotherAutoTest.com" : "@Guerrillamail.com";
+            }
+            else
+            {
+                emailDomain = "@Mailinator.com";
+            }
+
+
+            // NEEDS A REGULAR EXPRESSION HERE!
+            var emailDateTime =
+                DateTime.Now.ToString(CultureInfo.InvariantCulture)
+
+                    .Replace(@"/", "-")
+                    .Replace(" ", "_")
+                    .Replace(":", "-");
+            EmailSuffix = String.Format("{0}{1}", AutoTestEmailPrefix, emailDateTime);
+            var generatedEmailAddress = String.Format("{0}{1}{2}", AutoTestEmailPrefix, emailDateTime, emailDomain);
+            RegistrationEmailAddress = generatedEmailAddress;
+            RegistrationEmailDomain = emailDomain;
+            return generatedEmailAddress;
+        }
+
         public static bool SetEmailPackage(string emailPackage)
         {
             if (CheckEmailPackage(emailPackage))

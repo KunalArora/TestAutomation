@@ -19,10 +19,25 @@ namespace Brother.Tests.Specs.BrotherOnline
             //TestCheck.AssertIsNotEqual(true, CurrentPage.As<RegistrationPage>().IsWarningBarPresent(0, 5), "Warning Bar - account validation");
         }
 
+        [When(@"I have clicked on add device whilst logged in with the creative center account")]
+        public void WhenIHaveClickedOnAddDeviceWithCCLogin()
+        {
+            TestCheck.AssertIsNotEqual(true, CurrentPage.As<HomePage>().IsWarningBarPresent(0, 5), "Warning Bar - account validation");
+            CurrentPage.As<HomePage>().ClickRegisterDeviceLink();
+            //TestCheck.AssertIsNotEqual(true, CurrentPage.As<RegistrationPage>().IsWarningBarPresent(0, 5), "Warning Bar - account validation");
+        }
+
         [When(@"I am redirected to the Register Device page")]
         public void WhenIAmRedirectedToTheRegisterDevicePage()
         {
             CurrentPage.As<RegisterDevicePage>().IsSerialNumberTextBoxAvailable();
+            TestCheck.AssertIsEqual(true, Validation.ValidateWarningMessageBarStatus(false), "Account Not Validated Warning Message Present");
+        }
+
+        [When(@"I am redirected to the Register device page with the creative center login")]
+        public void WhenIAmRedirectedToTheRegisterDevicePageWithCreativeCenterLogin()
+        {
+            CurrentPage.As<HomePage>().IsSerialNumberTextBoxAvailable();
             TestCheck.AssertIsEqual(true, Validation.ValidateWarningMessageBarStatus(false), "Account Not Validated Warning Message Present");
         }
 
@@ -51,6 +66,12 @@ namespace Brother.Tests.Specs.BrotherOnline
             TestCheck.AssertIsEqual(true, CurrentPage.As<RegisterDevicePage>().IsErrorIconPresent(), "Is Error Icon Present");
         }
 
+        [Then(@"I can validate that an error message is displayed due to serial number")]
+        public void ThenICanValidateThatAnErrorMessageWasDisplayedDueToSerialNumber()
+        {
+            TestCheck.AssertIsEqual(true, CurrentPage.As<HomePage>().IsErrorIconPresent(), "Is Error Icon Present");
+        }
+
         [Then(@"I should see the account not validated error message preventing device registration")]
         public void ThenIShouldSeeAccountNotValidatedErrorMessage()
         {
@@ -61,6 +82,12 @@ namespace Brother.Tests.Specs.BrotherOnline
         public void GivenIHaveEnteredMyProductSerialCode(string productSerialCode)
         {
             CurrentPage.As<RegisterDevicePage>().EnterProductSerialCode(productSerialCode);
+        }
+
+        [Then(@"I have entered my Product Serial Code whilst logged in with a creative center account ""(.*)""")]
+        public void GivenIHaveEnteredMyProductSerialCodeWhilstLoggedInWithCCAcc(string productSerialCode)
+        {
+            CurrentPage.As<HomePage>().EnterProductSerialCode(productSerialCode);
         }
 
         [When(@"I have Ticked the Extended Warranty option ""(.*)""")]
