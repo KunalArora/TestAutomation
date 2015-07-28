@@ -216,6 +216,62 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Customer can not delete the default address")]
+        public virtual void CustomerCanNotDeleteTheDefaultAddress()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer can not delete the default address", ((string[])(null)));
+#line 100
+this.ScenarioSetup(scenarioInfo);
+#line 101
+testRunner.Given("I am logged onto Brother Online \"United Kingdom\" using valid credentials", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 102
+testRunner.When("I navigate to my account for \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 103
+testRunner.When("I click on My Address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 104
+testRunner.And("I click on Add a New Address Button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "field",
+                        "value"});
+            table2.AddRow(new string[] {
+                        "FirstName",
+                        "AutoTest"});
+            table2.AddRow(new string[] {
+                        "LastName",
+                        "AutoTest"});
+            table2.AddRow(new string[] {
+                        "Postcode",
+                        "m34 5je"});
+            table2.AddRow(new string[] {
+                        "HouseNumber",
+                        "appt 1"});
+            table2.AddRow(new string[] {
+                        "HouseName",
+                        "Brother"});
+            table2.AddRow(new string[] {
+                        "Addressline1",
+                        "TameSt"});
+            table2.AddRow(new string[] {
+                        "Addressline2",
+                        "Audenshaw"});
+            table2.AddRow(new string[] {
+                        "City",
+                        "Manchester"});
+            table2.AddRow(new string[] {
+                        "PhoneNumber",
+                        "0161 330 6531"});
+#line 105
+testRunner.And("I enter all the mandatory fields", ((string)(null)), table2, "And ");
+#line 116
+testRunner.And("I click on the save address button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 117
+testRunner.Then("I can verify default address cannot be deleted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore
