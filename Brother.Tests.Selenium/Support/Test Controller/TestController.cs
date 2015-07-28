@@ -259,17 +259,24 @@ namespace Brother.Tests.Selenium.Lib.Support
               //  phantomJsProcess.Password = passwordSecure;
               //  phantomJsProcess.UseShellExecute = false;
 
-                var phantomJSProc = new Process();
-                phantomJSProc.StartInfo = phantomJsProcess;
-                var process = phantomJSProc.Start();
+                var phantomJsProc = new Process();
+                phantomJsProc.StartInfo = phantomJsProcess;
+                var process = phantomJsProc.Start();
                 if (process)
                 {
-                    if (phantomJSProc != null)
+                    try
                     {
-                        // brief pause to allow PhantomJS process to load
-                        WebDriver.Wait(Helper.DurationType.Second, 3);
-                        return phantomJSProc.Id;
+                        // try and get the process by its new Id
+                        Process.GetProcessById(phantomJsProc.Id);
+                        return phantomJsProc.Id;
                     }
+                    catch (ArgumentException)
+                    {
+                        return 0;
+                    }
+                    //// brief pause to allow PhantomJS process to load
+                    //WebDriver.Wait(Helper.DurationType.Second, 3);
+                    //return phantomJSProc.Id;
                 }
             }
             catch (Win32Exception win32Exception)
