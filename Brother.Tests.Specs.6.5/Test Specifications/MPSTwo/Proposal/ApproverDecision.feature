@@ -20,7 +20,7 @@ Scenario Outline: Approver Decline Proposal
 	Scenarios: 
 	| Role                            | Country        | ContractType                  | UsageType      |
 	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume |
-	| Cloud MPS Bank                  | United Kingdom | Lease & Click with Service    | Pay As You Go  |
+	#| Cloud MPS Bank                  | United Kingdom | Lease & Click with Service    | Pay As You Go  |
 
 @ignore
 Scenario Outline: Declined proposal is displayed on Declined Page
@@ -40,6 +40,7 @@ Scenario Outline: Declined proposal is displayed on Declined Page
 #
 # Approve
 #
+@ignore
 Scenario Outline: Bank Approve Proposal
 	Given Dealer have created a Awaiting Approval proposal of "<ContractType>" and "<UsageType>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
@@ -69,11 +70,13 @@ Scenario Outline: Approver can decide to reject or approve the contract
 	Scenarios:
 	| Role                            | Country        | ContractType                  | UsageType      |
 	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume |
-	| Cloud MPS Bank                  | United Kingdom | Lease & Click with Service    | Pay As You Go  |
+	#| Cloud MPS Bank                  | United Kingdom | Lease & Click with Service    | Pay As You Go  |
 
 # Accept3
 
 # Accept4
+
+@ignore
 Scenario Outline: Bank can approve the contract
 	Given Dealer have created a contract of "<ContractType>" and "<UsageType>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
@@ -104,7 +107,7 @@ Scenario Outline: Approver can approve the contract
 
 	| Role                            | Country        | ContractType                  | UsageType      |
 	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume |
-	| Cloud MPS Bank                  | United Kingdom | Lease & Click with Service    | Pay As You Go  |
+	#| Cloud MPS Bank                  | United Kingdom | Lease & Click with Service    | Pay As You Go  |
 
 # Reject1,2
 Scenario Outline: Approver can reject the contract
@@ -120,7 +123,7 @@ Scenario Outline: Approver can reject the contract
 
 	| Role                            | Country        | ContractType                  | UsageType       |
 	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Pay As You Go   |
-	| Cloud MPS Bank                  | United Kingdom | Lease & Click with Service    | Minimum Volume  |
+	#| Cloud MPS Bank                  | United Kingdom | Lease & Click with Service    | Minimum Volume  |
 
 # Reject3
 Scenario Outline: Dealer can resign rejected contract

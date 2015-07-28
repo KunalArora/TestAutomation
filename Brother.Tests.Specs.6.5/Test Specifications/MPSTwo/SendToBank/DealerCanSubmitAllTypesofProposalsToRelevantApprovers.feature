@@ -4,7 +4,7 @@ Feature: SubmitAllTypesofProposalsToRelevantApprovers
 	As a dealer
 	I want to be able to submit different types of proposals to relevant approvers
 
-
+@ignore
 Scenario Outline: Send Leasing and Click proposal to bank
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created Leasing and Click proposal
@@ -27,7 +27,7 @@ Scenario Outline: Send Leasing and Click proposal to bank
 	| Role             | Country        | Role2          |
 	| Cloud MPS Dealer | United Kingdom | Cloud MPS Bank |
 
-
+@ignore
 Scenario Outline: Send Leasing and Click proposal to bank for Privately Liable Customer
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created Leasing and Click proposal
@@ -49,7 +49,7 @@ Scenario Outline: Send Leasing and Click proposal to bank for Privately Liable C
 	| Role             | Country        | Role2          |
 	| Cloud MPS Dealer | United Kingdom | Cloud MPS Bank |
 
-
+@ignore
 Scenario Outline: Send Leasing and Click proposal to bank for Customer who can order consumables
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created Leasing and Click proposal
@@ -73,7 +73,7 @@ Scenario Outline: Send Leasing and Click proposal to bank for Customer who can o
 	| Cloud MPS Dealer | United Kingdom | Cloud MPS Bank |
 
 
-
+@ignore
 Scenario Outline: Send Leasing and Click proposal to bank for Privately Liable Customer who can order consumables
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created Leasing and Click proposal
