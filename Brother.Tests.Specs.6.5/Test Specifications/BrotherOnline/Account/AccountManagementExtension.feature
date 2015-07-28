@@ -95,4 +95,3 @@ Given I am logged onto Brother Online "United Kingdom" using valid credentials
 	Then error mesage should appear on the last name field
 	And I can navigate back to Brother Online home page
 	And I can sign out of Brother Online
-

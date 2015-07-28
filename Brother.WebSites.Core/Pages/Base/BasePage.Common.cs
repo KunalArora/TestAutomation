@@ -48,8 +48,9 @@ namespace Brother.WebSites.Core.Pages.Base
 
             // Performs a second InitElements to refresh Page loading.
             PageFactory.InitElements(driver, pageInstance);
-
-            WebDriver.Wait(Helper.DurationType.Second, 6);
+            
+            // Small wait for page to complete loading. Poor but required at this time (increase to 6 seconds if issues discovered)
+            WebDriver.Wait(Helper.DurationType.Second, 3);
             return pageInstance;
         }
         #endregion

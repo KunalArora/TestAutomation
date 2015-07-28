@@ -194,8 +194,16 @@ namespace Brother.Tests.Selenium.Lib.Support
 
         private static void KillPhantomJsIfRunning()
         {
-            var phantomJsProcessList = Process.GetProcessesByName("phantomJS");
+            while (!IsProcessRunning("phantomJS"))
+            {
+                WebDriver.Wait(Helper.DurationType.Millisecond, 500);
+                Helper.MsgOutput("Closing PhantomJS processes");
+            }
+        }
 
+        private static bool IsProcessRunning(string processName)
+        {
+            var phantomJsProcessList = Process.GetProcessesByName(processName);
             foreach (var proc in phantomJsProcessList)
             {
                 try
@@ -203,6 +211,7 @@ namespace Brother.Tests.Selenium.Lib.Support
                     if (!proc.HasExited)
                     {
                         proc.Kill();
+                        proc.WaitForExit(50);
                     }
                 }
                 catch (InvalidOperationException invalidOperation)
@@ -210,6 +219,12 @@ namespace Brother.Tests.Selenium.Lib.Support
                     Helper.MsgOutput("Unable to kill Rogue PhantomJS processes as they are likely to be dead already", invalidOperation.Message);
                 }
             }
+            phantomJsProcessList = Process.GetProcessesByName(processName);
+            if (phantomJsProcessList.Length == 0)
+            {
+                return true;
+            }
+            return false;
         }
 
         public static int StartNewPhantomJsProcess(string ipAddress, string port)
@@ -244,17 +259,24 @@ namespace Brother.Tests.Selenium.Lib.Support
               //  phantomJsProcess.Password = passwordSecure;
               //  phantomJsProcess.UseShellExecute = false;
 
-                var phantomJSProc = new Process();
-                phantomJSProc.StartInfo = phantomJsProcess;
-                var process = phantomJSProc.Start();
+                var phantomJsProc = new Process();
+                phantomJsProc.StartInfo = phantomJsProcess;
+                var process = phantomJsProc.Start();
                 if (process)
                 {
-                    if (phantomJSProc != null)
+                    try
                     {
-                        // brief pause to allow PhantomJS process to load
-                        WebDriver.Wait(Helper.DurationType.Second, 3);
-                        return phantomJSProc.Id;
+                        // try and get the process by its new Id
+                        Process.GetProcessById(phantomJsProc.Id);
+                        return phantomJsProc.Id;
                     }
+                    catch (ArgumentException)
+                    {
+                        return 0;
+                    }
+                    //// brief pause to allow PhantomJS process to load
+                    //WebDriver.Wait(Helper.DurationType.Second, 3);
+                    //return phantomJSProc.Id;
                 }
             }
             catch (Win32Exception win32Exception)

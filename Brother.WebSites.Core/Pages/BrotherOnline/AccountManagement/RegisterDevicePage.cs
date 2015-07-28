@@ -183,7 +183,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         private void StoreModelNumber()
         {
             WebDriver.Wait(DurationType.Second, 6); // pause for element to be populated. Explicit wait can cause StaleElement exception
-            CurrentDeviceModelNumber = ModelNumberTextBox.Text;        }
+            CurrentDeviceModelNumber = ModelNumberTextBox.Text;        
+        }
 
         public void EnterPurchaseDate(string purchaseDate)
         {

@@ -1,41 +1,172 @@
 ﻿@PROD @UAT @TEST
-Feature: CreateNewAccount 
+Feature: Customer Account
 	In order to register myself with brother
 	As a customer
 	I need to create a new online account
 
-@SMOKE
-# Create a new business account
-Scenario: Customer creates a new Business account with Brother Online using valid credentials (NO VAT NUMBER), confirm by email
-																				sign in and Sign Out
-	Given I want to create a new account with Brother Online "United Kingdom"
-	When I click on Create Account for "United Kingdom"
-	And I am redirected to the Brother Login/Register page
-	And I have Checked No I Do Not Have An Account Checkbox
-	And I declare that I do use this account for business
-	And I fill in the registration information using a valid email address 
-	| field           | value          |
-	| FirstName       | AutoTest       |
-	| LastName        | AutoTest       |
-	| Password        | @@@@@	       |
-	| ConfirmPassword | @@@@@		   |
-
-	And I add my company name as "AutoTestLtd"
-	And I select my Business Sector as "IT and telecommunications services"
-	And I select number of Employees as "11 - 50"
-	And I have Agreed to the Terms and Conditions
-	When I press Create Your Account
-	Then I should see my account confirmation page
-	And When I Click Go Back
-	And Once I have Validated an Email was received and verified my account
-	Then I should be able to log into "United Kingdom" Brother Online using my account details
+@TEST @UAT @PROD
+# Validate that the correct error messages are displayed when address details mandatory fields are not completed
+Scenario: Customer get the correct error messages when address details mandatory fields are not completed on my address page
+	Given I am logged onto Brother Online "United Kingdom" using valid credentials
+	When I navigate to my account for "United Kingdom"	
+	When I click on My Address 
+	And I click on Add a New Address Button 
+	And I enter tab on the first name field
+	Then I should see an error message on the first name field on my address page
+	And I enter tab on last name field
+	Then I should see an error message on Last name field on my address page
+	And I enter tab on postcode field
+	Then I should see an error message on postcode field on my address page
+	And I enter tab on House number 
+	Then I should an error message on house number field on my address page
+	And I enter tab on address line one
+	Then I should see an error message on Address Line one field on my address page
+	And I enter tab on City/Town field
+	Then I should see an error message on City/town field on my address page
+	And I enter tab on Phone number field
+	Then I should see an error message on phone number field on my address page
+	And I can navigate back to Brother Online home page
 	And I can sign out of Brother Online
-	Then I am redirected to the Brother Home Page
+
+# Sign into Brother Online and change password
+@TEST @UAT @PROD
+Scenario: Customer has created a Brother Online account and wishes to change their password (BOL-164)
+	Given I am logged onto Brother Online "United Kingdom" using valid credentials
+	When I navigate to my account for "United Kingdom"
+	And I click on Sign In Details
+	Then If I enter the current password
+	And I enter a new password of "ChangedPassword123"
+	When I click on Update Password
+	Then My password will be updated 
+	Then If I sign out of Brother Online
+	And If I sign back into Brother Online "United Kingdom" using the same credentials
+	Then I can sign out of Brother Online
+
+# Create an account and use the "Forgotten Password" utility
+@TEST @UAT @PROD
+Scenario: Customer has created a Brother Online account but has forgotten their password and requires a new one
+	Given I am logged onto Brother Online "United Kingdom" using valid credentials
+	#Given I am logged into my Brother Online account
+	Then I can sign out of Brother Online
+	When I click on Create Account for "United Kingdom"
+	And I click on Forgot Password
+	Then I enter my current email address
+	And I click on Reset Your Password
+	Then If I Click the Reset Password Email Link
+	And I reset my password with "ChangedPassword123"
+	When I click on Reset Your Password
+	And I am redirected to the Brother Login/Register page
+	Then I can sign back into Brother Online "United Kingdom" using the updated credentials
+	Then I can sign out of Brother Online
+
+# Create account, sign in, note missing menu option, add role to user, sign out and in again, note menu option present
+# Instant Ink role used as a baseline
+# ***-need to add additional scenario (see ticket number for steps) or ValidateRole Feature test
+@TEST @UAT
+Scenario: Customer or Dealer role persists after email address change (BOL-176)
+	Given I am logged onto Brother Online "United Kingdom" using valid credentials
+	Then I can sign out of Brother Online
+	And If I grant the user account the "Extranet\Brother Online Ink Supply User" role
+	When I sign back into Brother Online "United Kingdom" using the same credentials
+	Then I can see the Instant Ink menu option from the BOL home page
+	When I navigate to my account for "United Kingdom"
+	And I click on Sign In Details
+	And If I enter a new email address "changed"
+	And If I enter the current password for email change
+	And I click on Update details
+	Then I can verify the email change occurred
+	Then I validate the new Business Email changes via email 
+	Then I can validate the update was successful
+	And I can sign out of Brother Online
+	Then If I sign back into Brother Online "United Kingdom" using the same credentials
+	And I can see the Instant Ink menu option from the BOL home page
+	Then I can sign out of Brother Online
+
+# Create an account and sign in, change registered email address and sign out, re-sign in again using new address
+@TEST @UAT @PROD 
+Scenario Outline: Customer can change their Brother Online email address after registration (BBAU - 2337)
+	Given I am logged onto Brother Online "<Country>" using valid credentials
+	When I navigate to my account for "<Country>"
+	And I click on Sign In Details
+	And If I enter a new email address "<EmailPrefixForChange>"
+	And If I enter the current password for email change
+	And I click on Update details
+	Then I can verify the email change occurred
+	When I validate the new Customer Email changes via email
+	And I can sign out of Brother Online
+	Then If I sign back into Brother Online "<Country>" using the same credentials
+	When I navigate to my account for "<Country>"
+	And I click on Sign In Details
+	Then I can validate the update was successful
+	Then I can sign out of Brother Online
+
+Scenarios:
+	| Country        | EmailPrefixForChange |
+	| United Kingdom | changed              |
+	| Ireland        | changed              |
+
+@TEST @UAT @PROD 
+# Validate that an existing user has the option to change their sign in preferences to social login 
+Scenario: Customer has the option to change their sign in preferences to social login
+	Given I am logged onto Brother Online "United Kingdom" using valid credentials
+	When I navigate to my account for "United Kingdom"	
+	And I click on Sign In Details
+	When I click on Social Login Radio button
+	Then I should be able to see social login buttons
+	And I can navigate back to Brother Online home page
+	And I can sign out of Brother Online
+
+@TEST @UAT @PROD 
+# Validate that the correct error messages are displayed when business details mandatory fields are not completed
+Scenario: : Customer get the correct error message when business details mandator fields are not completed
+	Given I am logged onto Brother Online "United Kingdom" using valid credentials
+	When I navigate to my account for "United Kingdom"	
+	And I clicked on Business Details
+	And I am redirected to the Business Details Page
+	And I declare that I do use this account for business on my account page
+	And I click on Update details on business details page
+	Then I get the error message displayed on your company name field
+	And I get the error message displayed on Business sector field
+	And I can navigate back to Brother Online home page
+	And I can sign out of Brother Online
+
+@TEST @UAT @PROD 
+#Validate that a user with a Customer Account can amend their personal details
+Scenario: Customer cannot updatethe personal details if mandatory fields are left blank
+	Given I am logged onto Brother Online "United Kingdom" using valid credentials
+	When I navigate to my account for "United Kingdom"
+	And I clear the first name field
+	Then error message should appear on the first name field
+	And I clear the last name field
+	Then error mesage should appear on the last name field
+	And I can navigate back to Brother Online home page
+	And I can sign out of Brother Online
+
+@TEST @UAT @PROD
+#User can add their address to their account by manually entering their personal details
+Scenario: Customer can add a new address to their account by manually entering address details
+	Given I am logged onto Brother Online "United Kingdom" using valid credentials
+	When I navigate to my account for "United Kingdom"	
+	When I click on My Address 
+	And I click on Add a New Address Button
+	And I enter all the mandatory fields
+		| field           | value          |
+		| FirstName       | AutoTest       |
+		| LastName        | AutoTest       |
+		| Postcode        | m34 5je	       |
+		| HouseNumber	  | appt 1		   |
+		| HouseName		  | Brother		   |
+		| Addressline1	  | TameSt		   |
+		| Addressline2	  | Audenshaw	   |
+		| City			  | Manchester	   |
+		| PhoneNumber	  | 0161 330 6531	   |
+	And I click on the save address button
+	Then I can navigate back to Brother Online home page
+	And I can sign out of Brother Online
 
 @SMOKE
 # Create a new user account
-Scenario: Customer creates a new account with Brother Online using valid credentials, confirm by email
-																				sign in and Sign Out
+Scenario: Customer creates a new account with Brother Online using valid credentials, confirm by email 																				sign in and Sign Out
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
 	And I am redirected to the Brother Login/Register page
@@ -176,40 +307,6 @@ Scenario: Customer creates a new account with Brother Online using valid credent
 	Then I can sign out of Brother Online
 	Then I am redirected to the Brother Home Page
 
-@SMOKE
-# Create a new Business user account and check Add Device so that we know the user registration was successful
-Scenario: Business customer creates a new account with Brother Online using valid credentials, and validates the user is validated so it can create a device registration but not actually register
-	Given I want to create a new account with Brother Online "United Kingdom"
-	When I click on Create Account for "United Kingdom"
-	And I am redirected to the Brother Login/Register page
-	And I have Checked No I Do Not Have An Account Checkbox
-	And I fill in the registration information using a valid email address 
-	| field           | value          |
-	| FirstName       | AutoTest       |
-	| LastName        | AutoTest       |
-	| Password        | @@@@@	       |
-	| ConfirmPassword | @@@@@		   |
-
-	And I declare that I do use this account for business
-	And I add my company name as "AutoTestLtd"
-	And I select my Business Sector as "IT and telecommunications services"
-	And I select number of Employees as "11 - 50"
-	When I add my company VAT number as "GB145937540" 
-	And I have Agreed to the Terms and Conditions
-	When I press Create Your Account
-	Then I should see my account confirmation page
-	And When I Click Go Back
-	And Once I have Validated an Email was received and verified my account
-	Then I should be able to log into "United Kingdom" Brother Online using my account details
-	When I have clicked on Add Device
-	And I am redirected to the Register Device page
-	# Note: Invalid serial code will always produce error message
-	Given I have entered my Product Serial Code "U1T000000"
-	Then I can validate that an error message was displayed
-	Then I can sign out of Brother Online
-	Then I am redirected to the Brother Home Page
-
-
 Scenario: Validate that the correct error messages are displayed when a mandatory field Email is missing while creating a User Account
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
@@ -296,27 +393,6 @@ Scenario: Validate that an error message is displayed for all mandatory fields d
 	When I press tab in the business sector field
 	Then I should see an error message on the business sector field
 
-# Check mandatory terms and conditions when creating a business account
-Scenario: Validate that an error message is displayed for mandatory terms and conditions if they are not accepted during creation of a business account
-	Given I want to create a new account with Brother Online "United Kingdom"
-	When I click on Create Account for "United Kingdom"
-	And I am redirected to the Brother Login/Register page
-	And I have Checked No I Do Not Have An Account Checkbox
-	And I fill in the registration information using a valid email address 
-	| field           | value          |
-	| FirstName       | AutoTest       |
-	| LastName        | AutoTest       |
-	| Password        | @@@@@	       |
-	| ConfirmPassword | @@@@@		   |
-
-	And I declare that I do use this account for business
-	And I add my company name as "AutoTestLtd"
-	And I select my Business Sector as "IT and telecommunications services"
-	And I select number of Employees as "11 - 50"
-	When I add my company VAT number as "GB145937540" 
-	And I press create account button
-	Then I should get an error message displayed on the Terms and Conditions
-
 # Accounts created on DV2, QAS and Prod for the following test - existinguseraccount@guerrillamail.com/existingbusinessaccount@guerrillamail.com/Password100
 # Check that a user account cannot be created with an email address that already exists for another user account 
 # Check that a user account cannot be created with an email address that already exists for another business account
@@ -343,35 +419,6 @@ Scenarios:
 	| "existinguseraccount@guerrillamail.com"         |
 	| "existingbusinessaccount@guerrillamail.com"       |
 
-# Accounts created on DV2, QAS and Prod for the following test - existinguseraccount@guerrillamail.com/existingbusinessaccount@guerrillamail.com/Password100
-# Check that a business account cannot be created with an email address that already exists for another business account
-# Check that a business account cannot be created with an email address that already exists for another user account
-Scenario Outline: Customer cannot register for a new business account using an email address that already exists for another business or user account
-	Given I want to create a new account with Brother Online "United Kingdom"
-	When I click on Create Account for "United Kingdom"
-	And I am redirected to the Brother Login/Register page
-	And I have Checked No I Do Not Have An Account Checkbox
-	And I fill in the registration information excluding email address
-	| field           | value          |
-	| FirstName       | AutoTest       |
-	| LastName        | AutoTest       |
-	| Password        | @@@@@	       |
-	| ConfirmPassword | @@@@@		   |
-	
-	And I declare that I do use this account for business
-	And I add my company name as "AutoTestLtd"
-	And I select my Business Sector as "IT and telecommunications services"
-	And I select number of Employees as "11 - 50"
-	When I add my company VAT number as "GB145937540" 
-	And I have Agreed to the Terms and Conditions
-	And I enter an email address containing <Email Address>
-	And I press create account button
-	Then I should see the duplicate email error message preventing account creation	
-
-Scenarios:
-	| Email Address                               |
-	| "existingbusinessaccount@guerrillamail.com"         |
-	| "existinguseraccount@guerrillamail.com"       |
 
 # Check that a user account which is not validated does not have the ability to register a device
 Scenario: User account which is not validated does not permit device registration
@@ -396,70 +443,6 @@ Scenario: User account which is not validated does not permit device registratio
 	Then I should see the account not validated error message preventing device registration
 	And I can sign out of Brother Online
 
-# Check that a business account which is not validated does not have the ability to register a device		
-Scenario: Business account which is not validated does not permit device registration
-	Given I want to create a new account with Brother Online "United Kingdom"
-	When I click on Create Account for "United Kingdom"
-	And I am redirected to the Brother Login/Register page
-	And I have Checked No I Do Not Have An Account Checkbox
-	And I fill in the registration information using a valid email address 
-	| field           | value          |
-	| FirstName       | AutoTest       |
-	| LastName        | AutoTest       |
-	| Password        | @@@@@	       |
-	| ConfirmPassword | @@@@@		   |
-
-	And I declare that I do use this account for business
-	And I add my company name as "AutoTestLtd"
-	And I select my Business Sector as "IT and telecommunications services"
-	And I select number of Employees as "11 - 50"
-	When I add my company VAT number as "GB145937540" 
-	And I have Agreed to the Terms and Conditions
-	When I press Create Your Account
-	Then I should see my account confirmation page
-	And When I Click Go Back
-	Then I should be able to log into "United Kingdom" Brother Online using my account details
-	When I have clicked on Add Device
-	Then I should see the account not validated error message preventing device registration
-	And I can sign out of Brother Online
-
-# Accounts created on DV2, QAS and Prod for the following test - existinguseraccount@guerrillamail.com/existingbusinessaccount@guerrillamail.com/Password100
-# Check that existing brother online user and business account holders cannot login with valid/invalid username/password combinations
-Scenario Outline: Validate that user or business account holders are unable to login to brother online with invalid credentials
-Given I launch Brother Online for "United Kingdom"
-When I click on Create Account for "United Kingdom"
-And I am redirected to the Brother Login/Register page
-And I enter an email address containing <Email Address>
-When I enter a valid Password <Password>
-And I press sign in with invalid details
-Then I should see the invalid credentials error message preventing login to brother online
-
-Scenarios:
-	| Email Address                                 | Password                 |
-	| "existinguseraccount@guerrillamail.com"       | "InvalidPasswordEntered" |
-	| "existingbusinessaccount@guerrillamail.wrong" | "Password100"            |
-	| "existinguseraccount@guerrillamail.com"       | "PaSsWoRd100"			   |
-	| "existingbusinessaccount@guerrillamail.com"	| "   Password100   "      |
-	| "existinguseraccount@guerrillamail.com"       | "Pass  word  100"	       |
-	 		
-# Accounts created on DV2, QAS and Prod for the following test - existinguseraccount@guerrillamail.com/existingbusinessaccount@guerrillamail.com/Password100
-# Check that existing brother online user and business account holders can still login with a username that leading/trailing spaces or mixed letter casing
-Scenario Outline: Validate that user or business account holders can still login to brother online with spaces or different case in the username providing the password is correct
-Given I launch Brother Online for "United Kingdom"
-When I click on Create Account for "United Kingdom"
-And I am redirected to the Brother Login/Register page
-And I enter an email address containing <Email Address>
-When I enter a valid Password <Password>
-And I press sign in with invalid details
-Then I should be able to successfully log into brother online
-And I can sign out of Brother Online
-Then I am redirected to the Brother Home Page
-
-Scenarios:
-	| Email Address											| Password      |
-	| "     existinguseraccount@guerrillamail.com    "		| "Password100" |
-	| "ExIsTiNgBuSiNeSsAcCoUnT@gUeRrIlLaMaIl.CoM"			| "Password100" |
-
 # Check maximun username(241) and password(30) length when creating a user account
 Scenario: Validate that a user account can be created using the maximun 241 username and 30 password character lengths (Failing due to BBAU-2522)																				
 	Given I want to create a new account with Brother Online "United Kingdom"
@@ -475,33 +458,6 @@ Scenario: Validate that a user account can be created using the maximun 241 user
 
 	And I have Agreed to the Terms and Conditions
 	And I declare that I do not use this account for business
-	When I press Create Your Account
-	Then I should see my account confirmation page
-	And When I Click Go Back
-	And Once I have Validated an Email was received and verified my account
-	Then I should be able to log into "United Kingdom" Brother Online using my account details
-	And I can sign out of Brother Online
-	Then I am redirected to the Brother Home Page
-
-# Check maximun username(241) and password(30) length when creating a business account
-Scenario: Validate that a business account can be created using the maximun 241 username and 30 password character lengths (Failing due to BBAU-2522)																				
-	Given I want to create a new account with Brother Online "United Kingdom"
-	When I click on Create Account for "United Kingdom"
-	And I am redirected to the Brother Login/Register page
-	And I have Checked No I Do Not Have An Account Checkbox
-	And I fill in the registration information using a maximum length email address 
-	| field           | value          |
-	| FirstName       | AutoTest       |
-	| LastName        | AutoTest       |
-	| Password        | Max30CharacterPasswooooooooord |
-	| ConfirmPassword | Max30CharacterPasswooooooooord |
-
-	And I declare that I do use this account for business
-	And I add my company name as "AutoTestLtd"
-	And I select my Business Sector as "IT and telecommunications services"
-	And I select number of Employees as "11 - 50"
-	When I add my company VAT number as "GB145937540" 
-	And I have Agreed to the Terms and Conditions	
 	When I press Create Your Account
 	Then I should see my account confirmation page
 	And When I Click Go Back
@@ -542,77 +498,6 @@ Scenario: Validate that a user of Brother online can view the cookie privacy pol
 @ignore
 Scenario: Log in as a Printer On dealer and ensure that they can see the required permissions BBAU-2189
 # (ensure that a customer cannot see the same permissions)
-
-# Change Personal details in your created account, go to my account and add your new Email address
-Scenario: Business Customer can change their Email Address   (BBAU - 2377, 2355)
-	Given I want to create a new account with Brother Online "United Kingdom"
-	When I click on Create Account for "United Kingdom"
-	And I am redirected to the Brother Login/Register page
-	And I have Checked No I Do Not Have An Account Checkbox
-	And I declare that I do use this account for business
-	And I fill in the registration information using a valid email address 
-	| field           | value          |
-	| FirstName       | AutoTest       |
-	| LastName        | AutoTest       |
-	| Password        | @@@@@	       |
-	| ConfirmPassword | @@@@@		   |
-	
-	And I add my company name as "AutoTestLtd"
-	And I select my Business Sector as "IT and telecommunications services"
-	And I select number of Employees as "11 - 50"
-	And I have Agreed to the Terms and Conditions
-	When I press Create Your Account
-	Then I should see my account confirmation page
-	And When I Click Go Back
-	And Once I have Validated an Email was received and verified my account
-	Then I should be able to log into "United Kingdom" Brother Online using my account details
-	When I navigate to my account for "United Kingdom"
-	And I click on Sign In Details
-	And If I enter a new email address "changed"
-	And If I enter the current password for email change
-	And I click on Update details
-	Then I can verify the email change occurred
-	Then I validate the new Business Email changes via email 
-	Then I can validate the update was successful
-	And I can sign out of Brother Online
-	Then If I sign back into Brother Online "United Kingdom" using the same credentials
-
-#Change Sign In details in your created account, go to my account and change/add your new password
-Scenario: Business Customer can reset their password 
-	Given I want to create a new account with Brother Online "United Kingdom"
-	When I click on Create Account for "United Kingdom"
-	And I am redirected to the Brother Login/Register page
-	And I have Checked No I Do Not Have An Account Checkbox
-	And I declare that I do use this account for business
-	And I fill in the registration information using a valid email address 
-	| field           | value          |
-	| FirstName       | AutoTest       |
-	| LastName        | AutoTest       |
-	| Password        | @@@@@	       |
-	| ConfirmPassword | @@@@@		   |
-
-	And I add my company name as "AutoTestLtd"
-	And I select my Business Sector as "IT and telecommunications services"
-	And I select number of Employees as "11 - 50"
-	And I have Agreed to the Terms and Conditions
-	When I press Create Your Account
-	Then I should see my account confirmation page
-	And When I Click Go Back
-	And Once I have Validated an Email was received and verified my account
-	Then I should be able to log into "United Kingdom" Brother Online using my account details
-	When I navigate to my account for "United Kingdom"
-	And I click on Sign In Details
-	Then If I enter the current password
-	And I enter a new password of "ChangedPassword123"
-	When I click on Update Password
-	Then My password will be updated 
-	Then If I sign out of Brother Online
-	And If I sign back into Brother Online "United Kingdom" using the same credentials
-	Then I can sign out of Brother Online
-	
-
-
-
 	
 @ignore
 Scenario: Create a user but test for BPID 
