@@ -194,9 +194,9 @@ namespace Brother.Tests.Selenium.Lib.Support
 
         private static void KillPhantomJsIfRunning()
         {
-            while (IsProcessRunning("phantomJS"))
+            while (!IsProcessRunning("phantomJS"))
             {
-                WebDriver.Wait(Helper.DurationType.Millisecond, 5);
+                WebDriver.Wait(Helper.DurationType.Millisecond, 500);
                 Helper.MsgOutput("Closing PhantomJS processes");
             }
         }
