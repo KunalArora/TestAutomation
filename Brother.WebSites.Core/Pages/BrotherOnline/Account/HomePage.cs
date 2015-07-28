@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Drawing;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.PageObjects;
 
 namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
@@ -69,12 +72,57 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         [FindsBy(How = How.CssSelector, Using = "#cccontent_1_singlecolumnform_1_SignUpButton")]
         public IWebElement CreativeCenterCreateAccountLink;
 
-        [FindsBy(How = How.CssSelector, Using = "#cccontent_1_singlecolumnform_1_SignUpButton")]
+        [FindsBy(How = How.Id, Using = "cccontent_1_pagetop_0_Logout")]
         public IWebElement CreativeCenterLogoutLink;
 
-        [FindsBy(How = How.Id, Using = "hide")]
+        //[FindsBy(How = How.Id, Using = "hide")]
+        //public IWebElement NoToCreativeCenterSurveyButton;
+
+        [FindsBy(How = How.CssSelector, Using = "#hide")]
         public IWebElement NoToCreativeCenterSurveyButton;
-        
+
+        [FindsBy(How = How.Id, Using = "FirstNameTextBox")]
+        public IWebElement FirstNameCCTextBox;
+
+        [FindsBy(How = How.Id, Using = "LastNameTextBox")]
+        public IWebElement LastNameCCTextBox;
+
+        // Note: there are Three password fields, one for Sign In, Two for Sign Up
+        [FindsBy(How = How.Id, Using = "Password")]
+        public new IWebElement Password;
+
+        [FindsBy(How = How.Id, Using = "PasswordTextBox")]
+        public IWebElement PasswordCCTextBox;
+
+        [FindsBy(How = How.Id, Using = "ConfirmPasswordTextBox")]
+        public IWebElement ConfirmPasswordCCTextBox;
+
+        [FindsBy(How = How.Id, Using = "Email")]
+        public IWebElement EmailAddressCCTextBox;
+
+        [FindsBy(How = How.CssSelector, Using = ".error")]
+        public IWebElement EmailAddressCCErrorMessage;
+
+        [FindsBy(How = How.Id, Using = "CCCreateNewAccountRadioButton")]
+        public IWebElement NoToCreativeCenterAccount;
+
+        [FindsBy(How = How.Id, Using = "TermsAndConditionsCheckbox")]
+        public IWebElement CCTermsAgreedCheckbox;
+
+        [FindsBy(How = How.Id, Using = "BusinessAccountNoRadioButton")]
+        public IWebElement NoToCreativeCenterBusinessAccount;
+
+        [FindsBy(How = How.CssSelector, Using = ".content.cf .content-box.login-register.cf .box-out.regular-sign-in.cf .generic-form #form-sign-in .button-blue")]
+        public IWebElement SignInButton;
+
+        [FindsBy(How = How.CssSelector, Using = ".add-device")]
+        public IWebElement RegisterDeviceLink;
+
+        [FindsBy(How = How.CssSelector, Using = "#content_2_innercontent_2_Row1_txtSerial")]
+        public IWebElement SerialCodeTextBox;
+
+        [FindsBy(How = How.CssSelector, Using = "#registered-products > table > tbody > tr.row01 > td.model > div > p > div > span > span")]
+        public IWebElement ModelNumberTextBox;
         
         private static readonly Dictionary<string, string> _pageTitle = new Dictionary<string, string>
         {
@@ -143,18 +191,76 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             }
             AssertElementPresent(CreativeCenterLogoutLink, "creative center logout link", 80);
         }
-
+        
         public void DoNotWantToParticipateInCreativeCenterSurvey()
-        {
-            //if (CreativeCenterLogoutLink == null)
-            //{
-             //   throw new NullReferenceException("Unable to locate creative center survey dialogue on page");
-            //}
-            //AssertElementPresent(CreativeCenterLogoutLink, "creative center survey dialogue", 80);
 
+        //{
+           //if (!WaitForElementToExistById("hide"))
+           //{
+            //TestCheck.AssertFailTest("Unable to locate survey no button");
+           //}
+           //NoToCreativeCenterSurveyButton = Driver.FindElement(By.Id("hide"));
+           //ScrollTo(NoToCreativeCenterSurveyButton);
+           //NoToCreativeCenterSurveyButton.Click();
+         //}
+        {
+         IWebElement NoToCreativeCenterSurveyButton = null;
+            if (WaitForElementToExistByCssSelector("#hide", 5, 5))
+            {
+                NoToCreativeCenterSurveyButton = GetElementByCssSelector("#hide");
+            }
+            AssertElementPresent(NoToCreativeCenterSurveyButton, "Welcome Page Register Device - Serial Number Text Box");
             ScrollTo(NoToCreativeCenterSurveyButton);
             NoToCreativeCenterSurveyButton.Click();
         }
+
+
+
+
+
+        // Currently not working for creative center alert pop up
+        public void ClickDismissOnConfrimation(IWebDriver driver)
+        {
+            WebDriver.Wait(DurationType.Millisecond, 100);
+            ClickDismissOnJsAlert(driver);
+        }
+
+        public void DoNotHaveCreativeCenterAccount()
+        {
+            if (NoToCreativeCenterAccount == null)
+            {
+                throw new NullReferenceException("Unable to locate creative center acc no radio button");
+            }
+            AssertElementPresent(NoToCreativeCenterAccount, "creative center account no", 80);
+
+            ScrollTo(NoToCreativeCenterAccount);
+            NoToCreativeCenterAccount.Click();
+        }
+
+        public void DoNotUseCreativeCenterAccForBusiness()
+        {
+            if (NoToCreativeCenterBusinessAccount == null)
+            {
+                throw new NullReferenceException("Unable to locate creative center business no radio button");
+            }
+            AssertElementPresent(NoToCreativeCenterBusinessAccount, "creative center business no", 80);
+
+            ScrollTo(NoToCreativeCenterBusinessAccount);
+            NoToCreativeCenterBusinessAccount.Click();
+        }
+
+        public void AgreedToCreativeCenterTerms()
+        {
+            if (CCTermsAgreedCheckbox == null)
+            {
+                throw new NullReferenceException("Unable to locate creative center terms check box");
+            }
+            AssertElementPresent(CCTermsAgreedCheckbox, "creative center terms check box", 80);
+
+            ScrollTo(CCTermsAgreedCheckbox);
+            CCTermsAgreedCheckbox.Click();
+        }
+
         
         public void IsAcceptCookieButtonAvailable()
         {
@@ -270,7 +376,154 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             CreativeCenterCreateAccountLink.Click();
         }
 
-       
+        public void PopulateCCFirstNameTextBox(string firstName)
+        {
+            FirstNameCCTextBox.SendKeys(firstName);
+            TestCheck.AssertIsEqual(firstName, GetTextBoxValue("FirstNameTextBox"), "FirstName Text Box");
+        }
+
+        public void PopulateCCLastNameTextBox(string lastName)
+        {
+            LastNameCCTextBox.SendKeys(lastName);
+            TestCheck.AssertIsEqual(lastName, GetTextBoxValue("LastNameTextBox"), "LastName Text Box");
+        }
+
+        public void PopulateCCPasswordTextBox(string password)
+        {
+            PasswordCCTextBox.SendKeys(password.Equals("@@@@@") ? Helper.Password : password);
+            TestCheck.AssertIsEqual(password.Equals("@@@@@") ? Helper.Password : password, GetTextBoxValue("PasswordTextBox"), "Password Text Box");
+        }
+
+        public void PopulateCCConfirmPasswordTextBox(string password)
+        {
+            ConfirmPasswordCCTextBox.SendKeys(password.Equals("@@@@@") ? Helper.Password : password);
+            TestCheck.AssertIsEqual(password.Equals("@@@@@") ? Helper.Password : password, GetTextBoxValue("ConfirmPasswordTextBox"), "Confirm Password Text Box");
+        }
+
+
+
+        public void PopulateEmailAddressTextBoxWithValidCCEmail(string emailAddress)
+        {
+            TestCheck.AssertIsEqual(false, EmailAddressCCErrorMessage.Displayed, "Is Email Error message displayed");
+            if (emailAddress.Equals(string.Empty))
+            {
+                emailAddress = Email.GenerateUniqueCCEmailAddress();
+            }
+
+            EmailAddressCCTextBox.Clear();
+            EmailAddressCCTextBox.SendKeys(emailAddress);
+            EmailAddressCCTextBox.SendKeys(Keys.Tab);
+            TestCheck.AssertIsEqual(emailAddress, GetTextBoxValue("Email"), "Email Text Box");
+        }
+
+        public void PopulatePasswordWithCCCredentials(string password)
+        {
+            Password.SendKeys(password.Equals("@@@@@") ? Helper.Password : password);
+            TestCheck.AssertIsEqual(password.Equals("@@@@@") ? Helper.Password : password, GetTextBoxValue("Password"), "Password");
+        }
+
+        public void ClickSignInButtonWithCCCredentials()
+        {
+            ScrollTo(SignInButton);
+            SignInButton.Click();
+        }
+
+        public bool IsWarningBarPresent(int retry, int timeToWait)
+        {
+            try
+            {
+                if (WaitForElementToExistByCssSelector(".warning-bar", retry, timeToWait))
+                {
+                    var warningBar = Driver.FindElement(By.CssSelector(".warning-bar"));
+                    if (warningBar != null)
+                    {
+                        if (warningBar.Displayed)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            catch (ElementNotVisibleException elementNotVisible)
+            {
+                MsgOutput(string.Format("Warning bar could not be located [{0}]", elementNotVisible.Message));
+                return false;
+            }
+            return false;
+        }
+
+        public void ClickRegisterDeviceLink()
+        {
+            if (!WaitForElementToExistByCssSelector(".add-device"))
+            {
+                TestCheck.AssertFailTest("Unable to locate the Add Device button");
+            }
+            RegisterDeviceLink = Driver.FindElement(By.CssSelector(".add-device"));
+            ScrollTo(RegisterDeviceLink);
+            RegisterDeviceLink.Click();
+            //return GetInstance<RegisterDevicePage>(Driver);
+        }
+
+        public void IsSerialNumberTextBoxAvailable()
+        {
+            IWebElement serialCodeTextBox = null;
+            if (WaitForElementToExistByCssSelector("#content_2_innercontent_2_Row1_txtSerial", 5, 5))
+            {
+                serialCodeTextBox = GetElementByCssSelector("#content_2_innercontent_2_Row1_txtSerial");
+            }
+            AssertElementPresent(serialCodeTextBox, "Welcome Page Register Device - Serial Number Text Box");
+        }
+
+        public void EnterProductSerialCode(string serialCode)
+        {
+            IsProductSerialCodeTextBoxAvailable();
+            SerialCodeTextBox.SendKeys(serialCode);
+            TestCheck.AssertIsEqual(serialCode, SerialCodeTextBox.GetAttribute("value"), "Serial Code Text Box");
+            // store for validation later
+            Helper.CurrentDeviceSerialNumber = serialCode;
+            SerialCodeTextBox.SendKeys(Keys.Tab);
+            // As it takes a few seconds for the serial number to be recognised which populates
+            // the model number text field, we have to wait for this to occur otherwise
+            // the model number will show incorrectly.
+            StoreModelNumber();
+        }
+
+        public void IsProductSerialCodeTextBoxAvailable()
+        {
+            if (SerialCodeTextBox == null)
+            {
+                throw new Exception("Unable to locate TextBox on page");
+            }
+            AssertElementPresent(SerialCodeTextBox, "Serial Code Text Box");
+        }
+
+        private void StoreModelNumber()
+        {
+            WebDriver.Wait(DurationType.Second, 6); // pause for element to be populated. Explicit wait can cause StaleElement exception
+            CurrentDeviceModelNumber = ModelNumberTextBox.Text;
+        }
+
+        public bool IsErrorIconPresent()
+        {
+            // override current time outs
+            WebDriver.SetPageLoadTimeout(new TimeSpan(0, 0, 0, 10));
+            WebDriver.SetWebDriverImplicitTimeout(new TimeSpan(0, 0, 0, 10));
+
+            var errorIcon = GetElementByCssSelector(".error");
+
+            // revert to default
+            WebDriver.SetWebDriverDefaultTimeOuts(WebDriver.DefaultTimeOut.PageLoad);
+            WebDriver.SetWebDriverDefaultTimeOuts(WebDriver.DefaultTimeOut.Implicit);
+
+            return errorIcon != null;
+        }
+
+        public void CreativeCenterLogoutLinkClick()
+        {
+            ScrollTo(CreativeCenterLogoutLink);
+            CreativeCenterLogoutLink.Click();
+        }
+
     }
 
 }

@@ -65,6 +65,11 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             element.SendKeys(value);
         }
 
+        public void TypeSpace(IWebElement element)
+        {
+            element.SendKeys(Keys.Space);
+        }
+
         public bool WaitForElementToExistById(string element)
         {
             var elementStatus = false;
@@ -418,6 +423,16 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                 TestCheck.AssertFailTest(string.Format("Timeout scrolling to element [{0}]", ex.Message));
             }
         }
+
+                public void RemoveBrowserPopUp()
+            {
+            
+                ((IJavaScriptExecutor) Driver).ExecuteScript("window.onbeforeunload = function(e){};");
+            }
+
+
+
+
 
         /// <summary>
         /// Scrolls to a specified element on the current page
