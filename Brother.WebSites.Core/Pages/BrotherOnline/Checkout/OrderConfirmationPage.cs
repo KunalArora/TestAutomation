@@ -40,6 +40,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
 
         private const string BillingTermCssSelectorText = ".product-info div";
 
+        private const string MyAccountMenuButtonCssId =
+            ".content.cf .wrapper .content-box.checkout-container.cf .box-out.purchase-confirmed .button-grey";
+
         private IWebElement BillingTypeText()
         {
             IWebElement billingType = Driver.FindElement(By.CssSelector(BillingTermCssSelectorText));
@@ -69,9 +72,10 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
 
         public void IsMyAccountButtonAvailable()
         {
-            if (MyAccountButton == null)
+            MyAccountButton = null;
+            if (WaitForElementToExistByCssSelector(MyAccountMenuButtonCssId, 5, 5))
             {
-                throw new Exception("Unable to locate button on page");
+                MyAccountButton = Driver.FindElement(By.CssSelector(MyAccountMenuButtonCssId));
             }
             AssertElementPresent(MyAccountButton, "My Account Button");
         }
