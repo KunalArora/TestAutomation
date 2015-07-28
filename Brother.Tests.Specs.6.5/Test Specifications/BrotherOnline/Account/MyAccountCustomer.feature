@@ -1,12 +1,35 @@
 ﻿@TEST @UAT
-Feature: Account Management
+Feature: My Account - Customer
 	In order to change my Brother Online account details
 	As a customer
 	I need to be able to have account management options
 
+@TEST @UAT @PROD
+# Validate that the correct error messages are displayed when address details mandatory fields are not completed
+Scenario: Customer get the correct error messages when address details mandatory fields are not completed on my address page
+	Given I am logged onto Brother Online "United Kingdom" using valid credentials
+	When I navigate to my account for "United Kingdom"	
+	When I click on My Address 
+	And I click on Add a New Address Button 
+	And I enter tab on the first name field
+	Then I should see an error message on the first name field on my address page
+	And I enter tab on last name field
+	Then I should see an error message on Last name field on my address page
+	And I enter tab on postcode field
+	Then I should see an error message on postcode field on my address page
+	And I enter tab on House number 
+	Then I should an error message on house number field on my address page
+	And I enter tab on address line one
+	Then I should see an error message on Address Line one field on my address page
+	And I enter tab on City/Town field
+	Then I should see an error message on City/town field on my address page
+	And I enter tab on Phone number field
+	Then I should see an error message on phone number field on my address page
+	And I can navigate back to Brother Online home page
+	And I can sign out of Brother Online
+
 # Sign into Brother Online and change password
 @TEST @UAT @PROD
-#@STAGING
 Scenario: Customer has created a Brother Online account and wishes to change their password (BOL-164)
 	Given I am logged onto Brother Online "United Kingdom" using valid credentials
 	When I navigate to my account for "United Kingdom"
@@ -21,7 +44,6 @@ Scenario: Customer has created a Brother Online account and wishes to change the
 
 # Create an account and use the "Forgotten Password" utility
 @TEST @UAT @PROD
-#@STAGING
 Scenario: Customer has created a Brother Online account but has forgotten their password and requires a new one
 	Given I am logged onto Brother Online "United Kingdom" using valid credentials
 	#Given I am logged into my Brother Online account
@@ -41,7 +63,6 @@ Scenario: Customer has created a Brother Online account but has forgotten their 
 # Instant Ink role used as a baseline
 # ***-need to add additional scenario (see ticket number for steps) or ValidateRole Feature test
 @TEST @UAT
-#@STAGING
 Scenario: Customer or Dealer role persists after email address change (BOL-176)
 	Given I am logged onto Brother Online "United Kingdom" using valid credentials
 	Then I can sign out of Brother Online
@@ -63,7 +84,6 @@ Scenario: Customer or Dealer role persists after email address change (BOL-176)
 
 # Create an account and sign in, change registered email address and sign out, re-sign in again using new address
 @TEST @UAT @PROD 
-#@STAGING
 Scenario Outline: Customer can change their Brother Online email address after registration (BBAU - 2337)
 	Given I am logged onto Brother Online "<Country>" using valid credentials
 	When I navigate to my account for "<Country>"
@@ -85,60 +105,63 @@ Scenarios:
 	| United Kingdom | changed              |
 	| Ireland        | changed              |
 
-
-# Change Business details in your created account, go to my account and change/add your business details
-@TEST @UAT @PROD
-Scenario: Business Customer can change their business details after logging into account
+@TEST @UAT @PROD 
+# Validate that an existing user has the option to change their sign in preferences to social login 
+Scenario: Customer has the option to change their sign in preferences to social login
 	Given I am logged onto Brother Online "United Kingdom" using valid credentials
-	When I navigate to my account for "United Kingdom"
-	When I clicked on Business Details
-	And I am redirected to the Business Details Page
-	And I declare that I do use this account for business on my account page
-	And I add my company name as "AutoTestLtd" on Business Details page
-	And I add my company VAT number as "GB145937540" on Business Details Page
-	And I select my Business Sector as "IT and telecommunications services" on Business Details Page
-	And I select number of Employees as "11 - 50" on Business Details Page
-	And I click on Update details on business details page
-	Then I can verify successfull update message appeared at the top
-	Then I can sign out of Brother Online
+	When I navigate to my account for "United Kingdom"	
+	And I click on Sign In Details
+	When I click on Social Login Radio button
+	Then I should be able to see social login buttons
+	And I can navigate back to Brother Online home page
+	And I can sign out of Brother Online
 
-@TEST @UAT @PROD
-# Create a new user account - Add business details for new user 
-Scenario: Customer creates a new account with Brother Online and add Business details in My account page
+@TEST @UAT @PROD 
+# Validate that the correct error messages are displayed when business details mandatory fields are not completed
+Scenario: : Customer get the correct error message when business details mandator fields are not completed
 	Given I am logged onto Brother Online "United Kingdom" using valid credentials
 	When I navigate to my account for "United Kingdom"	
 	And I clicked on Business Details
 	And I am redirected to the Business Details Page
 	And I declare that I do use this account for business on my account page
-	And I add my company name as "AutoTestLtd" on Business Details page
-	And I add my company VAT number as "GB145937540" on Business Details Page
-	And I select my Business Sector as "IT and telecommunications services" on Business Details Page
-	And I select number of Employees as "11 - 50" on Business Details Page
 	And I click on Update details on business details page
-	Then I can verify successfull update message appeared at the top
-	Then I can sign out of Brother Online
+	Then I get the error message displayed on your company name field
+	And I get the error message displayed on Business sector field
+	And I can navigate back to Brother Online home page
+	And I can sign out of Brother Online
+
+@TEST @UAT @PROD 
+#Validate that a user with a Customer Account can amend their personal details
+Scenario: Customer cannot updatethe personal details if mandatory fields are left blank
+	Given I am logged onto Brother Online "United Kingdom" using valid credentials
+	When I navigate to my account for "United Kingdom"
+	And I clear the first name field
+	Then error message should appear on the first name field
+	And I clear the last name field
+	Then error mesage should appear on the last name field
+	And I can navigate back to Brother Online home page
+	And I can sign out of Brother Online
 
 @TEST @UAT @PROD
-#@STAGING
 #User can add their address to their account by manually entering their personal details
 Scenario: Customer can add a new address to their account by manually entering address details
-Given I am logged onto Brother Online "United Kingdom" using valid credentials
-When I navigate to my account for "United Kingdom"	
-When I click on My Address 
-And I click on Add a New Address Button
-And I enter all the mandatory fields
-	| field           | value          |
-	| FirstName       | AutoTest       |
-	| LastName        | AutoTest       |
-	| Postcode        | m34 5je	       |
-	| HouseNumber	  | appt 1		   |
-	| HouseName		  | Brother		   |
-	| Addressline1	  | TameSt		   |
-	| Addressline2	  | Audenshaw	   |
-	| City			  | Manchester	   |
-	| PhoneNumber	  | 0161 330 6531	   |
-And I click on the save address button
-Then I can navigate back to Brother Online home page
-And I can sign out of Brother Online
+	Given I am logged onto Brother Online "United Kingdom" using valid credentials
+	When I navigate to my account for "United Kingdom"	
+	When I click on My Address 
+	And I click on Add a New Address Button
+	And I enter all the mandatory fields
+		| field           | value          |
+		| FirstName       | AutoTest       |
+		| LastName        | AutoTest       |
+		| Postcode        | m34 5je	       |
+		| HouseNumber	  | appt 1		   |
+		| HouseName		  | Brother		   |
+		| Addressline1	  | TameSt		   |
+		| Addressline2	  | Audenshaw	   |
+		| City			  | Manchester	   |
+		| PhoneNumber	  | 0161 330 6531	   |
+	And I click on the save address button
+	Then I can navigate back to Brother Online home page
+	And I can sign out of Brother Online
 
 
