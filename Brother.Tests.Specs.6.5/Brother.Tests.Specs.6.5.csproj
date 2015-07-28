@@ -68,11 +68,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CC_AccountCreation.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\BrotherOnline\Account\New Account - Business Customers.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>New Account - Business Customers.feature</DependentUpon>
-    </Compile>
     <Compile Include="Test Specifications\BrotherOnline\Account\Customer Account.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -344,11 +339,6 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Test Specifications\BrotherOnline\Account\MyAccountCustomer.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MyAccountCustomer.feature</DependentUpon>
-    </Compile>
     <Compile Include="Test Specifications\BrotherOnline\Product Registration\AddDevice.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -398,17 +388,9 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>AddPaymentMethod.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\BrotherOnline\Account\New Account - Business Customers.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>New Account - Business Customers.feature.cs</LastGenOutput>
-    </None>
     <None Include="Test Specifications\BrotherOnline\Account\Customer Account.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Customer Account.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\BrotherOnline\Account\MyAccountCustomer.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>MyAccountCustomer.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\BrotherOnline\Account\AccountMaintenance.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
