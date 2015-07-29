@@ -248,16 +248,16 @@ namespace Brother.Tests.Selenium.Lib.Support
 
             try
             {
-                phantomJsProcess.UserName = "EUSiteCoreTestAuto";
-                phantomJsProcess.Domain = "eu";
-                string prePassword = "Ferry1Loft2Lighter3";
-                var passwordSecure = new SecureString();
-                char[] passwordChars = prePassword.ToCharArray();
-                foreach (char c in passwordChars)
-                {
-                    passwordSecure.AppendChar(c);
-                }
-                phantomJsProcess.Password = passwordSecure;
+            //    phantomJsProcess.UserName = "EUSiteCoreTestAuto";
+            //    phantomJsProcess.Domain = "eu";
+            //    string prePassword = "Ferry1Loft2Lighter3";
+            //    var passwordSecure = new SecureString();
+            //    char[] passwordChars = prePassword.ToCharArray();
+            //    foreach (char c in passwordChars)
+            //    {
+            //        passwordSecure.AppendChar(c);
+            //    }
+            //    phantomJsProcess.Password = passwordSecure;
                 phantomJsProcess.UseShellExecute = false;
 
                 var phantomJsProc = new Process();
