@@ -8,6 +8,7 @@ Feature: Click Price Deep Dive
 # Service Pack Display
 #
 # 1
+@ignore
 Scenario Outline: Lease + Click, PAYG, Service Pack not displayed
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -26,6 +27,7 @@ Scenario Outline: Lease + Click, PAYG, Service Pack not displayed
 	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Create new customer | Pay As You Go | 3 years  | Quarterly | Quarterly | Tick          | MFC-8510DN   | Full         |  Pay upfront  | 0           | 2000         |
 
 # 2
+@ignore
 Scenario Outline: Lease + Click, Minimum Volume, Service Pack not displayed
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -199,6 +201,7 @@ Scenario Outline: No Variation of "In Click" and "Upfront Payment" click price(P
 	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Create new customer | Pay As You Go  | 3 years  | Quarterly | Quarterly | Tick          | MFC-L8650CDW | Full         |  Included in Click Price  | 2000        | 2000         |
 
 # 11-14
+@ignore
 Scenario Outline: Lease + Click, Minimum Volume, Service Pack Payment Method not displayed
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -280,6 +283,7 @@ Scenario Outline: Colour and Mono Volume Boundaries for Minimum Volume
 	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Create new customer | Minimum Volume | 3 years  | Quarterly | Quarterly | Tick          | MFC-8510DN | MFC-L8650CDW |Full          | Pay upfront   | 6            | 500          | 1000         | 2000         | 
 
 #17
+@ignore
 Scenario Outline: Mono Volume Boundaries for PAYG
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -306,6 +310,7 @@ Scenario Outline: Mono Volume Boundaries for PAYG
 
 
 #18
+@ignore
 Scenario Outline: Colour and Mono Volume Boundaries for PAYG
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -339,6 +344,7 @@ Scenario Outline: Colour and Mono Volume Boundaries for PAYG
 
 # 4. Coverage
 # 19-20
+@ignore
 Scenario Outline: Mono Coverage calculated correctly
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -361,6 +367,7 @@ Scenario Outline: Mono Coverage calculated correctly
 	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Create new customer | Pay As You Go | 3 years  | Quarterly | Quarterly | Tick          | MFC-8510DN | Full         | Pay upfront   | 99           | 2           |
 
 # 21-22
+@ignore
 Scenario Outline: Mono Coverage calculated then error occurs
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -383,6 +390,7 @@ Scenario Outline: Mono Coverage calculated then error occurs
 	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Create new customer | Pay As You Go | 3 years  | Quarterly | Quarterly | Tick          | MFC-8510DN | Full         | Pay upfront   | 101          | 2           |
 
 # 23-24
+@ignore
 Scenario Outline: Colour Coverage calculated correctly
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -405,6 +413,7 @@ Scenario Outline: Colour Coverage calculated correctly
 	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Create new customer | Pay As You Go | 3 years  | Quarterly | Quarterly | Tick          | MFC-L8650CDW | Full         | Pay upfront   | 99           | 2           |
 
 # 25-26
+@ignore
 Scenario Outline: Colour Coverage calculated then error occurs
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page

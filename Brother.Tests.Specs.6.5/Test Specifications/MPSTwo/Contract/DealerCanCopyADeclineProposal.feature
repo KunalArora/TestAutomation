@@ -4,7 +4,7 @@ Feature: DealerCanCopyADeclineProposal
 	As a dealer 
 	I want to be to copy and submit a declined proposal
 
-
+@ignore
 Scenario Outline: Dealer Can Copy A Declined Leasing and Click Proposal without customer detail
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created Leasing and Click proposal 
@@ -26,7 +26,7 @@ Scenario Outline: Dealer Can Copy A Declined Leasing and Click Proposal without 
 	| Cloud MPS Dealer | United Kingdom | Cloud MPS Bank |
 
 
-
+@ignore
 Scenario Outline: Dealer Can Copy A Declined Leasing and Click Proposal with customer detail
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created Leasing and Click proposal 

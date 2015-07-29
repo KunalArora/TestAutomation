@@ -1,11 +1,11 @@
-﻿@Ignore @MPS @TEST @UAT
+﻿@ignore @MPS @TEST @UAT
 Feature: DealerCanSignContractProd
 	In order to progress an approved proposal to contract
 	As a dealer
 	I want to be able to sign an approve proposal
 
 
-@Ignore
+@ignore
 Scenario Outline: Dealer Can Sign A Leasing And Click Contract in Prod
 	Given I sign as "<Role>" into "<Web>" for "<Country>"
 	And I have created Leasing and Click proposal for "<ServerName>"
@@ -37,7 +37,7 @@ Scenario Outline: Dealer Can Sign A Leasing And Click Contract in Prod
 
 	
 	
-@Ignore
+@ignore
 Scenario Outline: Dealer Can Sign A Purchase And Click Contract in Prod
 	Given I sign as "<Role>" into "<Web>" for "<Country>"
 	And I have created Purchase and Click proposal for "<ServerName>" 

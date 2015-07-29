@@ -73,10 +73,17 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.SendToBank
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Send Leasing and Click proposal to bank")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Cloud MPS Bank", null)]
         public virtual void SendLeasingAndClickProposalToBank(string role, string country, string role2, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Send Leasing and Click proposal to bank", exampleTags);
+            string[] @__tags = new string[] {
+                    "ignore"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Send Leasing and Click proposal to bank", @__tags);
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line 9
@@ -115,10 +122,17 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Send Leasing and Click proposal to bank for Privately Liable Customer")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Cloud MPS Bank", null)]
         public virtual void SendLeasingAndClickProposalToBankForPrivatelyLiableCustomer(string role, string country, string role2, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Send Leasing and Click proposal to bank for Privately Liable Customer", exampleTags);
+            string[] @__tags = new string[] {
+                    "ignore"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Send Leasing and Click proposal to bank for Privately Liable Customer", @__tags);
 #line 31
 this.ScenarioSetup(scenarioInfo);
 #line 32
@@ -157,10 +171,17 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Send Leasing and Click proposal to bank for Customer who can order consumables")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Cloud MPS Bank", null)]
         public virtual void SendLeasingAndClickProposalToBankForCustomerWhoCanOrderConsumables(string role, string country, string role2, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Send Leasing and Click proposal to bank for Customer who can order consumables", exampleTags);
+            string[] @__tags = new string[] {
+                    "ignore"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Send Leasing and Click proposal to bank for Customer who can order consumables", @__tags);
 #line 53
 this.ScenarioSetup(scenarioInfo);
 #line 54
@@ -200,11 +221,18 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Send Leasing and Click proposal to bank for Privately Liable Customer who can ord" +
             "er consumables")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Cloud MPS Bank", null)]
         public virtual void SendLeasingAndClickProposalToBankForPrivatelyLiableCustomerWhoCanOrderConsumables(string role, string country, string role2, string[] exampleTags)
         {
+            string[] @__tags = new string[] {
+                    "ignore"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Send Leasing and Click proposal to bank for Privately Liable Customer who can ord" +
-                    "er consumables", exampleTags);
+                    "er consumables", @__tags);
 #line 77
 this.ScenarioSetup(scenarioInfo);
 #line 78

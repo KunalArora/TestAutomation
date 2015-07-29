@@ -73,10 +73,17 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Contract
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Dealer Can Copy A Declined Leasing and Click Proposal without customer detail")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Cloud MPS Bank", null)]
         public virtual void DealerCanCopyADeclinedLeasingAndClickProposalWithoutCustomerDetail(string role, string country, string role2, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer Can Copy A Declined Leasing and Click Proposal without customer detail", exampleTags);
+            string[] @__tags = new string[] {
+                    "ignore"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer Can Copy A Declined Leasing and Click Proposal without customer detail", @__tags);
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line 9
@@ -111,10 +118,17 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Dealer Can Copy A Declined Leasing and Click Proposal with customer detail")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Cloud MPS Bank", null)]
         public virtual void DealerCanCopyADeclinedLeasingAndClickProposalWithCustomerDetail(string role, string country, string role2, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer Can Copy A Declined Leasing and Click Proposal with customer detail", exampleTags);
+            string[] @__tags = new string[] {
+                    "ignore"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer Can Copy A Declined Leasing and Click Proposal with customer detail", @__tags);
 #line 30
 this.ScenarioSetup(scenarioInfo);
 #line 31

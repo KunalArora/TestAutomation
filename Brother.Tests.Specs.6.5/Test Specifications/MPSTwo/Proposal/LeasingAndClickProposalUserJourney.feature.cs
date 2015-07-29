@@ -20,6 +20,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Proposal
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("LeasingAndClickProposalUserJourney")]
+    [NUnit.Framework.IgnoreAttribute()]
     [NUnit.Framework.CategoryAttribute("TEST")]
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("MPS")]
@@ -37,6 +38,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Proposal
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "LeasingAndClickProposalUserJourney", "In order to create different variety of leasing proposal\r\nAs a dealer \r\nI want to" +
                     " be able to use different MPS parameters to derive different leasing proposal", ProgrammingLanguage.CSharp, new string[] {
+                        "ignore",
                         "TEST",
                         "UAT",
                         "MPS"});
@@ -73,10 +75,17 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Proposal
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Create different varieties of Leasing and Click proposal for new customer")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Lease & Click with Service", "Create new customer", "Minimum Volume", "3 years", "Quarterly", "Quarterly", "HL-L8350CDW", "Full", "750", "750", null)]
         public virtual void CreateDifferentVarietiesOfLeasingAndClickProposalForNewCustomer(string role, string country, string contractType, string createOption, string usageType, string contract, string leasing, string billing, string printer, string deviceScreen, string clickVolume, string colourVolume, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create different varieties of Leasing and Click proposal for new customer", exampleTags);
+            string[] @__tags = new string[] {
+                    "ignore"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create different varieties of Leasing and Click proposal for new customer", @__tags);
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line 9
@@ -129,11 +138,18 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Create different varieties of Leasing and Click proposal for new customer on Pay " +
             "As You Go Term")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Lease & Click with Service", "Create new customer", "Pay As You Go", "4 years", "Quarterly", "Quarterly", "DCP-8110DN", "Full", "750", null)]
         public virtual void CreateDifferentVarietiesOfLeasingAndClickProposalForNewCustomerOnPayAsYouGoTerm(string role, string country, string contractType, string createOption, string usageType, string contract, string leasing, string billing, string printer, string deviceScreen, string clickVolume, string[] exampleTags)
         {
+            string[] @__tags = new string[] {
+                    "ignore"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create different varieties of Leasing and Click proposal for new customer on Pay " +
-                    "As You Go Term", exampleTags);
+                    "As You Go Term", @__tags);
 #line 42
 this.ScenarioSetup(scenarioInfo);
 #line 43
