@@ -3,6 +3,7 @@ using System.Diagnostics;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using NUnit.Framework;
+using OpenQA.Selenium.PhantomJS;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs
@@ -10,6 +11,13 @@ namespace Brother.Tests.Specs
     [Binding]
     public class tmpScratch : BaseSteps
     {
+        [Given(@"I want to run multiple instances of PhantomJs")]
+        public void GivenIWantToRunMultipleInstancesOfPhantomJs()
+        {
+            //var pjsService = new PhantomJSDriver()
+
+        }
+
         [Given(@"SqlCall")]
         public void GivenSqlCall()
         {
