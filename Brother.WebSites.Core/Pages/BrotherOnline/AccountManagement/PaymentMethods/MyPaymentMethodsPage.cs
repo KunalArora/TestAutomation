@@ -26,6 +26,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement.PaymentMet
         [FindsBy(How = How.CssSelector, Using = ".card-details")]
         public IWebElement CreditCardDetails;
 
+        [FindsBy(How = How.CssSelector, Using = "#Warnings")]
+        public IWebElement WarningMessagePaymentMethod;
+
         //public AddNewCardPage UseThisAddressButtonClick()
         //{
         //    IWebElement useThisAddressButton = null;
@@ -90,6 +93,10 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement.PaymentMet
                 var type = CreditCardDetailsList[0].Text;
                 TestCheck.AssertIsEqual(CreditCardDetailsList[0].Text.Contains(Helper.CreditCardType), true, "Credit Card Expiry Date");
             }
+        }
+        public void PaymentMehodErrorMessageDisplayed()
+        {
+            TestCheck.AssertIsEqual(true, WarningMessagePaymentMethod.Displayed, "Is Error Message Displayed");
         }
     }
 }

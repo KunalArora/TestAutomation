@@ -1,5 +1,6 @@
 ﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
+using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement.PaymentMethods;
 using Brother.WebSites.Core.Pages.BrotherOnline.Checkout;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
@@ -26,8 +27,11 @@ namespace Brother.Tests.Specs.BrotherOnline.Purchasing
         {
             NextPage = CurrentPage.As<CreditCardDetailsPage>().SendPaymentDetailsButtonClick();
         }
-
-
+        [Then(@"I should get error message to enter the card details")]
+        public void ThenIShouldGetErrorMessageToEnterTheCardDetails()
+        {
+            CurrentPage.As<MyPaymentMethodsPage>().PaymentMehodErrorMessageDisplayed();
+        }
         [When(@"I click Send")]
         public void WhenIClickSend()
         {
@@ -68,6 +72,12 @@ namespace Brother.Tests.Specs.BrotherOnline.Purchasing
             NextPage = BasePage.LoadCreditCardDetailsFrame(CurrentDriver);
             CurrentPage.As<CreditCardDetailsPage>().SwitchToCreditCardDetailsFrameAddCard();
             AddVisaCreditCardDetails(expiryDateOverride);
+        }
+        [Then(@"I am redirtected to the card details page")]
+        public void ThenIAmRedirtectedToTheCardDetailsPage()
+        {
+            NextPage = BasePage.LoadCreditCardDetailsFrame(CurrentDriver);
+            CurrentPage.As<CreditCardDetailsPage>().SwitchToCreditCardDetailsFrameAddCard();
         }
 
         [When(@"I enter valid credit card details for a MasterCard Credit Card with an expired date of ""(.*)""")]
@@ -112,5 +122,6 @@ namespace Brother.Tests.Specs.BrotherOnline.Purchasing
             NextPage = CurrentPage.As<CreditCardDetailsPage>().CancelPaymentButtonClick();
             TestCheck.AssertIsEqual(CurrentPage.As<OrderSummaryPage>().GetOrderCancellationInformation().Contains("Payment cancel"), true, "Unable to determine Order cancellation information");
         }
+        
     }
 }
