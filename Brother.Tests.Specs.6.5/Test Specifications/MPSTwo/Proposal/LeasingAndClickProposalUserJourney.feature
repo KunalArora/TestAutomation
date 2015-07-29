@@ -1,10 +1,10 @@
-﻿@TEST @UAT @MPS
+﻿@ignore @TEST @UAT @MPS
 Feature: LeasingAndClickProposalUserJourney
 	In order to create different variety of leasing proposal
 	As a dealer 
 	I want to be able to use different MPS parameters to derive different leasing proposal
 
-
+@ignore
 Scenario Outline: Create different varieties of Leasing and Click proposal for new customer
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -38,7 +38,7 @@ Scenario Outline: Create different varieties of Leasing and Click proposal for n
 	| Role             | Country        | ContractType               | CreateOption        | UsageType      | Contract | Leasing                  | Billing                  | Printer     | DeviceScreen | ClickVolume | ColourVolume |
 	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Create new customer | Minimum Volume | 3 years  | Quarterly | Quarterly | HL-L8350CDW | Full         | 750        | 750         |
 	
-
+@ignore
 Scenario Outline: Create different varieties of Leasing and Click proposal for new customer on Pay As You Go Term
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page

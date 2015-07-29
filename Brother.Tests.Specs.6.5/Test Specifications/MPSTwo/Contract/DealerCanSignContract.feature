@@ -5,7 +5,7 @@ Feature: DealerCanSignContract
 	I want to be able to sign an approve proposal
 
 
-
+@ignore
 Scenario Outline: Dealer Can Sign A Leasing And Click Contract
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created Leasing and Click proposal 

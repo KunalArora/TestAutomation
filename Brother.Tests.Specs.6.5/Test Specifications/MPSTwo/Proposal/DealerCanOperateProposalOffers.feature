@@ -14,7 +14,7 @@ Scenario Outline: Dealer can see proposal offers
 	| Role             | Country        |
 	| Cloud MPS Dealer | United Kingdom |
 
-@ignore
+
 Scenario Outline: Dealer can edit an existing proposal offer
 	Given Dealer have created a Open proposal of "<ContractType>" and "<UsageType>"
 	And I navigate to Dealer Dashboard page from Dealer Proposal page
@@ -28,12 +28,12 @@ Scenario Outline: Dealer can edit an existing proposal offer
 	And I can sign out of Brother Online
 
 	Scenarios:
-	| ContractType                  | UsageType      | Role             | Country        | TabName             |
-	| Lease & Click with Service    | Minimum Volume | Cloud MPS Dealer | United Kingdom | Description         |
-	| Lease & Click with Service    | Minimum Volume | Cloud MPS Dealer | United Kingdom | CustomerInformation |
-	| Lease & Click with Service    | Minimum Volume | Cloud MPS Dealer | United Kingdom | TermAndType         |
-	| Lease & Click with Service    | Minimum Volume | Cloud MPS Dealer | United Kingdom | Products            |
-	| Lease & Click with Service    | Minimum Volume | Cloud MPS Dealer | United Kingdom | ClickPrice          |
+	#| ContractType                  | UsageType      | Role             | Country        | TabName             |
+	#| Lease & Click with Service    | Minimum Volume | Cloud MPS Dealer | United Kingdom | Description         |
+	#| Lease & Click with Service    | Minimum Volume | Cloud MPS Dealer | United Kingdom | CustomerInformation |
+	#| Lease & Click with Service    | Minimum Volume | Cloud MPS Dealer | United Kingdom | TermAndType         |
+	#| Lease & Click with Service    | Minimum Volume | Cloud MPS Dealer | United Kingdom | Products            |
+	#| Lease & Click with Service    | Minimum Volume | Cloud MPS Dealer | United Kingdom | ClickPrice          |
 	| Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | United Kingdom | TermAndType         |
 
 @ignore

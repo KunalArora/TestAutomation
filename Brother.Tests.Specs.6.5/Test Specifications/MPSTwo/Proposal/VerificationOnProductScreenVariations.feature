@@ -127,6 +127,7 @@ Scenario Outline: Should be able to display Reduced detail screen
 	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | 3 years  |  Quarterly | MFC-L8850CDW |
 
 
+@ignore
 Scenario Outline: Lease and Click product screen validation
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -148,6 +149,7 @@ Scenario Outline: Lease and Click product screen validation
 #
 # Enable Printers Scenario 
 #
+@ignore
 Scenario Outline: Enable Printer of Lease + Click as a Local Office Admin, then can display in Lease + Click Service
 	Given I sign into Cloud MPS as a "<Role1>" from "<Country>"
 	And I navigate to Lease And Click page
@@ -184,6 +186,7 @@ Scenario Outline: Selected printer which is enabled on Lease + Click above can d
 	| Role1            | Country        | Printer      |
 	| Cloud MPS Dealer | United Kingdom | MFC-J4420DW   |
 
+@ignore
 Scenario Outline: Disable Printer of Lease + Click as a Local Office Admin, then can not display in Lease + Click Service
 	Given I sign into Cloud MPS as a "<Role1>" from "<Country>"
 	And I navigate to Lease And Click page
@@ -240,7 +243,7 @@ Scenario Outline: Enable Printer of Purchase + Click as a Local Office Admin, th
 	| Role1                  | Country        | Role2            | Printer     |
 	| Cloud MPS Local Office | United Kingdom | Cloud MPS Dealer | MFC-J4420DW  |
 
-
+@ignore
 Scenario Outline: Selected printer which is enabled on Purchase + Click above can display in Lease + Click Service
 	Given I sign into Cloud MPS as a "<Role1>" from "<Country>"
 	And I am on MPS New Proposal Page

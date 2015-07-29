@@ -4,7 +4,7 @@ Feature: SummaryPageValidationForAllProposalTypes
 	As a dealer
 	I want to be verify that proposal summary page is correct for all types of proposal
 
-
+@ignore
 Scenario Outline: Summary Page Validation For Minimum Volume Leasing and Click proposal
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -41,7 +41,7 @@ Scenario Outline: Summary Page Validation For Minimum Volume Leasing and Click p
 	| Role             | Country        | ContractType               | UsageType      | Contract | Leasing   | Billing   | Printer     | ClickVolume | ColourVolume |
 	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Minimum Volume | 3 years  | Quarterly | Quarterly | HL-L8350CDW | 750         | 750          |
 
-
+@ignore
 Scenario Outline: Summary Page Validation For Pay As You Go Leasing and Click proposal
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
