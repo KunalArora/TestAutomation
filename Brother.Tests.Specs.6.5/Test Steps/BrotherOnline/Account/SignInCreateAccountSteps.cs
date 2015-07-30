@@ -94,7 +94,8 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
 
         [Then(@"I am navigated to the privacy policy for cookies")]
         public void IsNavigatedToThePrivacyPolicyPage()
-        {
+        {   
+            CurrentPage.As<HomePage>().SwitchToNewlyOpenedWindow(CurrentDriver);
             CurrentPage.As<HomePage>().IsCompanyTermsAndConditionsLinkAvailable();
         }
 

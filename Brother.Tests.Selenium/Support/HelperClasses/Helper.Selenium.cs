@@ -779,6 +779,13 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             }
         }
 
+        public void SwitchToNewWindow(IWebDriver driver)
+        {
+
+            driver.SwitchTo().Window((driver.WindowHandles.Last()));
+
+        }
+
         public void ClickDismissOnJsAlert(IWebDriver driver)
         {
             if (!IsPhantomJsBrowser())
