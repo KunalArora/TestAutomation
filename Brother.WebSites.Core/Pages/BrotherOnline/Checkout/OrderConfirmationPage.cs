@@ -73,7 +73,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
         public void IsMyAccountButtonAvailable()
         {
             MyAccountButton = null;
-            if (WaitForElementToExistByCssSelector(MyAccountMenuButtonCssId, 5, 5))
+            if (WaitForElementToExistByCssSelector(MyAccountMenuButtonCssId, 10, 10)) // Payment processing can be slow sometimes
             {
                 MyAccountButton = Driver.FindElement(By.CssSelector(MyAccountMenuButtonCssId));
             }
