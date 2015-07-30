@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Cryptography.X509Certificates;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherOnline.Account;
@@ -69,6 +70,10 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
 
         [FindsBy(How = How.CssSelector, Using = ".error")] 
         public IWebElement PhoneNumberErrorMessage;
+        
+        [FindsBy(How = How.Id, Using = "content_1_innercontent_2_AddressesRepeater_EditItemLink_0")] 
+        public IWebElement EditLink;
+        
 
         public void ClickonAddanewaddressButton()
         {
@@ -207,6 +212,14 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         {
             TestCheck.AssertIsEqual(true, PhoneNumberErrorMessage.Displayed, "Is Error Message Displayed");
         }
-        
+        public void ClickOnEditLink()
+        {   
+            EditLink.Click();
+        }
+        public void EditHouseNumberField(string housenumber)
+        {   
+            HouseNumberTextBox.Clear();
+            HouseNumberTextBox.SendKeys(housenumber);
+        }
     }
 }

@@ -164,6 +164,35 @@ Scenario: Customer can add a new address to their account by manually entering a
 	Then I can navigate back to Brother Online home page
 	And I can sign out of Brother Online
 
+#Validate that a user can edit an existing address
+Scenario Outline: Customer can edit their entered address details
+	Given I am logged onto Brother Online "United Kingdom" using valid credentials
+	When I navigate to my account for "United Kingdom"	
+	When I click on My Address 
+	And I click on Add a New Address Button
+	And I enter all the mandatory fields
+		| field           | value          |
+		| FirstName       | AutoTest       |
+		| LastName        | AutoTest       |
+		| Postcode        | m34 5je	       |
+		| HouseNumber	  | appt 1		   |
+		| HouseName		  | Brother		   |
+		| Addressline1	  | TameSt		   |
+		| Addressline2	  | Audenshaw	   |
+		| City			  | Manchester	   |
+		| PhoneNumber	  | 0161 330 6531	   |
+	And I click on the save address button
+	And I click on Edit link
+	And I edit the "<House Number>"
+	And I click on the save address button
+	Then I can navigate back to Brother Online home page
+	And I can sign out of Brother Online
+
+Scenarios: 
+| House Number    |
+| appt 12         |
+
+
 @SMOKE
 # Create a new user account
 Scenario: Customer creates a new account with Brother Online using valid credentials, confirm by email 																				sign in and Sign Out

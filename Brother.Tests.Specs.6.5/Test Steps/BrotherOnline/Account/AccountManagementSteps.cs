@@ -278,6 +278,16 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<MyAddressDetailsPage>().ClickOnSaveAddress();
         }
+        [When(@"I click on Edit link")]
+        public void WhenIClickOnEditLink()
+        {
+            CurrentPage.As<MyAddressDetailsPage>().ClickOnEditLink();
+        }
+        [When(@"I edit the ""(.*)""")]
+        public void WhenIEditThe(string housenumber)
+        {
+            CurrentPage.As<MyAddressDetailsPage>().EditHouseNumberField(housenumber);
+        }
         [When(@"I enter tab on the first name field")]
         public void WhenIEnterTabOnTheFirstNameField()
         {
