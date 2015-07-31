@@ -50,7 +50,7 @@ namespace Brother.WebSites.Core.Pages.Base
             PageFactory.InitElements(driver, pageInstance);
             
             // Small wait for page to complete loading. Poor but required at this time (increase to 6 seconds if issues discovered)
-            WebDriver.Wait(Helper.DurationType.Second, 3);
+            WebDriver.Wait(Helper.DurationType.Second, 4);
             return pageInstance;
         }
         #endregion
