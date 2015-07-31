@@ -26,7 +26,7 @@ namespace Brother.Tests.Specs.MPSTwo.Approver
                 if (kv.Key.Equals("CreateUsageType"))
                     UsageType = kv.Value.ToString();
             }
-            if (ContractType.Equals("Purchase & Click with Service"))
+            if (ContractType.Equals("Purchase & Click with Service") || ContractType.Equals(string.Empty))
                 PurchaseAndClick = true;
             if (ContractType.Equals("Lease & Click with Service"))
                 LeaseAndClick = true;

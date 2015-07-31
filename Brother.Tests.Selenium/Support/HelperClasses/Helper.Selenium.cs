@@ -424,11 +424,17 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             }
         }
 
-        public void RemoveBrowserPopUp()
+        public void RemoveBrowserPopUp(IWebDriver driver)
         {
-            ((IJavaScriptExecutor) Driver).ExecuteScript("window.onbeforeunload = function(e){};");
+        //IAlert alert = driver.SwitchTo().Alert();
+        ((IJavaScriptExecutor) Driver).ExecuteScript("window.onbeforeunload = function(e){};");
         }
 
+        public void PressEnter(IWebDriver driver)
+        {
+            Actions action = new Actions(driver);
+            action.SendKeys(OpenQA.Selenium.Keys.Return);
+        }
 
         /// <summary>
         /// Scrolls to a specified element on the current page

@@ -28,7 +28,7 @@ Scenario Outline: Dealer can edit an existing proposal offer
 	And I can sign out of Brother Online
 
 	Scenarios:
-	#| ContractType                  | UsageType      | Role             | Country        | TabName             |
+	| ContractType                  | UsageType      | Role             | Country        | TabName             |
 	#| Lease & Click with Service    | Minimum Volume | Cloud MPS Dealer | United Kingdom | Description         |
 	#| Lease & Click with Service    | Minimum Volume | Cloud MPS Dealer | United Kingdom | CustomerInformation |
 	#| Lease & Click with Service    | Minimum Volume | Cloud MPS Dealer | United Kingdom | TermAndType         |

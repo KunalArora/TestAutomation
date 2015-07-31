@@ -193,8 +193,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         }
         
         public void DoNotWantToParticipateInCreativeCenterSurvey()
-
-        //{
+         // Method doesnt work on Pahntom JS   
+         //{
            //if (!WaitForElementToExistById("hide"))
            //{
             //TestCheck.AssertFailTest("Unable to locate survey no button");
@@ -203,22 +203,37 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
            //ScrollTo(NoToCreativeCenterSurveyButton);
            //NoToCreativeCenterSurveyButton.Click();
          //}
-        {
-         IWebElement NoToCreativeCenterSurveyButton = null;
-            if (WaitForElementToExistByCssSelector("#hide", 5, 5))
-            {
-                NoToCreativeCenterSurveyButton = GetElementByCssSelector("#hide");
-            }
-            AssertElementPresent(NoToCreativeCenterSurveyButton, "Creative center no button");
-            ScrollTo(NoToCreativeCenterSurveyButton);
+        
+         // Method doesnt work on Pahntom JS   
+         //IWebElement NoToCreativeCenterSurveyButton = null;
+         //   if (WaitForElementToExistByCssSelector("#hide", 5, 5))
+         //   {
+         //       NoToCreativeCenterSurveyButton = GetElementByCssSelector("#hide");
+         //   }
+         //   AssertElementPresent(NoToCreativeCenterSurveyButton, "Creative center no button");
+        {    
+            WebDriver.Wait(DurationType.Millisecond, 3000);
+            //ScrollTo(NoToCreativeCenterSurveyButton);
             NoToCreativeCenterSurveyButton.Click();
         }
 
+        public void DissmissTheJsAlert(IWebDriver driver)
+        {
+
+            ClickAcceptOnJsAlert(driver);
+
+        }
+
+        public void NagivetdToCreativeCenterLoginPage()
+        {
+            if (EmailAddressCCTextBox == null)
+            {
+                throw new NullReferenceException("Not on creative center login page");
+            }
+            AssertElementPresent(EmailAddressCCTextBox, "Problem loading login page for creative center", 80);
+        }
 
 
-
-
-        // Currently not working for creative center alert pop up
         public void ClickDismissOnConfrimation(IWebDriver driver)
         {
             WebDriver.Wait(DurationType.Millisecond, 100);
@@ -227,6 +242,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public void DoNotHaveCreativeCenterAccount()
         {
+            WebDriver.Wait(DurationType.Millisecond, 3000);
             if (NoToCreativeCenterAccount == null)
             {
                 throw new NullReferenceException("Unable to locate creative center acc no radio button");

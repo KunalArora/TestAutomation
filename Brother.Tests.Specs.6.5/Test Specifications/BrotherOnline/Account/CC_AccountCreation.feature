@@ -8,9 +8,10 @@ Scenario: Validate that a user can create a family creative center account and t
 	Then I am taken to the creative center landing page
 	And I click the family center link
 	Then I am taken to the creative center home page
-	And I click to not participate in the survey	
+	And I click to not participate in the survey
 	Then I click the creative center register/login link
-	#When I click to remove browser confirmation dialogue	
+	# Then I click to remove browser confirmation dialogue
+	Then I am navigated to the creative center login page			
 	Then I have checked no to having a creative center account
 	When I fill in the creative center registration information using a valid email address
 	| field           | value          |
@@ -29,7 +30,7 @@ Scenario: Validate that a user can create a family creative center account and t
 	When I have clicked on add device whilst logged in with the creative center account
 	And I am redirected to the Register device page with the creative center login
 	Then I have entered my Product Serial Code whilst logged in with a creative center account "U1T000000"
-	# Not invalid serial number gives an error howeer seeing this error confirms that the account is validated and enables user to access the register account functionality
+	# Note invalid serial number gives an error howeer seeing this error confirms that the account is validated and enables user to access the register account functionality
 	Then I can validate that an error message is displayed due to serial number
 	Then I can sign out of Brother Online
 	Then I am redirected to the Brother Home Page
