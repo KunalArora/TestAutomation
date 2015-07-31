@@ -135,7 +135,14 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [Then(@"I click the creative center register/login link")]
         public void ClickTheCreativeCenterFamilyLink()
         {            
-            CurrentPage.As<HomePage>().CreativeCenterRegisterLoginLinkClick();
+            CurrentPage.As<HomePage>().CreativeCenterRegisterLoginLinkClick();            
+        }
+
+        [Then(@"I am navigated to the creative center login page")]
+        public void NavigatedToCreativeCenterLoginPage()
+        {
+            CurrentPage.As<HomePage>().NagivetdToCreativeCenterLoginPage();
+
         }
 
         [Then(@"I click the creative center create your account button")]
@@ -152,22 +159,24 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
 
         [Then(@"I sign out of creative center")]
         public void AmSignedOutOfCreativeCenter()
-        {
+        {            
             CurrentPage.As<HomePage>().IsCreativeCenterLogoutLinkAvailable();
-            CurrentPage.As<HomePage>().CreativeCenterLogoutLinkClick();    
+            CurrentPage.As<HomePage>().CreativeCenterLogoutLinkClick();
+            //CurrentPage.As<HomePage>().DissmissTheJsAlert(CurrentDriver);
             CurrentPage.As<HomePage>().IsCreativeCenterFamilyLinkAvailable();
             CurrentPage.As<HomePage>().IsCreativeCenterBusinessLinkAvailable();
         }
 
+        // This is a phantom JS workaround for the method below
         [Then (@"I click to not participate in the survey")]
         public void ClickNoToCreativeCenterSurvey()
         {
             CurrentPage.As<HomePage>().DoNotWantToParticipateInCreativeCenterSurvey();
         }
 
-        // Currently not working for creative center alert pop up
-        [When(@"I click to remove browser confirmation dialogue")]
-        public void WhenIClickTheButtonOnConfirmationDialogInCustomers()
+        // Currently not working for creative center alert pop up in Phantom JS
+        [Then(@"I click to remove browser confirmation dialogue")]
+        public void WhenIClickToRemoveBrowserConfirmationDialog()
         {
            CurrentPage.As<HomePage>().ClickDismissOnConfrimation(CurrentDriver);            
             
@@ -190,14 +199,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<HomePage>().AgreedToCreativeCenterTerms();
         }
-          
-
-        
-
-        
-
-
-
+                       
         [When(@"I click on Reset Your Password")]
         [Then(@"I click on Reset Your Password")]
         public void ThenIClickOnResetYourPassword()
@@ -752,7 +754,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<HomePage>().PopulateEmailAddressTextBoxWithValidCCEmail(validEmailAddress);
         }
 
-        [When(@"I enter a valid Password ""(.*)""")]
+        [When(@"I enter a valid creative center Password ""(.*)""")]
         public void WhenIEnterAValidCCPassword(string validPassword)
         {
             CurrentPage.As<HomePage>().PopulatePasswordWithCCCredentials(validPassword);
