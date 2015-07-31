@@ -94,6 +94,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         
         public void IsContractsSignedByDealerDisplayed()
         {
+            WebDriver.Wait(DurationType.Second, 3);
             var createdContract = MpsUtil.CreatedProposal();
             var newlyAdded = @"//td[text()='{0}']";
             newlyAdded = String.Format(newlyAdded, createdContract);
