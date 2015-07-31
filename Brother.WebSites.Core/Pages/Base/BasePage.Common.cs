@@ -46,12 +46,12 @@ namespace Brother.WebSites.Core.Pages.Base
             }
             new WebDriverWait(driver, timeSpan).Until(d => d.FindElement(By.TagName("body")));
 
+            // Performs a second InitElements to refresh Page loading.
+            PageFactory.InitElements(driver, pageInstance);
+
             // Small wait for page to complete loading. Poor but required at this time (increase to 6 seconds if issues discovered)
             WebDriver.Wait(Helper.DurationType.Second, 6);
 
-            // Performs a second InitElements to refresh Page loading.
-            PageFactory.InitElements(driver, pageInstance);
-          
             return pageInstance;
         }
         #endregion
@@ -83,10 +83,9 @@ namespace Brother.WebSites.Core.Pages.Base
                 TestCheck.AssertFailTest("Unable to get IFrame Instance. WebDriver timed out");
             }
 
+            PageFactory.InitElements(driver, pageInstance);
             // Small wait for page to sort itself out
             WebDriver.Wait(DurationType.Second, 6);
-
-            PageFactory.InitElements(driver, pageInstance);
             return pageInstance;
         }
 
