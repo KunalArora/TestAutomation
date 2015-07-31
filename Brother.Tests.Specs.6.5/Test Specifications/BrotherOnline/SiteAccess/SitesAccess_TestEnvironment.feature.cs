@@ -152,15 +152,15 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Get 200 OK response back from Creative Centre United Kingdom on the Test environm" +
             "ent")]
-        [NUnit.Framework.CategoryAttribute("SMOKE")]
+        [NUnit.Framework.IgnoreAttribute()]
         public virtual void Get200OKResponseBackFromCreativeCentreUnitedKingdomOnTheTestEnvironment()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get 200 OK response back from Creative Centre United Kingdom on the Test environm" +
                     "ent", new string[] {
-                        "SMOKE"});
-#line 64
-this.ScenarioSetup(scenarioInfo);
+                        "ignore"});
 #line 65
+this.ScenarioSetup(scenarioInfo);
+#line 66
  testRunner.Given("The following site United Kingdom http://creativecenter.eu.brotherdv2.eu/ to vali" +
                     "date I should receive an Ok response back", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden

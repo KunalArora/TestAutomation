@@ -95,6 +95,25 @@ this.FeatureBackground();
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Simple Parallel Test")]
+        [NUnit.Framework.CategoryAttribute("STAGING")]
+        public virtual void SimpleParallelTest()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Simple Parallel Test", new string[] {
+                        "STAGING"});
+#line 34
+this.ScenarioSetup(scenarioInfo);
+#line 7
+this.FeatureBackground();
+#line 35
+ testRunner.Given("I want to run multiple instances of PhantomJs", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 36
+ testRunner.Then("Navigate to website x, y and z", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

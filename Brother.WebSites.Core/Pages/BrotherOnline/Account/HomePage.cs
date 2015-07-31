@@ -209,7 +209,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             {
                 NoToCreativeCenterSurveyButton = GetElementByCssSelector("#hide");
             }
-            AssertElementPresent(NoToCreativeCenterSurveyButton, "Welcome Page Register Device - Serial Number Text Box");
+            AssertElementPresent(NoToCreativeCenterSurveyButton, "Creative center no button");
             ScrollTo(NoToCreativeCenterSurveyButton);
             NoToCreativeCenterSurveyButton.Click();
         }
@@ -262,13 +262,14 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         }
 
         
+        public void SwitchToNewlyOpenedWindow(IWebDriver driver)
+        {
+            SwitchToNewWindow(driver);
+        }
+
         public void IsAcceptCookieButtonAvailable()
         {
-            if (AcceptCookiesButton == null)
-            {
-                throw new NullReferenceException("Unable to locate accept cookies button on page");
-            }
-            AssertElementPresent(AcceptCookiesButton, "Accept Cookies Button", 80);
+            TestCheck.AssertIsNotEqual("False", AcceptCookiesButton.Displayed.ToString(), "Cookie button incorrectly displayed");
         }
 
         public void IsAcceptCookieButtonNotAvailable()

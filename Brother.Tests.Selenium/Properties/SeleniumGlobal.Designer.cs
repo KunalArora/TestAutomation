@@ -34,7 +34,7 @@ namespace Brother.Tests.Selenium.Lib.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("5555")]
+        [global::System.Configuration.DefaultSettingValueAttribute("9134")]
         public string DriverPortNumber {
             get {
                 return ((string)(this["DriverPortNumber"]));

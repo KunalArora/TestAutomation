@@ -192,7 +192,7 @@ namespace Brother.Tests.Selenium.Lib.Support
         }
 
 
-        private static void KillPhantomJsIfRunning()
+        public static void KillPhantomJsIfRunning()
         {
             while (!IsProcessRunning("phantomJS"))
             {
@@ -244,20 +244,21 @@ namespace Brother.Tests.Selenium.Lib.Support
             phantomJsProcess.FileName = string.Format("{0}\\Drivers\\phantomJS.exe", Directory.GetCurrentDirectory());
             Helper.MsgOutput(string.Format("Starting PhantomJS for **HEADLESS** browsing [IP = {0}][Port={1}]", ipAddress, port));
             Helper.MsgOutput("With arguments ", phantomJsProcess.Arguments);
+            phantomJsProcess.UseShellExecute = false;
 
             try
             {
-              //  phantomJsProcess.UserName = "EUSiteCoreTestAuto";
-               // phantomJsProcess.Domain = "eu";
-               // string prePassword = "Ferry1Loft2Lighter3";
-               // var passwordSecure = new SecureString();
-              //  char[] passwordChars = prePassword.ToCharArray();
-              //  foreach (char c in passwordChars)
-              //  {
-              //      passwordSecure.AppendChar(c);
-              //  }
-              //  phantomJsProcess.Password = passwordSecure;
-              //  phantomJsProcess.UseShellExecute = false;
+            //    phantomJsProcess.UserName = "EUSiteCoreTestAuto";
+            //    phantomJsProcess.Domain = "eu";
+            //    string prePassword = "Ferry1Loft2Lighter3";
+            //    var passwordSecure = new SecureString();
+            //    char[] passwordChars = prePassword.ToCharArray();
+            //    foreach (char c in passwordChars)
+            //    {
+            //        passwordSecure.AppendChar(c);
+            //    }
+            //    phantomJsProcess.Password = passwordSecure;
+                phantomJsProcess.UseShellExecute = false;
 
                 var phantomJsProc = new Process();
                 phantomJsProc.StartInfo = phantomJsProcess;
@@ -272,6 +273,12 @@ namespace Brother.Tests.Selenium.Lib.Support
                     }
                     catch (ArgumentException)
                     {
+                        Helper.MsgOutput(string.Format("Error launching PhantomJS. [{0}]", "ArgumentException thrown"));
+                        return 0;
+                    }
+                    catch (InvalidOperationException)
+                    {
+                        Helper.MsgOutput(string.Format("Error launching PhantomJS. [{0}]", "InvalidOperationException thrown"));
                         return 0;
                     }
                     //// brief pause to allow PhantomJS process to load
