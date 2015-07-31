@@ -79,11 +79,13 @@ namespace Brother.Tests.Specs.TmpScratch
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Test Code Two")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.CategoryAttribute("STAGING")]
         public virtual void TestCodeTwo()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Test Code Two", new string[] {
-                        "STAGING"});
+                        "STAGING",
+                        "IGNORE"});
 #line 28
 this.ScenarioSetup(scenarioInfo);
 #line 7
@@ -98,11 +100,13 @@ this.FeatureBackground();
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Simple Parallel Test")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.CategoryAttribute("STAGING")]
         public virtual void SimpleParallelTest()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Simple Parallel Test", new string[] {
-                        "STAGING"});
+                        "STAGING",
+                        "IGNORE"});
 #line 34
 this.ScenarioSetup(scenarioInfo);
 #line 7
