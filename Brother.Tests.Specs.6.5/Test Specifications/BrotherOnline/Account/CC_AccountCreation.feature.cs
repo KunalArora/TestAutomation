@@ -96,6 +96,8 @@ this.ScenarioSetup(scenarioInfo);
 #line 12
  testRunner.Then("I click the creative center register/login link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 14
+ testRunner.Then("I am navigated to the creative center login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 15
  testRunner.Then("I have checked no to having a creative center account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
@@ -113,38 +115,38 @@ this.ScenarioSetup(scenarioInfo);
             table1.AddRow(new string[] {
                         "ConfirmPassword",
                         "@@@@@"});
-#line 15
+#line 16
  testRunner.When("I fill in the creative center registration information using a valid email addres" +
                     "s", ((string)(null)), table1, "When ");
-#line 21
- testRunner.Then("I declare that I do not use this creative center account for business", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 22
- testRunner.And("I have Agreed to the creative center Terms and Conditions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("I declare that I do not use this creative center account for business", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 23
- testRunner.Then("I click the creative center create your account button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("I have Agreed to the creative center Terms and Conditions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 24
- testRunner.Then("I am logged into creative center", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I click the creative center create your account button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 25
- testRunner.Then("I sign out of creative center", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I am logged into creative center", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 26
- testRunner.Given("I launch Brother Online for \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Then("I sign out of creative center", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 27
- testRunner.Then("I click on the sign in / create account button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Given("I launch Brother Online for \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 28
+ testRunner.Then("I click on the sign in / create account button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 29
  testRunner.Then("I should be able to log into \"\"(.*)\"\" Brother Online using my creative center acc" +
                     "ount details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 29
- testRunner.When("I have clicked on add device whilst logged in with the creative center account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 30
- testRunner.And("I am redirected to the Register device page with the creative center login", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("I have clicked on add device whilst logged in with the creative center account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 31
+ testRunner.And("I am redirected to the Register device page with the creative center login", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 32
  testRunner.Then("I have entered my Product Serial Code whilst logged in with a creative center acc" +
                     "ount \"U1T000000\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 33
- testRunner.Then("I can validate that an error message is displayed due to serial number", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 34
- testRunner.Then("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I can validate that an error message is displayed due to serial number", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 35
+ testRunner.Then("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 36
  testRunner.Then("I am redirected to the Brother Home Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
