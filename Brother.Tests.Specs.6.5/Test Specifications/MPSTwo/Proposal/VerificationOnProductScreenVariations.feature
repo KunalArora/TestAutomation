@@ -384,8 +384,9 @@ Scenario Outline: When change Unit Price so that Margin is 100, "Add to proposal
 	| Cloud MPS Dealer | United Kingdom | MFC-L8850CDW |
 
 #
-# 7 Margin Defaults
+# 7 Margin Defaults - This is not practical
 #
+@ignore
 Scenario Outline: As a Local Office Admin, sign-in and enable printer for Purchase + Click Service
 	Given I sign into Cloud MPS as a "<Role1>" from "<Country>"
 	When I navigate to Dealer Defaults page
