@@ -970,8 +970,8 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
         public static void AssertElementText(IWebElement element, string expectedValue, string elementDescription)
         {
-            AssertElementPresent(element, elementDescription);
-             var actualtext = element.Text;
+            AssertElementPresent(element, elementDescription, 200);
+            var actualtext = element.Text;
             if (actualtext != expectedValue)
             {
                 throw new AssertionException(String.Format("AssertElementText Failed: Value for '{0}' did not match expectations. Expected: [{1}], Actual: [{2}]", elementDescription, expectedValue, actualtext));
@@ -980,7 +980,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
         public static void AssertElementValue(IWebElement element, string expectedValue, string elementDescription)
         {
-            AssertElementPresent(element, elementDescription);
+            AssertElementPresent(element, elementDescription, 200);
             var actualValue = element.GetAttribute("value");
             if (actualValue != expectedValue)
             {
@@ -1019,7 +1019,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
         public static void AssertElementIsChecked(IWebElement element, string expectedValue, string elementDescription)
         {
-            AssertElementPresent(element, elementDescription);
+            AssertElementPresent(element, elementDescription, 200);
             var actualValue = element.GetAttribute("checked");
             if (actualValue != expectedValue)
             {
@@ -1029,7 +1029,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
         public static bool AssertElementContainsText(IWebElement element, string expectedValue, string elementDescription)
         {
-            AssertElementPresent(element, elementDescription);
+            AssertElementPresent(element, elementDescription, 200);
             var actualtext = element.Text;
             if (actualtext.Contains(expectedValue)) return true;
             MsgOutput(string.Format("ElementContainsText Failed: Value for '{0}' did not contain expected value. Expected: [{1}], Actual: [{2}]", elementDescription, expectedValue, actualtext));
@@ -1038,7 +1038,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
         public static bool AssertElementNotContainsText(IWebElement element, string expectedValue, string elementDescription)
         {
-            AssertElementPresent(element, elementDescription);
+            AssertElementPresent(element, elementDescription, 200);
             var actualtext = element.Text;
             if (actualtext != null && !actualtext.Contains(expectedValue)) return true;
             MsgOutput(string.Format(

@@ -43,12 +43,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
         private const string MyAccountMenuButtonCssId =
             ".content.cf .wrapper .content-box.checkout-container.cf .box-out.purchase-confirmed .button-grey";
 
-        private IWebElement BillingTypeText()
-        {
-            IWebElement billingType = Driver.FindElement(By.CssSelector(BillingTermCssSelectorText));
-            return billingType;
-        }
-
         public string GetBillingType()
         {
             var billingTypeElements = Driver.FindElements(By.CssSelector(BillingTermCssSelectorText));
@@ -76,8 +70,13 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
             if (WaitForElementToExistByCssSelector(MyAccountMenuButtonCssId, 10, 10)) // Payment processing can be slow sometimes
             {
                 MyAccountButton = Driver.FindElement(By.CssSelector(MyAccountMenuButtonCssId));
+                //AssertElementPresent(MyAccountButton, "Order Confirmation : My Account Button availability check", 200);
             }
-            AssertElementPresent(MyAccountButton, "My Account Button");
+            else
+            {
+                TestCheck.AssertFailTest("Order Confirmation : My Account Button availability check error - failed to located My Account Button");    
+            }
+            
         }
 
         public MyOrdersPage MyAccountButtonClick()
