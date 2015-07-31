@@ -424,20 +424,17 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             }
         }
 
-                public void RemoveBrowserPopUp(IWebDriver driver)
-                {
-                //IAlert alert = driver.SwitchTo().Alert();
-                ((IJavaScriptExecutor) Driver).ExecuteScript("window.onbeforeunload = function(e){};");
-                }
+        public void RemoveBrowserPopUp(IWebDriver driver)
+        {
+        //IAlert alert = driver.SwitchTo().Alert();
+        ((IJavaScriptExecutor) Driver).ExecuteScript("window.onbeforeunload = function(e){};");
+        }
 
-                public void PressEnter(IWebDriver driver)
-                {
-                    Actions action = new Actions(driver);
-                    action.SendKeys(OpenQA.Selenium.Keys.Return);
-                }
-
-
-
+        public void PressEnter(IWebDriver driver)
+        {
+            Actions action = new Actions(driver);
+            action.SendKeys(OpenQA.Selenium.Keys.Return);
+        }
 
         /// <summary>
         /// Scrolls to a specified element on the current page
@@ -734,7 +731,8 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             {
                 while (!condition() && timeElapsed < milliseconds)
                 {
-                    Thread.Sleep(100); timeElapsed += 100;
+                    Thread.Sleep(100);
+                    timeElapsed += 100;
                 }
             }
             catch (StaleElementReferenceException staleElement)
@@ -744,7 +742,11 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                 {
                     MsgOutput("Inner exception was ", staleElement.InnerException.Message);
                 }
-                TestCheck.AssertFailTest(string.Format("Stale element detected [{0}]",staleElement.Message));
+                TestCheck.AssertFailTest(string.Format("Stale element detected [{0}]", staleElement.Message));
+            }
+            catch (TimeoutException timeoutException)
+            {
+                MsgOutput("ERROR: Locating element - Timed Out Exception", timeoutException.Message); 
             }
 
             if (timeElapsed >= milliseconds || !condition())
@@ -974,8 +976,8 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
         public static void AssertElementText(IWebElement element, string expectedValue, string elementDescription)
         {
-            AssertElementPresent(element, elementDescription);
-             var actualtext = element.Text;
+            AssertElementPresent(element, elementDescription, 200);
+            var actualtext = element.Text;
             if (actualtext != expectedValue)
             {
                 throw new AssertionException(String.Format("AssertElementText Failed: Value for '{0}' did not match expectations. Expected: [{1}], Actual: [{2}]", elementDescription, expectedValue, actualtext));
@@ -984,7 +986,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
         public static void AssertElementValue(IWebElement element, string expectedValue, string elementDescription)
         {
-            AssertElementPresent(element, elementDescription);
+            AssertElementPresent(element, elementDescription, 200);
             var actualValue = element.GetAttribute("value");
             if (actualValue != expectedValue)
             {
@@ -992,9 +994,38 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             }
         }
 
+        private static object IsCheckboxChecked(string checkboxId)
+        {
+            var script = string.Format("return $('{0}').prop( 'checked')", checkboxId);
+            var js = (IJavaScriptExecutor)TestController.CurrentDriver;
+            return js.ExecuteScript(script);
+        }
+
+        public static bool SetCheckboxStatus(string checkboxId, bool desiredCheckedStatus, string elementDescription)
+        {
+            // Checking if the Checkbox is already set to the desired state
+            var isChecked = IsCheckboxChecked(checkboxId);
+            MsgOutput(string.Format("Checkbox status = [{0}] - True = Checked", Convert.ToBoolean(isChecked)));
+            if (Convert.ToBoolean(isChecked) == desiredCheckedStatus)
+            {
+                return true;
+            }
+
+            MsgOutput(string.Format("Setting Checbox status to = [{0}] - True = Checked", desiredCheckedStatus));
+
+            RunScript(desiredCheckedStatus
+                ? string.Format("$('{0}').prop( 'checked', true )", checkboxId)
+                : string.Format("$('{0}').prop( 'checked', false )", checkboxId));
+
+            isChecked = IsCheckboxChecked(checkboxId);
+            MsgOutput(string.Format("Checkbox status = [{0}] - True = Checked", Convert.ToBoolean(isChecked)));
+            TestCheck.AssertIsEqual(desiredCheckedStatus, Convert.ToBoolean(isChecked), "Unable to set Checkbox status to correct value");
+            return Convert.ToBoolean(isChecked) == desiredCheckedStatus;
+        }
+
         public static void AssertElementIsChecked(IWebElement element, string expectedValue, string elementDescription)
         {
-            AssertElementPresent(element, elementDescription);
+            AssertElementPresent(element, elementDescription, 200);
             var actualValue = element.GetAttribute("checked");
             if (actualValue != expectedValue)
             {
@@ -1004,7 +1035,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
         public static bool AssertElementContainsText(IWebElement element, string expectedValue, string elementDescription)
         {
-            AssertElementPresent(element, elementDescription);
+            AssertElementPresent(element, elementDescription, 200);
             var actualtext = element.Text;
             if (actualtext.Contains(expectedValue)) return true;
             MsgOutput(string.Format("ElementContainsText Failed: Value for '{0}' did not contain expected value. Expected: [{1}], Actual: [{2}]", elementDescription, expectedValue, actualtext));
@@ -1013,7 +1044,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
         public static bool AssertElementNotContainsText(IWebElement element, string expectedValue, string elementDescription)
         {
-            AssertElementPresent(element, elementDescription);
+            AssertElementPresent(element, elementDescription, 200);
             var actualtext = element.Text;
             if (actualtext != null && !actualtext.Contains(expectedValue)) return true;
             MsgOutput(string.Format(

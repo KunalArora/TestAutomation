@@ -1,27 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
-using System.Drawing.Imaging;
-using System.Globalization;
 using System.IO;
-using System.Net;
-using System.Net.Security;
-using System.Runtime.Remoting;
-using System.Security;
-using System.Security.AccessControl;
 using Brother.Tests.Selenium.Lib.Properties;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.SpecFlow;
-using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 using OpenQA.Selenium.PhantomJS;
 using OpenQA.Selenium.Remote;
-using OpenQA.Selenium.Support.Extensions;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Selenium.Lib.Support
@@ -260,8 +250,7 @@ namespace Brother.Tests.Selenium.Lib.Support
             //    phantomJsProcess.Password = passwordSecure;
                 phantomJsProcess.UseShellExecute = false;
 
-                var phantomJsProc = new Process();
-                phantomJsProc.StartInfo = phantomJsProcess;
+                var phantomJsProc = new Process {StartInfo = phantomJsProcess};
                 var process = phantomJsProc.Start();
                 if (process)
                 {
@@ -281,9 +270,6 @@ namespace Brother.Tests.Selenium.Lib.Support
                         Helper.MsgOutput(string.Format("Error launching PhantomJS. [{0}]", "InvalidOperationException thrown"));
                         return 0;
                     }
-                    //// brief pause to allow PhantomJS process to load
-                    //WebDriver.Wait(Helper.DurationType.Second, 3);
-                    //return phantomJSProc.Id;
                 }
             }
             catch (Win32Exception win32Exception)
