@@ -46,9 +46,9 @@ namespace Brother.WebSites.Core.Pages.Base
             }
             new WebDriverWait(driver, timeSpan).Until(d => d.FindElement(By.TagName("body")));
 
-            // Performs a second InitElements to refresh Page loading.
+            // Initialise the page instance with elements based on FindsBy entries
             PageFactory.InitElements(driver, pageInstance);
-
+            
             // Small wait for page to complete loading. Poor but required at this time (increase to 6 seconds if issues discovered)
             WebDriver.Wait(Helper.DurationType.Second, 6);
 
@@ -121,6 +121,7 @@ namespace Brother.WebSites.Core.Pages.Base
             return pageInstance;
         }
         #endregion
+
 
      
         /// <summary> 
