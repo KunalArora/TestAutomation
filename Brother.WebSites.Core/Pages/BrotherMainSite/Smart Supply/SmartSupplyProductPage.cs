@@ -53,6 +53,9 @@ namespace Brother.Tests.Selenium.Lib.Pages.BrotherMainSite.Smart_Supply
         [FindsBy(How = How.CssSelector, Using = ".promo-info ul li")]
         public IList<IWebElement> BenefitsText;
 
+        [FindsBy(How = How.CssSelector, Using = ".basket-container")]
+        public IWebElement BasketIconSmartSupply;
+
         public void Hoverbasket()
         {
             MoveToElement(ProductBasketContainer);
@@ -87,6 +90,11 @@ namespace Brother.Tests.Selenium.Lib.Pages.BrotherMainSite.Smart_Supply
             var productname = rid.ElementAt(2);
             if (productname == "TN-2220") return true;
             return false;
+        }
+
+        public void clickbasketicon()
+        {
+         BasketIconSmartSupply.Click();  
         }
     }
 }
