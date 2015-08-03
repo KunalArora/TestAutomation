@@ -173,6 +173,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BrotherSupplyClubAnonymousUserProductBenefits.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\Smart Supply\BITTestDuiscountSingleItem_BBAU-532.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BITTestDuiscountSingleItem_BBAU-532.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Steps\Global\GlobalSteps.cs" />
     <Compile Include="Test Specifications\BrotherMainSite\Printer Search\Printers.feature.cs">
       <AutoGen>True</AutoGen>
@@ -360,6 +365,7 @@
     <Compile Include="Test Steps\OmniJoin\Plans\ManagePlanSteps.cs" />
     <Compile Include="Test Steps\OmniJoin\Plans\PurchasePlansSteps.cs" />
     <Compile Include="Test Steps\OmniJoin\WebConferencingHomePageSteps.cs" />
+    <Compile Include="Test Steps\Smart Supply\BITTestDiscountSingleItem_BBAU_532Steps.cs" />
     <Compile Include="Test Steps\Smart Supply\BrotherSupplyClubProductBenefitsSteps.cs" />
     <Compile Include="Test Steps\ThirdPartyProductsSteps.cs" />
     <Compile Include="Test Steps\tmpScratchSteps.cs" />
@@ -575,6 +581,10 @@
     <None Include="Test Specifications\Smart Supply\BrotherSupplyClubAnonymousUserProductBenefits.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>BrotherSupplyClubAnonymousUserProductBenefits.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\Smart Supply\BITTestDuiscountSingleItem_BBAU-532.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>BITTestDuiscountSingleItem_BBAU-532.feature.cs</LastGenOutput>
     </None>
     <None Include="tmpScratch\TestTmpTest.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
