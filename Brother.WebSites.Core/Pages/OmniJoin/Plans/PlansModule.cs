@@ -75,7 +75,6 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Plans
         public static BasketPage BuyNowAtBrotherOnlineButtonClick(IWebDriver driver)
         {
             SeleniumHelper.ScrollTo(driver, BuyNowButton(driver));
-            Helper.TakeSnapshot("Taking Snapshot prior to clicking BuyNowButton");
             BuyNowButton(driver).Click();
             return BasePage.GetInstance<BasketPage>(driver, "", "");
         }
