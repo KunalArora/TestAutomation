@@ -130,6 +130,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 	        {"Poland", "Zaloguj się / Utwórz konto"},    
 	        {"United Kingdom", "Sign in / Create an account"},  
 	        {"Ireland", "Sign in / Create an account"},
+            {"Denmark", "Min konto / Create an account"},
+            {"Portugal", "Minha Conta / Create an account"},
+            {"Finland", "Oma tili / Create an account"},
         };
 
         private static readonly Dictionary<string, string> _welcomePageTitle = new Dictionary<string, string>
@@ -138,6 +141,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 	        {"Poland", "Strona główna serwisu Brother Online"},    
 	        {"United Kingdom", "Brother Online Home"},
 	        {"Ireland", "Brother Online Home"},
+            {"Denmark", "Log på, eller registrer"},
+            {"Portugal", "Brother Online Home"},
+            {"Finland", "Kirjaudu sisään tai rekisteröi"},
         };
 
         public static String WelcomePageCountryTitle(string country)
