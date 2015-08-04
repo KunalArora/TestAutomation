@@ -142,5 +142,11 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         {
             TestCheck.AssertIsEqual(true, BusinessSectorErrorMessage.Displayed, "Is Error Message Displayed");
         }
+
+        public void UseAccountForBusinessIsSelected()
+        {
+            TestCheck.AssertIsEqual("True", UseMyAccountForBusinessCheckbox.Selected.ToString(), "Use Account For Business Button");
+        }
+
     }
 }

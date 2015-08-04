@@ -112,6 +112,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         [FindsBy(How = How.Id, Using = "BusinessAccountNoRadioButton")]
         public IWebElement NoToCreativeCenterBusinessAccount;
 
+        [FindsBy(How = How.Id, Using = "BusinessAccountYesRadioButton")]
+        public IWebElement YesToCreativeCenterBusinessAccount;
+
         [FindsBy(How = How.CssSelector, Using = ".content.cf .content-box.login-register.cf .box-out.regular-sign-in.cf .generic-form #form-sign-in .button-blue")]
         public IWebElement SignInButton;
 
@@ -123,6 +126,19 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         [FindsBy(How = How.CssSelector, Using = "#registered-products > table > tbody > tr.row01 > td.model > div > p > div > span > span")]
         public IWebElement ModelNumberTextBox;
+
+        [FindsBy(How = How.Id, Using = "CompanyNameTextBox")]
+        public IWebElement CcCompanyNameTextBox;
+
+        [FindsBy(How = How.Id, Using = "BusinessDropDown")]
+        public IWebElement CcBusinessSectorDropDownList;
+
+        [FindsBy(How = How.Id, Using = "CompanyDropDown")]
+        public IWebElement CcEmployeeCountDropDownList;
+
+        public IWebElement MyAccountNavigationButton;
+        //[FindsBy(How = How.CssSelector, Using = "a.button-blue[href=\"/print-smart/my-services/consumables\"]")]
+        [FindsBy(How = How.CssSelector, Using = "#content_2_ProductsTabRepeater_ProductLinkButton_4 > p:nth-child(2)")]
         
         private static readonly Dictionary<string, string> _pageTitle = new Dictionary<string, string>
         {
@@ -218,7 +234,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
          //   }
          //   AssertElementPresent(NoToCreativeCenterSurveyButton, "Creative center no button");
         {    
-            WebDriver.Wait(DurationType.Millisecond, 3000);
+            WebDriver.Wait(DurationType.Millisecond, 5000);
             //ScrollTo(NoToCreativeCenterSurveyButton);
             NoToCreativeCenterSurveyButton.Click();
         }
@@ -269,6 +285,18 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
             ScrollTo(NoToCreativeCenterBusinessAccount);
             NoToCreativeCenterBusinessAccount.Click();
+        }
+
+        public void UseCreativeCenterAccForBusiness()
+        {
+            if (YesToCreativeCenterBusinessAccount == null)
+            {
+                throw new NullReferenceException("Unable to locate creative center business yes radio button");
+            }
+            AssertElementPresent(YesToCreativeCenterBusinessAccount, "creative center business yes", 80);
+
+            ScrollTo(YesToCreativeCenterBusinessAccount);
+            YesToCreativeCenterBusinessAccount.Click();
         }
 
         public void AgreedToCreativeCenterTerms()
@@ -385,6 +413,12 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         {
             ScrollTo(CreativeCenterFamilyLink);
             CreativeCenterFamilyLink.Click();
+        }
+
+        public void CreativeCenterBusinessLinkClick()
+        {
+            ScrollTo(CreativeCenterBusinessLink);
+            CreativeCenterBusinessLink.Click();
         }
 
         public void CreativeCenterRegisterLoginLinkClick()
@@ -546,6 +580,33 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             ScrollTo(CreativeCenterLogoutLink);
             CreativeCenterLogoutLink.Click();
         }
+
+        public void PopulateCcCompanyNameTextBox(string companyName)
+        {
+            ScrollTo(CcCompanyNameTextBox);
+            CcCompanyNameTextBox.SendKeys(companyName);
+            //TestCheck.AssertIsEqual(companyName, GetTextBoxValue("CcCompanyNameTextBox"), "Creative Center CompanyName Text Box");
+        }
+
+        public void PopulateCcBusinessSectorDropDown(string ccbusinessSector)
+        {  
+            SelectFromDropdown(CcBusinessSectorDropDownList, ccbusinessSector);
+            AssertItemIsSelected(CcBusinessSectorDropDownList, ccbusinessSector, "Creative Center Business Sector Drop Down List");
+        }
+
+        public void PopulateCcEmployeeCountDropDown(string numEmployees)
+        {
+            SelectFromDropdown(CcEmployeeCountDropDownList, numEmployees);
+            AssertItemIsSelected(CcEmployeeCountDropDownList, numEmployees, "Number of Employees creative center Drop Down List");
+        }
+
+
+        public void NavigateToMyAccountPageWithCcCredentials()
+        {
+            //ScrollTo(MyAccountNavigationButton);
+            MyAccountNavigationButton.Click();
+        }
+
 
     }
 
