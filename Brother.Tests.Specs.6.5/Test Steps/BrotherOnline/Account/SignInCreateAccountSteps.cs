@@ -105,7 +105,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<HomePage>().IsAcceptCookieButtonNotAvailable();
         }
 
-        [Then(@"I navigate to and click the creative center link")]
+        [When(@"I navigate to and click the creative center link")]
         public void CanSeeAndClickCreativeCenterLink()
         {
             CurrentPage.As<HomePage>().IsCreativeCenterLinkAvailable();
@@ -126,6 +126,13 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<HomePage>().CreativeCenterFamilyLinkClick();
         }
 
+        [Then(@"I click the business center link")]
+        public void ClickTheBusinessCenterLink()
+        {
+            CurrentPage.As<HomePage>().IsCreativeCenterBusinessLinkAvailable();
+            CurrentPage.As<HomePage>().CreativeCenterBusinessLinkClick();
+        }
+
         [Then(@"I am taken to the creative center home page")]
         public void TakenToCreativeCenterHomepage()
         {
@@ -135,7 +142,14 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [Then(@"I click the creative center register/login link")]
         public void ClickTheCreativeCenterFamilyLink()
         {            
-            CurrentPage.As<HomePage>().CreativeCenterRegisterLoginLinkClick();
+            CurrentPage.As<HomePage>().CreativeCenterRegisterLoginLinkClick();            
+        }
+
+        [Then(@"I am navigated to the creative center login page")]
+        public void NavigatedToCreativeCenterLoginPage()
+        {
+            CurrentPage.As<HomePage>().NagivetdToCreativeCenterLoginPage();
+
         }
 
         [Then(@"I click the creative center create your account button")]
@@ -152,22 +166,24 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
 
         [Then(@"I sign out of creative center")]
         public void AmSignedOutOfCreativeCenter()
-        {
+        {            
             CurrentPage.As<HomePage>().IsCreativeCenterLogoutLinkAvailable();
-            CurrentPage.As<HomePage>().CreativeCenterLogoutLinkClick();    
+            CurrentPage.As<HomePage>().CreativeCenterLogoutLinkClick();
+            //CurrentPage.As<HomePage>().DissmissTheJsAlert(CurrentDriver);
             CurrentPage.As<HomePage>().IsCreativeCenterFamilyLinkAvailable();
             CurrentPage.As<HomePage>().IsCreativeCenterBusinessLinkAvailable();
         }
 
+        // This is a phantom JS workaround for the method below
         [Then (@"I click to not participate in the survey")]
         public void ClickNoToCreativeCenterSurvey()
         {
             CurrentPage.As<HomePage>().DoNotWantToParticipateInCreativeCenterSurvey();
         }
 
-        // Currently not working for creative center alert pop up
-        [When(@"I click to remove browser confirmation dialogue")]
-        public void WhenIClickTheButtonOnConfirmationDialogInCustomers()
+        // Currently not working for creative center alert pop up in Phantom JS
+        [Then(@"I click to remove browser confirmation dialogue")]
+        public void WhenIClickToRemoveBrowserConfirmationDialog()
         {
            CurrentPage.As<HomePage>().ClickDismissOnConfrimation(CurrentDriver);            
             
@@ -184,20 +200,19 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<HomePage>().DoNotUseCreativeCenterAccForBusiness();
         }
+
+        [Then(@"I declare that I do use this creative center account for business")]
+        public void ClickYesToCreativeCenterBusiness()
+        {
+            CurrentPage.As<HomePage>().UseCreativeCenterAccForBusiness();
+        }
           
         [Then(@"I have Agreed to the creative center Terms and Conditions")]
         public void ClickYesToCreativeCenterTerms()
         {
             CurrentPage.As<HomePage>().AgreedToCreativeCenterTerms();
         }
-          
-
-        
-
-        
-
-
-
+                       
         [When(@"I click on Reset Your Password")]
         [Then(@"I click on Reset Your Password")]
         public void ThenIClickOnResetYourPassword()
@@ -428,7 +443,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             WhenIEnterAValidMaxLengthEmailAddress(string.Empty); // Auto Generates with an empty string
         }
 
-        [When(@"I fill in the creative center registration information using a valid email address")]
+        [Then(@"I fill in the creative center registration information using a valid email address")]
         public void WhenIFillInTheCCRegistrationInformationUsingAValidEmailAddress(Table table)
         {
             dynamic form = table.CreateDynamicInstance();
@@ -522,6 +537,13 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<RegistrationPage>().PopulateCompanyNameTextBox(companyName);
         }
+
+        [Then(@"I add my company name into creative center as ""(.*)""")]
+        public void WhenIAddMyCompanyNameIntoCcAs(string companyName)
+        {
+            CurrentPage.As<HomePage>().PopulateCcCompanyNameTextBox(companyName);
+        }
+
         [When(@"I add my company name as ""(.*)"" on Business Details page")]
         public void WhenIAddMyCompanyNameAsOnBusinessDetailsPage(string companyName)
         {
@@ -544,6 +566,13 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<RegistrationPage>().PopulateBusinessSectorDropDown(businessSector);
         }
+
+        [Then(@"I select my Business Sector on creative center as ""(.*)""")]
+        public void WhenISelectMyBusinessSectorOnCcAs(string ccbusinessSector)
+        {
+            CurrentPage.As<HomePage>().PopulateCcBusinessSectorDropDown(ccbusinessSector);
+        }
+
         [When(@"I select my Business Sector as ""(.*)"" on Business Details Page")]
         public void WhenISelectMyBusinessSectorAsOnBusinessDetailsPage(string businessSector)
         {
@@ -555,6 +584,13 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<RegistrationPage>().PopulateEmployeeCountDropDown(numberOfEmployees);
         }
+
+        [Then(@"I select number of Employees on creative center as ""(.*)""")]
+        public void WhenISelectNumberOfCcEmployeesAs(string numberOfEmployees)
+        {
+            CurrentPage.As<HomePage>().PopulateCcEmployeeCountDropDown(numberOfEmployees);
+        }
+
         [When(@"I select number of Employees as ""(.*)"" on Business Details Page")]
         public void WhenISelectNumberOfEmployeesAsOnBusinessDetailsPage(string numberOfEmployees)
         {
@@ -618,7 +654,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             //WhenIAmRedirectedToTheBrotherLoginRegisterPage();
             WhenIEnterAValidCCAccountEmailAddress(Email.RegistrationEmailAddress);
             WhenIEnterAValidCCPassword(Helper.Password);
-            WhenIClickOnSignInWithCCCredentials(country);
+            WhenIClickOnSignInWithCCCredentials(country);            
         }
 
         [Then(@"I should be able to successfully log into brother online")]
@@ -742,17 +778,13 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<RegistrationPage>().PopulateEmailAddressTextBox(validEmailAddress);
         }
 
-
-
-
-
-        [When(@"I enter a valid Email Address ""(.*)""")]
+        [When(@"I enter a valid creative center Email Address ""(.*)""")]
         public void WhenIEnterAValidCCAccountEmailAddress(string validEmailAddress)
         {
             CurrentPage.As<HomePage>().PopulateEmailAddressTextBoxWithValidCCEmail(validEmailAddress);
         }
 
-        [When(@"I enter a valid Password ""(.*)""")]
+        [When(@"I enter a valid creative center Password ""(.*)""")]
         public void WhenIEnterAValidCCPassword(string validPassword)
         {
             CurrentPage.As<HomePage>().PopulatePasswordWithCCCredentials(validPassword);
@@ -763,9 +795,6 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<HomePage>().ClickSignInButtonWithCCCredentials();
         }
-
-
-
 
         [When(@"I enter a valid maximum length Email Address ""(.*)""")]
         public void WhenIEnterAValidMaxLengthEmailAddress(string validEmailAddress)

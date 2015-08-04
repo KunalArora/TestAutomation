@@ -1,5 +1,6 @@
 using System;
 using System.Configuration;
+using System.Net;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -46,11 +47,12 @@ namespace Brother.WebSites.Core.Pages.Base
             }
             new WebDriverWait(driver, timeSpan).Until(d => d.FindElement(By.TagName("body")));
 
-            // Performs a second InitElements to refresh Page loading.
+            // Initialise the page instance with elements based on FindsBy entries
             PageFactory.InitElements(driver, pageInstance);
-            
+
             // Small wait for page to complete loading. Poor but required at this time (increase to 6 seconds if issues discovered)
-            WebDriver.Wait(Helper.DurationType.Second, 3);
+            WebDriver.Wait(Helper.DurationType.Second, 6);
+
             return pageInstance;
         }
         #endregion
@@ -81,10 +83,10 @@ namespace Brother.WebSites.Core.Pages.Base
                 MsgOutput(string.Format("Exception was [{0}]", timeOutDriverException));
                 TestCheck.AssertFailTest("Unable to get IFrame Instance. WebDriver timed out");
             }
-            
+
             PageFactory.InitElements(driver, pageInstance);
             // Small wait for page to sort itself out
-            WebDriver.Wait(DurationType.Second, 5);
+            WebDriver.Wait(DurationType.Second, 6);
             return pageInstance;
         }
 
@@ -120,6 +122,7 @@ namespace Brother.WebSites.Core.Pages.Base
             return pageInstance;
         }
         #endregion
+
 
      
         /// <summary> 

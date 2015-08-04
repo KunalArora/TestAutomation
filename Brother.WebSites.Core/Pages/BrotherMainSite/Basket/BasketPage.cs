@@ -1,4 +1,6 @@
 ﻿using System;
+using Brother.Tests.Selenium.Lib.Support;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherMainSite.SuppliesAndAccessories;
 using Brother.WebSites.Core.Pages.BrotherOnline.Checkout;
@@ -31,13 +33,26 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.Basket
         [FindsBy(How = How.CssSelector, Using = "#main > div > div > div.content-unit.six > div.cart-view > div:nth-child(2) > div.col-item > div.product-info")]
         public IWebElement MyBasketProductInformationList;
 
+        private static IWebElement FindElement(ISearchContext driver, string element, string message)
+        {
+            if (WaitForElementToExistByCssSelector(element, 5, 5))
+            {
+                MsgOutput(string.Format("Basket Page: Found {0} element correctly", element));
+                return driver.FindElement(By.CssSelector(element));
+            }
+            TestCheck.AssertFailTest(string.Format("Unable to locate Basket Page {0}", element));
+            return null;
+
+        }
+
         public void IsCheckoutButtonAvailable()
         {
+            CheckOutButton = FindElement(TestController.CurrentDriver, ".go-to-checkout", "Check Out Button");
             if (CheckOutButton == null)
             {
                 throw new NullReferenceException("Unable to locate button on page");
             }
-            AssertElementValue(CheckOutButton, "Checkout", "Check Out Button");
+            AssertElementPresent(CheckOutButton, "Is Check Out Button present and correct");
         }
 
         public void IsContinueShoppingButtonAvailable()
@@ -46,7 +61,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.Basket
             {
                 throw new NullReferenceException("Unable to locate button on page");
             }
-            AssertElementValue(ContinueShoppingButton, "Continue Shopping", "Continue Shopping Button");
+            AssertElementPresent(ContinueShoppingButton, "Is Continue Shopping Button present and correct");
         }
 
         public DeliveryDetailsPage CheckOutButtonClick()

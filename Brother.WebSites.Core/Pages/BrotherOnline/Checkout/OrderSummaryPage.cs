@@ -46,11 +46,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
             return ProductInfo.Text;
         }
 
-        public void ReloadPage()
-        {
-            PageFactory.InitElements(Driver, this);
-        }
-
         public void IsPlaceYourOrderButtonAvailable()
         {
             if (PlaceYourOrderButton == null)
