@@ -93,6 +93,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>OutputContractPDFAllUsers.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\MPSTwo\Customer\AddLocationToCustomerInformation.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AddLocationToCustomerInformation.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specifications\MPSTwo\Proposal\ApproverDecision.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -493,6 +498,10 @@
     <None Include="Test Specifications\MPSTwo\Contract\OutputContractPDFAllUsers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>OutputContractPDFAllUsers.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwo\Customer\AddLocationToCustomerInformation.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>AddLocationToCustomerInformation.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwo\Proposal\ApproverDecision.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
