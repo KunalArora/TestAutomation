@@ -2,6 +2,7 @@
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
+using Brother.WebSites.Core.Pages.BrotherOnline.Account;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
 using OpenQA.Selenium.Support.UI;
 using TechTalk.SpecFlow;
@@ -124,7 +125,6 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             NextPage = CurrentPage.As<WelcomeBackPage>().NavigateToMyAccountPage(country);
         }
-
         [Then(@"If I enter the current password")]
         public void ThenIfIEnterTheCurrentPassword()
         {
@@ -136,6 +136,14 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             var businessDetailsButton = GlobalNavigationModule.GetMyAccountMenuItem("BusinessDetails");
             NextPage = GlobalNavigationModule.BusinessDetailsMenuClick(CurrentDriver, businessDetailsButton);
         }
+
+        [When(@"I clicked on Business Details whilst logged in with my creative center account")]
+        public void WhenIClickedOnBusinessDetailsWhilstUsingCcAcc()
+        {
+            var businessDetailsButton = GlobalNavigationModule.GetMyAccountMenuItem("BusinessDetails");
+            NextPage = GlobalNavigationModule.BusinessDetailsMenuClick(CurrentDriver, businessDetailsButton);
+        }
+
         [When(@"I click on My Address")]
         public void WhenIClickOnMyAddress()
         {
@@ -148,6 +156,13 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<BusinessDetailsPage>().IsUpdateButtonAvailable();
         }
+
+        [Then(@"I can see that use account for business is selected")]
+        public void UseAccountForBusinessIsSelected()
+        {
+            CurrentPage.As<BusinessDetailsPage>().UseAccountForBusinessIsSelected();
+        }
+
         [Then(@"I can validate the update was successful")]
         public void ThenICanValidateTheUpdateWasSuccessful()
         {
@@ -377,8 +392,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
       public void ThenIGetTheErrorMessageDisplayedOnBusinessSectorField()
       {
           CurrentPage.As<BusinessDetailsPage>().BusinessSectorErrorMessageDisplayed();
-      }
-
+      }      
       
     }
 }
