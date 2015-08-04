@@ -165,6 +165,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public LocalOfficeApproverProposalsSummaryPage NavigateToProposalSummary()
         {
+            WebDriver.Wait(DurationType.Second, 2);
             ActionsModule.SpecificClickOnTheActionsDropdown(Driver);
             ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
 
