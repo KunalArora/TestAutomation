@@ -93,6 +93,8 @@ testRunner.When("I click on search for supply \"TN2220\"", ((string)(null)), ((T
 testRunner.When("I click on Add to basket button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 15
 testRunner.And("I  click the smart supply basket icon", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 16
+testRunner.And("I can see brother supply club benefits checkbox in the basket page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

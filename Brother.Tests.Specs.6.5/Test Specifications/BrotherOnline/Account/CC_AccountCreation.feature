@@ -33,7 +33,7 @@ Scenario: Validate that a user can create a family creative center account and t
 	# Note invalid serial number gives an error howeer seeing this error confirms that the account is validated and enables user to access the register account functionality
 	Then I can validate that an error message is displayed due to serial number
 	Then I can sign out of Brother Online
-	Then I am redirected to the Brother Home Page
+	 Then I am redirected to the Brother Home Page
 
 # Validate that the creation of a new business creative center test also creates a validated brother online business account
 Scenario: Validate that a user can create a business creative center account and that this action automatically creates a brother online business account that is already validated (Failing - BBAU-2318)
