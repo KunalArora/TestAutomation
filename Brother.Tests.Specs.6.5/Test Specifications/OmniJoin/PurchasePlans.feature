@@ -14,8 +14,7 @@ Background:
 	# Create an account on BOL and log in
 	Given I am logged onto Brother Online "United Kingdom" using valid credentials
 
-#@SMOKE
-@STAGING
+@SMOKE
 Scenario Outline: Purchase OmniJoin subscription plan for <country> for a <Plan Type> plan on <Billing Type> billing
 	Given I have navigated to the OmniJoin home page
 	And I have clicked on Buy

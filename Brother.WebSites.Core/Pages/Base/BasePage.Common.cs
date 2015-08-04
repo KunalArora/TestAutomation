@@ -1,5 +1,6 @@
 using System;
 using System.Configuration;
+using System.Net;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -48,7 +49,7 @@ namespace Brother.WebSites.Core.Pages.Base
 
             // Initialise the page instance with elements based on FindsBy entries
             PageFactory.InitElements(driver, pageInstance);
-            
+
             // Small wait for page to complete loading. Poor but required at this time (increase to 6 seconds if issues discovered)
             WebDriver.Wait(Helper.DurationType.Second, 6);
 

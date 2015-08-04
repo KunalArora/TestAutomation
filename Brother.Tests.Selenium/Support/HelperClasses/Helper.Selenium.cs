@@ -928,6 +928,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             {
                 MsgOutput(string.Format("AssertElementPresent timeout searching for element [{0}]. Timeout period was [{1}]", elementDescription, timeOut));
                 MsgOutput("Exception was ", timeOutDriverException.Message);
+                TestCheck.AssertFailTest(string.Format("Unable to locate element [{0}]", element));
             }
         }
 
