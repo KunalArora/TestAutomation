@@ -13,6 +13,4 @@ And I have entered my valid supplies code for an InkJet cartridge "TN2220"
 When I click on search for supply "TN2220"
 When I click on Add to basket button
 And I  click the smart supply basket icon
-
-
-
+And I can see brother supply club benefits checkbox in the basket page  

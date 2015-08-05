@@ -141,8 +141,13 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.And("I am redirected to the Register device page with the creative center login", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 32
  testRunner.Then("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+<<<<<<< HEAD
 #line 33
  testRunner.Then("I am redirected to the Brother Home Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+=======
+#line 36
+  testRunner.Then("I am redirected to the Brother Home Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+>>>>>>> df7854d0b843e6519ba7f80590294820dc78093e
 #line hidden
             this.ScenarioCleanup();
         }

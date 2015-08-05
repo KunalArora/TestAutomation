@@ -30,7 +30,7 @@ Scenario: (BBAU-2318, BBAU-2575) Validate that a user can create a family creati
 	When I have clicked on add device whilst logged in with the creative center account
 	And I am redirected to the Register device page with the creative center login
 	Then I can sign out of Brother Online
-	Then I am redirected to the Brother Home Page
+	 Then I am redirected to the Brother Home Page
 
 # Validate that the creation of a new business creative center test also creates a validated brother online business account
 Scenario: (BBAU-2318, BBAU-2575) Validate that a user can create a business creative center account and that this action automatically creates a brother online business account that is already validated
