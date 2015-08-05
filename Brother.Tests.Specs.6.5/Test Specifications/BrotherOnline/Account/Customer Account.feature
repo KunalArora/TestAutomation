@@ -556,7 +556,7 @@ Scenario Outline: Customer creates a new account with Brother Online using valid
 	And I can sign out of Brother Online
 	Then I am redirected to the Brother Home Page
 Scenarios: 
-| Country			|
+| Country  |	
 | United Kingdom    |
 | Ireland           |
 |Poland				|
@@ -577,6 +577,7 @@ Scenario Outline: Customer creates a new account with Brother Online using valid
 	| LastName        | AutoTest       |
 	| Password        | @@@@@	       |
 	| ConfirmPassword | @@@@@		   |
+	#| CodiceFiscale  |MRTMTT25D09F205Z	   |
 	| NumeroDNI		  | 00000023T	   |
 	And I have Agreed to the Terms and Conditions
 	And I declare that I do not use this account for business
@@ -588,5 +589,6 @@ Scenario Outline: Customer creates a new account with Brother Online using valid
 	And I can sign out of Brother Online
 	Then I am redirected to the Brother Home Page
 Scenarios: 
-| Country			|
-|Spain				| 
+| Country |
+#| Italy   |
+|Spain	| 
