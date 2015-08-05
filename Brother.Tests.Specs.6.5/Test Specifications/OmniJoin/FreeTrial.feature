@@ -8,7 +8,7 @@ Feature: FreeTrial
 Scenario: Sign Up for 14 day Free trial already signed into Brother Online
 	# Create an account on BOL and sign in
 	Given I am logged onto Brother Online "United Kingdom" using valid credentials
-	And I have navigated to the OmniJoin WebConferencing Home Page
+	And I have navigated to the OmniJoin home page
 	And If I click on Start Free Trial
 	Then I should be directed to the OmniJoin Free Trial page
 	When I have entered a valid First and Last name, "AutoTest", "AutoTest"
@@ -29,7 +29,7 @@ Scenario: Sign Up for 14 day Free trial with a Brother Online account but start 
 #@STAGING
 # This does not sign you into Brother Online it merely creates the account as part of the Free Trial process.
 Scenario: Sign Up for 14 day Free trial without an existing Brother Online account(BBAU-2533)
-	Given I have navigated to the OmniJoin WebConferencing Home Page
+	Given I have navigated to the OmniJoin home page
 	And If I click on Start Free Trial
 	Then I should be directed to the OmniJoin Free Trial page
 	When I have entered a valid First and Last name, "AutoTest", "AutoTest"
