@@ -440,7 +440,8 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<RegistrationPage>().PopulatePasswordTextBox(form.Password);
             CurrentPage.As<RegistrationPage>().PopulateConfirmPasswordTextBox(form.Password);
             WhenIEnterAValidEmailAddress(string.Empty); // Auto Generates with an empty string
-            CurrentPage.As<RegistrationPage>().PopulateNiNumberTextBox(form.NumeroDNI);
+            CurrentPage.As<RegistrationPage>().PopulateNiNumberTextBox(form.NumeroDNI); //tax number for Spain
+            //CurrentPage.As<RegistrationPage>().PopulateTaxNumberTextBox(form.CodiceFiscale);//tax number for Italy
         }
         [When(@"I fill in the registration information using a maximum length email address")]
         public void WhenIFillInTheRegistrationInformationUsingAMaxLengthEmailAddress(Table table)

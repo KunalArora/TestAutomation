@@ -121,7 +121,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         [FindsBy(How = How.CssSelector, Using = "#txtTax1")]
         public IWebElement NiNumberTextBox;
-        
+
+        [FindsBy(How = How.CssSelector, Using = "#txtTax1")]
+        public IWebElement TaxNumberTextBox;
 
         public bool IsWarningBarPresent(int retry, int timeToWait)
         {
@@ -338,7 +340,12 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             NiNumberTextBox.SendKeys(numeroDni);
             //TestCheck.AssertIsEqual(numeroDni, GetTextBoxValue("NiNumberTextBox"), "NiNumber Text Box");
         }
-        
+
+        public void PopulateTaxNumberTextBox(string codiceFiscale)
+        {
+            TaxNumberTextBox.SendKeys(codiceFiscale);
+            //TestCheck.AssertIsEqual(codiceFiscale, GetTextBoxValue("TaxNumberTextBox"), "Codice Fiscale Text Box");
+        }
 
         public void DoNotHaveAnAccountOption()
         {

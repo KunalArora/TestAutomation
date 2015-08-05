@@ -141,4 +141,38 @@
 			<MyAccount>My Account</MyAccount>
 		</PrimaryNavTopMenu>
   </Language>
+	<Language Country="Italy">
+		<ProductItem>
+			<OmniJoin>videoconferencia</OmniJoin>
+			<CreativeCentre>Plantillsa profesionales</CreativeCentre>
+			<PrintSmart>Managed Print Services</PrintSmart>
+			<MyAccount>Administre su cuenta</MyAccount>
+		</ProductItem>
+		<ProductButtons>
+			<OmniJoin>
+				<BuyNow>Comprar</BuyNow>
+				<FreeTrial>Pruebelo-Ahora</FreeTrial>
+			</OmniJoin>
+			<CreativeCentre>
+			</CreativeCentre>
+			<PrintSmart>
+				<MyProposals>Ver-Propuestas</MyProposals>
+				<MyContracts>Ver-Contractos</MyContracts>
+				<CustomerInformation>Crear-Propuesta-Nueva</CustomerInformation>
+			</PrintSmart>
+			<MyAccount>
+				<Preferences>Mis-Preferencias-De</Preferences>
+				<PersonalDetails>Mis-datos-personales</PersonalDetails>
+				<MyInvoices>Factura</MyInvoices>
+			</MyAccount>
+		</ProductButtons>
+		<MyAccountSideNavMenu>
+			<BrotherOnlineHome>BrotherOnlineHome</BrotherOnlineHome>
+			<Invoices>Facturas</Invoices>
+			<MyConnectedDevices>My Connected Devices</MyConnectedDevices>
+		</MyAccountSideNavMenu>
+		<PrimaryNavTopMenu>
+			<MyAccount>My Account</MyAccount>
+		</PrimaryNavTopMenu>
+	</Language>
 </Lookup>
