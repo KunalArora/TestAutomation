@@ -95,15 +95,15 @@ Scenario Outline: Customer can change their Brother Online email address after r
 	When I validate the new Customer Email changes via email
 	And I can sign out of Brother Online
 	Then If I sign back into Brother Online "<Country>" using the same credentials
-	When I navigate to my account for "<Country>"
-	And I click on Sign In Details
-	Then I can validate the update was successful
-	Then I can sign out of Brother Online
+	#When I navigate to my account for "<Country>"
+	#And I click on Sign In Details
+	#Then I can validate the update was successful
+	#Then I can sign out of Brother Online
 
 Scenarios:
 	| Country        | EmailPrefixForChange |
 	| United Kingdom | changed              |
-	| Ireland        | changed              |
+	#| Ireland        | changed              |
 
 @TEST @UAT @PROD 
 # Validate that an existing user has the option to change their sign in preferences to social login 
@@ -560,7 +560,33 @@ Scenarios:
 | United Kingdom    |
 | Ireland           |
 |Poland				|
-#|Spain				| (automate separately)
 | Denmark		    |
 | Portugal		    |
 | Finland		    |
+
+@TEST @UAT @PROD 
+# Create an account for Brother Online for spain sites
+Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on Spain site																			sign in and Sign Out
+	Given I want to create a new account with Brother Online "<Country>"
+	When I click on Create Account for "<Country>"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I fill in the registration information using a valid email address and ID number
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Password        | @@@@@	       |
+	| ConfirmPassword | @@@@@		   |
+	| NumeroDNI		  | 00000023T	   |
+	And I have Agreed to the Terms and Conditions
+	And I declare that I do not use this account for business
+	When I press Create Your Account
+	Then I should see my account confirmation page
+	And When I Click Go Back
+	And Once I have Validated an Email was received and verified my account
+	Then I should be able to log into "<Country>" Brother Online using my account details
+	And I can sign out of Brother Online
+	Then I am redirected to the Brother Home Page
+Scenarios: 
+| Country			|
+|Spain				| 
