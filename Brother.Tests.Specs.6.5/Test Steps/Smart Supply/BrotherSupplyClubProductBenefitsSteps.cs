@@ -28,6 +28,7 @@ namespace Brother.Tests.Specs.Test_Steps.Smart_Supply
         [When(@"I click on Add to basket button")]
         public void WhenIClickOnAddToBasketButton()
         {
+            NextPage = SmartSupplyProductPage.Productpageload(CurrentDriver);
             CurrentPage.As<SmartSupplyProductPage>().AddSmartSupplyProductToBasketButtonClick();
         }
 
