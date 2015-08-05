@@ -53,7 +53,7 @@ namespace Brother.Tests.Selenium.Lib.Pages.BrotherMainSite.Smart_Supply
         [FindsBy(How = How.CssSelector, Using = ".promo-info ul li")]
         public IList<IWebElement> BenefitsText;
 
-        [FindsBy(How = How.CssSelector, Using = ".basket-container")]
+        [FindsBy(How = How.CssSelector, Using = ".nav-basket")]
         public IWebElement BasketIconSmartSupply;
 
         public void Hoverbasket()

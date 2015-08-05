@@ -294,7 +294,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<RegistrationPage>().PopulatePasswordTextBox(Helper.Password);
             CurrentPage.As<RegistrationPage>().PopulateConfirmPasswordTextBox(Helper.Password);
             WhenIEnterAValidEmailAddress(string.Empty);
-
+            
             WhenIHaveAgreedToTheTermsAndConditions();
             WhenIDeclareThatIDoNotUseThisAccountForBusiness();
             WhenIPressCreateYourAccount();
