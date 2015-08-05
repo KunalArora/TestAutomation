@@ -443,6 +443,17 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<RegistrationPage>().PopulateNiNumberTextBox(form.NumeroDNI); //tax number for Spain
             //CurrentPage.As<RegistrationPage>().PopulateTaxNumberTextBox(form.CodiceFiscale);//tax number for Italy
         }
+        [When(@"I fill in the registration information using a valid email address and ID number for italy")]
+        public void WhenIFillInTheRegistrationInformationUsingAValidEmailAddressAndIdNumberForItaly(Table table)
+        {
+            dynamic form = table.CreateDynamicInstance();
+            CurrentPage.As<RegistrationPage>().PopulateFirstNameTextBox(form.FirstName);
+            CurrentPage.As<RegistrationPage>().PopulateLastNameTextBox(form.LastName);
+            CurrentPage.As<RegistrationPage>().PopulatePasswordTextBox(form.Password);
+            CurrentPage.As<RegistrationPage>().PopulateConfirmPasswordTextBox(form.Password);
+            WhenIEnterAValidEmailAddress(string.Empty); // Auto Generates with an empty string
+            CurrentPage.As<RegistrationPage>().PopulateTaxNumberTextBox(form.CodiceFiscale);//tax number for Italy
+        }
         [When(@"I fill in the registration information using a maximum length email address")]
         public void WhenIFillInTheRegistrationInformationUsingAMaxLengthEmailAddress(Table table)
         {

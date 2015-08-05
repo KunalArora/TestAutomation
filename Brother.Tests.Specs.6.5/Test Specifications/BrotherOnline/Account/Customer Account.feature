@@ -559,10 +559,11 @@ Scenarios:
 | Country  |	
 | United Kingdom    |
 | Ireland           |
-|Poland				|
+| Poland				|
 | Denmark		    |
 | Portugal		    |
 | Finland		    |
+| Slovenia			|
 
 @TEST @UAT @PROD 
 # Create an account for Brother Online for spain sites
@@ -577,7 +578,6 @@ Scenario Outline: Customer creates a new account with Brother Online using valid
 	| LastName        | AutoTest       |
 	| Password        | @@@@@	       |
 	| ConfirmPassword | @@@@@		   |
-	#| CodiceFiscale  |MRTMTT25D09F205Z	   |
 	| NumeroDNI		  | 00000023T	   |
 	And I have Agreed to the Terms and Conditions
 	And I declare that I do not use this account for business
@@ -590,5 +590,32 @@ Scenario Outline: Customer creates a new account with Brother Online using valid
 	Then I am redirected to the Brother Home Page
 Scenarios: 
 | Country |
-#| Italy   |
 |Spain	| 
+
+@TEST @UAT @PROD 
+# Create an account for Brother Online for spain sites
+Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on Italy site																			sign in and Sign Out
+	Given I want to create a new account with Brother Online "<Country>"
+	When I click on Create Account for "<Country>"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I fill in the registration information using a valid email address and ID number for italy
+	| field           | value           |
+	| FirstName       | AutoTest        |
+	| LastName        | AutoTest		|
+	| Password        | @@@@@			|
+	| ConfirmPassword | @@@@@			|
+	| CodiceFiscale	  |MRTMTT25D09F205Z	|
+	
+	And I have Agreed to the Terms and Conditions
+	And I declare that I do not use this account for business
+	When I press Create Your Account
+	Then I should see my account confirmation page
+	And When I Click Go Back
+	And Once I have Validated an Email was received and verified my account
+	Then I should be able to log into "<Country>" Brother Online using my account details
+	And I can sign out of Brother Online
+	Then I am redirected to the Brother Home Page
+Scenarios: 
+| Country |
+| Italy   |
