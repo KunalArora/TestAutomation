@@ -559,11 +559,15 @@ Scenarios:
 | Country  |	
 | United Kingdom    |
 | Ireland           |
-| Poland				|
+| Poland			|
 | Denmark		    |
 | Portugal		    |
 | Finland		    |
 | Slovenia			|
+| Slovakia 			|
+| Belgium  			|
+| Netherlands		|
+
 
 @TEST @UAT @PROD 
 # Create an account for Brother Online for spain sites

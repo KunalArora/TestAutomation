@@ -154,7 +154,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         private static readonly Dictionary<string, string> _welcomePageTitle = new Dictionary<string, string>
         {
             {"Spain", "Inicio de Brother Online"},
-	        {"Poland", "Strona główna serwisu Brother Online"},    
+	        {"Poland", "Zaloguj się lub Zarejestruj się"},    
 	        {"United Kingdom", "Brother Online Home"},
 	        {"Ireland", "Brother Online Home"},
             {"Denmark", "Log på, eller registrer"},
