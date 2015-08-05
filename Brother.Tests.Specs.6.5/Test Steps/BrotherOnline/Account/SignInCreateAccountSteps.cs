@@ -653,8 +653,18 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
 
             //WhenIAmRedirectedToTheBrotherLoginRegisterPage();
             WhenIEnterAValidCCAccountEmailAddress(Email.RegistrationEmailAddress);
-            WhenIEnterAValidCCPassword(Helper.Password);
+            WhenIEnterAValidPassword(Helper.Password);
             WhenIClickOnSignInWithCCCredentials(country);            
+        }
+
+        [Then(@"I should be able to log into ""(.*)"" Brother Online using my max length username and password account details")]
+        public void ThenIShouldBeAbleToLogIntoBrotherOnlineUsingMyMaxUsernameAndPasswordAccountDetails(string country)
+        {
+
+            //WhenIAmRedirectedToTheBrotherLoginRegisterPage();
+            WhenIEnterAValidEmailAddress(Email.RegistrationEmailAddress);
+            WhenIEnterAValidMaxPassword();
+            WhenIClickOnSignIn(country);
         }
 
         [Then(@"I should be able to successfully log into brother online")]
@@ -812,7 +822,13 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         public void WhenIEnterAValidPassword(string validPassword)
         {
             CurrentPage.As<RegistrationPage>().PopulatePassword(validPassword);
-        }                            
+        }
+
+        [When(@"I enter a valid max Password ""(.*)""")]
+        public void WhenIEnterAValidMaxPassword()
+        {
+            CurrentPage.As<RegistrationPage>().PopulateMaxPassword();
+        }                
 
         [Then(@"When I Click Go Back")]
         public void ThenWhenIClickGoBack()
