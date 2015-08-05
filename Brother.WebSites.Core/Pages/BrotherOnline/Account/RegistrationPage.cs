@@ -119,7 +119,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         [FindsBy(How = How.CssSelector, Using = "#Warnings.warning-bar p")]
         public IWebElement InvalidCredentialsErrorMessage;
 
-
+        [FindsBy(How = How.CssSelector, Using = "#txtTax1")]
+        public IWebElement NiNumberTextBox;
+        
 
         public bool IsWarningBarPresent(int retry, int timeToWait)
         {
@@ -326,11 +328,17 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             PasswordTextBox.SendKeys(password.Equals("@@@@@") ? Helper.Password : password);
             TestCheck.AssertIsEqual(password.Equals("@@@@@") ? Helper.Password : password, GetTextBoxValue("PasswordTextBox"), "Password Text Box");
         }
-      public void PopulateConfirmPasswordTextBox(string password)
+         public void PopulateConfirmPasswordTextBox(string password)
         {
             ConfirmPasswordTextBox.SendKeys(password.Equals("@@@@@") ? Helper.Password : password);
             TestCheck.AssertIsEqual(password.Equals("@@@@@") ? Helper.Password : password, GetTextBoxValue("ConfirmPasswordTextBox"), "Confirm Password Text Box");
         }
+        public void PopulateNiNumberTextBox(string numeroDni)
+        {
+            NiNumberTextBox.SendKeys(numeroDni);
+            //TestCheck.AssertIsEqual(numeroDni, GetTextBoxValue("NiNumberTextBox"), "NiNumber Text Box");
+        }
+        
 
         public void DoNotHaveAnAccountOption()
         {
