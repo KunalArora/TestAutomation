@@ -381,6 +381,11 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             TestCheck.AssertIsEqual(password.Equals("@@@@@") ? Helper.Password : password, GetTextBoxValue("Password"), "Password");
         }
 
+        public void PopulateMaxPassword()
+        {
+            Password.SendKeys("Max30CharacterPasswooooooooord");            
+        }
+
         public void PopulateEmailAddressTextBox(string emailAddress)
         {
             TestCheck.AssertIsEqual(false, EmailAddressErrorMessage.Displayed, "Is Email Error message displayed");

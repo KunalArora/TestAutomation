@@ -1187,13 +1187,11 @@ this.ScenarioSetup(scenarioInfo);
 #line 492
  testRunner.And("When I Click Go Back", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 493
- testRunner.And("Once I have Validated an Email was received and verified my account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("I should be able to log into \"\"(.*)\"\" Brother Online using my max length username" +
+                    " and password account details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 494
- testRunner.Then("I should be able to log into \"United Kingdom\" Brother Online using my account det" +
-                    "ails", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 495
  testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 496
+#line 495
  testRunner.Then("I am redirected to the Brother Home Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -1206,19 +1204,19 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate that a user can view cookie information on first visit to brother online" +
                     " and once accepted does not see it again", ((string[])(null)));
-#line 499
+#line 498
 this.ScenarioSetup(scenarioInfo);
-#line 500
+#line 499
  testRunner.Given("I launch Brother Online for \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 501
+#line 500
  testRunner.Then("I delete all page cookies", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 501
+ testRunner.And("I refresh the current page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 502
- testRunner.And("I refresh the current page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 503
  testRunner.Then("I can see and click the accept cookies button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 504
+#line 503
  testRunner.And("I refresh the current page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 505
+#line 504
  testRunner.Then("I can no longer see the accept cookies button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -1231,19 +1229,19 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate that a user of Brother online will always see cookie information on subs" +
                     "equent visits to the site if cookies are not accepted", ((string[])(null)));
-#line 508
+#line 507
 this.ScenarioSetup(scenarioInfo);
-#line 509
+#line 508
  testRunner.Given("I launch Brother Online for \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 510
+#line 509
  testRunner.Then("I delete all page cookies", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 511
+#line 510
  testRunner.And("I refresh the current page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 512
+#line 511
  testRunner.Then("I can see the cookies information bar", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 513
+#line 512
  testRunner.And("I refresh the current page again", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 514
+#line 513
  testRunner.Then("I continue to see the cookies information bar", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -1256,23 +1254,23 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate that a user of Brother online can view the cookie privacy policy and ter" +
                     "ms and conditions information prior to accepting cookies", ((string[])(null)));
-#line 517
+#line 516
 this.ScenarioSetup(scenarioInfo);
-#line 518
+#line 517
  testRunner.Given("I launch Brother Online for \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 519
+#line 518
  testRunner.Then("I delete all page cookies", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 520
+#line 519
  testRunner.And("I refresh the current page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 521
+#line 520
  testRunner.Then("I can see the cookies information bar", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 522
+#line 521
  testRunner.And("I can see and click the find out more button on the cookies information bar", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 523
+#line 522
  testRunner.Then("I am navigated to the privacy policy for cookies", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 524
+#line 523
  testRunner.And("I click to view the company terms and conditions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 525
+#line 524
  testRunner.Then("I am navigated to the company terms and conditions page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -1287,7 +1285,7 @@ this.ScenarioSetup(scenarioInfo);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Log in as a Printer On dealer and ensure that they can see the required permissio" +
                     "ns BBAU-2189", new string[] {
                         "ignore"});
-#line 528
+#line 527
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
@@ -1300,7 +1298,7 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create a user but test for BPID", new string[] {
                         "ignore"});
-#line 532
+#line 531
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
@@ -1330,15 +1328,15 @@ this.ScenarioSetup(scenarioInfo);
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer creates a new account with Brother Online using valid credentials, confi" +
                     "rm by email on multi lingual sites\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tsign in and Sign Out", @__tags);
-#line 538
+#line 537
 this.ScenarioSetup(scenarioInfo);
-#line 539
+#line 538
  testRunner.Given(string.Format("I want to create a new account with Brother Online \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 540
+#line 539
  testRunner.When(string.Format("I click on Create Account for \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 541
+#line 540
  testRunner.And("I am redirected to the Brother Login/Register page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 542
+#line 541
  testRunner.And("I have Checked No I Do Not Have An Account Checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
@@ -1356,25 +1354,25 @@ this.ScenarioSetup(scenarioInfo);
             table10.AddRow(new string[] {
                         "ConfirmPassword",
                         "@@@@@"});
-#line 543
+#line 542
  testRunner.And("I fill in the registration information using a valid email address", ((string)(null)), table10, "And ");
-#line 550
+#line 549
  testRunner.And("I have Agreed to the Terms and Conditions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 551
+#line 550
  testRunner.And("I declare that I do not use this account for business", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 552
+#line 551
  testRunner.When("I press Create Your Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 553
+#line 552
  testRunner.Then("I should see my account confirmation page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 554
+#line 553
  testRunner.And("When I Click Go Back", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 555
+#line 554
  testRunner.And("Once I have Validated an Email was received and verified my account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 556
+#line 555
  testRunner.Then(string.Format("I should be able to log into \"{0}\" Brother Online using my account details", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 557
+#line 556
  testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 558
+#line 557
  testRunner.Then("I am redirected to the Brother Home Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

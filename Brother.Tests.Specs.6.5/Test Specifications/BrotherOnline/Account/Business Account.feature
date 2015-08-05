@@ -265,8 +265,7 @@ Scenario: Validate that a business account can be created using the maximun 241 
 	When I press Create Your Account
 	Then I should see my account confirmation page
 	And When I Click Go Back
-	And Once I have Validated an Email was received and verified my account
-	Then I should be able to log into "United Kingdom" Brother Online using my account details
+	Then I should be able to log into ""(.*)"" Brother Online using my max length username and password account details
 	And I can sign out of Brother Online
 	Then I am redirected to the Brother Home Page
 
