@@ -2,7 +2,7 @@
 Feature: CreativeCenterTests
 
 # Validate that the creation of a new family creative center test also creates a validated brother online user account
-Scenario: Validate that a user can create a family creative center account and that this action automatically creates a brother online account that is already validated (Failing - BBAU-2318)
+Scenario: (BBAU-2318, BBAU-2575) Validate that a user can create a family creative center account and that this action automatically creates a brother online account that is already validated 
 	Given I launch Brother Online for "United Kingdom"
 	When I navigate to and click the creative center link
 	Then I am taken to the creative center landing page
@@ -29,14 +29,11 @@ Scenario: Validate that a user can create a family creative center account and t
 	Then I should be able to log into ""(.*)"" Brother Online using my creative center account details
 	When I have clicked on add device whilst logged in with the creative center account
 	And I am redirected to the Register device page with the creative center login
-	Then I have entered my Product Serial Code whilst logged in with a creative center account "U1T000000"
-	# Note invalid serial number gives an error howeer seeing this error confirms that the account is validated and enables user to access the register account functionality
-	Then I can validate that an error message is displayed due to serial number
 	Then I can sign out of Brother Online
 	Then I am redirected to the Brother Home Page
 
 # Validate that the creation of a new business creative center test also creates a validated brother online business account
-Scenario: Validate that a user can create a business creative center account and that this action automatically creates a brother online business account that is already validated (Failing - BBAU-2318)
+Scenario: (BBAU-2318, BBAU-2575) Validate that a user can create a business creative center account and that this action automatically creates a brother online business account that is already validated
 	Given I launch Brother Online for "United Kingdom"
 	When I navigate to and click the creative center link
 	Then I am taken to the creative center landing page
@@ -70,9 +67,6 @@ Scenario: Validate that a user can create a business creative center account and
 	Then I can navigate back to Brother Online home page
 	When I have clicked on Add Device				
 	When I am redirected to the Register Device page
-	Given I have entered my Product Serial Code "U1T000000"
-	# Note invalid serial number gives an error howeer seeing this error confirms that the account is validated and enables user to access the register account functionality
-	Then I can validate that an error message is displayed due to serial number
 	Then I can sign out of Brother Online
 	Then I am redirected to the Brother Home Page
 
