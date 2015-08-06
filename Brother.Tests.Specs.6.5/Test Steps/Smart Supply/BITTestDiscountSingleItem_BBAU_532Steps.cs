@@ -12,7 +12,7 @@ namespace Brother.Tests.Specs.Test_Steps.Smart_Supply
         [When(@"I  click the smart supply basket icon")]
         public void WhenIClickTheSmartSupplyBasketIcon()
         {
-            CurrentPage.As<SmartSupplyProductPage>().clickbasketicon();
+            CurrentPage.As<SmartSupplyProductPage>().ClickBasketIcon();
         }
 
         [When(@"I can see brother supply club benefits checkbox in the basket page")]

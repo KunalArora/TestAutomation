@@ -2,6 +2,7 @@
 using Brother.Tests.Selenium.Lib.Pages.BrotherMainSite.Smart_Supply;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
+using Brother.WebSites.Core.Pages.BrotherMainSite.Basket;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.Test_Steps.Smart_Supply
@@ -28,7 +29,8 @@ namespace Brother.Tests.Specs.Test_Steps.Smart_Supply
         [When(@"I click on Add to basket button")]
         public void WhenIClickOnAddToBasketButton()
         {
-            NextPage = SmartSupplyProductPage.Productpageload(CurrentDriver);
+            TestCheck.AssertIsEqual(0, BasketModule.GetBasketItemsCount(CurrentDriver), "Invalid Basket item count");
+            //NextPage = SmartSupplyProductPage.Productpageload(CurrentDriver);
             CurrentPage.As<SmartSupplyProductPage>().AddSmartSupplyProductToBasketButtonClick();
         }
 

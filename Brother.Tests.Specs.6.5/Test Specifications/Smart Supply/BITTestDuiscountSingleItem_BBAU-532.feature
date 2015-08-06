@@ -33,4 +33,13 @@ Given I want to create a new account with Brother Online "Italy"
 	When I click on search for supply "TN2220"
 	When I click on Add to basket button
 	And I  click the smart supply basket icon
-	And I can see brother supply club benefits checkbox in the basket page  
+	And I can see brother supply club benefits checkbox in the basket page
+	
+	
+	#When I click on Add To Basket
+	#Then I should see the item "TN2220" in the Basket
+	#And I should see the Basket item count change to "1"
+	#When I click on Go to Basket
+	#Then I should see the item "TN2220" in the item list
+	#And I should see the Basket items count is "1"
+	#When I click Checkout  
