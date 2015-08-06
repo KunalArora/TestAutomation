@@ -152,6 +152,15 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         //[FindsBy(How = How.CssSelector, Using = "#form-sign-up > div:nth-child(2) > span.half-col.validation-failed.blur > div")]
         [FindsBy(How = How.CssSelector, Using = ".error")]
         public IWebElement LastNameCcErrorMessage;
+
+        [FindsBy(How = How.Id, Using = "CompanyNameTextBox")]
+        public IWebElement CompanyNameCcTextBox;
+
+        [FindsBy(How = How.CssSelector, Using = ".error")]
+        public IWebElement CompanyNameCcErrorMessageDisplayed;
+
+        [FindsBy(How = How.CssSelector, Using = ".error")]
+        public IWebElement BusinessSectorCcErrorMessageDisplayed;
         
         private static readonly Dictionary<string, string> _pageTitle = new Dictionary<string, string>
         {
@@ -666,6 +675,27 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         {
             //FirstNameCCErrorMessage.SendKeys(Keys.Tab);
             TestCheck.AssertIsEqual(true, LastNameCcErrorMessage.Displayed, "Is Creative Center First Name Error Message Displayed");
+        }
+
+        public void EmptyCcCompanyNameTextBox()
+        {
+            CompanyNameCcTextBox.Clear();
+            CompanyNameCcTextBox.SendKeys(Keys.Tab);
+        }
+
+        public void CompanyNameCcErrorMessage()
+        {
+            TestCheck.AssertIsEqual(true, CompanyNameCcErrorMessageDisplayed.Displayed, "Is Error Message Displayed");
+        }
+
+        public void EmptyCcBusinessSectorTextBox()
+        {
+            CcBusinessSectorDropDownList.SendKeys(Keys.Tab);
+        }
+
+        public void BusinessSectorCcErrorMessage()
+        {
+            TestCheck.AssertIsEqual(true, BusinessSectorCcErrorMessageDisplayed.Displayed, "Is Error Message Displayed");
         }
 
     }
