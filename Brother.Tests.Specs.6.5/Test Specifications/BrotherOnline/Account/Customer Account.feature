@@ -538,12 +538,12 @@ Scenarios:
 | Country  |	
 | United Kingdom    |
 | Ireland           |
-| Poland			|
+#| Poland			|
 | Denmark		    |
 | Portugal		    |
 | Finland		    |
-| Slovenia			|
-| Slovakia 			|
+#| Slovenia			|
+#| Slovakia 			|
 | Belgium  			|
 | Netherlands		|
 
@@ -573,7 +573,7 @@ Scenario Outline: Customer creates a new account with Brother Online using valid
 	Then I am redirected to the Brother Home Page
 Scenarios: 
 | Country |
-|Spain	| 
+|Spain	  | 
 
 @TEST @UAT @PROD 
 # Create an account for Brother Online for spain sites
