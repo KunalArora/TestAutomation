@@ -147,11 +147,11 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             while ((orderSuccess != true) && (maxRetryCount != 10))
             {
                 orderSuccess = ConfirmSapOrder(orderNumber, out xmlResponseData);
-                WebDriver.Wait(DurationType.Second, 2);
+                WebDriver.Wait(DurationType.Second, 5); // Static pause to allow request to clear before retrying
                 MsgOutput(string.Format("Retrying to validate order number [{0}] - RETRY [{1}]", orderNumber, maxRetryCount));
                 maxRetryCount++;
             }
-            return orderSuccess == true;
+            return orderSuccess;
         }
 
         public static bool ConfirmSapOrder(string orderNumber)
