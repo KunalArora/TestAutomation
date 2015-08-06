@@ -55,7 +55,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Purchasing
         {
             When("I enter valid credit card details for a Visa Credit Card");
             When("I click Send");
-            CurrentPage.As<OrderConfirmationPage>().IsMyAccountButtonAvailable();
+            //CurrentPage.As<OrderConfirmationPage>().IsMyAccountButtonAvailable();
         }
 
         [When(@"I enter valid credit card details for a Visa Credit Card")]
