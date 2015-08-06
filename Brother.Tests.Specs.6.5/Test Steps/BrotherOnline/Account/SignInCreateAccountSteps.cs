@@ -710,7 +710,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
 
             //WhenIAmRedirectedToTheBrotherLoginRegisterPage();
             WhenIEnterAValidCCAccountEmailAddress(Email.RegistrationEmailAddress);
-            WhenIEnterAValidPassword(Helper.Password);
+            WhenIEnterAValidCcPassword(Helper.Password);
             WhenIClickOnSignInWithCCCredentials(country);            
         }
 
@@ -911,6 +911,12 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         public void WhenIEnterAValidPassword(string validPassword)
         {
             CurrentPage.As<RegistrationPage>().PopulatePassword(validPassword);
+        }
+
+        [When(@"I enter a valid Password for creative center ""(.*)""")]
+        public void WhenIEnterAValidCcPassword(string validPassword)
+        {
+            CurrentPage.As<HomePage>().PopulateWithCcPassword(validPassword);
         }
 
         [When(@"I enter a valid max Password ""(.*)""")]
