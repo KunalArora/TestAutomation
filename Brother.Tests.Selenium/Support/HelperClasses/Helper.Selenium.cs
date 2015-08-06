@@ -1005,6 +1005,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         public static bool SetCheckboxStatus(string checkboxId, bool desiredCheckedStatus, string elementDescription)
         {
             // Checking if the Checkbox is already set to the desired state
+            WebDriver.Wait(Helper.DurationType.Second, 2);
             var isChecked = IsCheckboxChecked(checkboxId);
             MsgOutput(string.Format("Checkbox status = [{0}] - True = Checked", Convert.ToBoolean(isChecked)));
             if (Convert.ToBoolean(isChecked) == desiredCheckedStatus)
@@ -1018,6 +1019,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                 ? string.Format("$('{0}').prop( 'checked', true )", checkboxId)
                 : string.Format("$('{0}').prop( 'checked', false )", checkboxId));
 
+            WebDriver.Wait(Helper.DurationType.Second, 2);
             isChecked = IsCheckboxChecked(checkboxId);
             MsgOutput(string.Format("Checkbox status = [{0}] - True = Checked", Convert.ToBoolean(isChecked)));
             TestCheck.AssertIsEqual(desiredCheckedStatus, Convert.ToBoolean(isChecked), "Unable to set Checkbox status to correct value");
