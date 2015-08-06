@@ -139,6 +139,19 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         public IWebElement MyAccountNavigationButton;
         //[FindsBy(How = How.CssSelector, Using = "a.button-blue[href=\"/print-smart/my-services/consumables\"]")]
         [FindsBy(How = How.CssSelector, Using = "#content_2_ProductsTabRepeater_ProductLinkButton_4 > p:nth-child(2)")]
+
+        [FindsBy(How = How.CssSelector, Using = ".error")]
+        public IWebElement CcEmailAddressErrorMessage;
+
+        [FindsBy(How = How.CssSelector, Using = ".half-col.validation-failed.blur .error")]
+        public IWebElement PasswordCcErrorMessage;
+
+        [FindsBy(How = How.CssSelector, Using = ".error")]
+        public IWebElement FirstNameCcErrorMessage;
+
+        //[FindsBy(How = How.CssSelector, Using = "#form-sign-up > div:nth-child(2) > span.half-col.validation-failed.blur > div")]
+        [FindsBy(How = How.CssSelector, Using = ".error")]
+        public IWebElement LastNameCcErrorMessage;
         
         private static readonly Dictionary<string, string> _pageTitle = new Dictionary<string, string>
         {
@@ -607,6 +620,53 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             MyAccountNavigationButton.Click();
         }
 
+        public void EmptyCcEmailAddressTextBox()
+        {
+            EmailAddressCCTextBox.Clear();
+            EmailAddressCCTextBox.SendKeys(Keys.Tab);            
+        }
+
+        public void IsCcEmailErrorMessageDisplayed()
+
+        {
+            TestCheck.AssertIsEqual(true, EmailAddressCCErrorMessage.Displayed, "Is Creative Center Email Error Message Displayed");
+        }
+
+        public void EmptyCcPasswordTextBox()
+        {
+            PasswordCCTextBox.Clear();
+            PasswordCCTextBox.SendKeys(Keys.Tab);
+        }
+
+        public void PasswordCcErrorMessageDisplayed()
+        {
+            //PasswordCCTextBox.SendKeys(Keys.Tab);
+            TestCheck.AssertIsEqual(true, PasswordCcErrorMessage.Displayed, "Is Creative Center Password Error Message Displayed");
+        }
+        
+        public void EmptyCcFirstNameTextBox()
+        {
+            FirstNameCCTextBox.Clear();
+            FirstNameCCTextBox.SendKeys(Keys.Tab);
+        }
+        
+        public void FirstNameCcErrorMessageDisplayed()
+        {
+            //FirstNameCCErrorMessage.SendKeys(Keys.Tab);
+            TestCheck.AssertIsEqual(true, FirstNameCcErrorMessage.Displayed, "Is Creative Center First Name Error Message Displayed");
+        }
+
+        public void EmptyCcLastNameTextBox()
+        {
+            LastNameCCTextBox.Clear();
+            LastNameCCTextBox.SendKeys(Keys.Tab);
+        }
+
+        public void LastNameCcErrorMessageDisplayed()
+        {
+            //FirstNameCCErrorMessage.SendKeys(Keys.Tab);
+            TestCheck.AssertIsEqual(true, LastNameCcErrorMessage.Displayed, "Is Creative Center First Name Error Message Displayed");
+        }
 
     }
 

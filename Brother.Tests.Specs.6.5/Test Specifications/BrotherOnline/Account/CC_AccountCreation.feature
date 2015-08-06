@@ -2,7 +2,7 @@
 Feature: CreativeCenterTests
 
 # Validate that the creation of a new family creative center test also creates a validated brother online user account
-Scenario: (Failing - BBAU-2318) Validate that a user can create a family creative center account and that this action automatically creates a brother online account that is already validated
+Scenario: (Failing - BBAU-2318, BBAU-2575) Validate that a user can create a family creative center account and that this action automatically creates a brother online account that is already validated
 	Given I launch Brother Online for "United Kingdom"
 	When I navigate to and click the creative center link
 	Then I am taken to the creative center landing page
@@ -33,7 +33,7 @@ Scenario: (Failing - BBAU-2318) Validate that a user can create a family creativ
 	Then I am redirected to the Brother Home Page
 
 # Validate that the creation of a new business creative center test also creates a validated brother online business account
-Scenario: (Failing - BBAU-2318) Validate that a user can create a business creative center account and that this action automatically creates a brother online business account that is already validated
+Scenario: (Failing - BBAU-2318, BBAU-2575) Validate that a user can create a business creative center account and that this action automatically creates a brother online business account that is already validated
 	Given I launch Brother Online for "United Kingdom"
 	When I navigate to and click the creative center link
 	Then I am taken to the creative center landing page
@@ -70,6 +70,24 @@ Scenario: (Failing - BBAU-2318) Validate that a user can create a business creat
 	Then I can sign out of Brother Online
 	Then I am redirected to the Brother Home Page
 
-
+# Check mandatory email/password/first name/ last name/ fields when creating a creative center family account
+Scenario: (Failing on Prod - BBAU-2575) Validate that an error message is displayed for all mandatory fields during creation of a creative center family account
+	Given I launch Brother Online for "United Kingdom"
+	When I navigate to and click the creative center link
+	Then I am taken to the creative center landing page
+	And I click the family center link
+	Then I am taken to the creative center home page
+	And I click to not participate in the survey
+	Then I click the creative center register/login link
+	Then I am navigated to the creative center login page			
+	Then I have checked no to having a creative center account
+	When I press tab in the creative center password field
+	Then I should see an error message on the creative center password field
+	When I press tab in the creative center email address field
+	Then I should see an error message on the creative center email field
+	When I press tab in the creative center first name field
+	Then I should see an error message on the creative center first name field
+	When I press tab in the creative center last name field
+	Then I should see an error message on the creative center last name field
 	
 		 

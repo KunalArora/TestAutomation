@@ -6,6 +6,7 @@ using Brother.WebSites.Core.Pages.BrotherOnline.Account;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
@@ -486,12 +487,16 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<RegistrationPage>().PopulateConfirmPasswordTextBox(form.Password);
         }
 
-
-
         [When(@"I press tab in the email address field")]
         public void WhenIPressTabInTheEmailAddressField()
         {
             CurrentPage.As<RegistrationPage>().EmptyEmailAddressTextBox();
+        }
+
+        [When(@"I press tab in the creative center email address field")]
+        public void WhenIPressTabInTheCcEmailAddressField()
+        {
+            CurrentPage.As<HomePage>().EmptyCcEmailAddressTextBox();            
         }
         
         [When(@"I press tab in the password field")]
@@ -500,16 +505,34 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<RegistrationPage>().EmptyPasswordTextBox();
         }
 
+        [When(@"I press tab in the creative center password field")]
+        public void WhenIPressTabInCcThePasswordField()
+        {
+            CurrentPage.As<HomePage>().EmptyCcPasswordTextBox();
+        }
+
         [When(@"I press tab in the first name field")]
         public void WhenIPressTabInTheFirstNameField()
         {
             CurrentPage.As<RegistrationPage>().EmptyFirstNameTextBox();
         }
 
+        [When(@"I press tab in the creative center first name field")]
+        public void WhenIPressTabInCcTheFirstNameField()
+        {
+            CurrentPage.As<HomePage>().EmptyCcFirstNameTextBox();
+        }
+
         [When(@"I press tab in the last name field")]
         public void WhenIPressTabInTheLastNameField()
         {
             CurrentPage.As<RegistrationPage>().EmptyLastNameTextBox();
+        }
+
+        [When(@"I press tab in the creative center last name field")]
+        public void WhenIPressTabInTheCcLastNameField()
+        {
+            CurrentPage.As<HomePage>().EmptyCcLastNameTextBox();
         }
 
         [When(@"I press tab in the company name field")]
@@ -757,20 +780,40 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<RegistrationPage>().IsErrorMessageDisplayed();
         }
+        [Then(@"I should see an error message on the creative center email field")]
+        public void ThenIShouldSeeAnErrorMessageOnCcEmail()
+        {
+            CurrentPage.As<HomePage>().IsCcEmailErrorMessageDisplayed();
+        }
         [Then(@"I should see an error message on the password field")]
         public void ThenIShouldSeeAnErrorMessageOnThePasswordField()
         {
             CurrentPage.As<RegistrationPage>().PasswordErrorMessageDisplayed();
+        }
+        [Then(@"I should see an error message on the creative center password field")]
+        public void ThenIShouldSeeAnErrorMessageOnCcThePasswordField()
+        {
+            CurrentPage.As<HomePage>().PasswordCcErrorMessageDisplayed();
         }
         [Then(@"I should see an error message on the first name field")]
         public void ThenIShouldSeeAnErrorMessageOnTheFirstnameField()
         {
             CurrentPage.As<RegistrationPage>().FirstNameErrorMessage();
         }
+        [Then(@"I should see an error message on the creative center first name field")]
+        public void ThenIShouldSeeAnErrorMessageOnTheCcFirstnameField()
+        {
+            CurrentPage.As<HomePage>().FirstNameCcErrorMessageDisplayed();
+        }
         [Then(@"I should see an error message on the last name field")]
         public void ThenIShouldSeeAnErrorMessageOnTheLastnameField()
         {
             CurrentPage.As<RegistrationPage>().LastNameErrorMessage();
+        }
+        [Then(@"I should see an error message on the creative center last name field")]
+        public void ThenIShouldSeeAnErrorMessageOnCcTheLastnameField()
+        {
+            CurrentPage.As<HomePage>().LastNameCcErrorMessageDisplayed();
         }
         [Then(@"I should see an error message on the company name field")]
         public void ThenIShouldSeeAnErrorMessageOnTheCompanynameField()
