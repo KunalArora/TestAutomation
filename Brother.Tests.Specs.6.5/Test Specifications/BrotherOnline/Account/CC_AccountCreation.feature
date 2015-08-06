@@ -14,11 +14,11 @@ Scenario: (Failing - BBAU-2318, BBAU-2575) Validate that a user can create a fam
 	Then I am navigated to the creative center login page			
 	Then I have checked no to having a creative center account
 	And I fill in the creative center registration information using a valid email address
-	| field           | value          |
-	| FirstName       | AutoTest       |
-	| LastName        | AutoTest       |
-	| Password        | @@@@@	       |
-	| ConfirmPassword | @@@@@		   |
+	| field           | value			|
+	| FirstName       | CcFamilyAutoTest|
+	| LastName        | AutoTest		|
+	| Password        | @@@@@			|
+	| ConfirmPassword | @@@@@			|
 	Then I declare that I do not use this creative center account for business
 	And I have Agreed to the creative center Terms and Conditions
 	Then I click the creative center create your account button
@@ -45,11 +45,11 @@ Scenario: (Failing - BBAU-2318, BBAU-2575) Validate that a user can create a bus
 	Then I have checked no to having a creative center account	
 	And I declare that I do use this creative center account for business
 	And I fill in the creative center registration information using a valid email address
-	| field           | value          |
-	| FirstName       | AutoTest       |
-	| LastName        | AutoTest       |
-	| Password        | @@@@@	       |
-	| ConfirmPassword | @@@@@		   |		
+	| field           | value			  |
+	| FirstName       | CcBusinessAutoTest|
+	| LastName        | AutoTest		  |
+	| Password        | @@@@@			  |
+	| ConfirmPassword | @@@@@		      |		
 	And I add my company name into creative center as "AutoTestLtd"
 	And I select my Business Sector on creative center as "IT and telecommunications services"		
 	And I select number of Employees on creative center as "11 - 50"

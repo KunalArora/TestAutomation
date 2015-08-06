@@ -105,7 +105,7 @@ this.ScenarioSetup(scenarioInfo);
                         "value"});
             table1.AddRow(new string[] {
                         "FirstName",
-                        "AutoTest"});
+                        "CcFamilyAutoTest"});
             table1.AddRow(new string[] {
                         "LastName",
                         "AutoTest"});
@@ -184,7 +184,7 @@ this.ScenarioSetup(scenarioInfo);
                         "value"});
             table2.AddRow(new string[] {
                         "FirstName",
-                        "AutoTest"});
+                        "CcBusinessAutoTest"});
             table2.AddRow(new string[] {
                         "LastName",
                         "AutoTest"});

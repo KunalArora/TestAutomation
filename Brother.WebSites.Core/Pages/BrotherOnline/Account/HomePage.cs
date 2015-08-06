@@ -698,6 +698,12 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             TestCheck.AssertIsEqual(true, BusinessSectorCcErrorMessageDisplayed.Displayed, "Is Error Message Displayed");
         }
 
+        public void PopulateWithCcPassword(string password)
+        {
+            Password.SendKeys(password.Equals("@@@@@") ? Helper.Password : password);
+            TestCheck.AssertIsEqual(password.Equals("@@@@@") ? Helper.Password : password, GetTextBoxValue("Password"), "Password");
+        }
+
     }
 
 }
