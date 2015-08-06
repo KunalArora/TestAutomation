@@ -541,10 +541,22 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<RegistrationPage>().EmptyCompanyNameTextBox();
         }
 
+        [When(@"I press tab in the creative center company name field")]
+        public void WhenIPressTabInTheCcCompanyNameField()
+        {
+            CurrentPage.As<HomePage>().EmptyCcCompanyNameTextBox();
+        }
+
         [When(@"I press tab in the business sector field")]
         public void WhenIPressTabInTheBusinessSectorField()
         {
             CurrentPage.As<RegistrationPage>().EmptyBusinessSectorTextBox();
+        }
+
+        [When(@"I press tab in the creative center business sector field")]
+        public void WhenIPressTabInTheCcBusinessSectorField()
+        {
+            CurrentPage.As<HomePage>().EmptyCcBusinessSectorTextBox();
         }
 
         [Then(@"If I sign back into Brother Online ""(.*)"" using the same credentials")]
@@ -820,11 +832,23 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<RegistrationPage>().CompanyNameErrorMessage();
         }
+        [Then(@"I should see an error message on the creative center company name field")]
+        public void ThenIShouldSeeAnErrorMessageOnTheCcCompanynameField()
+        {
+            CurrentPage.As<HomePage>().CompanyNameCcErrorMessage();
+        }
         [Then(@"I should see an error message on the business sector field")]
         public void ThenIShouldSeeAnErrorMessageOnTheBusinessSectorField()
         {
             CurrentPage.As<RegistrationPage>().BusinessSectorErrorMessage();
         }
+
+        [Then(@"I should see an error message on the creative center business sector field")]
+        public void ThenIShouldSeeAnErrorMessageOnTheCcBusinessSectorField()
+        {
+            CurrentPage.As<HomePage>().BusinessSectorCcErrorMessage();
+        }
+
        [Then(@"I should get an error message displayed on the Terms and Conditions")]
         public void ThenIShouldGetAnErrorMessageDisplayedOnTheTermsAndConditions()
         {
