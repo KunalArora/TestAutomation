@@ -606,11 +606,11 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Validate that a business account can be created using the maximun 241 username an" +
-            "d 30 password character lengths (Failing due to BBAU-2522)")]
-        public virtual void ValidateThatABusinessAccountCanBeCreatedUsingTheMaximun241UsernameAnd30PasswordCharacterLengthsFailingDueToBBAU_2522()
+            "d 30 password character lengths")]
+        public virtual void ValidateThatABusinessAccountCanBeCreatedUsingTheMaximun241UsernameAnd30PasswordCharacterLengths()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate that a business account can be created using the maximun 241 username an" +
-                    "d 30 password character lengths (Failing due to BBAU-2522)", ((string[])(null)));
+                    "d 30 password character lengths", ((string[])(null)));
 #line 247
 this.ScenarioSetup(scenarioInfo);
 #line 248

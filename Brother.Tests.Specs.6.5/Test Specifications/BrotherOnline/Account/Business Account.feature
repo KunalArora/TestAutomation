@@ -244,7 +244,7 @@ Scenario Outline: Validate that user or business account holders can still login
 
 
 # Check maximun username(241) and password(30) length when creating a business account
-Scenario: Validate that a business account can be created using the maximun 241 username and 30 password character lengths (Failing due to BBAU-2522)																				
+Scenario: Validate that a business account can be created using the maximun 241 username and 30 password character lengths 																		
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
 	And I am redirected to the Brother Login/Register page
