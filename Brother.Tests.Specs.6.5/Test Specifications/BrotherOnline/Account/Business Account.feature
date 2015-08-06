@@ -336,3 +336,22 @@ Scenario: Business Customer can reset their password
 	And If I sign back into Brother Online "United Kingdom" using the same credentials
 	Then I can sign out of Brother Online
 
+# Check mandatory email/password/first name/ last name/company name/business sector fields when creating business account
+Scenario: Validate that an error message is displayed for all mandatory fields during creation of a business account
+	Given I want to create a new account with Brother Online "United Kingdom"
+	When I click on Create Account for "United Kingdom"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I declare that I do use this account for business
+	When I press tab in the email address field
+	Then I should see an error message
+	When I press tab in the password field
+	Then I should see an error message on the password field
+	When I press tab in the first name field
+	Then I should see an error message on the first name field
+	When I press tab in the last name field
+	Then I should see an error message on the last name field
+	When I press tab in the company name field
+	Then I should see an error message on the company name field
+	When I press tab in the business sector field
+	Then I should see an error message on the business sector field

@@ -71,14 +71,14 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.Account
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("(Failing - BBAU-2318) Validate that a user can create a family creative center ac" +
-            "count and that this action automatically creates a brother online account that i" +
-            "s already validated")]
-        public virtual void Failing_BBAU_2318ValidateThatAUserCanCreateAFamilyCreativeCenterAccountAndThatThisActionAutomaticallyCreatesABrotherOnlineAccountThatIsAlreadyValidated()
+        [NUnit.Framework.DescriptionAttribute("(Failing - BBAU-2318, BBAU-2575) Validate that a user can create a family creativ" +
+            "e center account and that this action automatically creates a brother online acc" +
+            "ount that is already validated")]
+        public virtual void Failing_BBAU_2318BBAU_2575ValidateThatAUserCanCreateAFamilyCreativeCenterAccountAndThatThisActionAutomaticallyCreatesABrotherOnlineAccountThatIsAlreadyValidated()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("(Failing - BBAU-2318) Validate that a user can create a family creative center ac" +
-                    "count and that this action automatically creates a brother online account that i" +
-                    "s already validated", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("(Failing - BBAU-2318, BBAU-2575) Validate that a user can create a family creativ" +
+                    "e center account and that this action automatically creates a brother online acc" +
+                    "ount that is already validated", ((string[])(null)));
 #line 5
 this.ScenarioSetup(scenarioInfo);
 #line 6
@@ -148,14 +148,14 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("(Failing - BBAU-2318) Validate that a user can create a business creative center " +
-            "account and that this action automatically creates a brother online business acc" +
-            "ount that is already validated")]
-        public virtual void Failing_BBAU_2318ValidateThatAUserCanCreateABusinessCreativeCenterAccountAndThatThisActionAutomaticallyCreatesABrotherOnlineBusinessAccountThatIsAlreadyValidated()
+        [NUnit.Framework.DescriptionAttribute("(Failing - BBAU-2318, BBAU-2575) Validate that a user can create a business creat" +
+            "ive center account and that this action automatically creates a brother online b" +
+            "usiness account that is already validated")]
+        public virtual void Failing_BBAU_2318BBAU_2575ValidateThatAUserCanCreateABusinessCreativeCenterAccountAndThatThisActionAutomaticallyCreatesABrotherOnlineBusinessAccountThatIsAlreadyValidated()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("(Failing - BBAU-2318) Validate that a user can create a business creative center " +
-                    "account and that this action automatically creates a brother online business acc" +
-                    "ount that is already validated", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("(Failing - BBAU-2318, BBAU-2575) Validate that a user can create a business creat" +
+                    "ive center account and that this action automatically creates a brother online b" +
+                    "usiness account that is already validated", ((string[])(null)));
 #line 36
 this.ScenarioSetup(scenarioInfo);
 #line 37
@@ -237,6 +237,53 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.Then("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 71
  testRunner.Then("I am redirected to the Brother Home Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("(Failing on Prod - BBAU-2575) Validate that an error message is displayed for all" +
+            " mandatory fields during creation of a creative center family account")]
+        public virtual void FailingOnProd_BBAU_2575ValidateThatAnErrorMessageIsDisplayedForAllMandatoryFieldsDuringCreationOfACreativeCenterFamilyAccount()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("(Failing on Prod - BBAU-2575) Validate that an error message is displayed for all" +
+                    " mandatory fields during creation of a creative center family account", ((string[])(null)));
+#line 74
+this.ScenarioSetup(scenarioInfo);
+#line 75
+ testRunner.Given("I launch Brother Online for \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 76
+ testRunner.When("I navigate to and click the creative center link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 77
+ testRunner.Then("I am taken to the creative center landing page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 78
+ testRunner.And("I click the family center link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 79
+ testRunner.Then("I am taken to the creative center home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 80
+ testRunner.And("I click to not participate in the survey", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 81
+ testRunner.Then("I click the creative center register/login link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 82
+ testRunner.Then("I am navigated to the creative center login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 83
+ testRunner.Then("I have checked no to having a creative center account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 84
+ testRunner.When("I press tab in the creative center password field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 85
+ testRunner.Then("I should see an error message on the creative center password field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 86
+ testRunner.When("I press tab in the creative center email address field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 87
+ testRunner.Then("I should see an error message on the creative center email field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 88
+ testRunner.When("I press tab in the creative center first name field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 89
+ testRunner.Then("I should see an error message on the creative center first name field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 90
+ testRunner.When("I press tab in the creative center last name field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 91
+ testRunner.Then("I should see an error message on the creative center last name field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
