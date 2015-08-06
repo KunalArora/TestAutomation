@@ -72,8 +72,7 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.Account
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Check Forget Password with various invalid scenarios options (BOL-177, BBAU-2339)" +
-            "")]
+        [NUnit.Framework.DescriptionAttribute("Check Forget Password with various invalid scenarios options")]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "\"InvalidEmailContaining aspace@mailinator.com\"", null)]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "\"InvalidEmailForUser@mailinator\"", null)]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "\"InvalidEmailForUser\"", null)]
@@ -94,10 +93,9 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.Account
         [NUnit.Framework.TestCaseAttribute("Spain", "\"InvalidEmailForUser@mailinator\"", null)]
         [NUnit.Framework.TestCaseAttribute("Spain", "\"InvalidEmailForUser\"", null)]
         [NUnit.Framework.TestCaseAttribute("Spain", @"""ThisIsAVeryLargeEmailAddressWhichExceeds241CharactersAndThisIsNotSupportedaaaaaaaaaaaThisIsAVeryLargeEmailAddressWhichExceeds241CharactersAndThisIsNotSupportedaaaaaaaaaaaThisIsAVeryLargeEmailAddressWhichExceed241CharactersExceed241Characters@mailinator.com""", null)]
-        public virtual void CheckForgetPasswordWithVariousInvalidScenariosOptionsBOL_177BBAU_2339(string country, string invalidEmailAddress, string[] exampleTags)
+        public virtual void CheckForgetPasswordWithVariousInvalidScenariosOptions(string country, string invalidEmailAddress, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Check Forget Password with various invalid scenarios options (BOL-177, BBAU-2339)" +
-                    "", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Check Forget Password with various invalid scenarios options", exampleTags);
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
