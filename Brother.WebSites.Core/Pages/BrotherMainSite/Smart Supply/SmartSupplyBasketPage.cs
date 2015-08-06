@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -13,6 +14,13 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.Smart_Supply
         {
             return GetInstance<SmartSupplyBasketPage>(driver, "", "");
         }
+
+        /*Wait to update the basket counter
+        public static int GetBasketItemsCount(IWebDriver driver)
+        {
+            WebDriver.Wait(Helper.DurationType.Second, 3); // wait for basket to get updated
+            //return Convert.ToInt32(BasketIcon(driver).Text);
+        }*/
 
         [FindsBy(How = How.CssSelector, Using = ".styled-checkbox")]
         public IWebElement BSCOptincheckbox;

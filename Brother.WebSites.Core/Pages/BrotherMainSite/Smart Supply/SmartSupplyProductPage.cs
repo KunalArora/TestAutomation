@@ -92,7 +92,7 @@ namespace Brother.Tests.Selenium.Lib.Pages.BrotherMainSite.Smart_Supply
             return false;
         }
 
-        public void clickbasketicon()
+        public void ClickBasketIcon()
         {
          BasketIconSmartSupply.Click();  
         }
