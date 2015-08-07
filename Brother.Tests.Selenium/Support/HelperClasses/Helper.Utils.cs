@@ -309,11 +309,12 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                     var tcpListener = new System.Net.Sockets.TcpListener(ipAddr, Convert.ToInt32(portNumber));
                     tcpListener.Start();
                     portInUse = false;
+                    MsgOutput(string.Format("Port number [{0}] is free to connect to", portNumber));
                 }
                 catch (System.Net.Sockets.SocketException ex)
                 {
                     MsgOutput(string.Format("Port number [{0}] is still in use - retrying until it is clear", portNumber));
-                    WebDriver.Wait(DurationType.Millisecond, 500);
+                    WebDriver.Wait(DurationType.Second, 1);
                     retries++;
                 }
             }
