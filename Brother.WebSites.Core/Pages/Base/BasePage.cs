@@ -215,8 +215,7 @@ namespace Brother.WebSites.Core.Pages.Base
             }
             MsgOutput(string.Format("Current WebDriver [driver.URL] value is [{0}]. Actual desired URL (the one we want) should be [{1}]", driver.Url, url));
             MsgOutput(string.Format("Previous Page Source length = [{0}], Current Page Source length = [{1}]", currentPageSource.Length,driver.PageSource.Length));
-            TestCheck.AssertIsEqual(true, (currentPageSource != driver.PageSource), string.Format("Page Source Mismatch - could not navigate to URL {0}", url));
-            TestCheck.AssertIsEqual(driver.Url, url, string.Format("Page Source Mismatch - could not navigate to URL {0}", url));
+            TestCheck.AssertIsEqual(true, (currentPageSource != driver.PageSource), string.Format("Page Source Mismatch - could not navigate to URL {0} and the page source differences reflect this", url));
         }
     }
 }
