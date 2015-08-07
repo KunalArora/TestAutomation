@@ -296,6 +296,30 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             }
         }
 
+        public static bool WaitForPortToBecomeAvailable(string ipAddress, int portNumber)
+        {
+            var ipAddr = Dns.GetHostEntry(ipAddress).AddressList[0];
+            bool portInUse = true;
+            var retries = 0;
+ 
+            while ((portInUse && retries < 10))
+            {
+                try
+                {
+                    var tcpListener = new System.Net.Sockets.TcpListener(ipAddr, Convert.ToInt32(portNumber));
+                    tcpListener.Start();
+                    portInUse = false;
+                }
+                catch (System.Net.Sockets.SocketException ex)
+                {
+                    MsgOutput(string.Format("Port number [{0}] is still in use - retrying until it is clear", portNumber));
+                    WebDriver.Wait(DurationType.Millisecond, 500);
+                    retries++;
+                }
+            }
+            return portInUse;
+        }
+
         public static bool CheckForPortInUse(string ipAddress, int portNumber)
         {
             var ipAddr = Dns.GetHostEntry(ipAddress).AddressList[0];
