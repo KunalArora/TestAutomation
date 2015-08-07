@@ -38,7 +38,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Proposal
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "LeasingAndClickProposalGermanUserJourney", "In order to create different variety of leasing proposal\r\nAs a dealer \r\nI want to" +
                     " be able to use different MPS parameters to derive different leasing proposal", ProgrammingLanguage.CSharp, new string[] {
-                        "Ignore",
+                        "ignore",
                         "TEST",
                         "UAT",
                         "MPS"});
@@ -75,8 +75,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Proposal
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Create different varieties of German Leasing and Click proposal for new customer")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Germany", "Lease & Click with Service", "Create new customer", "Minimum Volume", "3 years", "Quarterly", "Quarterly", "HL-L8350CDW", "Full", "2000", "2000", null)]
-        public virtual void CreateDifferentVarietiesOfGermanLeasingAndClickProposalForNewCustomer(string role, string country, string contractType, string createOption, string usageType, string contract, string leasing, string billing, string printer, string deviceScreen, string clickVolume, string colourVolume, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Germany", "Purchase & Click with Service", "Create new customer", "Minimum Volume", "5 Jahre", "Vierteljährlich", "Tick", "MFC-L8650CDW", "Full", "Pay upfront", "800", "800", null)]
+        public virtual void CreateDifferentVarietiesOfGermanLeasingAndClickProposalForNewCustomer(string role, string country, string contractType, string createOption, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create different varieties of German Leasing and Click proposal for new customer", exampleTags);
 #line 8
@@ -90,8 +90,8 @@ this.ScenarioSetup(scenarioInfo);
 #line 12
  testRunner.And(string.Format("I select \"{0}\" button for customer data capture", createOption), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 13
- testRunner.And(string.Format("I Enter usage type of \"{0}\" and \"{1}\" contract terms \"{2}\" leasing and \"{3}\" bill" +
-                        "ing on Term and Type details", usageType, contract, leasing, billing), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("I Enter usage type of \"{0}\" and \"{1}\" contract terms \"<Leasing>\" leasing and \"{2}" +
+                        "\" billing on Term and Type details", usageType, contract, billing), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 14
  testRunner.And(string.Format("I display \"{0}\" device screen", printer), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 15
@@ -107,7 +107,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 20
  testRunner.And(string.Format("\"{0}\" displayed on proposal Summary Page corresponds to \"{0}\"", contract), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 21
- testRunner.And(string.Format("\"{0}\" displayed on proposal Summary Page corresponds to \"{0}\"", leasing), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("\"<Leasing>\" displayed on proposal Summary Page corresponds to \"<Leasing>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 22
  testRunner.And(string.Format("\"{0}\" displayed on proposal Summary Page corresponds to \"{0}\"", billing), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 23

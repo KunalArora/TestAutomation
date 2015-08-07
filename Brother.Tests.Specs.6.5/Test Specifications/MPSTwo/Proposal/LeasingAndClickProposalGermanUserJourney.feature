@@ -1,4 +1,4 @@
-﻿@Ignore @TEST @UAT @MPS
+﻿@ignore @TEST @UAT @MPS
 Feature: LeasingAndClickProposalGermanUserJourney
 	In order to create different variety of leasing proposal
 	As a dealer 
@@ -31,9 +31,9 @@ Scenario Outline: Create different varieties of German Leasing and Click proposa
 	
 
 	Scenarios: 
-	| Role             | Country        | ContractType               | CreateOption        | UsageType      | Contract | Leasing                  | Billing                  | Printer     | DeviceScreen | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | Germany | Lease & Click with Service | Create new customer | Minimum Volume | 3 years  | Quarterly | Quarterly | HL-L8350CDW | Full         | 2000        | 2000         |
-	
+	| Role             | Country | ContractType                  | CreateOption        | UsageType      | Contract | Billing         | PriceHardware | Printer      | DeviceScreen | PaymentMethod | ClickVolume | ColourVolume |
+	| Cloud MPS Dealer | Germany | Purchase & Click with Service | Create new customer | Minimum Volume | 5 Jahre  | Vierteljährlich | Tick          | MFC-L8650CDW | Full         | Pay upfront   | 800        | 800         |
+
 
 Scenario Outline: Create different varieties of German Leasing and Click proposal for new customer on Pay As You Go Term
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
