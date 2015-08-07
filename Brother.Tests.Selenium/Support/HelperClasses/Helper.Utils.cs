@@ -52,7 +52,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                 MsgOutput(string.Format("Retrying..... [{0}] times", maxRetryCount));
                 maxRetryCount++;
             }
-            return pageResponse; 
+            return pageResponse;
         }
 
         private static HttpStatusCode PageResponse(WebRequest request, out string xmlResponseData)
@@ -62,11 +62,11 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
             try
             {
-                var response = (HttpWebResponse)request.GetResponse();
+                var response = (HttpWebResponse) request.GetResponse();
                 responseCode = response.StatusCode;
                 MsgOutput("Retrieving response from url ", request.RequestUri.AbsoluteUri);
                 MsgOutput("Response status ", response.StatusDescription);
-                MsgOutput(string.Format("Response code received was [{0}]",responseCode.ToString()));
+                MsgOutput(string.Format("Response code received was [{0}]", responseCode.ToString()));
                 var receiveStream = response.GetResponseStream();
 
                 var readStream = new StreamReader(receiveStream, Encoding.UTF8);
@@ -76,7 +76,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             }
             catch (WebException webException)
             {
-                var resp = (HttpWebResponse)webException.Response;
+                var resp = (HttpWebResponse) webException.Response;
                 if (webException.Status == WebExceptionStatus.ProtocolError && webException.Response != null)
                 {
                     switch (resp.StatusCode)
@@ -114,7 +114,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
             try
             {
-                webRequest = (HttpWebRequest)WebRequest.Create(webPage);
+                webRequest = (HttpWebRequest) WebRequest.Create(webPage);
             }
             catch (UriFormatException uriFormatException)
             {
@@ -122,7 +122,8 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                 MsgOutput("Reason : ", uriFormatException.Message);
                 if (uriFormatException.InnerException != null)
                 {
-                    TestCheck.AssertFailTest(string.Format("URI format exception - inner exception [{0}]", uriFormatException.InnerException.Message));
+                    TestCheck.AssertFailTest(string.Format("URI format exception - inner exception [{0}]",
+                        uriFormatException.InnerException.Message));
                 }
                 TestCheck.AssertFailTest(string.Format("URI format exception [{0}]", uriFormatException.Message));
             }
@@ -147,11 +148,12 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             while ((orderSuccess != true) && (maxRetryCount != 10))
             {
                 orderSuccess = ConfirmSapOrder(orderNumber, out xmlResponseData);
-                WebDriver.Wait(DurationType.Second, 2);
-                MsgOutput(string.Format("Retrying to validate order number [{0}] - RETRY [{1}]", orderNumber, maxRetryCount));
+                WebDriver.Wait(DurationType.Second, 5); // Static pause to allow request to clear before retrying
+                MsgOutput(string.Format("Retrying to validate order number [{0}] - RETRY [{1}]", orderNumber,
+                    maxRetryCount));
                 maxRetryCount++;
             }
-            return orderSuccess == true;
+            return orderSuccess;
         }
 
         public static bool ConfirmSapOrder(string orderNumber)
@@ -160,7 +162,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             return ConfirmSapOrder(orderNumber, out xmlResponseData);
         }
 
-        
+
         // Returns a 200 OK response if the given order number is present on the SAP server
         // for the relevant environment
         public static bool ConfirmSapOrder(string orderNumber, out string xmlResponseData)
@@ -184,7 +186,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             try
             {
                 // Create request
-                request = (HttpWebRequest)WebRequest.Create(url);
+                request = (HttpWebRequest) WebRequest.Create(url);
             }
             catch (UriFormatException uriFormatException)
             {
@@ -192,7 +194,8 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                 MsgOutput("Reason : ", uriFormatException.Message);
                 if (uriFormatException.InnerException != null)
                 {
-                    TestCheck.AssertFailTest(string.Format("URI format exception - inner exception [{0}]", uriFormatException.InnerException.Message));
+                    TestCheck.AssertFailTest(string.Format("URI format exception - inner exception [{0}]",
+                        uriFormatException.InnerException.Message));
                 }
                 TestCheck.AssertFailTest(string.Format("URI format exception [{0}]", uriFormatException.Message));
             }
@@ -239,13 +242,14 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             roleCheckUrl = @"http://eu.cms.brother.eu/sitecore/admin/integration/";
             roleCheckUrl = roleCheckUrl.Replace("brother", string.Format("brother{0}", runTimeEnv));
 
-            roleCheckUrl = string.Format("{0}AddRole.aspx?email={1}&role=" + @"{2}", roleCheckUrl, userAccountEmail, role);
+            roleCheckUrl = string.Format("{0}AddRole.aspx?email={1}&role=" + @"{2}", roleCheckUrl, userAccountEmail,
+                role);
             var newString = roleCheckUrl.Replace(@"\\", @"\");
 
             try
             {
                 // Create request
-                request = (HttpWebRequest)WebRequest.Create(newString);
+                request = (HttpWebRequest) WebRequest.Create(newString);
             }
             catch (UriFormatException uriFormatException)
             {
@@ -253,7 +257,8 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                 MsgOutput("Reason : ", uriFormatException.Message);
                 if (uriFormatException.InnerException != null)
                 {
-                    TestCheck.AssertFailTest(string.Format("URI format exception - inner exception [{0}]", uriFormatException.InnerException.Message));
+                    TestCheck.AssertFailTest(string.Format("URI format exception - inner exception [{0}]",
+                        uriFormatException.InnerException.Message));
                 }
                 TestCheck.AssertFailTest(string.Format("URI format exception [{0}]", uriFormatException.Message));
             }
@@ -267,7 +272,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             string xmlResponseData;
             var response = PageResponse(request, out xmlResponseData);
         }
-      
+
         /// <summary>
         /// Given a starting page, returns a resonse back from any link on that page
         /// </summary>
@@ -276,17 +281,35 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         {
             return true;
         }
-    }
 
-    public class TrustAllCertificatePolicy : System.Net.ICertificatePolicy
-    {
-        public TrustAllCertificatePolicy()
-        { }
 
-        public bool CheckValidationResult(ServicePoint sp,
-         X509Certificate cert, WebRequest req, int problem)
+        public class TrustAllCertificatePolicy : System.Net.ICertificatePolicy
         {
-            return true;
+            public TrustAllCertificatePolicy()
+            {
+            }
+
+            public bool CheckValidationResult(ServicePoint sp,
+                X509Certificate cert, WebRequest req, int problem)
+            {
+                return true;
+            }
+        }
+
+        public static bool CheckForPortInUse(string ipAddress, int portNumber)
+        {
+            var ipAddr = Dns.GetHostEntry(ipAddress).AddressList[0];
+            try
+            {
+                var tcpListener = new System.Net.Sockets.TcpListener(ipAddr, Convert.ToInt32(portNumber));
+                tcpListener.Start();
+            }
+            catch (System.Net.Sockets.SocketException ex)
+            {
+                MsgOutput(string.Format("Unable to connect to port [{0}] as it is already in use", portNumber));
+                return true;
+            }
+            return false;
         }
     }
 }

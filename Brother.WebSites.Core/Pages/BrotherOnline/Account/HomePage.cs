@@ -139,7 +139,38 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         public IWebElement MyAccountNavigationButton;
         //[FindsBy(How = How.CssSelector, Using = "a.button-blue[href=\"/print-smart/my-services/consumables\"]")]
         [FindsBy(How = How.CssSelector, Using = "#content_2_ProductsTabRepeater_ProductLinkButton_4 > p:nth-child(2)")]
-        
+
+        [FindsBy(How = How.CssSelector, Using = ".error")]
+        public IWebElement CcEmailAddressErrorMessage;
+
+        [FindsBy(How = How.CssSelector, Using = ".half-col.validation-failed.blur .error")]
+        public IWebElement PasswordCcErrorMessage;
+
+        [FindsBy(How = How.CssSelector, Using = ".error")]
+        public IWebElement FirstNameCcErrorMessage;
+
+        //[FindsBy(How = How.CssSelector, Using = "#form-sign-up > div:nth-child(2) > span.half-col.validation-failed.blur > div")]
+        [FindsBy(How = How.CssSelector, Using = ".error")]
+        public IWebElement LastNameCcErrorMessage;
+
+        [FindsBy(How = How.Id, Using = "CompanyNameTextBox")]
+        public IWebElement CompanyNameCcTextBox;
+
+        [FindsBy(How = How.CssSelector, Using = ".error")]
+        public IWebElement CompanyNameCcErrorMessageDisplayed;
+
+        [FindsBy(How = How.CssSelector, Using = ".error")]
+        public IWebElement BusinessSectorCcErrorMessageDisplayed;
+
+        [FindsBy(How = How.CssSelector, Using = ".form-section.cf.validation-failed.load .error")]
+        public IWebElement TermsAndConditionsCcErrorMessage;
+
+        [FindsBy(How = How.Id, Using = "SignInButton")]
+        public IWebElement CcSignInButton;
+
+        [FindsBy(How = How.ClassName, Using = "warning-bar")]
+        public IWebElement InvalidCredentialsCcErrorMessage;
+
         private static readonly Dictionary<string, string> _pageTitle = new Dictionary<string, string>
         {
             {"Spain", "Inicio de sesión / Cree una cuenta"},
@@ -154,7 +185,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         private static readonly Dictionary<string, string> _welcomePageTitle = new Dictionary<string, string>
         {
             {"Spain", "Inicio de Brother Online"},
-	        {"Poland", "Strona główna serwisu Brother Online"},    
+	        {"Poland", "Zaloguj się lub Zarejestruj się"},    
 	        {"United Kingdom", "Brother Online Home"},
 	        {"Ireland", "Brother Online Home"},
             {"Denmark", "Log på, eller registrer"},
@@ -607,6 +638,105 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             MyAccountNavigationButton.Click();
         }
 
+        public void EmptyCcEmailAddressTextBox()
+        {
+            EmailAddressCCTextBox.Clear();
+            EmailAddressCCTextBox.SendKeys(Keys.Tab);            
+        }
+
+        public void IsCcEmailErrorMessageDisplayed()
+
+        {
+            TestCheck.AssertIsEqual(true, EmailAddressCCErrorMessage.Displayed, "Is Creative Center Email Error Message Displayed");
+        }
+
+        public void EmptyCcPasswordTextBox()
+        {
+            PasswordCCTextBox.Clear();
+            PasswordCCTextBox.SendKeys(Keys.Tab);
+        }
+
+        public void PasswordCcErrorMessageDisplayed()
+        {
+            //PasswordCCTextBox.SendKeys(Keys.Tab);
+            TestCheck.AssertIsEqual(true, PasswordCcErrorMessage.Displayed, "Is Creative Center Password Error Message Displayed");
+        }
+        
+        public void EmptyCcFirstNameTextBox()
+        {
+            FirstNameCCTextBox.Clear();
+            FirstNameCCTextBox.SendKeys(Keys.Tab);
+        }
+        
+        public void FirstNameCcErrorMessageDisplayed()
+        {
+            //FirstNameCCErrorMessage.SendKeys(Keys.Tab);
+            TestCheck.AssertIsEqual(true, FirstNameCcErrorMessage.Displayed, "Is Creative Center First Name Error Message Displayed");
+        }
+
+        public void EmptyCcLastNameTextBox()
+        {
+            LastNameCCTextBox.Clear();
+            LastNameCCTextBox.SendKeys(Keys.Tab);
+        }
+
+        public void LastNameCcErrorMessageDisplayed()
+        {
+            //FirstNameCCErrorMessage.SendKeys(Keys.Tab);
+            TestCheck.AssertIsEqual(true, LastNameCcErrorMessage.Displayed, "Is Creative Center First Name Error Message Displayed");
+        }
+
+        public void EmptyCcCompanyNameTextBox()
+        {
+            CompanyNameCcTextBox.Clear();
+            CompanyNameCcTextBox.SendKeys(Keys.Tab);
+        }
+
+        public void CompanyNameCcErrorMessage()
+        {
+            TestCheck.AssertIsEqual(true, CompanyNameCcErrorMessageDisplayed.Displayed, "Is Error Message Displayed");
+        }
+
+        public void EmptyCcBusinessSectorTextBox()
+        {
+            CcBusinessSectorDropDownList.SendKeys(Keys.Tab);
+        }
+
+        public void BusinessSectorCcErrorMessage()
+        {
+            TestCheck.AssertIsEqual(true, BusinessSectorCcErrorMessageDisplayed.Displayed, "Is Error Message Displayed");
+        }
+
+        public void PopulateWithCcPassword(string password)
+        {
+            Password.SendKeys(password.Equals("@@@@@") ? Helper.Password : password);
+            TestCheck.AssertIsEqual(password.Equals("@@@@@") ? Helper.Password : password, GetTextBoxValue("Password"), "Password");
+        }
+
+        public void TermsAndConditionsCcErrorMessageDisplayed()
+        {
+            TestCheck.AssertIsEqual(true, TermsAndConditionsCcErrorMessage.Displayed, "Is Error Message Displayed");
+        }
+
+        public void PopulateCcEmailAddressTextBox(string emailAddress)
+        {
+            TestCheck.AssertIsEqual(false, CcEmailAddressErrorMessage.Displayed, "Is Email Error message displayed");
+            EmailAddressCCTextBox.Clear();
+            EmailAddressCCTextBox.SendKeys(emailAddress);
+            EmailAddressCCTextBox.SendKeys(Keys.Tab);
+            TestCheck.AssertIsEqual(emailAddress, GetTextBoxValue("Email"), "Email Text Box");
+        }
+
+        public void ClickCcSignInWithInvalidDetails()
+        {
+            ScrollTo(CcSignInButton);
+            CcSignInButton.Click();
+        }
+
+        public void InvalidCredentialsCcErrorMessageDisplayed()
+        {
+            TestCheck.AssertIsEqual(true, InvalidCredentialsCcErrorMessage.Displayed, "Is Error Message Displayed");
+        }
 
     }
 

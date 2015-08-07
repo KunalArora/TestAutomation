@@ -119,7 +119,11 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         [FindsBy(How = How.CssSelector, Using = "#Warnings.warning-bar p")]
         public IWebElement InvalidCredentialsErrorMessage;
 
+        [FindsBy(How = How.CssSelector, Using = "#txtTax1")]
+        public IWebElement NiNumberTextBox;
 
+        [FindsBy(How = How.CssSelector, Using = "#txtTax1")]
+        public IWebElement TaxNumberTextBox;
 
         public bool IsWarningBarPresent(int retry, int timeToWait)
         {
@@ -326,10 +330,21 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             PasswordTextBox.SendKeys(password.Equals("@@@@@") ? Helper.Password : password);
             TestCheck.AssertIsEqual(password.Equals("@@@@@") ? Helper.Password : password, GetTextBoxValue("PasswordTextBox"), "Password Text Box");
         }
-      public void PopulateConfirmPasswordTextBox(string password)
+         public void PopulateConfirmPasswordTextBox(string password)
         {
             ConfirmPasswordTextBox.SendKeys(password.Equals("@@@@@") ? Helper.Password : password);
             TestCheck.AssertIsEqual(password.Equals("@@@@@") ? Helper.Password : password, GetTextBoxValue("ConfirmPasswordTextBox"), "Confirm Password Text Box");
+        }
+        public void PopulateNiNumberTextBox(string numeroDni)
+        {
+            NiNumberTextBox.SendKeys(numeroDni);
+            //TestCheck.AssertIsEqual(numeroDni, GetTextBoxValue("NiNumberTextBox"), "NiNumber Text Box");
+        }
+
+        public void PopulateTaxNumberTextBox(string codiceFiscale)
+        {
+            TaxNumberTextBox.SendKeys(codiceFiscale);
+            //TestCheck.AssertIsEqual(codiceFiscale, GetTextBoxValue("TaxNumberTextBox"), "Codice Fiscale Text Box");
         }
 
         public void DoNotHaveAnAccountOption()
@@ -379,6 +394,11 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         {
             Password.SendKeys(password.Equals("@@@@@") ? Helper.Password : password);
             TestCheck.AssertIsEqual(password.Equals("@@@@@") ? Helper.Password : password, GetTextBoxValue("Password"), "Password");
+        }
+
+        public void PopulateMaxPassword()
+        {
+            Password.SendKeys("Max30CharacterPasswooooooooord");            
         }
 
         public void PopulateEmailAddressTextBox(string emailAddress)

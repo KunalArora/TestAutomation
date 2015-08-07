@@ -102,6 +102,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
             get
             {
                 var wrapper = this.SendButton as IWrapsElement;
+                
                 return wrapper != null ? wrapper.WrappedElement : null;
             }
         }

@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Security;
 using Brother.Tests.Selenium.Lib.Properties;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.SpecFlow;
@@ -72,17 +73,28 @@ namespace Brother.Tests.Selenium.Lib.Support
         {
             var uri = string.Format(@"http://{0}:{1}/wd/hub", ipAddress, port);
             var capabilities = SetDesiredCapabilities();
-            IWebDriver newDriver;
+            IWebDriver newDriver = null;
             try
             {
-                newDriver = new RemoteWebDriver(new Uri(uri), capabilities);
+                if (!Utils.CheckForPortInUse(ipAddress, Convert.ToInt32(port)))
+                {
+                    newDriver = new RemoteWebDriver(new Uri(uri), capabilities);
+                }
+                else
+                {
+                    Helper.MsgOutput("Unable to Connect to GhostDriver via RemoteWebDriver - Port in use");
+                    return null;
+                }
             }
-            catch (WebDriverException ex)
+            catch (WebDriverException webDriverException)
             {
                 Test_Teardown();
-                throw new SpecFlowSeleniumException(string.Format("{0} - {1}",
-                    "Unable to Connect to GhostDriver via RemoteWebDriver", ex.Message));
-
+                Helper.MsgOutput(string.Format("{0} - {1}", "Unable to Connect to GhostDriver via RemoteWebDriver", webDriverException.Message));
+            }
+            catch (System.Net.WebException webException)
+            {
+                Test_Teardown();
+                Helper.MsgOutput(string.Format("{0} - {1}", "Unable to Connect to GhostDriver via RemoteWebDriver", webException.Message));
             }
             return newDriver;
         }
@@ -238,16 +250,16 @@ namespace Brother.Tests.Selenium.Lib.Support
 
             try
             {
-            //    phantomJsProcess.UserName = "EUSiteCoreTestAuto";
-            //    phantomJsProcess.Domain = "eu";
-            //    string prePassword = "Ferry1Loft2Lighter3";
-            //    var passwordSecure = new SecureString();
-            //    char[] passwordChars = prePassword.ToCharArray();
-            //    foreach (char c in passwordChars)
-            //    {
-            //        passwordSecure.AppendChar(c);
-            //    }
-            //    phantomJsProcess.Password = passwordSecure;
+                //phantomJsProcess.UserName = "EUSiteCoreTestAuto";
+                //phantomJsProcess.Domain = "eu";
+                //var prePassword = "Ferry1Loft2Lighter3";
+                //var passwordSecure = new SecureString();
+                //var passwordChars = prePassword.ToCharArray();
+                //foreach (var c in passwordChars)
+                //{
+                //    passwordSecure.AppendChar(c);
+                //}
+                //phantomJsProcess.Password = passwordSecure;
                 phantomJsProcess.UseShellExecute = false;
 
                 var phantomJsProc = new Process {StartInfo = phantomJsProcess};

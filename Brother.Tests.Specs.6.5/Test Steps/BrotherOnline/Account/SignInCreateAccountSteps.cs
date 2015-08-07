@@ -6,6 +6,7 @@ using Brother.WebSites.Core.Pages.BrotherOnline.Account;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
@@ -294,7 +295,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<RegistrationPage>().PopulatePasswordTextBox(Helper.Password);
             CurrentPage.As<RegistrationPage>().PopulateConfirmPasswordTextBox(Helper.Password);
             WhenIEnterAValidEmailAddress(string.Empty);
-
+            
             WhenIHaveAgreedToTheTermsAndConditions();
             WhenIDeclareThatIDoNotUseThisAccountForBusiness();
             WhenIPressCreateYourAccount();
@@ -430,8 +431,30 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<RegistrationPage>().PopulatePasswordTextBox(form.Password);
             CurrentPage.As<RegistrationPage>().PopulateConfirmPasswordTextBox(form.Password);
             WhenIEnterAValidEmailAddress(string.Empty); // Auto Generates with an empty string
+         }
+        [When(@"I fill in the registration information using a valid email address and ID number")]
+        public void WhenIFillInTheRegistrationInformationUsingAValidEmailAddressAndIdNumber(Table table)
+        {
+            dynamic form = table.CreateDynamicInstance();
+            CurrentPage.As<RegistrationPage>().PopulateFirstNameTextBox(form.FirstName);
+            CurrentPage.As<RegistrationPage>().PopulateLastNameTextBox(form.LastName);
+            CurrentPage.As<RegistrationPage>().PopulatePasswordTextBox(form.Password);
+            CurrentPage.As<RegistrationPage>().PopulateConfirmPasswordTextBox(form.Password);
+            WhenIEnterAValidEmailAddress(string.Empty); // Auto Generates with an empty string
+            CurrentPage.As<RegistrationPage>().PopulateNiNumberTextBox(form.NumeroDNI); //tax number for Spain
+            //CurrentPage.As<RegistrationPage>().PopulateTaxNumberTextBox(form.CodiceFiscale);//tax number for Italy
         }
-
+        [When(@"I fill in the registration information using a valid email address and ID number for italy")]
+        public void WhenIFillInTheRegistrationInformationUsingAValidEmailAddressAndIdNumberForItaly(Table table)
+        {
+            dynamic form = table.CreateDynamicInstance();
+            CurrentPage.As<RegistrationPage>().PopulateFirstNameTextBox(form.FirstName);
+            CurrentPage.As<RegistrationPage>().PopulateLastNameTextBox(form.LastName);
+            CurrentPage.As<RegistrationPage>().PopulatePasswordTextBox(form.Password);
+            CurrentPage.As<RegistrationPage>().PopulateConfirmPasswordTextBox(form.Password);
+            WhenIEnterAValidEmailAddress(string.Empty); // Auto Generates with an empty string
+            CurrentPage.As<RegistrationPage>().PopulateTaxNumberTextBox(form.CodiceFiscale);//tax number for Italy
+        }
         [When(@"I fill in the registration information using a maximum length email address")]
         public void WhenIFillInTheRegistrationInformationUsingAMaxLengthEmailAddress(Table table)
         {
@@ -464,12 +487,16 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<RegistrationPage>().PopulateConfirmPasswordTextBox(form.Password);
         }
 
-
-
         [When(@"I press tab in the email address field")]
         public void WhenIPressTabInTheEmailAddressField()
         {
             CurrentPage.As<RegistrationPage>().EmptyEmailAddressTextBox();
+        }
+
+        [When(@"I press tab in the creative center email address field")]
+        public void WhenIPressTabInTheCcEmailAddressField()
+        {
+            CurrentPage.As<HomePage>().EmptyCcEmailAddressTextBox();            
         }
         
         [When(@"I press tab in the password field")]
@@ -478,10 +505,22 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<RegistrationPage>().EmptyPasswordTextBox();
         }
 
+        [When(@"I press tab in the creative center password field")]
+        public void WhenIPressTabInCcThePasswordField()
+        {
+            CurrentPage.As<HomePage>().EmptyCcPasswordTextBox();
+        }
+
         [When(@"I press tab in the first name field")]
         public void WhenIPressTabInTheFirstNameField()
         {
             CurrentPage.As<RegistrationPage>().EmptyFirstNameTextBox();
+        }
+
+        [When(@"I press tab in the creative center first name field")]
+        public void WhenIPressTabInCcTheFirstNameField()
+        {
+            CurrentPage.As<HomePage>().EmptyCcFirstNameTextBox();
         }
 
         [When(@"I press tab in the last name field")]
@@ -490,16 +529,34 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<RegistrationPage>().EmptyLastNameTextBox();
         }
 
+        [When(@"I press tab in the creative center last name field")]
+        public void WhenIPressTabInTheCcLastNameField()
+        {
+            CurrentPage.As<HomePage>().EmptyCcLastNameTextBox();
+        }
+
         [When(@"I press tab in the company name field")]
         public void WhenIPressTabInTheCompanyNameField()
         {
             CurrentPage.As<RegistrationPage>().EmptyCompanyNameTextBox();
         }
 
+        [When(@"I press tab in the creative center company name field")]
+        public void WhenIPressTabInTheCcCompanyNameField()
+        {
+            CurrentPage.As<HomePage>().EmptyCcCompanyNameTextBox();
+        }
+
         [When(@"I press tab in the business sector field")]
         public void WhenIPressTabInTheBusinessSectorField()
         {
             CurrentPage.As<RegistrationPage>().EmptyBusinessSectorTextBox();
+        }
+
+        [When(@"I press tab in the creative center business sector field")]
+        public void WhenIPressTabInTheCcBusinessSectorField()
+        {
+            CurrentPage.As<HomePage>().EmptyCcBusinessSectorTextBox();
         }
 
         [Then(@"If I sign back into Brother Online ""(.*)"" using the same credentials")]
@@ -653,8 +710,18 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
 
             //WhenIAmRedirectedToTheBrotherLoginRegisterPage();
             WhenIEnterAValidCCAccountEmailAddress(Email.RegistrationEmailAddress);
-            WhenIEnterAValidCCPassword(Helper.Password);
+            WhenIEnterAValidCcPassword(Helper.Password);
             WhenIClickOnSignInWithCCCredentials(country);            
+        }
+
+        [Then(@"I should be able to log into ""(.*)"" Brother Online using my max length username and password account details")]
+        public void ThenIShouldBeAbleToLogIntoBrotherOnlineUsingMyMaxUsernameAndPasswordAccountDetails(string country)
+        {
+
+            //WhenIAmRedirectedToTheBrotherLoginRegisterPage();
+            WhenIEnterAValidEmailAddress(Email.RegistrationEmailAddress);
+            WhenIEnterAValidMaxPassword();
+            WhenIClickOnSignIn(country);
         }
 
         [Then(@"I should be able to successfully log into brother online")]
@@ -690,6 +757,12 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             NextPage = CurrentPage.As<RegistrationPage>().ClickSignInWithInvalidDetails();
         }
 
+        [When(@"I press the creative center sign in with invalid details")]
+        public void WhenIPressCcSignInWithInvalidDetails()
+        {
+            CurrentPage.As<HomePage>().ClickCcSignInWithInvalidDetails();
+        }
+
         [When(@"I have entered a valid AutoGenerated email address")]
         public void WhenIHaveEnteredAValidAutoGeneratedEmailAddress()
         {
@@ -701,6 +774,13 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<RegistrationPage>().PopulateEmailAddressTextBox(emailAddress);
         }
+
+        [When(@"I enter a creative center email address containing ""(.*)""")]
+        public void WhenIEnterCcEmailAddressContaining(string emailAddress)
+        {
+            CurrentPage.As<HomePage>().PopulateCcEmailAddressTextBox(emailAddress);
+        }
+
         [When(@"I enter the password containing ""(.*)""")]
         public void WhenIEnterThePasswordContaining(string password)
         {
@@ -725,36 +805,75 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<RegistrationPage>().IsErrorMessageDisplayed();
         }
+        [Then(@"I should see an error message on the creative center email field")]
+        public void ThenIShouldSeeAnErrorMessageOnCcEmail()
+        {
+            CurrentPage.As<HomePage>().IsCcEmailErrorMessageDisplayed();
+        }
         [Then(@"I should see an error message on the password field")]
         public void ThenIShouldSeeAnErrorMessageOnThePasswordField()
         {
             CurrentPage.As<RegistrationPage>().PasswordErrorMessageDisplayed();
+        }
+        [Then(@"I should see an error message on the creative center password field")]
+        public void ThenIShouldSeeAnErrorMessageOnCcThePasswordField()
+        {
+            CurrentPage.As<HomePage>().PasswordCcErrorMessageDisplayed();
         }
         [Then(@"I should see an error message on the first name field")]
         public void ThenIShouldSeeAnErrorMessageOnTheFirstnameField()
         {
             CurrentPage.As<RegistrationPage>().FirstNameErrorMessage();
         }
+        [Then(@"I should see an error message on the creative center first name field")]
+        public void ThenIShouldSeeAnErrorMessageOnTheCcFirstnameField()
+        {
+            CurrentPage.As<HomePage>().FirstNameCcErrorMessageDisplayed();
+        }
         [Then(@"I should see an error message on the last name field")]
         public void ThenIShouldSeeAnErrorMessageOnTheLastnameField()
         {
             CurrentPage.As<RegistrationPage>().LastNameErrorMessage();
+        }
+        [Then(@"I should see an error message on the creative center last name field")]
+        public void ThenIShouldSeeAnErrorMessageOnCcTheLastnameField()
+        {
+            CurrentPage.As<HomePage>().LastNameCcErrorMessageDisplayed();
         }
         [Then(@"I should see an error message on the company name field")]
         public void ThenIShouldSeeAnErrorMessageOnTheCompanynameField()
         {
             CurrentPage.As<RegistrationPage>().CompanyNameErrorMessage();
         }
+        [Then(@"I should see an error message on the creative center company name field")]
+        public void ThenIShouldSeeAnErrorMessageOnTheCcCompanynameField()
+        {
+            CurrentPage.As<HomePage>().CompanyNameCcErrorMessage();
+        }
         [Then(@"I should see an error message on the business sector field")]
         public void ThenIShouldSeeAnErrorMessageOnTheBusinessSectorField()
         {
             CurrentPage.As<RegistrationPage>().BusinessSectorErrorMessage();
         }
+
+        [Then(@"I should see an error message on the creative center business sector field")]
+        public void ThenIShouldSeeAnErrorMessageOnTheCcBusinessSectorField()
+        {
+            CurrentPage.As<HomePage>().BusinessSectorCcErrorMessage();
+        }
+
        [Then(@"I should get an error message displayed on the Terms and Conditions")]
         public void ThenIShouldGetAnErrorMessageDisplayedOnTheTermsAndConditions()
         {
             CurrentPage.As<RegistrationPage>().TermsAndConditionsErrorMessageDisplayed();
         }
+
+       [Then(@"I should get an error message displayed on the creative center Terms and Conditions")]
+       public void ThenIShouldGetAnErrorMessageDisplayedOnTheCcTermsAndConditions()
+       {
+           CurrentPage.As<HomePage>().TermsAndConditionsCcErrorMessageDisplayed();
+       }
+
         [Then(@"I should see an error message on the Confirm password field")]
         public void ThenIShouldSeeAnErrorMessageOnTheConfirmPasswordField()
         {
@@ -772,6 +891,13 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
               CurrentPage.As<RegistrationPage>().InvalidCredentialsErrorMessageDisplayed();
         }
+
+        [Then(@"I should see the invalid credentials error message preventing login to creative center")]
+        public void ThenIShouldSeeInvalidCredentialsCcErrorMessage()
+        {
+            CurrentPage.As<HomePage>().InvalidCredentialsCcErrorMessageDisplayed();
+        }
+
         [When(@"I enter a valid Email Address ""(.*)""")]
         public void WhenIEnterAValidEmailAddress(string validEmailAddress)
         {
@@ -812,7 +938,21 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         public void WhenIEnterAValidPassword(string validPassword)
         {
             CurrentPage.As<RegistrationPage>().PopulatePassword(validPassword);
-        }                            
+        }
+
+        [When(@"I enter a valid Password for creative center ""(.*)""")]
+        public void WhenIEnterAValidCcPassword(string validPassword)
+        {
+            CurrentPage.As<HomePage>().PopulateWithCcPassword(validPassword);
+        }
+
+
+
+        [When(@"I enter a valid max Password ""(.*)""")]
+        public void WhenIEnterAValidMaxPassword()
+        {
+            CurrentPage.As<RegistrationPage>().PopulateMaxPassword();
+        }                
 
         [Then(@"When I Click Go Back")]
         public void ThenWhenIClickGoBack()

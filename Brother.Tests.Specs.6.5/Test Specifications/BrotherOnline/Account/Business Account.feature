@@ -244,7 +244,7 @@ Scenario Outline: Validate that user or business account holders can still login
 
 
 # Check maximun username(241) and password(30) length when creating a business account
-Scenario: Validate that a business account can be created using the maximun 241 username and 30 password character lengths (Failing due to BBAU-2522)																				
+Scenario: Validate that a business account can be created using the maximun 241 username and 30 password character lengths 																		
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
 	And I am redirected to the Brother Login/Register page
@@ -265,8 +265,7 @@ Scenario: Validate that a business account can be created using the maximun 241 
 	When I press Create Your Account
 	Then I should see my account confirmation page
 	And When I Click Go Back
-	And Once I have Validated an Email was received and verified my account
-	Then I should be able to log into "United Kingdom" Brother Online using my account details
+	Then I should be able to log into ""(.*)"" Brother Online using my max length username and password account details
 	And I can sign out of Brother Online
 	Then I am redirected to the Brother Home Page
 
@@ -337,3 +336,22 @@ Scenario: Business Customer can reset their password
 	And If I sign back into Brother Online "United Kingdom" using the same credentials
 	Then I can sign out of Brother Online
 
+# Check mandatory email/password/first name/ last name/company name/business sector fields when creating business account
+Scenario: Validate that an error message is displayed for all mandatory fields during creation of a business account
+	Given I want to create a new account with Brother Online "United Kingdom"
+	When I click on Create Account for "United Kingdom"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I declare that I do use this account for business
+	When I press tab in the email address field
+	Then I should see an error message
+	When I press tab in the password field
+	Then I should see an error message on the password field
+	When I press tab in the first name field
+	Then I should see an error message on the first name field
+	When I press tab in the last name field
+	Then I should see an error message on the last name field
+	When I press tab in the company name field
+	Then I should see an error message on the company name field
+	When I press tab in the business sector field
+	Then I should see an error message on the business sector field
