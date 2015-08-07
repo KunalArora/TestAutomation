@@ -160,3 +160,28 @@ Scenario: (Failing on Prod - BBAU-2575) Validate that a user cannot create a bus
 	And I select number of Employees on creative center as "11 - 50"
 	Then I click the creative center create your account button
 	Then I should get an error message displayed on the creative center Terms and Conditions
+
+
+# Accounts created on DV2, QAS and Prod for the following test - existinguseraccount@guerrillamail.com/existingbusinessaccount@guerrillamail.com/Password100
+# Check that existing creative center family and business account holders cannot login with valid/invalid username/password combinations
+Scenario Outline: Validate that family or business account holders are unable to login to creative center with invalid credentials
+	Given I launch Brother Online for "United Kingdom"
+	When I navigate to and click the creative center link
+	Then I am taken to the creative center landing page
+	Then I click the business center link
+	Then I am taken to the creative center home page
+	And I click to not participate in the survey
+	Then I click the creative center register/login link
+	Then I am navigated to the creative center login page	
+	When I enter a creative center email address containing <Email Address>
+	When I enter a valid Password for creative center <Password>
+	And I press the creative center sign in with invalid details
+	Then I should see the invalid credentials error message preventing login to creative center
+
+	Scenarios:
+		| Email Address                                 | Password                 |
+		| "existinguseraccount@guerrillamail.com"       | "InvalidPasswordEntered" |
+		| "existingbusinessaccount@guerrillamail.wrong" | "Password100"            |
+		| "existinguseraccount@guerrillamail.com"       | "PaSsWoRd100"			   |
+		| "existingbusinessaccount@guerrillamail.com"	| "   Password100   "      |
+		| "existinguseraccount@guerrillamail.com"       | "Pass  word  100"	       |

@@ -164,7 +164,13 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         [FindsBy(How = How.CssSelector, Using = ".form-section.cf.validation-failed.load .error")]
         public IWebElement TermsAndConditionsCcErrorMessage;
-        
+
+        [FindsBy(How = How.Id, Using = "SignInButton")]
+        public IWebElement CcSignInButton;
+
+        [FindsBy(How = How.ClassName, Using = "warning-bar")]
+        public IWebElement InvalidCredentialsCcErrorMessage;
+
         private static readonly Dictionary<string, string> _pageTitle = new Dictionary<string, string>
         {
             {"Spain", "Inicio de sesión / Cree una cuenta"},
@@ -710,6 +716,26 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         public void TermsAndConditionsCcErrorMessageDisplayed()
         {
             TestCheck.AssertIsEqual(true, TermsAndConditionsCcErrorMessage.Displayed, "Is Error Message Displayed");
+        }
+
+        public void PopulateCcEmailAddressTextBox(string emailAddress)
+        {
+            TestCheck.AssertIsEqual(false, CcEmailAddressErrorMessage.Displayed, "Is Email Error message displayed");
+            EmailAddressCCTextBox.Clear();
+            EmailAddressCCTextBox.SendKeys(emailAddress);
+            EmailAddressCCTextBox.SendKeys(Keys.Tab);
+            TestCheck.AssertIsEqual(emailAddress, GetTextBoxValue("Email"), "Email Text Box");
+        }
+
+        public void ClickCcSignInWithInvalidDetails()
+        {
+            ScrollTo(CcSignInButton);
+            CcSignInButton.Click();
+        }
+
+        public void InvalidCredentialsCcErrorMessageDisplayed()
+        {
+            TestCheck.AssertIsEqual(true, InvalidCredentialsCcErrorMessage.Displayed, "Is Error Message Displayed");
         }
 
     }
