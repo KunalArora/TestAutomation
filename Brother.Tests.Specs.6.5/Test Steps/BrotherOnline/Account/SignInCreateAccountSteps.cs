@@ -854,6 +854,13 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<RegistrationPage>().TermsAndConditionsErrorMessageDisplayed();
         }
+
+       [Then(@"I should get an error message displayed on the creative center Terms and Conditions")]
+       public void ThenIShouldGetAnErrorMessageDisplayedOnTheCcTermsAndConditions()
+       {
+           CurrentPage.As<HomePage>().TermsAndConditionsCcErrorMessageDisplayed();
+       }
+
         [Then(@"I should see an error message on the Confirm password field")]
         public void ThenIShouldSeeAnErrorMessageOnTheConfirmPasswordField()
         {

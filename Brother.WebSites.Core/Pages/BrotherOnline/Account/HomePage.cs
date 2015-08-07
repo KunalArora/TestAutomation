@@ -161,6 +161,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         [FindsBy(How = How.CssSelector, Using = ".error")]
         public IWebElement BusinessSectorCcErrorMessageDisplayed;
+
+        [FindsBy(How = How.CssSelector, Using = ".form-section.cf.validation-failed.load .error")]
+        public IWebElement TermsAndConditionsCcErrorMessage;
         
         private static readonly Dictionary<string, string> _pageTitle = new Dictionary<string, string>
         {
@@ -702,6 +705,11 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         {
             Password.SendKeys(password.Equals("@@@@@") ? Helper.Password : password);
             TestCheck.AssertIsEqual(password.Equals("@@@@@") ? Helper.Password : password, GetTextBoxValue("Password"), "Password");
+        }
+
+        public void TermsAndConditionsCcErrorMessageDisplayed()
+        {
+            TestCheck.AssertIsEqual(true, TermsAndConditionsCcErrorMessage.Displayed, "Is Error Message Displayed");
         }
 
     }
