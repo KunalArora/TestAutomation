@@ -62,7 +62,6 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [Then(@"I can see and click the accept cookies button")]
         public void CanSeeAndClickTheAcceptCookiesButton()
         {
-            CurrentPage.As<HomePage>().IsAcceptCookieButtonAvailable();
             CurrentPage.As<HomePage>().AcceptCookiesButtonClick();
         }
 

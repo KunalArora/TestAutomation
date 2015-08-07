@@ -360,6 +360,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public void AcceptCookiesButtonClick()
         {
+
+            WaitForElementToExistByCssSelector("#AcceptCookieLawHyperLink");
             ScrollTo(AcceptCookiesButton);
             AcceptCookiesButton.Click();
         }
