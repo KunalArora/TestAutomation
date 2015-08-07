@@ -56,6 +56,10 @@ namespace Brother.Tests.Selenium.Lib.Support
                 IsAcceptCookiesDismissed = false;
                 StartPhantomJsProcess();
                 CurrentDriver = StartNewRemoteWebDriver(_ipAddress, _driverPort);
+                if (CurrentDriver == null)
+                {
+                    TestCheck.AssertFailTest("FATAL: Unable to create a new Remote WebDriver instance");
+                }
                 SetWebDriverTimeouts(CurrentDriver);
             }
             Helper.MsgOutput("Using HEADLESS Capabilities");
