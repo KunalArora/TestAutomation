@@ -106,6 +106,12 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
         [BeforeScenario()]
         public void BeforeScenario()
         {
+            if (TestController.CurrentDriver == null)
+            {
+                Helper.MsgOutput("***Current Web Driver is NULL - something went wrong in its creation***");
+                return;
+            }
+
             Helper.MsgOutput("*************COOKIE INFORMATION for this session******************");
             WebDriver.ShowAllCookies();
             Helper.MsgOutput("*************END COOKIE INFORMATION*******************************");
