@@ -155,6 +155,7 @@ namespace Brother.Tests.Selenium.Lib.Support
                     }
                 }
                 KillPhantomJsIfRunning();
+                Utils.WaitForPortToBecomeAvailable(_ipAddress, Convert.ToInt32(_driverPort));
                 CurrentDriver = null;
                 Helper.MsgOutput("Selenium stopped");
             }
