@@ -14,7 +14,7 @@ Scenario Outline: View the list of available Laser Printers on Brother Main site
 Scenarios:
 	| country        | site                                                        |
 ##	| Belgium        | brother-printers/laser-printers?sc_lang=nl-BE               | - language switching problem
-##	| Belgium        | imprimantes/imprimantes-laser?sc_lang=fr-BE                 | - language switching problem
+##  | Belgium        | imprimantes/imprimantes-laser?sc_lang=fr-BE                 | - language switching problem
 	| Czech          | printers/laser-printers                                     |
 ##	| Denmark        | printers/all-colour-lasers                                  |
 	| Finland        | printers/laser-printers                                     |
