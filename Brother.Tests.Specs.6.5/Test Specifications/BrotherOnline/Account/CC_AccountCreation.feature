@@ -1,7 +1,7 @@
 ﻿@TEST @UAT @PROD
 Feature: CreativeCenterTests
 
-# Validate that the creation of a new family creative center test also creates a validated brother online user account
+# Validate that the creation of a new family creative center account also creates a validated brother online user account
 Scenario: (Failing - BBAU-2318, BBAU-2575) Validate that a user can create a family creative center account and that this action automatically creates a brother online account that is already validated
 	Given I launch Brother Online for "United Kingdom"
 	When I navigate to and click the creative center link
@@ -32,7 +32,7 @@ Scenario: (Failing - BBAU-2318, BBAU-2575) Validate that a user can create a fam
 	Then I can sign out of Brother Online
 	Then I am redirected to the Brother Home Page
 
-# Validate that the creation of a new business creative center test also creates a validated brother online business account
+# Validate that the creation of a new business creative center account also creates a validated brother online business account
 Scenario: (Failing - BBAU-2318, BBAU-2575) Validate that a user can create a business creative center account and that this action automatically creates a brother online business account that is already validated
 	Given I launch Brother Online for "United Kingdom"
 	When I navigate to and click the creative center link
@@ -115,3 +115,48 @@ Scenario: (Failing on Prod - BBAU-2575) Validate that an error message is displa
 	When I press tab in the creative center business sector field
 	Then I should see an error message on the creative center business sector field
 		 
+
+# Validate that the creation of a new family creative center account requires the terms and conditions to be accepted
+Scenario: (Failing on Prod - BBAU-2575) Validate that a user cannot create a family creative center account unless terms and conditions are accepted
+	Given I launch Brother Online for "United Kingdom"
+	When I navigate to and click the creative center link
+	Then I am taken to the creative center landing page
+	And I click the family center link
+	Then I am taken to the creative center home page
+	And I click to not participate in the survey
+	Then I click the creative center register/login link
+	Then I am navigated to the creative center login page			
+	Then I have checked no to having a creative center account
+	And I fill in the creative center registration information using a valid email address
+	| field           | value			|
+	| FirstName       | CcFamilyAutoTest|
+	| LastName        | AutoTest		|
+	| Password        | @@@@@			|
+	| ConfirmPassword | @@@@@			|
+	Then I declare that I do not use this creative center account for business
+	Then I click the creative center create your account button
+	Then I should get an error message displayed on the creative center Terms and Conditions
+
+# Validate that the creation of a new business creative center account requires the terms and conditions to be accepted
+Scenario: (Failing on Prod - BBAU-2575) Validate that a user cannot create a business creative center account unless terms and conditions are accepted
+	Given I launch Brother Online for "United Kingdom"
+	When I navigate to and click the creative center link
+	Then I am taken to the creative center landing page
+	And I click the family center link
+	Then I am taken to the creative center home page
+	And I click to not participate in the survey
+	Then I click the creative center register/login link
+	Then I am navigated to the creative center login page			
+	Then I have checked no to having a creative center account
+	Then I declare that I do use this creative center account for business
+	And I fill in the creative center registration information using a valid email address
+	| field           | value			|
+	| FirstName       | CcFamilyAutoTest|
+	| LastName        | AutoTest		|
+	| Password        | @@@@@			|
+	| ConfirmPassword | @@@@@			|
+	And I add my company name into creative center as "AutoTestLtd"
+	And I select my Business Sector on creative center as "IT and telecommunications services"		
+	And I select number of Employees on creative center as "11 - 50"
+	Then I click the creative center create your account button
+	Then I should get an error message displayed on the creative center Terms and Conditions
