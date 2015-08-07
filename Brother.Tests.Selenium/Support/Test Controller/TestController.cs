@@ -126,6 +126,7 @@ namespace Brother.Tests.Selenium.Lib.Support
                     break;
 
                 case "HL":
+                    Utils.WaitForPortToBecomeAvailable(_ipAddress, Convert.ToInt32(_driverPort));
                     HeadlessRunning();
                     break;
 
