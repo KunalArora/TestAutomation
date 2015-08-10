@@ -28,9 +28,10 @@ Background:
 Scenario: Test Code Two
 	#Given I want to open a new tab
 	Given SqlCall
-	Given Setup
 
 @STAGING @IGNORE
 Scenario: Simple Parallel Test
 	Given I want to run multiple instances of PhantomJs
 	Then Navigate to website x, y and z
+
+
