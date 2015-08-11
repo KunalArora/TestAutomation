@@ -467,17 +467,17 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Validate that family or business account holders are unable to login to creative " +
-            "center with invalid credentials")]
+        [NUnit.Framework.DescriptionAttribute("(Failing on Prod - BBAU-2575) Validate that family or business account holders ar" +
+            "e unable to login to creative center with invalid credentials")]
         [NUnit.Framework.TestCaseAttribute("\"existinguseraccount@guerrillamail.com\"", "\"InvalidPasswordEntered\"", null)]
         [NUnit.Framework.TestCaseAttribute("\"existingbusinessaccount@guerrillamail.wrong\"", "\"Password100\"", null)]
         [NUnit.Framework.TestCaseAttribute("\"existinguseraccount@guerrillamail.com\"", "\"PaSsWoRd100\"", null)]
         [NUnit.Framework.TestCaseAttribute("\"existingbusinessaccount@guerrillamail.com\"", "\"   Password100   \"", null)]
         [NUnit.Framework.TestCaseAttribute("\"existinguseraccount@guerrillamail.com\"", "\"Pass  word  100\"", null)]
-        public virtual void ValidateThatFamilyOrBusinessAccountHoldersAreUnableToLoginToCreativeCenterWithInvalidCredentials(string emailAddress, string password, string[] exampleTags)
+        public virtual void FailingOnProd_BBAU_2575ValidateThatFamilyOrBusinessAccountHoldersAreUnableToLoginToCreativeCenterWithInvalidCredentials(string emailAddress, string password, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate that family or business account holders are unable to login to creative " +
-                    "center with invalid credentials", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("(Failing on Prod - BBAU-2575) Validate that family or business account holders ar" +
+                    "e unable to login to creative center with invalid credentials", exampleTags);
 #line 167
 this.ScenarioSetup(scenarioInfo);
 #line 168
@@ -510,16 +510,16 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("(Failing BBAU-2601) Validate that family or business account holders can still lo" +
-            "gin to creative with spaces or different case in the username providing the pass" +
-            "word is correct")]
+        [NUnit.Framework.DescriptionAttribute("(Failing on Prod - BBAU-2575) (Failing BBAU-2601) Validate that family or busines" +
+            "s account holders can still login to creative with spaces or different case in t" +
+            "he username providing the password is correct")]
         [NUnit.Framework.TestCaseAttribute("\"ExIsTiNgBuSiNeSsAcCoUnT@gUeRrIlLaMaIl.CoM\"", "\"Password100\"", null)]
         [NUnit.Framework.TestCaseAttribute("\"     existinguseraccount@guerrillamail.com    \"", "\"Password100\"", null)]
-        public virtual void FailingBBAU_2601ValidateThatFamilyOrBusinessAccountHoldersCanStillLoginToCreativeWithSpacesOrDifferentCaseInTheUsernameProvidingThePasswordIsCorrect(string emailAddress, string password, string[] exampleTags)
+        public virtual void FailingOnProd_BBAU_2575FailingBBAU_2601ValidateThatFamilyOrBusinessAccountHoldersCanStillLoginToCreativeWithSpacesOrDifferentCaseInTheUsernameProvidingThePasswordIsCorrect(string emailAddress, string password, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("(Failing BBAU-2601) Validate that family or business account holders can still lo" +
-                    "gin to creative with spaces or different case in the username providing the pass" +
-                    "word is correct", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("(Failing on Prod - BBAU-2575) (Failing BBAU-2601) Validate that family or busines" +
+                    "s account holders can still login to creative with spaces or different case in t" +
+                    "he username providing the password is correct", exampleTags);
 #line 192
 this.ScenarioSetup(scenarioInfo);
 #line 193
@@ -550,6 +550,46 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.Then("I am logged into creative center", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 206
  testRunner.Then("I sign out of creative center", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("(Failing on Prod - BBAU-2575) Validate that an error message is displayed on crea" +
+            "tive center if the password and create password fields do not match")]
+        [NUnit.Framework.TestCaseAttribute("\"existingbusinessaccount@guerillamail.com\"", "\"Password100\"", "\"Password200\"", null)]
+        public virtual void FailingOnProd_BBAU_2575ValidateThatAnErrorMessageIsDisplayedOnCreativeCenterIfThePasswordAndCreatePasswordFieldsDoNotMatch(string emailAddress, string password, string confirmPassword, string[] exampleTags)
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("(Failing on Prod - BBAU-2575) Validate that an error message is displayed on crea" +
+                    "tive center if the password and create password fields do not match", exampleTags);
+#line 215
+this.ScenarioSetup(scenarioInfo);
+#line 216
+ testRunner.Given("I launch Brother Online for \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 217
+ testRunner.When("I navigate to and click the creative center link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 218
+ testRunner.Then("I am taken to the creative center landing page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 219
+ testRunner.Then("I click the business center link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 220
+ testRunner.Then("I am taken to the creative center home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 221
+ testRunner.And("I click to not participate in the survey", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 222
+ testRunner.Then("I click the creative center register/login link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 223
+ testRunner.Then("I am navigated to the creative center login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 224
+ testRunner.And("I have checked no to having a creative center account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 225
+ testRunner.When(string.Format("I enter a new Password for creative center {0}", password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 226
+ testRunner.When(string.Format("I enter the different password in the creative center confirm password field cont" +
+                        "aining {0} and press tab", confirmPassword), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 227
+ testRunner.Then("I should get an error message displayed on the creative center confirm password f" +
+                    "ield", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

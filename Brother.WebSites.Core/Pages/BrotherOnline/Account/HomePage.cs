@@ -171,6 +171,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         [FindsBy(How = How.ClassName, Using = "warning-bar")]
         public IWebElement InvalidCredentialsCcErrorMessage;
 
+        [FindsBy(How = How.CssSelector, Using = "#form-sign-up-cc > div.pwd-field.form-section.cf > span.half-col.validation-failed.blur > div")]
+        public IWebElement ConfirmPWCcErrorMessage;
+
         private static readonly Dictionary<string, string> _pageTitle = new Dictionary<string, string>
         {
             {"Spain", "Inicio de sesión / Cree una cuenta"},
@@ -360,7 +363,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public void AcceptCookiesButtonClick()
         {
-
+            WebDriver.Wait(DurationType.Millisecond, 5000);
             WaitForElementToExistByCssSelector("#AcceptCookieLawHyperLink");
             ScrollTo(AcceptCookiesButton);
             AcceptCookiesButton.Click();
@@ -715,9 +718,22 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             TestCheck.AssertIsEqual(password.Equals("@@@@@") ? Helper.Password : password, GetTextBoxValue("Password"), "Password");
         }
 
+        public void PopulateWithNewCcPassword(string password)
+        {
+            PasswordCCTextBox.SendKeys(password);
+            //PasswordCCTextBox.SendKeys(PasswordCCTextBox.Equals("@@@@@") ? Helper.Password : password);
+            //TestCheck.AssertIsEqual(PasswordCCTextBox.Equals("@@@@@") ? Helper.Password : password, GetTextBoxValue("PasswordCCTextBox"), "PasswordCCTextBox");
+        }
+
         public void TermsAndConditionsCcErrorMessageDisplayed()
         {
             TestCheck.AssertIsEqual(true, TermsAndConditionsCcErrorMessage.Displayed, "Is Error Message Displayed");
+        }
+
+        public void ConfirmPWCcErrorMessageDisplayed()
+        {
+            WaitForElementToExistByCssSelector("#form-sign-up-cc > div.pwd-field.form-section.cf > span.half-col.validation-failed.blur > div");    
+            TestCheck.AssertIsEqual(true, ConfirmPWCcErrorMessage.Displayed, "Is Error Message Displayed");
         }
 
         public void PopulateCcEmailAddressTextBox(string emailAddress)
@@ -738,6 +754,11 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         public void InvalidCredentialsCcErrorMessageDisplayed()
         {
             TestCheck.AssertIsEqual(true, InvalidCredentialsCcErrorMessage.Displayed, "Is Error Message Displayed");
+        }
+
+        public void PopulateConfirmPasswordCcTextBox(string confirmpassword)
+        {
+            ConfirmPasswordCCTextBox.SendKeys(confirmpassword);
         }
 
     }

@@ -152,14 +152,12 @@ this.FeatureBackground();
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Customer get the error message if mandatory fields are not completed by a custome" +
             "r")]
-        [NUnit.Framework.CategoryAttribute("PROD")]
         [NUnit.Framework.CategoryAttribute("UAT")]
         [NUnit.Framework.CategoryAttribute("TEST")]
         public virtual void CustomerGetTheErrorMessageIfMandatoryFieldsAreNotCompletedByACustomer()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer get the error message if mandatory fields are not completed by a custome" +
                     "r", new string[] {
-                        "PROD",
                         "UAT",
                         "TEST"});
 #line 36
