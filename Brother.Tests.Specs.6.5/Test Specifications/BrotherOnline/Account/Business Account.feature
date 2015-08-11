@@ -225,7 +225,7 @@ Scenario Outline: Validate that user or business account holders are unable to l
 		| "existinguseraccount@guerrillamail.com"       | "Pass  word  100"	       |
 	 		
 # Accounts created on DV2, QAS and Prod for the following test - existinguseraccount@guerrillamail.com/existingbusinessaccount@guerrillamail.com/Password100
-# Check that existing brother online user and business account holders can still login with a username that leading/trailing spaces or mixed letter casing
+# Check that existing brother online user and business account holders can still login with a username that has leading/trailing spaces or mixed letter casing
 Scenario Outline: Validate that user or business account holders can still login to brother online with spaces or different case in the username providing the password is correct
 	Given I launch Brother Online for "United Kingdom"
 	When I click on Create Account for "United Kingdom"

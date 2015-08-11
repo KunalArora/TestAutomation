@@ -185,3 +185,28 @@ Scenario Outline: Validate that family or business account holders are unable to
 		| "existinguseraccount@guerrillamail.com"       | "PaSsWoRd100"			   |
 		| "existingbusinessaccount@guerrillamail.com"	| "   Password100   "      |
 		| "existinguseraccount@guerrillamail.com"       | "Pass  word  100"	       |
+
+
+# Accounts created on DV2, QAS and Prod for the following test - existinguseraccount@guerrillamail.com/existingbusinessaccount@guerrillamail.com/Password100
+# Check that existing family and business account holders can still login with a username that has leading/trailing spaces or mixed letter casing
+Scenario Outline: (Failing BBAU-2601) Validate that family or business account holders can still login to creative with spaces or different case in the username providing the password is correct
+	Given I launch Brother Online for "United Kingdom"
+	When I navigate to and click the creative center link
+	Then I am taken to the creative center landing page
+	Then I click the business center link
+	Then I am taken to the creative center home page
+	And I click to not participate in the survey
+	Then I click the creative center register/login link
+	Then I am navigated to the creative center login page
+	When I enter a creative center email address containing <Email Address>
+	When I enter a valid Password for creative center <Password>
+	And I press the creative center sign in
+	Then I click the business center link
+	Then I am logged into creative center
+	Then I sign out of creative center	
+
+	Scenarios:
+		| Email Address											| Password      |
+		| "ExIsTiNgBuSiNeSsAcCoUnT@gUeRrIlLaMaIl.CoM"			| "Password100" |
+		| "     existinguseraccount@guerrillamail.com    "		| "Password100" |
+		

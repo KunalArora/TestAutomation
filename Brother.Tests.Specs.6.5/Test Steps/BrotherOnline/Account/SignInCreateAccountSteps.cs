@@ -757,6 +757,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         }
 
         [When(@"I press the creative center sign in with invalid details")]
+        [When(@"I press the creative center sign in")]
         public void WhenIPressCcSignInWithInvalidDetails()
         {
             CurrentPage.As<HomePage>().ClickCcSignInWithInvalidDetails();
