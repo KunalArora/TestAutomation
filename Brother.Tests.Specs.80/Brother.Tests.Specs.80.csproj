@@ -67,6 +67,56 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Test Specification\BrotherOnline\Account\AccountMaintenance.feature.cs">
+      <DependentUpon>AccountMaintenance.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Test Specification\BrotherOnline\Account\AddPaymentMethod.feature.cs">
+      <DependentUpon>AddPaymentMethod.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Test Specification\BrotherOnline\Account\Business Account.feature.cs">
+      <DependentUpon>Business Account.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Test Specification\BrotherOnline\Account\CC_AccountCreation.feature.cs">
+      <DependentUpon>CC_AccountCreation.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Test Specification\BrotherOnline\Account\Customer Account.feature.cs">
+      <DependentUpon>Customer Account.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Test Specification\BrotherOnline\Product Registration\AddDevice.feature.cs">
+      <DependentUpon>AddDevice.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Test Specification\BrotherOnline\ProductPurchaseValidation.feature.cs">
+      <DependentUpon>ProductPurchaseValidation.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Test Specification\BrotherOnline\SiteAccess\SitesAccess_ProductionEnvironment.feature.cs">
+      <DependentUpon>SitesAccess_ProductionEnvironment.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Test Specification\BrotherOnline\SiteAccess\SitesAccess_TestEnvironment.feature.cs">
+      <DependentUpon>SitesAccess_TestEnvironment.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Test Specification\BrotherOnline\SiteAccess\SitesAccess_UATEnvironment.feature.cs">
+      <DependentUpon>SitesAccess_UATEnvironment.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Test Steps\BrotherMainSite\HomePageNavigation\MainSiteHomePageNavigationSteps.cs" />
     <Compile Include="Test Steps\BrotherMainSite\PrinterSearch\PrinterSearchSteps.cs" />
     <Compile Include="Test Steps\BrotherMainSite\SuppliesAndAccessories\PurchaseSuppliesSteps.cs" />
@@ -125,6 +175,46 @@
     <None Include="Test Specification\BrotherMainSite\SuppliesAndAccessories\PurchaseASupply.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>PurchaseASupply.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specification\BrotherOnline\Account\AccountMaintenance.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>AccountMaintenance.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specification\BrotherOnline\Account\AddPaymentMethod.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>AddPaymentMethod.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specification\BrotherOnline\Account\Business Account.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Business Account.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specification\BrotherOnline\Account\CC_AccountCreation.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CC_AccountCreation.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specification\BrotherOnline\Account\Customer Account.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Customer Account.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specification\BrotherOnline\Product Registration\AddDevice.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>AddDevice.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specification\BrotherOnline\ProductPurchaseValidation.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ProductPurchaseValidation.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specification\BrotherOnline\SiteAccess\SitesAccess_ProductionEnvironment.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>SitesAccess_ProductionEnvironment.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specification\BrotherOnline\SiteAccess\SitesAccess_TestEnvironment.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>SitesAccess_TestEnvironment.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specification\BrotherOnline\SiteAccess\SitesAccess_UATEnvironment.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>SitesAccess_UATEnvironment.feature.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
