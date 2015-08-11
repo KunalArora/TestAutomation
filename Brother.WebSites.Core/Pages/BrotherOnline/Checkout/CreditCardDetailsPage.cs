@@ -39,7 +39,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
         public IWebElement CreditCardExpDateYearPicker;
 
         [FindsBy(How = How.CssSelector, Using = "#creditCard > div.button > span > input")]
-        public IWebElement SendButton; 
+        public IWebElement SendButton;
 
         [FindsBy(How = How.CssSelector, Using = "#paymentChoiceCC > form.paymentForm > span > input")]
         public IWebElement CancelButton;

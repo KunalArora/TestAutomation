@@ -11,6 +11,8 @@
     <AssemblyName>Brother.Tests.Specs.80</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -33,6 +35,9 @@
     <Reference Include="nunit.framework">
       <HintPath>..\Dependencies\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="SpecFlow.Assist.Dynamic">
+      <HintPath>..\Dependencies\SpecFlow\SpecFlow.Assist.Dynamic.1.0.2\lib\40\SpecFlow.Assist.Dynamic.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -52,6 +57,35 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Test Specification\BrotherMainSite\Printer Search\Printers.feature.cs">
+      <DependentUpon>Printers.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Test Specification\BrotherMainSite\SuppliesAndAccessories\PurchaseASupply.feature.cs">
+      <DependentUpon>PurchaseASupply.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Test Steps\BrotherMainSite\HomePageNavigation\MainSiteHomePageNavigationSteps.cs" />
+    <Compile Include="Test Steps\BrotherMainSite\PrinterSearch\PrinterSearchSteps.cs" />
+    <Compile Include="Test Steps\BrotherMainSite\SuppliesAndAccessories\PurchaseSuppliesSteps.cs" />
+    <Compile Include="Test Steps\BrotherOnline\Account\AccountManagementSteps.cs" />
+    <Compile Include="Test Steps\BrotherOnline\Account\OrderValidationSteps.cs" />
+    <Compile Include="Test Steps\BrotherOnline\Account\SignInCreateAccountSteps.cs" />
+    <Compile Include="Test Steps\BrotherOnline\Product Registration\AddDeviceSteps.cs" />
+    <Compile Include="Test Steps\BrotherOnline\ProductPurchaseValidationSteps.cs" />
+    <Compile Include="Test Steps\BrotherOnline\Purchasing\BasketSteps.cs" />
+    <Compile Include="Test Steps\BrotherOnline\Purchasing\BillingDetailsSteps.cs" />
+    <Compile Include="Test Steps\BrotherOnline\Purchasing\CreditCardDetailsSteps.cs" />
+    <Compile Include="Test Steps\BrotherOnline\Purchasing\DeliveryDetailsSteps.cs" />
+    <Compile Include="Test Steps\BrotherOnline\Purchasing\OrderConfirmationSteps.cs" />
+    <Compile Include="Test Steps\BrotherOnline\Purchasing\OrderProcessSteps.cs" />
+    <Compile Include="Test Steps\BrotherOnline\Purchasing\OrderSummarySteps.cs" />
+    <Compile Include="Test Steps\BrotherOnline\Purchasing\SavedPaymentDetailsSteps.cs" />
+    <Compile Include="Test Steps\BrotherOnline\SiteAccess\SiteAccessSteps.cs" />
+    <Compile Include="Test Steps\Global\GlobalSteps.cs" />
+    <Compile Include="Test Steps\ThirdPartyProductsSteps.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Brother.Tests.Selenium\Brother.Tests.Selenium.Lib.csproj">
@@ -64,8 +98,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Test Specification\" />
-    <Folder Include="Test Steps\" />
+    <Folder Include="Pages\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Drivers\chromedriver.exe">
@@ -78,7 +111,24 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="packages.config" />
+    <None Include="specflow.exe.config" />
+    <None Include="TeamCity.SpecFlow.Reporting.psm1" />
+    <None Include="Test Specification\BrotherMainSite\Printer Search\Printers.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Printers.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specification\BrotherMainSite\SuppliesAndAccessories\PurchaseASupply.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>PurchaseASupply.feature.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
