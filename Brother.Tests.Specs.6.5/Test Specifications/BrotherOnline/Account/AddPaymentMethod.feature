@@ -31,7 +31,7 @@ Scenario: Add payment method with new address and Cancel before submitting
 	When I click Cancel submit card details I should return to the My Payment Method page
 	Then I can sign out of Brother Online
 
-@PROD @UAT @TEST
+@UAT @TEST
 #Validate that the correct error messages are displayed on the add payment method mandatory fields
 Scenario: Customer get the error message if mandatory fields are not completed by a customer
 Given I am logged into my Brother Online account
