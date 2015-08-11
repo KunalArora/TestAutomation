@@ -29,8 +29,7 @@ namespace Brother.Tests.Specs.Test_Steps.Smart_Supply
         [When(@"I click on Add to basket button")]
         public void WhenIClickOnAddToBasketButton()
         {
-            TestCheck.AssertIsEqual(0, BasketModule.GetBasketItemsCount(CurrentDriver), "Invalid Basket item count");
-            //NextPage = SmartSupplyProductPage.Productpageload(CurrentDriver);
+            NextPage = SmartSupplyProductPage.Productpageload(CurrentDriver);
             CurrentPage.As<SmartSupplyProductPage>().AddSmartSupplyProductToBasketButtonClick();
         }
 

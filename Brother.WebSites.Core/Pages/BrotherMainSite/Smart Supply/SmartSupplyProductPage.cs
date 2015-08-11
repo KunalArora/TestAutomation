@@ -53,8 +53,11 @@ namespace Brother.Tests.Selenium.Lib.Pages.BrotherMainSite.Smart_Supply
         [FindsBy(How = How.CssSelector, Using = ".promo-info ul li")]
         public IList<IWebElement> BenefitsText;
 
-        [FindsBy(How = How.CssSelector, Using = ".nav-basket")]
+        [FindsBy(How = How.CssSelector, Using = "li.nav-basket")]
         public IWebElement BasketIconSmartSupply;
+
+        [FindsBy(How = How.CssSelector, Using = ".sections.add-to-basket")]
+        public IWebElement ChechOutButtonSmartSupply;
 
         public void Hoverbasket()
         {
@@ -94,7 +97,16 @@ namespace Brother.Tests.Selenium.Lib.Pages.BrotherMainSite.Smart_Supply
 
         public void ClickBasketIcon()
         {
-         BasketIconSmartSupply.Click();  
+         BasketIconSmartSupply.Click();
+         MoveToElement(ChechOutButtonSmartSupply);
+        }
+
+
+        public void ClickCheckOutButtonSmartSupply()
+        {
+            MoveToElement(ProductBasketContainer);
+            MoveToElement(ChechOutButtonSmartSupply);
+            ChechOutButtonSmartSupply.Click();
         }
     }
 }
