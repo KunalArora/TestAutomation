@@ -20,8 +20,7 @@ namespace Brother.Tests.Specs.TestSpecifications.SmartSupply
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("BOL - WS - BIT - Test discount ticket - calculation of discounts for single item")]
-    [NUnit.Framework.CategoryAttribute("TEST")]
-    [NUnit.Framework.CategoryAttribute("staging")]
+    [NUnit.Framework.IgnoreAttribute()]
     public partial class BOL_WS_BIT_TestDiscountTicket_CalculationOfDiscountsForSingleItemFeature
     {
         
@@ -37,8 +36,7 @@ namespace Brother.Tests.Specs.TestSpecifications.SmartSupply
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "BOL - WS - BIT - Test discount ticket - calculation of discounts for single item", "As a Brother Supply Club user\r\nI need to add the supply club product to basket an" +
                     "d see the club product discounts calculated correctly and displayed in correct o" +
                     "rder", ProgrammingLanguage.CSharp, new string[] {
-                        "TEST",
-                        "staging"});
+                        "ignore"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -73,14 +71,12 @@ namespace Brother.Tests.Specs.TestSpecifications.SmartSupply
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("View Brother Supply Club product - calculation of discounts for single item on Ba" +
             "sket Page")]
-        [NUnit.Framework.CategoryAttribute("TEST")]
-        [NUnit.Framework.CategoryAttribute("staging")]
+        [NUnit.Framework.IgnoreAttribute()]
         public virtual void ViewBrotherSupplyClubProduct_CalculationOfDiscountsForSingleItemOnBasketPage()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("View Brother Supply Club product - calculation of discounts for single item on Ba" +
                     "sket Page", new string[] {
-                        "TEST",
-                        "staging"});
+                        "ignore"});
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line 9
@@ -143,6 +139,11 @@ testRunner.Given("I want to create a new account with Brother Online \"Italy\"",
  testRunner.And("I can see the Brother Club discounts offers on basket page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 39
  testRunner.And("I can see the product discount \"€ 0,00\" before opting in to Brother Supply Club", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 40
+ testRunner.And("I opt to join Brother Supply Club", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 41
+ testRunner.And("I can see a positive value in product discount after opting in to Brother Supply " +
+                    "Club", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

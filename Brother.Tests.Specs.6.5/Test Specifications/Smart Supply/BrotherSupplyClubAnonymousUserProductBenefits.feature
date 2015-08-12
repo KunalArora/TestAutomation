@@ -12,8 +12,8 @@ Scenario: View Brother Supply Club product benefits on any environment
 	Then I will see text information relating to the benefit I will receive
 	When I click on Add to basket button
 	Then I hover the mouse on the basket icon to see text information relating to the benefit I will receive
-	#Then I can see the benefit text as  "Discount 11% TN-2220" and "Free Delivery Over £30"
-	#Then I can see the benefit text as  "Sconto 10% TN-2220" and "Spedizione gratuita sopra i 30€"
+	#  Then I can see the benefit text as  "Discount 11% TN-2220" and "Free Delivery Over £30"
+	#  Then I can see the benefit text as  "Sconto 10% TN-2220" and "Spedizione gratuita sopra i 30€"
 	Then I can see the product name with the benefits text 
 
 	

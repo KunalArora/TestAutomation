@@ -25,7 +25,7 @@ namespace Brother.Tests.Specs.Test_Steps.Smart_Supply
         public void WhenICanSeeBrotherSupplyClubBenefitsCheckboxInTheBasketPage()
         {
             NextPage = SmartSupplyBasketPage.Basketpageload(CurrentDriver);
-            CurrentPage.As<SmartSupplyBasketPage>().IsBSCOptincheckboxAvailable();
+            CurrentPage.As<SmartSupplyBasketPage>().IsBSCOptInCheckBoxAvailable();
         }
 
         [When(@"I can see the Brother Club discounts offers on basket page")]
@@ -38,6 +38,17 @@ namespace Brother.Tests.Specs.Test_Steps.Smart_Supply
         public void WhenICanSeeTheProductDiscountBeforeOptingInToBrotherSupplyClub(string normaluserdiscount)
         {
             CurrentPage.As<SmartSupplyBasketPage>().CheckForDiscountAmount(normaluserdiscount);
+        }
+        [When(@"I opt to join Brother Supply Club")]
+        public void WhenIOptToJoinBrotherSupplyClub()
+        {
+            CurrentPage.As<SmartSupplyBasketPage>().ClickBSCOptInCheckBox(); 
+        }
+
+        [When(@"I can see a positive value in product discount after opting in to Brother Supply Club")]
+        public void WhenICanSeeAPositiveValueInProductDiscountAfterOptingInToBrotherSupplyClub()
+        {
+            CurrentPage.As<SmartSupplyBasketPage>().CheckForDiscountAmount(); 
         }
 
     }
