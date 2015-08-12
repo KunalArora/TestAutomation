@@ -379,7 +379,9 @@
     <None Include="App.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="specflow.exe.config" />
     <None Include="TeamCity.SpecFlow.Reporting.psm1" />
     <None Include="Test Specifications\BrotherMainSite\Printer Search\Printers.feature">
