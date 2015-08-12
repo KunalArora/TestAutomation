@@ -16,6 +16,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             get { return string.Empty; }
         }
 
+        [FindsBy(How = How.CssSelector, Using = "#227d43a9-3489-4b80-b229-5b9366d978f0")]
+        public IWebElement MyOrdersMenuItem;
+
         [FindsBy(How = How.CssSelector, Using = ".content-wrapper.my-invoices")]
         public IWebElement InvoiceSection;
 
@@ -44,7 +47,17 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
 
         [FindsBy(How = How.CssSelector, Using = ".error")]
         public IWebElement LastNameErrorMessage;
-        
+
+        public IWebElement GetMyOrdersMenuItem()
+        {
+            if (MyOrdersMenuItem == null)
+            {
+                throw new Exception("Unable to locate My Orders Menu Item on page");
+            }
+            AssertElementPresent(MyOrdersMenuItem, "My Orders Menu Item");
+            return MyOrdersMenuItem;
+        }
+
         public void IsInvoiceSectionAvailable()
         {
             if (InvoiceSection == null)
