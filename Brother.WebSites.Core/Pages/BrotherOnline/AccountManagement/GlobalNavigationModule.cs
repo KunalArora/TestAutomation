@@ -19,6 +19,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         // Static Global Navigation class which services the Brother Online orders side navigation bar common
         // to Brother Online orders, and the global navigation such as the Brother Nav bar.
         private const string SideNavMenu = @".content-box.left-nav-container.cf .side-nav";
+        private const string MyAccountMenuItem = "#6d822e49-5b57-4c4c-8e2d-3f4a29b49b05.tab-btn";
+        private const string PaymentMethodsMenuItem = "2cd6775a-02e4-4478-8818-de518fe73cf8";
         //private const string SideNavMenu = @".side-nav";
         private const string ProductList = @"#product-list";
         private const string BrotherHomePage = "#master-logo > a";
@@ -380,8 +382,19 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             button.Click();
             return GetInstance<MyAddressDetailsPage>(driver, "", "");
         }
+        
+        //  Redundant method superceeded by the one below it. Please DO NOT use anymore
         public static MyPaymentMethodsPage PaymentMethodsMenuClick(IWebDriver driver, IWebElement button)
         {
+            TestCheck.AssertIsNotNull(button, "Payment Method Menu");
+            button.Click();
+            return GetInstance<MyPaymentMethodsPage>(driver, "", "");
+        }
+
+        // New method for retrieving the Menu Items for the My Account side nav 
+        public static MyPaymentMethodsPage PaymentMethodsMenuClick(IWebDriver driver)
+        {
+            var button = driver.FindElement(By.Id(PaymentMethodsMenuItem));
             TestCheck.AssertIsNotNull(button, "Payment Method Menu");
             button.Click();
             return GetInstance<MyPaymentMethodsPage>(driver, "", "");
@@ -401,8 +414,18 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             return GetInstance<BusinessDetailsPage>(driver, "", "");
         }
 
+        // OLD - discontinued and will be removed once all tests are working - DO NOT USE THIS METHOD
         public static WelcomeBackPage MyAccountMenuItemClick(IWebDriver driver, IWebElement menuItem)
         {
+            TestCheck.AssertIsNotNull(menuItem, "My Account Menu Item");
+            menuItem.Click();
+            return GetInstance<WelcomeBackPage>(driver, "", "");
+        }
+
+        // NEW - override now that we have static ID's for menu items
+        public static WelcomeBackPage MyAccountMenuItemClick(IWebDriver driver)
+        {
+            var menuItem = driver.FindElement(By.Id("6d822e49-5b57-4c4c-8e2d-3f4a29b49b05"));
             TestCheck.AssertIsNotNull(menuItem, "My Account Menu Item");
             menuItem.Click();
             return GetInstance<WelcomeBackPage>(driver, "", "");
