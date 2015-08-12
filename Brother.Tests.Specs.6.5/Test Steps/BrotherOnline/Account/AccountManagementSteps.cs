@@ -110,7 +110,8 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [Then(@"I can click on Orders")]
         public void ThenICanClickOnOrders()
         {
-            var ordersButton = GlobalNavigationModule.GetMyAccountMenuItem("Orders");
+            //var ordersButton = GlobalNavigationModule.GetMyAccountMenuItem("Orders");
+            var ordersButton = CurrentPage.As<MyAccountPage>().GetMyOrdersMenuItem();
             NextPage = GlobalNavigationModule.OrdersMenuClick(CurrentDriver, ordersButton);
         }
 
