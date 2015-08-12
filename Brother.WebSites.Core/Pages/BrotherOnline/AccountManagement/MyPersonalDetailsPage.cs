@@ -13,7 +13,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         public override string DefaultTitle
         {
             get { return BrotherOnlineHomePages.Default["MyPersonalDetails"].ToString(); }
-        }
-      
+        }            
     }
 }
