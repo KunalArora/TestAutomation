@@ -2,7 +2,7 @@
 Feature: CreativeCenterTests
 
 # Validate that the creation of a new family creative center account also creates a validated brother online user account
-Scenario: (Failing - BBAU-2318, BBAU-2575) Validate that a user can create a family creative center account and that this action automatically creates a brother online account that is already validated
+Scenario: (Failing on Prod - BBAU-2575) Validate that a user can create a family creative center account and that this action automatically creates a brother online account that is already validated
 	Given I launch Brother Online for "United Kingdom"
 	When I navigate to and click the creative center link
 	Then I am taken to the creative center landing page
@@ -33,7 +33,7 @@ Scenario: (Failing - BBAU-2318, BBAU-2575) Validate that a user can create a fam
 	Then I am redirected to the Brother Home Page
 
 # Validate that the creation of a new business creative center account also creates a validated brother online business account
-Scenario: (Failing - BBAU-2318, BBAU-2575) Validate that a user can create a business creative center account and that this action automatically creates a brother online business account that is already validated
+Scenario: (Failing on Prod - BBAU-2575) Validate that a user can create a business creative center account and that this action automatically creates a brother online business account that is already validated
 	Given I launch Brother Online for "United Kingdom"
 	When I navigate to and click the creative center link
 	Then I am taken to the creative center landing page
@@ -61,10 +61,11 @@ Scenario: (Failing - BBAU-2318, BBAU-2575) Validate that a user can create a bus
 	Then I click on the sign in / create account button	
 	Then I should be able to log into ""(.*)"" Brother Online using my creative center account details	
 	Then If I navigate back to the Brother Online My Account page
-	When I clicked on Business Details
-	And I am redirected to the Business Details Page
-	Then I can see that use account for business is selected
-	Then I can navigate back to Brother Online home page
+	# When I clicked on Business Details
+	When I clicked on Business Details whilst logged in with my creative center account
+	Then I am redirected to the Business Details Page for my creative center account
+	Then I can see that use account for business is selected for creative center details
+	Then I can navigate back to Brother Online home page with my creative center account
 	When I have clicked on Add Device				
 	When I am redirected to the Register Device page
 	Then I can sign out of Brother Online
