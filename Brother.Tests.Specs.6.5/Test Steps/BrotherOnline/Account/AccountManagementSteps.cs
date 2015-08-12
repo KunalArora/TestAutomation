@@ -67,6 +67,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             var menu = GlobalNavigationModule.GetPrimaryNavigationMenuItem("MyAccount");
             NextPage = GlobalNavigationModule.MyAccountMenuItemClick(CurrentDriver, menu);
+            //NextPage = GlobalNavigationModule.MyAccountMenuItemClick(CurrentDriver);
         }
 
 		[When(@"I can sign out of Brother Online")]
@@ -111,14 +112,15 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [Then(@"I can click on Payment Methods")]
         public void ThenICanClickOnPaymentMethods()
         {
-            var paymentMethodsButton = GlobalNavigationModule.GetMyAccountMenuItem("PaymentMethods");
-            NextPage = GlobalNavigationModule.PaymentMethodsMenuClick(CurrentDriver, paymentMethodsButton);
+            //var paymentMethodsButton = GlobalNavigationModule.GetMyAccountMenuItem("PaymentMethods");
+            //NextPage = GlobalNavigationModule.PaymentMethodsMenuClick(CurrentDriver, paymentMethodsButton);
+            NextPage = GlobalNavigationModule.PaymentMethodsMenuClick(CurrentDriver);
         }
 
         [Then(@"I can click on Orders")]
         public void ThenICanClickOnOrders()
         {
-            //var ordersButton = GlobalNavigationModule.GetMyAccountMenuItem("Orders");
+           // var ordersButton = GlobalNavigationModule.GetMyAccountMenuItem("Orders");
             var ordersButton = CurrentPage.As<MyAccountPage>().GetMyOrdersMenuItem();
             NextPage = GlobalNavigationModule.OrdersMenuClick(CurrentDriver, ordersButton);
         }
