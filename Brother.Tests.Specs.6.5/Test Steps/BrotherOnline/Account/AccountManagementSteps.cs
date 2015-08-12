@@ -53,6 +53,14 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             Then("If I navigate back to the Brother Online My Account page");
             NextPage = GlobalNavigationModule.BrotherOnlineGoHome(CurrentDriver);
         }
+
+        [Then(@"I can navigate back to Brother Online home page with my creative center account")]
+        public void ThenICanNavigateBackToBrotherOnlineHomePageWithCcAcc()
+        {      
+            CurrentPage.As<WelcomeBackPage>().BroOnlineHomeClick();    
+        }
+
+
         [Then(@"If I go to My Account")]
         [Then(@"If I navigate back to the Brother Online My Account page")]
         public void ThenIfINavigateBackToTheBrotherOnlineMyAccountPage()
@@ -140,8 +148,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [When(@"I clicked on Business Details whilst logged in with my creative center account")]
         public void WhenIClickedOnBusinessDetailsWhilstUsingCcAcc()
         {
-            var businessDetailsButton = GlobalNavigationModule.GetMyAccountMenuItem("BusinessDetails");
-            NextPage = GlobalNavigationModule.BusinessDetailsMenuClick(CurrentDriver, businessDetailsButton);
+            CurrentPage.As<WelcomeBackPage>().BusinessDetailsClick();
         }
 
         [When(@"I click on My Address")]
@@ -157,10 +164,22 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<BusinessDetailsPage>().IsUpdateButtonAvailable();
         }
 
+        [Then(@"I am redirected to the Business Details Page for my creative center account")]
+        public void WhenIAmRedirectedToTheBusinessDetailsPageForCcAcc()
+        {
+            CurrentPage.As<WelcomeBackPage>().IsBusinessUpdateButtonAvailable();
+        }
+
         [Then(@"I can see that use account for business is selected")]
         public void UseAccountForBusinessIsSelected()
         {
             CurrentPage.As<BusinessDetailsPage>().UseAccountForBusinessIsSelected();
+        }
+
+        [Then(@"I can see that use account for business is selected for creative center details")]
+        public void UseAccountForBusinessIsSelectedForcc()
+        {
+            CurrentPage.As<WelcomeBackPage>().UseAccountForBusinessIsSelectedForCc();
         }
 
         [Then(@"I can validate the update was successful")]
