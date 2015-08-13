@@ -52,7 +52,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         public void ThenICanNavigateBackToBrotherOnlineHomePage()
         {
             Then("If I navigate back to the Brother Online My Account page");
-            NextPage = GlobalNavigationModule.BrotherOnlineGoHome(CurrentDriver);
+//            NextPage = GlobalNavigationModule.BrotherOnlineGoHome(CurrentDriver);
         }
 
         [Then(@"I can navigate back to Brother Online home page with my creative center account")]
