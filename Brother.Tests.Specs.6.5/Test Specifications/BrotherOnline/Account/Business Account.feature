@@ -6,7 +6,7 @@ Feature: Business Account
 
 #Validate that a Business Account holder is able to swap to a Customer Account
 Scenario: Create a business account change the business account to be Customer Account
-Given I want to create a new account with Brother Online "United Kingdom"
+	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
 	And I am redirected to the Brother Login/Register page
 	And I have Checked No I Do Not Have An Account Checkbox
