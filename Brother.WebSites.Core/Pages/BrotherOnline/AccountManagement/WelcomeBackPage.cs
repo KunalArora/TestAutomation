@@ -125,7 +125,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             AssertElementPresent(InkDevicePropertiesContainer, "Ink Device Container");
         }
 
-        public void VerifyContainerHeader(string title)
+        public void VerifyContainerheader(string title)
         {
             if (Containerheader == null)
             {
