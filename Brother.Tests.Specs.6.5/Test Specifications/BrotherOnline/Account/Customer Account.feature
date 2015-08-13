@@ -541,11 +541,11 @@ Scenarios:
 | Denmark		    |
 | Portugal		    |
 | Finland		    |
-| Slovenia			|
-| Slovakia 		|
+# | Slovenia			|
+# | Slovakia 		|
 | Belgium  			|
 | Netherlands		|
-| Poland			|
+# | Poland			|
 
 
 

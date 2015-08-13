@@ -1257,11 +1257,8 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestCaseAttribute("Denmark", null)]
         [NUnit.Framework.TestCaseAttribute("Portugal", null)]
         [NUnit.Framework.TestCaseAttribute("Finland", null)]
-        [NUnit.Framework.TestCaseAttribute("Slovenia", null)]
-        [NUnit.Framework.TestCaseAttribute("Slovakia", null)]
         [NUnit.Framework.TestCaseAttribute("Belgium", null)]
         [NUnit.Framework.TestCaseAttribute("Netherlands", null)]
-        [NUnit.Framework.TestCaseAttribute("Poland", null)]
         public virtual void CustomerCreatesANewAccountWithBrotherOnlineUsingValidCredentialsConfirmByEmailOnMultiLingualSitesSignInAndSignOut(string country, string[] exampleTags)
         {
             string[] @__tags = new string[] {
