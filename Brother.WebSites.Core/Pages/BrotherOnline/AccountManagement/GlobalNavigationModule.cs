@@ -371,14 +371,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             personalDetailsMenuItem.Click();
             return GetInstance<MyPersonalDetailsPage>(driver, "", "");
         }
-
-        // Old Method prior to GUIds on my account menu
-        //public static MySignInDetailsPage MySignInDetailsMenuOptionClick(IWebDriver driver, IWebElement signInDetailsMenuItem)
-        //{
-        //    signInDetailsMenuItem.Click();
-        //    return GetInstance<MySignInDetailsPage>(driver, "", "");
-        //}
-
+        
         // New method after addition of GUIds on my account menu
         public static MySignInDetailsPage MySignInDetailsMenuOptionClick(IWebDriver driver)
         {
@@ -387,7 +380,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             signInMenuitem.Click();
             return GetInstance<MySignInDetailsPage>(driver, "", "");
         }
-
         
         public static MySignInDetailsPage SignInPreferencesButtonClick(IWebDriver driver, IWebElement button)
         {
@@ -396,30 +388,14 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             return GetInstance<MySignInDetailsPage>(driver, "", "");
         }
 
-        
-
-        
-        // Old Method prior to GUIds on my account menu
-        //public static MyAddressDetailsPage MyAdressDetailsMenuOptionClick(IWebDriver driver, IWebElement addressdetalsmenuitem)
-        //{
-        //    addressdetalsmenuitem.Click();
-        //    return GetInstance<MyAddressDetailsPage>(driver, "", "");
-        //}
-
         // New method after addition of GUIds on my account menu
-        public static MyAddressDetailsPage MyAdressDetailsMenuOptionClick(IWebDriver driver)
+        public static MyAddressDetailsPage MyAddressDetailsMenuOptionClick(IWebDriver driver)
         {
             var addrdetailsmenuitem = driver.FindElement(By.Id("8619a6b9-7f08-4c4f-9de5-9db6d84bbc5d"));
             TestCheck.AssertIsNotNull(addrdetailsmenuitem, "My Address Menu Item");
             addrdetailsmenuitem.Click();
             return GetInstance<MyAddressDetailsPage>(driver, "", "");
         }
-
-
-
-
-        
-
 
         public static MyAddressDetailsPage AddressBookButtonClick(IWebDriver driver, IWebElement button)
         {
@@ -452,6 +428,14 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             menuItem.Click();
             return GetInstance<BusinessDetailsPage>(driver, "", "");
         }
+
+        //public static WelcomeBackPage MyAccountTopNavMenuClick(IWebElement menu)
+        //{
+        //    TestCheck.AssertIsNotNull(menu, "My Account Top Nav Menu");
+        //    menu.Click();
+        //    return GetInstance<WelcomeBackPage>(driver, "", "");
+        //}
+        //MyAccountClick
 
         // NEW - override now that we have static ID's for menu items
         public static WelcomeBackPage MyAccountMenuItemClick(IWebDriver driver)

@@ -376,13 +376,13 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Customer cannot updatethe personal details if mandatory fields are left blank")]
+        [NUnit.Framework.DescriptionAttribute("Customer cannot update the personal details if mandatory fields are left blank")]
         [NUnit.Framework.CategoryAttribute("TEST")]
         [NUnit.Framework.CategoryAttribute("UAT")]
         [NUnit.Framework.CategoryAttribute("PROD")]
-        public virtual void CustomerCannotUpdatethePersonalDetailsIfMandatoryFieldsAreLeftBlank()
+        public virtual void CustomerCannotUpdateThePersonalDetailsIfMandatoryFieldsAreLeftBlank()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer cannot updatethe personal details if mandatory fields are left blank", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer cannot update the personal details if mandatory fields are left blank", new string[] {
                         "TEST",
                         "UAT",
                         "PROD"});
