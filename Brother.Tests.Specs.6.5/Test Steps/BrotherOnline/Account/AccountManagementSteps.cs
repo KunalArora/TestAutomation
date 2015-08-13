@@ -51,7 +51,6 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [Then(@"I can navigate back to Brother Online home page")]
         public void ThenICanNavigateBackToBrotherOnlineHomePage()
         {
-            //Then("If I navigate back to the Brother Online My Account page");
             NextPage = GlobalNavigationModule.BrotherOnlineGoHome(CurrentDriver);
         }
 
@@ -65,8 +64,9 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [Then(@"If I navigate back to the Brother Online My Account page")]
         public void ThenIfINavigateBackToTheBrotherOnlineMyAccountPage()
         {
-            var menu = GlobalNavigationModule.GetPrimaryNavigationMenuItem("MyAccount");
-            NextPage = GlobalNavigationModule.MyAccountMenuItemClick(CurrentDriver);
+            NextPage = GlobalNavigationModule.BrotherOnlineGoHome(CurrentDriver);
+//            var menu = GlobalNavigationModule.GetPrimaryNavigationMenuItem("MyAccount");
+//            NextPage = GlobalNavigationModule.MyAccountTopNavMenuClick(menu);
         }
 
 		[When(@"I can sign out of Brother Online")]
@@ -155,7 +155,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             //var myaddressdetailsButton = GlobalNavigationModule.GetMyAccountMenuItem("AddressDetails");
             //NextPage = GlobalNavigationModule.MyAdressDetailsMenuOptionClick(CurrentDriver, myaddressdetailsButton);
-            NextPage = GlobalNavigationModule.MyAdressDetailsMenuOptionClick(CurrentDriver);
+            NextPage = GlobalNavigationModule.MyAddressDetailsMenuOptionClick(CurrentDriver);
         }
 
         [When(@"I am redirected to the Business Details Page")]
