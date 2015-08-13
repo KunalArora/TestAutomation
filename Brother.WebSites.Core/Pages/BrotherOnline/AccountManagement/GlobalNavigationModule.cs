@@ -23,7 +23,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         private const string PaymentMethodsMenuItem = "2cd6775a-02e4-4478-8818-de518fe73cf8";
         private const string BrotherOnlineGoHomeMenuItem = "110d559f-dea5-42ea-9c1c-8a5df7e70ef9";
         private const string MyBusinessDetailsMenuItem = "294daeb7-aaa8-4202-b845-d89121cf3b3d";
-        private const string InstantInkMenuItem = "f200cbab-dac8-4dfd-a10f-9c1af427a95c";
         //private const string SideNavMenu = @".side-nav";
         private const string ProductList = @"#product-list";
         private const string BrotherHomePage = "#master-logo > a";
@@ -460,12 +459,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             TestCheck.AssertIsNotNull(menuItem, "My Account Menu Item");
             menuItem.Click();
             return GetInstance<WelcomeBackPage>(driver, "", "");
-        }
-
-        public static IWebElement GetInstantInkMenuItem(IWebDriver driver)
-        {
-            var menuItem = driver.FindElement(By.Id(InstantInkMenuItem));
-            return menuItem;
         }
 
 #endregion MyAccount menu items
