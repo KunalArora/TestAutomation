@@ -29,8 +29,7 @@ namespace Brother.Tests.Specs
         [Then(@"I can see the Ink Supply menu option from the Bol home page")]
         public void ThenICanSeeTheInkSupplyMenuOptionFromTheBolHomePage()
         {
-            //var menuItem = GlobalNavigationModule.GetProductNavigationMenu("InstantInk");
-            var menuItem = GlobalNavigationModule.GetInstantInkMenuItem(CurrentDriver);
+            var menuItem = GlobalNavigationModule.GetProductNavigationMenu("InstantInk");
             TestCheck.AssertIsNotNull(menuItem, "Is Instant Ink menu present");
         }
 
@@ -41,8 +40,7 @@ namespace Brother.Tests.Specs
         
         public void ThenIfInkSupplyIsClicked()
         {
-            //var menuItem = GlobalNavigationModule.GetProductNavigationMenu("InstantInk");
-            var menuItem = GlobalNavigationModule.GetInstantInkMenuItem(CurrentDriver);
+            var menuItem = GlobalNavigationModule.GetProductNavigationMenu("InstantInk");
             menuItem.Click();
 
             //CurrentPage.As<WelcomeBackPage>().IsInkDevicePropertiesContainerAvailable();
@@ -61,7 +59,7 @@ namespace Brother.Tests.Specs
         public void WhenICanSeeTheInkSupplyHeaderWithName(string title)
         {
             //IWebElement title = CurrentDriver.FindElement(By.ClassName());
-            CurrentPage.As<WelcomeBackPage>().VerifyContainerHeader(title);
+            CurrentPage.As<WelcomeBackPage>().VerifyContainerheader(title);
         }
 
 
