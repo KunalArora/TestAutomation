@@ -42,7 +42,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                         "AssertIsNotNull Failed: [{0}] validation didn't match expectations. Expected Null, Actual [{1}]",
                         validationMessage, itemToCheck));
             }
-        }
+         }
 
         public static void AssertFailTest(string validationMessage)
         {
