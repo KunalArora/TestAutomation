@@ -77,12 +77,12 @@ namespace Brother.Tests.Selenium.Lib.Support
         {
             var uri = string.Format(@"http://{0}:{1}/wd/hub", ipAddress, port);
             var capabilities = SetDesiredCapabilities();
-            IWebDriver newDriver = null;
+            IWebDriver newDriver;
             try
             {
 //                if (Utils.CheckForPortInUse(ipAddress, Convert.ToInt32(port)) == false)
 //                {
-                    newDriver = new RemoteWebDriver(new Uri(uri), capabilities);
+                newDriver = new RemoteWebDriver(new Uri(uri), capabilities, new TimeSpan(0, 0, 1, 0));
 //                }
                 //else
                 //{
