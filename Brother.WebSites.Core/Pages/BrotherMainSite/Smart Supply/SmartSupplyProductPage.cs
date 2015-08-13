@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -43,6 +44,8 @@ namespace Brother.Tests.Selenium.Lib.Pages.BrotherMainSite.Smart_Supply
         public void AddSmartSupplyProductToBasketButtonClick()
         {
             AddtoBasketBrotherSupplyClubProduct.Click();
+            // Checking if the add to cart click event is performed fully
+            WebDriver.Wait(DurationType.Second, 5);
         }
 
         [FindsBy(How = How.CssSelector, Using = ".basket-container")]

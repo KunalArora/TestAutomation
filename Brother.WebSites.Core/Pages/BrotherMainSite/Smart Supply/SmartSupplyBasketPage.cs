@@ -24,18 +24,18 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.Smart_Supply
         }*/
 
         [FindsBy(How = How.CssSelector, Using = ".styled-checkbox")]
-        public IWebElement BSCOptincheckbox;
-        public void IsBSCOptincheckboxAvailable()
+        public IWebElement BSCOptInCheckBox;
+        public void IsBSCOptInCheckBoxAvailable()
         {
             try
             {
-                if (BSCOptincheckbox == null)
+                if (BSCOptInCheckBox == null)
                     throw new Exception("Unable to find the checkbox to opt-in for Supply Club in basket page");
             }
             catch (NotFoundException notFoundException)
             {
                 MsgOutput(string.Format("Exception was [{0}]", notFoundException));
-                AssertElementPresent(BSCOptincheckbox, "Benefits on Product and delivery mentioned");
+                AssertElementPresent(BSCOptInCheckBox, "Benefits on Product and delivery mentioned");
             }
         }
 
@@ -67,19 +67,40 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.Smart_Supply
         public IList<IWebElement> PriceItemsOfBSCBasketElements;
         
 
-        [FindsBy(How = How.CssSelector, Using = ".cart-view .total-summary .totals .total-values")]
-        public IList<IWebElement> PriceCalculationItemsOfBSCBasketElements;
+        //[FindsBy(How = How.CssSelector, Using = ".cart-view .total-summary .totals .total-values")]
+        //public IList<IWebElement> PriceCalculationItemsOfBSCBasketElements;
+
+        [FindsBy(How = How.CssSelector, Using = "#main > div > div > div.content-unit.six > div.cart-view > div.total-summary.cf > div > div.total-values > span:nth-child(2)")]
+        public IWebElement PriceDiscountForNormalUser; 
 
          public bool CheckForDiscountAmount(string normaluserdiscount)
          {
-          string[] nd = PriceCalculationItemsOfBSCBasketElements.ElementAt(0).Text.Split(' ');
-          var nda = nd.ElementAt(1);
-          if(PriceCalculationItemsOfBSCBasketElements == null)
-           throw new Exception("Unable to find promo texts on mouse hover over basket");
+          string nd = PriceDiscountForNormalUser.Text;
+          if (PriceDiscountForNormalUser == null)
+           throw new Exception("Unable to find the discount option in the listing of the total summary");
 
-          AssertElementText(PriceCalculationItemsOfBSCBasketElements.ElementAt(1), normaluserdiscount, "Discount value is zero for normal user");
-          if (nda == "€ 0,00") return true;
+          AssertElementText(PriceDiscountForNormalUser, normaluserdiscount, "Discount value is zero for normal user"); 
+          if (nd == "€ 0,00") return true;
           return false;
          }
+
+        public void ClickBSCOptInCheckBox()
+        {
+           // Checking if the Checkbox is already visible
+        WebDriver.Wait(DurationType.Second, 2);
+        BSCOptInCheckBox.Click();
+        }
+
+        public bool CheckForDiscountAmount()
+        {
+            string nd = PriceDiscountForNormalUser.Text;
+            if (PriceDiscountForNormalUser == null)
+                throw new Exception("Unable to find promo texts on mouse hover over basket");
+
+            AssertElementNotContainsText(PriceDiscountForNormalUser, "€ 0,00", "Discount value is zero for normal user");
+            if (nd != "€ 0,00") return true;
+            return false;
+        }
+
     }
 }
