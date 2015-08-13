@@ -21,6 +21,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         private const string SideNavMenu = @".content-box.left-nav-container.cf .side-nav";
         private const string MyAccountMenuItem = "#6d822e49-5b57-4c4c-8e2d-3f4a29b49b05.tab-btn";
         private const string PaymentMethodsMenuItem = "2cd6775a-02e4-4478-8818-de518fe73cf8";
+        private const string BrotherOnlineGoHomeMenuItem = "110d559f-dea5-42ea-9c1c-8a5df7e70ef9";
         //private const string SideNavMenu = @".side-nav";
         private const string ProductList = @"#product-list";
         private const string BrotherHomePage = "#master-logo > a";
@@ -302,14 +303,15 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
 
         public static WelcomeBackPage BrotherOnlineGoHome(IWebDriver driver)
         {
-            var accountMenuItem = GetAccountMenuItem(driver, "BrotherOnlineHome");
-            if (accountMenuItem != null)
+            //var accountMenuItem = GetAccountMenuItem(driver, "BrotherOnlineHome");
+            var brotherOnlineGoHomeMenuItem = driver.FindElement(By.Id(BrotherOnlineGoHomeMenuItem));
+            if (brotherOnlineGoHomeMenuItem != null)
             {
-                accountMenuItem.Click();
+                brotherOnlineGoHomeMenuItem.Click();
             }
             else
             {
-                MsgOutput("Unable to obtain the account menu item for Brother Online Home");
+                MsgOutput("Unable to obtain the account menu item for Brother Online Go Home");
             }
             return GetInstance<WelcomeBackPage>(driver, "", "");
         }
