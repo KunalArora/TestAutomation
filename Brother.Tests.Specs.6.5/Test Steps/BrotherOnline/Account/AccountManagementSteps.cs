@@ -104,8 +104,9 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [When(@"I click on Sign In Details")]
         public void WhenIClickOnSignInDetails()
         {
-            var signInDetailsMenu = GlobalNavigationModule.GetMyAccountMenuItem("SignInDetails");
-            NextPage = GlobalNavigationModule.MySignInDetailsMenuOptionClick(CurrentDriver, signInDetailsMenu);
+            //var signInDetailsMenu = GlobalNavigationModule.GetMyAccountMenuItem("SignInDetails");
+            //NextPage = GlobalNavigationModule.MySignInDetailsMenuOptionClick(CurrentDriver, signInDetailsMenu);
+            NextPage = GlobalNavigationModule.MySignInDetailsMenuOptionClick(CurrentDriver);
         }
         
         [Then(@"I can click on Payment Methods")]
@@ -152,8 +153,9 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [When(@"I click on My Address")]
         public void WhenIClickOnMyAddress()
         {
-            var myaddressdetailsButton = GlobalNavigationModule.GetMyAccountMenuItem("AddressDetails");
-            NextPage = GlobalNavigationModule.MyAdressDetailsMenuOptionClick(CurrentDriver, myaddressdetailsButton);
+            //var myaddressdetailsButton = GlobalNavigationModule.GetMyAccountMenuItem("AddressDetails");
+            //NextPage = GlobalNavigationModule.MyAdressDetailsMenuOptionClick(CurrentDriver, myaddressdetailsButton);
+            NextPage = GlobalNavigationModule.MyAdressDetailsMenuOptionClick(CurrentDriver);
         }
 
         [When(@"I am redirected to the Business Details Page")]

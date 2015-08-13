@@ -303,18 +303,27 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             return GetInstance<HomePage>(driver, "", "");
         }
 
+        // Old method after addition of GUIDs for my acc menu item
+        //public static WelcomeBackPage BrotherOnlineGoHome(IWebDriver driver)
+        //{
+        //    var accountMenuItem = GetAccountMenuItem(driver, "BrotherOnlineHome");
+        //    if (accountMenuItem != null)
+        //    {
+        //        accountMenuItem.Click();
+        //    }
+        //    else
+        //    {
+        //        MsgOutput("Unable to obtain the account menu item for Brother Online Home");
+        //    }
+        //    return GetInstance<WelcomeBackPage>(driver, "", "");
+        //}
+
+        // New method after addition of GUIDs for my acc menu item
         public static WelcomeBackPage BrotherOnlineGoHome(IWebDriver driver)
         {
-            //var accountMenuItem = GetAccountMenuItem(driver, "BrotherOnlineHome");
-            var brotherOnlineGoHomeMenuItem = driver.FindElement(By.Id(BrotherOnlineGoHomeMenuItem));
-            if (brotherOnlineGoHomeMenuItem != null)
-            {
-                brotherOnlineGoHomeMenuItem.Click();
-            }
-            else
-            {
-                MsgOutput("Unable to obtain the account menu item for Brother Online Go Home");
-            }
+            var accountMenuItem = driver.FindElement(By.Id("110d559f-dea5-42ea-9c1c-8a5df7e70ef9"));
+            TestCheck.AssertIsNotNull(accountMenuItem, "Brother Online Home Menu Item");
+            accountMenuItem.Click();
             return GetInstance<WelcomeBackPage>(driver, "", "");
         }
 
@@ -362,23 +371,55 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             personalDetailsMenuItem.Click();
             return GetInstance<MyPersonalDetailsPage>(driver, "", "");
         }
-        public static MySignInDetailsPage MySignInDetailsMenuOptionClick(IWebDriver driver, IWebElement signInDetailsMenuItem)
+
+        // Old Method prior to GUIds on my account menu
+        //public static MySignInDetailsPage MySignInDetailsMenuOptionClick(IWebDriver driver, IWebElement signInDetailsMenuItem)
+        //{
+        //    signInDetailsMenuItem.Click();
+        //    return GetInstance<MySignInDetailsPage>(driver, "", "");
+        //}
+
+        // New method after addition of GUIds on my account menu
+        public static MySignInDetailsPage MySignInDetailsMenuOptionClick(IWebDriver driver)
         {
-            signInDetailsMenuItem.Click();
+            var signInMenuitem = driver.FindElement(By.Id("e4343ecf-39fd-4545-b762-0a81b3425c3e"));
+            TestCheck.AssertIsNotNull(signInMenuitem, "My Sign In Details Menu Item");
+            signInMenuitem.Click();
             return GetInstance<MySignInDetailsPage>(driver, "", "");
         }
 
+        
         public static MySignInDetailsPage SignInPreferencesButtonClick(IWebDriver driver, IWebElement button)
         {
             TestCheck.AssertIsNotNull(button, "Sign In Preferences Button");
-            button.Click();
+           button.Click();
             return GetInstance<MySignInDetailsPage>(driver, "", "");
         }
-        public static MyAddressDetailsPage MyAdressDetailsMenuOptionClick(IWebDriver driver, IWebElement addressdetalsmenuitem)
+
+        
+
+        
+        // Old Method prior to GUIds on my account menu
+        //public static MyAddressDetailsPage MyAdressDetailsMenuOptionClick(IWebDriver driver, IWebElement addressdetalsmenuitem)
+        //{
+        //    addressdetalsmenuitem.Click();
+        //    return GetInstance<MyAddressDetailsPage>(driver, "", "");
+        //}
+
+        // New method after addition of GUIds on my account menu
+        public static MyAddressDetailsPage MyAdressDetailsMenuOptionClick(IWebDriver driver)
         {
-            addressdetalsmenuitem.Click();
+            var addrdetailsmenuitem = driver.FindElement(By.Id("8619a6b9-7f08-4c4f-9de5-9db6d84bbc5d"));
+            TestCheck.AssertIsNotNull(addrdetailsmenuitem, "My Address Menu Item");
+            addrdetailsmenuitem.Click();
             return GetInstance<MyAddressDetailsPage>(driver, "", "");
         }
+
+
+
+
+        
+
 
         public static MyAddressDetailsPage AddressBookButtonClick(IWebDriver driver, IWebElement button)
         {
