@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
@@ -18,6 +19,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
         private const string contractSelector = @"#content_1_InputContractType_Input";
+        private const string customertab = @"a[href='/mps/dealer/proposals/create/customer-information']";
 
         [FindsBy(How = How.Id, Using = "content_1_ComponentIntroductionAlert")]
         public IWebElement PromptText;
@@ -31,6 +33,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement ProposalNameField;
         [FindsBy(How = How.Id, Using = "content_1_ButtonNext")]
         public IWebElement NextButton;
+        [FindsBy(How = How.CssSelector, Using = "a[href='/mps/dealer/proposals/create/customer-information']")]
+        public IWebElement CustomerInformationTab;
+        [FindsBy(How = How.CssSelector, Using = ".first")]
+        public IList<IWebElement> ProposalCreationTabs;
+        
+
+        
 
 
         public void IsPromptTextDisplayed()
@@ -74,6 +83,28 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private IWebElement ContractTypeSelectorDropdown()
         {
             return GetElementByCssSelector(contractSelector, 10);
+        }
+
+
+        private IWebElement CustomerTabElement()
+        {
+            return GetElementByCssSelector(customertab, 10);
+        }
+
+        public void CustomerTabNotDisplayed()
+        {
+            //TestCheck.AssertIsEqual(true, CustomerTabElement().Size.IsEmpty, "Customer Tab is displayed");
+            //TestCheck.AssertIsNullOrEmpty("", "");
+
+            TestCheck.AssertIsEqual(5, ProposalCreationTabs.Count, "");
+        }
+
+        public void CustomerTabIsDisplayed()
+        {
+            //TestCheck.AssertIsEqual(true, CustomerTabElement().Size.IsEmpty, "Customer Tab is displayed");
+            //TestCheck.AssertIsNullOrEmpty("", "");
+
+            TestCheck.AssertIsEqual(6, ProposalCreationTabs.Count, "");
         }
 
 
@@ -161,11 +192,25 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             WebDriver.Wait(DurationType.Millisecond, 100);
         }
 
+        public bool IsGermanSystem()
+        {
+            return ProposalCreationTabs.Count.Equals(5);
+        }
+
         public DealerProposalsCreateCustomerInformationPage ClickNextButton()
         {
             ScrollTo(NextButton);
             NextButton.Click();
+
             return GetTabInstance<DealerProposalsCreateCustomerInformationPage>(Driver);
+        }
+
+        public DealerProposalsCreateTermAndTypePage ClickNextButtonGermany()
+        {
+            ScrollTo(NextButton);
+            NextButton.Click();
+
+            return GetTabInstance<DealerProposalsCreateTermAndTypePage>(Driver);
         }
     }
 }

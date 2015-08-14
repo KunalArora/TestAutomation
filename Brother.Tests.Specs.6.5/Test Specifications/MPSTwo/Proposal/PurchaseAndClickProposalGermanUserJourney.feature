@@ -8,8 +8,8 @@ Feature: PurchaseAndClickProposalGermanUserJourney
 Scenario Outline: Create different varieties of German Purchase and Click proposal for new customer on Minimum Volume Term
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
+	And Customer Information tab is not displayed
 	When I fill Proposal Description for "<ContractType>" Contract type
-	And I select "<CreateOption>" button for customer data capture 
 	And I Enter "<UsageType>" usage type "<Contract>" contract length and "<Billing>" billing on Term and Type details 
 	And I "<PriceHardware>" Price Hardware radio button
 	And I display "<Printer>" device screen
@@ -71,8 +71,8 @@ Scenario Outline: Create different varieties of German Purchase and Click propos
 Scenario Outline: Create different varieties of German Purchase and Click proposal for an existing customer
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
+	And Customer Information tab is not displayed
 	When I fill Proposal Description for "<ContractType>" Contract type
-	And I choose an existing contact from the list of available contacts
 	And I Enter "<UsageType>" usage type "<Contract>" contract length and "<Billing>" billing on Term and Type details  
 	And I "<PriceHardware>" Price Hardware radio button
 	And I display "<Printer>" device screen

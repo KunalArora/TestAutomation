@@ -226,8 +226,22 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<DealerProposalsCreateDescriptionPage>().SelectingContractType(contract);
             CurrentPage.As<DealerProposalsCreateDescriptionPage>().EnterProposalName("");
             CurrentPage.As<DealerProposalsCreateDescriptionPage>().EnterLeadCodeRef("");
-            NextPage = CurrentPage.As<DealerProposalsCreateDescriptionPage>().ClickNextButton();
+            CurrentPage.As<DealerProposalsCreateDescriptionPage>().CustomerTabNotDisplayed();
+            if (CurrentPage.As<DealerProposalsCreateDescriptionPage>().IsGermanSystem())
+            {
+                NextPage = CurrentPage.As<DealerProposalsCreateDescriptionPage>().ClickNextButtonGermany();
+            }
+            else
+                NextPage = CurrentPage.As<DealerProposalsCreateDescriptionPage>().ClickNextButton();
         }
+
+        [Given(@"Customer Information tab is not displayed")]
+        [When(@"Customer Information tab is not displayed")]
+        public void WhenCustomerInformationTabIsNotDisplayed()
+        {
+            CurrentPage.As<DealerProposalsCreateDescriptionPage>().CustomerTabNotDisplayed();
+        }
+
 
         [When(@"I begin the proposal creation process for Purchase \+ Click Service")]
         public void WhenIBeginTheProposalCreationProcessForPurchaseClickService()
