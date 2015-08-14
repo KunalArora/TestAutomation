@@ -137,6 +137,16 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             AssertElementPresent(InstantInkSupplyMenuItem, "Ink Supply Menu Item");
         }
 
+        // Without moving off the Welcome Back page
+        public void InkSupplyMenuItemClick()
+        {
+            if (InstantInkSupplyMenuItem == null)
+            {
+                throw new Exception("Unable to find Ink Supply Menu Item on page");
+            }
+            InstantInkSupplyMenuItem.Click();
+        }
+
         public bool IsInkSupplyMenuItemMissing()
         {
             try

@@ -21,9 +21,7 @@ namespace Brother.Tests.Specs
         [Then(@"I can see the Instant Ink menu option from the BOL home page")]
         public void ThenICanSeeTheInstantInkMenuOptionFromTheBolHomePage()
         {
-            //var menuItem = GlobalNavigationModule.GetProductNavigationMenu("InstantInk");
             CurrentPage.As<WelcomeBackPage>().IsInkSupplyMenuItemAvailable();
-            //TestCheck.AssertIsNotNull(menuItem, "Is Instant Ink menu available");
         }
 
         [Then(@"I can see the Ink Supply Status Monitor button")]

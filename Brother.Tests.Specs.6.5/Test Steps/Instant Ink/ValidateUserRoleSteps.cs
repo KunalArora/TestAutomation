@@ -21,19 +21,15 @@ namespace Brother.Tests.Specs
         [Then(@"I can see the Ink Supply menu option from the Bol home page")]
         public void ThenICanSeeTheInkSupplyMenuOptionFromTheBolHomePage()
         {
-            var menuItem = GlobalNavigationModule.GetProductNavigationMenu("InstantInk");
-            TestCheck.AssertIsNotNull(menuItem, "Is Instant Ink menu present");
+            CurrentPage.As<WelcomeBackPage>().IsInkSupplyMenuItemAvailable();
         }
-
 
         [When(@"I click Ink Supply button")]
         [Given(@"Ink Supply is clicked")]
         [Then(@"Ink Supply is clicked")]
-
         public void ThenIfInkSupplyIsClicked()
         {
-            var menuItem = GlobalNavigationModule.GetProductNavigationMenu("InstantInk");
-            menuItem.Click();
+            CurrentPage.As<WelcomeBackPage>().InkSupplyMenuItemClick();
         }
 
 

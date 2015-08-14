@@ -15,5 +15,4 @@ Scenario:Validate a valid user can sign in to Ink
     And I can see the Ink Supply header with name "Status Monitor"
 	Then device name "MFC-J5720DW"should be displayed
 	Then device serial number "E73183G4F387882" should be displayed
-	And I can navigate back to Brother Online home page
 	Then I can sign out of Brother Online
