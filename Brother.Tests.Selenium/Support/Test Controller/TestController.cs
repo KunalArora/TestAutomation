@@ -77,7 +77,7 @@ namespace Brother.Tests.Selenium.Lib.Support
         {
             var uri = string.Format(@"http://{0}:{1}/wd/hub", ipAddress, port);
             var capabilities = SetDesiredCapabilities();
-            IWebDriver newDriver;
+            IWebDriver newDriver = null;
             try
             {
 //                if (Utils.CheckForPortInUse(ipAddress, Convert.ToInt32(port)) == false)

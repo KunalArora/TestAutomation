@@ -64,6 +64,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         [FindsBy(How = How.Id, Using = "110d559f-dea5-42ea-9c1c-8a5df7e70ef9")]
         public IWebElement BroOnlineLink;
 
+        [FindsBy(How = How.Id, Using = "f200cbab-dac8-4dfd-a10f-9c1af427a95c")]
+        public IWebElement InstantInkSupplyMenuItem;
+
         public bool IsWarningBarPresent(int retry, int timeToWait)
         {
             try
@@ -123,6 +126,37 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
                 throw new Exception("Unable to find ink device container on page");
             }
             AssertElementPresent(InkDevicePropertiesContainer, "Ink Device Container");
+        }
+
+        public void IsInkSupplyMenuItemAvailable()
+        {
+            if (InstantInkSupplyMenuItem == null)
+            {
+                throw new Exception("Unable to find Ink Supply Menu Item on page");
+            }
+            AssertElementPresent(InstantInkSupplyMenuItem, "Ink Supply Menu Item");
+        }
+
+        public bool IsInkSupplyMenuItemMissing()
+        {
+            try
+            {
+                // set global timeout and reset afterwards
+                Driver.FindElement(By.Id("f200cbab-dac8-4dfd-a10f-9c1af427a95c"));
+            }
+            catch (ElementNotVisibleException elementNotFound)
+            {
+                return true;
+            }
+            catch (WebDriverTimeoutException timedOut)
+            {
+                return true;
+            }
+            catch (WebDriverException timedOut)
+            {
+                return true;
+            }
+            return false;
         }
 
         public void VerifyContainerheader(string title)

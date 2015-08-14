@@ -70,12 +70,12 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             element.SendKeys(Keys.Space);
         }
 
-        public bool WaitForElementToExistById(string element)
+        public bool WaitForElementToExistById(string element, int timeOut)
         {
             var elementStatus = false;
             try
             {
-                var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(ElementSearchTimeout));
+                var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(timeOut));
                 elementStatus = wait.Until(ExpectedConditions.ElementIsVisible(By.Id(element))).Displayed;
             }
             catch (WebDriverException elementSearchTimeout)

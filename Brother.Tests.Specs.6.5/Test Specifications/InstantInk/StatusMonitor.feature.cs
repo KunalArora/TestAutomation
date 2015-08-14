@@ -70,7 +70,7 @@ namespace Brother.Tests.Specs.TestSpecifications.InstantInk
         public virtual void FeatureBackground()
         {
 #line 8
-#line 11
+#line 9
  testRunner.Given("I am logged onto Brother Online \"United Kingdom\" using valid credentials", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
         }
@@ -84,28 +84,28 @@ namespace Brother.Tests.Specs.TestSpecifications.InstantInk
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate when clicking on \"Status Monitor\" the user should be able to see what de" +
                     "vice have been set up against \"Brother Ink Supply\"", new string[] {
                         "ignore"});
-#line 14
+#line 12
 this.ScenarioSetup(scenarioInfo);
 #line 8
 this.FeatureBackground();
-#line 15
+#line 13
     testRunner.Given("I have been granted the user account with the \"Extranet\\Brother Online Ink Supply" +
                     " User\" role", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 17
+#line 14
  testRunner.Then("If I click on My Account menu", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 18
+#line 15
  testRunner.Then("I can see the Ink Supply menu option from the Bol home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 19
+#line 16
  testRunner.And("Ink Supply is clicked", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 20
+#line 17
     testRunner.Then("I can see the Ink Supply Status Monitor button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 21
+#line 18
  testRunner.When("I click on Status Monitor", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 22
+#line 19
  testRunner.Then("I can see the Status Monitor page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 28
+#line 20
  testRunner.And("I can navigate back to Brother Online home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 29
+#line 21
  testRunner.Then("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
