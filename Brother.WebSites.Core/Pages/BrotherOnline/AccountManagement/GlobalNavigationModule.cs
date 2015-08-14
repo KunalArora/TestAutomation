@@ -222,17 +222,16 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
                 var newUrl = string.Format("{0}{1}", currentUrl, url);
                 TestController.CurrentDriver.Navigate().GoToUrl(newUrl);
             }
-            //var newUrl = string.Format("{0}{1}", currentUrl, url);
-            //TestController.CurrentDriver.Navigate().GoToUrl(newUrl);
-
             return GetInstance<LaserPrintersPage>(driver, "", "");
         }
 
         // Notes: 
         //
+        //**DISCARDED - Use GUIDs now please
         // The Left hand menu on the Welcome Back page can be accessed using calls to 
         // GetProductNavidationMenu()
 
+        //**DISCARDED - Use GUIDs now please
         // When in My Account, the left hand menu list (orders, Invoices etc)
         //GetMyAccountMenuItem()
         
@@ -301,22 +300,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             GetSignOutLink(driver).Click();
             return GetInstance<HomePage>(driver, "", "");
         }
-
-        // Old method after addition of GUIDs for my acc menu item
-        //public static WelcomeBackPage BrotherOnlineGoHome(IWebDriver driver)
-        //{
-        //    var accountMenuItem = GetAccountMenuItem(driver, "BrotherOnlineHome");
-        //    if (accountMenuItem != null)
-        //    {
-        //        accountMenuItem.Click();
-        //    }
-        //    else
-        //    {
-        //        MsgOutput("Unable to obtain the account menu item for Brother Online Home");
-        //    }
-        //    return GetInstance<WelcomeBackPage>(driver, "", "");
-        //}
-
+        
         // New method after addition of GUIDs for my acc menu item
         public static WelcomeBackPage BrotherOnlineGoHome(IWebDriver driver)
         {

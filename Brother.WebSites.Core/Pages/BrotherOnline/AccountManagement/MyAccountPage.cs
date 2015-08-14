@@ -16,7 +16,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             get { return string.Empty; }
         }
 
-        [FindsBy(How = How.CssSelector, Using = "#227d43a9-3489-4b80-b229-5b9366d978f0")]
+        [FindsBy(How = How.Id, Using = "227d43a9-3489-4b80-b229-5b9366d978f0")]
         public IWebElement MyOrdersMenuItem;
 
         [FindsBy(How = How.CssSelector, Using = ".content-wrapper.my-invoices")]
