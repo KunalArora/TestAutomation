@@ -334,6 +334,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [When(@"I change the Installation Pack Unit Cost displayed to a value lower than the displayed Unit Cost")]
         public void WhenIChangeTheInstallationPackUnitCostDisplayedToAValueLowerThanTheDisplayedUnitCost()
         {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterModelUnitCost();
             CurrentPage.As<DealerProposalsCreateProductsPage>().EnterInstallationPackCostPriceLessThanDefault();
         }
 
