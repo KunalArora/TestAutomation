@@ -78,10 +78,14 @@ namespace Brother.Tests.Selenium.Lib.Support
             var uri = string.Format(@"http://{0}:{1}/wd/hub", ipAddress, port);
             var capabilities = SetDesiredCapabilities();
             IWebDriver newDriver = null;
+            
             try
             {
-//                if (Utils.CheckForPortInUse(ipAddress, Convert.ToInt32(port)) == false)
+                bool portInUse = true;
+                portInUse = Utils.CheckForPortInUse(ipAddress, Convert.ToInt32(port));
+                Helper.MsgOutput(string.Format("INFORMATION: About to create a new RemoteWebDriver instance. Port [{0}] in use status = [{1}]", port, portInUse));
 //                {
+                Helper.MsgOutput("Creating new Remote Web Driver instance with 1 minute timeout");
                 newDriver = new RemoteWebDriver(new Uri(uri), capabilities, new TimeSpan(0, 0, 1, 0));
 //                }
                 //else
