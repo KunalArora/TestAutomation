@@ -92,8 +92,9 @@ namespace Brother.Tests.Specs.OmniJoin.Plans
         public void ThenICanValidateThatSapHasAcceptedTheChangeOfOmniJoinPlan()
         {
             NextPage = GlobalNavigationModule.BackToBrotherOnlineButtonClick(CurrentDriver);
-            CurrentPage.As<WelcomeBackPage>().NavigateToMyAccountPage("United Kingdom");
-            var ordersButton = GlobalNavigationModule.GetMyAccountMenuItem("Orders");
+            NextPage = CurrentPage.As<WelcomeBackPage>().NavigateToMyAccountPage("United Kingdom");
+            //var ordersButton = GlobalNavigationModule.GetMyAccountMenuItem("Orders");
+            var ordersButton = CurrentPage.As<MyAccountPage>().GetMyOrdersMenuItem();
             NextPage = GlobalNavigationModule.OrdersMenuClick(CurrentDriver, ordersButton);
             CurrentPage.As<MyOrdersPage>().ValidateOmniJoinPlanChange();
         }

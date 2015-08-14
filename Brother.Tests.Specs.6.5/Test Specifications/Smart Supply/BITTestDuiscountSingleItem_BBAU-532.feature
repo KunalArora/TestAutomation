@@ -1,10 +1,10 @@
-﻿@ignore
+﻿@ignore 
 Feature:BOL - WS - BIT - Test discount ticket - calculation of discounts for single item
 As a Brother Supply Club user
 I need to add the supply club product to basket and see the club product discounts calculated correctly and displayed in correct order
 
 
-@ignore
+@ignore  
 Scenario: View Brother Supply Club product - calculation of discounts for single item on Basket Page
 Given I want to create a new account with Brother Online "Italy"
 	When I click on Create Account for "Italy"
@@ -33,13 +33,12 @@ Given I want to create a new account with Brother Online "Italy"
 	When I click on search for supply "TN2220"
 	When I click on Add to basket button
 	And I  click the smart supply basket icon
+	#And I click the checkout button
 	And I can see brother supply club benefits checkbox in the basket page
+	And I can see the Brother Club discounts offers on basket page
+	And I can see the product discount "€ 0,00" before opting in to Brother Supply Club
+	And I opt to join Brother Supply Club
+	And I can see a positive value in product discount after opting in to Brother Supply Club
+
 	
-	
-	#When I click on Add To Basket
-	#Then I should see the item "TN2220" in the Basket
-	#And I should see the Basket item count change to "1"
-	#When I click on Go to Basket
-	#Then I should see the item "TN2220" in the item list
-	#And I should see the Basket items count is "1"
-	#When I click Checkout  
+	  

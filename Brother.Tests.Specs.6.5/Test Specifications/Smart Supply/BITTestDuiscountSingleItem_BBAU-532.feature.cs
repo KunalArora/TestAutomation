@@ -133,8 +133,17 @@ testRunner.Given("I want to create a new account with Brother Online \"Italy\"",
  testRunner.When("I click on Add to basket button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 35
  testRunner.And("I  click the smart supply basket icon", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 36
+#line 37
  testRunner.And("I can see brother supply club benefits checkbox in the basket page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 38
+ testRunner.And("I can see the Brother Club discounts offers on basket page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 39
+ testRunner.And("I can see the product discount \"€ 0,00\" before opting in to Brother Supply Club", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 40
+ testRunner.And("I opt to join Brother Supply Club", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 41
+ testRunner.And("I can see a positive value in product discount after opting in to Brother Supply " +
+                    "Club", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

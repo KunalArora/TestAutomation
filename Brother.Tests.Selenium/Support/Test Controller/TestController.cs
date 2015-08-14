@@ -78,17 +78,24 @@ namespace Brother.Tests.Selenium.Lib.Support
             var uri = string.Format(@"http://{0}:{1}/wd/hub", ipAddress, port);
             var capabilities = SetDesiredCapabilities();
             IWebDriver newDriver = null;
+            
             try
             {
-                if (!Utils.CheckForPortInUse(ipAddress, Convert.ToInt32(port)))
-                {
-                    newDriver = new RemoteWebDriver(new Uri(uri), capabilities);
-                }
-                else
-                {
-                    Helper.MsgOutput("Unable to Connect to GhostDriver via RemoteWebDriver - Port in use");
-                    return null;
-                }
+                bool portInUse = true;
+                portInUse = Utils.CheckForPortInUse(ipAddress, Convert.ToInt32(port));
+                Helper.MsgOutput(string.Format("INFORMATION: About to create a new RemoteWebDriver instance. Port [{0}] in use status = [{1}]", port, portInUse));
+//                {
+                Helper.MsgOutput("Creating new Remote Web Driver instance with 1 minute timeout");
+                newDriver = new RemoteWebDriver(new Uri(uri), capabilities, new TimeSpan(0, 0, 1, 0));
+//                }
+                //else
+                //{
+                //    if (!Utils.IsPortAvailable(ipAddress, Convert.ToInt32(port)))
+                //    {
+                //        Helper.MsgOutput("Unable to Connect to GhostDriver via RemoteWebDriver - Port in use");
+                //        return null;
+                //    }
+                //}
             }
             catch (WebDriverException webDriverException)
             {
@@ -126,7 +133,10 @@ namespace Brother.Tests.Selenium.Lib.Support
                     break;
 
                 case "HL":
-                    HeadlessRunning();
+                    if (Utils.IsPortAvailable(_ipAddress, Convert.ToInt32(_driverPort)))
+                    {
+                        HeadlessRunning();
+                    }
                     break;
 
                 default:
@@ -226,11 +236,7 @@ namespace Brother.Tests.Selenium.Lib.Support
                 }
             }
             phantomJsProcessList = Process.GetProcessesByName(processName);
-            if (phantomJsProcessList.Length == 0)
-            {
-                return true;
-            }
-            return false;
+            return phantomJsProcessList.Length == 0;
         }
 
         public static int StartNewPhantomJsProcess(string ipAddress, string port)

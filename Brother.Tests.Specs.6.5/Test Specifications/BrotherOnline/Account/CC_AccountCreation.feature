@@ -2,7 +2,7 @@
 Feature: CreativeCenterTests
 
 # Validate that the creation of a new family creative center account also creates a validated brother online user account
-Scenario: (Failing - BBAU-2318, BBAU-2575) Validate that a user can create a family creative center account and that this action automatically creates a brother online account that is already validated
+Scenario: (Failing on Prod - BBAU-2575) Validate that a user can create a family creative center account and that this action automatically creates a brother online account that is already validated
 	Given I launch Brother Online for "United Kingdom"
 	When I navigate to and click the creative center link
 	Then I am taken to the creative center landing page
@@ -33,7 +33,7 @@ Scenario: (Failing - BBAU-2318, BBAU-2575) Validate that a user can create a fam
 	Then I am redirected to the Brother Home Page
 
 # Validate that the creation of a new business creative center account also creates a validated brother online business account
-Scenario: (Failing - BBAU-2318, BBAU-2575) Validate that a user can create a business creative center account and that this action automatically creates a brother online business account that is already validated
+Scenario: (Failing on Prod - BBAU-2575) Validate that a user can create a business creative center account and that this action automatically creates a brother online business account that is already validated
 	Given I launch Brother Online for "United Kingdom"
 	When I navigate to and click the creative center link
 	Then I am taken to the creative center landing page
@@ -59,12 +59,12 @@ Scenario: (Failing - BBAU-2318, BBAU-2575) Validate that a user can create a bus
 	Then I sign out of creative center		
 	Given I launch Brother Online for "United Kingdom"
 	Then I click on the sign in / create account button	
-	Then I should be able to log into ""(.*)"" Brother Online using my creative center account details	
-	Then If I navigate back to the Brother Online My Account page
+	Then I should be able to log into ""(.*)"" Brother Online using my creative center account details		
+	When I navigate to my account using creative center details
 	When I clicked on Business Details
-	And I am redirected to the Business Details Page
+	When I am redirected to the Business Details Page
 	Then I can see that use account for business is selected
-	Then I can navigate back to Brother Online home page
+	Then If I navigate back to the Brother Online My Account page
 	When I have clicked on Add Device				
 	When I am redirected to the Register Device page
 	Then I can sign out of Brother Online
@@ -164,7 +164,7 @@ Scenario: (Failing on Prod - BBAU-2575) Validate that a user cannot create a bus
 
 # Accounts created on DV2, QAS and Prod for the following test - existinguseraccount@guerrillamail.com/existingbusinessaccount@guerrillamail.com/Password100
 # Check that existing creative center family and business account holders cannot login with valid/invalid username/password combinations
-Scenario Outline: Validate that family or business account holders are unable to login to creative center with invalid credentials
+Scenario Outline: (Failing on Prod - BBAU-2575) Validate that family or business account holders are unable to login to creative center with invalid credentials
 	Given I launch Brother Online for "United Kingdom"
 	When I navigate to and click the creative center link
 	Then I am taken to the creative center landing page
@@ -185,3 +185,48 @@ Scenario Outline: Validate that family or business account holders are unable to
 		| "existinguseraccount@guerrillamail.com"       | "PaSsWoRd100"			   |
 		| "existingbusinessaccount@guerrillamail.com"	| "   Password100   "      |
 		| "existinguseraccount@guerrillamail.com"       | "Pass  word  100"	       |
+
+
+# Accounts created on DV2, QAS and Prod for the following test - existinguseraccount@guerrillamail.com/existingbusinessaccount@guerrillamail.com/Password100
+# Check that existing family and business account holders can still login with a username that has leading/trailing spaces or mixed letter casing
+Scenario Outline: (Failing on Prod - BBAU-2575) (Failing BBAU-2601) Validate that family or business account holders can still login to creative center with spaces or different case in the username providing the password is correct
+	Given I launch Brother Online for "United Kingdom"
+	When I navigate to and click the creative center link
+	Then I am taken to the creative center landing page
+	Then I click the business center link
+	Then I am taken to the creative center home page
+	And I click to not participate in the survey
+	Then I click the creative center register/login link
+	Then I am navigated to the creative center login page
+	When I enter a creative center email address containing <Email Address>
+	When I enter a valid Password for creative center <Password>
+	And I press the creative center sign in
+	Then I click the business center link
+	Then I am logged into creative center
+	Then I sign out of creative center	
+
+	Scenarios:
+		| Email Address											| Password      |
+		| "ExIsTiNgBuSiNeSsAcCoUnT@gUeRrIlLaMaIl.CoM"			| "Password100" |
+		| "     existinguseraccount@guerrillamail.com    "		| "Password100" |
+
+
+# Check creative center password and confirm password fields need to match
+Scenario Outline: (Failing on Prod - BBAU-2575) Validate that an error message is displayed on creative center if the password and create password fields do not match
+	Given I launch Brother Online for "United Kingdom"
+	When I navigate to and click the creative center link
+	Then I am taken to the creative center landing page
+	Then I click the business center link
+	Then I am taken to the creative center home page
+	And I click to not participate in the survey
+	Then I click the creative center register/login link
+	Then I am navigated to the creative center login page
+	And I have checked no to having a creative center account
+	When I enter a new Password for creative center <Password>
+	When I enter the different password in the creative center confirm password field containing <Confirm Password> and press tab
+	Then I should get an error message displayed on the creative center confirm password field
+
+	Scenarios:
+		| Email Address                               | Password      | Confirm Password |
+		| "existingbusinessaccount@guerillamail.com"  | "Password100" | "Password200"	 |
+	

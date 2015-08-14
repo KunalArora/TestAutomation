@@ -757,6 +757,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         }
 
         [When(@"I press the creative center sign in with invalid details")]
+        [When(@"I press the creative center sign in")]
         public void WhenIPressCcSignInWithInvalidDetails()
         {
             CurrentPage.As<HomePage>().ClickCcSignInWithInvalidDetails();
@@ -792,6 +793,14 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<RegistrationPage>().PopulateConfirmPasswordTextBox(confirmpassword);
             CurrentPage.As<RegistrationPage>().PopulateConfirmPasswordTextBox(Keys.Tab);
         }
+
+        [When(@"I enter the different password in the creative center confirm password field containing ""(.*)"" and press tab")]
+        public void WhenIEnterTheDifferentPasswordInTheCcConfirmPasswordFieldContainingAndPressTab(string confirmpassword)
+        {
+            CurrentPage.As<HomePage>().PopulateConfirmPasswordCcTextBox(confirmpassword);
+            CurrentPage.As<HomePage>().PopulateConfirmPasswordCcTextBox(Keys.Tab);
+        }
+
         [Then(@"I should refresh the current page to clear all error messages")]
         [Then(@"I refresh the current page")]
         [Then(@"I refresh the current page again")]
@@ -873,6 +882,12 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
            CurrentPage.As<HomePage>().TermsAndConditionsCcErrorMessageDisplayed();
        }
 
+       [Then(@"I should get an error message displayed on the creative center confirm password field")]
+       public void ThenIShouldGetAnErrorMessageDisplayedOnTheCcConfirmPwField()
+       {
+           CurrentPage.As<HomePage>().ConfirmPWCcErrorMessageDisplayed();
+       }
+
         [Then(@"I should see an error message on the Confirm password field")]
         public void ThenIShouldSeeAnErrorMessageOnTheConfirmPasswordField()
         {
@@ -945,7 +960,11 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<HomePage>().PopulateWithCcPassword(validPassword);
         }
 
-
+        [When(@"I enter a new Password for creative center ""(.*)""")]
+        public void WhenIEnterANewCcPassword(string newPassword)
+        {
+            CurrentPage.As<HomePage>().PopulateWithNewCcPassword(newPassword);
+        }
 
         [When(@"I enter a valid max Password ""(.*)""")]
         public void WhenIEnterAValidMaxPassword()

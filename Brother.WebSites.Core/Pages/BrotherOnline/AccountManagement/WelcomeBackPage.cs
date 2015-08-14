@@ -56,7 +56,16 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         public IWebElement InkDevicePropertiesContainer;
         [FindsBy(How = How.CssSelector, Using = ".container-dp-header")]
         public IWebElement Containerheader;
+        [FindsBy(How = How.Id, Using = "294daeb7-aaa8-4202-b845-d89121cf3b3d")]
+        public IWebElement BusinessDetailLink;
+        public string BussinessUpdateButtonId = "#content_2_innercontent_1_SubmitButton";
+        [FindsBy(How = How.Id, Using = "BusinessAccountYesRadioButton")]
+        public IWebElement UseMyAccountForBusinessCheckbox;
+        [FindsBy(How = How.Id, Using = "110d559f-dea5-42ea-9c1c-8a5df7e70ef9")]
+        public IWebElement BroOnlineLink;
 
+        [FindsBy(How = How.Id, Using = "f200cbab-dac8-4dfd-a10f-9c1af427a95c")]
+        public IWebElement InstantInkSupplyMenuItem;
 
         public bool IsWarningBarPresent(int retry, int timeToWait)
         {
@@ -117,6 +126,47 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
                 throw new Exception("Unable to find ink device container on page");
             }
             AssertElementPresent(InkDevicePropertiesContainer, "Ink Device Container");
+        }
+
+        public void IsInkSupplyMenuItemAvailable()
+        {
+            if (InstantInkSupplyMenuItem == null)
+            {
+                throw new Exception("Unable to find Ink Supply Menu Item on page");
+            }
+            AssertElementPresent(InstantInkSupplyMenuItem, "Ink Supply Menu Item");
+        }
+
+        // Without moving off the Welcome Back page
+        public void InkSupplyMenuItemClick()
+        {
+            if (InstantInkSupplyMenuItem == null)
+            {
+                throw new Exception("Unable to find Ink Supply Menu Item on page");
+            }
+            InstantInkSupplyMenuItem.Click();
+        }
+
+        public bool IsInkSupplyMenuItemMissing()
+        {
+            try
+            {
+                // set global timeout and reset afterwards
+                Driver.FindElement(By.Id("f200cbab-dac8-4dfd-a10f-9c1af427a95c"));
+            }
+            catch (ElementNotVisibleException)
+            {
+                return true;
+            }
+            catch (WebDriverTimeoutException)
+            {
+                return true;
+            }
+            catch (WebDriverException)
+            {
+                return true;
+            }
+            return false;
         }
 
         public void VerifyContainerheader(string title)
@@ -365,5 +415,32 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             AssertElementPresent(SignOutButton, "Sign Out Button");
         }
 
+        public void BusinessDetailsClick()
+        {
+            ScrollTo(BusinessDetailLink);
+            BusinessDetailLink.Click();            
+        }
+
+        public void BroOnlineHomeClick()
+        {
+            ScrollTo(BroOnlineLink);
+            BroOnlineLink.Click();
+        }
+
+        public void IsBusinessUpdateButtonAvailable()
+        {
+            IWebElement updateButton = null;
+            if (WaitForElementToExistByCssSelector(BussinessUpdateButtonId, 5, 5))
+            {
+                updateButton = Driver.FindElement(By.CssSelector(BussinessUpdateButtonId));
+            }
+            AssertElementPresent(updateButton, "Update Button");
+        }
+
+
+        public void UseAccountForBusinessIsSelectedForCc()
+        {
+            TestCheck.AssertIsEqual("True", UseMyAccountForBusinessCheckbox.Selected.ToString(), "Use Account For Business Button");
+        }
     }
 }

@@ -39,13 +39,13 @@ namespace Brother.WebSites.Core.Pages.Base
             driver = SetDriver(driver);
             baseUrl = ProcessUrlLocale(baseUrl);
             baseUrl = ProcessMainSiteLiveUrl(baseUrl);
-            baseUrl = CheckForCdServer(baseUrl);
+            baseUrl = CheckForCdServer(baseUrl); 
             NavigateToPage(driver, baseUrl.TrimEnd(new char[] { '/' }));
             return GetInstance<MainSiteHomePage>(driver, baseUrl, "");
         }
 
 
-        #region ThirdParty Pages
+        #region ThirdParty Pages 
         public static BrotherEmailConfirmationPage LoadEmailConfirmationPage(IWebDriver driver, string baseUrl)
         {
             driver = SetDriver(driver);

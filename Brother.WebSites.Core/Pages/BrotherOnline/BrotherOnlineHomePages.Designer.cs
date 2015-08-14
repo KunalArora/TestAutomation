@@ -235,6 +235,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline {
                 this["MyOrders"] = value;
             }
         }
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("My sign in preference")]
@@ -246,35 +247,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline {
                 this["SignInPeferences"] = value;
             }
         }
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("my business details ")]
-        public string MyBusinessDetails
-        {
-            get
-            {
-                return ((string)(this["MyBusinessDetails"]));
-            }
-            set
-            {
-                this["MyBusinessDetails"] = value;
-            }
-        }
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("my personal details ")]
-        public string MyPersonalDetails
-        {
-            get
-            {
-                return ((string)(this["MyPersonalDetails"]));
-            }
-            set
-            {
-                this["MyPersonalDetails"] = value;
-            }
-        }
-       [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Order Details")]
         public string OrderDetails {

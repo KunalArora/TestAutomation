@@ -9,11 +9,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{D7394A
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Brother.Tests.TestRunner", "Brother.Tests.TestRunner\Brother.Tests.TestRunner.csproj", "{5099998C-ACE5-439E-9E06-24B28297914D}"
-	ProjectSection(ProjectDependencies) = postProject
-		{165EBA24-2C36-4274-B0CE-19B899DE96CC} = {165EBA24-2C36-4274-B0CE-19B899DE96CC}
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Brother.Tests.Specs.6.5", "Brother.Tests.Specs.6.5\Brother.Tests.Specs.6.5.csproj", "{F1AF49E4-3357-491D-8F04-1E2DE68354D4}"
 	ProjectSection(ProjectDependencies) = postProject
 		{165EBA24-2C36-4274-B0CE-19B899DE96CC} = {165EBA24-2C36-4274-B0CE-19B899DE96CC}
@@ -41,10 +36,6 @@ Global
 		{165EBA24-2C36-4274-B0CE-19B899DE96CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{165EBA24-2C36-4274-B0CE-19B899DE96CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{165EBA24-2C36-4274-B0CE-19B899DE96CC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5099998C-ACE5-439E-9E06-24B28297914D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5099998C-ACE5-439E-9E06-24B28297914D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5099998C-ACE5-439E-9E06-24B28297914D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5099998C-ACE5-439E-9E06-24B28297914D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F1AF49E4-3357-491D-8F04-1E2DE68354D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F1AF49E4-3357-491D-8F04-1E2DE68354D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1AF49E4-3357-491D-8F04-1E2DE68354D4}.Release|Any CPU.ActiveCfg = Release|Any CPU

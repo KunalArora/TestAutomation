@@ -158,24 +158,33 @@ namespace Brother.WebSites.Core.Pages.Base
         private static string ProcessUrlLocale(string url)
         {
             const string brother = @"brother";
+            const string mainUrl = "main"; 
 
             var urlParts = url.ToLower().Split('.');
 
             if (urlParts.Length != 0)
             {
-                // generally for specific brother online sites, there is a locale between Online and Brother<server>.co.uk
-                // check for its existence and update accordingly. 
-                // would not contain brother if locale present at this index
-                if (urlParts[2].ToLower().Contains(brother))
+                if (urlParts[0].ToLower().Contains(mainUrl))
                 {
-                    return string.Format("{0}.{1}.{2}.{3}", urlParts[0], Helper.Locale, urlParts[2], urlParts[3]);
+                    //To do
                 }
-                // Live site at this stage so format accordingly
-                if (Helper.Locale.ToUpper().Equals("UK"))
+                else
                 {
-                    return string.Format("{0}.{1}.co.{2}", urlParts[0], urlParts[1], Helper.Locale);
+                    // generally for specific brother online sites, there is a locale between Online and Brother<server>.co.uk
+                    // check for its existence and update accordingly. 
+                    // would not contain brother if locale present at this index
+                    if (urlParts[2].ToLower().Contains(brother))
+                    {
+                        return string.Format("{0}.{1}.{2}.{3}", urlParts[0], Helper.Locale, urlParts[2], urlParts[3]);
+                    }
+                    // Live site at this stage so format accordingly
+                    if (Helper.Locale.ToUpper().Equals("UK"))
+                    {
+                        return string.Format("{0}.{1}.co.{2}", urlParts[0], urlParts[1], Helper.Locale);
+                    }
+                    return string.Format("{0}.{1}.{2}", urlParts[0], urlParts[1], Helper.Locale);
                 }
-                return string.Format("{0}.{1}.{2}", urlParts[0], urlParts[1], Helper.Locale);
+               
             }
             return url;
         }
@@ -198,15 +207,32 @@ namespace Brother.WebSites.Core.Pages.Base
         {
             var brotherBaseHomePage = ConfigurationManager.AppSettings["BrotherOnlineHomePage_DefaultPage"];
 
+            const string mainUrl = "main"; 
+
+            var urlParts = brotherBaseHomePage.ToLower().Split('.');
+
             var runTimeEnv = Helper.GetRunTimeEnv();
-            if (runTimeEnv.Equals(Helper.RunTimeLive))
+
+            if (runTimeEnv.Equals(Helper.RunTimeLive) && !urlParts[0].ToLower().Contains(mainUrl))
             {
                 return brotherBaseHomePage.Replace(".uk", string.Empty);
             }
 
-            if (runTimeEnv.Equals(Helper.RunTimeTest))
+            if (runTimeEnv.Equals(Helper.RunTimeLive) && urlParts[0].ToLower().Contains(mainUrl))
+            {
+                return brotherBaseHomePage;
+            }
+
+
+
+            if (runTimeEnv.Equals(Helper.RunTimeTest) && !urlParts[0].ToLower().Contains(mainUrl))
             {
                 return ProcessBaseUrl(brotherBaseHomePage, "dv2");
+            }
+
+            if (runTimeEnv.Equals(Helper.RunTimeTest) && urlParts[0].ToLower().Contains(mainUrl))
+            {
+                return ProcessBaseUrl(brotherBaseHomePage.Replace(".cms", string.Empty), "dv2");
             }
 
             if (runTimeEnv.Equals(Helper.RunTimeUat))

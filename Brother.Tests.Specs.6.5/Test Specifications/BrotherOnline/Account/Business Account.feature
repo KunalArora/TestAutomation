@@ -6,7 +6,7 @@ Feature: Business Account
 
 #Validate that a Business Account holder is able to swap to a Customer Account
 Scenario: Create a business account change the business account to be Customer Account
-Given I want to create a new account with Brother Online "United Kingdom"
+	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
 	And I am redirected to the Brother Login/Register page
 	And I have Checked No I Do Not Have An Account Checkbox
@@ -225,7 +225,7 @@ Scenario Outline: Validate that user or business account holders are unable to l
 		| "existinguseraccount@guerrillamail.com"       | "Pass  word  100"	       |
 	 		
 # Accounts created on DV2, QAS and Prod for the following test - existinguseraccount@guerrillamail.com/existingbusinessaccount@guerrillamail.com/Password100
-# Check that existing brother online user and business account holders can still login with a username that leading/trailing spaces or mixed letter casing
+# Check that existing brother online user and business account holders can still login with a username that has leading/trailing spaces or mixed letter casing
 Scenario Outline: Validate that user or business account holders can still login to brother online with spaces or different case in the username providing the password is correct
 	Given I launch Brother Online for "United Kingdom"
 	When I click on Create Account for "United Kingdom"

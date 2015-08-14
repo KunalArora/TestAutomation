@@ -171,6 +171,23 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         [FindsBy(How = How.ClassName, Using = "warning-bar")]
         public IWebElement InvalidCredentialsCcErrorMessage;
 
+        [FindsBy(How = How.CssSelector, Using = "#form-sign-up-cc > div.pwd-field.form-section.cf > span.half-col.validation-failed.blur > div")]
+        public IWebElement ConfirmPWCcErrorMessage;
+
+        [FindsBy(How = How.Id, Using = "TopNavigationControl_rptPrimaryLevelNav_aSectionLink_3")]
+        public IWebElement MyAccountTopNavigationButton;
+
+        [FindsBy(How = How.Id, Using = "294daeb7-aaa8-4202-b845-d89121cf3b3d")]
+        public IWebElement BusinessDetailLink;
+
+        public IWebElement UseMyAccountForBusinessCheckbox;
+        [FindsBy(How = How.Id, Using = "110d559f-dea5-42ea-9c1c-8a5df7e70ef9")]
+        
+        public IWebElement BussinessUpdateButtonId;
+        [FindsBy(How = How.Id, Using = "110d559f-dea5-42ea-9c1c-8a5df7e70ef9")]
+
+        //public string BussinessUpdateButtonId = "#content_2_innercontent_1_SubmitButton";
+
         private static readonly Dictionary<string, string> _pageTitle = new Dictionary<string, string>
         {
             {"Spain", "Inicio de sesión / Cree una cuenta"},
@@ -360,7 +377,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public void AcceptCookiesButtonClick()
         {
-
+            WebDriver.Wait(DurationType.Millisecond, 5000);
             WaitForElementToExistByCssSelector("#AcceptCookieLawHyperLink");
             ScrollTo(AcceptCookiesButton);
             AcceptCookiesButton.Click();
@@ -715,9 +732,22 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             TestCheck.AssertIsEqual(password.Equals("@@@@@") ? Helper.Password : password, GetTextBoxValue("Password"), "Password");
         }
 
+        public void PopulateWithNewCcPassword(string password)
+        {
+            PasswordCCTextBox.SendKeys(password);
+            //PasswordCCTextBox.SendKeys(PasswordCCTextBox.Equals("@@@@@") ? Helper.Password : password);
+            //TestCheck.AssertIsEqual(PasswordCCTextBox.Equals("@@@@@") ? Helper.Password : password, GetTextBoxValue("PasswordCCTextBox"), "PasswordCCTextBox");
+        }
+
         public void TermsAndConditionsCcErrorMessageDisplayed()
         {
             TestCheck.AssertIsEqual(true, TermsAndConditionsCcErrorMessage.Displayed, "Is Error Message Displayed");
+        }
+
+        public void ConfirmPWCcErrorMessageDisplayed()
+        {
+            WaitForElementToExistByCssSelector("#form-sign-up-cc > div.pwd-field.form-section.cf > span.half-col.validation-failed.blur > div");    
+            TestCheck.AssertIsEqual(true, ConfirmPWCcErrorMessage.Displayed, "Is Error Message Displayed");
         }
 
         public void PopulateCcEmailAddressTextBox(string emailAddress)
@@ -738,6 +768,53 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         public void InvalidCredentialsCcErrorMessageDisplayed()
         {
             TestCheck.AssertIsEqual(true, InvalidCredentialsCcErrorMessage.Displayed, "Is Error Message Displayed");
+        }
+
+        public void PopulateConfirmPasswordCcTextBox(string confirmpassword)
+        {
+            ConfirmPasswordCCTextBox.SendKeys(confirmpassword);
+        }
+
+        public void NavigateToMyAccountPageUsingCcDtls()
+        {
+            ScrollTo(MyAccountTopNavigationButton);
+            MyAccountTopNavigationButton.Click();                        
+        }
+
+        public void BusinessDetailsClick()
+        {
+            ScrollTo(BusinessDetailLink);
+            BusinessDetailLink.Click();
+        }
+
+       // public void IsBusinessUpdateButtonAvailable()
+       // {
+           // IWebElement updateButton = null;
+           // if (WaitForElementToExistByCssSelector(BussinessUpdateButtonId, 5, 5))
+           // {
+          //      updateButton = Driver.FindElement(By.CssSelector(BussinessUpdateButtonId));
+         //   }
+        //    AssertElementPresent(updateButton, "Update Button");
+        //}
+
+        public void IsBusinessUpdateButtonAvailable()
+        {
+            if (BussinessUpdateButtonId == null)
+            {
+                throw new NullReferenceException("Unable to locate business update button on page");
+            }
+            AssertElementPresent(BussinessUpdateButtonId, "Business update button", 80);
+        }
+
+
+        public void UseAccountForBusinessIsSelectedForCc()
+        {
+            TestCheck.AssertIsEqual("True", UseMyAccountForBusinessCheckbox.Selected.ToString(), "Use Account For Business Button");
+        }
+
+        public void UseAccountForBusinessIsSelected()
+        {
+            TestCheck.AssertIsEqual("True", UseMyAccountForBusinessCheckbox.Selected.ToString(), "Use Account For Business Button");
         }
 
     }

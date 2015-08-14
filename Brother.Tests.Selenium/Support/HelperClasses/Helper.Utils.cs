@@ -3,6 +3,7 @@ using System.CodeDom;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
+using System.Diagnostics.Eventing.Reader;
 using System.IO;
 using System.Net;
 using System.Net.Security;
@@ -294,6 +295,29 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             {
                 return true;
             }
+        }
+
+        public static bool IsPortAvailable(string ipAddress, int portNumber)
+        {
+            var portInUse = true;
+            var retries = 0;
+ 
+            while ((portInUse && retries < 10))
+            {
+                if (CheckForPortInUse(ipAddress, portNumber) == false)
+                {
+                    MsgOutput(string.Format("Port number [{0}] is free to connect to", portNumber));
+                    portInUse = false;
+                }
+                else
+                {
+                    MsgOutput(string.Format("Port number [{0}] is still in use - retrying until it is clear", portNumber));
+                    WebDriver.Wait(DurationType.Second, 1);
+                    retries++;
+                    portInUse = true;
+                }
+            }
+            return !portInUse;
         }
 
         public static bool CheckForPortInUse(string ipAddress, int portNumber)

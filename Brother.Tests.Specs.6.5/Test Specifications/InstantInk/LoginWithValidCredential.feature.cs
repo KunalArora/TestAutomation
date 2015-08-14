@@ -70,7 +70,7 @@ namespace Brother.Tests.Specs.TestSpecifications.InstantInk
         public virtual void FeatureBackground()
         {
 #line 8
-#line 10
+#line 9
   testRunner.Given("I am logged onto \"United Kingdom\" BOL with \"inktestmarko@mailinator.com\" username" +
                     " and \"Password999\" password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
@@ -83,23 +83,21 @@ namespace Brother.Tests.Specs.TestSpecifications.InstantInk
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate a valid user can sign in to Ink", new string[] {
                         "TEST"});
-#line 14
+#line 12
 this.ScenarioSetup(scenarioInfo);
 #line 8
 this.FeatureBackground();
-#line 16
+#line 13
  testRunner.And("I can see the Ink Supply menu option from the Bol home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 17
+#line 14
  testRunner.When("I click Ink Supply button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 18
+#line 15
     testRunner.And("I can see the Ink Supply header with name \"Status Monitor\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 23
+#line 16
  testRunner.Then("device name \"MFC-J5720DW\"should be displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 24
+#line 17
  testRunner.Then("device serial number \"E73183G4F387882\" should be displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 28
- testRunner.And("I can navigate back to Brother Online home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 29
+#line 18
  testRunner.Then("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

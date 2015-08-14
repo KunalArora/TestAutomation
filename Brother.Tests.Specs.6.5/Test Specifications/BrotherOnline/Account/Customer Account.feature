@@ -132,7 +132,7 @@ Scenario: : Customer get the correct error message when business details mandato
 
 @TEST @UAT @PROD 
 #Validate that a user with a Customer Account can amend their personal details
-Scenario: Customer cannot updatethe personal details if mandatory fields are left blank
+Scenario: Customer cannot update the personal details if mandatory fields are left blank
 	Given I am logged onto Brother Online "United Kingdom" using valid credentials
 	When I navigate to my account for "United Kingdom"
 	And I clear the first name field
@@ -541,11 +541,11 @@ Scenarios:
 | Denmark		    |
 | Portugal		    |
 | Finland		    |
-| Slovenia			|
-| Slovakia 		|
+# | Slovenia			|
+# | Slovakia 		|
 | Belgium  			|
 | Netherlands		|
-| Poland			|
+# | Poland			|
 
 
 

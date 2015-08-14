@@ -4,6 +4,7 @@ using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherOnline.Account;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
@@ -17,14 +18,14 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         public void WhenIClickOnOmniJoinHome()
         {
             var menu = GlobalNavigationModule.GetProductNavigationMenu("OmniJoin");
-            NextPage = GlobalNavigationModule.MyAccountMenuItemClick(CurrentDriver, menu);
+            NextPage = GlobalNavigationModule.MyAccountMenuItemClick(CurrentDriver);
         }
 
         [Given(@"I click on the Partner Portal menu option")]
         public void GivenIClickOnThePartnerPortalMenuOption()
         {
             var menu = GlobalNavigationModule.GetProductNavigationMenu("PartnerPortal");
-            NextPage = GlobalNavigationModule.MyAccountMenuItemClick(CurrentDriver, menu);
+            NextPage = GlobalNavigationModule.MyAccountMenuItemClick(CurrentDriver);
         }
         [When(@"I click on the Partner Portal button")]
         public void WhenIClickOnThePartnerPortalButton()
@@ -39,7 +40,8 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             var managePlanButton = GlobalNavigationModule.GetMyAccountInfoButton("OmniJoin", "ManagePlan");
             NextPage = GlobalNavigationModule.ManageOmniJoinPlanButtonClick(CurrentDriver, managePlanButton);
         }
-       [Given(@"I am logged into my Brother Online account")]
+        
+        [Given(@"I am logged into my Brother Online account")]
         [Then(@"I am redirected to the Welcome Back page")]
         [Given(@"I am redirected to the Welcome Back page")]
         public void GivenIAmRedirectedToTheWelcomeBackPage()
@@ -50,15 +52,16 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [Then(@"I can navigate back to Brother Online home page")]
         public void ThenICanNavigateBackToBrotherOnlineHomePage()
         {
-            Then("If I navigate back to the Brother Online My Account page");
             NextPage = GlobalNavigationModule.BrotherOnlineGoHome(CurrentDriver);
         }
+
         [Then(@"If I go to My Account")]
         [Then(@"If I navigate back to the Brother Online My Account page")]
         public void ThenIfINavigateBackToTheBrotherOnlineMyAccountPage()
         {
-            var menu = GlobalNavigationModule.GetPrimaryNavigationMenuItem("MyAccount");
-            NextPage = GlobalNavigationModule.MyAccountMenuItemClick(CurrentDriver, menu);
+            NextPage = GlobalNavigationModule.BrotherOnlineGoHome(CurrentDriver);
+            //var menu = GlobalNavigationModule.GetPrimaryNavigationMenuItem("MyAccount");
+            //NextPage = GlobalNavigationModule.MyAccountMenuItemClick(CurrentDriver);
         }
 
 		[When(@"I can sign out of Brother Online")]
@@ -96,21 +99,21 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [When(@"I click on Sign In Details")]
         public void WhenIClickOnSignInDetails()
         {
-            var signInDetailsMenu = GlobalNavigationModule.GetMyAccountMenuItem("SignInDetails");
-            NextPage = GlobalNavigationModule.MySignInDetailsMenuOptionClick(CurrentDriver, signInDetailsMenu);
+            //var signInDetailsMenu = GlobalNavigationModule.GetMyAccountMenuItem("SignInDetails");
+            //NextPage = GlobalNavigationModule.MySignInDetailsMenuOptionClick(CurrentDriver, signInDetailsMenu);
+            NextPage = GlobalNavigationModule.MySignInDetailsMenuOptionClick(CurrentDriver);
         }
         
         [Then(@"I can click on Payment Methods")]
         public void ThenICanClickOnPaymentMethods()
         {
-            var paymentMethodsButton = GlobalNavigationModule.GetMyAccountMenuItem("PaymentMethods");
-            NextPage = GlobalNavigationModule.PaymentMethodsMenuClick(CurrentDriver, paymentMethodsButton);
+            NextPage = GlobalNavigationModule.PaymentMethodsMenuClick(CurrentDriver);
         }
 
         [Then(@"I can click on Orders")]
         public void ThenICanClickOnOrders()
         {
-            var ordersButton = GlobalNavigationModule.GetMyAccountMenuItem("Orders");
+            var ordersButton = CurrentPage.As<MyAccountPage>().GetMyOrdersMenuItem();
             NextPage = GlobalNavigationModule.OrdersMenuClick(CurrentDriver, ordersButton);
         }
 
@@ -125,6 +128,16 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             NextPage = CurrentPage.As<WelcomeBackPage>().NavigateToMyAccountPage(country);
         }
+
+        [When(@"I navigate to my account using creative center details")]
+        public void WhenINavigateToMyAccountForUsingCcDetails()
+        {
+            //CurrentPage.As<HomePage>().NavigateToMyAccountPageUsingCcDtls();
+            //var menu = GlobalNavigationModule.GetPrimaryNavigationMenuItem("MyAccount");
+            NextPage = GlobalNavigationModule.MyAccountTopMenuItemClick(CurrentDriver);
+
+        }
+
         [Then(@"If I enter the current password")]
         public void ThenIfIEnterTheCurrentPassword()
         {
@@ -133,22 +146,15 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [When(@"I clicked on Business Details")]
         public void WhenIClickedOnBusinessDetails()
         {
-            var businessDetailsButton = GlobalNavigationModule.GetMyAccountMenuItem("BusinessDetails");
-            NextPage = GlobalNavigationModule.BusinessDetailsMenuClick(CurrentDriver, businessDetailsButton);
-        }
-
-        [When(@"I clicked on Business Details whilst logged in with my creative center account")]
-        public void WhenIClickedOnBusinessDetailsWhilstUsingCcAcc()
-        {
-            var businessDetailsButton = GlobalNavigationModule.GetMyAccountMenuItem("BusinessDetails");
-            NextPage = GlobalNavigationModule.BusinessDetailsMenuClick(CurrentDriver, businessDetailsButton);
+            NextPage = GlobalNavigationModule.BusinessDetailsMenuClick(CurrentDriver);
         }
 
         [When(@"I click on My Address")]
         public void WhenIClickOnMyAddress()
         {
-            var myaddressdetailsButton = GlobalNavigationModule.GetMyAccountMenuItem("AddressDetails");
-            NextPage = GlobalNavigationModule.MyAdressDetailsMenuOptionClick(CurrentDriver, myaddressdetailsButton);
+            //var myaddressdetailsButton = GlobalNavigationModule.GetMyAccountMenuItem("AddressDetails");
+            //NextPage = GlobalNavigationModule.MyAdressDetailsMenuOptionClick(CurrentDriver, myaddressdetailsButton);
+            NextPage = GlobalNavigationModule.MyAddressDetailsMenuOptionClick(CurrentDriver);
         }
 
         [When(@"I am redirected to the Business Details Page")]
