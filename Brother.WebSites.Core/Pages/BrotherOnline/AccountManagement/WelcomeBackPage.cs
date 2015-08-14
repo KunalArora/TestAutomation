@@ -154,15 +154,15 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
                 // set global timeout and reset afterwards
                 Driver.FindElement(By.Id("f200cbab-dac8-4dfd-a10f-9c1af427a95c"));
             }
-            catch (ElementNotVisibleException elementNotFound)
+            catch (ElementNotVisibleException)
             {
                 return true;
             }
-            catch (WebDriverTimeoutException timedOut)
+            catch (WebDriverTimeoutException)
             {
                 return true;
             }
-            catch (WebDriverException timedOut)
+            catch (WebDriverException)
             {
                 return true;
             }

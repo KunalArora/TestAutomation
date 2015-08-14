@@ -20,6 +20,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         // to Brother Online orders, and the global navigation such as the Brother Nav bar.
         private const string SideNavMenu = @".content-box.left-nav-container.cf .side-nav";
         private const string MyAccountMenuItem = "6d822e49-5b57-4c4c-8e2d-3f4a29b49b05";
+        private const string MyAccountTopMenuItem = "TopNavigationControl_rptPrimaryLevelNav_aSectionLink_3";
         private const string PaymentMethodsMenuItem = "2cd6775a-02e4-4478-8818-de518fe73cf8";
         private const string BrotherOnlineGoHomeMenuItem = "110d559f-dea5-42ea-9c1c-8a5df7e70ef9";
         private const string MyBusinessDetailsMenuItem = "294daeb7-aaa8-4202-b845-d89121cf3b3d";
@@ -425,6 +426,14 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         {
             var menuItem = driver.FindElement(By.Id(MyAccountMenuItem));
             TestCheck.AssertIsNotNull(menuItem, "My Account Menu Item");
+            menuItem.Click();
+            return GetInstance<WelcomeBackPage>(driver, "", "");
+        }
+
+        public static WelcomeBackPage MyAccountTopMenuItemClick(IWebDriver driver)
+        {
+            var menuItem = driver.FindElement(By.Id(MyAccountTopMenuItem));
+            TestCheck.AssertIsNotNull(menuItem, "My Account Top Menu Item");
             menuItem.Click();
             return GetInstance<WelcomeBackPage>(driver, "", "");
         }

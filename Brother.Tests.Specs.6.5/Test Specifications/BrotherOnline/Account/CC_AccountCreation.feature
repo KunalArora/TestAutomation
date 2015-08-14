@@ -59,13 +59,12 @@ Scenario: (Failing on Prod - BBAU-2575) Validate that a user can create a busine
 	Then I sign out of creative center		
 	Given I launch Brother Online for "United Kingdom"
 	Then I click on the sign in / create account button	
-	Then I should be able to log into ""(.*)"" Brother Online using my creative center account details	
+	Then I should be able to log into ""(.*)"" Brother Online using my creative center account details		
+	When I navigate to my account using creative center details
+	When I clicked on Business Details
+	When I am redirected to the Business Details Page
+	Then I can see that use account for business is selected
 	Then If I navigate back to the Brother Online My Account page
-	# When I clicked on Business Details
-	When I clicked on Business Details whilst logged in with my creative center account
-	Then I am redirected to the Business Details Page for my creative center account
-	Then I can see that use account for business is selected for creative center details
-	Then I can navigate back to Brother Online home page with my creative center account
 	When I have clicked on Add Device				
 	When I am redirected to the Register Device page
 	Then I can sign out of Brother Online
@@ -190,7 +189,7 @@ Scenario Outline: (Failing on Prod - BBAU-2575) Validate that family or business
 
 # Accounts created on DV2, QAS and Prod for the following test - existinguseraccount@guerrillamail.com/existingbusinessaccount@guerrillamail.com/Password100
 # Check that existing family and business account holders can still login with a username that has leading/trailing spaces or mixed letter casing
-Scenario Outline: (Failing on Prod - BBAU-2575) (Failing BBAU-2601) Validate that family or business account holders can still login to creative with spaces or different case in the username providing the password is correct
+Scenario Outline: (Failing on Prod - BBAU-2575) (Failing BBAU-2601) Validate that family or business account holders can still login to creative center with spaces or different case in the username providing the password is correct
 	Given I launch Brother Online for "United Kingdom"
 	When I navigate to and click the creative center link
 	Then I am taken to the creative center landing page
