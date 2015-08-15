@@ -226,7 +226,6 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<DealerProposalsCreateDescriptionPage>().SelectingContractType(contract);
             CurrentPage.As<DealerProposalsCreateDescriptionPage>().EnterProposalName("");
             CurrentPage.As<DealerProposalsCreateDescriptionPage>().EnterLeadCodeRef("");
-            CurrentPage.As<DealerProposalsCreateDescriptionPage>().CustomerTabNotDisplayed();
             if (CurrentPage.As<DealerProposalsCreateDescriptionPage>().IsGermanSystem())
             {
                 NextPage = CurrentPage.As<DealerProposalsCreateDescriptionPage>().ClickNextButtonGermany();
