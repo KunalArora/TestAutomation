@@ -284,8 +284,27 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         {    
             WebDriver.Wait(DurationType.Millisecond, 5000);
             //ScrollTo(NoToCreativeCenterSurveyButton);
-            NoToCreativeCenterSurveyButton.Click();
-        }
+            //if (NoToCreativeCenterSurveyButton != null)
+
+            //if NoToCreativeCenterSurveyButton.Displayed();
+
+            //{
+            //    NoToCreativeCenterSurveyButton.Click();
+
+            //}
+
+             //if (NoToCreativeCenterSurveyButton();
+               // {
+                 //   var warningBar = Driver.FindElement(By.CssSelector(".warning-bar"));
+                   // if (warningBar != null)
+
+            if (NoToCreativeCenterSurveyButton.Displayed)
+                        {
+                            NoToCreativeCenterSurveyButton.Click();
+                        }                    
+           }
+            
+        
 
         public void DissmissTheJsAlert(IWebDriver driver)
         {
@@ -666,6 +685,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         public void IsCcEmailErrorMessageDisplayed()
 
         {
+            EmailAddressCCTextBox.SendKeys(Keys.Tab);
+            WebDriver.Wait(DurationType.Millisecond, 5000);
             TestCheck.AssertIsEqual(true, EmailAddressCCErrorMessage.Displayed, "Is Creative Center Email Error Message Displayed");
         }
 

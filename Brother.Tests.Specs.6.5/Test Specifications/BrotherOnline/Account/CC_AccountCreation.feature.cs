@@ -249,7 +249,7 @@ this.ScenarioSetup(scenarioInfo);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("(Failing on Prod - BBAU-2575) Validate that an error message is displayed for all" +
                     " mandatory fields during creation of a creative center family account", ((string[])(null)));
 #line 74
-this.ScenarioSetup(scenarioInfo);
+ this.ScenarioSetup(scenarioInfo);
 #line 75
  testRunner.Given("I launch Brother Online for \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 76
@@ -590,6 +590,54 @@ this.ScenarioSetup(scenarioInfo);
 #line 227
  testRunner.Then("I should get an error message displayed on the creative center confirm password f" +
                     "ield", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Customer cannot register for creative center account with invalid email formats")]
+        [NUnit.Framework.TestCaseAttribute("\"This is a space@guerrillamail.com\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"CannotUsePercent%@guerrillamail.com\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"CannotUseCurlyBraces{}@guerrillamail.com\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"CannotUsePlus+@guerrillamail.com\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"CannotUseDollar$@guerrillamail.com\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"CannotUsePound£@guerrillamail.com\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"CannotUseQuotes\"@guerrillamail.com\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"CannotUseAsterix*@guerrillamail.com\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"CannotUseTwoAmpersands@@guerrillamail.com\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"CannotUseQuestionMark?@guerrillamail.com\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"CannotUseOpenBrace(@guerrillamail.com\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"CannotUseEquals=@guerrillamail.com\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"specialcharactersüñîçøðé@guerrillamail.com\"", null)]
+        public virtual void CustomerCannotRegisterForCreativeCenterAccountWithInvalidEmailFormats(string emailAddress, string[] exampleTags)
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer cannot register for creative center account with invalid email formats", exampleTags);
+#line 234
+this.ScenarioSetup(scenarioInfo);
+#line 235
+ testRunner.Given("I launch Brother Online for \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 236
+ testRunner.When("I navigate to and click the creative center link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 237
+ testRunner.Then("I am taken to the creative center landing page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 238
+ testRunner.Then("I click the business center link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 239
+ testRunner.Then("I am taken to the creative center home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 240
+ testRunner.And("I click to not participate in the survey", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 241
+ testRunner.Then("I click the creative center register/login link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 242
+ testRunner.Then("I am navigated to the creative center login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 243
+ testRunner.When(string.Format("I enter a creative center email address containing {0}", emailAddress), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 244
+ testRunner.And("I press the creative center sign in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 245
+ testRunner.Then("I should see an error message on the creative center email field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 247
+ testRunner.Then("I should refresh the current page to clear all error messages", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

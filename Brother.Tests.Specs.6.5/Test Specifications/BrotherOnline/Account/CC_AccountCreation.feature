@@ -70,8 +70,8 @@ Scenario: (Failing on Prod - BBAU-2575) Validate that a user can create a busine
 	Then I can sign out of Brother Online
 	Then I am redirected to the Brother Home Page
 
-# Check mandatory email/password/first name/ last name/ fields when creating a creative center family account
-Scenario: (Failing on Prod - BBAU-2575) Validate that an error message is displayed for all mandatory fields during creation of a creative center family account
+ # Check mandatory email/password/first name/ last name/ fields when creating a creative center family account
+ Scenario: (Failing on Prod - BBAU-2575) Validate that an error message is displayed for all mandatory fields during creation of a creative center family account
 	Given I launch Brother Online for "United Kingdom"
 	When I navigate to and click the creative center link
 	Then I am taken to the creative center landing page
@@ -90,7 +90,7 @@ Scenario: (Failing on Prod - BBAU-2575) Validate that an error message is displa
 	When I press tab in the creative center last name field
 	Then I should see an error message on the creative center last name field
 
-# Check mandatory email/password/first name/ last name/company name/business sector fields when creating a creative center business account
+ # Check mandatory email/password/first name/ last name/company name/business sector fields when creating a creative center business account
 Scenario: (Failing on Prod - BBAU-2575) Validate that an error message is displayed for all mandatory fields during creation of a creative center business account
 	Given I launch Brother Online for "United Kingdom"
 	When I navigate to and click the creative center link
@@ -229,4 +229,35 @@ Scenario Outline: (Failing on Prod - BBAU-2575) Validate that an error message i
 	Scenarios:
 		| Email Address                               | Password      | Confirm Password |
 		| "existingbusinessaccount@guerillamail.com"  | "Password100" | "Password200"	 |
-	
+
+# Customer cannot register for a creative center account using an invalid email format	
+Scenario Outline: Customer cannot register for creative center account with invalid email formats
+	Given I launch Brother Online for "United Kingdom"
+	When I navigate to and click the creative center link
+	Then I am taken to the creative center landing page
+	Then I click the business center link
+	Then I am taken to the creative center home page
+	And I click to not participate in the survey
+	Then I click the creative center register/login link
+	Then I am navigated to the creative center login page
+	When I enter a creative center email address containing <Email Address>
+	And I press the creative center sign in
+	Then I should see an error message on the creative center email field
+	# Then I should see an error message
+	Then I should refresh the current page to clear all error messages
+
+Scenarios:
+	| Email Address                               |
+	| "This is a space@guerrillamail.com"         |
+	| "CannotUsePercent%@guerrillamail.com"       |
+	| "CannotUseCurlyBraces{}@guerrillamail.com"  |
+	| "CannotUsePlus+@guerrillamail.com"          |
+	| "CannotUseDollar$@guerrillamail.com"        |
+	| "CannotUsePound£@guerrillamail.com"         |
+	| "CannotUseQuotes"@guerrillamail.com"        |
+	| "CannotUseAsterix*@guerrillamail.com"       |
+	| "CannotUseTwoAmpersands@@guerrillamail.com" |
+	| "CannotUseQuestionMark?@guerrillamail.com"  |
+	| "CannotUseOpenBrace(@guerrillamail.com"     |
+	| "CannotUseEquals=@guerrillamail.com"        |
+	| "specialcharactersüñîçøðé@guerrillamail.com"|
