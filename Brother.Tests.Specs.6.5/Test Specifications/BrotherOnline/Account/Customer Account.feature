@@ -257,20 +257,20 @@ Scenario Outline: Customer cannot register for a Brother Online account using an
 Scenarios:
 	| Email Address                               |
 	| "This is a space@guerrillamail.com"         |
-	#| "CannotUsePercent%@guerrillamail.com"       |
-	#| "CannotUseCurlyBraces{}@guerrillamail.com"  |
-	#| "CannotUsePlus+@guerrillamail.com"          |
-	#| "CannotUseDollar$@guerrillamail.com"        |
-	#| "CannotUsePound£@guerrillamail.com"         |
-	#| "CannotUseQuotes"@guerrillamail.com"        |
-	#| "CannotUseAsterix*@guerrillamail.com"       |
-	#| "CannotUseTwoAmpersands@@guerrillamail.com" |
-	#| "CannotUseQuestionMark?@guerrillamail.com"  |
-	#| "CannotUseOpenBrace(@guerrillamail.com"     |
-	#| "CannotUseEquals=@guerrillamail.com"        |
-	#| "specialcharactersüñîçøðé@guerrillamail.com"|
-	#| "  LeadingSpace@guerrillamail.com"        | these are valid email id's, it will trim the space in the front and at the back.
-	#| "TrailingSpace@guerrillamail.com     "      |
+	| "CannotUsePercent%@guerrillamail.com"       |
+	| "CannotUseCurlyBraces{}@guerrillamail.com"  |
+	| "CannotUsePlus+@guerrillamail.com"          |
+	| "CannotUseDollar$@guerrillamail.com"        |
+	| "CannotUsePound£@guerrillamail.com"         |
+	| "CannotUseQuotes"@guerrillamail.com"        |
+	| "CannotUseAsterix*@guerrillamail.com"       |
+	| "CannotUseTwoAmpersands@@guerrillamail.com" |
+	| "CannotUseQuestionMark?@guerrillamail.com"  |
+	| "CannotUseOpenBrace(@guerrillamail.com"     |
+	| "CannotUseEquals=@guerrillamail.com"        |
+	| "specialcharactersüñîçøðé@guerrillamail.com"|
+	# | "  LeadingSpace@guerrillamail.com"        | these are valid email id's, it will trim the space in the front and at the back.
+	# | "TrailingSpace@guerrillamail.com     "      |
 	# simply trim them. No error message is displayed
 
 @SMOKE @ignore
