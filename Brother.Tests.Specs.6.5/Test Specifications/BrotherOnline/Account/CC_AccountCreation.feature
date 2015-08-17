@@ -243,7 +243,6 @@ Scenario Outline: Customer cannot register for creative center account with inva
 	When I enter a creative center email address containing <Email Address>
 	And I press the creative center sign in
 	Then I should see an error message on the creative center email field
-	# Then I should see an error message
 	Then I should refresh the current page to clear all error messages
 
 Scenarios:
@@ -261,3 +260,63 @@ Scenarios:
 	| "CannotUseOpenBrace(@guerrillamail.com"     |
 	| "CannotUseEquals=@guerrillamail.com"        |
 	| "specialcharactersüñîçøðé@guerrillamail.com"|
+
+# Customer cannot register for a family creative center account using a duplicate email address 
+Scenario Outline: Customer cannot register for a new family creative center account using an email address that already exists for another brother online user or business account				
+	Given I launch Brother Online for "United Kingdom"
+	When I navigate to and click the creative center link
+	Then I am taken to the creative center landing page
+	And I click the family center link
+	Then I am taken to the creative center home page
+	And I click to not participate in the survey
+	Then I click the creative center register/login link
+	Then I am navigated to the creative center login page			
+	Then I have checked no to having a creative center account
+	When I fill in the creative center registration information excluding email address
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Password        | @@@@@	       |
+	| ConfirmPassword | @@@@@		   |
+	When I enter a creative center email address containing <Email Address>
+	Then I declare that I do not use this creative center account for business
+	And I have Agreed to the creative center Terms and Conditions
+	Then I click the creative center create your account button
+	Then I should see the creative center duplicate email error message preventing account creation
+
+Scenarios:
+	| Email Address                               |
+	| "existinguseraccount@guerrillamail.com"     |
+	| "existingbusinessaccount@guerrillamail.com" |
+
+
+# Customer cannot register for a business creative center account using a duplicate email address 
+Scenario Outline: Customer cannot register for a new business creative center account using an email address that already exists for another brother online business or user account				
+	Given I launch Brother Online for "United Kingdom"
+	When I navigate to and click the creative center link
+	Then I am taken to the creative center landing page
+	And I click the business center link
+	Then I am taken to the creative center home page
+	And I click to not participate in the survey
+	Then I click the creative center register/login link
+	Then I am navigated to the creative center login page			
+	Then I have checked no to having a creative center account
+	And I declare that I do use this creative center account for business
+	When I fill in the creative center registration information excluding email address
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Password        | @@@@@	       |
+	| ConfirmPassword | @@@@@		   |
+	Then I add my company name into creative center as "AutoTestLtd"
+	And I select my Business Sector on creative center as "IT and telecommunications services"		
+	And I select number of Employees on creative center as "11 - 50"
+	When I enter a creative center email address containing <Email Address>
+	Then I have Agreed to the creative center Terms and Conditions
+	Then I click the creative center create your account button
+	Then I should see the creative center duplicate email error message preventing account creation
+
+Scenarios:
+	| Email Address                               |
+	| "existinguseraccount@guerrillamail.com"     |
+	| "existingbusinessaccount@guerrillamail.com" |

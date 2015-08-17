@@ -636,8 +636,141 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.And("I press the creative center sign in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 245
  testRunner.Then("I should see an error message on the creative center email field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 247
+#line 246
  testRunner.Then("I should refresh the current page to clear all error messages", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Customer cannot register for a new family creative center account using an email " +
+            "address that already exists for another brother online user or business account")]
+        [NUnit.Framework.TestCaseAttribute("\"existinguseraccount@guerrillamail.com\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"existingbusinessaccount@guerrillamail.com\"", null)]
+        public virtual void CustomerCannotRegisterForANewFamilyCreativeCenterAccountUsingAnEmailAddressThatAlreadyExistsForAnotherBrotherOnlineUserOrBusinessAccount(string emailAddress, string[] exampleTags)
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer cannot register for a new family creative center account using an email " +
+                    "address that already exists for another brother online user or business account", exampleTags);
+#line 265
+this.ScenarioSetup(scenarioInfo);
+#line 266
+ testRunner.Given("I launch Brother Online for \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 267
+ testRunner.When("I navigate to and click the creative center link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 268
+ testRunner.Then("I am taken to the creative center landing page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 269
+ testRunner.And("I click the family center link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 270
+ testRunner.Then("I am taken to the creative center home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 271
+ testRunner.And("I click to not participate in the survey", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 272
+ testRunner.Then("I click the creative center register/login link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 273
+ testRunner.Then("I am navigated to the creative center login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 274
+ testRunner.Then("I have checked no to having a creative center account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+                        "field",
+                        "value"});
+            table5.AddRow(new string[] {
+                        "FirstName",
+                        "AutoTest"});
+            table5.AddRow(new string[] {
+                        "LastName",
+                        "AutoTest"});
+            table5.AddRow(new string[] {
+                        "Password",
+                        "@@@@@"});
+            table5.AddRow(new string[] {
+                        "ConfirmPassword",
+                        "@@@@@"});
+#line 275
+ testRunner.When("I fill in the creative center registration information excluding email address", ((string)(null)), table5, "When ");
+#line 281
+ testRunner.When(string.Format("I enter a creative center email address containing {0}", emailAddress), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 282
+ testRunner.Then("I declare that I do not use this creative center account for business", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 283
+ testRunner.And("I have Agreed to the creative center Terms and Conditions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 284
+ testRunner.Then("I click the creative center create your account button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 285
+ testRunner.Then("I should see the creative center duplicate email error message preventing account" +
+                    " creation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Customer cannot register for a new business creative center account using an emai" +
+            "l address that already exists for another brother online business or user accoun" +
+            "t")]
+        [NUnit.Framework.TestCaseAttribute("\"existinguseraccount@guerrillamail.com\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"existingbusinessaccount@guerrillamail.com\"", null)]
+        public virtual void CustomerCannotRegisterForANewBusinessCreativeCenterAccountUsingAnEmailAddressThatAlreadyExistsForAnotherBrotherOnlineBusinessOrUserAccount(string emailAddress, string[] exampleTags)
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer cannot register for a new business creative center account using an emai" +
+                    "l address that already exists for another brother online business or user accoun" +
+                    "t", exampleTags);
+#line 294
+this.ScenarioSetup(scenarioInfo);
+#line 295
+ testRunner.Given("I launch Brother Online for \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 296
+ testRunner.When("I navigate to and click the creative center link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 297
+ testRunner.Then("I am taken to the creative center landing page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 298
+ testRunner.And("I click the business center link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 299
+ testRunner.Then("I am taken to the creative center home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 300
+ testRunner.And("I click to not participate in the survey", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 301
+ testRunner.Then("I click the creative center register/login link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 302
+ testRunner.Then("I am navigated to the creative center login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 303
+ testRunner.Then("I have checked no to having a creative center account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 304
+ testRunner.And("I declare that I do use this creative center account for business", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
+                        "field",
+                        "value"});
+            table6.AddRow(new string[] {
+                        "FirstName",
+                        "AutoTest"});
+            table6.AddRow(new string[] {
+                        "LastName",
+                        "AutoTest"});
+            table6.AddRow(new string[] {
+                        "Password",
+                        "@@@@@"});
+            table6.AddRow(new string[] {
+                        "ConfirmPassword",
+                        "@@@@@"});
+#line 305
+ testRunner.When("I fill in the creative center registration information excluding email address", ((string)(null)), table6, "When ");
+#line 311
+ testRunner.Then("I add my company name into creative center as \"AutoTestLtd\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 312
+ testRunner.And("I select my Business Sector on creative center as \"IT and telecommunications serv" +
+                    "ices\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 313
+ testRunner.And("I select number of Employees on creative center as \"11 - 50\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 314
+ testRunner.When(string.Format("I enter a creative center email address containing {0}", emailAddress), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 315
+ testRunner.Then("I have Agreed to the creative center Terms and Conditions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 316
+ testRunner.Then("I click the creative center create your account button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 317
+ testRunner.Then("I should see the creative center duplicate email error message preventing account" +
+                    " creation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
