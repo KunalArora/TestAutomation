@@ -4,7 +4,7 @@ Feature: OutputContractPDFAllUsers
 	As an MPS User
 	I want to be able to download contract PDFs
 
-
+@ignore
 Scenario Outline: Bank can download Contract PDFs on Awaiting Acceptance page
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When I navigate to Contract Awaiting Acceptance page from Bank DashBoard
@@ -16,7 +16,7 @@ Scenario Outline: Bank can download Contract PDFs on Awaiting Acceptance page
 	| Role           | Country        |
 	| Cloud MPS Bank | United Kingdom |
 
-
+@ignore
 Scenario Outline: Bank can download Contract PDFs on Rejected page
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When I navigate to bank contract Rejected page

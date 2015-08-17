@@ -73,10 +73,17 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Contract
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Bank can download Contract PDFs on Awaiting Acceptance page")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Bank", "United Kingdom", null)]
         public virtual void BankCanDownloadContractPDFsOnAwaitingAcceptancePage(string role, string country, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bank can download Contract PDFs on Awaiting Acceptance page", exampleTags);
+            string[] @__tags = new string[] {
+                    "ignore"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bank can download Contract PDFs on Awaiting Acceptance page", @__tags);
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line 9
@@ -93,10 +100,17 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Bank can download Contract PDFs on Rejected page")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Bank", "United Kingdom", null)]
         public virtual void BankCanDownloadContractPDFsOnRejectedPage(string role, string country, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bank can download Contract PDFs on Rejected page", exampleTags);
+            string[] @__tags = new string[] {
+                    "ignore"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bank can download Contract PDFs on Rejected page", @__tags);
 #line 20
 this.ScenarioSetup(scenarioInfo);
 #line 21
