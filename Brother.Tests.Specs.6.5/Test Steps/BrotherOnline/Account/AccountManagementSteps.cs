@@ -56,7 +56,6 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             NextPage = GlobalNavigationModule.BrotherOnlineGoHome(CurrentDriver);
         }
 
-        [Then(@"If I go to My Account")]
         [Then(@"If I navigate back to the Brother Online My Account page")]
         public void ThenIfINavigateBackToTheBrotherOnlineMyAccountPage()
         {
@@ -65,7 +64,14 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             //NextPage = GlobalNavigationModule.MyAccountMenuItemClick(CurrentDriver);
         }
 
-		[When(@"I can sign out of Brother Online")]
+        [Then(@"If I go to My Account")]
+        public void ThenIfIGoToMyAccount()
+        {
+            NextPage = GlobalNavigationModule.MyAccountTopMenuItemClick(CurrentDriver);
+        }
+
+
+        [When(@"I can sign out of Brother Online")]
         [When(@"I sign out of Cloud MPS")]
         [Given(@"I sign out of Cloud MPS")]
         [Then(@"I sign out of Cloud MPS")]
