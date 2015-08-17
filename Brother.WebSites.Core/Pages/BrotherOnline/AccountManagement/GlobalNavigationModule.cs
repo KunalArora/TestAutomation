@@ -24,6 +24,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         private const string PaymentMethodsMenuItem = "2cd6775a-02e4-4478-8818-de518fe73cf8";
         private const string BrotherOnlineGoHomeMenuItem = "110d559f-dea5-42ea-9c1c-8a5df7e70ef9";
         private const string MyBusinessDetailsMenuItem = "294daeb7-aaa8-4202-b845-d89121cf3b3d";
+        private const string MyAddressDetailsMenuItem = "8619a6b9-7f08-4c4f-9de5-9db6d84bbc5d";
+        private const string MySignInDetailsMenuItem = "e4343ecf-39fd-4545-b762-0a81b3425c3e";
         //private const string SideNavMenu = @".side-nav";
         private const string ProductList = @"#product-list";
         private const string BrotherHomePage = "#master-logo > a";
@@ -305,7 +307,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         // New method after addition of GUIDs for my acc menu item
         public static WelcomeBackPage BrotherOnlineGoHome(IWebDriver driver)
         {
-            var accountMenuItem = driver.FindElement(By.Id("110d559f-dea5-42ea-9c1c-8a5df7e70ef9"));
+            var accountMenuItem = driver.FindElement(By.Id(BrotherOnlineGoHomeMenuItem));
             TestCheck.AssertIsNotNull(accountMenuItem, "Brother Online Home Menu Item");
             accountMenuItem.Click();
             return GetInstance<WelcomeBackPage>(driver, "", "");
@@ -359,7 +361,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         // New method after addition of GUIds on my account menu
         public static MySignInDetailsPage MySignInDetailsMenuOptionClick(IWebDriver driver)
         {
-            var signInMenuitem = driver.FindElement(By.Id("e4343ecf-39fd-4545-b762-0a81b3425c3e"));
+            var signInMenuitem = driver.FindElement(By.Id(MySignInDetailsMenuItem));
             TestCheck.AssertIsNotNull(signInMenuitem, "My Sign In Details Menu Item");
             signInMenuitem.Click();
             return GetInstance<MySignInDetailsPage>(driver, "", "");
@@ -375,7 +377,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         // New method after addition of GUIds on my account menu
         public static MyAddressDetailsPage MyAddressDetailsMenuOptionClick(IWebDriver driver)
         {
-            var addrdetailsmenuitem = driver.FindElement(By.Id("8619a6b9-7f08-4c4f-9de5-9db6d84bbc5d"));
+            var addrdetailsmenuitem = driver.FindElement(By.Id(MyAddressDetailsMenuItem));
             TestCheck.AssertIsNotNull(addrdetailsmenuitem, "My Address Menu Item");
             addrdetailsmenuitem.Click();
             return GetInstance<MyAddressDetailsPage>(driver, "", "");
