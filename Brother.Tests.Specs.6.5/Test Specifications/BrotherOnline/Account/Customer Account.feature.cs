@@ -663,6 +663,18 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("Customer cannot register for a Brother Online account using an invalid email addr" +
             "ess")]
         [NUnit.Framework.TestCaseAttribute("\"This is a space@guerrillamail.com\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"CannotUsePercent%@guerrillamail.com\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"CannotUseCurlyBraces{}@guerrillamail.com\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"CannotUsePlus+@guerrillamail.com\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"CannotUseDollar$@guerrillamail.com\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"CannotUsePound£@guerrillamail.com\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"CannotUseQuotes\"@guerrillamail.com\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"CannotUseAsterix*@guerrillamail.com\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"CannotUseTwoAmpersands@@guerrillamail.com\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"CannotUseQuestionMark?@guerrillamail.com\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"CannotUseOpenBrace(@guerrillamail.com\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"CannotUseEquals=@guerrillamail.com\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"specialcharactersüñîçøðé@guerrillamail.com\"", null)]
         public virtual void CustomerCannotRegisterForABrotherOnlineAccountUsingAnInvalidEmailAddress(string emailAddress, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer cannot register for a Brother Online account using an invalid email addr" +
