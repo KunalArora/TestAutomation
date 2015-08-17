@@ -269,8 +269,8 @@ Scenarios:
 	| "CannotUseOpenBrace(@guerrillamail.com"     |
 	| "CannotUseEquals=@guerrillamail.com"        |
 	| "specialcharactersüñîçøðé@guerrillamail.com"|
-	#| "  LeadingSpace@guerrillamail.com"        | these are valid email id's, it will trim the space in the front and at the back.
-	#| "TrailingSpace@guerrillamail.com     "      |
+	# | "  LeadingSpace@guerrillamail.com"        | these are valid email id's, it will trim the space in the front and at the back.
+	# | "TrailingSpace@guerrillamail.com     "      |
 	# simply trim them. No error message is displayed
 
 @SMOKE @ignore
