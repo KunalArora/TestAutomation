@@ -486,6 +486,16 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<RegistrationPage>().PopulateConfirmPasswordTextBox(form.Password);
         }
 
+        [When(@"I fill in the creative center registration information excluding email address")]
+        public void WhenIFillInTheCcRegistrationInformationExcludingEmailAddress(Table table)
+        {
+            dynamic form = table.CreateDynamicInstance();
+            CurrentPage.As<HomePage>().PopulateCCFirstNameTextBox(form.FirstName);
+            CurrentPage.As<HomePage>().PopulateCCLastNameTextBox(form.LastName);
+            CurrentPage.As<HomePage>().PopulateCCPasswordTextBox(form.Password);
+            CurrentPage.As<HomePage>().PopulateCCConfirmPasswordTextBox(form.Password);
+        }
+
         [When(@"I press tab in the email address field")]
         public void WhenIPressTabInTheEmailAddressField()
         {
@@ -898,6 +908,12 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         public void ThenIShouldSeeDuplicateEmailErrorMessage()
         {
             CurrentPage.As<RegistrationPage>().DuplicateEmailErrorMessageDisplayed();
+        }
+
+        [Then(@"I should see the creative center duplicate email error message preventing account creation")]
+        public void ThenIShouldSeeCcDuplicateEmailErrorMessage()
+        {
+            CurrentPage.As<HomePage>().DuplicateCcEmailErrorMessageDisplayed();
         }
 
         [Then(@"I should see the invalid credentials error message preventing login to brother online")]
