@@ -52,6 +52,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [Then(@"I can navigate back to Brother Online home page")]
         public void ThenICanNavigateBackToBrotherOnlineHomePage()
         {
+            NextPage = GlobalNavigationModule.MyAccountTopMenuItemClick(CurrentDriver);
             NextPage = GlobalNavigationModule.BrotherOnlineGoHome(CurrentDriver);
         }
 
