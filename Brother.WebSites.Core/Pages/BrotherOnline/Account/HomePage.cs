@@ -186,7 +186,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         public IWebElement BussinessUpdateButtonId;
         [FindsBy(How = How.Id, Using = "110d559f-dea5-42ea-9c1c-8a5df7e70ef9")]
 
-        //public string BussinessUpdateButtonId = "#content_2_innercontent_1_SubmitButton";
+        [FindsBy(How = How.Id, Using = "cccontent_1_singlecolumnform_0_Warnings")]
+        public IWebElement DuplicateCcEmailErrorMessage;
 
         private static readonly Dictionary<string, string> _pageTitle = new Dictionary<string, string>
         {
@@ -836,6 +837,11 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         public void UseAccountForBusinessIsSelected()
         {
             TestCheck.AssertIsEqual("True", UseMyAccountForBusinessCheckbox.Selected.ToString(), "Use Account For Business Button");
+        }
+
+        public void DuplicateCcEmailErrorMessageDisplayed()
+        {
+            TestCheck.AssertIsEqual(true, DuplicateCcEmailErrorMessage.Displayed, "Is Error Message Displayed");
         }
 
     }
