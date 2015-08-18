@@ -231,7 +231,7 @@ Scenario Outline: (Failing on Prod - BBAU-2575) Validate that an error message i
 		| "existingbusinessaccount@guerillamail.com"  | "Password100" | "Password200"	 |
 
 # Customer cannot register for a creative center account using an invalid email format	
-Scenario Outline: Customer cannot register for creative center account with invalid email formats
+Scenario Outline: (Failing on Prod - BBAU-2575) Customer cannot register for creative center account with invalid email formats
 	Given I launch Brother Online for "United Kingdom"
 	When I navigate to and click the creative center link
 	Then I am taken to the creative center landing page
@@ -262,7 +262,7 @@ Scenarios:
 	| "specialcharactersüñîçøðé@guerrillamail.com"|
 
 # Customer cannot register for a family creative center account using a duplicate email address 
-Scenario Outline: Customer cannot register for a new family creative center account using an email address that already exists for another brother online user or business account				
+Scenario Outline: (Failing on Prod - BBAU-2575) Customer cannot register for a new family creative center account using an email address that already exists for another brother online user or business account				
 	Given I launch Brother Online for "United Kingdom"
 	When I navigate to and click the creative center link
 	Then I am taken to the creative center landing page
@@ -291,7 +291,7 @@ Scenarios:
 
 
 # Customer cannot register for a business creative center account using a duplicate email address 
-Scenario Outline: Customer cannot register for a new business creative center account using an email address that already exists for another brother online business or user account				
+Scenario Outline: (Failing on Prod - BBAU-2575) Customer cannot register for a new business creative center account using an email address that already exists for another brother online business or user account				
 	Given I launch Brother Online for "United Kingdom"
 	When I navigate to and click the creative center link
 	Then I am taken to the creative center landing page

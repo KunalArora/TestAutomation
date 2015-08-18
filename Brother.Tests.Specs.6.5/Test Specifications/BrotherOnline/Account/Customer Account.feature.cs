@@ -1153,7 +1153,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 479
  testRunner.Then("I delete all page cookies", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 480
- testRunner.And("I refresh the current page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("I refresh the current page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 481
  testRunner.Then("I can see and click the accept cookies button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 482

@@ -397,9 +397,11 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public void AcceptCookiesButtonClick()
         {
-            WebDriver.Wait(DurationType.Millisecond, 5000);
-            WaitForElementToExistByCssSelector("#AcceptCookieLawHyperLink");
-            ScrollTo(AcceptCookiesButton);
+
+            //WebDriver.DeleteAllCookies();
+            //WebDriver.Wait(DurationType.Millisecond, 5000);
+            //WaitForElementToExistByCssSelector("#AcceptCookieLawHyperLink");
+            //ScrollTo(AcceptCookiesButton);
             AcceptCookiesButton.Click();
         }
 

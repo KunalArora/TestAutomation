@@ -595,7 +595,8 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Customer cannot register for creative center account with invalid email formats")]
+        [NUnit.Framework.DescriptionAttribute("(Failing on Prod - BBAU-2575) Customer cannot register for creative center accoun" +
+            "t with invalid email formats")]
         [NUnit.Framework.TestCaseAttribute("\"This is a space@guerrillamail.com\"", null)]
         [NUnit.Framework.TestCaseAttribute("\"CannotUsePercent%@guerrillamail.com\"", null)]
         [NUnit.Framework.TestCaseAttribute("\"CannotUseCurlyBraces{}@guerrillamail.com\"", null)]
@@ -609,9 +610,10 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestCaseAttribute("\"CannotUseOpenBrace(@guerrillamail.com\"", null)]
         [NUnit.Framework.TestCaseAttribute("\"CannotUseEquals=@guerrillamail.com\"", null)]
         [NUnit.Framework.TestCaseAttribute("\"specialcharactersüñîçøðé@guerrillamail.com\"", null)]
-        public virtual void CustomerCannotRegisterForCreativeCenterAccountWithInvalidEmailFormats(string emailAddress, string[] exampleTags)
+        public virtual void FailingOnProd_BBAU_2575CustomerCannotRegisterForCreativeCenterAccountWithInvalidEmailFormats(string emailAddress, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer cannot register for creative center account with invalid email formats", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("(Failing on Prod - BBAU-2575) Customer cannot register for creative center accoun" +
+                    "t with invalid email formats", exampleTags);
 #line 234
 this.ScenarioSetup(scenarioInfo);
 #line 235
@@ -643,14 +645,16 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Customer cannot register for a new family creative center account using an email " +
-            "address that already exists for another brother online user or business account")]
+        [NUnit.Framework.DescriptionAttribute("(Failing on Prod - BBAU-2575) Customer cannot register for a new family creative " +
+            "center account using an email address that already exists for another brother on" +
+            "line user or business account")]
         [NUnit.Framework.TestCaseAttribute("\"existinguseraccount@guerrillamail.com\"", null)]
         [NUnit.Framework.TestCaseAttribute("\"existingbusinessaccount@guerrillamail.com\"", null)]
-        public virtual void CustomerCannotRegisterForANewFamilyCreativeCenterAccountUsingAnEmailAddressThatAlreadyExistsForAnotherBrotherOnlineUserOrBusinessAccount(string emailAddress, string[] exampleTags)
+        public virtual void FailingOnProd_BBAU_2575CustomerCannotRegisterForANewFamilyCreativeCenterAccountUsingAnEmailAddressThatAlreadyExistsForAnotherBrotherOnlineUserOrBusinessAccount(string emailAddress, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer cannot register for a new family creative center account using an email " +
-                    "address that already exists for another brother online user or business account", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("(Failing on Prod - BBAU-2575) Customer cannot register for a new family creative " +
+                    "center account using an email address that already exists for another brother on" +
+                    "line user or business account", exampleTags);
 #line 265
 this.ScenarioSetup(scenarioInfo);
 #line 266
@@ -705,16 +709,16 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Customer cannot register for a new business creative center account using an emai" +
-            "l address that already exists for another brother online business or user accoun" +
-            "t")]
+        [NUnit.Framework.DescriptionAttribute("(Failing on Prod - BBAU-2575) Customer cannot register for a new business creativ" +
+            "e center account using an email address that already exists for another brother " +
+            "online business or user account")]
         [NUnit.Framework.TestCaseAttribute("\"existinguseraccount@guerrillamail.com\"", null)]
         [NUnit.Framework.TestCaseAttribute("\"existingbusinessaccount@guerrillamail.com\"", null)]
-        public virtual void CustomerCannotRegisterForANewBusinessCreativeCenterAccountUsingAnEmailAddressThatAlreadyExistsForAnotherBrotherOnlineBusinessOrUserAccount(string emailAddress, string[] exampleTags)
+        public virtual void FailingOnProd_BBAU_2575CustomerCannotRegisterForANewBusinessCreativeCenterAccountUsingAnEmailAddressThatAlreadyExistsForAnotherBrotherOnlineBusinessOrUserAccount(string emailAddress, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer cannot register for a new business creative center account using an emai" +
-                    "l address that already exists for another brother online business or user accoun" +
-                    "t", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("(Failing on Prod - BBAU-2575) Customer cannot register for a new business creativ" +
+                    "e center account using an email address that already exists for another brother " +
+                    "online business or user account", exampleTags);
 #line 294
 this.ScenarioSetup(scenarioInfo);
 #line 295
