@@ -45,7 +45,15 @@ namespace Brother.WebSites.Core.Pages.Base
             {
                 driver.Url = Helper.CheckForCdServer(driver.Url);
             }
-            new WebDriverWait(driver, timeSpan).Until(d => d.FindElement(By.TagName("body")));
+
+            try
+            {
+                new WebDriverWait(driver, timeSpan).Until(d => d.FindElement(By.TagName("body")));
+            }
+            catch (TimeoutException timeOut)
+            {
+                MsgOutput("FATAL: (GetInstance<TPage>) Waiting for body tag element to appear on Page. This can be due to the current test not being on the correct page");
+            }
 
             // Initialise the page instance with elements based on FindsBy entries
             PageFactory.InitElements(driver, pageInstance);

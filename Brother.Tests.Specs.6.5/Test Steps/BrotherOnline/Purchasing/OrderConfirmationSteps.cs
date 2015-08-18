@@ -15,8 +15,6 @@ namespace Brother.Tests.Specs.BrotherOnline.Purchasing
         public void ThenIShouldSeeTheOrderConfirmationPage()
         {
             CurrentPage.As<OrderConfirmationPage>().IsMyAccountButtonAvailable();
-            //var pageSource = SeleniumHelper.RunScript("$('body').html();");
-            //Helper.MsgOutput(string.Format("Page Source = [{0}]", pageSource));
             // store order confirmation number
             ScenarioContext.Current.Add("OrderConfirmationNumber", CurrentPage.As<OrderConfirmationPage>().GetOrderConfirmationNumber());
             ScenarioContext.Current.Add("ProductInfo", CurrentPage.As<OrderConfirmationPage>().GetProductInfo());
