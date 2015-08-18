@@ -1,0 +1,5 @@
+﻿#error Feature file already contains a scenario with name 'User is able to navigate to the printers page via the top main site  business solutions menu'
+#error Feature file already contains a scenario with name 'User is able to navigate to the printers page via the top main site  business solutions menu'
+#error Feature file already contains a scenario with name 'User is able to navigate to the printers page via the top main site  business solutions menu'
+#error Feature file already contains a scenario with name 'User is able to navigate to the printers page via the top main site  business solutions menu'
+#error Feature file already contains a scenario with name 'User is able to navigate to the printers page via the top main site  business solutions menu'
