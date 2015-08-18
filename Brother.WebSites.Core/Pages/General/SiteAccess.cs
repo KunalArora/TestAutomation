@@ -34,6 +34,7 @@ namespace Brother.WebSites.Core.Pages.General
         public static void ValidateLiveSiteUrl(string webSite)
         {
             webSite = CheckForCdServer(webSite);
+            
             TestController.CurrentDriver.Navigate().GoToUrl(webSite);
             MsgOutput(string.Format("Size of page [{0}] = [{1}]", webSite, TestController.CurrentDriver.PageSource.Length));
             try
