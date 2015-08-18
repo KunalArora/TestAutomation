@@ -54,7 +54,7 @@ namespace Brother.Tests.Specs.BrotherOnline.SiteAccess
                     case HttpStatusCode.OK:
                         attempts = 5;
                         WebDriver.SetPageLoadTimeout(TimeSpan.FromSeconds(120));
-                        WebSites.Core.Pages.General.SiteAccess.ValidateLiveSiteUrl(url);
+                        //WebSites.Core.Pages.General.SiteAccess.ValidateLiveSiteUrl(url);
                         WebDriver.SetPageLoadTimeout(WebDriver.DefaultTimeout);
                         break;
                     case HttpStatusCode.MultipleChoices:
@@ -68,6 +68,7 @@ namespace Brother.Tests.Specs.BrotherOnline.SiteAccess
             }
 
             TestCheck.AssertIsEqual(HttpStatusCode.OK, responseCode, "Http Status Code Returned");
+            WebDriver.Wait(Helper.DurationType.Second, 2); // small pause between each site check
         }
 
         private HttpStatusCode GetWebPageResponse(string webSite)

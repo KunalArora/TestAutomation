@@ -15,15 +15,15 @@ Scenario Outline: Get 200 OK response back from the following Brother Main Sites
 	| United Kingdom | http://uk.brotherqas.eu/ |
 	| Germany        | http://de.brotherqas.eu/ |
 	| Slovakia       | http://sk.brotherqas.eu/ |
-#	| Poland         | http://pl.brotherqas.eu/ |
+	| Poland         | http://pl.brotherqas.eu/ |
 	| France         | http://fr.brotherqas.eu/ |
 	| Netherlands    | http://nl.brotherqas.eu/ |
-#	| Russia         | http://ru.brotherqas.eu/ |
-#	| Portugal       | http://pt.brotherqas.eu/ |
-#	| Romania        | http://ro.brotherqas.eu/ |
-#	| Czech          | http://cz.brotherqas.eu/ |
-#	| Hungary        | http://hr.brotherqas.eu/ |
-#	| Belgium        | http://be.brotherqas.eu/ |
+	| Russia         | http://ru.brotherqas.eu/ |
+	| Portugal       | http://pt.brotherqas.eu/ |
+	| Romania        | http://ro.brotherqas.eu/ |
+	| Czech          | http://cz.brotherqas.eu/ |
+	| Hungary        | http://hr.brotherqas.eu/ |
+	| Belgium        | http://be.brotherqas.eu/ |
 	| Denmark        | http://dk.brotherqas.eu/ |
 	| Switzerland    | http://ch.brotherqas.eu/ |
 #	| Austria        | http://as.brotherqas.eu/ |
