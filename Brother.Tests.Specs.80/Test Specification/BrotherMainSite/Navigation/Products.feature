@@ -263,6 +263,97 @@ Scenario: User is able to navigate to the labelling page
 							Then I click to view electricians and datacoms labelling
 							Then I am navigated to view electricians and datacoms labelling products
 
+						Scenario: User is able to navigate to view gardening and horticulture products
+							Given I have navigated to the "<site>" MainSite URL for country "<country>"
+							And I hover over the top products menu button
+							Then I hover and click the labelling option
+							Then I click to view all labelling products
+							Then I click to view the professional labelling
+							Then I click to view electrical or garden labelling
+							Then I click to view gardening and horticultue labelling
+							Then I am navigated to view gardening and horticultue labelling products
+
+# Fax navigation
+Scenario: User is able to navigate to the fax page
+	Given I have navigated to the "<site>" MainSite URL for country "<country>"
+	And I hover over the top products menu button
+	Then I hover and click the fax option
+	Then I am navigated to the fax page
+
+		Scenario: User is able to navigate to view all fax products
+			Given I have navigated to the "<site>" MainSite URL for country "<country>"
+			And I hover over the top products menu button
+			Then I hover and click the fax option
+			Then I click to view all fax machines
+			Then I am navigated to view all fax machines
+
+		Scenario: User is able to navigate to view home office fax products
+			Given I have navigated to the "<site>" MainSite URL for country "<country>"
+			And I hover over the top products menu button
+			Then I hover and click the fax option
+			Then I click to view all fax machines
+			Then I click to view home office fax machines
+			Then I am navigated to view home office fax machines
+
+		Scenario: User is able to navigate to view busy office fax products
+			Given I have navigated to the "<site>" MainSite URL for country "<country>"
+			And I hover over the top products menu button
+			Then I hover and click the fax option
+			Then I click to view all fax machines
+			Then I click to view busy office fax machines
+			Then I am navigated to view busy office fax machines
+
+# Sewing navigation (Further page navigation in this area to be split into its own feature)
+Scenario: User is able to navigate to the sewing machine page
+	Given I have navigated to the "<site>" MainSite URL for country "<country>"
+	And I hover over the top products menu button
+	Then I hover and click the sewing option
+	Then I am navigated to the sewing page
+
+# Tape creator navigation
+Scenario: User is able to navigate to the tape creator page
+	Given I have navigated to the "<site>" MainSite URL for country "<country>"
+	And I hover over the top products menu button
+	Then I hover and click the tape creator option
+	Then I am navigated to the tape creator page
+
+# Web conferencing navigation (Further page navigation in this area to be split into its own feature)
+Scenario: User is able to navigate to the web conferencing page
+	Given I have navigated to the "<site>" MainSite URL for country "<country>"
+	And I hover over the top products menu button
+	Then I hover and click the web conferencing option
+	Then I am navigated to the web conferencing page
+
+# Where to buy navigation (Further page navigation in this area covered in tests earlier on in this feature)
+Scenario: User is able to navigate to the where to buy page
+	Given I have navigated to the "<site>" MainSite URL for country "<country>"
+	And I hover over the top products menu button
+	Then I hover and click the where to buy option
+	Then I am navigated to the where to buy page
+
+# Supplies navigation (Further page navigation in this area covered in tests earlier on in this feature)
+Scenario: User is able to navigate to the supplies page
+	Given I have navigated to the "<site>" MainSite URL for country "<country>"
+	And I hover over the top products menu button
+	Then I hover and click the supplies option
+	Then I am navigated to the supplies page
+
+# Why choose brother originals navigation (Further page navigation in this area covered in tests earlier on in this feature)
+Scenario: User is able to navigate to the why choose brother originals page
+	Given I have navigated to the "<site>" MainSite URL for country "<country>"
+	And I hover over the top products menu button
+	Then I hover and click the supplies option
+	Then I am navigated to the supplies page
+
+
+
+
+
+
+
+
+
+
 
 						 
 

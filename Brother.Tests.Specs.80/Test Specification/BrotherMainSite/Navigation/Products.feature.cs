@@ -795,6 +795,233 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("User is able to navigate to view gardening and horticulture products")]
+        public virtual void UserIsAbleToNavigateToViewGardeningAndHorticultureProducts()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to view gardening and horticulture products", ((string[])(null)));
+#line 266
+      this.ScenarioSetup(scenarioInfo);
+#line 267
+       testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 268
+       testRunner.And("I hover over the top products menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 269
+       testRunner.Then("I hover and click the labelling option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 270
+       testRunner.Then("I click to view all labelling products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 271
+       testRunner.Then("I click to view the professional labelling", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 272
+       testRunner.Then("I click to view electrical or garden labelling", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 273
+       testRunner.Then("I click to view gardening and horticultue labelling", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 274
+       testRunner.Then("I am navigated to view gardening and horticultue labelling products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("User is able to navigate to the fax page")]
+        public virtual void UserIsAbleToNavigateToTheFaxPage()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the fax page", ((string[])(null)));
+#line 277
+this.ScenarioSetup(scenarioInfo);
+#line 278
+ testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 279
+ testRunner.And("I hover over the top products menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 280
+ testRunner.Then("I hover and click the fax option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 281
+ testRunner.Then("I am navigated to the fax page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("User is able to navigate to view all fax products")]
+        public virtual void UserIsAbleToNavigateToViewAllFaxProducts()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to view all fax products", ((string[])(null)));
+#line 283
+  this.ScenarioSetup(scenarioInfo);
+#line 284
+   testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 285
+   testRunner.And("I hover over the top products menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 286
+   testRunner.Then("I hover and click the fax option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 287
+   testRunner.Then("I click to view all fax machines", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 288
+   testRunner.Then("I am navigated to view all fax machines", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("User is able to navigate to view home office fax products")]
+        public virtual void UserIsAbleToNavigateToViewHomeOfficeFaxProducts()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to view home office fax products", ((string[])(null)));
+#line 290
+  this.ScenarioSetup(scenarioInfo);
+#line 291
+   testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 292
+   testRunner.And("I hover over the top products menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 293
+   testRunner.Then("I hover and click the fax option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 294
+   testRunner.Then("I click to view all fax machines", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 295
+   testRunner.Then("I click to view home office fax machines", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 296
+   testRunner.Then("I am navigated to view home office fax machines", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("User is able to navigate to view busy office fax products")]
+        public virtual void UserIsAbleToNavigateToViewBusyOfficeFaxProducts()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to view busy office fax products", ((string[])(null)));
+#line 298
+  this.ScenarioSetup(scenarioInfo);
+#line 299
+   testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 300
+   testRunner.And("I hover over the top products menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 301
+   testRunner.Then("I hover and click the fax option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 302
+   testRunner.Then("I click to view all fax machines", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 303
+   testRunner.Then("I click to view busy office fax machines", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 304
+   testRunner.Then("I am navigated to view busy office fax machines", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("User is able to navigate to the sewing machine page")]
+        public virtual void UserIsAbleToNavigateToTheSewingMachinePage()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the sewing machine page", ((string[])(null)));
+#line 307
+this.ScenarioSetup(scenarioInfo);
+#line 308
+ testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 309
+ testRunner.And("I hover over the top products menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 310
+ testRunner.Then("I hover and click the sewing option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 311
+ testRunner.Then("I am navigated to the sewing page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("User is able to navigate to the tape creator page")]
+        public virtual void UserIsAbleToNavigateToTheTapeCreatorPage()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the tape creator page", ((string[])(null)));
+#line 314
+this.ScenarioSetup(scenarioInfo);
+#line 315
+ testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 316
+ testRunner.And("I hover over the top products menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 317
+ testRunner.Then("I hover and click the tape creator option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 318
+ testRunner.Then("I am navigated to the tape creator page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("User is able to navigate to the web conferencing page")]
+        public virtual void UserIsAbleToNavigateToTheWebConferencingPage()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the web conferencing page", ((string[])(null)));
+#line 321
+this.ScenarioSetup(scenarioInfo);
+#line 322
+ testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 323
+ testRunner.And("I hover over the top products menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 324
+ testRunner.Then("I hover and click the web conferencing option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 325
+ testRunner.Then("I am navigated to the web conferencing page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("User is able to navigate to the where to buy page")]
+        public virtual void UserIsAbleToNavigateToTheWhereToBuyPage()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the where to buy page", ((string[])(null)));
+#line 328
+this.ScenarioSetup(scenarioInfo);
+#line 329
+ testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 330
+ testRunner.And("I hover over the top products menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 331
+ testRunner.Then("I hover and click the where to buy option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 332
+ testRunner.Then("I am navigated to the where to buy page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("User is able to navigate to the supplies page")]
+        public virtual void UserIsAbleToNavigateToTheSuppliesPage()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the supplies page", ((string[])(null)));
+#line 335
+this.ScenarioSetup(scenarioInfo);
+#line 336
+ testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 337
+ testRunner.And("I hover over the top products menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 338
+ testRunner.Then("I hover and click the supplies option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 339
+ testRunner.Then("I am navigated to the supplies page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("User is able to navigate to the why choose brother originals page")]
+        public virtual void UserIsAbleToNavigateToTheWhyChooseBrotherOriginalsPage()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the why choose brother originals page", ((string[])(null)));
+#line 342
+this.ScenarioSetup(scenarioInfo);
+#line 343
+ testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 344
+ testRunner.And("I hover over the top products menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 345
+ testRunner.Then("I hover and click the supplies option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 346
+ testRunner.Then("I am navigated to the supplies page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore
