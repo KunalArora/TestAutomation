@@ -87,8 +87,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         {
             var orderNum = SpecFlow.GetContext("OrderConfirmationNumber");
             var locatorString = string.Format("a[href*='orderid={0}']", orderNum);
-            return Driver.FindElement(By.CssSelector(locatorString));
+            return WaitForElementToExistByCssSelector(locatorString) ? Driver.FindElement(By.CssSelector(locatorString)) : null;
         }
+
         public void IsViewOrderDetailsButtonAvailable()
         {
             if (ViewOrderDetailsButton() == null)

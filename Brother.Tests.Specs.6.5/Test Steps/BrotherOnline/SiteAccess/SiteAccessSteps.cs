@@ -75,7 +75,7 @@ namespace Brother.Tests.Specs.BrotherOnline.SiteAccess
             var responseTimer = new System.Diagnostics.Stopwatch();
             responseTimer.Start();
             // get response from WebSite
-            var responseCode = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Head);
+            var responseCode = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
             responseTimer.Stop();
             var responseTime = responseTimer.Elapsed;
             Helper.MsgOutput(string.Format("Response time from website [{0}] was [{1}ms]", webSite, responseTime.Milliseconds));
