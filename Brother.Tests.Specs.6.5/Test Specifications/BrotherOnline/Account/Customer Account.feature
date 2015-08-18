@@ -477,7 +477,7 @@ Scenario: Validate that a user account can be created using the maximun 241 user
 Scenario: Validate that a user can view cookie information on first visit to brother online and once accepted does not see it again
 	Given I launch Brother Online for "United Kingdom"
 	Then I delete all page cookies
-	And I refresh the current page
+	Then I refresh the current page
 	Then I can see and click the accept cookies button
 	And I refresh the current page
 	Then I can no longer see the accept cookies button
