@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Brother.Tests.Specs._80.TestSpecification.OmniJoin
+namespace Brother.Tests.Specs.TestSpecifications.OmniJoin
 {
     using TechTalk.SpecFlow;
     
@@ -212,6 +212,36 @@ this.FeatureBackground();
  testRunner.Then("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 66
  testRunner.And("I am redirected to the Brother Home Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Edit Payment SAP validation")]
+        [NUnit.Framework.IgnoreAttribute()]
+        public virtual void EditPaymentSAPValidation()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Edit Payment SAP validation", new string[] {
+                        "ignore"});
+#line 69
+this.ScenarioSetup(scenarioInfo);
+#line 6
+this.FeatureBackground();
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Cancel Plan")]
+        [NUnit.Framework.IgnoreAttribute()]
+        public virtual void CancelPlan()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cancel Plan", new string[] {
+                        "ignore"});
+#line 74
+this.ScenarioSetup(scenarioInfo);
+#line 6
+this.FeatureBackground();
 #line hidden
             this.ScenarioCleanup();
         }

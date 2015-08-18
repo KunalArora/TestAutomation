@@ -64,3 +64,20 @@ Scenario: Change Payment Method
 	Then I can navigate back to Brother Online home page
 	Then I can sign out of Brother Online
 	And I am redirected to the Brother Home Page
+
+@ignore 
+Scenario: Edit Payment SAP validation
+	# Edit Payment Method needs more thorough checks and also a SAP check. Cards with the same number are not getting updated
+	# See BOL-234
+
+@ignore
+Scenario: Cancel Plan
+	# Order Plan
+	# My Account
+	# Change Plan
+	# Cancel subscription
+	# Update
+	# Validate message
+	# Check my account for correct updates
+	# Validate new order number via SAP
+
