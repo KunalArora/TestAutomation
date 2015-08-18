@@ -72,26 +72,15 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
         public void IsMyAccountButtonAvailable()
         {
             MsgOutput(string.Format("Page Source Output = [{0}]", Driver.PageSource));
-          //  AssertElementPresent(AccountButtonFindThisPlease, "Order Confirmation : My Account Button availability check", 200);
             AssertElementPresent(MyAccountButton, "Order Confirmation : My Account Button availability check", 200);
-
-            //MyAccountButton = null;
-            //if (WaitForElementToExistByCssSelector(MyAccountMenuButtonCssId, 10, 10)) // Payment processing can be slow sometimes
-            //{
-            //    MyAccountButton = Driver.FindElement(By.CssSelector(MyAccountMenuButtonCssId));
-            //    //AssertElementPresent(MyAccountButton, "Order Confirmation : My Account Button availability check", 200);
-            //}
-            //else
-            //{
-            //    TestCheck.AssertFailTest("Order Confirmation : My Account Button availability check error - failed to located My Account Button");    
-            //}
-            
         }
 
-        public MyOrdersPage MyAccountButtonClick()
+        public MyAccountPage MyAccountButtonClick()
         {
+        //    MyAccountButton.Click();
+        //    return GetInstance<MyOrdersPage>(Driver);
             MyAccountButton.Click();
-            return GetInstance<MyOrdersPage>(Driver);
+            return GetInstance<MyAccountPage>(Driver);
         }
 
         public string GetItemPrice()
