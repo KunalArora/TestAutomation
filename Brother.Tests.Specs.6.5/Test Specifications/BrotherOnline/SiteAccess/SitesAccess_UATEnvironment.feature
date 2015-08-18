@@ -11,7 +11,6 @@ Scenario Outline: Get 200 OK response back from the following Brother Main Sites
 
 	Scenarios:
 	| Country        | Main Site                |
-	| Ireland        | http://ie.brotherqas.eu/ |
 	| United Kingdom | http://uk.brotherqas.eu/ |
 	| Germany        | http://de.brotherqas.eu/ |
 	| Slovakia       | http://sk.brotherqas.eu/ |
@@ -22,14 +21,15 @@ Scenario Outline: Get 200 OK response back from the following Brother Main Sites
 	| Portugal       | http://pt.brotherqas.eu/ |
 	| Romania        | http://ro.brotherqas.eu/ |
 	| Czech          | http://cz.brotherqas.eu/ |
-	| Hungary        | http://hr.brotherqas.eu/ |
 	| Belgium        | http://be.brotherqas.eu/ |
 	| Denmark        | http://dk.brotherqas.eu/ |
 	| Switzerland    | http://ch.brotherqas.eu/ |
-#	| Austria        | http://as.brotherqas.eu/ |
 	| Slovenia       | http://si.brotherqas.eu/ |
 	| Spain          | http://es.brotherqas.eu/ |
 	| Italy          | http://it.brotherqas.eu/ |
+	| Ireland        | http://ie.brotherqas.eu/ |
+	| Hungary        | http://hr.brotherqas.eu/ |
+#	| Austria        | http://as.brotherqas.eu/ |
 
 # BrotherOnline
 @SMOKE
@@ -38,25 +38,25 @@ Scenario Outline: Get 200 OK response back from the following Brother Online Sit
 	
 	Scenarios:
 	| Country        | Brother Online                   |
-	| Ireland        | https://online.ie.brotherqas.eu/ |
 	| United Kingdom | https://online.uk.brotherqas.eu/ |
 	| Spain          | https://online.es.brotherqas.eu/ |
 	| Poland         | https://online.pl.brotherqas.eu/ |
 	| Germany        | https://online.de.brotherqas.eu/ |
-	| Slovakia       | https://online.sk.brotherqas.eu/ |
-	| France         | https://online.fr.brotherqas.eu/ |
 	| Netherlands    | https://online.nl.brotherqas.eu/ |
 	| Russia         | https://online.ru.brotherqas.eu/ |
+	| Slovakia       | https://online.sk.brotherqas.eu/ |
 	| Portugal       | https://online.pt.brotherqas.eu/ |
 	| Romania        | https://online.ro.brotherqas.eu/ |
 	| Czech          | https://online.cz.brotherqas.eu/ |
-	| Hungary        | https://online.hr.brotherqas.eu/ |
 	| Belgium        | https://online.be.brotherqas.eu/ |
 	| Denmark        | https://online.dk.brotherqas.eu/ |
 	| Switzerland    | https://online.ch.brotherqas.eu/ |
-#	| Austria        | https://online.as.brotherqas.eu/ |
+	| France         | https://online.fr.brotherqas.eu/ |
 	| Slovenia       | https://online.si.brotherqas.eu/ |
 	| Italy          | https://online.it.brotherqas.eu/ |
+	| Ireland        | https://online.ie.brotherqas.eu/ |
+#	| Hungary        | https://online.hr.brotherqas.eu/ |
+#	| Austria        | https://online.as.brotherqas.eu/ |
 
 # CreativeCentre - UK
 @SMOKE

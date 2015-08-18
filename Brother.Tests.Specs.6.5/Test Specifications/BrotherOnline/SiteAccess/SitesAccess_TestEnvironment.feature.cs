@@ -71,7 +71,6 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess
         [NUnit.Framework.DescriptionAttribute("Get 200 OK response back from the following Brother Main Sites on the Test enviro" +
             "nment")]
         [NUnit.Framework.CategoryAttribute("SMOKE")]
-        [NUnit.Framework.TestCaseAttribute("Ireland", "http://ie.brotherdv2.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "http://uk.brotherdv2.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Germany", "http://de.brotherdv2.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Slovakia", "http://sk.brotherdv2.eu/", null)]
@@ -89,6 +88,7 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess
         [NUnit.Framework.TestCaseAttribute("Slovenia", "http://si.brotherdv2.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Spain", "http://es.brotherdv2.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Italy", "http://it.brotherdv2.eu/", null)]
+        [NUnit.Framework.TestCaseAttribute("Ireland", "http://ie.brotherdv2.eu/", null)]
         public virtual void Get200OKResponseBackFromTheFollowingBrotherMainSitesOnTheTestEnvironment(string language, string mainSite, string[] exampleTags)
         {
             string[] @__tags = new string[] {
