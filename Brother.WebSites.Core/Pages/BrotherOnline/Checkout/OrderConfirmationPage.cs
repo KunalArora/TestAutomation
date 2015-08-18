@@ -64,7 +64,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
             }
             catch (NoSuchElementException noSuchElement)
             {
-                Helper.MsgOutput("Unable to locate Billing Type element on page", noSuchElement.Message);
+                MsgOutput("Unable to locate Billing Type element on page", noSuchElement.Message);
             }
             return string.Empty;
         }
