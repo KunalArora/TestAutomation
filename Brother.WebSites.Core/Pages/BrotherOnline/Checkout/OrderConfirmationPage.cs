@@ -36,9 +36,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
         [FindsBy(How = How.CssSelector, Using = ".box-out.purchase-confirmed h3")]
         public IWebElement OrderConfirmationNumber;
 
-        //[FindsBy(How = How.CssSelector, Using = ".product-info div:contains(\"Term\")")]
-        //public IWebElement BillingTypeText;
-
         private const string OrderNumberString = @"Order Number : ";
         private const string PriceString = @"PRICE";
         private const string BillingTermString = @"Term: ";
@@ -64,34 +61,20 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
             }
             catch (NoSuchElementException noSuchElement)
             {
-                Helper.MsgOutput("Unable to locate Billing Type element on page", noSuchElement.Message);
+                MsgOutput("Unable to locate Billing Type element on page", noSuchElement.Message);
             }
             return string.Empty;
         }
 
         public void IsMyAccountButtonAvailable()
         {
-            MsgOutput(string.Format("Page Source Output = [{0}]", Driver.PageSource));
-          //  AssertElementPresent(AccountButtonFindThisPlease, "Order Confirmation : My Account Button availability check", 200);
-            AssertElementPresent(MyAccountButton, "Order Confirmation : My Account Button availability check", 200);
-
-            //MyAccountButton = null;
-            //if (WaitForElementToExistByCssSelector(MyAccountMenuButtonCssId, 10, 10)) // Payment processing can be slow sometimes
-            //{
-            //    MyAccountButton = Driver.FindElement(By.CssSelector(MyAccountMenuButtonCssId));
-            //    //AssertElementPresent(MyAccountButton, "Order Confirmation : My Account Button availability check", 200);
-            //}
-            //else
-            //{
-            //    TestCheck.AssertFailTest("Order Confirmation : My Account Button availability check error - failed to located My Account Button");    
-            //}
-            
+            AssertElementPresent(MyAccountButton, "Order Confirmation : My Account Button availability check", 3000);
         }
 
-        public MyOrdersPage MyAccountButtonClick()
+        public MyAccountPage MyAccountButtonClick()
         {
             MyAccountButton.Click();
-            return GetInstance<MyOrdersPage>(Driver);
+            return GetInstance<MyAccountPage>(Driver);
         }
 
         public string GetItemPrice()

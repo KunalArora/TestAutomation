@@ -124,7 +124,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             try
             {
                 navigationLinks =
-                //MyAccountSideNavigationMenu(driver).FindElements(By.XPath(@"//*[contains(@id,'navigationcontainer_0_MenuItemsRepeater_listItem_')]"));
                 MyAccountSideNavigationMenu(driver).FindElements(By.XPath(@"//*[contains(@id,'navigationcontainer_0_MenuItemsRepeater_LeftMenuLink')]"));
             }
             catch (NoSuchElementException notSuchElement)

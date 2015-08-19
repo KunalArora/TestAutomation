@@ -11,7 +11,6 @@ Scenario Outline: Get 200 OK response back from the following Brother Main Sites
 
 	Scenarios:
 	| Language       | Main Site                |
-	| Ireland        | http://ie.brotherdv2.eu/ |
 	| United Kingdom | http://uk.brotherdv2.eu/ |
 	| Germany        | http://de.brotherdv2.eu/ |
 	| Slovakia       | http://sk.brotherdv2.eu/ |
@@ -30,6 +29,7 @@ Scenario Outline: Get 200 OK response back from the following Brother Main Sites
 	| Slovenia       | http://si.brotherdv2.eu/ |
 	| Spain          | http://es.brotherdv2.eu/ |
 	| Italy          | http://it.brotherdv2.eu/ |
+	| Ireland        | http://ie.brotherdv2.eu/ |
 
 # BrotherOnline
 @ignore @SMOKE

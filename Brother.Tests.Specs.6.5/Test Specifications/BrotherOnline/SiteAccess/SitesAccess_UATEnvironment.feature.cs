@@ -71,17 +71,24 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess
         [NUnit.Framework.DescriptionAttribute("Get 200 OK response back from the following Brother Main Sites on the UAT environ" +
             "ment")]
         [NUnit.Framework.CategoryAttribute("SMOKE")]
-        [NUnit.Framework.TestCaseAttribute("Ireland", "http://ie.brotherqas.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "http://uk.brotherqas.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Germany", "http://de.brotherqas.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Slovakia", "http://sk.brotherqas.eu/", null)]
+        [NUnit.Framework.TestCaseAttribute("Poland", "http://pl.brotherqas.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("France", "http://fr.brotherqas.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Netherlands", "http://nl.brotherqas.eu/", null)]
+        [NUnit.Framework.TestCaseAttribute("Russia", "http://ru.brotherqas.eu/", null)]
+        [NUnit.Framework.TestCaseAttribute("Portugal", "http://pt.brotherqas.eu/", null)]
+        [NUnit.Framework.TestCaseAttribute("Romania", "http://ro.brotherqas.eu/", null)]
+        [NUnit.Framework.TestCaseAttribute("Czech", "http://cz.brotherqas.eu/", null)]
+        [NUnit.Framework.TestCaseAttribute("Belgium", "http://be.brotherqas.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Denmark", "http://dk.brotherqas.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Switzerland", "http://ch.brotherqas.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Slovenia", "http://si.brotherqas.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Spain", "http://es.brotherqas.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Italy", "http://it.brotherqas.eu/", null)]
+        [NUnit.Framework.TestCaseAttribute("Ireland", "http://ie.brotherqas.eu/", null)]
+        [NUnit.Framework.TestCaseAttribute("Hungary", "http://hr.brotherqas.eu/", null)]
         public virtual void Get200OKResponseBackFromTheFollowingBrotherMainSitesOnTheUATEnvironment(string country, string mainSite, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -104,24 +111,23 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("Get 200 OK response back from the following Brother Online Sites on the UAT envir" +
             "onment")]
         [NUnit.Framework.CategoryAttribute("SMOKE")]
-        [NUnit.Framework.TestCaseAttribute("Ireland", "https://online.ie.brotherqas.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "https://online.uk.brotherqas.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Spain", "https://online.es.brotherqas.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Poland", "https://online.pl.brotherqas.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Germany", "https://online.de.brotherqas.eu/", null)]
-        [NUnit.Framework.TestCaseAttribute("Slovakia", "https://online.sk.brotherqas.eu/", null)]
-        [NUnit.Framework.TestCaseAttribute("France", "https://online.fr.brotherqas.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Netherlands", "https://online.nl.brotherqas.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Russia", "https://online.ru.brotherqas.eu/", null)]
+        [NUnit.Framework.TestCaseAttribute("Slovakia", "https://online.sk.brotherqas.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Portugal", "https://online.pt.brotherqas.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Romania", "https://online.ro.brotherqas.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Czech", "https://online.cz.brotherqas.eu/", null)]
-        [NUnit.Framework.TestCaseAttribute("Hungary", "https://online.hr.brotherqas.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Belgium", "https://online.be.brotherqas.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Denmark", "https://online.dk.brotherqas.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Switzerland", "https://online.ch.brotherqas.eu/", null)]
+        [NUnit.Framework.TestCaseAttribute("France", "https://online.fr.brotherqas.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Slovenia", "https://online.si.brotherqas.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Italy", "https://online.it.brotherqas.eu/", null)]
+        [NUnit.Framework.TestCaseAttribute("Ireland", "https://online.ie.brotherqas.eu/", null)]
         public virtual void Get200OKResponseBackFromTheFollowingBrotherOnlineSitesOnTheUATEnvironment(string country, string brotherOnline, string[] exampleTags)
         {
             string[] @__tags = new string[] {

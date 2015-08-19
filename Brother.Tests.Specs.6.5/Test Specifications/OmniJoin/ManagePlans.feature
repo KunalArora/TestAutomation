@@ -1,5 +1,5 @@
 ﻿@UAT @TEST
-Feature: Manage Plan (BOL-178)
+Feature: Manage Plan 
 	As a customer 
 	I would like to upgrade or cancel my OmniJoin subscription
 
@@ -15,7 +15,7 @@ Scenario: Change Plan Term
 	Then I can navigate to the Brother Online Home Page "United Kingdom"
 	When I sign back into Brother Online "United Kingdom" using the same credentials		
 	When I click on OmniJoin home
-	Then I can click on Manage Plan	
+	Then I can click on Manage Plan		
 	And If I click on Change Plan or Term
 	Then I can validate the correct plan is displayed "OmniJoin Lite" "Monthly"
 	Then I can switch plans to "OmniJoin Lite" "Annual"

@@ -60,8 +60,6 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         public void ThenIfINavigateBackToTheBrotherOnlineMyAccountPage()
         {
             NextPage = GlobalNavigationModule.BrotherOnlineGoHome(CurrentDriver);
-            //var menu = GlobalNavigationModule.GetPrimaryNavigationMenuItem("MyAccount");
-            //NextPage = GlobalNavigationModule.MyAccountMenuItemClick(CurrentDriver);
         }
 
         [Then(@"If I go to My Account")]
@@ -106,8 +104,6 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [When(@"I click on Sign In Details")]
         public void WhenIClickOnSignInDetails()
         {
-            //var signInDetailsMenu = GlobalNavigationModule.GetMyAccountMenuItem("SignInDetails");
-            //NextPage = GlobalNavigationModule.MySignInDetailsMenuOptionClick(CurrentDriver, signInDetailsMenu);
             NextPage = GlobalNavigationModule.MySignInDetailsMenuOptionClick(CurrentDriver);
         }
         

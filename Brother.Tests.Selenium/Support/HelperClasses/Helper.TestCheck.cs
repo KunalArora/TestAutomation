@@ -46,7 +46,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
         public static void AssertFailTest(string validationMessage)
         {
-            Assert.Fail(validationMessage);
+           Assert.Fail(validationMessage);
         }
 
         public static void AssertTextContains(string actualText, string expectedText)

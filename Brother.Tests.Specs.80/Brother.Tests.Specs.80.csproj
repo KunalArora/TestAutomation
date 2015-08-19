@@ -57,10 +57,30 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Test Specification\BrotherMainSite\Navigation\AboutBrother.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AboutBrother.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specification\BrotherMainSite\Navigation\BusinessSolutions.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BusinessSolutions.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specification\BrotherMainSite\Navigation\Support.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Support.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specification\BrotherMainSite\Printer Search\Printers.feature.cs">
       <DependentUpon>Printers.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Test Specification\BrotherMainSite\Navigation\Products.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Products.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Specification\OmniJoin\FreeTrial.feature.cs">
       <DependentUpon>FreeTrial.feature</DependentUpon>
@@ -117,9 +137,25 @@
     <None Include="packages.config" />
     <None Include="specflow.exe.config" />
     <None Include="TeamCity.SpecFlow.Reporting.psm1" />
+    <None Include="Test Specification\BrotherMainSite\Navigation\AboutBrother.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>AboutBrother.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specification\BrotherMainSite\Navigation\BusinessSolutions.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>BusinessSolutions.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specification\BrotherMainSite\Navigation\Support.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Support.feature.cs</LastGenOutput>
+    </None>
     <None Include="Test Specification\BrotherMainSite\Printer Search\Printers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Printers.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specification\BrotherMainSite\Navigation\Products.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Products.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specification\OmniJoin\FreeTrial.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
