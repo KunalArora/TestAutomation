@@ -298,18 +298,50 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 "Bank displayed in not correct");
         }
 
+        public string GetMonoClickValue()
+        {
+            string MonoClickRate = null;
+
+            if (MonoClickRateElement.Text.Contains("£"))
+            {
+                MonoClickRate = MpsUtil.GetValue(MonoClickRateElement.Text).ToString();
+            }
+            else if (MonoClickRateElement.Text.Contains("€"))
+            {
+                MonoClickRate = MpsUtil.GetEuroValue(MonoClickRateElement.Text).ToString();
+            }
+
+            return MonoClickRate;
+        }
+
+
+        public string GetColourClickValue()
+        {
+            string ColourClickRate = null;
+
+            if (ColourClickRateElement.Text.Contains("£"))
+            {
+                ColourClickRate = MpsUtil.GetValue(ColourClickRateElement.Text).ToString();
+            }
+            else if (ColourClickRateElement.Text.Contains("€"))
+            {
+                ColourClickRate = MpsUtil.GetEuroValue(ColourClickRateElement.Text).ToString();
+            }
+
+            return ColourClickRate;
+        }
+
+
         public void IsMonoClickPriceDisplayedCorrectly()
         {
-            TestCheck.AssertIsEqual(SpecFlow.GetContext("ClickPriceMonoValue"),
-                MpsUtil.GetValue(MonoClickRateElement.Text).ToString(), 
-                "Mono Click Price displayed is different from the calculated on");
+            TestCheck.AssertTextContains(GetMonoClickValue(), SpecFlow.GetContext("ClickPriceMonoValue"),
+                 "Mono Click Price displayed is different from the calculated on");
         }
 
         public void IsColourClickPriceDisplayedCorrectly()
         {
-            TestCheck.AssertIsEqual(SpecFlow.GetContext("ClickPriceColourValue"),
-                MpsUtil.GetValue(ColourClickRateElement.Text).ToString(),
-                "Colour Click Price displayed is different from the calculated on");
+            TestCheck.AssertTextContains(GetColourClickValue(), SpecFlow.GetContext("ClickPriceColourValue"),
+                 "Colour Click Price displayed is different from the calculated on");
         }
 
         public void VerifyLeasingPanelDiplsayed()
@@ -321,7 +353,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyThatCalculationsAreNotBasedOnEstimates()
         {
-            TestCheck.AssertTextContains(CalculationBasisElement.Text, "Minimum Volume");
+            if (GrandTotalPriceNetElement.Text.Contains("£"))
+            {
+                TestCheck.AssertTextContains(CalculationBasisElement.Text, "Minimum Volume");
+            }
+            else if (GrandTotalPriceNetElement.Text.Contains("€"))
+            {
+                TestCheck.AssertTextContains(CalculationBasisElement.Text, "vereinbarten Mindestdruckvolumina");
+            }
+            
         }
 
         public void VerifyInstallationTypeIsConsistent()
@@ -363,7 +403,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyThatCalculationsAreBasedOnEstimates()
         {
-            TestCheck.AssertTextContains(CalculationBasisElement.Text, "Estimated Volume");
+            if (GrandTotalPriceNetElement.Text.Contains("£"))
+            {
+                TestCheck.AssertTextContains(CalculationBasisElement.Text, "Estimated Volume");
+            }
+            else if (GrandTotalPriceNetElement.Text.Contains("€"))
+            {
+                TestCheck.AssertTextContains(CalculationBasisElement.Text, "geschätzten Druckvolumina");
+            }
+            
         }
 
         public void VerifyCreatedProposalSummaryPageElements(string summaryElement, string value)

@@ -644,6 +644,14 @@ namespace Brother.Tests.Selenium.Lib.Support
             return decimal.Parse(money, NumberStyles.Currency, poundNumberFormatInfo);
         }
 
+        public static decimal GetEuroValue(string money)
+        {
+            NumberFormatInfo euroNumberFormatInfo = new NumberFormatInfo();
+            euroNumberFormatInfo.CurrencySymbol = "€";
+
+            return decimal.Parse(money, NumberStyles.Currency, euroNumberFormatInfo);
+        }
+
         public static void ClickButtonThenNavigateToOtherUrl(IWebDriver driver, IWebElement element)
         {
             var previousUrl = driver.Url;

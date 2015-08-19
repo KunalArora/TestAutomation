@@ -145,6 +145,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement MonoVolumeInputFieldElement;
         [FindsBy(How = How.CssSelector, Using = "#InstallationPackId [selected=\"true\"]")]
         public IWebElement SelectedInstallationTypeElement;
+        [FindsBy(How = How.CssSelector, Using = ".js-mps-installation.mps-qa-installation td")]
+        public IList<IWebElement> DisplayedInstallationTypeElement;
         [FindsBy(How = How.CssSelector, Using = ".mps-qa-installation [data-total-price=\"true\"]")]
         public IWebElement SelectedInstallationPriceElement;
         [FindsBy(How = How.CssSelector, Using = ".mps-qa-service-pack td")]
@@ -524,12 +526,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 if (IsElementPresent(ProductQuantityElement))
                     SpecFlow.SetContext("ProductQuantity", ProductQuantityElement.GetAttribute("value"));
-                if (IsElementPresent(SelectedInstallationTypeElement))
+
+               
+                if (OptionSrpText().Contains("£"))
                     SpecFlow.SetContext("SelectedInstallationType", SelectedInstallationTypeElement.Text);
+
+                if (OptionSrpText().Contains("€"))
+                    SpecFlow.SetContext("SelectedInstallationType", DisplayedInstallationTypeElement.First().Text);
+
                 if (IsElementPresent(SelectedServicePackPriceElement))
                     SpecFlow.SetContext("SelectedServicePackPrice", SelectedServicePackPriceElement.Text);
+
                 if (IsElementPresent(SelectedServicePackNameElement.First()))
                     SpecFlow.SetContext("ServicePackName", SelectedServicePackNameElement.First().Text);
+
                 if (IsElementPresent(SelectedInstallationPriceElement))
                     SpecFlow.SetContext("SelectedInstallationPrice", SelectedInstallationPriceElement.Text);
             }
@@ -1002,10 +1012,29 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 TestCheck.AssertIsNotNull(DeliveryQuantityElement(), "Delivery Quantity is editable");
         }
 
+        public string OptionSrpText()
+        {
+            return OptionSrpElement.Text;
+        }
+
         public void EnterOptionCostPrice()
         {
-            var srpOption = MpsUtil.GetValue(OptionSrpElement.Text);
-            var OptionText = srpOption.ToString();
+            
+            decimal srpOption = 0;
+
+            if (OptionSrpText().Contains("£"))
+            {
+                srpOption = MpsUtil.GetValue(OptionSrpText());
+
+            }
+            else if (OptionSrpText().Contains("€"))
+            {
+                srpOption = MpsUtil.GetEuroValue(OptionSrpText());
+                
+            }
+
+                
+            var OptionText = srpOption.ToString().Substring(0, 3);
 
             if (OptionCostPrice0Element() != null)
                 ClearAndType(OptionCostPrice0Element(), OptionText);

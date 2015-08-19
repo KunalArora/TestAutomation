@@ -103,20 +103,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SelectLeaseBillingCycle(string lease)
         {
-            if (IsElementPresent(GetElementByCssSelector("#content_1_InputLeasingRateBillingCycle_Input", 10)))
-            {
-                SelectFromDropdown(LeaseBillingCycleElement, lease);
-            }
-                    
+            if (!IsElementPresent(GetElementByCssSelector("#content_1_InputLeasingRateBillingCycle_Input", 10))) return;
+            SelectFromDropdown(LeaseBillingCycleElement, lease);
         }
 
         public void SelectPayPerClickBillingCycle(string billing)
         {
-            if (IsElementPresent(GetElementByCssSelector("#content_1_InputClickRateBillingCycle_Input", 10)))
-            {
-                SelectFromDropdown(PayPerClickBillingElement, billing);
-            }
-                    
+            if (!IsElementPresent(GetElementByCssSelector("#content_1_InputClickRateBillingCycle_Input", 10))) return;
+            SelectFromDropdown(PayPerClickBillingElement, billing);
         }
 
         public void SelectUsageType(string usage)
