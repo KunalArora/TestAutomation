@@ -71,7 +71,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
 
         public void IsMyAccountButtonAvailable()
         {
-            MsgOutput(string.Format("Page Source Output = [{0}]", Driver.PageSource));
             AssertElementPresent(MyAccountButton, "Order Confirmation : My Account Button availability check", 200);
         }
 
