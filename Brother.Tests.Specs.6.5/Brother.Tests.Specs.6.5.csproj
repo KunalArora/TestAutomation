@@ -128,6 +128,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DealerCanUpdateProfile.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\MPSTwo\Proposal\GermanProposalSummaryPageValidation.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GermanProposalSummaryPageValidation.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specifications\MPSTwo\Proposal\LeasingAndClickProposalGermanUserJourney.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -519,6 +524,10 @@
     <None Include="Test Specifications\MPSTwo\Proposal\DealerCanUpdateProfile.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>DealerCanUpdateProfile.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwo\Proposal\GermanProposalSummaryPageValidation.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>GermanProposalSummaryPageValidation.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwo\Proposal\LeasingAndClickProposalGermanUserJourney.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

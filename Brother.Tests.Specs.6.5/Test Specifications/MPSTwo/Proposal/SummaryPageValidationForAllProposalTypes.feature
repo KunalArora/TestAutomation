@@ -15,10 +15,10 @@ Scenario Outline: Summary Page Validation For Minimum Volume Leasing and Click p
 	And I redisplay "<Printer>" device screen
 	And I confirm the values entered for the device
 	And I enter click price volume of "<ClickVolume>" and "<ColourVolume>"
-	Then the billing basis for product is "Add to lease rental cost"
-	And the billing basis for Accessory is "Add to lease rental cost"
-	And the billing basis for Installation is "Add to lease rental cost"
-	And the billing basis for Service Pack is "Add to lease rental cost"
+	Then the billing basis for product is "<Basis>"
+	And the billing basis for Accessory is "<Basis>"
+	And the billing basis for Installation is "<Basis>"
+	And the billing basis for Service Pack is "<Basis>"
 	And the installation type displayed is correct
 	And the installation cost displayed is correct
 	And the quantity displayed is the same as the one entered
@@ -27,7 +27,7 @@ Scenario Outline: Summary Page Validation For Minimum Volume Leasing and Click p
 	And the displayed volume value for colour click price is "<ColourVolume>"
 	And the displayed mono click price is correct
 	And the displayed colour click price is correct
-	And the bank displayed for leasing is "BNP Paribas"
+	And the bank displayed for leasing is "<Bank>"
 	And the calculated consumable net totals are equal in all places
 	And the calculated consumable gross totals are equal in all places
 	And the calculations are not based on estimated values
@@ -38,8 +38,9 @@ Scenario Outline: Summary Page Validation For Minimum Volume Leasing and Click p
 	
 
 	Scenarios: 
-	| Role             | Country        | ContractType               | UsageType      | Contract | Leasing   | Billing   | Printer     | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Minimum Volume | 3 years  | Quarterly | Quarterly | HL-L8350CDW | 750         | 750          |
+	| Role             | Country        | ContractType               | UsageType      | Contract | Leasing         | Billing      | Printer     | ClickVolume | ColourVolume | Basis                    | Bank                         |
+	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Minimum Volume | 3 years  | Quarterly       | Quarterly    | HL-L8350CDW | 750         | 750          | Add to lease rental cost | BNP Paribas                  |
+	
 
 @ignore
 Scenario Outline: Summary Page Validation For Pay As You Go Leasing and Click proposal
@@ -146,9 +147,9 @@ Scenario Outline: Summary Page Validation For Minimum Volume Purchase and Click 
 	
 
 	Scenarios: 
-	| Role             | Country        | ContractType                  | UsageType      | Contract | Leasing                  | Billing                  | PriceHardware | Printer      | DeviceScreen | PaymentMethod           | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Minimum Volume | 3 years  | Quarterly | Quarterly | Tick          | MFC-L8650CDW | Full         | Pay Upfront | 800        | 800         |
-
+	| Role             | Country        | ContractType                  | UsageType      | Contract | Leasing   | Billing   | PriceHardware | Printer      | DeviceScreen | PaymentMethod | ClickVolume | ColourVolume |
+	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Minimum Volume | 3 years  | Quarterly | Quarterly | Tick          | MFC-L8650CDW | Full         | Pay Upfront   | 800         | 800          |
+	
 Scenario Outline: Summary Page Validation For Pay As you Go Purchase and Click proposal
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page

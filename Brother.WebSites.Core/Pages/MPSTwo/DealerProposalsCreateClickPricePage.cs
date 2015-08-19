@@ -70,12 +70,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void PayServicePackMethod(string option)
         {
-            if (option.Equals("Pay upfront"))
+            if (option.Equals("Pay upfront") || option.Equals("im Voraus bezahlen"))
             {
                 PayUpfrontElement.Click();
                 WebDriver.Wait(DurationType.Second, 5);
             }
-            else if (option.Equals("Included in Click Price"))
+            else if (option.Equals("Included in Click Price") || option.Equals("über den Seitenpreis zahlen"))
             {
                 InClickPriceElement.Click();
                 WebDriver.Wait(DurationType.Second, 5);
