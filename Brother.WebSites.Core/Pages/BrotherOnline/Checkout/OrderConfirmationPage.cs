@@ -36,9 +36,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
         [FindsBy(How = How.CssSelector, Using = ".box-out.purchase-confirmed h3")]
         public IWebElement OrderConfirmationNumber;
 
-        //[FindsBy(How = How.CssSelector, Using = ".product-info div:contains(\"Term\")")]
-        //public IWebElement BillingTypeText;
-
         private const string OrderNumberString = @"Order Number : ";
         private const string PriceString = @"PRICE";
         private const string BillingTermString = @"Term: ";
@@ -76,8 +73,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
 
         public MyAccountPage MyAccountButtonClick()
         {
-        //    MyAccountButton.Click();
-        //    return GetInstance<MyOrdersPage>(Driver);
             MyAccountButton.Click();
             return GetInstance<MyAccountPage>(Driver);
         }

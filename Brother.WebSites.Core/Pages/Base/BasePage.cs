@@ -142,9 +142,6 @@ namespace Brother.WebSites.Core.Pages.Base
 
         private static IWebDriver SetDriver(IWebDriver driver)
         {
-            // Note: If this does not work as expected, you will need to add a reference to the BasePage.Bindings..... dll
-            // so that you can access Browser.Current
-         //   return driver ?? Browser.Current;
             return driver ?? TestController.CurrentDriver;
         }
 
@@ -153,7 +150,6 @@ namespace Brother.WebSites.Core.Pages.Base
             try
             {
                 MsgOutput("Attempting to navigate to page ", url);
-               // driver.Navigate().GoToUrl(url);
                 NavigateToUrl(driver, url);
                 MsgOutput(string.Format("Browser is on Page {0}", url));
                 AcceptCookieLaw(driver);
@@ -170,7 +166,6 @@ namespace Brother.WebSites.Core.Pages.Base
             try
             {
                 MsgOutput("Attempting to navigate to page ", url);
-                //driver.Navigate().GoToUrl(url);
                 NavigateToUrl(driver, url);
                 if (doRefresh)
                 {
@@ -214,7 +209,6 @@ namespace Brother.WebSites.Core.Pages.Base
                 }
             }
             MsgOutput(string.Format("Current WebDriver [driver.URL] value is [{0}]. Actual desired URL (the one we want) should be [{1}]", driver.Url, url));
-            //MsgOutput(string.Format("Previous Page Source length = [{0}], Current Page Source length = [{1}]", currentPageSource.Length,driver.PageSource.Length));
             TestCheck.AssertIsEqual(true, (currentPageSource != driver.PageSource), string.Format("Page Source Mismatch - could not navigate to URL {0} and the page source differences reflect this", url));
         }
     }
