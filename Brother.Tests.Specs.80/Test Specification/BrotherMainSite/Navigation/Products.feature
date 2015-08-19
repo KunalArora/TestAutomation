@@ -331,19 +331,30 @@ Scenario: User is able to navigate to the where to buy page
 	Then I hover and click the where to buy option
 	Then I am navigated to the where to buy page
 
-# Supplies navigation (Further page navigation in this area covered in tests earlier on in this feature)
+# Supplies navigation
 Scenario: User is able to navigate to the supplies page
 	Given I have navigated to the "<site>" MainSite URL for country "<country>"
 	And I hover over the top products menu button
 	Then I hover and click the supplies option
 	Then I am navigated to the supplies page
 
-# Why choose brother originals navigation (Further page navigation in this area covered in tests earlier on in this feature)
+# Why choose brother originals navigation
 Scenario: User is able to navigate to the why choose brother originals page
 	Given I have navigated to the "<site>" MainSite URL for country "<country>"
 	And I hover over the top products menu button
-	Then I hover and click the supplies option
-	Then I am navigated to the supplies page
+	Then I hover and click why choose brother originals option
+	Then I am navigated to the why choose brother originals page
+
+# Latest promotions navigation
+Scenario: User is able to navigate to the latest promotions page
+	Given I have navigated to the "<site>" MainSite URL for country "<country>"
+	And I hover over the top products menu button
+	Then I hover and click latest promotions option
+	Then I am navigated to the latest promotions page
+	Then I click to register and claim
+	Then I am navigated to register for brother online
+
+
 
 
 
