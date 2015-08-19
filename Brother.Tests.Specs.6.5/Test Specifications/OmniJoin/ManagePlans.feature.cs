@@ -19,10 +19,10 @@ namespace Brother.Tests.Specs.TestSpecifications.OmniJoin
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.9.0.77")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Manage Plan (BOL-178)")]
+    [NUnit.Framework.DescriptionAttribute("Manage Plan")]
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("TEST")]
-    public partial class ManagePlanBOL_178Feature
+    public partial class ManagePlanFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
@@ -34,7 +34,7 @@ namespace Brother.Tests.Specs.TestSpecifications.OmniJoin
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Manage Plan (BOL-178)", "As a customer \r\nI would like to upgrade or cancel my OmniJoin subscription", ProgrammingLanguage.CSharp, new string[] {
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Manage Plan", "As a customer \r\nI would like to upgrade or cancel my OmniJoin subscription", ProgrammingLanguage.CSharp, new string[] {
                         "UAT",
                         "TEST"});
             testRunner.OnFeatureStart(featureInfo);

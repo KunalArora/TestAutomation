@@ -68,7 +68,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
 
         public void IsMyAccountButtonAvailable()
         {
-            AssertElementPresent(MyAccountButton, "Order Confirmation : My Account Button availability check", 200);
+            AssertElementPresent(MyAccountButton, "Order Confirmation : My Account Button availability check", 3000);
         }
 
         public MyAccountPage MyAccountButtonClick()
