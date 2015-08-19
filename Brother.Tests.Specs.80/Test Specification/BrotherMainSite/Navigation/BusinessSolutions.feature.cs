@@ -236,6 +236,69 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("User is able to navigate to the Search by Industry page via the top main site  bu" +
+            "siness solutions menu")]
+        public virtual void UserIsAbleToNavigateToTheSearchByIndustryPageViaTheTopMainSiteBusinessSolutionsMenu()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the Search by Industry page via the top main site  bu" +
+                    "siness solutions menu", ((string[])(null)));
+#line 55
+this.ScenarioSetup(scenarioInfo);
+#line 56
+    testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 57
+    testRunner.And("I hover over the top Business Solutions menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 58
+    testRunner.Then("I hover and click the Search by Industry option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 59
+    testRunner.Then("I am navigated to the View All Search by Industry page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("User is able to navigate to the View our Industry Partners page via the top main " +
+            "site  business solutions menu")]
+        public virtual void UserIsAbleToNavigateToTheViewOurIndustryPartnersPageViaTheTopMainSiteBusinessSolutionsMenu()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the View our Industry Partners page via the top main " +
+                    "site  business solutions menu", ((string[])(null)));
+#line 61
+this.ScenarioSetup(scenarioInfo);
+#line 62
+    testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 63
+    testRunner.And("I hover over the top Business Solutions menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 64
+    testRunner.Then("I hover and click the View our Industry Partners option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 65
+    testRunner.Then("I am navigated to the View our Industry Partners page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("User is able to navigate to the View our Case Studies page via the top main site " +
+            " business solutions menu")]
+        public virtual void UserIsAbleToNavigateToTheViewOurCaseStudiesPageViaTheTopMainSiteBusinessSolutionsMenu()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the View our Case Studies page via the top main site " +
+                    " business solutions menu", ((string[])(null)));
+#line 67
+this.ScenarioSetup(scenarioInfo);
+#line 68
+    testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 69
+    testRunner.And("I hover over the top Business Solutions menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 70
+    testRunner.Then("I hover and click the View our Case Studies option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 71
+    testRunner.Then("I am navigated to the View our Case Studies page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

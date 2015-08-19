@@ -50,3 +50,22 @@ Scenario: User is able to navigate to the Visitor and Event Management page via 
     And I hover over the top Business Solutions menu button
     Then I hover and click the Visitor and Event Management option
     Then I am navigated to the View All Visitor and Event Management page
+
+	
+Scenario: User is able to navigate to the Search by Industry page via the top main site  business solutions menu
+    Given I have navigated to the "<site>" MainSite URL for country "<country>"
+    And I hover over the top Business Solutions menu button
+    Then I hover and click the Search by Industry option
+    Then I am navigated to the View All Search by Industry page
+
+Scenario: User is able to navigate to the View our Industry Partners page via the top main site  business solutions menu
+    Given I have navigated to the "<site>" MainSite URL for country "<country>"
+    And I hover over the top Business Solutions menu button
+    Then I hover and click the View our Industry Partners option
+    Then I am navigated to the View our Industry Partners page
+
+Scenario: User is able to navigate to the View our Case Studies page via the top main site  business solutions menu
+    Given I have navigated to the "<site>" MainSite URL for country "<country>"
+    And I hover over the top Business Solutions menu button
+    Then I hover and click the View our Case Studies option
+    Then I am navigated to the View our Case Studies page
