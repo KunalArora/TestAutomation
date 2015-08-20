@@ -268,6 +268,7 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.CategoryAttribute("UAT")]
         [NUnit.Framework.CategoryAttribute("PROD")]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "changed", null)]
+        [NUnit.Framework.TestCaseAttribute("Ireland", "changed", null)]
         public virtual void CustomerCanChangeTheirBrotherOnlineEmailAddressAfterRegistration(string country, string emailPrefixForChange, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -301,6 +302,14 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 97
  testRunner.Then(string.Format("If I sign back into Brother Online \"{0}\" using the same credentials", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 98
+ testRunner.When(string.Format("I navigate to my account for \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 99
+ testRunner.And("I click on Sign In Details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 100
+ testRunner.Then("I can validate the update was successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 101
+ testRunner.Then("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
