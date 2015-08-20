@@ -82,10 +82,10 @@ Scenario: Customer or Dealer role persists after email address change
 	And I can see the Instant Ink menu option from the BOL home page
 	Then I can sign out of Brother Online
 
-@Ignore
 # Set this test to ignore as it was causing problems with the cookie test due to BOL login not signing out (Sign out step commented out for some reason)
 # Create an account and sign in, change registered email address and sign out, re-sign in again using new address
-# @TEST @UAT @PROD 
+# - Ant H - Works fine now - no idea why it had a few lines commented out. 
+@TEST @UAT @PROD 
 Scenario Outline: Customer can change their Brother Online email address after registration 
 	Given I am logged onto Brother Online "<Country>" using valid credentials
 	When I navigate to my account for "<Country>"
