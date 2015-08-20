@@ -55,9 +55,9 @@ namespace Brother.Tests.Selenium.Lib.Support
             else
             {
                 IsAcceptCookiesDismissed = false;
-                StartPhantomJsProcess();
-                CurrentDriver = StartNewRemoteWebDriver(_ipAddress, _driverPort);
-                //CurrentDriver = ExperimentalChanges();
+              //  StartPhantomJsProcess();
+              //  CurrentDriver = StartNewRemoteWebDriver(_ipAddress, _driverPort);
+                CurrentDriver = ExperimentalChanges();
 
                 if (CurrentDriver == null)
                 {
@@ -330,7 +330,7 @@ namespace Brother.Tests.Selenium.Lib.Support
             phantomJsService.AddArgument("--ignore-ssl-errors=true");
             phantomJsService.AddArgument("--ssl-protocol=any");
             phantomJsService.AddArgument("--local-to-remote-url-access=true");
-            phantomJsService.AddArgument("--proxy-type=None");
+            phantomJsService.AddArgument("--proxy-type=http");
 
             //phantomJsService.AddArgument(string.Format("--webdriver={0}:{1}", _ipAddress, _driverPort));
             phantomJsService.LogFile = SetDriverLog();
