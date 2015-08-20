@@ -54,7 +54,7 @@ namespace Brother.Tests.Selenium.Lib.Support
             else
             {
                 IsAcceptCookiesDismissed = false;
-                StartPhantomJsProcess();
+                //StartPhantomJsProcess();
                 CurrentDriver = StartNewRemoteWebDriver(_ipAddress, _driverPort);
                 if (CurrentDriver == null)
                 {
@@ -86,8 +86,8 @@ namespace Brother.Tests.Selenium.Lib.Support
                 Helper.MsgOutput(string.Format("INFORMATION: About to create a new RemoteWebDriver instance. Port [{0}] in use status = [{1}]", port, portInUse));
 //                {
                 Helper.MsgOutput("Creating new Remote Web Driver instance with 1 minute timeout");
-                newDriver = new RemoteWebDriver(new Uri(uri), capabilities, new TimeSpan(0, 0, 1, 0));
-                //newDriver = new PhantomJSDriver();
+                //newDriver = new RemoteWebDriver(new Uri(uri), capabilities, new TimeSpan(0, 0, 1, 0));
+                newDriver = new PhantomJSDriver();
 //                }
                 //else
                 //{
