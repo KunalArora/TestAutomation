@@ -79,8 +79,10 @@ namespace Brother.Tests.Selenium.Lib.Support
         private static IWebDriver ExperimentalChanges()
         {
             var headlessOptions = SetJsOptions();
+            //var headlessOptions = SetJSDesiredCapabilities();
             IWebDriver newDriver = null;
-            newDriver = new PhantomJSDriver(headlessOptions);
+            var phantomJsService = StartPhantomJsService();
+            newDriver = new PhantomJSDriver(phantomJsService);//, headlessOptions);
             return newDriver;
         }
 
@@ -319,14 +321,18 @@ namespace Brother.Tests.Selenium.Lib.Support
 
         private static PhantomJSDriverService StartPhantomJsService()
         {
-            KillPhantomJsIfRunning();
+            //KillPhantomJsIfRunning();
             
             var phantomJsService = PhantomJSDriverService.CreateDefaultService(Directory.GetCurrentDirectory() + "\\" + @"Drivers\");
             phantomJsService.IgnoreSslErrors = true;
             phantomJsService.WebSecurity = false;
             phantomJsService.AddArgument("--web-security=no");
-            phantomJsService.AddArgument("--ignore-ssl-errors=yes");
-            phantomJsService.AddArgument(string.Format("--webdriver={0}:{1}", _ipAddress, _driverPort));
+            phantomJsService.AddArgument("--ignore-ssl-errors=true");
+            phantomJsService.AddArgument("--ssl-protocol=any");
+            phantomJsService.AddArgument("--local-to-remote-url-access=true");
+            phantomJsService.AddArgument("--proxy-type=None");
+
+            //phantomJsService.AddArgument(string.Format("--webdriver={0}:{1}", _ipAddress, _driverPort));
             phantomJsService.LogFile = SetDriverLog();
 
             return phantomJsService;
@@ -368,6 +374,26 @@ namespace Brother.Tests.Selenium.Lib.Support
             return capabilities;
         }
 
+        // DO NOT USE WHATSOEVER - experimental
+        private static DesiredCapabilities SetJSDesiredCapabilities()
+        {
+            var capabilities = DesiredCapabilities.PhantomJS();
+            capabilities.SetCapability("acceptSslCerts", true);
+            capabilities.SetCapability("javascriptEnabled", true);
+            capabilities.SetCapability("platform", "WINDOWS");
+            capabilities.SetCapability("web-security", false);
+            capabilities.SetCapability("ignore-sss-errors", true);
+            capabilities.SetCapability("unexpectedAlertBehaviour", "accept");
+            capabilities.SetCapability("browserName", "chrome");
+
+            if (capabilities.IsJavaScriptEnabled)
+            {
+                Helper.MsgOutput("Driver Capabilities", "Javascript support is Enabled");
+            }
+
+            return capabilities;
+        }
+
         private static PhantomJSOptions SetJsOptions()
         {
             var jsOptions = new PhantomJSOptions();
@@ -380,6 +406,8 @@ namespace Brother.Tests.Selenium.Lib.Support
             jsOptions.AddAdditionalCapability("browserName", "phantomjs");
             jsOptions.AddAdditionalCapability("ssl-protocol", "any");
             jsOptions.AddAdditionalCapability("localToRemoteUrlAccessEnabled", true);
+            //jsOptions.AddAdditionalCapability("proxy-type", "none");
+            jsOptions.ToCapabilities();
            
             return jsOptions;
         }
