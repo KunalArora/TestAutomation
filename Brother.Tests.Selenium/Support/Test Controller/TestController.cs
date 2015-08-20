@@ -7,6 +7,7 @@ using System.Security;
 using Brother.Tests.Selenium.Lib.Properties;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.SpecFlow;
+using NUnit.Framework.Constraints;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
@@ -54,8 +55,10 @@ namespace Brother.Tests.Selenium.Lib.Support
             else
             {
                 IsAcceptCookiesDismissed = false;
-                //StartPhantomJsProcess();
+                StartPhantomJsProcess();
                 CurrentDriver = StartNewRemoteWebDriver(_ipAddress, _driverPort);
+                //CurrentDriver = ExperimentalChanges();
+
                 if (CurrentDriver == null)
                 {
                     TestCheck.AssertFailTest("FATAL: Unable to create a new Remote WebDriver instance");
@@ -73,6 +76,14 @@ namespace Brother.Tests.Selenium.Lib.Support
             driver.Manage().Window.Size = new Size(1280, 1024);
         }
 
+        private static IWebDriver ExperimentalChanges()
+        {
+            var headlessOptions = SetJsOptions();
+            IWebDriver newDriver = null;
+            newDriver = new PhantomJSDriver(headlessOptions);
+            return newDriver;
+        }
+
         public static IWebDriver StartNewRemoteWebDriver(string ipAddress, string port)
         {
             var uri = string.Format(@"http://{0}:{1}/wd/hub", ipAddress, port);
@@ -84,13 +95,9 @@ namespace Brother.Tests.Selenium.Lib.Support
                 bool portInUse = true;
                 portInUse = Utils.CheckForPortInUse(ipAddress, Convert.ToInt32(port));
                 Helper.MsgOutput(string.Format("INFORMATION: About to create a new RemoteWebDriver instance. Port [{0}] in use status = [{1}]", port, portInUse));
-//                {
-                //Helper.MsgOutput("Creating new Remote Web Driver instance with 1 minute timeout");
-                //newDriver = new RemoteWebDriver(new Uri(uri), capabilities, new TimeSpan(0, 0, 1, 0));
+                Helper.MsgOutput("Creating new Remote Web Driver instance with 1 minute timeout");
+                newDriver = new RemoteWebDriver(new Uri(uri), capabilities, new TimeSpan(0, 0, 1, 0));
 
-                var headlessOptions = SetJsOptions();
-                newDriver = new PhantomJSDriver(headlessOptions);
-//                }
                 //else
                 //{
                 //    if (!Utils.IsPortAvailable(ipAddress, Convert.ToInt32(port)))
@@ -365,12 +372,15 @@ namespace Brother.Tests.Selenium.Lib.Support
         {
             var jsOptions = new PhantomJSOptions();
             jsOptions.AddAdditionalCapability("javascriptEnabled", true);
-            jsOptions.AddAdditionalCapability("web-security", false);
+            jsOptions.AddAdditionalCapability("webSecurityEnabled", false);
             jsOptions.AddAdditionalCapability("ignore-sss-errors", true);
             jsOptions.AddAdditionalCapability("acceptSslCerts", true);
             jsOptions.AddAdditionalCapability("unexpectedAlertBehaviour", "accept");
             jsOptions.AddAdditionalCapability("platform", "WINDOWS");
             jsOptions.AddAdditionalCapability("browserName", "phantomjs");
+            jsOptions.AddAdditionalCapability("ssl-protocol", "any");
+            jsOptions.AddAdditionalCapability("localToRemoteUrlAccessEnabled", true);
+           
             return jsOptions;
         }
     }
