@@ -38,7 +38,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             return GetInstance<RegistrationPage>(Driver);
         }
 
-        [FindsBy(How = How.CssSelector, Using = "#AcceptCookieLawHyperLink")]
+        //[FindsBy(How = How.CssSelector, Using = "#AcceptCookieLawHyperLink")]
+        [FindsBy(How = How.CssSelector, Using = "#cookieLawBar > div > a.button-blue")]        
         public IWebElement AcceptCookiesButton;
 
         [FindsBy(How = How.CssSelector, Using = "#cookieLawBar > div > p")]
@@ -398,10 +399,10 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         public void AcceptCookiesButtonClick()
         {
 
-            //WebDriver.DeleteAllCookies();
-            //WebDriver.Wait(DurationType.Millisecond, 5000);
-            //WaitForElementToExistByCssSelector("#AcceptCookieLawHyperLink");
-            //ScrollTo(AcceptCookiesButton);
+            WebDriver.DeleteAllCookies();
+            WebDriver.Wait(DurationType.Millisecond, 5000);
+            WaitForElementToExistByCssSelector("#AcceptCookieLawHyperLink");
+            ScrollTo(AcceptCookiesButton);
             AcceptCookiesButton.Click();
         }
 

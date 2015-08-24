@@ -49,4 +49,3 @@ Scenario Outline: Customer create a new account and amend their personal details
 Scenarios: 
 	| FirstName						|LastName							|
 	| Test						    |Test								|
-
