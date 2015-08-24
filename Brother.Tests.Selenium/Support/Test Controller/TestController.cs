@@ -330,7 +330,7 @@ namespace Brother.Tests.Selenium.Lib.Support
             phantomJsService.AddArgument("--ignore-ssl-errors=true");
             phantomJsService.AddArgument("--ssl-protocol=any");
             phantomJsService.AddArgument("--local-to-remote-url-access=true");
-            phantomJsService.AddArgument("--remote-debugger-port=9000");
+            phantomJsService.AddArgument("--remote-debugger-port=9010");
 //            phantomJsService.AddArgument("--proxy-type=socks5");
 //            phantomJsService.AddArgument("--proxy=10.2.135.18:8080");
 //            phantomJsService.AddArgument(@"--proxy-auth=EU\EUSiteCoreTestAuto:Ferry1Loft2Lighter3");
