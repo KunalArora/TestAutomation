@@ -321,18 +321,24 @@ namespace Brother.Tests.Selenium.Lib.Support
 
         private static PhantomJSDriverService StartPhantomJsService()
         {
-            //KillPhantomJsIfRunning();
+            KillPhantomJsIfRunning();
             
-            var phantomJsService = PhantomJSDriverService.CreateDefaultService(Directory.GetCurrentDirectory() + "\\" + @"Drivers\");
+            var phantomJsService = PhantomJSDriverService.CreateDefaultService(string.Format(@"{0}\Drivers\", Directory.GetCurrentDirectory()));
             phantomJsService.IgnoreSslErrors = true;
             phantomJsService.WebSecurity = false;
             phantomJsService.AddArgument("--web-security=no");
             phantomJsService.AddArgument("--ignore-ssl-errors=true");
             phantomJsService.AddArgument("--ssl-protocol=any");
             phantomJsService.AddArgument("--local-to-remote-url-access=true");
-            phantomJsService.AddArgument("--proxy-type=http");
-
+            phantomJsService.AddArgument("--remote-debugger-port=9000");
+//            phantomJsService.AddArgument("--proxy-type=socks5");
+//            phantomJsService.AddArgument("--proxy=10.2.135.18:8080");
+//            phantomJsService.AddArgument(@"--proxy-auth=EU\EUSiteCoreTestAuto:Ferry1Loft2Lighter3");
             //phantomJsService.AddArgument(string.Format("--webdriver={0}:{1}", _ipAddress, _driverPort));
+            
+            var cookieLocation = "C:\\TestAutomation\\SeleniumLogging";
+            var persistentCookiePath = string.Format(@"--cookies-file={0}\AutoCookies.txt", cookieLocation);
+            phantomJsService.AddArgument(persistentCookiePath);
             phantomJsService.LogFile = SetDriverLog();
 
             return phantomJsService;
@@ -356,26 +362,6 @@ namespace Brother.Tests.Selenium.Lib.Support
         }
 
         private static DesiredCapabilities SetDesiredCapabilities()
-        {
-            var capabilities = DesiredCapabilities.PhantomJS();
-            capabilities.SetCapability("acceptSslCerts", true);
-            capabilities.SetCapability("javascriptEnabled", true);
-            capabilities.SetCapability("platform", "WINDOWS");
-            capabilities.SetCapability("web-security", false);
-            capabilities.SetCapability("ignore-sss-errors", true);
-            capabilities.SetCapability("unexpectedAlertBehaviour", "accept");
-            capabilities.SetCapability("browserName", "chrome");
-
-            if (capabilities.IsJavaScriptEnabled)
-            {
-                Helper.MsgOutput("Driver Capabilities", "Javascript support is Enabled");
-            }
-
-            return capabilities;
-        }
-
-        // DO NOT USE WHATSOEVER - experimental
-        private static DesiredCapabilities SetJSDesiredCapabilities()
         {
             var capabilities = DesiredCapabilities.PhantomJS();
             capabilities.SetCapability("acceptSslCerts", true);

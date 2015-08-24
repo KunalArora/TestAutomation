@@ -17,10 +17,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
         }
 
         [FindsBy(How = How.CssSelector, Using = "a.button-grey")]
-        [CacheLookup]
         public IWebElement AccountButtonFindThisPlease;
 
-        [CacheLookup]
         [FindsBy(How = How.CssSelector, Using = ".btns-container a.button-grey")]
         public IWebElement MyAccountButton;
 
@@ -68,6 +66,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
 
         public void IsMyAccountButtonAvailable()
         {
+            Driver.Navigate().Refresh();
+            Helper.MsgOutput(string.Format("Order Confirmation Page - Driver.URL = [{0}]", Driver.Url));
+            MyAccountButton = Driver.FindElement(By.CssSelector(".btns-container a.button-grey"));
             AssertElementPresent(MyAccountButton, "Order Confirmation : My Account Button availability check", 3000);
         }
 
