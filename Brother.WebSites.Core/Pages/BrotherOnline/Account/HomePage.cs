@@ -67,7 +67,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         [FindsBy(How = How.CssSelector, Using = "#cccontent_0_landingpagecontent_1_CenterRepeater_CenterOptionLink_0")]
         public IWebElement CreativeCenterBusinessLink;
 
-        [FindsBy(How = How.CssSelector, Using = "#cccontent_1_pagetop_0_RegisterLink")]
+        //[FindsBy(How = How.CssSelector, Using = "#cccontent_1_pagetop_0_RegisterLink")]
+        [FindsBy(How = How.CssSelector, Using = ".account [id*=pagetop_0_RegisterLink]")]
         public IWebElement CreativeCenterRegisterLoginLink;
 
         [FindsBy(How = How.CssSelector, Using = "#cccontent_1_singlecolumnform_1_SignUpButton")]
