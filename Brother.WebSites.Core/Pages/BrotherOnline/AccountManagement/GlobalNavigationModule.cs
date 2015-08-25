@@ -26,6 +26,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         private const string MyBusinessDetailsMenuItem = "294daeb7-aaa8-4202-b845-d89121cf3b3d";
         private const string MyAddressDetailsMenuItem = "8619a6b9-7f08-4c4f-9de5-9db6d84bbc5d";
         private const string MySignInDetailsMenuItem = "e4343ecf-39fd-4545-b762-0a81b3425c3e";
+        private const string WebConferencingMenuItem = "361cd1bc-c29d-4fe4-887e-196d6c5112a6";
+
         //private const string SideNavMenu = @".side-nav";
         private const string ProductList = @"#product-list";
         private const string BrotherHomePage = "#master-logo > a";
@@ -48,6 +50,14 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             }
             TestCheck.AssertFailTest(string.Format("Unable to locate Global Menu Navigation Item {0}", element));
             return null;
+        }
+
+        public static WelcomeBackPage ClickWebConferencingMenuItem(IWebDriver driver)
+        {
+            var webConferencingMenuitem = driver.FindElement(By.Id(WebConferencingMenuItem));
+            TestCheck.AssertIsNotNull(webConferencingMenuitem, "Web Conferencing Menu Item");
+            webConferencingMenuitem.Click();
+            return GetInstance<WelcomeBackPage>(driver, "", "");
         }
 
         private static IWebElement GetSignOutLink(ISearchContext driver)

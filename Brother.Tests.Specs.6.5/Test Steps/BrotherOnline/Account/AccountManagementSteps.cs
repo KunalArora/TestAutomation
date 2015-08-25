@@ -17,8 +17,8 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [When(@"I click on OmniJoin home")]
         public void WhenIClickOnOmniJoinHome()
         {
-            var menu = GlobalNavigationModule.GetProductNavigationMenu("OmniJoin");
-            NextPage = GlobalNavigationModule.MyAccountMenuItemClick(CurrentDriver);
+            var menu = GlobalNavigationModule.ClickWebConferencingMenuItem(CurrentDriver);
+            //NextPage = GlobalNavigationModule.MyAccountMenuItemClick(CurrentDriver);
         }
 
         [Given(@"I click on the Partner Portal menu option")]
