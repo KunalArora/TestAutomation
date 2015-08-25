@@ -25,7 +25,7 @@ Scenario: Change Plan Term
 	Then If I sign out of Brother Online
 	Then I am redirected to the Brother Home Page
 
-@TEST @UAT @SMOKE @ignore
+@TEST @UAT @SMOKE
 Scenario: Change Payment Method 
 	Given I have navigated to the OmniJoin home page
 	When I purchase an OmniJoin "Lite" plan with "Monthly" billing with valid payment details

@@ -126,7 +126,6 @@ this.FeatureBackground();
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Change Payment Method")]
-        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.CategoryAttribute("TEST")]
         [NUnit.Framework.CategoryAttribute("UAT")]
         [NUnit.Framework.CategoryAttribute("SMOKE")]
@@ -135,8 +134,7 @@ this.FeatureBackground();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Change Payment Method", new string[] {
                         "TEST",
                         "UAT",
-                        "SMOKE",
-                        "ignore"});
+                        "SMOKE"});
 #line 29
 this.ScenarioSetup(scenarioInfo);
 #line 6
