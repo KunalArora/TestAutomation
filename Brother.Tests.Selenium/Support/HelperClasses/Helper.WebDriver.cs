@@ -42,7 +42,14 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         /// </summary>
         public static void DeleteAllCookies()
         {
+            MsgOutput("Deleting ALL Cookies for this session");
             TestController.CurrentDriver.Manage().Cookies.DeleteAllCookies();
+            var allCookies = TestController.CurrentDriver.Manage().Cookies.AllCookies;
+            MsgOutput("Checking if all Cookies were in fact deleted");
+            if (GetCookieSize() > 0)
+            {
+                ShowAllCookies();
+            }
         }
 
         public static void ShowAllCookies()
@@ -52,6 +59,12 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             {
                 MsgOutput(string.Format("COOKIE INFO: [{0}]", cookie));                                
             }
+        }
+
+        public static int GetCookieSize()
+        {
+            var cookies = TestController.CurrentDriver.Manage().Cookies.AllCookies;
+            return cookies.Count;
         }
 
         public static TimeSpan SetWebDriverImplicitTimeout(TimeSpan timeout)
