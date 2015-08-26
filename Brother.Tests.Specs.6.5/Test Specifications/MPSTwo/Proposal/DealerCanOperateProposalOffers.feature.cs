@@ -114,7 +114,8 @@ this.ScenarioSetup(scenarioInfo);
 #line 26
  testRunner.And("I go to \"Summary\" Tab in Proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 27
- testRunner.Then(string.Format("I can confirm \"{0}\" on Summary Tab in Proposal of \"{1}\"", tabName, contractType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("I can confirm \"{0}\" on Summary Tab in Proposal of \"Purchase + Click with Service\"" +
+                        "", tabName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 28
  testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden

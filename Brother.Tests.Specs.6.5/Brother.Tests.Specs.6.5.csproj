@@ -98,6 +98,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DealerCanSignContractProd.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\MPSTwo\Contract\GermanDealerCanSignContract.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GermanDealerCanSignContract.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specifications\MPSTwo\Contract\OutputContractPDFAllUsers.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -510,6 +515,10 @@
     <None Include="Test Specifications\MPSTwo\Contract\DealerCanSignContractProd.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>DealerCanSignContractProd.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwo\Contract\GermanDealerCanSignContract.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>GermanDealerCanSignContract.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwo\Contract\OutputContractPDFAllUsers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

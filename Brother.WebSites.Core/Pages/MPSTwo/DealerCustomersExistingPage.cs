@@ -139,6 +139,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void NotExistTheDeletedItem(IWebDriver driver)
         {
+            
             var id = SpecFlow.GetContext(DealerLatestOperatingCustomerItemId);
             var exisitng = ContainsItemById(driver, id);
 

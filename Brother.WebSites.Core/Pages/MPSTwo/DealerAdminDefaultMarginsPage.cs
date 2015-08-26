@@ -105,6 +105,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void StoreMarginConfiguration()
         {
+            WaitForElementToExistByCssSelector("#content_1_DealerMarginTable_InputDeviceMargin_Input");
             SpecFlow.SetContext("DealerAdminHardwareDefaultMargin", HardwareDefaultMargin.GetAttribute("value") + ".00");
             SpecFlow.SetContext("DealerAdminAccesoriesDefaultMargin", AccesoriesDefaultMargin.GetAttribute("value") + ".00");
             SpecFlow.SetContext("DealerAdminDeliveryDefaultMargin", DeliveryDefaultMargin.GetAttribute("value") + ".00");
@@ -112,7 +113,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             SpecFlow.SetContext("DealerAdminServicePackDefaultMargin", ServicePackDefaultMargin.GetAttribute("value") + ".00");
             SpecFlow.SetContext("DealerAdminMonoClickDefaultMargin", MonoClickDefaultMargin.GetAttribute("value") + ".00");
             SpecFlow.SetContext("DealerAdminColourClickDefaultMargin", ColourClickDefaultMargin.GetAttribute("value") + ".00");
-            SpecFlow.SetContext("DealerAdminAllInclusiveMargin", AllInclusiveMargin.GetAttribute("value") + ".00");
+           // SpecFlow.SetContext("DealerAdminAllInclusiveMargin", AllInclusiveMargin.GetAttribute("value") + ".00");
         }
     }
 }

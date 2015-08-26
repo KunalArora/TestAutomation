@@ -737,7 +737,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public decimal InstallationPackCostPrice()
         {
 
-            //var priceText = InstallationPackCostPriceElement.GetAttribute("value");
+            
             var priceText = InstallationSRPElement.Text;
 
             var priceTag = MpsUtil.GetValue(priceText);
@@ -753,14 +753,22 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         }
 
+        public decimal InstallationPackUnitPrice()
+        {
+            var priceText = InstallationPackCostPriceElement.GetAttribute("value");
+            var decimalVal = Decimal.Parse(priceText);
+
+            return decimalVal;
+
+        }
 
         public void EnterInstallationPackCostPriceLessThanDefault()
         {
-            var price = InstallationPackCostPrice();
+            var price = InstallationPackUnitPrice();
             EnterInstallationPackCostPrice((price - 1).ToString());
         }
 
-                public void IsNotTheProductAddedToTheProposal()
+        public void IsNotTheProductAddedToTheProposal()
         {
             AssertElementPresent(CloseWithoutSavingElement, "Close without saving button element");            
         }
@@ -1426,6 +1434,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private void UpdateExistingProduxts(IWebDriver driver, string selector)
         {
             string linkselector = @"a.alert-link.js-mps-product-link";
+
             while (true)
             {
                 IWebElement alert = GetElementByCssSelector(selector, 5);
@@ -1435,10 +1444,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
                 if (links == null || !links.Any()) break;
 
+                WebDriver.Wait(DurationType.Millisecond, 2000);
                 var link = links.First();
                 link.Click();
-                WebDriver.Wait(DurationType.Millisecond, 2000);
+
                 string buttonselector = @"button.btn.js-mps-product-configuration-submit";
+                WaitForElementToExistByCssSelector(buttonselector);
                 var button = driver.FindElement(By.CssSelector(buttonselector));
                 button.Click();
                 WebDriver.Wait(DurationType.Millisecond, 2000);

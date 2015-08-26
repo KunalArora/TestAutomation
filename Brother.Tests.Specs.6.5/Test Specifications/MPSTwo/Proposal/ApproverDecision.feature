@@ -148,7 +148,9 @@ Scenario Outline: Bank can view opened offers
 	| Role           | Country        |
 	| Cloud MPS Bank | United Kingdom |
 
+
 # View confirmed/rejected/signed offers
+@ignore
 Scenario Outline: Bank can view confirmed/rejected/signed offers
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When I navigate to Bank Contracts screen on "<Acceptance>" Tab
