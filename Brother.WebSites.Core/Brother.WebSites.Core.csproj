@@ -59,6 +59,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pages8.0\BrotherMainSite\MainSiteHomePage.cs" />
+    <Compile Include="Pages8.0\BrotherMainSite\SuppliesPage.cs" />
     <Compile Include="Pages\Base\BasePage.Common.cs" />
     <Compile Include="Pages\Base\BasePage.cs" />
     <Compile Include="Pages\Base\BaseSteps.cs" />
@@ -212,6 +214,7 @@
       <Name>Brother.Tests.Selenium.Lib</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

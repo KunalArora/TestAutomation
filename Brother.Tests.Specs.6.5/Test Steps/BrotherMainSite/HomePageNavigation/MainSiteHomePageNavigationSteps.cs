@@ -22,7 +22,6 @@ namespace Brother.Tests.Specs.BrotherMainSite.HomePageNavigation
             Helper.SetCountry(country);
             CurrentPage = GlobalNavigationModule.NavigateToLaserPrintersSite(CurrentDriver, url);
         }
-
         [Then(@"I have clicked the top products menu button")]
         public void ThenIHaveClickedTopProductsMenu()
         {
@@ -53,8 +52,6 @@ namespace Brother.Tests.Specs.BrotherMainSite.HomePageNavigation
         {
             CurrentPage.As<MainSiteHomePage>().HasPrintersPageLoaded();
         }
-
-
 
     }
 }
