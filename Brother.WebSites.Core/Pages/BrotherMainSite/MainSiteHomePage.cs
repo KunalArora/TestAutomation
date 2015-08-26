@@ -42,6 +42,16 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         [FindsBy(How = How.CssSelector, Using = "#main > div > div > div:nth-child(3) > div > ul.slides.cf > li:nth-child(1) > div.left-content > p:nth-child(5) > a")]
         public IWebElement ViewColourLaserRangeButton;
+
+        [FindsBy(How = How.CssSelector, Using = "#main > div > div > div:nth-child(3) > div > ul.nav.cf > li:nth-child(1) > a")] 
+        public IWebElement ColourLaserMenuOption;
+
+        //[FindsBy(How = How.CssSelector, Using = "#main > div > div > div:nth-child(3) > div > div > p:nth-child(5) > a")]
+        [FindsBy(How = How.ClassName, Using = "button-orange")]
+        public IWebElement ViewAllColourLasersButton;
+
+        [FindsBy(How = How.Id, Using = "buybutton")]
+        public IWebElement BuyOnlineButton;
         
         private const string CarouselItems = ".feature-carousel-items";
 
@@ -93,7 +103,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
             {
                 throw new NullReferenceException("Unable to locate products menu button");
             }
-            AssertElementPresent(ProductsTopMenuButton, "Printers Link");
+            AssertElementPresent(ProductsTopMenuButton, "Products button");
         }
 
         public MainSiteHomePage ProductsButtonClick()
@@ -111,7 +121,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
             {
                 throw new NullReferenceException("Products page not loaded");
             }
-            AssertElementPresent(RequestSampleButton, "Printers Link");
+            AssertElementPresent(RequestSampleButton, "Request sample button");
         }
 
         public void HoverProductsMenu(IWebDriver driver)
@@ -133,6 +143,36 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
                 throw new NullReferenceException("Printers page has not loaded");
             }
             AssertElementPresent(ViewColourLaserRangeButton, "Colour laser button");
+        }
+
+        public MainSiteHomePage ColourLaserMenuOptionClick()
+        {
+            MoveToElement(ColourLaserMenuOption);
+            ColourLaserMenuOption.Click();
+            return GetInstance<MainSiteHomePage>(Driver);
+        }
+
+        public MainSiteHomePage ViewColourLaserRange()
+        {
+            MoveToElement(ViewColourLaserRangeButton);
+            ViewColourLaserRangeButton.Click();
+            return GetInstance<MainSiteHomePage>(Driver);
+        }
+
+        public MainSiteHomePage ViewAllColourLasers()
+        {
+            MoveToElement(ViewAllColourLasersButton);
+            ViewAllColourLasersButton.Click();
+            return GetInstance<MainSiteHomePage>(Driver);
+        }
+
+        public void HasAllColourLasersPageLoaded()
+        {
+            if (BuyOnlineButton == null)
+            {
+                throw new NullReferenceException("All colour lasers page has not loaded");
+            }
+            AssertElementPresent(BuyOnlineButton, "Buy online button");
         }
     }
 }

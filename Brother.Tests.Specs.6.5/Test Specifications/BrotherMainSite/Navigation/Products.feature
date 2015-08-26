@@ -24,7 +24,7 @@ Scenario: User is able to navigate to the printers page via the top main site pr
 			Then I am navigated to the printers page
 			Then I click the colour laser menu option
 			Then I click to view the colour laser range
-			Then I click tp view all colour lasers
+			Then I click to view all colour lasers
 			Then I am navigated to view all colour laser printers
 
 
