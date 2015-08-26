@@ -295,18 +295,18 @@ Scenarios:
 	| Spain          |
 	| Denmark        |
 	| Belgium        |
+	| Portugal       |
+	| Finland        |
+	| Austria        |
 #	| Russia         |- Red warning on page - look into
 #	| Hungary        |- unknown error - possibly cannot get to site 
-	| Portugal       |
 #	| Switzerland    | - need to add specific default language to URL
 #	| Slovakia       | - Links for validation set of for UK so needs updating
 #	| Slovenia       | - Links for validation set of for UK so needs updating
 #	| Czech          | - Links for validation set of for UK so needs updating
 #	| Bulgaria       | - Links for validation set of for UK so needs updating - maybe no version in SiteCore on DV2
-	| Finland        |
 #	| Norway         | - Link for validation of registration links to something completely different
 #	| Italy          | - NEEDS to have Número de identificación fiscal added to test otherwise registration fails
-	| Austria        |
 
 
 @SMOKE
