@@ -131,7 +131,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 26
    testRunner.Then("I click to view the colour laser range", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 27
-   testRunner.Then("I click tp view all colour lasers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+   testRunner.Then("I click to view all colour lasers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 28
    testRunner.Then("I am navigated to view all colour laser printers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
