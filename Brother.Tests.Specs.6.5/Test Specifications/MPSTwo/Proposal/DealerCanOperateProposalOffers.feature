@@ -24,7 +24,7 @@ Scenario Outline: Dealer can edit an existing proposal offer
 	And I go to "<TabName>" Tab in Proposal
 	And I edit "<TabName>" Tab in Proposal of "<ContractType>"
 	And I go to "Summary" Tab in Proposal
-	Then I can confirm "<TabName>" on Summary Tab in Proposal of "<ContractType>"
+	Then I can confirm "<TabName>" on Summary Tab in Proposal of "Purchase + Click with Service"
 	And I can sign out of Brother Online
 
 	Scenarios:

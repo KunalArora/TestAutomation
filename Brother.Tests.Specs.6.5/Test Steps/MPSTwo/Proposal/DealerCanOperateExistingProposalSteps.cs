@@ -170,6 +170,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
                     break;
 
                 case "Summary":
+                    
                     break;
             }
         }

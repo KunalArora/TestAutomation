@@ -413,6 +413,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         public void ThenTheProductCanNotBeAddedToTheProposal()
         {
             CurrentPage.As<DealerProposalsCreateProductsPage>().IsNotTheProductAddedToTheProposal();
+            NextPage = CurrentPage.As<DealerProposalsCreateProductsPage>().MoveToClickPriceScreen();
         }
 
         [When(@"enter a quantity of ""(.*)"" for model")]

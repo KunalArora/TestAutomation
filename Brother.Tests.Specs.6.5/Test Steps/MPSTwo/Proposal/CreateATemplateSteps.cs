@@ -155,11 +155,14 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             GivenIamOnMpsNewProposalPage();
             CurrentPage.As<DealerProposalsCreateDescriptionPage>().SetServerName(refs);
             WhenIFillProposalDescriptionForContractType("Lease & Click with Service");
+
             DealerProposalsCreateCustomerInformationStep customerInformationStepInstance = new DealerProposalsCreateCustomerInformationStep();
             customerInformationStepInstance.WhenISelectButtonForCustomerDataCapture("Create new customer");
+
             DealerProposalsCreateTermAndTypeStep termAndTypeStepInstance = new DealerProposalsCreateTermAndTypeStep();
             termAndTypeStepInstance.WhenIEnterUsageTypeOfAndContractTermsLeasingAndBillingOnTermAndTypeDetails
                 ("Minimum Volume", "3 years", "Quarterly", "Quarterly");
+
             DealerProposalsCreateProductsStep instance = new DealerProposalsCreateProductsStep();
             instance.WhenIDisplayDeviceScreen("HL-L8350CDW");
             instance.WhenIAcceptTheDefaultValuesOfTheDevice();

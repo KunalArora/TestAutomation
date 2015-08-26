@@ -159,7 +159,7 @@ namespace Brother.Tests.Selenium.Lib.Support
 								    "Wishing Bay"
 								};
 
-            var generatedCompanyName = companyName[new Random().Next(20)] + " Ltd";
+            var generatedCompanyName = companyName[new Random().Next(20)] + "_" + DateTime.Now.ToString("yyyyMMdHHmmss") + " Ltd";
 
             return generatedCompanyName;
             
