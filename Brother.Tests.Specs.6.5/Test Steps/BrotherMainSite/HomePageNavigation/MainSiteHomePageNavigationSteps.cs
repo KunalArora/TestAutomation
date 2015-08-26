@@ -53,5 +53,29 @@ namespace Brother.Tests.Specs.BrotherMainSite.HomePageNavigation
             CurrentPage.As<MainSiteHomePage>().HasPrintersPageLoaded();
         }
 
+        [Then(@"I click the colour laser menu option")]
+        public void TheIClickTheColourLaserMenuOption()
+        {
+            CurrentPage.As<MainSiteHomePage>().ColourLaserMenuOptionClick();
+        }
+
+        [Then(@"I click to view the colour laser range")]
+        public void TheIClickToViewTheColourLaserRange()
+        {
+            CurrentPage.As<MainSiteHomePage>().ViewColourLaserRange();
+        }
+
+        [Then(@"I click to view all colour lasers")]
+        public void TheIClickToViewAllColourLasers()
+        {
+            CurrentPage.As<MainSiteHomePage>().ViewAllColourLasers();
+        }
+
+        [Then(@"I am navigated to view all colour laser printers")]
+        public void ThenIAmNavigatedToAllColourLasersRangePage()
+        {
+            CurrentPage.As<MainSiteHomePage>().HasAllColourLasersPageLoaded();
+        }
+       
     }
 }
