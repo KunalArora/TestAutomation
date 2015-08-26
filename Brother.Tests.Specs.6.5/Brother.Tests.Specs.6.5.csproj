@@ -58,6 +58,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Test Specifications\BrotherMainSite\Navigation\Products.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Products.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specifications\BrotherOnline\Account\Business Account.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -67,6 +72,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CC_AccountCreation.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\BrotherOnline\Cookies\CookieInformation.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CookieInformation.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Specifications\BrotherOnline\Account\Customer Account.feature.cs">
       <AutoGen>True</AutoGen>
@@ -394,6 +404,10 @@
     </None>
     <None Include="specflow.exe.config" />
     <None Include="TeamCity.SpecFlow.Reporting.psm1" />
+    <None Include="Test Specifications\BrotherMainSite\Navigation\Products.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Products.feature.cs</LastGenOutput>
+    </None>
     <None Include="Test Specifications\BrotherMainSite\Printer Search\Printers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Printers.feature.cs</LastGenOutput>
@@ -401,6 +415,10 @@
     <None Include="Test Specifications\BrotherOnline\Account\AddPaymentMethod.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>AddPaymentMethod.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\BrotherOnline\Cookies\CookieInformation.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CookieInformation.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\BrotherOnline\Account\Customer Account.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

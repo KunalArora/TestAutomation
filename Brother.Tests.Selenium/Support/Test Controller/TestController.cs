@@ -55,9 +55,9 @@ namespace Brother.Tests.Selenium.Lib.Support
             else
             {
                 IsAcceptCookiesDismissed = false;
-                StartPhantomJsProcess();
-                CurrentDriver = StartNewRemoteWebDriver(_ipAddress, _driverPort);
-                //CurrentDriver = ExperimentalChanges();
+              //  StartPhantomJsProcess();
+              //  CurrentDriver = StartNewRemoteWebDriver(_ipAddress, _driverPort);
+                CurrentDriver = ExperimentalChanges();
 
                 if (CurrentDriver == null)
                 {
@@ -79,8 +79,10 @@ namespace Brother.Tests.Selenium.Lib.Support
         private static IWebDriver ExperimentalChanges()
         {
             var headlessOptions = SetJsOptions();
+            //var headlessOptions = SetJSDesiredCapabilities();
             IWebDriver newDriver = null;
-            newDriver = new PhantomJSDriver(headlessOptions);
+            var phantomJsService = StartPhantomJsService();
+            newDriver = new PhantomJSDriver(phantomJsService);//, headlessOptions);
             return newDriver;
         }
 
@@ -321,12 +323,22 @@ namespace Brother.Tests.Selenium.Lib.Support
         {
             KillPhantomJsIfRunning();
             
-            var phantomJsService = PhantomJSDriverService.CreateDefaultService(Directory.GetCurrentDirectory() + "\\" + @"Drivers\");
+            var phantomJsService = PhantomJSDriverService.CreateDefaultService(string.Format(@"{0}\Drivers\", Directory.GetCurrentDirectory()));
             phantomJsService.IgnoreSslErrors = true;
             phantomJsService.WebSecurity = false;
             phantomJsService.AddArgument("--web-security=no");
-            phantomJsService.AddArgument("--ignore-ssl-errors=yes");
-            phantomJsService.AddArgument(string.Format("--webdriver={0}:{1}", _ipAddress, _driverPort));
+            phantomJsService.AddArgument("--ignore-ssl-errors=true");
+            phantomJsService.AddArgument("--ssl-protocol=any");
+            phantomJsService.AddArgument("--local-to-remote-url-access=true");
+            phantomJsService.AddArgument("--remote-debugger-port=9010");
+            //phantomJsService.AddArgument("--proxy-type=http");
+//            phantomJsService.AddArgument("--proxy=10.2.135.18:8080");
+//            phantomJsService.AddArgument(@"--proxy-auth=EU\EUSiteCoreTestAuto:Ferry1Loft2Lighter3");
+            //phantomJsService.AddArgument(string.Format("--webdriver={0}:{1}", _ipAddress, _driverPort));
+            
+            var cookieLocation = "C:\\TestAutomation\\SeleniumLogging";
+            var persistentCookiePath = string.Format(@"--cookies-file={0}\AutoCookies.txt", cookieLocation);
+            phantomJsService.AddArgument(persistentCookiePath);
             phantomJsService.LogFile = SetDriverLog();
 
             return phantomJsService;
@@ -380,6 +392,8 @@ namespace Brother.Tests.Selenium.Lib.Support
             jsOptions.AddAdditionalCapability("browserName", "phantomjs");
             jsOptions.AddAdditionalCapability("ssl-protocol", "any");
             jsOptions.AddAdditionalCapability("localToRemoteUrlAccessEnabled", true);
+            //jsOptions.AddAdditionalCapability("proxy-type", "none");
+            jsOptions.ToCapabilities();
            
             return jsOptions;
         }

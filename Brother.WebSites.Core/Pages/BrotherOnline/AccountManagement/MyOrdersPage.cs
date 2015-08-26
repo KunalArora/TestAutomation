@@ -48,7 +48,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
                 Helper.MsgOutput(string.Format("Error validating order [{0}]", orders[0]));
             }
 
-            Utils.OrderInformation currentOrderInfo = Utils.GetOrderInformation(xmlResponseData);
+            var currentOrderInfo = Utils.GetOrderInformation(xmlResponseData);
 
             // check that the current order contains a reference to the previous order or first order of OmniJoin
             TestCheck.AssertIsEqual(currentOrderInfo.ReferenceOrder, orders[orders.Count - 1].ToString(), "OmniJoin plan change: previous order number does not match reference order number");
@@ -87,14 +87,14 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         {
             var orderNum = SpecFlow.GetContext("OrderConfirmationNumber");
             var locatorString = string.Format("a[href*='orderid={0}']", orderNum);
-            return WaitForElementToExistByCssSelector(locatorString) ? Driver.FindElement(By.CssSelector(locatorString)) : null;
+            return WaitForElementToExistByCssSelector(locatorString, 5, 5) ? Driver.FindElement(By.CssSelector(locatorString)) : null;
         }
 
         public void IsViewOrderDetailsButtonAvailable()
         {
             if (ViewOrderDetailsButton() == null)
             {
-                throw new Exception("Unable to locate button on page");
+                throw new Exception("Unable to View Order Details locate button on page");
             }
             AssertElementPresent(ViewOrderDetailsButton(), "View Order Details Button");
         }
