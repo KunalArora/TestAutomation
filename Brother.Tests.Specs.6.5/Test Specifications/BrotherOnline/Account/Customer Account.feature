@@ -275,7 +275,7 @@ Scenarios:
 	# | "TrailingSpace@guerrillamail.com     "      |
 	# simply trim them. No error message is displayed
 
-@SMOKE @ignore
+@SMOKE
 Scenario Outline: Create an account for Brother Online for different language sites
 	Given I Need A Brother Online "<Country>" Account In Order To Use Brother Online Services
 	When I have clicked on Add Device
@@ -288,25 +288,50 @@ Scenario Outline: Create an account for Brother Online for different language si
 
 Scenarios:
 	| Country        |
-	| Romania        | 
 	| France         |
 	| Germany        |
 	| Netherlands    |
-	| Spain          |
 	| Denmark        |
 	| Belgium        |
+	| Portugal       |
+	| Finland        |
+	| Austria        |
+#	| Romania        | - Links for validation set of for UK so needs updating - BBAU-2665
+#	| Spain          | - Need NI number
 #	| Russia         |- Red warning on page - look into
 #	| Hungary        |- unknown error - possibly cannot get to site 
-	| Portugal       |
+#	| Switzerland    | - need to add specific default language to URL
+#	| Slovakia       | - Links for validation set of for UK so needs updating - BBAU-2665
+#	| Slovenia       | - Links for validation set of for UK so needs updating - BBAU-2665
+#	| Czech          | - Links for validation set of for UK so needs updating - BBAU-2665
+#	| Bulgaria       | - Links for validation set of for UK so needs updating - maybe no version in SiteCore on DV2 - BBAU-2665
+#	| Norway         | - Link for validation of registration links to something completely different - BBAU-2665
+#	| Italy          | - NEEDS to have Número de identificación fiscal added to test otherwise registration fails
+
+@SMOKE @ignore
+Scenario Outline: Create an account for Brother Online - failing language site version
+	Given I Need A Brother Online "<Country>" Account In Order To Use Brother Online Services
+	When I have clicked on Add Device
+	And I am redirected to the Register Device page
+	# Note: Invalid serial code will always produce error message
+	Given I have entered my Product Serial Code "U1T000000"
+	Then I can validate that an error message was displayed
+	Then I can sign out of Brother Online
+	Then I am redirected to the Brother Home Page
+
+Scenarios:
+	| Country        |
+#	| Romania        | - Links for validation set of for UK so needs updating
+#	| Spain          | - Need NI number
+#	| Russia         |- Red warning on page - look into
+#	| Hungary        |- unknown error - possibly cannot get to site 
 #	| Switzerland    | - need to add specific default language to URL
 #	| Slovakia       | - Links for validation set of for UK so needs updating
 #	| Slovenia       | - Links for validation set of for UK so needs updating
 #	| Czech          | - Links for validation set of for UK so needs updating
 #	| Bulgaria       | - Links for validation set of for UK so needs updating - maybe no version in SiteCore on DV2
-	| Finland        |
 #	| Norway         | - Link for validation of registration links to something completely different
 #	| Italy          | - NEEDS to have Número de identificación fiscal added to test otherwise registration fails
-	| Austria        |
 
 
 @SMOKE
