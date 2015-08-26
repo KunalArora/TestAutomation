@@ -98,7 +98,7 @@ this.ScenarioSetup(scenarioInfo);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the printers page via the top main site products menu" +
                     "", ((string[])(null)));
 #line 14
- this.ScenarioSetup(scenarioInfo);
+this.ScenarioSetup(scenarioInfo);
 #line 15
  testRunner.Given("I have navigated to the Brother Main Site \"United Kingdom\" products pages", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 16
@@ -107,6 +107,33 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.Then("I hover and click the printers option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 18
  testRunner.Then("I am navigated to the printers page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("User is able to navigate to view the colour laser range of printers")]
+        public virtual void UserIsAbleToNavigateToViewTheColourLaserRangeOfPrinters()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to view the colour laser range of printers", ((string[])(null)));
+#line 20
+  this.ScenarioSetup(scenarioInfo);
+#line 21
+   testRunner.Given("I have navigated to the Brother Main Site \"United Kingdom\" products pages", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 22
+   testRunner.Then("I hover over the top products menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 23
+   testRunner.Then("I hover and click the printers option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 24
+   testRunner.Then("I am navigated to the printers page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 25
+   testRunner.Then("I click the colour laser menu option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 26
+   testRunner.Then("I click to view the colour laser range", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 27
+   testRunner.Then("I click tp view all colour lasers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 28
+   testRunner.Then("I am navigated to view all colour laser printers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
