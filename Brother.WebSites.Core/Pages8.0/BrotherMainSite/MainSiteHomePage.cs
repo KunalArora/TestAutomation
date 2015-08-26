@@ -8,11 +8,12 @@ using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
 
-namespace Brother.WebSites.Core.Pages.BrotherMainSite
+
+namespace Brother.WebSites.Core.Pages8._0.BrotherMainSite
 {
     public class MainSiteHomePage : BasePage
     {
-        public static string Url = "/";
+         public static string Url = "/";
 
         public override string DefaultTitle
         {
@@ -66,7 +67,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public SuppliesPage ClickSuppliesLink()
         {
-            //MoveToElement(SuppliesLink);
+            MoveToElement(SuppliesLink);
             SuppliesLink.Click();
             return GetInstance<SuppliesPage>(Driver);
         }
@@ -135,4 +136,4 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
             AssertElementPresent(ViewColourLaserRangeButton, "Colour laser button");
         }
     }
-}
+    }
