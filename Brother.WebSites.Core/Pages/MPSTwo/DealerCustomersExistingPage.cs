@@ -143,6 +143,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var id = SpecFlow.GetContext(DealerLatestOperatingCustomerItemId);
             var exisitng = ContainsItemById(driver, id);
 
+            WebDriver.Wait(DurationType.Second, 5);
+
             TestCheck.AssertIsEqual(false, exisitng,
                 "Deleted Item still exists on table.");
         }

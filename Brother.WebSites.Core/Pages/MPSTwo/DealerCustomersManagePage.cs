@@ -193,7 +193,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             var org = new OrganisationDetail
             {
-                Name = "__Deletable__" + MpsUtil.CompanyName(), // in order to boost linear search.
+                Name = "Deletable_" + MpsUtil.CompanyName(), // in order to boost linear search.
                 PropertyNumber = MpsUtil.PropertyNumber(),
                 PropertyStreet = MpsUtil.PropertyStreet(),
                 PropertyArea = MpsUtil.FirstName(),
