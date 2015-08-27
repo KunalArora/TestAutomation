@@ -135,5 +135,20 @@ namespace Brother.WebSites.Core.Pages8._0.BrotherMainSite
             }
             AssertElementPresent(ViewColourLaserRangeButton, "Colour laser button");
         }
+        public void HoverBusinessSolutionsMenu(IWebDriver driver)
+        {
+            var builder = new Actions(driver);
+            builder.MoveToElement(driver.FindElement(By.Id(ProductsTopMenu))).Build().Perform();
+        }
+        public void HasBusinessSolutionsPageLoaded()
+        {
+            WaitForElementToExistById("lhnchatimg", 3);
+            ScrollTo(RequestSampleButton);    
+            if (RequestSampleButton == null)
+            {
+                throw new NullReferenceException("Products page not loaded");
+            }
+            AssertElementPresent(RequestSampleButton, "Printers Link");
+        }
     }
     }
