@@ -1,6 +1,5 @@
 ﻿using System;
 using Brother.WebSites.Core.Pages.Base;
-using Brother.WebSites.Core.Pages8._0.BrotherMainSite;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs._80.Test_Steps.BrotherMainSite.BusinessSolutions
@@ -11,7 +10,7 @@ namespace Brother.Tests.Specs._80.Test_Steps.BrotherMainSite.BusinessSolutions
         [Given(@"I have clicked the top business solutions menu button")]
         public void GivenIHaveClickedTheTopBusinessSolutionsMenuButton()
         {
-            CurrentPage.As<MainSiteHomePage>().HoverBusinessSolutionsMenu(CurrentDriver);
+            ScenarioContext.Current.Pending();
         }
         
         [Given(@"I hover over the top Business Solutions menu button")]
@@ -23,7 +22,7 @@ namespace Brother.Tests.Specs._80.Test_Steps.BrotherMainSite.BusinessSolutions
         [Then(@"I am navigated to the business solutions page")]
         public void ThenIAmNavigatedToTheBusinessSolutionsPage()
         {
-            CurrentPage.As<MainSiteHomePage>().HasBusinessSolutionsPageLoaded();
+            ScenarioContext.Current.Pending();
         }
         
         [Then(@"I hover and click the Manage Print Services option")]
