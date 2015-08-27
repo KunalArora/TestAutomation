@@ -163,6 +163,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LocalOfficeAdminCanManageBanks.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\MPSTwo\Proposal\NoDuplicateProposalIsCreated.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NoDuplicateProposalIsCreated.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specifications\MPSTwo\Proposal\PurchaseAndClickProposalGermanUserJourney.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -358,6 +363,7 @@
     <Compile Include="Test Steps\MPSTwo\Contract\SigningContractsSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Customer\DealerCanOperateCustomersSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\DealerAdmin\DealerAdminProfileSteps.cs" />
+    <Compile Include="Test Steps\MPSTwo\Proposal\DealerProposalRejectedSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Proposal\DealerProposalsCreateCustomerInformationStep.cs" />
     <Compile Include="Test Steps\MPSTwo\Proposal\DealerProposalsCreateClickPriceStep.cs" />
     <Compile Include="Test Steps\MPSTwo\Proposal\DealerProposalsCreateTermAndTypeStep.cs" />
@@ -567,6 +573,10 @@
     <None Include="Test Specifications\MPSTwo\Proposal\LocalOfficeAdminCanManageBanks.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>LocalOfficeAdminCanManageBanks.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwo\Proposal\NoDuplicateProposalIsCreated.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>NoDuplicateProposalIsCreated.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwo\Proposal\PurchaseAndClickProposalGermanUserJourney.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

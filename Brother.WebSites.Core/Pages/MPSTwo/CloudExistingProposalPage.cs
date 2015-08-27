@@ -118,6 +118,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             proposalDeclinedTabElement.Click();
         }
 
+        public DealerProposalsRejectedPage NavigateToDeclinedProposalPage()
+        {
+            if (proposalDeclinedTabElement == null)
+                throw new Exception("Cannot fine Declined Tab");
+            proposalDeclinedTabElement.Click();
+
+            return GetInstance<DealerProposalsRejectedPage>();
+        }
+
         public void IsProposalCopiedWithoutCustomer(IWebDriver driver)
         {
             TestCheck.AssertIsEqual(true, 

@@ -193,6 +193,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             actionsElement.Last().Click();
         }
 
+        public static void ClickOnTheActionsDropdown(int index, IWebDriver driver)
+        {
+            var actionsElement = ActionsDropdownElement(driver);
+            actionsElement.ElementAt(index).Click();
+        }
+
         public static void CopyAProposal(IWebDriver driver)
         {
             var copyButton = CopyProposalButtonElement(driver);
