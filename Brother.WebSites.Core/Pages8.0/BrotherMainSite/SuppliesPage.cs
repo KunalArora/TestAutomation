@@ -5,6 +5,7 @@ using Brother.WebSites.Core.Pages.BrotherMainSite.SuppliesAndAccessories;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
+/*
 namespace Brother.WebSites.Core.Pages8._0.BrotherMainSite
 {
     public class SuppliesPage : BasePage
@@ -73,3 +74,4 @@ namespace Brother.WebSites.Core.Pages8._0.BrotherMainSite
         }
     }
 }
+*/
