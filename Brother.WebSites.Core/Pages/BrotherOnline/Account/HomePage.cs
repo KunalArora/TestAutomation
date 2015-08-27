@@ -845,6 +845,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public void DuplicateCcEmailErrorMessageDisplayed()
         {
+            DuplicateCcEmailErrorMessage = Driver.FindElement(By.CssSelector("#cccontent_1_singlecolumnform_0_Warnings"));
             TestCheck.AssertIsEqual(true, DuplicateCcEmailErrorMessage.Displayed, "Is Error Message Displayed");
         }
 
