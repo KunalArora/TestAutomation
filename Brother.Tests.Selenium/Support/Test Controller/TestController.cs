@@ -336,9 +336,9 @@ namespace Brother.Tests.Selenium.Lib.Support
 //            phantomJsService.AddArgument(@"--proxy-auth=EU\EUSiteCoreTestAuto:Ferry1Loft2Lighter3");
             //phantomJsService.AddArgument(string.Format("--webdriver={0}:{1}", _ipAddress, _driverPort));
             
-            var cookieLocation = "C:\\TestAutomation\\SeleniumLogging";
-            var persistentCookiePath = string.Format(@"--cookies-file={0}\AutoCookies.txt", cookieLocation);
-            phantomJsService.AddArgument(persistentCookiePath);
+//            var cookieLocation = "C:\\TestAutomation\\SeleniumLogging";
+//            var persistentCookiePath = string.Format(@"--cookies-file={0}\AutoCookies.txt", cookieLocation);
+  //          phantomJsService.AddArgument(persistentCookiePath);
             phantomJsService.LogFile = SetDriverLog();
 
             return phantomJsService;

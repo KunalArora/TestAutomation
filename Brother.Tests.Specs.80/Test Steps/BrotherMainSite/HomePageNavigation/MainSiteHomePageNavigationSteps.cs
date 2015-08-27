@@ -1,9 +1,10 @@
 ﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
-using Brother.WebSites.Core.Pages8._0.BrotherMainSite;
+//using Brother.WebSites.Core.Pages8._0.BrotherMainSite;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
 using TechTalk.SpecFlow;
 
+/*
 namespace Brother.Tests.Specs._80.BrotherMainSite.HomePageNavigation
 {
     [Binding]
@@ -55,3 +56,4 @@ namespace Brother.Tests.Specs._80.BrotherMainSite.HomePageNavigation
 
     }
 }
+*/
