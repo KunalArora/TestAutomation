@@ -535,7 +535,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public void PopulateEmailAddressTextBoxWithValidCCEmail(string emailAddress)
         {
-            TestCheck.AssertIsEqual(false, EmailAddressCCErrorMessage.Displayed, "Is Email Error message displayed");
+            //TestCheck.AssertIsEqual(false, EmailAddressCCErrorMessage.Displayed, "Is Email Error message displayed");
             if (emailAddress.Equals(string.Empty))
             {
                 emailAddress = Email.GenerateUniqueCCEmailAddress();
@@ -778,7 +778,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public void PopulateCcEmailAddressTextBox(string emailAddress)
         {
-            TestCheck.AssertIsEqual(false, CcEmailAddressErrorMessage.Displayed, "Is Email Error message displayed");
+            //TestCheck.AssertIsEqual(false, CcEmailAddressErrorMessage.Displayed, "Is Email Error message displayed");
             EmailAddressCCTextBox.Clear();
             EmailAddressCCTextBox.SendKeys(emailAddress);
             EmailAddressCCTextBox.SendKeys(Keys.Tab);
