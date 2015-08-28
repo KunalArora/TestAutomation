@@ -13,22 +13,22 @@ Scenario Outline: View the list of available Laser Printers on Brother Main site
 
 Scenarios:
 	| country        | site                                                        |
-##	| Belgium        | brother-printers/laser-printers?sc_lang=nl-BE               | - language switching problem
-##  | Belgium        | imprimantes/imprimantes-laser?sc_lang=fr-BE                 | - language switching problem
 	| Czech          | printers/laser-printers                                     |
-##	| Denmark        | printers/all-colour-lasers                                  |
 	| Finland        | printers/laser-printers                                     |
 	| France         | imprimantes/imprimantes-multifonctions/multifonctions-laser |
-##	| Germany        | drucker/alle-lasergeraete/monolaser                         | - works differently than all other printer listings
 	| Hungary        | printers/laser-printers                                     |
 	| Ireland        | printers/laser-printers                                     |
 	| Netherlands    | printers/laserprinters                                      |
-##	| Norway         | printers/all-colour-lasers                                  |
 	| Poland         | printers/laser-printers                                     |
 	| Romania        | printers/laser-printers                                     |
-#	| Russia         | printers/laser-printers                                     | - No printers listed
 	| Slovakia       | printers/laser-printers                                     |
 	| Slovenia       | printers/laser-printers                                     |
+##	| Belgium        | brother-printers/laser-printers?sc_lang=nl-BE               | - language switching problem
+##  | Belgium        | imprimantes/imprimantes-laser?sc_lang=fr-BE                 | - language switching problem
+##	| Denmark        | printers/all-colour-lasers                                  |
+##	| Germany        | drucker/alle-lasergeraete/monolaser                         | - works differently than all other printer listings
+##	| Norway         | printers/all-colour-lasers                                  |
+#	| Russia         | printers/laser-printers                                     | - No printers listed
 ##	| Switzerland    | drucker/laserdrucker?sc_lang=de-CH                          | - language switching problem
 ##	| Switzerland    | imprimantes/imprimantes-laser?sc_lang=fr-CH                 | - language switching problem
 ##	| United Kingdom | printers/all-mono-lasers                                    |

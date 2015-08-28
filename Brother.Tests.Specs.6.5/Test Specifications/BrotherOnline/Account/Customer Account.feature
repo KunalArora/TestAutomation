@@ -275,7 +275,7 @@ Scenarios:
 	# | "TrailingSpace@guerrillamail.com     "      |
 	# simply trim them. No error message is displayed
 
-@SMOKE @ignore
+@SMOKE
 Scenario Outline: Create an account for Brother Online for different language sites
 	Given I Need A Brother Online "<Country>" Account In Order To Use Brother Online Services
 	When I have clicked on Add Device
