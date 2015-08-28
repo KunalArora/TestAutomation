@@ -59,10 +59,58 @@ namespace Brother.Tests.Specs.BrotherMainSite.HomePageNavigation
             CurrentPage.As<MainSiteHomePage>().ColourLaserMenuOptionClick();
         }
 
+        [Then(@"I click the mono laser menu option")]
+        public void TheIClickTheMonoLaserMenuOption()
+        {
+            CurrentPage.As<MainSiteHomePage>().MonoLaserMenuOptionClick();
+        }
+
+        [Then(@"I click the inkjet menu option")]
+        public void TheIClickTheInkjetMenuOption()
+        {
+            CurrentPage.As<MainSiteHomePage>().InkjetMenuOptionClick();
+        }
+
+        [Then(@"I click the portable menu option")]
+        public void TheIClickThePortableMenuOption()
+        {
+            CurrentPage.As<MainSiteHomePage>().PortableMenuOptionClick();
+        }
+
+        [Then(@"I click the workgroup menu option")]
+        public void TheIClickTheWorkgroupMenuOption()
+        {
+            CurrentPage.As<MainSiteHomePage>().WorkgroupMenuOptionClick();
+        }
+
+        [Then(@"I click the all printers menu option")]
+        public void TheIClickTheAllPrintersMenuOption()
+        {
+            CurrentPage.As<MainSiteHomePage>().AllPrintersMenuOptionClick();
+        }
+
         [Then(@"I click to view the colour laser range")]
         public void TheIClickToViewTheColourLaserRange()
         {
             CurrentPage.As<MainSiteHomePage>().ViewColourLaserRange();
+        }
+
+        [Then(@"I click to view the mono laser range")]
+        public void TheIClickToViewTheMonoLaserRange()
+        {
+            CurrentPage.As<MainSiteHomePage>().ViewMonoLaserRange();
+        }
+
+        [Then(@"I click to view the inkjet range")]
+        public void TheIClickToViewTheInkjetRange()
+        {
+            CurrentPage.As<MainSiteHomePage>().ViewInkjetRange();
+        }
+
+        [Then(@"I click to view the portable range")]
+        public void TheIClickToViewThePortableRange()
+        {
+            CurrentPage.As<MainSiteHomePage>().ViewPortableRange();
         }
 
         [Then(@"I click to view all colour lasers")]
@@ -71,11 +119,70 @@ namespace Brother.Tests.Specs.BrotherMainSite.HomePageNavigation
             CurrentPage.As<MainSiteHomePage>().ViewAllColourLasers();
         }
 
+        [Then(@"I click to view all mono lasers")]
+        public void TheIClickToViewAllMonoLasers()
+        {
+            CurrentPage.As<MainSiteHomePage>().ViewAllMonoLasers();
+        }
+
+        [Then(@"I click to view all inkjet printers")]
+        public void TheIClickToViewAllInkjetPrinters()
+        {
+            CurrentPage.As<MainSiteHomePage>().ViewAllInkjetPrinters();
+        }
+
+        [Then(@"I click to view all portable printers")]
+        public void TheIClickToViewAllPortablePrinters()
+        {
+            CurrentPage.As<MainSiteHomePage>().ViewAllPortablePrinters();
+        }
+
+        [Then(@"I click to view the workgroup printer")]
+        public void ThenIClickToViewWorkgroupPrinter()
+        {
+            CurrentPage.As<MainSiteHomePage>().ViewTheWorkgroupPrinter();
+        }
+
+        [Then(@"I click to view the full printer range printer")]
+        public void ThenIClickToViewTheFullPrinterRange()
+        {
+            CurrentPage.As<MainSiteHomePage>().ViewTheFullPrinterRange();
+        }
+
         [Then(@"I am navigated to view all colour laser printers")]
         public void ThenIAmNavigatedToAllColourLasersRangePage()
         {
             CurrentPage.As<MainSiteHomePage>().HasAllColourLasersPageLoaded();
         }
-       
+
+        [Then(@"I am navigated to view all mono laser printers")]
+        public void ThenIAmNavigatedToAllMonoLasersRangePage()
+        {
+            CurrentPage.As<MainSiteHomePage>().HasAllMonoLasersPageLoaded();
+        }
+
+        [Then(@"I am navigated to view all inkjet printers")]
+        public void ThenIAmNavigatedToAllInkjetRangePage()
+        {
+            CurrentPage.As<MainSiteHomePage>().HasAllInkjetPrintersPageLoaded();
+        }
+
+        [Then(@"I am navigated to view all portable printers")]
+        public void ThenIAmNavigatedToAllPortableRangePage()
+        {
+            CurrentPage.As<MainSiteHomePage>().HasAllPortablePrintersPageLoaded();
+        }
+
+        [Then(@"I am navigated to view the workgroup printer")]
+        public void ThenIAmNavigatedToAllWorkgroupRangePage()
+        {
+            CurrentPage.As<MainSiteHomePage>().HasAllWorkgroupPrintersPageLoaded();
+        }
+
+        [Then(@"I am navigated to view all the printers")]
+        public void ThenIAmNavigatedToViewAllThePrinterRange()
+        {
+            CurrentPage.As<MainSiteHomePage>().HasAllPrinterRangePageLoaded();
+        }
     }
 }

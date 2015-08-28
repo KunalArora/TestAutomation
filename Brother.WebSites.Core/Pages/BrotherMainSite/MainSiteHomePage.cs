@@ -43,12 +43,42 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         [FindsBy(How = How.CssSelector, Using = "#main > div > div > div:nth-child(3) > div > ul.slides.cf > li:nth-child(1) > div.left-content > p:nth-child(5) > a")]
         public IWebElement ViewColourLaserRangeButton;
 
+        [FindsBy(How = How.CssSelector, Using = "#main > div > div > div:nth-child(3) > div > ul.slides.cf > li:nth-child(2) > div.left-content > p:nth-child(4) > a")]
+        public IWebElement ViewMonoLaserRangeButton;
+
+        [FindsBy(How = How.CssSelector, Using = "#main > div > div > div:nth-child(3) > div > ul.slides.cf > li:nth-child(3) > div.left-content > p:nth-child(4) > a")]
+        public IWebElement ViewInkjetRangeButton;
+
+        [FindsBy(How = How.CssSelector, Using = "#main > div > div > div:nth-child(3) > div > ul.slides.cf > li:nth-child(4) > div.left-content > p:nth-child(4) > a")]
+        public IWebElement ViewPortableRangeButton;
+
         [FindsBy(How = How.CssSelector, Using = "#main > div > div > div:nth-child(3) > div > ul.nav.cf > li:nth-child(1) > a")] 
         public IWebElement ColourLaserMenuOption;
 
+        [FindsBy(How = How.CssSelector, Using = "#main > div > div > div:nth-child(3) > div > ul.nav.cf > li:nth-child(2) > a")]
+        public IWebElement MonoLaserMenuOption;
+
+        [FindsBy(How = How.CssSelector, Using = "#main > div > div > div:nth-child(3) > div > ul.nav.cf > li:nth-child(3) > a")]
+        public IWebElement InkjetMenuOption;
+
+        [FindsBy(How = How.CssSelector, Using = "#main > div > div > div:nth-child(3) > div > ul.nav.cf > li:nth-child(4) > a")]
+        public IWebElement PortableMenuOption;
+
+        [FindsBy(How = How.CssSelector, Using = "#main > div > div > div:nth-child(3) > div > ul.nav.cf > li:nth-child(5) > a")]
+        public IWebElement WorkgroupMenuOption;
+
+        [FindsBy(How = How.CssSelector, Using = "#main > div > div > div:nth-child(3) > div > ul.nav.cf > li:nth-child(6) > a")]
+        public IWebElement AllPrintersMenuOption;
+
         //[FindsBy(How = How.CssSelector, Using = "#main > div > div > div:nth-child(3) > div > div > p:nth-child(5) > a")]
         [FindsBy(How = How.ClassName, Using = "button-orange")]
-        public IWebElement ViewAllColourLasersButton;
+        public IWebElement ViewAllProductsOrangeButton;
+
+        [FindsBy(How = How.CssSelector, Using = "#main > div > div > div:nth-child(3) > div > ul.slides.cf > li:nth-child(5) > div.left-content > p:nth-child(4) > a")]
+        public IWebElement ViewWorkgroupPrinterButton;
+
+        [FindsBy(How = How.CssSelector, Using = "#main > div > div > div:nth-child(3) > div > ul.slides.cf > li:nth-child(6) > div.left-content > p:nth-child(4) > a")]
+        public IWebElement ViewFullPrinterRangeButton;
 
         [FindsBy(How = How.Id, Using = "buybutton")]
         public IWebElement BuyOnlineButton;
@@ -152,6 +182,41 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
             return GetInstance<MainSiteHomePage>(Driver);
         }
 
+        public MainSiteHomePage MonoLaserMenuOptionClick()
+        {
+            MoveToElement(MonoLaserMenuOption);
+            MonoLaserMenuOption.Click();
+            return GetInstance<MainSiteHomePage>(Driver);
+        }
+
+        public MainSiteHomePage InkjetMenuOptionClick()
+        {
+            MoveToElement(InkjetMenuOption);
+            InkjetMenuOption.Click();
+            return GetInstance<MainSiteHomePage>(Driver);
+        }
+
+        public MainSiteHomePage PortableMenuOptionClick()
+        {
+            MoveToElement(PortableMenuOption);
+            PortableMenuOption.Click();
+            return GetInstance<MainSiteHomePage>(Driver);
+        }
+
+        public MainSiteHomePage WorkgroupMenuOptionClick()
+        {
+            MoveToElement(WorkgroupMenuOption);
+            WorkgroupMenuOption.Click();
+            return GetInstance<MainSiteHomePage>(Driver);
+        }
+
+        public MainSiteHomePage AllPrintersMenuOptionClick()
+        {
+            MoveToElement(AllPrintersMenuOption);
+            AllPrintersMenuOption.Click();
+            return GetInstance<MainSiteHomePage>(Driver);
+        }
+
         public MainSiteHomePage ViewColourLaserRange()
         {
             MoveToElement(ViewColourLaserRangeButton);
@@ -159,10 +224,66 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
             return GetInstance<MainSiteHomePage>(Driver);
         }
 
+        public MainSiteHomePage ViewMonoLaserRange()
+        {
+            MoveToElement(ViewMonoLaserRangeButton);
+            ViewMonoLaserRangeButton.Click();
+            return GetInstance<MainSiteHomePage>(Driver);
+        }
+
+        public MainSiteHomePage ViewInkjetRange()
+        {
+            MoveToElement(ViewInkjetRangeButton);
+            ViewInkjetRangeButton.Click();
+            return GetInstance<MainSiteHomePage>(Driver);
+        }
+
+        public MainSiteHomePage ViewPortableRange()
+        {
+            MoveToElement(ViewPortableRangeButton);
+            ViewPortableRangeButton.Click();
+            return GetInstance<MainSiteHomePage>(Driver);
+        }
+
         public MainSiteHomePage ViewAllColourLasers()
         {
-            MoveToElement(ViewAllColourLasersButton);
-            ViewAllColourLasersButton.Click();
+            MoveToElement(ViewAllProductsOrangeButton);
+            ViewAllProductsOrangeButton.Click();
+            return GetInstance<MainSiteHomePage>(Driver);
+        }
+
+        public MainSiteHomePage ViewAllMonoLasers()
+        {
+            MoveToElement(ViewAllProductsOrangeButton);
+            ViewAllProductsOrangeButton.Click();
+            return GetInstance<MainSiteHomePage>(Driver);
+        }
+
+        public MainSiteHomePage ViewAllInkjetPrinters()
+        {
+            MoveToElement(ViewAllProductsOrangeButton);
+            ViewAllProductsOrangeButton.Click();
+            return GetInstance<MainSiteHomePage>(Driver);
+        }
+
+        public MainSiteHomePage ViewAllPortablePrinters()
+        {
+            MoveToElement(ViewAllProductsOrangeButton);
+            ViewAllProductsOrangeButton.Click();
+            return GetInstance<MainSiteHomePage>(Driver);
+        }
+
+        public MainSiteHomePage ViewTheWorkgroupPrinter()
+        {
+            MoveToElement(ViewWorkgroupPrinterButton);
+            ViewWorkgroupPrinterButton.Click();
+            return GetInstance<MainSiteHomePage>(Driver);
+        }
+
+        public MainSiteHomePage ViewTheFullPrinterRange()
+        {
+            MoveToElement(ViewFullPrinterRangeButton);
+            ViewFullPrinterRangeButton.Click();
             return GetInstance<MainSiteHomePage>(Driver);
         }
 
@@ -171,6 +292,53 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
             if (BuyOnlineButton == null)
             {
                 throw new NullReferenceException("All colour lasers page has not loaded");
+            }
+            AssertElementPresent(BuyOnlineButton, "Buy online button");
+        }
+
+        public void HasAllMonoLasersPageLoaded()
+        {
+            if (BuyOnlineButton == null)
+            {
+                throw new NullReferenceException("All mono lasers page has not loaded");
+            }
+            AssertElementPresent(BuyOnlineButton, "Buy online button");
+        }
+
+        public void HasAllInkjetPrintersPageLoaded()
+        {
+            if (BuyOnlineButton == null)
+            {
+                throw new NullReferenceException("All inkjet printers page has not loaded");
+            }
+            AssertElementPresent(BuyOnlineButton, "Buy online button");
+        }
+
+        public void HasAllPortablePrintersPageLoaded()
+        {
+            if (BuyOnlineButton == null)
+            {
+                throw new NullReferenceException("All portable printers page has not loaded");
+            }
+            AssertElementPresent(BuyOnlineButton, "Buy online button");
+        }
+
+        public void HasAllWorkgroupPrintersPageLoaded()
+        {
+            WaitForElementToExistById("lhnchatimg", 3);
+            ScrollTo(RequestSampleButton);
+            if (RequestSampleButton == null)
+            {
+                throw new NullReferenceException("Workgroup printer page not loaded");
+            }
+            AssertElementPresent(RequestSampleButton, "Request sample button");
+        }
+
+        public void HasAllPrinterRangePageLoaded()
+        {
+            if (BuyOnlineButton == null)
+            {
+                throw new NullReferenceException("All printers range page has not loaded");
             }
             AssertElementPresent(BuyOnlineButton, "Buy online button");
         }
