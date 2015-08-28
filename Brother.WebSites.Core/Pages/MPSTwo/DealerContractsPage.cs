@@ -50,7 +50,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement ApprovedProposalTabElement;
         [FindsBy(How = How.CssSelector, Using = ".active a[href=\"/mps/dealer/contracts/approved-proposals\"]")]
         public IWebElement OpenedApprovedProposalTabElement;
-        [FindsBy(How = How.CssSelector, Using = "#content_1_ContractList_List_HeaderValidUntil")]
+        [FindsBy(How = How.CssSelector, Using = "#content_1_SimpleContractList_List_HeaderValidUntil")]
         public IWebElement ValidUntilLabelElement;
         
         
