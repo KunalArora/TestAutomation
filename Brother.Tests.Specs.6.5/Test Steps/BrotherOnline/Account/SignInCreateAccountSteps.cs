@@ -1066,8 +1066,8 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
 
                             break;
                         case "Germany":
-                            WhenIEnterAValidEmailAddress("MPS-BIG-UAT-Dealer3@brother.co.uk");
-                            WhenIEnterAValidPassword("DEdealer3");
+                            WhenIEnterAValidEmailAddress("MPS-BIG-UAT-Dealer1@brother.co.uk");
+                            WhenIEnterAValidPassword("DEdealer1");
                             break;
                     }
                     break;

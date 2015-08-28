@@ -9,6 +9,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
     [Binding]
     public class DealerCanOperateProposalOffersSteps : BaseSteps
     {
+        [When(@"I navigate to existing proposal screen")]
         [Given(@"I navigate to existing proposal screen")]
         public void GivenINavigateToExistingProposalScreen()
         {
@@ -22,6 +23,14 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
             var page = CurrentPage.As<CloudExistingProposalPage>();
             page.FindExistingPoposalList();
         }
+
+        [Then(@"there is no duplicate proposal on Open Proposals page")]
+        public void ThenThereIsNoDuplicateProposalOnOpenProposalsPage()
+        {
+            var page = CurrentPage.As<CloudExistingProposalPage>();
+            page.IsDuplicateProposalDisplayed();
+        }
+
 
         [When(@"I can click edit button on proposal item of Exisiting Proposal table")]
         public void WhenICanClickEditButtonOnProposalItemOfExisitingProposalTable()

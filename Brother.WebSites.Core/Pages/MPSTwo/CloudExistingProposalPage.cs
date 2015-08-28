@@ -49,8 +49,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement SaveAsContractButton;
         [FindsBy(How = How.CssSelector, Using = ".active a[href=\"/mps/dealer/proposals/ready-for-approver\"] span")]
         public IWebElement SendToBankScreenElement;
-        [FindsBy(How = How.CssSelector, Using = "a[href='/mps/dealer/proposals/in-progress']")]
-        public IWebElement InActiveProposalListProposalsScreenElement;
+        [FindsBy(How = How.CssSelector, Using = ".js-mps-delete")]
+        public IList<IWebElement> AttachedProposalId;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/proposals/convert/customer-information\"]")]
         public IWebElement customerInformationTabElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/proposals/convert/description\"]")]
@@ -467,5 +467,26 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             return GetTabInstance<DealerProposalsCreateDescriptionPage>(Driver);
         }
+        public void IsDuplicateProposalDisplayed()
+        {
+            var container = new List<string>();
+            var noOfProposalId = AttachedProposalId.Count;
+
+
+            for (var i = 0; i < AttachedProposalId.Count; i++)
+            {
+                ActionsModule.ClickOnTheActionsDropdown(i, Driver);
+                var proposalId = AttachedProposalId.ElementAt(i).GetAttribute("data-proposal-id");
+
+                container.Add(proposalId);
+
+                ActionsModule.ClickOnTheActionsDropdown(i, Driver);
+            }
+
+            var numberOfDistinct = container.Distinct().Count();
+
+            TestCheck.AssertIsEqual(true, noOfProposalId == (numberOfDistinct), "");
+        }
+
     }
 }
