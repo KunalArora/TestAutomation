@@ -62,6 +62,26 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ContactUs.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specification\BrotherMainSite\FooterNav\AboutUsFooter.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AboutUsFooter.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specification\BrotherMainSite\FooterNav\ProductsFooter.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProductsFooter.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specification\BrotherMainSite\FooterNav\SupportFooter.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SupportFooter.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specification\BrotherMainSite\FooterNav\WebsiteInformation.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WebsiteInformation.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specification\BrotherMainSite\Navigation\AboutBrother.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -146,6 +166,22 @@
     <None Include="Test Specification\BrotherMainSite\ContactUs\ContactUs.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ContactUs.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specification\BrotherMainSite\FooterNav\AboutUsFooter.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>AboutUsFooter.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specification\BrotherMainSite\FooterNav\ProductsFooter.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ProductsFooter.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specification\BrotherMainSite\FooterNav\SupportFooter.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>SupportFooter.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specification\BrotherMainSite\FooterNav\WebsiteInformation.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>WebsiteInformation.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specification\BrotherMainSite\Navigation\AboutBrother.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
