@@ -62,6 +62,7 @@ Scenario: User is able to navigate to view the portable range of printers
 	Then I am navigated to view all portable printers
 
 # Workgroup
+@TEST @UAT
 Scenario: User is able to navigate to view the workgroup printer
 	Given I have navigated to the Brother Main Site "United Kingdom" products pages
 	Then I hover over the top products menu button
@@ -80,5 +81,40 @@ Scenario: User is able to navigate to view all the printer range
 	Then I click the all printers menu option
 	Then I click to view the full printer range printer
 	Then I am navigated to view all the printers
+
+# Scannners navigation
+Scenario: User is able to navigate to the scanners page via the top main site products menu
+	Given I have navigated to the Brother Main Site "United Kingdom" products pages
+	Then I hover over the top products menu button
+	Then I hover and click the scanners option
+	Then I am navigated to the scanners page
+
+# View all scanners
+Scenario: User is able to navigate to view all the scanners 
+	Given I have navigated to the Brother Main Site "United Kingdom" products pages
+	Then I hover over the top products menu button
+	Then I hover and click the scanners option
+	Then I click to view all the scanners
+	Then I am navigated to view all the scanners
+
+# Portable scanners
+Scenario: User is able to navigate to view portable scanners 
+	Given I have navigated to the Brother Main Site "United Kingdom" products pages
+	Then I hover over the top products menu button
+	Then I hover and click the scanners option
+	Then I click to view portable scanners
+	Then I am navigated to view portable scanners
+
+# Compact scanners
+Scenario: User is able to navigate to view compact scanners 
+	Given I have navigated to the Brother Main Site "United Kingdom" products pages
+	Then I hover over the top products menu button
+	Then I hover and click the scanners option
+	Then I click to view compact scanners
+	Then I am navigated to view compact scanners
+
+
+
+
 
 
