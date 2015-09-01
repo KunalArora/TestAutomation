@@ -1,11 +1,39 @@
-﻿Feature: SupportFooter
-	In order to avoid silly mistakes
-	As a math idiot
-	I want to be told the sum of two numbers
+﻿Feature: Navigate footer Support menu
+	    As a visitor of the Brother main site
+       I am able to navigate to each of the
+       tab items within the footer support menu
 
-@mytag
-Scenario: Add two numbers
-	Given I have entered 50 into the calculator
-	And I have entered 70 into the calculator
-	When I press add
-	Then the result should be 120 on the screen
+Scenario: User is able to navigate to the Creative Centre via the footer section of Support menu
+	Given I have navigated to the "<site>" MainSite URL for country "<country>"
+	And I have clicked the creative centre link in the footer section
+	Then I am navigated to the Creative Centre page
+
+
+Scenario: User is able to navigate to the Downloads/Software via the footer section of Support menu
+	Given I have navigated to the "<site>" MainSite URL for country "<country>"
+	And I have clicked the Downloads/Software link in the footer section
+	Then I am navigated to the Downloads/Software page
+
+
+Scenario: User is able to navigate to the Find a Service Centre via the footer section of Support menu
+	Given I have navigated to the "<site>" MainSite URL for country "<country>"
+	And I have clicked the Find a Service Centre link in the footer section
+	Then I am navigated to the Find a Service Centre page
+
+
+Scenario: User is able to navigate to the Manuals via the footer section of Support menu
+	Given I have navigated to the "<site>" MainSite URL for country "<country>"
+	And I have clicked the Manuals link in the footer section
+	Then I am navigated to the Manuals page
+
+
+Scenario: User is able to navigate to the Product Registration via the footer section of Support menu
+	Given I have navigated to the "<site>" MainSite URL for country "<country>"
+	And I have clicked the Product Registration link in the footer section
+	Then I am navigated to the Product Registration page
+
+
+Scenario: User is able to navigate to the Recycling via the footer section of Support menu
+	Given I have navigated to the "<site>" MainSite URL for country "<country>"
+	And I have clicked the Product Recycling link in the footer section
+	Then I am navigated to the Recycling page
