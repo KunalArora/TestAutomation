@@ -3,7 +3,6 @@ using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs._80.Test_Steps.BrotherMainSite.FooterNavigation
 {
-    [Binding]
     public class NavigateFooterWebsiteInformationMenuSteps
     {
         [Given(@"I have clicked the accessibility link in the footer section")]
