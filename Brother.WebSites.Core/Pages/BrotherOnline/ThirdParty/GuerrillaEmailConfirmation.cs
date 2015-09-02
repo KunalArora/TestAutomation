@@ -43,23 +43,22 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.ThirdParty
         [FindsBy(How = How.CssSelector, Using = "#forget_button")]
         public IWebElement ForgetMeButton;
 
+        private string emailSelectTickbox = @"#mr_1 .td1";
+        private string emailSelectTickboxState = @"#mr_1 .td1 input";
+        private string backToInboxLink = @"#back_to_inbox_link";
+        private string setEmailButtonId = ".save.button.small";
+        private string deleteEmailButtonId = "#del_button";
+        private string domainSelectionListId = "#gm-host-select";
+        private string inBoxIdentifier = ".email_list_form #email_table #email_list";
+
         [FindsBy(How = How.CssSelector, Using = "#inbox-id")]
         public IWebElement EmailEditBox;
-
-        [FindsBy(How = How.CssSelector, Using = ".save.button.small")]
-        public IWebElement SetEmailButton;
-
-        [FindsBy(How = How.CssSelector, Using = "#gm-host-select")]
-        public IWebElement DomainSelectionList;
 
         [FindsBy(How = How.CssSelector, Using = "#del_button")]
         public IWebElement DeleteEmailButton;
 
         [FindsBy(How = How.CssSelector, Using = "#back_to_inbox_link")]
         public IWebElement BackToInboxButton;
-
-        [FindsBy(How = How.CssSelector, Using = ".email_list_form #email_table #email_list")]
-        public IWebElement InBox;
         
         public IWebElement IsEmailListAvailable()
         {
@@ -70,8 +69,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.ThirdParty
             {
                 try
                 {
-                    WaitForElementToExistByCssSelector(".email_list_form #email_table #email_list");
-                    emailList = Driver.FindElement(By.CssSelector(".email_list_form #email_table #email_list"));
+                    WaitForElementToExistByCssSelector(inBoxIdentifier);
+                    emailList = Driver.FindElement(By.CssSelector(inBoxIdentifier));
                 }
                 catch (StaleElementReferenceException staleElement)
                 {
@@ -94,11 +93,11 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.ThirdParty
             try
             {
                 WebDriver.SetWebDriverImplicitTimeout(new TimeSpan(0,0,0,30));
-                var welcomeMail = Driver.FindElement(By.CssSelector("#mr_1 .td1"));
+                var welcomeMail = Driver.FindElement(By.CssSelector(emailSelectTickbox));
                 if (welcomeMail != null)
                 {
                     // now retrieve the checkbox for this email
-                    var checkbox = Driver.FindElement(By.CssSelector("#mr_1 .td1 input"));
+                    var checkbox = Driver.FindElement(By.CssSelector(emailSelectTickboxState));
                     if (checkbox == null)
                     {
                         MsgOutput("Could not locate welcome email or checkbox. Email might have been deleted");
@@ -114,7 +113,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.ThirdParty
                             checkbox.Click();
                             DeleteEmailButton.Click();
                         }
-                        welcomeMail = Driver.FindElement(By.CssSelector("#mr_1 .td1"));
+                        welcomeMail = Driver.FindElement(By.CssSelector(emailSelectTickbox));
                         if (welcomeMail.Text.ToLower().Contains("welcome to guerrilla mail"))
                         {
                             MsgOutput("Something went wrong as the Welcome email was not deleted");
@@ -138,7 +137,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.ThirdParty
         {
             try
             {
-                BackToInboxButton = Driver.FindElement(By.CssSelector("#back_to_inbox_link"));
+                // bypass page factory
+                BackToInboxButton = Driver.FindElement(By.CssSelector(backToInboxLink));
                 if (BackToInboxButton == null)
                 {
                     throw new NullReferenceException("Unable to locate Back To Inbox Button on page");
@@ -175,19 +175,19 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.ThirdParty
 
         public void IsSetEmailButtonAvailable()
         {
-            SetEmailButton = Driver.FindElement(By.CssSelector(".save.button.small"));
-            if (SetEmailButton == null)
+            var setEmailButton = Driver.FindElement(By.CssSelector(setEmailButtonId));
+            if (setEmailButton == null)
             {
                 throw new NullReferenceException("Unable to locate Set Email Button on page");
             }
-            AssertElementPresent(SetEmailButton, "Set Email Button");
+            AssertElementPresent(setEmailButton, "Set Email Button");
         }
 
         public bool IsDeleteEmailButtonAvailable()
         {
             try
             {
-                var deleteEmailButton = Driver.FindElement(By.CssSelector("#del_button"));
+                var delEmailButton = Driver.FindElement(By.CssSelector(deleteEmailButtonId));
             }
             catch (NoSuchElementException elementNotFound)
             {
@@ -240,15 +240,15 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.ThirdParty
             }
         }
 
-        public void EmailEditBoxClick()
-        {
-            EmailEditBox = Driver.FindElement(By.CssSelector("#inbox-id"));
-            if (EmailEditBox == null)
-            {
-                throw new NullReferenceException("Unable to locate Email Edit Box on page");
-            }
-            EmailEditBox.Click();
-        }
+        //public void EmailEditBoxClick()
+        //{
+        //    EmailEditBox = Driver.FindElement(By.CssSelector("#inbox-id"));
+        //    if (EmailEditBox == null)
+        //    {
+        //        throw new NullReferenceException("Unable to locate Email Edit Box on page");
+        //    }
+        //    EmailEditBox.Click();
+        //}
 
         private bool PopulateEmailEditControl(string email)
         {
@@ -285,12 +285,13 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.ThirdParty
 
         public void SelectEmailDomain(string domain)
         {
-            DomainSelectionList = Driver.FindElement(By.CssSelector("#gm-host-select"));
-            if (DomainSelectionList == null)
+            // bypass Page Factory
+            var domainSelectionList = Driver.FindElement(By.CssSelector(domainSelectionListId));
+            if (domainSelectionList == null)
             {
                 throw new NullReferenceException("Unable to selection email domain from domain list");
             }
-            SelectFromDropdownByValue(DomainSelectionList, domain);
+            SelectFromDropdownByValue(domainSelectionList, domain);
             MsgOutput(string.Format("Setting email Domain to [{0}]", domain));
         }
 
@@ -732,15 +733,15 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.ThirdParty
             }
         }
 
-        public void SetEmailButtonClick()
-        {
-            SetEmailButton = Driver.FindElement(By.CssSelector("#inbox-id"));
-            if (SetEmailButton == null)
-            {
-                throw new NullReferenceException("Unable to locate Email Set Button");
-            }
-            SetEmailButton.Click();
-        }
+        //public void SetEmailButtonClick()
+        //{
+        //    var setEmailButton = Driver.FindElement(By.CssSelector("#inbox-id"));
+        //    if (setEmailButton == null)
+        //    {
+        //        throw new NullReferenceException("Unable to locate Email Set Button");
+        //    }
+        //    setEmailButton.Click();
+        //}
 
         public void DeleteEmailButtonClick()
         {
