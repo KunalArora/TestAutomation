@@ -1,7 +1,7 @@
 ﻿using System;
 using TechTalk.SpecFlow;
 
-namespace Brother.Tests.Specs._80.Test_Steps.BrotherMainSite.FooterNavigation
+namespace Brother.Tests.Specs._80
 {
     [Binding]
     public class ProductsFooterSteps
@@ -56,6 +56,18 @@ namespace Brother.Tests.Specs._80.Test_Steps.BrotherMainSite.FooterNavigation
         
         [Then(@"I am navigated to the supplies and accessories page")]
         public void ThenIAmNavigatedToTheSuppliesAndAccessoriesPage()
+        {
+            ScenarioContext.Current.Pending();
+        }
+        
+        [Then(@"I click the latest promotions option under the products page footer")]
+        public void ThenIClickTheLatestPromotionsOptionUnderTheProductsPageFooter()
+        {
+            ScenarioContext.Current.Pending();
+        }
+        
+        [Then(@"I am navigated to the latest promotions page")]
+        public void ThenIAmNavigatedToTheLatestPromotionsPage()
         {
             ScenarioContext.Current.Pending();
         }
