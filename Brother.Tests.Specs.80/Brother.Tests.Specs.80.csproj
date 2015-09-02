@@ -125,6 +125,8 @@
     <Compile Include="Test Steps\BrotherMainSite\BusinessSolutions\BusinessSolutions.cs" />
     <Compile Include="Test Steps\BrotherMainSite\FooterNavigation\AboutUsFooterSteps.cs" />
     <Compile Include="Test Steps\BrotherMainSite\FooterNavigation\ProductsFooterSteps.cs" />
+    <Compile Include="Test Steps\BrotherMainSite\FooterNavigation\SupportMenuSteps.cs" />
+    <Compile Include="Test Steps\BrotherMainSite\FooterNavigation\WebsiteInformationMenuSteps.cs" />
     <Compile Include="Test Steps\BrotherMainSite\HomePageNavigation\MainSiteHomePageNavigationSteps.cs" />
     <Compile Include="Test Steps\BrotherMainSite\PrinterSearch\PrinterSearchSteps.cs" />
     <Compile Include="Test Steps\Global\GlobalSteps.cs" />
