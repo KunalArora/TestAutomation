@@ -59,5 +59,19 @@ namespace Brother.Tests.Specs._80.Test_Steps.BrotherMainSite.FooterNavigation
         {
             ScenarioContext.Current.Pending();
         }
+
+        [Then(@"I click the latest promotions option under the products page footer")]
+        public void ThenIClickTheLatestPromotionsOptionUnderTheProductsPageFooter()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+        [Then(@"I am navigated to the latest promotions page")]
+        public void ThenIAmNavigatedToTheLatestPromotionsPage()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+
     }
 }
