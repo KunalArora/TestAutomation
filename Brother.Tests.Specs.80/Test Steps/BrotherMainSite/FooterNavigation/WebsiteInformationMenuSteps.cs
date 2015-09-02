@@ -1,30 +1,25 @@
-﻿using System;
+﻿using Brother.WebSites.Core.Pages.Base;
+using Brother.WebSites.Core.Pages8._0.BrotherMainSite;
 using TechTalk.SpecFlow;
 
-namespace Brother.Tests.Specs._80.Test_Steps.BrotherMainSite.FooterNavigation
+namespace Brother.Tests.Specs._80.BrotherMainSite.FooterNavigation
 {
-    public class NavigateFooterWebsiteInformationMenuSteps
+   
+    public class NavigateFooterWebsiteInformationMenuSteps : BaseSteps
     {
-        [Given(@"I have clicked the accessibility link in the footer section")]
-        public void GivenIHaveClickedTheAccessibilityLinkInTheFooterSection()
-        {
-            ScenarioContext.Current.Pending();
-        }
-        
+       
         [Given(@"I have clicked the privacy policy link in the footer section")]
         public void GivenIHaveClickedThePrivacyPolicyLinkInTheFooterSection()
         {
             ScenarioContext.Current.Pending();
         }
-        
+        [Given(@"I have clicked the accessibility link in the footer section")]
+        public void GivenIHaveClickedTheAccessibilityLinkInTheFooterSection()
+        {
+            CurrentPage.As<FooterNavigationPage>().HoverAndClickBrotherNetwork();
+        }
         [Given(@"I have clicked the terms and conditions link in the footer section")]
         public void GivenIHaveClickedTheTermsAndConditionsLinkInTheFooterSection()
-        {
-            ScenarioContext.Current.Pending();
-        }
-        
-        [Given(@"I have clicked the brother network link in the footer section")]
-        public void GivenIHaveClickedTheBrotherNetworkLinkInTheFooterSection()
         {
             ScenarioContext.Current.Pending();
         }
