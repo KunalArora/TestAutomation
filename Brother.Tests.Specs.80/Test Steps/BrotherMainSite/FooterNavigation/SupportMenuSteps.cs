@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs._80.Test_Steps.BrotherMainSite.FooterNavigation
 {
-    [Binding]
+   
     public class NavigateFooterSupportMenuSteps
     {
         [Given(@"I have clicked the creative centre link in the footer section")]
