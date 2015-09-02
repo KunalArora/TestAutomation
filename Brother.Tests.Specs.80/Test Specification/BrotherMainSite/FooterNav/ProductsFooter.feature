@@ -28,19 +28,11 @@ Scenario: User is able to navigate to the fax machines page via the products foo
 	Then I click the fax machines option under the products page footer
 	Then I am navigated to the fax machines page
 
-# Supplies and accessories navigation via page footer
+# Fax machines navigation via page footer
 Scenario: User is able to navigate to the supplies and accessories page via the products footer menu
 	Given I have navigated to the Brother Main Site "United Kingdom" products pages	
 	Then I click the supplies and accessories option under the products page footer
 	Then I am navigated to the supplies and accessories page
-
-# Latest promotions navigation via page footer
-Scenario: User is able to navigate to the latest promotions page via the products footer menu
-	Given I have navigated to the Brother Main Site "United Kingdom" products pages	
-	Then I click the latest promotions option under the products page footer
-	Then I am navigated to the latest promotions page
-
-
 
 
 
