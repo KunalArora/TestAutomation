@@ -266,7 +266,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 81
  testRunner.Then("I click the all printers menu option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 82
- testRunner.Then("I click to view the full printer range printer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I click to view the full printer range", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 83
  testRunner.Then("I am navigated to view all the printers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden

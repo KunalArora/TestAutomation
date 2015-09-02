@@ -25,7 +25,7 @@ namespace Brother.Tests.Specs.BrotherMainSite.HomePageNavigation
         [Then(@"I have clicked the top products menu button")]
         public void ThenIHaveClickedTopProductsMenu()
         {
-            CurrentPage.As<MainSiteHomePage>().IsProductsButtonAvailable();
+            //CurrentPage.As<MainSiteHomePage>().IsProductsButtonAvailable();
             NextPage = CurrentPage.As<MainSiteHomePage>().ProductsButtonClick();
         }
 
@@ -172,7 +172,7 @@ namespace Brother.Tests.Specs.BrotherMainSite.HomePageNavigation
             CurrentPage.As<MainSiteHomePage>().ViewTheWorkgroupPrinter();
         }
 
-        [Then(@"I click to view the full printer range printer")]
+        [Then(@"I click to view the full printer range")]
         public void ThenIClickToViewTheFullPrinterRange()
         {
             CurrentPage.As<MainSiteHomePage>().ViewTheFullPrinterRange();

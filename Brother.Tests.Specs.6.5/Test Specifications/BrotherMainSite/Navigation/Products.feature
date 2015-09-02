@@ -79,7 +79,7 @@ Scenario: User is able to navigate to view all the printer range
 	Then I hover and click the printers option
 	Then I am navigated to the printers page
 	Then I click the all printers menu option
-	Then I click to view the full printer range printer
+	Then I click to view the full printer range
 	Then I am navigated to view all the printers
 
 # Scannners navigation
