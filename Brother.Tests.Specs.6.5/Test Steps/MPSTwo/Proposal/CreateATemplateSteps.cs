@@ -143,6 +143,33 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             clickPricestepInstance.WhenIEnterClickPriceVolumeOf("2000", "2000");
         }
 
+
+        private void GivenIHaveCreatedGermanLeasingAndClickProposal(string UsageType)
+        {
+            if (UsageType.Equals(string.Empty))
+                UsageType = "Minimum Volume";
+            GivenIamOnMpsNewProposalPage();
+            WhenIFillProposalDescriptionForContractType("Lease & Click with Service");
+            DealerProposalsCreateTermAndTypeStep termAndTypeStepInstance = new DealerProposalsCreateTermAndTypeStep();
+            termAndTypeStepInstance.WhenIEnterUsageTypeOfAndContractTermsLeasingAndBillingOnTermAndTypeDetails
+                (UsageType, "3 Jahre", "Monatlich", "Halbjährlich");
+
+            DealerProposalsCreateProductsStep instance = new DealerProposalsCreateProductsStep();
+            instance.WhenIDisplayDeviceScreen("HL-L8350CDW");
+            instance.WhenIAcceptTheDefaultValuesOfTheDevice();
+
+            DealerProposalsCreateClickPriceStep clickPricestepInstance = new DealerProposalsCreateClickPriceStep();
+            clickPricestepInstance.WhenIEnterClickPriceVolumeOf("2000", "2000");
+        }
+
+
+        [Given(@"I have created German Leasing and Click proposal")]
+        public void GivenIHaveCreatedGermanLeasingAndClickProposal()
+        {
+            GivenIHaveCreatedGermanLeasingAndClickProposal("Minimum Volume");
+        }
+
+
         [Given(@"I have created Leasing and Click proposal")]
         public void GivenIHaveCreatedLeasingAndClickProposal()
         {
@@ -218,6 +245,33 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         public void GivenIHaveCreatedPurchaseAndClickProposal()
         {
             GivenIHaveCreatedPurchaseAndClickProposal("Minimum Volume");
+        }
+
+        [Given(@"I have created German Purchase and Click proposal")]
+        public void GivenIHaveCreatedGermanPurchaseAndClickProposal()
+        {
+            GivenIHaveCreatedGermanPurchaseAndClickProposal("Minimum Volume");
+        }
+
+        private void GivenIHaveCreatedGermanPurchaseAndClickProposal(string UsageType)
+        {
+            if (UsageType.Equals(string.Empty))
+                UsageType = "Minimum Volume";
+            GivenIamOnMpsNewProposalPage();
+            WhenIFillProposalDescriptionForContractType("Purchase & Click with Service");
+            //DealerProposalsCreateTermAndTypeStep termAndTypeStepInstance = new DealerProposalsCreateTermAndTypeStep();
+            //termAndTypeStepInstance.WhenIEnterUsageTypeOfAndContractTermsLeasingAndBillingOnTermAndTypeDetails
+            //    (UsageType, "3 Jahre", "Monatlich", "Halbjährlich");
+
+            DealerProposalsCreateTermAndTypeStep stepInstance = new DealerProposalsCreateTermAndTypeStep();
+            stepInstance.EditTermAndTypeTabForPurchaseOffer(UsageType, "3 Jahre", "Halbjährlich");
+
+            DealerProposalsCreateProductsStep instance = new DealerProposalsCreateProductsStep();
+            instance.WhenIDisplayDeviceScreen("HL-L8350CDW");
+            instance.WhenIAcceptTheDefaultValuesOfTheDevice();
+
+            DealerProposalsCreateClickPriceStep clickPricestepInstance = new DealerProposalsCreateClickPriceStep();
+            clickPricestepInstance.WhenIEnterClickPriceVolumeOf("2000", "2000");
         }
 
 

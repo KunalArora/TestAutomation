@@ -21,6 +21,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
 
+
+        [FindsBy(How = How.CssSelector, Using = "#content_1_InputCustomerChoiceNew")]
+        public IWebElement ConvertCreateNewCustomer;
         [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputPersonCanOrderConsumables_Label")]
         public IWebElement CanOrderConsumablesTick;
         [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputCustomerLegalForm_Input")]
@@ -55,6 +58,30 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement BankPropertyPostcodeElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_ButtonNext")]
         public IWebElement NextElement;
+        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerName")]
+        public IWebElement CompanyNameElement;
+        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerPropertyNumber_Input")]
+        public IWebElement PropertyNumberElement;
+        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerPropertyStreet_Input")]
+        public IWebElement PropertyStreetElement;
+        [FindsBy(How = How.Id, Using = "content_1_CustomerManage_InputPropertyArea_Input")]
+        public IWebElement PropertyAreaElement;
+        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerPropertyTown_Input")]
+        public IWebElement PropertyTownElement;
+        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerPropertyPostCode_Input")]
+        public IWebElement PropertyPostcodeElement;
+        [FindsBy(How = How.Id, Using = "content_1_CustomerManage_InputRegion_Input")]
+        public IWebElement RegionElement;
+        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputPersonFirstName_Input")]
+        public IWebElement FirstNameElement;
+        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputPersonLastName_Input")]
+        public IWebElement LastNameElement;
+        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputPersonTelephone_Input")]
+        public IWebElement TelephoneElement;
+        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputPersonEmail_Input")]
+        public IWebElement EmailElement;
+        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputPersonTitle_Input")]
+        public IWebElement ContactTitleElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputPersonalLiabilityTitle_Input")]
         public IWebElement PrivateLiableTitleElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputPersonalLiabilityFirstName_Input")]
@@ -85,6 +112,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             AssertElementPresent(CreateNewCustomerRadioButtonElement, "Customer radio button not displayed");
         }
 
+        public void CreateANewCustomerInConvertProcess()
+        {
+            if(ConvertCreateNewCustomer == null)
+                throw new Exception("Cannot choose customer creation option");
+            ConvertCreateNewCustomer.Click();
+            NextElement.Click();
+        }
+
+        public string GetDealerName()
+        {
+            return GetElementByCssSelector(".wrapper.cf span[style*=\"text-align\"]").Text;
+
+        }
 
         public void CustomerCanOrderConsumables()
         {
@@ -93,12 +133,22 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SelectALegalForm()
         {
-            SelectFromDropdown(LegalFormDropdown, "Church");
+            if (GetDealerName().Contains("abmelden"))
+            {
+                SelectFromDropdown(LegalFormDropdown, "Aktiengesellschaft");
+
+            }
+            else if (GetDealerName().Contains("sign out"))
+            {
+               SelectFromDropdown(LegalFormDropdown, "Church"); 
+            }
+                
             WebDriver.Wait(DurationType.Second, 3);
         }
 
         public void SelectAPrivatelyLiableCustomer()
         {
+            
             SelectFromDropdown(LegalFormDropdown, "Limited Company");
             WebDriver.Wait(DurationType.Second, 3);
         }
@@ -120,13 +170,24 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SelectATradingStyle()
         {
-            SelectFromDropdown(TradingStyleElement, "Non-Regulated");
-            WebDriver.Wait(DurationType.Second, 3);
+            if (GetDealerName().Contains("sign out"))
+                SelectFromDropdown(TradingStyleElement, "Non-Regulated");
+                WebDriver.Wait(DurationType.Second, 3);
         }
 
         public void SelectAPaymentType()
         {
-            SelectFromDropdown(PaymentTypeDropdown, "Direct Debit");
+
+            if (GetDealerName().Contains("abmelden"))
+            {
+                SelectFromDropdown(PaymentTypeDropdown, "Bankeinzug");
+
+            }
+            else if (GetDealerName().Contains("sign out"))
+            {
+                SelectFromDropdown(PaymentTypeDropdown, "Direct Debit");
+            }
+            
             //WebDriver.
             WebDriver.Wait(DurationType.Second, 3);
         }
@@ -158,22 +219,35 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterBankPropertyNumber()
         {
-            ClearAndType(BankPropertyNumberElement, "12345");
+            if (GetDealerName().Contains("sign out"))
+                 ClearAndType(BankPropertyNumberElement, "12345");
         }
 
         public void EnterBankPropertyStreet()
         {
-            ClearAndType(BankPropertyStreetElement, "abc");
+            if (GetDealerName().Contains("sign out"))
+                 ClearAndType(BankPropertyStreetElement, "abc");
         }
 
         public void EnterBankPropertyTown()
         {
-            ClearAndType(BankPropertyTownElement, "abc");
+            if (GetDealerName().Contains("sign out"))
+                 ClearAndType(BankPropertyTownElement, "abc");
         }
 
         public void EnterBankPropertyPostcode()
         {
-            ClearAndType(BankPropertyPostcodeElement, "M1 3ED");
+            if (GetDealerName().Contains("sign out"))
+                 ClearAndType(BankPropertyPostcodeElement, "M1 3ED");
+        }
+
+        public void FillAllCustomerDetailsOnConvert()
+        {
+            CreateANewCustomerInConvertProcess();
+            FillOrganisationDetails();
+            FillOrganisationContactDetail();
+
+
         }
 
         public void EnterRemainingCustomerInfo()
@@ -266,6 +340,96 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             SelectPrivatePropertyRegion();
             
         }
+
+
+        public void FillOrganisationDetails()
+        {
+            EnterCompanyName();
+            EnterPropertyNumber();
+            EnterPropertyStreet();
+            //EnterPropertyArea();
+            EnterPropertyTown();
+            EnterPropertyPostCode();
+            //SelectRegionFromDropdown("Greater Manchester");
+           
+        }
+
+        public void EnterContactFirstName()
+        {
+            FirstNameElement.SendKeys(MpsUtil.FirstName());
+        }
+
+        public void EnterContactSurName()
+        {
+            LastNameElement.SendKeys(MpsUtil.SurName());
+        }
+
+        public void EnterContactTelephone()
+        {
+            TelephoneElement.SendKeys(MpsUtil.CompanyTelephone());
+        }
+
+        public void EnterContactEmailAdress()
+        {
+            var email = MpsUtil.GenerateUniqueEmail();
+            SpecFlow.SetContext("DealerLatestCreatedCustomerEmail", email);
+            EmailElement.SendKeys(email);
+        }
+
+        public void FillOrganisationContactDetail()
+        {
+            SelectTitleFromDropdown();
+            EnterContactFirstName();
+            EnterContactSurName();
+            //EnterContactPosition();
+            EnterContactTelephone();
+            EnterContactEmailAdress();
+        }
+
+        
+
+        public void EnterCompanyName()
+        {
+            CompanyNameElement.SendKeys(MpsUtil.CompanyName());
+        }
+
+        public void EnterPropertyNumber()
+        {
+            PropertyNumberElement.SendKeys(MpsUtil.PropertyNumber());
+        }
+
+        public void EnterPropertyStreet()
+        {
+            PropertyStreetElement.SendKeys(MpsUtil.PropertyStreet());
+        }
+
+        public void EnterPropertyArea()
+        {
+            PropertyAreaElement.SendKeys(MpsUtil.FirstName());
+        }
+
+        public void EnterPropertyTown()
+        {
+            PropertyTownElement.SendKeys(MpsUtil.PropertyTown());
+        }
+
+        public void EnterPropertyPostCode()
+        {
+            PropertyPostcodeElement.SendKeys(MpsUtil.PostCode());
+        }
+
+        public void SelectRegionFromDropdown(string region)
+        {
+            SelectFromDropdown(RegionElement, region);
+        }
+
+        public void SelectTitleFromDropdown()
+        {
+            if (ContactTitleElement.Displayed)
+                //SelectFromDropdownByValue(ContactTitleElement, MpsUtil.ContactTitle());
+                SelectFromDropdownByValue(ContactTitleElement, "0002");
+        }
+
 
         public ConvertProposalTermAndType ProceedToConvertProposalTermAndType()
         {

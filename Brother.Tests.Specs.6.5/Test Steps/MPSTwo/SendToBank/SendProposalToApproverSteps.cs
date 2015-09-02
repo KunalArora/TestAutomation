@@ -50,6 +50,23 @@ namespace Brother.Tests.Specs.MPSTwo.SendToBank
             ThenTheNewlyConvertedContractIsAvailableUnderAwaitingApprovalTab();
         }
 
+        [Given(@"I send the created German proposal for approval")]
+        public void GivenISendTheCreatedGermanProposalForApproval()
+        {
+            WhenIClickOnActionButtonAgainstTheProposalCreatedAbove();
+            ThenICanClickOnConvertToContractButtonUnderTheActionButton();
+            CurrentPage.As<ConvertProposalCustomerInfo>().FillAllCustomerDetailsOnConvert();
+            CurrentPage.As<ConvertProposalCustomerInfo>().EnterRemainingCustomerInfo();
+            CurrentPage.As<ConvertProposalCustomerInfo>().EnterAllBankInformation();
+            NextPage = CurrentPage.As<ConvertProposalCustomerInfo>().ProceedToConvertProposalTermAndType();
+            NextPage = CurrentPage.As<ConvertProposalTermAndType>().NavigateToSummaryPageUsingTab();
+
+            ThenIAmTakenToTheProposalSummaryWhereICanEnterEnvisageContractStartDate();
+            ThenICanSuccessfullyConvertTheProposalToContract();
+            ThenTheNewlyConvertedContractIsAvailableUnderAwaitingApprovalTab();
+        }
+
+
 
         [Given(@"I send the created proposal to local office approver for approval")]
         public void GivenISendTheCreatedProposalToLocalOfficeApproverForApproval()
