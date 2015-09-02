@@ -25,7 +25,7 @@ namespace Brother.Tests.Specs.BrotherMainSite.HomePageNavigation
         [Then(@"I have clicked the top products menu button")]
         public void ThenIHaveClickedTopProductsMenu()
         {
-            CurrentPage.As<MainSiteHomePage>().IsProductsButtonAvailable();
+            //CurrentPage.As<MainSiteHomePage>().IsProductsButtonAvailable();
             NextPage = CurrentPage.As<MainSiteHomePage>().ProductsButtonClick();
         }
 
@@ -47,10 +47,22 @@ namespace Brother.Tests.Specs.BrotherMainSite.HomePageNavigation
             CurrentPage.As<MainSiteHomePage>().HoverAndClickPrinters(CurrentDriver);
         }
 
+        [Then(@"I hover and click the scanners option")]
+        public void HoverAndClickScannersOption()
+        {
+            CurrentPage.As<MainSiteHomePage>().HoverAndClickScanners(CurrentDriver);
+        }
+
         [Then(@"I am navigated to the printers page")]
         public void ThenIAmNavigatedToPrintersPage()
         {
             CurrentPage.As<MainSiteHomePage>().HasPrintersPageLoaded();
+        }
+
+        [Then(@"I am navigated to the scanners page")]
+        public void ThenIAmNavigatedToScannersPage()
+        {
+            CurrentPage.As<MainSiteHomePage>().HasScannersPageLoaded();
         }
 
         [Then(@"I click the colour laser menu option")]
@@ -137,13 +149,30 @@ namespace Brother.Tests.Specs.BrotherMainSite.HomePageNavigation
             CurrentPage.As<MainSiteHomePage>().ViewAllPortablePrinters();
         }
 
+        [Then(@"I click to view all the scanners")]
+        public void ThenIClickToViewAllScanners()
+        {
+            CurrentPage.As<MainSiteHomePage>().ViewAllScanners();
+        }
+
+        [Then(@"I click to view portable scanners")]
+        public void ThenIClickToViewPortableScanners()
+        {
+            CurrentPage.As<MainSiteHomePage>().ViewPortableScanners();
+        }
+        [Then(@"I click to view compact scanners")]
+        public void ThenIClickToViewCompactScanners()
+        {
+            CurrentPage.As<MainSiteHomePage>().ViewCompactScanners();
+        }
+
         [Then(@"I click to view the workgroup printer")]
         public void ThenIClickToViewWorkgroupPrinter()
         {
             CurrentPage.As<MainSiteHomePage>().ViewTheWorkgroupPrinter();
         }
 
-        [Then(@"I click to view the full printer range printer")]
+        [Then(@"I click to view the full printer range")]
         public void ThenIClickToViewTheFullPrinterRange()
         {
             CurrentPage.As<MainSiteHomePage>().ViewTheFullPrinterRange();
@@ -184,5 +213,24 @@ namespace Brother.Tests.Specs.BrotherMainSite.HomePageNavigation
         {
             CurrentPage.As<MainSiteHomePage>().HasAllPrinterRangePageLoaded();
         }
+
+        [Then(@"I am navigated to view all the scanners")]
+        public void ThenIAmNavigatedToViewAllTheScanners()
+        {
+            CurrentPage.As<MainSiteHomePage>().HasAllScannersPageLoaded();
+        }
+
+        [Then(@"I am navigated to view portable scanners")]
+        public void ThenIAmNavigatedToViewPortableScanners()
+        {
+            CurrentPage.As<MainSiteHomePage>().HasPortableScannersPageLoaded();
+        }
+
+        [Then(@"I am navigated to view compact scanners")]
+        public void ThenIAmNavigatedToViewCompactScanners()
+        {
+            CurrentPage.As<MainSiteHomePage>().HasCompactScannersPageLoaded();
+        }
+
     }
 }
