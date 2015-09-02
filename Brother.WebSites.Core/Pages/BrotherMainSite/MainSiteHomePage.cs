@@ -130,6 +130,8 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         private const string PortableScannersLink= "#content_0_ctl01_headercontent_1_li > article > h2";
 
+        private const string CompactScannersLink = "#content_0_ctl01_headercontent_1_li > article > h2";
+
 
         public void IsSuppliesLinkAvailable()
 
@@ -368,7 +370,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public MainSiteHomePage ViewCompactScanners()
         {
-            WaitForElementToExistByCssSelector("#content_0_ctl01_headercontent_2_li > article > h2");
+            WaitForElementToExistByCssSelector(CompactScannersLink);
             MoveToElement(ViewCompactScannersLink);
             ViewPortableScannersLink.Click();
             return GetInstance<MainSiteHomePage>(Driver);
