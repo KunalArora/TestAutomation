@@ -99,8 +99,40 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         private const string Printers = "#TopNavigationControl_rptPrimaryLevelNav_liPrimaryNavItem_0 > ul > li:nth-child(1) > a:nth-child(1)";
 
         private const string Scanners = "#TopNavigationControl_rptPrimaryLevelNav_liPrimaryNavItem_0 > ul > li:nth-child(1) > a:nth-child(2)";
-        
+
+        private const string ViewColourLaserRangeBtn = "#main > div > div > div:nth-child(3) > div > ul.slides.cf > li:nth-child(1) > div.left-content > p:nth-child(5) > a";
+
+        private const string ColourLaserMenuOpt = "#main > div > div > div:nth-child(3) > div > ul.nav.cf > li:nth-child(1) > a";
+
+        private const string AllProductsOrangeButton = "button-orange";
+
+        private const string BuyOnlineBtn = "buybutton";
+
+        private const string MonoLaserMenuOpt = "#main > div > div > div:nth-child(3) > div > ul.nav.cf > li:nth-child(2) > a";
+
+        private const string MonoLaserRangeBtn = "#main > div > div > div:nth-child(3) > div > ul.nav.cf > li:nth-child(2) > a";
+
+        private const string InkJetMenuOpt = "#main > div > div > div:nth-child(3) > div > ul.nav.cf > li:nth-child(3) > a";
+
+        private const string ViewInkjetRangeBtn = "#main > div > div > div:nth-child(3) > div > ul.slides.cf > li:nth-child(3) > div.left-content > p:nth-child(4) > a";
+
+        private const string PortableMenuOpt = "#main > div > div > div:nth-child(3) > div > ul.nav.cf > li:nth-child(4) > a";
+
+        private const string ViewPortableRangeBtn = "#main > div > div > div:nth-child(3) > div > ul.slides.cf > li:nth-child(4) > div.left-content > p:nth-child(4) > a";
+
+        private const string AllPrintersMenuOpt = "#main > div > div > div:nth-child(3) > div > ul.nav.cf > li:nth-child(6) > a";
+
+        private const string ViewFullPrinterRangeBtn = "#main > div > div > div:nth-child(3) > div > ul.slides.cf > li:nth-child(6) > div.left-content > p:nth-child(4) > a";
+
+        private const string WorkgroupMenuOpt = "#main > div > div > div:nth-child(3) > div > ul.nav.cf > li:nth-child(5) > a";
+
+        private const string ViewWorkgroupPrinterBtn = "#main > div > div > div:nth-child(3) > div > ul.slides.cf > li:nth-child(5) > div.left-content > p:nth-child(4) > a";
+
+        private const string PortableScannersLink= "#content_0_ctl01_headercontent_1_li > article > h2";
+
+
         public void IsSuppliesLinkAvailable()
+
         {
             SuppliesLink = Driver.FindElement(By.CssSelector(".feature-carousel-items [href='/supplies']"));
             if (!SuppliesLink.Displayed)
@@ -149,6 +181,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public MainSiteHomePage ProductsButtonClick()
         {
+            WaitForElementToExistById(ProductsTopMenu, 3);
             MoveToElement(ProductsTopMenuButton);
             ProductsTopMenuButton.Click();
             return GetInstance<MainSiteHomePage>(Driver);
@@ -167,24 +200,28 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public void HoverProductsMenu(IWebDriver driver)
         {
+            WaitForElementToExistById(ProductsTopMenu, 3);
             var builder = new Actions(driver);
             builder.MoveToElement(driver.FindElement(By.Id(ProductsTopMenu))).Build().Perform();
         }
 
         public void HoverAndClickPrinters(IWebDriver driver)
-        {          
+        {
+            WaitForElementToExistByCssSelector(Printers);
             var builder = new Actions(driver);
             builder.MoveToElement(driver.FindElement(By.CssSelector(Printers))).Click().Build().Perform(); 
         }
 
         public void HoverAndClickScanners(IWebDriver driver)
         {
+            WaitForElementToExistByCssSelector(Scanners);
             var builder = new Actions(driver);
             builder.MoveToElement(driver.FindElement(By.CssSelector(Scanners))).Click().Build().Perform();
         }
 
         public void HasPrintersPageLoaded()
         {
+            WaitForElementToExistByCssSelector(ViewColourLaserRangeBtn);
             if (ViewColourLaserRangeButton == null)
             {
                 throw new NullReferenceException("Printers page has not loaded");
@@ -203,6 +240,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public MainSiteHomePage ColourLaserMenuOptionClick()
         {
+            WaitForElementToExistByCssSelector(ColourLaserMenuOpt);
             MoveToElement(ColourLaserMenuOption);
             ColourLaserMenuOption.Click();
             return GetInstance<MainSiteHomePage>(Driver);
@@ -210,6 +248,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public MainSiteHomePage MonoLaserMenuOptionClick()
         {
+            WaitForElementToExistByCssSelector(MonoLaserMenuOpt);
             MoveToElement(MonoLaserMenuOption);
             MonoLaserMenuOption.Click();
             return GetInstance<MainSiteHomePage>(Driver);
@@ -217,6 +256,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public MainSiteHomePage InkjetMenuOptionClick()
         {
+            WaitForElementToExistByCssSelector(InkJetMenuOpt);
             MoveToElement(InkjetMenuOption);
             InkjetMenuOption.Click();
             return GetInstance<MainSiteHomePage>(Driver);
@@ -224,6 +264,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public MainSiteHomePage PortableMenuOptionClick()
         {
+            WaitForElementToExistByCssSelector(PortableMenuOpt);
             MoveToElement(PortableMenuOption);
             PortableMenuOption.Click();
             return GetInstance<MainSiteHomePage>(Driver);
@@ -231,6 +272,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public MainSiteHomePage WorkgroupMenuOptionClick()
         {
+            WaitForElementToExistByCssSelector(WorkgroupMenuOpt);
             MoveToElement(WorkgroupMenuOption);
             WorkgroupMenuOption.Click();
             return GetInstance<MainSiteHomePage>(Driver);
@@ -238,6 +280,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public MainSiteHomePage AllPrintersMenuOptionClick()
         {
+            WaitForElementToExistByCssSelector(AllPrintersMenuOpt);    
             MoveToElement(AllPrintersMenuOption);
             AllPrintersMenuOption.Click();
             return GetInstance<MainSiteHomePage>(Driver);
@@ -245,6 +288,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public MainSiteHomePage ViewColourLaserRange()
         {
+            WaitForElementToExistByCssSelector(ViewColourLaserRangeBtn);
             MoveToElement(ViewColourLaserRangeButton);
             ViewColourLaserRangeButton.Click();
             return GetInstance<MainSiteHomePage>(Driver);
@@ -252,6 +296,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public MainSiteHomePage ViewMonoLaserRange()
         {
+            WaitForElementToExistByCssSelector(MonoLaserRangeBtn);
             MoveToElement(ViewMonoLaserRangeButton);
             ViewMonoLaserRangeButton.Click();
             return GetInstance<MainSiteHomePage>(Driver);
@@ -259,6 +304,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public MainSiteHomePage ViewInkjetRange()
         {
+            WaitForElementToExistByCssSelector(ViewInkjetRangeBtn);    
             MoveToElement(ViewInkjetRangeButton);
             ViewInkjetRangeButton.Click();
             return GetInstance<MainSiteHomePage>(Driver);
@@ -266,6 +312,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public MainSiteHomePage ViewPortableRange()
         {
+            WaitForElementToExistByCssSelector(ViewPortableRangeBtn);
             MoveToElement(ViewPortableRangeButton);
             ViewPortableRangeButton.Click();
             return GetInstance<MainSiteHomePage>(Driver);
@@ -273,6 +320,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public MainSiteHomePage ViewAllColourLasers()
         {
+            WaitForElementToExistByClassName(AllProductsOrangeButton);
             MoveToElement(ViewAllProductsOrangeButton);
             ViewAllProductsOrangeButton.Click();
             return GetInstance<MainSiteHomePage>(Driver);
@@ -280,6 +328,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public MainSiteHomePage ViewAllMonoLasers()
         {
+            WaitForElementToExistByClassName(AllProductsOrangeButton);
             MoveToElement(ViewAllProductsOrangeButton);
             ViewAllProductsOrangeButton.Click();
             return GetInstance<MainSiteHomePage>(Driver);
@@ -287,6 +336,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public MainSiteHomePage ViewAllInkjetPrinters()
         {
+            WaitForElementToExistByClassName(AllProductsOrangeButton);
             MoveToElement(ViewAllProductsOrangeButton);
             ViewAllProductsOrangeButton.Click();
             return GetInstance<MainSiteHomePage>(Driver);
@@ -294,6 +344,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public MainSiteHomePage ViewAllPortablePrinters()
         {
+            WaitForElementToExistByClassName(AllProductsOrangeButton);
             MoveToElement(ViewAllProductsOrangeButton);
             ViewAllProductsOrangeButton.Click();
             return GetInstance<MainSiteHomePage>(Driver);
@@ -309,7 +360,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public MainSiteHomePage ViewPortableScanners()
         {
-            WaitForElementToExistByCssSelector("#content_0_ctl01_headercontent_1_li > article > h2");
+            WaitForElementToExistByCssSelector(PortableScannersLink);
             MoveToElement(ViewPortableScannersLink);
             ViewPortableScannersLink.Click();
             return GetInstance<MainSiteHomePage>(Driver);
@@ -325,6 +376,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public MainSiteHomePage ViewTheWorkgroupPrinter()
         {
+            WaitForElementToExistByCssSelector(ViewWorkgroupPrinterBtn);
             MoveToElement(ViewWorkgroupPrinterButton);
             ViewWorkgroupPrinterButton.Click();
             return GetInstance<MainSiteHomePage>(Driver);
@@ -332,6 +384,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public MainSiteHomePage ViewTheFullPrinterRange()
         {
+            WaitForElementToExistByCssSelector(ViewFullPrinterRangeBtn);
             MoveToElement(ViewFullPrinterRangeButton);
             ViewFullPrinterRangeButton.Click();
             return GetInstance<MainSiteHomePage>(Driver);
@@ -339,6 +392,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public void HasAllColourLasersPageLoaded()
         {
+            WaitForElementToExistById(BuyOnlineBtn, 3);
             if (BuyOnlineButton == null)
             {
                 throw new NullReferenceException("All colour lasers page has not loaded");
@@ -348,6 +402,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public void HasAllMonoLasersPageLoaded()
         {
+            WaitForElementToExistById(BuyOnlineBtn, 3);
             if (BuyOnlineButton == null)
             {
                 throw new NullReferenceException("All mono lasers page has not loaded");
@@ -366,6 +421,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public void HasAllPortablePrintersPageLoaded()
         {
+            WaitForElementToExistById(BuyOnlineBtn, 3);
             if (BuyOnlineButton == null)
             {
                 throw new NullReferenceException("All portable printers page has not loaded");
@@ -386,6 +442,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public void HasAllPrinterRangePageLoaded()
         {
+            WaitForElementToExistById(BuyOnlineBtn, 3);
             if (BuyOnlineButton == null)
             {
                 throw new NullReferenceException("All printers range page has not loaded");
@@ -395,6 +452,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public void HasAllScannersPageLoaded()
         {
+            WaitForElementToExistById(BuyOnlineBtn, 3);
             if (BuyOnlineButton == null)
             {
                 throw new NullReferenceException("All scanners page has not loaded");
@@ -404,6 +462,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public void HasPortableScannersPageLoaded()
         {
+            WaitForElementToExistById(BuyOnlineBtn, 3);
             if (BuyOnlineButton == null)
             {
                 throw new NullReferenceException("Portable scanners page has not loaded");
@@ -413,6 +472,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public void HasCompactScannersPageLoaded()
         {
+            WaitForElementToExistById(BuyOnlineBtn, 3);
             if (BuyOnlineButton == null)
             {
                 throw new NullReferenceException("Compact scanners page has not loaded");
