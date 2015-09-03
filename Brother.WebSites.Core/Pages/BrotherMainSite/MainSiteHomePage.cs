@@ -34,8 +34,21 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         [FindsBy(How = How.Id, Using = "TopNavigationControl_rptPrimaryLevelNav_aSectionLink_0")]
         public IWebElement ProductsTopMenuButton;
 
+        [FindsBy(How = How.CssSelector, Using = "#site-footer > div > section > article:nth-child(2) > ul > li:nth-child(4) > a")]
+        public IWebElement TermsAndConditionsFooterLink;
+
+        [FindsBy(How = How.CssSelector, Using = "#site-footer > div > section > article:nth-child(2) > ul > li:nth-child(5) > a")]
+        public IWebElement BrotherNetworkFooterLink;
+
         [FindsBy(How = How.Id, Using = "lhnchatimg")]
         public IWebElement RequestSampleButton;
+
+        [FindsBy(How = How.CssSelector, Using = "#main > div > div > div:nth-child(3) > article > table > tbody > tr:nth-child(2) > td:nth-child(1) > a")]
+        public IWebElement BrotherAdminTeamLink;
+
+        [FindsBy(How = How.CssSelector, Using = "#login_form > table > tbody > tr > td:nth-child(2) > div:nth-child(1) > div > div:nth-child(7)")]
+        public IWebElement BrotherNetworkLoginButton;
+        
 
         [FindsBy(How = How.CssSelector, Using = "#TopNavigationControl_rptPrimaryLevelNav_liPrimaryNavItem_0 > ul > li:nth-child(1) > a:nth-child(1)")]
         public IWebElement PrintersOption;
@@ -96,6 +109,10 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         private const string ProductsTopMenu = "TopNavigationControl_rptPrimaryLevelNav_aSectionLink_0";
 
+        private const string TermsAndConditionsFooter = "#site-footer > div > section > article:nth-child(2) > ul > li:nth-child(4) > a";
+
+        private const string BrotherNetworkFooter = "#site-footer > div > section > article:nth-child(2) > ul > li:nth-child(5) > a";
+
         private const string Printers = "#TopNavigationControl_rptPrimaryLevelNav_liPrimaryNavItem_0 > ul > li:nth-child(1) > a:nth-child(1)";
 
         private const string Scanners = "#TopNavigationControl_rptPrimaryLevelNav_liPrimaryNavItem_0 > ul > li:nth-child(1) > a:nth-child(2)";
@@ -131,6 +148,10 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         private const string PortableScannersLink= "#content_0_ctl01_headercontent_1_li > article > h2";
 
         private const string CompactScannersLink = "#content_0_ctl01_headercontent_1_li > article > h2";
+
+        private const string BrotherAdminTeam = "#main > div > div > div:nth-child(3) > article > table > tbody > tr:nth-child(2) > td:nth-child(1) > a";
+
+        private const string BrotherNetworkLogin = "#login_form > table > tbody > tr > td:nth-child(2) > div:nth-child(1) > div > div:nth-child(7)";
 
 
         public void IsSuppliesLinkAvailable()
@@ -189,6 +210,20 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
             return GetInstance<MainSiteHomePage>(Driver);
         }
 
+        public MainSiteHomePage TermsAndConditionsFooterLinkClick()
+        {
+            WaitForElementToExistByCssSelector(TermsAndConditionsFooter);
+            TermsAndConditionsFooterLink.Click();
+            return GetInstance<MainSiteHomePage>(Driver);
+        }
+
+        public MainSiteHomePage BrotherNetworkLinkClick()
+        {
+            WaitForElementToExistByCssSelector(BrotherNetworkFooter);
+            BrotherNetworkFooterLink.Click();
+            return GetInstance<MainSiteHomePage>(Driver);
+        }
+
         public void HasProductsPageLoaded()
         {
             WaitForElementToExistById("lhnchatimg", 3);
@@ -198,6 +233,28 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
                 throw new NullReferenceException("Products page not loaded");
             }
             AssertElementPresent(RequestSampleButton, "Request sample button");
+        }
+
+        public void HasTermsAndConditionsPageLoaded()
+        {
+            WaitForElementToExistByCssSelector(BrotherAdminTeam);
+            ScrollTo(BrotherAdminTeamLink);
+            if (BrotherAdminTeamLink == null)
+            {
+                throw new NullReferenceException("Terms and conditions page not loaded");
+            }
+            AssertElementPresent(BrotherAdminTeamLink, "Brother admin team link");
+        }
+
+        public void HasBrotherNetworkPageLoaded()
+        {
+            WaitForElementToExistByCssSelector(BrotherNetworkLogin);
+            ScrollTo(BrotherNetworkLoginButton);
+            if (BrotherNetworkLoginButton == null)
+            {
+                throw new NullReferenceException("Brother network page not loaded");
+            }
+            AssertElementPresent(BrotherNetworkLoginButton, "Brother network login button");
         }
 
         public void HoverProductsMenu(IWebDriver driver)
