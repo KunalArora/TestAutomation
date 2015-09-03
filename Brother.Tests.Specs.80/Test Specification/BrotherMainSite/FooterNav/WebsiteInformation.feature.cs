@@ -20,6 +20,7 @@ namespace Brother.Tests.Specs._80.TestSpecification.BrotherMainSite.FooterNav
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("Navigate footer WebsiteInformation menu")]
+    [NUnit.Framework.CategoryAttribute("TEST")]
     public partial class NavigateFooterWebsiteInformationMenuFeature
     {
         
@@ -33,7 +34,8 @@ namespace Brother.Tests.Specs._80.TestSpecification.BrotherMainSite.FooterNav
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Navigate footer WebsiteInformation menu", "   As a visitor of the Brother main site\r\n     I am able to navigate to each of t" +
-                    "he\r\n     tab items within the footer website information menu", ProgrammingLanguage.CSharp, ((string[])(null)));
+                    "he\r\n     tab items within the footer website information menu", ProgrammingLanguage.CSharp, new string[] {
+                        "TEST"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -68,18 +70,17 @@ namespace Brother.Tests.Specs._80.TestSpecification.BrotherMainSite.FooterNav
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("User is able to navigate to the Accessibility via the footer section of Website I" +
             "nformation menu")]
-        public virtual void UserIsAbleToNavigateToTheAccessibilityViaTheFooterSectionOfWebsiteInformationMenu()
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", null)]
+        public virtual void UserIsAbleToNavigateToTheAccessibilityViaTheFooterSectionOfWebsiteInformationMenu(string country, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the Accessibility via the footer section of Website I" +
-                    "nformation menu", ((string[])(null)));
-#line 6
-this.ScenarioSetup(scenarioInfo);
+                    "nformation menu", exampleTags);
 #line 7
- testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioSetup(scenarioInfo);
 #line 8
- testRunner.And("I have clicked the accessibility link in the footer section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given(string.Format("I have navigated to the Brother Main Site \"{0}\" products pages", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
- testRunner.Then("I am navigated to the accessibility page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("I have clicked the accessibility link in the footer section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -91,14 +92,10 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the Privacy Policy via the footer section of Website " +
                     "Information menu", ((string[])(null)));
-#line 12
+#line 18
 this.ScenarioSetup(scenarioInfo);
-#line 13
+#line 19
  testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 14
- testRunner.And("I have clicked the privacy policy link in the footer section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 15
- testRunner.Then("I am navigated to the privacy policy page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -110,13 +107,13 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the Terms And Conditions via the footer section of We" +
                     "bsite Information menu", ((string[])(null)));
-#line 18
+#line 24
 this.ScenarioSetup(scenarioInfo);
-#line 19
+#line 25
  testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 20
+#line 26
  testRunner.And("I have clicked the terms and conditions link in the footer section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 21
+#line 27
  testRunner.Then("I am navigated to the terms and conditions page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -125,18 +122,17 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("User is able to navigate to the Brother Network via the footer section of Website" +
             " Information menu")]
-        public virtual void UserIsAbleToNavigateToTheBrotherNetworkViaTheFooterSectionOfWebsiteInformationMenu()
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", null)]
+        public virtual void UserIsAbleToNavigateToTheBrotherNetworkViaTheFooterSectionOfWebsiteInformationMenu(string country, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the Brother Network via the footer section of Website" +
-                    " Information menu", ((string[])(null)));
-#line 24
+                    " Information menu", exampleTags);
+#line 30
 this.ScenarioSetup(scenarioInfo);
-#line 25
- testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 26
+#line 31
+ testRunner.Given(string.Format("I have navigated to the Brother Main Site \"{0}\" products pages", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 32
  testRunner.And("I have clicked the brother network link in the footer section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 27
- testRunner.Then("I am navigated to the brother network page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

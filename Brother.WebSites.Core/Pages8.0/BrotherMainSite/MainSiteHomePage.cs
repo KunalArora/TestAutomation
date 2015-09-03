@@ -43,6 +43,11 @@ namespace Brother.WebSites.Core.Pages8._0.BrotherMainSite
 
         [FindsBy(How = How.CssSelector, Using = "#main > div > div > div:nth-child(3) > div > ul.slides.cf > li:nth-child(1) > div.left-content > p:nth-child(5) > a")]
         public IWebElement ViewColourLaserRangeButton;
+
+        [FindsBy(How = How.CssSelector, Using = ".common-global-footer--page-link [href='/brother-network']")]
+        public IWebElement BrotherNetwork;
+
+        public static string BrotherNetworkId = ".common-global-footer--page-link [href='/brother-network']";
         
         private const string CarouselItems = ".feature-carousel-items";
 
@@ -135,5 +140,12 @@ namespace Brother.WebSites.Core.Pages8._0.BrotherMainSite
             }
             AssertElementPresent(ViewColourLaserRangeButton, "Colour laser button");
         }
+
+      public void HoverAndClickBrotherNetwork()
+      { 
+           
+          WaitForElementToExistByCssSelector(BrotherNetworkId);
+          BrotherNetwork.Click();
+        }
     }
-    }
+}
