@@ -21,6 +21,10 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         //[FindsBy(How = How.CssSelector, Using = "#main > div > div.feature-carousel > div > ul.feature-carousel-items > li:nth-child(2) > div > a")]
         //public IWebElement SuppliesLink;
+        [FindsBy(How = How.CssSelector, Using = "#footer-websiteinfomation > li:nth-child(4) > a")]
+        public IWebElement BrotherNetwork;
+
+        public static string BrotherNetworkId = "#footer-websiteinfomation > li:nth-child(4) > a";
 
         [FindsBy(How = How.CssSelector, Using = "[href='/supplies']")]
         public IWebElement SuppliesLink;
@@ -537,6 +541,13 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
                 throw new NullReferenceException("Compact scanners page has not loaded");
             }
             AssertElementPresent(BuyOnlineButton, "Buy online button");
+        }
+
+        public void HoverAndClickBrotherNetwork()
+        {
+
+            WaitForElementToExistByCssSelector(BrotherNetworkId);
+            BrotherNetwork.Click();
         }
     }
 }

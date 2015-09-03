@@ -1,6 +1,7 @@
 ﻿using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages8._0.BrotherMainSite;
 using TechTalk.SpecFlow;
+using MainSiteHomePage = Brother.WebSites.Core.Pages.BrotherMainSite.MainSiteHomePage;
 
 namespace Brother.Tests.Specs._80.BrotherMainSite.FooterNavigation
 {
