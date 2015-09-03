@@ -44,7 +44,7 @@ namespace Brother.WebSites.Core.Pages8._0.BrotherMainSite
         [FindsBy(How = How.CssSelector, Using = "#main > div > div > div:nth-child(3) > div > ul.slides.cf > li:nth-child(1) > div.left-content > p:nth-child(5) > a")]
         public IWebElement ViewColourLaserRangeButton;
 
-        [FindsBy(How = How.CssSelector, Using = ".common-global-footer--page-link [href='/brother-network']")]
+        [FindsBy(How = How.XPath, Using = ".common-global-footer--page-link [href='/brother-network']")]
         public IWebElement BrotherNetwork;
 
         public static string BrotherNetworkId = ".common-global-footer--page-link [href='/brother-network']";
@@ -144,7 +144,7 @@ namespace Brother.WebSites.Core.Pages8._0.BrotherMainSite
       public void HoverAndClickBrotherNetwork()
       { 
            
-          WaitForElementToExistByCssSelector(BrotherNetworkId);
+          WaitForElementToExistByXPath(BrotherNetworkId, 1, 3);
           BrotherNetwork.Click();
         }
     }
