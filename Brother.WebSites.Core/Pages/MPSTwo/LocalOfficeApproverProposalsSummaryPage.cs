@@ -33,13 +33,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [FindsBy(How = How.Id, Using = "content_1_InputProposalApproveCreditCheckCompleted_Input")]
         public IWebElement CreditCheckCompletedElement;
         [FindsBy(How = How.Id, Using = "content_1_InputProposalApproveCreditValue_Input")]
-        public IWebElement CreditValueElement;
+        public IWebElement CreditLimitElement;
         [FindsBy(How = How.Id, Using = "content_1_InputProposalApproveValidUntil_Input")]
         public IWebElement ValidUntilElement;
         [FindsBy(How = How.Id, Using = "content_1_InputProposalApproveCreditCheckNotNeeded_Input")]
         public IWebElement CreditCheckNotNeededElement;
         [FindsBy(How = How.Id, Using = "content_1_ButtonProposalApproveApprove")]
         public IWebElement AcceptButtonElement;
+        
 
         public void ClickApproveButton()
         {
@@ -91,9 +92,22 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ClearAndType(ReferenceElement, reference);
         }
 
+        public string GetDealerName()
+        {
+            return GetElementByCssSelector(".wrapper.cf span[style*=\"text-align\"]").Text;
+
+        }
+
         public void EnterValidUntil()
         {
-            ValidUntilElement.SendKeys(MpsUtil.SomeDaysFromToday());
+            if (GetDealerName().Contains("sign out"))
+                ValidUntilElement.SendKeys(MpsUtil.SomeDaysFromToday());
+        }
+
+        public void EnterCreditLimit()
+        {
+            if (!GetDealerName().Contains("sign out"))
+                ClearAndType(CreditLimitElement, "30000");
         }
 
         public void TickCreditCheckNotNeeded()
@@ -106,6 +120,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             EnterCustomerReference("");
             EnterReference("");
             EnterValidUntil();
+            EnterCreditLimit();
             TickCreditCheckNotNeeded();
             WebDriver.Wait(Helper.DurationType.Second, 3);
         }

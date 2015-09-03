@@ -1,17 +1,17 @@
 ﻿@MPS @TEST @UAT
-Feature: SubmitAllTypesofProposalsToRelevantApprovers
-	In order to progress a proposal to contract
+Feature: SubmitAllTypesofGermanProposalsToRelevantApprovers
+	In order to progress a German proposal to contract
 	As a dealer
-	I want to be able to submit different types of proposals to relevant approvers
+	I want to be able to submit different types of German proposals to relevant approvers
 
-@ignore
-Scenario Outline: Send Leasing and Click proposal to bank
+
+Scenario Outline: Send German Leasing and Click proposal to bank
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
-	And I have created Leasing and Click proposal
+	And I have created German Leasing and Click proposal 
 	And I am on Proposal List page
 	When I click on Action button against the proposal created above
 	Then I can click on Convert to Contract button under the Action button
-	And I am directed to customer detail page for more data capture
+	And I am directed to customer detail page to begin data capture
 	And I am taken to the proposal summary where I can enter envisage contract start date
 	And I can successfully convert the proposal to contract
 	And the newly converted contract is available under Awaiting Approval tab
@@ -24,13 +24,14 @@ Scenario Outline: Send Leasing and Click proposal to bank
 	
 	Scenarios:
 
-	| Role             | Country        | Role2          |
-	| Cloud MPS Dealer | United Kingdom | Cloud MPS Bank |
+	| Role             | Country | Role2          |
+	| Cloud MPS Dealer | Germany | Cloud MPS Bank |
+	
 
-@ignore
-Scenario Outline: Send Leasing and Click proposal to bank for Privately Liable Customer
+
+Scenario Outline: Send German Leasing and Click proposal to bank for Privately Liable Customer
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
-	And I have created Leasing and Click proposal
+	And I have created German Leasing and Click proposal 
 	And I am on Proposal List page
 	When I click on Action button against the proposal created above
 	Then I can click on Convert to Contract button under the Action button
@@ -46,13 +47,14 @@ Scenario Outline: Send Leasing and Click proposal to bank for Privately Liable C
 
 	Scenarios:
 
-	| Role             | Country        | Role2          | Private         |
-	| Cloud MPS Dealer | United Kingdom | Cloud MPS Bank | Limited Company |
+	| Role             | Country | Role2          | Private      |
+	| Cloud MPS Dealer | Germany | Cloud MPS Bank | Freiberufler |
+	
 
-@ignore
-Scenario Outline: Send Leasing and Click proposal to bank for Customer who can order consumables
+
+Scenario Outline: Send German Leasing and Click proposal to bank for Customer who can order consumables
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
-	And I have created Leasing and Click proposal
+	And I have created German Leasing and Click proposal 
 	And I am on Proposal List page
 	When I click on Action button against the proposal created above
 	Then I can click on Convert to Contract button under the Action button
@@ -69,14 +71,15 @@ Scenario Outline: Send Leasing and Click proposal to bank for Customer who can o
 	
 	Scenarios:
 
-	| Role             | Country        | Role2          |
-	| Cloud MPS Dealer | United Kingdom | Cloud MPS Bank |
+	| Role             | Country | Role2          |
+	| Cloud MPS Dealer | Germany | Cloud MPS Bank |
+	
 
 
-@ignore
-Scenario Outline: Send Leasing and Click proposal to bank for Privately Liable Customer who can order consumables
+
+Scenario Outline: Send German Leasing and Click proposal to bank for Privately Liable Customer who can order consumables
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
-	And I have created Leasing and Click proposal
+	And I have created German Leasing and Click proposal 
 	And I am on Proposal List page
 	When I click on Action button against the proposal created above
 	Then I can click on Convert to Contract button under the Action button
@@ -93,18 +96,19 @@ Scenario Outline: Send Leasing and Click proposal to bank for Privately Liable C
 	
 	Scenarios:
 
-	| Role             | Country        | Role2          | Private         |
-	| Cloud MPS Dealer | United Kingdom | Cloud MPS Bank | Limited Company |
+	| Role             | Country | Role2          | Private      |
+	| Cloud MPS Dealer | Germany | Cloud MPS Bank | Freiberufler |
+	
 
 
 
-Scenario Outline: Send Purchase and Click proposal for approval
+Scenario Outline: Send German Purchase and Click proposal for approval
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
-	And I have created Purchase and Click proposal
+	And I have created German Purchase and Click proposal 
 	And I am on Proposal List page
 	When I click on Action button against the proposal created above
 	Then I can click on Convert to Contract button under the Action button
-	And I am directed to customer detail page for more data capture
+	And I am directed to customer detail page to begin data capture
 	And I am taken to purchase and click summary where I can enter envisage contract start date
 	And I can successfully convert the proposal to contract
 	And the newly converted contract is available under Awaiting Approval tab
@@ -117,14 +121,15 @@ Scenario Outline: Send Purchase and Click proposal for approval
 	
 	Scenarios:
 
-	| Role             | Country        | Role2                           |
-	| Cloud MPS Dealer | United Kingdom | Cloud MPS Local Office Approver |
+	| Role             | Country | Role2                           |
+	| Cloud MPS Dealer | Germany | Cloud MPS Local Office Approver |
+	
 
 
 
-Scenario Outline: Send Purchase and Click proposal approval for Privately Liable Customer
+Scenario Outline: Send German Purchase and Click proposal approval for Privately Liable Customer
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
-	And I have created Purchase and Click proposal
+	And I have created German Purchase and Click proposal 
 	And I am on Proposal List page
 	When I click on Action button against the proposal created above
 	Then I can click on Convert to Contract button under the Action button
@@ -140,13 +145,14 @@ Scenario Outline: Send Purchase and Click proposal approval for Privately Liable
 	
 	Scenarios:
 
-	| Role             | Country        | Role2                           | Private         |
-	| Cloud MPS Dealer | United Kingdom | Cloud MPS Local Office Approver | Limited Company |
+	| Role             | Country | Role2                           | Private      |
+	| Cloud MPS Dealer | Germany | Cloud MPS Local Office Approver | Freiberufler |
+	
 
 
-Scenario Outline: Send Purchase and Click proposal for Approval for Customer who can order consumables
+Scenario Outline: Send German Purchase and Click proposal for Approval for Customer who can order consumables
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
-	And I have created Purchase and Click proposal
+	And I have created German Purchase and Click proposal 
 	And I am on Proposal List page
 	When I click on Action button against the proposal created above
 	Then I can click on Convert to Contract button under the Action button
@@ -163,13 +169,14 @@ Scenario Outline: Send Purchase and Click proposal for Approval for Customer who
 
 	Scenarios:
 
-	| Role             | Country        | Role2                           |
-	| Cloud MPS Dealer | United Kingdom | Cloud MPS Local Office Approver |
+	| Role             | Country | Role2                           |
+	| Cloud MPS Dealer | Germany | Cloud MPS Local Office Approver |
+	
 
 
-Scenario Outline: Send Purchase and Click proposal for Approval for Privately Liable Customer who can order consumables
+Scenario Outline: Send German Purchase and Click proposal for Approval for Privately Liable Customer who can order consumables
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
-	And I have created Purchase and Click proposal
+	And I have created German Purchase and Click proposal 
 	And I am on Proposal List page
 	When I click on Action button against the proposal created above
 	Then I can click on Convert to Contract button under the Action button
@@ -185,7 +192,9 @@ Scenario Outline: Send Purchase and Click proposal for Approval for Privately Li
 
 	Scenarios:
 
-	| Role             | Country        | Role2                           | Private         |
-	| Cloud MPS Dealer | United Kingdom | Cloud MPS Local Office Approver | Limited Company |
+	| Role             | Country | Role2                           | Private      |
+	| Cloud MPS Dealer | Germany | Cloud MPS Local Office Approver | Freiberufler |
+	
 
 	
+

@@ -183,6 +183,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public static void SpecificClickOnTheActionsDropdown(IWebDriver driver)
         {
+            SeleniumHelper.WaitForElementToExistByCssSelector(ProposalCreatedActionButton());
             var actionsElement = SpecificActionsDropdownElement(driver);
             actionsElement.Click();
         }
