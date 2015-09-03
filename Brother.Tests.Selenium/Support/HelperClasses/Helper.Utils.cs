@@ -146,7 +146,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             var orderSuccess = false;
             string xmlResponseData;
             orderSuccess = ConfirmSapOrder(orderNumber, out xmlResponseData);
-            while ((orderSuccess != true) && (maxRetryCount != 10))
+            while ((orderSuccess != true) && (maxRetryCount != 20))
             {
                 orderSuccess = ConfirmSapOrder(orderNumber, out xmlResponseData);
                 WebDriver.Wait(DurationType.Second, 5); // Static pause to allow request to clear before retrying
