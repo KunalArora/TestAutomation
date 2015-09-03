@@ -146,10 +146,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             WebDriver.Wait(DurationType.Second, 3);
         }
 
-        public void SelectAPrivatelyLiableCustomer()
+        public void SelectAPrivatelyLiableCustomer(string company)
         {
             
-            SelectFromDropdown(LegalFormDropdown, "Limited Company");
+            SelectFromDropdown(LegalFormDropdown, company);
             WebDriver.Wait(DurationType.Second, 3);
         }
 
@@ -243,11 +243,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void FillAllCustomerDetailsOnConvert()
         {
+            if (GetDealerName().Contains("sign out")) return;
             CreateANewCustomerInConvertProcess();
             FillOrganisationDetails();
             FillOrganisationContactDetail();
-
-
+            
         }
 
         public void EnterRemainingCustomerInfo()
@@ -259,13 +259,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             EnterAuthoriisedSignatoryNumber();
         }
 
-        public void EnterPrivateLiableCustomerInfo()
+        public void EnterPrivateLiableCustomerInfo(string company)
         {
-            SelectAPrivatelyLiableCustomer();
-            EnterCompanyRegistration();
-            EnterVatNumber();
-            SelectATradingStyle();
-            EnterAuthoriisedSignatoryNumber();
+                SelectAPrivatelyLiableCustomer(company);
+                EnterCompanyRegistration();
+                EnterVatNumber();
+                SelectATradingStyle();
+                EnterAuthoriisedSignatoryNumber();
+            
         }
 
         public void EnterAllBankInformation()

@@ -183,6 +183,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SummaryPageValidationForAllProposalTypes.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\MPSTwo\SendToBank\DealerCanSubmitAllGermanProposalsForApproval.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DealerCanSubmitAllGermanProposalsForApproval.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specifications\MPSTwo\SendToBank\DealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -593,6 +598,10 @@
     <None Include="Test Specifications\MPSTwo\Proposal\VerificationOnProductScreenVariations.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>VerificationOnProductScreenVariations.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwo\SendToBank\DealerCanSubmitAllGermanProposalsForApproval.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>DealerCanSubmitAllGermanProposalsForApproval.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwo\SendToBank\DealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

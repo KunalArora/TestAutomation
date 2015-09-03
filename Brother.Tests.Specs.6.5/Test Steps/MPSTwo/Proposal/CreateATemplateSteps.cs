@@ -259,10 +259,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
                 UsageType = "Minimum Volume";
             GivenIamOnMpsNewProposalPage();
             WhenIFillProposalDescriptionForContractType("Purchase & Click with Service");
-            //DealerProposalsCreateTermAndTypeStep termAndTypeStepInstance = new DealerProposalsCreateTermAndTypeStep();
-            //termAndTypeStepInstance.WhenIEnterUsageTypeOfAndContractTermsLeasingAndBillingOnTermAndTypeDetails
-            //    (UsageType, "3 Jahre", "Monatlich", "Halbjährlich");
-
+            
             DealerProposalsCreateTermAndTypeStep stepInstance = new DealerProposalsCreateTermAndTypeStep();
             stepInstance.EditTermAndTypeTabForPurchaseOffer(UsageType, "3 Jahre", "Halbjährlich");
 

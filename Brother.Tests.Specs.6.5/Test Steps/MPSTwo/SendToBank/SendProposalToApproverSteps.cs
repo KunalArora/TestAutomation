@@ -116,6 +116,15 @@ namespace Brother.Tests.Specs.MPSTwo.SendToBank
             CurrentPage.As<CloudExistingProposalPage>().IsProposalCopiedWithCustomer(CurrentDriver);
         }
 
+        [Then(@"I am directed to customer detail page to begin data capture")]
+        public void ThenIAmDirectedToCustomerDetailPageToBeginDataCapture()
+        {
+            CurrentPage.As<ConvertProposalCustomerInfo>().FillAllCustomerDetailsOnConvert();
+            CurrentPage.As<ConvertProposalCustomerInfo>().EnterRemainingCustomerInfo();
+            CurrentPage.As<ConvertProposalCustomerInfo>().EnterAllBankInformation();
+            NextPage = CurrentPage.As<ConvertProposalCustomerInfo>().ProceedToConvertProposalTermAndType();
+            NextPage = CurrentPage.As<ConvertProposalTermAndType>().NavigateToSummaryPageUsingTab();
+        }
 
 
         [Then(@"I am directed to customer detail page for more data capture")]
@@ -130,27 +139,36 @@ namespace Brother.Tests.Specs.MPSTwo.SendToBank
         [Then(@"I am directed to customer detail page for can order data capture")]
         public void ThenIAmDirectedToCustomerDetailPageForCanOrderDataCapture()
         {
+            CurrentPage.As<ConvertProposalCustomerInfo>().FillAllCustomerDetailsOnConvert();
             CurrentPage.As<ConvertProposalCustomerInfo>().EnterRemainingCustomerInfo();
             CurrentPage.As<ConvertProposalCustomerInfo>().CustomerCanOrderConsumables();
             CurrentPage.As<ConvertProposalCustomerInfo>().EnterAllBankInformation();
+            NavigateToSummaryPage();
+        }
+
+        private void NavigateToSummaryPage()
+        {
             NextPage = CurrentPage.As<ConvertProposalCustomerInfo>().ProceedToConvertProposalTermAndType();
             NextPage = CurrentPage.As<ConvertProposalTermAndType>().NavigateToSummaryPageUsingTab();
         }
 
-        [Then(@"I am directed to customer detail page for privately liable data capture")]
-        public void ThenIAmDirectedToCustomerDetailPageForPrivateLiableDataCapture()
+
+        [Then(@"I am directed to customer detail page for ""(.*)"" privately liable data capture")]
+        public void ThenIAmDirectedToCustomerDetailPageForPrivatelyLiableDataCapture(string company)
         {
-            CurrentPage.As<ConvertProposalCustomerInfo>().EnterPrivateLiableCustomerInfo();
+            CurrentPage.As<ConvertProposalCustomerInfo>().FillAllCustomerDetailsOnConvert();
+            CurrentPage.As<ConvertProposalCustomerInfo>().EnterPrivateLiableCustomerInfo(company);
             CurrentPage.As<ConvertProposalCustomerInfo>().EnterAllBankInformation();
             //CurrentPage.As<ConvertProposalCustomerInfo>().EnterPrivateLiableInfo();
             NextPage = CurrentPage.As<ConvertProposalCustomerInfo>().ProceedToConvertProposalTermAndType();
             NextPage = CurrentPage.As<ConvertProposalTermAndType>().NavigateToSummaryPageUsingTab();
         }
 
-        [Then(@"I am directed to capture customer detail page for privately liable customer who can order")]
-        public void ThenIAmDirectedToCaptureCustomerDetailPageForPrivatelyLiableCustomerWhoCanOrder()
+        [Then(@"I am directed to capture customer detail page for ""(.*)"" privately liable customer who can order")]
+        public void ThenIAmDirectedToCaptureCustomerDetailPageForPrivatelyLiableCustomerWhoCanOrder(string company)
         {
-            CurrentPage.As<ConvertProposalCustomerInfo>().EnterPrivateLiableCustomerInfo();
+            CurrentPage.As<ConvertProposalCustomerInfo>().FillAllCustomerDetailsOnConvert();
+            CurrentPage.As<ConvertProposalCustomerInfo>().EnterPrivateLiableCustomerInfo(company);
             CurrentPage.As<ConvertProposalCustomerInfo>().CustomerCanOrderConsumables();
             CurrentPage.As<ConvertProposalCustomerInfo>().EnterAllBankInformation();
             //CurrentPage.As<ConvertProposalCustomerInfo>().EnterPrivateLiableInfo();

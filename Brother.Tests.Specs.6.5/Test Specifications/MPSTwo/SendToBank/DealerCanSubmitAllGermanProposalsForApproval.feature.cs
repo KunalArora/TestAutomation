@@ -19,24 +19,24 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.SendToBank
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.9.0.77")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("SubmitAllTypesofProposalsToRelevantApprovers")]
+    [NUnit.Framework.DescriptionAttribute("SubmitAllTypesofGermanProposalsToRelevantApprovers")]
     [NUnit.Framework.CategoryAttribute("MPS")]
     [NUnit.Framework.CategoryAttribute("TEST")]
     [NUnit.Framework.CategoryAttribute("UAT")]
-    public partial class SubmitAllTypesofProposalsToRelevantApproversFeature
+    public partial class SubmitAllTypesofGermanProposalsToRelevantApproversFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "DealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature"
+#line 1 "DealerCanSubmitAllGermanProposalsForApproval.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "SubmitAllTypesofProposalsToRelevantApprovers", "In order to progress a proposal to contract\r\nAs a dealer\r\nI want to be able to su" +
-                    "bmit different types of proposals to relevant approvers", ProgrammingLanguage.CSharp, new string[] {
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "SubmitAllTypesofGermanProposalsToRelevantApprovers", "In order to progress a German proposal to contract\r\nAs a dealer\r\nI want to be abl" +
+                    "e to submit different types of German proposals to relevant approvers", ProgrammingLanguage.CSharp, new string[] {
                         "MPS",
                         "TEST",
                         "UAT"});
@@ -72,24 +72,17 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.SendToBank
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Send Leasing and Click proposal to bank")]
-        [NUnit.Framework.IgnoreAttribute()]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Cloud MPS Bank", null)]
-        public virtual void SendLeasingAndClickProposalToBank(string role, string country, string role2, string[] exampleTags)
+        [NUnit.Framework.DescriptionAttribute("Send German Leasing and Click proposal to bank")]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Germany", "Cloud MPS Bank", null)]
+        public virtual void SendGermanLeasingAndClickProposalToBank(string role, string country, string role2, string[] exampleTags)
         {
-            string[] @__tags = new string[] {
-                    "ignore"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Send Leasing and Click proposal to bank", @__tags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Send German Leasing and Click proposal to bank", exampleTags);
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line 9
  testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 10
- testRunner.And("I have created Leasing and Click proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I have created German Leasing and Click proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
  testRunner.And("I am on Proposal List page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 12
@@ -97,7 +90,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 13
  testRunner.Then("I can click on Convert to Contract button under the Action button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 14
- testRunner.And("I am directed to customer detail page for more data capture", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I am directed to customer detail page to begin data capture", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 15
  testRunner.And("I am taken to the proposal summary where I can enter envisage contract start date" +
                     "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -121,323 +114,304 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Send Leasing and Click proposal to bank for Privately Liable Customer")]
-        [NUnit.Framework.IgnoreAttribute()]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Cloud MPS Bank", "Limited Company", null)]
-        public virtual void SendLeasingAndClickProposalToBankForPrivatelyLiableCustomer(string role, string country, string role2, string @private, string[] exampleTags)
+        [NUnit.Framework.DescriptionAttribute("Send German Leasing and Click proposal to bank for Privately Liable Customer")]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Germany", "Cloud MPS Bank", "Freiberufler", null)]
+        public virtual void SendGermanLeasingAndClickProposalToBankForPrivatelyLiableCustomer(string role, string country, string role2, string @private, string[] exampleTags)
         {
-            string[] @__tags = new string[] {
-                    "ignore"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Send Leasing and Click proposal to bank for Privately Liable Customer", @__tags);
-#line 31
-this.ScenarioSetup(scenarioInfo);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Send German Leasing and Click proposal to bank for Privately Liable Customer", exampleTags);
 #line 32
- testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioSetup(scenarioInfo);
 #line 33
- testRunner.And("I have created Leasing and Click proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 34
- testRunner.And("I am on Proposal List page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I have created German Leasing and Click proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 35
- testRunner.When("I click on Action button against the proposal created above", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("I am on Proposal List page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 36
- testRunner.Then("I can click on Convert to Contract button under the Action button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("I click on Action button against the proposal created above", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 37
- testRunner.And(string.Format("I am directed to customer detail page for \"{0}\" privately liable data capture", @private), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("I can click on Convert to Contract button under the Action button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 38
- testRunner.And("I am taken to the proposal summary where I can enter envisage contract start date" +
-                    "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("I am directed to customer detail page for \"{0}\" privately liable data capture", @private), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 39
- testRunner.And("I can successfully convert the proposal to contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 40
- testRunner.And("the newly converted contract is available under Awaiting Approval tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 41
- testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 42
- testRunner.And(string.Format("I sign back into Cloud MPS as a \"{0}\" from \"{1}\"", role2, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 43
- testRunner.And("I navigate to bank Awaiting Approval screen under Offer page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 44
- testRunner.And("the converted Leasing and Click and Service proposal above is displayed on the sc" +
-                    "reen", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 45
- testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Send Leasing and Click proposal to bank for Customer who can order consumables")]
-        [NUnit.Framework.IgnoreAttribute()]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Cloud MPS Bank", null)]
-        public virtual void SendLeasingAndClickProposalToBankForCustomerWhoCanOrderConsumables(string role, string country, string role2, string[] exampleTags)
-        {
-            string[] @__tags = new string[] {
-                    "ignore"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Send Leasing and Click proposal to bank for Customer who can order consumables", @__tags);
-#line 53
-this.ScenarioSetup(scenarioInfo);
-#line 54
- testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 55
- testRunner.And("I have created Leasing and Click proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 56
- testRunner.And("I am on Proposal List page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 57
- testRunner.When("I click on Action button against the proposal created above", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 58
- testRunner.Then("I can click on Convert to Contract button under the Action button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 59
- testRunner.And("I am directed to customer detail page for can order data capture", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 60
  testRunner.And("I am taken to the proposal summary where I can enter envisage contract start date" +
                     "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 61
+#line 40
  testRunner.And("I can successfully convert the proposal to contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 62
+#line 41
  testRunner.And("the newly converted contract is available under Awaiting Approval tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 63
+#line 42
  testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 64
+#line 43
  testRunner.And(string.Format("I sign back into Cloud MPS as a \"{0}\" from \"{1}\"", role2, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 65
+#line 44
  testRunner.And("I navigate to bank Awaiting Approval screen under Offer page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 66
+#line 45
  testRunner.And("the converted Leasing and Click and Service proposal above is displayed on the sc" +
                     "reen", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 67
+#line 46
  testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Send Leasing and Click proposal to bank for Privately Liable Customer who can ord" +
-            "er consumables")]
-        [NUnit.Framework.IgnoreAttribute()]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Cloud MPS Bank", "Limited Company", null)]
-        public virtual void SendLeasingAndClickProposalToBankForPrivatelyLiableCustomerWhoCanOrderConsumables(string role, string country, string role2, string @private, string[] exampleTags)
+        [NUnit.Framework.DescriptionAttribute("Send German Leasing and Click proposal to bank for Customer who can order consuma" +
+            "bles")]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Germany", "Cloud MPS Bank", null)]
+        public virtual void SendGermanLeasingAndClickProposalToBankForCustomerWhoCanOrderConsumables(string role, string country, string role2, string[] exampleTags)
         {
-            string[] @__tags = new string[] {
-                    "ignore"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Send Leasing and Click proposal to bank for Privately Liable Customer who can ord" +
-                    "er consumables", @__tags);
-#line 77
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Send German Leasing and Click proposal to bank for Customer who can order consuma" +
+                    "bles", exampleTags);
+#line 55
 this.ScenarioSetup(scenarioInfo);
-#line 78
+#line 56
  testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 79
- testRunner.And("I have created Leasing and Click proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 80
+#line 57
+ testRunner.And("I have created German Leasing and Click proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 58
  testRunner.And("I am on Proposal List page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 81
+#line 59
  testRunner.When("I click on Action button against the proposal created above", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 82
+#line 60
  testRunner.Then("I can click on Convert to Contract button under the Action button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 61
+ testRunner.And("I am directed to customer detail page for can order data capture", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 62
+ testRunner.And("I am taken to the proposal summary where I can enter envisage contract start date" +
+                    "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 63
+ testRunner.And("I can successfully convert the proposal to contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 64
+ testRunner.And("the newly converted contract is available under Awaiting Approval tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 65
+ testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 66
+ testRunner.And(string.Format("I sign back into Cloud MPS as a \"{0}\" from \"{1}\"", role2, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 67
+ testRunner.And("I navigate to bank Awaiting Approval screen under Offer page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 68
+ testRunner.And("the converted Leasing and Click and Service proposal above is displayed on the sc" +
+                    "reen", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 69
+ testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Send German Leasing and Click proposal to bank for Privately Liable Customer who " +
+            "can order consumables")]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Germany", "Cloud MPS Bank", "Freiberufler", null)]
+        public virtual void SendGermanLeasingAndClickProposalToBankForPrivatelyLiableCustomerWhoCanOrderConsumables(string role, string country, string role2, string @private, string[] exampleTags)
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Send German Leasing and Click proposal to bank for Privately Liable Customer who " +
+                    "can order consumables", exampleTags);
+#line 80
+this.ScenarioSetup(scenarioInfo);
+#line 81
+ testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 82
+ testRunner.And("I have created German Leasing and Click proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 83
+ testRunner.And("I am on Proposal List page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 84
+ testRunner.When("I click on Action button against the proposal created above", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 85
+ testRunner.Then("I can click on Convert to Contract button under the Action button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 86
  testRunner.And(string.Format("I am directed to capture customer detail page for \"{0}\" privately liable customer" +
                         " who can order", @private), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 84
+#line 87
  testRunner.And("I am taken to the proposal summary where I can enter envisage contract start date" +
                     "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 85
- testRunner.And("I can successfully convert the proposal to contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 86
- testRunner.And("the newly converted contract is available under Awaiting Approval tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 87
- testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 88
- testRunner.And(string.Format("I sign back into Cloud MPS as a \"{0}\" from \"{1}\"", role2, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I can successfully convert the proposal to contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 89
- testRunner.And("I navigate to bank Awaiting Approval screen under Offer page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the newly converted contract is available under Awaiting Approval tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 90
+ testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 91
+ testRunner.And(string.Format("I sign back into Cloud MPS as a \"{0}\" from \"{1}\"", role2, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 92
+ testRunner.And("I navigate to bank Awaiting Approval screen under Offer page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 93
  testRunner.And("the converted Leasing and Click and Service proposal above is displayed on the sc" +
                     "reen", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 91
+#line 94
  testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Send Purchase and Click proposal for approval")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Cloud MPS Local Office Approver", null)]
-        public virtual void SendPurchaseAndClickProposalForApproval(string role, string country, string role2, string[] exampleTags)
+        [NUnit.Framework.DescriptionAttribute("Send German Purchase and Click proposal for approval")]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Germany", "Cloud MPS Local Office Approver", null)]
+        public virtual void SendGermanPurchaseAndClickProposalForApproval(string role, string country, string role2, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Send Purchase and Click proposal for approval", exampleTags);
-#line 101
-this.ScenarioSetup(scenarioInfo);
-#line 102
- testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 103
- testRunner.And("I have created Purchase and Click proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 104
- testRunner.And("I am on Proposal List page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Send German Purchase and Click proposal for approval", exampleTags);
 #line 105
- testRunner.When("I click on Action button against the proposal created above", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+this.ScenarioSetup(scenarioInfo);
 #line 106
- testRunner.Then("I can click on Convert to Contract button under the Action button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 107
- testRunner.And("I am directed to customer detail page for more data capture", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I have created German Purchase and Click proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 108
+ testRunner.And("I am on Proposal List page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 109
+ testRunner.When("I click on Action button against the proposal created above", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 110
+ testRunner.Then("I can click on Convert to Contract button under the Action button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 111
+ testRunner.And("I am directed to customer detail page to begin data capture", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 112
  testRunner.And("I am taken to purchase and click summary where I can enter envisage contract star" +
                     "t date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 109
- testRunner.And("I can successfully convert the proposal to contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 110
- testRunner.And("the newly converted contract is available under Awaiting Approval tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 111
- testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 112
- testRunner.And(string.Format("I sign back into Cloud MPS as a \"{0}\" from \"{1}\"", role2, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 113
- testRunner.And("I navigate to Local Approver Awaiting Approval screen under Offer page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I can successfully convert the proposal to contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 114
- testRunner.And("the converted Purchase and Click and Service proposal above is displayed on the s" +
-                    "creen", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the newly converted contract is available under Awaiting Approval tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 115
  testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 116
+ testRunner.And(string.Format("I sign back into Cloud MPS as a \"{0}\" from \"{1}\"", role2, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 117
+ testRunner.And("I navigate to Local Approver Awaiting Approval screen under Offer page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 118
+ testRunner.And("the converted Purchase and Click and Service proposal above is displayed on the s" +
+                    "creen", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 119
+ testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Send Purchase and Click proposal approval for Privately Liable Customer")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Cloud MPS Local Office Approver", "Limited Company", null)]
-        public virtual void SendPurchaseAndClickProposalApprovalForPrivatelyLiableCustomer(string role, string country, string role2, string @private, string[] exampleTags)
+        [NUnit.Framework.DescriptionAttribute("Send German Purchase and Click proposal approval for Privately Liable Customer")]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Germany", "Cloud MPS Local Office Approver", "Freiberufler", null)]
+        public virtual void SendGermanPurchaseAndClickProposalApprovalForPrivatelyLiableCustomer(string role, string country, string role2, string @private, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Send Purchase and Click proposal approval for Privately Liable Customer", exampleTags);
-#line 125
-this.ScenarioSetup(scenarioInfo);
-#line 126
- testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 127
- testRunner.And("I have created Purchase and Click proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 128
- testRunner.And("I am on Proposal List page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 129
- testRunner.When("I click on Action button against the proposal created above", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Send German Purchase and Click proposal approval for Privately Liable Customer", exampleTags);
 #line 130
- testRunner.Then("I can click on Convert to Contract button under the Action button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+this.ScenarioSetup(scenarioInfo);
 #line 131
- testRunner.And(string.Format("I am directed to customer detail page for \"{0}\" privately liable data capture", @private), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 132
- testRunner.And("I am taken to purchase and click summary where I can enter envisage contract star" +
-                    "t date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I have created German Purchase and Click proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 133
- testRunner.And("I can successfully convert the proposal to contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 134
- testRunner.And("the newly converted contract is available under Awaiting Approval tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 135
- testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 136
- testRunner.And(string.Format("I sign back into Cloud MPS as a \"{0}\" from \"{1}\"", role2, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 137
- testRunner.And("I navigate to Local Approver Awaiting Approval screen under Offer page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 138
- testRunner.And("the converted Purchase and Click and Service proposal above is displayed on the s" +
-                    "creen", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 139
- testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Send Purchase and Click proposal for Approval for Customer who can order consumab" +
-            "les")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Cloud MPS Local Office Approver", null)]
-        public virtual void SendPurchaseAndClickProposalForApprovalForCustomerWhoCanOrderConsumables(string role, string country, string role2, string[] exampleTags)
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Send Purchase and Click proposal for Approval for Customer who can order consumab" +
-                    "les", exampleTags);
-#line 147
-this.ScenarioSetup(scenarioInfo);
-#line 148
- testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 149
- testRunner.And("I have created Purchase and Click proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 150
  testRunner.And("I am on Proposal List page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 151
+#line 134
  testRunner.When("I click on Action button against the proposal created above", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 152
+#line 135
  testRunner.Then("I can click on Convert to Contract button under the Action button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 153
- testRunner.And("I am directed to customer detail page for can order data capture", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 154
+#line 136
+ testRunner.And(string.Format("I am directed to customer detail page for \"{0}\" privately liable data capture", @private), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 137
  testRunner.And("I am taken to purchase and click summary where I can enter envisage contract star" +
                     "t date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 155
+#line 138
  testRunner.And("I can successfully convert the proposal to contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 156
+#line 139
  testRunner.And("the newly converted contract is available under Awaiting Approval tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 157
+#line 140
  testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 158
+#line 141
  testRunner.And(string.Format("I sign back into Cloud MPS as a \"{0}\" from \"{1}\"", role2, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 159
+#line 142
  testRunner.And("I navigate to Local Approver Awaiting Approval screen under Offer page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 160
+#line 143
  testRunner.And("the converted Purchase and Click and Service proposal above is displayed on the s" +
                     "creen", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 161
+#line 144
  testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Send Purchase and Click proposal for Approval for Privately Liable Customer who c" +
-            "an order consumables")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Cloud MPS Local Office Approver", "Limited Company", null)]
-        public virtual void SendPurchaseAndClickProposalForApprovalForPrivatelyLiableCustomerWhoCanOrderConsumables(string role, string country, string role2, string @private, string[] exampleTags)
+        [NUnit.Framework.DescriptionAttribute("Send German Purchase and Click proposal for Approval for Customer who can order c" +
+            "onsumables")]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Germany", "Cloud MPS Local Office Approver", null)]
+        public virtual void SendGermanPurchaseAndClickProposalForApprovalForCustomerWhoCanOrderConsumables(string role, string country, string role2, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Send Purchase and Click proposal for Approval for Privately Liable Customer who c" +
-                    "an order consumables", exampleTags);
-#line 170
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Send German Purchase and Click proposal for Approval for Customer who can order c" +
+                    "onsumables", exampleTags);
+#line 153
 this.ScenarioSetup(scenarioInfo);
-#line 171
+#line 154
  testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 172
- testRunner.And("I have created Purchase and Click proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 173
+#line 155
+ testRunner.And("I have created German Purchase and Click proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 156
  testRunner.And("I am on Proposal List page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 174
+#line 157
  testRunner.When("I click on Action button against the proposal created above", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 175
+#line 158
  testRunner.Then("I can click on Convert to Contract button under the Action button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 176
+#line 159
+ testRunner.And("I am directed to customer detail page for can order data capture", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 160
+ testRunner.And("I am taken to purchase and click summary where I can enter envisage contract star" +
+                    "t date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 161
+ testRunner.And("I can successfully convert the proposal to contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 162
+ testRunner.And("the newly converted contract is available under Awaiting Approval tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 163
+ testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 164
+ testRunner.And(string.Format("I sign back into Cloud MPS as a \"{0}\" from \"{1}\"", role2, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 165
+ testRunner.And("I navigate to Local Approver Awaiting Approval screen under Offer page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 166
+ testRunner.And("the converted Purchase and Click and Service proposal above is displayed on the s" +
+                    "creen", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 167
+ testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Send German Purchase and Click proposal for Approval for Privately Liable Custome" +
+            "r who can order consumables")]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Germany", "Cloud MPS Local Office Approver", "Freiberufler", null)]
+        public virtual void SendGermanPurchaseAndClickProposalForApprovalForPrivatelyLiableCustomerWhoCanOrderConsumables(string role, string country, string role2, string @private, string[] exampleTags)
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Send German Purchase and Click proposal for Approval for Privately Liable Custome" +
+                    "r who can order consumables", exampleTags);
+#line 177
+this.ScenarioSetup(scenarioInfo);
+#line 178
+ testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 179
+ testRunner.And("I have created German Purchase and Click proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 180
+ testRunner.And("I am on Proposal List page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 181
+ testRunner.When("I click on Action button against the proposal created above", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 182
+ testRunner.Then("I can click on Convert to Contract button under the Action button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 183
  testRunner.And(string.Format("I am directed to capture customer detail page for \"{0}\" privately liable customer" +
                         " who can order", @private), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 177
+#line 184
  testRunner.And("I am taken to purchase and click summary where I can enter envisage contract star" +
                     "t date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 178
+#line 185
  testRunner.And("I can successfully convert the proposal to contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 179
+#line 186
  testRunner.And("the newly converted contract is available under Awaiting Approval tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 180
+#line 187
  testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 181
+#line 188
  testRunner.And(string.Format("I sign back into Cloud MPS as a \"{0}\" from \"{1}\"", role2, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 182
+#line 189
  testRunner.And("I navigate to Local Approver Awaiting Approval screen under Offer page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 183
+#line 190
  testRunner.And("the converted Purchase and Click and Service proposal above is displayed on the s" +
                     "creen", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 184
+#line 191
  testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
