@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Brother.Tests.Selenium.Lib;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
@@ -50,15 +51,17 @@ namespace Brother.Tests.Specs
         [Given(@"SqlCall")]
         public void GivenSqlCall()
         {
-            var dealerEmail = "ORP_Cushty_Dealer_001@guerrillamail.com";
-            var dealerId = Sql.GetOrpDealerId(dealerEmail);
-            TestCheck.AssertIsNotEqual(Guid.Empty, dealerId, "Dealer Id");
+            var bpid = Sql.GetUserBpId("AutoTest_7_30_20148_54_45AM@BrotherAutoTest.com");
 
-            var activationCode = Sql.GetOrpActivationCode(dealerId, 12, 1, "Order28052015");
-            if (activationCode == string.Empty)
-            {
-                TestCheck.AssertFailTest(string.Format("Unable to retrieve Activation Code for Dealer [{0}]", dealerEmail));
-            }
+            //var dealerEmail = "ORP_Cushty_Dealer_001@guerrillamail.com";
+            //var dealerId = Sql.GetOrpDealerId(dealerEmail);
+            //TestCheck.AssertIsNotEqual(Guid.Empty, dealerId, "Dealer Id");
+
+            //var activationCode = Sql.GetOrpActivationCode(dealerId, 12, 1, "Order28052015");
+            //if (activationCode == string.Empty)
+            //{
+            //    TestCheck.AssertFailTest(string.Format("Unable to retrieve Activation Code for Dealer [{0}]", dealerEmail));
+            //}
         }
     }
 }
