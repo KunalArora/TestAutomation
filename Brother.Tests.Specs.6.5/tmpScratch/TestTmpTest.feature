@@ -24,7 +24,7 @@ Background:
 	#Then I am redirected to the Welcome Back page
 	#Given I am logged onto Brother Online "United Kingdom" using valid credentials
 	
-@STAGING @IGNORE
+@STAGING 
 Scenario: Test Code Two
 	#Given I want to open a new tab
 	Given SqlCall
