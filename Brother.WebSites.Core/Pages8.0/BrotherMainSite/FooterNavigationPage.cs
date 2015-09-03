@@ -19,17 +19,7 @@ namespace Brother.WebSites.Core.Pages8._0.BrotherMainSite
         {
             get { return string.Empty; }
         }
-        [FindsBy(How = How.CssSelector, Using = "[href='/Brother Network']")]
-        public IWebElement BrotherNetwork;
-
-
-        public void HoverAndClickBrotherNetwork()
-       {    
-           BrotherNetwork.Click();
-           
-       }
-
-
+       
 
     }
 }

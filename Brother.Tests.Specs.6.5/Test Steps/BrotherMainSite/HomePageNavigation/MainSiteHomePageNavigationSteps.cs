@@ -29,12 +29,36 @@ namespace Brother.Tests.Specs.BrotherMainSite.HomePageNavigation
             NextPage = CurrentPage.As<MainSiteHomePage>().ProductsButtonClick();
         }
 
+        [Then(@"I have clicked the terms and conditions link within the website information footer")]
+        public void ThenIHaveClickedTermsAndConditionsWithinWebsiteInfoFooter()
+        {
+            NextPage = CurrentPage.As<MainSiteHomePage>().TermsAndConditionsFooterLinkClick();
+        }
+
+        [Then(@"I have clicked the brother network link within the website information footer")]
+        public void ThenIHaveClickedBrotherNetworkWithinWebsiteInfoFooter()
+        {
+            NextPage = CurrentPage.As<MainSiteHomePage>().BrotherNetworkLinkClick();
+        }    
+
         [Then(@"I am navigated to the products page")]
         public void ThenIAmNavigatedToProductsPage()
         {
             CurrentPage.As<MainSiteHomePage>().HasProductsPageLoaded();
         }
 
+        [Then(@"I am navigated to the terms and conditions page")]
+        public void ThenIAmNavigatedToTheTermsAndConditionsPage()
+        {
+            CurrentPage.As<MainSiteHomePage>().HasTermsAndConditionsPageLoaded();
+        }
+
+        [Then(@"I am navigated to the brother network page")]
+        public void ThenIAmNavigatedToTheBrotherNetworkPage()
+        {
+            CurrentPage.As<MainSiteHomePage>().HasBrotherNetworkPageLoaded();
+        }
+        
         [Then(@"I hover over the top products menu button")]
         public void HoverOverTopProductsMenu()
         {
