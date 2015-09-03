@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs._80.BrotherMainSite.FooterNavigation
 {
-   
+    [Binding]
     public class NavigateFooterWebsiteInformationMenuSteps : BaseSteps
     {
        
@@ -12,11 +12,6 @@ namespace Brother.Tests.Specs._80.BrotherMainSite.FooterNavigation
         public void GivenIHaveClickedThePrivacyPolicyLinkInTheFooterSection()
         {
             ScenarioContext.Current.Pending();
-        }
-        [Given(@"I have clicked the accessibility link in the footer section")]
-        public void GivenIHaveClickedTheAccessibilityLinkInTheFooterSection()
-        {
-            CurrentPage.As<FooterNavigationPage>().HoverAndClickBrotherNetwork();
         }
         [Given(@"I have clicked the terms and conditions link in the footer section")]
         public void GivenIHaveClickedTheTermsAndConditionsLinkInTheFooterSection()
@@ -47,5 +42,13 @@ namespace Brother.Tests.Specs._80.BrotherMainSite.FooterNavigation
         {
             ScenarioContext.Current.Pending();
         }
+       [Given(@"I have clicked the brother network link in the footer section")]
+        public void GivenIHaveClickedTheBrotherNetworkLinkInTheFooterSection()
+        {
+            CurrentPage.As<MainSiteHomePage>().HoverAndClickBrotherNetwork();
+        }
     }
-}
+
+        
+    }
+
