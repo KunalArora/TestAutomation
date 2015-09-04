@@ -30,7 +30,7 @@ Scenario: User is able to navigate to the Terms And Conditions via the footer se
 Scenario Outline: User is able to navigate to the Brother Network via the footer section of Website Information menu
 	Given I have navigated to the Brother Main Site "<country>" products pages
 	And I have clicked the brother network link in the footer section
-	#Then I am navigated to the brother network page
+	Then I am navigated to the brother network page
 
 Scenarios:
 	| country    |
