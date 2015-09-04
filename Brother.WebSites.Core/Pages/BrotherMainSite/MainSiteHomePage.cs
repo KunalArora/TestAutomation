@@ -117,16 +117,17 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         [FindsBy(How = How.Id, Using = "buybutton")]
         public IWebElement BuyOnlineButton;
 
-<<<<<<< HEAD
         [FindsBy(How = How.CssSelector, Using = "#results > article:nth-child(1) > div.price-listings-info > p:nth-child(3) > a")]
         public IWebElement ViewDetailsLink;
-=======
+
         [FindsBy(How = How.CssSelector, Using = "[href='/Products/']")]
         public IWebElement ProductsTopMenu8;
 
         [FindsBy(How = How.CssSelector, Using = "[href='http://www.brothersewing.co.uk/']")]
         public IWebElement SewingLink;
->>>>>>> master
+
+        [FindsBy(How = How.CssSelector, Using = "#footer-products > li:nth-child(1) > a")]
+        public IWebElement PrinterFooterLink;
         
         private const string CarouselItems = ".feature-carousel-items";
 
@@ -179,6 +180,8 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         private const string BrotherAdminTeam = "#main > div > div > div:nth-child(3) > article > table > tbody > tr:nth-child(2) > td:nth-child(1) > a";
 
         private const string BrotherNetworkLogin = "#login_form > table > tbody > tr > td:nth-child(2) > div:nth-child(1) > div > div:nth-child(7)";
+
+        private const string PrinterFooter = "#footer-products > li:nth-child(1) > a";
 
 
         public void IsSuppliesLinkAvailable()
@@ -602,6 +605,13 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
             action.MoveToElement(submenu).Build().Perform();
             submenu.Click();
          }
+
+        public void ClickPrinterFooterLink()
+        {
+            WaitForElementToExistByCssSelector(PrinterFooter);
+            MoveToElement(PrinterFooterLink);
+            PrinterFooterLink.Click();
+        }
         
         
     }

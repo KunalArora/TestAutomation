@@ -1,15 +1,23 @@
-﻿using System;
+﻿using Brother.WebSites.Core.Pages.Base;
+using Brother.WebSites.Core.Pages8._0.BrotherMainSite;
 using TechTalk.SpecFlow;
+using MainSiteHomePage = Brother.WebSites.Core.Pages.BrotherMainSite.MainSiteHomePage;
 
 namespace Brother.Tests.Specs._80.Test_Steps.BrotherMainSite.FooterNavigation
 {
     [Binding]
-    public class ProductsFooterSteps
+    public class ProductsFooterSteps: BaseSteps
     {
         [Then(@"I click the printers option under the products page footer")]
         public void ThenIClickThePrintersOptionUnderTheProductsPageFooter()
         {
-            ScenarioContext.Current.Pending();
+            CurrentPage.As<MainSiteHomePage>().ClickPrinterFooterLink();
+        }
+
+        [Then(@"I am navigated to the printers page via the footer link")]
+        public void ThenIAmNavigatedToPrintersPageViaFooterLink()
+        {
+            CurrentPage.As<MainSiteHomePage>().HasPrintersPageLoaded();
         }
         
         [Then(@"I click the scanners option under the products page footer")]
