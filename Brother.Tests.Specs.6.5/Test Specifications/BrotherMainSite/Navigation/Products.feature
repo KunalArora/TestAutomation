@@ -113,6 +113,14 @@ Scenario: User is able to navigate to view compact scanners
 	Then I click to view compact scanners
 	Then I am navigated to view compact scanners
 
+# Desktop scanners
+Scenario: User is able to navigate to view desktop scanners 
+	Given I have navigated to the Brother Main Site "United Kingdom" products pages
+	Then I hover over the top products menu button
+	Then I hover and click the scanners option
+	Then I click to view desktop scanners
+	Then I am navigated to view desktop scanners
+
 
 
 

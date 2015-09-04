@@ -100,6 +100,9 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         [FindsBy(How = How.CssSelector, Using = "#content_0_ctl01_headercontent_2_li > article > h2")]
         public IWebElement ViewCompactScannersLink;
 
+        [FindsBy(How = How.CssSelector, Using = "#content_0_ctl01_headercontent_3_li > article > h4:nth-child(3)")]
+        public IWebElement ViewDesktopScannersLink;
+
         //[FindsBy(How = How.CssSelector, Using = "#main > div > div > div:nth-child(3) > div > div > p:nth-child(5) > a")]
         [FindsBy(How = How.ClassName, Using = "button-orange")]
         public IWebElement ViewAllProductsOrangeButton;
@@ -112,6 +115,9 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         [FindsBy(How = How.Id, Using = "buybutton")]
         public IWebElement BuyOnlineButton;
+
+        [FindsBy(How = How.CssSelector, Using = "#results > article:nth-child(1) > div.price-listings-info > p:nth-child(3) > a")]
+        public IWebElement ViewDetailsLink;
         
         private const string CarouselItems = ".feature-carousel-items";
 
@@ -132,6 +138,8 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         private const string AllProductsOrangeButton = "button-orange";
 
         private const string BuyOnlineBtn = "buybutton";
+
+        private const string ViewDetails = "#results > article:nth-child(1) > div.price-listings-info > p:nth-child(3) > a";
 
         private const string MonoLaserMenuOpt = "#main > div > div > div:nth-child(3) > div > ul.nav.cf > li:nth-child(2) > a";
 
@@ -156,6 +164,8 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         private const string PortableScannersLink= "#content_0_ctl01_headercontent_1_li > article > h2";
 
         private const string CompactScannersLink = "#content_0_ctl01_headercontent_1_li > article > h2";
+
+        private const string DesktopScannersLink = "#content_0_ctl01_headercontent_3_li > article > h4:nth-child(3)";
 
         private const string BrotherAdminTeam = "#main > div > div > div:nth-child(3) > article > table > tbody > tr:nth-child(2) > td:nth-child(1) > a";
 
@@ -441,6 +451,14 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
             return GetInstance<MainSiteHomePage>(Driver);
         }
 
+        public MainSiteHomePage ViewDesktopScanners()
+        {
+            WaitForElementToExistByCssSelector(DesktopScannersLink);
+            MoveToElement(ViewDesktopScannersLink);
+            ViewDesktopScannersLink.Click();
+            return GetInstance<MainSiteHomePage>(Driver);
+        }
+
         public MainSiteHomePage ViewTheWorkgroupPrinter()
         {
             WaitForElementToExistByCssSelector(ViewWorkgroupPrinterBtn);
@@ -545,6 +563,15 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
                 throw new NullReferenceException("Compact scanners page has not loaded");
             }
             AssertElementPresent(BuyOnlineButton, "Buy online button");
+        }
+        public void HasDesktopScannersPageLoaded()
+        {
+            WaitForElementToExistByCssSelector(ViewDetails);
+            if (ViewDetailsLink == null)
+            {
+                throw new NullReferenceException("Desktop scanners page has not loaded");
+            }
+            AssertElementPresent(ViewDetailsLink, "View details link");
         }
 
         public void HoverAndClickBrotherNetwork()
