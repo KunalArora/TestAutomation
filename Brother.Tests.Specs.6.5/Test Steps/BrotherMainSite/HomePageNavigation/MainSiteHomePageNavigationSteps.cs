@@ -184,10 +184,17 @@ namespace Brother.Tests.Specs.BrotherMainSite.HomePageNavigation
         {
             CurrentPage.As<MainSiteHomePage>().ViewPortableScanners();
         }
+
         [Then(@"I click to view compact scanners")]
         public void ThenIClickToViewCompactScanners()
         {
             CurrentPage.As<MainSiteHomePage>().ViewCompactScanners();
+        }
+
+        [Then(@"I click to view desktop scanners")]
+        public void ThenIClickToViewDesktopScanners()
+        {
+            CurrentPage.As<MainSiteHomePage>().ViewDesktopScanners();
         }
 
         [Then(@"I click to view the workgroup printer")]
@@ -254,6 +261,12 @@ namespace Brother.Tests.Specs.BrotherMainSite.HomePageNavigation
         public void ThenIAmNavigatedToViewCompactScanners()
         {
             CurrentPage.As<MainSiteHomePage>().HasCompactScannersPageLoaded();
+        }
+
+        [Then(@"I am navigated to view desktop scanners")]
+        public void ThenIAmNavigatedToViewDesktopScanners()
+        {
+            CurrentPage.As<MainSiteHomePage>().HasDesktopScannersPageLoaded();
         }
 
     }
