@@ -128,6 +128,7 @@
     <Compile Include="Test Steps\BrotherMainSite\FooterNavigation\SupportMenuSteps.cs" />
     <Compile Include="Test Steps\BrotherMainSite\FooterNavigation\WebsiteInformationMenuSteps.cs" />
     <Compile Include="Test Steps\BrotherMainSite\HomePageNavigation\MainSiteHomePageNavigationSteps.cs" />
+    <Compile Include="Test Steps\BrotherMainSite\HomePageNavigation\ProductsMenuSteps.cs" />
     <Compile Include="Test Steps\BrotherMainSite\PrinterSearch\PrinterSearchSteps.cs" />
     <Compile Include="Test Steps\Global\GlobalSteps.cs" />
     <Compile Include="Test Steps\OmniJoin\FreeTrial\FreeTrialSteps.cs" />
