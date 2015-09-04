@@ -14,6 +14,39 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 {
     public class Sql : Helper
     {
+
+        public static void SetDatabaseConnection()
+        {
+            var sqlServer = GetSqlServer();
+            var connString = ConfigurationManager.ConnectionStrings["Brother_MM_UserDataEntities"].ConnectionString;
+
+            var connectionStrings = connString.Split(';');
+            var fullString = string.Empty; 
+
+            foreach (var cString in connectionStrings)
+            {
+
+                if (cString.Contains("provider connection string"))
+                {
+                    var dbString = cString.Split('=');
+                    var newString = string.Format("{0}={1}={2}", dbString[0], dbString[1], sqlServer);
+                    fullString = fullString += newString;
+                }
+                else
+                {
+                    fullString = fullString += cString;
+                }
+            }
+
+            var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            var connectionStringsSection = (ConnectionStringsSection)config.GetSection("connectionStrings");
+            connectionStringsSection.ConnectionStrings["Brother_MM_UserDataEntities"].ConnectionString = fullString;
+            config.Save();
+            ConfigurationManager.RefreshSection("connectionStrings");
+
+            
+        }
+
         /// <summary>
         /// GetUserBpId()
         /// 
@@ -22,24 +55,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         /// </summary>
         public static string GetUserBpId(string emailAddress)
         {
-            var connString = ConfigurationManager.ConnectionStrings["Brother_MM_UserDataEntities"].ConnectionString;
-            
-            var connectionStrings = connString.Split(';');
-
-            foreach (var cString in connectionStrings)
-            {
-                if (cString.Contains("provider connection string"))
-                {
-                    var dbString = cString;
-                }
-
-            }
-
-            if (GetSqlServer() == "TEST")
-            {
-                //var connString = ConfigurationManager.ConnectionStrings["connectionString"];
-            }
-
+            SetDatabaseConnection();
             using (var brotherContext = new Brother_MM_UserDataEntities())
             {
                 try

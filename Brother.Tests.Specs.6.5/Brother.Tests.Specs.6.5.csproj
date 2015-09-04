@@ -53,8 +53,10 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="TechTalk.SpecFlow">
       <HintPath>..\Dependencies\SpecFlow\SpecFlow.1.9.0\lib\net35\TechTalk.SpecFlow.dll</HintPath>
     </Reference>
@@ -428,6 +430,7 @@
   <ItemGroup>
     <None Include="App.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
     <None Include="packages.config">
       <SubType>Designer</SubType>
@@ -714,8 +717,19 @@
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
+      <PropertyGroup>
+        <NUnitHome>C:/Program Files (x86)/NUnit 2.6.2</NUnitHome>
+        <NUnitConsole>&quot;$(NUnitHome)\bin\nunit-console.exe&quot;</NUnitConsole>
+        <testResultsTxt>&quot;$(teamcity_build_checkoutDir)/TestResult.txt&quot;</testResultsTxt>
+        <testResultsXml>&quot;$(teamcity_build_checkoutDir)/TestResult.xml&quot;</testResultsXml>
+        <projectFile>&quot;$(teamcity_build_checkoutDir)\CrazyEvents.AcceptanceTests\CrazyEvents.AcceptanceTests.csproj&quot;</projectFile>
+      </PropertyGroup>
+ 
+    <Target Name="RunTests">
+      <Exec Command="$(NUnitConsole) /labels /out=$(testResultsTxt) /xml=$(testResultsXml) $(projectFile)"/>
+    </Target>  
   </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+    <Target Name="AfterBuild">
+    </Target>
+    -->
 </Project>
