@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherMainSite.SuppliesAndAccessories;
 using Brother.WebSites.Core.Pages.BrotherMainSite.SuppliesAndAccessories.Printers;
@@ -143,7 +144,6 @@ namespace Brother.WebSites.Core.Pages8._0.BrotherMainSite
 
       public void HoverAndClickBrotherNetwork()
       { 
-           
           WaitForElementToExistByXPath(BrotherNetworkId, 1, 3);
           BrotherNetwork.Click();
         }
