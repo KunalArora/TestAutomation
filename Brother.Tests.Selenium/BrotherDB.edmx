@@ -4,10 +4,131 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Brother_MM_UserDataModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Brother_MM_UserDataModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="Brother_MM_UserDataModelStoreContainer">
+          <EntitySet Name="ActivationCode" EntityType="Brother_MM_UserDataModel.Store.ActivationCode" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Dealership" EntityType="Brother_MM_UserDataModel.Store.Dealership" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="DealershipCustomer" EntityType="Brother_MM_UserDataModel.Store.DealershipCustomer" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="DealershipCustomerProduct" EntityType="Brother_MM_UserDataModel.Store.DealershipCustomerProduct" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserProduct" EntityType="Brother_MM_UserDataModel.Store.UserProduct" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Users" EntityType="Brother_MM_UserDataModel.Store.Users" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_ActivationCode_Dealership" Association="Brother_MM_UserDataModel.Store.FK_ActivationCode_Dealership">
+            <End Role="Dealership" EntitySet="Dealership" />
+            <End Role="ActivationCode" EntitySet="ActivationCode" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ActivationCode_Users" Association="Brother_MM_UserDataModel.Store.FK_ActivationCode_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ActivationCode" EntitySet="ActivationCode" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ActivationCode_Users1" Association="Brother_MM_UserDataModel.Store.FK_ActivationCode_Users1">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ActivationCode" EntitySet="ActivationCode" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DealershipCustomer_Dealership" Association="Brother_MM_UserDataModel.Store.FK_DealershipCustomer_Dealership">
+            <End Role="Dealership" EntitySet="Dealership" />
+            <End Role="DealershipCustomer" EntitySet="DealershipCustomer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DealershipCustomer_Users" Association="Brother_MM_UserDataModel.Store.FK_DealershipCustomer_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="DealershipCustomer" EntitySet="DealershipCustomer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DealershipCustomerProduct_DealershipCustomer" Association="Brother_MM_UserDataModel.Store.FK_DealershipCustomerProduct_DealershipCustomer">
+            <End Role="DealershipCustomer" EntitySet="DealershipCustomer" />
+            <End Role="DealershipCustomerProduct" EntitySet="DealershipCustomerProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserProduct_Users" Association="Brother_MM_UserDataModel.Store.FK_UserProduct_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserProduct" EntitySet="UserProduct" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="ActivationCode">
+          <Key>
+            <PropertyRef Name="ActivationCode" />
+          </Key>
+          <Property Name="ActivationCode" Type="nvarchar" Nullable="false" MaxLength="14" />
+          <Property Name="DealershipId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DealershipUserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CustomerUserId" Type="uniqueidentifier" />
+          <Property Name="BusinessApplicationItemId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ProductPlanItemId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="LicenceType" Type="int" Nullable="false" />
+          <Property Name="PriceIncSalesTax" Type="decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="PriceExSalesTax" Type="decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="TerritoryCountryCode" Type="nvarchar" Nullable="false" MaxLength="5" />
+          <Property Name="TermInMonths" Type="int" Nullable="false" />
+          <Property Name="DateActivated" Type="datetime" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="msrepl_tran_version" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="EffectiveDate" Type="datetime" />
+          <Property Name="NumberOfLicences" Type="int" Nullable="false" />
+          <Property Name="LicenceTypeId" Type="uniqueidentifier" />
+          <Property Name="SupersededBy" Type="nvarchar" MaxLength="14" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Dealership">
+          <Key>
+            <PropertyRef Name="DealershipId" />
+          </Key>
+          <Property Name="DealershipId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="250" />
+          <Property Name="AddressLine1" Type="nvarchar(max)" />
+          <Property Name="AddressLine2" Type="nvarchar(max)" />
+          <Property Name="AddressLine3" Type="nvarchar(max)" />
+          <Property Name="City" Type="nvarchar(max)" />
+          <Property Name="Country" Type="nvarchar(max)" />
+          <Property Name="Postcode" Type="nvarchar" MaxLength="50" />
+          <Property Name="BuildingName" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="HouseNumber" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar" MaxLength="254" />
+          <Property Name="SLXAccountId" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="BusinessPartnerId" Type="nvarchar" MaxLength="10" />
+          <Property Name="BEIPCustomerNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateUpdated" Type="datetime" />
+          <Property Name="msrepl_tran_version" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PrimaryAdminUserId" Type="uniqueidentifier" />
+          <Property Name="Language" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="DealershipCustomer">
+          <Key>
+            <PropertyRef Name="DealershipId" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="DealershipId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CompanyName" Type="nvarchar(max)" />
+          <Property Name="DealerManageDevicesAccepted" Type="bit" />
+          <Property Name="msrepl_tran_version" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Deleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="DealershipCustomerProduct">
+          <Key>
+            <PropertyRef Name="DealershipId" />
+            <PropertyRef Name="BusinessApplicationId" />
+            <PropertyRef Name="DealershipCustomerUserId" />
+          </Key>
+          <Property Name="DealershipId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="BusinessApplicationId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DealershipCustomerUserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DateCancelled" Type="datetime" />
+          <Property Name="SubscriptionExpiredEmailSent" Type="datetime" />
+          <Property Name="SubscriptionRenewalDueEmailSent" Type="datetime" />
+          <Property Name="msrepl_tran_version" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserProduct">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="ProductItemId" />
+          </Key>
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ProductItemId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ProductPlanItemId" Type="uniqueidentifier" />
+          <Property Name="OrderId" Type="bigint" />
+          <Property Name="msrepl_tran_version" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ExpiryDate" Type="datetime" />
+          <Property Name="SubscriptionRenewalDueEmailSent" Type="datetime" />
+        </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="UserId" />
@@ -46,13 +167,133 @@
           <Property Name="TaxNumber1" Type="nvarchar(max)" />
           <Property Name="IsBusinessAccount" Type="bit" />
         </EntityType>
-      </Schema>
-    </edmx:StorageModels>
+        <Association Name="FK_ActivationCode_Dealership">
+          <End Role="Dealership" Type="Brother_MM_UserDataModel.Store.Dealership" Multiplicity="1" />
+          <End Role="ActivationCode" Type="Brother_MM_UserDataModel.Store.ActivationCode" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dealership">
+              <PropertyRef Name="DealershipId" />
+            </Principal>
+            <Dependent Role="ActivationCode">
+              <PropertyRef Name="DealershipId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ActivationCode_Users">
+          <End Role="Users" Type="Brother_MM_UserDataModel.Store.Users" Multiplicity="0..1" />
+          <End Role="ActivationCode" Type="Brother_MM_UserDataModel.Store.ActivationCode" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="ActivationCode">
+              <PropertyRef Name="CustomerUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ActivationCode_Users1">
+          <End Role="Users" Type="Brother_MM_UserDataModel.Store.Users" Multiplicity="1" />
+          <End Role="ActivationCode" Type="Brother_MM_UserDataModel.Store.ActivationCode" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="ActivationCode">
+              <PropertyRef Name="DealershipUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DealershipCustomer_Dealership">
+          <End Role="Dealership" Type="Brother_MM_UserDataModel.Store.Dealership" Multiplicity="1" />
+          <End Role="DealershipCustomer" Type="Brother_MM_UserDataModel.Store.DealershipCustomer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dealership">
+              <PropertyRef Name="DealershipId" />
+            </Principal>
+            <Dependent Role="DealershipCustomer">
+              <PropertyRef Name="DealershipId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DealershipCustomer_Users">
+          <End Role="Users" Type="Brother_MM_UserDataModel.Store.Users" Multiplicity="1" />
+          <End Role="DealershipCustomer" Type="Brother_MM_UserDataModel.Store.DealershipCustomer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="DealershipCustomer">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DealershipCustomerProduct_DealershipCustomer">
+          <End Role="DealershipCustomer" Type="Brother_MM_UserDataModel.Store.DealershipCustomer" Multiplicity="1" />
+          <End Role="DealershipCustomerProduct" Type="Brother_MM_UserDataModel.Store.DealershipCustomerProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DealershipCustomer">
+              <PropertyRef Name="DealershipId" />
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="DealershipCustomerProduct">
+              <PropertyRef Name="DealershipId" />
+              <PropertyRef Name="DealershipCustomerUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserProduct_Users">
+          <End Role="Users" Type="Brother_MM_UserDataModel.Store.Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserProduct" Type="Brother_MM_UserDataModel.Store.UserProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserProduct">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Brother_MM_UserDataModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="Brother_MM_UserDataEntities" p1:LazyLoadingEnabled="true">
           <EntitySet Name="Users" EntityType="Brother_MM_UserDataModel.User" />
+          <EntitySet Name="ActivationCodes" EntityType="Brother_MM_UserDataModel.ActivationCode" />
+          <EntitySet Name="Dealerships" EntityType="Brother_MM_UserDataModel.Dealership" />
+          <EntitySet Name="DealershipCustomers" EntityType="Brother_MM_UserDataModel.DealershipCustomer" />
+          <EntitySet Name="DealershipCustomerProducts" EntityType="Brother_MM_UserDataModel.DealershipCustomerProduct" />
+          <EntitySet Name="UserProducts" EntityType="Brother_MM_UserDataModel.UserProduct" />
+          <AssociationSet Name="FK_ActivationCode_Dealership" Association="Brother_MM_UserDataModel.FK_ActivationCode_Dealership">
+            <End Role="Dealership" EntitySet="Dealerships" />
+            <End Role="ActivationCode" EntitySet="ActivationCodes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ActivationCode_Users" Association="Brother_MM_UserDataModel.FK_ActivationCode_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="ActivationCode" EntitySet="ActivationCodes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ActivationCode_Users1" Association="Brother_MM_UserDataModel.FK_ActivationCode_Users1">
+            <End Role="User" EntitySet="Users" />
+            <End Role="ActivationCode" EntitySet="ActivationCodes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DealershipCustomer_Dealership" Association="Brother_MM_UserDataModel.FK_DealershipCustomer_Dealership">
+            <End Role="Dealership" EntitySet="Dealerships" />
+            <End Role="DealershipCustomer" EntitySet="DealershipCustomers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DealershipCustomer_Users" Association="Brother_MM_UserDataModel.FK_DealershipCustomer_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="DealershipCustomer" EntitySet="DealershipCustomers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DealershipCustomerProduct_DealershipCustomer" Association="Brother_MM_UserDataModel.FK_DealershipCustomerProduct_DealershipCustomer">
+            <End Role="DealershipCustomer" EntitySet="DealershipCustomers" />
+            <End Role="DealershipCustomerProduct" EntitySet="DealershipCustomerProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserProduct_Users" Association="Brother_MM_UserDataModel.FK_UserProduct_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserProduct" EntitySet="UserProducts" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="User">
           <Key>
@@ -91,7 +332,197 @@
           <Property Name="VatNumber" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="TaxNumber1" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="IsBusinessAccount" Type="Boolean" />
+          <NavigationProperty Name="ActivationCodes" Relationship="Brother_MM_UserDataModel.FK_ActivationCode_Users" FromRole="User" ToRole="ActivationCode" />
+          <NavigationProperty Name="ActivationCodes1" Relationship="Brother_MM_UserDataModel.FK_ActivationCode_Users1" FromRole="User" ToRole="ActivationCode" />
+          <NavigationProperty Name="DealershipCustomers" Relationship="Brother_MM_UserDataModel.FK_DealershipCustomer_Users" FromRole="User" ToRole="DealershipCustomer" />
+          <NavigationProperty Name="UserProducts" Relationship="Brother_MM_UserDataModel.FK_UserProduct_Users" FromRole="User" ToRole="UserProduct" />
         </EntityType>
+        <EntityType Name="ActivationCode">
+          <Key>
+            <PropertyRef Name="ActivationCode1" />
+          </Key>
+          <Property Type="String" Name="ActivationCode1" Nullable="false" MaxLength="14" FixedLength="false" Unicode="true" />
+          <Property Type="Guid" Name="DealershipId" Nullable="false" />
+          <Property Type="Guid" Name="DealershipUserId" Nullable="false" />
+          <Property Type="Guid" Name="CustomerUserId" />
+          <Property Type="Guid" Name="BusinessApplicationItemId" Nullable="false" />
+          <Property Type="Guid" Name="ProductPlanItemId" Nullable="false" />
+          <Property Type="Int32" Name="LicenceType" Nullable="false" />
+          <Property Type="Decimal" Name="PriceIncSalesTax" Nullable="false" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="PriceExSalesTax" Nullable="false" Precision="19" Scale="4" />
+          <Property Type="String" Name="TerritoryCountryCode" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="TermInMonths" Nullable="false" />
+          <Property Type="DateTime" Name="DateActivated" Precision="3" />
+          <Property Type="DateTime" Name="DateCreated" Nullable="false" Precision="3" />
+          <Property Type="Guid" Name="msrepl_tran_version" Nullable="false" />
+          <Property Type="DateTime" Name="EffectiveDate" Precision="3" />
+          <Property Type="Int32" Name="NumberOfLicences" Nullable="false" />
+          <Property Type="Guid" Name="LicenceTypeId" />
+          <Property Type="String" Name="SupersededBy" MaxLength="14" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Comment" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Dealership" Relationship="Brother_MM_UserDataModel.FK_ActivationCode_Dealership" FromRole="ActivationCode" ToRole="Dealership" />
+          <NavigationProperty Name="User" Relationship="Brother_MM_UserDataModel.FK_ActivationCode_Users" FromRole="ActivationCode" ToRole="User" />
+          <NavigationProperty Name="User1" Relationship="Brother_MM_UserDataModel.FK_ActivationCode_Users1" FromRole="ActivationCode" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Dealership">
+          <Key>
+            <PropertyRef Name="DealershipId" />
+          </Key>
+          <Property Type="Guid" Name="DealershipId" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AddressLine1" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AddressLine2" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AddressLine3" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="City" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Country" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Postcode" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="BuildingName" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PhoneNumber" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="HouseNumber" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Email" MaxLength="254" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SLXAccountId" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="BusinessPartnerId" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="BEIPCustomerNo" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="DateCreated" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="DateUpdated" Precision="3" />
+          <Property Type="Guid" Name="msrepl_tran_version" Nullable="false" />
+          <Property Type="Guid" Name="PrimaryAdminUserId" />
+          <Property Type="String" Name="Language" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ActivationCodes" Relationship="Brother_MM_UserDataModel.FK_ActivationCode_Dealership" FromRole="Dealership" ToRole="ActivationCode" />
+          <NavigationProperty Name="DealershipCustomers" Relationship="Brother_MM_UserDataModel.FK_DealershipCustomer_Dealership" FromRole="Dealership" ToRole="DealershipCustomer" />
+        </EntityType>
+        <EntityType Name="DealershipCustomer">
+          <Key>
+            <PropertyRef Name="DealershipId" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Type="Guid" Name="DealershipId" Nullable="false" />
+          <Property Type="Guid" Name="UserId" Nullable="false" />
+          <Property Type="String" Name="CompanyName" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="DealerManageDevicesAccepted" />
+          <Property Type="Guid" Name="msrepl_tran_version" Nullable="false" />
+          <Property Type="Boolean" Name="Deleted" />
+          <NavigationProperty Name="Dealership" Relationship="Brother_MM_UserDataModel.FK_DealershipCustomer_Dealership" FromRole="DealershipCustomer" ToRole="Dealership" />
+          <NavigationProperty Name="User" Relationship="Brother_MM_UserDataModel.FK_DealershipCustomer_Users" FromRole="DealershipCustomer" ToRole="User" />
+          <NavigationProperty Name="DealershipCustomerProducts" Relationship="Brother_MM_UserDataModel.FK_DealershipCustomerProduct_DealershipCustomer" FromRole="DealershipCustomer" ToRole="DealershipCustomerProduct" />
+        </EntityType>
+        <EntityType Name="DealershipCustomerProduct">
+          <Key>
+            <PropertyRef Name="DealershipId" />
+            <PropertyRef Name="BusinessApplicationId" />
+            <PropertyRef Name="DealershipCustomerUserId" />
+          </Key>
+          <Property Type="Guid" Name="DealershipId" Nullable="false" />
+          <Property Type="Guid" Name="BusinessApplicationId" Nullable="false" />
+          <Property Type="Guid" Name="DealershipCustomerUserId" Nullable="false" />
+          <Property Type="DateTime" Name="DateCancelled" Precision="3" />
+          <Property Type="DateTime" Name="SubscriptionExpiredEmailSent" Precision="3" />
+          <Property Type="DateTime" Name="SubscriptionRenewalDueEmailSent" Precision="3" />
+          <Property Type="Guid" Name="msrepl_tran_version" Nullable="false" />
+          <NavigationProperty Name="DealershipCustomer" Relationship="Brother_MM_UserDataModel.FK_DealershipCustomerProduct_DealershipCustomer" FromRole="DealershipCustomerProduct" ToRole="DealershipCustomer" />
+        </EntityType>
+        <EntityType Name="UserProduct">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="ProductItemId" />
+          </Key>
+          <Property Type="Guid" Name="UserId" Nullable="false" />
+          <Property Type="Guid" Name="ProductItemId" Nullable="false" />
+          <Property Type="Guid" Name="ProductPlanItemId" />
+          <Property Type="Int64" Name="OrderId" />
+          <Property Type="Guid" Name="msrepl_tran_version" Nullable="false" />
+          <Property Type="DateTime" Name="ExpiryDate" Precision="3" />
+          <Property Type="DateTime" Name="SubscriptionRenewalDueEmailSent" Precision="3" />
+          <NavigationProperty Name="User" Relationship="Brother_MM_UserDataModel.FK_UserProduct_Users" FromRole="UserProduct" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_ActivationCode_Dealership">
+          <End Type="Brother_MM_UserDataModel.Dealership" Role="Dealership" Multiplicity="1" />
+          <End Type="Brother_MM_UserDataModel.ActivationCode" Role="ActivationCode" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dealership">
+              <PropertyRef Name="DealershipId" />
+            </Principal>
+            <Dependent Role="ActivationCode">
+              <PropertyRef Name="DealershipId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ActivationCode_Users">
+          <End Type="Brother_MM_UserDataModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="Brother_MM_UserDataModel.ActivationCode" Role="ActivationCode" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="ActivationCode">
+              <PropertyRef Name="CustomerUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ActivationCode_Users1">
+          <End Type="Brother_MM_UserDataModel.User" Role="User" Multiplicity="1" />
+          <End Type="Brother_MM_UserDataModel.ActivationCode" Role="ActivationCode" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="ActivationCode">
+              <PropertyRef Name="DealershipUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DealershipCustomer_Dealership">
+          <End Type="Brother_MM_UserDataModel.Dealership" Role="Dealership" Multiplicity="1" />
+          <End Type="Brother_MM_UserDataModel.DealershipCustomer" Role="DealershipCustomer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dealership">
+              <PropertyRef Name="DealershipId" />
+            </Principal>
+            <Dependent Role="DealershipCustomer">
+              <PropertyRef Name="DealershipId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DealershipCustomer_Users">
+          <End Type="Brother_MM_UserDataModel.User" Role="User" Multiplicity="1" />
+          <End Type="Brother_MM_UserDataModel.DealershipCustomer" Role="DealershipCustomer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="DealershipCustomer">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DealershipCustomerProduct_DealershipCustomer">
+          <End Type="Brother_MM_UserDataModel.DealershipCustomer" Role="DealershipCustomer" Multiplicity="1" />
+          <End Type="Brother_MM_UserDataModel.DealershipCustomerProduct" Role="DealershipCustomerProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DealershipCustomer">
+              <PropertyRef Name="DealershipId" />
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="DealershipCustomerProduct">
+              <PropertyRef Name="DealershipId" />
+              <PropertyRef Name="DealershipCustomerUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserProduct_Users">
+          <End Type="Brother_MM_UserDataModel.User" Role="User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Brother_MM_UserDataModel.UserProduct" Role="UserProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserProduct">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -134,6 +565,95 @@
                 <ScalarProperty Name="VatNumber" ColumnName="VatNumber" />
                 <ScalarProperty Name="TaxNumber1" ColumnName="TaxNumber1" />
                 <ScalarProperty Name="IsBusinessAccount" ColumnName="IsBusinessAccount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ActivationCodes">
+            <EntityTypeMapping TypeName="Brother_MM_UserDataModel.ActivationCode">
+              <MappingFragment StoreEntitySet="ActivationCode">
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="SupersededBy" ColumnName="SupersededBy" />
+                <ScalarProperty Name="LicenceTypeId" ColumnName="LicenceTypeId" />
+                <ScalarProperty Name="NumberOfLicences" ColumnName="NumberOfLicences" />
+                <ScalarProperty Name="EffectiveDate" ColumnName="EffectiveDate" />
+                <ScalarProperty Name="msrepl_tran_version" ColumnName="msrepl_tran_version" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateActivated" ColumnName="DateActivated" />
+                <ScalarProperty Name="TermInMonths" ColumnName="TermInMonths" />
+                <ScalarProperty Name="TerritoryCountryCode" ColumnName="TerritoryCountryCode" />
+                <ScalarProperty Name="PriceExSalesTax" ColumnName="PriceExSalesTax" />
+                <ScalarProperty Name="PriceIncSalesTax" ColumnName="PriceIncSalesTax" />
+                <ScalarProperty Name="LicenceType" ColumnName="LicenceType" />
+                <ScalarProperty Name="ProductPlanItemId" ColumnName="ProductPlanItemId" />
+                <ScalarProperty Name="BusinessApplicationItemId" ColumnName="BusinessApplicationItemId" />
+                <ScalarProperty Name="CustomerUserId" ColumnName="CustomerUserId" />
+                <ScalarProperty Name="DealershipUserId" ColumnName="DealershipUserId" />
+                <ScalarProperty Name="DealershipId" ColumnName="DealershipId" />
+                <ScalarProperty Name="ActivationCode1" ColumnName="ActivationCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dealerships">
+            <EntityTypeMapping TypeName="Brother_MM_UserDataModel.Dealership">
+              <MappingFragment StoreEntitySet="Dealership">
+                <ScalarProperty Name="Language" ColumnName="Language" />
+                <ScalarProperty Name="PrimaryAdminUserId" ColumnName="PrimaryAdminUserId" />
+                <ScalarProperty Name="msrepl_tran_version" ColumnName="msrepl_tran_version" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="BEIPCustomerNo" ColumnName="BEIPCustomerNo" />
+                <ScalarProperty Name="BusinessPartnerId" ColumnName="BusinessPartnerId" />
+                <ScalarProperty Name="SLXAccountId" ColumnName="SLXAccountId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="HouseNumber" ColumnName="HouseNumber" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="BuildingName" ColumnName="BuildingName" />
+                <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="AddressLine3" ColumnName="AddressLine3" />
+                <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+                <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DealershipId" ColumnName="DealershipId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DealershipCustomers">
+            <EntityTypeMapping TypeName="Brother_MM_UserDataModel.DealershipCustomer">
+              <MappingFragment StoreEntitySet="DealershipCustomer">
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="msrepl_tran_version" ColumnName="msrepl_tran_version" />
+                <ScalarProperty Name="DealerManageDevicesAccepted" ColumnName="DealerManageDevicesAccepted" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="DealershipId" ColumnName="DealershipId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DealershipCustomerProducts">
+            <EntityTypeMapping TypeName="Brother_MM_UserDataModel.DealershipCustomerProduct">
+              <MappingFragment StoreEntitySet="DealershipCustomerProduct">
+                <ScalarProperty Name="msrepl_tran_version" ColumnName="msrepl_tran_version" />
+                <ScalarProperty Name="SubscriptionRenewalDueEmailSent" ColumnName="SubscriptionRenewalDueEmailSent" />
+                <ScalarProperty Name="SubscriptionExpiredEmailSent" ColumnName="SubscriptionExpiredEmailSent" />
+                <ScalarProperty Name="DateCancelled" ColumnName="DateCancelled" />
+                <ScalarProperty Name="DealershipCustomerUserId" ColumnName="DealershipCustomerUserId" />
+                <ScalarProperty Name="BusinessApplicationId" ColumnName="BusinessApplicationId" />
+                <ScalarProperty Name="DealershipId" ColumnName="DealershipId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserProducts">
+            <EntityTypeMapping TypeName="Brother_MM_UserDataModel.UserProduct">
+              <MappingFragment StoreEntitySet="UserProduct">
+                <ScalarProperty Name="SubscriptionRenewalDueEmailSent" ColumnName="SubscriptionRenewalDueEmailSent" />
+                <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+                <ScalarProperty Name="msrepl_tran_version" ColumnName="msrepl_tran_version" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="ProductPlanItemId" ColumnName="ProductPlanItemId" />
+                <ScalarProperty Name="ProductItemId" ColumnName="ProductItemId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

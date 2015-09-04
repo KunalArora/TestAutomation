@@ -95,6 +95,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActivationCode.cs">
+      <DependentUpon>BrotherDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="BrotherDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -109,6 +112,15 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BrotherDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Dealership.cs">
+      <DependentUpon>BrotherDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DealershipCustomer.cs">
+      <DependentUpon>BrotherDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DealershipCustomerProduct.cs">
+      <DependentUpon>BrotherDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\SeleniumGlobal.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -135,6 +147,9 @@
     <Compile Include="Support\SpecFlow\SpecFlowSeleniumException.cs" />
     <Compile Include="Support\Misc\WebDriverPackage.cs" />
     <Compile Include="User.cs">
+      <DependentUpon>BrotherDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserProduct.cs">
       <DependentUpon>BrotherDB.tt</DependentUpon>
     </Compile>
   </ItemGroup>

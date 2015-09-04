@@ -27,6 +27,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         private const string MyAddressDetailsMenuItem = "8619a6b9-7f08-4c4f-9de5-9db6d84bbc5d";
         private const string MySignInDetailsMenuItem = "e4343ecf-39fd-4545-b762-0a81b3425c3e";
         private const string WebConferencingMenuItem = "361cd1bc-c29d-4fe4-887e-196d6c5112a6";
+        private const string PartnerPortalMenuItem = "2b729802-bb0d-4619-8090-dad02b2c217f";
 
         //private const string SideNavMenu = @".side-nav";
         private const string ProductList = @"#product-list";
@@ -329,6 +330,15 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             backToBrotherOnlineButton.Click();
             return GetInstance<WelcomeBackPage>(driver, "", "");
         }
+        
+        public static WelcomeBackPage PartnerPortalMenuItemClick(IWebDriver driver)
+        {
+            var partnerPortalMenu = driver.FindElement(By.Id(PartnerPortalMenuItem));
+            AssertElementPresent(partnerPortalMenu, "Back to Brother Online Button");
+            partnerPortalMenu.Click();
+            return GetInstance<WelcomeBackPage>(driver, "", "");
+        }
+
 
         public static ManagePlanPage ManageOmniJoinPlanButtonClick(IWebDriver driver, IWebElement button)
         {

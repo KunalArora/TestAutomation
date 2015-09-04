@@ -26,7 +26,10 @@ namespace Brother.Tests.Selenium.Lib
         }
     
         public DbSet<User> Users { get; set; }
-
-
+        public DbSet<ActivationCode> ActivationCodes { get; set; }
+        public DbSet<Dealership> Dealerships { get; set; }
+        public DbSet<DealershipCustomer> DealershipCustomers { get; set; }
+        public DbSet<DealershipCustomerProduct> DealershipCustomerProducts { get; set; }
+        public DbSet<UserProduct> UserProducts { get; set; }
     }
 }

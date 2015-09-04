@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using System.Linq;
+using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
 using OpenQA.Selenium.Support.UI;
@@ -20,7 +22,23 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         /// </summary>
         public static string GetUserBpId(string emailAddress)
         {
-            var userBpid = string.Empty;
+            var connString = ConfigurationManager.ConnectionStrings["Brother_MM_UserDataEntities"].ConnectionString;
+            
+            var connectionStrings = connString.Split(';');
+
+            foreach (var cString in connectionStrings)
+            {
+                if (cString.Contains("provider connection string"))
+                {
+                    var dbString = cString;
+                }
+
+            }
+
+            if (GetSqlServer() == "TEST")
+            {
+                //var connString = ConfigurationManager.ConnectionStrings["connectionString"];
+            }
 
             using (var brotherContext = new Brother_MM_UserDataEntities())
             {
@@ -68,9 +86,9 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         /// GetOrpDealerId()
         /// 
         /// </summary>
-        public static string GetOrpDealerId(string emailAddress)
+        public static Guid GetOrpDealerId(string emailAddress)
         {
-            var userBpid = string.Empty;
+            var dealerId = Guid.Empty;
 
             using (var brotherContext = new Brother_MM_UserDataEntities())
             {
@@ -82,7 +100,36 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                     
                     foreach (var userAccount in users)
                     {
-                        return userAccount.DealershipId;
+                        dealerId = new Guid(userAccount.DealershipId);
+                        return dealerId;
+                    }
+                }
+                catch (ArgumentException argument)
+                {
+                    Helper.MsgOutput(argument.Message);
+                    if (argument.InnerException != null)
+                    {
+                        Helper.MsgOutput(argument.InnerException.Message);
+                    }
+                }
+            }
+            return Guid.Empty;
+        }
+
+        public static string GetOrpActivationCode(Guid dealerId)
+        {
+
+            using (var brotherContext = new Brother_MM_UserDataEntities())
+            {
+                try
+                {
+                    var activationCodes = from code in brotherContext.ActivationCodes
+                                where code.DealershipId.Equals(dealerId)
+                                select code;
+
+                    foreach (var activationCode in activationCodes)
+                    {
+                        return activationCode.ActivationCode1;
                     }
                 }
                 catch (ArgumentException argument)

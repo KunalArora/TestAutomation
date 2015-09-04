@@ -24,9 +24,9 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [Given(@"I click on the Partner Portal menu option")]
         public void GivenIClickOnThePartnerPortalMenuOption()
         {
-            var menu = GlobalNavigationModule.GetProductNavigationMenu("PartnerPortal");
-            NextPage = GlobalNavigationModule.MyAccountMenuItemClick(CurrentDriver);
+            NextPage = GlobalNavigationModule.PartnerPortalMenuItemClick(CurrentDriver);
         }
+
         [When(@"I click on the Partner Portal button")]
         public void WhenIClickOnThePartnerPortalButton()
         {
