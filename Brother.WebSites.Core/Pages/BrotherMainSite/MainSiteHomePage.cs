@@ -21,12 +21,16 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         //[FindsBy(How = How.CssSelector, Using = "#main > div > div.feature-carousel > div > ul.feature-carousel-items > li:nth-child(2) > div > a")]
         //public IWebElement SuppliesLink;
-        [FindsBy(How = How.CssSelector, Using = "#footer-websiteinfomation > li:nth-child(4) > a")]
+       // [FindsBy(How = How.CssSelector, Using = "#footer-websiteinfomation > li:nth-child(4) > a")]
+      //  public IWebElement BrotherNetwork;
+
+        [FindsBy(How = How.CssSelector, Using = "[href='http://www.brother-network.co.uk/']")]
         public IWebElement BrotherNetwork;
 
-        public static string BrotherNetworkId = "#footer-websiteinfomation > li:nth-child(4) > a";
+        [FindsBy(How = How.CssSelector, Using = "#loginuser")]
+        public IWebElement UsernameInputField;
 
-        [FindsBy(How = How.CssSelector, Using = "[href='/supplies']")]
+       [FindsBy(How = How.CssSelector, Using = "[href='/supplies']")]
         public IWebElement SuppliesLink;
 
         [FindsBy(How = How.CssSelector, Using = ".prev")]
@@ -545,9 +549,11 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public void HoverAndClickBrotherNetwork()
         {
-
-            WaitForElementToExistByCssSelector(BrotherNetworkId);
             BrotherNetwork.Click();
+        }
+        public void CheckPageExist()
+        {
+            AssertElementPresent(UsernameInputField, "login input field");
         }
     }
 }

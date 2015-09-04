@@ -133,6 +133,8 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.Given(string.Format("I have navigated to the Brother Main Site \"{0}\" products pages", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 32
  testRunner.And("I have clicked the brother network link in the footer section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 33
+ testRunner.Then("I am navigated to the brother network page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
