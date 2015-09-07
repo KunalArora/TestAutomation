@@ -45,6 +45,17 @@ namespace Brother.WebSites.Core.Pages.Base
         }
 
 
+        public static FooterNavigationPage LoadFooterPage(IWebDriver driver, string baseUrl)
+        {
+            driver = SetDriver(driver);
+            baseUrl = ProcessUrlLocale(baseUrl);
+            baseUrl = ProcessMainSiteLiveUrl(baseUrl);
+            baseUrl = CheckForCdServer(baseUrl);
+            NavigateToPage(driver, baseUrl.TrimEnd(new char[] { '/' }));
+            return GetInstance<FooterNavigationPage>(driver, baseUrl, "");
+        }
+
+
         #region ThirdParty Pages 
         public static BrotherEmailConfirmationPage LoadEmailConfirmationPage(IWebDriver driver, string baseUrl)
         {

@@ -9,7 +9,6 @@ Scenario Outline: User is able to navigate to the Accessibility via the footer s
 	And I have clicked the accessibility link in the footer section
 	#Then I am navigated to the accessibility page
 
-	
 Scenarios:
 	| country    |
 	|United Kingdom|
@@ -28,7 +27,7 @@ Scenario: User is able to navigate to the Terms And Conditions via the footer se
 
 
 Scenario Outline: User is able to navigate to the Brother Network via the footer section of Website Information menu
-	Given I have navigated to the Brother Main Site "<country>" products pages
+	Given I have navigated to the Brother Main Site "<country>" footer pages
 	And I have clicked the brother network link in the footer section
 	Then I am navigated to the brother network page
 

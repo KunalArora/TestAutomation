@@ -25,8 +25,6 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
        // [FindsBy(How = How.CssSelector, Using = "#footer-websiteinfomation > li:nth-child(4) > a")]
       //  public IWebElement BrotherNetwork;
 
-        [FindsBy(How = How.CssSelector, Using = "[href='http://www.brother-network.co.uk/']")]
-        public IWebElement BrotherNetwork;
 
         [FindsBy(How = How.CssSelector, Using = "#loginuser")]
         public IWebElement UsernameInputField;
@@ -589,14 +587,11 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
             AssertElementPresent(ViewDetailsLink, "View details link");
         }
 
-        public void HoverAndClickBrotherNetwork()
-        {
-            BrotherNetwork.Click();
-        }
-        public void CheckPageExist()
-        {
-            AssertElementPresent(UsernameInputField, "login input field");
-        }
+       // public void HoverAndClickBrotherNetwork()
+        //{
+          //  BrotherNetwork.Click();
+       // }
+      
         public void HoverProductsMenu8(IWebDriver driver)
         {
             var action = new Actions(driver);
