@@ -59,7 +59,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Pages\BrotherMainSite\HeaderNavigationPage.cs" />
     <Compile Include="Pages\BrotherMainSite\FooterNavigationPage.cs" />
     <Compile Include="Pages8.0\BrotherMainSite\MainSiteHomePage.cs" />
     <Compile Include="Pages8.0\BrotherMainSite\SuppliesPage.cs" />

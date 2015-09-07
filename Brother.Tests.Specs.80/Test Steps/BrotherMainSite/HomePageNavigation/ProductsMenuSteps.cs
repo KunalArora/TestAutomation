@@ -1,6 +1,5 @@
 ﻿using System;
 using Brother.WebSites.Core.Pages.Base;
-using Brother.WebSites.Core.Pages.BrotherMainSite;
 using Brother.WebSites.Core.Pages8._0.BrotherMainSite;
 using TechTalk.SpecFlow;
 using MainSiteHomePage = Brother.WebSites.Core.Pages.BrotherMainSite.MainSiteHomePage;
@@ -13,7 +12,7 @@ namespace Brother.Tests.Specs._80.Test_Steps.BrotherMainSite.HomePageNavigation
         [Given(@"I hover over the top products menu button")]
         public void GivenIHoverOverTheTopProductsMenuButton()
         {
-            CurrentPage.As<HeaderNavigationPage>().HoverProductsMenu8(CurrentDriver);
+            CurrentPage.As<MainSiteHomePage>().HoverProductsMenu8(CurrentDriver);
         }
         
         [Then(@"I click the colour laser menu option")]
@@ -480,7 +479,7 @@ namespace Brother.Tests.Specs._80.Test_Steps.BrotherMainSite.HomePageNavigation
        [Given(@"I hover over the top products menu button and click on the sewing link")]
         public void GivenIHoverOverTheTopProductsMenuButtonAndClickOnTheSewingLink()
         {
-            CurrentPage.As<HeaderNavigationPage>().HoverProductsMenu8(CurrentDriver);
+            CurrentPage.As<MainSiteHomePage>().HoverProductsMenu8(CurrentDriver);
         }
  
         [Then(@"I am navigated to the sewing page")]
