@@ -917,11 +917,9 @@ this.ScenarioSetup(scenarioInfo);
 #line 307
 this.ScenarioSetup(scenarioInfo);
 #line 308
- testRunner.Given("I have navigated to the Brother Main Site \"United Kingdom\" products pages", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I have navigated to the Brother Main Site \"United Kingdom\" header pages", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 309
  testRunner.And("I hover over the top products menu button and click on the sewing link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 310
- testRunner.Then("I am navigated to the sewing page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

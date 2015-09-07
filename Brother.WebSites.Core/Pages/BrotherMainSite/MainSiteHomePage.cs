@@ -120,14 +120,8 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         [FindsBy(How = How.CssSelector, Using = "#results > article:nth-child(1) > div.price-listings-info > p:nth-child(3) > a")]
         public IWebElement ViewDetailsLink;
-
-        [FindsBy(How = How.CssSelector, Using = "[href='/Products/']")]
-        public IWebElement ProductsTopMenu8;
-
-        [FindsBy(How = How.CssSelector, Using = "[href='http://www.brothersewing.co.uk/']")]
-        public IWebElement SewingLink;
-
-        [FindsBy(How = How.CssSelector, Using = "[href='/Printers/']")]
+        
+       [FindsBy(How = How.CssSelector, Using = "[href='/Printers/']")]
         public IWebElement PrinterFooterLink;
         
         private const string CarouselItems = ".feature-carousel-items";
@@ -587,24 +581,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
             AssertElementPresent(ViewDetailsLink, "View details link");
         }
 
-       // public void HoverAndClickBrotherNetwork()
-        //{
-          //  BrotherNetwork.Click();
-       // }
-      
-        public void HoverProductsMenu8(IWebDriver driver)
-        {
-            var action = new Actions(driver);
-            var menuHoverLink = driver.FindElement(By.CssSelector("[href='/Products/']"));
-            action.MoveToElement(menuHoverLink).Build().Perform();
-            WaitForElementToExistByCssSelector("[href='/Products/']", 60, 60);
-            WaitForElementToExistByCssSelector("[href='http://www.brothersewing.co.uk/']", 60, 60);
-            var submenu = driver.FindElement(By.CssSelector("[href='http://www.brothersewing.co.uk/']"));
-            action.MoveToElement(submenu).Build().Perform();
-            submenu.Click();
-         }
-
-        public void ClickPrinterFooterLink()
+      public void ClickPrinterFooterLink()
         {
             //WaitForElementToExistByCssSelector("[href='/Printers/']", 60, 60);
             //MoveToElement(PrinterFooterLink);
