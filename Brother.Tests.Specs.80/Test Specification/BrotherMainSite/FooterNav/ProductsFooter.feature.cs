@@ -89,51 +89,48 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("User is able to navigate to the scanners page via the products footer menu")]
-        public virtual void UserIsAbleToNavigateToTheScannersPageViaTheProductsFooterMenu()
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", null)]
+        public virtual void UserIsAbleToNavigateToTheScannersPageViaTheProductsFooterMenu(string country, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the scanners page via the products footer menu", ((string[])(null)));
-#line 18
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the scanners page via the products footer menu", exampleTags);
+#line 17
 this.ScenarioSetup(scenarioInfo);
+#line 18
+ testRunner.Given(string.Format("I have navigated to the Brother Main Site \"{0}\" products pages", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 19
- testRunner.Given("I have navigated to the Brother Main Site \"United Kingdom\" products pages", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 20
  testRunner.Then("I click the scanners option under the products page footer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 21
- testRunner.Then("I am navigated to the scanners page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("User is able to navigate to the label printers page via the products footer menu")]
-        public virtual void UserIsAbleToNavigateToTheLabelPrintersPageViaTheProductsFooterMenu()
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", null)]
+        public virtual void UserIsAbleToNavigateToTheLabelPrintersPageViaTheProductsFooterMenu(string country, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the label printers page via the products footer menu", ((string[])(null)));
-#line 24
-this.ScenarioSetup(scenarioInfo);
-#line 25
- testRunner.Given("I have navigated to the Brother Main Site \"United Kingdom\" products pages", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the label printers page via the products footer menu", exampleTags);
 #line 26
- testRunner.Then("I click the label printers option under the products page footer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+this.ScenarioSetup(scenarioInfo);
 #line 27
- testRunner.Then("I am navigated to the label printers page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Given(string.Format("I have navigated to the Brother Main Site \"{0}\" products pages", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 28
+ testRunner.Then("I click the label printers option under the products page footer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("User is able to navigate to the fax machines page via the products footer menu")]
-        public virtual void UserIsAbleToNavigateToTheFaxMachinesPageViaTheProductsFooterMenu()
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", null)]
+        public virtual void UserIsAbleToNavigateToTheFaxMachinesPageViaTheProductsFooterMenu(string country, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the fax machines page via the products footer menu", ((string[])(null)));
-#line 30
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the fax machines page via the products footer menu", exampleTags);
+#line 35
 this.ScenarioSetup(scenarioInfo);
-#line 31
- testRunner.Given("I have navigated to the Brother Main Site \"United Kingdom\" products pages", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 32
+#line 36
+ testRunner.Given(string.Format("I have navigated to the Brother Main Site \"{0}\" products pages", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 37
  testRunner.Then("I click the fax machines option under the products page footer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 33
- testRunner.Then("I am navigated to the fax machines page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -141,18 +138,17 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("User is able to navigate to the supplies and accessories page via the products fo" +
             "oter menu")]
-        public virtual void UserIsAbleToNavigateToTheSuppliesAndAccessoriesPageViaTheProductsFooterMenu()
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", null)]
+        public virtual void UserIsAbleToNavigateToTheSuppliesAndAccessoriesPageViaTheProductsFooterMenu(string country, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the supplies and accessories page via the products fo" +
-                    "oter menu", ((string[])(null)));
-#line 36
+                    "oter menu", exampleTags);
+#line 44
 this.ScenarioSetup(scenarioInfo);
-#line 37
- testRunner.Given("I have navigated to the Brother Main Site \"United Kingdom\" products pages", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 38
+#line 45
+ testRunner.Given(string.Format("I have navigated to the Brother Main Site \"{0}\" products pages", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 46
  testRunner.Then("I click the supplies and accessories option under the products page footer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 39
- testRunner.Then("I am navigated to the supplies and accessories page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -160,18 +156,17 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("User is able to navigate to the latest promotions page via the products footer me" +
             "nu")]
-        public virtual void UserIsAbleToNavigateToTheLatestPromotionsPageViaTheProductsFooterMenu()
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", null)]
+        public virtual void UserIsAbleToNavigateToTheLatestPromotionsPageViaTheProductsFooterMenu(string country, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the latest promotions page via the products footer me" +
-                    "nu", ((string[])(null)));
-#line 42
+                    "nu", exampleTags);
+#line 53
 this.ScenarioSetup(scenarioInfo);
-#line 43
- testRunner.Given("I have navigated to the Brother Main Site \"United Kingdom\" products pages", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 44
+#line 54
+ testRunner.Given(string.Format("I have navigated to the Brother Main Site \"{0}\" products pages", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 55
  testRunner.Then("I click the latest promotions option under the products page footer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 45
- testRunner.Then("I am navigated to the latest promotions page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
