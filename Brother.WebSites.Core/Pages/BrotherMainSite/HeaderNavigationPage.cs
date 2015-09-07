@@ -22,7 +22,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         [FindsBy(How = How.CssSelector, Using = "[href='/Products/']")]
         public IWebElement ProductsTopMenu8;
 
-        public void                                HoverProductsMenu8(IWebDriver driver)
+        public void HoverProductsMenu8(IWebDriver driver)
         {
             var action = new Actions(driver);
             var menuHoverLink = driver.FindElement(By.CssSelector("[href='/Products/']"));
