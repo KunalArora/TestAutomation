@@ -20,6 +20,7 @@ namespace Brother.Tests.Specs._80.TestSpecification.BrotherMainSite.FooterNav
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("Navigate footer Support menu")]
+    [NUnit.Framework.CategoryAttribute("TEST")]
     public partial class NavigateFooterSupportMenuFeature
     {
         
@@ -33,7 +34,8 @@ namespace Brother.Tests.Specs._80.TestSpecification.BrotherMainSite.FooterNav
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Navigate footer Support menu", "   As a visitor of the Brother main site\r\n     I am able to navigate to each of t" +
-                    "he\r\n     tab items within the footer support menu", ProgrammingLanguage.CSharp, ((string[])(null)));
+                    "he\r\n     tab items within the footer support menu", ProgrammingLanguage.CSharp, new string[] {
+                        "TEST"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -72,13 +74,13 @@ namespace Brother.Tests.Specs._80.TestSpecification.BrotherMainSite.FooterNav
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the Creative Centre via the footer section of Support" +
                     " menu", ((string[])(null)));
-#line 6
-this.ScenarioSetup(scenarioInfo);
 #line 7
- testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioSetup(scenarioInfo);
 #line 8
- testRunner.And("I have clicked the creative centre link in the footer section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
+ testRunner.And("I have clicked the creative centre link in the footer section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 10
  testRunner.Then("I am navigated to the Creative Centre page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -91,13 +93,13 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the Downloads/Software via the footer section of Supp" +
                     "ort menu", ((string[])(null)));
-#line 12
-this.ScenarioSetup(scenarioInfo);
 #line 13
- testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioSetup(scenarioInfo);
 #line 14
- testRunner.And("I have clicked the Downloads/Software link in the footer section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 15
+ testRunner.And("I have clicked the Downloads/Software link in the footer section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 16
  testRunner.Then("I am navigated to the Downloads/Software page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -106,18 +108,17 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("User is able to navigate to the Find a Service Centre via the footer section of S" +
             "upport menu")]
-        public virtual void UserIsAbleToNavigateToTheFindAServiceCentreViaTheFooterSectionOfSupportMenu()
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", null)]
+        public virtual void UserIsAbleToNavigateToTheFindAServiceCentreViaTheFooterSectionOfSupportMenu(string country, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the Find a Service Centre via the footer section of S" +
-                    "upport menu", ((string[])(null)));
-#line 18
-this.ScenarioSetup(scenarioInfo);
+                    "upport menu", exampleTags);
 #line 19
- testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioSetup(scenarioInfo);
 #line 20
- testRunner.And("I have clicked the Find a Service Centre link in the footer section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given(string.Format("I have navigated to the Brother Main Site \"{0}\" products pages", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 21
- testRunner.Then("I am navigated to the Find a Service Centre page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("I have clicked the Find a Service Centre link in the footer section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -127,13 +128,13 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void UserIsAbleToNavigateToTheManualsViaTheFooterSectionOfSupportMenu()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the Manuals via the footer section of Support menu", ((string[])(null)));
-#line 24
+#line 29
 this.ScenarioSetup(scenarioInfo);
-#line 25
+#line 30
  testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 26
+#line 31
  testRunner.And("I have clicked the Manuals link in the footer section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 27
+#line 32
  testRunner.Then("I am navigated to the Manuals page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -146,13 +147,13 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the Product Registration via the footer section of Su" +
                     "pport menu", ((string[])(null)));
-#line 30
+#line 35
 this.ScenarioSetup(scenarioInfo);
-#line 31
+#line 36
  testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 32
+#line 37
  testRunner.And("I have clicked the Product Registration link in the footer section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 33
+#line 38
  testRunner.Then("I am navigated to the Product Registration page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -163,13 +164,13 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void UserIsAbleToNavigateToTheRecyclingViaTheFooterSectionOfSupportMenu()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the Recycling via the footer section of Support menu", ((string[])(null)));
-#line 36
+#line 41
 this.ScenarioSetup(scenarioInfo);
-#line 37
+#line 42
  testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 38
+#line 43
  testRunner.And("I have clicked the Product Recycling link in the footer section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 39
+#line 44
  testRunner.Then("I am navigated to the Recycling page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

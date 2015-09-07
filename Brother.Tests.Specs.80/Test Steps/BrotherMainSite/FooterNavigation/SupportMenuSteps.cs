@@ -1,11 +1,13 @@
 ﻿using System;
+using Brother.WebSites.Core.Pages.Base;
+using Brother.WebSites.Core.Pages.BrotherMainSite;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs._80.Test_Steps.BrotherMainSite.FooterNavigation
 {
     [Binding]
-    public class NavigateFooterSupportMenuSteps
-    {
+    public class NavigateFooterSupportMenuSteps : BaseSteps
+    { 
         [Given(@"I have clicked the creative centre link in the footer section")]
         public void GivenIHaveClickedTheCreativeCentreLinkInTheFooterSection()
         {
@@ -21,7 +23,7 @@ namespace Brother.Tests.Specs._80.Test_Steps.BrotherMainSite.FooterNavigation
         [Given(@"I have clicked the Find a Service Centre link in the footer section")]
         public void GivenIHaveClickedTheFindAServiceCentreLinkInTheFooterSection()
         {
-            ScenarioContext.Current.Pending();
+            CurrentPage.As<MainSiteHomePage>().ClickCreativeCentre();
         }
         
         [Given(@"I have clicked the Manuals link in the footer section")]
