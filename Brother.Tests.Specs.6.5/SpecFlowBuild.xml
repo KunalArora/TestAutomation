@@ -11,7 +11,7 @@ xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <projectFile>&quot;$(teamcity_build_checkoutDir)\Brother.Tests.Specs.6.5\Brother.Tests.Specs.6.5.csproj&quot;</projectFile>
   </PropertyGroup>
 
-  <Target Name="RunTests">
+  <Target Name="RunAutomatedTests">
     <Exec Command="$(NUnitConsole) /labels /out=$(testResultsTxt) /xml=$(testResultsXml) $(projectFile)"/>
   </Target>
 
