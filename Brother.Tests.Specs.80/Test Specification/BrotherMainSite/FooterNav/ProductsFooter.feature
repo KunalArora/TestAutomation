@@ -8,42 +8,55 @@ Feature: ProductsFooter
 Scenario Outline: User is able to navigate to the printers page via the products footer menu
 	Given I have navigated to the Brother Main Site "<country>" footer pages	
 	Then I click the printers option under the products page footer
-	# Uncomment bottom step when 8.0 link navigation is completed in for printer footer
-	# Then I am navigated to the printers page via the footer link
+	# Then I am navigated to the printers page via the footer link (To be uncommented when 8.0 page nav dev completed)
 Scenarios:
 	|country    |
 	|United Kingdom|
 
 # Scanners navigation via page footer
-Scenario: User is able to navigate to the scanners page via the products footer menu
-	Given I have navigated to the Brother Main Site "United Kingdom" products pages	
+Scenario Outline: User is able to navigate to the scanners page via the products footer menu
+	Given I have navigated to the Brother Main Site "<country>" products pages	
 	Then I click the scanners option under the products page footer
-	Then I am navigated to the scanners page
+	# Then I am navigated to the scanners page
+Scenarios:
+	|country    |
+	|United Kingdom|
 
 # Label printers navigation via page footer
-Scenario: User is able to navigate to the label printers page via the products footer menu
-	Given I have navigated to the Brother Main Site "United Kingdom" products pages	
+Scenario Outline: User is able to navigate to the label printers page via the products footer menu
+	Given I have navigated to the Brother Main Site "<country>" products pages	
 	Then I click the label printers option under the products page footer
-	Then I am navigated to the label printers page
+	# Then I am navigated to the label printers page
+Scenarios:
+	|country    |
+	|United Kingdom|
 
 # Fax machines navigation via page footer
-Scenario: User is able to navigate to the fax machines page via the products footer menu
-	Given I have navigated to the Brother Main Site "United Kingdom" products pages	
+Scenario Outline: User is able to navigate to the fax machines page via the products footer menu
+	Given I have navigated to the Brother Main Site "<country>" products pages	
 	Then I click the fax machines option under the products page footer
-	Then I am navigated to the fax machines page
+	# Then I am navigated to the fax machines page
+Scenarios:
+	|country    |
+	|United Kingdom|
 
 # Supplies and accessories navigation via page footer
-Scenario: User is able to navigate to the supplies and accessories page via the products footer menu
-	Given I have navigated to the Brother Main Site "United Kingdom" products pages	
+Scenario Outline: User is able to navigate to the supplies and accessories page via the products footer menu
+	Given I have navigated to the Brother Main Site "<country>" products pages	
 	Then I click the supplies and accessories option under the products page footer
-	Then I am navigated to the supplies and accessories page
+	# Then I am navigated to the supplies and accessories page
+Scenarios:
+	|country    |
+	|United Kingdom|
 
 # Latest promotions navigation via page footer
-Scenario: User is able to navigate to the latest promotions page via the products footer menu
-	Given I have navigated to the Brother Main Site "United Kingdom" products pages	
+Scenario Outline: User is able to navigate to the latest promotions page via the products footer menu
+	Given I have navigated to the Brother Main Site "<country>" products pages
 	Then I click the latest promotions option under the products page footer
-	Then I am navigated to the latest promotions page
-
+	#Then I am navigated to the latest promotions page
+Scenarios:
+	|country    |
+	|United Kingdom|
 
 
 

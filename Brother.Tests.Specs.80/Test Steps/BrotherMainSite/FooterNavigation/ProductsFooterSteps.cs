@@ -23,61 +23,61 @@ namespace Brother.Tests.Specs._80.Test_Steps.BrotherMainSite.FooterNavigation
         [Then(@"I click the scanners option under the products page footer")]
         public void ThenIClickTheScannersOptionUnderTheProductsPageFooter()
         {
-            ScenarioContext.Current.Pending();
+            CurrentPage.As<MainSiteHomePage>().ClickScannerFooterLink();
         }
         
         [Then(@"I am navigated to the scanners page")]
         public void ThenIAmNavigatedToTheScannersPage()
         {
-            ScenarioContext.Current.Pending();
+            CurrentPage.As<MainSiteHomePage>().HasScannersPageLoaded();
         }
         
         [Then(@"I click the label printers option under the products page footer")]
         public void ThenIClickTheLabelPrintersOptionUnderTheProductsPageFooter()
         {
-            ScenarioContext.Current.Pending();
+            CurrentPage.As<MainSiteHomePage>().ClickLabelPrinterFooterLink();
         }
         
         [Then(@"I am navigated to the label printers page")]
         public void ThenIAmNavigatedToTheLabelPrintersPage()
         {
-            ScenarioContext.Current.Pending();
+            CurrentPage.As<MainSiteHomePage>().HasLabelPrintersPageLoaded();
         }
         
         [Then(@"I click the fax machines option under the products page footer")]
         public void ThenIClickTheFaxMachinesOptionUnderTheProductsPageFooter()
         {
-            ScenarioContext.Current.Pending();
+            CurrentPage.As<MainSiteHomePage>().ClickFaxMachinesFooterLink();
         }
         
         [Then(@"I am navigated to the fax machines page")]
         public void ThenIAmNavigatedToTheFaxMachinesPage()
         {
-            ScenarioContext.Current.Pending();
+            CurrentPage.As<MainSiteHomePage>().HasFaxMachinesPageLoaded();
         }
         
         [Then(@"I click the supplies and accessories option under the products page footer")]
         public void ThenIClickTheSuppliesAndAccessoriesOptionUnderTheProductsPageFooter()
         {
-            ScenarioContext.Current.Pending();
+            CurrentPage.As<MainSiteHomePage>().ClickSuppliesAndAccessoriesLink();
         }
         
         [Then(@"I am navigated to the supplies and accessories page")]
         public void ThenIAmNavigatedToTheSuppliesAndAccessoriesPage()
         {
-            ScenarioContext.Current.Pending();
+            CurrentPage.As<MainSiteHomePage>().HasSuppliesAndAccessoriesPageLoaded();
         }
 
         [Then(@"I click the latest promotions option under the products page footer")]
         public void ThenIClickTheLatestPromotionsOptionUnderTheProductsPageFooter()
         {
-            ScenarioContext.Current.Pending();
+            CurrentPage.As<MainSiteHomePage>().ClickLatestPromotionsLink();
         }
 
         [Then(@"I am navigated to the latest promotions page")]
         public void ThenIAmNavigatedToTheLatestPromotionsPage()
         {
-            ScenarioContext.Current.Pending();
+            CurrentPage.As<MainSiteHomePage>().HasLatestPromotionsPageLoaded();
         }
 
 
