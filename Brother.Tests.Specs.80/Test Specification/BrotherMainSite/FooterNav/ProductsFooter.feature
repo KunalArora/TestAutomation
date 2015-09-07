@@ -6,7 +6,7 @@ Feature: ProductsFooter
 
 # Printers navigation via page footer
 Scenario Outline: User is able to navigate to the printers page via the products footer menu
-	Given I have navigated to the Brother Main Site "<country>" products pages	
+	Given I have navigated to the Brother Main Site "<country>" footer pages	
 	Then I click the printers option under the products page footer
 	# Uncomment bottom step when 8.0 link navigation is completed in for printer footer
 	# Then I am navigated to the printers page via the footer link

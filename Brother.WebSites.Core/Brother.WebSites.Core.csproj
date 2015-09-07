@@ -59,10 +59,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Pages8.0\BrotherMainSite\FooterNavigationPage.cs" />
+    <Compile Include="Pages\BrotherMainSite\FooterNavigationPage.cs" />
     <Compile Include="Pages8.0\BrotherMainSite\MainSiteHomePage.cs" />
     <Compile Include="Pages8.0\BrotherMainSite\SuppliesPage.cs" />
-    <Compile Include="Pages\BrotherMainSite\BrotherNetworkPage.cs" />
     <Compile Include="Pages\Base\BasePage.Common.cs" />
     <Compile Include="Pages\Base\BasePage.cs" />
     <Compile Include="Pages\Base\BaseSteps.cs" />

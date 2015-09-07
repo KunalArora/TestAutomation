@@ -1,4 +1,5 @@
 ﻿using Brother.WebSites.Core.Pages.Base;
+using Brother.WebSites.Core.Pages.BrotherMainSite;
 using Brother.WebSites.Core.Pages8._0.BrotherMainSite;
 using TechTalk.SpecFlow;
 using MainSiteHomePage = Brother.WebSites.Core.Pages.BrotherMainSite.MainSiteHomePage;
@@ -42,12 +43,13 @@ namespace Brother.Tests.Specs._80.BrotherMainSite.FooterNavigation
         [Then(@"I am navigated to the brother network page")]
         public void ThenIAmNavigatedToTheBrotherNetworkPage()
         {
-            CurrentPage.As<MainSiteHomePage>().CheckPageExist();
+            CurrentPage.As<FooterNavigationPage>().CheckPageExist();
         }
         [Given(@"I have clicked the brother network link in the footer section")]
         public void GivenIHaveClickedTheBrotherNetworkLinkInTheFooterSection()
         {
-            CurrentPage.As<MainSiteHomePage>().HoverAndClickBrotherNetwork();
+            //CurrentPage.As<MainSiteHomePage>().HoverAndClickBrotherNetwork();
+            CurrentPage.As<FooterNavigationPage>().HoverAndClickBrotherNetwork();
         }
     }
 
