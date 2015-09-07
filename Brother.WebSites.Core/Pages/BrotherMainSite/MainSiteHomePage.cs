@@ -126,6 +126,10 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         [FindsBy(How = How.CssSelector, Using = "#results > article:nth-child(1) > div.price-listings-info > p:nth-child(3) > a")]
         public IWebElement ViewDetailsLink;
+<<<<<<< HEAD
+        
+       [FindsBy(How = How.CssSelector, Using = "[href='/Printers/']")]
+=======
 
         [FindsBy(How = How.CssSelector, Using = "[href='/Products/']")]
         public IWebElement ProductsTopMenu8;
@@ -136,6 +140,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         [FindsBy(How = How.CssSelector, Using = "#footer-products > li:nth-child(1) > a")]
         //Href not working for printers
         //[FindsBy(How = How.CssSelector, Using = "[href='/Printers/']")]     
+>>>>>>> master
         public IWebElement PrinterFooterLink;
 
         [FindsBy(How = How.CssSelector, Using = "#footer-products > li:nth-child(2) > a")]
@@ -668,24 +673,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
             AssertElementPresent(ViewDetailsLink, "View details link");
         }
 
-       // public void HoverAndClickBrotherNetwork()
-        //{
-          //  BrotherNetwork.Click();
-       // }
-      
-        public void HoverProductsMenu8(IWebDriver driver)
-        {
-            var action = new Actions(driver);
-            var menuHoverLink = driver.FindElement(By.CssSelector("[href='/Products/']"));
-            action.MoveToElement(menuHoverLink).Build().Perform();
-            WaitForElementToExistByCssSelector("[href='/Products/']", 60, 60);
-            WaitForElementToExistByCssSelector("[href='http://www.brothersewing.co.uk/']", 60, 60);
-            var submenu = driver.FindElement(By.CssSelector("[href='http://www.brothersewing.co.uk/']"));
-            action.MoveToElement(submenu).Build().Perform();
-            submenu.Click();
-         }
-
-        public void ClickPrinterFooterLink()
+      public void ClickPrinterFooterLink()
         {
             WaitForElementToExistByCssSelector(PrinterFooter);
             MoveToElement(PrinterFooterLink);
