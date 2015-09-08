@@ -109,12 +109,6 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         [FindsBy(How = How.ClassName, Using = "button-orange")]
         public IWebElement ViewAllProductsOrangeButton;
 
-        [FindsBy(How = How.CssSelector, Using = "#by-supply-number > input")]
-        public IWebElement EnterSuppliesCodeTextBox;
-
-        [FindsBy(How = How.CssSelector, Using = "#main > div > div > div:nth-child(3) > div > div > h4 > a.button-green")]
-        public IWebElement RegisterAndClaimButton;
-
         [FindsBy(How = How.CssSelector, Using = "#main > div > div > div:nth-child(3) > div > ul.slides.cf > li:nth-child(5) > div.left-content > p:nth-child(4) > a")]
         public IWebElement ViewWorkgroupPrinterButton;
 
@@ -132,27 +126,6 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         [FindsBy(How = How.CssSelector, Using = "[href='http://www.brothersewing.co.uk/']")]
         public IWebElement SewingLink;
-
-        [FindsBy(How = How.CssSelector, Using = "#footer-products > li:nth-child(1) > a")]
-        //Href not working for printers
-        //[FindsBy(How = How.CssSelector, Using = "[href='/Printers/']")]     
-        public IWebElement PrinterFooterLink;
-
-        [FindsBy(How = How.CssSelector, Using = "#footer-products > li:nth-child(2) > a")]
-        public IWebElement ScannerFooterLink;
-
-        [FindsBy(How = How.CssSelector, Using = "#footer-products > li:nth-child(3) > a")]
-        public IWebElement LabelPrinterFooterLink;
-
-        [FindsBy(How = How.CssSelector, Using = "#footer-products > li:nth-child(4) > a")]
-        public IWebElement FaxMachinesFooterLink;
-
-        [FindsBy(How = How.CssSelector, Using = "#footer-products > li:nth-child(6) > a")]
-        public IWebElement SuppliesAndAccessoriesFooterLink;
-
-
-        [FindsBy(How = How.CssSelector, Using = "#footer-products > li:nth-child(8) > a")]
-        public IWebElement LatestPromotionsFooterLink;
 
         private const string CarouselItems = ".feature-carousel-items";
 
@@ -205,21 +178,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         private const string BrotherAdminTeam = "#main > div > div > div:nth-child(3) > article > table > tbody > tr:nth-child(2) > td:nth-child(1) > a";
 
         private const string BrotherNetworkLogin = "#login_form > table > tbody > tr > td:nth-child(2) > div:nth-child(1) > div > div:nth-child(7)";
-
-        private const string PrinterFooter = "#footer-products > li:nth-child(1) > a";
-        //Href not working for printers footer
-        //private const string PrinterFooter = "[href='/Printers/']";
-
-        private const string ScannerFooter = "#footer-products > li:nth-child(2) > a";
-
-        private const string LabelPrinterFooter = "#footer-products > li:nth-child(3) > a";
-
-        private const string FaxMachinesFooter = "#footer-products > li:nth-child(4) > a";
-
-        private const string SuppliesAndAccessoriesFooter = "#footer-products > li:nth-child(6) > a";
-
-        private const string LatestPromotionsFooter = "#footer-products > li:nth-child(8) > a";
-
+       
         public void IsSuppliesLinkAvailable()
 
         {
@@ -379,34 +338,6 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
                 throw new NullReferenceException("Fax machines page has not loaded");
             }
             AssertElementPresent(ViewAllProductsOrangeButton, "View all products orange button");
-        }
-
-        public void HasSuppliesAndAccessoriesPageLoaded()
-        {
-            if (EnterSuppliesCodeTextBox == null)
-            {
-                throw new NullReferenceException("Supplies and accessories page has not loaded");
-            }
-            AssertElementPresent(EnterSuppliesCodeTextBox, "Enter supplies code text box");
-        }
-
-         public void HasLatestPromotionsPageLoaded()
-        {
-            if (RegisterAndClaimButton == null)
-            {
-                throw new NullReferenceException("Latest promotions page has not loaded");
-            }
-            AssertElementPresent(RegisterAndClaimButton, "Register and claim button");
-        }
-
-
-        public void HasPageLoaded()
-        {
-            if (EnterSuppliesCodeTextBox == null)
-            {
-                throw new NullReferenceException("Supplies and accessories page has not loaded");
-            }
-            AssertElementPresent(EnterSuppliesCodeTextBox, "Enter supplies code text box");
         }
 
         public MainSiteHomePage ColourLaserMenuOptionClick()
@@ -684,49 +615,6 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
             action.MoveToElement(submenu).Build().Perform();
             submenu.Click();
          }
-
-        public void ClickPrinterFooterLink()
-        {
-            WaitForElementToExistByCssSelector(PrinterFooter);
-            MoveToElement(PrinterFooterLink);
-            PrinterFooterLink.Click();
-        }
-
-        public void ClickScannerFooterLink()
-        {
-            WaitForElementToExistByCssSelector(ScannerFooter);
-            MoveToElement(ScannerFooterLink);
-            ScannerFooterLink.Click();
-        }
-
-        public void ClickLabelPrinterFooterLink()
-        {
-            WaitForElementToExistByCssSelector(LabelPrinterFooter);
-            MoveToElement(LabelPrinterFooterLink);
-            LabelPrinterFooterLink.Click();
-        }
-
-        public void ClickFaxMachinesFooterLink()
-        {
-            WaitForElementToExistByCssSelector(FaxMachinesFooter);
-            MoveToElement(FaxMachinesFooterLink);
-            FaxMachinesFooterLink.Click();
-        }
-
-        public void ClickSuppliesAndAccessoriesLink()
-        {
-            WaitForElementToExistByCssSelector(SuppliesAndAccessoriesFooter);
-            MoveToElement(SuppliesAndAccessoriesFooterLink);
-            SuppliesAndAccessoriesFooterLink.Click();
-        }
-
-        public void ClickLatestPromotionsLink()
-        {
-            WaitForElementToExistByCssSelector(LatestPromotionsFooter);
-            MoveToElement(LatestPromotionsFooterLink);
-            LatestPromotionsFooterLink.Click();
-        }
-
 
         public void ClickCreativeCentre()
         {
