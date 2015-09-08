@@ -5,26 +5,32 @@ Feature: Navigate footer WebsiteInformation menu
        tab items within the footer website information menu
 
 Scenario Outline: User is able to navigate to the Accessibility via the footer section of Website Information menu
-	Given I have navigated to the Brother Main Site "<country>" products pages
+	Given I have navigated to the Brother Main Site "<country>" footer pages
 	And I have clicked the accessibility link in the footer section
-	#Then I am navigated to the accessibility page
+	# Then I am navigated to the accessibility page
 
 Scenarios:
 	| country    |
 	|United Kingdom|
 
 
-Scenario: User is able to navigate to the Privacy Policy via the footer section of Website Information menu
-	Given I have navigated to the "<site>" MainSite URL for country "<country>"
-	#And I have clicked the privacy policy link in the footer section
-	#Then I am navigated to the privacy policy page
+Scenario Outline: User is able to navigate to the Privacy Policy via the footer section of Website Information menu
+	Given I have navigated to the Brother Main Site "<country>" footer pages
+	And I have clicked the privacy policy link in the footer section
+	# Then I am navigated to the privacy policy page
 
+Scenarios:
+	| country    |
+	|United Kingdom|
 
-Scenario: User is able to navigate to the Terms And Conditions via the footer section of Website Information menu
-	Given I have navigated to the "<site>" MainSite URL for country "<country>"
+Scenario Outline: User is able to navigate to the Terms And Conditions via the footer section of Website Information menu
+	Given I have navigated to the Brother Main Site "<country>" footer pages
 	And I have clicked the terms and conditions link in the footer section
 	Then I am navigated to the terms and conditions page
 
+Scenarios:
+	| country    |
+	|United Kingdom|
 
 Scenario Outline: User is able to navigate to the Brother Network via the footer section of Website Information menu
 	Given I have navigated to the Brother Main Site "<country>" footer pages

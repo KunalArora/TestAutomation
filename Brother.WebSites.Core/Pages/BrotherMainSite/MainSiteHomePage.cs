@@ -223,7 +223,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public MainSiteHomePage ProductsButtonClick()
         {
-            WaitForElementToExistById(ProductsTopMenu, 3);
+            WaitForElementToExistById(ProductsTopMenu, 5);
             MoveToElement(ProductsTopMenuButton);
             ProductsTopMenuButton.Click();
             return GetInstance<MainSiteHomePage>(Driver);
@@ -245,7 +245,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public void HasProductsPageLoaded()
         {
-            WaitForElementToExistById("lhnchatimg", 3);
+            WaitForElementToExistById("lhnchatimg", 5);
             ScrollTo(RequestSampleButton);    
             if (RequestSampleButton == null)
             {
@@ -278,7 +278,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public void HoverProductsMenu(IWebDriver driver)
         {
-            WaitForElementToExistById(ProductsTopMenu, 3);
+            WaitForElementToExistById(ProductsTopMenu, 5);
             var builder = new Actions(driver);
             builder.MoveToElement(driver.FindElement(By.Id(ProductsTopMenu))).Build().Perform();
         }
@@ -496,7 +496,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public void HasAllColourLasersPageLoaded()
         {
-            WaitForElementToExistById(BuyOnlineBtn, 3);
+            WaitForElementToExistById(BuyOnlineBtn, 5);
             if (BuyOnlineButton == null)
             {
                 throw new NullReferenceException("All colour lasers page has not loaded");
@@ -506,7 +506,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public void HasAllMonoLasersPageLoaded()
         {
-            WaitForElementToExistById(BuyOnlineBtn, 3);
+            WaitForElementToExistById(BuyOnlineBtn, 5);
             if (BuyOnlineButton == null)
             {
                 throw new NullReferenceException("All mono lasers page has not loaded");
@@ -525,7 +525,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public void HasAllPortablePrintersPageLoaded()
         {
-            WaitForElementToExistById(BuyOnlineBtn, 3);
+            WaitForElementToExistById(BuyOnlineBtn, 5);
             if (BuyOnlineButton == null)
             {
                 throw new NullReferenceException("All portable printers page has not loaded");
@@ -535,7 +535,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public void HasAllWorkgroupPrintersPageLoaded()
         {
-            WaitForElementToExistById("lhnchatimg", 3);
+            WaitForElementToExistById("lhnchatimg", 5);
             ScrollTo(RequestSampleButton);
             if (RequestSampleButton == null)
             {
@@ -546,7 +546,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public void HasAllPrinterRangePageLoaded()
         {
-            WaitForElementToExistById(BuyOnlineBtn, 3);
+            WaitForElementToExistById(BuyOnlineBtn, 5);
             if (BuyOnlineButton == null)
             {
                 throw new NullReferenceException("All printers range page has not loaded");
@@ -556,7 +556,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public void HasAllScannersPageLoaded()
         {
-            WaitForElementToExistById(BuyOnlineBtn, 3);
+            WaitForElementToExistById(BuyOnlineBtn, 5);
             if (BuyOnlineButton == null)
             {
                 throw new NullReferenceException("All scanners page has not loaded");
@@ -566,7 +566,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public void HasPortableScannersPageLoaded()
         {
-            WaitForElementToExistById(BuyOnlineBtn, 3);
+            WaitForElementToExistById(BuyOnlineBtn, 5);
             if (BuyOnlineButton == null)
             {
                 throw new NullReferenceException("Portable scanners page has not loaded");
@@ -576,7 +576,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public void HasCompactScannersPageLoaded()
         {
-            WaitForElementToExistById(BuyOnlineBtn, 3);
+            WaitForElementToExistById(BuyOnlineBtn, 5);
             if (BuyOnlineButton == null)
             {
                 throw new NullReferenceException("Compact scanners page has not loaded");

@@ -14,31 +14,38 @@ namespace Brother.Tests.Specs._80.BrotherMainSite.FooterNavigation
         [Given(@"I have clicked the privacy policy link in the footer section")]
         public void GivenIHaveClickedThePrivacyPolicyLinkInTheFooterSection()
         {
-            ScenarioContext.Current.Pending();
+            CurrentPage.As<FooterNavigationPage>().ClickPrivacyPolicyLink();
         }
-        [Given(@"I have clicked the terms and conditions link in the footer section")]
-        public void GivenIHaveClickedTheTermsAndConditionsLinkInTheFooterSection()
-        {
-            ScenarioContext.Current.Pending();
-        }
-        
-        [Then(@"I am navigated to the accessibility page")]
-        public void ThenIAmNavigatedToTheAccessibilityPage()
-        {
-            ScenarioContext.Current.Pending();
-        }
-        
+
         [Then(@"I am navigated to the privacy policy page")]
         public void ThenIAmNavigatedToThePrivacyPolicyPage()
         {
-            ScenarioContext.Current.Pending();
+            CurrentPage.As<FooterNavigationPage>().HasPrivacyPolicyPageLoaded();
         }
-        
+
+        [Given(@"I have clicked the terms and conditions link in the footer section")]
+        public void GivenIHaveClickedTheTermsAndConditionsLinkInTheFooterSection()
+        {
+            CurrentPage.As<FooterNavigationPage>().ClickTermsAndConditionsLink();
+        }
+
         [Then(@"I am navigated to the terms and conditions page")]
         public void ThenIAmNavigatedToTheTermsAndConditionsPage()
         {
             ScenarioContext.Current.Pending();
         }
+
+        [Given(@"I have clicked the accessibility link in the footer section")]
+        public void GivenIHaveClickedTheAccessibilityLinkInTheFooterSection()
+        {
+            CurrentPage.As<FooterNavigationPage>().ClickAccessibilityFooterLink();
+        }
+        
+        [Then(@"I am navigated to the accessibility page")]
+        public void ThenIAmNavigatedToTheAccessibilityPage()
+        {
+            CurrentPage.As<FooterNavigationPage>().HasAccessibilityPageLoaded();
+        }                
         
         [Then(@"I am navigated to the brother network page")]
         public void ThenIAmNavigatedToTheBrotherNetworkPage()
