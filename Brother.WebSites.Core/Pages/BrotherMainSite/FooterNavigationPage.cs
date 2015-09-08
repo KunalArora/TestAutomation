@@ -53,6 +53,25 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         [FindsBy(How = How.CssSelector, Using = "#main > div > div > div:nth-child(3) > div > ul.slides.cf > li:nth-child(1) > div.left-content > p:nth-child(5) > a")]
         public IWebElement ViewColourLaserRangeButton;
 
+        [FindsBy(How = How.CssSelector, Using = "#footer-websiteinfomation > li:nth-child(1) > a")]
+        public IWebElement AccessibilityFooterLink;
+
+        [FindsBy(How = How.CssSelector, Using = "#main > div > div > div:nth-child(5) > a")]
+        public IWebElement SiteMapLink;
+
+        [FindsBy(How = How.CssSelector, Using = "#footer-websiteinfomation > li:nth-child(3) > a")]
+        public IWebElement PrivacyPolicyFooterLink;
+
+        [FindsBy(How = How.CssSelector, Using = "#main > div > div > div:nth-child(5) > p:nth-child(4) > a")]
+        public IWebElement TermsAndConditionsLink;
+        
+       [FindsBy(How = How.CssSelector, Using = "#footer-websiteinfomation > li:nth-child(4) > a")]
+       public IWebElement TermsAndConditionsFooterLink;
+
+       [FindsBy(How = How.CssSelector, Using = "#main > div > div > div:nth-child(5) > a")]
+       public IWebElement BrotherAdminTeamLink;
+       
+
         private const string SuppliesAndAccessoriesFooter = "#footer-products > li:nth-child(6) > a";
 
         private const string LatestPromotionsFooter = "//*[@id='footer-products']/li[8]/a";
@@ -66,6 +85,18 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         private const string PrinterFooter = "#footer-products > li:nth-child(1) > a";
 
         private const string ViewColourLaserRangeBtn = "#main > div > div > div:nth-child(3) > div > ul.slides.cf > li:nth-child(1) > div.left-content > p:nth-child(5) > a";
+
+        private const string AccessibilityFooter = "#footer-websiteinfomation > li:nth-child(1) > a";
+
+        private const string SiteMap = "#main > div > div > div:nth-child(5) > a";
+
+        private const string PrivacyPolicyFooter = "#footer-websiteinfomation > li:nth-child(3) > a";
+
+        private const string TermsAndConditions = "#main > div > div > div:nth-child(5) > p:nth-child(4) > a";
+
+        private const string TermsAndConditionsFooter = "#footer-websiteinfomation > li:nth-child(4) > a";
+
+        private const string BrotherAdminTeam = "#main > div > div > div:nth-child(5) > a";
 
         public void HoverAndClickBrotherNetwork()
         {
@@ -172,6 +203,57 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
                 throw new NullReferenceException("Printers page has not loaded");
             }
             AssertElementPresent(ViewColourLaserRangeButton, "Colour laser button");
+        }
+
+        public void ClickAccessibilityFooterLink()
+        {
+            WaitForElementToExistByCssSelector(AccessibilityFooter);
+            MoveToElement(AccessibilityFooterLink);
+            AccessibilityFooterLink.Click();
+        }
+
+        public void HasAccessibilityPageLoaded()
+        {
+            WaitForElementToExistByCssSelector(SiteMap);
+            if (SiteMapLink == null)
+            {
+                throw new NullReferenceException("Accessibility page has not loaded");
+            }
+            AssertElementPresent(SiteMapLink, "Site map link");
+        }
+
+        public void ClickPrivacyPolicyLink()
+        {
+            WaitForElementToExistByCssSelector(PrivacyPolicyFooter);
+            MoveToElement(PrivacyPolicyFooterLink);
+            PrivacyPolicyFooterLink.Click();
+        }
+
+        public void HasPrivacyPolicyPageLoaded()
+        {
+            WaitForElementToExistByCssSelector(TermsAndConditions);
+            if (TermsAndConditionsLink == null)
+            {
+                throw new NullReferenceException("Privacy policy page has not loaded");
+            }
+            AssertElementPresent(TermsAndConditionsLink, "Terms and conditions link");
+        }
+
+        public void ClickTermsAndConditionsLink()
+        {
+            WaitForElementToExistByCssSelector(TermsAndConditionsFooter);
+            MoveToElement(TermsAndConditionsFooterLink);
+            TermsAndConditionsFooterLink.Click();
+        }
+
+        public void HasTermsAndConditionsPageLoaded()
+        {
+            WaitForElementToExistByCssSelector(BrotherAdminTeam);
+            if (BrotherAdminTeamLink == null)
+            {
+                throw new NullReferenceException("Terms and conditions page has not loaded");
+            }
+            AssertElementPresent(BrotherAdminTeamLink, "Brother admin team link");
         }
     }
 }
