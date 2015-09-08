@@ -56,6 +56,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Test Specification\CMS Sitecore\ExperienceEditor\Carousel.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Carousel.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Steps\BrotherMainSite\FooterNavigation\AboutFooterSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Test Specification\BrotherMainSite\ContactUs\ContactUs.feature.cs">
@@ -207,6 +212,10 @@
     <None Include="Test Specification\BrotherMainSite\Navigation\Products.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Products.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specification\CMS Sitecore\ExperienceEditor\Carousel.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Carousel.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specification\OmniJoin\FreeTrial.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
