@@ -920,6 +920,8 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.Given("I have navigated to the Brother Main Site \"United Kingdom\" products header pages", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 309
  testRunner.And("I hover over the top products menu button and click on the sewing link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 310
+ testRunner.Then("I am navigated to the sewing page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -951,7 +953,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 320
 this.ScenarioSetup(scenarioInfo);
 #line 321
- testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I have navigated to the Brother Main Site \"United Kingdom\" products header pages", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 322
  testRunner.And("I hover over the top products menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 323

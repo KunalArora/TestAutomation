@@ -307,7 +307,7 @@ Scenario: User is able to navigate to the fax page
 Scenario: User is able to navigate to the sewing machine page
 	Given I have navigated to the Brother Main Site "United Kingdom" products header pages
 	And I hover over the top products menu button and click on the sewing link
-	#Then I am navigated to the sewing page
+	Then I am navigated to the sewing page
 
 # Tape creator navigation
 Scenario: User is able to navigate to the tape creator page
@@ -318,7 +318,7 @@ Scenario: User is able to navigate to the tape creator page
 
 # Web conferencing navigation (Further page navigation in this area to be split into its own feature)
 Scenario: User is able to navigate to the web conferencing page
-	Given I have navigated to the "<site>" MainSite URL for country "<country>"
+	Given I have navigated to the Brother Main Site "United Kingdom" products header pages
 	And I hover over the top products menu button
 	Then I hover and click the web conferencing option
 	Then I am navigated to the web conferencing page

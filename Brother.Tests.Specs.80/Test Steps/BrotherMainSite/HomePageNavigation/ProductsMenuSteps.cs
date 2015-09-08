@@ -480,13 +480,13 @@ namespace Brother.Tests.Specs._80.Test_Steps.BrotherMainSite.HomePageNavigation
        [Given(@"I hover over the top products menu button and click on the sewing link")]
         public void GivenIHoverOverTheTopProductsMenuButtonAndClickOnTheSewingLink()
         {
-            CurrentPage.As<HeaderNavigationPage>().HoverProductsMenu8(CurrentDriver);
+            CurrentPage.As<HeaderNavigationPage>().HoverProductsMenuAndClickOnSewingLink(CurrentDriver);
         }
  
         [Then(@"I am navigated to the sewing page")]
         public void ThenIAmNavigatedToTheSewingPage()
         {
-            ScenarioContext.Current.Pending();
+            CurrentPage.As<HeaderNavigationPage>().SignInExist();
         }
         
         [Then(@"I hover and click the tape creator option")]
@@ -504,13 +504,13 @@ namespace Brother.Tests.Specs._80.Test_Steps.BrotherMainSite.HomePageNavigation
         [Then(@"I hover and click the web conferencing option")]
         public void ThenIHoverAndClickTheWebConferencingOption()
         {
-            ScenarioContext.Current.Pending();
+            CurrentPage.As<HeaderNavigationPage>().ClickOnConferencingOption(CurrentDriver); ;
         }
         
         [Then(@"I am navigated to the web conferencing page")]
         public void ThenIAmNavigatedToTheWebConferencingPage()
         {
-            ScenarioContext.Current.Pending();
+            CurrentPage.As<HeaderNavigationPage>().SignInExist();
         }
         
         [Then(@"I hover and click the where to buy option")]

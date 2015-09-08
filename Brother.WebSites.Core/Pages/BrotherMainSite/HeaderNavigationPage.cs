@@ -23,8 +23,18 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         [FindsBy(How = How.CssSelector, Using = "[href='http://www.brothersewing.co.uk/']")]
         public IWebElement SewingLink;
 
+        [FindsBy(How = How.CssSelector, Using = ".signIn")]
+        public IWebElement SignIn;
+
 
         public void HoverProductsMenu8(IWebDriver driver)
+        {
+            var action = new Actions(driver);
+            var menuHoverLink = driver.FindElement(By.CssSelector("[href='/Products/']"));
+            action.MoveToElement(menuHoverLink).Build().Perform();
+            WaitForElementToExistByCssSelector("[href='/Products/']", 60, 60);
+        }
+        public void HoverProductsMenuAndClickOnSewingLink(IWebDriver driver)
         {
             var action = new Actions(driver);
             var menuHoverLink = driver.FindElement(By.CssSelector("[href='/Products/']"));
@@ -35,7 +45,19 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
             action.MoveToElement(submenu).Build().Perform();
             submenu.Click();
         }
+       
+       public void SignInExist()
+       {
+           AssertElementPresent(SignIn, "sign in field");
+       }
 
+       public void ClickOnConferencingOption(IWebDriver driver)
+       {
+           var action = new Actions(driver);
+           var menuHoverLink = driver.FindElement(By.CssSelector("[href='http://www.brother.co.uk/business-solutions/web-conferencing']"));
+           action.MoveToElement(menuHoverLink).Build().Perform();
+           WaitForElementToExistByCssSelector("[href='http://www.brother.co.uk/business-solutions/web-conferencing']", 30, 30);
+       }
 
     }
 }
