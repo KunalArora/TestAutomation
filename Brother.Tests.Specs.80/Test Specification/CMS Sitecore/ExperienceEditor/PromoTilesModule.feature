@@ -1,7 +1,8 @@
-﻿Feature: Carousel component testing
-	In order to avoid silly mistakes
-	As a math idiot
-	I want to be told the sum of two numbers
+﻿Feature: Promo titles module feature
+	As a content editor I am able to add 
+	edit and delete the promo titles module 
+	component on existing and newly created 
+	pages
 
 @mytag
 Scenario: Add two numbers
