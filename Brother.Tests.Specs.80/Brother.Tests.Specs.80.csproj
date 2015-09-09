@@ -56,6 +56,56 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Test Specification\CMS Sitecore\ExperienceEditor\Accordian.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Accordian.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specification\CMS Sitecore\ExperienceEditor\CaseStudy.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CaseStudy.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specification\CMS Sitecore\ExperienceEditor\HeroBanner.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HeroBanner.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specification\CMS Sitecore\ExperienceEditor\HeroCarousel.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HeroCarousel.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specification\CMS Sitecore\ExperienceEditor\InfoImageTitleTextModule.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InfoImageTitleTextModule.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specification\CMS Sitecore\ExperienceEditor\InfoTile.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InfoTile.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specification\CMS Sitecore\ExperienceEditor\PromoTilesModule.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PromoTilesModule.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specification\CMS Sitecore\ExperienceEditor\PromoVideoTilesModule.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PromoVideoTilesModule.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specification\CMS Sitecore\ExperienceEditor\SecondaryNav.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SecondaryNav.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specification\CMS Sitecore\ExperienceEditor\SuperCarousel.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SuperCarousel.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Steps\BrotherMainSite\FooterNavigation\AboutFooterSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Test Specification\BrotherMainSite\ContactUs\ContactUs.feature.cs">
@@ -149,7 +199,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />
-    <Folder Include="Test Specification\CMS Sitecore\ExperienceEditor\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Drivers\chromedriver.exe">
@@ -208,6 +257,46 @@
     <None Include="Test Specification\BrotherMainSite\Navigation\Products.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Products.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specification\CMS Sitecore\ExperienceEditor\Accordian.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Accordian.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specification\CMS Sitecore\ExperienceEditor\CaseStudy.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CaseStudy.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specification\CMS Sitecore\ExperienceEditor\HeroBanner.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>HeroBanner.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specification\CMS Sitecore\ExperienceEditor\HeroCarousel.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>HeroCarousel.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specification\CMS Sitecore\ExperienceEditor\InfoImageTitleTextModule.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>InfoImageTitleTextModule.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specification\CMS Sitecore\ExperienceEditor\InfoTile.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>InfoTile.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specification\CMS Sitecore\ExperienceEditor\PromoTilesModule.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>PromoTilesModule.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specification\CMS Sitecore\ExperienceEditor\PromoVideoTilesModule.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>PromoVideoTilesModule.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specification\CMS Sitecore\ExperienceEditor\SecondaryNav.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>SecondaryNav.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specification\CMS Sitecore\ExperienceEditor\SuperCarousel.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>SuperCarousel.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specification\OmniJoin\FreeTrial.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
