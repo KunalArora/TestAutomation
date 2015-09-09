@@ -435,8 +435,6 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="specflow.exe.config" />
-    <None Include="TeamCity.SpecFlow.Reporting.psm1" />
     <None Include="Test Specifications\BrotherMainSite\Navigation\FooterNav\WebsiteInformation.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>WebsiteInformation.feature.cs</LastGenOutput>
@@ -692,7 +690,6 @@
     <Content Include="Drivers\phantomjs.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="SpecFlowBuild.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Brother.Tests.Selenium\Brother.Tests.Selenium.Lib.csproj">
