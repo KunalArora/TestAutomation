@@ -4,7 +4,7 @@
 	on existing and newly created pages
 
 @mytag
-Scenario: Add two numbers
+Scenario: Add new accordian component to page
 	Given I have entered 50 into the calculator
 	And I have entered 70 into the calculator
 	When I press add

@@ -66,11 +66,11 @@ namespace Brother.Tests.Specs._80.TestSpecification.CMSSitecore.ExperienceEditor
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Add two numbers")]
+        [NUnit.Framework.DescriptionAttribute("Add new accordian component to page")]
         [NUnit.Framework.CategoryAttribute("mytag")]
-        public virtual void AddTwoNumbers()
+        public virtual void AddNewAccordianComponentToPage()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add two numbers", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add new accordian component to page", new string[] {
                         "mytag"});
 #line 7
 this.ScenarioSetup(scenarioInfo);
