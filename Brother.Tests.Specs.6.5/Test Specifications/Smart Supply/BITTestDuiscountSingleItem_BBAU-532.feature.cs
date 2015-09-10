@@ -21,6 +21,8 @@ namespace Brother.Tests.Specs.TestSpecifications.SmartSupply
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("BOL - WS - BIT - Test discount ticket - calculation of discounts for single item")]
     [NUnit.Framework.IgnoreAttribute()]
+    [NUnit.Framework.CategoryAttribute("TEST")]
+    [NUnit.Framework.CategoryAttribute("UAT")]
     public partial class BOL_WS_BIT_TestDiscountTicket_CalculationOfDiscountsForSingleItemFeature
     {
         
@@ -36,6 +38,8 @@ namespace Brother.Tests.Specs.TestSpecifications.SmartSupply
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "BOL - WS - BIT - Test discount ticket - calculation of discounts for single item", "As a Brother Supply Club user\r\nI need to add the supply club product to basket an" +
                     "d see the club product discounts calculated correctly and displayed in correct o" +
                     "rder", ProgrammingLanguage.CSharp, new string[] {
+                        "TEST",
+                        "UAT",
                         "ignore"});
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -72,10 +76,14 @@ namespace Brother.Tests.Specs.TestSpecifications.SmartSupply
         [NUnit.Framework.DescriptionAttribute("View Brother Supply Club product - calculation of discounts for single item on Ba" +
             "sket Page")]
         [NUnit.Framework.IgnoreAttribute()]
+        [NUnit.Framework.CategoryAttribute("TEST")]
+        [NUnit.Framework.CategoryAttribute("UAT")]
         public virtual void ViewBrotherSupplyClubProduct_CalculationOfDiscountsForSingleItemOnBasketPage()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("View Brother Supply Club product - calculation of discounts for single item on Ba" +
                     "sket Page", new string[] {
+                        "TEST",
+                        "UAT",
                         "ignore"});
 #line 8
 this.ScenarioSetup(scenarioInfo);
@@ -119,31 +127,33 @@ testRunner.Given("I want to create a new account with Brother Online \"Italy\"",
  testRunner.Then("I should see my account confirmation page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 25
  testRunner.And("When I Click Go Back", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 27
+#line 26
  testRunner.Then("I should be able to log into \"Italy\" Brother Online using my account details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 30
+#line 27
  testRunner.Given("I have navigated to the Brother Main Site \"Italy\" products pages", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 31
+#line 28
  testRunner.And("I have clicked on Supplies", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 32
+#line 29
  testRunner.And("I have entered my valid supplies code for an InkJet cartridge \"TN2220\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 33
+#line 30
  testRunner.When("I click on search for supply \"TN2220\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 34
+#line 31
  testRunner.When("I click on Add to basket button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 35
+#line 32
  testRunner.And("I  click the smart supply basket icon", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 37
+#line 33
  testRunner.And("I can see brother supply club benefits checkbox in the basket page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 38
+#line 34
  testRunner.And("I can see the Brother Club discounts offers on basket page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 39
+#line 35
  testRunner.And("I can see the product discount \"€ 0,00\" before opting in to Brother Supply Club", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 40
+#line 36
  testRunner.And("I opt to join Brother Supply Club", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 41
+#line 37
  testRunner.And("I can see a positive value in product discount after opting in to Brother Supply " +
                     "Club", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 38
+ testRunner.And("I can check the sequence of the price labels in the basket page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
