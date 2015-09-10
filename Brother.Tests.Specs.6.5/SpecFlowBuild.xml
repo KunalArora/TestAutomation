@@ -8,7 +8,7 @@ xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <NUnitConsole>&quot;$(NUnitHome)\bin\nunit-console.exe&quot;</NUnitConsole>
     <testResultsTxt>&quot;$(teamcity_build_checkoutDir)/Brother.Tests.Specs.6.5/TestResult.txt&quot;</testResultsTxt>
     <testResultsXml>&quot;$(teamcity_build_checkoutDir)/Brother.Tests.Specs.6.5/TestResult.xml&quot;</testResultsXml>
-    <projectFile>&quot;$(teamcity_build_checkoutDir)/Brother.Tests.Specs.6.5\Brother.Tests.Specs.6.5.csproj&quot;</projectFile>
+    <projectFile>&quot;$(teamcity_build_checkoutDir)/Brother.Tests.Specs.6.5\Brother.Tests.Specs.6.5.dll&quot;</projectFile>
   </PropertyGroup>
 
   <Target Name="RunAutomatedTests">
