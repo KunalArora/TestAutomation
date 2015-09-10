@@ -681,7 +681,6 @@
     <Folder Include="Test Steps\Brother Online Redesign\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Build\MSBuildScript.xml" />
     <Content Include="Drivers\chromedriver.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -691,7 +690,8 @@
     <Content Include="Drivers\phantomjs.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Build\SpecFlowBuild.xml" />
+    <Content Include="MSBuildScript.xml" />
+    <Content Include="SpecFlowBuild.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Brother.Tests.Selenium\Brother.Tests.Selenium.Lib.csproj">
