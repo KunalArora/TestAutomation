@@ -12,14 +12,15 @@ namespace Brother.Tests.Specs.Test_Steps.Smart_Supply
         [When(@"I  click the smart supply basket icon")]
         public void WhenIClickTheSmartSupplyBasketIcon()
         {
+            NextPage = SmartSupplyProductPage.Productpageload(CurrentDriver);
             CurrentPage.As<SmartSupplyProductPage>().ClickBasketIcon();
         }
 
-        [When(@"I click the checkout button")]
-        public void WhenIClickTheCheckoutButton()
-        {
-            CurrentPage.As<SmartSupplyProductPage>().ClickCheckOutButtonSmartSupply();
-        }
+        //[When(@"I click the checkout button")]
+        //public void WhenIClickTheCheckoutButton()
+        //{
+        //    CurrentPage.As<SmartSupplyProductPage>().ClickCheckOutButtonSmartSupply();
+        //}
 
         [When(@"I can see brother supply club benefits checkbox in the basket page")]
         public void WhenICanSeeBrotherSupplyClubBenefitsCheckboxInTheBasketPage()
@@ -50,6 +51,13 @@ namespace Brother.Tests.Specs.Test_Steps.Smart_Supply
         {
             CurrentPage.As<SmartSupplyBasketPage>().CheckForDiscountAmount(); 
         }
+
+        [When(@"I can check the sequence of the price labels in the basket page")]
+        public void WhenICanCheckTheSequenceOfThePriceLabelsInTheBasketPage()
+        {
+            CurrentPage.As<SmartSupplyBasketPage>().CheckForPriceLabelSequenceInBasketPage();
+        }
+
 
     }
 }
