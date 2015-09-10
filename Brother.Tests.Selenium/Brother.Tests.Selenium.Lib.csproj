@@ -186,7 +186,6 @@
     <None Include="TeamCity.SpecFlow.Reporting.psm1" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Build\MSBuildScript.xml" />
     <Content Include="Drivers\chromedriver.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
