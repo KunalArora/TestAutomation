@@ -21,7 +21,7 @@ namespace Brother.Tests.Specs.OmniJoin.Plans
             Then("I should be directed to the Brother Online Basket page");
             And("When I click CheckOut");
             Then("I can add billing address details for Country \"United Kingdom\"");
-	        And("I can go through the order process for Country \"United Kingdom\" with order info \"1\"");
+            And("I can go through the order process for Country \"United Kingdom\" with order info \"1\"");
             Then("I should see the Order Confirmation page");
             And(string.Format("The purchased plan billing type is correct \"{0}\"", omniJoinBillingMethod));
             And("If I click on My Account");

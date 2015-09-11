@@ -32,6 +32,5 @@ Scenario: Test Code Two
 @STAGING @IGNORE
 Scenario: Simple Parallel Test
 	Given I want to run multiple instances of PhantomJs
-	Then Navigate to website x, y and z
 
 

@@ -231,7 +231,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [Then(@"I enter an invalid email address as ""(.*)""")]
         public void ThenIEnterAnInvalidEmailAddressAs(string emailAddress)
         {
-           When(string.Format("Enter Email Address as \"{0}\"", emailAddress));
+            When(string.Format("Enter Email Address as \"{0}\"", emailAddress));
         }
 
         [Then(@"I enter an email address with leading spaces as ""(.*)""")]

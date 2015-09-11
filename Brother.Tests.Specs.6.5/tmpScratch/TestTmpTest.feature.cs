@@ -109,8 +109,6 @@ this.ScenarioSetup(scenarioInfo);
 this.FeatureBackground();
 #line 34
  testRunner.Given("I want to run multiple instances of PhantomJs", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 35
- testRunner.Then("Navigate to website x, y and z", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

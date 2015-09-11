@@ -397,6 +397,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [When(@"I navigated to Term and Type page")]
         public void WhenINavigatedToTermAndTypePage()
         {
+            
             When(@"I navigate to Dealer Dashboard page");
             When(@"I am on MPS New Proposal Page");
             When(@"I fill Proposal Description");
