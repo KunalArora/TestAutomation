@@ -290,6 +290,8 @@
     <Compile Include="Test Steps\BrotherMainSite\HomePageNavigation\MainSiteHomePageNavigationSteps.cs" />
     <Compile Include="Test Steps\BrotherMainSite\HomePageNavigation\ProductsMenuSteps.cs" />
     <Compile Include="Test Steps\BrotherMainSite\PrinterSearch\PrinterSearchSteps.cs" />
+    <Compile Include="Test Steps\BrotherOnline\AccountManagementSteps.cs" />
+    <Compile Include="Test Steps\BrotherOnline\SignInCreateAccountSteps.cs" />
     <Compile Include="Test Steps\Global\GlobalSteps.cs" />
     <Compile Include="Test Steps\OmniJoin\FreeTrial\FreeTrialSteps.cs" />
     <Compile Include="Test Steps\OmniJoin\Plans\ManagePlanSteps.cs" />
