@@ -1,5 +1,6 @@
 ﻿using Brother.Tests.Selenium.Lib.Support;
 using OpenQA.Selenium;
+using SpecResults;
 using TechTalk.SpecFlow;
 
 namespace Brother.WebSites.Core.Pages.Base
