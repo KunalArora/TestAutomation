@@ -27,6 +27,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.Smart_Supply
         public IWebElement BSCOptInCheckBox;
         public void IsBSCOptInCheckBoxAvailable()
         {
+            WebDriver.Wait(DurationType.Second, 5);
             try
             {
                 if (BSCOptInCheckBox == null)
@@ -70,16 +71,17 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.Smart_Supply
         //[FindsBy(How = How.CssSelector, Using = ".cart-view .total-summary .totals .total-values")]
         //public IList<IWebElement> PriceCalculationItemsOfBSCBasketElements;
 
-        [FindsBy(How = How.CssSelector, Using = "#main > div > div > div.content-unit.six > div.cart-view > div.total-summary.cf > div > div.total-values > span:nth-child(2)")]
-        public IWebElement PriceDiscountForNormalUser; 
+        [FindsBy(How = How.CssSelector, Using = ".total-values span")]
+        public IList<IWebElement> PriceDiscountForNormalUser; 
 
          public bool CheckForDiscountAmount(string normaluserdiscount)
          {
-          string nd = PriceDiscountForNormalUser.Text;
-          if (PriceDiscountForNormalUser == null)
+          WaitForElementToExistByCssSelector(".cart-view .total-summary .totals .total-values", 2, 60);
+          string nd = PriceDiscountForNormalUser.ElementAt(1).Text;
+          if (nd == null)
            throw new Exception("Unable to find the discount option in the listing of the total summary");
 
-          AssertElementText(PriceDiscountForNormalUser, normaluserdiscount, "Discount value is zero for normal user"); 
+          AssertElementText(PriceDiscountForNormalUser.ElementAt(1), normaluserdiscount, "Discount value is zero for normal user"); 
           if (nd == "€ 0,00") return true;
           return false;
          }
@@ -93,14 +95,29 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.Smart_Supply
 
         public bool CheckForDiscountAmount()
         {
-            string nd = PriceDiscountForNormalUser.Text;
+            string nd = PriceDiscountForNormalUser.ElementAt(1).Text;
             if (PriceDiscountForNormalUser == null)
-                throw new Exception("Unable to find promo texts on mouse hover over basket");
+                throw new Exception("Unable to find the discount value in the listing of the total summary");
 
-            AssertElementNotContainsText(PriceDiscountForNormalUser, "€ 0,00", "Discount value is zero for normal user");
+            AssertElementNotContainsText(PriceDiscountForNormalUser.ElementAt(1), "€ 0,00", "Discount value is not zero for supply club user");
             if (nd != "€ 0,00") return true;
             return false;
         }
 
+        [FindsBy(How = How.CssSelector, Using = ".total-labels span")]
+        public IList<IWebElement> PriceLabelSequenceInBasketPage;
+
+        public bool CheckForPriceLabelSequenceInBasketPage()
+        {
+            string[] PriceLabelsList = {"Subtotale (IVA esclusa)", "Sconto", "Prezzo netto", "IVA 22%", "Totale da pagare ora"};
+            string[] VerifyPriceLabelsList = new string[PriceLabelsList.Length];
+            for (int i = 0; i < PriceLabelsList.Length; i++)
+            {
+                // Assign string reference based on induction variable.
+                VerifyPriceLabelsList[i] = PriceLabelSequenceInBasketPage.ElementAt(i).Text;
+            }
+            if (PriceLabelsList == VerifyPriceLabelsList) return true;
+            return false;
+        }
     }
 }

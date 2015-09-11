@@ -45,7 +45,7 @@ namespace Brother.Tests.Selenium.Lib.Pages.BrotherMainSite.Smart_Supply
         {
             AddtoBasketBrotherSupplyClubProduct.Click();
             // Checking if the add to cart click event is performed fully
-            WebDriver.Wait(DurationType.Second, 5);
+            WebDriver.Wait(DurationType.Second, 10);
         }
 
         [FindsBy(How = How.CssSelector, Using = ".basket-container")]
@@ -60,7 +60,7 @@ namespace Brother.Tests.Selenium.Lib.Pages.BrotherMainSite.Smart_Supply
         public IWebElement BasketIconSmartSupply;
 
         [FindsBy(How = How.CssSelector, Using = ".sections.add-to-basket")]
-        public IWebElement ChechOutButtonSmartSupply;
+        public IWebElement CheckOutButtonSmartSupply;
 
         public void Hoverbasket()
         {
@@ -93,23 +93,24 @@ namespace Brother.Tests.Selenium.Lib.Pages.BrotherMainSite.Smart_Supply
         {
             Hoverbasket();
             string[] rid = BenefitsText.First().Text.Split(' ');
-            var productname = rid.ElementAt(2);
+            var productname = rid.Last();
             if (productname == "TN-2220") return true;
             return false;
         }
 
         public void ClickBasketIcon()
         {
+         WebDriver.Wait(DurationType.Second, 5);
          BasketIconSmartSupply.Click();
-         MoveToElement(ChechOutButtonSmartSupply);
+         // MoveToElement(CheckOutButtonSmartSupply);
         }
 
 
         public void ClickCheckOutButtonSmartSupply()
         {
             MoveToElement(ProductBasketContainer);
-            MoveToElement(ChechOutButtonSmartSupply);
-            ChechOutButtonSmartSupply.Click();
+            MoveToElement(CheckOutButtonSmartSupply);
+            CheckOutButtonSmartSupply.Click();
         }
     }
 }

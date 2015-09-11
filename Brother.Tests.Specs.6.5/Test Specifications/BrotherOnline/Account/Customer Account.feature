@@ -120,7 +120,7 @@ Scenario: Customer has the option to change their sign in preferences to social 
 
 @TEST @UAT @PROD 
 # Validate that the correct error messages are displayed when business details mandatory fields are not completed
-Scenario: : Customer get the correct error message when business details mandator fields are not completed
+Scenario: : Customer get the correct error message when business details mandatory fields are not completed
 	Given I am logged onto Brother Online "United Kingdom" using valid credentials
 	When I navigate to my account for "United Kingdom"	
 	And I clicked on Business Details
