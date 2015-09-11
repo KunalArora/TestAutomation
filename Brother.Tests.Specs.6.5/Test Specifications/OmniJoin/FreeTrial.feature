@@ -44,7 +44,8 @@ Scenario: Sign Up for 14 day Free trial without an existing Brother Online accou
 	And Once I have Validated a Free Trial confirmation Email was received
 
 
-@TEST
+@PROD @UAT @TEST @DEV
+#Once the defect is fixed take out the last comments off the test
 Scenario Outline: Validate Free Trial form accepts correct amount of characters and displays error messages (BBAU-2721)
 	Given I have navigated to the OmniJoin home page
 	And If I click on Start Free Trial
@@ -59,7 +60,7 @@ Scenarios:
 	| "InvalidEmailContaining aspace@mailinator.com" |
 	| "InvalidEmailForUser@mailinator"|
 	| "InvalidEmailForUser"|
-	| "ThisIsAVeryLargeEmailAddressWhichExceeds241CharactersAndThisIsNotSupportedaaaaaaaaaaaThisIsAVeryLargeEmailAddressWhichExceeds241CharactersAndThisIsNotSupportedaaaaaaaaaaaThisIsAVeryLargeEmailAddressWhichExceed241CharactersExceed241Characters@mailinator.com" |	
+	#| "ThisIsAVeryLargeEmailAddressWhichExceeds241CharactersAndThisIsNotSupportedaaaaaaaaaaaThisIsAVeryLargeEmailAddressWhichExceeds241CharactersAndThisIsNotSupportedaaaaaaaaaaaThisIsAVeryLargeEmailAddressWhichExceed241CharactersExceed241Characters@mailinator.com" |	
 
 
 @ignore

@@ -140,7 +140,7 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Trial
 
         public void ErrorMessageDisplayed()
         {
-            TestCheck.AssertIsEqual(false, EmailAddressErrorMessage.Displayed, "Is Email Error message displayed");
+            TestCheck.AssertIsEqual(true, EmailAddressErrorMessage.Displayed, "Is Email Error message displayed");
         }
 
     }
