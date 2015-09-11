@@ -1,4 +1,4 @@
-﻿@UAT @PROD @TEST
+﻿@IGNORE
 Feature: WebsiteInformation footer navigation
 	As a visitor of the Brother main site
 	I am able to navigate to each of the
