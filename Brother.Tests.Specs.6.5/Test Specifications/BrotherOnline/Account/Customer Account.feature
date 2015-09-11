@@ -602,4 +602,54 @@ Scenarios:
 | Country |
 | Italy   |
 
+#Validate that a Customer Account holder is able to swap to a Business Account
+Scenario: Validate that a newly created customer account can be swapped to a business account
+	Given I want to create a new account with Brother Online "United Kingdom"
+	When I click on Create Account for "United Kingdom"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I declare that I do not use this account for business
+	And I fill in the registration information using a valid email address 
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Password        | @@@@@	       |
+	| ConfirmPassword | @@@@@		   |
 
+	And I have Agreed to the Terms and Conditions
+	When I press Create Your Account
+	Then I should see my account confirmation page
+	And When I Click Go Back
+	And Once I have Validated an Email was received and verified my account
+	Then I should be able to log into "United Kingdom" Brother Online using my account details
+	When I navigate to my account for "United Kingdom"
+	When I clicked on Business Details
+	And I declare that I do use this account for business on my account page
+	And I add my company name as "AutoTestLtd" on Business Details page
+	And I add my company VAT number as "GB145937540" on Business Details Page
+	And I select my Business Sector as "IT and telecommunications services" on Business Details Page
+	And I select number of Employees as "11 - 50" on Business Details Page
+	And I click on Update details on business details page
+	Then I can verify successfull update message appeared at the top
+	Then I can sign out of Brother Online
+
+# Accounts created on DV2, QAS and Prod for the following test - existingcustomeraccwithorder@guerrillamail.com/Password100 
+# Validate that a Customer Account holder who has made an order is not able to swap to a Business account
+Scenario Outline: Customer account holder is unable to switch to a business account once an order has been placed
+	Given I launch Brother Online for "United Kingdom"
+	When I click on Create Account for "United Kingdom"
+	And I am redirected to the Brother Login/Register page
+	And I enter an email address containing <Email Address>
+	When I enter a valid Password <Password>
+	And I press sign in with invalid details
+	Then I should be able to successfully log into brother online
+	When I navigate to my account
+	When I clicked on Business Details
+	Then An error message is displayed advising user that and account with order cannot be switched
+	And I can navigate back to Brother Online home page
+	And I can sign out of Brother Online
+	Then I am redirected to the Brother Home Page
+
+	Scenarios:
+		| Email Address										| Password      |
+		| "existingcustomeraccwithorder@guerrillamail.com"	| "Password100" |
