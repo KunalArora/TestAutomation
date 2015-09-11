@@ -346,15 +346,15 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute(": Customer get the correct error message when business details mandator fields ar" +
-            "e not completed")]
+        [NUnit.Framework.DescriptionAttribute(": Customer get the correct error message when business details mandatory fields a" +
+            "re not completed")]
         [NUnit.Framework.CategoryAttribute("TEST")]
         [NUnit.Framework.CategoryAttribute("UAT")]
         [NUnit.Framework.CategoryAttribute("PROD")]
-        public virtual void CustomerGetTheCorrectErrorMessageWhenBusinessDetailsMandatorFieldsAreNotCompleted()
+        public virtual void CustomerGetTheCorrectErrorMessageWhenBusinessDetailsMandatoryFieldsAreNotCompleted()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo(": Customer get the correct error message when business details mandator fields ar" +
-                    "e not completed", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo(": Customer get the correct error message when business details mandatory fields a" +
+                    "re not completed", new string[] {
                         "TEST",
                         "UAT",
                         "PROD"});

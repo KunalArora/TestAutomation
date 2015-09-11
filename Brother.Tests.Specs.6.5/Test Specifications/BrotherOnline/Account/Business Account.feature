@@ -35,6 +35,28 @@ Scenario: Create a business account change the business account to be Customer A
 	And I can navigate back to Brother Online home page
 	And I can sign out of Brother Online
 
+# Accounts created on DV2, QAS and Prod for the following test - existingbusinessaccwithorder@guerrillamail.com 
+# Validate that a Business Account holder who has made an order is not able to swap to a Customer account
+Scenario Outline: Business account holder is unable to switch to a customer account once and order has been placed
+	Given I launch Brother Online for "United Kingdom"
+	When I click on Create Account for "United Kingdom"
+	And I am redirected to the Brother Login/Register page
+	And I enter an email address containing <Email Address>
+	When I enter a valid Password <Password>
+	And I press sign in with invalid details
+	Then I should be able to successfully log into brother online
+	When I navigate to my account
+	When I clicked on Business Details
+	Then An error message is displayed advising user that and account with order cannot be switched
+	And I can navigate back to Brother Online home page
+	And I can sign out of Brother Online
+	Then I am redirected to the Brother Home Page
+
+	Scenarios:
+		| Email Address										| Password      |
+		| "existingbusinessaccwithorder@guerrillamail.com"	| "Password100" |
+		
+
 # Change Business details in your created account, go to my account and change/add your business details
 Scenario: Business Customer can change their business details after logging into account
 	Given I am logged onto Brother Online "United Kingdom" using valid credentials

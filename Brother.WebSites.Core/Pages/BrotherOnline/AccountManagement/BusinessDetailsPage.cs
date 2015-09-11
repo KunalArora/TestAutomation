@@ -47,6 +47,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
 
         public string UpdateButtonId = "#content_2_innercontent_1_SubmitButton";
 
+        public string SwitchAccTypeError = "#business-checkboxes > span > div.error.server-error";
+
         [FindsBy(How = How.Id, Using = "content_2_innercontent_1_CompanyNameRequiredValidator")]
         public IWebElement CompanyNameErrorMessage;
 
@@ -62,6 +64,17 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
                 updateButton = Driver.FindElement(By.CssSelector(UpdateButtonId));
             }
             AssertElementPresent(updateButton, "Update Button");
+        }
+
+
+        public void CannotSwitchAccMsgDisplayed()
+        {
+            IWebElement SwitchAccTypeErrorMsg = null;
+            if (WaitForElementToExistByCssSelector(SwitchAccTypeError, 5, 5))
+            {
+                SwitchAccTypeErrorMsg = Driver.FindElement(By.CssSelector(SwitchAccTypeError));
+            }
+            AssertElementPresent(SwitchAccTypeErrorMsg, "Switch Account Error Message");
         }
 
         public void UpdateButtonClick()
