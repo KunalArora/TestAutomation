@@ -74,7 +74,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Proposal
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Dealer Can Generate PDF on Leasing Minimum Volume Summary Page")]
         [NUnit.Framework.IgnoreAttribute()]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Lease & Click with Service", "Minimum Volume", "4 years", "Quarterly", "Quarterly", "HL-L8350CDW", "Full", "2000", "2000", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Lease & Click with Service", "Minimum Volume", "4 years", "Quarterly in Arrears", "Quarterly in Arrears", "HL-L8350CDW", "Full", "2000", "2000", null)]
         public virtual void DealerCanGeneratePDFOnLeasingMinimumVolumeSummaryPage(string role, string country, string contractType, string usageType, string contract, string leasing, string billing, string printer, string deviceScreen, string clickVolume, string colourVolume, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -124,7 +124,7 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Dealer Can Generate PDF Leasing PAYG Summary Page")]
         [NUnit.Framework.IgnoreAttribute()]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Lease & Click with Service", "Pay As You Go", "5 years", "Quarterly", "Quarterly", "DCP-8110DN", "Full", "2000", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Lease & Click with Service", "Pay As You Go", "5 years", "Quarterly in Arrears", "Quarterly in Arrears", "DCP-8110DN", "Full", "2000", null)]
         public virtual void DealerCanGeneratePDFLeasingPAYGSummaryPage(string role, string country, string contractType, string usageType, string contract, string leasing, string billing, string printer, string deviceScreen, string clickVolume, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -173,7 +173,7 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Dealer Can Generate PDF Purchase and Click Minimum Summary Page")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Purchase & Click with Service", "Minimum Volume", "3 years", "Quarterly", "Quarterly", "Untick", "MFC-L8650CDW", "Reduced", "Included in Click Price", "2000", "2000", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Purchase & Click with Service", "Minimum Volume", "3 years", "Quarterly in Arrears", "Quarterly in Arrears", "Untick", "MFC-L8650CDW", "Reduced", "Included in Click Price", "2000", "2000", null)]
         public virtual void DealerCanGeneratePDFPurchaseAndClickMinimumSummaryPage(string role, string country, string contractType, string usageType, string contract, string leasing, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer Can Generate PDF Purchase and Click Minimum Summary Page", exampleTags);
@@ -222,7 +222,7 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Dealer Can Generate PDF Purchase and Click PAYG Summary Page")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Purchase & Click with Service", "Pay As You Go", "5 years", "Quarterly", "Quarterly", "Tick", "MFC-8510DN", "Full", "3000", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Purchase & Click with Service", "Pay As You Go", "5 years", "Quarterly in Arrears", "Quarterly in Arrears", "Tick", "MFC-8510DN", "Full", "3000", null)]
         public virtual void DealerCanGeneratePDFPurchaseAndClickPAYGSummaryPage(string role, string country, string contractType, string usageType, string contract, string leasing, string billing, string priceHardware, string printer, string deviceScreen, string clickVolume, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer Can Generate PDF Purchase and Click PAYG Summary Page", exampleTags);
