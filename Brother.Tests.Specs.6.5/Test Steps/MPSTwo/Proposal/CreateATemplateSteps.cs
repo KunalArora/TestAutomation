@@ -133,7 +133,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             customerInformationStepInstance.WhenISelectButtonForCustomerDataCapture("Create new customer");
             DealerProposalsCreateTermAndTypeStep termAndTypeStepInstance = new DealerProposalsCreateTermAndTypeStep();
             termAndTypeStepInstance.WhenIEnterUsageTypeOfAndContractTermsLeasingAndBillingOnTermAndTypeDetails
-                (UsageType, "3 years", "Quarterly", "Quarterly");
+                (UsageType, "3 years", "Quarterly in Arrears", "Quarterly in Arrears");
 
             DealerProposalsCreateProductsStep instance = new DealerProposalsCreateProductsStep();
             instance.WhenIDisplayDeviceScreen("HL-L8350CDW");
@@ -188,7 +188,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
 
             DealerProposalsCreateTermAndTypeStep termAndTypeStepInstance = new DealerProposalsCreateTermAndTypeStep();
             termAndTypeStepInstance.WhenIEnterUsageTypeOfAndContractTermsLeasingAndBillingOnTermAndTypeDetails
-                ("Minimum Volume", "3 years", "Quarterly", "Quarterly");
+                ("Minimum Volume", "3 years", "Quarterly in Arrears", "Quarterly in Arrears");
 
             DealerProposalsCreateProductsStep instance = new DealerProposalsCreateProductsStep();
             instance.WhenIDisplayDeviceScreen("HL-L8350CDW");
@@ -208,7 +208,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             customerInformationStepInstance.WhenISelectButtonForCustomerDataCapture("Create new customer");
             DealerProposalsCreateTermAndTypeStep stepInstance = new DealerProposalsCreateTermAndTypeStep();
             stepInstance.WhenIEnterUsageTypeContractLengthAndBillingOnTermAndTypeDetails
-                ("Minimum Volume", "3 years", "Quarterly");
+                ("Minimum Volume", "3 years", "Quarterly in Arrears");
             stepInstance.WhenIPriceHardwareRadioButton("Tick");
 
             DealerProposalsCreateProductsStep instance = new DealerProposalsCreateProductsStep();
@@ -230,7 +230,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             customerInformationStepInstance.WhenISelectButtonForCustomerDataCapture("Create new customer");
             DealerProposalsCreateTermAndTypeStep stepInstance = new DealerProposalsCreateTermAndTypeStep();
             stepInstance.WhenIEnterUsageTypeContractLengthAndBillingOnTermAndTypeDetails
-                (UsageType, "3 years", "Quarterly");
+                (UsageType, "3 years", "Quarterly in Arrears");
             stepInstance.WhenIPriceHardwareRadioButton("Tick");
 
             DealerProposalsCreateProductsStep instance = new DealerProposalsCreateProductsStep();

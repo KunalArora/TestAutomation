@@ -53,15 +53,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement EmailElement;
         [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerName")]
         public IWebElement CompanyNameElement;
-        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerPropertyNumber_Input")]
+        [FindsBy(How = How.Id, Using = "content_1_PersonManage_CustomerLocation_InputNumber_Input")]
         public IWebElement PropertyNumberElement;
-        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerPropertyStreet_Input")]
+        [FindsBy(How = How.Id, Using = "content_1_PersonManage_CustomerLocation_InputStreet_Input")]
         public IWebElement PropertyStreetElement;
         [FindsBy(How = How.Id, Using = "content_1_CustomerManage_InputPropertyArea_Input")]
         public IWebElement PropertyAreaElement;
-        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerPropertyTown_Input")]
+        [FindsBy(How = How.Id, Using = "content_1_PersonManage_CustomerLocation_InputTown_Input")]
         public IWebElement PropertyTownElement;
-        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerPropertyPostCode_Input")]
+        [FindsBy(How = How.Id, Using = "content_1_PersonManage_CustomerLocation_InputPostCode_Input")]
         public IWebElement PropertyPostcodeElement;
         [FindsBy(How = How.Id, Using = "content_1_CustomerManage_InputRegion_Input")]
         public IWebElement RegionElement;
@@ -213,17 +213,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterCompanyName()
         {
+            if (CompanyNameElement.Displayed)
             CompanyNameElement.SendKeys(MpsUtil.CompanyName());
         }
 
         public void EnterPropertyNumber()
         {
-            PropertyNumberElement.SendKeys(MpsUtil.PropertyNumber());
+            if (PropertyNumberElement.Displayed)
+                PropertyNumberElement.SendKeys(MpsUtil.PropertyNumber());
         }
 
         public void EnterPropertyStreet()
         {
-            PropertyStreetElement.SendKeys(MpsUtil.PropertyStreet());
+            if (PropertyStreetElement.Displayed)
+                PropertyStreetElement.SendKeys(MpsUtil.PropertyStreet());
         }
 
         public void EnterPropertyArea()
@@ -233,12 +236,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterPropertyTown()
         {
-            PropertyTownElement.SendKeys(MpsUtil.PropertyTown());
+            if (PropertyTownElement.Displayed)
+                PropertyTownElement.SendKeys(MpsUtil.PropertyTown());
         }
 
         public void EnterPropertyPostCode()
         {
-            PropertyPostcodeElement.SendKeys(MpsUtil.PostCode());
+            if (PropertyPostcodeElement.Displayed)
+                PropertyPostcodeElement.SendKeys(MpsUtil.PostCode());
         }
 
         public void SelectRegionFromDropdown(string region)
