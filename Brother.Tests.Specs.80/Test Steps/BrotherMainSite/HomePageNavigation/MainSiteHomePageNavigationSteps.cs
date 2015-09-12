@@ -16,12 +16,24 @@ namespace Brother.Tests.Specs._80.BrotherMainSite.HomePageNavigation
             Helper.SetCountry(country);
             CurrentPage = BasePage.LoadBrotherMainSiteHomePage(CurrentDriver, BasePage.BaseUrl);
         }
+        [Given(@"I have navigated to the Brother Main Site ""(.*)"" footer pages")]
+        public void GivenIHaveNavigatedToTheBrotherMainSiteFooterPages(string country)
+        {
+            Helper.SetCountry(country);
+            CurrentPage = BasePage.LoadFooterPage(CurrentDriver, BasePage.BaseUrl);
+        }
 
         [Given(@"I have navigated to the ""(.*)"" MainSite URL for country ""(.*)""")]
         public void GivenIHaveNavigatedToTheMainSiteUrlForCountry(string url, string country)
         {
             Helper.SetCountry(country);
             CurrentPage = GlobalNavigationModule.NavigateToLaserPrintersSite(CurrentDriver, url);
+        }
+        [Given(@"I have navigated to the Brother Main Site ""(.*)"" products header pages")]
+        public void GivenIHaveNavigatedToTheBrotherMainSiteProductsHeaderPages(string country)
+        {
+            Helper.SetCountry(country);
+            CurrentPage = BasePage.LoadHeaderPage(CurrentDriver, BasePage.BaseUrl);
         }
         [Then(@"I have clicked the top products menu button")]
         public void ThenIHaveClickedTopProductsMenu()

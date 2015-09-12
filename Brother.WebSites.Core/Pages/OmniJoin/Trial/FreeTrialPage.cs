@@ -39,6 +39,9 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Trial
         [FindsBy(How = How.CssSelector, Using = "#content_0_maincontent_2_chkTerms")]
         public IWebElement TermsAndConditionsCheckBox;
 
+        [FindsBy(How = How.CssSelector, Using = "#content_0_maincontent_2_vldRegExEmail")]
+        public IWebElement EmailAddressErrorMessage;
+        
         [FindsBy(How = How.CssSelector, Using = ".button-orange")]
         public IWebElement SubmitButton;
 
@@ -128,5 +131,17 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Trial
             TermsAndConditionsCheckBox.Click();
             TestCheck.AssertIsEqual(TermsAndConditionsCheckBox.Selected.ToString(), "True", "Accept Terms and Conditions Button");
         }
+
+        public void PopulateInvalidEmailAddressTextBox(string invalidemailaddress)
+        {
+            EmailAddressTextBox.SendKeys(invalidemailaddress);
+            EmailAddressTextBox.SendKeys(Keys.Tab);
+        }
+
+        public void ErrorMessageDisplayed()
+        {
+            TestCheck.AssertIsEqual(true, EmailAddressErrorMessage.Displayed, "Is Email Error message displayed");
+        }
+
     }
 }

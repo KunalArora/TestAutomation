@@ -142,8 +142,8 @@ namespace Brother.Tests.Specs
         {
             Helper.OrpDealerEmail = dealerEmailAddress;
             Email.CurrentEmailInUseForTest = dealerEmailAddress;
-//            Helper.OrpActivationCode = Sql.GetOrpActivationCode(Sql.GetOrpDealerId(Helper.OrpDealerEmail),
-  //              Helper.OrpLicenseTerm, Helper.OrpNumLicenses, Helper.OrpComment);
+            Helper.OrpActivationCode = Sql.GetOrpActivationCode(Sql.GetOrpDealerId(Helper.OrpDealerEmail));
+                //Helper.OrpLicenseTerm, Helper.OrpNumLicenses, Helper.OrpComment);
         }
 
     }

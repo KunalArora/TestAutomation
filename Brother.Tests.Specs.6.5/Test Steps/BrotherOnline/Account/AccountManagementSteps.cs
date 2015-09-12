@@ -24,9 +24,9 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [Given(@"I click on the Partner Portal menu option")]
         public void GivenIClickOnThePartnerPortalMenuOption()
         {
-            var menu = GlobalNavigationModule.GetProductNavigationMenu("PartnerPortal");
-            NextPage = GlobalNavigationModule.MyAccountMenuItemClick(CurrentDriver);
+            NextPage = GlobalNavigationModule.PartnerPortalMenuItemClick(CurrentDriver);
         }
+
         [When(@"I click on the Partner Portal button")]
         public void WhenIClickOnThePartnerPortalButton()
         {
@@ -132,6 +132,12 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             NextPage = CurrentPage.As<WelcomeBackPage>().NavigateToMyAccountPage(country);
         }
 
+        [When(@"I navigate to my account")]
+        public void WhenINavigateToMyAccount()
+        {
+            CurrentPage.As<RegistrationPage>().NavigateToMyAccountPage();
+        }
+
         [When(@"I navigate to my account using creative center details")]
         public void WhenINavigateToMyAccountForUsingCcDetails()
         {
@@ -150,6 +156,12 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         public void WhenIClickedOnBusinessDetails()
         {
             NextPage = GlobalNavigationModule.BusinessDetailsMenuClick(CurrentDriver);
+        }
+
+        [Then(@"An error message is displayed advising user that and account with order cannot be switched")]
+        public void ErroMessageAdvisingAccCannotBeswitchedIsDisplayed()
+        {
+            CurrentPage.As<BusinessDetailsPage>().CannotSwitchAccMsgDisplayed();
         }
 
         [When(@"I click on My Address")]

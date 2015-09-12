@@ -1,5 +1,5 @@
-cd C:\Projects\brother-online\Brother\brother\Main\Brother.Tests.TestRunner
+cd C:\Projects\Brother-Test-Automation\BrotherTestAutomation\Brother.Tests.TestRunner
 
-C:\Projects\brother-online\Brother\brother\Main\Brother.Tests.TestRunner\Tools\SpecFlow\specflow.exe nunitexecutionreport C:\Projects\brother-online\Brother\brother\Main\Brother.Tests.TestRunner\Brother.Tests.Specs.csproj /out:MyResult.html
+C:\Projects\Brother-Test-Automation\BrotherTestAutomation\Brother.Tests.TestRunner\Tools\SpecFlow\specflow.exe nunitexecutionreport C:\Projects\Brother-Test-Automation\BrotherTestAutomation\Brother.Tests.Specs.6.5\Brother.Tests.Specs.6.5.csproj /out:MyResult.html
 
 pause

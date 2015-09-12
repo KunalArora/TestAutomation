@@ -20,9 +20,7 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherMainSite.Navigation.Foot
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("WebsiteInformation footer navigation")]
-    [NUnit.Framework.CategoryAttribute("UAT")]
-    [NUnit.Framework.CategoryAttribute("PROD")]
-    [NUnit.Framework.CategoryAttribute("TEST")]
+    [NUnit.Framework.IgnoreAttribute()]
     public partial class WebsiteInformationFooterNavigationFeature
     {
         
@@ -37,9 +35,7 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherMainSite.Navigation.Foot
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "WebsiteInformation footer navigation", "As a visitor of the Brother main site\r\nI am able to navigate to each of the\r\nlink" +
                     "s within the website information footer", ProgrammingLanguage.CSharp, new string[] {
-                        "UAT",
-                        "PROD",
-                        "TEST"});
+                        "IGNORE"});
             testRunner.OnFeatureStart(featureInfo);
         }
         

@@ -14,6 +14,14 @@ namespace Brother.Tests.Selenium.Lib
     
     public partial class User
     {
+        public User()
+        {
+            this.ActivationCodes = new HashSet<ActivationCode>();
+            this.ActivationCodes1 = new HashSet<ActivationCode>();
+            this.DealershipCustomers = new HashSet<DealershipCustomer>();
+            this.UserProducts = new HashSet<UserProduct>();
+        }
+    
         public System.Guid UserId { get; set; }
         public string BusinessPartnerId { get; set; }
         public string FirstName { get; set; }
@@ -47,5 +55,10 @@ namespace Brother.Tests.Selenium.Lib
         public string VatNumber { get; set; }
         public string TaxNumber1 { get; set; }
         public Nullable<bool> IsBusinessAccount { get; set; }
+    
+        public virtual ICollection<ActivationCode> ActivationCodes { get; set; }
+        public virtual ICollection<ActivationCode> ActivationCodes1 { get; set; }
+        public virtual ICollection<DealershipCustomer> DealershipCustomers { get; set; }
+        public virtual ICollection<UserProduct> UserProducts { get; set; }
     }
 }

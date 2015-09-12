@@ -20,9 +20,7 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherMainSite.Navigation
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("Navigate main site top products menu")]
-    [NUnit.Framework.CategoryAttribute("UAT")]
-    [NUnit.Framework.CategoryAttribute("PROD")]
-    [NUnit.Framework.CategoryAttribute("TEST")]
+    [NUnit.Framework.IgnoreAttribute()]
     public partial class NavigateMainSiteTopProductsMenuFeature
     {
         
@@ -37,9 +35,7 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherMainSite.Navigation
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Navigate main site top products menu", "As a visitor of the Brother main site\r\nI am able to navigate to each of the\r\ntab " +
                     "items within the top products menu", ProgrammingLanguage.CSharp, new string[] {
-                        "UAT",
-                        "PROD",
-                        "TEST"});
+                        "IGNORE"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -353,6 +349,27 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.Then("I click to view compact scanners", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 114
  testRunner.Then("I am navigated to view compact scanners", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("User is able to navigate to view desktop scanners")]
+        public virtual void UserIsAbleToNavigateToViewDesktopScanners()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to view desktop scanners", ((string[])(null)));
+#line 117
+this.ScenarioSetup(scenarioInfo);
+#line 118
+ testRunner.Given("I have navigated to the Brother Main Site \"United Kingdom\" products pages", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 119
+ testRunner.Then("I hover over the top products menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 120
+ testRunner.Then("I hover and click the scanners option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 121
+ testRunner.Then("I click to view desktop scanners", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 122
+ testRunner.Then("I am navigated to view desktop scanners", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

@@ -32,6 +32,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MarkdownSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MarkdownSharp.1.13.0.0\lib\35\MarkdownSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SpecResults, Version=0.1.0.7, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SpecResults.0.1.0.7\lib\net40\SpecResults.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -59,10 +67,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Pages8.0\BrotherMainSite\FooterNavigationPage.cs" />
+    <Compile Include="Pages\BrotherMainSite\HeaderNavigationPage.cs" />
+    <Compile Include="Pages\BrotherMainSite\FooterNavigationPage.cs" />
     <Compile Include="Pages8.0\BrotherMainSite\MainSiteHomePage.cs" />
     <Compile Include="Pages8.0\BrotherMainSite\SuppliesPage.cs" />
-    <Compile Include="Pages8.0\FooterNavPages\BrotherNetworkPage.cs" />
     <Compile Include="Pages\Base\BasePage.Common.cs" />
     <Compile Include="Pages\Base\BasePage.cs" />
     <Compile Include="Pages\Base\BaseSteps.cs" />

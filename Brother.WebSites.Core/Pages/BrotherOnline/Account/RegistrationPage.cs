@@ -125,6 +125,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         [FindsBy(How = How.CssSelector, Using = "#txtTax1")]
         public IWebElement TaxNumberTextBox;
 
+        [FindsBy(How = How.CssSelector, Using = "#TopNavigationControl_rptPrimaryLevelNav_aSectionLink_3")]
+        public IWebElement MyAccountNavigationButton;
+
         public bool IsWarningBarPresent(int retry, int timeToWait)
         {
             try
@@ -502,6 +505,12 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         public void InvalidCredentialsErrorMessageDisplayed()
         {
             TestCheck.AssertIsEqual(true, InvalidCredentialsErrorMessage.Displayed, "Is Error Message Displayed");
+        }
+
+        public void NavigateToMyAccountPage()
+        {
+            MyAccountNavigationButton.Click();
+            //return GetInstance<MyAccountPage>(Driver, BasePage.BaseUrl, string.Empty);
         }
 
        }

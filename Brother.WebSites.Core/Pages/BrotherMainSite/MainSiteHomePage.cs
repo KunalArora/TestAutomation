@@ -7,6 +7,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
+using TechTalk.SpecFlow;
 
 namespace Brother.WebSites.Core.Pages.BrotherMainSite
 {
@@ -21,12 +22,14 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         //[FindsBy(How = How.CssSelector, Using = "#main > div > div.feature-carousel > div > ul.feature-carousel-items > li:nth-child(2) > div > a")]
         //public IWebElement SuppliesLink;
-        [FindsBy(How = How.CssSelector, Using = "#footer-websiteinfomation > li:nth-child(4) > a")]
-        public IWebElement BrotherNetwork;
+       // [FindsBy(How = How.CssSelector, Using = "#footer-websiteinfomation > li:nth-child(4) > a")]
+      //  public IWebElement BrotherNetwork;
 
-        public static string BrotherNetworkId = "#footer-websiteinfomation > li:nth-child(4) > a";
 
-        [FindsBy(How = How.CssSelector, Using = "[href='/supplies']")]
+        [FindsBy(How = How.CssSelector, Using = "#loginuser")]
+        public IWebElement UsernameInputField;
+
+       [FindsBy(How = How.CssSelector, Using = "[href='/supplies']")]
         public IWebElement SuppliesLink;
 
         [FindsBy(How = How.CssSelector, Using = ".prev")]
@@ -46,6 +49,9 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         [FindsBy(How = How.Id, Using = "lhnchatimg")]
         public IWebElement RequestSampleButton;
+
+        [FindsBy(How = How.CssSelector, Using = "[href='/Business-Solutions/Print-Management/']")] 
+        public IWebElement CreativeCentreLink;
 
         [FindsBy(How = How.CssSelector, Using = "#main > div > div > div:nth-child(3) > article > table > tbody > tr:nth-child(2) > td:nth-child(1) > a")]
         public IWebElement BrotherAdminTeamLink;
@@ -96,6 +102,9 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         [FindsBy(How = How.CssSelector, Using = "#content_0_ctl01_headercontent_2_li > article > h2")]
         public IWebElement ViewCompactScannersLink;
 
+        [FindsBy(How = How.CssSelector, Using = "#content_0_ctl01_headercontent_3_li > article > h4:nth-child(3)")]
+        public IWebElement ViewDesktopScannersLink;
+
         //[FindsBy(How = How.CssSelector, Using = "#main > div > div > div:nth-child(3) > div > div > p:nth-child(5) > a")]
         [FindsBy(How = How.ClassName, Using = "button-orange")]
         public IWebElement ViewAllProductsOrangeButton;
@@ -108,7 +117,10 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         [FindsBy(How = How.Id, Using = "buybutton")]
         public IWebElement BuyOnlineButton;
-        
+
+        [FindsBy(How = How.CssSelector, Using = "#results > article:nth-child(1) > div.price-listings-info > p:nth-child(3) > a")]
+        public IWebElement ViewDetailsLink;
+
         private const string CarouselItems = ".feature-carousel-items";
 
         private const string ProductsTopMenu = "TopNavigationControl_rptPrimaryLevelNav_aSectionLink_0";
@@ -128,6 +140,8 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         private const string AllProductsOrangeButton = "button-orange";
 
         private const string BuyOnlineBtn = "buybutton";
+
+        private const string ViewDetails = "#results > article:nth-child(1) > div.price-listings-info > p:nth-child(3) > a";
 
         private const string MonoLaserMenuOpt = "#main > div > div > div:nth-child(3) > div > ul.nav.cf > li:nth-child(2) > a";
 
@@ -153,11 +167,12 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         private const string CompactScannersLink = "#content_0_ctl01_headercontent_1_li > article > h2";
 
+        private const string DesktopScannersLink = "#content_0_ctl01_headercontent_3_li > article > h4:nth-child(3)";
+
         private const string BrotherAdminTeam = "#main > div > div > div:nth-child(3) > article > table > tbody > tr:nth-child(2) > td:nth-child(1) > a";
 
         private const string BrotherNetworkLogin = "#login_form > table > tbody > tr > td:nth-child(2) > div:nth-child(1) > div > div:nth-child(7)";
-
-
+       
         public void IsSuppliesLinkAvailable()
 
         {
@@ -208,7 +223,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public MainSiteHomePage ProductsButtonClick()
         {
-            WaitForElementToExistById(ProductsTopMenu, 3);
+            WaitForElementToExistById(ProductsTopMenu, 5);
             MoveToElement(ProductsTopMenuButton);
             ProductsTopMenuButton.Click();
             return GetInstance<MainSiteHomePage>(Driver);
@@ -230,7 +245,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public void HasProductsPageLoaded()
         {
-            WaitForElementToExistById("lhnchatimg", 3);
+            WaitForElementToExistById("lhnchatimg", 5);
             ScrollTo(RequestSampleButton);    
             if (RequestSampleButton == null)
             {
@@ -263,7 +278,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public void HoverProductsMenu(IWebDriver driver)
         {
-            WaitForElementToExistById(ProductsTopMenu, 3);
+            WaitForElementToExistById(ProductsTopMenu, 5);
             var builder = new Actions(driver);
             builder.MoveToElement(driver.FindElement(By.Id(ProductsTopMenu))).Build().Perform();
         }
@@ -297,6 +312,24 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
             if (ViewAllProductsOrangeButton == null)
             {
                 throw new NullReferenceException("Scanners page has not loaded");
+            }
+            AssertElementPresent(ViewAllProductsOrangeButton, "View all products orange button");
+        }
+
+        public void HasLabelPrintersPageLoaded()
+        {
+            if (ViewAllProductsOrangeButton == null)
+            {
+                throw new NullReferenceException("Label printers page has not loaded");
+            }
+            AssertElementPresent(ViewAllProductsOrangeButton, "View all products orange button");
+        }
+
+        public void HasFaxMachinesPageLoaded()
+        {
+            if (ViewAllProductsOrangeButton == null)
+            {
+                throw new NullReferenceException("Fax machines page has not loaded");
             }
             AssertElementPresent(ViewAllProductsOrangeButton, "View all products orange button");
         }
@@ -437,6 +470,14 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
             return GetInstance<MainSiteHomePage>(Driver);
         }
 
+        public MainSiteHomePage ViewDesktopScanners()
+        {
+            WaitForElementToExistByCssSelector(DesktopScannersLink);
+            MoveToElement(ViewDesktopScannersLink);
+            ViewDesktopScannersLink.Click();
+            return GetInstance<MainSiteHomePage>(Driver);
+        }
+
         public MainSiteHomePage ViewTheWorkgroupPrinter()
         {
             WaitForElementToExistByCssSelector(ViewWorkgroupPrinterBtn);
@@ -455,7 +496,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public void HasAllColourLasersPageLoaded()
         {
-            WaitForElementToExistById(BuyOnlineBtn, 3);
+            WaitForElementToExistById(BuyOnlineBtn, 5);
             if (BuyOnlineButton == null)
             {
                 throw new NullReferenceException("All colour lasers page has not loaded");
@@ -465,7 +506,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public void HasAllMonoLasersPageLoaded()
         {
-            WaitForElementToExistById(BuyOnlineBtn, 3);
+            WaitForElementToExistById(BuyOnlineBtn, 5);
             if (BuyOnlineButton == null)
             {
                 throw new NullReferenceException("All mono lasers page has not loaded");
@@ -484,7 +525,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public void HasAllPortablePrintersPageLoaded()
         {
-            WaitForElementToExistById(BuyOnlineBtn, 3);
+            WaitForElementToExistById(BuyOnlineBtn, 5);
             if (BuyOnlineButton == null)
             {
                 throw new NullReferenceException("All portable printers page has not loaded");
@@ -494,7 +535,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public void HasAllWorkgroupPrintersPageLoaded()
         {
-            WaitForElementToExistById("lhnchatimg", 3);
+            WaitForElementToExistById("lhnchatimg", 5);
             ScrollTo(RequestSampleButton);
             if (RequestSampleButton == null)
             {
@@ -505,7 +546,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public void HasAllPrinterRangePageLoaded()
         {
-            WaitForElementToExistById(BuyOnlineBtn, 3);
+            WaitForElementToExistById(BuyOnlineBtn, 5);
             if (BuyOnlineButton == null)
             {
                 throw new NullReferenceException("All printers range page has not loaded");
@@ -515,7 +556,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public void HasAllScannersPageLoaded()
         {
-            WaitForElementToExistById(BuyOnlineBtn, 3);
+            WaitForElementToExistById(BuyOnlineBtn, 5);
             if (BuyOnlineButton == null)
             {
                 throw new NullReferenceException("All scanners page has not loaded");
@@ -525,7 +566,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public void HasPortableScannersPageLoaded()
         {
-            WaitForElementToExistById(BuyOnlineBtn, 3);
+            WaitForElementToExistById(BuyOnlineBtn, 5);
             if (BuyOnlineButton == null)
             {
                 throw new NullReferenceException("Portable scanners page has not loaded");
@@ -535,19 +576,27 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public void HasCompactScannersPageLoaded()
         {
-            WaitForElementToExistById(BuyOnlineBtn, 3);
+            WaitForElementToExistById(BuyOnlineBtn, 5);
             if (BuyOnlineButton == null)
             {
                 throw new NullReferenceException("Compact scanners page has not loaded");
             }
             AssertElementPresent(BuyOnlineButton, "Buy online button");
         }
-
-        public void HoverAndClickBrotherNetwork()
+        public void HasDesktopScannersPageLoaded()
         {
-
-            WaitForElementToExistByCssSelector(BrotherNetworkId);
-            BrotherNetwork.Click();
+            WaitForElementToExistByCssSelector(ViewDetails);
+            if (ViewDetailsLink == null)
+            {
+                throw new NullReferenceException("Desktop scanners page has not loaded");
+            }
+            AssertElementPresent(ViewDetailsLink, "View details link");
         }
+
+        public void ClickCreativeCentre()
+        {
+            CreativeCentreLink.Click();
+        }
+
     }
 }
