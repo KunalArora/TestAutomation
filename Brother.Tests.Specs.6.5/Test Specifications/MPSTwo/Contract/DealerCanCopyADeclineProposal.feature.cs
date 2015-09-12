@@ -191,8 +191,6 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.And("I navigate to decline proposal list page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 63
  testRunner.Then("I can copy the declined proposal without customer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 64
- testRunner.And("I am redirected to Customer screen when I start proposal conversion process", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 65
  testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
@@ -229,8 +227,6 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.And("I navigate to decline proposal list page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 84
  testRunner.Then("I can copy the declined proposal with customer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 85
- testRunner.And("I am redirected to Summary page when I start proposal conversion process", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 86
  testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden

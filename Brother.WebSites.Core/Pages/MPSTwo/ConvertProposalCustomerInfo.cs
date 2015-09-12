@@ -48,13 +48,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement IBANElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputBankBic_Input")]
         public IWebElement BICElement;
-        [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputBankPropertyNumber_Input")]
+        [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_BankLocation_InputNumber_Input")]
         public IWebElement BankPropertyNumberElement;
-        [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputBankPropertyStreet_Input")]
+        [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_BankLocation_InputStreet_Input")]
         public IWebElement BankPropertyStreetElement;
-        [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputBankPropertyTown_Input")]
+        [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_BankLocation_InputTown_Input")]
         public IWebElement BankPropertyTownElement;
-        [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputBankPropertyPostCode_Input")]
+        [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_BankLocation_InputPostCode_Input")]
         public IWebElement BankPropertyPostcodeElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_ButtonNext")]
         public IWebElement NextElement;

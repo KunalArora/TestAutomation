@@ -61,7 +61,7 @@ Scenario Outline: Dealer Can Copy A Declined Purchase and Click Proposal without
 	And I sign back into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to decline proposal list page
 	Then I can copy the declined proposal without customer
-	And I am redirected to Customer screen when I start proposal conversion process
+	##And I am redirected to Customer screen when I start proposal conversion process
 	And I sign out of Cloud MPS
 	
 	Scenarios:
@@ -82,7 +82,7 @@ Scenario Outline: Dealer Can Copy A Declined Purchase and Click Proposal with cu
 	And I sign back into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to decline proposal list page
 	Then I can copy the declined proposal with customer
-	And I am redirected to Summary page when I start proposal conversion process
+	##And I am redirected to Summary page when I start proposal conversion process
 	And I sign out of Cloud MPS
 	
 	Scenarios:

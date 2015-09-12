@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Brother.Tests.Selenium.Lib.Properties" GeneratedClassName="MPSDV2">
+  <Profiles />
+  <Settings>
+    <Setting Name="MPSDealer" Type="System.String" Scope="User">
+      <Value Profile="(Default)">MPS-{0}-DV2-Dealer1@mailinator.com</Value>
+    </Setting>
+    <Setting Name="MPSLOApprover" Type="System.String" Scope="User">
+      <Value Profile="(Default)">MPS-{0}-DV2-LOApprover@mailinator.com</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
