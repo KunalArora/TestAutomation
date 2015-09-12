@@ -115,6 +115,16 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>SeleniumGlobal.settings</DependentUpon>
     </Compile>
+    <Compile Include="Properties\MPSQAS.Designer.cs">
+      <DependentUpon>MPSQAS.settings</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Properties\MPSDV2.Designer.cs">
+      <DependentUpon>MPSDV2.settings</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
     <Compile Include="Support\HelperClasses\Helper.ExpectedConditionsEx.cs" />
     <Compile Include="Support\HelperClasses\Helper.Screenshot.cs" />
     <Compile Include="Support\HelperClasses\Helper.SpecFlow.cs" />
@@ -163,6 +173,14 @@
     <None Include="Properties\SeleniumGlobal.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>SeleniumGlobal.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Properties\MPSQAS.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>MPSQAS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Properties\MPSDV2.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>MPSDV2.Designer.cs</LastGenOutput>
     </None>
     <None Include="specflow.exe.config" />
     <None Include="SpecRunTestProfile.xsd">
