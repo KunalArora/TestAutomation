@@ -103,7 +103,7 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Default value of full detail screen are verified")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Purchase & Click with Service", "3 years", "Quarterly", "MFC-L8850CDW", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Purchase & Click with Service", "3 years", "Quarterly in Arrears", "MFC-L8850CDW", null)]
         public virtual void DefaultValueOfFullDetailScreenAreVerified(string role, string country, string contractType, string contract, string billing, string printer, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Default value of full detail screen are verified", exampleTags);
@@ -131,7 +131,7 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Total Price calulation is verified")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Purchase & Click with Service", "3 years", "Quarterly", "MFC-L8850CDW", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Purchase & Click with Service", "3 years", "Quarterly in Arrears", "MFC-L8850CDW", null)]
         public virtual void TotalPriceCalulationIsVerified(string role, string country, string contractType, string contract, string billing, string printer, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Total Price calulation is verified", exampleTags);
@@ -159,7 +159,7 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("The sum of Total Price is equal to the Grand Total Price")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Purchase & Click with Service", "3 years", "Quarterly", "MFC-L8850CDW", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Purchase & Click with Service", "3 years", "Quarterly in Arrears", "MFC-L8850CDW", null)]
         public virtual void TheSumOfTotalPriceIsEqualToTheGrandTotalPrice(string role, string country, string contractType, string contract, string billing, string printer, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("The sum of Total Price is equal to the Grand Total Price", exampleTags);
@@ -190,7 +190,7 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("All Zero QTY fields are not displayed on summary page")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Purchase & Click with Service", "3 years", "Quarterly", "MFC-L8850CDW", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Purchase & Click with Service", "3 years", "Quarterly in Arrears", "MFC-L8850CDW", null)]
         public virtual void AllZeroQTYFieldsAreNotDisplayedOnSummaryPage(string role, string country, string contractType, string contract, string billing, string printer, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("All Zero QTY fields are not displayed on summary page", exampleTags);
@@ -261,7 +261,7 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Should be able to display Reduced detail screen")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Purchase & Click with Service", "3 years", "Quarterly", "MFC-L8850CDW", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Purchase & Click with Service", "3 years", "Quarterly in Arrears", "MFC-L8850CDW", null)]
         public virtual void ShouldBeAbleToDisplayReducedDetailScreen(string role, string country, string contractType, string contract, string billing, string printer, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Should be able to display Reduced detail screen", exampleTags);
@@ -292,7 +292,7 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Lease and Click product screen validation")]
         [NUnit.Framework.IgnoreAttribute()]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Lease & Click with Service", "3 years", "Quarterly", "Quarterly", "DCP-8250DN", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Lease & Click with Service", "3 years", "Quarterly in Arrears", "Quarterly in Arrears", "DCP-8250DN", null)]
         public virtual void LeaseAndClickProductScreenValidation(string role, string country, string contractType, string contract, string leasing, string billing, string printer, string[] exampleTags)
         {
             string[] @__tags = new string[] {

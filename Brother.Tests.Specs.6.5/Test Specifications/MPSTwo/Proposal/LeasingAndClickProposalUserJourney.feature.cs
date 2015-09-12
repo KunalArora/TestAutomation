@@ -76,7 +76,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Proposal
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Create different varieties of Leasing and Click proposal for new customer")]
         [NUnit.Framework.IgnoreAttribute()]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Lease & Click with Service", "Create new customer", "Minimum Volume", "3 years", "Quarterly", "Quarterly", "HL-L8350CDW", "Full", "750", "750", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Lease & Click with Service", "Create new customer", "Minimum Volume", "3 years", "Quarterly in Arrears", "Quarterly in Arrears", "HL-L8350CDW", "Full", "750", "750", null)]
         public virtual void CreateDifferentVarietiesOfLeasingAndClickProposalForNewCustomer(string role, string country, string contractType, string createOption, string usageType, string contract, string leasing, string billing, string printer, string deviceScreen, string clickVolume, string colourVolume, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -139,7 +139,7 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("Create different varieties of Leasing and Click proposal for new customer on Pay " +
             "As You Go Term")]
         [NUnit.Framework.IgnoreAttribute()]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Lease & Click with Service", "Create new customer", "Pay As You Go", "4 years", "Quarterly", "Quarterly", "DCP-8110DN", "Full", "750", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Lease & Click with Service", "Create new customer", "Pay As You Go", "4 years", "Quarterly in Arrears", "Quarterly in Arrears", "DCP-8110DN", "Full", "750", null)]
         public virtual void CreateDifferentVarietiesOfLeasingAndClickProposalForNewCustomerOnPayAsYouGoTerm(string role, string country, string contractType, string createOption, string usageType, string contract, string leasing, string billing, string printer, string deviceScreen, string clickVolume, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -203,7 +203,7 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Create different varieties of Leasing and Click proposal for an existing customer" +
             "")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Lease & Click with Service", "Minimum Volume", "4 years", "Quarterly", "Quarterly", "HL-L8350CDW", "Full", "750", "750", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Lease & Click with Service", "Minimum Volume", "4 years", "Quarterly in Arrears", "Quarterly in Arrears", "HL-L8350CDW", "Full", "750", "750", null)]
         public virtual void CreateDifferentVarietiesOfLeasingAndClickProposalForAnExistingCustomer(string role, string country, string contractType, string usageType, string contract, string leasing, string billing, string printer, string deviceScreen, string clickVolume, string colourVolume, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create different varieties of Leasing and Click proposal for an existing customer" +
@@ -260,7 +260,7 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Create different varieties of Leasing and Click proposal for an existing customer" +
             " on Pay As You Go")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Lease & Click with Service", "Pay As You Go", "5 years", "Quarterly", "Quarterly", "DCP-8110DN", "Full", "750", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Lease & Click with Service", "Pay As You Go", "5 years", "Quarterly in Arrears", "Quarterly in Arrears", "DCP-8110DN", "Full", "750", null)]
         public virtual void CreateDifferentVarietiesOfLeasingAndClickProposalForAnExistingCustomerOnPayAsYouGo(string role, string country, string contractType, string usageType, string contract, string leasing, string billing, string printer, string deviceScreen, string clickVolume, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create different varieties of Leasing and Click proposal for an existing customer" +
