@@ -120,17 +120,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement NewOrganisationElement;
         [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerName")]
         public IWebElement CompanyNameElement;
-        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerPropertyNumber_Input")]
+        [FindsBy(How = How.Id, Using = "content_1_PersonManage_CustomerLocation_InputNumber_Input")]
         public IWebElement PropertyNumberElement;
-        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerPropertyStreet_Input")]
+        [FindsBy(How = How.Id, Using = "content_1_PersonManage_CustomerLocation_InputStreet_Input")]
         public IWebElement PropertyStreetElement;
-        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerPropertyArea_Input")]
+        [FindsBy(How = How.Id, Using = "content_1_PersonManage_CustomerLocation_InputArea_Input")]
         public IWebElement PropertyAreaElement;
-        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerPropertyTown_Input")]
+        [FindsBy(How = How.Id, Using = "content_1_PersonManage_CustomerLocation_InputTown_Input")]
         public IWebElement PropertyTownElement;
-        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerPropertyPostCode_Input")]
+        [FindsBy(How = How.Id, Using = "content_1_PersonManage_CustomerLocation_InputPostCode_Input")]
         public IWebElement PropertyPostcodeElement;
-        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerRegion_Input")]
+        [FindsBy(How = How.Id, Using = "content_1_PersonManage_CustomerLocation_InputRegion_Input")]
         public IWebElement RegionElement;
         [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerLegalForm_Input")]
         public IWebElement PropertyLegalFormElement;

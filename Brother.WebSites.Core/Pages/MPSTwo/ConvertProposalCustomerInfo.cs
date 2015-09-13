@@ -8,6 +8,7 @@ using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using OpenQA.Selenium.Support.UI;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
@@ -102,6 +103,30 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement PrivateLiablePropertyRegionElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_InputCustomerChoiceNew")]
         public IWebElement CreateNewCustomerRadioButtonElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_CustomerLocation_InputStreet_Input")]
+        public IWebElement StraßeElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_CustomerLocation_InputNumber_Input")]
+        public IWebElement HausnummberElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_CustomerLocation_InputPostCode_Input")]
+        public IWebElement GermanPostCodeElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_CustomerLocation_InputTown_Input")]
+        public IWebElement GermanStadtElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_CustomerLocation_InputArea_Input")]
+        public IWebElement GermanGeschäftsfeldElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_CustomerLocation_InputRegion_Input")]
+        public IWebElement GermanBundeslandElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputCustomerCostCentre_Input")]
+        public IWebElement GermanKostenstelleElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputCustomerLegalForm_Input")]
+        public IWebElement GermanRechtsformElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputCustomerVatRegistrationNumber_Input")]
+        public IWebElement GermanUstIDNrElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputCustomerCompanyRegistrationNumber_Input")]
+        public IWebElement GermanHandelsregisternummerElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputCustomerCreditReformNumber_Input")]
+        public IWebElement GermanCreditreformNummerElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputCustomerAuthorisedSignatory_Input")]
+        public IWebElement GermanZeichnungsberechtigterElement;
 
 
 
@@ -245,7 +270,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             if (GetDealerName().Contains("sign out")) return;
             CreateANewCustomerInConvertProcess();
-            FillOrganisationDetails();
+            FillGermanOrganisationDetails();
             FillOrganisationContactDetail();
             
         }
@@ -355,6 +380,85 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
            
         }
 
+        public void FillGermanOrganisationDetails()
+        {
+            EnterCompanyName();
+            EnterGermanAreaName();
+            EnterGermanKostenstelleName();
+            EnterGermanPostCode();
+            EnterGermanRegionName();
+            EnterGermanStadtName();
+            EnterGermanStreetName();
+            EnterGermanStreetNumber();
+            SelectGermanRechtsformName();
+            EnterAuthorizedSignatory();
+            EnterCompanyRegistrationNumber();
+            EnterCompanyVATNumber();
+            EnterCreditReformNumber();
+            
+        }
+
+        public void EnterGermanStreetName()
+        {
+            StraßeElement.SendKeys("Friedrichstraße");
+        }
+
+        public void EnterGermanStreetNumber()
+        {
+            HausnummberElement.SendKeys("23");
+        }
+
+        public void EnterGermanPostCode()
+        {
+            GermanPostCodeElement.SendKeys(MpsUtil.GermanPostCodeNumber());
+        }
+
+        public void EnterGermanStadtName()
+        {
+            GermanStadtElement.SendKeys("Bavaria");
+        }
+
+        public void EnterGermanAreaName()
+        {
+            GermanGeschäftsfeldElement.SendKeys("German Town");
+        }
+
+        public void EnterGermanRegionName()
+        {
+            SelectFromDropdown(GermanBundeslandElement, "Hamburg");
+        }
+
+        public void EnterGermanKostenstelleName()
+        {
+            GermanKostenstelleElement.SendKeys("Marketing");
+        }
+
+        public void SelectGermanRechtsformName()
+        {
+            SelectFromDropdown(GermanRechtsformElement, "Gewerbebetrieb");
+            WebDriver.Wait(DurationType.Second, 3);
+        }
+
+        public void EnterCompanyRegistrationNumber()
+        {
+            GermanHandelsregisternummerElement.SendKeys("DE12345678");
+        }
+
+        public void EnterCompanyVATNumber()
+        {
+            GermanUstIDNrElement.SendKeys("DE12345678");
+        }
+
+        public void EnterCreditReformNumber()
+        {
+            GermanCreditreformNummerElement.SendKeys(MpsUtil.CreditReformNumber());
+        }
+
+        public void EnterAuthorizedSignatory()
+        {
+            GermanZeichnungsberechtigterElement.SendKeys("German Signatory");
+        }
+
         public void EnterContactFirstName()
         {
             FirstNameElement.SendKeys(MpsUtil.FirstName());
@@ -391,31 +495,37 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterCompanyName()
         {
+            if (CompanyNameElement.Displayed)
             CompanyNameElement.SendKeys(MpsUtil.CompanyName());
         }
 
         public void EnterPropertyNumber()
         {
+            if (PropertyNumberElement.Displayed)
             PropertyNumberElement.SendKeys(MpsUtil.PropertyNumber());
         }
 
         public void EnterPropertyStreet()
         {
+            if (PropertyStreetElement.Displayed)
             PropertyStreetElement.SendKeys(MpsUtil.PropertyStreet());
         }
 
         public void EnterPropertyArea()
         {
+            if (PropertyAreaElement.Displayed)
             PropertyAreaElement.SendKeys(MpsUtil.FirstName());
         }
 
         public void EnterPropertyTown()
         {
+            if (PropertyTownElement.Displayed)
             PropertyTownElement.SendKeys(MpsUtil.PropertyTown());
         }
 
         public void EnterPropertyPostCode()
         {
+            if (PropertyPostcodeElement.Displayed)
             PropertyPostcodeElement.SendKeys(MpsUtil.PostCode());
         }
 
