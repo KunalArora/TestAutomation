@@ -186,7 +186,6 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         public void WhenIClickToRemoveBrowserConfirmationDialog()
         {
            CurrentPage.As<HomePage>().ClickDismissOnConfrimation(CurrentDriver);            
-            
         }
 
         [Then(@"I have checked no to having a creative center account")]
@@ -249,13 +248,13 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [Then(@"I enter an email address with an invalid formed password as ""(.*)""")]
         public void ThenIEnterAnEmailAddressWithAnInvalidFormedPasswordAs(string emailAddress)
         {
-            When(string.Format("Enter Email Address as \"{0}\"", emailAddress));
+            WhenEnterEmailAddressAs(emailAddress);
         }
 
         [Then(@"I enter an email address with too many allowed characters as ""(.*)""")]
         public void ThenIEnterAnEmailAddressWithTooManyAllowedCharactersAs(string emailAddress)
         {
-            When(string.Format("Enter Email Address as \"{0}\"", emailAddress));
+            WhenEnterEmailAddressAs(emailAddress);
         }
 
         [When(@"Enter Email Address as ""(.*)""")]
@@ -430,7 +429,8 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<RegistrationPage>().PopulatePasswordTextBox(form.Password);
             CurrentPage.As<RegistrationPage>().PopulateConfirmPasswordTextBox(form.Password);
             WhenIEnterAValidEmailAddress(string.Empty); // Auto Generates with an empty string
-         }
+        }
+
         [When(@"I fill in the registration information using a valid email address and ID number")]
         public void WhenIFillInTheRegistrationInformationUsingAValidEmailAddressAndIdNumber(Table table)
         {
