@@ -314,6 +314,36 @@ namespace Brother.Tests.Selenium.Lib.Support
 
         }
 
+        public static string GermanPostCodeNumber()
+        {
+            String[] companyName = {"51528",
+                                    "01100",
+                                    "20145",
+                                    "36521",
+                                    "65896",
+                                    "32563",
+                                    "78965",
+                                    "32569",
+                                    "45582",
+                                    "21455",
+                                    "94565",
+                                    "14527",
+                                    "65896",
+                                    "78965",
+                                    "12354",
+                                    "47556",
+                                    "01230",
+                                    "02583",
+                                    "10214",
+                                    "78963"
+								};
+
+            var generatedGermanPostCodeNumber = companyName[new Random().Next(19)];
+
+            return generatedGermanPostCodeNumber;
+
+        }
+
         public static string PropertyNumber()
         {
             String[] propertyNumber = {
