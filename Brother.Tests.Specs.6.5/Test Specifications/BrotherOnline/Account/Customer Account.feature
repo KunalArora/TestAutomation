@@ -602,6 +602,31 @@ Scenarios:
 | Country |
 | Italy   |
 
+
+# User unable to create a BOL Italy account without entering a valid tax code
+Scenario Outline: Customer unable to create a new BOL Italy account without entering a valid tax code
+	Given I want to create a new account with Brother Online "<Country>"
+	When I click on Create Account for "<Country>"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I fill in the Italy registration information using a valid email address and excluding ID number for italy
+	| field           | value           |
+	| FirstName       | AutoTest        |
+	| LastName        | AutoTest		|
+	| Password        | @@@@@			|
+	| ConfirmPassword | @@@@@			|
+	And I enter an invalid "<Tax Code>" for Italy
+	And I have Agreed to the Terms and Conditions for Italy
+	And I declare that I do not use this account for business
+	When I press Create Your Account
+	Then I should see an error message on the codice fiscale field
+
+Scenarios: 
+| Country | Tax Code	     |
+| Italy   | MRTMTT25DINVALID |
+| Italy	  |					 |
+
+
 #Validate that a Customer Account holder is able to swap to a Business Account
 Scenario: Validate that a newly created customer account can be swapped to a business account
 	Given I want to create a new account with Brother Online "United Kingdom"

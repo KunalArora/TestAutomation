@@ -454,6 +454,31 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             WhenIEnterAValidEmailAddress(string.Empty); // Auto Generates with an empty string
             CurrentPage.As<RegistrationPage>().PopulateTaxNumberTextBox(form.CodiceFiscale);//tax number for Italy
         }
+
+        [When(@"I fill in the Italy registration information using a valid email address and excluding ID number for italy")]
+        public void WhenIFillInTheItalyRegistrationInformationUsingAValidEmailAddressAndExcludingIdNumberForItaly(Table table)
+        {
+            dynamic form = table.CreateDynamicInstance();
+            CurrentPage.As<RegistrationPage>().PopulateFirstNameTextBox(form.FirstName);
+            CurrentPage.As<RegistrationPage>().PopulateLastNameTextBox(form.LastName);
+            CurrentPage.As<RegistrationPage>().PopulatePasswordTextBox(form.Password);
+            CurrentPage.As<RegistrationPage>().PopulateConfirmPasswordTextBox(form.Password);
+            WhenIEnterAValidEmailAddress(string.Empty); // Auto Generates with an empty string
+        }
+
+        [When(@"I enter an invalid ""(.*)"" for Italy")]
+        public void WhenIEnterAnInvalidForItaly(string invalidTaxCode)
+        {
+            CurrentPage.As<RegistrationPage>().PopulateInvalidTaxNumberTextBox(invalidTaxCode); //tax number for Italy
+        }
+
+        [Then(@"I should see an error message on the codice fiscale field")]
+        public void ThenIShouldSeeAnErrorMessageOnTheCodiceFiscaleField()
+        {
+            CurrentPage.As<RegistrationConfirmationPage>().InvalidItalyTaxCodeErrorMessageDisplayed();
+        }
+
+        
         [When(@"I fill in the registration information using a maximum length email address")]
         public void WhenIFillInTheRegistrationInformationUsingAMaxLengthEmailAddress(Table table)
         {
@@ -678,6 +703,12 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         public void WhenIHaveAgreedToTheTermsAndConditions()
         {
             CurrentPage.As<RegistrationPage>().CheckTermsAndConditions();
+        }
+
+        [When(@"I have Agreed to the Terms and Conditions for Italy")]
+        public void WhenIHaveAgreedToTheTermsAndConditionsForItaly()
+        {
+            CurrentPage.As<RegistrationPage>().CheckTermsAndConditionsForItaly();
         }
 
         [When(@"I press Create Your Account")]
