@@ -71,7 +71,7 @@ Given I have navigated to the OmniJoin home page
 	When I have entered a valid First and Last name, "$%&£^GRYIR&^T*$UOITUJO$J", "*$%*"^%*"£^%(*$^GHWGKD"
 	Then I should see an error message on the first name and last name field
 
-@ignore
+@TEST
 Scenario: Validate Free Trial form displays error messages when Terms and Conditions are not checked on Commit
 	Given I have navigated to the OmniJoin home page
 	And If I click on Start Free Trial
@@ -81,7 +81,7 @@ Scenario: Validate Free Trial form displays error messages when Terms and Condit
 	And I enter a Free Trial Password of "Abcd1234"
 	And I enter a Free Trial Password confirmation of "Abcd1234"
 	And I have entered a valid phone number "01555 522522"
-	And if I click Submit
+	And I click Submit without ticking the terms and conditions field
 	Then I should see an error message on Terms and Conditions field
 
 

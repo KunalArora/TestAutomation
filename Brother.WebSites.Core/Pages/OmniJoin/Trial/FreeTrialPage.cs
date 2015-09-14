@@ -45,6 +45,9 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Trial
         [FindsBy(How = How.CssSelector, Using = ".button-orange")]
         public IWebElement SubmitButton;
 
+        [FindsBy(How = How.XPath, Using = ".//*[@id='content_0_maincontent_2_ctl08']")]
+        public IWebElement ErrorMessageDisplayedTAndCField;
+
         public void IsSubmitButtonAvailable()
         {
             if (SubmitButton == null)
@@ -141,6 +144,16 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Trial
         public void ErrorMessageDisplayed()
         {
             TestCheck.AssertIsEqual(true, EmailAddressErrorMessage.Displayed, "Is Email Error message displayed");
+        }
+
+        public void ErrorMessageDisplayedTermsConditionsField()
+        {
+            TestCheck.AssertIsEqual(true, ErrorMessageDisplayedTAndCField.Displayed, "Is Error Message Displayed");
+        }
+
+        public void SubmitButtonClickBeforeTAndC()
+        {
+            SubmitButton.Click();
         }
 
     }

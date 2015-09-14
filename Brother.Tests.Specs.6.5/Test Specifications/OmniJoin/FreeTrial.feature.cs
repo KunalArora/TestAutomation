@@ -240,12 +240,12 @@ testRunner.Given("I have navigated to the OmniJoin home page", ((string)(null)),
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Validate Free Trial form displays error messages when Terms and Conditions are no" +
             "t checked on Commit")]
-        [NUnit.Framework.IgnoreAttribute()]
+        [NUnit.Framework.CategoryAttribute("TEST")]
         public virtual void ValidateFreeTrialFormDisplaysErrorMessagesWhenTermsAndConditionsAreNotCheckedOnCommit()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate Free Trial form displays error messages when Terms and Conditions are no" +
                     "t checked on Commit", new string[] {
-                        "ignore"});
+                        "TEST"});
 #line 75
 this.ScenarioSetup(scenarioInfo);
 #line 76
@@ -265,7 +265,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 83
  testRunner.And("I have entered a valid phone number \"01555 522522\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 84
- testRunner.And("if I click Submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I click Submit without ticking the terms and conditions field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 85
  testRunner.Then("I should see an error message on Terms and Conditions field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
