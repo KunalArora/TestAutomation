@@ -1,0 +1,603 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"[]>
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Product Registration</title>
+    <link rel="stylesheet" href="../../../css/master.css" type="text/css" />
+    <link rel="stylesheet" href="../../../css/print.css" type="text/css" media="print" />
+    <script src="../../../js/jquery.js" type="text/javascript"></script>
+    <script src="../../../js/scripts.js" type="text/javascript"></script>
+    <script type="text/javascript">
+$(document).ready(function() {
+  initializeToc();
+});
+</script>
+    <!-- We are using Font Awesome - http://fortawesome.github.com/Font-Awesome - licensed under CC BY 3.0 -->
+  </head>
+  <body>
+    <div id="container">
+      <div id="top" />
+      <div id="toc">
+        <p class="tocCollapser" title="Collapse Table of Content">«</p>
+        <ul class="features">
+          <li class="file" id="root">
+            <a href="../../../index.html">Home</a>
+          </li>
+          <li>
+            <div class="directory">
+              <a href="../../../img/index.html">img</a>
+            </div>
+            <ul class="features" />
+          </li>
+          <li>
+            <div class="directory">
+              <a href="../../../ReportScenarios/index.html">Report Scenarios</a>
+            </div>
+            <ul class="features">
+              <li>
+                <div class="directory">
+                  <a href="../../../ReportScenarios/img/index.html">img</a>
+                </div>
+                <ul class="features" />
+              </li>
+            </ul>
+          </li>
+          <li>
+            <div class="directory">
+              <a href="../../index.html">Test Specifications</a>
+            </div>
+            <ul class="features">
+              <li>
+                <div class="directory">
+                  <a href="../../BrotherMainSite/index.html">Brother Main Site</a>
+                </div>
+                <ul class="features">
+                  <li>
+                    <div class="directory">
+                      <a href="../../BrotherMainSite/Navigation/index.html">Navigation</a>
+                    </div>
+                    <ul class="features">
+                      <li class="file">
+                        <a href="../../BrotherMainSite/Navigation/Products.html">Navigate main site top products menu</a>
+                        <span class="float-right">
+                          <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                        </span>
+                      </li>
+                      <li>
+                        <div class="directory">
+                          <a href="../../BrotherMainSite/Navigation/FooterNav/index.html">Footer Nav</a>
+                        </div>
+                        <ul class="features">
+                          <li class="file">
+                            <a href="../../BrotherMainSite/Navigation/FooterNav/WebsiteInformation.html">WebsiteInformation footer navigation</a>
+                            <span class="float-right">
+                              <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                            </span>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <div class="directory">
+                      <a href="../../BrotherMainSite/Printer%20Search/index.html">Printer Search</a>
+                    </div>
+                    <ul class="features">
+                      <li class="file">
+                        <a href="../../BrotherMainSite/Printer%20Search/Printers.html">Correct printer product listings</a>
+                        <span class="float-right">
+                          <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                        </span>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <div class="directory">
+                      <a href="../../BrotherMainSite/SuppliesAndAccessories/index.html">Supplies And Accessories</a>
+                    </div>
+                    <ul class="features">
+                      <li class="file">
+                        <a href="../../BrotherMainSite/SuppliesAndAccessories/PurchaseASupply.html">PurchaseANewInkCartridge</a>
+                        <span class="float-right">
+                          <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                        </span>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <div class="directory">
+                  <a href="../index.html">Brother Online</a>
+                </div>
+                <ul class="features">
+                  <li class="file">
+                    <a href="../ProductPurchaseValidation.html">ProductPurchaseValidation</a>
+                    <span class="float-right">
+                      <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                    </span>
+                  </li>
+                  <li>
+                    <div class="directory">
+                      <a href="../Account/index.html">Account</a>
+                    </div>
+                    <ul class="features">
+                      <li class="file">
+                        <a href="../Account/AccountMaintenance.html">Account Maintenance</a>
+                        <span class="float-right">
+                          <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                        </span>
+                      </li>
+                      <li class="file">
+                        <a href="../Account/AccountManagementExtension.html">Account Management Test Extension</a>
+                        <span class="float-right">
+                          <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                        </span>
+                      </li>
+                      <li class="file">
+                        <a href="../Account/Business%20Account.html">Business Account</a>
+                        <span class="float-right">
+                          <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                        </span>
+                      </li>
+                      <li class="file">
+                        <a href="../Account/CC_AccountCreation.html">CreativeCenterTests</a>
+                        <span class="float-right">
+                          <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                        </span>
+                      </li>
+                      <li class="file">
+                        <a href="../Account/Customer%20Account.html">Customer Account</a>
+                        <span class="float-right">
+                          <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                        </span>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <div class="directory">
+                      <a href="../Cookies/index.html">Cookies</a>
+                    </div>
+                    <ul class="features">
+                      <li class="file">
+                        <a href="../Cookies/CookieInformation.html">Cookie Information</a>
+                        <span class="float-right">
+                          <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                        </span>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <div class="directory">
+                      <a href="index.html">Product Registration</a>
+                    </div>
+                    <ul class="features">
+                      <li class="file">
+                        <a href="AddDevice.html">AddDevice</a>
+                        <span class="float-right">
+                          <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                        </span>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <div class="directory">
+                      <a href="../SiteAccess/index.html">Site Access</a>
+                    </div>
+                    <ul class="features">
+                      <li class="file">
+                        <a href="../SiteAccess/SitesAccess_ProductionEnvironment.html">AccessAllProductionSites</a>
+                        <span class="float-right">
+                          <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                        </span>
+                      </li>
+                      <li class="file">
+                        <a href="../SiteAccess/SitesAccess_TestEnvironment.html">AccessALLTestSites</a>
+                        <span class="float-right">
+                          <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                        </span>
+                      </li>
+                      <li class="file">
+                        <a href="../SiteAccess/SitesAccess_UATEnvironment.html">AccessAllUATSites</a>
+                        <span class="float-right">
+                          <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                        </span>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <div class="directory">
+                  <a href="../../InstantInk/index.html">Instant Ink</a>
+                </div>
+                <ul class="features">
+                  <li class="file">
+                    <a href="../../InstantInk/LoginWithValidCredential.html">Log in to Ink with valid user</a>
+                    <span class="float-right">
+                      <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                    </span>
+                  </li>
+                  <li class="file">
+                    <a href="../../InstantInk/ValidateRole.html">Validate User Role</a>
+                    <span class="float-right">
+                      <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                    </span>
+                  </li>
+                  <li class="file">
+                    <a href="../../InstantInk/StatusMonitor.html">Validate User Roles with Ink Supply</a>
+                    <span class="float-right">
+                      <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                    </span>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <div class="directory">
+                  <a href="../../MPSOne/index.html">MPSOne</a>
+                </div>
+                <ul class="features">
+                  <li>
+                    <div class="directory">
+                      <a href="../../MPSOne/Contract/index.html">Contract</a>
+                    </div>
+                    <ul class="features">
+                      <li class="file">
+                        <a href="../../MPSOne/Contract/MPSContractSearch.html">MPSContractSearch</a>
+                        <span class="float-right">
+                          <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                        </span>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <div class="directory">
+                      <a href="../../MPSOne/MyAccount/index.html">My Account</a>
+                    </div>
+                    <ul class="features">
+                      <li class="file">
+                        <a href="../../MPSOne/MyAccount/MPSAuthorisedDealerAccountSetupPortalAuthorisationCheckADMINDealer.html">MPSAuthorisedDealerAccountSetupPortalAuthorisationCheckADMINDealer</a>
+                        <span class="float-right">
+                          <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                        </span>
+                      </li>
+                      <li class="file">
+                        <a href="../../MPSOne/MyAccount/MPSBOLMyAccountCheckForMPSCustomer.html">MPSBOLMyAccountCheckForMPSCustomer</a>
+                        <span class="float-right">
+                          <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                        </span>
+                      </li>
+                      <li class="file">
+                        <a href="../../MPSOne/MyAccount/MPSBOLMyAccountCheckMPSAdminDealer.html">MPSBOLMyAccountCheckMPSAdminDealer</a>
+                        <span class="float-right">
+                          <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                        </span>
+                      </li>
+                      <li class="file">
+                        <a href="../../MPSOne/MyAccount/MPSBOLMyAccountCheckMPSSalesDealer.html">MPSBOLMyAccountCheckMPSSalesDealer</a>
+                        <span class="float-right">
+                          <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                        </span>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <div class="directory">
+                      <a href="../../MPSOne/SignIn/index.html">Sign In</a>
+                    </div>
+                    <ul class="features">
+                      <li class="file">
+                        <a href="../../MPSOne/SignIn/SignInAsASalesDealer.html">SignInAsASalesDealer</a>
+                        <span class="float-right">
+                          <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                        </span>
+                      </li>
+                      <li class="file">
+                        <a href="../../MPSOne/SignIn/SignInToMPSAsACustomer.html">SignInToMPSAsACustomer</a>
+                        <span class="float-right">
+                          <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                        </span>
+                      </li>
+                      <li class="file">
+                        <a href="../../MPSOne/SignIn/SignInToMPSAsADealer.html">SignInToMPSAsADealer</a>
+                        <span class="float-right">
+                          <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                        </span>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <div class="directory">
+                  <a href="../../MPSTwo/index.html">MPSTwo</a>
+                </div>
+                <ul class="features">
+                  <li>
+                    <div class="directory">
+                      <a href="../../MPSTwo/Contract/index.html">Contract</a>
+                    </div>
+                    <ul class="features">
+                      <li class="file">
+                        <a href="../../MPSTwo/Contract/DealerCanCopyADeclineProposal.html">DealerCanCopyADeclineProposal</a>
+                        <span class="float-right">
+                          <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                        </span>
+                      </li>
+                      <li class="file">
+                        <a href="../../MPSTwo/Contract/DealerCanSignContract.html">DealerCanSignContract</a>
+                        <span class="float-right">
+                          <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                        </span>
+                      </li>
+                      <li class="file">
+                        <a href="../../MPSTwo/Contract/DealerCanSignContractProd.html">DealerCanSignContractProd</a>
+                        <span class="float-right">
+                          <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                        </span>
+                      </li>
+                      <li class="file">
+                        <a href="../../MPSTwo/Contract/GermanDealerCanSignContract.html">GermanDealerCanSignContract</a>
+                        <span class="float-right">
+                          <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                        </span>
+                      </li>
+                      <li class="file">
+                        <a href="../../MPSTwo/Contract/OutputContractPDFAllUsers.html">OutputContractPDFAllUsers</a>
+                        <span class="float-right">
+                          <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                        </span>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <div class="directory">
+                      <a href="../../MPSTwo/Customer/index.html">Customer</a>
+                    </div>
+                    <ul class="features">
+                      <li class="file">
+                        <a href="../../MPSTwo/Customer/AddLocationToCustomerInformation.html">AddLocationToCustomerInformation</a>
+                        <span class="float-right">
+                          <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                        </span>
+                      </li>
+                      <li class="file">
+                        <a href="../../MPSTwo/Customer/DealerCanOperateCustomers.html">DealerCanOperateCustomers</a>
+                        <span class="float-right">
+                          <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                        </span>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <div class="directory">
+                      <a href="../../MPSTwo/Proposal/index.html">Proposal</a>
+                    </div>
+                    <ul class="features">
+                      <li class="file">
+                        <a href="../../MPSTwo/Proposal/ApproverDecision.html">Approver decision feture</a>
+                        <span class="float-right">
+                          <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                        </span>
+                      </li>
+                      <li class="file">
+                        <a href="../../MPSTwo/Proposal/ClickPriceDeepDive.html">Click Price Deep Dive</a>
+                        <span class="float-right">
+                          <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                        </span>
+                      </li>
+                      <li class="file">
+                        <a href="../../MPSTwo/Proposal/DealerCanGeneratePDFAtRelevantStages.html">DealerCanGeneratePDFAtRelevantStages</a>
+                        <span class="float-right">
+                          <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                        </span>
+                      </li>
+                      <li class="file">
+                        <a href="../../MPSTwo/Proposal/DealerCanOperateProposalOffers.html">DealerCanOperateProposalOffers</a>
+                        <span class="float-right">
+                          <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                        </span>
+                      </li>
+                      <li class="file">
+                        <a href="../../MPSTwo/Proposal/DealerCanUpdateProfile.html">DealerCanUpdateProfile</a>
+                        <span class="float-right">
+                          <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                        </span>
+                      </li>
+                      <li class="file">
+                        <a href="../../MPSTwo/Proposal/ApprovalDecisionsGermanScenarios.html">German Approver decision feature</a>
+                        <span class="float-right">
+                          <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                        </span>
+                      </li>
+                      <li class="file">
+                        <a href="../../MPSTwo/Proposal/GermanProposalSummaryPageValidation.html">GermanProposalSummaryPageValidation</a>
+                        <span class="float-right">
+                          <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                        </span>
+                      </li>
+                      <li class="file">
+                        <a href="../../MPSTwo/Proposal/LeasingAndClickProposalGermanUserJourney.html">LeasingAndClickProposalGermanUserJourney</a>
+                        <span class="float-right">
+                          <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                        </span>
+                      </li>
+                      <li class="file">
+                        <a href="../../MPSTwo/Proposal/LeasingAndClickProposalUserJourney.html">LeasingAndClickProposalUserJourney</a>
+                        <span class="float-right">
+                          <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                        </span>
+                      </li>
+                      <li class="file">
+                        <a href="../../MPSTwo/Proposal/LocalOfficeAdminCanManageBanks.html">LocalOfficeAdminCanManageBanks</a>
+                        <span class="float-right">
+                          <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                        </span>
+                      </li>
+                      <li class="file">
+                        <a href="../../MPSTwo/Proposal/NoDuplicateProposalIsCreated.html">NoDuplicateProposalIsCreated</a>
+                        <span class="float-right">
+                          <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                        </span>
+                      </li>
+                      <li class="file">
+                        <a href="../../MPSTwo/Proposal/VerificationOnProductScreenVariations.html">Proposal - Add a devices to a proposal during creation</a>
+                        <span class="float-right">
+                          <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                        </span>
+                      </li>
+                      <li class="file">
+                        <a href="../../MPSTwo/Proposal/PurchaseAndClickProposalGermanUserJourney.html">PurchaseAndClickProposalGermanUserJourney</a>
+                        <span class="float-right">
+                          <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                        </span>
+                      </li>
+                      <li class="file">
+                        <a href="../../MPSTwo/Proposal/PurchaseAndClickProposalUserJourney.html">PurchaseAndClickProposalUserJourney</a>
+                        <span class="float-right">
+                          <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                        </span>
+                      </li>
+                      <li class="file">
+                        <a href="../../MPSTwo/Proposal/SummaryPageValidationForAllProposalTypes.html">SummaryPageValidationForAllProposalTypes</a>
+                        <span class="float-right">
+                          <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                        </span>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <div class="directory">
+                      <a href="../../MPSTwo/SendToBank/index.html">Send To Bank</a>
+                    </div>
+                    <ul class="features">
+                      <li class="file">
+                        <a href="../../MPSTwo/SendToBank/DealerCanSubmitAllGermanProposalsForApproval.html">SubmitAllTypesofGermanProposalsToRelevantApprovers</a>
+                        <span class="float-right">
+                          <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                        </span>
+                      </li>
+                      <li class="file">
+                        <a href="../../MPSTwo/SendToBank/DealerCanSubmitAllTypesofProposalsToRelevantApprovers.html">SubmitAllTypesofProposalsToRelevantApprovers</a>
+                        <span class="float-right">
+                          <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                        </span>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <div class="directory">
+                  <a href="../../OmniJoin/index.html">Omni Join</a>
+                </div>
+                <ul class="features">
+                  <li class="file">
+                    <a href="../../OmniJoin/ContactUs.html">ContactUs</a>
+                    <span class="float-right">
+                      <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                    </span>
+                  </li>
+                  <li class="file">
+                    <a href="../../OmniJoin/FreeTrial.html">FreeTrial</a>
+                    <span class="float-right">
+                      <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                    </span>
+                  </li>
+                  <li class="file">
+                    <a href="../../OmniJoin/ManagePlans.html">Manage Plan</a>
+                    <span class="float-right">
+                      <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                    </span>
+                  </li>
+                  <li class="file">
+                    <a href="../../OmniJoin/PurchasePlans.html">Purchase A Plan</a>
+                    <span class="float-right">
+                      <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                    </span>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <div class="directory">
+                  <a href="../../OmniJoinPartnerPortal/index.html">Omni Join Partner Portal</a>
+                </div>
+                <ul class="features">
+                  <li>
+                    <div class="directory">
+                      <a href="../../OmniJoinPartnerPortal/CustomerActions/index.html">Customer Actions</a>
+                    </div>
+                    <ul class="features">
+                      <li class="file">
+                        <a href="../../OmniJoinPartnerPortal/CustomerActions/CustomerActions.html">Customer Actions - OmniJoin Subscriptions</a>
+                        <span class="float-right">
+                          <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                        </span>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <div class="directory">
+                      <a href="../../OmniJoinPartnerPortal/DealerActions/index.html">Dealer Actions</a>
+                    </div>
+                    <ul class="features">
+                      <li class="file">
+                        <a href="../../OmniJoinPartnerPortal/DealerActions/NamedHostActivationKeys.html">Named Host Activation Keys</a>
+                        <span class="float-right">
+                          <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                        </span>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <div class="directory">
+                  <a href="../../Smart%20Supply/index.html">Smart Supply</a>
+                </div>
+                <ul class="features">
+                  <li class="file">
+                    <a href="../../Smart%20Supply/BrotherSupplyClubProductBenefits.html"></a>
+                    <span class="float-right">
+                      <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                    </span>
+                  </li>
+                  <li class="file">
+                    <a href="../../Smart%20Supply/BITTestDuiscountSingleItem_BBAU-532.html">BOL - WS - BIT - Test discount ticket - calculation of discounts for single item</a>
+                    <span class="float-right">
+                      <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                    </span>
+                  </li>
+                  <li class="file">
+                    <a href="../../Smart%20Supply/BrotherSupplyClubAnonymousUserProductBenefits.html">In order to view the Supply Club benefits on any environment</a>
+                    <span class="float-right">
+                      <i class="icon-warning-sign inconclusive" title="Inconclusive"> </i>
+                    </span>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div id="feature">
+        <h1>Product Registration</h1>
+        <ul class="list">
+          <li>
+            <a href="AddDevice.html">
+              <span class="title">AddDevice</span>
+              <span class="separator"> - </span>
+              <span class="description">In order to register my product with Brother
+As a customer
+I need to add my device in Brother Online</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div id="footer">
+        <p>Generated on: 14 September 2015 15:00:10</p>
+        <p>Produced by Pickles, version 1.2.1.0</p>
+      </div>
+    </div>
+  </body>
+</html>
