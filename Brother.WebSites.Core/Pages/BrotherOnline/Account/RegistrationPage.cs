@@ -350,6 +350,14 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             //TestCheck.AssertIsEqual(codiceFiscale, GetTextBoxValue("TaxNumberTextBox"), "Codice Fiscale Text Box");
         }
 
+        public void PopulateInvalidTaxNumberTextBox(string invalidTaxCode)
+        {
+            TaxNumberTextBox.SendKeys(invalidTaxCode);
+            //TestCheck.AssertIsEqual(codiceFiscale, GetTextBoxValue("TaxNumberTextBox"), "Codice Fiscale Text Box");
+        }
+
+        
+
         public void DoNotHaveAnAccountOption()
         {
             DoNotHaveAnAccountOptionButton.Click();
@@ -391,6 +399,12 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             ScrollTo(AgreeToTermsAndConditions);
             AgreeToTermsAndConditions.Click();
             TestCheck.AssertIsEqual("True", AgreeToTermsAndConditions.Selected.ToString(), "Accept Terms and Conditions Button");
+        }
+
+        public void CheckTermsAndConditionsForItaly()
+        {
+            ScrollTo(AgreeToTermsAndConditions);
+            AgreeToTermsAndConditions.Click();
         }
 
         public void PopulatePassword(string password)
