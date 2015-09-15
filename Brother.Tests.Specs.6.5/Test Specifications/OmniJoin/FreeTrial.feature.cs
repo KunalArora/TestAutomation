@@ -241,11 +241,15 @@ testRunner.Given("I have navigated to the OmniJoin home page", ((string)(null)),
         [NUnit.Framework.DescriptionAttribute("Validate Free Trial form displays error messages when Terms and Conditions are no" +
             "t checked on Commit")]
         [NUnit.Framework.CategoryAttribute("TEST")]
+        [NUnit.Framework.CategoryAttribute("UAT")]
+        [NUnit.Framework.CategoryAttribute("PROD")]
         public virtual void ValidateFreeTrialFormDisplaysErrorMessagesWhenTermsAndConditionsAreNotCheckedOnCommit()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate Free Trial form displays error messages when Terms and Conditions are no" +
                     "t checked on Commit", new string[] {
-                        "TEST"});
+                        "TEST",
+                        "UAT",
+                        "PROD"});
 #line 75
 this.ScenarioSetup(scenarioInfo);
 #line 76

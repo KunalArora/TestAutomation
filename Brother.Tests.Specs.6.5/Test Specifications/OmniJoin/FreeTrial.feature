@@ -71,7 +71,7 @@ Given I have navigated to the OmniJoin home page
 	When I have entered a valid First and Last name, "$%&£^GRYIR&^T*$UOITUJO$J", "*$%*"^%*"£^%(*$^GHWGKD"
 	Then I should see an error message on the first name and last name field
 
-@TEST
+@TEST @UAT @PROD
 Scenario: Validate Free Trial form displays error messages when Terms and Conditions are not checked on Commit
 	Given I have navigated to the OmniJoin home page
 	And If I click on Start Free Trial
