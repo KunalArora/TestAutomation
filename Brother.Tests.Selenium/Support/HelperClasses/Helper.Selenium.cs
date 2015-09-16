@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading;
 using Brother.Tests.Selenium.Lib.Support.SpecFlow;
@@ -499,6 +500,32 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             var js = (IJavaScriptExecutor)TestController.CurrentDriver;
             return js.ExecuteScript(script);
         }
+
+        public static IWebElement FindElementByJs(string jsCommand)
+        {
+            var returnedElement = (ReadOnlyCollection<IWebElement>)RunScript(jsCommand);
+
+            if (returnedElement.Count == 1)
+            {
+                foreach (var element in returnedElement)
+                {
+                    return element;
+                }
+            }
+            return null;
+        }
+
+        //public static IWebElement FindElementByJsWithWait(string jsCommand, int timeoutInSeconds)
+        //{
+        //    if (timeoutInSeconds > 0)
+        //    {
+        //        var wait = new WebDriverWait(TestController.CurrentDriver, TimeSpan.FromSeconds(timeoutInSeconds));
+        //        wait.Until(d => d.FindElementByJs(jsCommand));
+        //    }
+        //    return driver.FindElementByJs(jsCommand);
+        //}
+
+        
 
         public IWebElement GetElementByCssSelector(string elementName)
         {

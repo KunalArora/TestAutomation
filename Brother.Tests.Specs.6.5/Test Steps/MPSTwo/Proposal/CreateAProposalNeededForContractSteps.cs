@@ -40,7 +40,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [Then(@"I am redirected to Customer screen when I start proposal conversion process")]
         public void ThenRedirectedToCustomerScreenWhenIAmStartProposalConversionProcess()
         {
-            CurrentPage.As<CloudExistingProposalPage>().ClickOnActionButtonAgainstCopiedProposal(CurrentDriver);
+            CurrentPage.As<CloudExistingProposalPage>().ClickOnActionButtonAgainstCopiedProposal();
             NextPage = CurrentPage.As<CloudExistingProposalPage>().ClickOnConvertToContractButton(CurrentDriver);
             CurrentPage.As<ConvertProposalCustomerInfo>().IsConvertCustomerInfoScreenDisplayed();
         }
@@ -49,7 +49,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [Then(@"I am redirected to Summary page when I start proposal conversion process")]
         public void ThenRedirectedToSummaryPageWhenIStartProposalConversionProcess()
         {
-            CurrentPage.As<CloudExistingProposalPage>().ClickOnActionButtonAgainstCopiedProposal(CurrentDriver);
+            CurrentPage.As<CloudExistingProposalPage>().ClickOnActionButtonAgainstCopiedProposal();
             NextPage = CurrentPage.As<CloudExistingProposalPage>().ClickOnConvertToContractButtonForCopiedProposalWithCustomer(CurrentDriver);
             CurrentPage.As<ConvertProposalSummaryPage>().IsConvertSummaryPageDisplayed();
         }

@@ -128,8 +128,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ClickOnActionButtonAgainstRelevantProposal(IWebDriver driver)
         {
-            ScrollTo(ActionsModule.SpecificActionsDropdownElement(driver));
-            ActionsModule.SpecificClickOnTheActionsDropdown(driver);
+            ScrollTo(ActionsModule.SpecificActionsDropdownElement());
+            ActionsModule.ClickOnSpecificActionsElement();
         }
 
 
@@ -166,7 +166,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public LocalOfficeApproverProposalsSummaryPage NavigateToProposalSummary()
         {
             WebDriver.Wait(DurationType.Second, 2);
-            ActionsModule.SpecificClickOnTheActionsDropdown(Driver);
+            ActionsModule.ClickOnSpecificActionsElement();
             ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
 
             return GetTabInstance<LocalOfficeApproverProposalsSummaryPage>(Driver);
