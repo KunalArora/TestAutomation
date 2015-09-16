@@ -51,8 +51,8 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Trial
         [FindsBy(How = How.XPath, Using = ".//*[@id='content_0_maincontent_2_ctl08']")]
         public IWebElement ErrorMessageDisplayedTAndCField;
 
-        [FindsBy(How = How.CssSelector, Using = ".standard-form-error")]
-        public IList<IWebElement> ErrorMessageDisplayedConfirmPasswordField;
+        [FindsBy(How = How.CssSelector, Using = "#content_0_maincontent_2_ctl26")]
+        public IWebElement ErrorMessageDisplayedConfirmPasswordField;
 
         [FindsBy(How = How.CssSelector, Using = "#content_0_maincontent_2_vldRegExPassword")]
         public IWebElement ErrorMessageDisplayedPasswordField;
@@ -166,8 +166,9 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Trial
         }
         public void ErrorMessageDisplayedPasswordConfirmationField()
         {
-            TestCheck.AssertIsEqual(true, ErrorMessageDisplayedConfirmPasswordField.ElementAt(5).Displayed, "Is Error Message Displayed");
-        }
+            TestCheck.AssertIsEqual(true, ErrorMessageDisplayedConfirmPasswordField.Displayed, "Is Error Message Displayed");
+
+        } 
 
         public void ErrorMessageDisplayedPasswordFields()
         {
