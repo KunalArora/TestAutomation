@@ -21,6 +21,8 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
         [BeforeTestRun]
         public static void BeforeTestRun()
         {
+            Console.WriteLine("##teamcity[progressStart 'Running Tests']");
+
             Helper.MsgOutput("Starting Test Run........");
 
             // Clear old snapshots
