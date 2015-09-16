@@ -197,6 +197,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                 Trace.WriteLine(String.Format("@@TESTMSG - {0}", message));
             #else
                 Console.WriteLine("@@TESTMSG - {0}", message);
+                Console.WriteLine("##teamcity[{0}]", message);
             #endif
         }
 
