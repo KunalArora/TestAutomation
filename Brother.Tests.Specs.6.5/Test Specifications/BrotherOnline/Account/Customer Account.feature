@@ -197,7 +197,8 @@ Scenarios:
 
 @SMOKE
 # Create a new user account
-Scenario: Customer creates a new account with Brother Online using valid credentials, confirm by email 																				sign in and Sign Out
+Scenario: Customer creates a new account with Brother Online using valid credentials, confirm by email 
+sign in and Sign Out
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
 	And I am redirected to the Brother Login/Register page
@@ -511,7 +512,8 @@ Scenario: Create a user but test for BPID
 
 @TEST @UAT @PROD 
 # Create an account for Brother Online for different language sites
-Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on multi lingual sites																				sign in and Sign Out
+Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on multi lingual sites																				
+sign in and Sign Out
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
 	And I am redirected to the Brother Login/Register page
@@ -549,7 +551,8 @@ Scenarios:
 
 @TEST @UAT @PROD 
 # Create an account for Brother Online for spain sites
-Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on Spain site																			sign in and Sign Out
+Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on Spain site																			
+sign in and Sign Out
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
 	And I am redirected to the Brother Login/Register page
@@ -575,8 +578,9 @@ Scenarios:
 |Spain	  | 
 
 @TEST @UAT @PROD 
-# Create an account for Brother Online for spain sites
-Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on Italy site																			sign in and Sign Out
+# Create an account for Brother Online for Italy
+Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on Italy site																			
+sign in and Sign Out
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
 	And I am redirected to the Brother Login/Register page
@@ -619,7 +623,7 @@ Scenario Outline: Customer unable to create a new BOL Italy account without ente
 	And I have Agreed to the Terms and Conditions for Italy
 	And I declare that I do not use this account for business
 	When I press Create Your Account
-	Then I should see an error message on the codice fiscale field
+	Then I should see an error message due to an invalid tax code or codice fiscale
 
 Scenarios: 
 | Country | Tax Code	     |

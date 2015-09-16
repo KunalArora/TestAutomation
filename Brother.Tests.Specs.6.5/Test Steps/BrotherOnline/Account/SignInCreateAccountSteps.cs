@@ -472,8 +472,20 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<RegistrationPage>().PopulateInvalidTaxNumberTextBox(invalidTaxCode); //tax number for Italy
         }
 
-        [Then(@"I should see an error message on the codice fiscale field")]
+        [When(@"I enter an invalid Italy VAT Number as ""(.*)""")]
+        public void WhenIEnterAnInvalidItalyVatNumberAs(string vatNumber)
+        {
+            CurrentPage.As<RegistrationPage>().PopulateInvalidItalyVatNumber(vatNumber); //tax number for Italy
+        }
+
+        [Then(@"I should see an error message due to an invalid tax code or codice fiscale")]
         public void ThenIShouldSeeAnErrorMessageOnTheCodiceFiscaleField()
+        {
+            CurrentPage.As<RegistrationConfirmationPage>().InvalidItalyTaxCodeErrorMessageDisplayed();
+        }
+
+        [Then(@"I should see an error message due to an invalid VAT number or Numero partita IVA")]
+        public void ThenIShouldSeeAnErrorMessageOnTheNumeroPartitaIvaField()
         {
             CurrentPage.As<RegistrationConfirmationPage>().InvalidItalyTaxCodeErrorMessageDisplayed();
         }

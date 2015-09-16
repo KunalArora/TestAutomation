@@ -356,6 +356,11 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             //TestCheck.AssertIsEqual(codiceFiscale, GetTextBoxValue("TaxNumberTextBox"), "Codice Fiscale Text Box");
         }
 
+        public void PopulateInvalidItalyVatNumber(string invalidVatNumber)
+        {
+            VatNumberTextBox.SendKeys(invalidVatNumber);
+        }
+
         
 
         public void DoNotHaveAnAccountOption()
