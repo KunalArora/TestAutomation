@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
@@ -47,6 +50,9 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Trial
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='content_0_maincontent_2_ctl08']")]
         public IWebElement ErrorMessageDisplayedTAndCField;
+
+        [FindsBy(How = How.CssSelector, Using = ".standard-form-error")]
+        public IList<IWebElement> ErrorMessageDisplayedConfirmPasswordField;
 
         public void IsSubmitButtonAvailable()
         {
@@ -155,6 +161,10 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Trial
         {
             SubmitButton.Click();
         }
+        public void ErrorMessageDisplayedPasswordConfirmationField()
+        {
+            TestCheck.AssertIsEqual(true, ErrorMessageDisplayedConfirmPasswordField.ElementAt(5).Displayed, "Is Error Message Displayed");
+        } 
+        }
 
     }
-}
