@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
@@ -45,6 +48,15 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Trial
         [FindsBy(How = How.CssSelector, Using = ".button-orange")]
         public IWebElement SubmitButton;
 
+        [FindsBy(How = How.XPath, Using = ".//*[@id='content_0_maincontent_2_ctl08']")]
+        public IWebElement ErrorMessageDisplayedTAndCField;
+
+        [FindsBy(How = How.CssSelector, Using = "#content_0_maincontent_2_ctl26")]
+        public IWebElement ErrorMessageDisplayedConfirmPasswordField;
+
+        [FindsBy(How = How.CssSelector, Using = "#content_0_maincontent_2_vldRegExPassword")]
+        public IWebElement ErrorMessageDisplayedPasswordField;
+         
         public void IsSubmitButtonAvailable()
         {
             if (SubmitButton == null)
@@ -143,5 +155,25 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Trial
             TestCheck.AssertIsEqual(true, EmailAddressErrorMessage.Displayed, "Is Email Error message displayed");
         }
 
+        public void ErrorMessageDisplayedTermsConditionsField()
+        {
+            TestCheck.AssertIsEqual(true, ErrorMessageDisplayedTAndCField.Displayed, "Is Error Message Displayed");
+        }
+
+        public void SubmitButtonClickBeforeTAndC()
+        {
+            SubmitButton.Click();
+        }
+        public void ErrorMessageDisplayedPasswordConfirmationField()
+        {
+            TestCheck.AssertIsEqual(true, ErrorMessageDisplayedConfirmPasswordField.Displayed, "Is Error Message Displayed");
+
+        } 
+
+        public void ErrorMessageDisplayedPasswordFields()
+        {
+            TestCheck.AssertIsEqual(true, ErrorMessageDisplayedPasswordField.Displayed, "Is Error Message Displayed");
+        }
     }
-}
+
+    }

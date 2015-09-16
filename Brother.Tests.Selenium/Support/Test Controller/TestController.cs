@@ -72,7 +72,8 @@ namespace Brother.Tests.Selenium.Lib.Support
             WebDriver.SetWebDriverDefaultTimeOuts(WebDriver.DefaultTimeOut.PageLoad);
             WebDriver.SetWebDriverDefaultTimeOuts(WebDriver.DefaultTimeOut.Script);
             WebDriver.SetWebDriverDefaultTimeOuts(WebDriver.DefaultTimeOut.Implicit);
-            driver.Manage().Window.Size = new Size(1280, 1024);
+         //   driver.Manage().Window.Size = new Size(1280, 1024);
+            driver.Manage().Window.Maximize();
         }
 
         private static IWebDriver ExperimentalChanges()

@@ -186,7 +186,6 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         public void WhenIClickToRemoveBrowserConfirmationDialog()
         {
            CurrentPage.As<HomePage>().ClickDismissOnConfrimation(CurrentDriver);            
-            
         }
 
         [Then(@"I have checked no to having a creative center account")]
@@ -249,13 +248,13 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [Then(@"I enter an email address with an invalid formed password as ""(.*)""")]
         public void ThenIEnterAnEmailAddressWithAnInvalidFormedPasswordAs(string emailAddress)
         {
-            When(string.Format("Enter Email Address as \"{0}\"", emailAddress));
+            WhenEnterEmailAddressAs(emailAddress);
         }
 
         [Then(@"I enter an email address with too many allowed characters as ""(.*)""")]
         public void ThenIEnterAnEmailAddressWithTooManyAllowedCharactersAs(string emailAddress)
         {
-            When(string.Format("Enter Email Address as \"{0}\"", emailAddress));
+            WhenEnterEmailAddressAs(emailAddress);
         }
 
         [When(@"Enter Email Address as ""(.*)""")]
@@ -430,7 +429,8 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<RegistrationPage>().PopulatePasswordTextBox(form.Password);
             CurrentPage.As<RegistrationPage>().PopulateConfirmPasswordTextBox(form.Password);
             WhenIEnterAValidEmailAddress(string.Empty); // Auto Generates with an empty string
-         }
+        }
+
         [When(@"I fill in the registration information using a valid email address and ID number")]
         public void WhenIFillInTheRegistrationInformationUsingAValidEmailAddressAndIdNumber(Table table)
         {
@@ -454,6 +454,43 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             WhenIEnterAValidEmailAddress(string.Empty); // Auto Generates with an empty string
             CurrentPage.As<RegistrationPage>().PopulateTaxNumberTextBox(form.CodiceFiscale);//tax number for Italy
         }
+
+        [When(@"I fill in the Italy registration information using a valid email address and excluding ID number for italy")]
+        public void WhenIFillInTheItalyRegistrationInformationUsingAValidEmailAddressAndExcludingIdNumberForItaly(Table table)
+        {
+            dynamic form = table.CreateDynamicInstance();
+            CurrentPage.As<RegistrationPage>().PopulateFirstNameTextBox(form.FirstName);
+            CurrentPage.As<RegistrationPage>().PopulateLastNameTextBox(form.LastName);
+            CurrentPage.As<RegistrationPage>().PopulatePasswordTextBox(form.Password);
+            CurrentPage.As<RegistrationPage>().PopulateConfirmPasswordTextBox(form.Password);
+            WhenIEnterAValidEmailAddress(string.Empty); // Auto Generates with an empty string
+        }
+
+        [When(@"I enter an invalid ""(.*)"" for Italy")]
+        public void WhenIEnterAnInvalidForItaly(string invalidTaxCode)
+        {
+            CurrentPage.As<RegistrationPage>().PopulateInvalidTaxNumberTextBox(invalidTaxCode); //tax number for Italy
+        }
+
+        [When(@"I enter an invalid Italy VAT Number as ""(.*)""")]
+        public void WhenIEnterAnInvalidItalyVatNumberAs(string vatNumber)
+        {
+            CurrentPage.As<RegistrationPage>().PopulateInvalidItalyVatNumber(vatNumber); //tax number for Italy
+        }
+
+        [Then(@"I should see an error message due to an invalid tax code or codice fiscale")]
+        public void ThenIShouldSeeAnErrorMessageOnTheCodiceFiscaleField()
+        {
+            CurrentPage.As<RegistrationConfirmationPage>().InvalidItalyTaxCodeErrorMessageDisplayed();
+        }
+
+        [Then(@"I should see an error message due to an invalid VAT number or Numero partita IVA")]
+        public void ThenIShouldSeeAnErrorMessageOnTheNumeroPartitaIvaField()
+        {
+            CurrentPage.As<RegistrationConfirmationPage>().InvalidItalyTaxCodeErrorMessageDisplayed();
+        }
+
+        
         [When(@"I fill in the registration information using a maximum length email address")]
         public void WhenIFillInTheRegistrationInformationUsingAMaxLengthEmailAddress(Table table)
         {
@@ -678,6 +715,12 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         public void WhenIHaveAgreedToTheTermsAndConditions()
         {
             CurrentPage.As<RegistrationPage>().CheckTermsAndConditions();
+        }
+
+        [When(@"I have Agreed to the Terms and Conditions for Italy")]
+        public void WhenIHaveAgreedToTheTermsAndConditionsForItaly()
+        {
+            CurrentPage.As<RegistrationPage>().CheckTermsAndConditionsForItaly();
         }
 
         [When(@"I press Create Your Account")]
