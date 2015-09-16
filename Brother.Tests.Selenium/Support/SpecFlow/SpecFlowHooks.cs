@@ -3,6 +3,9 @@ using System.Diagnostics.Eventing.Reader;
 using System.Dynamic;
 using System.Linq;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using JetBrains.TeamCity.ServiceMessages.Write.Special;
+using JetBrains.TeamCity.ServiceMessages.Write.Special.Impl;
+using JetBrains.TeamCity.ServiceMessages.Write.Special.Impl.Writer;
 using NUnit.Framework;
 using NUnit.Framework.Constraints;
 using OpenQA.Selenium;
@@ -21,7 +24,9 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
         [BeforeTestRun]
         public static void BeforeTestRun()
         {
-            Console.WriteLine("##teamcity[progressStart 'Running Tests']");
+            var serviceMsg = new TeamCityServiceMessages();
+            var writer = serviceMsg.CreateWriter();
+            writer.WriteError("##teamcity[progressStart 'Running Tests']");
 
             Helper.MsgOutput("Starting Test Run........");
 
