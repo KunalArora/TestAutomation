@@ -279,10 +279,14 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Validate Free Trial form displays error messages when Passwords do not match")]
         [NUnit.Framework.CategoryAttribute("TEST")]
+        [NUnit.Framework.CategoryAttribute("UAT")]
+        [NUnit.Framework.CategoryAttribute("PROD")]
         public virtual void ValidateFreeTrialFormDisplaysErrorMessagesWhenPasswordsDoNotMatch()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate Free Trial form displays error messages when Passwords do not match", new string[] {
-                        "TEST"});
+                        "TEST",
+                        "UAT",
+                        "PROD"});
 #line 90
 this.ScenarioSetup(scenarioInfo);
 #line 91
@@ -313,11 +317,15 @@ testRunner.Given("I have navigated to the OmniJoin home page", ((string)(null)),
         [NUnit.Framework.DescriptionAttribute("Validate Free Trial form displays error messages when an invalid Password is ente" +
             "red")]
         [NUnit.Framework.CategoryAttribute("TEST")]
+        [NUnit.Framework.CategoryAttribute("UAT")]
+        [NUnit.Framework.CategoryAttribute("PROD")]
         public virtual void ValidateFreeTrialFormDisplaysErrorMessagesWhenAnInvalidPasswordIsEntered()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate Free Trial form displays error messages when an invalid Password is ente" +
                     "red", new string[] {
-                        "TEST"});
+                        "TEST",
+                        "UAT",
+                        "PROD"});
 #line 103
 this.ScenarioSetup(scenarioInfo);
 #line 104
