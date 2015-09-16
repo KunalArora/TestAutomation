@@ -86,7 +86,7 @@ Scenario: Validate Free Trial form displays error messages when Terms and Condit
 
 
 
-@TEST
+@TEST @UAT @PROD
 Scenario: Validate Free Trial form displays error messages when Passwords do not match
 Given I have navigated to the OmniJoin home page
 	And If I click on Start Free Trial
@@ -99,7 +99,7 @@ Given I have navigated to the OmniJoin home page
 	And I have Agreed to the Free Trial Terms and Conditions
 	Then I should see an error message on Password Confirmation field
 
-@TEST
+@TEST @UAT @PROD
 Scenario: Validate Free Trial form displays error messages when an invalid Password is entered
 Given I have navigated to the OmniJoin home page
 	And If I click on Start Free Trial
