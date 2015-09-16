@@ -18,7 +18,7 @@ namespace Brother.Tests.Selenium.Lib.Support
         public static string GenerateUniqueProposalName()
         {
             var generatedProposalName = "MPS_" + SurName() + 
-                "-" + DateTime.Now.ToString("yyyyMMdHHmmss");
+                "-" + DateTime.Now.ToString("MMdHHmmss");
             return generatedProposalName;
         }
 
@@ -27,6 +27,7 @@ namespace Brother.Tests.Selenium.Lib.Support
             var generatedEmailAddress = FirstName() +
                 DateTime.Now.ToString("yyyyMMdHHmmss")
                 +"@mailinator.com";
+            HelperClasses.SpecFlow.SetContext("GeneratedEmailAddress", generatedEmailAddress);
             return generatedEmailAddress;
         }
 
@@ -38,8 +39,7 @@ namespace Brother.Tests.Selenium.Lib.Support
 
         public static string CopiedProposal()
         {
-            var createdProposal = HelperClasses.SpecFlow.GetContext("GeneratedProposalName");
-            return createdProposal + " (1)";
+            return CreatedProposal() + " (1)";
         }
 
         public static string SomeDaysFromToday()
@@ -64,7 +64,7 @@ namespace Brother.Tests.Selenium.Lib.Support
         {
             var todayDate = DateTime.Now;
 
-            return "CUST" + todayDate.ToString("yyyyMMdHHmmss");
+            return "CT" + todayDate.ToString("MMdHHmmss");
 
         }
 
@@ -72,7 +72,7 @@ namespace Brother.Tests.Selenium.Lib.Support
         {
             var todayDate = DateTime.Now;
 
-            return "INTER" + todayDate.ToString("yyyyMMdHHmmss");
+            return "R" + todayDate.ToString("MMdHHmmss");
 
         }
 
@@ -93,8 +93,8 @@ namespace Brother.Tests.Selenium.Lib.Support
         /// <returns>Generated Lead Code Reference as string</returns>
         public static string GenerateUniqueLeadCodeRef()
         {
-            var generatedLeadCodeRef = "Reference_"
-                + DateTime.Now.ToString("yyyyMMdHHmmss");
+            var generatedLeadCodeRef = "Ref_"
+                + DateTime.Now.ToString("MMdHHmmss");
             return generatedLeadCodeRef;
         }
 
@@ -160,7 +160,7 @@ namespace Brother.Tests.Selenium.Lib.Support
 								    "Wishing Bay"
 								};
 
-            var generatedCompanyName = companyName[new Random().Next(20)] + "_" + DateTime.Now.ToString("yyyyMMdHHmmss") + " Ltd";
+            var generatedCompanyName = companyName[new Random().Next(20)] + "_" + DateTime.Now.ToString("yyMMdHHmmss") + " Ltd";
 
             return generatedCompanyName;
             

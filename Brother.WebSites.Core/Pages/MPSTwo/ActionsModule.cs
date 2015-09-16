@@ -101,40 +101,30 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         
 
-        public static IWebElement SpecificActionsDropdownElement(ISearchContext driver)
+        public static IWebElement SpecificActionsDropdownElement()
         {
 
-            var actionsElement = driver.FindElement(By.XPath(ProposalCreatedActionButton()));
+            var actionsElement = SeleniumHelper.FindElementByJs(ProposalCreatedActionButton());
             return actionsElement;
+        }
+
+        public static void ClickOnSpecificActionsElement()
+        {
+            if (SpecificActionsDropdownElement() != null)
+                SpecificActionsDropdownElement().Click();
         }
 
         private static string ProposalCreatedActionButton()
         {
-            return String.Format("//td[text()='{0}']/parent::tr/td[6]/div/button", 
+            return String.Format("return $('td:contains(\"{0}\")').parent('tr').children('td').children('div').children('button')", 
                 MpsUtil.CreatedProposal());
+            // //div/table/tbody/tr/td[text()='{0}']/parent::tr/td[6]/div/button
         }
 
-        private static string ContractApprovedProposalActionButton()
-        {
-            return String.Format("//td[text()='{0}']/parent::tr/td[9]/div/button", 
-                MpsUtil.CreatedProposal());
-        }
-
-        private static string DeclinedProposalActionButton()
-        {
-            return String.Format("//td[text()='{0}']/parent::tr/td[7]/div/button", 
-                MpsUtil.CreatedProposal());
-        }
-
-        private static string ProposalCopiedActionButton()
-        {
-            return String.Format("//td[text()='{0}']/parent::tr/td[6]/div/button", 
-                MpsUtil.CopiedProposal());
-        }
-
+       
         private static string ProposalCustomer()
         {
-            return String.Format("//td[text()='{0}']/parent::tr/td[4]", 
+            return String.Format("//td[text()='{0}']/parent::tr/td[4]",
                 MpsUtil.CopiedProposal());
         }
 
@@ -142,56 +132,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             var actionsElement = driver.FindElement(By.XPath(ProposalCustomer()));
             return actionsElement;
-        }
-
-        public static IWebElement DeclinedProposalActionDropdown(IWebDriver driver)
-        {
-            var actionsElement = driver.FindElement(By.XPath(DeclinedProposalActionButton()));
-            return actionsElement;
-        }
-
-        public static IWebElement ContractApprovedProposalActionDropdown(IWebDriver driver)
-        {
-            var actionsElement = driver.FindElement(By.XPath(ContractApprovedProposalActionButton()));
-            return actionsElement;
-        }
-
-
-        public static IWebElement CopiedProposalActionButton(IWebDriver driver)
-        {
-            var actionsElement = driver.FindElement(By.XPath(ProposalCopiedActionButton()));
-            return actionsElement;
-        }
-
-        public static void ClickOnSpecificCopiedProposalActionsDropdown(IWebDriver driver)
-        {
-            var actionsElement = CopiedProposalActionButton(driver);
-            actionsElement.Click();
-        }
-
-        public static void ClickOnSpecificContractApprovedProposalActionsDropdown(IWebDriver driver)
-        {
-            var actionsElement = ContractApprovedProposalActionDropdown(driver);
-            actionsElement.Click();
-        }
-
-        public static void ClickOnSpecificDeclinedProposalActionsDropdown(IWebDriver driver)
-        {
-            var actionsElement = DeclinedProposalActionDropdown(driver);
-            actionsElement.Click();
-        }
-
-        public static void SpecificClickOnTheActionsDropdown(IWebDriver driver)
-        {
-            SeleniumHelper.WaitForElementToExistByCssSelector(ProposalCreatedActionButton());
-            var actionsElement = SpecificActionsDropdownElement(driver);
-            actionsElement.Click();
-        }
-
-        public static void ClickOnTheActionsDropdown(IWebDriver driver)
-        {
-            var actionsElement = ActionsDropdownElement(driver);
-            actionsElement.Last().Click();
         }
 
         public static void ClickOnTheActionsDropdown(int index, IWebDriver driver)

@@ -86,10 +86,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ActionsModule.NavigateToSummaryPageUsingActionButton(driver);
         }
 
-        public void ClickOnActionButtonAgainstRelevantProposal(IWebDriver driver)
+        public void ClickOnActionButtonAgainstRelevantProposal()
         {
-            ScrollTo(ActionsModule.SpecificActionsDropdownElement(driver));
-            ActionsModule.SpecificClickOnTheActionsDropdown(driver);
+            ScrollTo(ActionsModule.SpecificActionsDropdownElement());
+            ActionsModule.ClickOnSpecificActionsElement();
         }
 
         public void ClickOnDeclineButton()
@@ -128,16 +128,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             WebDriver.Wait(DurationType.Second, 3);
         }
 
-        private IWebElement ActionButtonElementByName(string name, string tdcol)
+        private IWebElement ActionButtonElementByName(string name)
         {
-            var element = String.Format("//td[text()=\"{0}\"]/parent::tr/td[{1}]/div/button", name, tdcol);
+            var element = String.Format("//td[text()=\"{0}\"]", name);
+
             return Driver.FindElement(By.XPath(element));
         }
 
         public BankProposalsSummaryPage NavigateToViewSummary()
         {
-            string proposalname = MpsUtil.CreatedProposal();
-            var element = ActionButtonElementByName(proposalname, "6");
+            var element = ActionsModule.SpecificActionsDropdownElement();
+            ScrollTo(element);
             element.Click();
             ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
 
@@ -146,7 +147,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public BankProposalsSummaryPage NavigateToViewSummary(string name)
         {
-            IWebElement element = ActionButtonElementByName(name, "6");
+            var element = ActionsModule.SpecificActionsDropdownElement();
+            ScrollTo(element);
             element.Click();
             ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
 
@@ -155,7 +157,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public BankProposalsSummaryPage NavigateToProposalSummary()
         {
-            ActionsModule.SpecificClickOnTheActionsDropdown(Driver);
+            ActionsModule.ClickOnSpecificActionsElement(); 
             ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
 
             return GetTabInstance<BankProposalsSummaryPage>(Driver);
@@ -181,16 +183,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyDeclinedProposalIsDisplayed()
         {
-            string name = SpecFlow.GetContext("GeneratedProposalName");
+            var name = SpecFlow.GetContext("GeneratedProposalName");
 
-            AssertElementPresent(ActionButtonElementByName(name, "7"), "The proposal is not found");
+            AssertElementPresent(ActionButtonElementByName(name), "The proposal is not found");
         }
 
         public void VerifyApprovedProposalIsDisplayed()
         {
-            string name = SpecFlow.GetContext("GeneratedProposalName");
+            var name = SpecFlow.GetContext("GeneratedProposalName");
 
-            AssertElementPresent(ActionButtonElementByName(name, "7"), "The proposal is not found");
+            AssertElementPresent(ActionButtonElementByName(name), "The proposal is not found");
         }
 
         public void IsAllTheDeclinedProposalDisplayed()

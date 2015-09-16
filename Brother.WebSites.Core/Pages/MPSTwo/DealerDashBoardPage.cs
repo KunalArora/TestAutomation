@@ -19,6 +19,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement CreateProposalLinkElement;
         [FindsBy(How = How.CssSelector, Using = "a[href='/mps/dealer/proposals'] .media-body")] 
         public IWebElement ExistingProposalLinkElement;
+        [FindsBy(How = How.CssSelector, Using = ".separator a[href=\"/mps/dealer/proposals\"]")]
+        public IWebElement proposalTopElement;
         [FindsBy(How = How.CssSelector, Using = "a[href='/mps/dealer/contracts'] .media-body")]
         public IWebElement ExistingContractLinkElement;
         [FindsBy(How = How.CssSelector, Using = "a[href='/mps/dealer/customers'] .media-body")]
@@ -111,7 +113,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             if(ExistingProposalLinkElement == null)
                 throw new Exception("Are you sure you on dealer dashboard page?");
-            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ExistingProposalLinkElement);
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, proposalTopElement);
 
             return GetInstance<CloudExistingProposalPage>(Driver);
         }

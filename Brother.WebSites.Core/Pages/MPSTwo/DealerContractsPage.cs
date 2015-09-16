@@ -116,7 +116,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if(DealerContractSignButtonElement == null)
                 throw new NullReferenceException("Sign button is not displayed");
 
-            ActionsModule.ClickOnTheActionsDropdown(driver);
+            ActionsModule.ClickOnSpecificActionsElement();
             ActionsModule.NavigateToSummaryPageUsingActionButton(driver);
 
             DealerContractSignButtonElement.Click();
@@ -138,7 +138,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             NavigateToSignedOfferScreen();
             VerifyAcceptedContractIsDisplayed();
 
-            ActionsModule.ClickOnTheActionsDropdown(driver);
+            ActionsModule.ClickOnSpecificActionsElement();
             ActionsModule.NavigateToPreInstallationScreen(driver);
            
             EnterSerialNumber();
@@ -152,14 +152,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         
         public void DownloadAContractPDF()
         {
-            ActionsModule.ClickOnTheActionsDropdown(Driver);
+            ActionsModule.ClickOnSpecificActionsElement();
             ActionsModule.DownloadContractPDFAction(Driver);
         }
 
 
         public void DownloadAContractInvoicePDF()
         {
-            ActionsModule.ClickOnTheActionsDropdown(Driver);
+            ActionsModule.ClickOnSpecificActionsElement();
             ActionsModule.DownloadContractInvoicePDFAction(Driver);
         }
 
@@ -276,7 +276,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerContractsSummaryPage NavigateToDealerContractSummaryPage(IWebDriver driver)
         {
-            ActionsModule.ClickOnSpecificContractApprovedProposalActionsDropdown(driver);
+            ActionsModule.ClickOnSpecificActionsElement();
             WebDriver.Wait(DurationType.Second, 3);
             ActionsModule.NavigateToSummaryPageUsingActionButton(driver);
             return GetInstance<DealerContractsSummaryPage>(Driver);

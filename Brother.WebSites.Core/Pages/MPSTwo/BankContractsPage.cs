@@ -83,13 +83,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void DownloadPDFOnBankContractPages()
         {
-            ActionsModule.ClickOnTheActionsDropdown(Driver);
+            ActionsModule.ClickOnSpecificActionsElement();
             ActionsModule.DownloadContractPDFAction(Driver);
         }
 
         public void DownloadInvoicePDFOnBankContractPages()
         {
-            ActionsModule.ClickOnTheActionsDropdown(Driver);
+            ActionsModule.ClickOnSpecificActionsElement();
             ActionsModule.DownloadContractInvoicePDFAction(Driver);
         }
 

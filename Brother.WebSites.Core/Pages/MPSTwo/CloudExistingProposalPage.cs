@@ -72,6 +72,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement proposalTopItemElement;
         
         
+        
 
         public void IsProposalFilterDiplayed()
         {
@@ -194,24 +195,24 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             
         }
         
-        public void ClickOnActionButtonAgainstRelevantProposal(IWebDriver driver)
+        public void ClickOnActionButtonAgainstRelevantProposal()
         {
-            ScrollTo(ActionsModule.SpecificActionsDropdownElement(driver));
-            ActionsModule.SpecificClickOnTheActionsDropdown(driver);
+            ScrollTo(ActionsModule.SpecificActionsDropdownElement());
+            ActionsModule.ClickOnSpecificActionsElement();
         }
 
-        public void ClickOnActionButtonAgainstDeclinedProposal(IWebDriver driver)
+        public void ClickOnActionButtonAgainstDeclinedProposal()
         {
-            ScrollTo(ActionsModule.DeclinedProposalActionDropdown(driver));
-            ActionsModule.ClickOnSpecificDeclinedProposalActionsDropdown(driver);
+            ScrollTo(ActionsModule.SpecificActionsDropdownElement());
+            ActionsModule.ClickOnSpecificActionsElement();
             WebDriver.Wait(DurationType.Second, 2);
         }
 
 
-        public void ClickOnActionButtonAgainstCopiedProposal(IWebDriver driver)
+        public void ClickOnActionButtonAgainstCopiedProposal()
         {
-            ScrollTo(ActionsModule.CopiedProposalActionButton(driver));
-            ActionsModule.ClickOnSpecificCopiedProposalActionsDropdown(driver);
+            ScrollTo(ActionsModule.SpecificActionsDropdownElement());
+            ActionsModule.ClickOnSpecificActionsElement();
         }
 
         private ReadOnlyCollection<IWebElement> ActionsDropdownElement(string actionsButton)
@@ -262,9 +263,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             
         }
 
-        public void ClickOnEditOnActionItem(IWebDriver driver)
+        public void ClickOnEditOnActionItem()
         {
-            ActionsModule.ClickOnTheActionsDropdown(Driver);
+            ActionsModule.ClickOnSpecificActionsElement();
             ActionsModule.StartTheProposalEditProcess(Driver);
         }
 

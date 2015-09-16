@@ -37,7 +37,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
         {
             var page = CurrentPage.As<CloudExistingProposalPage>();
             page.FindExistingPoposalList();
-            page.ClickOnEditOnActionItem(CurrentDriver);
+            page.ClickOnEditOnActionItem();
             NextPage = page.NavigateToEditProposalPage();
         }
 
@@ -218,6 +218,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
         {
             var page = CurrentPage.As<CloudExistingProposalPage>();
             page.NotExistTheDeletedItem(CurrentDriver);
+            
         }
 
         [Then(@"I can see the deleted item still exists on the table")]

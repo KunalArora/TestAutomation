@@ -11,7 +11,7 @@ namespace Brother.Tests.Specs.MPSTwo.SendToBank
         [When(@"I click on Action button against the proposal created above")]
         public void WhenIClickOnActionButtonAgainstTheProposalCreatedAbove()
         {
-            CurrentPage.As<CloudExistingProposalPage>().ClickOnActionButtonAgainstRelevantProposal(CurrentDriver);
+            CurrentPage.As<CloudExistingProposalPage>().ClickOnActionButtonAgainstRelevantProposal();
         }
 
         [Then(@"I can click on Convert to Contract button under the Action button")]
@@ -85,7 +85,7 @@ namespace Brother.Tests.Specs.MPSTwo.SendToBank
         public void WhenIDeclineTheProposalCreatedAbove()
         {
             ThenINavigateToBankAwaitingApprovalScreenUnderOfferPage();
-            CurrentPage.As<BankOffersPage>().ClickOnActionButtonAgainstRelevantProposal(CurrentDriver);
+            CurrentPage.As<BankOffersPage>().ClickOnActionButtonAgainstRelevantProposal();
             CurrentPage.As<BankOffersPage>().NavigateToAwaitingApprovalSummaryPage(CurrentDriver);
             CurrentPage.As<BankOffersPage>().DeclineAnAwaitingApprovalProposal();
             CurrentPage.As<BankOffersPage>().IsProposalDeclined();
@@ -103,7 +103,7 @@ namespace Brother.Tests.Specs.MPSTwo.SendToBank
         [Then(@"I can copy the declined proposal without customer")]
         public void ThenICanCopyTheDeclinedProposalWithoutCustomer()
         {
-            CurrentPage.As<CloudExistingProposalPage>().ClickOnActionButtonAgainstDeclinedProposal(CurrentDriver);
+            CurrentPage.As<CloudExistingProposalPage>().ClickOnActionButtonAgainstDeclinedProposal();
             CurrentPage.As<CloudExistingProposalPage>().CopyAProposalWithoutCustomer(CurrentDriver);
             CurrentPage.As<CloudExistingProposalPage>().IsProposalCopiedWithoutCustomer(CurrentDriver);
         }
@@ -111,7 +111,7 @@ namespace Brother.Tests.Specs.MPSTwo.SendToBank
         [Then(@"I can copy the declined proposal with customer")]
         public void ThenICanCopyTheDeclinedProposalWithCustomer()
         {
-            CurrentPage.As<CloudExistingProposalPage>().ClickOnActionButtonAgainstDeclinedProposal(CurrentDriver);
+            CurrentPage.As<CloudExistingProposalPage>().ClickOnActionButtonAgainstDeclinedProposal();
             CurrentPage.As<CloudExistingProposalPage>().CopyAProposalWithCustomer(CurrentDriver);
             CurrentPage.As<CloudExistingProposalPage>().IsProposalCopiedWithCustomer(CurrentDriver);
         }
@@ -235,7 +235,7 @@ namespace Brother.Tests.Specs.MPSTwo.SendToBank
         [Then(@"I can view all the proposals declined by both Bank and LocalOffice Approver")]
         public void ThenICanViewAllTheProposalsDeclinedByBothBankAndLocalOfficeApprover()
         {
-            CurrentPage.As<BankOffersPage>().IsAllTheDeclinedProposalDisplayed();
+            CurrentPage.As<BankOffersPage>().VerifyDeclinedProposalIsDisplayed();
         }
 
     }
