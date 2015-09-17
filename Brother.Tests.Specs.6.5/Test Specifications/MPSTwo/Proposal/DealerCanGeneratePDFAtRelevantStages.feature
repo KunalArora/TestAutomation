@@ -65,7 +65,7 @@ Scenario Outline: Dealer Can Generate PDF Purchase and Click Minimum Summary Pag
 	And I choose to pay Service Packs "<PaymentMethod>"
 	And I enter click price volume of "<ClickVolume>" and "<ColourVolume>"
 	Then I can generate customer PDF for the proposal
-	And I can generate dealer PDF for the proposal
+	##And I can generate dealer PDF for the proposal
 	And I click Save Proposal button on Summary screen
 	And I am directed to Proposals screen of Proposal List page
 	And the newly created proposal is displayed on the list
@@ -74,7 +74,7 @@ Scenario Outline: Dealer Can Generate PDF Purchase and Click Minimum Summary Pag
 
 	Scenarios: 
 	| Role             | Country        | ContractType                  | UsageType      | Contract | Leasing                  | Billing                  | PriceHardware | Printer      | DeviceScreen | PaymentMethod           | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Minimum Volume | 3 years  | Quarterly in Arrears | Quarterly in Arrears | Untick          | MFC-L8650CDW | Reduced        | Included in Click Price | 2000        | 2000         |
+	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Minimum Volume | 3 years  | Quarterly in Arrears | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full        | Included in Click Price | 2000        | 2000         |
 
 Scenario Outline: Dealer Can Generate PDF Purchase and Click PAYG Summary Page
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
@@ -89,7 +89,7 @@ Scenario Outline: Dealer Can Generate PDF Purchase and Click PAYG Summary Page
 	And I accept the default values of the device
 	And I type in click price volume of "<ClickVolume>"
 	Then I can generate customer PDF for the proposal
-	And I can generate dealer PDF for the proposal
+	##And I can generate dealer PDF for the proposal
 	And I click Save Proposal button on Summary screen
 	And I am directed to Proposals screen of Proposal List page
 	And the newly created proposal is displayed on the list

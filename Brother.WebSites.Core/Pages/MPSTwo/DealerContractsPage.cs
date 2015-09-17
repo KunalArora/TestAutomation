@@ -152,7 +152,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         
         public void DownloadAContractPDF()
         {
-            ActionsModule.ClickOnSpecificActionsElement();
+            ActionsModule.OpenTheFirstActionButton(Driver);
             ActionsModule.DownloadContractPDFAction(Driver);
         }
 

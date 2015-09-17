@@ -37,6 +37,13 @@ namespace Brother.Tests.Selenium.Lib.Support
             return createdProposal;
         }
 
+        public static string CreatedEmail()
+        {
+            var createdProposal = HelperClasses.SpecFlow.GetContext("GeneratedEmailAddress");
+            return createdProposal;
+        }
+
+
         public static string CopiedProposal()
         {
             return CreatedProposal() + " (1)";

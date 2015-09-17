@@ -201,7 +201,7 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Dealer cannot delete a customer who is bound to an existing proposal")]
-        [NUnit.Framework.TestCaseAttribute("Lease & Click with Service", "Minimum Volume", "OK", "NewlyCreatedProposalCustomer", null)]
+        [NUnit.Framework.TestCaseAttribute("Purchase & Click with Service", "Minimum Volume", "OK", "NewlyCreatedProposalCustomer", null)]
         public virtual void DealerCannotDeleteACustomerWhoIsBoundToAnExistingProposal(string contractType, string usageType, string confirm, string targetItem, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer cannot delete a customer who is bound to an existing proposal", exampleTags);

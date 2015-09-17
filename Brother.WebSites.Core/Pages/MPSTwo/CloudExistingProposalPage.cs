@@ -422,13 +422,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ClickAcceptOnConfrimation(IWebDriver driver)
         {
-            WebDriver.Wait(DurationType.Millisecond, 100);
+            WebDriver.Wait(DurationType.Millisecond, 1000);
             ClickAcceptOnJsAlert(driver);
         }
 
         public void ClickDismissOnConfrimation(IWebDriver driver)
         {
-            WebDriver.Wait(DurationType.Millisecond, 100);
+            WebDriver.Wait(DurationType.Millisecond, 1000);
             ClickDismissOnJsAlert(driver);
         }
 

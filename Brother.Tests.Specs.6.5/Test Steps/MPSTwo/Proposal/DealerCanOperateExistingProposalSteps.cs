@@ -85,13 +85,13 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
                 case "TermAndType":
                     if (contractType == "Lease & Click with Service")
                     {
-                        termAndTypeStepInstance.EditTermAndTypeTab("Pay As You Go", "5 years", "Quarterly", "Quarterly");
+                        termAndTypeStepInstance.EditTermAndTypeTab("Pay As You Go", "5 years", "Quarterly in Advance", "Quarterly in Arrears");
                         GoThrowProductsTab();
                         productsStepInstance.GoThrowClickPriceTab();
                     }
                     else if (contractType == "Purchase & Click with Service")
                     {
-                        termAndTypeStepInstance.EditTermAndTypeTabForPurchaseOffer("Pay As You Go", "5 years", "Quarterly");
+                        termAndTypeStepInstance.EditTermAndTypeTabForPurchaseOffer("Pay As You Go", "5 years", "Quarterly in Arrears");
                         GoThrowProductsTab();
                         productsStepInstance.GoThrowClickPriceTab();
                     }

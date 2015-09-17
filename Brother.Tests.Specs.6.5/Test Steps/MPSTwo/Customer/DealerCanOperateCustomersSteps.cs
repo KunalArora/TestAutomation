@@ -49,7 +49,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Customer
         public void ThenICanSeeTheCreatedCustomer()
         {
             var page = CurrentPage.As<DealerCustomersExistingPage>();
-            page.ConfirmCreatedCustomer();
+            page.IsEditedCustomerCreated();
         }
 
 		[When(@"I click the delete button against ""(.*)"" on Exisiting Customers table")]
@@ -91,7 +91,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Customer
         {
             var page = CurrentPage.As<DealerCustomersExistingPage>();
            // page.NotExistTheDeletedItem();
-            page.IsCustomerDeleted();
+           page.IsCustomerDeleted();
         }
 
         [Then(@"I can see the deleted item still exists on the customer table")]

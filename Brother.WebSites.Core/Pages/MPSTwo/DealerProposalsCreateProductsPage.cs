@@ -1450,6 +1450,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
                 string buttonselector = @"button.btn.js-mps-product-configuration-submit";
                 WaitForElementToExistByCssSelector(buttonselector);
+                WebDriver.Wait(DurationType.Millisecond, 2000);
                 var button = driver.FindElement(By.CssSelector(buttonselector));
                 button.Click();
                 WebDriver.Wait(DurationType.Millisecond, 2000);
