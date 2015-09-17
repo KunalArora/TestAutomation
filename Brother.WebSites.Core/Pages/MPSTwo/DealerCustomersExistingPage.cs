@@ -6,6 +6,7 @@ using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using OpenQA.Selenium.Support.UI;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
@@ -156,12 +157,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void ClickOnDeleteOnActionItem(IWebDriver driver)
         {
            // var customerelem = FindNthProposalOfferElement(driver);
-            ClickActionButtonOnOffer();
+            //ClickActionButtonOnOffer();
+            ActionsModule.OpenTheFirstActionButton(driver);
             WaitForElementToExistByCssSelector(".open .js-mps-delete");
             var deleteElem = Driver.FindElement(By.CssSelector(".open .js-mps-delete"));
             var id = deleteElem.GetAttribute("data-person-id");
             SpecFlow.SetContext(DealerLatestOperatingCustomerItemId, id);
             deleteElem.Click();
+            WebDriver.Wait(DurationType.Second, 5);
         }
 
         public void NotExistTheDeletedItem(IWebDriver driver)
@@ -208,6 +211,24 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         }
 
+        public void IsEditedCustomerCreated()
+        {
+            var email = SpecFlow.GetContext("GeneratedEmailAddress");
+            var customersEmail = Driver.FindElements(By.CssSelector(".js-mps-searchable  td[id*=content_1_PersonList_List_CustomerEmail]"));
+            var customerEmailList = new ArrayList();
+
+            foreach (var element in customersEmail)
+            {
+                var customerEmail = element.Text;
+                customerEmailList.Add(customerEmail);
+            }
+
+            var message = String.Format("Edited customer with email address {0} is displayed", email);
+
+            TestCheck.AssertIsEqual(true, customerEmailList.Contains(email), message);
+
+        }
+
         public void ExistsNotDeletedItem(IWebDriver driver)
         {
             var id = SpecFlow.GetContext(DealerLatestOperatingCustomerItemId);
@@ -222,8 +243,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var contact = SpecFlow.GetObject<DealerCustomersManagePage.OrganisationContactDetail>(DealerLatestCreatedContact);
 
             var customerelem = FindExistingCustomerByEmail();
+            ScrollTo(ActionsModule.SpecificCustomerActionsDropdownElement());
             ClickActionButtonOnOffer();
-            var editElem = Driver.FindElement(By.CssSelector(".js-mps-edit"));
+            var editElem = Driver.FindElement(By.CssSelector(".open .js-mps-edit"));
             var id = editElem.GetAttribute("data-person-id");
             SpecFlow.SetContext(DealerLatestOperatingCustomerItemId, id);
             editElem.Click();

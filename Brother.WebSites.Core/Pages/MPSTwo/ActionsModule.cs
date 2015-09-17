@@ -22,6 +22,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string ProposalCopyElementWithCustomer = @".open .js-mps-copy-with-customer";
         private const string ContractDownloadPDF = @".open .js-mps-download-contract-pdf";
         private const string ContractDownloadInvoicePDF = @".open .js-mps-download-contract-invoice-pdf";
+        private const string ActionButtion = @".js-mps-filter-ignore [type='button']";
 
 
         private static IWebElement CopyProposalButtonElement(ISearchContext driver)
@@ -78,6 +79,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return driver.FindElements(By.CssSelector(SendToBankButton));
         }
 
+        private static IList<IWebElement> AllActionsButton(ISearchContext driver)
+        {
+            return driver.FindElements(By.CssSelector(ActionButtion));
+        }
+
         private static IList<IWebElement> ActionsDropdownElement(ISearchContext driver)
         {
 
@@ -108,16 +114,41 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return actionsElement;
         }
 
+        public static IWebElement SpecificCustomerActionsDropdownElement()
+        {
+
+            var actionsElement = SeleniumHelper.FindElementByJs(CreatedEmailActionButton());
+            return actionsElement;
+        }
+
         public static void ClickOnSpecificActionsElement()
         {
             if (SpecificActionsDropdownElement() != null)
                 SpecificActionsDropdownElement().Click();
         }
 
+        public static void ClickOnSpecificCustomerActionsElement()
+        {
+            if (SpecificCustomerActionsDropdownElement() != null)
+                SpecificCustomerActionsDropdownElement().Click();
+        }
+
+        public static void OpenTheFirstActionButton(IWebDriver driver)
+        {
+            AllActionsButton(driver).First().Click();
+        }
+
         private static string ProposalCreatedActionButton()
         {
             return String.Format("return $('td:contains(\"{0}\")').parent('tr').children('td').children('div').children('button')", 
                 MpsUtil.CreatedProposal());
+            // //div/table/tbody/tr/td[text()='{0}']/parent::tr/td[6]/div/button
+        }
+
+        private static string CreatedEmailActionButton()
+        {
+            return String.Format("return $('td:contains(\"{0}\")').parent('tr').children('td').children('div').children('button')",
+                MpsUtil.CreatedEmail());
             // //div/table/tbody/tr/td[text()='{0}']/parent::tr/td[6]/div/button
         }
 

@@ -227,7 +227,7 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void AllInputMarginsOnProdocutPageIsDisplayedOnSummaryPage(string role, string country, string printer, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "Ignore"};
+                    "ignore"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -261,10 +261,17 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Should be able to display Reduced detail screen")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Purchase & Click with Service", "3 years", "Quarterly in Arrears", "MFC-L8850CDW", null)]
         public virtual void ShouldBeAbleToDisplayReducedDetailScreen(string role, string country, string contractType, string contract, string billing, string printer, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Should be able to display Reduced detail screen", exampleTags);
+            string[] @__tags = new string[] {
+                    "ignore"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Should be able to display Reduced detail screen", @__tags);
 #line 113
 this.ScenarioSetup(scenarioInfo);
 #line 114

@@ -91,4 +91,4 @@ Scenario Outline: Dealer cannot delete a customer who is bound to an existing pr
 
 	Scenarios: 
 	| ContractType               | UsageType      | Confirm | TargetItem                   |
-	| Lease & Click with Service | Minimum Volume | OK      | NewlyCreatedProposalCustomer |
+	| Purchase & Click with Service | Minimum Volume | OK      | NewlyCreatedProposalCustomer |

@@ -133,7 +133,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             customerInformationStepInstance.WhenISelectButtonForCustomerDataCapture("Create new customer");
             DealerProposalsCreateTermAndTypeStep termAndTypeStepInstance = new DealerProposalsCreateTermAndTypeStep();
             termAndTypeStepInstance.WhenIEnterUsageTypeOfAndContractTermsLeasingAndBillingOnTermAndTypeDetails
-                (UsageType, "3 years", "Quarterly in Arrears", "Quarterly in Arrears");
+                (UsageType, "3 years", "Quarterly in Advance", "Quarterly in Arrears");
 
             DealerProposalsCreateProductsStep instance = new DealerProposalsCreateProductsStep();
             instance.WhenIDisplayDeviceScreen("HL-L8350CDW");
