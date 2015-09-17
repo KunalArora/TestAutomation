@@ -66,22 +66,46 @@ namespace Brother.Tests.Specs._80.TestSpecification.CMSSitecore.ExperienceEditor
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Add a new accordian component to page")]
-        [NUnit.Framework.CategoryAttribute("mytag")]
-        public virtual void AddANewAccordianComponentToPage()
+        [NUnit.Framework.DescriptionAttribute("Validate that horizontal rows with text aligned to the left can be expanded.")]
+        public virtual void ValidateThatHorizontalRowsWithTextAlignedToTheLeftCanBeExpanded_()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add a new accordian component to page", new string[] {
-                        "mytag"});
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate that horizontal rows with text aligned to the left can be expanded.", ((string[])(null)));
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
- testRunner.Given("I have entered 50 into the calculator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I add accordian in the page editor", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
  testRunner.And("I have entered 70 into the calculator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 10
  testRunner.When("I press add", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 11
  testRunner.Then("the result should be 120 on the screen", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Validate Once clicked on there should be an area for content, a rich text area to" +
+            " add informational text.")]
+        public virtual void ValidateOnceClickedOnThereShouldBeAnAreaForContentARichTextAreaToAddInformationalText_()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate Once clicked on there should be an area for content, a rich text area to" +
+                    " add informational text.", ((string[])(null)));
+#line 14
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Validate Once clicked again in the horizontal row will detract and go back to jus" +
+            "t a full width row with the title text.")]
+        public virtual void ValidateOnceClickedAgainInTheHorizontalRowWillDetractAndGoBackToJustAFullWidthRowWithTheTitleText_()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate Once clicked again in the horizontal row will detract and go back to jus" +
+                    "t a full width row with the title text.", ((string[])(null)));
+#line 16
+this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
