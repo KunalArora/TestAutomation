@@ -421,3 +421,34 @@ Scenarios:
 #| Switzerland  | Bildung				| INVALIDVATNUMBER | # VAT not mandatory
 #| Bulgaria		| Construction			| INVALIDVATNUMBER | # BOL site is currently UK
 | Austria		| Bildung				| INVALIDVATNUMBER | 
+
+
+# Create Portugal business account
+Scenario Outline: Customer able to create a new BOL Portugal account using the same VAT code multiple times 
+	Given I want to create a new account with Brother Online "<Country>"
+	When I click on Create Account for "<Country>"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I fill in the Portugal registration information using a valid email address and excluding the VAT number
+	| field           | value           |
+	| FirstName       | AutoTest        |
+	| LastName        | AutoTest		|
+	| Password        | @@@@@			|
+	| ConfirmPassword | @@@@@			|
+	And I declare that I do use this account for business
+	And I add my company name as "AutoTestLtd"
+	And I select my Business Sector as "Fabrico"
+	And I select number of Employees as "11 - 50"
+	And I enter a valid VAT number as "<Tax Code>" for Portugal
+	And I have Agreed to the Terms and Conditions
+	When I press Create Your Account
+	Then I should see my account confirmation page
+	And When I Click Go Back
+	And Once I have Validated an Email was received and verified my account
+	Then I should be able to log into "United Kingdom" Brother Online using my account details
+	And I can sign out of Brother Online
+
+Scenarios: 
+| Country  | Tax Code  |
+| Portugal | 980254698 |
+| Portugal | 980254698 |
