@@ -456,6 +456,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         }
 
         [When(@"I fill in the Italy registration information using a valid email address and excluding ID number for italy")]
+        [When(@"I fill in the Portugal registration information using a valid email address and excluding the VAT number")]
         public void WhenIFillInTheItalyRegistrationInformationUsingAValidEmailAddressAndExcludingIdNumberForItaly(Table table)
         {
             dynamic form = table.CreateDynamicInstance();
@@ -466,13 +467,14 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             WhenIEnterAValidEmailAddress(string.Empty); // Auto Generates with an empty string
         }
 
-        [When(@"I enter an invalid ""(.*)"" for Italy")]
+        [When(@"I enter an invalid ""(.*)"" for Italy")]        
         public void WhenIEnterAnInvalidForItaly(string invalidTaxCode)
         {
             CurrentPage.As<RegistrationPage>().PopulateInvalidTaxNumberTextBox(invalidTaxCode); //tax number for Italy
         }
 
         [When(@"I enter an invalid Italy VAT Number as ""(.*)""")]
+        [When(@"I enter a valid VAT number as ""(.*)"" for Portugal")]
         public void WhenIEnterAnInvalidItalyVatNumberAs(string vatNumber)
         {
             CurrentPage.As<RegistrationPage>().PopulateInvalidItalyVatNumber(vatNumber); //tax number for Italy
