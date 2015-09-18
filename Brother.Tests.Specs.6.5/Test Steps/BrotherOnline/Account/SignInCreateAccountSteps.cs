@@ -480,6 +480,13 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<RegistrationPage>().PopulateInvalidItalyVatNumber(vatNumber); //tax number for Italy
         }
 
+        [When(@"I can see a warning message for using already used VAT number")]
+        public void WhenICanSeeAWarningMessageForUsingAlreadyUsedVATNumber()
+        {
+            CurrentPage.As<RegistrationPage>().ErrorMessageDisplayedForUsingSameVATNumber();
+        }
+
+
         [Then(@"I should see an error message due to an invalid tax code or codice fiscale")]
         public void ThenIShouldSeeAnErrorMessageOnTheCodiceFiscaleField()
         {

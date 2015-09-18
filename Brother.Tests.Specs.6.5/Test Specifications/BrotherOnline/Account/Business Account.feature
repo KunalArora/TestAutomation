@@ -424,7 +424,8 @@ Scenarios:
 
 
 # Create Portugal business account
-Scenario Outline: Customer able to create a new BOL Portugal account using the same VAT code multiple times 
+@TEST
+Scenario Outline: Customer able to create a new BOL Portugal account using the same VAT code multiple times (BBAU-2603 Business User part)
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
 	And I am redirected to the Brother Login/Register page
@@ -440,6 +441,7 @@ Scenario Outline: Customer able to create a new BOL Portugal account using the s
 	And I select my Business Sector as "Fabrico"
 	And I select number of Employees as "11 - 50"
 	And I enter a valid VAT number as "<Tax Code>" for Portugal
+	And I can see a warning message for using already used VAT number
 	And I have Agreed to the Terms and Conditions
 	When I press Create Your Account
 	Then I should see my account confirmation page
