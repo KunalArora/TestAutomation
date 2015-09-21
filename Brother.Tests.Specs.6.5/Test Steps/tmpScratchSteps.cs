@@ -15,6 +15,13 @@ namespace Brother.Tests.Specs
     [Binding]
     public class tmpScratch : BaseSteps
     {
+        [Given(@"testCode")]
+        public void GivenTestCode()
+        {
+            BasePage.NavigateToPage(TestController.CurrentDriver, "http://user:EUSidddddddddteCoreTestAuto@uk.brotherdv2.eu");
+        }
+
+
         [Given(@"I want to run multiple instances of PhantomJs")]
         public void GivenIWantToRunMultipleInstancesOfPhantomJs()
         {
