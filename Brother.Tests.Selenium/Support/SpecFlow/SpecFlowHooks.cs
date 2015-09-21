@@ -24,10 +24,6 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
         [BeforeTestRun]
         public static void BeforeTestRun()
         {
-            var serviceMsg = new TeamCityServiceMessages();
-            var writer = serviceMsg.CreateWriter();
-            writer.WriteError("##teamcity[progressStart 'Running Tests']");
-
             Helper.MsgOutput("Starting Test Run........");
 
             // Clear old snapshots

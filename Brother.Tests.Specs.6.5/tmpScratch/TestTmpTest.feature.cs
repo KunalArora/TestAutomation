@@ -79,17 +79,15 @@ namespace Brother.Tests.Specs.TmpScratch
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Test Code Two")]
-        [NUnit.Framework.CategoryAttribute("STAGING")]
         public virtual void TestCodeTwo()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Test Code Two", new string[] {
-                        "STAGING"});
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Test Code Two", ((string[])(null)));
 #line 28
 this.ScenarioSetup(scenarioInfo);
 #line 7
 this.FeatureBackground();
-#line 30
- testRunner.Given("SqlCall", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 31
+ testRunner.Given("testCode", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -103,11 +101,11 @@ this.FeatureBackground();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Simple Parallel Test", new string[] {
                         "STAGING",
                         "IGNORE"});
-#line 33
+#line 34
 this.ScenarioSetup(scenarioInfo);
 #line 7
 this.FeatureBackground();
-#line 34
+#line 35
  testRunner.Given("I want to run multiple instances of PhantomJs", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             this.ScenarioCleanup();
