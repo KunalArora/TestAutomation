@@ -55,6 +55,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         
         
         
+        
         public void IsContractScreenDisplayed()
         {
             if (OpenedApprovedProposalTabElement == null)
@@ -133,22 +134,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             WebDriver.Wait(Helper.DurationType.Second, 3);
         }
 
-        public void DealerCompletePreInstallationProcess(IWebDriver driver)
-        {
-            NavigateToSignedOfferScreen();
-            VerifyAcceptedContractIsDisplayed();
-
-            ActionsModule.ClickOnSpecificActionsElement();
-            ActionsModule.NavigateToPreInstallationScreen(driver);
-           
-            EnterSerialNumber();
-            MoveToPreInstallationSummary();
-            CompletePreInstallation();
-
-            IsContractScreenDisplayed();
-            
-        }
-
+       
         
         public void DownloadAContractPDF()
         {
@@ -282,6 +268,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetInstance<DealerContractsSummaryPage>(Driver);
         }
 
+        
         public void IsAwaitingAcceptanceContractDisplayed()
         {
             if (AwaitingAcceptanceTabElement == null)

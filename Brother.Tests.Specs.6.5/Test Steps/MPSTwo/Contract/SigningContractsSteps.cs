@@ -14,6 +14,7 @@ namespace Brother.Tests.Specs.MPSTwo.Contract
             CurrentPage.As<DealerContractsPage>().IsApprovedProposalContractPageDisplayed();
         }
 
+        [When(@"I can start the process of signing the contract")]
         [Then(@"I can start the process of signing the contract")]
         public void ThenICanStartTheProcessOfSigningTheContract()
         {
@@ -29,6 +30,17 @@ namespace Brother.Tests.Specs.MPSTwo.Contract
             CurrentPage.As<DealerContractsPage>().IsSignedContractDisplayed();
 
         }
+
+        [When(@"I navigate to dealer approved proposal page")]
+        public void WhenINavigateToDealerApprovedProposalPage()
+        {
+            NextPage = CurrentPage.As<DealerDashBoardPage>().NavigateToExistingProposalPage();
+            NextPage = CurrentPage.As<CloudExistingProposalPage>().NavigateToDealerApprovedProposalPage();
+            
+        }
+
+       
+
 
     }
 }

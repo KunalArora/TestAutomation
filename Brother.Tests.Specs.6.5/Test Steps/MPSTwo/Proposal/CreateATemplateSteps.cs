@@ -188,7 +188,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
 
             DealerProposalsCreateTermAndTypeStep termAndTypeStepInstance = new DealerProposalsCreateTermAndTypeStep();
             termAndTypeStepInstance.WhenIEnterUsageTypeOfAndContractTermsLeasingAndBillingOnTermAndTypeDetails
-                ("Minimum Volume", "3 years", "Quarterly in Arrears", "Quarterly in Arrears");
+                ("Minimum Volume", "3 years", "Quarterly in Advance", "Quarterly in Arrears");
 
             DealerProposalsCreateProductsStep instance = new DealerProposalsCreateProductsStep();
             instance.WhenIDisplayDeviceScreen("HL-L8350CDW");
@@ -203,7 +203,9 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         {
             GivenIamOnMpsNewProposalPage();
             CurrentPage.As<DealerProposalsCreateDescriptionPage>().SetServerName(refs);
-            
+
+            WhenIFillProposalDescriptionForContractType("Purchase & Click with Service");
+
             DealerProposalsCreateCustomerInformationStep customerInformationStepInstance = new DealerProposalsCreateCustomerInformationStep();
             customerInformationStepInstance.WhenISelectButtonForCustomerDataCapture("Create new customer");
             DealerProposalsCreateTermAndTypeStep stepInstance = new DealerProposalsCreateTermAndTypeStep();

@@ -50,6 +50,14 @@ namespace Brother.Tests.Specs.MPSTwo.SendToBank
             ThenTheNewlyConvertedContractIsAvailableUnderAwaitingApprovalTab();
         }
 
+        [When(@"I navigate to the Summary page of the proposal awaiting approval")]
+        public void WhenINavigateToTheSummaryPageOfTheProposalAwaitingApproval()
+        {
+            NextPage = CurrentPage.As<DealerProposalsAwaitingApproval>().NavigateToViewSummary();
+           // NextPage = CurrentPage.As<DealerProposalsCreateSummaryPage>().CloseProposal();
+        }
+
+
         [Given(@"I send the created German proposal for approval")]
         public void GivenISendTheCreatedGermanProposalForApproval()
         {

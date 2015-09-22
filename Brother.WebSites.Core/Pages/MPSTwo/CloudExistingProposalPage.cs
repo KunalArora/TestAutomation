@@ -70,6 +70,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string DealerLatestOperatingItemCustomer = "DealerLatestOperatingItemCustomer";
         [FindsBy(How = How.CssSelector, Using = ".js-mps-searchable tr:first-child")]
         public IWebElement proposalTopItemElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/proposals/approved\"]")]
+        public IWebElement approvedProposalsTabElement;
+        [FindsBy(How = How.CssSelector, Using = ".alert.alert-success.fade.in.mps-alert.js-mps-alert")]
+        public IWebElement deleteConfirmationElement;
+        
+        
         
         
         
@@ -154,8 +160,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 "Is new proposal template created?");
         }
 
-        public void IsProposalSuccessfullySentToBank()
+
+
+        public void IsProposalSuccessfullyDeletedFromTheList()
         {
+            WaitForElementToExistByCssSelector(".alert.alert-success.fade.in.mps-alert.js-mps-alert");
+
             var createdProposal = CreatedProposal();
             var proposalContainer = new ArrayList();
             var proposalItems = ProposalItemsElements(proposalTableColumn);
@@ -194,6 +204,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             AssertElementPresent(newlyCopiedProposal, "Newly Copied proposal is not displayed");
             
         }
+
+
         
         public void ClickOnActionButtonAgainstRelevantProposal()
         {
@@ -201,8 +213,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ActionsModule.ClickOnSpecificActionsElement();
         }
 
+        public void DeleteOpenProposal()
+        {
+            ScrollTo(ActionsModule.SpecificActionsDropdownElement());
+            ActionsModule.ClickOnSpecificActionsElement();
+            ActionsModule.DeleteAProposal(Driver);
+            WebDriver.Wait(DurationType.Second, 2);
+        }
+        
+
         public void ClickOnActionButtonAgainstDeclinedProposal()
         {
+
             ScrollTo(ActionsModule.SpecificActionsDropdownElement());
             ActionsModule.ClickOnSpecificActionsElement();
             WebDriver.Wait(DurationType.Second, 2);
@@ -246,6 +268,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             //VerifyThatTheCorrectProposalOpened();
             return GetTabInstance<ConvertProposalSummaryPage>(Driver);
 
+        }
+
+        public DealerApprovedProposalPage NavigateToDealerApprovedProposalPage()
+        {
+            approvedProposalsTabElement.Click();
+            return GetTabInstance<DealerApprovedProposalPage>(Driver);
         }
 
 

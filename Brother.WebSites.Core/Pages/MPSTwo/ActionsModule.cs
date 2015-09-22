@@ -133,6 +133,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 SpecificCustomerActionsDropdownElement().Click();
         }
 
+        public static bool IsClosedProposalDisplayed()
+        {
+            return SeleniumHelper.FindElementByJs(ProposalCreatedActionButton()).Displayed;
+        }
+
         public static void OpenTheFirstActionButton(IWebDriver driver)
         {
             AllActionsButton(driver).First().Click();
@@ -149,7 +154,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             return String.Format("return $('td:contains(\"{0}\")').parent('tr').children('td').children('div').children('button')",
                 MpsUtil.CreatedEmail());
-            // //div/table/tbody/tr/td[text()='{0}']/parent::tr/td[6]/div/button
         }
 
        
