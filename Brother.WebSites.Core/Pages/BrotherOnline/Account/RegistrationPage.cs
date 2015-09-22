@@ -62,6 +62,10 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         [FindsBy(How = How.Id, Using = "VatNumberTextBox")]
         public IWebElement VatNumberTextBox;
 
+        [FindsBy(How = How.Id, Using = "error-vat-already-registered")]
+        public IWebElement WarningMessageSameVATNumber;
+        
+
         [FindsBy(How = How.Id, Using = "SignInRadioRadioButton")]
         public IWebElement DoHaveAnAccountOptionButton;
 
@@ -359,9 +363,13 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         public void PopulateInvalidItalyVatNumber(string invalidVatNumber)
         {
             VatNumberTextBox.SendKeys(invalidVatNumber);
+            VatNumberTextBox.SendKeys(Keys.Tab);
         }
 
-        
+        public void ErrorMessageDisplayedForUsingSameVATNumber()
+        {
+            TestCheck.AssertIsEqual(true, WarningMessageSameVATNumber.Displayed, "Is Warning message displayed");
+        }
 
         public void DoNotHaveAnAccountOption()
         {

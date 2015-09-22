@@ -165,7 +165,7 @@ namespace Brother.WebSites.Core.Pages.Base
             return driver ?? TestController.CurrentDriver;
         }
 
-        private static void NavigateToPage(IWebDriver driver, string url)
+        public static void NavigateToPage(IWebDriver driver, string url)
         {
             try
             {
