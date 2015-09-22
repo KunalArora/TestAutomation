@@ -211,6 +211,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement FinanceTotalNetElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_FinanceTotalGross")]
         public IWebElement FinanceTotalGrossElement;
+        [FindsBy(How = How.Id, Using = "content_1_ButtonCancel")]
+        public IWebElement SummaryCloseProposalElement;
+        
 
         public void DownloadDealersProposalDocument()
         {
@@ -237,6 +240,21 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             DisplayedPrinterLink(printer).Click();
             return GetTabInstance<DealerProposalsCreateProductsPage>(Driver);
         }
+
+        public DealerClosedProposalPage CloseProposal()
+        {
+            ScrollTo(SummaryCloseProposalElement);
+            SummaryCloseProposalElement.Click();
+            ClickAcceptOnConfrimation(Driver);
+            return GetInstance<DealerClosedProposalPage>(Driver);
+        }
+
+        public void ClickAcceptOnConfrimation(IWebDriver driver)
+        {
+            WebDriver.Wait(DurationType.Millisecond, 3000);
+            ClickAcceptOnJsAlert(driver);
+        }
+
 
         public void VerifyThatCorrectModelBillingBasisIsDisplayed(string basis)
         {

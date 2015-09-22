@@ -41,6 +41,23 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
             NextPage = page.NavigateToEditProposalPage();
         }
 
+        [When(@"I can click delete button on proposal item of Exisiting Proposal table")]
+        public void WhenICanClickDeleteButtonOnProposalItemOfExisitingProposalTable()
+        {
+            var page = CurrentPage.As<CloudExistingProposalPage>();
+            page.DeleteOpenProposal();
+            page.ClickAcceptOnConfrimation(CurrentDriver);
+        }
+
+        [Then(@"the deleted proposal is no longer displayed")]
+        public void ThenTheDeletedProposalIsNoLongerDisplayed()
+        {
+            var page = CurrentPage.As<CloudExistingProposalPage>();
+            page.IsProposalSuccessfullyDeletedFromTheList();
+        }
+
+
+
         private void EditDescriptionTab(string contract)
         {
             var page = CurrentPage.As<DealerProposalsCreateDescriptionPage>();

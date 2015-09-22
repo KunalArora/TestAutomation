@@ -140,6 +140,8 @@
     <Compile Include="Pages\MPSTwo\BankContractsPage.cs" />
     <Compile Include="Pages\MPSTwo\BankDashBoardPage.cs" />
     <Compile Include="Pages\MPSTwo\BankOffersPage.cs" />
+    <Compile Include="Pages\MPSTwo\DealerApprovedProposalPage.cs" />
+    <Compile Include="Pages\MPSTwo\DealerClosedProposalPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerProposalsCreateNavTabs.cs" />
     <Compile Include="Pages\MPSTwo\DealerContractsPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerProposalsCreateDescriptionPage.cs" />

@@ -26,6 +26,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement FinalResignButtonElement;
         [FindsBy(How = How.Id, Using = "content_1_mpsCheckboxReSignContract_Label")]
         public IWebElement ResignInformationCheckboxElement;
+        [FindsBy(How = How.Id, Using = "content_1_ButtonCancel")]
+        public IWebElement SummaryCloseProposalElement;
 
         public void ClickCancelButton()
         {
@@ -78,5 +80,22 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             return GetInstance<DealerContractsPage>(Driver);
         }
+
+        public DealerClosedProposalPage CloseProposal()
+        {
+            ScrollTo(SummaryCloseProposalElement);
+            SummaryCloseProposalElement.Click();
+            ClickAcceptOnConfrimation(Driver);
+            return GetInstance<DealerClosedProposalPage>(Driver);
+        }
+
+        public void ClickAcceptOnConfrimation(IWebDriver driver)
+        {
+            WebDriver.Wait(DurationType.Millisecond, 3000);
+            ClickAcceptOnJsAlert(driver);
+        }
+
+        
+
     }
 }

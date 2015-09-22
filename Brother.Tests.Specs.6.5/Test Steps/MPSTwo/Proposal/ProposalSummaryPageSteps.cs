@@ -108,10 +108,33 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         }
 
 
+        [Then(@"I can close the proposal on contract summary page")]
+        public void ThenICanCloseTheProposalOnContractSummaryPage()
+        {
+            NextPage = CurrentPage.As<DealerContractsSummaryPage>().CloseProposal();
+            CurrentPage.As<DealerClosedProposalPage>().IsClosedProposalTabOpened();
+            CurrentPage.As<DealerClosedProposalPage>().IsClosedProposalDisplayed();
+
+        }
+
+        [When(@"I identify and navigate to the approved proposal summary")]
+        public void WhenIIdentifyAndNavigateToTheApprovedProposalSummary()
+        {
+            CurrentPage.As<DealerApprovedProposalPage>().IsApprovedProposalTabOpened();
+            NextPage = CurrentPage.As<DealerApprovedProposalPage>().NavigateToDealerContractSummaryPage();
+        }
 
 
-        
 
+
+        [Then(@"I can close the proposal on the summary page")]
+        public void ThenICanCloseTheProposalOnTheSummaryPage()
+        {
+            NextPage = CurrentPage.As<DealerProposalsCreateSummaryPage>().CloseProposal();
+            CurrentPage.As<DealerClosedProposalPage>().IsClosedProposalTabOpened();
+            CurrentPage.As<DealerClosedProposalPage>().IsClosedProposalDisplayed();
+
+        }
 
         [Then(@"the calculated consumable net totals are equal in all places")]
         public void ThenTheCalculatedConsumableNetTotalsAreEqualInAllPlaces()

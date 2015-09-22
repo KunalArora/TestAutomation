@@ -152,6 +152,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Test Specifications\MPSTwo\Proposal\DealerCanCloseProposal.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DealerCanCloseProposal.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPSTwo\Proposal\DealerCanDeleteProposal.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DealerCanDeleteProposal.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specifications\MPSTwo\Proposal\DealerCanOperateProposalOffers.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -166,6 +176,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DealerCanUpdateProfile.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPSTwo\Proposal\GermanDealerCanCloseProposal.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GermanDealerCanCloseProposal.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Specifications\MPSTwo\Proposal\GermanProposalSummaryPageValidation.feature.cs">
       <AutoGen>True</AutoGen>
@@ -582,6 +597,14 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>DealerCanOperateCustomers.feature.cs</LastGenOutput>
     </None>
+    <None Include="Test Specifications\MPSTwo\Proposal\DealerCanCloseProposal.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>DealerCanCloseProposal.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwo\Proposal\DealerCanDeleteProposal.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>DealerCanDeleteProposal.feature.cs</LastGenOutput>
+    </None>
     <None Include="Test Specifications\MPSTwo\Proposal\DealerCanOperateProposalOffers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>DealerCanOperateProposalOffers.feature.cs</LastGenOutput>
@@ -593,6 +616,10 @@
     <None Include="Test Specifications\MPSTwo\Proposal\DealerCanUpdateProfile.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>DealerCanUpdateProfile.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwo\Proposal\GermanDealerCanCloseProposal.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>GermanDealerCanCloseProposal.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwo\Proposal\GermanProposalSummaryPageValidation.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
