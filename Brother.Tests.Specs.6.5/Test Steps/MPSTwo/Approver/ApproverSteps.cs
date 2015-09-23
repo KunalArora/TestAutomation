@@ -77,6 +77,24 @@ namespace Brother.Tests.Specs.MPSTwo.Approver
             }
         }
 
+        [Then(@"Approver should be able to decline that proposal with ""(.*)""")]
+        public void ThenApproverShouldBeAbleToDeclineThatProposalWith(string reason)
+        {
+            if (LeaseAndClick)
+            {
+                CurrentPage.As<BankProposalsSummaryPage>().ClickDeclineButton();
+                CurrentPage.As<BankProposalsSummaryPage>().SelectDeclineReason(reason);
+                NextPage = CurrentPage.As<BankProposalsSummaryPage>().ClickRejectButton();
+            }
+            else if (PurchaseAndClick)
+            {
+                CurrentPage.As<LocalOfficeApproverProposalsSummaryPage>().ClickDeclineButton();
+                CurrentPage.As<LocalOfficeApproverProposalsSummaryPage>().SelectDeclineReason(reason);
+                NextPage = CurrentPage.As<LocalOfficeApproverProposalsSummaryPage>().ClickRejectButton();
+            }
+        }
+
+
         [Then(@"Approver should be able to decline that proposal")]
         public void ThenApproverShouldBeAbleToDeclineThatProposal()
         {
