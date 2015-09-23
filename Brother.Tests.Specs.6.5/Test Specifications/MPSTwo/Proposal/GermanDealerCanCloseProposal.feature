@@ -1,4 +1,4 @@
-﻿@ignore @MPS @UAT @TEST
+﻿@MPS @UAT @TEST
 Feature: GermanDealerCanCloseProposal
 	In order to discontinue a proposal from creation process
 	As a dealer

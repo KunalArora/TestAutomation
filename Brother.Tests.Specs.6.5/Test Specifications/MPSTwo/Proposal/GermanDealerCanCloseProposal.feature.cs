@@ -20,7 +20,6 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Proposal
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("GermanDealerCanCloseProposal")]
-    [NUnit.Framework.IgnoreAttribute()]
     [NUnit.Framework.CategoryAttribute("MPS")]
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("TEST")]
@@ -38,7 +37,6 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Proposal
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "GermanDealerCanCloseProposal", "In order to discontinue a proposal from creation process\r\nAs a dealer\r\nI want to " +
                     "be able to cancel proposal before it gets to contract stage", ProgrammingLanguage.CSharp, new string[] {
-                        "ignore",
                         "MPS",
                         "UAT",
                         "TEST"});
