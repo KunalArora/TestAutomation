@@ -3,9 +3,6 @@ using System.Diagnostics.Eventing.Reader;
 using System.Dynamic;
 using System.Linq;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
-using JetBrains.TeamCity.ServiceMessages.Write.Special;
-using JetBrains.TeamCity.ServiceMessages.Write.Special.Impl;
-using JetBrains.TeamCity.ServiceMessages.Write.Special.Impl.Writer;
 using NUnit.Framework;
 using NUnit.Framework.Constraints;
 using OpenQA.Selenium;
@@ -26,6 +23,8 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
         {
             Helper.MsgOutput("Starting Test Run........");
 
+            Helper.MsgOutput(string.Format("Team City Env Var value = {0}", Environment.GetEnvironmentVariable("ANT")));
+            Helper.MsgOutput(string.Format("Team City Env Var value = {0}", Environment.GetEnvironmentVariable("AutoTestRunTimeEnv")));
             // Clear old snapshots
             Helper.MsgOutput("Purging old snapshots");
             Helper.PurgeSnapshots();
