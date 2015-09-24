@@ -515,17 +515,8 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             return null;
         }
 
-        //public static IWebElement FindElementByJsWithWait(string jsCommand, int timeoutInSeconds)
-        //{
-        //    if (timeoutInSeconds > 0)
-        //    {
-        //        var wait = new WebDriverWait(TestController.CurrentDriver, TimeSpan.FromSeconds(timeoutInSeconds));
-        //        wait.Until(d => d.FindElementByJs(jsCommand));
-        //    }
-        //    return driver.FindElementByJs(jsCommand);
-        //}
-
-        
+       
+      
 
         public IWebElement GetElementByCssSelector(string elementName)
         {

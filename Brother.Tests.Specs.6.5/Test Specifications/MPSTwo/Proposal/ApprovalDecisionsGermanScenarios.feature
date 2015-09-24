@@ -1,4 +1,4 @@
-﻿@ignore @MPS @TEST @UAT
+﻿@MPS @TEST @UAT
 Feature: German Approver decision feature
 	In order to approve/decline Proposal/Contract
 	As a Approver
@@ -8,25 +8,27 @@ Feature: German Approver decision feature
 # Decline
 #
 Scenario Outline: German Approver Decline Proposal
-	Given Dealer have created a Awaiting Approval proposal of "<ContractType>" and "<UsageType>"
+	Given German Dealer have created a Awaiting Approval proposal of "<ContractType>" and "<UsageType>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And Approver navigate to ProposalsPage
 	And Approver navigate to Awaiting Approval screen under Proposals page
 	When Approver select the proposal on Awaiting Proposal
-	Then Approver should be able to decline that proposal
+	Then Approver should be able to decline that proposal with "<Reason>"
 	And the decline proposal should be displayed under Declined tab by Approver
 	And I sign out of Cloud MPS
 
 	Scenarios: 
-	| Role                            | Country        | ContractType                  | UsageType      |
-	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume |
+	| Role                            | Country | ContractType                  | UsageType      | Reason |
+	| Cloud MPS Local Office Approver | Germany | Purchase & Click with Service | Minimum Volume | Andere |
 	#| Cloud MPS Bank                  | United Kingdom | Lease & Click with Service    | Pay As You Go  |
+	
+	
 
 @ignore
 Scenario Outline: German Declined proposal is displayed on Declined Page
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to OfferPage
-	When I navigate to Declined screen under Offer page
+	#When I navigate to Declined screen under Offer page
 #	Then I can view all the proposals declined by both Bank and LocalOffice Approver
 
 	Scenarios: 
@@ -40,9 +42,8 @@ Scenario Outline: German Declined proposal is displayed on Declined Page
 #
 # Approve
 #
-@ignore
 Scenario Outline: German Bank Approve Proposal
-	Given Dealer have created a Awaiting Approval proposal of "<ContractType>" and "<UsageType>"
+	Given German Dealer have created a Awaiting Approval proposal of "<ContractType>" and "<UsageType>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to OfferPage
 	And I navigate to Awaiting Approval screen under Offer page
@@ -52,15 +53,15 @@ Scenario Outline: German Bank Approve Proposal
 	And I sign out of Cloud MPS
 
 	Scenarios: 
-	| Role           | Country        | ContractType                | UsageType      |
-	| Cloud MPS Bank | United Kingdom | Lease & Click with Service  | Pay As You Go  |
+	| Role           | Country | ContractType               | UsageType     |
+	| Cloud MPS Bank | Germany | Lease & Click with Service | Pay As You Go |
 
 #
 # Approve Signed Contract
 #
 # Accept1, 2
 Scenario Outline: German Approver can decide to reject or approve the contract
-	Given Dealer have created a contract of "<ContractType>" and "<UsageType>"
+	Given German Dealer have created a "<Country>" contract of "<ContractType>" and "<UsageType>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When Approver navigate to Contract Awaiting Acceptance page from Dashboard
 	Then Approver can view all the contracts that have been signed by dealer
@@ -68,17 +69,17 @@ Scenario Outline: German Approver can decide to reject or approve the contract
 	And I sign out of Cloud MPS
 
 	Scenarios:
-	| Role                            | Country        | ContractType                  | UsageType      |
-	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume |
+	| Role                            | Country | ContractType                  | UsageType      |
+	| Cloud MPS Local Office Approver | Germany | Purchase & Click with Service | Minimum Volume |
 	#| Cloud MPS Bank                  | United Kingdom | Lease & Click with Service    | Pay As You Go  |
 
 # Accept3
 
 # Accept4
 
-@ignore
+
 Scenario Outline: German Bank can approve the contract
-	Given Dealer have created a contract of "<ContractType>" and "<UsageType>"
+	Given German Dealer have created a "<Country>" contract of "<ContractType>" and "<UsageType>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When Approver navigate to Contract Awaiting Acceptance page from Dashboard
 	Then Approver can view all the contracts that have been signed by dealer
@@ -89,12 +90,12 @@ Scenario Outline: German Bank can approve the contract
 
 	Scenarios:
 
-	| Role             | Country        | ContractType                  | UsageType      |
-	| Cloud MPS Bank   | United Kingdom | Lease & Click with Service    | Pay As You Go  |
-
+	| Role           | Country | ContractType               | UsageType     |
+	| Cloud MPS Bank | Germany | Lease & Click with Service | Pay As You Go |
+	
 # Accept5, 6
 Scenario Outline: German Approver can approve the contract
-	Given Dealer have created a contract of "<ContractType>" and "<UsageType>"
+	Given German Dealer have created a "<Country>" contract of "<ContractType>" and "<UsageType>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When Approver navigate to Contract Awaiting Acceptance page from Dashboard
 	Then Approver can view all the contracts that have been signed by dealer
@@ -105,13 +106,13 @@ Scenario Outline: German Approver can approve the contract
 
 	Scenarios:
 
-	| Role                            | Country        | ContractType                  | UsageType      |
-	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume |
+	| Role                            | Country | ContractType                  | UsageType      |
+	| Cloud MPS Local Office Approver | Germany | Purchase & Click with Service | Minimum Volume |
 	#| Cloud MPS Bank                  | United Kingdom | Lease & Click with Service    | Pay As You Go  |
 
 # Reject1,2
 Scenario Outline: German Approver can reject the contract
-	Given Dealer have created a contract of "<ContractType>" and "<UsageType>"
+	Given German Dealer have created a "<Country>" contract of "<ContractType>" and "<UsageType>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When Approver navigate to Contract Awaiting Acceptance page from Dashboard
 	Then Approver can view all the contracts that have been signed by dealer
@@ -121,10 +122,10 @@ Scenario Outline: German Approver can reject the contract
 
 	Scenarios:
 
-	| Role                            | Country        | ContractType                  | UsageType       |
-	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Pay As You Go   |
-	#| Cloud MPS Bank                  | United Kingdom | Lease & Click with Service    | Minimum Volume  |
-
+	| Role                            | Country        | ContractType                  | UsageType                  |
+	| Cloud MPS Local Office Approver | Germany        | Purchase & Click with Service | Pay As You Go              |
+	#| Cloud MPS Bank | United Kingdom                | Lease & Click with Service | Minimum Volume |
+	
 # Reject3
 Scenario Outline: German Dealer can resign rejected contract
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
@@ -133,9 +134,9 @@ Scenario Outline: German Dealer can resign rejected contract
 	And I sign out of Cloud MPS
 
 	Scenarios: 
-	| Role               | Country        |
-	| Cloud MPS Dealer   | United Kingdom |
-
+	| Role             | Country |
+	| Cloud MPS Dealer | Germany |
+	
 # View open offers
 Scenario Outline: German Bank can view opened offers
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
@@ -145,9 +146,9 @@ Scenario Outline: German Bank can view opened offers
 	And I sign out of Cloud MPS
 
 	Scenarios: 
-	| Role           | Country        |
-	| Cloud MPS Bank | United Kingdom |
-
+	| Role           | Country |
+	| Cloud MPS Bank | Germany |
+	
 
 # View confirmed/rejected/signed offers
 @ignore
@@ -158,11 +159,11 @@ Scenario Outline: German Bank can view confirmed/rejected/signed offers
 	And I sign out of Cloud MPS
 
 	Scenarios: 
-	| Role                            | Country        | Acceptance         |
-	| Cloud MPS Bank                  | United Kingdom | Awating Acceptance |
-	| Cloud MPS Bank                  | United Kingdom | Rejected           |
-	| Cloud MPS Bank                  | United Kingdom | Accepted           |
-
+	| Role           | Country | Acceptance         |
+	| Cloud MPS Bank | Germany | Awating Acceptance |
+	| Cloud MPS Bank | Germany | Rejected           |
+	| Cloud MPS Bank | Germany | Accepted           |
+	
 # LO Approver can view open offers
 Scenario Outline: German Local Office Approver can view opened offers
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
@@ -172,9 +173,9 @@ Scenario Outline: German Local Office Approver can view opened offers
 	And I sign out of Cloud MPS
 
 	Scenarios: 
-	| Role                            | Country        |
-	| Cloud MPS Local Office Approver | United Kingdom |
-
+	| Role                            | Country |
+	| Cloud MPS Local Office Approver | Germany |
+	
 # LO Approver can view confirmed/rejected/signed contracts
 Scenario Outline: German Local Office Approver can view confirmed/rejected/signed contracts
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
@@ -183,9 +184,9 @@ Scenario Outline: German Local Office Approver can view confirmed/rejected/signe
 	And I sign out of Cloud MPS
 
 	Scenarios: 
-	| Role                            | Country        | Acceptance         |
-	| Cloud MPS Local Office Approver | United Kingdom | Awating Acceptance |
-	| Cloud MPS Local Office Approver | United Kingdom | Rejected           |
-	| Cloud MPS Local Office Approver | United Kingdom | Accepted           |
-
+	| Role                            | Country | Acceptance         |
+	| Cloud MPS Local Office Approver | Germany | Awating Acceptance |
+	| Cloud MPS Local Office Approver | Germany | Rejected           |
+	| Cloud MPS Local Office Approver | Germany | Accepted           |
+	
 
