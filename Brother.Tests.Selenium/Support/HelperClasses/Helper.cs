@@ -143,7 +143,8 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
         public static string GetRunTimeEnv()
         {
-            return Environment.GetEnvironmentVariable("AutoTestRunTimeEnv", EnvironmentVariableTarget.Machine) ?? RunTimeDefault;
+            //return Environment.GetEnvironmentVariable("AutoTestRunTimeEnv", EnvironmentVariableTarget.Machine) ?? RunTimeDefault;
+            return Environment.GetEnvironmentVariable("AutoTestRunTimeEnv") ?? RunTimeDefault;
         }
 
        public static bool SetRunTimeEnv(string runTimeEnv)

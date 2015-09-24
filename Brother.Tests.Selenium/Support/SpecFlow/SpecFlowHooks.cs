@@ -23,10 +23,8 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
         {
             Helper.MsgOutput("Starting Test Run........");
 
-            Helper.MsgOutput(string.Format("Team City Env Var value = {0}", Environment.GetEnvironmentVariable("ANT", EnvironmentVariableTarget.Machine)));
-            Helper.MsgOutput(string.Format("Team City Env Var value = {0}", Environment.GetEnvironmentVariable("env.ANT", EnvironmentVariableTarget.Machine)));
-            Helper.MsgOutput(string.Format("Team City Env Var value = {0}", Environment.GetEnvironmentVariable("env.ANT")));
             Helper.MsgOutput(string.Format("Team City Env Var value = {0}", Environment.GetEnvironmentVariable("ANT")));
+            Helper.MsgOutput(string.Format("Team City Env Var value = {0}", Environment.GetEnvironmentVariable("AutoTestRunTimeEnv")));
             // Clear old snapshots
             Helper.MsgOutput("Purging old snapshots");
             Helper.PurgeSnapshots();
