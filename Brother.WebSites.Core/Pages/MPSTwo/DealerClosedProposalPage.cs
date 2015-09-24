@@ -19,7 +19,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             get { return string.Empty; }
         }
 
-        [FindsBy(How = How.CssSelector, Using = ".active a[href='/mps/dealer/proposals/closed']")]
+        [FindsBy(How = How.CssSelector, Using = ".active a[href=\"/mps/dealer/proposals/closed\"] span")]
         public IWebElement ClosedProposalTab;
 
         public void IsClosedProposalTabOpened()

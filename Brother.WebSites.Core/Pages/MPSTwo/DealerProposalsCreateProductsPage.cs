@@ -379,7 +379,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsDeviceScreenDisplayed()
         {
-            WebDriver.Wait(DurationType.Second, 1);
+            WebDriver.Wait(DurationType.Second, 3);
             TestCheck.AssertIsEqual(true, 
                 DeviceScreenValidator.Displayed, 
                 "Device screen is not displayed");
