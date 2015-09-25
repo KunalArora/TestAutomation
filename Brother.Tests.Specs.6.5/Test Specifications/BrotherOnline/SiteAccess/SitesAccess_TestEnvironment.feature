@@ -25,11 +25,11 @@ Scenario Outline: Get 200 OK response back from the following Brother Main Sites
 	| Belgium        | http://be.brotherdv2.eu/ |
 	| Denmark        | http://dk.brotherdv2.eu/ |
 	| Switzerland    | http://ch.brotherdv2.eu/ |
-	#| Austria        | http://as.brotherdv2.eu/ | - site not live
 	| Slovenia       | http://si.brotherdv2.eu/ |
 	| Spain          | http://es.brotherdv2.eu/ |
 	| Italy          | http://it.brotherdv2.eu/ |
 	| Ireland        | http://ie.brotherdv2.eu/ |
+#| Austria        | http://as.brotherdv2.eu/ | - site not live
 
 # BrotherOnline
 @ignore @SMOKE
