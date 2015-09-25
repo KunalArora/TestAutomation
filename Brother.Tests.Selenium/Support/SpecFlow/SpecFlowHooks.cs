@@ -70,11 +70,11 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
         [BeforeFeature]
         public static void BeforeFeatureHeadless()
         {
-            #if DEBUG
+//            #if DEBUG
                 BeforeFeatureHeadlessAndInteractive();
-            #else
-                TestController.HeadlessRunning();
-            #endif
+//            #else
+//                TestController.HeadlessRunning();
+//            #endif
         }
 
         [AfterFeature]
