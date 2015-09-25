@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Brother.Tests.Specs.BrotherOnline.Account;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using TechTalk.SpecFlow;
@@ -223,6 +224,19 @@ namespace Brother.Tests.Specs.MPSTwo.Approver
                 NextPage = CurrentPage.As<LocalOfficeApproverContractsSummaryPage>().ClickFinalRejectButton();
             }
         }
+
+        [Given(@"the contract created above is approved")]
+        [Then(@"the contract created above is approved")]
+        public void ThenTheContractCreatedAboveIsApproved()
+        {
+             var instance3 = new AccountManagementSteps();
+            WhenApproverNavigateToContractAwaitingAcceptancePage();
+            ThenApproverCanViewAllTheContractsThatHaveBeenSignedByDealer();
+            ThenApproverCanSuccessfullyApproveTheContract();
+            ThenTheAcceptedContractByApproverIsDisplayedOnContractAcceptedScreen();
+            instance3.ThenIfISignOutOfBrotherOnline();
+        }
+
 
         [Then(@"the accepted contract by Approver is displayed on contract Accepted screen")]
         public void ThenTheAcceptedContractByApproverIsDisplayedOnContractAcceptedScreen()

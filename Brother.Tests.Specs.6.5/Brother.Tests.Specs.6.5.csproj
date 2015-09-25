@@ -129,6 +129,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AddLocationToCustomerInformation.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\MPSTwo\Installation\CompleteInstallationProcess.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CompleteInstallationProcess.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specifications\MPSTwo\Proposal\ApprovalDecisionsGermanScenarios.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -577,6 +582,10 @@
     <None Include="Test Specifications\MPSTwo\Customer\AddLocationToCustomerInformation.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>AddLocationToCustomerInformation.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwo\Installation\CompleteInstallationProcess.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CompleteInstallationProcess.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwo\Proposal\ApprovalDecisionsGermanScenarios.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
