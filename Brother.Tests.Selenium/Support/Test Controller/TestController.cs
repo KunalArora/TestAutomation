@@ -272,16 +272,7 @@ namespace Brother.Tests.Selenium.Lib.Support
 
             try
             {
-                //phantomJsProcess.UserName = "EUSiteCoreTestAuto";
-                //phantomJsProcess.Domain = "eu";
-                //var prePassword = "Ferry1Loft2Lighter3";
-                //var passwordSecure = new SecureString();
-                //var passwordChars = prePassword.ToCharArray();
-                //foreach (var c in passwordChars)
-                //{
-                //    passwordSecure.AppendChar(c);
-                //}
-                //phantomJsProcess.Password = passwordSecure;
+ 
                 phantomJsProcess.UseShellExecute = false;
 
                 var phantomJsProc = new Process {StartInfo = phantomJsProcess};
@@ -313,11 +304,11 @@ namespace Brother.Tests.Selenium.Lib.Support
             return 0;
         }
 
-        private static void StartPhantomJsProcess()
-        {
-            KillPhantomJsIfRunning();
-            StartNewPhantomJsProcess(_ipAddress, _driverPort);
-        }
+        //private static void StartPhantomJsProcess()
+        //{
+        //    KillPhantomJsIfRunning();
+        //    StartNewPhantomJsProcess(_ipAddress, _driverPort);
+        //}
 
         private static PhantomJSDriverService StartPhantomJsService()
         {
@@ -330,15 +321,6 @@ namespace Brother.Tests.Selenium.Lib.Support
             phantomJsService.AddArgument("--ignore-ssl-errors=true");
             phantomJsService.AddArgument("--ssl-protocol=any");
             phantomJsService.AddArgument("--local-to-remote-url-access=true");
-            phantomJsService.AddArgument("--remote-debugger-port=9010");
-            //phantomJsService.AddArgument("--proxy-type=http");
-//            phantomJsService.AddArgument("--proxy=10.2.135.18:8080");
-//            phantomJsService.AddArgument(@"--proxy-auth=EU\EUSiteCoreTestAuto:Ferry1Loft2Lighter3");
-            //phantomJsService.AddArgument(string.Format("--webdriver={0}:{1}", _ipAddress, _driverPort));
-            
-//            var cookieLocation = "C:\\TestAutomation\\SeleniumLogging";
-//            var persistentCookiePath = string.Format(@"--cookies-file={0}\AutoCookies.txt", cookieLocation);
-  //          phantomJsService.AddArgument(persistentCookiePath);
             phantomJsService.LogFile = SetDriverLog();
 
             return phantomJsService;
