@@ -227,6 +227,12 @@ namespace Brother.Tests.Selenium.Lib.Support
                 WebDriver.Wait(Helper.DurationType.Millisecond, 500);
                 Helper.MsgOutput("Closing PhantomJS processes");
             }
+
+            while (!IsProcessRunning("chromedriver"))
+            {
+                WebDriver.Wait(Helper.DurationType.Millisecond, 500);
+                Helper.MsgOutput("Closing PhantomJS processes");
+            }
         }
 
         private static bool IsProcessRunning(string processName)
