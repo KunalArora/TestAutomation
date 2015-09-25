@@ -229,10 +229,10 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
 
         public static void BeforeFeatureHeadlessAndInteractive()
         {
-            #if DEBUG
+//            #if DEBUG
                 TestController.Test_Setup();
                 Helper.MsgOutput("Feature start - Starting Selenium");
-            #endif
+//            #endif
         }
 
         private static void DoSmokeTestEval(bool smokeTest)
