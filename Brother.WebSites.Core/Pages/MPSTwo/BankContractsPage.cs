@@ -115,8 +115,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var newContract = Driver.FindElement(By.XPath(newlyAdded));
 
             TestCheck.AssertIsEqual(true, newContract.Displayed, "Is new sent to bank awaiting contract page?");
+
+            RunCreateCustomerAndPersonJob();
         }
 
+        public void RunCreateCustomerAndPersonJob()
+        {
+            MPSJobRunnerPage.RunCreateCustomerAndPersonCommandJob();
+        }
         private IWebElement ActionButtonElementByName(string name, string tdcol)
         {
             string element = String.Format("//td[text()=\"{0}\"]/parent::tr/td[{1}]/div/button", name, tdcol);
@@ -125,9 +131,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public BankContractsSummaryPage NavigateToViewSummary()
         {
-            string proposalname = MpsUtil.CreatedProposal();
-            IWebElement element = ActionButtonElementByName(proposalname, "7");
-            element.Click();
+            //string proposalname = MpsUtil.CreatedProposal();
+            //IWebElement element = ActionButtonElementByName(proposalname, "7");
+            //element.Click();
+            ActionsModule.ClickOnSpecificActionsElement();
             ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
 
             return GetTabInstance<BankContractsSummaryPage>(Driver);

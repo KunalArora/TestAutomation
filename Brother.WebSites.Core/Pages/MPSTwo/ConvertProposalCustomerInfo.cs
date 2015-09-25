@@ -180,12 +180,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterCompanyRegistration()
         {
-            ClearAndType(CompanyRegistrationNumberField, "06488522");
+            ClearAndType(CompanyRegistrationNumberField, "00664172");
         }
 
         public void EnterVatNumber()
         {
-            ClearAndType(VATNumberField, "135869456");
+            ClearAndType(VATNumberField, "365684514");
         }
 
         public void EnterAuthoriisedSignatoryNumber()
