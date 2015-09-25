@@ -322,7 +322,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.ThirdParty
             IWebElement foundEmailElement = null;
             foundEmail = new BrotherEmail();
 
-            while ((!emailFound) && (retryCount != 5))
+            while ((!emailFound) && (retryCount != 15))
             {
                 IsEmailListAvailable();
                 try
@@ -374,7 +374,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.ThirdParty
             var emailFound = false;
             var retryCount = 0;
             IWebElement emailItemFound = null;
-            while ((!emailFound) && (retryCount != 5))
+            while ((!emailFound) && (retryCount != 15))
             {
                 IsEmailListAvailable();
                 try
@@ -483,7 +483,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.ThirdParty
             var foundMail = new BrotherEmail();
 
             WebDriver.SetWebDriverImplicitTimeout(new TimeSpan(0));
-            while ((!emailSelected) && (retryCount != 5))
+            while ((!emailSelected) && (retryCount != 15))
             {
                 try
                 {
