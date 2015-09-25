@@ -129,7 +129,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
         public static string GetBrowserType()
         {
-            return Environment.GetEnvironmentVariable("AutoTestBrowserType", EnvironmentVariableTarget.Machine);
+            return Environment.GetEnvironmentVariable("AutoTestBrowserType");
         }
 
         public static bool SetBrowserType(string browserType)
