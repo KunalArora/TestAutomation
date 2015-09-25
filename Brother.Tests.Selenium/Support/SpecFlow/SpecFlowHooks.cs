@@ -70,11 +70,11 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
         [BeforeFeature]
         public static void BeforeFeatureHeadless()
         {
-            #if DEBUG
+//            #if DEBUG
                 BeforeFeatureHeadlessAndInteractive();
-            #else
-                TestController.HeadlessRunning();
-            #endif
+//            #else
+//                TestController.HeadlessRunning();
+//            #endif
         }
 
         [AfterFeature]
@@ -229,10 +229,10 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
 
         public static void BeforeFeatureHeadlessAndInteractive()
         {
-            #if DEBUG
+//            #if DEBUG
                 TestController.Test_Setup();
                 Helper.MsgOutput("Feature start - Starting Selenium");
-            #endif
+//            #endif
         }
 
         private static void DoSmokeTestEval(bool smokeTest)

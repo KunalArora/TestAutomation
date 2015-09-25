@@ -143,9 +143,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
         public static string GetRunTimeEnv()
         {
-            //return Environment.GetEnvironmentVariable("AutoTestRunTimeEnv", EnvironmentVariableTarget.Machine) ?? RunTimeDefault;
             return Environment.GetEnvironmentVariable("AutoTestRunTimeEnv") ?? RunTimeDefault;
-            //return Environment.GetEnvironmentVariable("AutoTestRunTimeEnv") ?? RunTimeDefault;
         }
 
        public static bool SetRunTimeEnv(string runTimeEnv)
@@ -162,21 +160,18 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
         public static bool CheckForStagingTestFlag()
         {
-//            var isStagingTest = Environment.GetEnvironmentVariable("IsStagingTest", EnvironmentVariableTarget.Machine);
             var isStagingTest = Environment.GetEnvironmentVariable("IsStagingTest");
             return isStagingTest != null && isStagingTest.Equals("TRUE");
         }
 
         public static bool IsSmokeTest()
         {
-            //var isSmokeTest = Environment.GetEnvironmentVariable("SmokeTestSet", EnvironmentVariableTarget.Machine);
             var isSmokeTest = Environment.GetEnvironmentVariable("SmokeTestSet");
             return isSmokeTest != null && isSmokeTest.Equals("TRUE");
         }
 
         public static String MpsRunCondition()
         {
-            //return Environment.GetEnvironmentVariable("MpsTagRunner", EnvironmentVariableTarget.Machine);
             return Environment.GetEnvironmentVariable("MpsTagRunner");
         }
         

@@ -129,7 +129,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
         public static string GetBrowserType()
         {
-            return Environment.GetEnvironmentVariable("AutoTestBrowserType", EnvironmentVariableTarget.Machine);
+            return Environment.GetEnvironmentVariable("AutoTestBrowserType");
         }
 
         public static bool SetBrowserType(string browserType)
@@ -163,26 +163,6 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                     Thread.Sleep(TimeSpan.FromMinutes(duration));
                     break;
             }
-        }
-
-        public static IWebDriver LaunchNewDriverWindow()
-        {
-            IWebDriver newDriver;
-            var phantomJsId = -1;
-
-            if (TestController.IsHeadlessRunning)
-            {
-                phantomJsId = TestController.StartNewPhantomJsProcess("127.0.0.5", "6666");
-                newDriver = TestController.StartNewRemoteWebDriver("127.0.0.5", "6666");
-                TestController.SetWebDriverTimeouts(newDriver);
-            }
-            else
-            {
-                newDriver = new ChromeDriver();
-                TestController.SetWebDriverTimeouts(newDriver);
-            }
-            SetWebDriverPackage(newDriver, phantomJsId);
-            return newDriver;
         }
 
         /// <summary>

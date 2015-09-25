@@ -27,12 +27,12 @@ Scenarios:
 	| Sweden         | http://www.brother.se/    |
 	| Portugal       | http://www.brother.pt/    |
 	| Czech Republic | http://www.brother.cz/    |
-#	| Hungary        | http://www.brother.hu/    |
 	| Russia         | http://www.brother.ru/    |
-#	| Bulgaria       | http://www.brother.bg/    |
-#	| Romania        | http://www.brother.ro/    |
 	| Slovenia       | http://www.brother.si/    |
 	| Luxembourg     | http://www.brother.lu/    |
+#	| Hungary        | http://www.brother.hu/    |
+#	| Bulgaria       | http://www.brother.bg/    |
+#	| Romania        | http://www.brother.ro/    |
 
 @SMOKE
 Scenario Outline: Get 200 OK response back from Brother Online "<Country>" on the LIVE environment
