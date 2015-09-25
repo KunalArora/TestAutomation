@@ -108,7 +108,7 @@ Scenario Outline: German Approver can approve the contract
 
 	| Role                            | Country | ContractType                  | UsageType      |
 	| Cloud MPS Local Office Approver | Germany | Purchase & Click with Service | Minimum Volume |
-	#| Cloud MPS Bank                  | United Kingdom | Lease & Click with Service    | Pay As You Go  |
+	| Cloud MPS Bank                  | Germany | Lease & Click with Service    | Pay As You Go  |
 
 # Reject1,2
 Scenario Outline: German Approver can reject the contract
@@ -116,15 +116,17 @@ Scenario Outline: German Approver can reject the contract
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When Approver navigate to Contract Awaiting Acceptance page from Dashboard
 	Then Approver can view all the contracts that have been signed by dealer
-	And Approver can successfully reject the contract
+	And Approver can successfully reject the contract with "<Option>" option
 	And the rejected contract by Approver is displayed on contract Rejected screen
 	And I sign out of Cloud MPS
 
 	Scenarios:
 
-	| Role                            | Country        | ContractType                  | UsageType                  |
-	| Cloud MPS Local Office Approver | Germany        | Purchase & Click with Service | Pay As You Go              |
-	#| Cloud MPS Bank | United Kingdom                | Lease & Click with Service | Minimum Volume |
+	| Role                            | Country | ContractType                  | UsageType      | Option |
+	| Cloud MPS Local Office Approver | Germany | Purchase & Click with Service | Pay As You Go  | Andere |
+	| Cloud MPS Bank                  | Germany | Lease & Click with Service    | Minimum Volume | Andere |
+	
+	
 	
 # Reject3
 Scenario Outline: German Dealer can resign rejected contract
@@ -151,7 +153,7 @@ Scenario Outline: German Bank can view opened offers
 	
 
 # View confirmed/rejected/signed offers
-@ignore
+
 Scenario Outline: German Bank can view confirmed/rejected/signed offers
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When I navigate to Bank Contracts screen on "<Acceptance>" Tab

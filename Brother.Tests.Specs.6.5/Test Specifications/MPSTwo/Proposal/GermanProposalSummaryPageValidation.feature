@@ -29,7 +29,7 @@ Scenario Outline: Summary Page Validation For German Leasing and Click proposal
 	And the displayed colour click price is correct
 	And the bank displayed for leasing is "<Bank>"
 	And the calculated consumable net totals are equal in all places
-	And the calculated consumable gross totals are equal in all places
+	#And the calculated consumable gross totals are equal in all places
 	And the calculations are based on estimated values
 	And leasing panels displayed
 	And clicking on the displayed printer "<Printer>" link takes me back to the device screen
@@ -64,7 +64,7 @@ Scenario Outline: Summary Page Validation For Minimum Volume Purchase and Click 
 	And the displayed volume value for mono click price is "<ClickVolume>"
 	And the displayed volume value for colour click price is "<ColourVolume>"
 	And the calculated consumable net totals are equal in all places
-	And the calculated consumable gross totals are equal in all places
+	#And the calculated consumable gross totals are equal in all places
 	And the displayed mono click price is correct
 	And the displayed colour click price is correct
 	And the calculations are not based on estimated values
@@ -102,7 +102,7 @@ Scenario Outline: Summary Page Validation For Minimum Volume Purchase and Click 
 	And the displayed volume value for mono click price is "<ClickVolume>"
 	And the displayed volume value for colour click price is "<ColourVolume>"
 	And the calculated consumable net totals are equal in all places
-	And the calculated consumable gross totals are equal in all places
+	#And the calculated consumable gross totals are equal in all places
 	And the displayed mono click price is correct
 	And the displayed colour click price is correct
 	And the calculations are not based on estimated values

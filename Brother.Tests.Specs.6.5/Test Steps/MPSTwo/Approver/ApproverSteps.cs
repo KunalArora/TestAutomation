@@ -205,6 +205,25 @@ namespace Brother.Tests.Specs.MPSTwo.Approver
             }
         }
 
+        [Then(@"Approver can successfully reject the contract with ""(.*)"" option")]
+        public void ThenApproverCanSuccessfullyRejectTheContractWithOption(string option)
+        {
+            if (LeaseAndClick)
+            {
+                NextPage = CurrentPage.As<BankContractsPage>().NavigateToViewSummary();
+                CurrentPage.As<BankContractsSummaryPage>().ClickRejectButton();
+                CurrentPage.As<BankContractsSummaryPage>().SelectRejectionReason(option);
+                NextPage = CurrentPage.As<BankContractsSummaryPage>().ClickFinalRejectButton();
+            }
+            else if (PurchaseAndClick)
+            {
+                NextPage = CurrentPage.As<LocalOfficeApproverContractsPage>().NavigateToViewSummary();
+                CurrentPage.As<LocalOfficeApproverContractsSummaryPage>().ClickRejectButton();
+                CurrentPage.As<LocalOfficeApproverContractsSummaryPage>().SelectRejectionReason(option);
+                NextPage = CurrentPage.As<LocalOfficeApproverContractsSummaryPage>().ClickFinalRejectButton();
+            }
+        }
+
         [Then(@"the accepted contract by Approver is displayed on contract Accepted screen")]
         public void ThenTheAcceptedContractByApproverIsDisplayedOnContractAcceptedScreen()
         {
