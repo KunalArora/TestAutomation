@@ -30,6 +30,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement OpenedAwaitingAcceptancLinkElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-contract-list-container .table .js-mps-searchable tr")]
         public IList<IWebElement> ContractListContainerElement;
+        
 
         
 
@@ -132,6 +133,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ActionsModule.OpenTheFirstActionButton(Driver);
             ActionsModule.DownloadContractPDFAction(Driver);
         }
+
+        
 
         public void DownloadInvoicePDFOnBankContractPages()
         {

@@ -157,12 +157,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             AwaitingAcceptanceTabElement.Click();
         }
 
-        public void NavigateToAcceptedContract()
+        public DealerContractsApprovedPage NavigateToAcceptedContract()
         {
             if (AcceptedTabElement == null)
                 throw new Exception("Accepted Tab is not displayed");
 
-            AcceptedTabElement.Click();
+
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, AcceptedTabElement);
+
+            return GetTabInstance<DealerContractsApprovedPage>(Driver);
         }
 
         public void NavigateToRejectedContract()

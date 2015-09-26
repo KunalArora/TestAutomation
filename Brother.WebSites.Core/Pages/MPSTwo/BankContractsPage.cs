@@ -32,6 +32,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement OpenedAwaitingAcceptancLinkElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-contract-list-container .table .js-mps-searchable tr")]
         public IList<IWebElement> ContractListContainerElement;
+        [FindsBy(How = How.CssSelector, Using = ".js-mps-manage-devices")]
+        public IWebElement ManageDevicesElement;
+
+        
 
         
 
@@ -105,6 +109,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             RejectedLinkElement.Click();
         }
 
+        public DealerManageDevicesPage NavigateToManageDevicesPage()
+        {
+            if(ManageDevicesElement == null)
+                throw new Exception("Manage Device Element is not displayed");
+
+            ActionsModule.ClickOnSpecificActionsElement();
+            ManageDevicesElement.Click();
+            WebDriver.Wait(DurationType.Second, 2);
+            return GetInstance<DealerManageDevicesPage>(Driver);
+        }
         
         public void IsContractsSignedByDealerDisplayed()
         {
@@ -122,6 +136,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void RunCreateCustomerAndPersonJob()
         {
             MPSJobRunnerPage.RunCreateCustomerAndPersonCommandJob();
+            
         }
         private IWebElement ActionButtonElementByName(string name, string tdcol)
         {
