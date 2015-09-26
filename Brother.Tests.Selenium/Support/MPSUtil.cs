@@ -168,6 +168,7 @@ namespace Brother.Tests.Selenium.Lib.Support
 								};
 
             var generatedCompanyName = companyName[new Random().Next(20)] + "_" + DateTime.Now.ToString("yyMMdHHmmss") + " Ltd";
+            HelperClasses.SpecFlow.SetContext("GeneratedCompanyName", generatedCompanyName);
 
             return generatedCompanyName;
             
