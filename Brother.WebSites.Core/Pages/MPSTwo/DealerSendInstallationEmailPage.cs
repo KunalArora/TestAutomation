@@ -46,12 +46,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ArePinAndLabelFieldPopulated()
         {
-            foreach (var pLabel in PinLabelElement)
-            {
-                var pLabelText = pLabel.Text;
+            
+                TestCheck.AssertIsEqual(true, PinLabelElement.Count.Equals(2) , "Pin and/or Reference not generated");
+            
+        }
 
-                TestCheck.AssertIsEqual(false, pLabelText.Contains(string.Empty), "Pin and/or Label not generated");
-            }
+        public void IsPinFieldPopulated()
+        {
+
+            TestCheck.AssertIsEqual(true, PinLabelElement.Count.Equals(1), "Pin and/or Reference not generated");
+
         }
 
         public void SendInstallationRequest()
@@ -70,6 +74,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void ConfirmInstallationEmailSent()
         {
             TestCheck.AssertIsEqual(true, SentConfirmationElement.Displayed, "Installation email not");
+            
         }
 
         public DealerManageDevicesPage CompleteInstallation()

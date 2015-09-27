@@ -57,9 +57,13 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
         public void WhenICompletedTheCreateInstallationProcessFor(string method)
         {
             CurrentPage.As<DealerSendInstallationEmailPage>().IsSendCommunicationScreenDisplayed();
-            if (!method.Equals("Email"))
+            if (method.Equals("BOR"))
             {
                 CurrentPage.As<DealerSendInstallationEmailPage>().ArePinAndLabelFieldPopulated();  
+            }
+            else
+            {
+                CurrentPage.As<DealerSendInstallationEmailPage>().IsPinFieldPopulated();
             }
             
             CurrentPage.As<DealerSendInstallationEmailPage>().EnterInstallaterEmail();
