@@ -76,7 +76,6 @@ Scenario Outline: German Dealer can create installation request for Email Commun
 	When I navigate to the contract Manage Device Screen
 	And I select Location in order to create installation request
 	And I set device communication method as "<Method>"
-	And I set device installation type as "<Type>"
 	And I completed the create installation process for "<Method>"
 	Then the installation request for that device is completed
 	And I can sign out of Brother Online
