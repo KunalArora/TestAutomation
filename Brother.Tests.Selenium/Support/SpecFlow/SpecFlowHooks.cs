@@ -126,6 +126,7 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
                 Helper.MsgOutput("********************************************************************");
                 Helper.MsgOutput("** CRITICAL ERROR : Test Environment is invalid for this test run **");
                 Helper.MsgOutput("********************************************************************");
+                Helper.MsgOutput(string.Format("RunTime Environment = {0}", Helper.GetRunTimeEnv()));
                 IgnoreThisTest("Skipping Test - Run Time Environment is Invalid!");
                 return;
             }
