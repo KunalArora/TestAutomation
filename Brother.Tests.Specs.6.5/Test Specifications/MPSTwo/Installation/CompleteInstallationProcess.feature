@@ -23,7 +23,7 @@ Scenarios:
 
 	| Role                            | Country        | ContractType                  | UsageType      | Role1            | Method | Type |
 	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  |
-	#| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR  |
+	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR  |
 
 
 
@@ -64,7 +64,7 @@ Scenarios:
 
 	| Role                            | Country | ContractType                  | UsageType      | Role1            | Method | Type |
 	| Cloud MPS Local Office Approver | Germany | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  |
-	#| Cloud MPS Bank                  | Germany | Lease & Click with Service    | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR |
+	| Cloud MPS Bank                  | Germany | Lease & Click with Service    | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR  |
 	
 
 

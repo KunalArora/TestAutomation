@@ -65,8 +65,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public DealerSendInstallationEmailPage ProccedToDealerSendInstallationEmailPage()
         {
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, NextElement);
-            //WebDriver.Wait(DurationType.Second, 30);
-
+           
             return GetInstance<DealerSendInstallationEmailPage>(Driver);
         }
 

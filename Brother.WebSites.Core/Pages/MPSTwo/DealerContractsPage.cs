@@ -248,8 +248,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 SpecFlow.SetContext("GeneratedLeadCodeReference", proposalname);
             }
 
-            IWebElement element = ActionButtonElementByName(proposalname, "8");
-            element.Click();
+            //IWebElement element = ActionButtonElementByName(proposalname, "8");
+            //element.Click();
+            ActionsModule.ClickOnSpecificActionsElement();
             ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
 
             return GetTabInstance<DealerContractsSummaryPage>(Driver);

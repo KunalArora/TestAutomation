@@ -39,12 +39,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement InstallationRequestActionButtonElement;
         [FindsBy(How = How.CssSelector, Using = ".open .js-mps-delete-installation-request")]
         public IWebElement InstallationRequestDeleteActionElement;
+        [FindsBy(How = How.CssSelector, Using = ".modal-header [aria-hidden=\"true\"]")]
+        public IWebElement InstallationRequestPopUpElement;
+        [FindsBy(How = How.CssSelector, Using = ".open .js-mps-show-installation-request-email")]
+        public IWebElement ShowInstallationRequestEmailElement;
+        [FindsBy(How = How.CssSelector, Using = ".open .js-mps-show-devices-for-installation-request")]
+        public IWebElement ShowAssignedDevicesElement;
+        [FindsBy(How = How.CssSelector, Using = ".open .js-mps-resend-emails-installation-request")]
+        public IWebElement ResendEmailElement;
+        [FindsBy(How = How.CssSelector, Using = ".open .js-mps-cancel-installation-request")]
+        public IWebElement CancelInstallationRequestElement;
         
-       
         
-
         
-
         private string GetGeneratedCompany()
         {
             return SpecFlow.GetContext("GeneratedCompanyName");
@@ -85,7 +92,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public DealerSetCommunicationMethodPage CreateInstallationRequest()
         {
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, CreateRequestElement);
-            WebDriver.Wait(DurationType.Second, 30);
+            WebDriver.Wait(DurationType.Second, 10);
 
             return GetTabInstance<DealerSetCommunicationMethodPage>(Driver);
         }
