@@ -7,6 +7,34 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
     [Binding]
     class DealerInstallationRequestSteps : BaseSteps
     {
+        [Given(@"I generate ""(.*)"" installation request for the contract with ""(.*)"" communication")]
+        public void GivenIGenerateInstallationRequestForTheContractWithCommunication(string type, string method)
+        {
+            WhenINavigateToTheContractManageDeviceScreen();
+            WhenISelectLocationInOrderToCreateInstallationRequest();
+            WhenISetDeviceCommunicationMethodAs(method);
+            WhenISetDeviceInstallationTypeAs(type);
+            WhenICompletedTheCreateInstallationProcessFor(type);
+            ThenTheInstallationRequestForThatDeviceIsCompleted();
+        }
+
+        [Given(@"I extract the installer url from Installation Request")]
+        public void GivenIExtractTheInstallerUrlFromInstallationRequest()
+        {
+            CurrentPage.As<DealerManageDevicesPage>().ClickOnActionButton();
+            CurrentPage.As<DealerManageDevicesPage>().ClickToExposeInstallationRequest();
+            CurrentPage.As<DealerManageDevicesPage>().IsInstallationRequestScreenDisplayed();
+            CurrentPage.As<DealerManageDevicesPage>().GetInstallationLink();
+            CurrentPage.As<DealerManageDevicesPage>().CloseInstallationrequestPopUp();
+        }
+
+        [Given(@"I navigate to the installer page")]
+        public void GivenINavigateToTheInstallerPage()
+        {
+            
+        }
+
+
 
         [When(@"I navigate to the contract Manage Device Screen")]
         public void WhenINavigateToTheContractManageDeviceScreen()
