@@ -47,7 +47,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void ArePinAndLabelFieldPopulated()
         {
             
-                TestCheck.AssertIsEqual(true, PinLabelElement.Count.Equals(2) , "Pin and/or Reference not generated");
+            TestCheck.AssertIsEqual(true, PinLabelElement.Count.Equals(2) , "Pin and/or Reference not generated");
+            SpecFlow.SetContext("ProposalId", PinLabelElement.First().Text);
+            SpecFlow.SetContext("InstallationPin", PinLabelElement.Last().Text);
             
         }
 

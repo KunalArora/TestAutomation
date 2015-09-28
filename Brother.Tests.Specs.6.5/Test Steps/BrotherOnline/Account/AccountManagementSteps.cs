@@ -69,6 +69,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         }
 
 
+        [Given(@"I can sign out of Brother Online")]
         [When(@"I can sign out of Brother Online")]
         [When(@"I sign out of Cloud MPS")]
         [Given(@"I sign out of Cloud MPS")]

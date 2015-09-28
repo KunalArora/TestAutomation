@@ -65,8 +65,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public DealerSetInstallationTypePage ProceedToNextPage()
         {
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ProceedElement);
-            WebDriver.Wait(DurationType.Second, 30);
-
+            
             return GetTabInstance<DealerSetInstallationTypePage>(Driver);
         }
 

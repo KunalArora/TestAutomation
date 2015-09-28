@@ -39,12 +39,22 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement InstallationRequestActionButtonElement;
         [FindsBy(How = How.CssSelector, Using = ".open .js-mps-delete-installation-request")]
         public IWebElement InstallationRequestDeleteActionElement;
+        [FindsBy(How = How.CssSelector, Using = ".modal-header [aria-hidden=\"true\"]")]
+        public IWebElement InstallationRequestClosePopUpElement;
+        [FindsBy(How = How.CssSelector, Using = ".open .js-mps-show-installation-request-email")]
+        public IWebElement ShowInstallationRequestEmailElement;
+        [FindsBy(How = How.CssSelector, Using = ".open .js-mps-show-devices-for-installation-request")]
+        public IWebElement ShowAssignedDevicesElement;
+        [FindsBy(How = How.CssSelector, Using = ".open .js-mps-resend-emails-installation-request")]
+        public IWebElement ResendEmailElement;
+        [FindsBy(How = How.CssSelector, Using = ".open .js-mps-cancel-installation-request")]
+        public IWebElement CancelInstallationRequestElement;
+        [FindsBy(How = How.CssSelector, Using = "p[style=\"margin: 12px 0px;\"] a")]
+        public IWebElement InstallerLinkElement;
         
-       
         
-
         
-
+        
         private string GetGeneratedCompany()
         {
             return SpecFlow.GetContext("GeneratedCompanyName");
@@ -57,6 +67,41 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             AssertElementContainsText(CompanyConfirmationElement, GetGeneratedCompany(), "Generated Company");
         }
+
+        public void ClickOnActionButton()
+        {
+            if(InstallationRequestActionButtonElement == null)
+                throw new Exception("Installation Action is not displayed");
+            InstallationRequestActionButtonElement.Click();
+        }
+
+        public void ClickToExposeInstallationRequest()
+        {
+            if(ShowInstallationRequestEmailElement == null)
+                throw new Exception("Show Installation Request element is not displayed");
+            ShowInstallationRequestEmailElement.Click();
+        }
+
+        public void IsInstallationRequestScreenDisplayed()
+        {
+            TestCheck.AssertIsEqual(true, InstallationRequestClosePopUpElement.Displayed, "Installation request pop up is opened");
+            WebDriver.Wait(DurationType.Second, 5);
+        }
+
+        public void GetInstallationLink()
+        {
+            var installLink = InstallerLinkElement.GetAttribute("href");
+            SpecFlow.SetContext("InstallerLink", installLink);
+            
+        }
+
+        public void CloseInstallationrequestPopUp()
+        {
+            InstallationRequestClosePopUpElement.Click();
+            WebDriver.Wait(DurationType.Second, 5);
+        }
+        
+        
 
         public void SelectCompanyLocation()
         {
@@ -85,7 +130,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public DealerSetCommunicationMethodPage CreateInstallationRequest()
         {
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, CreateRequestElement);
-            WebDriver.Wait(DurationType.Second, 30);
+            WebDriver.Wait(DurationType.Second, 10);
 
             return GetTabInstance<DealerSetCommunicationMethodPage>(Driver);
         }
