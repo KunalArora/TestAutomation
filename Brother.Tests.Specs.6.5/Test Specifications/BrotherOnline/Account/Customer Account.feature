@@ -293,7 +293,6 @@ Scenarios:
 	| Germany        |
 	| Netherlands    |
 	| Denmark        |
-	| Portugal       |
 	| Finland        |
 	| Austria        |
 #	| Romania        | - Links for validation set of for UK so needs updating - BBAU-2665
