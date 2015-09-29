@@ -57,6 +57,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
 
             TestCheck.AssertIsEqual(true, PinLabelElement.Count.Equals(1), "Pin and/or Reference not generated");
+            SpecFlow.SetContext("ProposalId", PinLabelElement.First().Text);
 
         }
 
