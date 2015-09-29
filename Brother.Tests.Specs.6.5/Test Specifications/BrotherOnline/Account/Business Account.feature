@@ -35,6 +35,9 @@ Scenario: Create a business account change the business account to be Customer A
 	# And I can navigate back to Brother Online home page
 	And I can sign out of Brother Online
 
+@ignore 
+#***** NEW details required as the account is set as a user and so need to create new business account for all three environments
+
 # Accounts created on DV2, QAS and Prod for the following test - existingbusinessaccwithorder@guerrillamail.com/Password100 
 # Validate that a Business Account holder who has made an order is not able to swap to a Customer account
 Scenario Outline: Business account holder is unable to switch to a customer account once an order has been placed
