@@ -58,12 +58,12 @@ Scenarios:
 	| Sweden         | https://online.brother.se/    |
 	| Portugal       | https://online.brother.pt/    |
 	| Czech Republic | https://online.brother.cz/    |
-	| Hungary        | https://online.brother.hu/    |
 	| Russia         | https://online.brother.ru/    |
-	| Bulgaria       | https://online.brother.bg/    |
-	| Romania        | https://online.brother.ro/    |
 	| Slovenia       | https://online.brother.si/    |
 	| Luxembourg     | https://online.brother.lu/    |
+#	| Hungary        | https://online.brother.hu/    |
+#	| Bulgaria       | https://online.brother.bg/    |
+#	| Romania        | https://online.brother.ro/    |
 
 @SMOKE
 Scenario Outline: Get 200 OK response back from Web Conferencing "<Country>" on the LIVE environment
@@ -75,9 +75,9 @@ Scenarios:
 	| United Kingdom | http://webconferencing.brother.co.uk/ |
 	| France         | http://webconference.brother.fr/      |
 	| Switzerland    | http://visioconference.brother.ch/    |
-	| Spain          | http://videoconferencia.brother.es/   |
 	| Ireland        | http://webconferencing.brother.ie/    |
 	| Germany        | http://videokonferenzen.brother.de/   |
+#	| Spain          | http://videoconferencia.brother.es/   |
 
 @SMOKE
 Scenario Outline: Get 200 OK response back from Creative Centre "<Country>" on the LIVE environment

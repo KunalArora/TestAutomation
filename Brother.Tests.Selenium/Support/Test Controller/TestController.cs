@@ -122,6 +122,31 @@ namespace Brother.Tests.Selenium.Lib.Support
             return newDriver;
         }
 
+        public static IWebDriver ConnectToBrowserStack()
+        {
+            var uri = string.Format(@"http://hub.browserstack.com/wd/hub/");
+            var capabilities = SetBrowserStackDesiredCapabilities();
+            IWebDriver newDriver = null;
+
+            try
+            {
+                Helper.MsgOutput(string.Format("INFORMATION: About to create connect to Browser Stack"));
+                Helper.MsgOutput("Creating new Remote Web Driver instance to Browser Stack with 1 minute timeout");
+                newDriver = new RemoteWebDriver(new Uri(uri), capabilities, new TimeSpan(0, 0, 1, 0));
+            }
+            catch (WebDriverException webDriverException)
+            {
+                Test_Teardown();
+                Helper.MsgOutput(string.Format("{0} - {1}", "Unable to Connect to GhostDriver via RemoteWebDriver", webDriverException.Message));
+            }
+            catch (System.Net.WebException webException)
+            {
+                Test_Teardown();
+                Helper.MsgOutput(string.Format("{0} - {1}", "Unable to Connect to GhostDriver via RemoteWebDriver", webException.Message));
+            }
+            return newDriver;
+        }
+
         public static void Test_Setup()
         {
             var browserType = WebDriver.GetBrowserType();
@@ -142,6 +167,11 @@ namespace Brother.Tests.Selenium.Lib.Support
                 case "FF":
                     CurrentDriver = new FirefoxDriver();
                     Helper.MsgOutput("Using FireFox Driver");
+                    break;
+
+                case "BRS":
+                    CurrentDriver = ConnectToBrowserStack();
+                    Helper.MsgOutput("Using BrowserStack");
                     break;
 
                 case "HL":
@@ -347,6 +377,34 @@ namespace Brother.Tests.Selenium.Lib.Support
             }
 
             return logLocation + "\\PhantomLog.log";
+        }
+
+        private static DesiredCapabilities SetBrowserStackDesiredCapabilities()
+        {
+            DesiredCapabilities capabilities = DesiredCapabilities.Chrome();
+            capabilities.SetCapability("browserstack.user", "anthowell1");
+            capabilities.SetCapability("browserstack.key", "uu64dsphJt6uAyz6Kj8q");
+
+            capabilities.SetCapability("browser", "Chrome");
+            capabilities.SetCapability("browser_version", "44.0");
+            capabilities.SetCapability("os", "Windows");
+            capabilities.SetCapability("os_version", "7");
+            capabilities.SetCapability("resolution", "1024x768");
+
+            capabilities.SetCapability("acceptSslCerts", true);
+            capabilities.SetCapability("javascriptEnabled", true);
+//            capabilities.SetCapability("platform", "WINDOWS");
+            capabilities.SetCapability("web-security", false);
+            capabilities.SetCapability("ignore-sss-errors", true);
+            capabilities.SetCapability("unexpectedAlertBehaviour", "accept");
+//            capabilities.SetCapability("browserName", "chrome");
+
+            if (capabilities.IsJavaScriptEnabled)
+            {
+                Helper.MsgOutput("Driver Capabilities", "Javascript support is Enabled");
+            }
+
+            return capabilities;
         }
 
         private static DesiredCapabilities SetDesiredCapabilities()
