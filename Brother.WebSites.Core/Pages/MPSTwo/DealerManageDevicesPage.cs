@@ -88,11 +88,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             WebDriver.Wait(DurationType.Second, 5);
         }
 
-        public void GetInstallationLink()
+        public string GetInstallationLink()
         {
-            var installLink = InstallerLinkElement.GetAttribute("href");
+             var installLink = InstallerLinkElement.GetAttribute("href");
             SpecFlow.SetContext("InstallerLink", installLink);
-            
+
+            return installLink;
+
+        }
+
+        public InstallerDeviceInstallationPage LaunchInstallerPage()
+        {
+            Driver.Navigate().GoToUrl(GetInstallationLink());
+            return GetInstance<InstallerDeviceInstallationPage>(Driver);
         }
 
         public void CloseInstallationrequestPopUp()
