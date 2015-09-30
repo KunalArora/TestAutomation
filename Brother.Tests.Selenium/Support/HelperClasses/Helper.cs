@@ -143,10 +143,21 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
         public static string GetRunTimeEnv()
         {
-            return Environment.GetEnvironmentVariable("AutoTestRunTimeEnv") ?? RunTimeDefault;
+            return GetSpecialEnvironmentVariable("AutoTestRunTimeEnv") ?? RunTimeDefault;
         }
 
-       public static bool SetRunTimeEnv(string runTimeEnv)
+        // So that tests can be executed via Team City using Team City parameters, some calls to GetEnvironmentVariable
+        // need to have the Target omitted so the Environment settings are used via the calling process
+        // It is necessary to revert to the old method when running tests from a local machine
+        public static string GetSpecialEnvironmentVariable(string envVar)
+        {
+            var isOnBuildMachine = Environment.MachineName;
+            return isOnBuildMachine.ToUpper().Equals("PRDAT169V") || isOnBuildMachine.ToUpper().Equals("PRDAT204V")
+                ? Environment.GetEnvironmentVariable(envVar)
+                : Environment.GetEnvironmentVariable(envVar, EnvironmentVariableTarget.Machine);
+        }
+
+        public static bool SetRunTimeEnv(string runTimeEnv)
         {
             Environment.SetEnvironmentVariable("AutoTestRunTimeEnv", runTimeEnv, EnvironmentVariableTarget.Machine);
             var environmentVariable = Environment.GetEnvironmentVariable("AutoTestRunTimeEnv", EnvironmentVariableTarget.Machine);
@@ -160,19 +171,19 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
         public static bool CheckForStagingTestFlag()
         {
-            var isStagingTest = Environment.GetEnvironmentVariable("IsStagingTest");
+            var isStagingTest = GetSpecialEnvironmentVariable("IsStagingTest");
             return isStagingTest != null && isStagingTest.Equals("TRUE");
         }
 
         public static bool IsSmokeTest()
         {
-            var isSmokeTest = Environment.GetEnvironmentVariable("SmokeTestSet");
+            var isSmokeTest = GetSpecialEnvironmentVariable("SmokeTestSet");
             return isSmokeTest != null && isSmokeTest.Equals("TRUE");
         }
 
         public static String MpsRunCondition()
         {
-            return Environment.GetEnvironmentVariable("MpsTagRunner");
+            return GetSpecialEnvironmentVariable("MpsTagRunner");
         }
         
         public static bool CheckFeatureEnv(string env)
