@@ -391,11 +391,11 @@ namespace Brother.Tests.Selenium.Lib.Support
             capabilities.SetCapability("os_version", "7");
             capabilities.SetCapability("resolution", "1024x768");
 
-            capabilities.SetCapability("acceptSslCerts", true);
+//            capabilities.SetCapability("acceptSslCerts", true);
             capabilities.SetCapability("javascriptEnabled", true);
 //            capabilities.SetCapability("platform", "WINDOWS");
-            capabilities.SetCapability("web-security", false);
-            capabilities.SetCapability("ignore-sss-errors", true);
+//            capabilities.SetCapability("web-security", false);
+//            capabilities.SetCapability("ignore-sss-errors", true);
             capabilities.SetCapability("unexpectedAlertBehaviour", "accept");
 //            capabilities.SetCapability("browserName", "chrome");
 
