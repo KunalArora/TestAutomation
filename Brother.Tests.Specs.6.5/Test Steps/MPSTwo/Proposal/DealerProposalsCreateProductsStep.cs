@@ -347,7 +347,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [When(@"I add the device that changed the default values")]
         public void WhenIChangeTheDefaultValuesOfTheDevice()
         {
-            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterProductQuantity("10");
+            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterProductQuantity("1");
             CurrentPage.As<DealerProposalsCreateProductsPage>().EnterModelUnitCost();
             CurrentPage.As<DealerProposalsCreateProductsPage>().AddAllDetailsToProposal();
             CurrentPage.As<DealerProposalsCreateProductsPage>().VerifyProductAdditionConfirmationMessage();
@@ -356,7 +356,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [When(@"I accept the default values of the device")]
         public void WhenIAcceptTheDefaultValuesOfTheDevice()
         {
-            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterProductQuantity("10");
+            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterProductQuantity("1");
             CurrentPage.As<DealerProposalsCreateProductsPage>().EnterModelUnitCost();
             CurrentPage.As<DealerProposalsCreateProductsPage>().AddAllDetailsToProposal();
             CurrentPage.As<DealerProposalsCreateProductsPage>().VerifyProductAdditionConfirmationMessage();

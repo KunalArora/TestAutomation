@@ -1,4 +1,5 @@
-﻿using Brother.WebSites.Core.Pages.Base;
+﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using TechTalk.SpecFlow;
 
@@ -7,14 +8,13 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
     [Binding]
     class DealerInstallationRequestSteps : BaseSteps
     {
-        [Given(@"I generate ""(.*)"" installation request for the contract with ""(.*)"" communication")]
-        public void GivenIGenerateInstallationRequestForTheContractWithCommunication(string type, string method)
+        [Given(@"I generate installation request for the contract with ""(.*)"" communication")]
+        public void GivenIGenerateInstallationRequestForTheContractWithCommunication(string method)
         {
             WhenINavigateToTheContractManageDeviceScreen();
             WhenISelectLocationInOrderToCreateInstallationRequest();
             WhenISetDeviceCommunicationMethodAs(method);
-            WhenISetDeviceInstallationTypeAs(type);
-            WhenICompletedTheCreateInstallationProcessFor(type);
+            WhenICompletedTheCreateInstallationProcessFor(method);
             ThenTheInstallationRequestForThatDeviceIsCompleted();
         }
 
@@ -28,10 +28,47 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             CurrentPage.As<DealerManageDevicesPage>().CloseInstallationrequestPopUp();
         }
 
+        [When(@"I navigate to the installer page")]
         [Given(@"I navigate to the installer page")]
         public void GivenINavigateToTheInstallerPage()
         {
+            NextPage = CurrentPage.As<DealerManageDevicesPage>().LaunchInstallerPage();
+            CurrentPage.As<InstallerDeviceInstallationPage>().IsInstallerScreenDisplayed();
+        }
+
+
+        [When(@"I enter the contract reference number")]
+        public void WhenIEnterTheContractReferenceNumber()
+        {
+          CurrentPage.As<InstallerDeviceInstallationPage>().EnterContractReference();
+            CurrentPage.As<InstallerDeviceInstallationPage>().ProceedOnInstaller();
+        }
+
+        [When(@"I enter the device serial number")]
+        public void WhenIEnterTheDeviceSerialNumber()
+        {
+            CurrentPage.As<InstallerDeviceInstallationPage>().EnterSerialNumber();
             
+        }
+
+        [When(@"I enter the device IP address")]
+        public void WhenIEnterTheDeviceIPAddress()
+        {
+            CurrentPage.As<InstallerDeviceInstallationPage>().EnterIpAddress();
+        }
+
+        [Then(@"I can connect the device to Brother environment")]
+        public void ThenICanConnectTheDeviceToBrotherEnvironment()
+        {
+            CurrentPage.As<InstallerDeviceInstallationPage>().ConnectDevice();
+
+        }
+
+        [Then(@"I can complete device installation")]
+        public void ThenICanCompleteDeviceInstallation()
+        {
+            CurrentPage.As<InstallerDeviceInstallationPage>().CompleteDeviceConnection();
+            CurrentPage.As<InstallerDeviceInstallationPage>().ConfirmInstallationSucceed();
         }
 
 
