@@ -18,7 +18,7 @@ namespace Brother.Tests.Specs
         [Given(@"testCode")]
         public void GivenTestCode()
         {
-            BasePage.NavigateToPage(TestController.CurrentDriver, "http://user:EUSidddddddddteCoreTestAuto@uk.brotherdv2.eu");
+            BasePage.NavigateToPage(TestController.CurrentDriver, "http://EUSiteCoreTestAuto:Ferry1Loft2Lighter3@uk.brotherdv2.eu");
         }
 
 
