@@ -56,7 +56,7 @@ namespace Brother.Tests.Selenium.Lib.Support
                 IsAcceptCookiesDismissed = false;
               //  StartPhantomJsProcess();
               //  CurrentDriver = StartNewRemoteWebDriver(_ipAddress, _driverPort);
-                CurrentDriver = ExperimentalChanges();
+                CurrentDriver = UsePhantomJsAsService();
 
                 if (CurrentDriver == null)
                 {
@@ -72,17 +72,14 @@ namespace Brother.Tests.Selenium.Lib.Support
             WebDriver.SetWebDriverDefaultTimeOuts(WebDriver.DefaultTimeOut.PageLoad);
             WebDriver.SetWebDriverDefaultTimeOuts(WebDriver.DefaultTimeOut.Script);
             WebDriver.SetWebDriverDefaultTimeOuts(WebDriver.DefaultTimeOut.Implicit);
-         //   driver.Manage().Window.Size = new Size(1280, 1024);
             driver.Manage().Window.Maximize();
         }
 
-        private static IWebDriver ExperimentalChanges()
+        private static IWebDriver UsePhantomJsAsService()
         {
-            var headlessOptions = SetJsOptions();
-            //var headlessOptions = SetJSDesiredCapabilities();
             IWebDriver newDriver = null;
             var phantomJsService = StartPhantomJsService();
-            newDriver = new PhantomJSDriver(phantomJsService);//, headlessOptions);
+            newDriver = new PhantomJSDriver(phantomJsService);
             return newDriver;
         }
 
@@ -99,15 +96,6 @@ namespace Brother.Tests.Selenium.Lib.Support
                 Helper.MsgOutput(string.Format("INFORMATION: About to create a new RemoteWebDriver instance. Port [{0}] in use status = [{1}]", port, portInUse));
                 Helper.MsgOutput("Creating new Remote Web Driver instance with 1 minute timeout");
                 newDriver = new RemoteWebDriver(new Uri(uri), capabilities, new TimeSpan(0, 0, 1, 0));
-
-                //else
-                //{
-                //    if (!Utils.IsPortAvailable(ipAddress, Convert.ToInt32(port)))
-                //    {
-                //        Helper.MsgOutput("Unable to Connect to GhostDriver via RemoteWebDriver - Port in use");
-                //        return null;
-                //    }
-                //}
             }
             catch (WebDriverException webDriverException)
             {
@@ -390,14 +378,12 @@ namespace Brother.Tests.Selenium.Lib.Support
             capabilities.SetCapability("os", "Windows");
             capabilities.SetCapability("os_version", "7");
             capabilities.SetCapability("resolution", "1024x768");
-
-//            capabilities.SetCapability("acceptSslCerts", true);
+            capabilities.SetCapability("acceptSslCerts", true);
             capabilities.SetCapability("javascriptEnabled", true);
-//            capabilities.SetCapability("platform", "WINDOWS");
-//            capabilities.SetCapability("web-security", false);
-//            capabilities.SetCapability("ignore-sss-errors", true);
+            capabilities.SetCapability("web-security", false);
+            capabilities.SetCapability("ignore-sss-errors", true);
             capabilities.SetCapability("unexpectedAlertBehaviour", "accept");
-//            capabilities.SetCapability("browserName", "chrome");
+            capabilities.SetCapability("browserstack.local", "true");
 
             if (capabilities.IsJavaScriptEnabled)
             {

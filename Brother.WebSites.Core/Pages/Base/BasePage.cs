@@ -214,9 +214,10 @@ namespace Brother.WebSites.Core.Pages.Base
             {
                 try
                 {
-                    driver.Navigate().GoToUrl(url);
+//                    driver.Navigate().GoToUrl(url);
+                    WebDriver.Wait(DurationType.Second, 3);
                     retries++;
-                    if (retries == 10)
+                    if (retries == 60)
                     {
                         timedOut = true;
                     }
