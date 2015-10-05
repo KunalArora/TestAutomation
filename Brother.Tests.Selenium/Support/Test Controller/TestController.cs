@@ -212,7 +212,8 @@ namespace Brother.Tests.Selenium.Lib.Support
                 EnablePersistentHover = false,
                 RequireWindowFocus = true,
                 EnableNativeEvents = false,
-                BrowserCommandLineArguments = port
+                BrowserCommandLineArguments = port,
+                IgnoreZoomLevel = true
             };
         }
 

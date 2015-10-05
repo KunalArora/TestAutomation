@@ -56,7 +56,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         [FindsBy(How = How.Id, Using = "CompanyDropDown")]
         public IWebElement EmployeeCountDropDownList;
 
-        [FindsBy(How = How.Id, Using = "CreateNewAccountRadioButton")]
+        [FindsBy(How = How.CssSelector, Using = "#CreateNewAccountRadioButton")]
         public IWebElement DoNotHaveAnAccountOptionButton;
 
         [FindsBy(How = How.Id, Using = "VatNumberTextBox")]
@@ -373,6 +373,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public void DoNotHaveAnAccountOption()
         {
+            Driver.FindElement(By.CssSelector("#CreateNewAccountRadioButton"));
             DoNotHaveAnAccountOptionButton.Click();
             TestCheck.AssertIsEqual(true, DoNotHaveAnAccountOptionButton.Selected, "Do Not Have An Account Button");
         }

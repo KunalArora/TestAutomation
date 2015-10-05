@@ -49,8 +49,6 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Plans
 
         public void SelectPaymentMethod(string paymentMethod)
         {
-            //GetDropdownListItemCount(EditPaymentMethodDropDownList, "Payment Methods");
-            //SelectFromDropdownByValue(EditPaymentMethodDropDownList, paymentMethod);
             SelectFromDropdown(EditPaymentMethodDropDownList, paymentMethod);
             AssertItemIsSelected(EditPaymentMethodDropDownList, paymentMethod, "OJ Payment Method Drop Down List");
         }
