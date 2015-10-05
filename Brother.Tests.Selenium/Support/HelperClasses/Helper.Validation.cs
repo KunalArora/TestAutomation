@@ -143,16 +143,5 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
             return validationStringList;
         }
-
-        //public void ValidateFormField(IWebElement field, List<string> validationStrings)
-        //{
-        //    field.Clear();
-        //    field.SendKeys(validationStrings + Keys.Tab);
-        //    if (maxCharsExceeded.Equals("True"))
-        //    {
-        //        Assert.AreNotEqual(validationStrings, GetTextBoxValue("PhoneNumberText"), "Phone Number Text Box");
-        //    }
-        //    break;
-        //}
     }
 }

@@ -190,7 +190,6 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
 
             // Close and re-launch current driver so we start the next test from a clean sheet
             Helper.MsgOutput("Scenario Failed! - Restarting Driver");
-            WebDriver.ClearWebDriverPackage();
             TestController.Test_Teardown();
             WebDriver.Wait(Helper.DurationType.Second, 3);
             BeforeFeatureHeadless();

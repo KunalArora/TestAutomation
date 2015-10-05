@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Threading;
-using Brother.Tests.Selenium.Lib.Support.Misc;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.UI;
 
@@ -16,7 +13,6 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         private static TimeSpan _defaultTimeout = TimeSpan.FromSeconds(60);
         private const string BrowserTypeDefault = @"HL";
 
-        private static WebDriverPackage _webDriverPackage;
 
         public enum DefaultTimeOut
         {
@@ -25,11 +21,6 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             Script, 
             None
         };
-
-        //public void TouchScreen(TouchActions action)
-        //{
-        //    action.Flick()
-        //}
 
         public static string GetSessionInfo()
         {
@@ -163,36 +154,6 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                     Thread.Sleep(TimeSpan.FromMinutes(duration));
                     break;
             }
-        }
-
-        /// <summary>
-        /// Clears down the current instance of the WebDriverPackage
-        /// </summary>
-        public static void ClearWebDriverPackage()
-        {
-            if (_webDriverPackage != null)
-            {
-                _webDriverPackage.Driver.Close();
-                _webDriverPackage.Driver.Quit();
-                if (_webDriverPackage.HeadlessProcess != -1)
-                {
-                    TestController.KillPhantomJs(_webDriverPackage.HeadlessProcess);
-                }
-            }
-
-            _webDriverPackage = null;
-        }
-
-        /// <summary>
-        /// Sets the webDriverPackage instance values.
-        /// </summary>
-        /// <param name="driver"></param>
-        /// <param name="processId"></param>
-        private static void SetWebDriverPackage(IWebDriver driver, int processId)
-        {
-            _webDriverPackage = new WebDriverPackage();
-            _webDriverPackage.Driver = driver;
-            _webDriverPackage.HeadlessProcess = processId;
         }
     }
 }

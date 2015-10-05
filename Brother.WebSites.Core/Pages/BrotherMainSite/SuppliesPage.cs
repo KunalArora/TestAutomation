@@ -43,9 +43,9 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         public void AddSupplyCode(string code)
         {
             SuppliesCodeExitBox.SendKeys(code);
-            WebDriver.Wait(Helper.DurationType.Second, 3);
+            WebDriver.Wait(DurationType.Second, 3);
             SuppliesCodeExitBox.SendKeys(Keys.ArrowDown);
-            WebDriver.Wait(Helper.DurationType.Second, 3);
+            WebDriver.Wait(DurationType.Second, 3);
             SuppliesCodeExitBox.SendKeys(Keys.Tab);
             SuppliesCodeExitBox.SendKeys(Keys.Tab);
         }
@@ -53,9 +53,9 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         public void AddModelCode(string code)
         {
             DeviceCodeExitBox.SendKeys(code);
-            WebDriver.Wait(Helper.DurationType.Second, 3);
+            WebDriver.Wait(DurationType.Second, 3);
             DeviceCodeExitBox.SendKeys(Keys.ArrowDown);
-            WebDriver.Wait(Helper.DurationType.Second, 3);
+            WebDriver.Wait(DurationType.Second, 3);
             DeviceCodeExitBox.SendKeys(Keys.Tab);
             DeviceCodeExitBox.SendKeys(Keys.Tab);
         }

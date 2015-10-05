@@ -42,7 +42,6 @@ namespace Brother.Tests.Selenium.Lib.Support
         public static void HeadlessRunning()
         {
             IsHeadlessRunning = true;
-            // NOTE: Unable to use without larger changes to project, including IWebDriver references replaced with PhantomJSDriver
             var usePhantomJsService = SeleniumGlobal.Default.UsePhantomJsService;
             if (Convert.ToBoolean(usePhantomJsService))
             {
