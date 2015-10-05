@@ -160,7 +160,6 @@
     <Compile Include="Support\Test Controller\TestController.cs" />
     <Compile Include="Support\HelperClasses\Helper.cs" />
     <Compile Include="Support\SpecFlow\SpecFlowSeleniumException.cs" />
-    <Compile Include="Support\Misc\WebDriverPackage.cs" />
     <Compile Include="User.cs">
       <DependentUpon>BrotherDB.tt</DependentUpon>
     </Compile>

@@ -736,8 +736,6 @@
     <Content Include="Drivers\phantomjs.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="MSBuildScript.xml" />
-    <Content Include="SpecFlowBuild.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Brother.Tests.Selenium\Brother.Tests.Selenium.Lib.csproj">
