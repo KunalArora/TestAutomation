@@ -176,12 +176,6 @@
     <Compile Include="Pages\MPSTwo\LocalOfficeAdminDashBoardPage.cs" />
     <Compile Include="Pages\MPSTwo\MPSJobRunnerPage.cs" />
     <Compile Include="Pages\MPSTwo\SendToBankPage.cs" />
-    <Compile Include="Pages\OmniJoin\OmniJoinPageTitles.Designer.cs">
-      <DependentUpon>OmniJoinPageTitles.settings</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
     <Compile Include="Pages\OmniJoin\PartnerPortal\CodeActivationPage.cs" />
     <Compile Include="Pages\OmniJoin\PartnerPortal\CreateActivationCodesPage.cs" />
     <Compile Include="Pages\OmniJoin\PartnerPortal\ManageCustomersAndOrdersPage.cs" />
@@ -216,11 +210,6 @@
     <None Include="Pages\BrotherOnline\BrotherOnlineHomePages.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>BrotherOnlineHomePages.Designer.cs</LastGenOutput>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Pages\OmniJoin\OmniJoinPageTitles.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>OmniJoinPageTitles.Designer.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
