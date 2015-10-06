@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Configuration;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
@@ -111,7 +112,7 @@ namespace Brother.Tests.Selenium.Lib.Support
 
         public static IWebDriver ConnectToBrowserStack()
         {
-            var uri = string.Format(@"http://hub.browserstack.com/wd/hub/");
+            var browserStacjUri = ConfigurationManager.AppSettings["BrowserStackHubUri"];
             var capabilities = SetBrowserStackDesiredCapabilities();
             IWebDriver newDriver = null;
 
@@ -119,7 +120,7 @@ namespace Brother.Tests.Selenium.Lib.Support
             {
                 Helper.MsgOutput(string.Format("INFORMATION: About to create connect to Browser Stack"));
                 Helper.MsgOutput("Creating new Remote Web Driver instance to Browser Stack with 1 minute timeout");
-                newDriver = new RemoteWebDriver(new Uri(uri), capabilities, new TimeSpan(0, 0, 1, 0));
+                newDriver = new RemoteWebDriver(new Uri(browserStacjUri), capabilities, new TimeSpan(0, 0, 1, 0));
             }
             catch (WebDriverException webDriverException)
             {
@@ -369,9 +370,11 @@ namespace Brother.Tests.Selenium.Lib.Support
 
         private static DesiredCapabilities SetBrowserStackDesiredCapabilities()
         {
-            DesiredCapabilities capabilities = DesiredCapabilities.Chrome();
-            capabilities.SetCapability("browserstack.user", "anthowell1");
-            capabilities.SetCapability("browserstack.key", "uu64dsphJt6uAyz6Kj8q");
+            // set to Chrome by default - need to add options for other drivers
+            var capabilities = DesiredCapabilities.Chrome();
+
+            capabilities.SetCapability("browserstack.user", ConfigurationManager.AppSettings["BrowserStackUser"]);
+            capabilities.SetCapability("browserstack.key", ConfigurationManager.AppSettings["BrowserStackKey"]);
 
             capabilities.SetCapability("browser", "Chrome");
             capabilities.SetCapability("browser_version", "44.0");

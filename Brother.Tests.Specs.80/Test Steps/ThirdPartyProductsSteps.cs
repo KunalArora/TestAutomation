@@ -90,31 +90,25 @@ namespace Brother.Tests.Specs._80
         [Then(@"If I Click the Reset Password Email Link")]
         public void ThenIfIClickTheResetPasswordEmailLink()
         {
-            if (Email.CheckEmailPackage("GuerrillaEmail"))
-            {
-                LaunchGuerrillaEmail(string.Empty);
-                CurrentPage.As<GuerillaEmailConfirmationPage>().SelectEmail("Password");
-                CurrentPage.As<GuerillaEmailConfirmationPage>().CheckAllEmailLinks();
-                NextPage = CurrentPage.As<GuerillaEmailConfirmationPage>().ValidatePasswordResetEmail();
-            }
-            //else
-            //{
-            //    OnceIHaveValidatedAnEmailToken();
-            //}
+            if (!Email.CheckEmailPackage("GuerrillaEmail")) return;
+            LaunchGuerrillaEmail(string.Empty);
+            CurrentPage.As<GuerillaEmailConfirmationPage>().SelectEmail("Password");
+            CurrentPage.As<GuerillaEmailConfirmationPage>().CheckAllEmailLinks();
+            NextPage = CurrentPage.As<GuerillaEmailConfirmationPage>().ValidatePasswordResetEmail();
         }
 
         [Then(@"Once I have Validated a Free Trial confirmation Email was received")]
         public void ThenOnceIHaveValidatedAFreeTrialConfirmationEmailWasReceived()
         {
-            if (Email.CheckEmailPackage("GuerrillaEmail"))
+            if (!Email.CheckEmailPackage("GuerrillaEmail"))
+            {
+                Helper.MsgOutput("Skipping Email Validation for this step");
+            }
+            else
             {
                 LaunchGuerrillaEmail(string.Empty);
                 CurrentPage.As<GuerillaEmailConfirmationPage>().SelectEmail("trial");
                 CurrentPage.As<GuerillaEmailConfirmationPage>().CheckAllEmailLinks();
-            }
-            else
-            {
-                Helper.MsgOutput("Skipping Email Validation for this step");
             }
         }
 
@@ -152,14 +146,11 @@ namespace Brother.Tests.Specs._80
 
         private void ValidateAccountEmail()
         {
-           if (Email.CheckEmailPackage("GuerrillaEmail"))
-           {
-                LaunchGuerrillaEmail(string.Empty);
-                CurrentPage.As<GuerillaEmailConfirmationPage>().SelectEmail("registration");
-              //  CurrentPage.As<GuerillaEmailConfirmationPage>().CheckAllEmailLinks();
-                NextPage = CurrentPage.As<GuerillaEmailConfirmationPage>().ValidateRegistrationEmail();
-                TestCheck.AssertIsNotEqual(true, CurrentPage.As<RegistrationPage>().IsWarningBarPresent(2,5), "Warning Bar detected - Account could not be validated");
-           }
+            if (!Email.CheckEmailPackage("GuerrillaEmail")) return;
+            LaunchGuerrillaEmail(string.Empty);
+            CurrentPage.As<GuerillaEmailConfirmationPage>().SelectEmail("registration");
+            NextPage = CurrentPage.As<GuerillaEmailConfirmationPage>().ValidateRegistrationEmail();
+            TestCheck.AssertIsNotEqual(true, CurrentPage.As<RegistrationPage>().IsWarningBarPresent(2,5), "Warning Bar detected - Account could not be validated");
         }
 
         [Then(@"Once I have Validated an Email Token")]

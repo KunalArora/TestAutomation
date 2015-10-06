@@ -100,5 +100,41 @@ namespace Brother.Tests.Selenium.Lib.Properties {
                 this["PhantomJSLoggingLevel"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("anthowell1")]
+        public string BrowserStackUser {
+            get {
+                return ((string)(this["BrowserStackUser"]));
+            }
+            set {
+                this["BrowserStackUser"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("uu64dsphJt6uAyz6Kj8q")]
+        public string BrowserStackKey {
+            get {
+                return ((string)(this["BrowserStackKey"]));
+            }
+            set {
+                this["BrowserStackKey"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://hub.browserstack.com/wd/hub/")]
+        public string BrowserStackHubUri {
+            get {
+                return ((string)(this["BrowserStackHubUri"]));
+            }
+            set {
+                this["BrowserStackHubUri"] = value;
+            }
+        }
     }
 }
