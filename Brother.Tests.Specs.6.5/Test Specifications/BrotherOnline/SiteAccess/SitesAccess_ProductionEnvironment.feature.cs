@@ -204,8 +204,6 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Test all CD servers on Live Environment")]
         [NUnit.Framework.IgnoreAttribute()]
-        [NUnit.Framework.CategoryAttribute("PROD")]
-        [NUnit.Framework.CategoryAttribute("SMOKE")]
         [NUnit.Framework.TestCaseAttribute("10.91.0.131", "https://web1.online.brother.at", null)]
         [NUnit.Framework.TestCaseAttribute("10.91.0.131", "https://web1.online.brother.ch", null)]
         [NUnit.Framework.TestCaseAttribute("10.91.0.131", "https://web1.online.brother.de", null)]
@@ -416,8 +414,6 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void TestAllCDServersOnLiveEnvironment(string pRODUCTIONCDSERVERS, string brotherSite, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "PROD",
-                    "SMOKE",
                     "ignore"};
             if ((exampleTags != null))
             {
