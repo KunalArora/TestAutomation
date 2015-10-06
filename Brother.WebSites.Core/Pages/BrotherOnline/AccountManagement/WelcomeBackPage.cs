@@ -21,7 +21,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             get { return BrotherOnlineHomePages.Default["HomePage"].ToString(); }
         }
 
-        //[FindsBy(How = How.CssSelector, Using = "a[href*='register-your-device']")]
         [FindsBy(How = How.CssSelector, Using = ".button-blue")]
         public IWebElement SignOutButton;
         [FindsBy(How = How.CssSelector, Using = ".add-device")]

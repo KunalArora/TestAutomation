@@ -23,7 +23,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
         public IWebElement AddNewAddressButton;
 
         [FindsBy(How = How.CssSelector, Using = "a#content_0_checkoutcontent_0_ChangeaddressLB_ChangeInvoiceaddressLB_AddressRepeater_useAsDeliveryAddressButton_0.button-blue")]
-        //[FindsBy(How = How.CssSelector, Using = ".change-address.cf.CreditCardChangeAddress a#content_0_checkoutcontent_0_ChangeaddressLB_ChangeInvoiceaddressLB_AddressRepeater_useAsDeliveryAddressButton_0.button-blue")]
         public IWebElement BillToThisAddressButton;
 
         public void IsAddBillingButtonAvailable()
@@ -71,7 +70,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
                 ScrollTo(BillToThisAddressWrappedButton);
             }
 
-            //   BillToThisAddressButton.Click();
             MoveToElement(BillToThisAddressWrappedButton);
             MoveToElement(BillToThisAddressButton);
             var displayed = AddNewAddressButton.Displayed;

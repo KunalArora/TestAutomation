@@ -68,10 +68,5 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             AssertElementText(ContinueButton, "Continue", "Continue Button");
         }
 
-        //public MyPrintersAndDevices ContinueButtonClick()
-        //{
-        //    ContinueButton.Click();
-        //    //return GetInstance<MyPrintersAndDevices>();
-        //}
     }
 }

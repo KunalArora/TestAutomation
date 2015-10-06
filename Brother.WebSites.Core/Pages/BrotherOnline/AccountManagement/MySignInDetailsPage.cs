@@ -122,7 +122,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             {
                 throw new ElementNotVisibleException("Error locating Email Address Edit Box");
             }
-            //TestCheck.AssertIsEqual(emailAddress, EmailAddressEditBox.GetAttribute("value"), "Email Address");
         }
 
         public void EnterEmailAddress(string newEmailAddress)

@@ -84,34 +84,5 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.SuppliesAndAccessories
         {
             AddToBasketLc1100BkButton.Click();
         }
-
-        //public int GetBasketItemsCount()
-        //{
-        //    Wait(DurationType.Second, 3); // wait for basket to get updated
-        //    var value = Basket.Text;
-
-        //    return Convert.ToInt32(value);
-        //}
-
-        //public string GetBasketInformationItem()
-        //{
-        //    MoveToElement(ProductInformationList);
-        //    var error = "Error!";
-        //    WaitUpTo(50, () => IsElementPresent(ProductInformationList), "Basket");
-        //    if (!IsElementPresent(ProductInformationList)) return error;
-        //    var itemPresent = ProductInformationList.Text;
-        //    return itemPresent ?? error;
-        //}
-
-        //public BasketPage GoToBasketButtonClick()
-        //{
-        //    GoToBasketButton.Click();
-        //    return GetInstance<BasketPage>(Driver);
-        //}
-
-        //public string GetItemPrice()
-        //{
-        //    return ItemPrice.Text;
-        //}
     }
 }

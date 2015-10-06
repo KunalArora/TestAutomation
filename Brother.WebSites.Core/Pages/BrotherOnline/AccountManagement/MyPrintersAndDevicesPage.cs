@@ -61,12 +61,12 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         
         public string GetDeviceModel()
         {
-            return DeviceModelText.Text;//GetAttribute("value");
+            return DeviceModelText.Text;
         }
 
         public string GetDeviceSerialNumber()
         {
-            return SerialNumberText.Text;//GetAttribute("value");
+            return SerialNumberText.Text;
         }
 
         public void ValidateDeviceRegistrationInfo()

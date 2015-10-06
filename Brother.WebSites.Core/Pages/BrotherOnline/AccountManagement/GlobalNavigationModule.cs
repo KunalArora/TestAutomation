@@ -29,7 +29,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         private const string WebConferencingMenuItem = "361cd1bc-c29d-4fe4-887e-196d6c5112a6";
         private const string PartnerPortalMenuItem = "2b729802-bb0d-4619-8090-dad02b2c217f";
 
-        //private const string SideNavMenu = @".side-nav";
         private const string ProductList = @"#product-list";
         private const string BrotherHomePage = "#master-logo > a";
         private const string MyAccountButtons = ".conference-button[href*='']";
@@ -195,7 +194,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
 
         private static IWebElement GetInstantInkMenuButton(ISearchContext driver, string productString, string buttonNameString)
         {
-            string buttonName = Navigation.ConvertButtonNameForLocale(productString, buttonNameString);
+            var buttonName = Navigation.ConvertButtonNameForLocale(productString, buttonNameString);
             var button = InstantInkButtonSearch(driver, buttonName);
             if (button == null)
             {
@@ -433,14 +432,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             menuItem.Click();
             return GetInstance<BusinessDetailsPage>(driver, "", "");
         }
-
-        //public static WelcomeBackPage MyAccountTopNavMenuClick(IWebElement menu)
-        //{
-        //    TestCheck.AssertIsNotNull(menu, "My Account Top Nav Menu");
-        //    menu.Click();
-        //    return GetInstance<WelcomeBackPage>(driver, "", "");
-        //}
-        //MyAccountClick
 
         // NEW - override now that we have static ID's for menu items
         public static WelcomeBackPage MyAccountMenuItemClick(IWebDriver driver)

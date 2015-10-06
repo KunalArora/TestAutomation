@@ -41,9 +41,9 @@ namespace Brother.WebSites.Core.Pages.Base
                 BaseURL = baseUrl
 
             };
-            if (Helper.UseCdServerDomain().ToLower().Contains("web") && !driver.Url.ToLower().Contains(Helper.UseCdServerDomain()))
+            if (UseCdServerDomain().ToLower().Contains("web") && !driver.Url.ToLower().Contains(UseCdServerDomain()))
             {
-                driver.Url = Helper.CheckForCdServer(driver.Url);
+                driver.Url = CheckForCdServer(driver.Url);
             }
 
             try
@@ -59,7 +59,7 @@ namespace Brother.WebSites.Core.Pages.Base
             PageFactory.InitElements(driver, pageInstance);
 
             // Small wait for page to complete loading. Poor but required at this time (increase to 6 seconds if issues discovered)
-            WebDriver.Wait(Helper.DurationType.Second, 6);
+            WebDriver.Wait(DurationType.Second, 6);
 
             return pageInstance;
         }
@@ -183,14 +183,14 @@ namespace Brother.WebSites.Core.Pages.Base
                     // would not contain brother if locale present at this index
                     if (urlParts[2].ToLower().Contains(brother))
                     {
-                        return string.Format("{0}.{1}.{2}.{3}", urlParts[0], Helper.Locale, urlParts[2], urlParts[3]);
+                        return string.Format("{0}.{1}.{2}.{3}", urlParts[0], Locale, urlParts[2], urlParts[3]);
                     }
                     // Live site at this stage so format accordingly
                     if (Helper.Locale.ToUpper().Equals("UK"))
                     {
-                        return string.Format("{0}.{1}.co.{2}", urlParts[0], urlParts[1], Helper.Locale);
+                        return string.Format("{0}.{1}.co.{2}", urlParts[0], urlParts[1], Locale);
                     }
-                    return string.Format("{0}.{1}.{2}", urlParts[0], urlParts[1], Helper.Locale);
+                    return string.Format("{0}.{1}.{2}", urlParts[0], urlParts[1], Locale);
                 }
                
             }
@@ -219,42 +219,42 @@ namespace Brother.WebSites.Core.Pages.Base
 
             var urlParts = brotherBaseHomePage.ToLower().Split('.');
 
-            var runTimeEnv = Helper.GetRunTimeEnv();
+            var runTimeEnv = GetRunTimeEnv();
 
-            if (runTimeEnv.Equals(Helper.RunTimeLive) && !urlParts[0].ToLower().Contains(mainUrl))
+            if (runTimeEnv.Equals(RunTimeLive) && !urlParts[0].ToLower().Contains(mainUrl))
             {
                 return brotherBaseHomePage.Replace(".uk", string.Empty);
             }
 
-            if (runTimeEnv.Equals(Helper.RunTimeLive) && urlParts[0].ToLower().Contains(mainUrl))
+            if (runTimeEnv.Equals(RunTimeLive) && urlParts[0].ToLower().Contains(mainUrl))
             {
                 return brotherBaseHomePage;
             }
 
 
 
-            if (runTimeEnv.Equals(Helper.RunTimeTest) && !urlParts[0].ToLower().Contains(mainUrl))
+            if (runTimeEnv.Equals(RunTimeTest) && !urlParts[0].ToLower().Contains(mainUrl))
             {
                 return ProcessBaseUrl(brotherBaseHomePage, "dv2");
             }
 
-            if (runTimeEnv.Equals(Helper.RunTimeTest) && urlParts[0].ToLower().Contains(mainUrl))
+            if (runTimeEnv.Equals(RunTimeTest) && urlParts[0].ToLower().Contains(mainUrl))
             {
                 return ProcessBaseUrl(brotherBaseHomePage.Replace(".cms", string.Empty), "dv2");
             }
 
-            if (runTimeEnv.Equals(Helper.RunTimeUat))
+            if (runTimeEnv.Equals(RunTimeUat))
             {
                 return ProcessBaseUrl(brotherBaseHomePage, "qas");
             }
             
-            if (runTimeEnv.Equals(Helper.RunTimeDev))
+            if (runTimeEnv.Equals(RunTimeDev))
             {
                 return ProcessBaseUrl(brotherBaseHomePage, "dev");
             }
 
             // for safety, always run on DV" as the default
-            Helper.MsgOutput("Unable to determine BaseUrl from {0} so defaulting to DV2", runTimeEnv);
+            MsgOutput("Unable to determine BaseUrl from {0} so defaulting to DV2", runTimeEnv);
             return ProcessBaseUrl(brotherBaseHomePage, "dv2");
         }
     }

@@ -73,16 +73,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             return orderNumberList;
         }
 
-        public string GetOrderInformation()
-        {
-            // Get order status - e.g.Confirmed
-            // Get order item
-            // Get order placed date
-            // Get order confirmation and compare with order number
-
-            return string.Empty;
-        }
-
         private IWebElement ViewOrderDetailsButton()
         {
             var orderNum = SpecFlow.GetContext("OrderConfirmationNumber");

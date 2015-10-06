@@ -38,7 +38,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             return GetInstance<RegistrationPage>(Driver);
         }
 
-        //[FindsBy(How = How.CssSelector, Using = "#AcceptCookieLawHyperLink")]
         [FindsBy(How = How.CssSelector, Using = "#cookieLawBar > div > a.button-blue")]        
         public IWebElement AcceptCookiesButton;
 
@@ -51,7 +50,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         [FindsBy(How = How.CssSelector, Using = "#main > div > div > div > p:nth-child(3) > a")]
         public IWebElement PrivacyPolicyLink;
 
-        //[FindsBy(How = How.CssSelector, Using = "#main > div > div.content-box.article-page.cf > div > p:nth-child(4) > a")]
         [FindsBy(How = How.CssSelector, Using = ".content-unit.six>p>a")]
         public IWebElement TermsAndConditionsLink;
 
@@ -67,7 +65,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         [FindsBy(How = How.CssSelector, Using = "#cccontent_0_landingpagecontent_1_CenterRepeater_CenterOptionLink_0")]
         public IWebElement CreativeCenterBusinessLink;
 
-        //[FindsBy(How = How.CssSelector, Using = "#cccontent_1_pagetop_0_RegisterLink")]
         [FindsBy(How = How.CssSelector, Using = ".account [id*=pagetop_0_RegisterLink]")]
         public IWebElement CreativeCenterRegisterLoginLink;
 
@@ -76,9 +73,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         [FindsBy(How = How.Id, Using = "cccontent_1_pagetop_0_Logout")]
         public IWebElement CreativeCenterLogoutLink;
-
-        //[FindsBy(How = How.Id, Using = "hide")]
-        //public IWebElement NoToCreativeCenterSurveyButton;
 
         [FindsBy(How = How.CssSelector, Using = "#hide")]
         public IWebElement NoToCreativeCenterSurveyButton;
@@ -139,7 +133,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         public IWebElement CcEmployeeCountDropDownList;
 
         public IWebElement MyAccountNavigationButton;
-        //[FindsBy(How = How.CssSelector, Using = "a.button-blue[href=\"/print-smart/my-services/consumables\"]")]
         [FindsBy(How = How.CssSelector, Using = "#content_2_ProductsTabRepeater_ProductLinkButton_4 > p:nth-child(2)")]
 
         [FindsBy(How = How.CssSelector, Using = ".error")]
@@ -151,7 +144,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         [FindsBy(How = How.CssSelector, Using = ".error")]
         public IWebElement FirstNameCcErrorMessage;
 
-        //[FindsBy(How = How.CssSelector, Using = "#form-sign-up > div:nth-child(2) > span.half-col.validation-failed.blur > div")]
         [FindsBy(How = How.CssSelector, Using = ".error")]
         public IWebElement LastNameCcErrorMessage;
 

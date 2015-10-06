@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Runtime.InteropServices;
 using Brother.WebSites.Core.Pages.Base;
-using Brother.WebSites.Core.Pages.BrotherMainSite.SuppliesAndAccessories;
 using Brother.WebSites.Core.Pages.BrotherMainSite.SuppliesAndAccessories.Printers;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.PageObjects;
-using OpenQA.Selenium.Support.UI;
-using TechTalk.SpecFlow;
 
 namespace Brother.WebSites.Core.Pages.BrotherMainSite
 {
