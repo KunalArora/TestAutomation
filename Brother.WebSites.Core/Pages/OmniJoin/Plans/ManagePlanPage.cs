@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement.PaymentMethods;
@@ -227,13 +228,9 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Plans
                     return null;
                 }
 
-                foreach (var menuItem in ConferenceControlMenu)
+                foreach (var menuItem in ConferenceControlMenu.Where(menuItem => menuItem.Text.ToLower().Contains(menuName.ToLower())))
                 {
-                    if (menuItem.Text.ToLower().Contains(menuName.ToLower()))
-                    {
-                        return menuItem;
-                    }
-
+                    return menuItem;
                 }
             }
             catch (Exception)
