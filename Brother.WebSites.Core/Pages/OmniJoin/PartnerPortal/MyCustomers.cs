@@ -110,13 +110,11 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
         {
             IsAddCustomerNextButtonAvailable();
             var addCustomerNextButton = GetElementByCssSelector("a.check-email.button-blue");
-            if (addCustomerNextButton != null)
-            {
-                ScrollTo(addCustomerNextButton);
-                addCustomerNextButton.Click();
-                IsAddCustomerOnAddCustomerFormButtonAvailable();
-                TestCheck.AssertIsEqual(true, IsAddCustomerOnAddCustomerFormButtonAvailable(), "Add Customer On Add Customer Button Exists");
-            }
+            if (addCustomerNextButton == null) return;
+            ScrollTo(addCustomerNextButton);
+            addCustomerNextButton.Click();
+            IsAddCustomerOnAddCustomerFormButtonAvailable();
+            TestCheck.AssertIsEqual(true, IsAddCustomerOnAddCustomerFormButtonAvailable(), "Add Customer On Add Customer Button Exists");
         }
 
         public void ClickAddCustomerOnAddCustomerButton()
@@ -175,13 +173,5 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
                 }
             }
         }
-
-        // Add Customer click - wait for AddCustomerPopupDialog popup to appear\be displayed
-        // After add email and click Next, wait for AddCustomerOnAddCustomerFormButton to appear with four additional fields
-        // After fields filled in, click AddCustomerOnAddCustomerFormButton and wait for AddCustomerPopupDialog to be cleared
-        // and wait for AddCustomerSuccessPopupDialog to appear and then click AddCustomerSuccessPopupDialogCloseSystemButton
-        // then later on check ".dealer-portal-table .odd" and ".dealer-portal-table .even" for each page to check if customer was created
-
-
     }
 }

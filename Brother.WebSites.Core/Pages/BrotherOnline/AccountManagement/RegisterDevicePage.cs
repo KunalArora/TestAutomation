@@ -92,12 +92,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             WaitForElementToExistByCssSelector(continueButtonId, 5, 5);
             var continueButton = GetElementByCssSelector(continueButtonId);
             AssertElementPresent(continueButton, "Register a Device page - Supplier Code Text Box");
-
-            //if (ContinueButton == null)
-            //{
-            //    throw new Exception("Unable to locate button on page");
-            //}
-            //AssertElementPresent(ContinueButton, "Continue Button");
         }
 
         public MyPrintersAndDevicesPage ClickContinueButton()

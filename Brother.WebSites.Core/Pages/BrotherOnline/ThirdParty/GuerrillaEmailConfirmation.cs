@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Net;
 using System.Threading;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
@@ -240,16 +241,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.ThirdParty
             }
         }
 
-        //public void EmailEditBoxClick()
-        //{
-        //    EmailEditBox = Driver.FindElement(By.CssSelector("#inbox-id"));
-        //    if (EmailEditBox == null)
-        //    {
-        //        throw new NullReferenceException("Unable to locate Email Edit Box on page");
-        //    }
-        //    EmailEditBox.Click();
-        //}
-
         private bool PopulateEmailEditControl(string email)
         {
             WebDriver.Wait(Helper.DurationType.Second, 1);
@@ -488,7 +479,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.ThirdParty
                 try
                 {
                     WebDriver.Wait(DurationType.Second, 2);
-                    IWebElement inboxItem = GetInboxItems();
+                    var inboxItem = GetInboxItems();
                     if (inboxItem == null)
                     {
                         throw new NullReferenceException(string.Format("SelectEmail:Unable to locate emails in inbox"));
@@ -573,22 +564,19 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.ThirdParty
             newHandleCount = Driver.WindowHandles.Count;
             if (currentHandleCount < newHandleCount)
             {
-                foreach (var window in Driver.WindowHandles)
+                foreach (var window in Driver.WindowHandles.Where(window => window != currentWindow))
                 {
-                    if (window != currentWindow)
+                    if (closeEmailAfterValidation)
                     {
-                        if (closeEmailAfterValidation)
-                        {
-                            Driver.SwitchTo().Window(currentWindow);
-                            Driver.Close();
-                            Driver.SwitchTo().Window(window);
-                        }
-                        else
-                        {
-                            Driver.SwitchTo().Window(window);
-                            Driver.Close();
-                            Driver.SwitchTo().Window(currentWindow);
-                        }
+                        Driver.SwitchTo().Window(currentWindow);
+                        Driver.Close();
+                        Driver.SwitchTo().Window(window);
+                    }
+                    else
+                    {
+                        Driver.SwitchTo().Window(window);
+                        Driver.Close();
+                        Driver.SwitchTo().Window(currentWindow);
                     }
                 }
             }
@@ -610,11 +598,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.ThirdParty
         {
             ValidateEmailUrl("Basket", true, true);
             return GetInstance<MyOrdersPage>(Driver, "", "");
-        }
-
-        public void ValidateActivationCodeEmail()
-        {
-            //Assert.AreEqual();
         }
 
         public MySignInDetailsPage ValidateBusinessAccountDetailsChangeEmail()
@@ -647,8 +630,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.ThirdParty
                 }
             }
 
-            var inboxItems = Driver.FindElements(By.CssSelector("[id*=mr_]"));
-
             var emailNotDeleted = true;
             while (emailNotDeleted)
             {
@@ -656,8 +637,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.ThirdParty
                 {
                     if (!FindEmail(emailSubject, out emailToDelete)) continue;
                     WebDriver.Wait(DurationType.Second, 1);
-//                    var email = emailToDelete.EmailElement.FindElement(By.XPath("//input[@type='checkbox']"));
-                    //if (!emailToDelete.EmailElement.Selected)
                     emailToDelete.EmailCheckboxElement.Click();
                     if (!emailToDelete.EmailElement.Selected)
                     {
@@ -685,9 +664,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.ThirdParty
         {
             BackToInboxButtonClick();
             IsDeleteEmailButtonAvailable();
-            foreach (IWebElement email in Driver.FindElements(By.XPath("//input[@type='checkbox']")))
+            foreach (var email in Driver.FindElements(By.XPath("//input[@type='checkbox']")))
             {
-                WebDriver.Wait(Helper.DurationType.Second, 1);
+                WebDriver.Wait(DurationType.Second, 1);
                 if (email.Selected) continue;
                 while (!email.Selected)
                 {
@@ -710,7 +689,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.ThirdParty
             }
             catch (StaleElementReferenceException staleElement)
             {
-                Helper.MsgOutput("Error retrieving account validation url", staleElement.Message);
+               MsgOutput("Error retrieving account validation url", staleElement.Message);
             }
             return string.Empty;
         }
@@ -733,16 +712,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.ThirdParty
             }
         }
 
-        //public void SetEmailButtonClick()
-        //{
-        //    var setEmailButton = Driver.FindElement(By.CssSelector("#inbox-id"));
-        //    if (setEmailButton == null)
-        //    {
-        //        throw new NullReferenceException("Unable to locate Email Set Button");
-        //    }
-        //    setEmailButton.Click();
-        //}
-
         public void DeleteEmailButtonClick()
         {
             IsDeleteEmailButtonAvailable();
@@ -751,7 +720,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.ThirdParty
             {
                 DeleteEmailButton.Click();
             }
-            WebDriver.Wait(Helper.DurationType.Second, 2);
+            WebDriver.Wait(DurationType.Second, 2);
             TestCheck.AssertIsEqual(true, WasEmailDeleted(), "Validate Email Was Deleted");
         }
 

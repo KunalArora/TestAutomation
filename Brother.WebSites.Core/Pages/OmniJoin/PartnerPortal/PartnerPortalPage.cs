@@ -13,25 +13,25 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
             get { return string.Empty; }
         }
 
-        private string partnerButtonsSearchString = ".content-box.article-page .content-unit [href*=]";
+        private const string PartnerButtonsSearchString = ".content-box.article-page .content-unit [href*=]";
 
         public ManageServicePage ManageServicesButtonClick()
         {
-            var manageServicesButton = Driver.FindElement(By.CssSelector(partnerButtonsSearchString.Replace("href*=", "href*='my-services'")));
+            var manageServicesButton = Driver.FindElement(By.CssSelector(PartnerButtonsSearchString.Replace("href*=", "href*='my-services'")));
             manageServicesButton.Click();
             return GetInstance<ManageServicePage>();
         }
 
         public ManageCustomersAndOrdersPage ManageCustomersAndOrdersButtonClick()
         {
-            var manageCustomersAndOrdersButton = Driver.FindElement(By.CssSelector(partnerButtonsSearchString.Replace("href*=", "href*='my-customers'")));
+            var manageCustomersAndOrdersButton = Driver.FindElement(By.CssSelector(PartnerButtonsSearchString.Replace("href*=", "href*='my-customers'")));
             manageCustomersAndOrdersButton.Click();
             return GetInstance<ManageCustomersAndOrdersPage>();
         }
 
         public void IsHomeButtonAvailable()
         {
-            var homeButton = Driver.FindElement(By.CssSelector(partnerButtonsSearchString.Replace("href*=", "href*='partner-portal'")));
+            var homeButton = Driver.FindElement(By.CssSelector(PartnerButtonsSearchString.Replace("href*=", "href*='partner-portal'")));
             if (homeButton == null)
             {
                 throw new NullReferenceException("Unable to locate Home Button");
