@@ -43,25 +43,16 @@ namespace Brother.Tests.Selenium.Lib.Support
         public static void HeadlessRunning()
         {
             IsHeadlessRunning = true;
-            var usePhantomJsService = SeleniumGlobal.Default.UsePhantomJsService;
-            if (Convert.ToBoolean(usePhantomJsService))
-            {
-                var phantomDriverService = StartPhantomJsService();
-                phantomDriverService.Start();
-                var jsOptions = SetJsOptions();
-                CurrentDriver = new PhantomJSDriver(phantomDriverService, jsOptions);
-            }
-            else
-            {
-                IsAcceptCookiesDismissed = false;
-                CurrentDriver = UsePhantomJsAsService();
+            
+            IsAcceptCookiesDismissed = false;
+            CurrentDriver = UsePhantomJsAsService();
 
-                if (CurrentDriver == null)
-                {
-                    TestCheck.AssertFailTest("FATAL: Unable to create a new Remote WebDriver instance");
-                }
-                SetWebDriverTimeouts(CurrentDriver);
+            if (CurrentDriver == null)
+            {
+                TestCheck.AssertFailTest("FATAL: Unable to create a new Remote WebDriver instance");
             }
+            SetWebDriverTimeouts(CurrentDriver);
+            
             Helper.MsgOutput("Using HEADLESS Capabilities");
         }
 
@@ -247,65 +238,7 @@ namespace Brother.Tests.Selenium.Lib.Support
             return phantomJsProcessList.Length == 0;
         }
 
-        public static int StartNewPhantomJsProcess(string ipAddress, string port)
-        {
-            var phantomJsProcess = new ProcessStartInfo();
-            const string ignoreSsl = @" --ignore-ssl-errors=true";
-            const string sslProtocol = @" --ssl-protocol=any";
-            const string localToRemoteAccess = @" --local-to-remote-url-access=true";
-            const string noSecurity = @" --web-security=no";
-            var loggingLevel = SeleniumGlobal.Default.PhantomJSLoggingLevel;
-            var logLevel = string.Format(@" --webdriver-loglevel={0}", loggingLevel); // ERROR, WARN, INFO(default), DEBUG
-
-            var driverLog = SetDriverLog();
-            var log = string.Format(@" --webdriver-logfile={0}", driverLog);
-            var useRemoteWebDriver = string.Format(@" --webdriver={0}:{1}", ipAddress, port);
-            phantomJsProcess.Arguments = string.Format("{0}{1}{2}{3}{4}{5}{6}", ignoreSsl, sslProtocol, noSecurity, logLevel, log, useRemoteWebDriver, localToRemoteAccess);
-            phantomJsProcess.FileName = string.Format("{0}\\Drivers\\phantomJS.exe", Directory.GetCurrentDirectory());
-            Helper.MsgOutput(string.Format("Starting PhantomJS for **HEADLESS** browsing [IP = {0}][Port={1}]", ipAddress, port));
-            Helper.MsgOutput("With arguments ", phantomJsProcess.Arguments);
-            phantomJsProcess.UseShellExecute = false;
-
-            try
-            {
- 
-                phantomJsProcess.UseShellExecute = false;
-
-                var phantomJsProc = new Process {StartInfo = phantomJsProcess};
-                var process = phantomJsProc.Start();
-                if (process)
-                {
-                    try
-                    {
-                        // try and get the process by its new Id
-                        Process.GetProcessById(phantomJsProc.Id);
-                        return phantomJsProc.Id;
-                    }
-                    catch (ArgumentException)
-                    {
-                        Helper.MsgOutput(string.Format("Error launching PhantomJS. [{0}]", "ArgumentException thrown"));
-                        return 0;
-                    }
-                    catch (InvalidOperationException)
-                    {
-                        Helper.MsgOutput(string.Format("Error launching PhantomJS. [{0}]", "InvalidOperationException thrown"));
-                        return 0;
-                    }
-                }
-            }
-            catch (Win32Exception win32Exception)
-            {
-                Helper.MsgOutput("Error launching PhantomJS", win32Exception.Message);
-            }
-            return 0;
-        }
-
-        //private static void StartPhantomJsProcess()
-        //{
-        //    KillPhantomJsIfRunning();
-        //    StartNewPhantomJsProcess(_ipAddress, _driverPort);
-        //}
-
+      
         private static PhantomJSDriverService StartPhantomJsService()
         {
             KillPhantomJsIfRunning();
@@ -367,24 +300,24 @@ namespace Brother.Tests.Selenium.Lib.Support
             return capabilities;
         }
 
-        private static DesiredCapabilities SetDesiredCapabilities()
-        {
-            var capabilities = DesiredCapabilities.PhantomJS();
-            capabilities.SetCapability("acceptSslCerts", true);
-            capabilities.SetCapability("javascriptEnabled", true);
-            capabilities.SetCapability("platform", "WINDOWS");
-            capabilities.SetCapability("web-security", false);
-            capabilities.SetCapability("ignore-sss-errors", true);
-            capabilities.SetCapability("unexpectedAlertBehaviour", "accept");
-            capabilities.SetCapability("browserName", "chrome");
+        //private static DesiredCapabilities SetDesiredCapabilities()
+        //{
+        //    var capabilities = DesiredCapabilities.PhantomJS();
+        //    capabilities.SetCapability("acceptSslCerts", true);
+        //    capabilities.SetCapability("javascriptEnabled", true);
+        //    capabilities.SetCapability("platform", "WINDOWS");
+        //    capabilities.SetCapability("web-security", false);
+        //    capabilities.SetCapability("ignore-sss-errors", true);
+        //    capabilities.SetCapability("unexpectedAlertBehaviour", "accept");
+        //    capabilities.SetCapability("browserName", "chrome");
 
-            if (capabilities.IsJavaScriptEnabled)
-            {
-                Helper.MsgOutput("Driver Capabilities", "Javascript support is Enabled");
-            }
+        //    if (capabilities.IsJavaScriptEnabled)
+        //    {
+        //        Helper.MsgOutput("Driver Capabilities", "Javascript support is Enabled");
+        //    }
 
-            return capabilities;
-        }
+        //    return capabilities;
+        //}
 
         private static PhantomJSOptions SetJsOptions()
         {
@@ -398,7 +331,6 @@ namespace Brother.Tests.Selenium.Lib.Support
             jsOptions.AddAdditionalCapability("browserName", "phantomjs");
             jsOptions.AddAdditionalCapability("ssl-protocol", "any");
             jsOptions.AddAdditionalCapability("localToRemoteUrlAccessEnabled", true);
-            //jsOptions.AddAdditionalCapability("proxy-type", "none");
             jsOptions.ToCapabilities();
            
             return jsOptions;

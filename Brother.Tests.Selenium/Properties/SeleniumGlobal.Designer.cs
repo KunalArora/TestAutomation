@@ -79,18 +79,6 @@ namespace Brother.Tests.Selenium.Lib.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("false")]
-        public string UsePhantomJsService {
-            get {
-                return ((string)(this["UsePhantomJsService"]));
-            }
-            set {
-                this["UsePhantomJsService"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("ERROR")]
         public string PhantomJSLoggingLevel {
             get {
