@@ -17,9 +17,6 @@
     <Setting Name="BrotherEmailConfirmationUrl" Type="System.String" Scope="User">
       <Value Profile="(Default)">/Test/EmailConfirmationToken.aspx</Value>
     </Setting>
-    <Setting Name="UsePhantomJsService" Type="System.String" Scope="User">
-      <Value Profile="(Default)">false</Value>
-    </Setting>
     <Setting Name="PhantomJSLoggingLevel" Type="System.String" Scope="User">
       <Value Profile="(Default)">ERROR</Value>
     </Setting>
