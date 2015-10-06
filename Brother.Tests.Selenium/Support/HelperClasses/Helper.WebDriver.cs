@@ -22,11 +22,6 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             None
         };
 
-        public static string GetSessionInfo()
-        {
-            var sessionId = (string)((RemoteWebDriver)TestController.CurrentDriver).Capabilities.GetCapability("webdriver.remote.sessionid");
-            return sessionId;
-        }
 
         /// <summary>
         /// Removes all browser cookies

@@ -54,8 +54,6 @@ namespace Brother.Tests.Selenium.Lib.Support
             else
             {
                 IsAcceptCookiesDismissed = false;
-              //  StartPhantomJsProcess();
-              //  CurrentDriver = StartNewRemoteWebDriver(_ipAddress, _driverPort);
                 CurrentDriver = UsePhantomJsAsService();
 
                 if (CurrentDriver == null)
@@ -80,33 +78,6 @@ namespace Brother.Tests.Selenium.Lib.Support
             IWebDriver newDriver = null;
             var phantomJsService = StartPhantomJsService();
             newDriver = new PhantomJSDriver(phantomJsService);
-            return newDriver;
-        }
-
-        public static IWebDriver StartNewRemoteWebDriver(string ipAddress, string port)
-        {
-            var uri = string.Format(@"http://{0}:{1}/wd/hub", ipAddress, port);
-            var capabilities = SetDesiredCapabilities();
-            IWebDriver newDriver = null;
-            
-            try
-            {
-                bool portInUse = true;
-                portInUse = Utils.CheckForPortInUse(ipAddress, Convert.ToInt32(port));
-                Helper.MsgOutput(string.Format("INFORMATION: About to create a new RemoteWebDriver instance. Port [{0}] in use status = [{1}]", port, portInUse));
-                Helper.MsgOutput("Creating new Remote Web Driver instance with 1 minute timeout");
-                newDriver = new RemoteWebDriver(new Uri(uri), capabilities, new TimeSpan(0, 0, 1, 0));
-            }
-            catch (WebDriverException webDriverException)
-            {
-                Test_Teardown();
-                Helper.MsgOutput(string.Format("{0} - {1}", "Unable to Connect to GhostDriver via RemoteWebDriver", webDriverException.Message));
-            }
-            catch (System.Net.WebException webException)
-            {
-                Test_Teardown();
-                Helper.MsgOutput(string.Format("{0} - {1}", "Unable to Connect to GhostDriver via RemoteWebDriver", webException.Message));
-            }
             return newDriver;
         }
 
