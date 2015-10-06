@@ -299,41 +299,5 @@ namespace Brother.Tests.Selenium.Lib.Support
 
             return capabilities;
         }
-
-        //private static DesiredCapabilities SetDesiredCapabilities()
-        //{
-        //    var capabilities = DesiredCapabilities.PhantomJS();
-        //    capabilities.SetCapability("acceptSslCerts", true);
-        //    capabilities.SetCapability("javascriptEnabled", true);
-        //    capabilities.SetCapability("platform", "WINDOWS");
-        //    capabilities.SetCapability("web-security", false);
-        //    capabilities.SetCapability("ignore-sss-errors", true);
-        //    capabilities.SetCapability("unexpectedAlertBehaviour", "accept");
-        //    capabilities.SetCapability("browserName", "chrome");
-
-        //    if (capabilities.IsJavaScriptEnabled)
-        //    {
-        //        Helper.MsgOutput("Driver Capabilities", "Javascript support is Enabled");
-        //    }
-
-        //    return capabilities;
-        //}
-
-        private static PhantomJSOptions SetJsOptions()
-        {
-            var jsOptions = new PhantomJSOptions();
-            jsOptions.AddAdditionalCapability("javascriptEnabled", true);
-            jsOptions.AddAdditionalCapability("webSecurityEnabled", false);
-            jsOptions.AddAdditionalCapability("ignore-sss-errors", true);
-            jsOptions.AddAdditionalCapability("acceptSslCerts", true);
-            jsOptions.AddAdditionalCapability("unexpectedAlertBehaviour", "accept");
-            jsOptions.AddAdditionalCapability("platform", "WINDOWS");
-            jsOptions.AddAdditionalCapability("browserName", "phantomjs");
-            jsOptions.AddAdditionalCapability("ssl-protocol", "any");
-            jsOptions.AddAdditionalCapability("localToRemoteUrlAccessEnabled", true);
-            jsOptions.ToCapabilities();
-           
-            return jsOptions;
-        }
     }
 }
