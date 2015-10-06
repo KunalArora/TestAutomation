@@ -175,5 +175,4 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Trial
             TestCheck.AssertIsEqual(true, ErrorMessageDisplayedPasswordField.Displayed, "Is Error Message Displayed");
         }
     }
-
-    }
+}

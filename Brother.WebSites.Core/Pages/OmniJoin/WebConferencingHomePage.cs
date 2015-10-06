@@ -49,8 +49,7 @@ namespace Brother.WebSites.Core.Pages.OmniJoin
             }
             catch (ElementNotVisibleException elementNotVisible)
             {
-                Helper.MsgOutput("Buy Button is not visible and is obscured", elementNotVisible.Message);
-                
+                MsgOutput("Buy Button is not visible and is obscured", elementNotVisible.Message);
             }
             
             return GetInstance<PlansHomePage>(Driver);
