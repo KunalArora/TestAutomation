@@ -92,6 +92,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             WebDriver.Wait(DurationType.Millisecond, 3000);
             ClickAcceptOnJsAlert(driver);
+            //AcceptAlert();
         }
 
         public void ClickDismissOnConfrimation(IWebDriver driver)

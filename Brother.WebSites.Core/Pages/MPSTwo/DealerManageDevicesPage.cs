@@ -51,6 +51,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement CancelInstallationRequestElement;
         [FindsBy(How = How.CssSelector, Using = "p[style=\"margin: 12px 0px;\"] a")]
         public IWebElement InstallerLinkElement;
+        [FindsBy(How = How.CssSelector, Using = ".modal-header .modal-title")]
+        public IWebElement ModalPopUpElement;
+
+        
         
         
         
@@ -80,12 +84,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if(ShowInstallationRequestEmailElement == null)
                 throw new Exception("Show Installation Request element is not displayed");
             ShowInstallationRequestEmailElement.Click();
+            WebDriver.Wait(DurationType.Second, 3);
         }
 
         public void IsInstallationRequestScreenDisplayed()
         {
-            TestCheck.AssertIsEqual(true, InstallationRequestClosePopUpElement.Displayed, "Installation request pop up is opened");
-            WebDriver.Wait(DurationType.Second, 5);
+            TestCheck.AssertIsEqual(true, ModalPopUpElement.Displayed, "Installation request pop up is opened");
+            WebDriver.Wait(DurationType.Second, 3);
         }
 
         public string GetInstallationLink()
@@ -105,7 +110,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void CloseInstallationrequestPopUp()
         {
-            InstallationRequestClosePopUpElement.Click();
+            var potentialAlert = GetSeleniumAlert();
+
+            if (potentialAlert != null)
+            {
+                InstallationRequestClosePopUpElement.Click();
+            }
+
             WebDriver.Wait(DurationType.Second, 5);
         }
         

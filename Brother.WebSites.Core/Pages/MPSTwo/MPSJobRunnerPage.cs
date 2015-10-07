@@ -10,22 +10,25 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 {
     public abstract class MPSJobRunnerPage
     {
-        private const string uaturl = @"http://online.uk.cms.brotherqas.eu/sitecore/admin/projects/mps2/runcommand.aspx?command=";
-        private const string testurl = @"http://online.uk.brotherdv2.eu/sitecore/admin/projects/mps2/runcommand.aspx?command=";
-        private const string customerAndPersonCommand = @"MPS:SystemJobCreateCustomerAndPersonCommand";
-        private const string clickRateInvoiceCommand = @"MPS:RaiseClickRateInvoicesCommand";
-        private const string completeInstallationCommand = @"MPS:CompleteInstallationCommand";
-        private const string sendClickRateInvoicesToSapCommand = @"MPS:SendClickRateInvoicesToSapCommand";
-        private const string refreshPrintCountsCommand = @"MPS:RefreshPrintCountsCommand";
-        private const string refreshPrintCountsFromMedioCommand = @"MPS:RefreshPrintCountsFromMedioCommand";
-        private const string staffAccountCreationCommand = @"MPS:StaffAccountCreationCommand";
-        private const string consumableOrderRequestsCommand = @"MPS:ConsumableOrderRequestsCommand";
-        private const string createOrderAndServiceRequestsCommand = @"MPS:CreateOrderAndServiceRequestsCommand";
-        private const string systemJobCreateCustomerAndPersonCommand = @"MPS:SystemJobCreateCustomerAndPersonCommand";
-        private const string systemJobCreateCustomerTaxCommand = @"MPS:SystemJobCreateCustomerTaxCommand";
-        private const string closeConsumableOrdersCommand = @"MPS:CloseConsumableOrdersCommand";
-        private const string pollConsumableOrderStatusCommand = @"MPS:PollConsumableOrderStatusCommand ";
-        private const string checkForSilentDevicesCommand = @"MPS:CheckForSilentDevicesCommand ";
+        private const string uaturl = @"http://online.uk.cms.brotherqas.eu/sitecore/admin/projects/mps2/";
+        private const string testurl = @"http://online.uk.brotherdv2.eu/sitecore/admin/projects/mps2/";
+        private const string customerAndPersonCommand = @"runcommand.aspx?command=MPS:SystemJobCreateCustomerAndPersonCommand";
+        private const string clickRateInvoiceCommand = @"runcommand.aspx?command=MPS:RaiseClickRateInvoicesCommand";
+        private const string completeInstallationCommand = @"runcommand.aspx?command=MPS:CompleteInstallationCommand";
+        private const string sendClickRateInvoicesToSapCommand = @"runcommand.aspx?command=MPS:SendClickRateInvoicesToSapCommand";
+        private const string refreshPrintCountsCommand = @"runcommand.aspx?command=MPS:RefreshPrintCountsCommand";
+        private const string refreshPrintCountsFromMedioCommand = @"runcommand.aspx?command=MPS:RefreshPrintCountsFromMedioCommand";
+        private const string staffAccountCreationCommand = @"runcommand.aspx?command=MPS:StaffAccountCreationCommand";
+        private const string consumableOrderRequestsCommand = @"runcommand.aspx?command=MPS:ConsumableOrderRequestsCommand";
+        private const string createOrderAndServiceRequestsCommand = @"runcommand.aspx?command=MPS:CreateOrderAndServiceRequestsCommand";
+        private const string systemJobCreateCustomerAndPersonCommand = @"runcommand.aspx?command=MPS:SystemJobCreateCustomerAndPersonCommand";
+        private const string systemJobCreateCustomerTaxCommand = @"runcommand.aspx?command=MPS:SystemJobCreateCustomerTaxCommand";
+        private const string closeConsumableOrdersCommand = @"runcommand.aspx?command=MPS:CloseConsumableOrdersCommand";
+        private const string pollConsumableOrderStatusCommand = @"runcommand.aspx?command=MPS:PollConsumableOrderStatusCommand";
+        private const string checkForSilentDevicesCommand = @"runcommand.aspx?command=MPS:CheckForSilentDevicesCommand";
+        private const string resetSerialNumberJob = @"resetinstalledprinter.aspx?serial=";
+        private const string setCustomerSAPIdJob = @"setcustomersapid.aspx?name={0}&sapid={1}";
+        private const string setPersonSAPIdJob = @"setpersonsapid.aspx?email={0}&sapid={1}";
         
         public static void RunCreateCustomerAndPersonCommandJob()
         {
@@ -36,7 +39,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 {
                     const string webSite = uaturl + customerAndPersonCommand;
 
-                    WebDriver.Wait(Helper.DurationType.Second, 30);
+                    WebDriver.Wait(Helper.DurationType.Second, 10);
                     var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
                    // TestCheck.AssertIsEqual(true, response.Equals(HttpStatusCode.OK), "");
                     
@@ -46,11 +49,33 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 {
                     const string webSite = testurl + customerAndPersonCommand;
 
-                    WebDriver.Wait(Helper.DurationType.Second, 30);
+                    WebDriver.Wait(Helper.DurationType.Second, 10);
                     var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
                     //TestCheck.AssertIsEqual(true, response.Equals(HttpStatusCode.OK), "");
                     
                 }
+                    break;
+            }
+        }
+
+
+        public static void RunResetSerialNumberJob(string serial)
+        {
+            switch (Helper.GetRunTimeEnv())
+            {
+                case "UAT" :
+                {
+                    var reset = uaturl + resetSerialNumberJob + serial;
+                    var response = Utils.GetPageResponse(reset, WebRequestMethods.Http.Get);
+                    // TestCheck.AssertIsEqual(true, response.Equals(HttpStatusCode.OK), "");
+                }
+                    break;
+                case "TEST":
+                    {
+                        var reset = testurl + resetSerialNumberJob + serial;
+                        var response = Utils.GetPageResponse(reset, WebRequestMethods.Http.Get);
+                        // TestCheck.AssertIsEqual(true, response.Equals(HttpStatusCode.OK), "");
+                    }
                     break;
             }
         }

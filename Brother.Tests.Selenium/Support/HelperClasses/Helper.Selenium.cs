@@ -7,6 +7,7 @@ using Brother.Tests.Selenium.Lib.Support.SpecFlow;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium.PhantomJS;
 using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.UI;
 using TechTalk.SpecFlow;
@@ -501,6 +502,34 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             return js.ExecuteScript(script);
         }
 
+        public IAlert GetSeleniumAlert()
+        {
+            //Don't handle Alerts using .SwitchTo() for PhantomJS
+            if (TestController.CurrentDriver is PhantomJSDriver)
+            {
+                var js = TestController.CurrentDriver as IJavaScriptExecutor;
+
+
+                var result = js.ExecuteScript("window.confirm = function(){return true;}") as string;
+
+                ((PhantomJSDriver)TestController.CurrentDriver).ExecutePhantomJS("var page = this;" +
+                                               "page.onConfirm = function(msg) {" +
+                                               "console.log('CONFIRM: ' + msg);return true;" +
+                                                  "};");
+                return null;
+            }
+
+            try
+            {
+                return TestController.CurrentDriver.SwitchTo().Alert();
+            }
+            catch (NoAlertPresentException)
+            {
+                return null;
+            }
+        }
+
+
         public static IWebElement FindElementByJs(string jsCommand)
         {
             var returnedElement = (ReadOnlyCollection<IWebElement>)RunScript(jsCommand);
@@ -800,6 +829,18 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             {
                 WebDriver.Wait(DurationType.Millisecond, 1000);
                 var alert = driver.SwitchTo().Alert();
+                alert.Accept();
+            }
+        }
+
+        public void AcceptAlert()
+        {
+            IAlert potentialAlert = GetSeleniumAlert();
+
+            if (potentialAlert != null) //will always be null for PhantomJS
+            {
+                //code to handle Alerts
+                IAlert alert = TestController.CurrentDriver.SwitchTo().Alert();
                 alert.Accept();
             }
         }

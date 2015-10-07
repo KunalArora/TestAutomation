@@ -44,10 +44,10 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             CurrentPage.As<InstallerDeviceInstallationPage>().ProceedOnInstaller();
         }
 
-        [When(@"I enter the device serial number")]
-        public void WhenIEnterTheDeviceSerialNumber()
+        [When(@"I enter ""(.*)"" device serial number")]
+        public void WhenIEnterTheDeviceSerialNumber(string country)
         {
-            CurrentPage.As<InstallerDeviceInstallationPage>().EnterSerialNumber();
+            CurrentPage.As<InstallerDeviceInstallationPage>().EnterSerialNumber(country);
             
         }
 

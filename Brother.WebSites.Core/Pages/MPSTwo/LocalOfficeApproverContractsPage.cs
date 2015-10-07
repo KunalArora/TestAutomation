@@ -104,6 +104,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             TestCheck.AssertIsEqual(true, newContract.Displayed, "Is new sent to bank awaiting contract page?");
             RunCreateCustomerAndPersonJob();
+
         }
 
 
