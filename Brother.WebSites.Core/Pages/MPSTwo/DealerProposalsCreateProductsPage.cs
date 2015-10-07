@@ -171,56 +171,56 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         
         private IWebElement FaxCheckboxElement()
         {
-            string element = "input[data-filter-for=\"fax\"]";
+            string element = "input[data-name=\"fax\"]";
 
             return GetElementByCssSelector(element);
         }
 
         private IWebElement ScannerCheckboxElement()
         {
-            string element = "input[data-filter-for=\"scanner\"]";
+            string element = "input[data-name=\"scanner\"]";
 
             return GetElementByCssSelector(element);
         }
 
         private IWebElement DuplexCheckboxElement()
         {
-            string element = "input[data-filter-for=\"duplex\"]";
+            string element = "input[data-name=\"duplex\"]";
 
             return GetElementByCssSelector(element);
         }
 
         private IWebElement AdditionalTrayCheckboxElement()
         {
-            string element = "input[data-filter-for=\"additional-tray\"]";
+            string element = "input[data-name=\"additional-tray\"]";
 
             return GetElementByCssSelector(element);
         }
 
         private IWebElement A4CheckboxElement()
         {
-            string element = "input[data-filter-for=\"a4\"]";
+            string element = "input[data-name=\"a4\"]";
 
             return GetElementByCssSelector(element);
         }
 
         private IWebElement A3CheckboxElement()
         {
-            string element = "input[data-filter-for=\"a3\"]";
+            var element = "input[data-name=\"a3\"]";
 
             return GetElementByCssSelector(element);
         }
 
         private IWebElement MonoCheckboxElement()
         {
-            string element = "input[data-filter-for=\"mono\"]";
+            string element = "input[data-name=\"mono\"]";
 
             return GetElementByCssSelector(element);
         }
 
         private IWebElement ColourCheckboxElement()
         {
-            string element = "input[data-filter-for=\"colour\"]";
+            string element = "input[data-name=\"colour\"]";
 
             return GetElementByCssSelector(element);
         }

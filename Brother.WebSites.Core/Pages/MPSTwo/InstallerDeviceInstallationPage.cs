@@ -15,6 +15,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public static string Url = "/";
 
         private const string serialNumber = @"A1T010001";
+        private const string serialNumberBIG = @"A1T010002";
 
         public override string DefaultTitle
         {
@@ -50,6 +51,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if(ContractReferencePageAlertElement == null)
                 throw new Exception("Installer page is not displayed");
             AssertElementPresent(ContractReferencePageAlertElement, "Installer pager alert");
+            MPSJobRunnerPage.RunResetSerialNumberJob(serialNumber);
         }
 
         public void EnterContractReference()
@@ -73,11 +75,31 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             TestCheck.AssertIsEqual(true, pin.Equals(ePin), message);
         }
 
-        public void EnterSerialNumber()
+        public void EnterSerialNumber(string country)
         {
-            ClearAndType(SerialNumberFieldElement, serialNumber);
+            if (country.Equals("United Kingdom"))
+            {
+                MPSJobRunnerPage.RunResetSerialNumberJob(serialNumber);
+
+                WebDriver.Wait(DurationType.Second, 3);
+
+                ClearAndType(SerialNumberFieldElement, serialNumber);
+            }
+            else if (country.Equals("Germany"))
+            {
+                MPSJobRunnerPage.RunResetSerialNumberJob(serialNumberBIG);
+
+                WebDriver.Wait(DurationType.Second, 3);
+
+                ClearAndType(SerialNumberFieldElement, serialNumberBIG);
+            }
+
+            
+            WebDriver.Wait(DurationType.Second, 3);
+
             SerialNumberFieldElement.SendKeys(Keys.Tab);
-            WebDriver.Wait(Helper.DurationType.Second, 3);
+
+            WebDriver.Wait(DurationType.Second, 3);
         }
 
         public void EnterIpAddress()
@@ -88,17 +110,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 ClearAndType(ipAddressElement, "1");
                 ipAddressElement.SendKeys(Keys.Tab);
             }
+            WebDriver.Wait(DurationType.Second, 3);
         }
 
         public void ConnectDevice()
         {
             ConnectButtonElement.Click();
+            WebDriver.Wait(DurationType.Second, 3);
         }
 
         public void CompleteDeviceConnection()
         {
             CompleteInstallationElement.Click();
-            WebDriver.Wait(Helper.DurationType.Second, 3);
+            WebDriver.Wait(DurationType.Second, 3);
         }
 
         public void ConfirmInstallationSucceed()
