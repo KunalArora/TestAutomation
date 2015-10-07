@@ -24,113 +24,97 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             get { return string.Empty; }
         }
 
-        [FindsBy(How = How.CssSelector, Using = ".content.cf .content-box.login-register.cf .box-out.regular-sign-in.cf .generic-form #form-sign-in .button-blue")]
-        public IWebElement SignInButton;
+        [FindsBy(How = How.CssSelector,
+            Using =
+                ".content.cf .content-box.login-register.cf .box-out.regular-sign-in.cf .generic-form #form-sign-in .button-blue"
+            )] public IWebElement SignInButton;
 
-        [FindsBy(How = How.CssSelector, Using = ".content.cf .content-box.login-register.cf .box-out.regular-sign-in.cf .generic-form #form-sign-up .button-blue")]
-//        [FindsBy(How = How.Id, Using = "content_0_twocolumnsformright_0_SignUpButton")]
-        public IWebElement CreateYourAccountButton;
+        [FindsBy(How = How.CssSelector,
+            Using =
+                ".content.cf .content-box.login-register.cf .box-out.regular-sign-in.cf .generic-form #form-sign-up .button-blue"
+            )] public IWebElement CreateYourAccountButton;
 
-        [FindsBy(How = How.Id, Using = "FirstNameTextBox")]
-        public IWebElement FirstNameTextBox;
+        [FindsBy(How = How.Id, Using = "FirstNameTextBox")] public IWebElement FirstNameTextBox;
 
-        [FindsBy(How = How.Id, Using = "LastNameTextBox")]
-        public IWebElement LastNameTextBox;
+        [FindsBy(How = How.Id, Using = "LastNameTextBox")] public IWebElement LastNameTextBox;
 
         // Note: there are Three password fields, one for Sign In, Two for Sign Up
-        [FindsBy(How = How.Id, Using = "Password")]
-        public new IWebElement Password;
+        [FindsBy(How = How.Id, Using = "Password")] public new IWebElement Password;
 
-        [FindsBy(How = How.Id, Using = "PasswordTextBox")]
-        public IWebElement PasswordTextBox;
+        [FindsBy(How = How.Id, Using = "PasswordTextBox")] public IWebElement PasswordTextBox;
 
-        [FindsBy(How = How.Id, Using = "ConfirmPasswordTextBox")]
-        public IWebElement ConfirmPasswordTextBox;
+        [FindsBy(How = How.Id, Using = "ConfirmPasswordTextBox")] public IWebElement ConfirmPasswordTextBox;
 
-        [FindsBy(How = How.Id, Using = "CompanyNameTextBox")]
-        public IWebElement CompanyNameTextBox;
+        [FindsBy(How = How.Id, Using = "CompanyNameTextBox")] public IWebElement CompanyNameTextBox;
 
-        [FindsBy(How = How.Id, Using = "BusinessDropDown")]
-        public IWebElement BusinessSectorDropDownList;
+        [FindsBy(How = How.Id, Using = "BusinessDropDown")] public IWebElement BusinessSectorDropDownList;
 
-        [FindsBy(How = How.Id, Using = "CompanyDropDown")]
-        public IWebElement EmployeeCountDropDownList;
+        [FindsBy(How = How.Id, Using = "CompanyDropDown")] public IWebElement EmployeeCountDropDownList;
 
-        [FindsBy(How = How.Id, Using = "CreateNewAccountRadioButton")]
-        public IWebElement DoNotHaveAnAccountOptionButton;
+        [FindsBy(How = How.CssSelector, Using = "#CreateNewAccountRadioButton")] public IWebElement
+            DoNotHaveAnAccountOptionButton;
 
-        [FindsBy(How = How.Id, Using = "VatNumberTextBox")]
-        public IWebElement VatNumberTextBox;
+        [FindsBy(How = How.Id, Using = "VatNumberTextBox")] public IWebElement VatNumberTextBox;
 
-        [FindsBy(How = How.Id, Using = "error-vat-already-registered")]
-        public IWebElement WarningMessageSameVATNumber;
-        
+        [FindsBy(How = How.Id, Using = "error-vat-already-registered")] public IWebElement WarningMessageSameVATNumber;
 
-        [FindsBy(How = How.Id, Using = "SignInRadioRadioButton")]
-        public IWebElement DoHaveAnAccountOptionButton;
 
-        [FindsBy(How = How.Id, Using = "BusinessAccountNoRadioButton")]
-        public IWebElement DoNotUseMyAccountForBusinessCheckbox;
+        [FindsBy(How = How.Id, Using = "SignInRadioRadioButton")] public IWebElement DoHaveAnAccountOptionButton;
 
-        [FindsBy(How = How.Id, Using = "BusinessAccountYesRadioButton")]
-        public IWebElement UseMyAccountForBusinessCheckbox;
+        [FindsBy(How = How.Id, Using = "BusinessAccountNoRadioButton")] public IWebElement
+            DoNotUseMyAccountForBusinessCheckbox;
 
-        [FindsBy(How = How.Id, Using = "TermsAndConditionsCheckbox")]
-        public IWebElement AgreeToTermsAndConditions;
+        [FindsBy(How = How.Id, Using = "BusinessAccountYesRadioButton")] public IWebElement
+            UseMyAccountForBusinessCheckbox;
 
-        [FindsBy(How = How.Id, Using = "Email")]
-        public IWebElement EmailAddressTextBox;
+        [FindsBy(How = How.Id, Using = "TermsAndConditionsCheckbox")] public IWebElement AgreeToTermsAndConditions;
 
-        [FindsBy(How = How.CssSelector, Using = ".half-col.validation-failed.blur .error")]
-        public IWebElement PasswordErrorMessage;
+        [FindsBy(How = How.Id, Using = "Email")] public IWebElement EmailAddressTextBox;
 
-        [FindsBy(How = How.CssSelector, Using = ".half-col.validation-failed.blur .error")]
-        public IWebElement FirstNameErrorMessageDisplayed;
+        [FindsBy(How = How.CssSelector, Using = ".half-col.validation-failed.blur .error")] public IWebElement
+            PasswordErrorMessage;
 
-        [FindsBy(How = How.CssSelector, Using = "#form-sign-up > div:nth-child(2) > span.half-col.validation-failed.blur > div")]
-        public IWebElement LastNameErrorMessageDisplayed;
+        [FindsBy(How = How.CssSelector, Using = ".half-col.validation-failed.blur .error")] public IWebElement
+            FirstNameErrorMessageDisplayed;
 
-        [FindsBy(How = How.CssSelector, Using = "#form-sign-up > div:nth-child(5) > span.half-col.validation-failed.blur > div")]
-        public IWebElement CompanyNameErrorMessageDisplayed;
+        [FindsBy(How = How.CssSelector,
+            Using = "#form-sign-up > div:nth-child(2) > span.half-col.validation-failed.blur > div")] public IWebElement
+            LastNameErrorMessageDisplayed;
 
-        [FindsBy(How = How.CssSelector, Using = "#form-sign-up > div:nth-child(6) > span.half-col.validation-failed.blur > div")]
-        public IWebElement BusinessSectorErrorMessageDisplayed;
+        [FindsBy(How = How.CssSelector,
+            Using = "#form-sign-up > div:nth-child(5) > span.half-col.validation-failed.blur > div")] public IWebElement
+            CompanyNameErrorMessageDisplayed;
 
-        [FindsBy(How = How.XPath, Using = ".//*[@id='form-sign-up']/div[1]/span[2]/div")]
-        public IWebElement ConfirmPasswordErrorMessage;
+        [FindsBy(How = How.CssSelector,
+            Using = "#form-sign-up > div:nth-child(6) > span.half-col.validation-failed.blur > div")] public IWebElement
+            BusinessSectorErrorMessageDisplayed;
 
-        [FindsBy(How = How.CssSelector, Using = ".error")]
-        public IWebElement EmailAddressErrorMessage;
+        [FindsBy(How = How.XPath, Using = ".//*[@id='form-sign-up']/div[1]/span[2]/div")] public IWebElement
+            ConfirmPasswordErrorMessage;
 
-        [FindsBy(How = How.CssSelector, Using = ".forgotten-password-link[href]")]
-        public IWebElement ResetPasswordLink;
+        [FindsBy(How = How.CssSelector, Using = ".error")] public IWebElement EmailAddressErrorMessage;
 
-        [FindsBy(How = How.CssSelector, Using = "#EmailTextBox")]
-        public IWebElement EmailAddressPasswordResetTextBox;
+        [FindsBy(How = How.CssSelector, Using = ".forgotten-password-link[href]")] public IWebElement ResetPasswordLink;
 
-        [FindsBy(How = How.CssSelector, Using = "#content_1_ResetPasswordButton")]
-        public IWebElement ResetYourPasswordButton;
+        [FindsBy(How = How.CssSelector, Using = "#EmailTextBox")] public IWebElement EmailAddressPasswordResetTextBox;
 
-        //[FindsBy(How = How.ClassName, Using = ".button-blue")]
-        //public IWebElement ResetYourPasswordButton;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_ResetPasswordButton")] public IWebElement
+            ResetYourPasswordButton;
 
-        [FindsBy(How = How.CssSelector, Using = ".form-section.cf.validation-failed.load .error")]
-        public IWebElement TermsAndConditionsErrorMessage;
+        [FindsBy(How = How.CssSelector, Using = ".form-section.cf.validation-failed.load .error")] public IWebElement
+            TermsAndConditionsErrorMessage;
 
-        [FindsBy(How = How.CssSelector, Using = "#Warnings")]
-        public IWebElement DuplicateEmailErrorMessage;
+        [FindsBy(How = How.CssSelector, Using = "#Warnings")] public IWebElement DuplicateEmailErrorMessage;
 
-        [FindsBy(How = How.CssSelector, Using = "#Warnings.warning-bar p")]
-        public IWebElement InvalidCredentialsErrorMessage;
+        [FindsBy(How = How.CssSelector, Using = "#Warnings.warning-bar p")] public IWebElement
+            InvalidCredentialsErrorMessage;
 
-        [FindsBy(How = How.CssSelector, Using = "#txtTax1")]
-        public IWebElement NiNumberTextBox;
+        [FindsBy(How = How.CssSelector, Using = "#txtTax1")] public IWebElement NiNumberTextBox;
 
-        [FindsBy(How = How.CssSelector, Using = "#txtTax1")]
-        public IWebElement TaxNumberTextBox;
+        [FindsBy(How = How.CssSelector, Using = "#txtTax1")] public IWebElement TaxNumberTextBox;
 
-        [FindsBy(How = How.CssSelector, Using = "#TopNavigationControl_rptPrimaryLevelNav_aSectionLink_3")]
-        public IWebElement MyAccountNavigationButton;
+        [FindsBy(How = How.CssSelector, Using = "#TopNavigationControl_rptPrimaryLevelNav_aSectionLink_3")] public
+            IWebElement MyAccountNavigationButton;
 
         public bool IsWarningBarPresent(int retry, int timeToWait)
         {
@@ -167,7 +151,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             }
             catch (ElementNotVisibleException elementNotVisible)
             {
-                MsgOutput(string.Format("Account Verification Sucess message could not be located [{0}]", elementNotVisible.Message));
+                MsgOutput(string.Format("Account Verification Sucess message could not be located [{0}]",
+                    elementNotVisible.Message));
             }
             return false;
         }
@@ -178,7 +163,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             {
                 if (WaitForElementToExistByCssSelector("#content_1_ResetPasswordButton.button-blue", retry, timeToWait))
                 {
-                    var resetPasswordButton = Driver.FindElement(By.CssSelector("#content_1_ResetPasswordButton.button-blue"));
+                    var resetPasswordButton =
+                        Driver.FindElement(By.CssSelector("#content_1_ResetPasswordButton.button-blue"));
                     if (resetPasswordButton != null)
                     {
                         if (resetPasswordButton.Displayed)
@@ -197,14 +183,20 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public void ResetYourPasswordButtonClick()
         {
-            if (!WaitForElementToExistByCssSelector(".content.cf .wrapper .content-box.password-reset.cf .content-unit.six .box-out.reset-pass-container .generic-form .button-blue", 5, 5))
+            if (
+                !WaitForElementToExistByCssSelector(
+                    ".content.cf .wrapper .content-box.password-reset.cf .content-unit.six .box-out.reset-pass-container .generic-form .button-blue",
+                    5, 5))
             {
-                ResetYourPasswordButton = Driver.FindElement(By.CssSelector(".content.cf .wrapper .content-box.password-reset.cf .content-unit.six .box-out.reset-pass-container .generic-form .button-blue"));
+                ResetYourPasswordButton =
+                    Driver.FindElement(
+                        By.CssSelector(
+                            ".content.cf .wrapper .content-box.password-reset.cf .content-unit.six .box-out.reset-pass-container .generic-form .button-blue"));
             }
             ScrollTo(ResetYourPasswordButton);
             ResetYourPasswordButton.Click();
         }
-    
+
         public void IsEmailResetTextBoxAvailable()
         {
             if (EmailAddressPasswordResetTextBox == null)
@@ -335,29 +327,30 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         public void PopulatePasswordTextBox(string password)
         {
             PasswordTextBox.SendKeys(password.Equals("@@@@@") ? Helper.Password : password);
-            TestCheck.AssertIsEqual(password.Equals("@@@@@") ? Helper.Password : password, GetTextBoxValue("PasswordTextBox"), "Password Text Box");
+            TestCheck.AssertIsEqual(password.Equals("@@@@@") ? Helper.Password : password,
+                GetTextBoxValue("PasswordTextBox"), "Password Text Box");
         }
-         public void PopulateConfirmPasswordTextBox(string password)
+
+        public void PopulateConfirmPasswordTextBox(string password)
         {
             ConfirmPasswordTextBox.SendKeys(password.Equals("@@@@@") ? Helper.Password : password);
-            TestCheck.AssertIsEqual(password.Equals("@@@@@") ? Helper.Password : password, GetTextBoxValue("ConfirmPasswordTextBox"), "Confirm Password Text Box");
+            TestCheck.AssertIsEqual(password.Equals("@@@@@") ? Helper.Password : password,
+                GetTextBoxValue("ConfirmPasswordTextBox"), "Confirm Password Text Box");
         }
+
         public void PopulateNiNumberTextBox(string numeroDni)
         {
             NiNumberTextBox.SendKeys(numeroDni);
-            //TestCheck.AssertIsEqual(numeroDni, GetTextBoxValue("NiNumberTextBox"), "NiNumber Text Box");
         }
 
         public void PopulateTaxNumberTextBox(string codiceFiscale)
         {
             TaxNumberTextBox.SendKeys(codiceFiscale);
-            //TestCheck.AssertIsEqual(codiceFiscale, GetTextBoxValue("TaxNumberTextBox"), "Codice Fiscale Text Box");
         }
 
         public void PopulateInvalidTaxNumberTextBox(string invalidTaxCode)
         {
             TaxNumberTextBox.SendKeys(invalidTaxCode);
-            //TestCheck.AssertIsEqual(codiceFiscale, GetTextBoxValue("TaxNumberTextBox"), "Codice Fiscale Text Box");
         }
 
         public void PopulateInvalidItalyVatNumber(string invalidVatNumber)
@@ -373,6 +366,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public void DoNotHaveAnAccountOption()
         {
+            Driver.FindElement(By.CssSelector("#CreateNewAccountRadioButton"));
             DoNotHaveAnAccountOptionButton.Click();
             TestCheck.AssertIsEqual(true, DoNotHaveAnAccountOptionButton.Selected, "Do Not Have An Account Button");
         }
@@ -398,20 +392,23 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         public void DoNotUseAccountForBusiness()
         {
             DoNotUseMyAccountForBusinessCheckbox.Click();
-            TestCheck.AssertIsEqual("True", DoNotUseMyAccountForBusinessCheckbox.Selected.ToString(), "Do Not Use Account For Business Button");
+            TestCheck.AssertIsEqual("True", DoNotUseMyAccountForBusinessCheckbox.Selected.ToString(),
+                "Do Not Use Account For Business Button");
         }
 
         public void UseAccountForBusiness()
         {
             UseMyAccountForBusinessCheckbox.Click();
-            TestCheck.AssertIsEqual("True", UseMyAccountForBusinessCheckbox.Selected.ToString(), "Use Account For Business Button");
+            TestCheck.AssertIsEqual("True", UseMyAccountForBusinessCheckbox.Selected.ToString(),
+                "Use Account For Business Button");
         }
 
         public void CheckTermsAndConditions()
         {
             ScrollTo(AgreeToTermsAndConditions);
             AgreeToTermsAndConditions.Click();
-            TestCheck.AssertIsEqual("True", AgreeToTermsAndConditions.Selected.ToString(), "Accept Terms and Conditions Button");
+            TestCheck.AssertIsEqual("True", AgreeToTermsAndConditions.Selected.ToString(),
+                "Accept Terms and Conditions Button");
         }
 
         public void CheckTermsAndConditionsForItaly()
@@ -423,12 +420,13 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         public void PopulatePassword(string password)
         {
             Password.SendKeys(password.Equals("@@@@@") ? Helper.Password : password);
-            TestCheck.AssertIsEqual(password.Equals("@@@@@") ? Helper.Password : password, GetTextBoxValue("Password"), "Password");
+            TestCheck.AssertIsEqual(password.Equals("@@@@@") ? Helper.Password : password, GetTextBoxValue("Password"),
+                "Password");
         }
 
         public void PopulateMaxPassword()
         {
-            Password.SendKeys("Max30CharacterPasswooooooooord");            
+            Password.SendKeys("Max30CharacterPasswooooooooord");
         }
 
         public void PopulateEmailAddressTextBox(string emailAddress)
@@ -438,7 +436,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             {
                 emailAddress = Email.GenerateUniqueEmailAddress();
             }
-          
+
             EmailAddressTextBox.Clear();
             EmailAddressTextBox.SendKeys(emailAddress);
             EmailAddressTextBox.SendKeys(Keys.Tab);
@@ -459,66 +457,78 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             TestCheck.AssertIsEqual(emailAddress, GetTextBoxValue("Email"), "Email Text Box");
         }
 
-        
+
         public void EmptyEmailAddressTextBox()
         {
             EmailAddressTextBox.Clear();
             EmailAddressTextBox.SendKeys(Keys.Tab);
         }
+
         public void EmptyPasswordTextBox()
         {
             PasswordTextBox.Clear();
             PasswordTextBox.SendKeys(Keys.Tab);
         }
+
         public void EmptyFirstNameTextBox()
         {
             FirstNameTextBox.Clear();
             FirstNameTextBox.SendKeys(Keys.Tab);
         }
+
         public void EmptyLastNameTextBox()
         {
             LastNameTextBox.Clear();
             LastNameTextBox.SendKeys(Keys.Tab);
         }
+
         public void EmptyCompanyNameTextBox()
         {
             CompanyNameTextBox.Clear();
             CompanyNameTextBox.SendKeys(Keys.Tab);
         }
+
         public void EmptyBusinessSectorTextBox()
         {
             BusinessSectorDropDownList.SendKeys(Keys.Tab);
         }
-        
+
         public void IsErrorMessageDisplayed()
         {
-           TestCheck.AssertIsEqual(true, EmailAddressErrorMessage.Displayed, "Is Error Message Displayed");
+            TestCheck.AssertIsEqual(true, EmailAddressErrorMessage.Displayed, "Is Error Message Displayed");
         }
+
         public void PasswordErrorMessageDisplayed()
-        {   
+        {
             PasswordTextBox.SendKeys(Keys.Tab);
             TestCheck.AssertIsEqual(true, PasswordErrorMessage.Displayed, "Is Error Message Displayed");
         }
+
         public void FirstNameErrorMessage()
         {
             TestCheck.AssertIsEqual(true, FirstNameErrorMessageDisplayed.Displayed, "Is Error Message Displayed");
         }
+
         public void LastNameErrorMessage()
         {
             TestCheck.AssertIsEqual(true, LastNameErrorMessageDisplayed.Displayed, "Is Error Message Displayed");
         }
+
         public void CompanyNameErrorMessage()
         {
             TestCheck.AssertIsEqual(true, CompanyNameErrorMessageDisplayed.Displayed, "Is Error Message Displayed");
         }
+
         public void BusinessSectorErrorMessage()
         {
             TestCheck.AssertIsEqual(true, BusinessSectorErrorMessageDisplayed.Displayed, "Is Error Message Displayed");
         }
+
         public void ConfirmPasswordErrorMessageDisplayed()
         {
             TestCheck.AssertIsEqual(true, ConfirmPasswordErrorMessage.Displayed, "Is Error Message Displayed");
         }
+
         public void TermsAndConditionsErrorMessageDisplayed()
         {
             TestCheck.AssertIsEqual(true, TermsAndConditionsErrorMessage.Displayed, "Is Error Message Displayed");
@@ -528,7 +538,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         {
             TestCheck.AssertIsEqual(true, DuplicateEmailErrorMessage.Displayed, "Is Error Message Displayed");
         }
-        
+
         public void InvalidCredentialsErrorMessageDisplayed()
         {
             TestCheck.AssertIsEqual(true, InvalidCredentialsErrorMessage.Displayed, "Is Error Message Displayed");
@@ -537,8 +547,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         public void NavigateToMyAccountPage()
         {
             MyAccountNavigationButton.Click();
-            //return GetInstance<MyAccountPage>(Driver, BasePage.BaseUrl, string.Empty);
         }
-
-       }
+    }
 }

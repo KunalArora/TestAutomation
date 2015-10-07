@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
@@ -14,8 +15,6 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.Basket
         private const string ItemPriceId = ".cf .price";
         private const string PriceString = @"PRICE";
         private const string RemoveFromBasketButton = ".remove-from-basket-button";
-        private const string BasketNavigationIcon = "#primary-nav .cf .nav-basket";
-
 
         private static IWebElement FindElement(ISearchContext driver, string element, string message)
         {
@@ -57,12 +56,9 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.Basket
             {
                 if (priceElements.Count <= 1) return priceElements[0];
                 // we have the two price element page so we need to eliminate one of them
-                foreach (var priceElement in priceElements)
+                foreach (var priceElement in priceElements.Where(priceElement => priceElement.Text != PriceString))
                 {
-                    if (priceElement.Text != PriceString)
-                    {
-                        return priceElement;
-                    }
+                    return priceElement;
                 }
             }
             catch (WebDriverException noSuchElement)

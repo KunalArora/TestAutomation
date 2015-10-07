@@ -58,12 +58,12 @@ Scenarios:
 	| Sweden         | https://online.brother.se/    |
 	| Portugal       | https://online.brother.pt/    |
 	| Czech Republic | https://online.brother.cz/    |
-	| Hungary        | https://online.brother.hu/    |
 	| Russia         | https://online.brother.ru/    |
-	| Bulgaria       | https://online.brother.bg/    |
-	| Romania        | https://online.brother.ro/    |
 	| Slovenia       | https://online.brother.si/    |
 	| Luxembourg     | https://online.brother.lu/    |
+#	| Hungary        | https://online.brother.hu/    |
+#	| Bulgaria       | https://online.brother.bg/    |
+#	| Romania        | https://online.brother.ro/    |
 
 @SMOKE
 Scenario Outline: Get 200 OK response back from Web Conferencing "<Country>" on the LIVE environment
@@ -75,9 +75,9 @@ Scenarios:
 	| United Kingdom | http://webconferencing.brother.co.uk/ |
 	| France         | http://webconference.brother.fr/      |
 	| Switzerland    | http://visioconference.brother.ch/    |
-	| Spain          | http://videoconferencia.brother.es/   |
 	| Ireland        | http://webconferencing.brother.ie/    |
 	| Germany        | http://videokonferenzen.brother.de/   |
+#	| Spain          | http://videoconferencia.brother.es/   |
 
 @SMOKE
 Scenario Outline: Get 200 OK response back from Creative Centre "<Country>" on the LIVE environment
@@ -88,7 +88,7 @@ Scenarios:
 	| Country        | Site Url                          |
 	| United Kingdom | https://creativecenter.brother.eu |
 
-@PROD @SMOKE @ignore
+@ignore
 Scenario Outline: Test all CD servers on Live Environment
 		Given The following site "<Brother Site>" to validate I should receive an Ok response back
 
@@ -119,17 +119,6 @@ Scenarios:
 | 10.91.0.131           | https://web1.online.brother.ro                |
 | 10.91.0.131           | https://web1.online.brother.sk                |
 | 10.91.0.131           | https://web1.online.brother.si                |
-#| 10.91.0.131           | http://web1.webconferencing.brother.co.uk     | | # Site exists but cannot be accessed via web1. reference
-#| 10.91.0.131           | http://web1.videokonferenzen.brother.at       | | # Site exists but cannot be accessed via web1. reference
-#| 10.91.0.131           | http://web1.videokonferenzen.brother.ch       | | # Site exists but cannot be accessed via web1. reference
-#| 10.91.0.131           | http://web1.visioconference.brother.ch        | | # Site exists but cannot be accessed via web1. reference
-#| 10.91.0.131           | http://web1.videokonferenzen.brother.de       | | # Site exists but cannot be accessed via web1. reference
-#| 10.91.0.131           | http://web1.videoconferencia.brother.es       | | # Site exists but cannot be accessed via web1. reference
-#| 10.91.0.131           | http://web1.webconference.brother.fr          | | # Site exists but cannot be accessed via web1. reference
-#| 10.91.0.131           | http://web1.visioconference.brother.fr        | | # Site exists but cannot be accessed via web1. reference
-#| 10.91.0.131           | http://web1.webconferencing.brother.ie        | | # Site exists but cannot be accessed via web1. reference
-#| 10.91.0.131           | http://www.web1.omnijoin.eu                   | # Site exists but cannot be accessed via web1. reference
-#| 10.91.0.131           | http://web1.eu.brother.eu                     | # Site exists but cannot be accessed via web1. reference
 | 10.91.0.131           | http://www.web1.brother.co.uk                 |
 | 10.91.0.131           | http://www.web1.brother.de                    |
 | 10.91.0.131           | http://www.web1.brother.at                    |
@@ -158,7 +147,6 @@ Scenarios:
 | 10.91.0.131           | http://www.web1.brother.hr                    |
 | 10.91.0.131           | http://www.web1.brother.bg                    |
 | 10.91.0.131           | http://www.web1.brother.ro                    |
-#| 10.91.0.131           | http://www.web1.creativecenter.brother.eu     | # Site exists but cannot be accessed via web1. reference
 | 10.91.0.132           | https://web2.online.brother.at                |
 | 10.91.0.132           | https://web2.online.brother.ch                |
 | 10.91.0.132           | https://web2.online.brother.de                |
@@ -185,15 +173,6 @@ Scenarios:
 | 10.91.0.132           | https://web2.online.brother.ro                |
 | 10.91.0.132           | https://web2.online.brother.sk                |
 | 10.91.0.132           | https://web2.online.brother.si                |
-#| 10.91.0.132           | http://www.web2.webconferencing.brother.co.uk | # Site exists but cannot be accessed via web2. reference
-#| 10.91.0.132           | http://www.web2.videokonferenzen.brother.at   | # Site exists but cannot be accessed via web2. reference
-#| 10.91.0.132           | http://www.web2.videokonferenzen.brother.ch   | # Site exists but cannot be accessed via web2. reference
-#| 10.91.0.132           | http://www.web2.visioconference.brother.ch    | # Site exists but cannot be accessed via web2. reference
-#| 10.91.0.132           | http://www.web2.videokonferenzen.brother.de   | # Site exists but cannot be accessed via web2. reference
-#| 10.91.0.132           | http://www.web2.videoconferencia.brother.es   | # Site exists but cannot be accessed via web2. reference
-#| 10.91.0.132           | http://www.web2.webconferencing.brother.ie    | # Site exists but cannot be accessed via web2. reference
-#| 10.91.0.132           | http://www.web2.omnijoin.eu                   | # Site exists but cannot be accessed via web2. reference
-#| 10.91.0.132           | http://www.web2.eu.brother.eu                 | # Site exists but cannot be accessed via web1. reference
 | 10.91.0.132           | http://www.web2.brother.de                    |
 | 10.91.0.132           | http://www.web2.brother.at                    |
 | 10.91.0.132           | http://www.web2.brother.fr                    |
@@ -221,7 +200,6 @@ Scenarios:
 | 10.91.0.132           | http://www.web2.brother.bg                    |
 | 10.91.0.132           | http://www.web2.brother.ro                    |
 | 10.91.0.132           | http://www.web2.brother.ru                    |
-#| 10.91.0.132           | http://web2.creativecenter.brother.eu         | # Site exists but cannot be accessed via web1. reference
 | 172.27.16.133         | https://web5.online.brother.at                |
 | 172.27.16.133         | https://web5.online.brother.ch                |
 | 172.27.16.133         | https://web5.online.brother.de                |
@@ -247,15 +225,6 @@ Scenarios:
 | 172.27.16.133         | https://web5.online.brother.ro                |
 | 172.27.16.133         | https://web5.online.brother.sk                |
 | 172.27.16.133         | https://web5.online.brother.si                |
-#| 172.27.16.133         | http://www.web5.webconferencing.brother.co.uk | # Site exists but cannot be accessed via web5. reference
-#| 172.27.16.133         | http://www.web5.videokonferenzen.brother.at   | # Site exists but cannot be accessed via web5. reference
-#| 172.27.16.133         | http://www.web5.videokonferenzen.brother.ch   | # Site exists but cannot be accessed via web5. reference
-#| 172.27.16.133         | http://www.web5.videokonferenzen.brother.de   | # Site exists but cannot be accessed via web5. reference
-#| 172.27.16.133         | http://www.web5.videoconferencia.brother.es   | # Site exists but cannot be accessed via web5. reference
-#| 172.27.16.133         | http://www.web5.webconference.brother.fr      | # Site exists but cannot be accessed via web5. reference
-#| 172.27.16.133         | http://www.web5.webconferencing.brother.ie    | # Site exists but cannot be accessed via web5. reference
-#| 172.27.16.133         | http://www.web5.omnijoin.eu                   | # Site exists but cannot be accessed via web2. reference
-#| 172.27.16.133         | http://www.web5.eu.brother.eu                 | # Site exists but cannot be accessed via web1. reference
 | 172.27.16.133         | http://www.web5.brother.co.uk                 |
 | 172.27.16.133         | http://www.web5.brother.de                    |
 | 172.27.16.133         | http://www.web5.brother.at                    |
@@ -284,7 +253,6 @@ Scenarios:
 | 172.27.16.133         | http://www.web5.brother.bg                    |
 | 172.27.16.133         | http://www.web5.brother.ro                    |
 | 172.27.16.133         | http://www.web5.brother.ru                    |
-#| 172.27.16.133         | http://www.web5.creativecenter.brother.eu     | # Site exists but cannot be accessed via web1. reference
 | 172.27.16.134         | https://web6.online.brother.at                |
 | 172.27.16.134         | https://web6.online.brother.ch                |
 | 172.27.16.134         | https://web6.online.brother.de                |
@@ -307,15 +275,6 @@ Scenarios:
 | 172.27.16.134         | https://web6.online.brother.ro                |
 | 172.27.16.134         | https://web6.online.brother.sk                |
 | 172.27.16.134         | https://web6.online.brother.si                |
-#| 172.27.16.134         | http://www.web6.webconferencing.brother.co.uk | # Site exists but cannot be accessed via web6. reference
-#| 172.27.16.134         | http://www.web6.videokonferenzen.brother.at   | # Site exists but cannot be accessed via web6. reference
-#| 172.27.16.134         | http://www.web6.videokonferenzen.brother.ch   | # Site exists but cannot be accessed via web6. reference
-#| 172.27.16.134         | http://www.web6.videokonferenzen.brother.de   | # Site exists but cannot be accessed via web6. reference
-#| 172.27.16.134         | http://www.web6.videoconferencia.brother.es   | # Site exists but cannot be accessed via web6. reference
-#| 172.27.16.134         | http://www.web6.webconference.brother.fr      | # Site exists but cannot be accessed via web6. reference
-#| 172.27.16.134         | http://www.web6.webconferencing.brother.ie    | # Site exists but cannot be accessed via web6. reference
-#| 172.27.16.134         | http://www.web6.omnijoin.eu                   | # Site exists but cannot be accessed via web2. reference
-#| 172.27.16.134         | http://www.web6.eu.brother.eu                 | # Site exists but cannot be accessed via web1. reference
 | 172.27.16.134         | http://www.web6.brother.co.uk                 |
 | 172.27.16.134         | http://www.web6.brother.de                    |
 | 172.27.16.134         | http://www.web6.brother.at                    |
@@ -343,4 +302,46 @@ Scenarios:
 | 172.27.16.134         | http://www.web6.brother.hr                    |
 | 172.27.16.134         | http://www.web6.brother.bg                    |
 | 172.27.16.134         | http://www.web6.brother.ru                    |
+
+#| 10.91.0.131           | http://web1.webconferencing.brother.co.uk     | | # Site exists but cannot be accessed via web1. reference
+#| 10.91.0.131           | http://web1.videokonferenzen.brother.at       | | # Site exists but cannot be accessed via web1. reference
+#| 10.91.0.131           | http://web1.videokonferenzen.brother.ch       | | # Site exists but cannot be accessed via web1. reference
+#| 10.91.0.131           | http://web1.visioconference.brother.ch        | | # Site exists but cannot be accessed via web1. reference
+#| 10.91.0.131           | http://web1.videokonferenzen.brother.de       | | # Site exists but cannot be accessed via web1. reference
+#| 10.91.0.131           | http://web1.videoconferencia.brother.es       | | # Site exists but cannot be accessed via web1. reference
+#| 10.91.0.131           | http://web1.webconference.brother.fr          | | # Site exists but cannot be accessed via web1. reference
+#| 10.91.0.131           | http://web1.visioconference.brother.fr        | | # Site exists but cannot be accessed via web1. reference
+#| 10.91.0.131           | http://web1.webconferencing.brother.ie        | | # Site exists but cannot be accessed via web1. reference
+#| 10.91.0.131           | http://www.web1.omnijoin.eu                   | # Site exists but cannot be accessed via web1. reference
+#| 10.91.0.131           | http://web1.eu.brother.eu                     | # Site exists but cannot be accessed via web1. reference
+#| 10.91.0.131           | http://www.web1.creativecenter.brother.eu     | # Site exists but cannot be accessed via web1. reference
+#| 10.91.0.132           | http://www.web2.webconferencing.brother.co.uk | # Site exists but cannot be accessed via web2. reference
+#| 10.91.0.132           | http://www.web2.videokonferenzen.brother.at   | # Site exists but cannot be accessed via web2. reference
+#| 10.91.0.132           | http://www.web2.videokonferenzen.brother.ch   | # Site exists but cannot be accessed via web2. reference
+#| 10.91.0.132           | http://www.web2.visioconference.brother.ch    | # Site exists but cannot be accessed via web2. reference
+#| 10.91.0.132           | http://www.web2.videokonferenzen.brother.de   | # Site exists but cannot be accessed via web2. reference
+#| 10.91.0.132           | http://www.web2.videoconferencia.brother.es   | # Site exists but cannot be accessed via web2. reference
+#| 10.91.0.132           | http://www.web2.webconferencing.brother.ie    | # Site exists but cannot be accessed via web2. reference
+#| 10.91.0.132           | http://www.web2.omnijoin.eu                   | # Site exists but cannot be accessed via web2. reference
+#| 10.91.0.132           | http://www.web2.eu.brother.eu                 | # Site exists but cannot be accessed via web1. reference
+#| 10.91.0.132           | http://web2.creativecenter.brother.eu         | # Site exists but cannot be accessed via web1. reference
+#| 172.27.16.133         | http://www.web5.webconferencing.brother.co.uk | # Site exists but cannot be accessed via web5. reference
+#| 172.27.16.133         | http://www.web5.videokonferenzen.brother.at   | # Site exists but cannot be accessed via web5. reference
+#| 172.27.16.133         | http://www.web5.videokonferenzen.brother.ch   | # Site exists but cannot be accessed via web5. reference
+#| 172.27.16.133         | http://www.web5.videokonferenzen.brother.de   | # Site exists but cannot be accessed via web5. reference
+#| 172.27.16.133         | http://www.web5.videoconferencia.brother.es   | # Site exists but cannot be accessed via web5. reference
+#| 172.27.16.133         | http://www.web5.webconference.brother.fr      | # Site exists but cannot be accessed via web5. reference
+#| 172.27.16.133         | http://www.web5.webconferencing.brother.ie    | # Site exists but cannot be accessed via web5. reference
+#| 172.27.16.133         | http://www.web5.omnijoin.eu                   | # Site exists but cannot be accessed via web2. reference
+#| 172.27.16.133         | http://www.web5.eu.brother.eu                 | # Site exists but cannot be accessed via web1. reference
+#| 172.27.16.133         | http://www.web5.creativecenter.brother.eu     | # Site exists but cannot be accessed via web1. reference
+#| 172.27.16.134         | http://www.web6.webconferencing.brother.co.uk | # Site exists but cannot be accessed via web6. reference
+#| 172.27.16.134         | http://www.web6.videokonferenzen.brother.at   | # Site exists but cannot be accessed via web6. reference
+#| 172.27.16.134         | http://www.web6.videokonferenzen.brother.ch   | # Site exists but cannot be accessed via web6. reference
+#| 172.27.16.134         | http://www.web6.videokonferenzen.brother.de   | # Site exists but cannot be accessed via web6. reference
+#| 172.27.16.134         | http://www.web6.videoconferencia.brother.es   | # Site exists but cannot be accessed via web6. reference
+#| 172.27.16.134         | http://www.web6.webconference.brother.fr      | # Site exists but cannot be accessed via web6. reference
+#| 172.27.16.134         | http://www.web6.webconferencing.brother.ie    | # Site exists but cannot be accessed via web6. reference
+#| 172.27.16.134         | http://www.web6.omnijoin.eu                   | # Site exists but cannot be accessed via web2. reference
+#| 172.27.16.134         | http://www.web6.eu.brother.eu                 | # Site exists but cannot be accessed via web1. reference
 #| 172.27.16.134         | http://www.web6.creativecenter.brother.eu     | # Site exists but cannot be accessed via web1. reference

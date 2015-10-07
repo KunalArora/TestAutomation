@@ -131,10 +131,7 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestCaseAttribute("Sweden", "https://online.brother.se/", null)]
         [NUnit.Framework.TestCaseAttribute("Portugal", "https://online.brother.pt/", null)]
         [NUnit.Framework.TestCaseAttribute("Czech Republic", "https://online.brother.cz/", null)]
-        [NUnit.Framework.TestCaseAttribute("Hungary", "https://online.brother.hu/", null)]
         [NUnit.Framework.TestCaseAttribute("Russia", "https://online.brother.ru/", null)]
-        [NUnit.Framework.TestCaseAttribute("Bulgaria", "https://online.brother.bg/", null)]
-        [NUnit.Framework.TestCaseAttribute("Romania", "https://online.brother.ro/", null)]
         [NUnit.Framework.TestCaseAttribute("Slovenia", "https://online.brother.si/", null)]
         [NUnit.Framework.TestCaseAttribute("Luxembourg", "https://online.brother.lu/", null)]
         public virtual void Get200OKResponseBackFromBrotherOnlineCountryOnTheLIVEEnvironment(string country, string siteUrl, string[] exampleTags)
@@ -161,7 +158,6 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "http://webconferencing.brother.co.uk/", null)]
         [NUnit.Framework.TestCaseAttribute("France", "http://webconference.brother.fr/", null)]
         [NUnit.Framework.TestCaseAttribute("Switzerland", "http://visioconference.brother.ch/", null)]
-        [NUnit.Framework.TestCaseAttribute("Spain", "http://videoconferencia.brother.es/", null)]
         [NUnit.Framework.TestCaseAttribute("Ireland", "http://webconferencing.brother.ie/", null)]
         [NUnit.Framework.TestCaseAttribute("Germany", "http://videokonferenzen.brother.de/", null)]
         public virtual void Get200OKResponseBackFromWebConferencingCountryOnTheLIVEEnvironment(string country, string siteUrl, string[] exampleTags)
@@ -208,8 +204,6 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Test all CD servers on Live Environment")]
         [NUnit.Framework.IgnoreAttribute()]
-        [NUnit.Framework.CategoryAttribute("PROD")]
-        [NUnit.Framework.CategoryAttribute("SMOKE")]
         [NUnit.Framework.TestCaseAttribute("10.91.0.131", "https://web1.online.brother.at", null)]
         [NUnit.Framework.TestCaseAttribute("10.91.0.131", "https://web1.online.brother.ch", null)]
         [NUnit.Framework.TestCaseAttribute("10.91.0.131", "https://web1.online.brother.de", null)]
@@ -420,8 +414,6 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void TestAllCDServersOnLiveEnvironment(string pRODUCTIONCDSERVERS, string brotherSite, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "PROD",
-                    "SMOKE",
                     "ignore"};
             if ((exampleTags != null))
             {

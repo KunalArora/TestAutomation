@@ -15,60 +15,6 @@ namespace Brother.Tests.Specs
     [Binding]
     public class tmpScratch : BaseSteps
     {
-        [Given(@"testCode")]
-        public void GivenTestCode()
-        {
-            BasePage.NavigateToPage(TestController.CurrentDriver, "http://user:EUSidddddddddteCoreTestAuto@uk.brotherdv2.eu");
-        }
-
-
-        [Given(@"I want to run multiple instances of PhantomJs")]
-        public void GivenIWantToRunMultipleInstancesOfPhantomJs()
-        {
-            var ipAddress = "127.0.0.1";
-            var port = "5500";
-
-            var drivers = new IWebDriver[10];
-            var driverId = 0;
-
-            foreach (var driver in drivers)
-            { 
-                var portNum = Convert.ToInt32(port);
-                portNum++;
-                port = Convert.ToString(portNum);
-                TestController.StartNewPhantomJsProcess(ipAddress, port);
-                WebDriver.Wait(Helper.DurationType.Second, 1);
-                drivers[driverId] = TestController.StartNewRemoteWebDriver(ipAddress, port);
-                //drivers[driverId] = TestController.StartNewRemoteWebDriver("4444", port);
-                WebDriver.Wait(Helper.DurationType.Second, 1);
-                driverId++;
-            }
-
-            driverId = 0;
-            foreach (var driver in drivers)
-            {
-                drivers[driverId].Navigate().GoToUrl("www.brother.co.uk");
-                driverId++;
-            }
-
-            TestController.KillPhantomJsIfRunning();
-        }
-
-  
-        [Given(@"SqlCall")]
-        public void GivenSqlCall()
-        {
-            var bpid = Sql.GetUserBpId("AutoTest_7_30_20148_54_45AM@BrotherAutoTest.com");
-
-            //var dealerEmail = "ORP_Cushty_Dealer_001@guerrillamail.com";
-            //var dealerId = Sql.GetOrpDealerId(dealerEmail);
-            //TestCheck.AssertIsNotEqual(Guid.Empty, dealerId, "Dealer Id");
-
-            //var activationCode = Sql.GetOrpActivationCode(dealerId, 12, 1, "Order28052015");
-            //if (activationCode == string.Empty)
-            //{
-            //    TestCheck.AssertFailTest(string.Format("Unable to retrieve Activation Code for Dealer [{0}]", dealerEmail));
-            //}
-        }
+   
     }
 }

@@ -79,18 +79,6 @@ namespace Brother.Tests.Selenium.Lib.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("false")]
-        public string UsePhantomJsService {
-            get {
-                return ((string)(this["UsePhantomJsService"]));
-            }
-            set {
-                this["UsePhantomJsService"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("ERROR")]
         public string PhantomJSLoggingLevel {
             get {
@@ -98,6 +86,42 @@ namespace Brother.Tests.Selenium.Lib.Properties {
             }
             set {
                 this["PhantomJSLoggingLevel"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("anthowell1")]
+        public string BrowserStackUser {
+            get {
+                return ((string)(this["BrowserStackUser"]));
+            }
+            set {
+                this["BrowserStackUser"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("uu64dsphJt6uAyz6Kj8q")]
+        public string BrowserStackKey {
+            get {
+                return ((string)(this["BrowserStackKey"]));
+            }
+            set {
+                this["BrowserStackKey"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://hub.browserstack.com/wd/hub/")]
+        public string BrowserStackHubUri {
+            get {
+                return ((string)(this["BrowserStackHubUri"]));
+            }
+            set {
+                this["BrowserStackHubUri"] = value;
             }
         }
     }

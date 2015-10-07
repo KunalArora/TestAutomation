@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.BrotherMainSite;
@@ -75,7 +76,7 @@ namespace Brother.WebSites.Core.Pages.Base
             baseUrl = baseUrl.Replace("brother", "cms.brother");
             baseUrl = baseUrl.Replace("online.", "");
             baseUrl = baseUrl.Replace("brother.co.uk", "brother.eu");
-            Helper.CurrentDomain = baseUrl;
+            CurrentDomain = baseUrl;
             NavigateToPage(driver, baseUrl.TrimEnd(new char[] { '/' }) + BrotherEmailConfirmationPage.Url);
             return GetInstance<BrotherEmailConfirmationPage>(driver, baseUrl, "");
         }
@@ -132,15 +133,12 @@ namespace Brother.WebSites.Core.Pages.Base
             {
                 var currentWindowHandle = driver.CurrentWindowHandle;
 
-                foreach (var winHandle in driver.WindowHandles)
+                foreach (var winHandle in driver.WindowHandles.Where(winHandle => currentWindowHandle != winHandle))
                 {
-                    if (currentWindowHandle != winHandle)
-                    {
-                        // Kill old tab
-                        driver.SwitchTo().Window(currentWindowHandle).Close();
-                        // Switch to new window
-                        driver = driver.SwitchTo().Window(winHandle);
-                    }
+                    // Kill old tab
+                    driver.SwitchTo().Window(currentWindowHandle).Close();
+                    // Switch to new window
+                    driver = driver.SwitchTo().Window(winHandle);
                 }
             }
             baseUrl = CheckForCdServer(baseUrl);
@@ -205,7 +203,6 @@ namespace Brother.WebSites.Core.Pages.Base
         {
             var timedOut = false;
             var retries = 0;
-            var partialUrl = url.Replace("https", "").Replace("http", "");
 
             var currentPageSource = driver.PageSource;
 
@@ -214,9 +211,9 @@ namespace Brother.WebSites.Core.Pages.Base
             {
                 try
                 {
-                    driver.Navigate().GoToUrl(url);
+                    WebDriver.Wait(DurationType.Second, 3);
                     retries++;
-                    if (retries == 10)
+                    if (retries == 60)
                     {
                         timedOut = true;
                     }

@@ -16,13 +16,6 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.Smart_Supply
             return GetInstance<SmartSupplyBasketPage>(driver, "", "");
         }
 
-        /*Wait to update the basket counter
-        public static int GetBasketItemsCount(IWebDriver driver)
-        {
-            WebDriver.Wait(Helper.DurationType.Second, 3); // wait for basket to get updated
-            //return Convert.ToInt32(BasketIcon(driver).Text);
-        }*/
-
         [FindsBy(How = How.CssSelector, Using = ".styled-checkbox")]
         public IWebElement BSCOptInCheckBox;
         public void IsBSCOptInCheckBoxAvailable()

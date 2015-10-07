@@ -29,23 +29,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement.PaymentMet
         [FindsBy(How = How.CssSelector, Using = "#Warnings")]
         public IWebElement WarningMessagePaymentMethod;
 
-        //public AddNewCardPage UseThisAddressButtonClick()
-        //{
-        //    IWebElement useThisAddressButton = null;
-        //    try
-        //    {
-        //        useThisAddressButton = Driver.FindElement(By.CssSelector(
-        //                "#content_1_innercontent_1_ChangeaddressLB_ChangeInvoiceaddressLB_AddressRepeater_useAsDeliveryAddressButton_0"));
-        //    }
-        //    catch (NoSuchElementException notFound)
-        //    {
-        //        Assert.Fail("Unable to locate Use This Address button {0}", notFound);
-        //    }
-
-        //    useThisAddressButton.Click();
-        //    return GetInstance<AddNewCardPage>(Driver); 
-        //}
-
         public void IsAddPaymentMethodButtonAvailable()
         {
             if (AddPaymentMethodButton == null)

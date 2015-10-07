@@ -68,8 +68,6 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Plans
             SeleniumHelper.ScrollTo(driver, tcTickbox);
             WebDriver.Wait(Helper.DurationType.Second, 2);
             TestCheck.AssertIsEqual(true, SeleniumHelper.SetCheckboxStatus("#ConfirmTOS", true, "OmniJoin Plan purchase Accept Terms and Conditions Checkbox"), "OmniJoin Plan purchase Accept Terms and Conditions Checkbox was not checked");
-//            SeleniumHelper.AssertElementIsChecked(tcTickbox, "True", "OmniJoin Plan purchase Accept Terms and Conditions selected value");
-            //tcTickbox.Click();
         }
 
         public static BasketPage BuyNowAtBrotherOnlineButtonClick(IWebDriver driver)

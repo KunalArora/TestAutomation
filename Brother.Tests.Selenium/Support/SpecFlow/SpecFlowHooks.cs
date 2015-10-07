@@ -22,9 +22,6 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
         public static void BeforeTestRun()
         {
             Helper.MsgOutput("Starting Test Run........");
-
-            Helper.MsgOutput(string.Format("Team City Env Var value = {0}", Environment.GetEnvironmentVariable("ANT")));
-            Helper.MsgOutput(string.Format("Team City Env Var value = {0}", Environment.GetEnvironmentVariable("AutoTestRunTimeEnv")));
             // Clear old snapshots
             Helper.MsgOutput("Purging old snapshots");
             Helper.PurgeSnapshots();
@@ -193,7 +190,6 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
 
             // Close and re-launch current driver so we start the next test from a clean sheet
             Helper.MsgOutput("Scenario Failed! - Restarting Driver");
-            WebDriver.ClearWebDriverPackage();
             TestController.Test_Teardown();
             WebDriver.Wait(Helper.DurationType.Second, 3);
             BeforeFeatureHeadless();
