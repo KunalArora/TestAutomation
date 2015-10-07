@@ -49,7 +49,7 @@ Scenario Outline: Dealer can edit a new customer
 	| Cloud MPS Dealer | United Kingdom | NewlyCreatedItem |
 #	| Sub Dealer | United Kingdom |
 
-@ignore
+
 Scenario Outline: Dealer can delete a customer 
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to existing customer screen
