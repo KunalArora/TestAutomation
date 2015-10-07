@@ -180,7 +180,6 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
         public static bool WaitForElementToExistByXPath(string element, int retryCount, int timeOut)
         {
-            var timeOutSeconds = timeOut;
             WebDriver.SetWebDriverImplicitTimeout(new TimeSpan(0, 0, 0, timeOut));
             var wait = new DefaultWait<IWebDriver>(TestController.CurrentDriver);
             wait.Timeout = new TimeSpan(0, 0, 0, timeOut);
@@ -821,6 +820,27 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             var capabilities = ((RemoteWebDriver)Driver).Capabilities;
 
             return capabilities.BrowserName.Equals("phantomjs");
+        }
+
+        public void OverrideAlertsForHeadless()
+        {
+            if (IsPhantomJsBrowser())
+            {
+                var js = TestController.CurrentDriver as IJavaScriptExecutor;
+                var script = string.Format("{0}{1}{2}{3}", "var page = this;", "page.onConfirm = function(msg) {",
+                    "console.log('CONFIRM: ' + msg);return true;", "};");
+                js.ExecuteScript(script);
+                script = string.Format("{0}{1}{2}{3}", "var page = this;", "page.onAlert = function(msg) {",
+                    "console.log('ALERT: ' + msg);return true;", "};");
+                js.ExecuteScript(script);
+
+                var returnVal = js.ExecuteScript("window.alert = function(){}");
+                returnVal = js.ExecuteScript("window.confirm = function(){return true;}");
+
+                var phantom = (PhantomJSDriver) TestController.CurrentDriver;
+                returnVal = phantom.ExecuteScript("window.alert = function(){}");
+                returnVal = phantom.ExecuteScript("window.confirm = function(){return true;}");
+            }
         }
 
         public void ClickAcceptOnJsAlert(IWebDriver driver)
