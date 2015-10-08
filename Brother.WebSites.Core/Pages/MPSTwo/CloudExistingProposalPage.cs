@@ -218,7 +218,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ScrollTo(ActionsModule.SpecificActionsDropdownElement());
             ActionsModule.ClickOnSpecificActionsElement();
 
-            OverrideAlertsForHeadless();
+            HeadlessDismissAlertOk();
             ActionsModule.DeleteAProposal(Driver);
             WebDriver.Wait(DurationType.Second, 2);
         }
@@ -453,14 +453,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void ClickAcceptOnConfrimation(IWebDriver driver)
         {
             WebDriver.Wait(DurationType.Millisecond, 1000);
-            OverrideAlertsForHeadless();
+            HeadlessDismissAlertOk();
             ClickAcceptOnJsAlert(driver);
         }
 
         public void ClickDismissOnConfrimation(IWebDriver driver)
         {
             WebDriver.Wait(DurationType.Millisecond, 1000);
-            OverrideAlertsForHeadless();
+            HeadlessDismissAlertOk();
             ClickDismissOnJsAlert(driver);
         }
 
