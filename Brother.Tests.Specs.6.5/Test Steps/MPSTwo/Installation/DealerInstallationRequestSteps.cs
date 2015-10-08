@@ -25,7 +25,7 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             CurrentPage.As<DealerManageDevicesPage>().ClickToExposeInstallationRequest();
             CurrentPage.As<DealerManageDevicesPage>().IsInstallationRequestScreenDisplayed();
             CurrentPage.As<DealerManageDevicesPage>().GetInstallationLink();
-            CurrentPage.As<DealerManageDevicesPage>().CloseInstallationrequestPopUp();
+            //CurrentPage.As<DealerManageDevicesPage>().CloseInstallationrequestPopUp();
         }
 
         [When(@"I navigate to the installer page")]
