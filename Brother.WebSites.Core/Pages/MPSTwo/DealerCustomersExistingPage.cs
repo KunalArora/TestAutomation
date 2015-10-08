@@ -99,7 +99,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void ClickDismissOnConfrimation(IWebDriver driver)
         {
             WebDriver.Wait(DurationType.Millisecond, 100);
-            HeadlessDismissAlertOk();
+            HeadlessDismissAlertCancel();
             ClickDismissOnJsAlert(driver);
         }
 
@@ -148,6 +148,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void ClickDelete()
         {
+            HeadlessDismissAlertOk();
            // var customerelem = FindExistingCustomerByEmail();
             ClickActionButtonOnOffer();
             WaitForElementToExistByCssSelector(".open .js-mps-delete");
@@ -155,10 +156,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var id = deleteElem.GetAttribute("data-person-id");
             SpecFlow.SetContext(DealerLatestOperatingCustomerItemId, id);
             deleteElem.Click();
+            
         }
 
         public void ClickOnDeleteOnActionItem(IWebDriver driver)
         {
+            HeadlessDismissAlertOk();
            // var customerelem = FindNthProposalOfferElement(driver);
             //ClickActionButtonOnOffer();
             ActionsModule.OpenTheFirstActionButton(driver);
@@ -168,6 +171,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             SpecFlow.SetContext(DealerLatestOperatingCustomerItemId, id);
             deleteElem.Click();
             WebDriver.Wait(DurationType.Second, 5);
+            
         }
 
         public void NotExistTheDeletedItem(IWebDriver driver)
