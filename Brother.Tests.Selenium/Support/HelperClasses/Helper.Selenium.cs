@@ -822,24 +822,25 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             return capabilities.BrowserName.Equals("phantomjs");
         }
 
-        public void OverrideAlertsForHeadless()
+        public void HeadlessDismissAlertOk()
         {
             if (IsPhantomJsBrowser())
             {
                 var js = TestController.CurrentDriver as IJavaScriptExecutor;
-                var script = string.Format("{0}{1}{2}{3}", "var page = this;", "page.onConfirm = function(msg) {",
-                    "console.log('CONFIRM: ' + msg);return true;", "};");
-                js.ExecuteScript(script);
-                script = string.Format("{0}{1}{2}{3}", "var page = this;", "page.onAlert = function(msg) {",
-                    "console.log('ALERT: ' + msg);return true;", "};");
-                js.ExecuteScript(script);
+                var phantom = (PhantomJSDriver)TestController.CurrentDriver;
+                phantom.ExecuteScript("window.alert = function(){}");
+                phantom.ExecuteScript("window.confirm = function(){return true;}");
+            }
+        }
 
-                var returnVal = js.ExecuteScript("window.alert = function(){}");
-                returnVal = js.ExecuteScript("window.confirm = function(){return true;}");
-
-                var phantom = (PhantomJSDriver) TestController.CurrentDriver;
-                returnVal = phantom.ExecuteScript("window.alert = function(){}");
-                returnVal = phantom.ExecuteScript("window.confirm = function(){return true;}");
+        public void HeadlessDismissAlertCancel()
+        {
+            if (IsPhantomJsBrowser())
+            {
+                var js = TestController.CurrentDriver as IJavaScriptExecutor;
+                var phantom = (PhantomJSDriver)TestController.CurrentDriver;
+                phantom.ExecuteScript("window.alert = function(){}");
+                phantom.ExecuteScript("window.confirm = function(){return false;}");
             }
         }
 

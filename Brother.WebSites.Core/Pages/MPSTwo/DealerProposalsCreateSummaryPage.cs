@@ -244,7 +244,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public DealerClosedProposalPage CloseProposal()
         {
             ScrollTo(SummaryCloseProposalElement);
-            OverrideAlertsForHeadless();
+            HeadlessDismissAlertOk();
             SummaryCloseProposalElement.Click();
             ClickAcceptOnConfrimation(Driver);
             return GetInstance<DealerClosedProposalPage>(Driver);
