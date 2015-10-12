@@ -128,7 +128,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public DealerProposalsRejectedPage NavigateToDeclinedProposalPage()
         {
             if (proposalDeclinedTabElement == null)
-                throw new Exception("Cannot fine Declined Tab");
+                throw new Exception("Cannot find Declined Tab");
             proposalDeclinedTabElement.Click();
 
             return GetInstance<DealerProposalsRejectedPage>();

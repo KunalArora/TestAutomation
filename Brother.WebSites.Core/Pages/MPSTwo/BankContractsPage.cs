@@ -91,6 +91,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ActionsModule.DownloadContractPDFAction(Driver);
         }
 
+        public void DownloadFirstPDFOnBankContractPages()
+        {
+            ActionsModule.OpenTheFirstActionButton(Driver);
+            ActionsModule.DownloadContractPDFAction(Driver);
+        }
+
         public void DownloadInvoicePDFOnBankContractPages()
         {
             ActionsModule.ClickOnSpecificActionsElement();
