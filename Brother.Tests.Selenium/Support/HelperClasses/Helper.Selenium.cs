@@ -400,6 +400,12 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             new SelectElement(element).SelectByIndex(value);
         }
 
+
+        public static IList<IWebElement> SelectOption(IWebElement element)
+        {
+            return new SelectElement(element).Options;
+        }
+
         /// <summary>
         /// Scrolls to a specified element on the current page
         /// </summary>

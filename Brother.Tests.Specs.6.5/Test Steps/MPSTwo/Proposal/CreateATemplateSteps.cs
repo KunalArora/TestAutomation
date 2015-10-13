@@ -194,12 +194,58 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             }
         }
 
+        [Given(@"German Dealer have created a signed ""(.*)"" contract of ""(.*)"" and ""(.*)""")]
+        public void GivenGermanDealerHaveCreatedASignedContractOfAnd(string Country, string ContractType, string UsageType)
+        {
+            if (ContractType.Equals("Lease & Click with Service"))
+            {
+                GivenGermanDealerHaveCreatedProposalOfAwaitingApproval(ContractType, UsageType);
+                var instance4 = new CreateNewAccountSteps();
+                var instance2 = new SendProposalToApprover();
+                var instance3 = new AccountManagementSteps();
+                instance4.GivenISignIntoMpsasAFrom("Cloud MPS Bank", Country);
+                instance2.ThenINavigateToBankAwaitingApprovalScreenUnderOfferPage();
+                instance2.ThenTheConvertedLeasingAndClickAndServiceProposalAboveIsDisplayedOnTheScreen();
+                var instance5 = new ApproverSteps();
+                instance5.ThenApproverSelectTheProposalOnAwaitingProposal();
+                instance5.ThenIShouldBeAbleToApproveThatProposal();
+                instance3.ThenIfISignOutOfBrotherOnline();
+                instance4.GivenISignIntoMpsasAFrom("Cloud MPS Dealer", Country);
+                WhenISignTheContractToNavigateToAwaitingAcceptance();
+                //instance3.ThenIfISignOutOfBrotherOnline();
+            }
+            else if (ContractType.Equals("Purchase & Click with Service"))
+            {
+                GivenGermanDealerHaveCreatedProposalOfAwaitingApproval(ContractType, UsageType);
+                var instance4 = new CreateNewAccountSteps();
+                var instance2 = new SendProposalToApprover();
+                var instance3 = new AccountManagementSteps();
+                instance4.GivenISignIntoMpsasAFrom("Cloud MPS Local Office Approver", Country);
+                instance2.ThenINavigateToLOApproverAwaitingApprovalScreenUnderProposalsPage();
+                instance2.ThenTheConvertedPurchaseAndClickAndServiceProposalAboveIsDisplayedOnTheScreen();
+                var instance5 = new ApproverSteps();
+                instance5.ThenApproverSelectTheProposalOnAwaitingProposal();
+                instance5.ThenIShouldBeAbleToApproveThatProposal();
+                instance3.ThenIfISignOutOfBrotherOnline();
+                instance4.GivenISignIntoMpsasAFrom("Cloud MPS Dealer", Country);
+                WhenISignTheContractToNavigateToAwaitingAcceptance();
+                //instance3.ThenIfISignOutOfBrotherOnline();
+            }
+        }
+
 
         private void WhenISignTheContractAsADealer()
         {
             NextPage = CurrentPage.As<DealerDashBoardPage>().NavigateToContractScreenFromDealerDashboard();
             NextPage = CurrentPage.As<DealerContractsPage>().NavigateToViewOfferOnApprovedProposalsTab();
             NextPage = CurrentPage.As<DealerContractsSummaryPage>().ClickSignButton();
+        }
+
+        private void WhenISignTheContractToNavigateToAwaitingAcceptance()
+        {
+            NextPage = CurrentPage.As<DealerDashBoardPage>().NavigateToContractScreenFromDealerDashboard();
+            NextPage = CurrentPage.As<DealerContractsPage>().NavigateToViewOfferOnApprovedProposalsTab();
+            NextPage = CurrentPage.As<DealerContractsSummaryPage>().DealerSignsApprovedProposalTAwaitingAcceptancePage();
         }
 
         private void GivenIHaveCreatedLeasingAndClickProposal(string UsageType)

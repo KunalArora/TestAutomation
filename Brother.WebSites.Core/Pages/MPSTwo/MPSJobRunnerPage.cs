@@ -39,9 +39,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 {
                     const string webSite = uaturl + customerAndPersonCommand;
 
-                    WebDriver.Wait(Helper.DurationType.Second, 10);
+                    WebDriver.Wait(Helper.DurationType.Second, 20);
                     var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
-                   // TestCheck.AssertIsEqual(true, response.Equals(HttpStatusCode.OK), "");
+                   //TestCheck.AssertIsEqual(true, response.Equals(HttpStatusCode.OK), "");
                     
                 }
                     break;
@@ -49,7 +49,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 {
                     const string webSite = testurl + customerAndPersonCommand;
 
-                    WebDriver.Wait(Helper.DurationType.Second, 10);
+                    WebDriver.Wait(Helper.DurationType.Second, 20);
                     var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
                     //TestCheck.AssertIsEqual(true, response.Equals(HttpStatusCode.OK), "");
                     
