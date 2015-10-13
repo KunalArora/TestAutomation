@@ -81,6 +81,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetInstance<DealerContractsPage>(Driver);
         }
 
+        public DealerContractsAwaitingAcceptancePage DealerSignsApprovedProposalTAwaitingAcceptancePage()
+        {
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, SignButtonElement);
+            WebDriver.Wait(DurationType.Second, 3);
+
+            return GetInstance<DealerContractsAwaitingAcceptancePage>(Driver);
+        }
+
         public DealerClosedProposalPage CloseProposal()
         {
             ScrollTo(SummaryCloseProposalElement);

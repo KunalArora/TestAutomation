@@ -18,6 +18,18 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             ThenTheInstallationRequestForThatDeviceIsCompleted();
         }
 
+        [Given(@"I generate installation request for the contract with ""(.*)"" communication and ""(.*)"" installation")]
+        public void GivenIGenerateInstallationRequestForTheContractWithCommunicationAndInstallation(string method, string type)
+        {
+            WhenINavigateToTheContractManageDeviceScreen();
+            WhenISelectLocationInOrderToCreateInstallationRequest();
+            WhenISetDeviceCommunicationMethodAs(method);
+            WhenISetDeviceInstallationTypeAs(type);
+            WhenICompletedTheCreateInstallationProcessFor(method);
+            ThenTheInstallationRequestForThatDeviceIsCompleted();
+        }
+
+
         [Given(@"I extract the installer url from Installation Request")]
         public void GivenIExtractTheInstallerUrlFromInstallationRequest()
         {
@@ -44,12 +56,15 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             CurrentPage.As<InstallerDeviceInstallationPage>().ProceedOnInstaller();
         }
 
-        [When(@"I enter ""(.*)"" device serial number")]
-        public void WhenIEnterTheDeviceSerialNumber(string country)
+        [When(@"I enter ""(.*)"" device serial number for ""(.*)"" communication")]
+        public void WhenIEnterDeviceSerialNumberForCommunication(string country, string method)
         {
+            CurrentPage.As<InstallerDeviceInstallationPage>().VerifyTimeZoneIsDisplayed(method);
             CurrentPage.As<InstallerDeviceInstallationPage>().EnterSerialNumber(country);
             
         }
+
+
 
         [When(@"I enter the device IP address")]
         public void WhenIEnterTheDeviceIPAddress()
@@ -81,6 +96,16 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             NextPage = CurrentPage.As<DealerContractsApprovedPage>().NavigateToManageDevicesPage();
 
         }
+
+        [When(@"I navigate to the signed contract Manage Device Screen")]
+        public void WhenINavigateToTheSignedContractManageDeviceScreen()
+        {
+            CurrentPage.As<DealerContractsAwaitingAcceptancePage>().IsContractAwaitingAcceptanceTabDisplayed();
+            CurrentPage.As<DealerContractsAwaitingAcceptancePage>().VerifyAcceptedContractIsDisplayed();
+            NextPage = CurrentPage.As<DealerContractsAwaitingAcceptancePage>().NavigateToManageDevicesPage();
+
+        }
+
 
 
         [When(@"I select Location in order to create installation request")]

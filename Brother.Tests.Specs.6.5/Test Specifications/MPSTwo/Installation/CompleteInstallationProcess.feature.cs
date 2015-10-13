@@ -74,7 +74,6 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Installation
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Dealer can create installation request for Cloud Communication")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Cloud", "Web", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Cloud", "BOR", null)]
         public virtual void DealerCanCreateInstallationRequestForCloudCommunication(string role, string country, string contractType, string usageType, string role1, string method, string type, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer can create installation request for Cloud Communication", exampleTags);
@@ -141,7 +140,6 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("German Dealer can create installation request for Cloud Communication")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Germany", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Cloud", "Web", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Bank", "Germany", "Lease & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Cloud", "BOR", null)]
         public virtual void GermanDealerCanCreateInstallationRequestForCloudCommunication(string role, string country, string contractType, string usageType, string role1, string method, string type, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("German Dealer can create installation request for Cloud Communication", exampleTags);
@@ -200,6 +198,34 @@ this.ScenarioSetup(scenarioInfo);
 #line 80
  testRunner.Then("the installation request for that device is completed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 81
+ testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("German Dealer can create installation request for Email Communication after the c" +
+            "ontract has been signed")]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Germany", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Email", null)]
+        public virtual void GermanDealerCanCreateInstallationRequestForEmailCommunicationAfterTheContractHasBeenSigned(string role, string country, string contractType, string usageType, string role1, string method, string[] exampleTags)
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("German Dealer can create installation request for Email Communication after the c" +
+                    "ontract has been signed", exampleTags);
+#line 89
+ this.ScenarioSetup(scenarioInfo);
+#line 90
+ testRunner.Given(string.Format("German Dealer have created a signed \"{0}\" contract of \"{1}\" and \"{2}\"", country, contractType, usageType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 91
+ testRunner.When("I navigate to the signed contract Manage Device Screen", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 92
+ testRunner.And("I select Location in order to create installation request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 93
+ testRunner.And(string.Format("I set device communication method as \"{0}\"", method), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 94
+ testRunner.And(string.Format("I completed the create installation process for \"{0}\"", method), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 95
+ testRunner.Then("the installation request for that device is completed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 96
  testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
