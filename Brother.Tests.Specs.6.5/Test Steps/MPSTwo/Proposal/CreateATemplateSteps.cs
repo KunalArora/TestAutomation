@@ -436,7 +436,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             //@TODO: Choose an existing contact until the creating new customer sequence is fixed
             DealerProposalsCreateCustomerInformationStep stepInstance =
                 new DealerProposalsCreateCustomerInformationStep();
-            stepInstance.SelectExistingCustmerByRandomly();
+            stepInstance.GivenISkipCustomerInformationScreen();
         }
 
         [When(@"I begin the proposal creation process for Lease \+ Click Service")]

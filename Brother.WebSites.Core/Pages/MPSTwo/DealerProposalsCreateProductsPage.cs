@@ -159,15 +159,38 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement ModelSrpElement;
         [FindsBy(How = How.CssSelector, Using = ".mps-qa-option .mps-qa-srp")]
         public IWebElement OptionSrpElement;
-        
-        
+        [FindsBy(How = How.CssSelector, Using = "[class*=\"js-mps-product-open-container\"]")]
+        public IList<IWebElement> PropertyContainerElement;
+        [FindsBy(How = How.CssSelector, Using = "[data-mps-product-auto-fax=\"true\"]")]
+        public IWebElement PrinterFaxproperty;
+        [FindsBy(How = How.CssSelector, Using = "[data-mps-product-auto-scan=\"true\"]")]
+        public IWebElement PrinterScanproperty;
+        [FindsBy(How = How.CssSelector, Using = "[data-mps-product-auto-duplex=\"true\"]")]
+        public IWebElement PrinterDuplexproperty;
+        [FindsBy(How = How.CssSelector, Using = "[data-mps-product-auto-tray=\"true\"]")]
+        public IWebElement PrinterTrayproperty;
+        [FindsBy(How = How.CssSelector, Using = "[data-mps-product-auto-paper-size=\"A4\"]")]
+        public IWebElement PrinterA4property;
+        [FindsBy(How = How.CssSelector, Using = "[data-mps-product-auto-paper-size=\"A3\"]")]
+        public IWebElement PrinterA3property;
+        [FindsBy(How = How.CssSelector, Using = ".mps-product-configuration-container-flat")]
+        public IWebElement ProductPageFlatVerifier;
+        [FindsBy(How = How.CssSelector, Using = "[data-mps-product-auto-colour-type=\"C\"]")]
+        public IWebElement ImageColourproperty;
+        [FindsBy(How = How.CssSelector, Using = "[data-mps-product-auto-colour-type=\"M\"]")]
+        public IWebElement ImageMonoproperty;
+        [FindsBy(How = How.CssSelector, Using = ".mps-product-colour")]
+        public IWebElement FlatColourMonoproperty;
+        [FindsBy(How = How.CssSelector, Using = ".mps-product-mono")]
+        public IWebElement FlatMonoproperty;
         
 
+        
         private const string QuantityElementString = "[data-quantity=\"true\"]";
         private const string ServicePackElementString = ".mps-qa-service-pack";
         private const string InstallationQuantityElementString = ".mps-qa-installation";
         private const string DeliveryQuantityElementString = ".mps-qa-delivery";
-
+        
         
         private IWebElement FaxCheckboxElement()
         {
@@ -306,38 +329,35 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsAllPrintersHaveFaxFacility()
         {
-            IList<IWebElement> PrinterElements = DisplayedPrintersElements();
-
-            // @TODO: change xpath into cssselector
-            IList<IWebElement> FaxElements = Driver.FindElements(By.XPath("//span[text()='Fax']"));
-            TestCheck.AssertIsEqual(PrinterElements.Count, FaxElements.Count, "DisplayedPrintersElements number is not equal to FaxElements one ");
+            for(var i=0; i <= PropertyContainerElement.Count; i++)
+            {
+                TestCheck.AssertIsEqual(true, PrinterFaxproperty.Displayed, "Some printers displayed do not contain fax properties");
+            }
         }
 
         public void IsAllPrintersHaveScanFacility()
         {
-            IList<IWebElement> PrinterElements = DisplayedPrintersElements();
+            for (var i = 0; i <= PropertyContainerElement.Count; i++)
+            {
+                TestCheck.AssertIsEqual(true, PrinterScanproperty.Displayed, "Some printers displayed do not contain scan properties");
+            }
 
-            // @TODO: change xpath into cssselector
-            IList<IWebElement> ScanElements = Driver.FindElements(By.XPath("//span[text()='Scan']"));
-            TestCheck.AssertIsEqual(PrinterElements.Count, ScanElements.Count, "DisplayedPrintersElements number is not equal to ScanElements one ");
         }
 
         public void IsAllPrintersHaveDuplexFacility()
         {
-            IList<IWebElement> PrinterElements = DisplayedPrintersElements();
-
-            // @TODO: change xpath into cssselector
-            IList<IWebElement> DuplexElements = Driver.FindElements(By.XPath("//span[text()='Duplex']"));
-            TestCheck.AssertIsEqual(PrinterElements.Count, DuplexElements.Count, "DisplayedPrintersElements number is not equal to DuplexElements one ");
+            for (var i = 0; i <= PropertyContainerElement.Count; i++)
+            {
+                TestCheck.AssertIsEqual(true, PrinterDuplexproperty.Displayed, "Some printers displayed do not contain duplex properties");
+            }
         }
 
         public void IsAllPrintersHaveAdditionalTrayFacility()
         {
-            IList<IWebElement> PrinterElements = DisplayedPrintersElements();
-
-            // @TODO: change xpath into cssselector
-            IList<IWebElement> AdditionalTrayElements = Driver.FindElements(By.XPath("//span[text()='Additional Tray']"));
-            TestCheck.AssertIsEqual(PrinterElements.Count, AdditionalTrayElements.Count, "DisplayedPrintersElements number is not equal to AdditionalTrayElements one ");
+            for (var i = 0; i <= PropertyContainerElement.Count; i++)
+            {
+                TestCheck.AssertIsEqual(true, PrinterTrayproperty.Displayed, "Some printers displayed do not contain tray properties");
+            }
         }
 
         public void IsAllPrintersHaveA4Facility()
