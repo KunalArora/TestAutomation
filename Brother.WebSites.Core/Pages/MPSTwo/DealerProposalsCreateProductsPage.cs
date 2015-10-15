@@ -179,10 +179,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement ImageColourproperty;
         [FindsBy(How = How.CssSelector, Using = "[data-mps-product-auto-colour-type=\"M\"]")]
         public IWebElement ImageMonoproperty;
-        [FindsBy(How = How.CssSelector, Using = ".mps-product-colour")]
-        public IWebElement FlatColourMonoproperty;
+        [FindsBy(How = How.CssSelector, Using = ".js-mps-product .mps-product-colour")]
+        public IWebElement FlatColourProperty;
         [FindsBy(How = How.CssSelector, Using = ".mps-product-mono")]
-        public IWebElement FlatMonoproperty;
+        public IWebElement FlatMonoProperty;
         
 
         
@@ -331,7 +331,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             for(var i=0; i <= PropertyContainerElement.Count; i++)
             {
-                TestCheck.AssertIsEqual(true, PrinterFaxproperty.Displayed, "Some printers displayed do not contain fax properties");
+                TestCheck.AssertIsEqual(true, PrinterFaxproperty.Displayed, 
+                    "Some printers displayed do not contain fax properties");
             }
         }
 
@@ -339,7 +340,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             for (var i = 0; i <= PropertyContainerElement.Count; i++)
             {
-                TestCheck.AssertIsEqual(true, PrinterScanproperty.Displayed, "Some printers displayed do not contain scan properties");
+                TestCheck.AssertIsEqual(true, PrinterScanproperty.Displayed, 
+                    "Some printers displayed do not contain scan properties");
             }
 
         }
@@ -348,7 +350,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             for (var i = 0; i <= PropertyContainerElement.Count; i++)
             {
-                TestCheck.AssertIsEqual(true, PrinterDuplexproperty.Displayed, "Some printers displayed do not contain duplex properties");
+                TestCheck.AssertIsEqual(true, PrinterDuplexproperty.Displayed, 
+                    "Some printers displayed do not contain duplex properties");
             }
         }
 
@@ -356,36 +359,79 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             for (var i = 0; i <= PropertyContainerElement.Count; i++)
             {
-                TestCheck.AssertIsEqual(true, PrinterTrayproperty.Displayed, "Some printers displayed do not contain tray properties");
+                TestCheck.AssertIsEqual(true, PrinterTrayproperty.Displayed, 
+                    "Some printers displayed do not contain tray properties");
             }
         }
 
         public void IsAllPrintersHaveA4Facility()
         {
-            IList<IWebElement> PrinterElements = DisplayedPrintersElements();
+            //IList<IWebElement> PrinterElements = DisplayedPrintersElements();
 
-            // @TODO: change xpath into cssselector
-            IList<IWebElement> A4Elements = Driver.FindElements(By.XPath("//span[text()='A4']"));
-            TestCheck.AssertIsEqual(PrinterElements.Count, A4Elements.Count, "DisplayedPrintersElements number is not equal to A4Elements one ");
+            //// @TODO: change xpath into cssselector
+            //IList<IWebElement> A4Elements = Driver.FindElements(By.XPath("//span[text()='A4']"));
+            //TestCheck.AssertIsEqual(PrinterElements.Count, A4Elements.Count, "DisplayedPrintersElements number is not equal to A4Elements one ");
+
+            for (var i = 0; i <= PropertyContainerElement.Count; i++)
+            {
+                TestCheck.AssertIsEqual(true, PrinterA4property.Displayed,
+                    "Some printers displayed do not contain tray properties");
+            }
         }
 
         public void IsAllPrintersHaveA3Facility()
         {
-            IList<IWebElement> PrinterElements = DisplayedPrintersElements();
+            //IList<IWebElement> PrinterElements = DisplayedPrintersElements();
 
-            // @TODO: change xpath into cssselector
-            IList<IWebElement> A3Elements = Driver.FindElements(By.XPath("//span[text()='A3']"));
-            TestCheck.AssertIsEqual(PrinterElements.Count, A3Elements.Count, "DisplayedPrintersElements number is not equal to A3Elements one ");
+            //// @TODO: change xpath into cssselector
+            //IList<IWebElement> A3Elements = Driver.FindElements(By.XPath("//span[text()='A3']"));
+            //TestCheck.AssertIsEqual(PrinterElements.Count, A3Elements.Count, "DisplayedPrintersElements number is not equal to A3Elements one ");
+
+            for (var i = 0; i <= PropertyContainerElement.Count; i++)
+            {
+                TestCheck.AssertIsEqual(true, PrinterA3property.Displayed,
+                    "Some printers displayed do not contain tray properties");
+            }
         }
 
         public void IsAllPrintersHaveMonoFacility()
         {
-            // @TODO: not implement
+            if (ProductPageFlatVerifier == null)
+            {
+                for (var i = 0; i <= PropertyContainerElement.Count; i++)
+                {
+                    TestCheck.AssertIsEqual(true, ImageMonoproperty.Displayed,
+                        "Some printers displayed do not contain mono properties");
+                }
+            }
+            else
+            {
+                for (var i = 0; i <= PropertyContainerElement.Count; i++)
+                {
+                    TestCheck.AssertIsEqual(true, FlatColourProperty.Text.Equals("-"),
+                        "Some printers in flat view do not contain mono properties");
+                }
+            }
         }
 
         public void IsAllPrintersHaveColourFacility()
         {
-            // @TODO: not implement
+            if (ProductPageFlatVerifier == null)
+            {
+                for (var i = 0; i <= PropertyContainerElement.Count; i++)
+                {
+                    TestCheck.AssertIsEqual(true, ImageColourproperty.Displayed,
+                        "Some printers displayed do not contain mono properties");
+                }
+            }
+            else
+            {
+                for (var i = 0; i <= PropertyContainerElement.Count; i++)
+                {
+                    TestCheck.AssertIsEqual(false, FlatColourProperty.Text.Equals("-"),
+                        "Some printers in flat view do not contain mono properties");
+                }
+            }
         }
 
         public void IsProductScreenTextDisplayed()
