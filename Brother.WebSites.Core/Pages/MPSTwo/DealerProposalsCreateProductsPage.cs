@@ -366,11 +366,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsAllPrintersHaveA4Facility()
         {
-            //IList<IWebElement> PrinterElements = DisplayedPrintersElements();
-
-            //// @TODO: change xpath into cssselector
-            //IList<IWebElement> A4Elements = Driver.FindElements(By.XPath("//span[text()='A4']"));
-            //TestCheck.AssertIsEqual(PrinterElements.Count, A4Elements.Count, "DisplayedPrintersElements number is not equal to A4Elements one ");
 
             for (var i = 0; i <= PropertyContainerElement.Count; i++)
             {
@@ -381,11 +376,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsAllPrintersHaveA3Facility()
         {
-            //IList<IWebElement> PrinterElements = DisplayedPrintersElements();
-
-            //// @TODO: change xpath into cssselector
-            //IList<IWebElement> A3Elements = Driver.FindElements(By.XPath("//span[text()='A3']"));
-            //TestCheck.AssertIsEqual(PrinterElements.Count, A3Elements.Count, "DisplayedPrintersElements number is not equal to A3Elements one ");
 
             for (var i = 0; i <= PropertyContainerElement.Count; i++)
             {
@@ -410,6 +400,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 {
                     TestCheck.AssertIsEqual(true, FlatColourProperty.Text.Equals("-"),
                         "Some printers in flat view do not contain mono properties");
+                    TestCheck.AssertIsEqual(false, FlatMonoProperty.Text.Equals("-"),
+                        "Some printers in flat view do not contain mono properties");
                 }
             }
         }
@@ -429,6 +421,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 for (var i = 0; i <= PropertyContainerElement.Count; i++)
                 {
                     TestCheck.AssertIsEqual(false, FlatColourProperty.Text.Equals("-"),
+                        "Some printers in flat view do not contain mono properties");
+                    TestCheck.AssertIsEqual(false, FlatMonoProperty.Text.Equals("-"),
                         "Some printers in flat view do not contain mono properties");
                 }
             }
