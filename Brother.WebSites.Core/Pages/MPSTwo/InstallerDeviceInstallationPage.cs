@@ -40,17 +40,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [FindsBy(How = How.CssSelector, Using = "[class*=\"js-mps-ip-\"]")] 
         public IList<IWebElement> IpAddressElements;
 
-        [FindsBy(How = How.CssSelector, Using = ".js-mps-connect-device-to-email")] 
+        [FindsBy(How = How.CssSelector, Using = "[class*=\"js-mps-connect-device-to-\"]")] 
         public IWebElement ConnectButtonElement;
 
-        [FindsBy(How = How.CssSelector, Using = "#content_0_ButtonCompleteEmailInstallation")] 
+        [FindsBy(How = How.CssSelector, Using = "[type=\"submit\"][id*=\"content_0_Button\"]")] 
         public IWebElement CompleteInstallationElement;
 
         [FindsBy(How = How.CssSelector, Using = "#content_0_InstallationSuccessfullyFinished")] 
         public IWebElement CompleteInstallationComfirmationElement;
 
        [FindsBy(How = How.CssSelector, Using = "#content_0_InputTimeZone_Input")] 
-        public IWebElement TimeZoneOptionsElements; 
+        public IWebElement TimeZoneOptionsElements;
+
+        private const string GermanUrl = @"online.de.";
+        private const string EnglandUrl = @"online.uk.";
 
 
 
@@ -62,7 +65,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if (ContractReferencePageAlertElement == null)
                 throw new Exception("Installer page is not displayed");
             AssertElementPresent(ContractReferencePageAlertElement, "Installer pager alert");
-            MPSJobRunnerPage.RunResetSerialNumberJob(serialNumber);
+
+            MPSJobRunnerPage.RunResetSerialNumberJob(GetUrl().Contains(EnglandUrl) ? serialNumber : serialNumberBIG);
         }
 
         public void EnterContractReference()
@@ -136,19 +140,42 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ConnectDevice()
         {
-            ConnectButtonElement.Click();
-            WebDriver.Wait(DurationType.Second, 5);
+            try
+            {
+                if (TimeZoneOptionsElements != null) return;
+                ConnectButtonElement.Click();
+                WebDriver.Wait(DurationType.Second, 5);
+            }
+            catch (Exception)
+            {
+                throw new Exception("ConnectButtonElement is not displayed");
+            }
+            
+           
         }
 
         public void CompleteDeviceConnection()
         {
-            CompleteInstallationElement.Click();
-            WebDriver.Wait(DurationType.Second, 5);
+            try
+            {
+                if (TimeZoneOptionsElements != null) return;
+                CompleteInstallationElement.Click();
+                WebDriver.Wait(DurationType.Second, 5);
+            }
+            catch (Exception)
+            {
+                throw new Exception("CompleteInstallationElement is not displayed");
+            }
+            
+            
         }
 
         public void ConfirmInstallationSucceed()
         {
-            TestCheck.AssertIsEqual(true, CompleteInstallationComfirmationElement.Displayed, "Installation not successful");
+            if (TimeZoneOptionsElements != null) return;
+            TestCheck.AssertIsEqual(true, CompleteInstallationComfirmationElement.Displayed,
+                "Installation not successful");
+           
         }
         
 
