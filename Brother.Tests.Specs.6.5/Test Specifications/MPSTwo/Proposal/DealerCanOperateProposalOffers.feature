@@ -54,7 +54,7 @@ Scenario Outline: Dealer can edit products in an existing proposal offer
 	| Lease & Click with Service | Minimum Volume | Cloud MPS Dealer | United Kingdom | Products | Add    |
 	###| Lease & Click with Service | Minimum Volume | Cloud MPS Dealer | United Kingdom | Products | Remove    | #Todo: Fix alert in PhantomJS
 
-@ignore
+#@ignore
 Scenario Outline: Dealer can delete an existing proposal offer
     Given Dealer have created a Open proposal of "<ContractType>" and "<UsageType>"
 	When I click the delete button against "<TargetItem>" on Exisiting Proposal table

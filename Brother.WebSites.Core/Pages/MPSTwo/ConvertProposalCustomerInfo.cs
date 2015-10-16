@@ -158,12 +158,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SelectALegalForm()
         {
-            if (GetDealerName().Contains("abmelden"))
+            if (IsGermanSystem())
             {
                 SelectFromDropdown(LegalFormDropdown, "Aktiengesellschaft");
 
             }
-            else if (GetDealerName().Contains("sign out"))
+            else if (!IsGermanSystem())
             {
                SelectFromDropdown(LegalFormDropdown, "Church"); 
             }
@@ -180,12 +180,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterCompanyRegistration()
         {
-            ClearAndType(CompanyRegistrationNumberField, "00664172");
+            if (!IsGermanSystem())
+                ClearAndType(CompanyRegistrationNumberField, "00664172");
         }
 
         public void EnterVatNumber()
         {
-            ClearAndType(VATNumberField, "365684514");
+            if(!IsGermanSystem())
+                ClearAndType(VATNumberField, "GB100000132");
         }
 
         public void EnterAuthoriisedSignatoryNumber()
@@ -195,7 +197,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SelectATradingStyle()
         {
-            if (GetDealerName().Contains("sign out"))
+            if (!IsGermanSystem())
                 SelectFromDropdown(TradingStyleElement, "Non-Regulated");
                 WebDriver.Wait(DurationType.Second, 3);
         }
@@ -203,12 +205,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void SelectAPaymentType()
         {
 
-            if (GetDealerName().Contains("abmelden"))
+            if (IsGermanSystem())
             {
                 SelectFromDropdown(PaymentTypeDropdown, "Bankeinzug");
 
             }
-            else if (GetDealerName().Contains("sign out"))
+            else if (!IsGermanSystem())
             {
                 SelectFromDropdown(PaymentTypeDropdown, "Direct Debit");
             }
@@ -244,31 +246,31 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterBankPropertyNumber()
         {
-            if (GetDealerName().Contains("sign out"))
+            if (!IsGermanSystem())
                  ClearAndType(BankPropertyNumberElement, "12345");
         }
 
         public void EnterBankPropertyStreet()
         {
-            if (GetDealerName().Contains("sign out"))
-                 ClearAndType(BankPropertyStreetElement, "abc");
+            if (!IsGermanSystem())
+                 ClearAndType(BankPropertyStreetElement, "Lloyds House");
         }
 
         public void EnterBankPropertyTown()
         {
-            if (GetDealerName().Contains("sign out"))
-                 ClearAndType(BankPropertyTownElement, "abc");
+            if (!IsGermanSystem())
+                 ClearAndType(BankPropertyTownElement, "Cockney");
         }
 
         public void EnterBankPropertyPostcode()
         {
-            if (GetDealerName().Contains("sign out"))
+            if (!IsGermanSystem())
                  ClearAndType(BankPropertyPostcodeElement, "M1 3ED");
         }
 
         public void FillAllCustomerDetailsOnConvert()
         {
-            if (GetDealerName().Contains("sign out")) return;
+            if (!IsGermanSystem()) return;
             CreateANewCustomerInConvertProcess();
             FillGermanOrganisationDetails();
             FillOrganisationContactDetail();
@@ -446,7 +448,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterCompanyVATNumber()
         {
-            GermanUstIDNrElement.SendKeys("DE12345678");
+            GermanUstIDNrElement.SendKeys("DE113298780");
         }
 
         public void EnterCreditReformNumber()

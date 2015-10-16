@@ -20,6 +20,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         private const string ResultLoader = "results-loading";
 
         private const int ElementSearchTimeout = 60;
+        private const string germanUrl = @"online.de";
 
         public static void AcceptCookieLaw(IWebDriver driver)
         {
@@ -52,6 +53,11 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         public string GetUrl()
         {
             return Driver.Url;
+        }
+
+        public bool IsGermanSystem()
+        {
+            return GetUrl().Contains(germanUrl);
         }
 
 

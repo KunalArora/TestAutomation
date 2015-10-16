@@ -15,39 +15,32 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             get { return string.Empty; }
         }
 
-        [FindsBy(How = How.CssSelector, Using = "a[href='/mps/local-office/proposals'] .media-body")]
-        public IWebElement ProposalLinkElement;
-        [FindsBy(How = How.CssSelector, Using = "a[href='/mps/local-office/contracts'] .media-body")]
-        public IWebElement ContractLinkElement;
+       
+        [FindsBy(How = How.CssSelector, Using = ".separator [href=\"/mps/local-office/approval\"]")]
+        public IWebElement ApprovalTabElement;
+        [FindsBy(How = How.CssSelector, Using = ".separator [href=\"/mps/local-office/manage-devices\"]")]
+        public IWebElement DeviceManagementTabTabElement;
 
-        public void IsProposalsLinkAvailable()
+
+        public void IsApprovalLinkAvailable()
         {
-            if (ProposalLinkElement == null) 
-                throw new Exception("Unable to locate Proposals link on dashboard page");
+            if (ApprovalTabElement == null)
+                throw new Exception("Unable to locate Approval link on dashboard page");
 
-            AssertElementPresent(ProposalLinkElement, "Create New Proposals Link");
+            AssertElementPresent(ApprovalTabElement, "Create New Proposals Link");
         }
 
-        public void IsContractsLinkAvailable()
-        {
-            if (ContractLinkElement == null)
-                throw new Exception("Unable to locate Contracts link on dashboard page");
 
-            AssertElementPresent(ContractLinkElement, "Create Contracts Link");
+        public LocalOfficeApproverApprovalPage NavigateToOfficeApproverApprovalPage()
+        {
+            IsApprovalLinkAvailable();
+            ApprovalTabElement.Click();
+
+            return GetInstance<LocalOfficeApproverApprovalPage>(Driver);
         }
 
-        public LocalOfficeApproverProposalsPage NavigateToProposalsPage()
-        {
-            IsProposalsLinkAvailable();
-            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ProposalLinkElement);
-            return GetTabInstance<LocalOfficeApproverProposalsPage>(Driver);
-        }
+        
 
-        public LocalOfficeApproverContractsPage NavigateToContractsPage()
-        {
-            IsContractsLinkAvailable();
-            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ContractLinkElement);
-            return GetTabInstance<LocalOfficeApproverContractsPage>(Driver);
-        }
+       
     }
 }

@@ -242,8 +242,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterPropertyPostCode()
         {
-            if (PropertyPostcodeElement.Displayed)
-                PropertyPostcodeElement.SendKeys(MpsUtil.PostCode());
+            PropertyPostcodeElement.SendKeys(!IsGermanSystem() ? MpsUtil.PostCodeGB() : MpsUtil.PostCode());
         }
 
         public void SelectRegionFromDropdown(string region)

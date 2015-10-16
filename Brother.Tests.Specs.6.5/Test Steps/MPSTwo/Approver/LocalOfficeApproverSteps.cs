@@ -16,7 +16,8 @@ namespace Brother.Tests.Specs.MPSTwo.LocalOfficeApprover
         [When(@"I navigate to ProposalPage")]
         public void WhenINavigateToOfferPage()
         {
-            NextPage = CurrentPage.As<LocalOfficeApproverDashBoardPage>().NavigateToProposalsPage();
+            NextPage = CurrentPage.As<LocalOfficeApproverDashBoardPage>().NavigateToOfficeApproverApprovalPage();
+            NextPage = CurrentPage.As<LocalOfficeApproverApprovalPage>().NavigateToProposalsPage();
         }
 
         [Given(@"I navigate to Awaiting Approval screen under Proposals page")]
@@ -64,7 +65,8 @@ namespace Brother.Tests.Specs.MPSTwo.LocalOfficeApprover
         [Then(@"navigate to Local Office Approver contract Awaiting Acceptance page")]
         public void ThenNavigateToLocalOfficeApproverContractAwaitingAcceptancePage()
         {
-            NextPage = CurrentPage.As<LocalOfficeApproverDashBoardPage>().NavigateToContractsPage();
+            NextPage = CurrentPage.As<LocalOfficeApproverDashBoardPage>().NavigateToOfficeApproverApprovalPage();
+            NextPage = CurrentPage.As<LocalOfficeApproverApprovalPage>().NavigateToContractsPage();
             CurrentPage.As<LocalOfficeApproverContractsPage>().NavigateToAwaitingAcceptancePage();
         }
 
@@ -86,7 +88,8 @@ namespace Brother.Tests.Specs.MPSTwo.LocalOfficeApprover
         [Then(@"I navigate to Contract Awaiting Acceptance page from Local Office DashBoard")]
         public void WhenINavigateToContractAwaitingAcceptancePageFromLocalOfficeDashBoard()
         {
-            NextPage = CurrentPage.As<LocalOfficeApproverDashBoardPage>().NavigateToContractsPage();
+            NextPage = CurrentPage.As<LocalOfficeApproverDashBoardPage>().NavigateToOfficeApproverApprovalPage();
+            NextPage = CurrentPage.As<LocalOfficeApproverApprovalPage>().NavigateToContractsPage();
             WhenINavigateToContractAwaitingAcceptancePage();
         }
 
@@ -151,7 +154,8 @@ namespace Brother.Tests.Specs.MPSTwo.LocalOfficeApprover
         [When(@"I navigate to Local Office Approver Contracts screen on ""(.*)"" Tab")]
         public void WhenINavigateToLocalOfficeApproverContractsScreenOnTab(string acceptance)
         {
-            NextPage = CurrentPage.As<LocalOfficeApproverDashBoardPage>().NavigateToContractsPage();
+            NextPage = CurrentPage.As<LocalOfficeApproverDashBoardPage>().NavigateToOfficeApproverApprovalPage();
+            NextPage = CurrentPage.As<LocalOfficeApproverApprovalPage>().NavigateToContractsPage();
             switch (acceptance)
             {
                 case "Awating Acceptance":

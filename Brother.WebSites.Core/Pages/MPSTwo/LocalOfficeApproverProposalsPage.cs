@@ -18,11 +18,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             get { return string.Empty; }
         }
 
-        [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/local-office/proposals/awaiting-approval']")]
+        [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/local-office/approval/proposals/awaiting-approval']")]
         public IWebElement AwaitingApprovalLinkElement;
-        [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/local-office/proposals/approved']")]
+        [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/local-office/approval/proposals/approved']")]
         public IWebElement ApprovedLinkElement;
-        [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/local-office/proposals/declined']")]
+        [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/local-office/approval/proposals/declined']")]
         public IWebElement DeclinedLinkElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_ButtonDecline")]
         public IWebElement DeclineButtonElement;

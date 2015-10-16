@@ -346,6 +346,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             deleteElem.Click();
         }
 
+        public void AcceptConfirmationOnWarning()
+        {
+            HeadlessDismissAlertOk();
+        }
+
+        public void DismissWarningMessage()
+        {
+            HeadlessDismissAlertCancel();
+        }
+
 
         public void ClickOnDeleteOnActionItemAgainstNewlyCreated(IWebDriver driver)
         {

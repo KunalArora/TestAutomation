@@ -47,7 +47,8 @@ namespace Brother.Tests.Specs.MPSTwo.Approver
             }
             else if (PurchaseAndClick)
             {
-                NextPage = CurrentPage.As<LocalOfficeApproverDashBoardPage>().NavigateToProposalsPage();
+                NextPage = CurrentPage.As<LocalOfficeApproverDashBoardPage>().NavigateToOfficeApproverApprovalPage();
+                NextPage = CurrentPage.As<LocalOfficeApproverApprovalPage>().NavigateToProposalsPage();
             }
         }
 
@@ -124,7 +125,8 @@ namespace Brother.Tests.Specs.MPSTwo.Approver
             }
             else if (PurchaseAndClick)
             {
-                NextPage = CurrentPage.As<LocalOfficeApproverDashBoardPage>().NavigateToContractsPage();
+                NextPage = CurrentPage.As<LocalOfficeApproverDashBoardPage>().NavigateToOfficeApproverApprovalPage();
+                NextPage = CurrentPage.As<LocalOfficeApproverApprovalPage>().NavigateToContractsPage();
                 CurrentPage.As<LocalOfficeApproverContractsPage>().NavigateToAwaitingAcceptancePage();
             }
         }
@@ -235,6 +237,18 @@ namespace Brother.Tests.Specs.MPSTwo.Approver
             ThenApproverCanSuccessfullyApproveTheContract();
             ThenTheAcceptedContractByApproverIsDisplayedOnContractAcceptedScreen();
             instance3.ThenIfISignOutOfBrotherOnline();
+        }
+
+        [Given(@"the contract created above is approved without signing out")]
+        [Then(@"the contract created above is approved without signing out")]
+        public void ThenTheContractCreatedAboveIsApprovedWithoutSigningOut()
+        {
+            
+            WhenApproverNavigateToContractAwaitingAcceptancePage();
+            ThenApproverCanViewAllTheContractsThatHaveBeenSignedByDealer();
+            ThenApproverCanSuccessfullyApproveTheContract();
+            ThenTheAcceptedContractByApproverIsDisplayedOnContractAcceptedScreen();
+            
         }
 
 

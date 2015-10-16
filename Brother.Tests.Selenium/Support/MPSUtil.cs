@@ -675,6 +675,36 @@ namespace Brother.Tests.Selenium.Lib.Support
             return postCode;
         }
 
+
+        public static string PostCodeGB()
+        {
+            String[] zip = {
+                                    "M1 6FT",
+						            "SW8 6TY",
+						            "B45 8DR",
+						            "CH2 3PD",
+						            "L2 7PQ",
+						            "LS2 7LY",
+						            "FY3 9GZ",
+						            "BD23 1UD",
+						            "S41 6GY",
+						            "DH1 1AL",
+						            "E1 6TA",
+						            "KA6 7TZ",
+						            "AB35 8TB",
+						            "DE3 9FB",
+						            "NN1 2PN",
+						            "PR9 9GL",
+						            "MA23 9CV",
+						            "WA5 7TB",
+						            "SK23 8SD",
+						            "HA2 9EF"
+					            };
+            var postCode = zip[new Random().Next(20)];
+
+            return postCode;
+        }
+
         public static decimal GetValue(string money)
         {
             NumberFormatInfo poundNumberFormatInfo = new NumberFormatInfo();
