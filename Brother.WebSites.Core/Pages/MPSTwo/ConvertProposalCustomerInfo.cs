@@ -145,12 +145,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             NextElement.Click();
         }
 
-        public string GetDealerName()
-        {
-            return GetElementByCssSelector(".wrapper.cf span[style*=\"text-align\"]").Text;
-
-        }
-
         public void CustomerCanOrderConsumables()
         {
             CanOrderConsumablesTick.Click();
