@@ -11,17 +11,31 @@ using OpenQA.Selenium.Support.PageObjects;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class DealerContractsApprovedPage : BasePage
+    public class LocalOfficeApproverDeviceManagementPage : BasePage
     {
-        public static string URL = "/mps/dealer/contracts";
+        public static string Url = "/";
 
         public override string DefaultTitle
         {
             get { return string.Empty; }
         }
 
+        [FindsBy(How = How.CssSelector, Using = ".active a[href=\"/mps/local-office/manage-devices/contracts\"]")]
+        public IWebElement LOApproverDeviceManagementContractElement;
         [FindsBy(How = How.CssSelector, Using = ".open .js-mps-manage-devices")]
         public IWebElement ManageDevicesElement;
+
+
+
+        public void IsLOApproverDeviceManagementPageDisplayed()
+        {
+            if(LOApproverDeviceManagementContractElement == null)
+                throw new Exception("LO Approver Device Management screen not opened");
+
+            AssertElementPresent(LOApproverDeviceManagementContractElement, "Lo approver device management page is not displayed");
+        }
+
+       
 
 
 
@@ -29,19 +43,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public ManageDevicesPage NavigateToManageDevicesPage()
         {
-            if (ManageDevicesElement == null)
-                throw new Exception("Manage Device Element is not displayed");
-
             WebDriver.Wait(DurationType.Second, 30);
-            
+
             ScrollTo(ActionsModule.SpecificActionsDropdownElement());
             ActionsModule.ClickOnSpecificActionsElement();
-            
+
             ScrollTo(ManageDevicesElement);
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ManageDevicesElement);
             WebDriver.Wait(DurationType.Second, 30);
             return GetInstance<ManageDevicesPage>(Driver);
         }
-    
     }
 }

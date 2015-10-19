@@ -100,17 +100,18 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
                     break;
 
                 case "TermAndType":
-                    if (contractType == "Lease & Click with Service")
+                    switch (contractType)
                     {
-                        termAndTypeStepInstance.EditTermAndTypeTab("Pay As You Go", "5 years", "Quarterly in Advance", "Quarterly in Arrears");
-                        GoThrowProductsTab();
-                        productsStepInstance.GoThrowClickPriceTab();
-                    }
-                    else if (contractType == "Purchase & Click with Service")
-                    {
-                        termAndTypeStepInstance.EditTermAndTypeTabForPurchaseOffer("Pay As You Go", "5 years", "Quarterly in Arrears");
-                        GoThrowProductsTab();
-                        productsStepInstance.GoThrowClickPriceTab();
+                        case "Lease & Click with Service":
+                            termAndTypeStepInstance.EditTermAndTypeTab("Pay As You Go", "5 years", "Quarterly in Advance", "Quarterly in Arrears");
+                            GoThrowProductsTab();
+                            productsStepInstance.GoThrowClickPriceTab();
+                            break;
+                        case "Purchase & Click with Service":
+                            termAndTypeStepInstance.EditTermAndTypeTabForPurchaseOffer("Pay As You Go", "5 years", "Quarterly in Arrears");
+                            GoThrowProductsTab();
+                            productsStepInstance.GoThrowClickPriceTab();
+                            break;
                     }
                     break;
 
@@ -201,12 +202,13 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
             }
         }
 
-        [When(@"I click the delete button against ""(.*)"" on Exisiting Proposal table")]
-        public void WhenIClickTheDeleteButtonAgainstAnItemOnExisitingProposalTable(string targertitem)
+        [When(@"I click the delete button against ""(.*)"" on Existing Proposal table to be ""(.*)""")]
+        public void WhenIClickTheDeleteButtonAgainstOnExistingProposalTableToBe(string targetItem, string confirm)
         {
             var page = CurrentPage.As<CloudExistingProposalPage>();
             page.FindExistingPoposalList();
-            if (targertitem == "NewlyCreatedItem")
+            page.HeadlessConfimation(confirm);
+            if (targetItem == "NewlyCreatedItem")
             {
                 page.ClickOnDeleteOnActionItemAgainstNewlyCreated(CurrentDriver);
             }

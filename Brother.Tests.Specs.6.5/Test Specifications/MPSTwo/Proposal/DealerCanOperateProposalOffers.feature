@@ -54,10 +54,10 @@ Scenario Outline: Dealer can edit products in an existing proposal offer
 	| Lease & Click with Service | Minimum Volume | Cloud MPS Dealer | United Kingdom | Products | Add    |
 	###| Lease & Click with Service | Minimum Volume | Cloud MPS Dealer | United Kingdom | Products | Remove    | #Todo: Fix alert in PhantomJS
 
-@ignore
+#@ignore
 Scenario Outline: Dealer can delete an existing proposal offer
     Given Dealer have created a Open proposal of "<ContractType>" and "<UsageType>"
-	When I click the delete button against "<TargetItem>" on Exisiting Proposal table
+	When I click the delete button against "<TargetItem>" on Existing Proposal table to be "<Confirm>"
 	And I click the "<Confirm>" button on Confirmation Dialog
 	Then I can see the deleted item does not exist on the table
 	And I can sign out of Brother Online
@@ -66,10 +66,10 @@ Scenario Outline: Dealer can delete an existing proposal offer
 	| ContractType               | UsageType      | Confirm | TargetItem       |
 	| Lease & Click with Service | Minimum Volume | OK		| NewlyCreatedItem |
 	
-Scenario Outline: Dealer can cansel deleting proposal offer
+Scenario Outline: Dealer can cancel deleting proposal offer
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to existing proposal screen
-	When I click the delete button against "<TargetItem>" on Exisiting Proposal table
+	When I click the delete button against "<TargetItem>" on Existing Proposal table to be "<Confirm>"
 	And I click the "<Confirm>" button on Confirmation Dialog
 	Then I can see the deleted item still exists on the table
 	And I can sign out of Brother Online

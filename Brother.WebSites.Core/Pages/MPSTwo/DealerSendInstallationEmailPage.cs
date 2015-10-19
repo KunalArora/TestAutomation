@@ -19,7 +19,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             get { return string.Empty; }
         }
 
-        [FindsBy(How = How.CssSelector, Using = ".active a[href=\"/mps/dealer/contracts/manage-devices/send-installation-email\"]")]
+        [FindsBy(How = How.CssSelector, Using = ".active a[href*=\"/send-installation-email\"]")]
         public IWebElement SendCommunicationEmailElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_InputInstallerEmailAddress_Input")]
         public IWebElement EmailFieldElement;
@@ -80,10 +80,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             
         }
 
-        public DealerManageDevicesPage CompleteInstallation()
+        public ManageDevicesPage CompleteInstallation()
         {
             FinishInstallationElement.Click();
-            return GetTabInstance<DealerManageDevicesPage>(Driver);
+            return GetTabInstance<ManageDevicesPage>(Driver);
         }
         
 

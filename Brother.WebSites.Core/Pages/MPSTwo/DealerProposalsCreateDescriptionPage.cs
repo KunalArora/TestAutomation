@@ -37,6 +37,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement CustomerInformationTab;
         [FindsBy(How = How.CssSelector, Using = ".first")]
         public IList<IWebElement> ProposalCreationTabs;
+
+
+        private const string germanUrl = @"online.de";
         
 
         
@@ -93,17 +96,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void CustomerTabNotDisplayed()
         {
-            //TestCheck.AssertIsEqual(true, CustomerTabElement().Size.IsEmpty, "Customer Tab is displayed");
-            //TestCheck.AssertIsNullOrEmpty("", "");
-
             TestCheck.AssertIsEqual(5, ProposalCreationTabs.Count, "");
         }
 
         public void CustomerTabIsDisplayed()
         {
-            //TestCheck.AssertIsEqual(true, CustomerTabElement().Size.IsEmpty, "Customer Tab is displayed");
-            //TestCheck.AssertIsNullOrEmpty("", "");
-
             TestCheck.AssertIsEqual(6, ProposalCreationTabs.Count, "");
         }
 
@@ -190,11 +187,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ProposalNameField.Clear();
             ProposalNameField.SendKeys(proposalName);
             WebDriver.Wait(DurationType.Millisecond, 100);
-        }
-
-        public bool IsGermanSystem()
-        {
-            return ProposalCreationTabs.Count.Equals(5);
         }
 
         public DealerProposalsCreateCustomerInformationPage ClickNextButton()

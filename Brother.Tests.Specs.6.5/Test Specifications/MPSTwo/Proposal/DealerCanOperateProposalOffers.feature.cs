@@ -161,23 +161,16 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Dealer can delete an existing proposal offer")]
-        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Lease & Click with Service", "Minimum Volume", "OK", "NewlyCreatedItem", null)]
         public virtual void DealerCanDeleteAnExistingProposalOffer(string contractType, string usageType, string confirm, string targetItem, string[] exampleTags)
         {
-            string[] @__tags = new string[] {
-                    "ignore"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer can delete an existing proposal offer", @__tags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer can delete an existing proposal offer", exampleTags);
 #line 58
 this.ScenarioSetup(scenarioInfo);
 #line 59
     testRunner.Given(string.Format("Dealer have created a Open proposal of \"{0}\" and \"{1}\"", contractType, usageType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 60
- testRunner.When(string.Format("I click the delete button against \"{0}\" on Exisiting Proposal table", targetItem), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When(string.Format("I click the delete button against \"{0}\" on Existing Proposal table to be \"{1}\"", targetItem, confirm), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 61
  testRunner.And(string.Format("I click the \"{0}\" button on Confirmation Dialog", confirm), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 62
@@ -189,11 +182,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Dealer can cansel deleting proposal offer")]
+        [NUnit.Framework.DescriptionAttribute("Dealer can cancel deleting proposal offer")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Dismiss", "AnyItem", null)]
-        public virtual void DealerCanCanselDeletingProposalOffer(string role, string country, string confirm, string targetItem, string[] exampleTags)
+        public virtual void DealerCanCancelDeletingProposalOffer(string role, string country, string confirm, string targetItem, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer can cansel deleting proposal offer", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer can cancel deleting proposal offer", exampleTags);
 #line 69
 this.ScenarioSetup(scenarioInfo);
 #line 70
@@ -201,7 +194,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 71
  testRunner.And("I navigate to existing proposal screen", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 72
- testRunner.When(string.Format("I click the delete button against \"{0}\" on Exisiting Proposal table", targetItem), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When(string.Format("I click the delete button against \"{0}\" on Existing Proposal table to be \"{1}\"", targetItem, confirm), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 73
  testRunner.And(string.Format("I click the \"{0}\" button on Confirmation Dialog", confirm), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 74

@@ -346,6 +346,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             deleteElem.Click();
         }
 
+        public void AcceptConfirmationOnWarning()
+        {
+            HeadlessDismissAlertOk();
+        }
+
+        public void DismissWarningMessage()
+        {
+            HeadlessDismissAlertCancel();
+        }
+
 
         public void ClickOnDeleteOnActionItemAgainstNewlyCreated(IWebDriver driver)
         {
@@ -450,6 +460,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 "Existing proposal table is not found.");
         }
 
+        public void HeadlessConfimation(string confirm)
+        {
+            if (confirm != "OK")
+            {
+                HeadlessDismissAlertCancel();
+            }
+            else
+            {
+                HeadlessDismissAlertOk();
+            }
+        }
+
         public void ClickAcceptOnConfrimation(IWebDriver driver)
         {
             WebDriver.Wait(DurationType.Millisecond, 1000);
@@ -460,7 +482,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void ClickDismissOnConfrimation(IWebDriver driver)
         {
             WebDriver.Wait(DurationType.Millisecond, 1000);
-            HeadlessDismissAlertOk();
+            HeadlessDismissAlertCancel();
             ClickDismissOnJsAlert(driver);
         }
 

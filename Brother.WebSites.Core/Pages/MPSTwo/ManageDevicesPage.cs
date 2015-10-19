@@ -13,7 +13,7 @@ using OpenQA.Selenium.Support.UI;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class DealerManageDevicesPage : BasePage
+    public class ManageDevicesPage : BasePage
     {
         public static string Url = "/";
 

@@ -14,14 +14,16 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
         [When(@"I navigate to Local Office Approver contract Awaiting Acceptance page")]
         public void WhenINavigateToLocalOfficeApproverContractAwaitingAcceptancePage()
         {
-            NextPage = CurrentPage.As<LocalOfficeApproverDashBoardPage>().NavigateToContractsPage();
+            NextPage = CurrentPage.As<LocalOfficeApproverDashBoardPage>().NavigateToOfficeApproverApprovalPage();
+            NextPage = CurrentPage.As<LocalOfficeApproverApprovalPage>().NavigateToContractsPage();
             CurrentPage.As<LocalOfficeApproverContractsPage>().NavigateToAwaitingAcceptancePage();
         }
 
         [When(@"I navigate to Local Office Approver contract Rejected page")]
         public void WhenINavigateToLocalOfficeApproverContractRejectedPage()
         {
-            NextPage = CurrentPage.As<LocalOfficeApproverDashBoardPage>().NavigateToContractsPage();
+            NextPage = CurrentPage.As<LocalOfficeApproverDashBoardPage>().NavigateToOfficeApproverApprovalPage();
+            NextPage = CurrentPage.As<LocalOfficeApproverApprovalPage>().NavigateToContractsPage();
             CurrentPage.As<LocalOfficeApproverContractsPage>().NavigateToRejectedPage();
         }
 
@@ -40,7 +42,8 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
         [When(@"I decline the proposal created above as a Local Office Approver")]
         public void WhenIDeclineTheProposalCreatedAboveAsALocalOfficeApprover()
         {
-            NextPage = CurrentPage.As<LocalOfficeApproverDashBoardPage>().NavigateToProposalsPage();
+            NextPage = CurrentPage.As<LocalOfficeApproverDashBoardPage>().NavigateToOfficeApproverApprovalPage();
+            NextPage = CurrentPage.As<LocalOfficeApproverApprovalPage>().NavigateToProposalsPage();
             CurrentPage.As<LocalOfficeApproverProposalsPage>().ClickOnActionButtonAgainstRelevantProposal(CurrentDriver);
             CurrentPage.As<LocalOfficeApproverProposalsPage>().NavigateToAwaitingApprovalSummaryPage(CurrentDriver);
             CurrentPage.As<LocalOfficeApproverProposalsPage>().DeclineAnAwaitingApprovalProposal();

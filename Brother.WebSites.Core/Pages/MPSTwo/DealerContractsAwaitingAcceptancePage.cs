@@ -46,7 +46,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             TestCheck.AssertIsEqual(true, newProposal.Displayed, "Is new proposal displayed");
         }
 
-        public DealerManageDevicesPage NavigateToManageDevicesPage()
+        public ManageDevicesPage NavigateToManageDevicesPage()
         {
             if (ManageDevicesElement == null)
                 throw new Exception("Manage Device Element is not displayed");
@@ -59,7 +59,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ScrollTo(ManageDevicesElement);
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ManageDevicesElement);
             WebDriver.Wait(DurationType.Second, 30);
-            return GetInstance<DealerManageDevicesPage>(Driver);
+            return GetInstance<ManageDevicesPage>(Driver);
         }
 
         

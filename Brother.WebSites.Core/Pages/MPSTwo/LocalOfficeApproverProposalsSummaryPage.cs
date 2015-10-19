@@ -92,21 +92,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ClearAndType(ReferenceElement, reference);
         }
 
-        public string GetDealerName()
-        {
-            return GetElementByCssSelector(".wrapper.cf span[style*=\"text-align\"]").Text;
-
-        }
-
+        
         public void EnterValidUntil()
         {
-            if (GetDealerName().Contains("sign out"))
+            if (!IsGermanSystem())
                 ValidUntilElement.SendKeys(MpsUtil.SomeDaysFromToday());
         }
 
         public void EnterCreditLimit()
         {
-            if (!GetDealerName().Contains("sign out"))
+            if (IsGermanSystem())
                 ClearAndType(CreditLimitElement, "30000");
         }
 

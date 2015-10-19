@@ -20,7 +20,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             get { return string.Empty; }
         }
 
-        [FindsBy(How = How.CssSelector, Using = ".active a[href=\"/mps/dealer/contracts/manage-devices/set-communication-method\"]")]
+        [FindsBy(How = How.CssSelector, Using = ".active a[href*=\"/set-communication-method\"]")]
         public IWebElement SetCommunicationTabElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_InputCommunicationChoiceCloud")]
         public IWebElement CloudCommunicationElement;

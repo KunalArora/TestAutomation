@@ -33,10 +33,10 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
         [Given(@"I extract the installer url from Installation Request")]
         public void GivenIExtractTheInstallerUrlFromInstallationRequest()
         {
-            CurrentPage.As<DealerManageDevicesPage>().ClickOnActionButton();
-            CurrentPage.As<DealerManageDevicesPage>().ClickToExposeInstallationRequest();
-            CurrentPage.As<DealerManageDevicesPage>().IsInstallationRequestScreenDisplayed();
-            CurrentPage.As<DealerManageDevicesPage>().GetInstallationLink();
+            CurrentPage.As<ManageDevicesPage>().ClickOnActionButton();
+            CurrentPage.As<ManageDevicesPage>().ClickToExposeInstallationRequest();
+            CurrentPage.As<ManageDevicesPage>().IsInstallationRequestScreenDisplayed();
+            CurrentPage.As<ManageDevicesPage>().GetInstallationLink();
             //CurrentPage.As<DealerManageDevicesPage>().CloseInstallationrequestPopUp();
         }
 
@@ -44,7 +44,7 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
         [Given(@"I navigate to the installer page")]
         public void GivenINavigateToTheInstallerPage()
         {
-            NextPage = CurrentPage.As<DealerManageDevicesPage>().LaunchInstallerPage();
+            NextPage = CurrentPage.As<ManageDevicesPage>().LaunchInstallerPage();
             CurrentPage.As<InstallerDeviceInstallationPage>().IsInstallerScreenDisplayed();
         }
 
@@ -97,6 +97,16 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
 
         }
 
+
+        [When(@"I navigate to the Local Office Approver device management Screen")]
+        public void WhenINavigateToTheLocalOfficeApproverDeviceManagementScreen()
+        {
+            NextPage = CurrentPage.As<LocalOfficeApproverContractsPage>().NavigateTOfficeDeviceManagementPage();
+            NextPage = CurrentPage.As<LocalOfficeApproverDeviceManagementPage>().NavigateToManageDevicesPage();
+            CurrentPage.As<ManageDevicesPage>().IsManagedDeviceScreenDisplayed();
+
+        }
+
         [When(@"I navigate to the signed contract Manage Device Screen")]
         public void WhenINavigateToTheSignedContractManageDeviceScreen()
         {
@@ -111,9 +121,9 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
         [When(@"I select Location in order to create installation request")]
         public void WhenISelectLocationInOrderToCreateInstallationRequest()
         {
-            CurrentPage.As<DealerManageDevicesPage>().IsManagedDeviceScreenDisplayed();
-            CurrentPage.As<DealerManageDevicesPage>().SelectCompanyLocation();
-            NextPage =  CurrentPage.As<DealerManageDevicesPage>().CreateInstallationRequest();
+            CurrentPage.As<ManageDevicesPage>().IsManagedDeviceScreenDisplayed();
+            CurrentPage.As<ManageDevicesPage>().SelectCompanyLocation();
+            NextPage =  CurrentPage.As<ManageDevicesPage>().CreateInstallationRequest();
         }
 
         [When(@"I set device communication method as ""(.*)""")]
@@ -164,8 +174,8 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
         [Then(@"the installation request for that device is completed")]
         public void ThenTheInstallationRequestForThatDeviceIsCompleted()
         {
-            CurrentPage.As<DealerManageDevicesPage>().IsManagedDeviceScreenDisplayed();
-            CurrentPage.As<DealerManageDevicesPage>().IsInstallationRequestDisplayed();
+            CurrentPage.As<ManageDevicesPage>().IsManagedDeviceScreenDisplayed();
+            CurrentPage.As<ManageDevicesPage>().IsInstallationRequestDisplayed();
         }
 
     }

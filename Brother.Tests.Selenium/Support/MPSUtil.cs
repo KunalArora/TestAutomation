@@ -649,28 +649,58 @@ namespace Brother.Tests.Selenium.Lib.Support
         public static string PostCode()
         {
                 String[] zip = {
-                                    "03189",
-						            "03201",
-						            "03400",
-						            "03460",
-						            "03500",
-						            "03600",
-						            "03610",
-						            "03700",
-						            "03710",
-						            "03801",
-						            "91111",
-						            "08120",
-						            "08170",
-						            "08301",
-						            "08370",
-						            "08380",
-						            "08397",
-						            "08398",
-						            "08401",
-						            "08620"
+                                    "03042",
+						            "03116",
+						            "03055",
+						            "01968",
+						            "01979",
+						            "03130",
+						            "04916",
+						            "14401",
+						            "14612",
+						            "15926",
+						            "16269",
+						            "16303",
+						            "16321",
+						            "17268",
+						            "17326",
+						            "17033",
+						            "17109",
+						            "25926",
+						            "19417",
+						            "23999"
 					            };
                 var postCode = zip[new Random().Next(20)];
+
+            return postCode;
+        }
+
+
+        public static string PostCodeGB()
+        {
+            String[] zip = {
+                                    "M1 6FT",
+						            "SW11 6TY",
+						            "B45 8DE",
+						            "CH2 3PD",
+						            "L2 7PQ",
+						            "LS2 7LY",
+						            "FY3 9GZ",
+						            "BD23 1UD",
+						            "S1 2FB",
+						            "DH1 1AL",
+						            "E1 6TE",
+						            "KA6 7TZ",
+						            "DD10 8TB",
+						            "DE3 9FB",
+						            "NN1 2PN",
+						            "PR9 9GL",
+						            "M23 4QR",
+						            "WA5 7TB",
+						            "SK23 7AH",
+						            "HA2 9EF"
+					            };
+            var postCode = zip[new Random().Next(20)];
 
             return postCode;
         }

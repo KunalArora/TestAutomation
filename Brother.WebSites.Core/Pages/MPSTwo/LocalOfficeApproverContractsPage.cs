@@ -18,20 +18,22 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             get { return string.Empty; }
         }
 
-        [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/local-office/contracts/approved-proposals']")]
+        [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/local-office/approval/contracts/approved-proposals']")]
         public IWebElement ApprovedProposalsLinkElement;
-        [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/local-office/contracts/awaiting-acceptance']")]
+        [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/local-office/approval/contracts/awaiting-acceptance']")]
         public IWebElement AwaitingAcceptancLinkElement;
-        [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/local-office/contracts/accepted']")]
+        [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/local-office/approval/contracts/accepted']")]
         public IWebElement AcceptedLinkElement;
-        [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/local-office/contracts/rejected']")]
+        [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/local-office/approval/contracts/rejected']")]
         public IWebElement RejectedLinkElement;
-        [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/local-office/contracts/awaiting-acceptance\"] span")]
+        [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/local-office/approval/contracts/awaiting-acceptance\"] span")]
         public IWebElement OpenedAwaitingAcceptancLinkElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-contract-list-container .table .js-mps-searchable tr")]
         public IList<IWebElement> ContractListContainerElement;
+        [FindsBy(How = How.CssSelector, Using = ".separator a[href=\"/mps/local-office/manage-devices\"]")]
+        public IWebElement LOApproverDeviceManagementElement;
         
-
+        
         
 
         public void IsApprovedProposalsLinkAvailable()
@@ -121,9 +123,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public LocalOfficeApproverContractsSummaryPage NavigateToViewSummary()
         {
-            //string proposalname = MpsUtil.CreatedProposal();
-            //IWebElement element = ActionButtonElementByName(proposalname, "7");
-            //element.Click();
             ActionsModule.ClickOnSpecificActionsElement();
             ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
 
@@ -149,6 +148,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 throw new Exception("Unable to locate Contract List");
 
             AssertElementsPresent(ContractListContainerElement.ToArray(), "Contract List");
+        }
+
+        public LocalOfficeApproverDeviceManagementPage NavigateTOfficeDeviceManagementPage()
+        {
+            LOApproverDeviceManagementElement.Click();
+            return GetInstance<LocalOfficeApproverDeviceManagementPage>(Driver);
+
         }
     }
 }
