@@ -132,6 +132,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var newlyAdded = @"//td[text()='{0}']";
             newlyAdded = String.Format(newlyAdded, createdContract);
 
+            WebDriver.Wait(DurationType.Second, 3);
+
             var newContract = Driver.FindElement(By.XPath(newlyAdded));
 
             TestCheck.AssertIsEqual(true, newContract.Displayed, "Is new sent to bank awaiting contract page?");

@@ -68,7 +68,10 @@ Scenario Outline: Dealer can delete a customer
 
 Scenario Outline: Dealer can cancel deleting customer 
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
+	##And I navigate to existing customer screen
 	And I navigate to existing customer screen
+	And I click Create Customer Button
+	When I create new Customer
 	When I click the delete button against "<TargetItem>" on Exisiting Customers table
 	And I click the "<Confirm>" button on Confirmation Dialog in Customers
 	Then I can see the deleted item still exists on the customer table
@@ -76,7 +79,7 @@ Scenario Outline: Dealer can cancel deleting customer
 
 	Scenarios: 
 	| Role             | Country        | TargetItem | Confirm |
-	| Cloud MPS Dealer | United Kingdom | AnyItem    | Dismiss |
+	| Cloud MPS Dealer | United Kingdom | NewlyCreatedItem    | Dismiss |
 #	| Sub Dealer | United Kingdom | AnyItem    | Dismiss |
 
 

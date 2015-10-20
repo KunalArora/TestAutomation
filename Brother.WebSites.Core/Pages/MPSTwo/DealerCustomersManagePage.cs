@@ -104,6 +104,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public const string DealerLatestCreatedOrganization = "DealerLatestCreatedOrganization";
         public const string DealerLatestCreatedContact = "DealerLatestCreatedContact";
         public const string DealerLatestCreatedBank = "DealerLatestCreatedBank";
+        private const string Germanurl = @"online.de";
 
         [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputPersonTitle_Input")]
         public IWebElement ContactTitleElement;
@@ -191,6 +192,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void FillOrganisationDetails()
         {
+
             var org = new OrganisationDetail
             {
                 Name = "Deletable_" + MpsUtil.CompanyName(), // in order to boost linear search.
@@ -198,7 +200,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 PropertyStreet = MpsUtil.PropertyStreet(),
                 PropertyArea = MpsUtil.FirstName(),
                 PropertyTown = MpsUtil.PropertyTown(),
-                PropertyPostcode = MpsUtil.PostCode(),
+                PropertyPostcode = MpsUtil.PostCodeGB() ,
                 LegalForm = "1",
                 TradingStyle = "1",
                 AuthorisedSignatory = "abcdefg"

@@ -82,8 +82,8 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         {
             var instance4 = new CreateNewAccountSteps();
             instance4.GivenISignIntoMpsasAFrom("Cloud MPS Dealer", "Germany");
-            
-            if (ContractType.Equals("Lease & Click with Service"))
+
+            if (ContractType.Equals("Leasing & Service"))
             {
                 
                 GivenIHaveCreatedGermanLeasingAndClickProposal(UsageType);
@@ -99,7 +99,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
                 var instance3 = new AccountManagementSteps();
                 instance3.ThenIfISignOutOfBrotherOnline();
             }
-            else if (ContractType.Equals("Purchase & Click with Service"))
+            else if (ContractType.Equals("Easy Print Pro & Service"))
             {
                 GivenIHaveCreatedGermanPurchaseAndClickProposal(UsageType);
 
@@ -158,7 +158,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [Given(@"German Dealer have created a ""(.*)"" contract of ""(.*)"" and ""(.*)""")]
         public void GivenGermanDealerHaveCreatedAContractOfAnd(string Country, string ContractType, string UsageType)
         {
-            if (ContractType.Equals("Lease & Click with Service"))
+            if (ContractType.Equals("Leasing & Service"))
             {
                 GivenGermanDealerHaveCreatedProposalOfAwaitingApproval(ContractType, UsageType);
                 var instance4 = new CreateNewAccountSteps();
@@ -175,7 +175,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
                 WhenISignTheContractAsADealer();
                 instance3.ThenIfISignOutOfBrotherOnline();
             }
-            else if (ContractType.Equals("Purchase & Click with Service"))
+            else if (ContractType.Equals("Easy Print Pro & Service"))
             {
                 GivenGermanDealerHaveCreatedProposalOfAwaitingApproval(ContractType, UsageType);
                 var instance4 = new CreateNewAccountSteps();
@@ -197,7 +197,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [Given(@"German Dealer have created a signed ""(.*)"" contract of ""(.*)"" and ""(.*)""")]
         public void GivenGermanDealerHaveCreatedASignedContractOfAnd(string Country, string ContractType, string UsageType)
         {
-            if (ContractType.Equals("Lease & Click with Service"))
+            if (ContractType.Equals("Leasing & Service"))
             {
                 GivenGermanDealerHaveCreatedProposalOfAwaitingApproval(ContractType, UsageType);
                 var instance4 = new CreateNewAccountSteps();
@@ -214,7 +214,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
                 WhenISignTheContractToNavigateToAwaitingAcceptance();
                 //instance3.ThenIfISignOutOfBrotherOnline();
             }
-            else if (ContractType.Equals("Purchase & Click with Service"))
+            else if (ContractType.Equals("Easy Print Pro & Service"))
             {
                 GivenGermanDealerHaveCreatedProposalOfAwaitingApproval(ContractType, UsageType);
                 var instance4 = new CreateNewAccountSteps();
@@ -274,7 +274,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             if (UsageType.Equals(string.Empty))
                 UsageType = "Minimum Volume";
             GivenIamOnMpsNewProposalPage();
-            WhenIFillProposalDescriptionForContractType("Lease & Click with Service");
+            WhenIFillProposalDescriptionForContractType("Leasing & Service");
             DealerProposalsCreateTermAndTypeStep termAndTypeStepInstance = new DealerProposalsCreateTermAndTypeStep();
             termAndTypeStepInstance.WhenIEnterUsageTypeOfAndContractTermsLeasingAndBillingOnTermAndTypeDetails
                 (UsageType, "3 Jahre", "Monatlich", "Halbjährlich");
@@ -385,7 +385,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             if (UsageType.Equals(string.Empty))
                 UsageType = "Minimum Volume";
             GivenIamOnMpsNewProposalPage();
-            WhenIFillProposalDescriptionForContractType("Purchase & Click with Service");
+            WhenIFillProposalDescriptionForContractType("Easy Print Pro & Service");
             
             DealerProposalsCreateTermAndTypeStep stepInstance = new DealerProposalsCreateTermAndTypeStep();
             stepInstance.EditTermAndTypeTabForPurchaseOffer(UsageType, "3 Jahre", "Halbjährlich");
