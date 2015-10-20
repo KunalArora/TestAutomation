@@ -83,7 +83,7 @@ Scenario Outline: German Dealer can create installation request for Email Commun
 Scenarios:
 
 	| Role                            | Country | ContractType                  | UsageType      | Role1            | Method |
-	| Cloud MPS Local Office Approver | Germany | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Email  |
+	| Cloud MPS Local Office Approver | Germany | Easy Print Pro & Service | Minimum Volume | Cloud MPS Dealer | Email  |
 
 
 Scenario Outline: German Dealer can create installation request for Email Communication after the contract has been signed
@@ -98,7 +98,8 @@ Scenario Outline: German Dealer can create installation request for Email Commun
 Scenarios:
 
 	| Role                            | Country | ContractType                  | UsageType      | Role1            | Method |
-	| Cloud MPS Local Office Approver | Germany | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Email  |
+	| Cloud MPS Local Office Approver | Germany | Easy Print Pro & Service | Minimum Volume | Cloud MPS Dealer | Email  |
+	#| Cloud MPS Local Office Approver | Austria | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Email  |
 
 
 Scenario Outline: German Local Office Approver can create installation request for Email Communication
@@ -115,7 +116,7 @@ Scenario Outline: German Local Office Approver can create installation request f
 Scenarios:
 
 	| Role                            | Country | ContractType                  | UsageType      | Role1            | Method |
-	| Cloud MPS Local Office Approver | Germany | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Email  |
+	| Cloud MPS Local Office Approver | Germany | Easy Print Pro & Service | Minimum Volume | Cloud MPS Dealer | Email  |
 
 
 Scenario Outline: Local Office can create installation request for Cloud Communication
@@ -134,6 +135,6 @@ Scenario Outline: Local Office can create installation request for Cloud Communi
 Scenarios:
 
 	| Role                            | Country        | ContractType                  | UsageType      | Role1            | Method | Type |
-	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  |
+	| Cloud MPS Local Office Approver | United Kingdom | Easy Print Pro & Service | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  |
 	#| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR  
 	

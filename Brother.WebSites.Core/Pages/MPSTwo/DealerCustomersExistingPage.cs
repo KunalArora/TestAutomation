@@ -200,6 +200,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 "Deleted Item still exists on table.");
         }
 
+        public void CustomerIsDisplayed()
+        {
+
+            var email = SpecFlow.GetContext("GeneratedEmailAddress");
+            var createdEmail = String.Format("//td[text()=\"{0}\"]", email);
+            var deletedCustomer = Driver.FindElement(By.XPath(createdEmail));
+            var isDeleted = deletedCustomer.Displayed;
+
+            WebDriver.Wait(DurationType.Second, 5);
+
+            TestCheck.AssertIsEqual(true, isDeleted,
+                "Deleted Item still exists on table.");
+        }
+
         public void IsCustomerDeleted()
         {
             var email = SpecFlow.GetContext("GeneratedEmailAddress");
@@ -220,29 +234,33 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsEditedCustomerCreated()
         {
-            var email = SpecFlow.GetContext("GeneratedEmailAddress");
-            var customersEmail = Driver.FindElements(By.CssSelector(".js-mps-searchable  td[id*=content_1_PersonList_List_CustomerEmail]"));
-            var customerEmailList = new ArrayList();
+            //var email = SpecFlow.GetContext("GeneratedEmailAddress");
+            //var customersEmail = Driver.FindElements(By.CssSelector(".js-mps-searchable  td[id*=content_1_PersonList_List_CustomerEmail]"));
+            //var customerEmailList = new ArrayList();
 
-            foreach (var element in customersEmail)
-            {
-                var customerEmail = element.Text;
-                customerEmailList.Add(customerEmail);
-            }
+            //foreach (var element in customersEmail)
+            //{
+            //    var customerEmail = element.Text;
+            //    customerEmailList.Add(customerEmail);
+            //}
 
-            var message = String.Format("Edited customer with email address {0} is displayed", email);
+            //var message = String.Format("Edited customer with email address {0} is displayed", email);
 
-            TestCheck.AssertIsEqual(true, customerEmailList.Contains(email), message);
+            //TestCheck.AssertIsEqual(true, customerEmailList.Contains(email), message);
+
+            CustomerIsDisplayed();
 
         }
 
         public void ExistsNotDeletedItem(IWebDriver driver)
         {
-            var id = SpecFlow.GetContext(DealerLatestOperatingCustomerItemId);
-            var exisitng = ContainsItemById(driver, id);
+            //var id = SpecFlow.GetContext(DealerLatestOperatingCustomerItemId);
+            //var exisitng = ContainsItemById(driver, id);
 
-            TestCheck.AssertIsEqual(true, exisitng,
-                "Cancelled Item does not exist on table.");
+            //TestCheck.AssertIsEqual(true, exisitng,
+            //    "Cancelled Item does not exist on table.");
+
+            CustomerIsDisplayed();
         }
 
         public DealerCustomersManagePage ClickOnEditOnActionItemAgainstNewlyCreated()

@@ -35,11 +35,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement NextButton;
         [FindsBy(How = How.CssSelector, Using = "a[href='/mps/dealer/proposals/create/customer-information']")]
         public IWebElement CustomerInformationTab;
-        [FindsBy(How = How.CssSelector, Using = ".first")]
+        [FindsBy(How = How.CssSelector, Using = "#MpsAppContent .mps-tabs-main li")]
         public IList<IWebElement> ProposalCreationTabs;
-
-
-        private const string germanUrl = @"online.de";
         
 
         
@@ -127,15 +124,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 case "Lease & Click with Service":
                     selectable = "2";
                     break;
+                case "Easy Print Pro & Service":
+                    selectable = "3";
+                    break;
+                case "Leasing & Service":
+                    selectable = "2";
+                    break;
                 default:
                     throw new InvalidEnumArgumentException(String.Format("{0} is not a valid contract type", contract));
             }
 
-            if (ContractTypeSelector.Displayed)
-            {
-                SelectFromDropdownByValue(ContractTypeSelector, selectable);
-                SpecFlow.SetContext("CreateContractType", contract);
-            }
+            if (!ContractTypeSelector.Displayed) return;
+            SelectFromDropdownByValue(ContractTypeSelector, selectable);
+            SpecFlow.SetContext("CreateContractType", contract);
         }
 
         public void SelectingContractUsageType(string contract)

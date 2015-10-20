@@ -27,9 +27,9 @@ namespace Brother.Tests.Specs.MPSTwo.Approver
                 if (kv.Key.Equals("CreateUsageType"))
                     UsageType = kv.Value.ToString();
             }
-            if (ContractType.Equals("Purchase & Click with Service") || ContractType.Equals(string.Empty))
+            if (ContractType.Equals("Purchase & Click with Service") || ContractType.Equals(string.Empty) || ContractType.Equals("Easy Print Pro & Service"))
                 PurchaseAndClick = true;
-            if (ContractType.Equals("Lease & Click with Service"))
+            if (ContractType.Equals("Lease & Click with Service") || ContractType.Equals("Leasing & Service"))
                 LeaseAndClick = true;
             if (UsageType.Equals("Minimum Volume"))
                 MinimumVolume = true;

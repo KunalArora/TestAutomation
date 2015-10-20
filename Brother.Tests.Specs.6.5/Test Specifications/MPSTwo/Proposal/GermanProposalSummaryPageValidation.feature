@@ -37,7 +37,7 @@ Scenario Outline: Summary Page Validation For German Leasing and Click proposal
 
 	Scenarios: 
 	| Role             | Country        | ContractType               | UsageType      | Contract | Leasing         | Billing      | Printer     | ClickVolume | ColourVolume | Basis                    | Bank                         |
-	| Cloud MPS Dealer | Germany        | Lease & Click with Service | Minimum Volume | 3 Jahre  | Vierteljährlich | Halbjährlich | HL-L8350CDW | 750         | 750          | zur Leasingrate addieren | BNP PARIBAS LEASE GROUP S.A. |
+	| Cloud MPS Dealer | Germany        | Leasing & Service | Minimum Volume | 3 Jahre  | Vierteljährlich | Halbjährlich | HL-L8350CDW | 750         | 750          | zur Leasingrate addieren | BNP PARIBAS LEASE GROUP S.A. |
 	
 
 Scenario Outline: Summary Page Validation For Minimum Volume Purchase and Click proposal In Click Payment
@@ -74,7 +74,7 @@ Scenario Outline: Summary Page Validation For Minimum Volume Purchase and Click 
 
 	Scenarios: 
 	| Role             | Country | ContractType                  | UsageType      | Contract | Billing      | PriceHardware | Printer      | PaymentMethod      | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | Germany | Purchase & Click with Service | Minimum Volume | 5 Jahre  | Halbjährlich | Tick          | MFC-L8650CDW | im Voraus bezahlen | 800         | 800          |
+	| Cloud MPS Dealer | Germany | Easy Print Pro & Service | Minimum Volume | 5 Jahre  | Halbjährlich | Tick          | MFC-L8650CDW | im Voraus bezahlen | 800         | 800          |
 	
 	
 
@@ -112,5 +112,5 @@ Scenario Outline: Summary Page Validation For Minimum Volume Purchase and Click 
 
 	Scenarios: 
 	| Role             | Country | ContractType                  | UsageType      | Contract | Billing         | PriceHardware | Printer      | PaymentMethod      | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | Germany | Purchase & Click with Service | Minimum Volume | 4 Jahre  | Vierteljährlich | Tick          | MFC-L8650CDW | im Voraus bezahlen | 800         | 800          |
+	| Cloud MPS Dealer | Germany | Easy Print Pro & Service | Minimum Volume | 4 Jahre  | Vierteljährlich | Tick          | MFC-L8650CDW | im Voraus bezahlen | 800         | 800          |
 	

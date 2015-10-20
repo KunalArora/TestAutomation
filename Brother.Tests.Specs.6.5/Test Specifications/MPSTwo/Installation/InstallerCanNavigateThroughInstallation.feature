@@ -24,7 +24,7 @@ Scenario Outline: Installer can progress with installation for Email Communicati
 Scenarios:
 
 	| Role                            | Country        | ContractType                  | UsageType      | Role1            | Method |
-	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Email  |
+	| Cloud MPS Local Office Approver | United Kingdom | Easy Print Pro & Service | Minimum Volume | Cloud MPS Dealer | Email  |
 
 
 Scenario Outline: German Installer can progress with installation for Email Communication
@@ -46,7 +46,7 @@ Scenario Outline: German Installer can progress with installation for Email Comm
 Scenarios:
 
 	| Role                            | Country | ContractType                  | UsageType      | Role1            | Method |
-	| Cloud MPS Local Office Approver | Germany | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Email  |
+	| Cloud MPS Local Office Approver | Germany | Easy Print Pro & Service | Minimum Volume | Cloud MPS Dealer | Email  |
 
 
 
@@ -67,8 +67,8 @@ Scenario Outline: German Dealer can create installation request for Cloud Commun
 	
 Scenarios:
 
-	| Role                            | Country | ContractType                  | UsageType      | Role1            | Method | Type |
-	| Cloud MPS Local Office Approver | Germany | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  |
+	| Role           | Country | ContractType      | UsageType      | Role1            | Method | Type |
+	| Cloud MPS Bank | Germany | Leasing & Service | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  |
 	#| Cloud MPS Bank                  | Germany | Lease & Click with Service    | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR  |
 
 
