@@ -174,15 +174,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if (proposalName.Equals(string.Empty))
             {
                 proposalName = MpsUtil.GenerateUniqueProposalName();
-                try
-                {
-                    SpecFlow.SetContext("GeneratedProposalName", proposalName);
-                }
-                catch
-                {
-                    throw new NullReferenceException("Session cannot store proposalName");
-                }
-
+                
             }
 
             ProposalNameField.Clear();
