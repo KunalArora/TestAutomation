@@ -19,7 +19,7 @@ Scenario Outline: German Approver Decline Proposal
 
 	Scenarios: 
 	| Role                            | Country | ContractType                  | UsageType      | Reason |
-	| Cloud MPS Local Office Approver | Germany | Purchase & Click with Service | Minimum Volume | Andere |
+	| Cloud MPS Local Office Approver | Germany | Easy Print Pro & Service | Minimum Volume | Andere |
 	#| Cloud MPS Bank                  | United Kingdom | Lease & Click with Service    | Pay As You Go  |
 	
 	
@@ -54,7 +54,7 @@ Scenario Outline: German Bank Approve Proposal
 
 	Scenarios: 
 	| Role           | Country | ContractType               | UsageType     |
-	| Cloud MPS Bank | Germany | Lease & Click with Service | Pay As You Go |
+	| Cloud MPS Bank | Germany | Leasing & Service | Pay As You Go |
 
 #
 # Approve Signed Contract
@@ -70,8 +70,8 @@ Scenario Outline: German Approver can decide to reject or approve the contract
 
 	Scenarios:
 	| Role                            | Country | ContractType                  | UsageType      |
-	| Cloud MPS Local Office Approver | Germany | Purchase & Click with Service | Minimum Volume |
-	#| Cloud MPS Bank                  | United Kingdom | Lease & Click with Service    | Pay As You Go  |
+	| Cloud MPS Local Office Approver | Germany | Easy Print Pro & Service | Minimum Volume |
+	#| Cloud MPS Bank                  | United Kingdom | Leasing & Service   | Pay As You Go  |
 
 # Accept3
 
@@ -91,7 +91,7 @@ Scenario Outline: German Bank can approve the contract
 	Scenarios:
 
 	| Role           | Country | ContractType               | UsageType     |
-	| Cloud MPS Bank | Germany | Lease & Click with Service | Pay As You Go |
+	| Cloud MPS Bank | Germany | Leasing & Service | Pay As You Go |
 	
 # Accept5, 6
 Scenario Outline: German Approver can approve the contract
@@ -107,8 +107,8 @@ Scenario Outline: German Approver can approve the contract
 	Scenarios:
 
 	| Role                            | Country | ContractType                  | UsageType      |
-	| Cloud MPS Local Office Approver | Germany | Purchase & Click with Service | Minimum Volume |
-	| Cloud MPS Bank                  | Germany | Lease & Click with Service    | Pay As You Go  |
+	| Cloud MPS Local Office Approver | Germany | Easy Print Pro & Service | Minimum Volume |
+	| Cloud MPS Bank                  | Germany | Leasing & Service    | Pay As You Go  |
 
 # Reject1,2
 Scenario Outline: German Approver can reject the contract
@@ -123,8 +123,8 @@ Scenario Outline: German Approver can reject the contract
 	Scenarios:
 
 	| Role                            | Country | ContractType                  | UsageType      | Option |
-	| Cloud MPS Local Office Approver | Germany | Purchase & Click with Service | Pay As You Go  | Andere |
-	| Cloud MPS Bank                  | Germany | Lease & Click with Service    | Minimum Volume | Andere |
+	| Cloud MPS Local Office Approver | Germany | Easy Print Pro & Service | Pay As You Go  | Andere |
+	| Cloud MPS Bank                  | Germany | Leasing & Service    | Minimum Volume | Andere |
 	
 	
 	

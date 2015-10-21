@@ -216,6 +216,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsCustomerDeleted()
         {
+            WebDriver.Wait(DurationType.Second, 5);
             var email = SpecFlow.GetContext("GeneratedEmailAddress");
             var customersEmail = Driver.FindElements(By.CssSelector(".js-mps-searchable  td[id*=content_1_PersonList_List_CustomerEmail]"));
             var customerEmailList = new ArrayList();

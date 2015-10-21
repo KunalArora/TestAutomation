@@ -19,6 +19,7 @@ namespace Brother.Tests.Selenium.Lib.Support
         {
             var generatedProposalName = "MPS_" + SurName() + 
                 "-" + DateTime.Now.ToString("MMdHHmmss");
+            HelperClasses.SpecFlow.SetContext("GeneratedProposalName", generatedProposalName);
             return generatedProposalName;
         }
 
