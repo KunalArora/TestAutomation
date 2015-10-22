@@ -412,7 +412,10 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
                 NextPage = CurrentPage.As<DealerProposalsCreateDescriptionPage>().ClickNextButtonGermany();
             }
             else
-                NextPage = CurrentPage.As<DealerProposalsCreateDescriptionPage>().ClickNextButton();
+            {
+                NextPage = CurrentPage.As<DealerProposalsCreateDescriptionPage>().ClickNextButton(); 
+            }
+                
         }
 
         [Given(@"Customer Information tab is not displayed")]

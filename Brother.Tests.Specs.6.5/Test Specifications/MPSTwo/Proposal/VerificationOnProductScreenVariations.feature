@@ -209,7 +209,7 @@ Scenario Outline: Disable Printer of Lease + Click as a Local Office Admin, then
 #
 # The test below is too exposed to human interference as such is not very reliable
 #
-@Ignore
+@ignore
 Scenario Outline: Selected printer which is disabled on Lease + Click above can display in Purchase + Click Service
 	Given I sign into Cloud MPS as a "<Role1>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -294,7 +294,7 @@ Scenario Outline: Selected printer which is disabled on Purchase + Click above c
 #
 # 4 Installation Cost - The logic to this test has changed
 #
-@Ignore
+@ignore
 Scenario Outline: Change Installation cost type
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -625,7 +625,7 @@ Scenario Outline: A3 filter checkbox
 	| Role             | Country        |
 	| Cloud MPS Dealer | United Kingdom |
 
-
+@ignore
 Scenario Outline: Mono filter checkbox 
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -640,7 +640,7 @@ Scenario Outline: Mono filter checkbox
 	| Role             | Country        |
 	| Cloud MPS Dealer | United Kingdom |
 
-
+@ignore
 Scenario Outline: Colour filter checkbox 
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page

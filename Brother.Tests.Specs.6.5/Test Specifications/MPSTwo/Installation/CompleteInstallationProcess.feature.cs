@@ -139,7 +139,7 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("German Dealer can create installation request for Cloud Communication")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Germany", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Cloud", "Web", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Germany", "Easy Print Pro & Service", "Minimum Volume", "Cloud MPS Dealer", "Cloud", "Web", null)]
         public virtual void GermanDealerCanCreateInstallationRequestForCloudCommunication(string role, string country, string contractType, string usageType, string role1, string method, string type, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("German Dealer can create installation request for Cloud Communication", exampleTags);
@@ -265,7 +265,7 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Local Office can create installation request for Cloud Communication")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Easy Print Pro & Service", "Minimum Volume", "Cloud MPS Dealer", "Cloud", "Web", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Cloud", "Web", null)]
         public virtual void LocalOfficeCanCreateInstallationRequestForCloudCommunication(string role, string country, string contractType, string usageType, string role1, string method, string type, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Local Office can create installation request for Cloud Communication", exampleTags);

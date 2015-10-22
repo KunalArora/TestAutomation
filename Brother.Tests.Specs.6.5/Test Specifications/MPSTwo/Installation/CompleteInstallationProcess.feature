@@ -63,7 +63,7 @@ Scenario Outline: German Dealer can create installation request for Cloud Commun
 Scenarios:
 
 	| Role                            | Country | ContractType                  | UsageType      | Role1            | Method | Type |
-	| Cloud MPS Local Office Approver | Germany | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  |
+	| Cloud MPS Local Office Approver | Germany | Easy Print Pro & Service | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  |
 	#| Cloud MPS Bank                  | Germany | Lease & Click with Service    | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR  |
 	
 
@@ -135,6 +135,6 @@ Scenario Outline: Local Office can create installation request for Cloud Communi
 Scenarios:
 
 	| Role                            | Country        | ContractType                  | UsageType      | Role1            | Method | Type |
-	| Cloud MPS Local Office Approver | United Kingdom | Easy Print Pro & Service | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  |
+	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  |
 	#| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR  
 	
