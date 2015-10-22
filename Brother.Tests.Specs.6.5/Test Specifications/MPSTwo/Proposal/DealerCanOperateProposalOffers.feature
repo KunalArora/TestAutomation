@@ -36,7 +36,7 @@ Scenario Outline: Dealer can edit an existing proposal offer
 	#| Lease & Click with Service    | Minimum Volume | Cloud MPS Dealer | United Kingdom | ClickPrice          |
 	| Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | United Kingdom | TermAndType         |
 
-@ignore
+##@ignore
 Scenario Outline: Dealer can edit products in an existing proposal offer
 	Given Dealer have created a Open proposal of "<ContractType>" and "<UsageType>"
 	And I navigate to Dealer Dashboard page from Dealer Proposal page
@@ -50,9 +50,10 @@ Scenario Outline: Dealer can edit products in an existing proposal offer
 	And I can sign out of Brother Online
 
 	Scenarios:
-	| ContractType               | UsageType      | Role             | Country        | TabName  | Action |
-	| Lease & Click with Service | Minimum Volume | Cloud MPS Dealer | United Kingdom | Products | Add    |
-	###| Lease & Click with Service | Minimum Volume | Cloud MPS Dealer | United Kingdom | Products | Remove    | #Todo: Fix alert in PhantomJS
+	| ContractType                  | UsageType      | Role             | Country        | TabName  | Action |
+	| Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | United Kingdom | Products | Add    |
+	| Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | United Kingdom | Products | Remove |
+	
 
 #@ignore
 Scenario Outline: Dealer can delete an existing proposal offer
@@ -64,7 +65,7 @@ Scenario Outline: Dealer can delete an existing proposal offer
 
 	Scenarios: 
 	| ContractType               | UsageType      | Confirm | TargetItem       |
-	| Lease & Click with Service | Minimum Volume | OK		| NewlyCreatedItem |
+	| Purchase & Click with Service | Minimum Volume | OK		| NewlyCreatedItem |
 	
 Scenario Outline: Dealer can cancel deleting proposal offer
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"

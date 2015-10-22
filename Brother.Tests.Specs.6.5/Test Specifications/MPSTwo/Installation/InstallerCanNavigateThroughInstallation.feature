@@ -24,7 +24,7 @@ Scenario Outline: Installer can progress with installation for Email Communicati
 Scenarios:
 
 	| Role                            | Country        | ContractType                  | UsageType      | Role1            | Method |
-	| Cloud MPS Local Office Approver | United Kingdom | Easy Print Pro & Service | Minimum Volume | Cloud MPS Dealer | Email  |
+	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Email  |
 
 
 Scenario Outline: German Installer can progress with installation for Email Communication

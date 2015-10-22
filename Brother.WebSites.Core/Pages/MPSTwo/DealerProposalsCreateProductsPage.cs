@@ -174,7 +174,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [FindsBy(How = How.CssSelector, Using = "[data-mps-product-auto-paper-size=\"A3\"]")]
         public IWebElement PrinterA3property;
         [FindsBy(How = How.CssSelector, Using = ".mps-product-configuration-container-flat")]
-        public IWebElement ProductPageFlatVerifier;
+        public IList<IWebElement> ProductPageFlatVerifier;
         [FindsBy(How = How.CssSelector, Using = "[data-mps-product-auto-colour-type=\"C\"]")]
         public IWebElement ImageColourproperty;
         [FindsBy(How = How.CssSelector, Using = "[data-mps-product-auto-colour-type=\"M\"]")]
@@ -386,16 +386,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsAllPrintersHaveMonoFacility()
         {
-            if (ProductPageFlatVerifier == null)
+            if (ProductPageFlatVerifier != null)
             {
                 for (var i = 0; i <= PropertyContainerElement.Count; i++)
                 {
                     TestCheck.AssertIsEqual(true, ImageMonoproperty.Displayed,
                         "Some printers displayed do not contain mono properties");
                 }
+                
             }
             else
             {
+
                 for (var i = 0; i <= PropertyContainerElement.Count; i++)
                 {
                     TestCheck.AssertIsEqual(true, FlatColourProperty.Text.Equals("-"),
@@ -403,21 +405,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     TestCheck.AssertIsEqual(false, FlatMonoProperty.Text.Equals("-"),
                         "Some printers in flat view do not contain mono properties");
                 }
+
+                
+                
             }
         }
 
         public void IsAllPrintersHaveColourFacility()
         {
-            if (ProductPageFlatVerifier == null)
+            if (ProductPageFlatVerifier != null)
             {
-                for (var i = 0; i <= PropertyContainerElement.Count; i++)
-                {
-                    TestCheck.AssertIsEqual(true, ImageColourproperty.Displayed,
-                        "Some printers displayed do not contain mono properties");
-                }
-            }
-            else
-            {
+
                 for (var i = 0; i <= PropertyContainerElement.Count; i++)
                 {
                     TestCheck.AssertIsEqual(false, FlatColourProperty.Text.Equals("-"),
@@ -425,6 +423,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     TestCheck.AssertIsEqual(false, FlatMonoProperty.Text.Equals("-"),
                         "Some printers in flat view do not contain mono properties");
                 }
+
+                
+            }
+            else
+            {
+                for (var i = 0; i <= PropertyContainerElement.Count; i++)
+                {
+                    TestCheck.AssertIsEqual(true, ImageColourproperty.Displayed,
+                        "Some printers displayed do not contain mono properties");
+                } 
             }
         }
 
@@ -1524,6 +1532,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             ClickOnAPrinter(printer);
 
+            EnterProductQuantity("1");
+            EnterModelUnitCost();
+            EnterOptionsQuantity0("1");
+            EnterOptionCostPrice();
+
             string buttonselector = @"button.btn.js-mps-product-configuration-submit";
             var button = driver.FindElement(By.CssSelector(buttonselector));
             button.Click();
@@ -1532,7 +1545,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerProposalsCreateClickPricePage GoNextPage(IWebDriver driver)
         {
-            WebDriver.Wait(DurationType.Millisecond, 5000);
+            WebDriver.Wait(DurationType.Second, 5);
 
             var linkselector = @"a.alert-link.js-mps-product-link";
 
@@ -1551,11 +1564,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var links = GetElementsByCssSelector(linkselector);
             links.First().Click();
 
-            string removebuttonselector = @"button.btn.js-mps-product-configuration-remove";
+            HeadlessDismissAlertOk();
+
+            WebDriver.Wait(DurationType.Second, 3);
+            var removebuttonselector = @"button.btn.js-mps-product-configuration-remove";
             var removebutton = driver.FindElement(By.CssSelector(removebuttonselector));
             removebutton.Click();
 
             //alert
+            
             ClickAcceptOnJsAlert(driver);
         }
     }

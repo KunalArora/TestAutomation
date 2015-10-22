@@ -348,8 +348,9 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         public void WhenIChangeTheDefaultValuesOfTheDevice()
         {
             CurrentPage.As<DealerProposalsCreateProductsPage>().EnterProductQuantity("1");
-            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterModelUnitCost();
-            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterProductQuantity("1");
+            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterModelUnitCost(); 
+            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterOptionsQuantity0("1");
+            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterOptionCostPrice();
             CurrentPage.As<DealerProposalsCreateProductsPage>().AddAllDetailsToProposal();
             CurrentPage.As<DealerProposalsCreateProductsPage>().VerifyProductAdditionConfirmationMessage();
         }
@@ -359,7 +360,8 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         {
             CurrentPage.As<DealerProposalsCreateProductsPage>().EnterProductQuantity("1");
             CurrentPage.As<DealerProposalsCreateProductsPage>().EnterModelUnitCost();
-            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterProductQuantity("1");
+            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterOptionsQuantity0("1");
+            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterOptionCostPrice();
             CurrentPage.As<DealerProposalsCreateProductsPage>().AddAllDetailsToProposal();
             CurrentPage.As<DealerProposalsCreateProductsPage>().VerifyProductAdditionConfirmationMessage();
             NextPage = CurrentPage.As<DealerProposalsCreateProductsPage>().MoveToClickPriceScreen();
