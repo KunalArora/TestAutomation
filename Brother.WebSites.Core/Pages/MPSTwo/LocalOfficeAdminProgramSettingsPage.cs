@@ -34,17 +34,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement ContactTerm5YearsElement;
         [FindsBy(How = How.Id, Using = "content_1_ButtonSave")]
         public IWebElement SaveButtonElement;
-        [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/local-office/purchase-and-click/printers']")]
+        [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/local-office/programs/purchase-and-click/printers']")]
         public IWebElement PurchasePrintersLinkElement;
-        [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/local-office/purchase-and-click/approval-defaults']")]
+        [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/local-office/programs/purchase-and-click/approval-defaults']")]
         public IWebElement PurchaseApprovalDefaultsLinkElement;
-        [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/local-office/purchase-and-click/changable-items']")]
+        [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/local-office/programs/purchase-and-click/changable-items']")]
         public IWebElement PurchaseChangableItemsElement;
-        [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/local-office/lease-and-click/printers']")]
+        [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/local-office/programs/lease-and-click/printers']")]
         public IWebElement LeasingPrintersLinkElement;
-        [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/local-office/lease-and-click/approval-defaults']")]
+        [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/local-office/programs/lease-and-click/approval-defaults']")]
         public IWebElement LeasingApprovalDefaultsLinkElement;
-        [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/local-office/lease-and-click/leasing-banks']")]
+        [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/local-office/programs/lease-and-click/leasing-banks']")]
         public IWebElement LeasingBanksLinkElement;
 
         public void TickProgramEnabled()
