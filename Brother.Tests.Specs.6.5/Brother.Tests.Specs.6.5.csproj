@@ -99,153 +99,153 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Customer Account.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Contract\MPSDealerCanCopyADeclineProposal.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Contract\CloudMPSDealerCanCopyADeclineProposal.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MPSDealerCanCopyADeclineProposal.feature</DependentUpon>
+      <DependentUpon>CloudMPSDealerCanCopyADeclineProposal.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Contract\MPSDealerCanSignContract.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Contract\CloudMPSDealerCanSignContract.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MPSDealerCanSignContract.feature</DependentUpon>
+      <DependentUpon>CloudMPSDealerCanSignContract.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Contract\MPSDealerCanSignContractProd.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Contract\CloudMPSDealerCanSignContractProd.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MPSDealerCanSignContractProd.feature</DependentUpon>
+      <DependentUpon>CloudMPSDealerCanSignContractProd.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Contract\MPSGermanDealerCanSignContract.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Contract\CloudMPSGermanDealerCanSignContract.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MPSGermanDealerCanSignContract.feature</DependentUpon>
+      <DependentUpon>CloudMPSGermanDealerCanSignContract.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Contract\MPSOutputContractPDFAllUsers.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Contract\CloudMPSOutputContractPDFAllUsers.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MPSOutputContractPDFAllUsers.feature</DependentUpon>
+      <DependentUpon>CloudMPSOutputContractPDFAllUsers.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Customer\MPSAddLocationToCustomerInformation.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Customer\CloudMPSAddLocationToCustomerInformation.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MPSAddLocationToCustomerInformation.feature</DependentUpon>
+      <DependentUpon>CloudMPSAddLocationToCustomerInformation.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Installation\MPSCompleteInstallationProcess.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Installation\CloudMPSCompleteInstallationProcess.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MPSCompleteInstallationProcess.feature</DependentUpon>
+      <DependentUpon>CloudMPSCompleteInstallationProcess.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Installation\MPSInstallerCanNavigateThroughInstallation.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Installation\CloudMPSInstallerCanNavigateThroughInstallation.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MPSInstallerCanNavigateThroughInstallation.feature</DependentUpon>
+      <DependentUpon>CloudMPSInstallerCanNavigateThroughInstallation.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Proposal\MPSApprovalDecisionsGermanScenarios.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Proposal\CloudMPSApprovalDecisionsGermanScenarios.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MPSApprovalDecisionsGermanScenarios.feature</DependentUpon>
+      <DependentUpon>CloudMPSApprovalDecisionsGermanScenarios.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Proposal\MPSApproverDecision.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Proposal\CloudMPSApproverDecision.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MPSApproverDecision.feature</DependentUpon>
+      <DependentUpon>CloudMPSApproverDecision.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Proposal\MPSClickPriceDeepDive.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Proposal\CloudMPSClickPriceDeepDive.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MPSClickPriceDeepDive.feature</DependentUpon>
+      <DependentUpon>CloudMPSClickPriceDeepDive.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Customer\MPSDealerCanOperateCustomers.feature.cs">
-      <DependentUpon>MPSDealerCanOperateCustomers.feature</DependentUpon>
+    <Compile Include="Test Specifications\MPSTwo\Customer\CloudMPSDealerCanOperateCustomers.feature.cs">
+      <DependentUpon>CloudMPSDealerCanOperateCustomers.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Proposal\MPSDealerCanCloseProposal.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Proposal\CloudMPSDealerCanCloseProposal.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MPSDealerCanCloseProposal.feature</DependentUpon>
+      <DependentUpon>CloudMPSDealerCanCloseProposal.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Proposal\MPSDealerCanDeleteProposal.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Proposal\CloudMPSDealerCanDeleteProposal.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MPSDealerCanDeleteProposal.feature</DependentUpon>
+      <DependentUpon>CloudMPSDealerCanDeleteProposal.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Proposal\MPSDealerCanOperateProposalOffers.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Proposal\CloudMPSDealerCanOperateProposalOffers.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MPSDealerCanOperateProposalOffers.feature</DependentUpon>
+      <DependentUpon>CloudMPSDealerCanOperateProposalOffers.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Proposal\MPSDealerCanGeneratePDFAtRelevantStages.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Proposal\CloudMPSDealerCanGeneratePDFAtRelevantStages.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MPSDealerCanGeneratePDFAtRelevantStages.feature</DependentUpon>
+      <DependentUpon>CloudMPSDealerCanGeneratePDFAtRelevantStages.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Proposal\MPSDealerCanUpdateProfile.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Proposal\CloudMPSDealerCanUpdateProfile.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MPSDealerCanUpdateProfile.feature</DependentUpon>
+      <DependentUpon>CloudMPSDealerCanUpdateProfile.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Proposal\MPSGermanDealerCanCloseProposal.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Proposal\CloudMPSGermanDealerCanCloseProposal.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MPSGermanDealerCanCloseProposal.feature</DependentUpon>
+      <DependentUpon>CloudMPSGermanDealerCanCloseProposal.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Proposal\MPSGermanProposalSummaryPageValidation.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Proposal\CloudMPSGermanProposalSummaryPageValidation.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MPSGermanProposalSummaryPageValidation.feature</DependentUpon>
+      <DependentUpon>CloudMPSGermanProposalSummaryPageValidation.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Proposal\MPSLeasingAndClickProposalGermanUserJourney.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Proposal\CloudMPSLeasingAndClickProposalGermanUserJourney.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MPSLeasingAndClickProposalGermanUserJourney.feature</DependentUpon>
+      <DependentUpon>CloudMPSLeasingAndClickProposalGermanUserJourney.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Proposal\MPSLeasingAndClickProposalUserJourney.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Proposal\CloudMPSLeasingAndClickProposalUserJourney.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MPSLeasingAndClickProposalUserJourney.feature</DependentUpon>
+      <DependentUpon>CloudMPSLeasingAndClickProposalUserJourney.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Proposal\MPSLocalOfficeAdminCanManageBanks.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Proposal\CloudMPSLocalOfficeAdminCanManageBanks.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MPSLocalOfficeAdminCanManageBanks.feature</DependentUpon>
+      <DependentUpon>CloudMPSLocalOfficeAdminCanManageBanks.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Proposal\MPSNoDuplicateProposalIsCreated.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Proposal\CloudMPSNoDuplicateProposalIsCreated.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MPSNoDuplicateProposalIsCreated.feature</DependentUpon>
+      <DependentUpon>CloudMPSNoDuplicateProposalIsCreated.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Proposal\MPSPurchaseAndClickProposalGermanUserJourney.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Proposal\CloudMPSPurchaseAndClickProposalGermanUserJourney.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MPSPurchaseAndClickProposalGermanUserJourney.feature</DependentUpon>
+      <DependentUpon>CloudMPSPurchaseAndClickProposalGermanUserJourney.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Proposal\MPSPurchaseAndClickProposalUserJourney.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Proposal\CloudMPSPurchaseAndClickProposalUserJourney.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MPSPurchaseAndClickProposalUserJourney.feature</DependentUpon>
+      <DependentUpon>CloudMPSPurchaseAndClickProposalUserJourney.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Proposal\MPSSummaryPageValidationForAllProposalTypes.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Proposal\CloudMPSSummaryPageValidationForAllProposalTypes.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MPSSummaryPageValidationForAllProposalTypes.feature</DependentUpon>
+      <DependentUpon>CloudMPSSummaryPageValidationForAllProposalTypes.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\SendToBank\MPSDealerCanSubmitAllGermanProposalsForApproval.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\SendToBank\CloudMPSDealerCanSubmitAllGermanProposalsForApproval.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MPSDealerCanSubmitAllGermanProposalsForApproval.feature</DependentUpon>
+      <DependentUpon>CloudMPSDealerCanSubmitAllGermanProposalsForApproval.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\SendToBank\MPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\SendToBank\CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature</DependentUpon>
+      <DependentUpon>CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Specifications\Smart Supply\BrotherSupplyClubProductBenefits.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BrotherSupplyClubProductBenefits.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Proposal\MPSVerificationOnProductScreenVariations.feature.cs">
-      <DependentUpon>MPSVerificationOnProductScreenVariations.feature</DependentUpon>
+    <Compile Include="Test Specifications\MPSTwo\Proposal\CloudMPSVerificationOnProductScreenVariations.feature.cs">
+      <DependentUpon>CloudMPSVerificationOnProductScreenVariations.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -315,45 +315,45 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ValidateRole.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSOne\Contract\MPSContractSearch.feature.cs">
+    <Compile Include="Test Specifications\MPSOne\Contract\MPSOneContractSearch.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MPSContractSearch.feature</DependentUpon>
+      <DependentUpon>MPSOneContractSearch.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSOne\MyAccount\MPSAuthorisedDealerAccountSetupPortalAuthorisationCheckADMINDealer.feature.cs">
+    <Compile Include="Test Specifications\MPSOne\MyAccount\MPSOneAuthorisedDealerAccountSetupPortalAuthorisationCheckADMINDealer.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MPSAuthorisedDealerAccountSetupPortalAuthorisationCheckADMINDealer.feature</DependentUpon>
+      <DependentUpon>MPSOneAuthorisedDealerAccountSetupPortalAuthorisationCheckADMINDealer.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSOne\MyAccount\MPSBOLMyAccountCheckForMPSCustomer.feature.cs">
+    <Compile Include="Test Specifications\MPSOne\MyAccount\MPSOneBOLMyAccountCheckForMPSCustomer.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MPSBOLMyAccountCheckForMPSCustomer.feature</DependentUpon>
+      <DependentUpon>MPSOneBOLMyAccountCheckForMPSCustomer.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSOne\MyAccount\MPSBOLMyAccountCheckMPSAdminDealer.feature.cs">
+    <Compile Include="Test Specifications\MPSOne\MyAccount\MPSOneBOLMyAccountCheckMPSAdminDealer.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MPSBOLMyAccountCheckMPSAdminDealer.feature</DependentUpon>
+      <DependentUpon>MPSOneBOLMyAccountCheckMPSAdminDealer.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSOne\MyAccount\MPSBOLMyAccountCheckMPSSalesDealer.feature.cs">
+    <Compile Include="Test Specifications\MPSOne\MyAccount\MPSOneBOLMyAccountCheckMPSSalesDealer.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MPSBOLMyAccountCheckMPSSalesDealer.feature</DependentUpon>
+      <DependentUpon>MPSOneBOLMyAccountCheckMPSSalesDealer.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSOne\SignIn\SignInAsASalesDealer.feature.cs">
+    <Compile Include="Test Specifications\MPSOne\SignIn\MPSOneSignInAsASalesDealer.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SignInAsASalesDealer.feature</DependentUpon>
+      <DependentUpon>MPSOneSignInAsASalesDealer.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSOne\SignIn\SignInToMPSAsACustomer.feature.cs">
+    <Compile Include="Test Specifications\MPSOne\SignIn\MPSOneSignInToMPSAsACustomer.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SignInToMPSAsACustomer.feature</DependentUpon>
+      <DependentUpon>MPSOneSignInToMPSAsACustomer.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSOne\SignIn\SignInToMPSAsADealer.feature.cs">
+    <Compile Include="Test Specifications\MPSOne\SignIn\MPSOneSignInToMPSAsADealer.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SignInToMPSAsADealer.feature</DependentUpon>
+      <DependentUpon>MPSOneSignInToMPSAsADealer.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Specifications\OmniJoinPartnerPortal\CustomerActions\CustomerActions.feature.cs">
       <AutoGen>True</AutoGen>
@@ -533,153 +533,153 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ValidateRole.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSOne\Contract\MPSContractSearch.feature">
+    <None Include="Test Specifications\MPSOne\Contract\MPSOneContractSearch.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>MPSContractSearch.feature.cs</LastGenOutput>
+      <LastGenOutput>MPSOneContractSearch.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSOne\MyAccount\MPSAuthorisedDealerAccountSetupPortalAuthorisationCheckADMINDealer.feature">
+    <None Include="Test Specifications\MPSOne\MyAccount\MPSOneAuthorisedDealerAccountSetupPortalAuthorisationCheckADMINDealer.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>MPSAuthorisedDealerAccountSetupPortalAuthorisationCheckADMINDealer.feature.cs</LastGenOutput>
+      <LastGenOutput>MPSOneAuthorisedDealerAccountSetupPortalAuthorisationCheckADMINDealer.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSOne\MyAccount\MPSBOLMyAccountCheckForMPSCustomer.feature">
+    <None Include="Test Specifications\MPSOne\MyAccount\MPSOneBOLMyAccountCheckForMPSCustomer.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>MPSBOLMyAccountCheckForMPSCustomer.feature.cs</LastGenOutput>
+      <LastGenOutput>MPSOneBOLMyAccountCheckForMPSCustomer.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSOne\MyAccount\MPSBOLMyAccountCheckMPSAdminDealer.feature">
+    <None Include="Test Specifications\MPSOne\MyAccount\MPSOneBOLMyAccountCheckMPSAdminDealer.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>MPSBOLMyAccountCheckMPSAdminDealer.feature.cs</LastGenOutput>
+      <LastGenOutput>MPSOneBOLMyAccountCheckMPSAdminDealer.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSOne\MyAccount\MPSBOLMyAccountCheckMPSSalesDealer.feature">
+    <None Include="Test Specifications\MPSOne\MyAccount\MPSOneBOLMyAccountCheckMPSSalesDealer.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>MPSBOLMyAccountCheckMPSSalesDealer.feature.cs</LastGenOutput>
+      <LastGenOutput>MPSOneBOLMyAccountCheckMPSSalesDealer.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSOne\SignIn\SignInAsASalesDealer.feature">
+    <None Include="Test Specifications\MPSOne\SignIn\MPSOneSignInAsASalesDealer.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>SignInAsASalesDealer.feature.cs</LastGenOutput>
+      <LastGenOutput>MPSOneSignInAsASalesDealer.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSOne\SignIn\SignInToMPSAsACustomer.feature">
+    <None Include="Test Specifications\MPSOne\SignIn\MPSOneSignInToMPSAsACustomer.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>SignInToMPSAsACustomer.feature.cs</LastGenOutput>
+      <LastGenOutput>MPSOneSignInToMPSAsACustomer.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSOne\SignIn\SignInToMPSAsADealer.feature">
+    <None Include="Test Specifications\MPSOne\SignIn\MPSOneSignInToMPSAsADealer.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>SignInToMPSAsADealer.feature.cs</LastGenOutput>
+      <LastGenOutput>MPSOneSignInToMPSAsADealer.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Contract\MPSDealerCanCopyADeclineProposal.feature">
+    <None Include="Test Specifications\MPSTwo\Contract\CloudMPSDealerCanCopyADeclineProposal.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>MPSDealerCanCopyADeclineProposal.feature.cs</LastGenOutput>
+      <LastGenOutput>CloudMPSDealerCanCopyADeclineProposal.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Contract\MPSDealerCanSignContract.feature">
+    <None Include="Test Specifications\MPSTwo\Contract\CloudMPSDealerCanSignContract.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>MPSDealerCanSignContract.feature.cs</LastGenOutput>
+      <LastGenOutput>CloudMPSDealerCanSignContract.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Contract\MPSDealerCanSignContractProd.feature">
+    <None Include="Test Specifications\MPSTwo\Contract\CloudMPSDealerCanSignContractProd.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>MPSDealerCanSignContractProd.feature.cs</LastGenOutput>
+      <LastGenOutput>CloudMPSDealerCanSignContractProd.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Contract\MPSGermanDealerCanSignContract.feature">
+    <None Include="Test Specifications\MPSTwo\Contract\CloudMPSGermanDealerCanSignContract.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>MPSGermanDealerCanSignContract.feature.cs</LastGenOutput>
+      <LastGenOutput>CloudMPSGermanDealerCanSignContract.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Contract\MPSOutputContractPDFAllUsers.feature">
+    <None Include="Test Specifications\MPSTwo\Contract\CloudMPSOutputContractPDFAllUsers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>MPSOutputContractPDFAllUsers.feature.cs</LastGenOutput>
+      <LastGenOutput>CloudMPSOutputContractPDFAllUsers.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Customer\MPSAddLocationToCustomerInformation.feature">
+    <None Include="Test Specifications\MPSTwo\Customer\CloudMPSAddLocationToCustomerInformation.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>MPSAddLocationToCustomerInformation.feature.cs</LastGenOutput>
+      <LastGenOutput>CloudMPSAddLocationToCustomerInformation.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Installation\MPSCompleteInstallationProcess.feature">
+    <None Include="Test Specifications\MPSTwo\Installation\CloudMPSCompleteInstallationProcess.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>MPSCompleteInstallationProcess.feature.cs</LastGenOutput>
+      <LastGenOutput>CloudMPSCompleteInstallationProcess.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Installation\MPSInstallerCanNavigateThroughInstallation.feature">
+    <None Include="Test Specifications\MPSTwo\Installation\CloudMPSInstallerCanNavigateThroughInstallation.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>MPSInstallerCanNavigateThroughInstallation.feature.cs</LastGenOutput>
+      <LastGenOutput>CloudMPSInstallerCanNavigateThroughInstallation.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Proposal\MPSApprovalDecisionsGermanScenarios.feature">
+    <None Include="Test Specifications\MPSTwo\Proposal\CloudMPSApprovalDecisionsGermanScenarios.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>MPSApprovalDecisionsGermanScenarios.feature.cs</LastGenOutput>
+      <LastGenOutput>CloudMPSApprovalDecisionsGermanScenarios.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Proposal\MPSApproverDecision.feature">
+    <None Include="Test Specifications\MPSTwo\Proposal\CloudMPSApproverDecision.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>MPSApproverDecision.feature.cs</LastGenOutput>
+      <LastGenOutput>CloudMPSApproverDecision.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Proposal\MPSClickPriceDeepDive.feature">
+    <None Include="Test Specifications\MPSTwo\Proposal\CloudMPSClickPriceDeepDive.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>MPSClickPriceDeepDive.feature.cs</LastGenOutput>
+      <LastGenOutput>CloudMPSClickPriceDeepDive.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Customer\MPSDealerCanOperateCustomers.feature">
+    <None Include="Test Specifications\MPSTwo\Customer\CloudMPSDealerCanOperateCustomers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>MPSDealerCanOperateCustomers.feature.cs</LastGenOutput>
+      <LastGenOutput>CloudMPSDealerCanOperateCustomers.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Proposal\MPSDealerCanCloseProposal.feature">
+    <None Include="Test Specifications\MPSTwo\Proposal\CloudMPSDealerCanCloseProposal.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>MPSDealerCanCloseProposal.feature.cs</LastGenOutput>
+      <LastGenOutput>CloudMPSDealerCanCloseProposal.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Proposal\MPSDealerCanDeleteProposal.feature">
+    <None Include="Test Specifications\MPSTwo\Proposal\CloudMPSDealerCanDeleteProposal.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>MPSDealerCanDeleteProposal.feature.cs</LastGenOutput>
+      <LastGenOutput>CloudMPSDealerCanDeleteProposal.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Proposal\MPSDealerCanOperateProposalOffers.feature">
+    <None Include="Test Specifications\MPSTwo\Proposal\CloudMPSDealerCanOperateProposalOffers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>MPSDealerCanOperateProposalOffers.feature.cs</LastGenOutput>
+      <LastGenOutput>CloudMPSDealerCanOperateProposalOffers.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Proposal\MPSDealerCanGeneratePDFAtRelevantStages.feature">
+    <None Include="Test Specifications\MPSTwo\Proposal\CloudMPSDealerCanGeneratePDFAtRelevantStages.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>MPSDealerCanGeneratePDFAtRelevantStages.feature.cs</LastGenOutput>
+      <LastGenOutput>CloudMPSDealerCanGeneratePDFAtRelevantStages.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Proposal\MPSDealerCanUpdateProfile.feature">
+    <None Include="Test Specifications\MPSTwo\Proposal\CloudMPSDealerCanUpdateProfile.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>MPSDealerCanUpdateProfile.feature.cs</LastGenOutput>
+      <LastGenOutput>CloudMPSDealerCanUpdateProfile.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Proposal\MPSGermanDealerCanCloseProposal.feature">
+    <None Include="Test Specifications\MPSTwo\Proposal\CloudMPSGermanDealerCanCloseProposal.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>MPSGermanDealerCanCloseProposal.feature.cs</LastGenOutput>
+      <LastGenOutput>CloudMPSGermanDealerCanCloseProposal.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Proposal\MPSGermanProposalSummaryPageValidation.feature">
+    <None Include="Test Specifications\MPSTwo\Proposal\CloudMPSGermanProposalSummaryPageValidation.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>MPSGermanProposalSummaryPageValidation.feature.cs</LastGenOutput>
+      <LastGenOutput>CloudMPSGermanProposalSummaryPageValidation.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Proposal\MPSLeasingAndClickProposalGermanUserJourney.feature">
+    <None Include="Test Specifications\MPSTwo\Proposal\CloudMPSLeasingAndClickProposalGermanUserJourney.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>MPSLeasingAndClickProposalGermanUserJourney.feature.cs</LastGenOutput>
+      <LastGenOutput>CloudMPSLeasingAndClickProposalGermanUserJourney.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Proposal\MPSLeasingAndClickProposalUserJourney.feature">
+    <None Include="Test Specifications\MPSTwo\Proposal\CloudMPSLeasingAndClickProposalUserJourney.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>MPSLeasingAndClickProposalUserJourney.feature.cs</LastGenOutput>
+      <LastGenOutput>CloudMPSLeasingAndClickProposalUserJourney.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Proposal\MPSLocalOfficeAdminCanManageBanks.feature">
+    <None Include="Test Specifications\MPSTwo\Proposal\CloudMPSLocalOfficeAdminCanManageBanks.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>MPSLocalOfficeAdminCanManageBanks.feature.cs</LastGenOutput>
+      <LastGenOutput>CloudMPSLocalOfficeAdminCanManageBanks.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Proposal\MPSNoDuplicateProposalIsCreated.feature">
+    <None Include="Test Specifications\MPSTwo\Proposal\CloudMPSNoDuplicateProposalIsCreated.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>MPSNoDuplicateProposalIsCreated.feature.cs</LastGenOutput>
+      <LastGenOutput>CloudMPSNoDuplicateProposalIsCreated.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Proposal\MPSPurchaseAndClickProposalGermanUserJourney.feature">
+    <None Include="Test Specifications\MPSTwo\Proposal\CloudMPSPurchaseAndClickProposalGermanUserJourney.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>MPSPurchaseAndClickProposalGermanUserJourney.feature.cs</LastGenOutput>
+      <LastGenOutput>CloudMPSPurchaseAndClickProposalGermanUserJourney.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Proposal\MPSPurchaseAndClickProposalUserJourney.feature">
+    <None Include="Test Specifications\MPSTwo\Proposal\CloudMPSPurchaseAndClickProposalUserJourney.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>MPSPurchaseAndClickProposalUserJourney.feature.cs</LastGenOutput>
+      <LastGenOutput>CloudMPSPurchaseAndClickProposalUserJourney.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Proposal\MPSSummaryPageValidationForAllProposalTypes.feature">
+    <None Include="Test Specifications\MPSTwo\Proposal\CloudMPSSummaryPageValidationForAllProposalTypes.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>MPSSummaryPageValidationForAllProposalTypes.feature.cs</LastGenOutput>
+      <LastGenOutput>CloudMPSSummaryPageValidationForAllProposalTypes.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Proposal\MPSVerificationOnProductScreenVariations.feature">
+    <None Include="Test Specifications\MPSTwo\Proposal\CloudMPSVerificationOnProductScreenVariations.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>MPSVerificationOnProductScreenVariations.feature.cs</LastGenOutput>
+      <LastGenOutput>CloudMPSVerificationOnProductScreenVariations.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\SendToBank\MPSDealerCanSubmitAllGermanProposalsForApproval.feature">
+    <None Include="Test Specifications\MPSTwo\SendToBank\CloudMPSDealerCanSubmitAllGermanProposalsForApproval.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>MPSDealerCanSubmitAllGermanProposalsForApproval.feature.cs</LastGenOutput>
+      <LastGenOutput>CloudMPSDealerCanSubmitAllGermanProposalsForApproval.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\SendToBank\MPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature">
+    <None Include="Test Specifications\MPSTwo\SendToBank\CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>MPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature.cs</LastGenOutput>
+      <LastGenOutput>CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\OmniJoinPartnerPortal\CustomerActions\CustomerActions.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
