@@ -32,7 +32,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [Given(@"I enable product to be displayed as a flat list for a paticular contract type")]
         public void GivenIEnableProductToBeDisplayedAsAFlatListForAPaticularContractType()
         {
-            When(@"I navigate to Purchase And Click page");
+            WhenINavigateToPurchaseAndClickPage();
             CurrentPage.As<LocalOfficeAdminProgramSettingPage>().TickDisplayProductsAsList();
             CurrentPage.As<LocalOfficeAdminProgramSettingPage>().ClickSave();
         }
@@ -40,7 +40,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [Then(@"I enable product to be displayed with images for a paticular contract type")]
         public void GivenIEnableProductToBeDisplayedWithImagesForAPaticularContractType()
         {
-            When(@"I navigate to Purchase And Click page");
+            WhenINavigateToPurchaseAndClickPage();
             CurrentPage.As<LocalOfficeAdminProgramSettingPage>().UntickDisplayProductsAsList();
             CurrentPage.As<LocalOfficeAdminProgramSettingPage>().ClickSave();
         }
@@ -49,20 +49,24 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [When(@"I navigate to Purchase And Click page")]
         public void WhenINavigateToPurchaseAndClickPage()
         {
-            NextPage = CurrentPage.As<LocalOfficeAdminDashBoardPage>().NavigateToPurchaseAndClickPage();
+
+            NextPage = CurrentPage.As<LocalOfficeAdminDashBoardPage>().NavigateToLOProgramPage();
+            NextPage = CurrentPage.As<LocalOfficeAdminProgramPage>().NavigateToPurchaseAndClickPage();
         }
 
         [Given(@"I navigate to Lease And Click page")]
         [When(@"I navigate to admin Lease And Click page")]
         public void WhenINavigateToLeaseAndClickPage()
         {
-            NextPage = CurrentPage.As<LocalOfficeAdminDashBoardPage>().NavigateToLeaseAndClickPage();
+            NextPage = CurrentPage.As<LocalOfficeAdminDashBoardPage>().NavigateToLOProgramPage();
+            NextPage = CurrentPage.As<LocalOfficeAdminProgramPage>().NavigateToLeaseAndClickPage();
         }
 
         [When(@"I navigate to All In Click Page")]
         public void WhenINavigateToAllInClickPage()
         {
-            NextPage = CurrentPage.As<LocalOfficeAdminDashBoardPage>().NavigateToAllInClickPage();
+            NextPage = CurrentPage.As<LocalOfficeAdminDashBoardPage>().NavigateToLOProgramPage();
+            NextPage = CurrentPage.As<LocalOfficeAdminProgramPage>().NavigateToAllInClickPage();
         }
 
         [When(@"I tick Dispaly Product as List Button")]

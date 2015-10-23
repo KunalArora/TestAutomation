@@ -175,6 +175,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement PrinterA3property;
         [FindsBy(How = How.CssSelector, Using = ".mps-product-configuration-container-flat")]
         public IList<IWebElement> ProductPageFlatVerifier;
+        [FindsBy(How = How.CssSelector, Using = ".mps-product-img")]
+        public IList<IWebElement> ProductPageImageVerifier;
         [FindsBy(How = How.CssSelector, Using = "[data-mps-product-auto-colour-type=\"C\"]")]
         public IWebElement ImageColourproperty;
         [FindsBy(How = How.CssSelector, Using = "[data-mps-product-auto-colour-type=\"M\"]")]
@@ -386,7 +388,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsAllPrintersHaveMonoFacility()
         {
-            if (ProductPageFlatVerifier != null)
+            if (ProductPageImageVerifier != null)
             {
                 for (var i = 0; i <= PropertyContainerElement.Count; i++)
                 {
@@ -413,15 +415,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsAllPrintersHaveColourFacility()
         {
-            if (ProductPageFlatVerifier != null)
+            if (ProductPageImageVerifier != null)
             {
-
                 for (var i = 0; i <= PropertyContainerElement.Count; i++)
                 {
-                    TestCheck.AssertIsEqual(false, FlatColourProperty.Text.Equals("-"),
-                        "Some printers in flat view do not contain mono properties");
-                    TestCheck.AssertIsEqual(false, FlatMonoProperty.Text.Equals("-"),
-                        "Some printers in flat view do not contain mono properties");
+                    TestCheck.AssertIsEqual(true, ImageColourproperty.Displayed,
+                        "Some printers displayed do not contain mono properties");
                 }
 
                 
@@ -430,9 +429,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 for (var i = 0; i <= PropertyContainerElement.Count; i++)
                 {
-                    TestCheck.AssertIsEqual(true, ImageColourproperty.Displayed,
-                        "Some printers displayed do not contain mono properties");
-                } 
+                    TestCheck.AssertIsEqual(false, FlatColourProperty.Text.Equals("-"),
+                        "Some printers in flat view do not contain mono properties");
+                    TestCheck.AssertIsEqual(false, FlatMonoProperty.Text.Equals("-"),
+                        "Some printers in flat view do not contain mono properties");
+                }
             }
         }
 
@@ -489,7 +490,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private IList<IWebElement> DisplayedAllPrintersAsFlatListElement()
         {
-            string element = ".mps-product-group";
+            string element = ".mps-product-configuration-container-flat";
 
             return GetElementsByCssSelector(element);
         }

@@ -99,153 +99,153 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Customer Account.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Contract\DealerCanCopyADeclineProposal.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Contract\MPSDealerCanCopyADeclineProposal.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DealerCanCopyADeclineProposal.feature</DependentUpon>
+      <DependentUpon>MPSDealerCanCopyADeclineProposal.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Contract\DealerCanSignContract.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Contract\MPSDealerCanSignContract.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DealerCanSignContract.feature</DependentUpon>
+      <DependentUpon>MPSDealerCanSignContract.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Contract\DealerCanSignContractProd.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Contract\MPSDealerCanSignContractProd.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DealerCanSignContractProd.feature</DependentUpon>
+      <DependentUpon>MPSDealerCanSignContractProd.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Contract\GermanDealerCanSignContract.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Contract\MPSGermanDealerCanSignContract.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>GermanDealerCanSignContract.feature</DependentUpon>
+      <DependentUpon>MPSGermanDealerCanSignContract.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Contract\OutputContractPDFAllUsers.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Contract\MPSOutputContractPDFAllUsers.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>OutputContractPDFAllUsers.feature</DependentUpon>
+      <DependentUpon>MPSOutputContractPDFAllUsers.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Customer\AddLocationToCustomerInformation.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Customer\MPSAddLocationToCustomerInformation.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AddLocationToCustomerInformation.feature</DependentUpon>
+      <DependentUpon>MPSAddLocationToCustomerInformation.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Installation\CompleteInstallationProcess.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Installation\MPSCompleteInstallationProcess.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CompleteInstallationProcess.feature</DependentUpon>
+      <DependentUpon>MPSCompleteInstallationProcess.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Installation\InstallerCanNavigateThroughInstallation.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Installation\MPSInstallerCanNavigateThroughInstallation.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>InstallerCanNavigateThroughInstallation.feature</DependentUpon>
+      <DependentUpon>MPSInstallerCanNavigateThroughInstallation.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Proposal\ApprovalDecisionsGermanScenarios.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Proposal\MPSApprovalDecisionsGermanScenarios.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ApprovalDecisionsGermanScenarios.feature</DependentUpon>
+      <DependentUpon>MPSApprovalDecisionsGermanScenarios.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Proposal\ApproverDecision.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Proposal\MPSApproverDecision.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ApproverDecision.feature</DependentUpon>
+      <DependentUpon>MPSApproverDecision.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Proposal\ClickPriceDeepDive.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Proposal\MPSClickPriceDeepDive.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ClickPriceDeepDive.feature</DependentUpon>
+      <DependentUpon>MPSClickPriceDeepDive.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Customer\DealerCanOperateCustomers.feature.cs">
-      <DependentUpon>DealerCanOperateCustomers.feature</DependentUpon>
+    <Compile Include="Test Specifications\MPSTwo\Customer\MPSDealerCanOperateCustomers.feature.cs">
+      <DependentUpon>MPSDealerCanOperateCustomers.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Proposal\DealerCanCloseProposal.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Proposal\MPSDealerCanCloseProposal.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DealerCanCloseProposal.feature</DependentUpon>
+      <DependentUpon>MPSDealerCanCloseProposal.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Proposal\DealerCanDeleteProposal.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Proposal\MPSDealerCanDeleteProposal.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DealerCanDeleteProposal.feature</DependentUpon>
+      <DependentUpon>MPSDealerCanDeleteProposal.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Proposal\DealerCanOperateProposalOffers.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Proposal\MPSDealerCanOperateProposalOffers.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DealerCanOperateProposalOffers.feature</DependentUpon>
+      <DependentUpon>MPSDealerCanOperateProposalOffers.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Proposal\DealerCanGeneratePDFAtRelevantStages.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Proposal\MPSDealerCanGeneratePDFAtRelevantStages.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DealerCanGeneratePDFAtRelevantStages.feature</DependentUpon>
+      <DependentUpon>MPSDealerCanGeneratePDFAtRelevantStages.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Proposal\DealerCanUpdateProfile.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Proposal\MPSDealerCanUpdateProfile.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DealerCanUpdateProfile.feature</DependentUpon>
+      <DependentUpon>MPSDealerCanUpdateProfile.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Proposal\GermanDealerCanCloseProposal.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Proposal\MPSGermanDealerCanCloseProposal.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>GermanDealerCanCloseProposal.feature</DependentUpon>
+      <DependentUpon>MPSGermanDealerCanCloseProposal.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Proposal\GermanProposalSummaryPageValidation.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Proposal\MPSGermanProposalSummaryPageValidation.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>GermanProposalSummaryPageValidation.feature</DependentUpon>
+      <DependentUpon>MPSGermanProposalSummaryPageValidation.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Proposal\LeasingAndClickProposalGermanUserJourney.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Proposal\MPSLeasingAndClickProposalGermanUserJourney.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>LeasingAndClickProposalGermanUserJourney.feature</DependentUpon>
+      <DependentUpon>MPSLeasingAndClickProposalGermanUserJourney.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Proposal\LeasingAndClickProposalUserJourney.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Proposal\MPSLeasingAndClickProposalUserJourney.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>LeasingAndClickProposalUserJourney.feature</DependentUpon>
+      <DependentUpon>MPSLeasingAndClickProposalUserJourney.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Proposal\LocalOfficeAdminCanManageBanks.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Proposal\MPSLocalOfficeAdminCanManageBanks.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>LocalOfficeAdminCanManageBanks.feature</DependentUpon>
+      <DependentUpon>MPSLocalOfficeAdminCanManageBanks.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Proposal\NoDuplicateProposalIsCreated.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Proposal\MPSNoDuplicateProposalIsCreated.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>NoDuplicateProposalIsCreated.feature</DependentUpon>
+      <DependentUpon>MPSNoDuplicateProposalIsCreated.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Proposal\PurchaseAndClickProposalGermanUserJourney.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Proposal\MPSPurchaseAndClickProposalGermanUserJourney.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>PurchaseAndClickProposalGermanUserJourney.feature</DependentUpon>
+      <DependentUpon>MPSPurchaseAndClickProposalGermanUserJourney.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Proposal\PurchaseAndClickProposalUserJourney.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Proposal\MPSPurchaseAndClickProposalUserJourney.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>PurchaseAndClickProposalUserJourney.feature</DependentUpon>
+      <DependentUpon>MPSPurchaseAndClickProposalUserJourney.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Proposal\SummaryPageValidationForAllProposalTypes.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Proposal\MPSSummaryPageValidationForAllProposalTypes.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SummaryPageValidationForAllProposalTypes.feature</DependentUpon>
+      <DependentUpon>MPSSummaryPageValidationForAllProposalTypes.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\SendToBank\DealerCanSubmitAllGermanProposalsForApproval.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\SendToBank\MPSDealerCanSubmitAllGermanProposalsForApproval.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DealerCanSubmitAllGermanProposalsForApproval.feature</DependentUpon>
+      <DependentUpon>MPSDealerCanSubmitAllGermanProposalsForApproval.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\SendToBank\DealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\SendToBank\MPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature</DependentUpon>
+      <DependentUpon>MPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Specifications\Smart Supply\BrotherSupplyClubProductBenefits.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BrotherSupplyClubProductBenefits.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Proposal\VerificationOnProductScreenVariations.feature.cs">
-      <DependentUpon>VerificationOnProductScreenVariations.feature</DependentUpon>
+    <Compile Include="Test Specifications\MPSTwo\Proposal\MPSVerificationOnProductScreenVariations.feature.cs">
+      <DependentUpon>MPSVerificationOnProductScreenVariations.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -565,121 +565,121 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>SignInToMPSAsADealer.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Contract\DealerCanCopyADeclineProposal.feature">
+    <None Include="Test Specifications\MPSTwo\Contract\MPSDealerCanCopyADeclineProposal.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>DealerCanCopyADeclineProposal.feature.cs</LastGenOutput>
+      <LastGenOutput>MPSDealerCanCopyADeclineProposal.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Contract\DealerCanSignContract.feature">
+    <None Include="Test Specifications\MPSTwo\Contract\MPSDealerCanSignContract.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>DealerCanSignContract.feature.cs</LastGenOutput>
+      <LastGenOutput>MPSDealerCanSignContract.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Contract\DealerCanSignContractProd.feature">
+    <None Include="Test Specifications\MPSTwo\Contract\MPSDealerCanSignContractProd.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>DealerCanSignContractProd.feature.cs</LastGenOutput>
+      <LastGenOutput>MPSDealerCanSignContractProd.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Contract\GermanDealerCanSignContract.feature">
+    <None Include="Test Specifications\MPSTwo\Contract\MPSGermanDealerCanSignContract.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>GermanDealerCanSignContract.feature.cs</LastGenOutput>
+      <LastGenOutput>MPSGermanDealerCanSignContract.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Contract\OutputContractPDFAllUsers.feature">
+    <None Include="Test Specifications\MPSTwo\Contract\MPSOutputContractPDFAllUsers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>OutputContractPDFAllUsers.feature.cs</LastGenOutput>
+      <LastGenOutput>MPSOutputContractPDFAllUsers.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Customer\AddLocationToCustomerInformation.feature">
+    <None Include="Test Specifications\MPSTwo\Customer\MPSAddLocationToCustomerInformation.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>AddLocationToCustomerInformation.feature.cs</LastGenOutput>
+      <LastGenOutput>MPSAddLocationToCustomerInformation.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Installation\CompleteInstallationProcess.feature">
+    <None Include="Test Specifications\MPSTwo\Installation\MPSCompleteInstallationProcess.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CompleteInstallationProcess.feature.cs</LastGenOutput>
+      <LastGenOutput>MPSCompleteInstallationProcess.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Installation\InstallerCanNavigateThroughInstallation.feature">
+    <None Include="Test Specifications\MPSTwo\Installation\MPSInstallerCanNavigateThroughInstallation.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>InstallerCanNavigateThroughInstallation.feature.cs</LastGenOutput>
+      <LastGenOutput>MPSInstallerCanNavigateThroughInstallation.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Proposal\ApprovalDecisionsGermanScenarios.feature">
+    <None Include="Test Specifications\MPSTwo\Proposal\MPSApprovalDecisionsGermanScenarios.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>ApprovalDecisionsGermanScenarios.feature.cs</LastGenOutput>
+      <LastGenOutput>MPSApprovalDecisionsGermanScenarios.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Proposal\ApproverDecision.feature">
+    <None Include="Test Specifications\MPSTwo\Proposal\MPSApproverDecision.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>ApproverDecision.feature.cs</LastGenOutput>
+      <LastGenOutput>MPSApproverDecision.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Proposal\ClickPriceDeepDive.feature">
+    <None Include="Test Specifications\MPSTwo\Proposal\MPSClickPriceDeepDive.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>ClickPriceDeepDive.feature.cs</LastGenOutput>
+      <LastGenOutput>MPSClickPriceDeepDive.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Customer\DealerCanOperateCustomers.feature">
+    <None Include="Test Specifications\MPSTwo\Customer\MPSDealerCanOperateCustomers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>DealerCanOperateCustomers.feature.cs</LastGenOutput>
+      <LastGenOutput>MPSDealerCanOperateCustomers.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Proposal\DealerCanCloseProposal.feature">
+    <None Include="Test Specifications\MPSTwo\Proposal\MPSDealerCanCloseProposal.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>DealerCanCloseProposal.feature.cs</LastGenOutput>
+      <LastGenOutput>MPSDealerCanCloseProposal.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Proposal\DealerCanDeleteProposal.feature">
+    <None Include="Test Specifications\MPSTwo\Proposal\MPSDealerCanDeleteProposal.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>DealerCanDeleteProposal.feature.cs</LastGenOutput>
+      <LastGenOutput>MPSDealerCanDeleteProposal.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Proposal\DealerCanOperateProposalOffers.feature">
+    <None Include="Test Specifications\MPSTwo\Proposal\MPSDealerCanOperateProposalOffers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>DealerCanOperateProposalOffers.feature.cs</LastGenOutput>
+      <LastGenOutput>MPSDealerCanOperateProposalOffers.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Proposal\DealerCanGeneratePDFAtRelevantStages.feature">
+    <None Include="Test Specifications\MPSTwo\Proposal\MPSDealerCanGeneratePDFAtRelevantStages.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>DealerCanGeneratePDFAtRelevantStages.feature.cs</LastGenOutput>
+      <LastGenOutput>MPSDealerCanGeneratePDFAtRelevantStages.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Proposal\DealerCanUpdateProfile.feature">
+    <None Include="Test Specifications\MPSTwo\Proposal\MPSDealerCanUpdateProfile.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>DealerCanUpdateProfile.feature.cs</LastGenOutput>
+      <LastGenOutput>MPSDealerCanUpdateProfile.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Proposal\GermanDealerCanCloseProposal.feature">
+    <None Include="Test Specifications\MPSTwo\Proposal\MPSGermanDealerCanCloseProposal.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>GermanDealerCanCloseProposal.feature.cs</LastGenOutput>
+      <LastGenOutput>MPSGermanDealerCanCloseProposal.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Proposal\GermanProposalSummaryPageValidation.feature">
+    <None Include="Test Specifications\MPSTwo\Proposal\MPSGermanProposalSummaryPageValidation.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>GermanProposalSummaryPageValidation.feature.cs</LastGenOutput>
+      <LastGenOutput>MPSGermanProposalSummaryPageValidation.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Proposal\LeasingAndClickProposalGermanUserJourney.feature">
+    <None Include="Test Specifications\MPSTwo\Proposal\MPSLeasingAndClickProposalGermanUserJourney.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>LeasingAndClickProposalGermanUserJourney.feature.cs</LastGenOutput>
+      <LastGenOutput>MPSLeasingAndClickProposalGermanUserJourney.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Proposal\LeasingAndClickProposalUserJourney.feature">
+    <None Include="Test Specifications\MPSTwo\Proposal\MPSLeasingAndClickProposalUserJourney.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>LeasingAndClickProposalUserJourney.feature.cs</LastGenOutput>
+      <LastGenOutput>MPSLeasingAndClickProposalUserJourney.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Proposal\LocalOfficeAdminCanManageBanks.feature">
+    <None Include="Test Specifications\MPSTwo\Proposal\MPSLocalOfficeAdminCanManageBanks.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>LocalOfficeAdminCanManageBanks.feature.cs</LastGenOutput>
+      <LastGenOutput>MPSLocalOfficeAdminCanManageBanks.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Proposal\NoDuplicateProposalIsCreated.feature">
+    <None Include="Test Specifications\MPSTwo\Proposal\MPSNoDuplicateProposalIsCreated.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>NoDuplicateProposalIsCreated.feature.cs</LastGenOutput>
+      <LastGenOutput>MPSNoDuplicateProposalIsCreated.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Proposal\PurchaseAndClickProposalGermanUserJourney.feature">
+    <None Include="Test Specifications\MPSTwo\Proposal\MPSPurchaseAndClickProposalGermanUserJourney.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>PurchaseAndClickProposalGermanUserJourney.feature.cs</LastGenOutput>
+      <LastGenOutput>MPSPurchaseAndClickProposalGermanUserJourney.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Proposal\PurchaseAndClickProposalUserJourney.feature">
+    <None Include="Test Specifications\MPSTwo\Proposal\MPSPurchaseAndClickProposalUserJourney.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>PurchaseAndClickProposalUserJourney.feature.cs</LastGenOutput>
+      <LastGenOutput>MPSPurchaseAndClickProposalUserJourney.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Proposal\SummaryPageValidationForAllProposalTypes.feature">
+    <None Include="Test Specifications\MPSTwo\Proposal\MPSSummaryPageValidationForAllProposalTypes.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>SummaryPageValidationForAllProposalTypes.feature.cs</LastGenOutput>
+      <LastGenOutput>MPSSummaryPageValidationForAllProposalTypes.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Proposal\VerificationOnProductScreenVariations.feature">
+    <None Include="Test Specifications\MPSTwo\Proposal\MPSVerificationOnProductScreenVariations.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>VerificationOnProductScreenVariations.feature.cs</LastGenOutput>
+      <LastGenOutput>MPSVerificationOnProductScreenVariations.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\SendToBank\DealerCanSubmitAllGermanProposalsForApproval.feature">
+    <None Include="Test Specifications\MPSTwo\SendToBank\MPSDealerCanSubmitAllGermanProposalsForApproval.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>DealerCanSubmitAllGermanProposalsForApproval.feature.cs</LastGenOutput>
+      <LastGenOutput>MPSDealerCanSubmitAllGermanProposalsForApproval.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\SendToBank\DealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature">
+    <None Include="Test Specifications\MPSTwo\SendToBank\MPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>DealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature.cs</LastGenOutput>
+      <LastGenOutput>MPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\OmniJoinPartnerPortal\CustomerActions\CustomerActions.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

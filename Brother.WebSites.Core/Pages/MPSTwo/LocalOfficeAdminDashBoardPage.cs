@@ -21,16 +21,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [FindsBy(How = How.CssSelector, Using = "a[href='/mps/local-office/all-in-click'] .media-body")]
         public IWebElement AllInClickLinkElement;
         [FindsBy(How = How.CssSelector, Using = "a[href='/mps/local-office/dealers'] .media-body")]
-        public IWebElement DealerDefaultsElement;        
+        public IWebElement DealerDefaultsElement;
+        [FindsBy(How = How.CssSelector, Using = ".media a[href=\"/mps/local-office/programs\"]")]
+        public IWebElement LOAdminProgramElement;
 
 
-        public void IsLeasingContractLinkAvailable()
-        {
-            if (LeasingContractLinkElement == null) 
-                throw new Exception("Unable to locate leasing contract link on dashboard page");
-
-            AssertElementPresent(LeasingContractLinkElement, "Create New Proposal Link");
-        }
+       
 
         public void IsPurchaseAndClickLinkAvailable()
         {
@@ -40,13 +36,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             AssertElementPresent(PurchaseAndClickLinkElement, "Create New Proposal Link");
         }
 
-        private void IsAllInClickLinkAvailable()
-        {
-            if (AllInClickLinkElement == null)
-                throw new Exception("Unable to locate All In Click link on dashboard page");
-
-            AssertElementPresent(AllInClickLinkElement, "Create New Proposal Link");
-        }
+        
 
         public void IsDealerDefaultsLinkAvailable()
         {
@@ -56,13 +46,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             AssertElementPresent(DealerDefaultsElement, "Create Dealer Defaults Link");
         }
 
-        public LocalOfficeAdminProgramSettingPage NavigateToPurchaseAndClickPage()
+        public LocalOfficeAdminProgramPage NavigateToLOProgramPage()
         {
-            if (PurchaseAndClickLinkElement == null)
+            if (LOAdminProgramElement == null)
                 throw new NullReferenceException("EPP link is not LOAdmin Dashboard");
-            PurchaseAndClickLinkElement.Click();
-            return GetTabInstance<LocalOfficeAdminProgramSettingPage>(Driver);
+            LOAdminProgramElement.Click();
+            return GetTabInstance<LocalOfficeAdminProgramPage>(Driver);
         }
+
+        
 
         public LocalOfficeAdminDealerDefaultsPage NavigateToDealerDefaultsPage()
         {
@@ -71,18 +63,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetTabInstance<LocalOfficeAdminDealerDefaultsPage>(Driver);
         }
 
-        public LocalOfficeAdminProgramSettingPage NavigateToLeaseAndClickPage()
-        {
-            IsLeasingContractLinkAvailable();
-            LeasingContractLinkElement.Click();
-            return GetTabInstance<LocalOfficeAdminProgramSettingPage>(Driver);
-        }
-
-        public LocalOfficeAdminProgramSettingPage NavigateToAllInClickPage()
-        {
-            IsAllInClickLinkAvailable();
-            AllInClickLinkElement.Click();
-            return GetTabInstance<LocalOfficeAdminProgramSettingPage>(Driver);
-        }
+        
     }
 }
