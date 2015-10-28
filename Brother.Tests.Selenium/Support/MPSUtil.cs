@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Configuration;
 using System.Globalization;
+using System.Xml.Schema;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
@@ -642,7 +644,7 @@ namespace Brother.Tests.Selenium.Lib.Support
 				             "Misty"
 				         };
 
-            var firstName = name[new Random().Next(30)];
+            var firstName = name[new Random().Next(25)];
 
             return firstName;
         }
@@ -752,6 +754,8 @@ namespace Brother.Tests.Selenium.Lib.Support
             var margin = margins[new Random().Next(6)];
             return margin;
         }
+
+       
 
     }
 }

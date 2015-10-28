@@ -68,6 +68,7 @@ Scenario Outline: Dealer Can Copy A Declined Purchase and Click Proposal without
 
 	| Role             | Country        | Role2                           |
 	| Cloud MPS Dealer | United Kingdom | Cloud MPS Local Office Approver |
+	
 
 
 Scenario Outline: Dealer Can Copy A Declined Purchase and Click Proposal with customer detail

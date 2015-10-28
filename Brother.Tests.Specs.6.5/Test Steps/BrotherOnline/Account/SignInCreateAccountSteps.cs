@@ -94,7 +94,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
 
         [Then(@"I am navigated to the privacy policy for cookies")]
         public void IsNavigatedToThePrivacyPolicyPage()
-        {   
+        {
             CurrentPage.As<HomePage>().SwitchToNewlyOpenedWindow(CurrentDriver);
             CurrentPage.As<HomePage>().IsCompanyTermsAndConditionsLinkAvailable();
         }
@@ -141,8 +141,8 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
 
         [Then(@"I click the creative center register/login link")]
         public void ClickTheCreativeCenterFamilyLink()
-        {            
-            CurrentPage.As<HomePage>().CreativeCenterRegisterLoginLinkClick();            
+        {
+            CurrentPage.As<HomePage>().CreativeCenterRegisterLoginLinkClick();
         }
 
         [Then(@"I am navigated to the creative center login page")]
@@ -154,7 +154,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
 
         [Then(@"I click the creative center create your account button")]
         public void ClickCreateCreativeCenterAccount()
-        {            
+        {
             CurrentPage.As<HomePage>().CreativeCenterCreateAccountClick();
         }
 
@@ -166,7 +166,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
 
         [Then(@"I sign out of creative center")]
         public void AmSignedOutOfCreativeCenter()
-        {            
+        {
             CurrentPage.As<HomePage>().IsCreativeCenterLogoutLinkAvailable();
             CurrentPage.As<HomePage>().CreativeCenterLogoutLinkClick();
             //CurrentPage.As<HomePage>().DissmissTheJsAlert(CurrentDriver);
@@ -175,7 +175,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         }
 
         // This is a phantom JS workaround for the method below
-        [Then (@"I click to not participate in the survey")]
+        [Then(@"I click to not participate in the survey")]
         public void ClickNoToCreativeCenterSurvey()
         {
             CurrentPage.As<HomePage>().DoNotWantToParticipateInCreativeCenterSurvey();
@@ -185,7 +185,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [Then(@"I click to remove browser confirmation dialogue")]
         public void WhenIClickToRemoveBrowserConfirmationDialog()
         {
-           CurrentPage.As<HomePage>().ClickDismissOnConfrimation(CurrentDriver);            
+            CurrentPage.As<HomePage>().ClickDismissOnConfrimation(CurrentDriver);
         }
 
         [Then(@"I have checked no to having a creative center account")]
@@ -205,13 +205,13 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<HomePage>().UseCreativeCenterAccForBusiness();
         }
-          
+
         [Then(@"I have Agreed to the creative center Terms and Conditions")]
         public void ClickYesToCreativeCenterTerms()
         {
             CurrentPage.As<HomePage>().AgreedToCreativeCenterTerms();
         }
-                       
+
         [When(@"I click on Reset Your Password")]
         [Then(@"I click on Reset Your Password")]
         public void ThenIClickOnResetYourPassword()
@@ -263,7 +263,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<RegistrationPage>().IsEmailResetTextBoxAvailable();
             CurrentPage.As<RegistrationPage>().PopulateEmailAdressForChangeOfPassword(emailAddress);
         }
-        
+
         [Then(@"I enter my current email address")]
         public void ThenIEnterMyCurrentEmailAddress()
         {
@@ -293,7 +293,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<RegistrationPage>().PopulatePasswordTextBox(Helper.Password);
             CurrentPage.As<RegistrationPage>().PopulateConfirmPasswordTextBox(Helper.Password);
             WhenIEnterAValidEmailAddress(string.Empty);
-            
+
             WhenIHaveAgreedToTheTermsAndConditions();
             WhenIDeclareThatIDoNotUseThisAccountForBusiness();
             WhenIPressCreateYourAccount();
@@ -317,14 +317,14 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage = BasePage.LoadBolHomePage(CurrentDriver, BasePage.BaseUrl, "");
             GivenINeedABrotherOnlineAccountInOrderToUseBrotherOnlineServices(country);
         }
-		
-		[Given(@"I launch Brother Online for ""(.*)""")]
+
+        [Given(@"I launch Brother Online for ""(.*)""")]
         public void GivenILaunchBrotherOnlineFor(string country)
         {
             // Set locale to direct to Brother Online Ireland
             Helper.SetCountry(country);
             var title = HomePage.WelcomePageCountryTitle(country);
-            CurrentPage = BasePage.LoadBolHomePage(CurrentDriver, BasePage.BaseUrl, title);           
+            CurrentPage = BasePage.LoadBolHomePage(CurrentDriver, BasePage.BaseUrl, title);
         }
 
         [Then(@"I click on the sign in / create account button")]
@@ -346,7 +346,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             GivenILaunchBrotherOnlineFor(country);
             WhenIClickOnSignInCreateAnAccount(country);
             WhenISignInAsA(role, country);
-            
+
         }
 
 
@@ -372,7 +372,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             SignInButtonToAsARoleType(role);
         }
 
-       
+
         // Sign in Scenario using all steps - useful for calling from other Scenarios
         [Given(@"I sign into Brother Online ""(.*)"" using valid credentials")]
         public void GivenISignIntoBrotherOnlineUsingValidCredentials(string country)
@@ -443,6 +443,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<RegistrationPage>().PopulateNiNumberTextBox(form.NumeroDNI); //tax number for Spain
             //CurrentPage.As<RegistrationPage>().PopulateTaxNumberTextBox(form.CodiceFiscale);//tax number for Italy
         }
+
         [When(@"I fill in the registration information using a valid email address and ID number for italy")]
         public void WhenIFillInTheRegistrationInformationUsingAValidEmailAddressAndIdNumberForItaly(Table table)
         {
@@ -452,12 +453,17 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<RegistrationPage>().PopulatePasswordTextBox(form.Password);
             CurrentPage.As<RegistrationPage>().PopulateConfirmPasswordTextBox(form.Password);
             WhenIEnterAValidEmailAddress(string.Empty); // Auto Generates with an empty string
-            CurrentPage.As<RegistrationPage>().PopulateTaxNumberTextBox(form.CodiceFiscale);//tax number for Italy
+            CurrentPage.As<RegistrationPage>().PopulateTaxNumberTextBox(form.CodiceFiscale); //tax number for Italy
         }
 
-        [When(@"I fill in the Italy registration information using a valid email address and excluding ID number for italy")]
-        [When(@"I fill in the Portugal registration information using a valid email address and excluding the VAT number")]
-        public void WhenIFillInTheItalyRegistrationInformationUsingAValidEmailAddressAndExcludingIdNumberForItaly(Table table)
+        [When(
+            @"I fill in the Italy registration information using a valid email address and excluding ID number for italy"
+            )]
+        [When(
+            @"I fill in the Portugal registration information using a valid email address and excluding the VAT number")
+        ]
+        public void WhenIFillInTheItalyRegistrationInformationUsingAValidEmailAddressAndExcludingIdNumberForItaly(
+            Table table)
         {
             dynamic form = table.CreateDynamicInstance();
             CurrentPage.As<RegistrationPage>().PopulateFirstNameTextBox(form.FirstName);
@@ -467,7 +473,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             WhenIEnterAValidEmailAddress(string.Empty); // Auto Generates with an empty string
         }
 
-        [When(@"I enter an invalid ""(.*)"" for Italy")]        
+        [When(@"I enter an invalid ""(.*)"" for Italy")]
         public void WhenIEnterAnInvalidForItaly(string invalidTaxCode)
         {
             CurrentPage.As<RegistrationPage>().PopulateInvalidTaxNumberTextBox(invalidTaxCode); //tax number for Italy
@@ -499,7 +505,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<RegistrationConfirmationPage>().InvalidItalyTaxCodeErrorMessageDisplayed();
         }
 
-        
+
         [When(@"I fill in the registration information using a maximum length email address")]
         public void WhenIFillInTheRegistrationInformationUsingAMaxLengthEmailAddress(Table table)
         {
@@ -507,7 +513,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<RegistrationPage>().PopulateFirstNameTextBox(form.FirstName);
             CurrentPage.As<RegistrationPage>().PopulateLastNameTextBox(form.LastName);
             CurrentPage.As<RegistrationPage>().PopulatePasswordTextBox(form.Password);
-            CurrentPage.As<RegistrationPage>().PopulateConfirmPasswordTextBox(form.Password);    
+            CurrentPage.As<RegistrationPage>().PopulateConfirmPasswordTextBox(form.Password);
             WhenIEnterAValidMaxLengthEmailAddress(string.Empty); // Auto Generates with an empty string
         }
 
@@ -551,9 +557,9 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [When(@"I press tab in the creative center email address field")]
         public void WhenIPressTabInTheCcEmailAddressField()
         {
-            CurrentPage.As<HomePage>().EmptyCcEmailAddressTextBox();            
+            CurrentPage.As<HomePage>().EmptyCcEmailAddressTextBox();
         }
-        
+
         [When(@"I press tab in the password field")]
         public void WhenIPressTabInThePasswordField()
         {
@@ -639,11 +645,13 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<RegistrationPage>().DoNotUseAccountForBusiness();
         }
+
         [When(@"I declare that I do not use this account for business on my account page")]
         public void WhenIDeclareThatIDoNotUseThisAccountForBusinessOnMyAccountPage()
         {
             CurrentPage.As<BusinessDetailsPage>().DoNotUseAccountForBusiness();
         }
+
         [When(@"I add my company name as ""(.*)""")]
         public void WhenIAddMyCompanyNameAs(string companyName)
         {
@@ -667,6 +675,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<RegistrationPage>().PopulateVatNumberTextBox(vatNumber);
         }
+
         [When(@"I add my company VAT number as ""(.*)"" on Business Details Page")]
         public void WhenIAddMyCompanyVatNumberAsOnBusinessDetailsPage(string vatNumber)
         {
@@ -714,6 +723,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<RegistrationPage>().UseAccountForBusiness();
         }
+
         [When(@"I declare that I do use this account for business on my account page")]
         public void WhenIDeclareThatIDoUseThisAccountForBusinessOnMyAccountPage()
         {
@@ -757,7 +767,8 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             //***NOTE: For some reason on Team City, PhantomJS surpresses (or appears to surpress) the validation message
 //            TestCheck.AssertIsEqual(true, CurrentPage.As<RegistrationPage>().IsAccountValidationSuccessMessagePresent(5, 5),
 //                "Account validation success message");
-            TestCheck.AssertIsNotEqual(true, CurrentPage.As<RegistrationPage>().IsWarningBarPresent(0, 5), "Warning Bar - account validation");
+            TestCheck.AssertIsNotEqual(true, CurrentPage.As<RegistrationPage>().IsWarningBarPresent(0, 5),
+                "Warning Bar - account validation");
 
             WhenIAmRedirectedToTheBrotherLoginRegisterPage();
             WhenIEnterAValidEmailAddress(Email.RegistrationEmailAddress);
@@ -772,10 +783,12 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             //WhenIAmRedirectedToTheBrotherLoginRegisterPage();
             WhenIEnterAValidCCAccountEmailAddress(Email.RegistrationEmailAddress);
             WhenIEnterAValidCcPassword(Helper.Password);
-            WhenIClickOnSignInWithCCCredentials(country);            
+            WhenIClickOnSignInWithCCCredentials(country);
         }
 
-        [Then(@"I should be able to log into ""(.*)"" Brother Online using my max length username and password account details")]
+        [Then(
+            @"I should be able to log into ""(.*)"" Brother Online using my max length username and password account details"
+            )]
         public void ThenIShouldBeAbleToLogIntoBrotherOnlineUsingMyMaxUsernameAndPasswordAccountDetails(string country)
         {
 
@@ -788,7 +801,8 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [Then(@"I should be able to successfully log into brother online")]
         public void ThenIShouldBeAbleToSuccessfullyLogIntoBrotherOnline()
         {
-            TestCheck.AssertIsNotEqual(true, CurrentPage.As<RegistrationPage>().IsWarningBarPresent(0, 5), "Warning Bar - account validation");
+            TestCheck.AssertIsNotEqual(true, CurrentPage.As<RegistrationPage>().IsWarningBarPresent(0, 5),
+                "Warning Bar - account validation");
         }
 
         [Given(@"I already have a set of Brother Online ""(.*)"" account credentials")]
@@ -856,8 +870,11 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<RegistrationPage>().PopulateConfirmPasswordTextBox(Keys.Tab);
         }
 
-        [When(@"I enter the different password in the creative center confirm password field containing ""(.*)"" and press tab")]
-        public void WhenIEnterTheDifferentPasswordInTheCcConfirmPasswordFieldContainingAndPressTab(string confirmpassword)
+        [When(
+            @"I enter the different password in the creative center confirm password field containing ""(.*)"" and press tab"
+            )]
+        public void WhenIEnterTheDifferentPasswordInTheCcConfirmPasswordFieldContainingAndPressTab(
+            string confirmpassword)
         {
             CurrentPage.As<HomePage>().PopulateConfirmPasswordCcTextBox(confirmpassword);
             CurrentPage.As<HomePage>().PopulateConfirmPasswordCcTextBox(Keys.Tab);
@@ -870,56 +887,67 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentDriver.Navigate().Refresh();
         }
+
         [Then(@"I should see an error message")]
         public void ThenIShouldSeeAnErrorMessage()
         {
             CurrentPage.As<RegistrationPage>().IsErrorMessageDisplayed();
         }
+
         [Then(@"I should see an error message on the creative center email field")]
         public void ThenIShouldSeeAnErrorMessageOnCcEmail()
         {
             CurrentPage.As<HomePage>().IsCcEmailErrorMessageDisplayed();
         }
+
         [Then(@"I should see an error message on the password field")]
         public void ThenIShouldSeeAnErrorMessageOnThePasswordField()
         {
             CurrentPage.As<RegistrationPage>().PasswordErrorMessageDisplayed();
         }
+
         [Then(@"I should see an error message on the creative center password field")]
         public void ThenIShouldSeeAnErrorMessageOnCcThePasswordField()
         {
             CurrentPage.As<HomePage>().PasswordCcErrorMessageDisplayed();
         }
+
         [Then(@"I should see an error message on the first name field")]
         public void ThenIShouldSeeAnErrorMessageOnTheFirstnameField()
         {
             CurrentPage.As<RegistrationPage>().FirstNameErrorMessage();
         }
+
         [Then(@"I should see an error message on the creative center first name field")]
         public void ThenIShouldSeeAnErrorMessageOnTheCcFirstnameField()
         {
             CurrentPage.As<HomePage>().FirstNameCcErrorMessageDisplayed();
         }
+
         [Then(@"I should see an error message on the last name field")]
         public void ThenIShouldSeeAnErrorMessageOnTheLastnameField()
         {
             CurrentPage.As<RegistrationPage>().LastNameErrorMessage();
         }
+
         [Then(@"I should see an error message on the creative center last name field")]
         public void ThenIShouldSeeAnErrorMessageOnCcTheLastnameField()
         {
             CurrentPage.As<HomePage>().LastNameCcErrorMessageDisplayed();
         }
+
         [Then(@"I should see an error message on the company name field")]
         public void ThenIShouldSeeAnErrorMessageOnTheCompanynameField()
         {
             CurrentPage.As<RegistrationPage>().CompanyNameErrorMessage();
         }
+
         [Then(@"I should see an error message on the creative center company name field")]
         public void ThenIShouldSeeAnErrorMessageOnTheCcCompanynameField()
         {
             CurrentPage.As<HomePage>().CompanyNameCcErrorMessage();
         }
+
         [Then(@"I should see an error message on the business sector field")]
         public void ThenIShouldSeeAnErrorMessageOnTheBusinessSectorField()
         {
@@ -932,23 +960,23 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<HomePage>().BusinessSectorCcErrorMessage();
         }
 
-       [Then(@"I should get an error message displayed on the Terms and Conditions")]
+        [Then(@"I should get an error message displayed on the Terms and Conditions")]
         public void ThenIShouldGetAnErrorMessageDisplayedOnTheTermsAndConditions()
         {
             CurrentPage.As<RegistrationPage>().TermsAndConditionsErrorMessageDisplayed();
         }
 
-       [Then(@"I should get an error message displayed on the creative center Terms and Conditions")]
-       public void ThenIShouldGetAnErrorMessageDisplayedOnTheCcTermsAndConditions()
-       {
-           CurrentPage.As<HomePage>().TermsAndConditionsCcErrorMessageDisplayed();
-       }
+        [Then(@"I should get an error message displayed on the creative center Terms and Conditions")]
+        public void ThenIShouldGetAnErrorMessageDisplayedOnTheCcTermsAndConditions()
+        {
+            CurrentPage.As<HomePage>().TermsAndConditionsCcErrorMessageDisplayed();
+        }
 
-       [Then(@"I should get an error message displayed on the creative center confirm password field")]
-       public void ThenIShouldGetAnErrorMessageDisplayedOnTheCcConfirmPwField()
-       {
-           CurrentPage.As<HomePage>().ConfirmPWCcErrorMessageDisplayed();
-       }
+        [Then(@"I should get an error message displayed on the creative center confirm password field")]
+        public void ThenIShouldGetAnErrorMessageDisplayedOnTheCcConfirmPwField()
+        {
+            CurrentPage.As<HomePage>().ConfirmPWCcErrorMessageDisplayed();
+        }
 
         [Then(@"I should see an error message on the Confirm password field")]
         public void ThenIShouldSeeAnErrorMessageOnTheConfirmPasswordField()
@@ -971,7 +999,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [Then(@"I should see the invalid credentials error message preventing login to brother online")]
         public void ThenIShouldSeeInvalidCredentialsErrorMessage()
         {
-              CurrentPage.As<RegistrationPage>().InvalidCredentialsErrorMessageDisplayed();
+            CurrentPage.As<RegistrationPage>().InvalidCredentialsErrorMessageDisplayed();
         }
 
         [Then(@"I should see the invalid credentials error message preventing login to creative center")]
@@ -1038,7 +1066,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         public void WhenIEnterAValidMaxPassword()
         {
             CurrentPage.As<RegistrationPage>().PopulateMaxPassword();
-        }                
+        }
 
         [Then(@"When I Click Go Back")]
         public void ThenWhenIClickGoBack()
@@ -1082,16 +1110,33 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
 
         private void SignInAsARoleType(string role, string country)
         {
+            var username = MPSUserLogins.Username(country, role);
+            var password = MPSUserLogins.Password(role);
+
+            if (!role.StartsWith("Cloud"))
+            {
+                SignInAsMPSOneUser(role);
+            }
+            else
+            {
+                WhenIEnterAValidEmailAddress(username);
+                WhenIEnterAValidPassword(password);
+            }
+        }
+
+
+        private void SignInAsMPSOneUser(string role)
+        {
             switch (role)
             {
-                case  "Dealer" :
+                case "Dealer":
                 {
                     WhenIEnterAValidEmailAddress("laies_es_qas@mailinator.com");
                     WhenIEnterAValidPassword("Welcome1");
                     break;
-                        
+
                 }
-                case "Customer" :
+                case "Customer":
                 {
                     WhenIEnterAValidEmailAddress("esqacustomer2nd0604@mailinator.com");
                     WhenIEnterAValidPassword("Lucasis3");
@@ -1101,90 +1146,6 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
                 {
                     WhenIEnterAValidEmailAddress("es.sales.dealer@mailinator.com");
                     WhenIEnterAValidPassword("Rishav13");
-                    break;
-                }
-                case "Cloud MPS Dealer":
-                {
-                    switch (country)
-                    {
-                        case "United Kingdom":
-                            //WhenIEnterAValidEmailAddress("mpsdealer_uk_automation@mailinator.com");
-                            //WhenIEnterAValidPassword("P@$$w0rd");
-                           //WhenIEnterAValidEmailAddress("MPS-BUK-Prod-Dealer1@brother.co.uk");
-                           //WhenIEnterAValidPassword("UKdealer1");
-                            
-                            WhenIEnterAValidEmailAddress("MPS-BUK-UAT-Dealer1@brother.co.uk");
-                            WhenIEnterAValidPassword("UKdealer1");
-
-                            break;
-                        case "Germany":
-                            WhenIEnterAValidEmailAddress("MPS-BIG-UAT-Dealer1@brother.co.uk");
-                            WhenIEnterAValidPassword("DEdealer1");
-                            break;
-                    }
-                    break;
-                }
-                case "Cloud MPS Bank":
-                {
-                    switch (country)
-                    {
-                        case "United Kingdom":
-                            WhenIEnterAValidEmailAddress("MPS-BUK-UAT-Bank@brother.co.uk");
-                            WhenIEnterAValidPassword("UKleasingbank1");
-                            //WhenIEnterAValidEmailAddress("MPS-BUK-Prod-Bank@brother.co.uk");
-                            //WhenIEnterAValidPassword("UKleasingbank1");
-                            break;
-                        case "Germany":
-                            WhenIEnterAValidEmailAddress("MPS-BIG-UAT-Bank@brother.co.uk");
-                            WhenIEnterAValidPassword("DEleasingbank1");
-                            break;
-                    }
-                    break;
-                }
-                case "Cloud MPS Customer":
-                {
-                    switch (country)
-                    {
-                        case "United Kingdom":
-                            WhenIEnterAValidEmailAddress("mpscustomerDE@brother.co.uk");
-                            WhenIEnterAValidPassword("P@$$w0rd");
-                            break;
-                        case "Germany":
-                            break;
-                    }
-                    break;
-                }
-                case "Cloud MPS Local Office":
-                {
-                    switch (country)
-                    {
-                        case "United Kingdom":
-                            WhenIEnterAValidEmailAddress("MPS-BUK-UAT-LOAdmin@brother.co.uk");
-                            //WhenIEnterAValidPassword("P@$$w0rd");
-                            //WhenIEnterAValidEmailAddress("MPS-BUK-Prod-LOAdmin@brother.co.uk");
-                            WhenIEnterAValidPassword("UKloadmin1");
-                            break;
-                        case "Germany":
-                            WhenIEnterAValidEmailAddress("MPS-BIG-UAT-LOAdmin@brother.co.uk");
-                            WhenIEnterAValidPassword("DEloadmin1");
-                            break;
-                    }
-                    break;
-                }
-                case "Cloud MPS Local Office Approver":
-                {
-                    switch (country)
-                    {
-                        case "United Kingdom":
-                            WhenIEnterAValidEmailAddress("MPS-BUK-UAT-LOApprover@brother.co.uk");
-                            //WhenIEnterAValidEmailAddress("MPS-BUK-Prod-LOApprover@brother.co.uk");
-                            WhenIEnterAValidPassword("UKloapprover1");
-                            break;
-                        case "Germany":
-                            WhenIEnterAValidEmailAddress("MPS-BIG-UAT-LOApprover@brother.co.uk");
-                            WhenIEnterAValidPassword("DEloapprover1");
-                            break;
-                    }
                     break;
                 }
             }

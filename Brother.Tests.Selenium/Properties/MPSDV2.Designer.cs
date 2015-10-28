@@ -26,24 +26,96 @@ namespace Brother.Tests.Selenium.Lib.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("MPS-{0}-DV2-Dealer1@mailinator.com")]
-        public string MPSDealer {
+        public string DV2MPSDealer {
             get {
-                return ((string)(this["MPSDealer"]));
+                return ((string)(this["DV2MPSDealer"]));
             }
             set {
-                this["MPSDealer"] = value;
+                this["DV2MPSDealer"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("MPS-{0}-DV2-LOApprover@mailinator.com")]
-        public string MPSLOApprover {
+        public string DV2MPSLOApprover {
             get {
-                return ((string)(this["MPSLOApprover"]));
+                return ((string)(this["DV2MPSLOApprover"]));
             }
             set {
-                this["MPSLOApprover"] = value;
+                this["DV2MPSLOApprover"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("MPS-{0}-DV2-LOAdmin@mailinator.com\r\n")]
+        public string DV2MPSLOAdmin {
+            get {
+                return ((string)(this["DV2MPSLOAdmin"]));
+            }
+            set {
+                this["DV2MPSLOAdmin"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("MPS-{0}-DV2-Bank@mailinator.com\r\n")]
+        public string DV2MPSBank {
+            get {
+                return ((string)(this["DV2MPSBank"]));
+            }
+            set {
+                this["DV2MPSBank"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("{0}dealer1")]
+        public string DV2DealerPassword {
+            get {
+                return ((string)(this["DV2DealerPassword"]));
+            }
+            set {
+                this["DV2DealerPassword"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("{0}loapprover1")]
+        public string DV2LOApproverPassword {
+            get {
+                return ((string)(this["DV2LOApproverPassword"]));
+            }
+            set {
+                this["DV2LOApproverPassword"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("{0}loadmin1")]
+        public string DV2LOAdminPassword {
+            get {
+                return ((string)(this["DV2LOAdminPassword"]));
+            }
+            set {
+                this["DV2LOAdminPassword"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("{0}leasingbank1")]
+        public string DV2BankPassword {
+            get {
+                return ((string)(this["DV2BankPassword"]));
+            }
+            set {
+                this["DV2BankPassword"] = value;
             }
         }
     }

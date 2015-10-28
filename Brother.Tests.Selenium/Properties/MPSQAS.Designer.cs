@@ -23,81 +23,99 @@ namespace Brother.Tests.Selenium.Lib.Properties {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("127.0.0.1")]
-        public string DriverIPAddress {
+        [global::System.Configuration.DefaultSettingValueAttribute("MPS-{0}-UAT-Dealer1@brother.co.uk")]
+        public string QASMPSDealer {
             get {
-                return ((string)(this["DriverIPAddress"]));
+                return ((string)(this["QASMPSDealer"]));
             }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("9134")]
-        public string DriverPortNumber {
-            get {
-                return ((string)(this["DriverPortNumber"]));
+            set {
+                this["QASMPSDealer"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("CH")]
-        public string CurrentDriverType {
+        [global::System.Configuration.DefaultSettingValueAttribute("MPS-{0}-UAT-LOApprover@brother.co.uk")]
+        public string QASMPSLOApprover {
             get {
-                return ((string)(this["CurrentDriverType"]));
+                return ((string)(this["QASMPSLOApprover"]));
             }
             set {
-                this["CurrentDriverType"] = value;
+                this["QASMPSLOApprover"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("IEOptions.log")]
-        public string IEOptionsLog {
+        [global::System.Configuration.DefaultSettingValueAttribute("MPS-{0}-UAT-LOAdmin@brother.co.uk")]
+        public string QASMPSLOAdmin {
             get {
-                return ((string)(this["IEOptionsLog"]));
+                return ((string)(this["QASMPSLOAdmin"]));
             }
             set {
-                this["IEOptionsLog"] = value;
+                this["QASMPSLOAdmin"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("/Test/EmailConfirmationToken.aspx")]
-        public string BrotherEmailConfirmationUrl {
+        [global::System.Configuration.DefaultSettingValueAttribute("MPS-{0}-UAT-Bank@brother.co.uk\r\n")]
+        public string QASMPSBank {
             get {
-                return ((string)(this["BrotherEmailConfirmationUrl"]));
+                return ((string)(this["QASMPSBank"]));
             }
             set {
-                this["BrotherEmailConfirmationUrl"] = value;
+                this["QASMPSBank"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("false")]
-        public string UsePhantomJsService {
+        [global::System.Configuration.DefaultSettingValueAttribute("{0}dealer1")]
+        public string QASDealerPassword {
             get {
-                return ((string)(this["UsePhantomJsService"]));
+                return ((string)(this["QASDealerPassword"]));
             }
             set {
-                this["UsePhantomJsService"] = value;
+                this["QASDealerPassword"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("ERROR")]
-        public string PhantomJSLoggingLevel {
+        [global::System.Configuration.DefaultSettingValueAttribute("{0}loapprover1")]
+        public string QASLOApproverPassword {
             get {
-                return ((string)(this["PhantomJSLoggingLevel"]));
+                return ((string)(this["QASLOApproverPassword"]));
             }
             set {
-                this["PhantomJSLoggingLevel"] = value;
+                this["QASLOApproverPassword"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("{0}loadmin1")]
+        public string QASLOAdminPassword {
+            get {
+                return ((string)(this["QASLOAdminPassword"]));
+            }
+            set {
+                this["QASLOAdminPassword"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("{0}leasingbank1")]
+        public string QASBankPassword {
+            get {
+                return ((string)(this["QASBankPassword"]));
+            }
+            set {
+                this["QASBankPassword"] = value;
             }
         }
     }
