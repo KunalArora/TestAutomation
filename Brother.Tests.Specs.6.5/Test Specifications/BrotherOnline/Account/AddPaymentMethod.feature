@@ -1,15 +1,30 @@
-﻿@UAT @TEST 
+﻿@UAT @TEST @PROD
 Feature: AddPaymentMethod
 	In order to purchase items from Brother
 	As a customer
 	I need to add a new Payment Method
 
 Background:
-	Given I am logged onto Brother Online "United Kingdom" using valid credentials
+	Given I want to create a new account with Brother Online "United Kingdom"
+	When I click on Create Account for "United Kingdom"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I fill in the registration information using a valid email address 
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Password        | @@@@@	       |
+	| ConfirmPassword | @@@@@		   |
 
+	And I have Agreed to the Terms and Conditions
+	And I declare that I do not use this account for business
+	When I press Create Your Account
+	Then I should see my account confirmation page
+	And When I Click Go Back
+	Then I should be able to log into "United Kingdom" Brother Online using my account details
+@PROD @UAT @TEST 
 Scenario: Add payment method with new address
-	Given I am logged into my Brother Online account
-	Then If I go to My Account
+    Then If I go to My Account
 	And I can click on Payment Methods
 	Then I can add a new payment method
 	And If I click on Add New Address
@@ -19,9 +34,8 @@ Scenario: Add payment method with new address
 	Then I can see the Credit Card details I have added
 	And I can sign out of Brother Online
 
-@PROD @UAT @TEST
+@PROD @UAT @TEST 
 Scenario: Add payment method with new address and Cancel before submitting
-	Given I am logged into my Brother Online account
 	Then If I go to My Account
 	And I can click on Payment Methods
 	Then I can add a new payment method
@@ -31,11 +45,10 @@ Scenario: Add payment method with new address and Cancel before submitting
 	When I click Cancel submit card details I should return to the My Payment Method page
 	Then I can sign out of Brother Online
 
-@UAT @TEST
+@PROD @UAT @TEST 
 #Validate that the correct error messages are displayed on the add payment method mandatory fields
 Scenario: Customer get the error message if mandatory fields are not completed by a customer
-Given I am logged into my Brother Online account
-	Then If I go to My Account
+   Then If I go to My Account
 	And I can click on Payment Methods
 	Then I can add a new payment method
 	And If I click on Add New Address
