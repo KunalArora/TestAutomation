@@ -12,8 +12,7 @@
       <Value Profile="(Default)">MPS-{0}-UAT-LOAdmin@brother.co.uk</Value>
     </Setting>
     <Setting Name="QASMPSBank" Type="System.String" Scope="User">
-      <Value Profile="(Default)">MPS-{0}-UAT-Bank@brother.co.uk
-</Value>
+      <Value Profile="(Default)">MPS-{0}-UAT-Bank@brother.co.uk</Value>
     </Setting>
     <Setting Name="QASDealerPassword" Type="System.String" Scope="User">
       <Value Profile="(Default)">{0}dealer1</Value>

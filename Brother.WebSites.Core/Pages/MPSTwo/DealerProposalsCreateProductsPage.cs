@@ -217,7 +217,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private IWebElement AdditionalTrayCheckboxElement()
         {
-            string element = "input[data-name=\"additional-tray\"]";
+            string element = "input[data-name=\"additionalTray\"]";
 
             return GetElementByCssSelector(element);
         }

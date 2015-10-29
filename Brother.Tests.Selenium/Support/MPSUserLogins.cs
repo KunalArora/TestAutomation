@@ -175,6 +175,8 @@ namespace Brother.Tests.Selenium.Lib.Support
 
             }
 
+            Helper.MsgOutput(String.Format("The username formed for {0} is {1}", country, finishedUsername));
+
             return finishedUsername;
         }
 
@@ -194,15 +196,17 @@ namespace Brother.Tests.Selenium.Lib.Support
                     break;
 
                 case "Cloud MPS Local Office":
-                    finishPwd = ApproverPassword();
+                    finishPwd = AdminPassword();
                     break;
 
                 case "Cloud MPS Local Office Approver":
-                    finishPwd = AdminPassword();
+                    finishPwd = ApproverPassword();
                     break;
             }
 
             finishPwd = String.Format(finishPwd, PasswordPrefix());
+
+            Helper.MsgOutput(String.Format("The password formed for {0} is {1}", userType, finishPwd));
 
             return finishPwd;
         }

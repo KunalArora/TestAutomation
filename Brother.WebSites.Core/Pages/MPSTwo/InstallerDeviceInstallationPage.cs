@@ -106,7 +106,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 MPSJobRunnerPage.RunResetSerialNumberJob(serialNumber);
 
-                WebDriver.Wait(DurationType.Second, 3);
+                WebDriver.Wait(DurationType.Second, 5);
 
                 ClearAndType(SerialNumberFieldElement, serialNumber);
             }
@@ -114,17 +114,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 MPSJobRunnerPage.RunResetSerialNumberJob(serialNumberBIG);
 
-                WebDriver.Wait(DurationType.Second, 3);
+                WebDriver.Wait(DurationType.Second, 5);
 
                 ClearAndType(SerialNumberFieldElement, serialNumberBIG);
             }
 
             
-            WebDriver.Wait(DurationType.Second, 3);
+            WebDriver.Wait(DurationType.Second, 5);
 
             SerialNumberFieldElement.SendKeys(Keys.Tab);
 
-            WebDriver.Wait(DurationType.Second, 3);
+            WebDriver.Wait(DurationType.Second, 5);
         }
 
         public void EnterIpAddress()
@@ -134,6 +134,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 ipAddressElement.Click();
                 ClearAndType(ipAddressElement, "1");
                 ipAddressElement.SendKeys(Keys.Tab);
+                WebDriver.Wait(DurationType.Second, 2);
             }
             WebDriver.Wait(DurationType.Second, 5);
         }

@@ -120,6 +120,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if(ManageDevicesElement == null)
                 throw new Exception("Manage Device Element is not displayed");
 
+            RunCreateCustomerAndPersonJob();
             ActionsModule.ClickOnSpecificActionsElement();
             ManageDevicesElement.Click();
             WebDriver.Wait(DurationType.Second, 2);
@@ -136,9 +137,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             var newContract = Driver.FindElement(By.XPath(newlyAdded));
 
-            TestCheck.AssertIsEqual(true, newContract.Displayed, "Is new sent to bank awaiting contract page?");
-
             RunCreateCustomerAndPersonJob();
+
+            TestCheck.AssertIsEqual(true, newContract.Displayed, "Is new sent to bank awaiting contract page?");
         }
 
         public void RunCreateCustomerAndPersonJob()
@@ -155,7 +156,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public BankContractsSummaryPage NavigateToViewSummary()
         {
-            
+            RunCreateCustomerAndPersonJob();
             ActionsModule.ClickOnSpecificActionsElement();
             ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
 

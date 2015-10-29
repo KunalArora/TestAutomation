@@ -23,7 +23,7 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
         {
             WhenINavigateToTheContractManageDeviceScreen();
             WhenISelectLocationInOrderToCreateInstallationRequest();
-            WhenISetDeviceCommunicationMethodAs(method);
+            WhenISetDeviceCommunicationMethodAs(type);
             WhenISetDeviceInstallationTypeAs(type);
             WhenICompletedTheCreateInstallationProcessFor(method);
             ThenTheInstallationRequestForThatDeviceIsCompleted();

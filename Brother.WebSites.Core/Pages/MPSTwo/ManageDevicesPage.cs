@@ -156,6 +156,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsInstallationRequestDisplayed()
         {
+            MPSJobRunnerPage.RunCompleteInstallationCommandJob();
             AssertElementPresent(InstallationRequestContainerElement, "Installation not finished");
         }
 

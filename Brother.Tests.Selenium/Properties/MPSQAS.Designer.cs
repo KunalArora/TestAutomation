@@ -61,7 +61,7 @@ namespace Brother.Tests.Selenium.Lib.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("MPS-{0}-UAT-Bank@brother.co.uk\r\n")]
+        [global::System.Configuration.DefaultSettingValueAttribute("MPS-{0}-UAT-Bank@brother.co.uk")]
         public string QASMPSBank {
             get {
                 return ((string)(this["QASMPSBank"]));

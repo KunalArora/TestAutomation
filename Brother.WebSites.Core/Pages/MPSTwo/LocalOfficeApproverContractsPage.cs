@@ -104,9 +104,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             var newContract = Driver.FindElement(By.XPath(newlyAdded));
 
-            TestCheck.AssertIsEqual(true, newContract.Displayed, "Is new sent to bank awaiting contract page?");
             RunCreateCustomerAndPersonJob();
 
+            TestCheck.AssertIsEqual(true, newContract.Displayed, "Is new sent to bank awaiting contract page?");
+            
         }
 
 
@@ -152,6 +153,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public LocalOfficeApproverDeviceManagementPage NavigateTOfficeDeviceManagementPage()
         {
+            RunCreateCustomerAndPersonJob();
             LOApproverDeviceManagementElement.Click();
             return GetInstance<LocalOfficeApproverDeviceManagementPage>(Driver);
 

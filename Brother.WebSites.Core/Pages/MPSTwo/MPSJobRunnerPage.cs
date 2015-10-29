@@ -4,14 +4,15 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
     public abstract class MPSJobRunnerPage
     {
-        private const string uaturl = @"http://online.uk.cms.brotherqas.eu/sitecore/admin/projects/mps2/";
-        private const string testurl = @"http://online.uk.brotherdv2.eu/sitecore/admin/projects/mps2/";
+        private const string uaturl = @"http://online.{0}.cms.brotherqas.eu/sitecore/admin/projects/mps2/";
+        private const string testurl = @"http://online.{0}.brotherdv2.eu/sitecore/admin/projects/mps2/";
         private const string customerAndPersonCommand = @"runcommand.aspx?command=MPS:SystemJobCreateCustomerAndPersonCommand";
         private const string clickRateInvoiceCommand = @"runcommand.aspx?command=MPS:RaiseClickRateInvoicesCommand";
         private const string completeInstallationCommand = @"runcommand.aspx?command=MPS:CompleteInstallationCommand";
@@ -29,330 +30,150 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string resetSerialNumberJob = @"resetinstalledprinter.aspx?serial=";
         private const string setCustomerSAPIdJob = @"setcustomersapid.aspx?name={0}&sapid={1}";
         private const string setPersonSAPIdJob = @"setpersonsapid.aspx?email={0}&sapid={1}";
+        private const string customerPassword = @"getuserpassword.aspx?email=";
         
         public static void RunCreateCustomerAndPersonCommandJob()
         {
+            var webSite = CoinedUrl() + customerAndPersonCommand;
+
+            Helper.MsgOutput(String.Format("The url formed for Create Customer and Person Command is {0}", webSite));
+
+            var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
+            //TestCheck.AssertIsEqual(true, response.Equals(HttpStatusCode.OK), "");
+            WebDriver.Wait(Helper.DurationType.Second, 20);
+        }
+
+
+        private static string CoinedUrl()
+        {
+            string url = null;
 
             switch (Helper.GetRunTimeEnv())
             {
-                case "UAT":
-                {
-                    const string webSite = uaturl + customerAndPersonCommand;
-
-                    WebDriver.Wait(Helper.DurationType.Second, 20);
-                    var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
-                   //TestCheck.AssertIsEqual(true, response.Equals(HttpStatusCode.OK), "");
-                    
-                }
+                case "UAT" :
+                    url = String.Format(uaturl, Helper.Locale);
                     break;
-                case "TEST":
-                {
-                    const string webSite = testurl + customerAndPersonCommand;
 
-                    WebDriver.Wait(Helper.DurationType.Second, 20);
-                    var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
-                    //TestCheck.AssertIsEqual(true, response.Equals(HttpStatusCode.OK), "");
-                    
-                }
+                case "TEST" :
+                    url = String.Format(testurl, Helper.Locale);
                     break;
             }
+
+            Helper.MsgOutput(String.Format("The command job url formed is {0}", url));
+
+            return url;
+
+        }
+
+        public static string GetCustomerCreatedPassword(string email)
+        {
+            var webSite = CoinedUrl() + customerPassword + email;
+
+            return Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, 5).ToString();
         }
 
 
         public static void RunResetSerialNumberJob(string serial)
         {
-            switch (Helper.GetRunTimeEnv())
-            {
-                case "UAT" :
-                {
-                    var reset = uaturl + resetSerialNumberJob + serial;
-                    var response = Utils.GetPageResponse(reset, WebRequestMethods.Http.Get);
-                    // TestCheck.AssertIsEqual(true, response.Equals(HttpStatusCode.OK), "");
-                }
-                    break;
-                case "TEST":
-                    {
-                        var reset = testurl + resetSerialNumberJob + serial;
-                        var response = Utils.GetPageResponse(reset, WebRequestMethods.Http.Get);
-                        // TestCheck.AssertIsEqual(true, response.Equals(HttpStatusCode.OK), "");
-                    }
-                    break;
-            }
+            var reset = CoinedUrl() + resetSerialNumberJob + serial;
+            var response = Utils.GetPageResponse(reset, WebRequestMethods.Http.Get);
+            // TestCheck.AssertIsEqual(true, response.Equals(HttpStatusCode.OK), "");
         }
 
 
         public static void RunClickRateInvoiceCommandJob()
         {
-            switch (Helper.GetRunTimeEnv())
-            {
-                case "UAT":
-                {
-                    const string webSite = uaturl + clickRateInvoiceCommand;
+            var webSite = CoinedUrl() + clickRateInvoiceCommand;
 
-                    Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
-                }
-                    break;
-                case "TEST":
-                {
-                    const string webSite = testurl + clickRateInvoiceCommand;
-
-                    Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
-                }
-                    break;
-            }
+            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
         }
 
 
         public static void RunCompleteInstallationCommandJob()
         {
-            switch (Helper.GetRunTimeEnv())
-            {
-                case "UAT":
-                {
-                    const string webSite = uaturl + completeInstallationCommand;
+            var webSite = CoinedUrl() + completeInstallationCommand;
 
-                    Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
-                }
-                    break;
-                case "TEST":
-                {
-                    const string webSite = testurl + completeInstallationCommand;
-
-                    Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
-                }
-                    break;
-            }
+            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
         }
 
         public static void RunSendClickRateInvoicesToSapCommandJob()
         {
-            switch (Helper.GetRunTimeEnv())
-            {
-                case "UAT":
-                {
-                    const string webSite = uaturl + sendClickRateInvoicesToSapCommand;
+            var webSite = CoinedUrl() + sendClickRateInvoicesToSapCommand;
 
-                    Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
-                }
-                    break;
-                case "TEST":
-                {
-                    const string webSite = testurl + sendClickRateInvoicesToSapCommand;
-
-                    Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
-                }
-                    break;
-            }
+            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
         }
 
         public static void RunRefreshPrintCountsCommandJob()
         {
-            switch (Helper.GetRunTimeEnv())
-            {
-                case "UAT":
-                {
-                    const string webSite = uaturl + refreshPrintCountsCommand;
+            var webSite = CoinedUrl() + refreshPrintCountsCommand;
 
-                    Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
-                }
-                    break;
-                case "TEST":
-                {
-                    const string webSite = testurl + refreshPrintCountsCommand;
-
-                    Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
-                }
-                    break;
-            }
+            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
         }
 
         public static void RunRefreshPrintCountsFromMedioCommandJob()
         {
-            switch (Helper.GetRunTimeEnv())
-            {
-                case "UAT":
-                {
-                    const string webSite = uaturl + refreshPrintCountsFromMedioCommand;
+            var webSite = CoinedUrl() + refreshPrintCountsFromMedioCommand;
 
-                    Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
-                }
-                    break;
-                case "TEST":
-                {
-                    const string webSite = testurl + refreshPrintCountsFromMedioCommand;
-
-                    Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
-                }
-                    break;
-            }
+            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
         }
 
         public static void RunStaffAccountCreationCommandJob()
         {
-            switch (Helper.GetRunTimeEnv())
-            {
-                case "UAT":
-                {
-                    const string webSite = uaturl + staffAccountCreationCommand;
+            var webSite = CoinedUrl() + staffAccountCreationCommand;
 
-                    Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
-                }
-                    break;
-                case "TEST":
-                {
-                    const string webSite = testurl + staffAccountCreationCommand;
-
-                    Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
-                }
-                    break;
-            }
+            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
         }
 
         public static void RunConsumableOrderRequestsCommandJob()
         {
-            switch (Helper.GetRunTimeEnv())
-            {
-                case "UAT":
-                {
-                    const string webSite = uaturl + consumableOrderRequestsCommand;
+                var webSite = CoinedUrl() + consumableOrderRequestsCommand;
 
-                    Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
-                }
-                    break;
-                case "TEST":
-                {
-                    const string webSite = testurl + consumableOrderRequestsCommand;
-
-                    Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
-                }
-                    break;
-            }
+                Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
         }
 
         public static void RunCreateOrderAndServiceRequestsCommandJob()
         {
-            switch (Helper.GetRunTimeEnv())
-            {
-                case "UAT":
-                {
-                    const string webSite = uaturl + createOrderAndServiceRequestsCommand;
+            var webSite = CoinedUrl() + createOrderAndServiceRequestsCommand;
 
-                    Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
-                }
-                    break;
-                case "TEST":
-                {
-                    const string webSite = testurl + createOrderAndServiceRequestsCommand;
-
-                    Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
-                }
-                    break;
-            }
+            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
         }
 
         public static void RunSystemJobCreateCustomerTaxCommandJob()
         {
-            switch (Helper.GetRunTimeEnv())
-            {
-                case "UAT":
-                {
-                    const string webSite = uaturl + systemJobCreateCustomerTaxCommand;
+            
+            var webSite = CoinedUrl() + systemJobCreateCustomerTaxCommand;
 
-                    Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
-                }
-                    break;
-                case "TEST":
-                {
-                    const string webSite = testurl + systemJobCreateCustomerTaxCommand;
-
-                    Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
-                }
-                    break;
-            }
+            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
+                
         }
 
         public static void RunSystemJobCreateCustomerAndPersonCommandJob()
         {
-            switch (Helper.GetRunTimeEnv())
-            {
-                case "UAT":
-                    {
-                        const string webSite = uaturl + systemJobCreateCustomerAndPersonCommand;
+            var webSite = CoinedUrl() + systemJobCreateCustomerAndPersonCommand;
 
-                        Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
-                    }
-                    break;
-                case "TEST":
-                    {
-                        const string webSite = testurl + systemJobCreateCustomerAndPersonCommand;
-
-                        Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
-                    }
-                    break;
-            }
+            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
         }
 
         public static void RunCloseConsumableOrdersCommandJob()
         {
-            switch (Helper.GetRunTimeEnv())
-            {
-                case "UAT":
-                    {
-                        const string webSite = uaturl + closeConsumableOrdersCommand;
+            var webSite = CoinedUrl() + closeConsumableOrdersCommand;
 
-                        Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
-                    }
-                    break;
-                case "TEST":
-                    {
-                        const string webSite = testurl + closeConsumableOrdersCommand;
-
-                        Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
-                    }
-                    break;
-            }
+            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
         }
 
         public static void RunPollConsumableOrderStatusCommandJob()
         {
-            switch (Helper.GetRunTimeEnv())
-            {
-                case "UAT":
-                    {
-                        const string webSite = uaturl + pollConsumableOrderStatusCommand;
+            var webSite = CoinedUrl() + pollConsumableOrderStatusCommand;
 
-                        Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
-                    }
-                    break;
-                case "TEST":
-                    {
-                        const string webSite = testurl + pollConsumableOrderStatusCommand;
-
-                        Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
-                    }
-                    break;
-            }
+            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
         }
 
         public static void RunCheckForSilentDevicesCommandJob()
         {
-            switch (Helper.GetRunTimeEnv())
-            {
-                case "UAT":
-                    {
-                        const string webSite = uaturl + checkForSilentDevicesCommand;
+            var webSite = CoinedUrl() + checkForSilentDevicesCommand;
 
-                        Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
-                    }
-                    break;
-                case "TEST":
-                    {
-                        const string webSite = testurl + checkForSilentDevicesCommand;
-
-                        Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
-                    }
-                    break;
-            }
+            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
+                    
         }
 
     }
