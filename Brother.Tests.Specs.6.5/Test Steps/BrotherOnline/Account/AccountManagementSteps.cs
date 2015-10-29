@@ -414,7 +414,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
       public void ThenIGetTheErrorMessageDisplayedOnBusinessSectorField()
       {
           CurrentPage.As<BusinessDetailsPage>().BusinessSectorErrorMessageDisplayed();
-      }      
-      
+      }
+           
     }
 }

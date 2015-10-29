@@ -188,5 +188,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             TestCheck.AssertIsEqual(displayed, Facebook.Displayed, "Facebook button");
            
         }
+
     }
 }
