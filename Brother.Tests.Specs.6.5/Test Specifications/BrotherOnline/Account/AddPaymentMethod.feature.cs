@@ -22,6 +22,7 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.Account
     [NUnit.Framework.DescriptionAttribute("AddPaymentMethod")]
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("TEST")]
+    [NUnit.Framework.CategoryAttribute("PROD")]
     public partial class AddPaymentMethodFeature
     {
         
@@ -37,7 +38,8 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.Account
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "AddPaymentMethod", "In order to purchase items from Brother\r\nAs a customer\r\nI need to add a new Payme" +
                     "nt Method", ProgrammingLanguage.CSharp, new string[] {
                         "UAT",
-                        "TEST"});
+                        "TEST",
+                        "PROD"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -116,9 +118,15 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.Account
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Add payment method with new address")]
+        [NUnit.Framework.CategoryAttribute("PROD")]
+        [NUnit.Framework.CategoryAttribute("UAT")]
+        [NUnit.Framework.CategoryAttribute("TEST")]
         public virtual void AddPaymentMethodWithNewAddress()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add payment method with new address", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add payment method with new address", new string[] {
+                        "PROD",
+                        "UAT",
+                        "TEST"});
 #line 26
 this.ScenarioSetup(scenarioInfo);
 #line 7
@@ -185,12 +193,14 @@ this.FeatureBackground();
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Customer get the error message if mandatory fields are not completed by a custome" +
             "r")]
+        [NUnit.Framework.CategoryAttribute("PROD")]
         [NUnit.Framework.CategoryAttribute("UAT")]
         [NUnit.Framework.CategoryAttribute("TEST")]
         public virtual void CustomerGetTheErrorMessageIfMandatoryFieldsAreNotCompletedByACustomer()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer get the error message if mandatory fields are not completed by a custome" +
                     "r", new string[] {
+                        "PROD",
                         "UAT",
                         "TEST"});
 #line 50
