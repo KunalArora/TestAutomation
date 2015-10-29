@@ -28,7 +28,7 @@ Scenario: Customer get the correct error messages when address details mandatory
 	And I can navigate back to Brother Online home page
 	And I can sign out of Brother Online
 
-# Sign into Brother Online and change password   DO NOT CHANGE
+# Sign into Brother Online and change password
 @TEST @UAT @PROD
 Scenario: Customer has created a Brother Online account and wishes to change their password
 	Given I am logged onto Brother Online "United Kingdom" using valid credentials
@@ -42,7 +42,7 @@ Scenario: Customer has created a Brother Online account and wishes to change the
 	And If I sign back into Brother Online "United Kingdom" using the same credentials
 	Then I can sign out of Brother Online
 
-# Create an account and use the "Forgotten Password" utility - DO NOT CHANGE
+# Create an account and use the "Forgotten Password" utility
 @TEST @UAT @PROD
 Scenario: Customer has created a Brother Online account but has forgotten their password and requires a new one
 	Given I am logged onto Brother Online "United Kingdom" using valid credentials
@@ -61,7 +61,7 @@ Scenario: Customer has created a Brother Online account but has forgotten their 
 
 # Create account, sign in, note missing menu option, add role to user, sign out and in again, note menu option present
 # Instant Ink role used as a baseline
-# ***-need to add additional scenario (see ticket number for steps) or ValidateRole Feature test DO NOT CHANGE
+# ***-need to add additional scenario (see ticket number for steps) or ValidateRole Feature test
 @TEST @UAT
 Scenario: Customer or Dealer role persists after email address change 
 	Given I am logged onto Brother Online "United Kingdom" using valid credentials
@@ -84,7 +84,7 @@ Scenario: Customer or Dealer role persists after email address change
 
 # Set this test to ignore as it was causing problems with the cookie test due to BOL login not signing out (Sign out step commented out for some reason)
 # Create an account and sign in, change registered email address and sign out, re-sign in again using new address
-# - Ant H - Works fine now - no idea why it had a few lines commented out. DO NOT CHANGE
+# - Ant H - Works fine now - no idea why it had a few lines commented out. 
 @TEST @UAT @PROD 
 Scenario Outline: Customer can change their Brother Online email address after registration 
 	Given I am logged onto Brother Online "<Country>" using valid credentials
