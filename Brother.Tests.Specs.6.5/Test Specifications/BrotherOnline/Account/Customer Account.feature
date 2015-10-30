@@ -346,7 +346,8 @@ Scenario: Customer creates a new account with Brother Online using valid credent
 
 # Create an account and sign in, change registered email address and sign out, try to Register a new account using
 # the changed email addrress. It should not be possible
-@IGNORE
+
+@TEST @UAT @PROD
 Scenario Outline: Customer cannot register for a Brother Online account using an invalid email address 
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
@@ -374,7 +375,7 @@ Scenarios:
 	# | "TrailingSpace@guerrillamail.com     "      |
 	# simply trim them. No error message is displayed
 
-@SMOKE @IGNORE
+@IGNORE
 Scenario Outline: Create an account for Brother Online for different language sites
 	Given I Need A Brother Online "<Country>" Account In Order To Use Brother Online Services
 	When I have clicked on Add Device
@@ -405,7 +406,7 @@ Scenarios:
 #	| Norway         | - Link for validation of registration links to something completely different - BBAU-2665
 #	| Italy          | - NEEDS to have Número de identificación fiscal added to test otherwise registration fails
 
-@SMOKE @IGNORE
+@IGNORE
 Scenario Outline: Create an account for Brother Online - failing language site version
 	Given I Need A Brother Online "<Country>" Account In Order To Use Brother Online Services
 	When I have clicked on Add Device
@@ -432,7 +433,7 @@ Scenarios:
 #	| Italy          | - NEEDS to have Número de identificación fiscal added to test otherwise registration fails
 
 
-@SMOKE @IGNORE
+@IGNORE
 # Create a new user account and check Add Device so that we know the user registration was successful
 Scenario: Customer creates a new account with Brother Online using valid credentials, and validates the user is validated so it can create a device registration but not actually register
 	Given I want to create a new account with Brother Online "United Kingdom"
@@ -460,7 +461,8 @@ Scenario: Customer creates a new account with Brother Online using valid credent
 	Then I can validate that an error message was displayed
 	Then I can sign out of Brother Online
 	Then I am redirected to the Brother Home Page
-@IGNORE
+
+@TEST @UAT @PROD
 Scenario: Validate that the correct error messages are displayed when a mandatory field Email is missing while creating a User Account
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
@@ -469,7 +471,7 @@ Scenario: Validate that the correct error messages are displayed when a mandator
 	When I press tab in the email address field
 	Then I should see an error message
 
-@IGNORE
+@TEST @UAT @PROD
 Scenario Outline: Validate that the correct error messages are displayed when a mandatory field Password is missing while creating a User Account
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
