@@ -4,10 +4,11 @@ Feature: Customer Account
 	As a customer
 	I need to create a new online account
 
+
 @TEST @UAT @PROD
 # Validate that the correct error messages are displayed when address details mandatory fields are not completed
-Scenario: Customer get the correct error messages when address details mandatory fields are not completed on my address page
-	Given I want to create a new account with Brother Online "United Kingdom"
+Scenario: Customer get the correct error messages when address details mandatory fields are not completed on my address page	
+Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
 	And I am redirected to the Brother Login/Register page
 	And I have Checked No I Do Not Have An Account Checkbox
@@ -24,7 +25,7 @@ Scenario: Customer get the correct error messages when address details mandatory
 	Then I should see my account confirmation page
 	And When I Click Go Back
 	Then I should be able to log into "United Kingdom" Brother Online using my account details
-	When I navigate to my account for "United Kingdom"	
+	When I navigate to my account for "United Kingdom"
 	When I click on My Address 
 	And I click on Add a New Address Button 
 	And I enter tab on the first name field
@@ -45,7 +46,7 @@ Scenario: Customer get the correct error messages when address details mandatory
 	And I can sign out of Brother Online
 
 # Sign into Brother Online and change password DO not change
-@TEST @UAT @PROD @IGNORE
+ @IGNORE
 Scenario: Customer has created a Brother Online account and wishes to change their password
 	Given I am logged onto Brother Online "United Kingdom" using valid credentials
 	When I navigate to my account for "United Kingdom"
@@ -59,7 +60,7 @@ Scenario: Customer has created a Brother Online account and wishes to change the
 	Then I can sign out of Brother Online
 
 # Create an account and use the "Forgotten Password" utility - do not change
-@TEST @UAT @PROD @IGNORE
+ @IGNORE
 Scenario: Customer has created a Brother Online account but has forgotten their password and requires a new one
 	Given I am logged onto Brother Online "United Kingdom" using valid credentials
 	#Given I am logged into my Brother Online account
@@ -79,7 +80,7 @@ Scenario: Customer has created a Brother Online account but has forgotten their 
 # Instant Ink role used as a baseline
 # ***-need to add additional scenario (see ticket number for steps) or ValidateRole Feature test 
 #do not change
-@TEST @UAT @IGNORE
+@IGNORE
 Scenario: Customer or Dealer role persists after email address change 
 	Given I am logged onto Brother Online "United Kingdom" using valid credentials
 	Then I can sign out of Brother Online
@@ -103,7 +104,7 @@ Scenario: Customer or Dealer role persists after email address change
 # Create an account and sign in, change registered email address and sign out, re-sign in again using new address
 # - Ant H - Works fine now - no idea why it had a few lines commented out. 
 # do not change
-@TEST @UAT @PROD @IGNORE
+@IGNORE
 Scenario Outline: Customer can change their Brother Online email address after registration 
 	Given I am logged onto Brother Online "<Country>" using valid credentials
 	When I navigate to my account for "<Country>"
@@ -127,8 +128,8 @@ Scenarios:
 
 @TEST @UAT @PROD 
 # Validate that an existing user has the option to change their sign in preferences to social login 
-Scenario: Customer has the option to change their sign in preferences to social login
-	Given I want to create a new account with Brother Online "United Kingdom"
+Scenario: Customer has the option to change their sign in preferences to social login	
+   Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
 	And I am redirected to the Brother Login/Register page
 	And I have Checked No I Do Not Have An Account Checkbox
@@ -145,18 +146,34 @@ Scenario: Customer has the option to change their sign in preferences to social 
 	Then I should see my account confirmation page
 	And When I Click Go Back
 	Then I should be able to log into "United Kingdom" Brother Online using my account details
-	When I navigate to my account for "United Kingdom"	
+	When I navigate to my account for "United Kingdom"
 	And I click on Sign In Details
 	When I click on Social Login Radio button
 	Then I should be able to see social login buttons
 	And I can navigate back to Brother Online home page
 	And I can sign out of Brother Online
 
-@TEST @UAT @PROD @IGNORE
+@TEST @UAT @PROD 
 # Validate that the correct error messages are displayed when business details mandatory fields are not completed
-Scenario: : Customer get the correct error message when business details mandatory fields are not completed
-	Given I am logged onto Brother Online "United Kingdom" using valid credentials
-	When I navigate to my account for "United Kingdom"	
+Scenario: Customer get the correct error message when business details mandatory fields are not completed
+   Given I want to create a new account with Brother Online "United Kingdom"
+	When I click on Create Account for "United Kingdom"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I fill in the registration information using a valid email address 
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Password        | @@@@@	       |
+	| ConfirmPassword | @@@@@		   |
+
+	And I have Agreed to the Terms and Conditions
+	And I declare that I do not use this account for business
+	When I press Create Your Account
+	Then I should see my account confirmation page
+	And When I Click Go Back
+	Then I should be able to log into "United Kingdom" Brother Online using my account details
+	When I navigate to my account for "United Kingdom"
 	And I clicked on Business Details
 	And I am redirected to the Business Details Page
 	And I declare that I do use this account for business on my account page
@@ -166,10 +183,26 @@ Scenario: : Customer get the correct error message when business details mandato
 	And I can navigate back to Brother Online home page
 	And I can sign out of Brother Online
 
-@TEST @UAT @PROD @IGNORE
+@TEST @UAT @PROD
 #Validate that a user with a Customer Account can amend their personal details
 Scenario: Customer cannot update the personal details if mandatory fields are left blank
-	Given I am logged onto Brother Online "United Kingdom" using valid credentials
+   Given I want to create a new account with Brother Online "United Kingdom"
+	When I click on Create Account for "United Kingdom"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I fill in the registration information using a valid email address 
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Password        | @@@@@	       |
+	| ConfirmPassword | @@@@@		   |
+
+	And I have Agreed to the Terms and Conditions
+	And I declare that I do not use this account for business
+	When I press Create Your Account
+	Then I should see my account confirmation page
+	And When I Click Go Back
+	Then I should be able to log into "United Kingdom" Brother Online using my account details
 	When I navigate to my account for "United Kingdom"
 	And I clear the first name field
 	Then error message should appear on the first name field
@@ -178,12 +211,28 @@ Scenario: Customer cannot update the personal details if mandatory fields are le
 	And I can navigate back to Brother Online home page
 	And I can sign out of Brother Online
 
-@TEST @UAT @PROD @IGNORE
+@TEST @UAT @PROD
 #User can add their address to their account by manually entering their personal details
 Scenario: Customer can add a new address to their account by manually entering address details
-	Given I am logged onto Brother Online "United Kingdom" using valid credentials
-	When I navigate to my account for "United Kingdom"	
-	When I click on My Address 
+   Given I want to create a new account with Brother Online "United Kingdom"
+	When I click on Create Account for "United Kingdom"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I fill in the registration information using a valid email address 
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Password        | @@@@@	       |
+	| ConfirmPassword | @@@@@		   |
+
+	And I have Agreed to the Terms and Conditions
+	And I declare that I do not use this account for business
+	When I press Create Your Account
+	Then I should see my account confirmation page
+	And When I Click Go Back
+	Then I should be able to log into "United Kingdom" Brother Online using my account details
+	When I navigate to my account for "United Kingdom"
+     When I click on My Address 
 	And I click on Add a New Address Button
 	And I enter all the mandatory fields
 		| field           | value          |
@@ -283,7 +332,7 @@ Scenario: Customer creates a new account with Brother Online using valid credent
 
 # Create an account and sign in, change registered email address and sign out, try to Register a new account using
 # the changed email addrress. It should not be possible
-
+@IGNORE
 Scenario Outline: Customer cannot register for a Brother Online account using an invalid email address 
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
@@ -311,7 +360,7 @@ Scenarios:
 	# | "TrailingSpace@guerrillamail.com     "      |
 	# simply trim them. No error message is displayed
 
-@SMOKE
+@SMOKE @IGNORE
 Scenario Outline: Create an account for Brother Online for different language sites
 	Given I Need A Brother Online "<Country>" Account In Order To Use Brother Online Services
 	When I have clicked on Add Device
@@ -342,7 +391,7 @@ Scenarios:
 #	| Norway         | - Link for validation of registration links to something completely different - BBAU-2665
 #	| Italy          | - NEEDS to have Número de identificación fiscal added to test otherwise registration fails
 
-@SMOKE @ignore
+@SMOKE @IGNORE
 Scenario Outline: Create an account for Brother Online - failing language site version
 	Given I Need A Brother Online "<Country>" Account In Order To Use Brother Online Services
 	When I have clicked on Add Device
@@ -369,7 +418,7 @@ Scenarios:
 #	| Italy          | - NEEDS to have Número de identificación fiscal added to test otherwise registration fails
 
 
-@SMOKE
+@SMOKE @IGNORE
 # Create a new user account and check Add Device so that we know the user registration was successful
 Scenario: Customer creates a new account with Brother Online using valid credentials, and validates the user is validated so it can create a device registration but not actually register
 	Given I want to create a new account with Brother Online "United Kingdom"
@@ -397,7 +446,7 @@ Scenario: Customer creates a new account with Brother Online using valid credent
 	Then I can validate that an error message was displayed
 	Then I can sign out of Brother Online
 	Then I am redirected to the Brother Home Page
-
+@IGNORE
 Scenario: Validate that the correct error messages are displayed when a mandatory field Email is missing while creating a User Account
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
@@ -406,7 +455,7 @@ Scenario: Validate that the correct error messages are displayed when a mandator
 	When I press tab in the email address field
 	Then I should see an error message
 
-
+@IGNORE
 Scenario Outline: Validate that the correct error messages are displayed when a mandatory field Password is missing while creating a User Account
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
@@ -433,7 +482,7 @@ Scenarios:
 	| Email Address                 |Password							 |Confirm Password			|
 	| "aaa@yahoo.com"				|"Astwer1234"						 |"aaaahewllo"				|
 	
-
+@IGNORE
 Scenario Outline:Validate that the correct error messages are displayed when a password does not comply the required level 
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
@@ -446,7 +495,7 @@ Scenarios:
 	| Email Address                 |Password						 |
 	| "aaa@yahoo.com"				|"stwer"						 |
 
-
+@IGNORE
 Scenario: Validate that the correct error messages are displayed when Terms and Conditions are not selected
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
@@ -466,6 +515,7 @@ Scenario: Validate that the correct error messages are displayed when Terms and 
 # Accounts created on DV2, QAS and Prod for the following test - existinguseraccount@guerrillamail.com/existingbusinessaccount@guerrillamail.com/Password100
 # Check that a user account cannot be created with an email address that already exists for another user account 
 # Check that a user account cannot be created with an email address that already exists for another business account
+@IGNORE
 Scenario Outline: Customer cannot register for a new user account using an email address that already exists for another user or business account
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
@@ -491,6 +541,7 @@ Scenarios:
 
 
 # Check that a user account which is not validated does not have the ability to register a device
+@IGNORE
 Scenario: User account which is not validated does not permit device registration
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
@@ -514,6 +565,7 @@ Scenario: User account which is not validated does not permit device registratio
 	And I can sign out of Brother Online
 
 # Check maximun username(241) and password(30) length when creating a user account
+@IGNORE
 Scenario: Validate that a user account can be created using the maximun 241 username and 30 password character lengths 																			
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
@@ -546,6 +598,7 @@ Scenario: Create a user but test for BPID
 
 @TEST @UAT @PROD 
 # Create an account for Brother Online for different language sites
+@IGNORE
 Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on multi lingual sites																				
 sign in and Sign Out
 	Given I want to create a new account with Brother Online "<Country>"
@@ -583,7 +636,7 @@ Scenarios:
 
 
 
-@TEST @UAT @PROD 
+@TEST @UAT @PROD @IGNORE
 # Create an account for Brother Online for spain sites
 Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on Spain site																			
 sign in and Sign Out
@@ -611,7 +664,7 @@ Scenarios:
 | Country |
 |Spain	  | 
 
-@TEST @UAT @PROD 
+@TEST @UAT @PROD @IGNORE
 # Create an account for Brother Online for Italy
 Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on Italy site																			
 sign in and Sign Out
@@ -642,6 +695,7 @@ Scenarios:
 
 
 # User unable to create a BOL Italy account without entering a valid tax code
+@IGNORE
 Scenario Outline: Customer unable to create a new BOL Italy account without entering a valid tax code
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -666,6 +720,7 @@ Scenarios:
 
 
 #Validate that a Customer Account holder is able to swap to a Business Account
+@IGNORE
 Scenario: Validate that a newly created customer account can be swapped to a business account
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
@@ -698,6 +753,7 @@ Scenario: Validate that a newly created customer account can be swapped to a bus
 
 # Accounts created on DV2, QAS and Prod for the following test - existingcustomeraccwithorder@guerrillamail.com/Password100 
 # Validate that a Customer Account holder who has made an order is not able to swap to a Business account
+@IGNORE
 Scenario Outline: Customer account holder is unable to switch to a business account once an order has been placed
 	Given I launch Brother Online for "United Kingdom"
 	When I click on Create Account for "United Kingdom"
