@@ -123,7 +123,7 @@ namespace Brother.Tests.Specs
         public void ThenOnceIHaveValidatedAnEmailWasReceivedAndVerifiedMyAccount()
         {
             // NEED TO REMOVE THIS AND REPLACE WITH A DYNAMIC WAIT
-            Thread.Sleep(new TimeSpan(0, 0, 0, 60)); //  deliberate wait for account to finalise before validation
+            Thread.Sleep(new TimeSpan(0, 0, 0, 10)); //  deliberate wait for account to finalise before validation
             ValidateAccountEmail();
         }
 
