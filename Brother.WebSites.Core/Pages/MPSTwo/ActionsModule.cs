@@ -114,6 +114,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return actionsElement;
         }
 
+        public static IWebElement InstallerPinElement()
+        {
+
+            var actionsElement = SeleniumHelper.FindElementByJs(GeneratedPinForInstallation());
+            return actionsElement;
+        }
+
         public static IWebElement SpecificCustomerActionsDropdownElement()
         {
 
@@ -154,6 +161,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             return String.Format("return $('td:contains(\"{0}\")').parent('tr').children('td').children('div').children('button')",
                 MpsUtil.CreatedEmail());
+        }
+
+        private static string GeneratedPinForInstallation()
+        {
+            return "return $(('#content_0_LabelPinForTool').parent().children('div'))";
         }
 
        

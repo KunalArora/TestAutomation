@@ -60,7 +60,7 @@ Scenario Outline: German Dealer can create installation request for Cloud Commun
 	And I extract the installer url from Installation Request
 	When I navigate to the installer page
 	And I enter the contract reference number
-	And I enter "<Country>" device serial number for "<Method>" communication 
+	And I enter "<Country>" device serial number for "<Type>" communication 
 	And I enter the device IP address
 	Then I can connect the device to Brother environment
 	And I can complete device installation
@@ -69,8 +69,8 @@ Scenario Outline: German Dealer can create installation request for Cloud Commun
 Scenarios:
 
 	| Role                            | Country | ContractType             | UsageType      | Role1            | Method | Type |
-	| Cloud MPS Bank                  | Germany | Leasing & Service        | Minimum Volume | Cloud MPS Dealer | Cloud  | Web |
-	#| Cloud MPS Local Office Approver | Germany | Easy Print Pro & Service | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR  |
+	| Cloud MPS Bank                  | Germany | Leasing & Service        | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR |
+	| Cloud MPS Local Office Approver | Germany | Easy Print Pro & Service | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  |
 	
 
 

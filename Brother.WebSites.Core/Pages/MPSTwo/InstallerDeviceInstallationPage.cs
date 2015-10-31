@@ -40,6 +40,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [FindsBy(How = How.CssSelector, Using = "[class*=\"js-mps-ip-\"]")] 
         public IList<IWebElement> IpAddressElements;
 
+        [FindsBy(How = How.CssSelector, Using = "p.form-control-static")] 
+        public IList<IWebElement> InstalledPinElements;
+
+        [FindsBy(How = How.CssSelector, Using = "[class*=\"js-mps-ip-a\"]")] 
+        public IWebElement IpElement;
+
         [FindsBy(How = How.CssSelector, Using = "[class*=\"js-mps-connect-device-to-\"]")] 
         public IWebElement ConnectButtonElement;
 
@@ -95,7 +101,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyTimeZoneIsDisplayed(string method)
         {
-            if (method == "Email") return;
+            if (method != "Web") return;
             var option = SelectOption(TimeZoneOptionsElements);
             TestCheck.AssertIsEqual(true, option.Any(), "Time Zone does not contain any options");
         }
@@ -127,25 +133,35 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             WebDriver.Wait(DurationType.Second, 5);
         }
 
+
+        private IWebElement IpAddress()
+        {
+            return GetElementByCssSelector("[class*=\"js-mps-ip-a\"]");
+        }
+
         public void EnterIpAddress()
         {
-            foreach (var ipAddressElement in IpAddressElements)
-            {
-                ipAddressElement.Click();
-                ClearAndType(ipAddressElement, "1");
-                ipAddressElement.SendKeys(Keys.Tab);
-                WebDriver.Wait(DurationType.Second, 2);
+            if (InstalledPinElements == null && TimeZoneOptionsElements == null)
+            { foreach (var ipAddressElement in IpAddressElements)
+                {
+                    ipAddressElement.Click();
+                    ClearAndType(ipAddressElement, "1");
+                    ipAddressElement.SendKeys(Keys.Tab);
+                    WebDriver.Wait(DurationType.Second, 2);
+                }
             }
-            WebDriver.Wait(DurationType.Second, 5);
+                WebDriver.Wait(DurationType.Second, 5);
         }
 
         public void ConnectDevice()
         {
             try
             {
-                if (TimeZoneOptionsElements != null) return;
-                ConnectButtonElement.Click();
-                WebDriver.Wait(DurationType.Second, 5);
+                if (InstalledPinElements == null && TimeZoneOptionsElements == null)
+                {
+                    ConnectButtonElement.Click();
+                    WebDriver.Wait(DurationType.Second, 5);
+                }
             }
             catch (Exception)
             {
@@ -159,9 +175,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             try
             {
-                if (TimeZoneOptionsElements != null) return;
-                CompleteInstallationElement.Click();
-                WebDriver.Wait(DurationType.Second, 5);
+                if (InstalledPinElements == null && TimeZoneOptionsElements == null)
+                {
+                    CompleteInstallationElement.Click();
+                    WebDriver.Wait(DurationType.Second, 5);
+                }
             }
             catch (Exception)
             {
@@ -173,9 +191,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ConfirmInstallationSucceed()
         {
-            if (TimeZoneOptionsElements != null) return;
-            TestCheck.AssertIsEqual(true, CompleteInstallationComfirmationElement.Displayed,
+            if (InstalledPinElements == null && TimeZoneOptionsElements == null)
+            {
+                TestCheck.AssertIsEqual(true, CompleteInstallationComfirmationElement.Displayed,
                 "Installation not successful");
+            }
            
         }
         

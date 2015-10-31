@@ -23,9 +23,9 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
         {
             WhenINavigateToTheContractManageDeviceScreen();
             WhenISelectLocationInOrderToCreateInstallationRequest();
-            WhenISetDeviceCommunicationMethodAs(type);
+            WhenISetDeviceCommunicationMethodAs(method);
             WhenISetDeviceInstallationTypeAs(type);
-            WhenICompletedTheCreateInstallationProcessFor(method);
+            WhenICompletedTheCreateInstallationProcessFor(type);
             ThenTheInstallationRequestForThatDeviceIsCompleted();
         }
 
@@ -60,8 +60,8 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
         public void WhenIEnterDeviceSerialNumberForCommunication(string country, string method)
         {
             CurrentPage.As<InstallerDeviceInstallationPage>().VerifyTimeZoneIsDisplayed(method);
+            if (method == "BOR") return;
             CurrentPage.As<InstallerDeviceInstallationPage>().EnterSerialNumber(country);
-            
         }
 
 
@@ -69,6 +69,7 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
         [When(@"I enter the device IP address")]
         public void WhenIEnterTheDeviceIPAddress()
         {
+
             CurrentPage.As<InstallerDeviceInstallationPage>().EnterIpAddress();
         }
 

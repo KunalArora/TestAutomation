@@ -149,7 +149,8 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("German Dealer can create installation request for Cloud Communication")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Bank", "Germany", "Leasing & Service", "Minimum Volume", "Cloud MPS Dealer", "Cloud", "Web", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Bank", "Germany", "Leasing & Service", "Minimum Volume", "Cloud MPS Dealer", "Cloud", "BOR", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Germany", "Easy Print Pro & Service", "Minimum Volume", "Cloud MPS Dealer", "Cloud", "Web", null)]
         public virtual void GermanDealerCanCreateInstallationRequestForCloudCommunication(string role, string country, string contractType, string usageType, string role1, string method, string type, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("German Dealer can create installation request for Cloud Communication", exampleTags);
@@ -173,7 +174,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 62
  testRunner.And("I enter the contract reference number", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 63
- testRunner.And(string.Format("I enter \"{0}\" device serial number for \"{1}\" communication", country, method), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("I enter \"{0}\" device serial number for \"{1}\" communication", country, type), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 64
  testRunner.And("I enter the device IP address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 65
