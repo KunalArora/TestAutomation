@@ -492,7 +492,8 @@ Scenarios:
 	And I have Checked No I Do Not Have An Account Checkbox
 	And I enter an email address containing <Email Address>
 	And I enter the password containing <Password>
-	When I enter the different password in the confirm password field containing <Confirm Password> and press tab
+	And I enter the different confirmed password <Confirm Password>
+	#When I enter the different password in the confirm password field containing <Confirm Password> and press tab
 	Then I should see an error message on the Confirm password field
 Scenarios:
 	| Email Address                 |Password							 |Confirm Password			|
@@ -530,8 +531,9 @@ Scenario: Validate that the correct error messages are displayed when Terms and 
 # Accounts created on DV2, QAS and Prod for the following test - existinguseraccount@guerrillamail.com/existingbusinessaccount@guerrillamail.com/Password100
 # Check that a user account cannot be created with an email address that already exists for another user account 
 # Check that a user account cannot be created with an email address that already exists for another business account
-@IGNORE
-Scenario Outline: Customer cannot register for a new user account using an email address that already exists for another user or business account
+
+@TEST @UAT @PROD
+Scenario Outline: Customer cannot register for a new user account using an email address that already exists for another user
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
 	And I am redirected to the Brother Login/Register page
@@ -551,12 +553,34 @@ Scenario Outline: Customer cannot register for a new user account using an email
 
 Scenarios:
 	| Email Address                               |
-	| "existinguseraccount@guerrillamail.com"         |
+	| "existinguseraccount@guerrillamail.com"     |
+	
+
+@TEST @UAT @PROD
+Scenario Outline: Customer cannot register for a new user account using an email address that already exists for another business account
+	Given I want to create a new account with Brother Online "United Kingdom"
+	When I click on Create Account for "United Kingdom"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I fill in the registration information excluding email address
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Password        | @@@@@	       |
+	| ConfirmPassword | @@@@@		   |
+	
+	And I declare that I do not use this account for business
+	And I have Agreed to the Terms and Conditions
+	And I enter an email address containing <Email Address>
+	And I press create account button
+	Then I should see the duplicate email error message preventing account creation
+
+Examples:
+	| Email Address                                     |
 	| "existingbusinessaccount@guerrillamail.com"       |
 
-
 # Check that a user account which is not validated does not have the ability to register a device
-@IGNORE
+@TEST @UAT @PROD
 Scenario: User account which is not validated does not permit device registration
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
@@ -580,7 +604,7 @@ Scenario: User account which is not validated does not permit device registratio
 	And I can sign out of Brother Online
 
 # Check maximun username(241) and password(30) length when creating a user account
-@IGNORE
+@TEST @UAT @PROD
 Scenario: Validate that a user account can be created using the maximun 241 username and 30 password character lengths 																			
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
