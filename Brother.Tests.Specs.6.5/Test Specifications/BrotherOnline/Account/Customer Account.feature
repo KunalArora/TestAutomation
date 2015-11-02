@@ -759,8 +759,8 @@ Scenarios:
 
 
 #Validate that a Customer Account holder is able to swap to a Business Account
-#On Dv2 environment the registerpage password fields are inconsistent.
-@IGNORE
+
+@TEST @UAT @PROD
 Scenario: Validate that a newly created customer account can be swapped to a business account
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
@@ -783,7 +783,7 @@ Scenario: Validate that a newly created customer account can be swapped to a bus
 	When I navigate to my account for "United Kingdom"
 	When I clicked on Business Details
 	And I declare that I do use this account for business on my account page
-	And I add my company name as "AutoTestLtd" on Business Details page
+	And I add my company name as "AutoTestLtd" on Business Details page                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
 	And I add my company VAT number as "GB145937540" on Business Details Page
 	And I select my Business Sector as "IT and telecommunications services" on Business Details Page
 	And I select number of Employees as "11 - 50" on Business Details Page
@@ -793,11 +793,11 @@ Scenario: Validate that a newly created customer account can be swapped to a bus
 
 # Accounts created on DV2, QAS and Prod for the following test - existingcustomeraccwithorder@guerrillamail.com/Password100 
 # Validate that a Customer Account holder who has made an order is not able to swap to a Business account
-#On Dv2 environment the registerpage password fields are inconsistent.
-@IGNORE
+
+@TEST @UAT @PROD
 Scenario Outline: Customer account holder is unable to switch to a business account once an order has been placed
 	Given I launch Brother Online for "United Kingdom"
-	When I click on Create Account for "United Kingdom"
+     When I click on Create Account for "United Kingdom"
 	And I am redirected to the Brother Login/Register page
 	And I enter an email address containing <Email Address>
 	When I enter a valid Password <Password>
@@ -811,5 +811,7 @@ Scenario Outline: Customer account holder is unable to switch to a business acco
 	Then I am redirected to the Brother Home Page
 
 	Scenarios:
-		| Email Address										| Password      |
+		| Email Address				                        | Password      |
 		| "existingcustomeraccwithorder@guerrillamail.com"	| "Password100" |
+
+
