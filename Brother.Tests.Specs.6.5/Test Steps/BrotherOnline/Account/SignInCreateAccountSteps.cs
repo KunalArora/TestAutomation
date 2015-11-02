@@ -853,7 +853,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         public void WhenIEnterTheDifferentPasswordInTheConfirmPasswordFieldContainingAndPressTab(string confirmpassword)
         {
             CurrentPage.As<RegistrationPage>().PopulateConfirmPasswordTextBox(confirmpassword);
-            CurrentPage.As<RegistrationPage>().PopulateConfirmPasswordTextBox(Keys.Tab);
+           // CurrentPage.As<RegistrationPage>().PopulateConfirmPasswordTextBox(Keys.Tab);
         }
 
         [When(@"I enter the different password in the creative center confirm password field containing ""(.*)"" and press tab")]

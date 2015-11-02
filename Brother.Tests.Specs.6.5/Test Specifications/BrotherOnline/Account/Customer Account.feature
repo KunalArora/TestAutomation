@@ -484,7 +484,7 @@ Scenarios:
 	| Email Address                     |
 	| "aaa@yahoo.com"					|
 
-@ignore
+@TEST @UAT @PROD
  Scenario Outline: Validate that the correct error messages are displayed when a Confirm Password field contains different password than actual Password 
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
@@ -496,9 +496,8 @@ Scenarios:
 	Then I should see an error message on the Confirm password field
 Scenarios:
 	| Email Address                 |Password							 |Confirm Password			|
-	| "aaa@yahoo.com"				|"Astwer1234"						 |"aaaahewllo"				|
-	
-@IGNORE
+	| "aaa@yahoo.com"				| "Astwer1234"						 | "aaaahewllo"				|
+@TEST @UAT @PROD
 Scenario Outline:Validate that the correct error messages are displayed when a password does not comply the required level 
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
@@ -511,7 +510,7 @@ Scenarios:
 	| Email Address                 |Password						 |
 	| "aaa@yahoo.com"				|"stwer"						 |
 
-@IGNORE
+@TEST @UAT @PROD
 Scenario: Validate that the correct error messages are displayed when Terms and Conditions are not selected
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
