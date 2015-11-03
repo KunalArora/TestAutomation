@@ -4,8 +4,9 @@ Feature: Business Account
 	As a Business customer
 	I need to be able to have account management options
 
+@TEST @UAT @PROD
 #Validate that a Business Account holder is able to swap to a Customer Account
-Scenario: Create a business account change the business account to be Customer Account
+Scenario: Create a business account and change the business account to be Customer Account
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
 	And I am redirected to the Brother Login/Register page
@@ -25,7 +26,7 @@ Scenario: Create a business account change the business account to be Customer A
 	When I press Create Your Account
 	Then I should see my account confirmation page
 	And When I Click Go Back
-	And Once I have Validated an Email was received and verified my account
+	#And Once I have Validated an Email was received and verified my account
 	Then I should be able to log into "United Kingdom" Brother Online using my account details
 	When I navigate to my account for "United Kingdom"
 	When I clicked on Business Details
