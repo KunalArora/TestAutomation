@@ -636,6 +636,7 @@ Scenario: Create a user but test for BPID
 
 # Create an account for Brother Online for different language sites
 # PortugalCountry -On Dv2 environment the registerpage fields are inconsistent
+
 @TEST @UAT @PROD
 Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on multi lingual sites																				
 sign in and Sign Out
@@ -664,7 +665,7 @@ Scenarios:
 | United Kingdom    |
 | Ireland           |
 | Denmark		    |
-#| Portugal		    | 
+| Portugal		    | 
 | Finland		    |
 # | Slovenia			|
 # | Slovakia 		|
@@ -672,9 +673,8 @@ Scenarios:
 | Netherlands		|
 # | Poland			|
 
-@IGNORE
+@TEST @UAT @PROD
 # Create an account for Brother Online for spain sites
-#On Dv2 environment the registerpage fields are inconsistent.
 Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on Spain site																			
 sign in and Sign Out
 	Given I want to create a new account with Brother Online "<Country>"
@@ -693,7 +693,7 @@ sign in and Sign Out
 	When I press Create Your Account
 	Then I should see my account confirmation page
 	And When I Click Go Back
-	And Once I have Validated an Email was received and verified my account
+	#And Once I have Validated an Email was received and verified my account
 	Then I should be able to log into "<Country>" Brother Online using my account details
 	And I can sign out of Brother Online
 	Then I am redirected to the Brother Home Page
@@ -701,9 +701,8 @@ Scenarios:
 | Country |
 |Spain	  | 
 
-@IGNORE
+@TEST @UAT @PROD
 # Create an account for Brother Online for Italy
-#On Dv2 environment the registerpage fields are inconsistent.
 Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on Italy site																			
 sign in and Sign Out
 	Given I want to create a new account with Brother Online "<Country>"
@@ -723,7 +722,7 @@ sign in and Sign Out
 	When I press Create Your Account
 	Then I should see my account confirmation page
 	And When I Click Go Back
-	And Once I have Validated an Email was received and verified my account
+	#And Once I have Validated an Email was received and verified my account
 	Then I should be able to log into "<Country>" Brother Online using my account details
 	And I can sign out of Brother Online
 	Then I am redirected to the Brother Home Page
@@ -733,8 +732,7 @@ Scenarios:
 
 
 # User unable to create a BOL Italy account without entering a valid tax code
-#On Dv2 environment the registerpage fields are inconsistent.
-@IGNORE
+@TEST @UAT @PROD
 Scenario Outline: Customer unable to create a new BOL Italy account without entering a valid tax code
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
