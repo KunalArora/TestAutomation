@@ -20,7 +20,8 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherMainSite.Navigation
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("Navigate main site top products menu")]
-    [NUnit.Framework.IgnoreAttribute()]
+    [NUnit.Framework.CategoryAttribute("TEST")]
+    [NUnit.Framework.CategoryAttribute("UAT")]
     public partial class NavigateMainSiteTopProductsMenuFeature
     {
         
@@ -35,7 +36,8 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherMainSite.Navigation
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Navigate main site top products menu", "As a visitor of the Brother main site\r\nI am able to navigate to each of the\r\ntab " +
                     "items within the top products menu", ProgrammingLanguage.CSharp, new string[] {
-                        "IGNORE"});
+                        "TEST",
+                        "UAT"});
             testRunner.OnFeatureStart(featureInfo);
         }
         

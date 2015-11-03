@@ -79,7 +79,6 @@ Scenario: Customer has created a Brother Online account but has forgotten their 
 # Create account, sign in, note missing menu option, add role to user, sign out and in again, note menu option present
 # Instant Ink role used as a baseline
 # ***-need to add additional scenario (see ticket number for steps) or ValidateRole Feature test 
-#do not change
 @IGNORE
 Scenario: Customer or Dealer role persists after email address change 
 	Given I am logged onto Brother Online "United Kingdom" using valid credentials
@@ -102,8 +101,6 @@ Scenario: Customer or Dealer role persists after email address change
 
 # Set this test to ignore as it was causing problems with the cookie test due to BOL login not signing out (Sign out step commented out for some reason)
 # Create an account and sign in, change registered email address and sign out, re-sign in again using new address
-# - Ant H - Works fine now - no idea why it had a few lines commented out. 
-# do not change
 @IGNORE
 Scenario Outline: Customer can change their Brother Online email address after registration 
 	Given I am logged onto Brother Online "<Country>" using valid credentials
@@ -484,7 +481,7 @@ Scenarios:
 	| Email Address                     |
 	| "aaa@yahoo.com"					|
 
-@ignore
+@TEST @UAT @PROD
  Scenario Outline: Validate that the correct error messages are displayed when a Confirm Password field contains different password than actual Password 
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
@@ -492,13 +489,13 @@ Scenarios:
 	And I have Checked No I Do Not Have An Account Checkbox
 	And I enter an email address containing <Email Address>
 	And I enter the password containing <Password>
-	When I enter the different password in the confirm password field containing <Confirm Password> and press tab
+	And I enter the different confirmed password <Confirm Password>
+	#When I enter the different password in the confirm password field containing <Confirm Password> and press tab
 	Then I should see an error message on the Confirm password field
 Scenarios:
 	| Email Address                 |Password							 |Confirm Password			|
-	| "aaa@yahoo.com"				|"Astwer1234"						 |"aaaahewllo"				|
-	
-@IGNORE
+	| "aaa@yahoo.com"				| "Astwer1234"						 | "aaaahewllo"				|
+@TEST @UAT @PROD
 Scenario Outline:Validate that the correct error messages are displayed when a password does not comply the required level 
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
@@ -511,7 +508,7 @@ Scenarios:
 	| Email Address                 |Password						 |
 	| "aaa@yahoo.com"				|"stwer"						 |
 
-@IGNORE
+@TEST @UAT @PROD
 Scenario: Validate that the correct error messages are displayed when Terms and Conditions are not selected
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
@@ -531,8 +528,9 @@ Scenario: Validate that the correct error messages are displayed when Terms and 
 # Accounts created on DV2, QAS and Prod for the following test - existinguseraccount@guerrillamail.com/existingbusinessaccount@guerrillamail.com/Password100
 # Check that a user account cannot be created with an email address that already exists for another user account 
 # Check that a user account cannot be created with an email address that already exists for another business account
-@IGNORE
-Scenario Outline: Customer cannot register for a new user account using an email address that already exists for another user or business account
+
+@TEST @UAT @PROD
+Scenario Outline: Customer cannot register for a new user account using an email address that already exists for another user
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
 	And I am redirected to the Brother Login/Register page
@@ -552,12 +550,34 @@ Scenario Outline: Customer cannot register for a new user account using an email
 
 Scenarios:
 	| Email Address                               |
-	| "existinguseraccount@guerrillamail.com"         |
+	| "existinguseraccount@guerrillamail.com"     |
+	
+
+@TEST @UAT @PROD
+Scenario Outline: Customer cannot register for a new user account using an email address that already exists for another business account
+	Given I want to create a new account with Brother Online "United Kingdom"
+	When I click on Create Account for "United Kingdom"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I fill in the registration information excluding email address
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Password        | @@@@@	       |
+	| ConfirmPassword | @@@@@		   |
+	
+	And I declare that I do not use this account for business
+	And I have Agreed to the Terms and Conditions
+	And I enter an email address containing <Email Address>
+	And I press create account button
+	Then I should see the duplicate email error message preventing account creation
+
+Examples:
+	| Email Address                                     |
 	| "existingbusinessaccount@guerrillamail.com"       |
 
-
 # Check that a user account which is not validated does not have the ability to register a device
-@IGNORE
+@TEST @UAT @PROD
 Scenario: User account which is not validated does not permit device registration
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
@@ -581,7 +601,7 @@ Scenario: User account which is not validated does not permit device registratio
 	And I can sign out of Brother Online
 
 # Check maximun username(241) and password(30) length when creating a user account
-@IGNORE
+@TEST @UAT @PROD
 Scenario: Validate that a user account can be created using the maximun 241 username and 30 password character lengths 																			
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
@@ -611,10 +631,9 @@ Scenario: Log in as a Printer On dealer and ensure that they can see the require
 Scenario: Create a user but test for BPID 
 	# Create a new user account but add a check for the Users BPID in the dbo.Users table
 
-
-@TEST @UAT @PROD 
 # Create an account for Brother Online for different language sites
-@IGNORE
+# PortugalCountry -On Dv2 environment the registerpage fields are inconsistent
+@TEST @UAT @PROD
 Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on multi lingual sites																				
 sign in and Sign Out
 	Given I want to create a new account with Brother Online "<Country>"
@@ -633,7 +652,7 @@ sign in and Sign Out
 	When I press Create Your Account
 	Then I should see my account confirmation page
 	And When I Click Go Back
-	And Once I have Validated an Email was received and verified my account
+	#And Once I have Validated an Email was received and verified my account
 	Then I should be able to log into "<Country>" Brother Online using my account details
 	And I can sign out of Brother Online
 	Then I am redirected to the Brother Home Page
@@ -642,7 +661,7 @@ Scenarios:
 | United Kingdom    |
 | Ireland           |
 | Denmark		    |
-| Portugal		    |
+#| Portugal		    | 
 | Finland		    |
 # | Slovenia			|
 # | Slovakia 		|
@@ -650,10 +669,9 @@ Scenarios:
 | Netherlands		|
 # | Poland			|
 
-
-
-@TEST @UAT @PROD @IGNORE
+@IGNORE
 # Create an account for Brother Online for spain sites
+#On Dv2 environment the registerpage fields are inconsistent.
 Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on Spain site																			
 sign in and Sign Out
 	Given I want to create a new account with Brother Online "<Country>"
@@ -680,8 +698,9 @@ Scenarios:
 | Country |
 |Spain	  | 
 
-@TEST @UAT @PROD @IGNORE
+@IGNORE
 # Create an account for Brother Online for Italy
+#On Dv2 environment the registerpage fields are inconsistent.
 Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on Italy site																			
 sign in and Sign Out
 	Given I want to create a new account with Brother Online "<Country>"
@@ -711,6 +730,7 @@ Scenarios:
 
 
 # User unable to create a BOL Italy account without entering a valid tax code
+#On Dv2 environment the registerpage fields are inconsistent.
 @IGNORE
 Scenario Outline: Customer unable to create a new BOL Italy account without entering a valid tax code
 	Given I want to create a new account with Brother Online "<Country>"
@@ -736,7 +756,8 @@ Scenarios:
 
 
 #Validate that a Customer Account holder is able to swap to a Business Account
-@IGNORE
+
+@TEST @UAT @PROD
 Scenario: Validate that a newly created customer account can be swapped to a business account
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
@@ -754,12 +775,12 @@ Scenario: Validate that a newly created customer account can be swapped to a bus
 	When I press Create Your Account
 	Then I should see my account confirmation page
 	And When I Click Go Back
-	And Once I have Validated an Email was received and verified my account
+	#And Once I have Validated an Email was received and verified my account
 	Then I should be able to log into "United Kingdom" Brother Online using my account details
 	When I navigate to my account for "United Kingdom"
 	When I clicked on Business Details
 	And I declare that I do use this account for business on my account page
-	And I add my company name as "AutoTestLtd" on Business Details page
+	And I add my company name as "AutoTestLtd" on Business Details page                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
 	And I add my company VAT number as "GB145937540" on Business Details Page
 	And I select my Business Sector as "IT and telecommunications services" on Business Details Page
 	And I select number of Employees as "11 - 50" on Business Details Page
@@ -769,10 +790,11 @@ Scenario: Validate that a newly created customer account can be swapped to a bus
 
 # Accounts created on DV2, QAS and Prod for the following test - existingcustomeraccwithorder@guerrillamail.com/Password100 
 # Validate that a Customer Account holder who has made an order is not able to swap to a Business account
-@IGNORE
+
+@TEST @UAT @PROD
 Scenario Outline: Customer account holder is unable to switch to a business account once an order has been placed
 	Given I launch Brother Online for "United Kingdom"
-	When I click on Create Account for "United Kingdom"
+     When I click on Create Account for "United Kingdom"
 	And I am redirected to the Brother Login/Register page
 	And I enter an email address containing <Email Address>
 	When I enter a valid Password <Password>
@@ -786,5 +808,7 @@ Scenario Outline: Customer account holder is unable to switch to a business acco
 	Then I am redirected to the Brother Home Page
 
 	Scenarios:
-		| Email Address										| Password      |
+		| Email Address				                        | Password      |
 		| "existingcustomeraccwithorder@guerrillamail.com"	| "Password100" |
+
+

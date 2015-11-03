@@ -869,6 +869,12 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<RegistrationPage>().PopulateConfirmPasswordTextBox(confirmpassword);
             CurrentPage.As<RegistrationPage>().PopulateConfirmPasswordTextBox(Keys.Tab);
         }
+      
+        [When(@"I enter the different confirmed password ""(.*)""")]
+        public void WhenIEnterTheDifferentConfirmedPassword(string confirmpassword)
+        {
+            CurrentPage.As<RegistrationPage>().PopulateConfirmPasswordTextBox(confirmpassword);
+        }
 
         [When(
             @"I enter the different password in the creative center confirm password field containing ""(.*)"" and press tab"
@@ -885,6 +891,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [Then(@"I refresh the current page again")]
         public void ThenIShouldRefreshTheCurrentPageToClearAllErrorMessages()
         {
+
             CurrentDriver.Navigate().Refresh();
         }
 
