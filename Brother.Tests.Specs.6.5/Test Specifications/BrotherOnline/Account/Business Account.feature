@@ -36,7 +36,7 @@ Scenario: Create a business account and change the business account to be Custom
 	# And I can navigate back to Brother Online home page
 	And I can sign out of Brother Online
 
-@ignore 
+ @TEST @UAT @PROD
 #***** NEW details required as the account is set as a user and so need to create new business account for all three environments
 
 # Accounts created on DV2, QAS and Prod for the following test - existingbusinessaccwithorder@guerrillamail.com/Password100 

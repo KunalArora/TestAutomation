@@ -148,12 +148,16 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Business account holder is unable to switch to a customer account once an order h" +
             "as been placed")]
-        [NUnit.Framework.IgnoreAttribute()]
+        [NUnit.Framework.CategoryAttribute("TEST")]
+        [NUnit.Framework.CategoryAttribute("UAT")]
+        [NUnit.Framework.CategoryAttribute("PROD")]
         [NUnit.Framework.TestCaseAttribute("\"existingbusinessaccwithorder@guerrillamail.com\"", "\"Password100\"", null)]
         public virtual void BusinessAccountHolderIsUnableToSwitchToACustomerAccountOnceAnOrderHasBeenPlaced(string emailAddress, string password, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "ignore"};
+                    "TEST",
+                    "UAT",
+                    "PROD"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
