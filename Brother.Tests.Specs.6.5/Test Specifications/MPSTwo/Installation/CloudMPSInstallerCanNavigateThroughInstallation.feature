@@ -14,7 +14,7 @@ Scenario Outline: Installer can progress with installation for Email Communicati
 	And I extract the installer url from Installation Request
 	When I navigate to the installer page
 	And I enter the contract reference number
-	And I enter "<Country>" device serial number for "<Method>" communication
+	And I enter device serial number for "<Method>" communication
 	And I enter the device IP address
 	Then I can connect the device to Brother environment
 	And I can complete device installation
@@ -27,7 +27,7 @@ Scenarios:
 	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Email  |
 
 
-Scenario Outline: German Installer can progress with installation for Email Communication
+Scenario Outline: German And Austria Installer can progress with installation for Email Communication
 	Given German Dealer have created a "<Country>" contract of "<ContractType>" and "<UsageType>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And the contract created above is approved
@@ -36,7 +36,7 @@ Scenario Outline: German Installer can progress with installation for Email Comm
 	And I extract the installer url from Installation Request
 	When I navigate to the installer page
 	And I enter the contract reference number
-	And I enter "<Country>" device serial number for "<Method>" communication 
+	And I enter device serial number for "<Method>" communication 
 	And I enter the device IP address
 	Then I can connect the device to Brother environment
 	And I can complete device installation
@@ -46,12 +46,13 @@ Scenario Outline: German Installer can progress with installation for Email Comm
 Scenarios:
 
 	| Role                            | Country | ContractType             | UsageType      | Role1            | Method |
+	| Cloud MPS Local Office Approver | Austria | Easy Print Pro & Service | Minimum Volume | Cloud MPS Dealer | Email  |
 	| Cloud MPS Local Office Approver | Germany | Easy Print Pro & Service | Minimum Volume | Cloud MPS Dealer | Email  |
 	
 
 
 
-Scenario Outline: German Dealer can create installation request for Cloud Communication
+Scenario Outline: German And Austria Dealer can create installation request for Cloud Communication
 	Given German Dealer have created a "<Country>" contract of "<ContractType>" and "<UsageType>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And the contract created above is approved
@@ -60,7 +61,7 @@ Scenario Outline: German Dealer can create installation request for Cloud Commun
 	And I extract the installer url from Installation Request
 	When I navigate to the installer page
 	And I enter the contract reference number
-	And I enter "<Country>" device serial number for "<Type>" communication 
+	And I enter device serial number for "<Type>" communication 
 	And I enter the device IP address
 	Then I can connect the device to Brother environment
 	And I can complete device installation
@@ -71,6 +72,8 @@ Scenarios:
 	| Role                            | Country | ContractType             | UsageType      | Role1            | Method | Type |
 	| Cloud MPS Bank                  | Germany | Leasing & Service        | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR |
 	| Cloud MPS Local Office Approver | Germany | Easy Print Pro & Service | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  |
+	| Cloud MPS Bank                  | Austria | Leasing & Service        | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR |
+	| Cloud MPS Local Office Approver | Austria | Easy Print Pro & Service | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  |
 	
 
 

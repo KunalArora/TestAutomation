@@ -72,7 +72,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             var noOfContacts = ExistingContactRadioButtonElement.Count;
 
-            var ranClick = new Random().Next(0, noOfContacts - 1);
+            var ranClick = new Random().Next(noOfContacts);
 
 
             ExistingContactRadioButtonElement[ranClick].Click();
@@ -104,7 +104,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerProposalsCreateTermAndTypePage ClickNextButton()
         {
-            WebDriver.Wait(Helper.DurationType.Millisecond, 2000);
+            //WebDriver.Wait(Helper.DurationType.Second, 2);
             ScrollTo(NextButton);
             NextButton.Click();
             return GetTabInstance<DealerProposalsCreateTermAndTypePage>(Driver);

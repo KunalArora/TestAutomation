@@ -94,7 +94,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterCreditLimit()
         {
-            if(IsGermanSystem())
+            if(IsGermanSystem() || IsAustriaSystem())
                 ClearAndType(CreditLimitElement, "30000");
         }
 

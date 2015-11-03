@@ -34,6 +34,7 @@ Scenario Outline: Create different varieties of German Purchase and Click propos
 
 	Scenarios: 
 	| Role             | Country | ContractType             | CreateOption        | UsageType      | Contract | Billing         | PriceHardware | Printer      | DeviceScreen | PaymentMethod | ClickVolume | ColourVolume |
+	| Cloud MPS Dealer | Austria | Easy Print Pro & Service | Create new customer | Minimum Volume | 5 Jahre  | Vierteljährlich | Tick          | MFC-L8650CDW | Full         | Pay upfront   | 800         | 800          |
 	| Cloud MPS Dealer | Germany | Easy Print Pro & Service | Create new customer | Minimum Volume | 5 Jahre  | Vierteljährlich | Tick          | MFC-L8650CDW | Full         | Pay upfront   | 800         | 800          |
 	
 @Ignore
@@ -66,7 +67,7 @@ Scenario Outline: Create different varieties of German Purchase and Click propos
 	Scenarios: 
 	| Role             | Country | ContractType             | CreateOption        | UsageType     | Contract | Billing      | PriceHardware | Printer    | DeviceScreen | ClickVolume |
 	| Cloud MPS Dealer | Germany | Easy Print Pro & Service | Create new customer | Pay As You Go | 3 Jahre  | Halbjährlich | Tick          | MFC-8510DN | Full         | 750         |
-	
+
 
 Scenario Outline: Create different varieties of German Purchase and Click proposal for an existing customer
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
@@ -98,7 +99,8 @@ Scenario Outline: Create different varieties of German Purchase and Click propos
 	Scenarios: 
 	| Role             | Country | ContractType             | CreateOption        | UsageType      | Contract | Billing         | PriceHardware | Printer      | DeviceScreen | PaymentMethod           | ClickVolume | ColourVolume |
 	| Cloud MPS Dealer | Germany | Easy Print Pro & Service | Create new customer | Minimum Volume | 5 Jahre  | Vierteljährlich | Tick          | MFC-L8650CDW | Full         | Included in Click Price | 800         | 800          |
-	
+	| Cloud MPS Dealer | Austria | Easy Print Pro & Service | Create new customer | Minimum Volume | 5 Jahre  | Vierteljährlich | Tick          | MFC-L8650CDW | Full         | Included in Click Price | 800         | 800          |
+
 @Ignore
 Scenario Outline: Create different varieties of German Purchase and Click proposal for an existing customer on Pay As You Go Term
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"

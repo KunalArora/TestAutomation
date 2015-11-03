@@ -6,7 +6,7 @@ Feature: CloudMPSGermanDealerCanSignContract
 
 
 
-Scenario Outline: German Dealer Can Sign A Leasing And Click Contract
+Scenario Outline: German And Austria Dealer Can Sign A Leasing And Click Contract
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created German Leasing and Click proposal 
 	And I am on Proposal List page
@@ -28,12 +28,14 @@ Scenario Outline: German Dealer Can Sign A Leasing And Click Contract
 	
 	Scenarios: 
 	| Role             | Country | Role2          |
-	| Cloud MPS Dealer | Germany  | Cloud MPS Bank |
+	| Cloud MPS Dealer | Austria | Cloud MPS Bank |
+	| Cloud MPS Dealer | Germany | Cloud MPS Bank |
+	
 	
 
 	
 
-Scenario Outline: German Dealer Can Sign A Purchase And Click Contract
+Scenario Outline: German And Austria Dealer Can Sign A Purchase And Click Contract
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created German Purchase and Click proposal 
 	And I am on Proposal List page
@@ -55,5 +57,7 @@ Scenario Outline: German Dealer Can Sign A Purchase And Click Contract
 	
 	Scenarios: 
 	| Role             | Country | Role2                           |
-	| Cloud MPS Dealer | Germany  | Cloud MPS Local Office Approver |
+	| Cloud MPS Dealer | Austria | Cloud MPS Local Office Approver |
+	| Cloud MPS Dealer | Germany | Cloud MPS Local Office Approver |
+	
 	

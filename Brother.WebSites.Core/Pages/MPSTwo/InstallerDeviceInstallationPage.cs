@@ -58,8 +58,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
        [FindsBy(How = How.CssSelector, Using = "#content_0_InputTimeZone_Input")] 
         public IWebElement TimeZoneOptionsElements;
 
-        private const string GermanUrl = @"online.de.";
-        private const string EnglandUrl = @"online.uk.";
+        
 
 
 
@@ -72,7 +71,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 throw new Exception("Installer page is not displayed");
             AssertElementPresent(ContractReferencePageAlertElement, "Installer pager alert");
 
-            MPSJobRunnerPage.RunResetSerialNumberJob(GetUrl().Contains(EnglandUrl) ? serialNumber : serialNumberBIG);
+            MPSJobRunnerPage.RunResetSerialNumberJob(IsUKSystem() ? serialNumber : serialNumberBIG);
         }
 
         public void EnterContractReference()
@@ -106,9 +105,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             TestCheck.AssertIsEqual(true, option.Any(), "Time Zone does not contain any options");
         }
 
-        public void EnterSerialNumber(string country)
+        public void EnterSerialNumber()
         {
-            if (country.Equals("United Kingdom"))
+            if (IsUKSystem())
             {
                 MPSJobRunnerPage.RunResetSerialNumberJob(serialNumber);
 
@@ -116,7 +115,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
                 ClearAndType(SerialNumberFieldElement, serialNumber);
             }
-            else if (country.Equals("Germany"))
+            else if (IsGermanSystem() || IsAustriaSystem())
             {
                 MPSJobRunnerPage.RunResetSerialNumberJob(serialNumberBIG);
 

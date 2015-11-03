@@ -12,7 +12,6 @@ namespace Brother.Tests.Selenium.Lib.Support
     
     public class MpsUtil
     {
-
         /// <summary>
         /// Generates a unique Proposal Name
         /// </summary>
@@ -25,6 +24,7 @@ namespace Brother.Tests.Selenium.Lib.Support
             return generatedProposalName;
         }
 
+       
         public static string GenerateUniqueEmail()
         {
             var generatedEmailAddress = FirstName() +

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reflection;
 using System.Threading;
 using Brother.Tests.Selenium.Lib.Support.SpecFlow;
 using NUnit.Framework;
@@ -21,10 +22,13 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
         private const int ElementSearchTimeout = 60;
         private const string germanUrl = @"online.de";
+        private const string austriaUrl = @"online.at";
+        private const string englandUrl = @"online.uk";
+        private const string franceUrl = @"online.fr";
 
         public static void AcceptCookieLaw(IWebDriver driver)
         {
-            MsgOutput(string.Format("Cookie request status = [{0}]", TestController.IsAcceptCookiesDismissed));
+            MsgOutput(String.Format("Cookie request status = [{0}]", TestController.IsAcceptCookiesDismissed));
             if (!TestController.IsAcceptCookiesDismissed)
             {
                 MsgOutput("Looking for Accept Cookie Request");
@@ -55,9 +59,29 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             return Driver.Url;
         }
 
+        public bool IsBigAtSystem()
+        {
+            return IsAustriaSystem() || IsGermanSystem();
+        }
+
         public bool IsGermanSystem()
         {
             return GetUrl().Contains(germanUrl);
+        }
+
+        public bool IsAustriaSystem()
+        {
+            return GetUrl().Contains(austriaUrl);
+        }
+
+        public bool IsUKSystem()
+        {
+            return GetUrl().Contains(englandUrl);
+        }
+
+        public bool IsFranceSystem()
+        {
+            return GetUrl().Contains(franceUrl);
         }
 
 
@@ -89,7 +113,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             catch (WebDriverException elementSearchTimeout)
             {
                 MsgOutput(elementSearchTimeout.Message);
-                throw new WebDriverTimeoutException(string.Format("Timeout searching for Element [{0}]. Timeout after [{1}]", element, ElementSearchTimeout));
+                throw new WebDriverTimeoutException(String.Format("Timeout searching for Element [{0}]. Timeout after [{1}]", element, ElementSearchTimeout));
             }
             return elementStatus;
         }
@@ -105,7 +129,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             catch (WebDriverException elementSearchTimeout)
             {
                 MsgOutput(elementSearchTimeout.Message);
-                throw new WebDriverTimeoutException(string.Format("Timeout searching for Element [{0}]. Timeout after [{1}]", element, ElementSearchTimeout));
+                throw new WebDriverTimeoutException(String.Format("Timeout searching for Element [{0}]. Timeout after [{1}]", element, ElementSearchTimeout));
             }
             return elementStatus;
         }
@@ -120,8 +144,8 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             }
             catch (WebDriverException elementSearchTimeout)
             {
-                MsgOutput(string.Format("Exception was [{0}]", elementSearchTimeout));
-                throw new WebDriverTimeoutException(string.Format("Timeout searching for Element [{0}]. Timeout after [{1}]", element, ElementSearchTimeout));
+                MsgOutput(String.Format("Exception was [{0}]", elementSearchTimeout));
+                throw new WebDriverTimeoutException(String.Format("Timeout searching for Element [{0}]. Timeout after [{1}]", element, ElementSearchTimeout));
             }
             return elementStatus;
         }
@@ -136,8 +160,8 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             }
             catch (WebDriverException elementSearchTimeout)
             {
-                MsgOutput(string.Format("Exception was [{0}]", elementSearchTimeout));
-                throw new WebDriverTimeoutException(string.Format("Timeout searching for Element [{0}]. Timeout after [{1}]", element, ElementSearchTimeout));
+                MsgOutput(String.Format("Exception was [{0}]", elementSearchTimeout));
+                throw new WebDriverTimeoutException(String.Format("Timeout searching for Element [{0}]. Timeout after [{1}]", element, ElementSearchTimeout));
             }
             return elementStatus;
         }
@@ -152,8 +176,8 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             WebDriver.SetWebDriverImplicitTimeout(new TimeSpan(0, 0, 0, timeOut));
             var wait = new DefaultWait<IWebDriver>(TestController.CurrentDriver);
             wait.Timeout = new TimeSpan(0, 0, 0, timeOut);
-            var methodName = System.Reflection.MethodBase.GetCurrentMethod();
-            wait.Message = string.Format("{0}:: Timeout of [{1}] seconds trying to locate element {2}", methodName, wait.Timeout, element);
+            var methodName = MethodBase.GetCurrentMethod();
+            wait.Message = String.Format("{0}:: Timeout of [{1}] seconds trying to locate element {2}", methodName, wait.Timeout, element);
             var retries = 0;
             var elementStatus = false;
 
@@ -161,22 +185,22 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             {
                 try
                 {
-                    MsgOutput(string.Format("Retry count = [{0}]", retries));
+                    MsgOutput(String.Format("Retry count = [{0}]", retries));
                     var searchElement = wait.Until(dr => dr.FindElement(By.CssSelector(element)).Displayed);
                     elementStatus = searchElement;
-                    MsgOutput(string.Format("Element Status = [{0}]", elementStatus));
-                    MsgOutput(string.Format("Timeout waited = [{0}]", wait.Timeout.TotalSeconds));
+                    MsgOutput(String.Format("Element Status = [{0}]", elementStatus));
+                    MsgOutput(String.Format("Timeout waited = [{0}]", wait.Timeout.TotalSeconds));
                     retries++;
                 }
                 catch (StaleElementReferenceException staleElement)
                 {
-                    MsgOutput(string.Format("Element [{0}] Not Found. Retrying [{1}] times", element, staleElement));
+                    MsgOutput(String.Format("Element [{0}] Not Found. Retrying [{1}] times", element, staleElement));
                     retries++;
                 }
                 catch (WebDriverException timeOutException)
                 {
-                    MsgOutput(string.Format("Element [{0}] Not Found after [{1}] seconds. Retrying [{2}] times", element, wait.Timeout.Seconds, retries));
-                    MsgOutput(string.Format("Exception was [{0}]", timeOutException));
+                    MsgOutput(String.Format("Element [{0}] Not Found after [{1}] seconds. Retrying [{2}] times", element, wait.Timeout.Seconds, retries));
+                    MsgOutput(String.Format("Exception was [{0}]", timeOutException));
                     retries++;
                 }
             }
@@ -189,8 +213,8 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             WebDriver.SetWebDriverImplicitTimeout(new TimeSpan(0, 0, 0, timeOut));
             var wait = new DefaultWait<IWebDriver>(TestController.CurrentDriver);
             wait.Timeout = new TimeSpan(0, 0, 0, timeOut);
-            var methodName = System.Reflection.MethodBase.GetCurrentMethod();
-            wait.Message = string.Format("{0}:: Timeout of [{1}] seconds trying to locate element {2}", methodName, wait.Timeout, element);
+            var methodName = MethodBase.GetCurrentMethod();
+            wait.Message = String.Format("{0}:: Timeout of [{1}] seconds trying to locate element {2}", methodName, wait.Timeout, element);
             var retries = 0;
             var elementStatus = false;
 
@@ -204,13 +228,13 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                 }
                 catch (StaleElementReferenceException staleElement)
                 {
-                    MsgOutput(string.Format("Element Not Found. Retrying [{0}] times", staleElement.Message));
+                    MsgOutput(String.Format("Element Not Found. Retrying [{0}] times", staleElement.Message));
                     retries++;
                 }
                 catch (WebDriverException timeOutException)
                 {
-                    MsgOutput(string.Format("Element Not Found after [{0}] seconds", wait.Timeout.Seconds));
-                    MsgOutput(string.Format("Exception was [{0}]", timeOutException));
+                    MsgOutput(String.Format("Element Not Found after [{0}] seconds", wait.Timeout.Seconds));
+                    MsgOutput(String.Format("Exception was [{0}]", timeOutException));
                     retries++;
                 }
             }
@@ -223,21 +247,21 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             WebDriver.SetWebDriverImplicitTimeout(new TimeSpan(0, 0, 0, timeOut));
             var wait = new DefaultWait<IWebDriver>(Driver);
             wait.Timeout = new TimeSpan(0, 0, 0, timeOut);
-            var methodName = System.Reflection.MethodBase.GetCurrentMethod();
-            wait.Message = string.Format("{0}:: Timeout of [{1}] seconds trying to locate element {2}", methodName, wait.Timeout, elementSearch);
+            var methodName = MethodBase.GetCurrentMethod();
+            wait.Message = String.Format("{0}:: Timeout of [{1}] seconds trying to locate element {2}", methodName, wait.Timeout, elementSearch);
 
-            MsgOutput(string.Format("Waiting for text [{0}] to exist on control [{1}]", textToExist, elementSearch));
+            MsgOutput(String.Format("Waiting for text [{0}] to exist on control [{1}]", textToExist, elementSearch));
             wait.IgnoreExceptionTypes(typeof(StaleElementReferenceException));
 
             // we need to reset the Default global timeouts after override
             if (wait.Until(d => d.FindElement(By.CssSelector(elementSearch)).Text.Contains(textToExist)))
             {
                 WebDriver.SetWebDriverDefaultTimeOuts(WebDriver.DefaultTimeOut.Implicit);
-                MsgOutput(string.Format("Text [{0}] exists on control [{1}]", textToExist, elementSearch));
+                MsgOutput(String.Format("Text [{0}] exists on control [{1}]", textToExist, elementSearch));
                 return true;
             }
             WebDriver.SetWebDriverDefaultTimeOuts(WebDriver.DefaultTimeOut.Implicit);
-            MsgOutput(string.Format("Text [{0}] DOES NOT exist on control [{1}]", textToExist, elementSearch));
+            MsgOutput(String.Format("Text [{0}] DOES NOT exist on control [{1}]", textToExist, elementSearch));
             return false;
         }
 
@@ -252,15 +276,15 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             }
             catch (NullReferenceException nullReference)
             {
-                throw new Exception(string.Format("The element being referenced is null. Exception was [{0}]", nullReference.Message));
+                throw new Exception(String.Format("The element being referenced is null. Exception was [{0}]", nullReference.Message));
             }
             catch (NoSuchElementException noSuchElementException)
             {
-                throw new Exception(string.Format("The element being referenced does not exist. Exception was [{0}]", noSuchElementException.Message));
+                throw new Exception(String.Format("The element being referenced does not exist. Exception was [{0}]", noSuchElementException.Message));
             }
             catch (WebDriverTimeoutException webDriverTimeoutException)
             {
-                throw new Exception(string.Format("The element being referenced is still displayed [{0}]", webDriverTimeoutException.Message));
+                throw new Exception(String.Format("The element being referenced is still displayed [{0}]", webDriverTimeoutException.Message));
             }
         }
 
@@ -330,7 +354,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             }
             catch (ElementNotVisibleException elementNotVisibleException)
             {
-                TestCheck.AssertFailTest(string.Format("Element is not visible [{0}]", elementNotVisibleException.Message));
+                TestCheck.AssertFailTest(String.Format("Element is not visible [{0}]", elementNotVisibleException.Message));
             }
         }
 
@@ -354,7 +378,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             }
             catch (ElementNotVisibleException elementNotVisibleException)
             {
-                TestCheck.AssertFailTest(string.Format("Element is not visible [{0}] ", elementNotVisibleException.Message));
+                TestCheck.AssertFailTest(String.Format("Element is not visible [{0}] ", elementNotVisibleException.Message));
             }
         }
 
@@ -425,15 +449,15 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             }
             catch (ElementNotVisibleException elementNotVisibleException)
             {
-               TestCheck.AssertFailTest(string.Format("Element is not accessible [{0}]", elementNotVisibleException.Message));
+               TestCheck.AssertFailTest(String.Format("Element is not accessible [{0}]", elementNotVisibleException.Message));
             }
             catch (StaleElementReferenceException ex)
             {
-                TestCheck.AssertFailTest(string.Format("Element is not accessible [{0}]", ex.Message));
+                TestCheck.AssertFailTest(String.Format("Element is not accessible [{0}]", ex.Message));
             }
             catch (WebDriverException ex)
             {
-                TestCheck.AssertFailTest(string.Format("Timeout scrolling to element [{0}]", ex.Message));
+                TestCheck.AssertFailTest(String.Format("Timeout scrolling to element [{0}]", ex.Message));
             }
         }
 
@@ -446,7 +470,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         public void PressEnter(IWebDriver driver)
         {
             Actions action = new Actions(driver);
-            action.SendKeys(OpenQA.Selenium.Keys.Return);
+            action.SendKeys(Keys.Return);
         }
 
         /// <summary>
@@ -463,11 +487,11 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             }
             catch (ElementNotVisibleException elementNotVisibleException)
             {
-                TestCheck.AssertFailTest(string.Format("Element is not visible [{0}]", elementNotVisibleException.Message));
+                TestCheck.AssertFailTest(String.Format("Element is not visible [{0}]", elementNotVisibleException.Message));
             }
             catch (Exception ex)
             {
-                TestCheck.AssertFailTest(string.Format("Element is not accessible [{0}]", ex.Message));
+                TestCheck.AssertFailTest(String.Format("Element is not accessible [{0}]", ex.Message));
             }
         }
 
@@ -482,12 +506,12 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         {
             try
             {
-                var script = string.Format("window.scrollBy({0}, {1})", xCoord, yCoord);
+                var script = String.Format("window.scrollBy({0}, {1})", xCoord, yCoord);
                 ((IJavaScriptExecutor)driver).ExecuteScript(script);
             }
             catch (ElementNotVisibleException elementNotVisibleException)
             {
-                TestCheck.AssertFailTest(string.Format("Element is not visible [{0}]", elementNotVisibleException.Message));
+                TestCheck.AssertFailTest(String.Format("Element is not visible [{0}]", elementNotVisibleException.Message));
             }
         }
 
@@ -563,7 +587,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             IWebElement element = null;
             try
             {
-                MsgOutput(string.Format("Looking for Element {0} by Css Selector", elementName));
+                MsgOutput(String.Format("Looking for Element {0} by Css Selector", elementName));
                 element = FindElementByCssSelector(elementName);
                 if (element == null)
                 {
@@ -573,11 +597,11 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             }
             catch (NoSuchElementException elementNotFound)
             {
-                MsgOutput(string.Format("Element not found", elementNotFound.Message));
+                MsgOutput(String.Format("Element not found", elementNotFound.Message));
             }
             catch (WebDriverTimeoutException timeoutException)
             {
-                MsgOutput(string.Format("Element not found", timeoutException.Message));
+                MsgOutput(String.Format("Element not found", timeoutException.Message));
             }
             return element;
         }
@@ -587,7 +611,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             IWebElement element = null;
             try
             {
-                MsgOutput(string.Format("Looking for Element {0} by Css Selector", elementName));
+                MsgOutput(String.Format("Looking for Element {0} by Css Selector", elementName));
                 element = context.FindElement(By.CssSelector(elementName));
                 if (element == null)
                 {
@@ -597,11 +621,11 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             }
             catch (NoSuchElementException elementNotFound)
             {
-                MsgOutput(string.Format("Element not found", elementNotFound.Message));
+                MsgOutput(String.Format("Element not found", elementNotFound.Message));
             }
             catch (WebDriverTimeoutException timeoutException)
             {
-                MsgOutput(string.Format("Element not found", timeoutException.Message));
+                MsgOutput(String.Format("Element not found", timeoutException.Message));
             }
             return element;
         }
@@ -611,7 +635,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             IList<IWebElement> element = null;
             try
             {
-                MsgOutput(string.Format("Looking for Elements {0} by Css Selector", elementName));
+                MsgOutput(String.Format("Looking for Elements {0} by Css Selector", elementName));
                 element = FindElementsByCssSelector(elementName);
                 if (element == null)
                 {
@@ -621,11 +645,11 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             }
             catch (NoSuchElementException elementNotFound)
             {
-                MsgOutput(string.Format("Element not found", elementNotFound.Message));
+                MsgOutput(String.Format("Element not found", elementNotFound.Message));
             }
             catch (WebDriverTimeoutException timeoutException)
             {
-                MsgOutput(string.Format("Element not found", timeoutException.Message));
+                MsgOutput(String.Format("Element not found", timeoutException.Message));
             }
             return element;
         }
@@ -639,16 +663,16 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             WebDriver.SetWebDriverImplicitTimeout(new TimeSpan(0, 0, 0, timeOut));
             try
             {
-                MsgOutput(string.Format("Looking for Element {0} by Css Selector. Waiting for {1} seconds", elementName, timeOut));
+                MsgOutput(String.Format("Looking for Element {0} by Css Selector. Waiting for {1} seconds", elementName, timeOut));
                 element = FindElementByCssSelector(elementName);
             }
             catch (NoSuchElementException elementNotFound)
             {
-                MsgOutput(string.Format("Element not found", elementNotFound.Message));
+                MsgOutput(String.Format("Element not found", elementNotFound.Message));
             }
             catch (WebDriverTimeoutException timeoutException)
             {
-                MsgOutput(string.Format("Element not found", timeoutException.Message));
+                MsgOutput(String.Format("Element not found", timeoutException.Message));
             }
             WebDriver.SetPageLoadTimeout(defaultTimeout);
             WebDriver.SetWebDriverImplicitTimeout(implicitTimeout);
@@ -665,16 +689,16 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             WebDriver.SetWebDriverImplicitTimeout(new TimeSpan(0, 0, 0, timeOut));
             try
             {
-                MsgOutput(string.Format("Looking for Element {0} by Css Selector. Waiting for {1} seconds", elementName, timeOut));
+                MsgOutput(String.Format("Looking for Element {0} by Css Selector. Waiting for {1} seconds", elementName, timeOut));
                 element = context.FindElement(By.CssSelector(elementName));
             }
             catch (NoSuchElementException elementNotFound)
             {
-                MsgOutput(string.Format("Element not found", elementNotFound.Message));
+                MsgOutput(String.Format("Element not found", elementNotFound.Message));
             }
             catch (WebDriverTimeoutException timeoutException)
             {
-                MsgOutput(string.Format("Element not found", timeoutException.Message));
+                MsgOutput(String.Format("Element not found", timeoutException.Message));
             }
             WebDriver.SetPageLoadTimeout(defaultTimeout);
             WebDriver.SetWebDriverImplicitTimeout(implicitTimeout);
@@ -691,16 +715,16 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             WebDriver.SetWebDriverImplicitTimeout(new TimeSpan(0, 0, 0, timeOut));
             try
             {
-                MsgOutput(string.Format("Looking for Elements {0} by Css Selector. Waiting for {1} seconds", elementName, timeOut));
+                MsgOutput(String.Format("Looking for Elements {0} by Css Selector. Waiting for {1} seconds", elementName, timeOut));
                 element = FindElementsByCssSelector(elementName);
             }
             catch (NoSuchElementException elementNotFound)
             {
-                MsgOutput(string.Format("Element not found", elementNotFound.Message));
+                MsgOutput(String.Format("Element not found", elementNotFound.Message));
             }
             catch (WebDriverTimeoutException timeoutException)
             {
-                MsgOutput(string.Format("Element not found", timeoutException.Message));
+                MsgOutput(String.Format("Element not found", timeoutException.Message));
             }
             WebDriver.SetPageLoadTimeout(defaultTimeout);
             WebDriver.SetWebDriverImplicitTimeout(implicitTimeout);
@@ -731,7 +755,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             }
             catch (ElementNotVisibleException elementNotVisibleException)
             {
-                TestCheck.AssertFailTest(string.Format("Element is not visible [{0}]", elementNotVisibleException.Message));
+                TestCheck.AssertFailTest(String.Format("Element is not visible [{0}]", elementNotVisibleException.Message));
             }
         }
 
@@ -800,7 +824,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                 {
                     MsgOutput("Inner exception was ", staleElement.InnerException.Message);
                 }
-                TestCheck.AssertFailTest(string.Format("Stale element detected [{0}]", staleElement.Message));
+                TestCheck.AssertFailTest(String.Format("Stale element detected [{0}]", staleElement.Message));
             }
             catch (TimeoutException timeoutException)
             {
@@ -945,13 +969,13 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             catch (InvalidOperationException elementNotClickable)
             {
                 MsgOutput(elementNotClickable.Message);
-                MsgOutput(string.Format("Element was not clickable on screen at location {0} {1}", element.Location.X, element.Location.Y));
+                MsgOutput(String.Format("Element was not clickable on screen at location {0} {1}", element.Location.X, element.Location.Y));
                 return false;
             }
             catch (ElementNotVisibleException elementNotVisible)
             {
                 MsgOutput(elementNotVisible.Message);
-                MsgOutput(string.Format("Element was not clickable on screen at location {0} {1}", element.Location.X, element.Location.Y));
+                MsgOutput(String.Format("Element was not clickable on screen at location {0} {1}", element.Location.X, element.Location.Y));
                 return false;
             }
             return true;
@@ -966,22 +990,22 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             }
             catch (NullReferenceException nullReferenceException)
             {
-                MsgOutput(string.Format("Element was NULL [{0}]", nullReferenceException.Message));
+                MsgOutput(String.Format("Element was NULL [{0}]", nullReferenceException.Message));
                 return false;
             }
             catch (NoSuchElementException noSuchElement)
             {
-                MsgOutput(string.Format("Element was not present [{0}]", noSuchElement.Message));
+                MsgOutput(String.Format("Element was not present [{0}]", noSuchElement.Message));
                 return false;
             }
             catch (ElementNotVisibleException elementNotVisible)
             {
-                MsgOutput(string.Format("Element was not present [{0}]", elementNotVisible.Message));
+                MsgOutput(String.Format("Element was not present [{0}]", elementNotVisible.Message));
                 return false;
             }
             catch (InvalidElementStateException invalidElement)
             {
-                MsgOutput(string.Format("Element : [{0}] was a invalid Eeement [{1}]", element.TagName, invalidElement));
+                MsgOutput(String.Format("Element : [{0}] was a invalid Eeement [{1}]", element.TagName, invalidElement));
                 return false;
             }
         }
@@ -999,9 +1023,9 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             }
             catch (WebDriverException timeOutDriverException)
             {
-                MsgOutput(string.Format("AssertElementPresent timeout searching for element [{0}]. Timeout period was [{1}]", elementDescription, 120));
+                MsgOutput(String.Format("AssertElementPresent timeout searching for element [{0}]. Timeout period was [{1}]", elementDescription, 120));
                 MsgOutput("Exception was ", timeOutDriverException.Message);
-                TestCheck.AssertFailTest(string.Format("Element [{0}] not found", elementDescription));
+                TestCheck.AssertFailTest(String.Format("Element [{0}] not found", elementDescription));
             }
         }
 
@@ -1012,15 +1036,15 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                 WaitUpTo(timeOut, () => IsElementPresent(element), elementDescription);
                 if (!IsElementPresent(element))
                 {
-                    throw new AssertionException(string.Format("AssertElementPresent Failed: Could not find '{0}'",
+                    throw new AssertionException(String.Format("AssertElementPresent Failed: Could not find '{0}'",
                         elementDescription));
                 }
             }
             catch (WebDriverException timeOutDriverException)
             {
-                MsgOutput(string.Format("AssertElementPresent timeout searching for element [{0}]. Timeout period was [{1}]", elementDescription, timeOut));
+                MsgOutput(String.Format("AssertElementPresent timeout searching for element [{0}]. Timeout period was [{1}]", elementDescription, timeOut));
                 MsgOutput("Exception was ", timeOutDriverException.Message);
-                TestCheck.AssertFailTest(string.Format("Unable to locate element [{0}]", element));
+                TestCheck.AssertFailTest(String.Format("Unable to locate element [{0}]", element));
             }
         }
 
@@ -1089,7 +1113,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
         private static object IsCheckboxChecked(string checkboxId)
         {
-            var script = string.Format("return $('{0}').prop( 'checked')", checkboxId);
+            var script = String.Format("return $('{0}').prop( 'checked')", checkboxId);
             var js = (IJavaScriptExecutor)TestController.CurrentDriver;
             return js.ExecuteScript(script);
         }
@@ -1097,23 +1121,23 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         public static bool SetCheckboxStatus(string checkboxId, bool desiredCheckedStatus, string elementDescription)
         {
             // Checking if the Checkbox is already set to the desired state
-            WebDriver.Wait(Helper.DurationType.Second, 2);
+            WebDriver.Wait(DurationType.Second, 2);
             var isChecked = IsCheckboxChecked(checkboxId);
-            MsgOutput(string.Format("Checkbox status = [{0}] - True = Checked", Convert.ToBoolean(isChecked)));
+            MsgOutput(String.Format("Checkbox status = [{0}] - True = Checked", Convert.ToBoolean(isChecked)));
             if (Convert.ToBoolean(isChecked) == desiredCheckedStatus)
             {
                 return true;
             }
 
-            MsgOutput(string.Format("Setting Checbox status to = [{0}] - True = Checked", desiredCheckedStatus));
+            MsgOutput(String.Format("Setting Checbox status to = [{0}] - True = Checked", desiredCheckedStatus));
 
             RunScript(desiredCheckedStatus
-                ? string.Format("$('{0}').prop( 'checked', true )", checkboxId)
-                : string.Format("$('{0}').prop( 'checked', false )", checkboxId));
+                ? String.Format("$('{0}').prop( 'checked', true )", checkboxId)
+                : String.Format("$('{0}').prop( 'checked', false )", checkboxId));
 
-            WebDriver.Wait(Helper.DurationType.Second, 2);
+            WebDriver.Wait(DurationType.Second, 2);
             isChecked = IsCheckboxChecked(checkboxId);
-            MsgOutput(string.Format("Checkbox status = [{0}] - True = Checked", Convert.ToBoolean(isChecked)));
+            MsgOutput(String.Format("Checkbox status = [{0}] - True = Checked", Convert.ToBoolean(isChecked)));
             TestCheck.AssertIsEqual(desiredCheckedStatus, Convert.ToBoolean(isChecked), "Unable to set Checkbox status to correct value");
             return Convert.ToBoolean(isChecked) == desiredCheckedStatus;
         }
@@ -1133,7 +1157,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             AssertElementPresent(element, elementDescription, 200);
             var actualtext = element.Text;
             if (actualtext.Contains(expectedValue)) return true;
-            MsgOutput(string.Format("ElementContainsText Failed: Value for '{0}' did not contain expected value. Expected: [{1}], Actual: [{2}]", elementDescription, expectedValue, actualtext));
+            MsgOutput(String.Format("ElementContainsText Failed: Value for '{0}' did not contain expected value. Expected: [{1}], Actual: [{2}]", elementDescription, expectedValue, actualtext));
             return false;
         }
 
@@ -1142,7 +1166,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             AssertElementPresent(element, elementDescription, 200);
             var actualtext = element.Text;
             if (actualtext != null && !actualtext.Contains(expectedValue)) return true;
-            MsgOutput(string.Format(
+            MsgOutput(String.Format(
                     "ElementNotContainsText Failed: Value for '{0}' did not contain expected value. Expected: [{1}], Actual: [{2}]",
                     elementDescription, expectedValue, actualtext));
             return false;

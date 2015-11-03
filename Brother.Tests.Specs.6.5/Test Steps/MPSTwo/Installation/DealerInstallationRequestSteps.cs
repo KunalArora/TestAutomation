@@ -56,12 +56,12 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             CurrentPage.As<InstallerDeviceInstallationPage>().ProceedOnInstaller();
         }
 
-        [When(@"I enter ""(.*)"" device serial number for ""(.*)"" communication")]
-        public void WhenIEnterDeviceSerialNumberForCommunication(string country, string method)
+        [When(@"I enter device serial number for ""(.*)"" communication")]
+        public void WhenIEnterDeviceSerialNumberForCommunication(string method)
         {
             CurrentPage.As<InstallerDeviceInstallationPage>().VerifyTimeZoneIsDisplayed(method);
             if (method == "BOR") return;
-            CurrentPage.As<InstallerDeviceInstallationPage>().EnterSerialNumber(country);
+            CurrentPage.As<InstallerDeviceInstallationPage>().EnterSerialNumber();
         }
 
 
