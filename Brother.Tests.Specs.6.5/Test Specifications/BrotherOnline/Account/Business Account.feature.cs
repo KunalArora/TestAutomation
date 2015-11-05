@@ -73,6 +73,7 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.Account
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Create a business account and change the business account to be Customer Account")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.CategoryAttribute("TEST")]
         [NUnit.Framework.CategoryAttribute("UAT")]
         [NUnit.Framework.CategoryAttribute("PROD")]
@@ -81,7 +82,8 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.Account
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create a business account and change the business account to be Customer Account", new string[] {
                         "TEST",
                         "UAT",
-                        "PROD"});
+                        "PROD",
+                        "ignore"});
 #line 9
 this.ScenarioSetup(scenarioInfo);
 #line 10

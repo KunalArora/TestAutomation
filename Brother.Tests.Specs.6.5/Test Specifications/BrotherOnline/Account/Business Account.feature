@@ -4,7 +4,7 @@ Feature: Business Account
 	As a Business customer
 	I need to be able to have account management options
 
-@TEST @UAT @PROD
+@TEST @UAT @PROD @ignore
 #Validate that a Business Account holder is able to swap to a Customer Account
 Scenario: Create a business account and change the business account to be Customer Account
 	Given I want to create a new account with Brother Online "United Kingdom"
