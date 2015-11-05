@@ -278,6 +278,8 @@ Scenario: Business account which is not validated does not permit device registr
 
 # Accounts created on DV2, QAS and Prod for the following test - existinguseraccount@guerrillamail.com/existingbusinessaccount@guerrillamail.com/Password100
 # Check that existing brother online user and business account holders cannot login with valid/invalid username/password combinations
+
+@TEST @UAT @PROD
 Scenario Outline: Validate that user or business account holders are unable to login to brother online with invalid credentials
 	Given I launch Brother Online for "United Kingdom"
 	When I click on Create Account for "United Kingdom"
@@ -297,6 +299,8 @@ Scenario Outline: Validate that user or business account holders are unable to l
 	 		
 # Accounts created on DV2, QAS and Prod for the following test - existinguseraccount@guerrillamail.com/existingbusinessaccount@guerrillamail.com/Password100
 # Check that existing brother online user and business account holders can still login with a username that has leading/trailing spaces or mixed letter casing
+
+@TEST @UAT @PROD
 Scenario Outline: Validate that user or business account holders can still login to brother online with spaces or different case in the username providing the password is correct
 	Given I launch Brother Online for "United Kingdom"
 	When I click on Create Account for "United Kingdom"
@@ -314,7 +318,9 @@ Scenario Outline: Validate that user or business account holders can still login
 		| "ExIsTiNgBuSiNeSsAcCoUnT@gUeRrIlLaMaIl.CoM"			| "Password100" |
 
 
-# Check maximun username(241) and password(30) length when creating a business account
+# Check maximun username(241) and password(30) length when creating a business accoun
+
+@TEST @UAT @PROD
 Scenario: Validate that a business account can be created using the maximun 241 username and 30 password character lengths 																		
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
