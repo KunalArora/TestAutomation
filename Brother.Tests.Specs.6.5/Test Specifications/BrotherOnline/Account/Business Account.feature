@@ -132,10 +132,9 @@ Scenario: Business user creates a new account with Brother Online and add Busine
 	Then I can sign out of Brother Online
 
 
-@SMOKE
+@SMOKE @TEST @UAT @PROD
 # Create a new business account
-Scenario: Customer creates a new Business account with Brother Online using valid credentials (NO VAT NUMBER), confirm by email
-																				sign in and Sign Out
+Scenario: Customer creates a new Business account with Brother Online using valid credentials (NO VAT NUMBER), confirm by email sign in and Sign Out
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
 	And I am redirected to the Brother Login/Register page
@@ -155,7 +154,7 @@ Scenario: Customer creates a new Business account with Brother Online using vali
 	When I press Create Your Account
 	Then I should see my account confirmation page
 	And When I Click Go Back
-	And Once I have Validated an Email was received and verified my account
+	#And Once I have Validated an Email was received and verified my account
 	Then I should be able to log into "United Kingdom" Brother Online using my account details
 	And I can sign out of Brother Online
 	Then I am redirected to the Brother Home Page
