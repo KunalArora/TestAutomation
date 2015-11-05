@@ -96,10 +96,30 @@ Scenario: Business Customer can change their business details after logging into
 	Then I can verify successfull update message appeared at the top
 	Then I can sign out of Brother Online
 
+@TEST @UAT @PROD
 # Create a new user account - Add business details for new user 
 Scenario: Business user creates a new account with Brother Online and add Business details in My account page
-	Given I am logged onto Brother Online "United Kingdom" using valid credentials
-	When I navigate to my account for "United Kingdom"	
+	Given I want to create a new account with Brother Online "United Kingdom"
+	When I click on Create Account for "United Kingdom"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I declare that I do use this account for business
+	And I fill in the registration information using a valid email address 
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Password        | @@@@@	       |
+	| ConfirmPassword | @@@@@		   |
+    And I add my company name as "AutoTestLtd"
+	And I select my Business Sector as "IT and telecommunications services"
+	And I select number of Employees as "11 - 50"
+	And I have Agreed to the Terms and Conditions
+	When I press Create Your Account
+	Then I should see my account confirmation page
+	And When I Click Go Back
+	#And Once I have Validated an Email was received and verified my account
+	Then I should be able to log into "United Kingdom" Brother Online using my account details
+	When I navigate to my account for "United Kingdom"
 	And I clicked on Business Details
 	And I am redirected to the Business Details Page
 	And I declare that I do use this account for business on my account page
