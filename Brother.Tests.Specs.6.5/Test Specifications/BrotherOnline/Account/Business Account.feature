@@ -159,7 +159,8 @@ Scenario: Customer creates a new Business account with Brother Online using vali
 	And I can sign out of Brother Online
 	Then I am redirected to the Brother Home Page
 
-@SMOKE
+@IGNORE
+#To register device email validation required
 # Create a new Business user account and check Add Device so that we know the user registration was successful
 Scenario: Business customer creates a new account with Brother Online using valid credentials, and validates the user is validated so it can create a device registration but not actually register
 	Given I want to create a new account with Brother Online "United Kingdom"
@@ -192,6 +193,8 @@ Scenario: Business customer creates a new account with Brother Online using vali
 	Then I can sign out of Brother Online
 	Then I am redirected to the Brother Home Page
 
+
+@TEST @UAT @PROD
 # Check mandatory terms and conditions when creating a business account
 Scenario: Validate that an error message is displayed for mandatory terms and conditions if they are not accepted during creation of a business account
 	Given I want to create a new account with Brother Online "United Kingdom"
