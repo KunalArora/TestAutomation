@@ -219,6 +219,8 @@ Scenario: Validate that an error message is displayed for mandatory terms and co
 # Accounts created on DV2, QAS and Prod for the following test - existinguseraccount@guerrillamail.com/existingbusinessaccount@guerrillamail.com/Password100
 # Check that a business account cannot be created with an email address that already exists for another business account
 # Check that a business account cannot be created with an email address that already exists for another user account
+
+@TEST @UAT @PROD
 Scenario Outline: Customer cannot register for a new business account using an email address that already exists for another business or user account
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
@@ -246,7 +248,8 @@ Scenarios:
 	| "existingbusinessaccount@guerrillamail.com"         |
 	| "existinguseraccount@guerrillamail.com"       |
 
-# Check that a business account which is not validated does not have the ability to register a device		
+# Check that a business account which is not validated does not have the ability to register a device	
+@TEST @UAT @PROD	
 Scenario: Business account which is not validated does not permit device registration
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
