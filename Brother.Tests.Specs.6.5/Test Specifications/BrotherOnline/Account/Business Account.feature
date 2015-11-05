@@ -346,6 +346,7 @@ Scenario: Validate that a business account can be created using the maximun 241 
 	And I can sign out of Brother Online
 	Then I am redirected to the Brother Home Page
 
+@TEST @UAT @PROD
 # Change Personal details in your created account, go to my account and add your new Email address
 Scenario: Business Customer can change their Email Address   (BBAU - 2377, 2355)
 	Given I want to create a new account with Brother Online "United Kingdom"
@@ -367,7 +368,7 @@ Scenario: Business Customer can change their Email Address   (BBAU - 2377, 2355)
 	When I press Create Your Account
 	Then I should see my account confirmation page
 	And When I Click Go Back
-	And Once I have Validated an Email was received and verified my account
+	#And Once I have Validated an Email was received and verified my account
 	Then I should be able to log into "United Kingdom" Brother Online using my account details
 	When I navigate to my account for "United Kingdom"
 	And I click on Sign In Details
@@ -375,11 +376,12 @@ Scenario: Business Customer can change their Email Address   (BBAU - 2377, 2355)
 	And If I enter the current password for email change
 	And I click on Update details
 	Then I can verify the email change occurred
-	Then I validate the new Business Email changes via email 
+	#Then I validate the new Business Email changes via email 
 	Then I can validate the update was successful
 	And I can sign out of Brother Online
 	Then If I sign back into Brother Online "United Kingdom" using the same credentials
 
+@TEST @UAT @PROD
 #Change Sign In details in your created account, go to my account and change/add your new password
 Scenario: Business Customer can reset their password 
 	Given I want to create a new account with Brother Online "United Kingdom"
@@ -401,7 +403,7 @@ Scenario: Business Customer can reset their password
 	When I press Create Your Account
 	Then I should see my account confirmation page
 	And When I Click Go Back
-	And Once I have Validated an Email was received and verified my account
+	#And Once I have Validated an Email was received and verified my account
 	Then I should be able to log into "United Kingdom" Brother Online using my account details
 	When I navigate to my account for "United Kingdom"
 	And I click on Sign In Details
@@ -412,6 +414,7 @@ Scenario: Business Customer can reset their password
 	Then If I sign out of Brother Online
 	And If I sign back into Brother Online "United Kingdom" using the same credentials
 	Then I can sign out of Brother Online
+
 
 # Check mandatory email/password/first name/ last name/company name/business sector fields when creating business account
 Scenario: Validate that an error message is displayed for all mandatory fields during creation of a business account
