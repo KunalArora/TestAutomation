@@ -1,6 +1,7 @@
 ﻿@TEST @UAT @PROD
 Feature: CreativeCenterTests
 
+@TEST @UAT @PROD
 # Validate that the creation of a new family creative center account also creates a validated brother online user account
 Scenario: (Failing on Prod - BBAU-2575) Validate that a user can create a family creative center account and that this action automatically creates a brother online account that is already validated
 	Given I launch Brother Online for "United Kingdom"
@@ -32,6 +33,7 @@ Scenario: (Failing on Prod - BBAU-2575) Validate that a user can create a family
 	Then I can sign out of Brother Online
 	Then I am redirected to the Brother Home Page
 
+@TEST @UAT @PROD
 # Validate that the creation of a new business creative center account also creates a validated brother online business account
 Scenario: (Failing on Prod - BBAU-2575) Validate that a user can create a business creative center account and that this action automatically creates a brother online business account that is already validated
 	Given I launch Brother Online for "United Kingdom"
@@ -70,6 +72,7 @@ Scenario: (Failing on Prod - BBAU-2575) Validate that a user can create a busine
 	Then I can sign out of Brother Online
 	Then I am redirected to the Brother Home Page
 
+@TEST @UAT @PROD
  # Check mandatory email/password/first name/ last name/ fields when creating a creative center family account
  Scenario: (Failing on Prod - BBAU-2575) Validate that an error message is displayed for all mandatory fields during creation of a creative center family account
 	Given I launch Brother Online for "United Kingdom"
