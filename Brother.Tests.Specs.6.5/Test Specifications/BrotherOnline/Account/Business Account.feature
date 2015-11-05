@@ -415,7 +415,7 @@ Scenario: Business Customer can reset their password
 	And If I sign back into Brother Online "United Kingdom" using the same credentials
 	Then I can sign out of Brother Online
 
-
+@TEST @UAT @PROD
 # Check mandatory email/password/first name/ last name/company name/business sector fields when creating business account
 Scenario: Validate that an error message is displayed for all mandatory fields during creation of a business account
 	Given I want to create a new account with Brother Online "United Kingdom"
@@ -436,6 +436,7 @@ Scenario: Validate that an error message is displayed for all mandatory fields d
 	When I press tab in the business sector field
 	Then I should see an error message on the business sector field
 
+@TEST @UAT @PROD
 # VAT number is mandatory during business account creation for a non UK country
 Scenario Outline: Customer unable to create a new BOL Italy account without entering a valid tax code
 	Given I want to create a new account with Brother Online "<Country>"
@@ -482,7 +483,8 @@ Scenarios:
 
 
 # Create Portugal business account
-@TEST
+
+@TEST @UAT @PROD
 Scenario Outline: Customer able to create a new BOL Portugal account using the same VAT code multiple times (BBAU-2603 Business User part)
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -504,7 +506,7 @@ Scenario Outline: Customer able to create a new BOL Portugal account using the s
 	When I press Create Your Account
 	Then I should see my account confirmation page
 	And When I Click Go Back
-	And Once I have Validated an Email was received and verified my account
+	#And Once I have Validated an Email was received and verified my account
 	Then I should be able to log into "United Kingdom" Brother Online using my account details
 	And I can sign out of Brother Online
 
