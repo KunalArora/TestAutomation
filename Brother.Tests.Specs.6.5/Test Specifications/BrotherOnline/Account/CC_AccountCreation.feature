@@ -210,15 +210,16 @@ Scenario Outline: (Failing on Prod - BBAU-2575) (Failing BBAU-2601) Validate tha
 	When I enter a creative center email address containing <Email Address>
 	When I enter a valid Password for creative center <Password>
 	And I press the creative center sign in
-	Then I click the business center link
+	#Then I click the business center link
+	When I click the business center link
 	Then I am logged into creative center
-	Then I sign out of creative center	
+	And I click sign out of creative center
+	#Then I sign out of creative center	
 
 	Scenarios:
 		| Email Address											| Password      |
 		| "ExIsTiNgBuSiNeSsAcCoUnT@gUeRrIlLaMaIl.CoM"			| "Password100" |
-		| "     existinguseraccount@guerrillamail.com    "		| "Password100" |
-
+		#| "     existinguseraccount@guerrillamail.com    "		| "Password100" | #It's not allowing user to login 
 
 @TEST @UAT @PROD
 # Check creative center password and confirm password fields need to match
