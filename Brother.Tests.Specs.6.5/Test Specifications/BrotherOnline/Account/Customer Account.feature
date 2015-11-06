@@ -638,8 +638,8 @@ Scenario: Create a user but test for BPID
 # PortugalCountry -On Dv2 environment the registerpage fields are inconsistent
 
 @TEST @UAT @PROD
-Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on multi lingual sites																				
-sign in and Sign Out
+#Portugal -On Dv2 SingIn page has got personalTax number field textbox but not in QAS environment
+Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on multi lingual sites sign in and Sign Out
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
 	And I am redirected to the Brother Login/Register page
@@ -665,7 +665,7 @@ Scenarios:
 | United Kingdom    |
 | Ireland           |
 | Denmark		    |
-| Portugal		    | 
+#| Portugal		    | 
 | Finland		    |
 # | Slovenia			|
 # | Slovakia 		|
