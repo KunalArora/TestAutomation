@@ -1,4 +1,5 @@
-﻿@UAT @TEST @PROD
+﻿@IGNORE
+# Card details page flow has been changed to iframe content
 Feature: AddPaymentMethod
 	In order to purchase items from Brother
 	As a customer
@@ -22,7 +23,9 @@ Background:
 	Then I should see my account confirmation page
 	And When I Click Go Back
 	Then I should be able to log into "United Kingdom" Brother Online using my account details
-@PROD @UAT @TEST 
+
+@IGNORE
+# Card details page flow has been changed to iframe content
 Scenario: Add payment method with new address
     Then If I go to My Account
 	And I can click on Payment Methods
@@ -34,7 +37,8 @@ Scenario: Add payment method with new address
 	Then I can see the Credit Card details I have added
 	And I can sign out of Brother Online
 
-@PROD @UAT @TEST 
+@IGNORE
+# Card details page flow has been changed to iframe content
 Scenario: Add payment method with new address and Cancel before submitting
 	Then If I go to My Account
 	And I can click on Payment Methods
@@ -45,7 +49,7 @@ Scenario: Add payment method with new address and Cancel before submitting
 	When I click Cancel submit card details I should return to the My Payment Method page
 	Then I can sign out of Brother Online
 
-@PROD @UAT @TEST 
+@IGNORE
 #Validate that the correct error messages are displayed on the add payment method mandatory fields
 Scenario: Customer get the error message if mandatory fields are not completed by a customer
    Then If I go to My Account

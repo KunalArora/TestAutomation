@@ -118,7 +118,7 @@ namespace Brother.Tests.Specs
                 Helper.MsgOutput("Skipping Email Validation for this step");
             }
         }
-
+       
         [Then(@"Once I have Validated an Email was received and verified my account")]
         public void ThenOnceIHaveValidatedAnEmailWasReceivedAndVerifiedMyAccount()
         {
