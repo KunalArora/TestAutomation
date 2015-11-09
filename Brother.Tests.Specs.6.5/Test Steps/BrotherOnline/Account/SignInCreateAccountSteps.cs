@@ -132,6 +132,11 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<HomePage>().IsCreativeCenterBusinessLinkAvailable();
             CurrentPage.As<HomePage>().CreativeCenterBusinessLinkClick();
         }
+        [When(@"I click the business center link")]
+        public void WhenIClickTheBusinessCenterLink()
+        {
+            CurrentPage.As<HomePage>().CreativeCenterBusinessLinkClick();
+        }
 
         [Then(@"I am taken to the creative center home page")]
         public void TakenToCreativeCenterHomepage()
@@ -173,7 +178,11 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<HomePage>().IsCreativeCenterFamilyLinkAvailable();
             CurrentPage.As<HomePage>().IsCreativeCenterBusinessLinkAvailable();
         }
-
+        [Then(@"I click sign out of creative center")]
+        public void ThenIClickSignOutOfCreativeCenter()
+        {
+            CurrentPage.As<HomePage>().CreativeCenterLogoutLinkClick(); 
+        }
         // This is a phantom JS workaround for the method below
         [Then (@"I click to not participate in the survey")]
         public void ClickNoToCreativeCenterSurvey()

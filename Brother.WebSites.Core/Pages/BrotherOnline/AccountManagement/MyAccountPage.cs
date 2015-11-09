@@ -133,7 +133,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
                 throw new Exception("Unable to locate Information Message Bar");
             }
             ScrollTo(InformationMessageBar);
-           // TestCheck.AssertIsEqual(displayed, InformationMessageBar.Displayed, "Information Message Bar");
+           TestCheck.AssertIsEqual(displayed, InformationMessageBar.Displayed, "Information Message Bar");
         }
         public void FirstNameErrorMessageDisplayed()
         {
