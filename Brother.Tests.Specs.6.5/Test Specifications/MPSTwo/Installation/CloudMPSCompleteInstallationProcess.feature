@@ -23,7 +23,7 @@ Scenarios:
 
 	| Role                            | Country        | ContractType                  | UsageType      | Role1            | Method | Type |
 	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  |
-	#| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR  |
+	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR  |
 
 
 
@@ -47,7 +47,7 @@ Scenarios:
 
 
 #@ignore
-Scenario Outline: German Dealer can create installation request for Cloud Communication
+Scenario Outline: German and Austria Dealer can create installation request for Cloud Communication
 	Given German Dealer have created a "<Country>" contract of "<ContractType>" and "<UsageType>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And the contract created above is approved
@@ -56,19 +56,23 @@ Scenario Outline: German Dealer can create installation request for Cloud Commun
 	And I select Location in order to create installation request
 	And I set device communication method as "<Method>"
 	And I set device installation type as "<Type>"
-	And I completed the create installation process for "<Method>"
+	And I completed the create installation process for "<Type>"
 	Then the installation request for that device is completed 
 	And I can sign out of Brother Online
 
 Scenarios:
 
-	| Role                            | Country | ContractType                  | UsageType      | Role1            | Method | Type |
-	| Cloud MPS Local Office Approver | Germany | Easy Print Pro & Service | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  |
-	#| Cloud MPS Bank                  | Germany | Lease & Click with Service    | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR  |
+	| Role                            | Country | ContractType             | UsageType      | Role1            | Method | Type |
+	| Cloud MPS Local Office Approver | Germany | Easy Print Pro & Service | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR  |
+	| Cloud MPS Bank                  | Germany | Leasing & Service          | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  |
+	| Cloud MPS Local Office Approver | Austria | Easy Print Pro & Service | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR  |
+	| Cloud MPS Bank                  | Austria | Leasing & Service        | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  |
+	
+	
 	
 
 
-Scenario Outline: German Dealer can create installation request for Email Communication
+Scenario Outline: German and Austria Dealer can create installation request for Email Communication
 	Given German Dealer have created a "<Country>" contract of "<ContractType>" and "<UsageType>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And the contract created above is approved
@@ -82,11 +86,13 @@ Scenario Outline: German Dealer can create installation request for Email Commun
 
 Scenarios:
 
-	| Role                            | Country | ContractType                  | UsageType      | Role1            | Method |
+	| Role                            | Country | ContractType             | UsageType      | Role1            | Method |
+	| Cloud MPS Local Office Approver | Austria | Easy Print Pro & Service | Minimum Volume | Cloud MPS Dealer | Email  |
 	| Cloud MPS Local Office Approver | Germany | Easy Print Pro & Service | Minimum Volume | Cloud MPS Dealer | Email  |
+	
 
 
-Scenario Outline: German Dealer can create installation request for Email Communication after the contract has been signed
+Scenario Outline: German and Austria Dealer can create installation request for Email Communication after the contract has been signed
 	Given German Dealer have created a signed "<Country>" contract of "<ContractType>" and "<UsageType>"
 	When I navigate to the signed contract Manage Device Screen
 	And I select Location in order to create installation request
@@ -97,12 +103,14 @@ Scenario Outline: German Dealer can create installation request for Email Commun
 
 Scenarios:
 
-	| Role                            | Country | ContractType                  | UsageType      | Role1            | Method |
+	| Role                            | Country | ContractType             | UsageType      | Role1            | Method |
 	| Cloud MPS Local Office Approver | Germany | Easy Print Pro & Service | Minimum Volume | Cloud MPS Dealer | Email  |
-	#| Cloud MPS Local Office Approver | Austria | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Email  |
+	| Cloud MPS Local Office Approver | Austria | Easy Print Pro & Service | Minimum Volume | Cloud MPS Dealer | Email  |
+	
+	
 
 
-Scenario Outline: German Local Office Approver can create installation request for Email Communication
+Scenario Outline: German and Austria Local Office Approver can create installation request for Email Communication
 	Given German Dealer have created a "<Country>" contract of "<ContractType>" and "<UsageType>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And the contract created above is approved without signing out
@@ -115,8 +123,10 @@ Scenario Outline: German Local Office Approver can create installation request f
 
 Scenarios:
 
-	| Role                            | Country | ContractType                  | UsageType      | Role1            | Method |
+	| Role                            | Country | ContractType             | UsageType      | Role1            | Method |
 	| Cloud MPS Local Office Approver | Germany | Easy Print Pro & Service | Minimum Volume | Cloud MPS Dealer | Email  |
+	| Cloud MPS Local Office Approver | Austria | Easy Print Pro & Service | Minimum Volume | Cloud MPS Dealer | Email  |
+	
 
 
 Scenario Outline: Local Office can create installation request for Cloud Communication
@@ -136,5 +146,5 @@ Scenarios:
 
 	| Role                            | Country        | ContractType                  | UsageType      | Role1            | Method | Type |
 	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  |
-	#| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR  
+	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR  |
 	

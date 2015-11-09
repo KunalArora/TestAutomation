@@ -64,8 +64,9 @@ Scenario Outline: Dealer can delete an existing proposal offer
 	And I can sign out of Brother Online
 
 	Scenarios: 
-	| ContractType               | UsageType      | Confirm | TargetItem       |
-	| Purchase & Click with Service | Minimum Volume | OK		| NewlyCreatedItem |
+	| ContractType                  | UsageType      | Confirm | TargetItem       |
+	| Purchase & Click with Service | Minimum Volume | OK      | NewlyCreatedItem |
+	
 	
 Scenario Outline: Dealer can cancel deleting proposal offer
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"

@@ -104,7 +104,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SelectRejectionReason()
         {
-            SelectFromDropdown(RejectionReasonDropdownElement, "Other");
+            if (IsAustriaSystem() || IsGermanSystem())
+            {
+                SelectFromDropdown(RejectionReasonDropdownElement, "Andere");
+
+            } else if (IsUKSystem())
+            {
+                SelectFromDropdown(RejectionReasonDropdownElement, "Other");
+            }
+            
         }
 
         public void EnterRejectionComment()

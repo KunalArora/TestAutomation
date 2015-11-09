@@ -16,6 +16,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private const string serialNumber = @"A1T010001";
         private const string serialNumberBIG = @"A1T010002";
+        private const string serialNumberAUT = @"A1T010003";
 
         public override string DefaultTitle
         {
@@ -115,13 +116,21 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
                 ClearAndType(SerialNumberFieldElement, serialNumber);
             }
-            else if (IsGermanSystem() || IsAustriaSystem())
+            else if (IsGermanSystem())
             {
                 MPSJobRunnerPage.RunResetSerialNumberJob(serialNumberBIG);
 
                 WebDriver.Wait(DurationType.Second, 5);
 
                 ClearAndType(SerialNumberFieldElement, serialNumberBIG);
+            }
+            else if (IsAustriaSystem())
+            {
+                MPSJobRunnerPage.RunResetSerialNumberJob(serialNumberAUT);
+
+                WebDriver.Wait(DurationType.Second, 5);
+
+                ClearAndType(SerialNumberFieldElement, serialNumberAUT);
             }
 
             

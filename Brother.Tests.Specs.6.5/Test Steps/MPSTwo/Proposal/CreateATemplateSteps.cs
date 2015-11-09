@@ -76,8 +76,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         }
 
 
-
-        [Given(@"German Dealer have created a Awaiting Approval proposal of ""(.*)"" and ""(.*)""")]
+        [Given(@"Dealer have created an Awaiting Approval proposal of ""(.*)"" and ""(.*)"" from ""(.*)""")]
         public void GivenGermanDealerHaveCreatedProposalOfAwaitingApproval(string ContractType, string UsageType, string Country)
         {
             var instance4 = new CreateNewAccountSteps();
