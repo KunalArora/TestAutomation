@@ -57,7 +57,7 @@ Scenario: Purchase a new Inkjet Cartridge with a valid supply code and valid cre
 
 # Valid Model code with valid CC details, addresses etc
 Scenario: Purchase a new Inkjet Cartridge with a valid device code and valid credit card details
-	Given I am logged onto Brother Online "Ireland" using valid credentials
+    Given I am logged onto Brother Online "Ireland" using valid credentials
 	Given I have navigated to the Brother Main Site "Ireland" products pages 
 	And I have clicked on Supplies
 	And I have entered my valid device code for an InkJet printer "DCP-J715W"

@@ -21,6 +21,7 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherMainSite.PrinterSearch
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("Correct printer product listings")]
     [NUnit.Framework.CategoryAttribute("UAT")]
+    [NUnit.Framework.CategoryAttribute("TEST")]
     public partial class CorrectPrinterProductListingsFeature
     {
         
@@ -35,7 +36,8 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherMainSite.PrinterSearch
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Correct printer product listings", "In order to purchase a new Printer\r\nAs a customer\r\nI want to be able to view the " +
                     "list of available printers", ProgrammingLanguage.CSharp, new string[] {
-                        "UAT"});
+                        "UAT",
+                        "TEST"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -71,19 +73,14 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherMainSite.PrinterSearch
         [NUnit.Framework.DescriptionAttribute("View the list of available Laser Printers on Brother Main sites for languages exc" +
             "ept Spain and Portugal")]
         [NUnit.Framework.CategoryAttribute("UAT")]
-        [NUnit.Framework.TestCaseAttribute("Czech", "printers/laser-printers", null)]
-        [NUnit.Framework.TestCaseAttribute("France", "imprimantes/imprimantes-multifonctions/multifonctions-laser", null)]
-        [NUnit.Framework.TestCaseAttribute("Hungary", "printers/laser-printers", null)]
+        [NUnit.Framework.CategoryAttribute("TEST")]
         [NUnit.Framework.TestCaseAttribute("Ireland", "printers/laser-printers", null)]
         [NUnit.Framework.TestCaseAttribute("Netherlands", "printers/laserprinters", null)]
-        [NUnit.Framework.TestCaseAttribute("Poland", "printers/laser-printers", null)]
-        [NUnit.Framework.TestCaseAttribute("Romania", "printers/laser-printers", null)]
-        [NUnit.Framework.TestCaseAttribute("Slovakia", "printers/laser-printers", null)]
-        [NUnit.Framework.TestCaseAttribute("Slovenia", "printers/laser-printers", null)]
         public virtual void ViewTheListOfAvailableLaserPrintersOnBrotherMainSitesForLanguagesExceptSpainAndPortugal(string country, string site, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "UAT"};
+                    "UAT",
+                    "TEST"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
