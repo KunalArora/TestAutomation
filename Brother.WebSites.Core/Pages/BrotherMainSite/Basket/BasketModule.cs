@@ -89,7 +89,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.Basket
         {
             SeleniumHelper.MoveToElement(driver, ProductInformationList(driver));
             const string error = "Error!";
-            SeleniumHelper.WaitUpTo(50, () => SeleniumHelper.IsElementPresent(ProductInformationList(driver)), "Basket");
+            SeleniumHelper.WaitUpTo(90, () => SeleniumHelper.IsElementPresent(ProductInformationList(driver)), "Basket");
             if (!SeleniumHelper.IsElementPresent(ProductInformationList(driver))) return error;
             return ProductInformationList(driver).Text ?? error;
         }
