@@ -16,6 +16,7 @@ namespace Brother.Tests.Specs.OmniJoin
             CurrentPage.As<WebConferencingHomePage>().IsBuyButtonAvailable();
         }
 
+        [When(@"I have clicked on Buy")]
         [Then(@"I have clicked on Buy")]
         [Given(@"I have clicked on Buy")]
         public void GivenIHaveClickedOnBuy()
