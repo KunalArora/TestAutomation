@@ -56,7 +56,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
         
 
         public void IsSaveAndUseAddressButtonAvailable()
-        {
+        {   
+            WebDriver.Wait(DurationType.Millisecond, 20);
             if (SaveAndUseAddressButton == null)
             {
                 throw new NullReferenceException("Unable to locate button on page");

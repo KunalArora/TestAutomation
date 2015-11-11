@@ -88,6 +88,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.Basket
         public static string GetBasketInformationItem(IWebDriver driver)
         {
             SeleniumHelper.MoveToElement(driver, ProductInformationList(driver));
+            WebDriver.Wait(Helper.DurationType.Millisecond, 15);
             const string error = "Error!";
             SeleniumHelper.WaitUpTo(90, () => SeleniumHelper.IsElementPresent(ProductInformationList(driver)), "Basket");
             if (!SeleniumHelper.IsElementPresent(ProductInformationList(driver))) return error;
