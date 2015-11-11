@@ -41,7 +41,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         }
 
         public void InvalidItalyTaxCodeErrorMessageDisplayed()
-        {
+        {  
+            WebDriver.Wait(DurationType.Millisecond, 15);
             TestCheck.AssertIsEqual(true, InvalidItalyTaxCodeErrorMessage.Displayed, "Is Error Message Displayed");
         }
 
