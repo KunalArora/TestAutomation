@@ -7,6 +7,7 @@ namespace Brother.Tests.Specs.OmniJoin
     [Binding]
     public class WebConferencingHomePageSteps : BaseSteps
     {
+        [When(@"I have navigated to the OmniJoin home page")]
         [Then(@"I have navigated to the OmniJoin home page")]
         [Given(@"I have navigated to the OmniJoin home page")]
         public void GivenIHaveNavigatedToTheOmniJoinHomePage()
