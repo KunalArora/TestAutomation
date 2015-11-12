@@ -89,7 +89,7 @@ Scenario: Business Customer can change their business details after logging into
 	And I am redirected to the Business Details Page
 	And I declare that I do use this account for business on my account page
 	And I add my company name as "AutoTestLtd" on Business Details page
-	And I add my company VAT number as "GB145937540" on Business Details Page
+	#And I add my company VAT number as "GB145937540" on Business Details Page
 	And I select my Business Sector as "IT and telecommunications services" on Business Details Page
 	And I select number of Employees as "11 - 50" on Business Details Page
 	And I click on Update details on business details page
@@ -505,7 +505,7 @@ Scenario Outline: Customer able to create a new BOL Portugal account using the s
 	And I have Agreed to the Terms and Conditions
 	When I press Create Your Account
 	Then I should see my account confirmation page
-	And When I Click Go Back
+	 And When I Click Go Back
 	#And Once I have Validated an Email was received and verified my account
 	Then I should be able to log into "United Kingdom" Brother Online using my account details
 	And I can sign out of Brother Online
