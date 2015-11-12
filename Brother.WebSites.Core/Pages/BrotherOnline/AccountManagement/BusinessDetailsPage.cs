@@ -38,7 +38,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         
         [FindsBy(How = How.Id, Using = "txtVatNumber")]
         public IWebElement VatNumberTextBox;
-        
+
         [FindsBy(How = How.CssSelector, Using = ".info-bar")]
         public IWebElement InformationMessageBar;
 
@@ -93,9 +93,11 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         }
         public void PopulateCompanyNameTextBox(string companyName)
         {
+            
             ScrollTo(CompanyNameTextBox);
+            CompanyNameTextBox.Clear();
             CompanyNameTextBox.SendKeys(companyName);
-            //TestCheck.AssertIsEqual(companyName, GetTextBoxValue("CompanyNameTextBox"), "CompanyName Text Box");
+          //TestCheck.AssertIsEqual(companyName, GetTextBoxValue("CompanyNameTextBox"), "CompanyName Text Box");
         }
         public void PopulateBusinessSectorDropDown(string businessSector)
         {

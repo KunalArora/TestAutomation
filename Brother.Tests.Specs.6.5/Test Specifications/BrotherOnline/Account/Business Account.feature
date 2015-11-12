@@ -124,7 +124,7 @@ Scenario: Business user creates a new account with Brother Online and add Busine
 	And I am redirected to the Business Details Page
 	And I declare that I do use this account for business on my account page
 	And I add my company name as "AutoTestLtd" on Business Details page
-	And I add my company VAT number as "GB145937540" on Business Details Page
+	#And I add my company VAT number as "GB145937540" on Business Details Page
 	And I select my Business Sector as "IT and telecommunications services" on Business Details Page
 	And I select number of Employees as "11 - 50" on Business Details Page
 	And I click on Update details on business details page
