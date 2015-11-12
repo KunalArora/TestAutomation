@@ -56,6 +56,22 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             return pageResponse;
         }
 
+        public static string GetStringFromUrl(string url, int numTries)
+        {
+            var retryCount = 0;
+
+            var testFromFile = (new WebClient()).DownloadString(url);
+
+            while ((testFromFile == string.Empty) && (retryCount != numTries))
+            {
+                testFromFile = (new WebClient()).DownloadString(url);
+                WebDriver.Wait(DurationType.Second, 2);
+                MsgOutput(string.Format("Retrying..... [{0}] times", retryCount));
+                retryCount++;
+            }
+            return testFromFile;
+        }
+
         private static HttpStatusCode PageResponse(WebRequest request, out string xmlResponseData)
         {
             var responseCode = HttpStatusCode.Ambiguous;

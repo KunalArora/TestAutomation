@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.WebSites.Core.Pages.MPSTwo;
 
 namespace Brother.Tests.Selenium.Lib.Support
 {
@@ -172,6 +173,9 @@ namespace Brother.Tests.Selenium.Lib.Support
                 case "Cloud MPS Local Office Approver":
                     finishedUsername = String.Format(ApproverUsername(), abbr);
                     break;
+                case "Cloud MPS Customer" :
+                    finishedUsername = MpsUtil.CreatedEmail();
+                    break;
 
             }
 
@@ -184,28 +188,35 @@ namespace Brother.Tests.Selenium.Lib.Support
         public static string Password(string userType)
         {
             string finishPwd = null;
+            
 
             switch (userType)
             {
                 case "Cloud MPS Dealer" :
                     finishPwd = DealerPassword();
+                    finishPwd = String.Format(finishPwd, PasswordPrefix());
                     break;
 
                 case "Cloud MPS Bank" :
                     finishPwd = BankPassword();
+                    finishPwd = String.Format(finishPwd, PasswordPrefix());
                     break;
 
                 case "Cloud MPS Local Office":
                     finishPwd = AdminPassword();
+                    finishPwd = String.Format(finishPwd, PasswordPrefix());
                     break;
 
                 case "Cloud MPS Local Office Approver":
                     finishPwd = ApproverPassword();
+                    finishPwd = String.Format(finishPwd, PasswordPrefix());
+                    break;
+                case "Cloud MPS Customer":
+                    finishPwd = MPSJobRunnerPage.GetCustomerCreatedPassword(MpsUtil.CreatedEmail());
                     break;
             }
 
-            finishPwd = String.Format(finishPwd, PasswordPrefix());
-
+            
             Helper.MsgOutput(String.Format("The password formed for {0} is {1}", userType, finishPwd));
 
             return finishPwd;

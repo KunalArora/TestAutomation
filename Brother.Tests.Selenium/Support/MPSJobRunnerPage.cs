@@ -9,7 +9,7 @@ using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public abstract class MPSJobRunnerPage
+    public class MPSJobRunnerPage
     {
         private const string uaturl = @"http://online.{0}.cms.brotherqas.eu/sitecore/admin/projects/mps2/";
         private const string testurl = @"http://online.{0}.brotherdv2.eu/sitecore/admin/projects/mps2/";
@@ -69,7 +69,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             var webSite = CoinedUrl() + customerPassword + email;
 
-            return Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, 5).ToString();
+            var response = Utils.GetStringFromUrl(webSite, 5);
+
+            return response;
         }
 
 

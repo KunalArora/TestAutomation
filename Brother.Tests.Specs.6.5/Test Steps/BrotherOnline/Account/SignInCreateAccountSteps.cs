@@ -1121,6 +1121,11 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
                     NextPage = CurrentPage.As<RegistrationPage>().SignInButtonToLocalOfficeApproverDashboard();
                     break;
                 }
+                case "Cloud MPS Customer":
+                {
+                    NextPage = CurrentPage.As<RegistrationPage>().ClickSignInButton();
+                    break;
+                }
             }
         }
 

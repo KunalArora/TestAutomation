@@ -240,6 +240,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             return GetInstance<WelcomeBackPage>(Driver);
         }
 
+       
         public DealerDashBoardPage SignInButtonToDealerDashboard()
         {
             ScrollTo(SignInButton);

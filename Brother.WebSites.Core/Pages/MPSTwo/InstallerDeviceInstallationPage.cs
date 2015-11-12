@@ -101,6 +101,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyTimeZoneIsDisplayed(string method)
         {
+            SpecFlow.SetContext("InstallationMethod", method);
             if (method != "Web") return;
             var option = SelectOption(TimeZoneOptionsElements);
             TestCheck.AssertIsEqual(true, option.Any(), "Time Zone does not contain any options");
@@ -134,7 +135,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
 
             
-            WebDriver.Wait(DurationType.Second, 5);
+           // WebDriver.Wait(DurationType.Second, 5);
 
             SerialNumberFieldElement.SendKeys(Keys.Tab);
 
@@ -147,9 +148,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetElementByCssSelector("[class*=\"js-mps-ip-a\"]");
         }
 
+        private string Method()
+        {
+            return SpecFlow.GetContext("InstallationMethod");
+        }
+
         public void EnterIpAddress()
         {
-            if (InstalledPinElements == null && TimeZoneOptionsElements == null)
+            if (Method() == "Email")
             { foreach (var ipAddressElement in IpAddressElements)
                 {
                     ipAddressElement.Click();
@@ -165,7 +171,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             try
             {
-                if (InstalledPinElements == null && TimeZoneOptionsElements == null)
+                if (Method() == "Email")
                 {
                     ConnectButtonElement.Click();
                     WebDriver.Wait(DurationType.Second, 5);
@@ -183,7 +189,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             try
             {
-                if (InstalledPinElements == null && TimeZoneOptionsElements == null)
+                if (Method() == "Email")    
                 {
                     CompleteInstallationElement.Click();
                     WebDriver.Wait(DurationType.Second, 5);
@@ -199,7 +205,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ConfirmInstallationSucceed()
         {
-            if (InstalledPinElements == null && TimeZoneOptionsElements == null)
+            if (Method() == "Email")
             {
                 TestCheck.AssertIsEqual(true, CompleteInstallationComfirmationElement.Displayed,
                 "Installation not successful");

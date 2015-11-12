@@ -64,7 +64,7 @@ Scenarios:
 
 	| Role                            | Country | ContractType             | UsageType      | Role1            | Method | Type |
 	| Cloud MPS Local Office Approver | Germany | Easy Print Pro & Service | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR  |
-	| Cloud MPS Bank                  | Germany | Leasing & Service          | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  |
+	| Cloud MPS Bank                  | Germany | Leasing & Service        | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  |
 	| Cloud MPS Local Office Approver | Austria | Easy Print Pro & Service | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR  |
 	| Cloud MPS Bank                  | Austria | Leasing & Service        | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  |
 	

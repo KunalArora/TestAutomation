@@ -114,10 +114,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CloudMPSDealerCanSignContractProd.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Contract\CloudMPSGermanDealerCanSignContract.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Contract\CloudMPSGermanAndAustriaDealerCanSignContract.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CloudMPSGermanDealerCanSignContract.feature</DependentUpon>
+      <DependentUpon>CloudMPSGermanAndAustriaDealerCanSignContract.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Specifications\MPSTwo\Contract\CloudMPSOutputContractPDFAllUsers.feature.cs">
       <AutoGen>True</AutoGen>
@@ -128,6 +128,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CloudMPSAddLocationToCustomerInformation.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPSTwo\Customer\CustomerCanPerformSomeRunActions.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CustomerCanPerformSomeRunActions.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Specifications\MPSTwo\Installation\CloudMPSCompleteInstallationProcess.feature.cs">
       <AutoGen>True</AutoGen>
@@ -415,6 +420,7 @@
     <Compile Include="Test Steps\MPSTwo\Customer\DealerCanOperateCustomersSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\DealerAdmin\DealerAdminProfileSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Installation\DealerInstallationRequestSteps.cs" />
+    <Compile Include="Test Steps\MPSTwo\Proposal\CustomerRunPortionSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Proposal\DealerProposalRejectedSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Proposal\DealerProposalsCreateCustomerInformationStep.cs" />
     <Compile Include="Test Steps\MPSTwo\Proposal\DealerProposalsCreateClickPriceStep.cs" />
@@ -577,9 +583,9 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSDealerCanSignContractProd.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Contract\CloudMPSGermanDealerCanSignContract.feature">
+    <None Include="Test Specifications\MPSTwo\Contract\CloudMPSGermanAndAustriaDealerCanSignContract.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSGermanDealerCanSignContract.feature.cs</LastGenOutput>
+      <LastGenOutput>CloudMPSGermanAndAustriaDealerCanSignContract.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwo\Contract\CloudMPSOutputContractPDFAllUsers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
@@ -588,6 +594,10 @@
     <None Include="Test Specifications\MPSTwo\Customer\CloudMPSAddLocationToCustomerInformation.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSAddLocationToCustomerInformation.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwo\Customer\CustomerCanPerformSomeRunActions.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CustomerCanPerformSomeRunActions.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwo\Installation\CloudMPSCompleteInstallationProcess.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

@@ -29,7 +29,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         public IWebElement OmniJoinTryNowButton;
         [FindsBy(How = How.CssSelector, Using = "#content_2_CurrentControlPanelItem_ConferenceButtons.two-conference-buttons .conference-button.left")]
         public IWebElement OmniJoinBuyNowButton;
-        [FindsBy(How = How.CssSelector, Using = "[id*=\"content_2_ProductsTabRepeater_ProductLinkButton\"] p strong")]
+        [FindsBy(How = How.CssSelector, Using = "[id*=\"content_2_ProductsTabRepeater_tabItem\"] p strong")]
         public IList<IWebElement> MpsPrintSmartButton;
         [FindsBy(How = How.CssSelector, Using = ".clearfix a[href*='customer-information']")]
         public IWebElement NewProposalButton;
@@ -37,6 +37,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         public IWebElement ExistingProposalButton;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/print-smart/my-contracts\"]")]
         public IWebElement ExistingContractButton;
+        [FindsBy(How = How.CssSelector, Using = "a.mps-link[href=\"/mps/customer/dashboard\"]")]
+        public IWebElement CustomerLinkButton;
         [FindsBy(How = How.CssSelector, Using = "#TopNavigationControl_rptPrimaryLevelNav_aSectionLink_3")]
         public IWebElement MyAccountNavigationButton;
         [FindsBy(How = How.CssSelector, Using = "a.button-blue[href=\"/print-smart/my-services/consumables\"]")]
@@ -97,6 +99,15 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
                 throw new Exception("Dealer Dashboard page not displayed");
             }
             AssertElementPresent(CloudDealerDashboardButton, "Dealer Dashboard");
+        }
+
+        public void IsCustomerLinkOnDashboardDisplayed()
+        {
+            if (CustomerLinkButton == null)
+            {
+                throw new Exception("Cloud MPS Customer link not displayed");
+            }
+            AssertElementPresent(CustomerLinkButton, "Dealer Dashboard");
         }
 
         public void IsLOAdminDashboardDisplayed()
@@ -231,20 +242,18 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
            OmniJoinTryNowButton.Click();
            return GetInstance<FreeTrialPage>(Driver);
         }
-     public void ClickOnManagedPrintServices(string navigation)
+
+        public void ClickOnManagedPrintServices(string navigation)
         {
             try
             {
                 foreach (var button in MpsPrintSmartButton)
                 {
-                    var countryPrintSmart = button.Text.ToLower();
+                    var countryPrintSmart = button.Text;
 
-                    if (countryPrintSmart.Contains(navigation))
-                    {
-                        button.Click();
-                        break;
-                    }
-
+                    if (!countryPrintSmart.Contains(navigation)) continue;
+                    button.Click();
+                    break;
                 }
             
             }
@@ -284,6 +293,14 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             IsDealerDashboardDisplayed();
             CloudDealerDashboardButton.Click();
             return GetInstance<DealerDashBoardPage>(Driver);
+        }
+
+        public CustomerDashboardPage NavigateToCustomerDashboardPage()
+        {
+            ClickOnManagedPrintServices("MANAGED PRINT SERVICES");
+            IsCustomerLinkOnDashboardDisplayed();
+            CustomerLinkButton.Click();
+            return GetInstance<CustomerDashboardPage>(Driver);
         }
 
         public LocalOfficeAdminDashBoardPage NavigateToLOAdminDashboard()

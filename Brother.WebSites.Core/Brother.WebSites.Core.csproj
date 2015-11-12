@@ -130,6 +130,7 @@
     <Compile Include="Pages\MPSTwo\BankContractsPage.cs" />
     <Compile Include="Pages\MPSTwo\BankDashBoardPage.cs" />
     <Compile Include="Pages\MPSTwo\BankOffersPage.cs" />
+    <Compile Include="Pages\MPSTwo\CustomerDashboardPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerApprovedProposalPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerClosedProposalPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerContractsApprovedPage.cs" />
@@ -178,7 +179,6 @@
     <Compile Include="Pages\MPSTwo\LocalOfficeAdminDealerDefaultsPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeAdminDashBoardPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeApproverDeviceManagementPage.cs" />
-    <Compile Include="Pages\MPSTwo\MPSJobRunnerPage.cs" />
     <Compile Include="Pages\MPSTwo\SendToBankPage.cs" />
     <Compile Include="Pages\OmniJoin\PartnerPortal\CodeActivationPage.cs" />
     <Compile Include="Pages\OmniJoin\PartnerPortal\CreateActivationCodesPage.cs" />
