@@ -350,8 +350,6 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.And("I declare that I do use this account for business on my account page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 126
  testRunner.And("I add my company name as \"AutoTestLtd\" on Business Details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 127
- testRunner.And("I add my company VAT number as \"GB145937540\" on Business Details Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 128
  testRunner.And("I select my Business Sector as \"IT and telecommunications services\" on Business D" +
                     "etails Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
