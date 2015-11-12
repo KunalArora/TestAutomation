@@ -12,6 +12,7 @@ namespace Brother.Tests.Specs.OmniJoin.FreeTrial
     [Binding]
     public class FreeTrialSteps : BaseSteps
     {
+        [When(@"If I click on Start Free Trial")]
         [Then(@"If I click on Start Free Trial")]
         [Given(@"If I click on Start Free Trial")]
         public void GivenIfIClickOnStartFreeTrial()

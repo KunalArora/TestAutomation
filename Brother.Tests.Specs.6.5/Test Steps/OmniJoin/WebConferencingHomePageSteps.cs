@@ -7,6 +7,7 @@ namespace Brother.Tests.Specs.OmniJoin
     [Binding]
     public class WebConferencingHomePageSteps : BaseSteps
     {
+        [When(@"I have navigated to the OmniJoin home page")]
         [Then(@"I have navigated to the OmniJoin home page")]
         [Given(@"I have navigated to the OmniJoin home page")]
         public void GivenIHaveNavigatedToTheOmniJoinHomePage()
@@ -15,6 +16,7 @@ namespace Brother.Tests.Specs.OmniJoin
             CurrentPage.As<WebConferencingHomePage>().IsBuyButtonAvailable();
         }
 
+        [When(@"I have clicked on Buy")]
         [Then(@"I have clicked on Buy")]
         [Given(@"I have clicked on Buy")]
         public void GivenIHaveClickedOnBuy()

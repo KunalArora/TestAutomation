@@ -11,7 +11,24 @@ Feature: PurchaseANewInkCartridge
 @SMOKE
 # Valid Supply code with valid CC details, addresses etc
 Scenario: Purchase a new Inkjet Cartridge with a valid supply code and valid credit card details
-	Given I am logged onto Brother Online "Ireland" using valid credentials
+   Given I want to create a new account with Brother Online "United Kingdom"
+	When I click on Create Account for "United Kingdom"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I fill in the registration information using a valid email address 
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Password        | @@@@@	       |
+	| ConfirmPassword | @@@@@		   |
+
+	And I have Agreed to the Terms and Conditions
+	And I declare that I do not use this account for business
+	When I press Create Your Account
+	Then I should see my account confirmation page
+	And When I Click Go Back
+	Then I should be able to log into "United Kingdom" Brother Online using my account details
+	#Given I am logged onto Brother Online "Ireland" using valid credentials
 	Given I have navigated to the Brother Main Site "Ireland" products pages
 	And I have clicked on Supplies
 	And I have entered my valid supplies code for an InkJet cartridge "LC1000BK"
@@ -55,9 +72,28 @@ Scenario: Purchase a new Inkjet Cartridge with a valid supply code and valid cre
 	Then I am redirected to the Brother Home Page
 	And I can validate an Order Confirmation email was received
 
-# Valid Model code with valid CC details, addresses etc
+@TEST @UAT
+# On DV2 payment method page has been changed.
+#Valid Model code with valid CC details, addresses etc
 Scenario: Purchase a new Inkjet Cartridge with a valid device code and valid credit card details
-	Given I am logged onto Brother Online "Ireland" using valid credentials
+Given I want to create a new account with Brother Online "United Kingdom"
+	When I click on Create Account for "United Kingdom"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I fill in the registration information using a valid email address 
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Password        | @@@@@	       |
+	| ConfirmPassword | @@@@@		   |
+
+	And I have Agreed to the Terms and Conditions
+	And I declare that I do not use this account for business
+	When I press Create Your Account
+	Then I should see my account confirmation page
+	And When I Click Go Back
+	Then I should be able to log into "United Kingdom" Brother Online using my account details
+    #Given I am logged onto Brother Online "Ireland" using valid credentials
 	Given I have navigated to the Brother Main Site "Ireland" products pages 
 	And I have clicked on Supplies
 	And I have entered my valid device code for an InkJet printer "DCP-J715W"
