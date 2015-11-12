@@ -242,7 +242,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         public static void GrantUserRole(string userAccountEmail, string role)
         {
             HttpWebRequest request = null;
-
+            WebDriver.Wait(DurationType.Second, 15);
             var roleCheckUrl = string.Empty;
 
             var runTimeEnv = string.Empty;

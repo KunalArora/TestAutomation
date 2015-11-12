@@ -144,14 +144,14 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.SuppliesAndAccessories.Pri
 
             MsgOutput("Looking for Product listing results");
             const string resultsElement = "#results";
-            if (!WaitForElementToExistByCssSelector(resultsElement, 4, 30)) // 2 mins is long enough
+            if (!WaitForElementToExistByCssSelector(resultsElement, 4, 90)) // 2 mins is long enough
             {
                 MsgOutput(string.Format("Unable to locate [{0}] element whilst searching for Printers", resultsElement));
                 return 0;
             }
 
             const string printerList = "#results article";
-            if (!WaitForElementToExistByCssSelector(printerList, 4, 30)) // 2 mins is long enough
+            if (!WaitForElementToExistByCssSelector(printerList, 4, 90)) // 2 mins is long enough
             {
                 MsgOutput(string.Format("Unable to locate [{0}] any printers in the results list", printerList));
                 return 0;

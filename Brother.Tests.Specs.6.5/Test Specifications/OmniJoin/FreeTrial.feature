@@ -7,7 +7,25 @@ Feature: FreeTrial
 @SMOKE
 Scenario: Sign Up for 14 day Free trial already signed into Brother Online
 	# Create an account on BOL and sign in
-	Given I am logged onto Brother Online "United Kingdom" using valid credentials
+	Given I want to create a new account with Brother Online "United Kingdom"
+	When I click on Create Account for "United Kingdom"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I fill in the registration information using a valid email address 
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Password        | @@@@@	       |
+	| ConfirmPassword | @@@@@		   |
+
+	And I have Agreed to the Terms and Conditions
+	And I declare that I do not use this account for business
+	When I press Create Your Account
+	Then I should see my account confirmation page
+	And When I Click Go Back
+	Then I should be able to log into "United Kingdom" Brother Online using my account details
+	When I navigate to my account for "United Kingdom"
+	#Given I am logged onto Brother Online "United Kingdom" using valid credentials
 	And I have navigated to the OmniJoin home page
 	And If I click on Start Free Trial
 	Then I should be directed to the OmniJoin Free Trial page

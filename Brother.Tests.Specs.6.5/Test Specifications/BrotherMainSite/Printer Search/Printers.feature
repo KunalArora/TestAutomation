@@ -1,10 +1,10 @@
-﻿@UAT
+﻿@UAT @TEST
 Feature: Correct printer product listings
 	In order to purchase a new Printer
 	As a customer
 	I want to be able to view the list of available printers
 
-@UAT
+@UAT @TEST
 Scenario Outline: View the list of available Laser Printers on Brother Main sites for languages except Spain and Portugal
 	Given I have navigated to the Brother Main Site "<country>" products pages
 	Given I have navigated to the "<site>" MainSite URL for country "<country>"
@@ -13,15 +13,15 @@ Scenario Outline: View the list of available Laser Printers on Brother Main site
 
 Scenarios:
 	| country        | site                                                        |
-	| Czech          | printers/laser-printers                                     |
-	| France         | imprimantes/imprimantes-multifonctions/multifonctions-laser |
-	| Hungary        | printers/laser-printers                                     |
+  # | Czech          | printers/laser-printers                                     |On DV2,printer product listings does not have products
+   #| France         | imprimantes/imprimantes-multifonctions/multifonctions-laser |-On UAT,printer product listings does not have products
+   #| Hungary        | printers/laser-printers                                     |-On DV2,printer product listings does not have products
 	| Ireland        | printers/laser-printers                                     |
 	| Netherlands    | printers/laserprinters                                      |
-	| Poland         | printers/laser-printers                                     |
-	| Romania        | printers/laser-printers                                     |
-	| Slovakia       | printers/laser-printers                                     |
-	| Slovenia       | printers/laser-printers                                     |
+   #| Poland         | printers/laser-printers                                     |-On DV2,printer product listings does not have products
+   #| Romania        | printers/laser-printers                                     |-On DV2,printer product listings does not have products
+   #| Slovakia       | printers/laser-printers                                     |-On DV2,printer product listings does not have products
+   #| Slovenia       | printers/laser-printers                                     |- On DV2,this product list does not have products
 ##	| Belgium        | brother-printers/laser-printers?sc_lang=nl-BE               | - language switching problem
 ##  | Belgium        | imprimantes/imprimantes-laser?sc_lang=fr-BE                 | - language switching problem
 ##	| Denmark        | printers/all-colour-lasers                                  |
