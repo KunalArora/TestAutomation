@@ -88,7 +88,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
        
         public void EnterValidUntil()
         {
-            if (!IsGermanSystem())
+            if (IsUKSystem())
                 ValidUntilElement.SendKeys(MpsUtil.SomeDaysFromToday());
         }
 

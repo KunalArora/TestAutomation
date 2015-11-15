@@ -130,6 +130,8 @@
     <Compile Include="Pages\MPSTwo\BankContractsPage.cs" />
     <Compile Include="Pages\MPSTwo\BankDashBoardPage.cs" />
     <Compile Include="Pages\MPSTwo\BankOffersPage.cs" />
+    <Compile Include="Pages\MPSTwo\ConsumableOrderingPage.cs" />
+    <Compile Include="Pages\MPSTwo\CustomerConsummablePage.cs" />
     <Compile Include="Pages\MPSTwo\CustomerDashboardPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerApprovedProposalPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerClosedProposalPage.cs" />

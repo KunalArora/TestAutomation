@@ -107,36 +107,37 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             TestCheck.AssertIsEqual(true, option.Any(), "Time Zone does not contain any options");
         }
 
-        public void EnterSerialNumber()
+        private string SerialNumberUsed()
         {
+            string serial = null;
+
             if (IsUKSystem())
             {
-                MPSJobRunnerPage.RunResetSerialNumberJob(serialNumber);
-
-                WebDriver.Wait(DurationType.Second, 5);
-
-                ClearAndType(SerialNumberFieldElement, serialNumber);
+                serial = serialNumber;
             }
             else if (IsGermanSystem())
             {
-                MPSJobRunnerPage.RunResetSerialNumberJob(serialNumberBIG);
-
-                WebDriver.Wait(DurationType.Second, 5);
-
-                ClearAndType(SerialNumberFieldElement, serialNumberBIG);
+                serial = serialNumberBIG;
             }
             else if (IsAustriaSystem())
             {
-                MPSJobRunnerPage.RunResetSerialNumberJob(serialNumberAUT);
-
-                WebDriver.Wait(DurationType.Second, 5);
-
-                ClearAndType(SerialNumberFieldElement, serialNumberAUT);
+                serial = serialNumberAUT;
             }
 
-            
-           // WebDriver.Wait(DurationType.Second, 5);
+            SpecFlow.SetContext("SerialNumber", serial);
 
+            return serial;
+        }
+
+
+        public void EnterSerialNumber()
+        {
+            MPSJobRunnerPage.RunResetSerialNumberJob(SerialNumberUsed());
+
+            WebDriver.Wait(DurationType.Second, 5);
+
+            ClearAndType(SerialNumberFieldElement, SerialNumberUsed());
+           
             SerialNumberFieldElement.SendKeys(Keys.Tab);
 
             WebDriver.Wait(DurationType.Second, 5);
@@ -181,8 +182,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 throw new Exception("ConnectButtonElement is not displayed");
             }
-            
-           
+
+            ReturnToOriginWindow();
+
         }
 
         public void CompleteDeviceConnection()

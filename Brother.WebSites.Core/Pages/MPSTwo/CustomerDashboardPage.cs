@@ -17,6 +17,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/customer/invoices\"] .media-body")]
         public IWebElement CustomerDashboardInvoiceLink;
+        [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/customer/consumables\"] .media-heading")]
+        public IWebElement CustomerDashboardConsummableLink;
+        [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/customer/print-counts\"] .media-heading")]
+        public IWebElement CustomerDashboardPrintCountsLink;
+        [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/customer/service-requests\"] .media-heading")]
+        public IWebElement CustomerDashboardServiceRequestsLink;
 
 
         public void IsCustomerDashboardPageDisplayed()
@@ -26,6 +32,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             AssertElementPresent(CustomerDashboardInvoiceLink, "Customer Dashboard page");
         }
 
+        public CustomerConsummablePage NavigateToCustomerConsummablePage()
+        {
+            ScrollTo(CustomerDashboardConsummableLink);
+            CustomerDashboardConsummableLink.Click();
+            return GetInstance<CustomerConsummablePage>(Driver);
+        }
 
     }
 }

@@ -31,6 +31,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string setCustomerSAPIdJob = @"setcustomersapid.aspx?name={0}&sapid={1}";
         private const string setPersonSAPIdJob = @"setpersonsapid.aspx?email={0}&sapid={1}";
         private const string customerPassword = @"getuserpassword.aspx?email=";
+        private const string setConsumableStatusJob = @"mps2/setconsumableorderstatus.aspx?orderid={0}&statusid={1}";
         
         public static void RunCreateCustomerAndPersonCommandJob()
         {
@@ -70,6 +71,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var webSite = CoinedUrl() + customerPassword + email;
 
             var response = Utils.GetStringFromUrl(webSite, 5);
+
+            return response;
+        }
+
+        public static string GetConsumableOrderStatusResetMsg(string orderid, string status)
+        {
+            var webSite = CoinedUrl() + setConsumableStatusJob;
+
+            webSite = String.Format(webSite, orderid, status);
+
+            var response = Utils.GetSuccessStringFromUrl(webSite, 5);
 
             return response;
         }

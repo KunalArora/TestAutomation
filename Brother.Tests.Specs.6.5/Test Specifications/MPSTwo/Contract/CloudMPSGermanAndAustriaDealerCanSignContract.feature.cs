@@ -74,7 +74,6 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Contract
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("German And Austria Dealer Can Sign A Leasing And Click Contract")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Austria", "Cloud MPS Bank", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Germany", "Cloud MPS Bank", null)]
         public virtual void GermanAndAustriaDealerCanSignALeasingAndClickContract(string role, string country, string role2, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("German And Austria Dealer Can Sign A Leasing And Click Contract", exampleTags);

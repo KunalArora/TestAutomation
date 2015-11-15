@@ -14,7 +14,8 @@ Scenario Outline: Installer can progress with installation for Email Communicati
 	And I can sign out of Brother Online
 	When I sign back into Cloud MPS as a "<Role2>" from "<Country>"
 	And I navigate to customer dashboard page
-
+	And I navigate to consumable ordering page
+	Then it is not possible to order a consumable
 	
 Scenarios:
 
@@ -27,19 +28,16 @@ Scenario Outline: German And Austria Installer can progress with installation fo
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And the contract created above is approved
 	And I sign back into Cloud MPS as a "<Role1>" from "<Country>"
-	And I generate installation request for the contract with "<Method>" communication
-	And I extract the installer url from Installation Request
-	When I navigate to the installer page
-	And I enter the contract reference number
-	And I enter device serial number for "<Method>" communication 
-	And I enter the device IP address
-	Then I can connect the device to Brother environment
-	And I can complete device installation
+	And I installed the device in the contract through "<Method>"
 	And I can sign out of Brother Online
+	When I sign back into Cloud MPS as a "<Role2>" from "<Country>"
+	And I navigate to customer dashboard page
+	And I navigate to consumable ordering page
+	Then it is not possible to order a consumable
 
 	
 Scenarios:
 
-	| Role                            | Country | ContractType             | UsageType      | Role1            | Method |
-	| Cloud MPS Local Office Approver | Austria | Easy Print Pro & Service | Minimum Volume | Cloud MPS Dealer | Email  |
-	| Cloud MPS Local Office Approver | Germany | Easy Print Pro & Service | Minimum Volume | Cloud MPS Dealer | Email  |
+	| Role                            | Country | ContractType             | UsageType      | Role1            | Method | Role2              |
+	| Cloud MPS Local Office Approver | Austria | Easy Print Pro & Service | Minimum Volume | Cloud MPS Dealer | Email  | Cloud MPS Customer |
+	| Cloud MPS Local Office Approver | Germany | Easy Print Pro & Service | Minimum Volume | Cloud MPS Dealer | Email  | Cloud MPS Customer |

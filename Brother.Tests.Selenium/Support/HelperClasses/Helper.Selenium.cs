@@ -166,6 +166,19 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             return elementStatus;
         }
 
+        public void ReturnToOriginWindow()
+        {
+            var browserTabs = new List<String> (Driver.WindowHandles);
+
+            if (browserTabs.Count > 1)
+            {
+                Driver.SwitchTo().Window(browserTabs[1]);
+                Driver.Close();
+                Driver.SwitchTo().Window(browserTabs[0]);
+            }
+            
+        }
+
         public static bool WaitForElementToExistByCssSelector(string element)
         {
             return WaitForElementToExistByCssSelector(element, 5, 10);

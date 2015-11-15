@@ -215,7 +215,6 @@ namespace Brother.Tests.Selenium.Lib.Support
                     finishPwd = MPSJobRunnerPage.GetCustomerCreatedPassword(MpsUtil.CreatedEmail());
                     break;
             }
-
             
             Helper.MsgOutput(String.Format("The password formed for {0} is {1}", userType, finishPwd));
 
