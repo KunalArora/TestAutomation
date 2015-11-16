@@ -73,7 +73,7 @@ namespace Brother.Tests.Specs.BrotherMainSite.SuppliesAndAccessories
         [When(@"I click on Add To Basket")]
         public void WhenIClickOnAddToBasket()
         {
-            TestCheck.AssertIsEqual(0, BasketModule.GetBasketItemsCount(CurrentDriver), "Invalid Basket item count");
+           TestCheck.AssertIsEqual(0, BasketModule.GetBasketItemsCount(CurrentDriver), "Invalid Basket item count");
             CurrentPage.As<InkJetCartridgePage>().AddToBasketButtonClick();
       
         }

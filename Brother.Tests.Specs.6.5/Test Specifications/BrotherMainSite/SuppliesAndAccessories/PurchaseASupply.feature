@@ -10,7 +10,7 @@ Feature: PurchaseANewInkCartridge
 
 @SMOKE
 # Valid Supply code with valid CC details, addresses etc
-Scenario: Purchase a new Inkjet Cartridge with a valid supply code and valid credit card details
+Scenario: (BBAU-2877) Purchase a new Inkjet Cartridge with a valid supply code and valid credit card details
    Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
 	And I am redirected to the Brother Login/Register page
@@ -75,7 +75,7 @@ Scenario: Purchase a new Inkjet Cartridge with a valid supply code and valid cre
 @TEST @UAT
 # On DV2 payment method page has been changed.
 #Valid Model code with valid CC details, addresses etc
-Scenario: Purchase a new Inkjet Cartridge with a valid device code and valid credit card details
+Scenario: (BBAU-2877) - Purchase a new Inkjet Cartridge with a valid device code and valid credit card details 
 Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
 	And I am redirected to the Brother Login/Register page

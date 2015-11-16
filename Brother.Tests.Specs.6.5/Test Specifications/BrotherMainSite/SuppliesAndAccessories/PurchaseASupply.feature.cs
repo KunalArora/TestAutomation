@@ -70,13 +70,13 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherMainSite.SuppliesAndAcce
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Purchase a new Inkjet Cartridge with a valid supply code and valid credit card de" +
-            "tails")]
+        [NUnit.Framework.DescriptionAttribute("(BBAU-2877) Purchase a new Inkjet Cartridge with a valid supply code and valid cr" +
+            "edit card details")]
         [NUnit.Framework.CategoryAttribute("SMOKE")]
-        public virtual void PurchaseANewInkjetCartridgeWithAValidSupplyCodeAndValidCreditCardDetails()
+        public virtual void BBAU_2877PurchaseANewInkjetCartridgeWithAValidSupplyCodeAndValidCreditCardDetails()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Purchase a new Inkjet Cartridge with a valid supply code and valid credit card de" +
-                    "tails", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("(BBAU-2877) Purchase a new Inkjet Cartridge with a valid supply code and valid cr" +
+                    "edit card details", new string[] {
                         "SMOKE"});
 #line 13
 this.ScenarioSetup(scenarioInfo);
@@ -217,14 +217,14 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Purchase a new Inkjet Cartridge with a valid device code and valid credit card de" +
-            "tails")]
+        [NUnit.Framework.DescriptionAttribute("(BBAU-2877) - Purchase a new Inkjet Cartridge with a valid device code and valid " +
+            "credit card details")]
         [NUnit.Framework.CategoryAttribute("TEST")]
         [NUnit.Framework.CategoryAttribute("UAT")]
-        public virtual void PurchaseANewInkjetCartridgeWithAValidDeviceCodeAndValidCreditCardDetails()
+        public virtual void BBAU_2877_PurchaseANewInkjetCartridgeWithAValidDeviceCodeAndValidCreditCardDetails()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Purchase a new Inkjet Cartridge with a valid device code and valid credit card de" +
-                    "tails", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("(BBAU-2877) - Purchase a new Inkjet Cartridge with a valid device code and valid " +
+                    "credit card details", new string[] {
                         "TEST",
                         "UAT"});
 #line 78
