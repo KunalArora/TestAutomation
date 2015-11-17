@@ -71,8 +71,6 @@ namespace Brother.Tests.Specs.TestSpecifications.OmniJoin
         public virtual void FeatureBackground()
         {
 #line 6
-#line 8
- testRunner.Given("I am logged onto Brother Online \"United Kingdom\" using valid credentials", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
         }
         
@@ -126,89 +124,124 @@ this.FeatureBackground();
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Change Payment Method")]
-        [NUnit.Framework.CategoryAttribute("TEST")]
-        [NUnit.Framework.CategoryAttribute("UAT")]
-        [NUnit.Framework.CategoryAttribute("SMOKE")]
+        [NUnit.Framework.IgnoreAttribute()]
         public virtual void ChangePaymentMethod()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Change Payment Method", new string[] {
-                        "TEST",
-                        "UAT",
-                        "SMOKE"});
-#line 29
+                        "IGNORE"});
+#line 31
 this.ScenarioSetup(scenarioInfo);
 #line 6
 this.FeatureBackground();
-#line 30
- testRunner.Given("I have navigated to the OmniJoin home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 31
+#line 32
+testRunner.Given("I want to create a new account with Brother Online \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 33
+ testRunner.When("I click on Create Account for \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 34
+ testRunner.And("I am redirected to the Brother Login/Register page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 35
+ testRunner.And("I have Checked No I Do Not Have An Account Checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                        "field",
+                        "value"});
+            table1.AddRow(new string[] {
+                        "FirstName",
+                        "AutoTest"});
+            table1.AddRow(new string[] {
+                        "LastName",
+                        "AutoTest"});
+            table1.AddRow(new string[] {
+                        "Password",
+                        "@@@@@"});
+            table1.AddRow(new string[] {
+                        "ConfirmPassword",
+                        "@@@@@"});
+#line 36
+ testRunner.And("I fill in the registration information using a valid email address", ((string)(null)), table1, "And ");
+#line 43
+ testRunner.And("I have Agreed to the Terms and Conditions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 44
+ testRunner.And("I declare that I do not use this account for business", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 45
+ testRunner.When("I press Create Your Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 46
+ testRunner.Then("I should see my account confirmation page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 47
+ testRunner.And("When I Click Go Back", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 48
+ testRunner.Then("I should be able to log into \"United Kingdom\" Brother Online using my account det" +
+                    "ails", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 49
+  testRunner.And("I have navigated to the OmniJoin home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 50
  testRunner.When("I purchase an OmniJoin \"Lite\" plan with \"Monthly\" billing with valid payment deta" +
                     "ils", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 32
+#line 51
  testRunner.Then("I can navigate to the Brother Online Home Page \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 33
+#line 52
  testRunner.When("I sign back into Brother Online \"United Kingdom\" using the same credentials", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 34
+#line 53
  testRunner.When("I click on OmniJoin home", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 35
+#line 54
  testRunner.Then("I can click on Manage Plan", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 36
+#line 55
  testRunner.And("If I click on Edit Payment Method", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 37
+#line 56
  testRunner.Then("I check that the correct number of payment methods exist as \"1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 38
+#line 57
  testRunner.When("I click Add Payment Method", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 39
+#line 58
  testRunner.When("I add a new Payment Method", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 40
+#line 59
  testRunner.And("I click on Use This Address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 41
+#line 60
  testRunner.When("I enter valid credit card details for a MasterCard Credit Card with an expired da" +
                     "te of \"12-2014\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 43
+#line 62
  testRunner.And("I click on Send for Payment Information on Edit Payment page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 44
+#line 63
  testRunner.Then("I can navigate back to Brother Online home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 45
+#line 64
  testRunner.When("I click on OmniJoin home", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 46
+#line 65
  testRunner.Then("I can click on Manage Plan", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 47
+#line 66
  testRunner.And("If I click on Edit Payment Method", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 49
+#line 68
  testRunner.Then("I check that the correct number of payment methods exist as \"1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 50
+#line 69
  testRunner.And("I select a payment Method from the Drop Down list as \"VISA - ********9460\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 51
+#line 70
  testRunner.When("I click Add Payment Method", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 52
+#line 71
  testRunner.When("I add a new Payment Method", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 53
+#line 72
  testRunner.And("I click on Use This Address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 54
+#line 73
  testRunner.When("I enter valid credit card details for a MasterCard Credit Card with an expired da" +
                     "te of \"12-2016\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 55
+#line 74
  testRunner.And("I click on Send for Payment Information on Edit Payment page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 57
+#line 76
  testRunner.Then("I can navigate back to Brother Online home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 58
+#line 77
  testRunner.When("I click on OmniJoin home", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 59
+#line 78
  testRunner.Then("I can click on Manage Plan", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 60
+#line 79
  testRunner.And("If I click on Edit Payment Method", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 61
+#line 80
  testRunner.Then("I check that the correct number of payment methods exist as \"2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 62
+#line 81
  testRunner.And("I select a payment Method from the Drop Down list as \"MasterCard - ********5390\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 63
+#line 82
  testRunner.When("I can click on Update for Payment Method", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 64
+#line 83
  testRunner.Then("I can navigate back to Brother Online home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 65
+#line 84
  testRunner.Then("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 66
+#line 85
  testRunner.And("I am redirected to the Brother Home Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -221,7 +254,7 @@ this.FeatureBackground();
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Edit Payment SAP validation", new string[] {
                         "ignore"});
-#line 69
+#line 88
 this.ScenarioSetup(scenarioInfo);
 #line 6
 this.FeatureBackground();
@@ -236,7 +269,7 @@ this.FeatureBackground();
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cancel Plan", new string[] {
                         "ignore"});
-#line 74
+#line 93
 this.ScenarioSetup(scenarioInfo);
 #line 6
 this.FeatureBackground();
