@@ -1,4 +1,5 @@
-﻿@UAT @TEST
+﻿@IGNORE
+#Payment method page has been changed.
 Feature: PurchaseANewInkCartridge
 	In order to continue to use my printer once the ink has run out
 	As a user
