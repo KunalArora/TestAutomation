@@ -511,6 +511,6 @@ Scenario Outline: Customer able to create a new BOL Portugal account using the s
 	And I can sign out of Brother Online
 
 Scenarios: 
-| Country  | Tax Code  |
-| Portugal | 980254698 |
-| Portugal | 980254698 |
+| Country  | Tax Code    |
+| Portugal | PT181161699 |
+| Portugal | PT181161699 |
