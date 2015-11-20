@@ -148,6 +148,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
 
         }
 
+        [Then(@"I fill in current password")]
         [Then(@"If I enter the current password")]
         public void ThenIfIEnterTheCurrentPassword()
         {
@@ -206,7 +207,8 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<MySignInDetailsPage>().EnterExistingPasswordForEmailChange(Helper.Password);
         }
-        
+
+        [Then(@"I enter a ""(.*)""")]
         [Then(@"I enter a new password of ""(.*)""")]
         public void ThenIEnterANewPasswordOf(string newPassword)
         {

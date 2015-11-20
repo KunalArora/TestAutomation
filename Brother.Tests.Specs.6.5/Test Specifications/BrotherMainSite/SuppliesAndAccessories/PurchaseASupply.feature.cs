@@ -217,6 +217,7 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("(BBAU-2877) - Purchase a new Inkjet Cartridge with a valid device code and valid " +
             "credit card details")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.CategoryAttribute("TEST")]
         [NUnit.Framework.CategoryAttribute("UAT")]
         public virtual void BBAU_2877_PurchaseANewInkjetCartridgeWithAValidDeviceCodeAndValidCreditCardDetails()
@@ -224,7 +225,8 @@ this.ScenarioSetup(scenarioInfo);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("(BBAU-2877) - Purchase a new Inkjet Cartridge with a valid device code and valid " +
                     "credit card details", new string[] {
                         "TEST",
-                        "UAT"});
+                        "UAT",
+                        "IGNORE"});
 #line 79
 this.ScenarioSetup(scenarioInfo);
 #line 80

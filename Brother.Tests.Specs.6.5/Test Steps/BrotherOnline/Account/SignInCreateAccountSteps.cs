@@ -2,6 +2,7 @@
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
+using Brother.WebSites.Core.Pages.BrotherMainSite.Basket;
 using Brother.WebSites.Core.Pages.BrotherOnline.Account;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
 using Brother.WebSites.Core.Pages.MPSTwo;
@@ -311,7 +312,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             ThenOnceIHaveConfirmedMyAccount();
             ThenIShouldBeAbleToLogIntoBrotherOnlineUsingMyAccountDetails(country);
         }
-
+      
         [Then(@"Once I have confirmed my account by clicking on the email link")]
         public void ThenOnceIHaveConfirmedMyAccount()
         {
@@ -326,8 +327,8 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage = BasePage.LoadBolHomePage(CurrentDriver, BasePage.BaseUrl, "");
             GivenINeedABrotherOnlineAccountInOrderToUseBrotherOnlineServices(country);
         }
-		
-		[Given(@"I launch Brother Online for ""(.*)""")]
+        
+        [Given(@"I launch Brother Online for ""(.*)""")]
         public void GivenILaunchBrotherOnlineFor(string country)
         {
             // Set locale to direct to Brother Online Ireland

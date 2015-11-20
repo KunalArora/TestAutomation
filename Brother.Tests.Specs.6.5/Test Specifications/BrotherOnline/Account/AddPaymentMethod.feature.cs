@@ -20,7 +20,8 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.Account
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("AddPaymentMethod")]
-    [NUnit.Framework.IgnoreAttribute()]
+    [NUnit.Framework.CategoryAttribute("TEST")]
+    [NUnit.Framework.CategoryAttribute("UAT")]
     public partial class AddPaymentMethodFeature
     {
         
@@ -35,7 +36,8 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.Account
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "AddPaymentMethod", "In order to purchase items from Brother\r\nAs a customer\r\nI need to add a new Payme" +
                     "nt Method", ProgrammingLanguage.CSharp, new string[] {
-                        "IGNORE"});
+                        "TEST",
+                        "UAT"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -114,11 +116,13 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.Account
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Add payment method with new address")]
-        [NUnit.Framework.IgnoreAttribute()]
+        [NUnit.Framework.CategoryAttribute("TEST")]
+        [NUnit.Framework.CategoryAttribute("UAT")]
         public virtual void AddPaymentMethodWithNewAddress()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add payment method with new address", new string[] {
-                        "IGNORE"});
+                        "TEST",
+                        "UAT"});
 #line 29
 this.ScenarioSetup(scenarioInfo);
 #line 8

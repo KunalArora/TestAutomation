@@ -73,7 +73,7 @@ Scenario: (BBAU-2877) Purchase a new Inkjet Cartridge with a valid supply code a
 	Then I am redirected to the Brother Home Page
 	And I can validate an Order Confirmation email was received
 
-@TEST @UAT
+@TEST @UAT @IGNORE
 # On DV2 payment method page has been changed.
 #Valid Model code with valid CC details, addresses etc
 Scenario: (BBAU-2877) - Purchase a new Inkjet Cartridge with a valid device code and valid credit card details 
@@ -102,10 +102,10 @@ Given I want to create a new account with Brother Online "United Kingdom"
 	Then I should see an a list of associated items for model "DCP-J715W"
 	And If I click on the item "LC1100BK" 
 	Then I should see the selected item information page priced at "€22.53" inc vat 
-	When I click on Add To Basket
+	When I click on Add To Basket 
 	Then I should see the item "LC1100BK" in the Basket
 	And I should see the Basket item count change to "1"
-	When I click on Go to Basket
+	When I click on Go to Basket 
 	Then I should see the item "LC1100BK" in the item list
 	And I should see the Basket items count is "1"
 	When I click Checkout
@@ -257,6 +257,8 @@ Scenario: Purchase numerous items by Product serial code
 
 @ignore
 Scenario: Purchase numerous items by Model code
+
+
 
 
 
