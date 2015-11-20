@@ -1,4 +1,4 @@
-﻿@IGNORE
+﻿@TEST @UAT	
 # Card details page flow has been changed to iframe content
 Feature: AddPaymentMethod
 	In order to purchase items from Brother
@@ -24,7 +24,7 @@ Background:
 	And When I Click Go Back
 	Then I should be able to log into "United Kingdom" Brother Online using my account details
 
-@IGNORE
+@TEST @UAT
 # Card details page flow has been changed to iframe content
 Scenario: Add payment method with new address
     Then If I go to My Account
