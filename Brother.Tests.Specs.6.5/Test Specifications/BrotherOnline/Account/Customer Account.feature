@@ -812,7 +812,7 @@ Scenario Outline: Customer account holder is unable to switch to a business acco
 		| "existingcustomeraccwithorder@guerrillamail.com"	| "Password100" |
 
 @TEST @UAT 
-Scenario Outline: Customer creates new account on UK BOL and wishes to change their password
+Scenario Outline: Customer creates new account on UK and Non-UK BOL then wishes to change their password
 Given I want to create a new account with Brother Online <Country>
 	When I click on Create Account for <Country>
 	And I am redirected to the Brother Login/Register page
@@ -842,7 +842,19 @@ Given I want to create a new account with Brother Online <Country>
 
 Examples:
 | Country          | NewPassword   |
-| "United Kingdom" | "Password123" | 
+| "United Kingdom" | "Password123" |
+| "Ireland"        | "Iasdf123@"   |
+| "Belgium"        | "Bel123@@"    |
+| "France"         | "Fr123abc4"   |
+| "Netherlands"    | "Nl123@56"    |
+| "Germany"        | "Ge123@90"    |
+| "Norway"         | "No123@12"    |
+| "Finland"        | "F123@abc"    |
+| "Spain"          | "Sp123@123"   |
+| "Portugal"       | "Pt123@12"    |
+| "Denmark"        | "Denmark1"    |
+
+
 	
 
 

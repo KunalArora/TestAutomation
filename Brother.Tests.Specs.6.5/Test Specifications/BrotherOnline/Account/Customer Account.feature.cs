@@ -1966,11 +1966,22 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Customer creates new account on UK BOL and wishes to change their password")]
+        [NUnit.Framework.DescriptionAttribute("Customer creates new account on UK and Non-UK BOL then wishes to change their pas" +
+            "sword")]
         [NUnit.Framework.CategoryAttribute("TEST")]
         [NUnit.Framework.CategoryAttribute("UAT")]
         [NUnit.Framework.TestCaseAttribute("\"United Kingdom\"", "\"Password123\"", null)]
-        public virtual void CustomerCreatesNewAccountOnUKBOLAndWishesToChangeTheirPassword(string country, string newPassword, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("\"Ireland\"", "\"Iasdf123@\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"Belgium\"", "\"Bel123@@\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"France\"", "\"Fr123abc4\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"Netherlands\"", "\"Nl123@56\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"Germany\"", "\"Ge123@90\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"Norway\"", "\"No123@12\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"Finland\"", "\"F123@abc\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"Spain\"", "\"Sp123@123\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"Portugal\"", "\"Pt123@12\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"Denmark\"", "\"Denmark1\"", null)]
+        public virtual void CustomerCreatesNewAccountOnUKAndNon_UKBOLThenWishesToChangeTheirPassword(string country, string newPassword, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "TEST",
@@ -1979,7 +1990,8 @@ this.ScenarioSetup(scenarioInfo);
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer creates new account on UK BOL and wishes to change their password", @__tags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer creates new account on UK and Non-UK BOL then wishes to change their pas" +
+                    "sword", @__tags);
 #line 815
 this.ScenarioSetup(scenarioInfo);
 #line 816
