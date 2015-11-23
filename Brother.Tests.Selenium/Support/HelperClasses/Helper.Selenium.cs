@@ -134,6 +134,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             return elementStatus;
         }
 
+
         public bool WaitForElementToExistByName(string element)
         {
             var elementStatus = false;
@@ -592,9 +593,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             return null;
         }
 
-       
-      
-
+        
         public IWebElement GetElementByCssSelector(string elementName)
         {
             IWebElement element = null;
@@ -929,6 +928,12 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                 var alert = driver.SwitchTo().Alert();
                 alert.Dismiss();
             }
+        }
+
+        public void SyncEscapeAction(IWebDriver driver)
+        {
+            var action = new Actions(driver);
+            action.SendKeys(Keys.Escape);
         }
 
         /// <summary>

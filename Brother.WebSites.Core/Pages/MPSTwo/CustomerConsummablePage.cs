@@ -26,11 +26,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement ConsumableDeviceActionButton;
         [FindsBy(How = How.CssSelector, Using = ".open #content_1_ContractDevicesList_Contracts_List_0_ListActions_0_List_0_Link_0")]
         public IWebElement ConsumableDeviceRaiseConsummableButton;
+        [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/customer/consumables/orders\"]")]
+        public IWebElement ConsumableOrderTab;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_ContractDevicesList_Contracts_List_0_Cell_BW_0")]
+        public IWebElement BlackTonerCounter;
+        
 
 
         public void IsCorrectDeviceSerialNumberDisplayed()
         {
-            var serialNumber = SpecFlow.GetContext("SerialNumber");
+            var serialNumber = MPSUserLogins.UsedSerialNumber(Driver);
             var displayedSerial = ConsumableDeviceSerialNumber.Text;
 
             TestCheck.AssertIsEqual(serialNumber, displayedSerial, "Displayed serial number is not the same as the one entered");
@@ -53,14 +58,29 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
 
-        public ConsumableOrderingPage NavigateToConsumableOrderingPage()
+        public ConsumableRaiseOrderPage NavigateToConsumableRaiseOrderPage()
         {
             ConsumableDeviceActionButton.Click();
             WebDriver.Wait(DurationType.Second, 2);
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ConsumableDeviceRaiseConsummableButton);
             //ConsumableDeviceRaiseConsummableButton.Click();
 
-            return GetInstance<ConsumableOrderingPage>(Driver);
+            return GetInstance<ConsumableRaiseOrderPage>(Driver);
+        }
+
+        public ConsumableExistingOrderListPage NavigateToConsumableExistingOrderListPage()
+        {
+            ConsumableOrderTab.Click();
+
+            return GetInstance<ConsumableExistingOrderListPage>(Driver);
+        }
+
+        public void IsBlackTonerCountDisplayed()
+        {
+            if(BlackTonerCounter == null)
+                throw new Exception("Black toner element is not displayed");
+
+            TestCheck.AssertIsEqual("1", BlackTonerCounter.Text, "Black toner counter is not equal 1");
         }
 
     }

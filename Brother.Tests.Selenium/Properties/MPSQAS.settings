@@ -26,5 +26,17 @@
     <Setting Name="QASBankPassword" Type="System.String" Scope="User">
       <Value Profile="(Default)">{0}leasingbank1</Value>
     </Setting>
+    <Setting Name="QASCustomerPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">P@$$w0rd</Value>
+    </Setting>
+    <Setting Name="QASUKCustomer" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Bradon20151112102155@mailinator.com</Value>
+    </Setting>
+    <Setting Name="QASDECustomer" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Misty20151023194141@mailinator.com</Value>
+    </Setting>
+    <Setting Name="QASATCustomer" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Coleen2015119021438@mailinator.com</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

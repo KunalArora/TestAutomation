@@ -99,6 +99,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Customer Account.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\MPSTwo\CloudMPSCustomerCanViewInvoices.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CloudMPSCustomerCanViewInvoices.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specifications\MPSTwo\Contract\CloudMPSDealerCanCopyADeclineProposal.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -570,6 +575,10 @@
     <None Include="Test Specifications\MPSOne\SignIn\MPSOneSignInToMPSAsADealer.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>MPSOneSignInToMPSAsADealer.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwo\CloudMPSCustomerCanViewInvoices.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CloudMPSCustomerCanViewInvoices.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwo\Contract\CloudMPSDealerCanCopyADeclineProposal.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

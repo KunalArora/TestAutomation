@@ -9,7 +9,6 @@ using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Selenium.Lib.Support
 {
-    
     public class MpsUtil
     {
         /// <summary>
@@ -69,6 +68,8 @@ namespace Brother.Tests.Selenium.Lib.Support
             return someDaysInthePast.ToString("dd/MM/yyyy");
 
         }
+
+       
 
         public static string CustomerReference()
         {
@@ -755,8 +756,5 @@ namespace Brother.Tests.Selenium.Lib.Support
             var margin = margins[new Random().Next(6)];
             return margin;
         }
-
-       
-
     }
 }

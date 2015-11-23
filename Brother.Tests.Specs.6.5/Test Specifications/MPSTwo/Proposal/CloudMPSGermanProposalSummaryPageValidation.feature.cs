@@ -74,6 +74,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Proposal
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Summary Page Validation For German And Austria Leasing and Click proposal")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Germany", "Leasing & Service", "Minimum Volume", "3 Jahre", "Vierteljährlich", "Halbjährlich", "HL-L8350CDW", "750", "750", "zur Leasingrate addieren", "BNP PARIBAS LEASE GROUP S.A.", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Austria", "Leasing & Service", "Minimum Volume", "3 Jahre", "Vierteljährlich", "Halbjährlich", "HL-L8350CDW", "750", "750", "zur Leasingrate addieren", "BNP PARIBAS LEASE GROUP S.A.", null)]
         public virtual void SummaryPageValidationForGermanAndAustriaLeasingAndClickProposal(string role, string country, string contractType, string usageType, string contract, string leasing, string billing, string printer, string clickVolume, string colourVolume, string basis, string bank, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Summary Page Validation For German And Austria Leasing and Click proposal", exampleTags);
@@ -142,6 +143,7 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("Summary Page Validation For Minimum Volume German And Austria Purchase and Click " +
             "proposal In Click Payment")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Germany", "Easy Print Pro & Service", "Minimum Volume", "5 Jahre", "Halbjährlich", "Tick", "MFC-L8650CDW", "im Voraus bezahlen", "800", "800", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Austria", "Easy Print Pro & Service", "Minimum Volume", "5 Jahre", "Halbjährlich", "Tick", "MFC-L8650CDW", "im Voraus bezahlen", "800", "800", null)]
         public virtual void SummaryPageValidationForMinimumVolumeGermanAndAustriaPurchaseAndClickProposalInClickPayment(string role, string country, string contractType, string usageType, string contract, string billing, string priceHardware, string printer, string paymentMethod, string clickVolume, string colourVolume, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Summary Page Validation For Minimum Volume German And Austria Purchase and Click " +
@@ -213,6 +215,7 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("Summary Page Validation For Minimum Volume German And Austria Purchase and Click " +
             "proposal Upfront Payment")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Germany", "Easy Print Pro & Service", "Minimum Volume", "4 Jahre", "Vierteljährlich", "Tick", "MFC-L8650CDW", "im Voraus bezahlen", "800", "800", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Austria", "Easy Print Pro & Service", "Minimum Volume", "4 Jahre", "Vierteljährlich", "Tick", "MFC-L8650CDW", "im Voraus bezahlen", "800", "800", null)]
         public virtual void SummaryPageValidationForMinimumVolumeGermanAndAustriaPurchaseAndClickProposalUpfrontPayment(string role, string country, string contractType, string usageType, string contract, string billing, string priceHardware, string printer, string paymentMethod, string clickVolume, string colourVolume, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Summary Page Validation For Minimum Volume German And Austria Purchase and Click " +

@@ -17,6 +17,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string serialNumber = @"A1T010001";
         private const string serialNumberBIG = @"A1T010002";
         private const string serialNumberAUT = @"A1T010003";
+        private const string existingSerialNumber = @"A1T010004";
+        private const string existingSerialNumberBIG = @"A1T010005";
+        private const string existingSerialNumberAUT = @"A1T010006";
 
         public override string DefaultTitle
         {
@@ -130,6 +133,29 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
 
+        private string UsedSerialNumber()
+        {
+            string serial = null;
+
+            if (IsUKSystem())
+            {
+                serial = existingSerialNumber;
+            }
+            else if (IsGermanSystem())
+            {
+                serial = existingSerialNumberBIG;
+            }
+            else if (IsAustriaSystem())
+            {
+                serial = existingSerialNumberAUT;
+            }
+
+            SpecFlow.SetContext("SerialNumber", serial);
+
+            return serial;
+        }
+
+
         public void EnterSerialNumber()
         {
             MPSJobRunnerPage.RunResetSerialNumberJob(SerialNumberUsed());
@@ -138,6 +164,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             ClearAndType(SerialNumberFieldElement, SerialNumberUsed());
            
+            SerialNumberFieldElement.SendKeys(Keys.Tab);
+
+            WebDriver.Wait(DurationType.Second, 5);
+        }
+
+        public void EnterExistingSerialNumber()
+        {
+            MPSJobRunnerPage.RunResetSerialNumberJob(UsedSerialNumber());
+
+            WebDriver.Wait(DurationType.Second, 5);
+
+            ClearAndType(SerialNumberFieldElement, UsedSerialNumber());
+
             SerialNumberFieldElement.SendKeys(Keys.Tab);
 
             WebDriver.Wait(DurationType.Second, 5);

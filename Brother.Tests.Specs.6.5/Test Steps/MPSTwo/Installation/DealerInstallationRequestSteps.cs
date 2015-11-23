@@ -42,6 +42,19 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             ThenICanCompleteDeviceInstallation();
         }
 
+        [Given(@"I installed existing device in the contract through ""(.*)""")]
+        public void GivenIInstalledExistingDeviceInTheContractThrough(string method)
+        {
+            GivenIGenerateInstallationRequestForTheContractWithCommunication(method);
+            GivenIExtractTheInstallerUrlFromInstallationRequest();
+            GivenINavigateToTheInstallerPage();
+            WhenIEnterTheContractReferenceNumber();
+            WhenIEnterDeviceSerialNumberForCommunication(method);
+            WhenIEnterTheDeviceIPAddress();
+            ThenICanConnectTheDeviceToBrotherEnvironment();
+            ThenICanCompleteDeviceInstallation();
+        }
+
 
 
         [Given(@"I extract the installer url from Installation Request")]
@@ -76,6 +89,14 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             CurrentPage.As<InstallerDeviceInstallationPage>().VerifyTimeZoneIsDisplayed(method);
             if (method == "BOR") return;
             CurrentPage.As<InstallerDeviceInstallationPage>().EnterSerialNumber();
+        }
+
+        [When(@"I enter existing device serial number for ""(.*)"" communication")]
+        public void WhenIEnterExistingDeviceSerialNumberForCommunication(string method)
+        {
+            CurrentPage.As<InstallerDeviceInstallationPage>().VerifyTimeZoneIsDisplayed(method);
+            if (method == "BOR") return;
+            CurrentPage.As<InstallerDeviceInstallationPage>().EnterExistingSerialNumber();
         }
 
 
