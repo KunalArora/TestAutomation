@@ -700,8 +700,7 @@ Scenarios:
 
 @TEST @UAT @PROD
 # Create an account for Brother Online for Italy
-Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on Italy site																			
-sign in and Sign Out
+Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on Italy site sign in and Sign Out
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
 	And I am redirected to the Brother Login/Register page
@@ -808,5 +807,85 @@ Scenario Outline: Customer account holder is unable to switch to a business acco
 	Scenarios:
 		| Email Address				                        | Password      |
 		| "existingcustomeraccwithorder@guerrillamail.com"	| "Password100" |
+
+@TEST @UAT 
+Scenario Outline: Customer creates new account on UK and Non-UK BOL then wishes to change their password
+Given I want to create a new account with Brother Online <Country>
+	When I click on Create Account for <Country>
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I fill in the registration information using a valid email address 
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Password        | @@@@@	       |
+	| ConfirmPassword | @@@@@		   |
+
+	And I have Agreed to the Terms and Conditions
+	And I declare that I do not use this account for business
+	When I press Create Your Account
+	Then I should see my account confirmation page
+	And When I Click Go Back
+	Then I should be able to log into <Country> Brother Online using my account details
+	When I navigate to my account for <Country>
+    And I click on Sign In Details
+    Then I fill in current password
+	And I enter a <NewPassword>
+	When I click on Update Password
+	Then My password will be updated 
+	Then If I sign out of Brother Online
+	And If I sign back into Brother Online <Country> using the same credentials
+	Then I can sign out of Brother Online
+
+Examples:
+| Country          | NewPassword   |
+| "United Kingdom" | "Password123" |
+| "Ireland"        | "Iasdf123@"   |
+| "Belgium"        | "Bel123@@"    |
+| "France"         | "Fr123abc4"   |
+| "Netherlands"    | "Nl123@56"    |
+| "Germany"        | "Ge123@90"    |
+| "Norway"         | "No123@12"    |
+| "Finland"        | "F123@abc"    |
+| "Spain"          | "Sp123@123"   |
+| "Portugal"       | "Pt123@12"    |
+| "Denmark"        | "Denmark1"    |
+
+@TEST @UAT
+Scenario Outline: Customer creates a new BOL Italy account with a valid tax code and wishes to change password 
+Given I want to create a new account with Brother Online <Country>
+	When I click on Create Account for <Country>
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I fill in the Italy registration information using a valid email address
+	| field           | value           |
+	| FirstName       | AutoTest        |
+	| LastName        | AutoTest		|
+	| Password        | @@@@@			|
+	| ConfirmPassword | @@@@@			|
+	
+	And I enter an valid <TaxCode>
+	And I have Agreed to the Terms and Conditions for Italy
+	And I declare that I do not use this account for business
+	When I press Create Your Account
+	Then I should see my account confirmation page
+	And When I Click Go Back
+	Then I should be able to log into <Country> Brother Online using my account details
+	When I navigate to my account for <Country>
+    And I click on Sign In Details
+    Then I fill in current password
+	And I enter a <NewPassword>
+	When I click on Update Password
+	Then My password will be updated 
+	Then If I sign out of Brother Online
+	And If I sign back into Brother Online <Country> using the same credentials
+	Then I can sign out of Brother Online
+
+Examples: 
+| Country | TaxCode          | NewPassword  |
+| "Italy" | MRTMTT25D09F205Z | "Italy@123"  |
+
+	
+
 
 

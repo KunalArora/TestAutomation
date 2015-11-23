@@ -70,6 +70,7 @@ Scenario Outline: Validate Free Trial form displays error messages when an inval
 	Then I should be directed to the OmniJoin Free Trial page
 	When I have entered a valid First and Last name, "AutoTest", "AutoTest"
 	Then I enter an invalid email address as <Invalid Email Address> for omnijoin free trial
+
 	Then I should see the Error Message displayed on the Email Address field
 
 
