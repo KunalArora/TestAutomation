@@ -33,7 +33,7 @@ Scenarios:
 ##	| United Kingdom | printers/all-mono-lasers                                    |
 
 # Prod only as the urls are different between DV2,QAS and Production
-@PROD
+@PROD @UAT
 Scenario Outline: View the list of available Printers on some Live Brother Main sites
 	Given I have navigated to the Brother Main Site "<country>" products pages
 	Given I have navigated to the "<site>" MainSite URL for country "<country>"

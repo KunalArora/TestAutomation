@@ -1,4 +1,4 @@
-﻿@IGNORE
+﻿@TEST @UAT
 Feature: Navigate main site top products menu
 	As a visitor of the Brother main site
 	I am able to navigate to each of the

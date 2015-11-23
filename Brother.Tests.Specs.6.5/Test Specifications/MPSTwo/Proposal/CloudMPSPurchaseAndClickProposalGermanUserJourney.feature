@@ -5,7 +5,7 @@ Feature: CloudMPSPurchaseAndClickProposalGermanUserJourney
 	I want to be able to use different MPS parameters to derive different leasing proposal
 
 
-Scenario Outline: Create different varieties of German Purchase and Click proposal for new customer on Minimum Volume Term
+Scenario Outline: Create different varieties of German And Austria Purchase and Click proposal for new customer on Minimum Volume Term
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	And Customer Information tab is not displayed
@@ -34,10 +34,11 @@ Scenario Outline: Create different varieties of German Purchase and Click propos
 
 	Scenarios: 
 	| Role             | Country | ContractType             | CreateOption        | UsageType      | Contract | Billing         | PriceHardware | Printer      | DeviceScreen | PaymentMethod | ClickVolume | ColourVolume |
+	| Cloud MPS Dealer | Austria | Easy Print Pro & Service | Create new customer | Minimum Volume | 5 Jahre  | Vierteljährlich | Tick          | MFC-L8650CDW | Full         | Pay upfront   | 800         | 800          |
 	| Cloud MPS Dealer | Germany | Easy Print Pro & Service | Create new customer | Minimum Volume | 5 Jahre  | Vierteljährlich | Tick          | MFC-L8650CDW | Full         | Pay upfront   | 800         | 800          |
 	
 @Ignore
-Scenario Outline: Create different varieties of German Purchase and Click proposal for new customer on Pay As You Go Term
+Scenario Outline: Create different varieties of German And Austria Purchase and Click proposal for new customer on Pay As You Go Term
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	When I fill Proposal Description for "<ContractType>" Contract type
@@ -66,9 +67,9 @@ Scenario Outline: Create different varieties of German Purchase and Click propos
 	Scenarios: 
 	| Role             | Country | ContractType             | CreateOption        | UsageType     | Contract | Billing      | PriceHardware | Printer    | DeviceScreen | ClickVolume |
 	| Cloud MPS Dealer | Germany | Easy Print Pro & Service | Create new customer | Pay As You Go | 3 Jahre  | Halbjährlich | Tick          | MFC-8510DN | Full         | 750         |
-	
 
-Scenario Outline: Create different varieties of German Purchase and Click proposal for an existing customer
+
+Scenario Outline: Create different varieties of German And Austria Purchase and Click proposal for an existing customer
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	And Customer Information tab is not displayed
@@ -98,9 +99,10 @@ Scenario Outline: Create different varieties of German Purchase and Click propos
 	Scenarios: 
 	| Role             | Country | ContractType             | CreateOption        | UsageType      | Contract | Billing         | PriceHardware | Printer      | DeviceScreen | PaymentMethod           | ClickVolume | ColourVolume |
 	| Cloud MPS Dealer | Germany | Easy Print Pro & Service | Create new customer | Minimum Volume | 5 Jahre  | Vierteljährlich | Tick          | MFC-L8650CDW | Full         | Included in Click Price | 800         | 800          |
-	
+	| Cloud MPS Dealer | Austria | Easy Print Pro & Service | Create new customer | Minimum Volume | 5 Jahre  | Vierteljährlich | Tick          | MFC-L8650CDW | Full         | Included in Click Price | 800         | 800          |
+
 @Ignore
-Scenario Outline: Create different varieties of German Purchase and Click proposal for an existing customer on Pay As You Go Term
+Scenario Outline: Create different varieties of German And Austria Purchase and Click proposal for an existing customer on Pay As You Go Term
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	When I fill Proposal Description for "<ContractType>" Contract type

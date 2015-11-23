@@ -76,12 +76,11 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         }
 
 
-
-        [Given(@"German Dealer have created a Awaiting Approval proposal of ""(.*)"" and ""(.*)""")]
-        public void GivenGermanDealerHaveCreatedProposalOfAwaitingApproval(string ContractType, string UsageType)
+        [Given(@"Dealer have created an Awaiting Approval proposal of ""(.*)"" and ""(.*)"" from ""(.*)""")]
+        public void GivenGermanDealerHaveCreatedProposalOfAwaitingApproval(string ContractType, string UsageType, string Country)
         {
             var instance4 = new CreateNewAccountSteps();
-            instance4.GivenISignIntoMpsasAFrom("Cloud MPS Dealer", "Germany");
+            instance4.GivenISignIntoMpsasAFrom("Cloud MPS Dealer", Country);
 
             if (ContractType.Equals("Leasing & Service"))
             {
@@ -160,7 +159,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         {
             if (ContractType.Equals("Leasing & Service"))
             {
-                GivenGermanDealerHaveCreatedProposalOfAwaitingApproval(ContractType, UsageType);
+                GivenGermanDealerHaveCreatedProposalOfAwaitingApproval(ContractType, UsageType, Country);
                 var instance4 = new CreateNewAccountSteps();
                 var instance2 = new SendProposalToApprover();
                 var instance3 = new AccountManagementSteps();
@@ -177,7 +176,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             }
             else if (ContractType.Equals("Easy Print Pro & Service"))
             {
-                GivenGermanDealerHaveCreatedProposalOfAwaitingApproval(ContractType, UsageType);
+                GivenGermanDealerHaveCreatedProposalOfAwaitingApproval(ContractType, UsageType, Country);
                 var instance4 = new CreateNewAccountSteps();
                 var instance2 = new SendProposalToApprover();
                 var instance3 = new AccountManagementSteps();
@@ -199,7 +198,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         {
             if (ContractType.Equals("Leasing & Service"))
             {
-                GivenGermanDealerHaveCreatedProposalOfAwaitingApproval(ContractType, UsageType);
+                GivenGermanDealerHaveCreatedProposalOfAwaitingApproval(ContractType, UsageType, Country);
                 var instance4 = new CreateNewAccountSteps();
                 var instance2 = new SendProposalToApprover();
                 var instance3 = new AccountManagementSteps();
@@ -216,7 +215,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             }
             else if (ContractType.Equals("Easy Print Pro & Service"))
             {
-                GivenGermanDealerHaveCreatedProposalOfAwaitingApproval(ContractType, UsageType);
+                GivenGermanDealerHaveCreatedProposalOfAwaitingApproval(ContractType, UsageType, Country);
                 var instance4 = new CreateNewAccountSteps();
                 var instance2 = new SendProposalToApprover();
                 var instance3 = new AccountManagementSteps();
@@ -407,7 +406,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<DealerProposalsCreateDescriptionPage>().SelectingContractType(contract);
             CurrentPage.As<DealerProposalsCreateDescriptionPage>().EnterProposalName("");
             CurrentPage.As<DealerProposalsCreateDescriptionPage>().EnterLeadCodeRef("");
-            if (CurrentPage.As<DealerProposalsCreateDescriptionPage>().IsGermanSystem())
+            if (CurrentPage.As<DealerProposalsCreateDescriptionPage>().IsBigAtSystem())
             {
                 NextPage = CurrentPage.As<DealerProposalsCreateDescriptionPage>().ClickNextButtonGermany();
             }

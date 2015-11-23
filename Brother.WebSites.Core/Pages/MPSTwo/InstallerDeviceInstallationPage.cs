@@ -16,6 +16,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private const string serialNumber = @"A1T010001";
         private const string serialNumberBIG = @"A1T010002";
+        private const string serialNumberAUT = @"A1T010003";
+        private const string existingSerialNumber = @"A1T010004";
+        private const string existingSerialNumberBIG = @"A1T010005";
+        private const string existingSerialNumberAUT = @"A1T010006";
 
         public override string DefaultTitle
         {
@@ -40,6 +44,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [FindsBy(How = How.CssSelector, Using = "[class*=\"js-mps-ip-\"]")] 
         public IList<IWebElement> IpAddressElements;
 
+        [FindsBy(How = How.CssSelector, Using = "p.form-control-static")] 
+        public IList<IWebElement> InstalledPinElements;
+
+        [FindsBy(How = How.CssSelector, Using = "[class*=\"js-mps-ip-a\"]")] 
+        public IWebElement IpElement;
+
         [FindsBy(How = How.CssSelector, Using = "[class*=\"js-mps-connect-device-to-\"]")] 
         public IWebElement ConnectButtonElement;
 
@@ -52,8 +62,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
        [FindsBy(How = How.CssSelector, Using = "#content_0_InputTimeZone_Input")] 
         public IWebElement TimeZoneOptionsElements;
 
-        private const string GermanUrl = @"online.de.";
-        private const string EnglandUrl = @"online.uk.";
+        
 
 
 
@@ -66,7 +75,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 throw new Exception("Installer page is not displayed");
             AssertElementPresent(ContractReferencePageAlertElement, "Installer pager alert");
 
-            MPSJobRunnerPage.RunResetSerialNumberJob(GetUrl().Contains(EnglandUrl) ? serialNumber : serialNumberBIG);
+            MPSJobRunnerPage.RunResetSerialNumberJob(IsUKSystem() ? serialNumber : serialNumberBIG);
         }
 
         public void EnterContractReference()
@@ -95,72 +104,137 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyTimeZoneIsDisplayed(string method)
         {
-            if (method == "Email") return;
+            SpecFlow.SetContext("InstallationMethod", method);
+            if (method != "Web") return;
             var option = SelectOption(TimeZoneOptionsElements);
             TestCheck.AssertIsEqual(true, option.Any(), "Time Zone does not contain any options");
         }
 
-        public void EnterSerialNumber(string country)
+        private string SerialNumberUsed()
         {
-            if (country.Equals("United Kingdom"))
+            string serial = null;
+
+            if (IsUKSystem())
             {
-                MPSJobRunnerPage.RunResetSerialNumberJob(serialNumber);
-
-                WebDriver.Wait(DurationType.Second, 3);
-
-                ClearAndType(SerialNumberFieldElement, serialNumber);
+                serial = serialNumber;
             }
-            else if (country.Equals("Germany"))
+            else if (IsGermanSystem())
             {
-                MPSJobRunnerPage.RunResetSerialNumberJob(serialNumberBIG);
-
-                WebDriver.Wait(DurationType.Second, 3);
-
-                ClearAndType(SerialNumberFieldElement, serialNumberBIG);
+                serial = serialNumberBIG;
+            }
+            else if (IsAustriaSystem())
+            {
+                serial = serialNumberAUT;
             }
 
-            
-            WebDriver.Wait(DurationType.Second, 3);
+            SpecFlow.SetContext("SerialNumber", serial);
+
+            return serial;
+        }
+
+
+        private string UsedSerialNumber()
+        {
+            string serial = null;
+
+            if (IsUKSystem())
+            {
+                serial = existingSerialNumber;
+            }
+            else if (IsGermanSystem())
+            {
+                serial = existingSerialNumberBIG;
+            }
+            else if (IsAustriaSystem())
+            {
+                serial = existingSerialNumberAUT;
+            }
+
+            SpecFlow.SetContext("SerialNumber", serial);
+
+            return serial;
+        }
+
+
+        public void EnterSerialNumber()
+        {
+            MPSJobRunnerPage.RunResetSerialNumberJob(SerialNumberUsed());
+
+            WebDriver.Wait(DurationType.Second, 5);
+
+            ClearAndType(SerialNumberFieldElement, SerialNumberUsed());
+           
+            SerialNumberFieldElement.SendKeys(Keys.Tab);
+
+            WebDriver.Wait(DurationType.Second, 5);
+        }
+
+        public void EnterExistingSerialNumber()
+        {
+            MPSJobRunnerPage.RunResetSerialNumberJob(UsedSerialNumber());
+
+            WebDriver.Wait(DurationType.Second, 5);
+
+            ClearAndType(SerialNumberFieldElement, UsedSerialNumber());
 
             SerialNumberFieldElement.SendKeys(Keys.Tab);
 
-            WebDriver.Wait(DurationType.Second, 3);
+            WebDriver.Wait(DurationType.Second, 5);
+        }
+
+
+        private IWebElement IpAddress()
+        {
+            return GetElementByCssSelector("[class*=\"js-mps-ip-a\"]");
+        }
+
+        private string Method()
+        {
+            return SpecFlow.GetContext("InstallationMethod");
         }
 
         public void EnterIpAddress()
         {
-            foreach (var ipAddressElement in IpAddressElements)
-            {
-                ipAddressElement.Click();
-                ClearAndType(ipAddressElement, "1");
-                ipAddressElement.SendKeys(Keys.Tab);
+            if (Method() == "Email")
+            { foreach (var ipAddressElement in IpAddressElements)
+                {
+                    ipAddressElement.Click();
+                    ClearAndType(ipAddressElement, "1");
+                    ipAddressElement.SendKeys(Keys.Tab);
+                    WebDriver.Wait(DurationType.Second, 2);
+                }
             }
-            WebDriver.Wait(DurationType.Second, 5);
+                WebDriver.Wait(DurationType.Second, 5);
         }
 
         public void ConnectDevice()
         {
             try
             {
-                if (TimeZoneOptionsElements != null) return;
-                ConnectButtonElement.Click();
-                WebDriver.Wait(DurationType.Second, 5);
+                if (Method() == "Email")
+                {
+                    ConnectButtonElement.Click();
+                    WebDriver.Wait(DurationType.Second, 5);
+                }
             }
             catch (Exception)
             {
                 throw new Exception("ConnectButtonElement is not displayed");
             }
-            
-           
+
+            ReturnToOriginWindow();
+
         }
 
         public void CompleteDeviceConnection()
         {
             try
             {
-                if (TimeZoneOptionsElements != null) return;
-                CompleteInstallationElement.Click();
-                WebDriver.Wait(DurationType.Second, 5);
+                if (Method() == "Email")    
+                {
+                    CompleteInstallationElement.Click();
+                    WebDriver.Wait(DurationType.Second, 5);
+                }
             }
             catch (Exception)
             {
@@ -172,9 +246,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ConfirmInstallationSucceed()
         {
-            if (TimeZoneOptionsElements != null) return;
-            TestCheck.AssertIsEqual(true, CompleteInstallationComfirmationElement.Displayed,
+            if (Method() == "Email")
+            {
+                TestCheck.AssertIsEqual(true, CompleteInstallationComfirmationElement.Displayed,
                 "Installation not successful");
+            }
            
         }
         

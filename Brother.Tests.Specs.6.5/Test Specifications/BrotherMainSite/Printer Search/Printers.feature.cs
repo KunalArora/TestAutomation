@@ -104,6 +104,7 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("View the list of available Printers on some Live Brother Main sites")]
         [NUnit.Framework.CategoryAttribute("PROD")]
+        [NUnit.Framework.CategoryAttribute("UAT")]
         [NUnit.Framework.TestCaseAttribute("Czech", "printers/laser-printers", null)]
         [NUnit.Framework.TestCaseAttribute("Finland", "printers/printers/mono-laser-printers", null)]
         [NUnit.Framework.TestCaseAttribute("France", "imprimantes/imprimantes-multifonctions/multifonctions-laser", null)]
@@ -121,7 +122,8 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void ViewTheListOfAvailablePrintersOnSomeLiveBrotherMainSites(string country, string site, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "PROD"};
+                    "PROD",
+                    "UAT"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));

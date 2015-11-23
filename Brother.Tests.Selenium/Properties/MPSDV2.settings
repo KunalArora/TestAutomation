@@ -2,11 +2,31 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Brother.Tests.Selenium.Lib.Properties" GeneratedClassName="MPSDV2">
   <Profiles />
   <Settings>
-    <Setting Name="MPSDealer" Type="System.String" Scope="User">
+    <Setting Name="DV2MPSDealer" Type="System.String" Scope="User">
       <Value Profile="(Default)">MPS-{0}-DV2-Dealer1@mailinator.com</Value>
     </Setting>
-    <Setting Name="MPSLOApprover" Type="System.String" Scope="User">
+    <Setting Name="DV2MPSLOApprover" Type="System.String" Scope="User">
       <Value Profile="(Default)">MPS-{0}-DV2-LOApprover@mailinator.com</Value>
+    </Setting>
+    <Setting Name="DV2MPSLOAdmin" Type="System.String" Scope="User">
+      <Value Profile="(Default)">MPS-{0}-DV2-LOAdmin@mailinator.com
+</Value>
+    </Setting>
+    <Setting Name="DV2MPSBank" Type="System.String" Scope="User">
+      <Value Profile="(Default)">MPS-{0}-DV2-Bank@mailinator.com
+</Value>
+    </Setting>
+    <Setting Name="DV2DealerPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">{0}dealer1</Value>
+    </Setting>
+    <Setting Name="DV2LOApproverPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">{0}loapprover1</Value>
+    </Setting>
+    <Setting Name="DV2LOAdminPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">{0}loadmin1</Value>
+    </Setting>
+    <Setting Name="DV2BankPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">{0}leasingbank1</Value>
     </Setting>
   </Settings>
 </SettingsFile>

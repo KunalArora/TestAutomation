@@ -5,7 +5,7 @@ Feature: CloudMPSLeasingAndClickProposalGermanUserJourney
 	I want to be able to use different MPS parameters to derive different leasing proposal
 
 
-Scenario Outline: Create different varieties of German Leasing and Click proposal for new customer
+Scenario Outline: Create different varieties of German And Austria Leasing and Click proposal for new customer
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	And Customer Information tab is not displayed
@@ -31,14 +31,15 @@ Scenario Outline: Create different varieties of German Leasing and Click proposa
 	
 
 	Scenarios: 
-	| Role             | Country | ContractType               | CreateOption        | UsageType     | Contract | Leasing         | Billing      | Printer     | DeviceScreen | ClickVolume | ColourVolume |
+	| Role             | Country | ContractType      | CreateOption        | UsageType     | Contract | Leasing         | Billing      | Printer     | DeviceScreen | ClickVolume | ColourVolume |
 	| Cloud MPS Dealer | Germany | Leasing & Service | Create new customer | Pay As You Go | 5 Jahre  | Vierteljährlich | Halbjährlich | HL-L8350CDW | Full         | 750         | 750          |
+	| Cloud MPS Dealer | Austria | Leasing & Service | Create new customer | Pay As You Go | 5 Jahre  | Vierteljährlich | Halbjährlich | HL-L8350CDW | Full         | 750         | 750          |
 	
 	
 	
 
 
-Scenario Outline: Create different varieties of German Leasing and Click proposal for new customer on Pay As You Go Term
+Scenario Outline: Create different varieties of German And Austria Leasing and Click proposal for new customer on Pay As You Go Term
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	And Customer Information tab is not displayed
@@ -63,12 +64,13 @@ Scenario Outline: Create different varieties of German Leasing and Click proposa
 
 	
 	Scenarios: 
-	| Role             | Country | ContractType               | CreateOption        | UsageType      | Contract | Leasing   | Billing      | Printer    | DeviceScreen | ClickVolume |
-	| Cloud MPS Dealer | Germany | Leasing & Service | Create new customer | Pay As You Go  | 4 Jahre  | Monatlich | Halbjährlich | DCP-8110DN | Full         | 750         |
+	| Role             | Country | ContractType      | CreateOption        | UsageType     | Contract | Leasing   | Billing      | Printer    | DeviceScreen | ClickVolume |
+	| Cloud MPS Dealer | Germany | Leasing & Service | Create new customer | Pay As You Go | 4 Jahre  | Monatlich | Halbjährlich | DCP-8110DN | Full         | 750         |
+	| Cloud MPS Dealer | Austria | Leasing & Service | Create new customer | Pay As You Go | 4 Jahre  | Monatlich | Halbjährlich | DCP-8110DN | Full         | 750         |
 	
 	
 
-Scenario Outline: Create different varieties of German Leasing and Click proposal for an existing customer
+Scenario Outline: Create different varieties of German And Austria Leasing and Click proposal for an existing customer
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	And Customer Information tab is not displayed
@@ -93,11 +95,12 @@ Scenario Outline: Create different varieties of German Leasing and Click proposa
 	
 
 	Scenarios: 
-	| Role             | Country | ContractType               | UsageType     | Contract | Leasing         | Billing      | Printer     | DeviceScreen | ClickVolume | ColourVolume |
+	| Role             | Country | ContractType      | UsageType     | Contract | Leasing         | Billing      | Printer     | DeviceScreen | ClickVolume | ColourVolume |
 	| Cloud MPS Dealer | Germany | Leasing & Service | Pay As You Go | 3 Jahre  | Vierteljährlich | Halbjährlich | HL-L8350CDW | Full         | 750         | 750          |
+	| Cloud MPS Dealer | Austria | Leasing & Service | Pay As You Go | 3 Jahre  | Vierteljährlich | Halbjährlich | HL-L8350CDW | Full         | 750         | 750          |
 	
 	
-Scenario Outline: Create different varieties of German Leasing and Click proposal for an existing customer on Pay As You Go
+Scenario Outline: Create different varieties of German And Austria Leasing and Click proposal for an existing customer on Pay As You Go
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	And Customer Information tab is not displayed
@@ -122,7 +125,8 @@ Scenario Outline: Create different varieties of German Leasing and Click proposa
 	
 
 	Scenarios: 
-	| Role             | Country | ContractType               | UsageType     | Contract | Leasing   | Billing      | Printer    | DeviceScreen | ClickVolume |
+	| Role             | Country | ContractType      | UsageType     | Contract | Leasing   | Billing      | Printer    | DeviceScreen | ClickVolume |
 	| Cloud MPS Dealer | Germany | Leasing & Service | Pay As You Go | 3 Jahre  | Monatlich | Halbjährlich | DCP-8110DN | Full         | 750         |
+	| Cloud MPS Dealer | Austria | Leasing & Service | Pay As You Go | 3 Jahre  | Monatlich | Halbjährlich | DCP-8110DN | Full         | 750         |
 	
 	

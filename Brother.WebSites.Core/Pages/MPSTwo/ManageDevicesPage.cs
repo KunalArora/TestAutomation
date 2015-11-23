@@ -84,13 +84,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if(ShowInstallationRequestEmailElement == null)
                 throw new Exception("Show Installation Request element is not displayed");
             ShowInstallationRequestEmailElement.Click();
-            WebDriver.Wait(DurationType.Second, 3);
+            WebDriver.Wait(DurationType.Second, 5);
         }
 
         public void IsInstallationRequestScreenDisplayed()
         {
             TestCheck.AssertIsEqual(true, ModalPopUpElement.Displayed, "Installation request pop up is opened");
-            WebDriver.Wait(DurationType.Second, 3);
+           // WebDriver.Wait(DurationType.Second, 3);
         }
 
         public string GetInstallationLink()
@@ -156,6 +156,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsInstallationRequestDisplayed()
         {
+            MPSJobRunnerPage.RunCompleteInstallationCommandJob();
             AssertElementPresent(InstallationRequestContainerElement, "Installation not finished");
         }
 

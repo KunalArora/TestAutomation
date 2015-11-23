@@ -5,7 +5,7 @@ Feature: CloudMPSSubmitAllTypesofGermanProposalsToRelevantApprovers
 	I want to be able to submit different types of German proposals to relevant approvers
 
 
-Scenario Outline: Send German Leasing and Click proposal to bank
+Scenario Outline: Send German And Austria Leasing and Click proposal to bank
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created German Leasing and Click proposal 
 	And I am on Proposal List page
@@ -25,11 +25,11 @@ Scenario Outline: Send German Leasing and Click proposal to bank
 	Scenarios:
 
 	| Role             | Country | Role2          |
+	| Cloud MPS Dealer | Austria | Cloud MPS Bank |
 	| Cloud MPS Dealer | Germany | Cloud MPS Bank |
-	
 
 
-Scenario Outline: Send German Leasing and Click proposal to bank for Privately Liable Customer
+Scenario Outline: Send German And Austria Leasing and Click proposal to bank for Privately Liable Customer
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created German Leasing and Click proposal 
 	And I am on Proposal List page
@@ -48,11 +48,12 @@ Scenario Outline: Send German Leasing and Click proposal to bank for Privately L
 	Scenarios:
 
 	| Role             | Country | Role2          | Private      |
+	| Cloud MPS Dealer | Austria | Cloud MPS Bank | Freiberufler |
 	| Cloud MPS Dealer | Germany | Cloud MPS Bank | Freiberufler |
 	
 
 
-Scenario Outline: Send German Leasing and Click proposal to bank for Customer who can order consumables
+Scenario Outline: Send German And Austria Leasing and Click proposal to bank for Customer who can order consumables
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created German Leasing and Click proposal 
 	And I am on Proposal List page
@@ -72,12 +73,13 @@ Scenario Outline: Send German Leasing and Click proposal to bank for Customer wh
 	Scenarios:
 
 	| Role             | Country | Role2          |
+	| Cloud MPS Dealer | Austria | Cloud MPS Bank |
 	| Cloud MPS Dealer | Germany | Cloud MPS Bank |
 	
 
 
 
-Scenario Outline: Send German Leasing and Click proposal to bank for Privately Liable Customer who can order consumables
+Scenario Outline: Send German And Austria Leasing and Click proposal to bank for Privately Liable Customer who can order consumables
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created German Leasing and Click proposal 
 	And I am on Proposal List page
@@ -97,12 +99,13 @@ Scenario Outline: Send German Leasing and Click proposal to bank for Privately L
 	Scenarios:
 
 	| Role             | Country | Role2          | Private      |
+	| Cloud MPS Dealer | Austria | Cloud MPS Bank | Freiberufler |
 	| Cloud MPS Dealer | Germany | Cloud MPS Bank | Freiberufler |
 	
 
 
 
-Scenario Outline: Send German Purchase and Click proposal for approval
+Scenario Outline: Send German And Austria Purchase and Click proposal for approval
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created German Purchase and Click proposal 
 	And I am on Proposal List page
@@ -123,11 +126,12 @@ Scenario Outline: Send German Purchase and Click proposal for approval
 
 	| Role             | Country | Role2                           |
 	| Cloud MPS Dealer | Germany | Cloud MPS Local Office Approver |
+	| Cloud MPS Dealer | Austria | Cloud MPS Local Office Approver |
 	
 
 
 
-Scenario Outline: Send German Purchase and Click proposal approval for Privately Liable Customer
+Scenario Outline: Send German And Austria Purchase and Click proposal approval for Privately Liable Customer
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created German Purchase and Click proposal 
 	And I am on Proposal List page
@@ -147,10 +151,11 @@ Scenario Outline: Send German Purchase and Click proposal approval for Privately
 
 	| Role             | Country | Role2                           | Private      |
 	| Cloud MPS Dealer | Germany | Cloud MPS Local Office Approver | Freiberufler |
+	| Cloud MPS Dealer | Austria | Cloud MPS Local Office Approver | Freiberufler |
 	
 
 
-Scenario Outline: Send German Purchase and Click proposal for Approval for Customer who can order consumables
+Scenario Outline: Send German And Austria Purchase and Click proposal for Approval for Customer who can order consumables
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created German Purchase and Click proposal 
 	And I am on Proposal List page
@@ -171,10 +176,11 @@ Scenario Outline: Send German Purchase and Click proposal for Approval for Custo
 
 	| Role             | Country | Role2                           |
 	| Cloud MPS Dealer | Germany | Cloud MPS Local Office Approver |
+	| Cloud MPS Dealer | Austria | Cloud MPS Local Office Approver |
 	
 
 
-Scenario Outline: Send German Purchase and Click proposal for Approval for Privately Liable Customer who can order consumables
+Scenario Outline: Send German And Austria Purchase and Click proposal for Approval for Privately Liable Customer who can order consumables
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created German Purchase and Click proposal 
 	And I am on Proposal List page
@@ -193,6 +199,7 @@ Scenario Outline: Send German Purchase and Click proposal for Approval for Priva
 	Scenarios:
 
 	| Role             | Country | Role2                           | Private      |
+	| Cloud MPS Dealer | Austria | Cloud MPS Local Office Approver | Freiberufler |
 	| Cloud MPS Dealer | Germany | Cloud MPS Local Office Approver | Freiberufler |
 	
 

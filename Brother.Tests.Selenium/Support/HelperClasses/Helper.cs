@@ -60,6 +60,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         }
 
         private static string _locale = "uk"; // default locale
+        private static string _abbreviate = "uk";
 
         private const string DefaultSeleniumFolder = "C:\\TestAutomation\\SnapShots";
         private const int MaxFileNameSize = 245;
@@ -90,6 +91,12 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             set { _locale = value; }
         }
 
+        public static string Abbrev
+        {
+            get { return _abbreviate.ToLower(); }
+            set { _abbreviate = value; }
+        }
+
         // Countries lookup
         private static readonly Dictionary<string, string> _countries = new Dictionary<string, string>
         {
@@ -118,6 +125,34 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
         };
 
+
+        private static readonly Dictionary<string, string> _BrotherAbbrev = new Dictionary<string, string>
+        {
+            {"Belgium", "BBE"},
+            {"Czech", "BCZ"},
+            {"Denmark", "BDK"},
+            {"Finland", "BFI"},
+            {"France", "BFR"},
+            {"Germany", "BIG"},
+            {"Hungary", "BHR"},
+   	        {"Ireland", "BIR"},
+            {"Netherlands", "BNL"},
+            {"Norway", "BNO"},
+	        {"Poland", "BPL"},  
+            {"Portugal", "BPT"},  
+	        {"United Kingdom", "BUK"},
+            {"Russia", "BRU"},
+            {"Romania", "BRO"},
+            {"Slovakia", "BSK"},
+            {"Slovenia", "BSI"},
+            {"Spain", "BES"},
+            {"Switzerland", "BCH"},
+            {"Italy", "BIT"},
+            {"Bulgaria", "BBG"},
+            {"Austria", "BAT"},
+
+        };
+
         public static string CountryLookup(string locale)
         {
             foreach (KeyValuePair<string, string> country in _countries)
@@ -139,6 +174,17 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                 TestCheck.AssertFailTest(string.Format("Invalid Locale {0} - unable to proceed", Locale));
             }
             MsgOutput("Setting Country to ", Locale);
+        }
+
+        public static void SetMPSCountryAbbreviation(string country)
+        {
+            string abbr;
+            Abbrev = _BrotherAbbrev.TryGetValue(country, out abbr) ? abbr : String.Empty;
+            if (Abbrev.Equals(string.Empty))
+            {
+                TestCheck.AssertFailTest(string.Format("Invalid Locale {0} - unable to proceed", Abbrev));
+            }
+            MsgOutput("Setting Country Abbreviation to ", Abbrev);
         }
 
         public static string GetRunTimeEnv()

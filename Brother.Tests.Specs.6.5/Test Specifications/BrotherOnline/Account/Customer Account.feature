@@ -79,7 +79,6 @@ Scenario: Customer has created a Brother Online account but has forgotten their 
 # Create account, sign in, note missing menu option, add role to user, sign out and in again, note menu option present
 # Instant Ink role used as a baseline
 # ***-need to add additional scenario (see ticket number for steps) or ValidateRole Feature test 
-#do not change
 @IGNORE
 Scenario: Customer or Dealer role persists after email address change 
 	Given I am logged onto Brother Online "United Kingdom" using valid credentials
@@ -102,8 +101,6 @@ Scenario: Customer or Dealer role persists after email address change
 
 # Set this test to ignore as it was causing problems with the cookie test due to BOL login not signing out (Sign out step commented out for some reason)
 # Create an account and sign in, change registered email address and sign out, re-sign in again using new address
-# - Ant H - Works fine now - no idea why it had a few lines commented out. 
-# do not change
 @IGNORE
 Scenario Outline: Customer can change their Brother Online email address after registration 
 	Given I am logged onto Brother Online "<Country>" using valid credentials

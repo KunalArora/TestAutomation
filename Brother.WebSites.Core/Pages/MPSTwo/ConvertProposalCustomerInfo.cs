@@ -16,6 +16,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
     {
         public static string Url = "/";
 
+        private const string germanUrl = @"online.de";
+        private const string austriaUrl = @"online.at";
+
         public override string DefaultTitle
         {
             get { return string.Empty; }
@@ -152,12 +155,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SelectALegalForm()
         {
-            if (IsGermanSystem())
+            if (IsGermanSystem() || IsAustriaSystem())
             {
                 SelectFromDropdown(LegalFormDropdown, "Aktiengesellschaft");
 
             }
-            else if (!IsGermanSystem())
+            else if (IsUKSystem())
             {
                SelectFromDropdown(LegalFormDropdown, "Church"); 
             }
@@ -174,13 +177,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterCompanyRegistration()
         {
-            if (!IsGermanSystem())
+            if (IsUKSystem())
                 ClearAndType(CompanyRegistrationNumberField, "00664172");
         }
 
         public void EnterVatNumber()
         {
-            if(!IsGermanSystem())
+            if (IsUKSystem())
                 ClearAndType(VATNumberField, "GB100000132");
         }
 
@@ -191,7 +194,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SelectATradingStyle()
         {
-            if (!IsGermanSystem())
+            if (IsUKSystem())
                 SelectFromDropdown(TradingStyleElement, "Non-Regulated");
                 WebDriver.Wait(DurationType.Second, 3);
         }
@@ -199,12 +202,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void SelectAPaymentType()
         {
 
-            if (IsGermanSystem())
+            if (IsGermanSystem() || IsAustriaSystem())
             {
                 SelectFromDropdown(PaymentTypeDropdown, "Bankeinzug");
 
             }
-            else if (!IsGermanSystem())
+            else if (IsUKSystem())
             {
                 SelectFromDropdown(PaymentTypeDropdown, "Direct Debit");
             }
@@ -240,31 +243,31 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterBankPropertyNumber()
         {
-            if (!IsGermanSystem())
+            if (IsUKSystem() || IsFranceSystem())
                  ClearAndType(BankPropertyNumberElement, "12345");
         }
 
         public void EnterBankPropertyStreet()
         {
-            if (!IsGermanSystem())
+            if (IsUKSystem() || IsFranceSystem())
                  ClearAndType(BankPropertyStreetElement, "Lloyds House");
         }
 
         public void EnterBankPropertyTown()
         {
-            if (!IsGermanSystem())
+            if (IsUKSystem() || IsFranceSystem())
                  ClearAndType(BankPropertyTownElement, "Cockney");
         }
 
         public void EnterBankPropertyPostcode()
         {
-            if (!IsGermanSystem())
+            if (IsUKSystem() || IsFranceSystem())
                  ClearAndType(BankPropertyPostcodeElement, "M1 3ED");
         }
 
         public void FillAllCustomerDetailsOnConvert()
         {
-            if (!IsGermanSystem()) return;
+            if (IsUKSystem() || IsFranceSystem()) return;
             CreateANewCustomerInConvertProcess();
             FillGermanOrganisationDetails();
             FillOrganisationContactDetail();
@@ -406,7 +409,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterGermanPostCode()
         {
-            GermanPostCodeElement.SendKeys(MpsUtil.GermanPostCodeNumber());
+            if (IsGermanSystem())
+            {
+                GermanPostCodeElement.SendKeys(MpsUtil.GermanPostCodeNumber());
+
+            } else if (IsAustriaSystem())
+            {
+                GermanPostCodeElement.SendKeys("1245");
+            }
+
         }
 
         public void EnterGermanStadtName()
@@ -421,7 +432,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterGermanRegionName()
         {
-            SelectFromDropdown(GermanBundeslandElement, "Hamburg");
+            if (IsGermanSystem())
+            {
+                SelectFromDropdown(GermanBundeslandElement, "Hamburg");
+            } else if (IsAustriaSystem())
+            {
+                SelectFromDropdown(GermanBundeslandElement, "Salzburg");
+            }
+             
         }
 
         public void EnterGermanKostenstelleName()
@@ -442,7 +460,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterCompanyVATNumber()
         {
-            GermanUstIDNrElement.SendKeys("DE113298780");
+            if (IsGermanSystem())
+            {
+                GermanUstIDNrElement.SendKeys("DE113298780");
+            }
+            else if (IsAustriaSystem())
+            {
+                GermanUstIDNrElement.SendKeys("ATU13585627");
+            }
+            
+
         }
 
         public void EnterCreditReformNumber()

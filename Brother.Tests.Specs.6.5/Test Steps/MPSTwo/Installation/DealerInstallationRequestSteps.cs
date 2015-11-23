@@ -25,9 +25,36 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             WhenISelectLocationInOrderToCreateInstallationRequest();
             WhenISetDeviceCommunicationMethodAs(method);
             WhenISetDeviceInstallationTypeAs(type);
-            WhenICompletedTheCreateInstallationProcessFor(method);
+            WhenICompletedTheCreateInstallationProcessFor(type);
             ThenTheInstallationRequestForThatDeviceIsCompleted();
         }
+
+        [Given(@"I installed the device in the contract through ""(.*)""")]
+        public void GivenIInstalledTheDeviceInTheContractThrough(string method)
+        {
+            GivenIGenerateInstallationRequestForTheContractWithCommunication(method);
+            GivenIExtractTheInstallerUrlFromInstallationRequest();
+            GivenINavigateToTheInstallerPage();
+            WhenIEnterTheContractReferenceNumber();
+            WhenIEnterDeviceSerialNumberForCommunication(method);
+            WhenIEnterTheDeviceIPAddress();
+            ThenICanConnectTheDeviceToBrotherEnvironment();
+            ThenICanCompleteDeviceInstallation();
+        }
+
+        [Given(@"I installed existing device in the contract through ""(.*)""")]
+        public void GivenIInstalledExistingDeviceInTheContractThrough(string method)
+        {
+            GivenIGenerateInstallationRequestForTheContractWithCommunication(method);
+            GivenIExtractTheInstallerUrlFromInstallationRequest();
+            GivenINavigateToTheInstallerPage();
+            WhenIEnterTheContractReferenceNumber();
+            WhenIEnterDeviceSerialNumberForCommunication(method);
+            WhenIEnterTheDeviceIPAddress();
+            ThenICanConnectTheDeviceToBrotherEnvironment();
+            ThenICanCompleteDeviceInstallation();
+        }
+
 
 
         [Given(@"I extract the installer url from Installation Request")]
@@ -56,12 +83,20 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             CurrentPage.As<InstallerDeviceInstallationPage>().ProceedOnInstaller();
         }
 
-        [When(@"I enter ""(.*)"" device serial number for ""(.*)"" communication")]
-        public void WhenIEnterDeviceSerialNumberForCommunication(string country, string method)
+        [When(@"I enter device serial number for ""(.*)"" communication")]
+        public void WhenIEnterDeviceSerialNumberForCommunication(string method)
         {
             CurrentPage.As<InstallerDeviceInstallationPage>().VerifyTimeZoneIsDisplayed(method);
-            CurrentPage.As<InstallerDeviceInstallationPage>().EnterSerialNumber(country);
-            
+            if (method == "BOR") return;
+            CurrentPage.As<InstallerDeviceInstallationPage>().EnterSerialNumber();
+        }
+
+        [When(@"I enter existing device serial number for ""(.*)"" communication")]
+        public void WhenIEnterExistingDeviceSerialNumberForCommunication(string method)
+        {
+            CurrentPage.As<InstallerDeviceInstallationPage>().VerifyTimeZoneIsDisplayed(method);
+            if (method == "BOR") return;
+            CurrentPage.As<InstallerDeviceInstallationPage>().EnterExistingSerialNumber();
         }
 
 
@@ -69,6 +104,7 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
         [When(@"I enter the device IP address")]
         public void WhenIEnterTheDeviceIPAddress()
         {
+
             CurrentPage.As<InstallerDeviceInstallationPage>().EnterIpAddress();
         }
 

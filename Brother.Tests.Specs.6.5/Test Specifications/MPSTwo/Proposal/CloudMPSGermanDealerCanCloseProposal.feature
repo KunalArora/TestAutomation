@@ -5,7 +5,7 @@ Feature: CloudMPSGermanDealerCanCloseProposal
 	I want to be able to cancel proposal before it gets to contract stage
 
 
-Scenario Outline: German Dealer can cancel a Lease and Click proposal in Open state
+Scenario Outline: German And Austria Dealer can cancel a Lease and Click proposal in Open state
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created German Leasing and Click proposal 
 	And I am on Proposal List page
@@ -19,9 +19,10 @@ Scenario Outline: German Dealer can cancel a Lease and Click proposal in Open st
 Scenarios:
 
 	| Role             | Country |
+	| Cloud MPS Dealer | Austria |
 	| Cloud MPS Dealer | Germany |
 
-Scenario Outline: German Dealer can cancel a Purchase and Click proposal in Open state
+Scenario Outline: German And Austria Dealer can cancel a Purchase and Click proposal in Open state
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created German Purchase and Click proposal 
 	And I am on Proposal List page
@@ -34,8 +35,9 @@ Scenarios:
 
 	| Role             | Country |
 	| Cloud MPS Dealer | Germany |
+	| Cloud MPS Dealer | Austria |
 
-Scenario Outline: German Dealer can cancel a Lease and Click proposal in Awaiting Approval state
+Scenario Outline: German And Austria Dealer can cancel a Lease and Click proposal in Awaiting Approval state
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created German Leasing and Click proposal 
 	And I am on Proposal List page
@@ -48,9 +50,10 @@ Scenarios:
 
 	| Role             | Country |
 	| Cloud MPS Dealer | Germany |
+	| Cloud MPS Dealer | Austria |
 
 
-Scenario Outline: German Dealer can cancel a Purchase and Click proposal in Awaiting Approval state
+Scenario Outline: German And Austria Dealer can cancel a Purchase and Click proposal in Awaiting Approval state
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created German Purchase and Click proposal 
 	And I am on Proposal List page
@@ -63,9 +66,10 @@ Scenarios:
 
 	| Role             | Country |
 	| Cloud MPS Dealer | Germany |
+	| Cloud MPS Dealer | Austria |
 
 
-Scenario Outline: German Dealer can cancel a Lease and Click proposal in Approved state
+Scenario Outline: German And Austria Dealer can cancel a Lease and Click proposal in Approved state
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created German Leasing and Click proposal 
 	And I am on Proposal List page
@@ -83,9 +87,10 @@ Scenario Outline: German Dealer can cancel a Lease and Click proposal in Approve
 	Scenarios: 
 	| Role             | Country | Role2          |
 	| Cloud MPS Dealer | Germany  | Cloud MPS Bank |
+	| Cloud MPS Dealer | Austria  | Cloud MPS Bank |
 
 
-Scenario Outline: German Dealer can cancel a Purchase and Click proposal in Approved state
+Scenario Outline: German And Austria Dealer can cancel a Purchase and Click proposal in Approved state
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created German Purchase and Click proposal 
 	And I am on Proposal List page
@@ -101,7 +106,9 @@ Scenario Outline: German Dealer can cancel a Purchase and Click proposal in Appr
 	And I can sign out of Brother Online
 
 	Scenarios: 
-	| Role             | Country | Role2          |
-	| Cloud MPS Dealer | Germany  | Cloud MPS Local Office Approver |
+	| Role             | Country | Role2                           |
+	| Cloud MPS Dealer | Germany | Cloud MPS Local Office Approver |
+	| Cloud MPS Dealer | Austria | Cloud MPS Local Office Approver |
+	
 
 	

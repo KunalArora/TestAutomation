@@ -4,12 +4,12 @@ Feature: CloudMPSDealerCanCopyADeclineProposal
 	As a dealer 
 	I want to be to copy and submit a declined proposal
 
-@ignore
+#@ignore
 Scenario Outline: Dealer Can Copy A Declined Leasing and Click Proposal without customer detail
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
-	And I have created Leasing and Click proposal 
+	And I have created German Leasing and Click proposal 
 	And I am on Proposal List page
-	And I send the created proposal for approval
+	And I send the created German proposal for approval
 	And I sign out of Cloud MPS
 	When I sign back into Cloud MPS as a "<Role2>" from "<Country>"
 	And I decline the proposal created above
@@ -17,21 +17,23 @@ Scenario Outline: Dealer Can Copy A Declined Leasing and Click Proposal without 
 	And I sign back into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to decline proposal list page
 	Then I can copy the declined proposal without customer
-	And I am redirected to Customer screen when I start proposal conversion process
+	##And I am redirected to Customer screen when I start proposal conversion process
 	And I sign out of Cloud MPS
 	
 	Scenarios:
 
-	| Role             | Country        | Role2          |
-	| Cloud MPS Dealer | United Kingdom | Cloud MPS Bank |
+	| Role             | Country | Role2          |
+	| Cloud MPS Dealer | Germany | Cloud MPS Bank |
+	| Cloud MPS Dealer | Austria | Cloud MPS Bank |
+	
 
 
-@ignore
+#@ignore
 Scenario Outline: Dealer Can Copy A Declined Leasing and Click Proposal with customer detail
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
-	And I have created Leasing and Click proposal 
+	And I have created German Leasing and Click proposal 
 	And I am on Proposal List page
-	And I send the created proposal for approval
+	And I send the created German proposal for approval
 	And I sign out of Cloud MPS
 	When I sign back into Cloud MPS as a "<Role2>" from "<Country>"
 	And I decline the proposal created above
@@ -39,13 +41,15 @@ Scenario Outline: Dealer Can Copy A Declined Leasing and Click Proposal with cus
 	And I sign back into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to decline proposal list page
 	Then I can copy the declined proposal with customer
-	And I am redirected to Summary page when I start proposal conversion process
+	##And I am redirected to Summary page when I start proposal conversion process
 	And I sign out of Cloud MPS
 
 	Scenarios:
 
-	| Role             | Country        | Role2          |
-	| Cloud MPS Dealer | United Kingdom | Cloud MPS Bank |
+	| Role             | Country | Role2          |
+	| Cloud MPS Dealer | Germany | Cloud MPS Bank |
+	| Cloud MPS Dealer | Austria | Cloud MPS Bank |
+	
 
 
 
@@ -68,6 +72,7 @@ Scenario Outline: Dealer Can Copy A Declined Purchase and Click Proposal without
 
 	| Role             | Country        | Role2                           |
 	| Cloud MPS Dealer | United Kingdom | Cloud MPS Local Office Approver |
+	
 
 
 Scenario Outline: Dealer Can Copy A Declined Purchase and Click Proposal with customer detail

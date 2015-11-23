@@ -1,27 +1,42 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Brother.Tests.Selenium.Lib.Properties" GeneratedClassName="SeleniumGlobal">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Brother.Tests.Selenium.Lib.Properties" GeneratedClassName="MPSQAS">
   <Profiles />
   <Settings>
-    <Setting Name="DriverIPAddress" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">127.0.0.1</Value>
+    <Setting Name="QASMPSDealer" Type="System.String" Scope="User">
+      <Value Profile="(Default)">MPS-{0}-UAT-Dealer1@brother.co.uk</Value>
     </Setting>
-    <Setting Name="DriverPortNumber" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">9134</Value>
+    <Setting Name="QASMPSLOApprover" Type="System.String" Scope="User">
+      <Value Profile="(Default)">MPS-{0}-UAT-LOApprover@brother.co.uk</Value>
     </Setting>
-    <Setting Name="CurrentDriverType" Type="System.String" Scope="User">
-      <Value Profile="(Default)">CH</Value>
+    <Setting Name="QASMPSLOAdmin" Type="System.String" Scope="User">
+      <Value Profile="(Default)">MPS-{0}-UAT-LOAdmin@brother.co.uk</Value>
     </Setting>
-    <Setting Name="IEOptionsLog" Type="System.String" Scope="User">
-      <Value Profile="(Default)">IEOptions.log</Value>
+    <Setting Name="QASMPSBank" Type="System.String" Scope="User">
+      <Value Profile="(Default)">MPS-{0}-UAT-Bank@brother.co.uk</Value>
     </Setting>
-    <Setting Name="BrotherEmailConfirmationUrl" Type="System.String" Scope="User">
-      <Value Profile="(Default)">/Test/EmailConfirmationToken.aspx</Value>
+    <Setting Name="QASDealerPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">{0}dealer1</Value>
     </Setting>
-    <Setting Name="UsePhantomJsService" Type="System.String" Scope="User">
-      <Value Profile="(Default)">false</Value>
+    <Setting Name="QASLOApproverPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">{0}loapprover1</Value>
     </Setting>
-    <Setting Name="PhantomJSLoggingLevel" Type="System.String" Scope="User">
-      <Value Profile="(Default)">ERROR</Value>
+    <Setting Name="QASLOAdminPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">{0}loadmin1</Value>
+    </Setting>
+    <Setting Name="QASBankPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">{0}leasingbank1</Value>
+    </Setting>
+    <Setting Name="QASCustomerPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">P@$$w0rd</Value>
+    </Setting>
+    <Setting Name="QASUKCustomer" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Bradon20151112102155@mailinator.com</Value>
+    </Setting>
+    <Setting Name="QASDECustomer" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Misty20151023194141@mailinator.com</Value>
+    </Setting>
+    <Setting Name="QASATCustomer" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Coleen2015119021438@mailinator.com</Value>
     </Setting>
   </Settings>
 </SettingsFile>

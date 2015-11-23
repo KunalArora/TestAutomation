@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
@@ -71,11 +72,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void SelectARandomExistingContact()
         {
             var noOfContacts = ExistingContactRadioButtonElement.Count;
+            var ranClick = noOfContacts > 20 ? new Random().Next(10, 21) : new Random().Next(0, noOfContacts);
 
-            var ranClick = new Random().Next(0, noOfContacts - 1);
-
+            //var ranClick = new Random().Next(10, 21);
 
             ExistingContactRadioButtonElement[ranClick].Click();
+            //ExistingContactRadioButtonElement.Last().Click();
+            //ExistingContactRadioButtonElement.ElementAt(ranClick).Click();
         }
 
         public void IsCustomerInfoTextDisplayed()
@@ -104,7 +107,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerProposalsCreateTermAndTypePage ClickNextButton()
         {
-            WebDriver.Wait(Helper.DurationType.Millisecond, 2000);
+            //WebDriver.Wait(Helper.DurationType.Second, 2);
             ScrollTo(NextButton);
             NextButton.Click();
             return GetTabInstance<DealerProposalsCreateTermAndTypePage>(Driver);

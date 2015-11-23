@@ -54,7 +54,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         {
             CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().IsCustomerInfoTextDisplayed();
             CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().CustomerCreationOptions(customerOption);
-            CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().ClickNextButton();
+            //CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().ClickNextButton();
             CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().FillOrganisationContactDetail();
             CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().FillOrganisationDetails();
             NextPage = CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().ClickNextButton();

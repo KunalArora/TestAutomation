@@ -313,7 +313,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyThatCorrectBankIsDisplayed(string bank)
         {
-            TestCheck.AssertIsEqual(bank, DisplayedBankNameElement.Text, 
+            TestCheck.AssertIsEqual(!IsAustriaSystem() ? bank : "GRENKELEASING GmbH", DisplayedBankNameElement.Text,
                 "Bank displayed in not correct");
         }
 
@@ -385,9 +385,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyInstallationTypeIsConsistent()
         {
+            var storedDisplayedInstallationType = SpecFlow.GetContext("SelectedInstallationType");
+            var InstallationType = InstallationTypeNameElement.Text;
 
-            TestCheck.AssertIsEqual(SpecFlow.GetContext("SelectedInstallationType"), 
-                InstallationTypeNameElement.Text,
+            TestCheck.AssertIsEqual(storedDisplayedInstallationType.Trim(),
+                InstallationType,
                 "Summary Installation Type is different from Selected Installation Type");
         }
 

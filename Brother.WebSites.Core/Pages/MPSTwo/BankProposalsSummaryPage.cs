@@ -88,13 +88,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
        
         public void EnterValidUntil()
         {
-            if (!IsGermanSystem())
+            if (IsUKSystem())
                 ValidUntilElement.SendKeys(MpsUtil.SomeDaysFromToday());
         }
 
         public void EnterCreditLimit()
         {
-            if(IsGermanSystem())
+            if(IsGermanSystem() || IsAustriaSystem())
                 ClearAndType(CreditLimitElement, "30000");
         }
 

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Configuration;
 using System.Globalization;
+using System.Xml.Schema;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
@@ -7,10 +9,8 @@ using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Selenium.Lib.Support
 {
-    
     public class MpsUtil
     {
-
         /// <summary>
         /// Generates a unique Proposal Name
         /// </summary>
@@ -23,6 +23,7 @@ namespace Brother.Tests.Selenium.Lib.Support
             return generatedProposalName;
         }
 
+       
         public static string GenerateUniqueEmail()
         {
             var generatedEmailAddress = FirstName() +
@@ -68,6 +69,8 @@ namespace Brother.Tests.Selenium.Lib.Support
 
         }
 
+       
+
         public static string CustomerReference()
         {
             var todayDate = DateTime.Now;
@@ -89,6 +92,7 @@ namespace Brother.Tests.Selenium.Lib.Support
             var todayDate = DateTime.Now;
 
             var profile= "Profile Dealer For now " + todayDate.ToString("yyyyMMdHHmmss");
+            
             
             return profile;
 
@@ -642,7 +646,7 @@ namespace Brother.Tests.Selenium.Lib.Support
 				             "Misty"
 				         };
 
-            var firstName = name[new Random().Next(30)];
+            var firstName = name[new Random().Next(25)];
 
             return firstName;
         }
@@ -752,6 +756,5 @@ namespace Brother.Tests.Selenium.Lib.Support
             var margin = margins[new Random().Next(6)];
             return margin;
         }
-
     }
 }
