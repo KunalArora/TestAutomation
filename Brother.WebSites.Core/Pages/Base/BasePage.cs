@@ -152,7 +152,6 @@ namespace Brother.WebSites.Core.Pages.Base
         #region "Credit Card Details Frame"
         public static CreditCardDetailsPage LoadCreditCardDetailsFrame(IWebDriver driver)
         {
-            driver.SwitchTo().Frame(1);
             driver = SetDriver(driver);
             MsgOutput("Loading Credit Card details frame");
             return GetIFrameInstance<CreditCardDetailsPage>(driver, "", "");
