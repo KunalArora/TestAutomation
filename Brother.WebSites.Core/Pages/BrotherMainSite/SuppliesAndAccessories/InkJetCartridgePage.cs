@@ -40,6 +40,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.SuppliesAndAccessories
         [FindsBy(How = How.CssSelector, Using = ".button-blue.add-to-basket-button")]
         public IWebElement AddToBasketButton;
 
+
         public void IsAddToBasketButtonAvailable()
         {
             if (AddToBasketButton == null)

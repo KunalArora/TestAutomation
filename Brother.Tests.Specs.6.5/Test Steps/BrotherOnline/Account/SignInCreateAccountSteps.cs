@@ -2,6 +2,7 @@
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
+using Brother.WebSites.Core.Pages.BrotherMainSite.Basket;
 using Brother.WebSites.Core.Pages.BrotherOnline.Account;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
 using Brother.WebSites.Core.Pages.MPSTwo;
@@ -311,7 +312,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             ThenOnceIHaveConfirmedMyAccount();
             ThenIShouldBeAbleToLogIntoBrotherOnlineUsingMyAccountDetails(country);
         }
-
+      
         [Then(@"Once I have confirmed my account by clicking on the email link")]
         public void ThenOnceIHaveConfirmedMyAccount()
         {
@@ -326,7 +327,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage = BasePage.LoadBolHomePage(CurrentDriver, BasePage.BaseUrl, "");
             GivenINeedABrotherOnlineAccountInOrderToUseBrotherOnlineServices(country);
         }
-
+        
         [Given(@"I launch Brother Online for ""(.*)""")]
         public void GivenILaunchBrotherOnlineFor(string country)
         {
@@ -464,7 +465,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             WhenIEnterAValidEmailAddress(string.Empty); // Auto Generates with an empty string
             CurrentPage.As<RegistrationPage>().PopulateTaxNumberTextBox(form.CodiceFiscale); //tax number for Italy
         }
-
+        [When(@"I fill in the Italy registration information using a valid email address")]
         [When(
             @"I fill in the Italy registration information using a valid email address and excluding ID number for italy"
             )]
@@ -488,6 +489,11 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<RegistrationPage>().PopulateInvalidTaxNumberTextBox(invalidTaxCode); //tax number for Italy
         }
 
+        [When(@"I enter an valid (.*)")]
+        public void WhenIEnterAnValid(string validTaxCode)
+        {
+            CurrentPage.As<RegistrationPage>().PopulateTaxNumberTextBox(validTaxCode);
+        }
         [When(@"I enter an invalid Italy VAT Number as ""(.*)""")]
         [When(@"I enter a valid VAT number as ""(.*)"" for Portugal")]
         public void WhenIEnterAnInvalidItalyVatNumberAs(string vatNumber)

@@ -1166,8 +1166,8 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.CategoryAttribute("TEST")]
         [NUnit.Framework.CategoryAttribute("UAT")]
         [NUnit.Framework.CategoryAttribute("PROD")]
-        [NUnit.Framework.TestCaseAttribute("Portugal", "980254698", null)]
-        [NUnit.Framework.TestCaseAttribute("Portugal", "980254698", null)]
+        [NUnit.Framework.TestCaseAttribute("Portugal", "PT181161699", null)]
+        [NUnit.Framework.TestCaseAttribute("Portugal", "PT181161699", null)]
         public virtual void CustomerAbleToCreateANewBOLPortugalAccountUsingTheSameVATCodeMultipleTimesBBAU_2603BusinessUserPart(string country, string taxCode, string[] exampleTags)
         {
             string[] @__tags = new string[] {

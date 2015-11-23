@@ -186,6 +186,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
 
         public void SwitchToCreditCardDetailsFrameAddCard()
         {
+
             if (WaitForElementToExistByCssSelector("#content_2_innercontent_1_PaymentControl_PaymentGatewayIFrame", 2, 10))
             {
                 var element = Driver.FindElement(By.CssSelector("#content_2_innercontent_1_PaymentControl_PaymentGatewayIFrame"));
