@@ -23,6 +23,7 @@ namespace Brother.Tests.Specs._80.TestSpecification.BrotherMainSite.PrinterSearc
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("PROD")]
     [NUnit.Framework.CategoryAttribute("TEST")]
+    [NUnit.Framework.CategoryAttribute("SMOKE")]
     public partial class CorrectPrinterProductListingsFeature
     {
         
@@ -39,7 +40,8 @@ namespace Brother.Tests.Specs._80.TestSpecification.BrotherMainSite.PrinterSearc
                     "list of available printers", ProgrammingLanguage.CSharp, new string[] {
                         "UAT",
                         "PROD",
-                        "TEST"});
+                        "TEST",
+                        "SMOKE"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -76,6 +78,7 @@ namespace Brother.Tests.Specs._80.TestSpecification.BrotherMainSite.PrinterSearc
             "ept Spain and Portugal sites")]
         [NUnit.Framework.CategoryAttribute("SMOKE")]
         [NUnit.Framework.CategoryAttribute("TEST")]
+        [NUnit.Framework.CategoryAttribute("UAT")]
         [NUnit.Framework.TestCaseAttribute("Czech", "printers/laser-printers", null)]
         [NUnit.Framework.TestCaseAttribute("Finland", "printers/laser-printers", null)]
         [NUnit.Framework.TestCaseAttribute("France", "imprimantes/imprimantes-multifonctions/multifonctions-laser", null)]
@@ -90,7 +93,8 @@ namespace Brother.Tests.Specs._80.TestSpecification.BrotherMainSite.PrinterSearc
         {
             string[] @__tags = new string[] {
                     "SMOKE",
-                    "TEST"};
+                    "TEST",
+                    "UAT"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -116,12 +120,14 @@ this.ScenarioSetup(scenarioInfo);
             "tugal")]
         [NUnit.Framework.CategoryAttribute("SMOKE")]
         [NUnit.Framework.CategoryAttribute("TEST")]
+        [NUnit.Framework.CategoryAttribute("UAT")]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "printers/laser-printers", null)]
         public virtual void ViewTheListOfAvailableLaserPrintersOnBrotherMainSitesForSpainAndPortugal(string country, string site, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "SMOKE",
-                    "TEST"};
+                    "TEST",
+                    "UAT"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
