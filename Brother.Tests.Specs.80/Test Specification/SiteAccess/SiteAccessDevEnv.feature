@@ -19,4 +19,3 @@ Scenarios:
 	
 	| country        | Site Url                                       | User Name |
 	| United Kingdom | http://main.co.uk.brotherdv2.eu/sitecore/login | AutoTest |
-	

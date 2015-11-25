@@ -511,7 +511,7 @@ Scenarios:
 @TEST @UAT @PROD
 Scenario: Validate that the correct error messages are displayed when Terms and Conditions are not selected
 	Given I want to create a new account with Brother Online "United Kingdom"
-	When I click on Create Account for "United Kingdom"
+	When I click on Create Account for "United Kingdom
 	And I am redirected to the Brother Login/Register page
 	And I have Checked No I Do Not Have An Account Checkbox
 	And I fill in the registration information using a valid email address 

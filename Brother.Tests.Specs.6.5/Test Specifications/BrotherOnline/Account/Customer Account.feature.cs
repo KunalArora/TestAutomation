@@ -1250,7 +1250,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 513
  testRunner.Given("I want to create a new account with Brother Online \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 514
- testRunner.When("I click on Create Account for \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I click on Create Account for \"United Kingdom", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 515
  testRunner.And("I am redirected to the Brother Login/Register page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 516
