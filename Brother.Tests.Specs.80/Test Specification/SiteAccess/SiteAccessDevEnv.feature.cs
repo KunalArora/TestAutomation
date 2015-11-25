@@ -75,17 +75,29 @@ namespace Brother.Tests.Specs._80.TestSpecification.SiteAccess
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Get 200 OK response back from the following Brother Main Sites on the Test enviro" +
             "nment")]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "http://main.co.uk.brotherdev.eu/sitecore/login", null)]
-        public virtual void Get200OKResponseBackFromTheFollowingBrotherMainSitesOnTheTestEnvironment(string language, string mainSite, string[] exampleTags)
+        [NUnit.Framework.CategoryAttribute("SMOKE")]
+        [NUnit.Framework.CategoryAttribute("TEST")]
+        [NUnit.Framework.CategoryAttribute("UAT")]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "http://main.co.uk.brotherdv2.eu/sitecore/login", "AutoTest", null)]
+        public virtual void Get200OKResponseBackFromTheFollowingBrotherMainSitesOnTheTestEnvironment(string country, string siteUrl, string userName, string[] exampleTags)
         {
+            string[] @__tags = new string[] {
+                    "SMOKE",
+                    "TEST",
+                    "UAT"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get 200 OK response back from the following Brother Main Sites on the Test enviro" +
-                    "nment", exampleTags);
-#line 7
-this.ScenarioSetup(scenarioInfo);
+                    "nment", @__tags);
 #line 8
- testRunner.Given(string.Format("The following site {0} {1} to validate I should receive an Ok response back", language, mainSite), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 9
- testRunner.When("I have entered a valid username and password, \"AutoTest\", \"AutoTest\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+this.ScenarioSetup(scenarioInfo);
+#line 10
+ testRunner.Given(string.Format("The following site \"{0}\" to validate I should receive an Ok response back\ton main" +
+                        "site", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 12
+ testRunner.When(string.Format("I enter an email address containing {0}", userName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             this.ScenarioCleanup();
         }
