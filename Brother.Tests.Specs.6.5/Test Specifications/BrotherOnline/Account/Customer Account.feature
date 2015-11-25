@@ -820,7 +820,7 @@ Scenarios:
 | France | 
 
 @TEST @UAT @PROD @SMOKE
-Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on Italian site
+Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on netherlands site
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
 	And I am redirected to the Brother Login/Register page
@@ -831,7 +831,7 @@ Scenario Outline: Customer creates a new account with Brother Online using valid
 	| LastName        | AutoTest       |
 	| Password        | @@@@@	       |
 	| ConfirmPassword | @@@@@		   |
-	| DNINumber       | @@@@@		   |
+
 	And I have Agreed to the Terms and Conditions
 	And I declare that I do not use this account for business
 	When I press Create Your Account
@@ -842,9 +842,142 @@ Scenario Outline: Customer creates a new account with Brother Online using valid
 	And I can sign out of Brother Online
 	Then I am redirected to the Brother Home Page
 Scenarios: 
-| Country  |	
-| Italy | 
+| Country     |	
+| Netherlands | 
 
+@TEST @UAT @PROD @SMOKE
+Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on Ireland site
+	Given I want to create a new account with Brother Online "<Country>"
+	When I click on Create Account for "<Country>"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I fill in the registration information using a valid email address 
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Password        | @@@@@	       |
+	| ConfirmPassword | @@@@@		   |
+
+	And I have Agreed to the Terms and Conditions
+	And I declare that I do not use this account for business
+	When I press Create Your Account
+	Then I should see my account confirmation page
+	And When I Click Go Back
+	#And Once I have Validated an Email was received and verified my account
+	Then I should be able to log into "<Country>" Brother Online using my account details
+	And I can sign out of Brother Online
+	Then I am redirected to the Brother Home Page
+Scenarios: 
+| Country     |	
+| Ireland     |
+
+
+@TEST @UAT @PROD @SMOKE
+Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on Russia site
+	Given I want to create a new account with Brother Online "<Country>"
+	When I click on Create Account for "<Country>"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I fill in the registration information using a valid email address 
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Password        | @@@@@	       |
+	| ConfirmPassword | @@@@@		   |
+
+	And I have Agreed to the Terms and Conditions
+	And I declare that I do not use this account for business
+	When I press Create Your Account
+	Then I should see my account confirmation page
+	And When I Click Go Back
+	#And Once I have Validated an Email was received and verified my account
+	Then I should be able to log into "<Country>" Brother Online using my account details
+	And I can sign out of Brother Online
+	Then I am redirected to the Brother Home Page
+Scenarios: 
+| Country     |	
+| Russia      |  
+
+@TEST @UAT @PROD @SMOKE
+Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on Hungary site
+	Given I want to create a new account with Brother Online "<Country>"
+	When I click on Create Account for "<Country>"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I fill in the registration information using a valid email address 
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Password        | @@@@@	       |
+	| ConfirmPassword | @@@@@		   |
+
+	And I have Agreed to the Terms and Conditions
+	And I declare that I do not use this account for business
+	When I press Create Your Account
+	Then I should see my account confirmation page
+	And When I Click Go Back
+	#And Once I have Validated an Email was received and verified my account
+	Then I should be able to log into "<Country>" Brother Online using my account details
+	And I can sign out of Brother Online
+	Then I am redirected to the Brother Home Page
+Scenarios: 
+| Country      |	
+| Hungary      |  
+
+
+@TEST @UAT @PROD @SMOKE
+Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on poland site
+	Given I want to create a new account with Brother Online "<Country>"
+	When I click on Create Account for "<Country>"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I fill in the registration information using a valid email address 
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Password        | @@@@@	       |
+	| ConfirmPassword | @@@@@		   |
+
+	And I have Agreed to the Terms and Conditions
+	And I declare that I do not use this account for business
+	When I press Create Your Account
+	Then I should see my account confirmation page
+	And When I Click Go Back
+	#And Once I have Validated an Email was received and verified my account
+	Then I should be able to log into "<Country>" Brother Online using my account details
+	And I can sign out of Brother Online
+	Then I am redirected to the Brother Home Page
+Scenarios: 
+| Country     |	
+| Poland      |  
+
+
+@TEST @UAT @PROD @SMOKE
+Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on Slovakia site
+	Given I want to create a new account with Brother Online "<Country>"
+	When I click on Create Account for "<Country>"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I fill in the registration information using a valid email address 
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Password        | @@@@@	       |
+	| ConfirmPassword | @@@@@		   |
+
+	And I have Agreed to the Terms and Conditions
+	And I declare that I do not use this account for business
+	When I press Create Your Account
+	Then I should see my account confirmation page
+	And When I Click Go Back
+	#And Once I have Validated an Email was received and verified my account
+	Then I should be able to log into "<Country>" Brother Online using my account details
+	And I can sign out of Brother Online
+	Then I am redirected to the Brother Home Page
+Scenarios: 
+| Country       |	
+| Slovakia      |  
+ 
 
 @TEST @UAT @PROD
 # Create an account for Brother Online for spain sites
