@@ -61,6 +61,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pages8.0\CMS\CmsHomepage.cs" />
     <Compile Include="Pages\BrotherMainSite\HeaderNavigationPage.cs" />
     <Compile Include="Pages\BrotherMainSite\FooterNavigationPage.cs" />
     <Compile Include="Pages8.0\BrotherMainSite\MainSiteHomePage.cs" />
