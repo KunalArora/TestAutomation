@@ -5,7 +5,7 @@ Feature: Correct printer product listings
 	I want to be able to view the list of available printers
 
 @SMOKE @TEST
-Scenario Outline: View the list of available Laser Printers on Brother Main sites for languages except Spain and Portugal
+Scenario Outline: View the list of available Laser Printers on Brother Main sites for languages except Spain and Portugal sites
 	Given I have navigated to the Brother Main Site "<country>" products pages
 	Given I have navigated to the "<site>" MainSite URL for country "<country>"
 	Then I should see a list of Laser printers
