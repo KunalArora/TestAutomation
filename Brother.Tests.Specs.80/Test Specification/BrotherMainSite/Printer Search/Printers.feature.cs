@@ -73,7 +73,7 @@ namespace Brother.Tests.Specs._80.TestSpecification.BrotherMainSite.PrinterSearc
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("View the list of available Laser Printers on Brother Main sites for languages exc" +
-            "ept Spain and Portugal")]
+            "ept Spain and Portugal sites")]
         [NUnit.Framework.CategoryAttribute("SMOKE")]
         [NUnit.Framework.CategoryAttribute("TEST")]
         [NUnit.Framework.TestCaseAttribute("Czech", "printers/laser-printers", null)]
@@ -86,7 +86,7 @@ namespace Brother.Tests.Specs._80.TestSpecification.BrotherMainSite.PrinterSearc
         [NUnit.Framework.TestCaseAttribute("Romania", "printers/laser-printers", null)]
         [NUnit.Framework.TestCaseAttribute("Slovakia", "printers/laser-printers", null)]
         [NUnit.Framework.TestCaseAttribute("Slovenia", "printers/laser-printers", null)]
-        public virtual void ViewTheListOfAvailableLaserPrintersOnBrotherMainSitesForLanguagesExceptSpainAndPortugal(string country, string site, string[] exampleTags)
+        public virtual void ViewTheListOfAvailableLaserPrintersOnBrotherMainSitesForLanguagesExceptSpainAndPortugalSites(string country, string site, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "SMOKE",
@@ -96,7 +96,7 @@ namespace Brother.Tests.Specs._80.TestSpecification.BrotherMainSite.PrinterSearc
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("View the list of available Laser Printers on Brother Main sites for languages exc" +
-                    "ept Spain and Portugal", @__tags);
+                    "ept Spain and Portugal sites", @__tags);
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line 9
