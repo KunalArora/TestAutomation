@@ -34,13 +34,22 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement ConsumableTonerType;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/customer/consumables/orders\"]")]
         public IWebElement ConsumableOrderTab;
+        [FindsBy(How = How.CssSelector, Using = ".modal-header .close")]
+        public IWebElement ClosePopUp;
+       
         
 
         
         
         private string GetConsumableOrderId()
         {
+            //WaitForElementToExistByCssSelector(".btn-group.pull-right.js-mps-filter-ignore", 5, 5);
+            WebDriver.Wait(DurationType.Second, 5);
+            OpenConsumableActionButton();
+
             var consumableOrderId = showDetailButton.GetAttribute("data-consumable-order-id");
+
+            consumableOrderActionButton.Click();
 
             return consumableOrderId;
         }
@@ -63,7 +72,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void OpenOrderDetailModal()
         {
             OpenConsumableActionButton();
-            GetConsumableOrderId();
             showDetailButton.Click();
             WaitForElementToExistByCssSelector("#OrderDetailHeader", 5, 5);
             
@@ -117,7 +125,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                         OrderPopUpDetails().Contains(GetSerialNumber()), 
                      "Serial number is not displayed in order detail pop up"
                                     );
-            SyncEscapeAction(Driver);
+            //SyncEscapeAction(Driver);
+            ClosePopUp.Click();
         }
 
         private string GetSerialNumber()
