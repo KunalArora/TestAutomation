@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using System.Diagnostics.Eventing.Reader;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Security;
 using System.Runtime.Remoting;
@@ -56,31 +57,25 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             return pageResponse;
         }
 
-        public static string GetStringFromUrl(string url, int numTries)
+      
+        public static string GetSuccessStringFromUrl(string url, int numTries, Dictionary<string, string> additionalHeaders = null)
         {
             var retryCount = 0;
 
-            var testFromFile = (new WebClient()).DownloadString(url);
+            var webClient = new WebClient();
 
-            while ((testFromFile == string.Empty) && (retryCount != numTries))
+
+            if (additionalHeaders != null && additionalHeaders.Any())
             {
-                testFromFile = (new WebClient()).DownloadString(url);
-                WebDriver.Wait(DurationType.Second, 2);
-                MsgOutput(string.Format("Retrying..... [{0}] times", retryCount));
-                retryCount++;
+                foreach (var header in additionalHeaders)
+                    webClient.Headers.Add(header.Key, header.Value);
             }
-            return testFromFile;
-        }
-
-        public static string GetSuccessStringFromUrl(string url, int numTries)
-        {
-            var retryCount = 0;
-
-            var testFromFile = (new WebClient()).DownloadString(url);
+            
+            var testFromFile = webClient.DownloadString(url);
 
             while ((testFromFile.Contains("Failure")) && (retryCount != numTries))
             {
-                testFromFile = (new WebClient()).DownloadString(url);
+                testFromFile = webClient.DownloadString(url);
                 WebDriver.Wait(DurationType.Second, 2);
                 MsgOutput(string.Format("Retrying..... [{0}] times", retryCount));
                 retryCount++;
@@ -96,7 +91,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         private static HttpStatusCode PageResponse(WebRequest request, out string xmlResponseData)
         {
             var responseCode = HttpStatusCode.Ambiguous;
-            string xmlResponse = string.Empty;
+            var xmlResponse = string.Empty;
 
             try
             {
@@ -140,10 +135,11 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             return responseCode;
         }
 
-        public static HttpStatusCode GetPageResponse(string webPage, string method)
+        public static HttpStatusCode GetPageResponse(string webPage, string method, Dictionary<string, string> additionalHeaders = null)
         {
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls;
             HttpWebRequest webRequest = null;
+
             if (webPage.Contains("https:"))
             {
                 ServicePointManager.CertificatePolicy = new TrustAllCertificatePolicy();
@@ -164,6 +160,12 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                         uriFormatException.InnerException.Message));
                 }
                 TestCheck.AssertFailTest(string.Format("URI format exception [{0}]", uriFormatException.Message));
+            }
+
+            if (additionalHeaders != null && additionalHeaders.Any())
+            {
+                foreach (var header in additionalHeaders)
+                    webRequest.Headers.Add(header.Key, header.Value);
             }
 
             webRequest.Method = method;

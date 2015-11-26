@@ -11,8 +11,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 {
     public class MPSJobRunnerPage
     {
-        private const string uaturl = @"http://online.{0}.cms.brotherqas.eu/sitecore/admin/projects/mps2/";
-        private const string testurl = @"http://online.{0}.brotherdv2.eu/sitecore/admin/projects/mps2/";
+        private const string uaturl = @"http://online.{0}.cms.brotherqas.eu/sitecore/admin/integration/mps2/";
+        private const string testurl = @"http://online.{0}.brotherdv2.eu/sitecore/admin/integration/mps2/";
         private const string customerAndPersonCommand = @"runcommand.aspx?command=MPS:SystemJobCreateCustomerAndPersonCommand";
         private const string clickRateInvoiceCommand = @"runcommand.aspx?command=MPS:RaiseClickRateInvoicesCommand";
         private const string completeInstallationCommand = @"runcommand.aspx?command=MPS:CompleteInstallationCommand";
@@ -30,8 +30,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string resetSerialNumberJob = @"resetinstalledprinter.aspx?serial=";
         private const string setCustomerSAPIdJob = @"setcustomersapid.aspx?name={0}&sapid={1}";
         private const string setPersonSAPIdJob = @"setpersonsapid.aspx?email={0}&sapid={1}";
-        private const string customerPassword = @"getuserpassword.aspx?email=";
-        private const string setConsumableStatusJob = @"mps2/setconsumableorderstatus.aspx?orderid={0}&statusid={1}";
+       
+        private const string setConsumableStatusJob = @"setconsumableorderstatus.aspx?orderid={0}&statusid={1}";
+
+        private static readonly Dictionary<string, string> authHeader = new Dictionary<string, string>
+        {
+            { @"X-BROTHER-Auth", @".Kol%CV#<X$6o4C4/0WKxK36yYaH10" }
+        };
         
         public static void RunCreateCustomerAndPersonCommandJob()
         {
@@ -39,7 +44,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             Helper.MsgOutput(String.Format("The url formed for Create Customer and Person Command is {0}", webSite));
 
-            var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
+            var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, authHeader);
             //TestCheck.AssertIsEqual(true, response.Equals(HttpStatusCode.OK), "");
             WebDriver.Wait(Helper.DurationType.Second, 20);
         }
@@ -66,14 +71,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         }
 
-        public static string GetCustomerCreatedPassword(string email)
-        {
-            var webSite = CoinedUrl() + customerPassword + email;
-
-            var response = Utils.GetStringFromUrl(webSite, 5);
-
-            return response;
-        }
 
         public static string GetConsumableOrderStatusResetMsg(string orderid, string status)
         {
@@ -81,7 +78,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             webSite = String.Format(webSite, orderid, status);
 
-            var response = Utils.GetSuccessStringFromUrl(webSite, 5);
+            var response = Utils.GetSuccessStringFromUrl(webSite, 5, authHeader);
 
             return response;
         }
@@ -90,7 +87,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public static void RunResetSerialNumberJob(string serial)
         {
             var reset = CoinedUrl() + resetSerialNumberJob + serial;
-            var response = Utils.GetPageResponse(reset, WebRequestMethods.Http.Get);
+            var response = Utils.GetPageResponse(reset, WebRequestMethods.Http.Get, authHeader);
             // TestCheck.AssertIsEqual(true, response.Equals(HttpStatusCode.OK), "");
         }
 
@@ -99,7 +96,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             var webSite = CoinedUrl() + clickRateInvoiceCommand;
 
-            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
+            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, authHeader);
         }
 
 
@@ -107,49 +104,49 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             var webSite = CoinedUrl() + completeInstallationCommand;
 
-            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
+            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, authHeader);
         }
 
         public static void RunSendClickRateInvoicesToSapCommandJob()
         {
             var webSite = CoinedUrl() + sendClickRateInvoicesToSapCommand;
 
-            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
+            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, authHeader);
         }
 
         public static void RunRefreshPrintCountsCommandJob()
         {
             var webSite = CoinedUrl() + refreshPrintCountsCommand;
 
-            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
+            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, authHeader);
         }
 
         public static void RunRefreshPrintCountsFromMedioCommandJob()
         {
             var webSite = CoinedUrl() + refreshPrintCountsFromMedioCommand;
 
-            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
+            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, authHeader);
         }
 
         public static void RunStaffAccountCreationCommandJob()
         {
             var webSite = CoinedUrl() + staffAccountCreationCommand;
 
-            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
+            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, authHeader);
         }
 
         public static void RunConsumableOrderRequestsCommandJob()
         {
                 var webSite = CoinedUrl() + consumableOrderRequestsCommand;
 
-                Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
+                Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, authHeader);
         }
 
         public static void RunCreateOrderAndServiceRequestsCommandJob()
         {
             var webSite = CoinedUrl() + createOrderAndServiceRequestsCommand;
 
-            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
+            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, authHeader);
         }
 
         public static void RunSystemJobCreateCustomerTaxCommandJob()
@@ -157,7 +154,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             
             var webSite = CoinedUrl() + systemJobCreateCustomerTaxCommand;
 
-            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
+            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, authHeader);
                 
         }
 
@@ -165,28 +162,28 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             var webSite = CoinedUrl() + systemJobCreateCustomerAndPersonCommand;
 
-            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
+            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, authHeader);
         }
 
         public static void RunCloseConsumableOrdersCommandJob()
         {
             var webSite = CoinedUrl() + closeConsumableOrdersCommand;
 
-            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
+            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, authHeader);
         }
 
         public static void RunPollConsumableOrderStatusCommandJob()
         {
             var webSite = CoinedUrl() + pollConsumableOrderStatusCommand;
 
-            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
+            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, authHeader);
         }
 
         public static void RunCheckForSilentDevicesCommandJob()
         {
             var webSite = CoinedUrl() + checkForSilentDevicesCommand;
 
-            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
+            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, authHeader);
                     
         }
 

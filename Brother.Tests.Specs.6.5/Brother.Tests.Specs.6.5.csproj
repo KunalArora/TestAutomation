@@ -104,11 +104,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Customer Account.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\CloudMPSCustomerCanViewInvoices.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CloudMPSCustomerCanViewInvoices.feature</DependentUpon>
-    </Compile>
     <Compile Include="Test Specifications\MPSTwo\Contract\CloudMPSDealerCanCopyADeclineProposal.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -139,10 +134,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CloudMPSAddLocationToCustomerInformation.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Customer\CustomerCanPerformSomeRunActions.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Customer\CloudMPSCustomerCanPerformSomeRunActions.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CustomerCanPerformSomeRunActions.feature</DependentUpon>
+      <DependentUpon>CloudMPSCustomerCanPerformSomeRunActions.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Specifications\MPSTwo\Installation\CloudMPSCompleteInstallationProcess.feature.cs">
       <AutoGen>True</AutoGen>
@@ -585,10 +580,6 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>MPSOneSignInToMPSAsADealer.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\CloudMPSCustomerCanViewInvoices.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSCustomerCanViewInvoices.feature.cs</LastGenOutput>
-    </None>
     <None Include="Test Specifications\MPSTwo\Contract\CloudMPSDealerCanCopyADeclineProposal.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSDealerCanCopyADeclineProposal.feature.cs</LastGenOutput>
@@ -613,9 +604,9 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSAddLocationToCustomerInformation.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Customer\CustomerCanPerformSomeRunActions.feature">
+    <None Include="Test Specifications\MPSTwo\Customer\CloudMPSCustomerCanPerformSomeRunActions.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CustomerCanPerformSomeRunActions.feature.cs</LastGenOutput>
+      <LastGenOutput>CloudMPSCustomerCanPerformSomeRunActions.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwo\Installation\CloudMPSCompleteInstallationProcess.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

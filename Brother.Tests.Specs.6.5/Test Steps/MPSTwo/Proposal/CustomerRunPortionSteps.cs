@@ -59,9 +59,9 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<ConsumableExistingOrderListPage>().InitialOrderProgress();
             CurrentPage.As<ConsumableExistingOrderListPage>().StoreOrderDetails();
 
-            CurrentPage.As<ConsumableExistingOrderListPage>().OpenOrderDetailModal();
-            CurrentPage.As<ConsumableExistingOrderListPage>().IsSapOrderIdInPopUpModal();
-            CurrentPage.As<ConsumableExistingOrderListPage>().IsSerialNumberinOrderDetailDisplayed();
+            //CurrentPage.As<ConsumableExistingOrderListPage>().OpenOrderDetailModal();
+            //CurrentPage.As<ConsumableExistingOrderListPage>().IsSapOrderIdInPopUpModal();
+            //CurrentPage.As<ConsumableExistingOrderListPage>().IsSerialNumberinOrderDetailDisplayed();
 
         }
 
