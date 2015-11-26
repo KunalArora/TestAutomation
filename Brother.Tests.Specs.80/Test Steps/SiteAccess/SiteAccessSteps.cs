@@ -31,11 +31,12 @@ namespace Brother.Tests.Specs._80.SiteAccess
            // CurrentPage.As<LoginPage>().PopulateUserNameTextBox(form.UserName);
            // CurrentPage.As<LoginPage>().PopulatePasswordTextBox(form.Password);
         }
-        [When(@"I enter an email address containing (.*)")]
-        public void WhenIEnterAnEmailAddressContaining(string username)
+        [When(@"I enter an username containing AutoTest")]
+        public void WhenIEnterAnUsernameContainingAutoTest(string username)
         {
             CurrentPage.As<LoginPage>().PopulateUserNameTextBox(username);
         }
+
         [Given(@"The following site test site ""(.*)"" to validate I should receive an Ok response back")]
         public void GivenTheFollowingSiteTestSiteToValidateIShouldReceiveAnOkResponseBack(string url)
         {

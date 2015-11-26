@@ -9,11 +9,7 @@ Scenario Outline: Get 200 OK response back from the following Brother Main Sites
 	#Given I have navigated to the Brother Main Site "<country>" products pages
 	Given The following site "<Site Url>" to validate I should receive an Ok response back	on mainsite
 	#And I fill in username and password using valid credentials
-	When I enter an email address containing <User Name>
-
-	#| field           | value          |
-	#| UserName        | AutoTest       |
-	#| LastName        | AutoTest       |
+	When I enter an username containing <User Name>
 
 Scenarios: 
 	
