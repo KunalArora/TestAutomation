@@ -3,21 +3,18 @@ using System.Net;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherMainSite;
+using Brother.WebSites.Core.Pages.BrotherOnline.Account;
 using Brother.WebSites.Core.Pages8._0.CMS;
-using Brother.WebSites.Core.Pages.BrotherMainSite.SuppliesAndAccessories.Printers;
-using Brother.WebSites.Core.Pages.OmniJoin.Trial;
-using NUnit.Framework;
-using OpenQA.Selenium.Remote;
 using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Assist;
 
-
-namespace Brother.Tests.Specs.BrotherOnline.SiteAccess
+namespace Brother.Tests.Specs._80.SiteAccess
 {
     [Binding]
     public class SiteAccessSteps : BaseSteps
     {
-        [Given(@"The following site ""(.*)"" to validate I should receive an Ok response back")]
-        public void GivenTheFollowingSiteToValidateIShouldReceiveAnOkResponseBack(string url)
+        [Given(@"The following site ""(.*)"" to validate I should receive an Ok response back\ton mainsite")]
+        public void GivenTheFollowingSiteToValidateIShouldReceiveAnOkResponseBackOnMainsite(string url)
         {
             // Perform a page GET
             TestCheck.AssertIsEqual(HttpStatusCode.OK, GetWebPageResponse(url), "Incorrect Http Status Code returned");
@@ -26,6 +23,18 @@ namespace Brother.Tests.Specs.BrotherOnline.SiteAccess
 
             WebSites.Core.Pages.General.SiteAccess.ValidateSiteUrl(url);
             WebDriver.SetPageLoadTimeout(WebDriver.DefaultTimeout);
+        }
+        [Given(@"I fill in username and password using valid credentials")]
+        public void GivenIFillInUsernameAndPasswordUsingValidCredentials(Table table)
+        {
+            dynamic form = table.CreateDynamicInstance();
+           // CurrentPage.As<LoginPage>().PopulateUserNameTextBox(form.UserName);
+           // CurrentPage.As<LoginPage>().PopulatePasswordTextBox(form.Password);
+        }
+        [When(@"I enter an username containing AutoTest")]
+        public void WhenIEnterAnUsernameContainingAutoTest(string username)
+        {
+            CurrentPage.As<LoginPage>().PopulateUserNameTextBox(username);
         }
 
         [Given(@"The following site test site ""(.*)"" to validate I should receive an Ok response back")]
