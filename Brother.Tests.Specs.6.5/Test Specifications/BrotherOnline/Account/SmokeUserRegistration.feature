@@ -1,10 +1,10 @@
-﻿Feature: B2C and B2B Registration
+﻿@SMOKE @UAT @TEST @PROD
+Feature: B2C and B2B Registration
 	In order to register myself with brother
 	As a customer
 	I need to create a new online account
 
 @TEST @UAT @PROD
-#Portugal -On Dv2 SingIn page has got personalTax number field textbox but not in QAS environment
 Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on IE and UK site
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
