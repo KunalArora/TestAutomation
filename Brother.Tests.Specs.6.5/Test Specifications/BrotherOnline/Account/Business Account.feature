@@ -36,11 +36,9 @@ Scenario: Create a business account and change the business account to be Custom
 	# And I can navigate back to Brother Online home page
 	And I can sign out of Brother Online
 
- @TEST @UAT @PROD
-#***** NEW details required as the account is set as a user and so need to create new business account for all three environments
-
-# Accounts created on DV2, QAS and Prod for the following test - existingbusinessaccwithorder@guerrillamail.com/Password100 
-# Validate that a Business Account holder who has made an order is not able to swap to a Customer account
+ @TEST @UAT
+# Accounts created on DV2 and QAS for the following test - autobussaccwithorder@guerrillamail.com/Password100 
+# Validate that a Business Account holder who has made an order is not able to swap to a Customer account (Note this cannot be run on prod due to lack of purchase)
 Scenario Outline: Business account holder is unable to switch to a customer account once an order has been placed
 	Given I launch Brother Online for "United Kingdom"
 	When I click on Create Account for "United Kingdom"
@@ -57,8 +55,8 @@ Scenario Outline: Business account holder is unable to switch to a customer acco
 	Then I am redirected to the Brother Home Page
 
 	Scenarios:
-		| Email Address										| Password      |
-		| "existingbusinessaccwithorder@guerrillamail.com"	| "Password100" |
+		| Email Address								| Password      |
+		| "autobussaccwithorder@guerrillamail.com"  | "Password100" |
 		
 @TEST @UAT @PROD
 # Change Business details in your created account, go to my account and change/add your business details
@@ -216,7 +214,7 @@ Scenario: Validate that an error message is displayed for mandatory terms and co
 	And I press create account button
 	Then I should get an error message displayed on the Terms and Conditions
 
-# Accounts created on DV2, QAS and Prod for the following test - existinguseraccount@guerrillamail.com/existingbusinessaccount@guerrillamail.com/Password100
+# Accounts created on DV2, QAS and Prod for the following test - autouseruseracc@guerrillamail.com/autobusinessacc@guerrillamail.com/Password100
 # Check that a business account cannot be created with an email address that already exists for another business account
 # Check that a business account cannot be created with an email address that already exists for another user account
 
@@ -244,9 +242,9 @@ Scenario Outline: Customer cannot register for a new business account using an e
 	Then I should see the duplicate email error message preventing account creation	
 
 Scenarios:
-	| Email Address                               |
-	| "existingbusinessaccount@guerrillamail.com"         |
-	| "existinguseraccount@guerrillamail.com"       |
+	| Email Address                       |
+	| "autobusinessacc@guerrillamail.com" |
+	| "autouseracc@guerrillamail.com"     |
 
 # Check that a business account which is not validated does not have the ability to register a device	
 @TEST @UAT @PROD	
@@ -276,7 +274,7 @@ Scenario: Business account which is not validated does not permit device registr
 	Then I should see the account not validated error message preventing device registration
 	And I can sign out of Brother Online
 
-# Accounts created on DV2, QAS and Prod for the following test - existinguseraccount@guerrillamail.com/existingbusinessaccount@guerrillamail.com/Password100
+# Accounts created on DV2, QAS and Prod for the following test - autouseracc@guerrillamail.com/autobusinessacc@guerrillamail.com/Password100
 # Check that existing brother online user and business account holders cannot login with valid/invalid username/password combinations
 
 @TEST @UAT @PROD
@@ -290,14 +288,14 @@ Scenario Outline: Validate that user or business account holders are unable to l
 	Then I should see the invalid credentials error message preventing login to brother online
 
 	Scenarios:
-		| Email Address                                 | Password                 |
-		| "existinguseraccount@guerrillamail.com"       | "InvalidPasswordEntered" |
-		| "existingbusinessaccount@guerrillamail.wrong" | "Password100"            |
-		| "existinguseraccount@guerrillamail.com"       | "PaSsWoRd100"			   |
-		| "existingbusinessaccount@guerrillamail.com"	| "   Password100   "      |
-		| "existinguseraccount@guerrillamail.com"       | "Pass  word  100"	       |
+		| Email Address                             | Password                 |
+		| "autouseracc@guerrillamail.com"			| "InvalidPasswordEntered" |
+		| "autobusinessacc@guerrillamail.com.wrong" | "Password100"            |
+		| "autouseracc@guerrillamail.com"			| "PaSsWoRd100"			   |
+		| "autobusinessacc@guerrillamail.com"		| "   Password100   "      |
+		| "autouseracc@guerrillamail.com"           | "Pass  word  100"	       |
 	 		
-# Accounts created on DV2, QAS and Prod for the following test - existinguseraccount@guerrillamail.com/existingbusinessaccount@guerrillamail.com/Password100
+# Accounts created on DV2, QAS and Prod for the following test - autouseracc@guerrillamail.com/autobusinessacc@guerrillamail.com/Password100
 # Check that existing brother online user and business account holders can still login with a username that has leading/trailing spaces or mixed letter casing
 
 @TEST @UAT @PROD
@@ -313,9 +311,9 @@ Scenario Outline: Validate that user or business account holders can still login
 	Then I am redirected to the Brother Home Page
 
 	Scenarios:
-		| Email Address											| Password      |
-		| "     existinguseraccount@guerrillamail.com    "		| "Password100" |
-		| "ExIsTiNgBuSiNeSsAcCoUnT@gUeRrIlLaMaIl.CoM"			| "Password100" |
+		| Email Address									| Password      |
+		| "     autouseracc@guerrillamail.com    "		| "Password100" |
+		| "AuToBuSiNeSsAcA@gUeRrIlLaMaIl.CoM"			| "Password100" |
 
 
 # Check maximun username(241) and password(30) length when creating a business accoun
