@@ -4,6 +4,8 @@ Feature: B2C and B2B Registration
 	As a customer
 	I need to create a new online account
 
+#B2C User Registration without tax code
+
 @TEST @UAT @PROD
 Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on IE and UK site
 	Given I want to create a new account with Brother Online "<Country>"
@@ -511,3 +513,7 @@ Scenario Outline: Customer creates a new account with Brother Online using valid
 Scenarios: 
 | Country |
 | Italy   |
+
+# B2B Business User registration with tax codes and provides error message if tax code not given
+
+

@@ -97,7 +97,7 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.Given(string.Format("The following site \"{0}\" to validate I should receive an Ok response back\ton main" +
                         "site", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 12
- testRunner.When(string.Format("I enter an email address containing {0}", userName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When(string.Format("I enter an username containing {0}", userName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             this.ScenarioCleanup();
         }
