@@ -24,18 +24,6 @@ namespace Brother.Tests.Specs._80.SiteAccess
             WebSites.Core.Pages.General.SiteAccess.ValidateSiteUrl(url);
             WebDriver.SetPageLoadTimeout(WebDriver.DefaultTimeout);
         }
-        [Given(@"I fill in username and password using valid credentials")]
-        public void GivenIFillInUsernameAndPasswordUsingValidCredentials(Table table)
-        {
-            dynamic form = table.CreateDynamicInstance();
-           // CurrentPage.As<LoginPage>().PopulateUserNameTextBox(form.UserName);
-           // CurrentPage.As<LoginPage>().PopulatePasswordTextBox(form.Password);
-        }
-        [When(@"I enter an username containing AutoTest")]
-        public void WhenIEnterAnUsernameContainingAutoTest(string username)
-        {
-            CurrentPage.As<LoginPage>().PopulateUserNameTextBox(username);
-        }
 
         [Given(@"The following site test site ""(.*)"" to validate I should receive an Ok response back")]
         public void GivenTheFollowingSiteTestSiteToValidateIShouldReceiveAnOkResponseBack(string url)
