@@ -58,6 +58,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         [FindsBy(How = How.Id, Using = "error-vat-already-registered")] public IWebElement WarningMessageSameVATNumber;
 
+        [FindsBy(How = How.Id, Using = "content_0_twocolumnsformright_0_valVatNumberRequired")] public IWebElement
+            VatNumberRequiredErrorMessage;
+
 
         [FindsBy(How = How.Id, Using = "SignInRadioRadioButton")] public IWebElement DoHaveAnAccountOptionButton;
 
@@ -365,6 +368,10 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             TestCheck.AssertIsEqual(true, WarningMessageSameVATNumber.Displayed, "Is Warning message displayed");
         }
 
+        public void ErrorMessageDisplayedMissingVatNumber()
+        {
+            TestCheck.AssertIsEqual(true, VatNumberRequiredErrorMessage.Displayed, "Vat Number Required");
+        }
         public void DoNotHaveAnAccountOption()
         {
             Driver.FindElement(By.CssSelector("#CreateNewAccountRadioButton"));
