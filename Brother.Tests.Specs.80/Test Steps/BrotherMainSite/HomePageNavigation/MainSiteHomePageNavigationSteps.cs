@@ -1,8 +1,9 @@
 ﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
-using Brother.WebSites.Core.Pages8._0.BrotherMainSite;
+using Brother.WebSites.Core.Pages.BrotherMainSite;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
 using TechTalk.SpecFlow;
+using MainSiteHomePage = Brother.WebSites.Core.Pages8._0.BrotherMainSite.MainSiteHomePage;
 
 
 namespace Brother.Tests.Specs._80.BrotherMainSite.HomePageNavigation
@@ -41,6 +42,12 @@ namespace Brother.Tests.Specs._80.BrotherMainSite.HomePageNavigation
             CurrentPage.As<MainSiteHomePage>().IsProductsButtonAvailable();
             NextPage = CurrentPage.As<MainSiteHomePage>().ProductsButtonClick();
         }
+        [Given(@"I navigate from Mainsite Page to Login page")]
+        public void GivenINavigateFromMainsitePageToLoginPage()
+        {
+            CurrentPage.As<MainSiteHomePage>();
+            
+        }
 
         [Then(@"I am navigated to the products page")]
         public void ThenIAmNavigatedToProductsPage()
@@ -65,8 +72,38 @@ namespace Brother.Tests.Specs._80.BrotherMainSite.HomePageNavigation
         {
             CurrentPage.As<MainSiteHomePage>().HasPrintersPageLoaded();
         }
-       
-        
+        [Given(@"I enter an username containing ""(.*)""")]
+        public void GivenIEnterAnUsernameContaining(string username)
+        {
+            CurrentPage.As<LoginPage>().PopulateUserNameTextBox(username);
+        }
+        [Given(@"The following site ""(.*)"" to validate I should receive an Ok response back\ton mainsite login")]
+        public void GivenTheFollowingSiteToValidateIShouldReceiveAnOkResponseBackOnMainsiteLogin(string url)
+        {
+            CurrentPage = BasePage.LoadBrotherMainSiteLoginPage(CurrentDriver, url);
+            CurrentPage.As<LoginPage>().GetLoginpage(url);
+        }
+      
+        [Given(@"I enter password containing ""(.*)""")]
+        public void GivenIEnterPasswordContaining(string password)
+        {
+            CurrentPage.As<LoginPage>().PopulatePasswordTextBox(password);
+        }
+        [When(@"I press login button")]
+        public void WhenIPressLoginButton(string country)
+        {
+            //NextPage = CurrentPage.As<LoginPage>().ClickOnLoginButton();
+            CurrentPage.As<LoginPage>().ClickOnLoginButton();
+        }
+        [Then(@"I should be able to see the experience editor page")]
+        public void ThenIShouldBeAbleToSeeTheExperienceEditorPage(string country)
+        {
+            //CurrentPage = BasePage.LoadExperienceEditorPage(CurrentDriver, url);
+            //NextPage = CurrentPage.As<LoginPage>().NavigateToExperienceEditorPage(country);
+           // CurrentPage.As<ExperienceEditorPage>().IsContentEditorLinkAvailable();
+        }
+
+
 
     }
 }
