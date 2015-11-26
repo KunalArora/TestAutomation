@@ -150,46 +150,44 @@ this.ScenarioSetup(scenarioInfo);
             "as been placed")]
         [NUnit.Framework.CategoryAttribute("TEST")]
         [NUnit.Framework.CategoryAttribute("UAT")]
-        [NUnit.Framework.CategoryAttribute("PROD")]
-        [NUnit.Framework.TestCaseAttribute("\"existingbusinessaccwithorder@guerrillamail.com\"", "\"Password100\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"autobussaccwithorder@guerrillamail.com\"", "\"Password100\"", null)]
         public virtual void BusinessAccountHolderIsUnableToSwitchToACustomerAccountOnceAnOrderHasBeenPlaced(string emailAddress, string password, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "TEST",
-                    "UAT",
-                    "PROD"};
+                    "UAT"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Business account holder is unable to switch to a customer account once an order h" +
                     "as been placed", @__tags);
-#line 44
+#line 42
 this.ScenarioSetup(scenarioInfo);
-#line 45
+#line 43
  testRunner.Given("I launch Brother Online for \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 46
+#line 44
  testRunner.When("I click on Create Account for \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 47
+#line 45
  testRunner.And("I am redirected to the Brother Login/Register page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 48
+#line 46
  testRunner.And(string.Format("I enter an email address containing {0}", emailAddress), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 49
+#line 47
  testRunner.When(string.Format("I enter a valid Password {0}", password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 50
+#line 48
  testRunner.And("I press sign in with invalid details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 51
+#line 49
  testRunner.Then("I should be able to successfully log into brother online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 52
+#line 50
  testRunner.When("I navigate to my account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 53
+#line 51
  testRunner.When("I clicked on Business Details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 54
+#line 52
  testRunner.Then("An error message is displayed advising user that and account with order cannot be" +
                     " switched", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 56
+#line 54
  testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 57
+#line 55
  testRunner.Then("I am redirected to the Brother Home Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -206,17 +204,17 @@ this.ScenarioSetup(scenarioInfo);
                         "TEST",
                         "UAT",
                         "PROD"});
-#line 65
+#line 63
 this.ScenarioSetup(scenarioInfo);
-#line 66
+#line 64
  testRunner.Given("I want to create a new account with Brother Online \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 67
+#line 65
  testRunner.When("I click on Create Account for \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 68
+#line 66
  testRunner.And("I am redirected to the Brother Login/Register page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 69
+#line 67
  testRunner.And("I have Checked No I Do Not Have An Account Checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 70
+#line 68
  testRunner.And("I declare that I do use this account for business", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
@@ -234,45 +232,45 @@ this.ScenarioSetup(scenarioInfo);
             table2.AddRow(new string[] {
                         "ConfirmPassword",
                         "@@@@@"});
-#line 71
+#line 69
  testRunner.And("I fill in the registration information using a valid email address", ((string)(null)), table2, "And ");
-#line 78
+#line 76
  testRunner.And("I add my company name as \"AutoTestLtd\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 79
+#line 77
  testRunner.And("I select my Business Sector as \"IT and telecommunications services\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 80
+#line 78
  testRunner.And("I select number of Employees as \"11 - 50\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 81
+#line 79
  testRunner.And("I have Agreed to the Terms and Conditions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 82
+#line 80
  testRunner.When("I press Create Your Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 83
+#line 81
  testRunner.Then("I should see my account confirmation page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 84
+#line 82
  testRunner.And("When I Click Go Back", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 86
+#line 84
  testRunner.Then("I should be able to log into \"United Kingdom\" Brother Online using my account det" +
                     "ails", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 87
+#line 85
  testRunner.When("I navigate to my account for \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 88
+#line 86
  testRunner.When("I clicked on Business Details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 89
+#line 87
  testRunner.And("I am redirected to the Business Details Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 90
+#line 88
  testRunner.And("I declare that I do use this account for business on my account page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 91
+#line 89
  testRunner.And("I add my company name as \"AutoTestLtd\" on Business Details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 93
+#line 91
  testRunner.And("I select my Business Sector as \"IT and telecommunications services\" on Business D" +
                     "etails Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 94
+#line 92
  testRunner.And("I select number of Employees as \"11 - 50\" on Business Details Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 95
+#line 93
  testRunner.And("I click on Update details on business details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 96
+#line 94
  testRunner.Then("I can verify successfull update message appeared at the top", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 97
+#line 95
  testRunner.Then("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -291,17 +289,17 @@ this.ScenarioSetup(scenarioInfo);
                         "TEST",
                         "UAT",
                         "PROD"});
-#line 101
+#line 99
 this.ScenarioSetup(scenarioInfo);
-#line 102
+#line 100
  testRunner.Given("I want to create a new account with Brother Online \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 103
+#line 101
  testRunner.When("I click on Create Account for \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 104
+#line 102
  testRunner.And("I am redirected to the Brother Login/Register page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 105
+#line 103
  testRunner.And("I have Checked No I Do Not Have An Account Checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 106
+#line 104
  testRunner.And("I declare that I do use this account for business", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
@@ -319,45 +317,45 @@ this.ScenarioSetup(scenarioInfo);
             table3.AddRow(new string[] {
                         "ConfirmPassword",
                         "@@@@@"});
-#line 107
+#line 105
  testRunner.And("I fill in the registration information using a valid email address", ((string)(null)), table3, "And ");
-#line 113
+#line 111
     testRunner.And("I add my company name as \"AutoTestLtd\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 114
+#line 112
  testRunner.And("I select my Business Sector as \"IT and telecommunications services\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 115
+#line 113
  testRunner.And("I select number of Employees as \"11 - 50\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 116
+#line 114
  testRunner.And("I have Agreed to the Terms and Conditions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 117
+#line 115
  testRunner.When("I press Create Your Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 118
+#line 116
  testRunner.Then("I should see my account confirmation page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 119
+#line 117
  testRunner.And("When I Click Go Back", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 121
+#line 119
  testRunner.Then("I should be able to log into \"United Kingdom\" Brother Online using my account det" +
                     "ails", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 122
+#line 120
  testRunner.When("I navigate to my account for \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 123
+#line 121
  testRunner.And("I clicked on Business Details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 124
+#line 122
  testRunner.And("I am redirected to the Business Details Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 125
+#line 123
  testRunner.And("I declare that I do use this account for business on my account page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 126
+#line 124
  testRunner.And("I add my company name as \"AutoTestLtd\" on Business Details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 128
+#line 126
  testRunner.And("I select my Business Sector as \"IT and telecommunications services\" on Business D" +
                     "etails Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 129
+#line 127
  testRunner.And("I select number of Employees as \"11 - 50\" on Business Details Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 130
+#line 128
  testRunner.And("I click on Update details on business details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 131
+#line 129
  testRunner.Then("I can verify successfull update message appeared at the top", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 132
+#line 130
  testRunner.Then("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -378,17 +376,17 @@ this.ScenarioSetup(scenarioInfo);
                         "TEST",
                         "UAT",
                         "PROD"});
-#line 137
+#line 135
 this.ScenarioSetup(scenarioInfo);
-#line 138
+#line 136
  testRunner.Given("I want to create a new account with Brother Online \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 139
+#line 137
  testRunner.When("I click on Create Account for \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 140
+#line 138
  testRunner.And("I am redirected to the Brother Login/Register page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 141
+#line 139
  testRunner.And("I have Checked No I Do Not Have An Account Checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 142
+#line 140
  testRunner.And("I declare that I do use this account for business", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
@@ -406,28 +404,28 @@ this.ScenarioSetup(scenarioInfo);
             table4.AddRow(new string[] {
                         "ConfirmPassword",
                         "@@@@@"});
-#line 143
+#line 141
  testRunner.And("I fill in the registration information using a valid email address", ((string)(null)), table4, "And ");
-#line 150
+#line 148
  testRunner.And("I add my company name as \"AutoTestLtd\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 151
+#line 149
  testRunner.And("I select my Business Sector as \"IT and telecommunications services\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 152
+#line 150
  testRunner.And("I select number of Employees as \"11 - 50\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 153
+#line 151
  testRunner.And("I have Agreed to the Terms and Conditions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 154
+#line 152
  testRunner.When("I press Create Your Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 155
+#line 153
  testRunner.Then("I should see my account confirmation page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 156
+#line 154
  testRunner.And("When I Click Go Back", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 158
+#line 156
  testRunner.Then("I should be able to log into \"United Kingdom\" Brother Online using my account det" +
                     "ails", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 159
+#line 157
  testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 160
+#line 158
  testRunner.Then("I am redirected to the Brother Home Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -444,15 +442,15 @@ this.ScenarioSetup(scenarioInfo);
                     "ls, and validates the user is validated so it can create a device registration b" +
                     "ut not actually register", new string[] {
                         "IGNORE"});
-#line 165
+#line 163
 this.ScenarioSetup(scenarioInfo);
-#line 166
+#line 164
  testRunner.Given("I want to create a new account with Brother Online \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 167
+#line 165
  testRunner.When("I click on Create Account for \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 168
+#line 166
  testRunner.And("I am redirected to the Brother Login/Register page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 169
+#line 167
  testRunner.And("I have Checked No I Do Not Have An Account Checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
@@ -470,42 +468,42 @@ this.ScenarioSetup(scenarioInfo);
             table5.AddRow(new string[] {
                         "ConfirmPassword",
                         "@@@@@"});
-#line 170
+#line 168
  testRunner.And("I fill in the registration information using a valid email address", ((string)(null)), table5, "And ");
-#line 177
+#line 175
  testRunner.And("I declare that I do use this account for business", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 178
+#line 176
  testRunner.And("I add my company name as \"AutoTestLtd\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 179
+#line 177
  testRunner.And("I select my Business Sector as \"IT and telecommunications services\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 180
+#line 178
  testRunner.And("I select number of Employees as \"11 - 50\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 181
+#line 179
  testRunner.When("I add my company VAT number as \"GB145937540\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 182
+#line 180
  testRunner.And("I have Agreed to the Terms and Conditions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 183
+#line 181
  testRunner.When("I press Create Your Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 184
+#line 182
  testRunner.Then("I should see my account confirmation page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 185
+#line 183
  testRunner.And("When I Click Go Back", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 186
+#line 184
  testRunner.And("Once I have Validated an Email was received and verified my account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 187
+#line 185
  testRunner.Then("I should be able to log into \"United Kingdom\" Brother Online using my account det" +
                     "ails", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 188
+#line 186
  testRunner.When("I have clicked on Add Device", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 189
+#line 187
  testRunner.And("I am redirected to the Register Device page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 191
+#line 189
  testRunner.Given("I have entered my Product Serial Code \"U1T000000\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 192
+#line 190
  testRunner.Then("I can validate that an error message was displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 193
+#line 191
  testRunner.Then("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 194
+#line 192
  testRunner.Then("I am redirected to the Brother Home Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -524,15 +522,15 @@ this.ScenarioSetup(scenarioInfo);
                         "TEST",
                         "UAT",
                         "PROD"});
-#line 199
+#line 197
 this.ScenarioSetup(scenarioInfo);
-#line 200
+#line 198
  testRunner.Given("I want to create a new account with Brother Online \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 201
+#line 199
  testRunner.When("I click on Create Account for \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 202
+#line 200
  testRunner.And("I am redirected to the Brother Login/Register page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 203
+#line 201
  testRunner.And("I have Checked No I Do Not Have An Account Checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
@@ -550,21 +548,21 @@ this.ScenarioSetup(scenarioInfo);
             table6.AddRow(new string[] {
                         "ConfirmPassword",
                         "@@@@@"});
-#line 204
+#line 202
  testRunner.And("I fill in the registration information using a valid email address", ((string)(null)), table6, "And ");
-#line 211
+#line 209
  testRunner.And("I declare that I do use this account for business", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 212
+#line 210
  testRunner.And("I add my company name as \"AutoTestLtd\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 213
+#line 211
  testRunner.And("I select my Business Sector as \"IT and telecommunications services\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 214
+#line 212
  testRunner.And("I select number of Employees as \"11 - 50\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 215
+#line 213
  testRunner.When("I add my company VAT number as \"GB145937540\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 216
+#line 214
  testRunner.And("I press create account button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 217
+#line 215
  testRunner.Then("I should get an error message displayed on the Terms and Conditions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -576,8 +574,8 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.CategoryAttribute("TEST")]
         [NUnit.Framework.CategoryAttribute("UAT")]
         [NUnit.Framework.CategoryAttribute("PROD")]
-        [NUnit.Framework.TestCaseAttribute("\"existingbusinessaccount@guerrillamail.com\"", null)]
-        [NUnit.Framework.TestCaseAttribute("\"existinguseraccount@guerrillamail.com\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"autobusinessacc@guerrillamail.com\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"autouseracc@guerrillamail.com\"", null)]
         public virtual void CustomerCannotRegisterForANewBusinessAccountUsingAnEmailAddressThatAlreadyExistsForAnotherBusinessOrUserAccount(string emailAddress, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -590,15 +588,15 @@ this.ScenarioSetup(scenarioInfo);
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer cannot register for a new business account using an email address that a" +
                     "lready exists for another business or user account", @__tags);
-#line 224
+#line 222
 this.ScenarioSetup(scenarioInfo);
-#line 225
+#line 223
  testRunner.Given("I want to create a new account with Brother Online \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 226
+#line 224
  testRunner.When("I click on Create Account for \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 227
+#line 225
  testRunner.And("I am redirected to the Brother Login/Register page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 228
+#line 226
  testRunner.And("I have Checked No I Do Not Have An Account Checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
@@ -616,25 +614,25 @@ this.ScenarioSetup(scenarioInfo);
             table7.AddRow(new string[] {
                         "ConfirmPassword",
                         "@@@@@"});
-#line 229
+#line 227
  testRunner.And("I fill in the registration information excluding email address", ((string)(null)), table7, "And ");
-#line 236
+#line 234
  testRunner.And("I declare that I do use this account for business", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 237
+#line 235
  testRunner.And("I add my company name as \"AutoTestLtd\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 238
+#line 236
  testRunner.And("I select my Business Sector as \"IT and telecommunications services\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 239
+#line 237
  testRunner.And("I select number of Employees as \"11 - 50\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 240
+#line 238
  testRunner.When("I add my company VAT number as \"GB145937540\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 241
+#line 239
  testRunner.And("I have Agreed to the Terms and Conditions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 242
+#line 240
  testRunner.And(string.Format("I enter an email address containing {0}", emailAddress), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 243
+#line 241
  testRunner.And("I press create account button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 244
+#line 242
  testRunner.Then("I should see the duplicate email error message preventing account creation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -651,15 +649,15 @@ this.ScenarioSetup(scenarioInfo);
                         "TEST",
                         "UAT",
                         "PROD"});
-#line 253
+#line 251
 this.ScenarioSetup(scenarioInfo);
-#line 254
+#line 252
  testRunner.Given("I want to create a new account with Brother Online \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 255
+#line 253
  testRunner.When("I click on Create Account for \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 256
+#line 254
  testRunner.And("I am redirected to the Brother Login/Register page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 257
+#line 255
  testRunner.And("I have Checked No I Do Not Have An Account Checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
@@ -677,35 +675,35 @@ this.ScenarioSetup(scenarioInfo);
             table8.AddRow(new string[] {
                         "ConfirmPassword",
                         "@@@@@"});
-#line 258
+#line 256
  testRunner.And("I fill in the registration information using a valid email address", ((string)(null)), table8, "And ");
-#line 265
+#line 263
  testRunner.And("I declare that I do use this account for business", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 266
+#line 264
  testRunner.And("I add my company name as \"AutoTestLtd\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 267
+#line 265
  testRunner.And("I select my Business Sector as \"IT and telecommunications services\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 268
+#line 266
  testRunner.And("I select number of Employees as \"11 - 50\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 269
+#line 267
  testRunner.When("I add my company VAT number as \"GB145937540\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 270
+#line 268
  testRunner.And("I have Agreed to the Terms and Conditions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 271
+#line 269
  testRunner.When("I press Create Your Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 272
+#line 270
  testRunner.Then("I should see my account confirmation page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 273
+#line 271
  testRunner.And("When I Click Go Back", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 274
+#line 272
  testRunner.Then("I should be able to log into \"United Kingdom\" Brother Online using my account det" +
                     "ails", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 275
+#line 273
  testRunner.When("I have clicked on Add Device", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 276
+#line 274
  testRunner.Then("I should see the account not validated error message preventing device registrati" +
                     "on", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 277
+#line 275
  testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -717,11 +715,11 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.CategoryAttribute("TEST")]
         [NUnit.Framework.CategoryAttribute("UAT")]
         [NUnit.Framework.CategoryAttribute("PROD")]
-        [NUnit.Framework.TestCaseAttribute("\"existinguseraccount@guerrillamail.com\"", "\"InvalidPasswordEntered\"", null)]
-        [NUnit.Framework.TestCaseAttribute("\"existingbusinessaccount@guerrillamail.wrong\"", "\"Password100\"", null)]
-        [NUnit.Framework.TestCaseAttribute("\"existinguseraccount@guerrillamail.com\"", "\"PaSsWoRd100\"", null)]
-        [NUnit.Framework.TestCaseAttribute("\"existingbusinessaccount@guerrillamail.com\"", "\"   Password100   \"", null)]
-        [NUnit.Framework.TestCaseAttribute("\"existinguseraccount@guerrillamail.com\"", "\"Pass  word  100\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"autouseracc@guerrillamail.com\"", "\"InvalidPasswordEntered\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"autobusinessacc@guerrillamail.com.wrong\"", "\"Password100\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"autouseracc@guerrillamail.com\"", "\"PaSsWoRd100\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"autobusinessacc@guerrillamail.com\"", "\"   Password100   \"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"autouseracc@guerrillamail.com\"", "\"Pass  word  100\"", null)]
         public virtual void ValidateThatUserOrBusinessAccountHoldersAreUnableToLoginToBrotherOnlineWithInvalidCredentials(string emailAddress, string password, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -734,21 +732,21 @@ this.ScenarioSetup(scenarioInfo);
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate that user or business account holders are unable to login to brother onl" +
                     "ine with invalid credentials", @__tags);
-#line 283
+#line 281
 this.ScenarioSetup(scenarioInfo);
-#line 284
+#line 282
  testRunner.Given("I launch Brother Online for \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 285
+#line 283
  testRunner.When("I click on Create Account for \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 286
+#line 284
  testRunner.And("I am redirected to the Brother Login/Register page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 287
+#line 285
  testRunner.And(string.Format("I enter an email address containing {0}", emailAddress), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 288
+#line 286
  testRunner.When(string.Format("I enter a valid Password {0}", password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 289
+#line 287
  testRunner.And("I press sign in with invalid details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 290
+#line 288
  testRunner.Then("I should see the invalid credentials error message preventing login to brother on" +
                     "line", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
@@ -761,8 +759,8 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.CategoryAttribute("TEST")]
         [NUnit.Framework.CategoryAttribute("UAT")]
         [NUnit.Framework.CategoryAttribute("PROD")]
-        [NUnit.Framework.TestCaseAttribute("\"     existinguseraccount@guerrillamail.com    \"", "\"Password100\"", null)]
-        [NUnit.Framework.TestCaseAttribute("\"ExIsTiNgBuSiNeSsAcCoUnT@gUeRrIlLaMaIl.CoM\"", "\"Password100\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"     autouseracc@guerrillamail.com    \"", "\"Password100\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"AuToBuSiNeSsAcA@gUeRrIlLaMaIl.CoM\"", "\"Password100\"", null)]
         public virtual void ValidateThatUserOrBusinessAccountHoldersCanStillLoginToBrotherOnlineWithSpacesOrDifferentCaseInTheUsernameProvidingThePasswordIsCorrect(string emailAddress, string password, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -775,25 +773,25 @@ this.ScenarioSetup(scenarioInfo);
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate that user or business account holders can still login to brother online " +
                     "with spaces or different case in the username providing the password is correct", @__tags);
-#line 304
+#line 302
 this.ScenarioSetup(scenarioInfo);
-#line 305
+#line 303
  testRunner.Given("I launch Brother Online for \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 306
+#line 304
  testRunner.When("I click on Create Account for \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 307
+#line 305
  testRunner.And("I am redirected to the Brother Login/Register page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 308
+#line 306
  testRunner.And(string.Format("I enter an email address containing {0}", emailAddress), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 309
+#line 307
  testRunner.When(string.Format("I enter a valid Password {0}", password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 310
+#line 308
  testRunner.And("I press sign in with invalid details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 311
+#line 309
  testRunner.Then("I should be able to successfully log into brother online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 312
+#line 310
  testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 313
+#line 311
  testRunner.Then("I am redirected to the Brother Home Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -812,15 +810,15 @@ this.ScenarioSetup(scenarioInfo);
                         "TEST",
                         "UAT",
                         "PROD"});
-#line 324
+#line 322
 this.ScenarioSetup(scenarioInfo);
-#line 325
+#line 323
  testRunner.Given("I want to create a new account with Brother Online \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 326
+#line 324
  testRunner.When("I click on Create Account for \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 327
+#line 325
  testRunner.And("I am redirected to the Brother Login/Register page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 328
+#line 326
  testRunner.And("I have Checked No I Do Not Have An Account Checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
@@ -838,32 +836,32 @@ this.ScenarioSetup(scenarioInfo);
             table9.AddRow(new string[] {
                         "ConfirmPassword",
                         "Max30CharacterPasswooooooooord"});
-#line 329
+#line 327
  testRunner.And("I fill in the registration information using a maximum length email address", ((string)(null)), table9, "And ");
-#line 336
+#line 334
  testRunner.And("I declare that I do use this account for business", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 337
+#line 335
  testRunner.And("I add my company name as \"AutoTestLtd\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 338
+#line 336
  testRunner.And("I select my Business Sector as \"IT and telecommunications services\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 339
+#line 337
  testRunner.And("I select number of Employees as \"11 - 50\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 340
+#line 338
  testRunner.When("I add my company VAT number as \"GB145937540\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 341
+#line 339
  testRunner.And("I have Agreed to the Terms and Conditions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 342
+#line 340
  testRunner.When("I press Create Your Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 343
+#line 341
  testRunner.Then("I should see my account confirmation page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 344
+#line 342
  testRunner.And("When I Click Go Back", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 345
+#line 343
  testRunner.Then("I should be able to log into \"\"(.*)\"\" Brother Online using my max length username" +
                     " and password account details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 346
+#line 344
  testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 347
+#line 345
  testRunner.Then("I am redirected to the Brother Home Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -880,17 +878,17 @@ this.ScenarioSetup(scenarioInfo);
                         "TEST",
                         "UAT",
                         "PROD"});
-#line 351
+#line 349
 this.ScenarioSetup(scenarioInfo);
-#line 352
+#line 350
  testRunner.Given("I want to create a new account with Brother Online \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 353
+#line 351
  testRunner.When("I click on Create Account for \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 354
+#line 352
  testRunner.And("I am redirected to the Brother Login/Register page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 355
+#line 353
  testRunner.And("I have Checked No I Do Not Have An Account Checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 356
+#line 354
  testRunner.And("I declare that I do use this account for business", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
@@ -908,42 +906,42 @@ this.ScenarioSetup(scenarioInfo);
             table10.AddRow(new string[] {
                         "ConfirmPassword",
                         "@@@@@"});
-#line 357
+#line 355
  testRunner.And("I fill in the registration information using a valid email address", ((string)(null)), table10, "And ");
-#line 364
+#line 362
  testRunner.And("I add my company name as \"AutoTestLtd\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 365
+#line 363
  testRunner.And("I select my Business Sector as \"IT and telecommunications services\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 366
+#line 364
  testRunner.And("I select number of Employees as \"11 - 50\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 367
+#line 365
  testRunner.And("I have Agreed to the Terms and Conditions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 368
+#line 366
  testRunner.When("I press Create Your Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 369
+#line 367
  testRunner.Then("I should see my account confirmation page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 370
+#line 368
  testRunner.And("When I Click Go Back", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 372
+#line 370
  testRunner.Then("I should be able to log into \"United Kingdom\" Brother Online using my account det" +
                     "ails", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 373
+#line 371
  testRunner.When("I navigate to my account for \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 374
+#line 372
  testRunner.And("I click on Sign In Details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 375
+#line 373
  testRunner.And("If I enter a new email address \"changed\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 376
+#line 374
  testRunner.And("If I enter the current password for email change", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 377
+#line 375
  testRunner.And("I click on Update details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 378
+#line 376
  testRunner.Then("I can verify the email change occurred", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 380
+#line 378
  testRunner.Then("I can validate the update was successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 381
+#line 379
  testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 382
+#line 380
  testRunner.Then("If I sign back into Brother Online \"United Kingdom\" using the same credentials", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -960,17 +958,17 @@ this.ScenarioSetup(scenarioInfo);
                         "TEST",
                         "UAT",
                         "PROD"});
-#line 386
+#line 384
 this.ScenarioSetup(scenarioInfo);
-#line 387
+#line 385
  testRunner.Given("I want to create a new account with Brother Online \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 388
+#line 386
  testRunner.When("I click on Create Account for \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 389
+#line 387
  testRunner.And("I am redirected to the Brother Login/Register page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 390
+#line 388
  testRunner.And("I have Checked No I Do Not Have An Account Checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 391
+#line 389
  testRunner.And("I declare that I do use this account for business", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
@@ -988,42 +986,42 @@ this.ScenarioSetup(scenarioInfo);
             table11.AddRow(new string[] {
                         "ConfirmPassword",
                         "@@@@@"});
-#line 392
+#line 390
  testRunner.And("I fill in the registration information using a valid email address", ((string)(null)), table11, "And ");
-#line 399
+#line 397
  testRunner.And("I add my company name as \"AutoTestLtd\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 400
+#line 398
  testRunner.And("I select my Business Sector as \"IT and telecommunications services\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 401
+#line 399
  testRunner.And("I select number of Employees as \"11 - 50\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 402
+#line 400
  testRunner.And("I have Agreed to the Terms and Conditions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 403
+#line 401
  testRunner.When("I press Create Your Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 404
+#line 402
  testRunner.Then("I should see my account confirmation page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 405
+#line 403
  testRunner.And("When I Click Go Back", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 407
+#line 405
  testRunner.Then("I should be able to log into \"United Kingdom\" Brother Online using my account det" +
                     "ails", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 408
+#line 406
  testRunner.When("I navigate to my account for \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 409
+#line 407
  testRunner.And("I click on Sign In Details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 410
+#line 408
  testRunner.Then("If I enter the current password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 411
+#line 409
  testRunner.And("I enter a new password of \"ChangedPassword123\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 412
+#line 410
  testRunner.When("I click on Update Password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 413
+#line 411
  testRunner.Then("My password will be updated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 414
+#line 412
  testRunner.Then("If I sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 415
+#line 413
  testRunner.And("If I sign back into Brother Online \"United Kingdom\" using the same credentials", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 416
+#line 414
  testRunner.Then("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -1042,41 +1040,41 @@ this.ScenarioSetup(scenarioInfo);
                         "TEST",
                         "UAT",
                         "PROD"});
-#line 420
+#line 418
 this.ScenarioSetup(scenarioInfo);
-#line 421
+#line 419
  testRunner.Given("I want to create a new account with Brother Online \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 422
+#line 420
  testRunner.When("I click on Create Account for \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 423
+#line 421
  testRunner.And("I am redirected to the Brother Login/Register page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 424
+#line 422
  testRunner.And("I have Checked No I Do Not Have An Account Checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 425
+#line 423
  testRunner.And("I declare that I do use this account for business", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 426
+#line 424
  testRunner.When("I press tab in the email address field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 427
+#line 425
  testRunner.Then("I should see an error message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 428
+#line 426
  testRunner.When("I press tab in the password field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 429
+#line 427
  testRunner.Then("I should see an error message on the password field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 430
+#line 428
  testRunner.When("I press tab in the first name field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 431
+#line 429
  testRunner.Then("I should see an error message on the first name field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 432
+#line 430
  testRunner.When("I press tab in the last name field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 433
+#line 431
  testRunner.Then("I should see an error message on the last name field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 434
+#line 432
  testRunner.When("I press tab in the company name field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 435
+#line 433
  testRunner.Then("I should see an error message on the company name field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 436
+#line 434
  testRunner.When("I press tab in the business sector field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 437
+#line 435
  testRunner.Then("I should see an error message on the business sector field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -1111,17 +1109,17 @@ this.ScenarioSetup(scenarioInfo);
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer unable to create a new BOL Italy account without entering a valid tax co" +
                     "de", @__tags);
-#line 441
+#line 439
 this.ScenarioSetup(scenarioInfo);
-#line 442
+#line 440
  testRunner.Given(string.Format("I want to create a new account with Brother Online \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 443
+#line 441
  testRunner.When(string.Format("I click on Create Account for \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 444
+#line 442
  testRunner.And("I am redirected to the Brother Login/Register page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 445
+#line 443
  testRunner.And("I have Checked No I Do Not Have An Account Checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 446
+#line 444
  testRunner.And("I declare that I do use this account for business", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
@@ -1139,22 +1137,22 @@ this.ScenarioSetup(scenarioInfo);
             table12.AddRow(new string[] {
                         "ConfirmPassword",
                         "@@@@@"});
-#line 447
+#line 445
  testRunner.And("I fill in the Italy registration information using a valid email address and excl" +
                     "uding ID number for italy", ((string)(null)), table12, "And ");
-#line 453
+#line 451
  testRunner.And("I add my company name as \"AutoTestLtd\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 454
+#line 452
  testRunner.And(string.Format("I select my Business Sector as \"{0}\"", businessSector), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 456
+#line 454
  testRunner.And("I select number of Employees as \"11 - 50\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 457
+#line 455
  testRunner.And(string.Format("I enter an invalid Italy VAT Number as \"{0}\"", vATNumber), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 458
+#line 456
  testRunner.And("I have Agreed to the Terms and Conditions for Italy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 459
+#line 457
  testRunner.When("I press Create Your Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 460
+#line 458
  testRunner.Then("I should see an error message due to an invalid tax code or codice fiscale", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -1180,15 +1178,15 @@ this.ScenarioSetup(scenarioInfo);
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer able to create a new BOL Portugal account using the same VAT code multip" +
                     "le times (BBAU-2603 Business User part)", @__tags);
-#line 488
+#line 486
 this.ScenarioSetup(scenarioInfo);
-#line 489
+#line 487
  testRunner.Given(string.Format("I want to create a new account with Brother Online \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 490
+#line 488
  testRunner.When(string.Format("I click on Create Account for \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 491
+#line 489
  testRunner.And("I am redirected to the Brother Login/Register page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 492
+#line 490
  testRunner.And("I have Checked No I Do Not Have An Account Checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
@@ -1206,33 +1204,33 @@ this.ScenarioSetup(scenarioInfo);
             table13.AddRow(new string[] {
                         "ConfirmPassword",
                         "@@@@@"});
-#line 493
+#line 491
  testRunner.And("I fill in the Portugal registration information using a valid email address and e" +
                     "xcluding the VAT number", ((string)(null)), table13, "And ");
-#line 499
+#line 497
  testRunner.And("I declare that I do use this account for business", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 500
+#line 498
  testRunner.And("I add my company name as \"AutoTestLtd\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 501
+#line 499
  testRunner.And("I select my Business Sector as \"Fabrico\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 502
+#line 500
  testRunner.And("I select number of Employees as \"11 - 50\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 503
+#line 501
  testRunner.And(string.Format("I enter a valid VAT number as \"{0}\" for Portugal", taxCode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 504
+#line 502
  testRunner.And("I can see a warning message for using already used VAT number", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 505
+#line 503
  testRunner.And("I have Agreed to the Terms and Conditions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 506
+#line 504
  testRunner.When("I press Create Your Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 507
+#line 505
  testRunner.Then("I should see my account confirmation page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 508
+#line 506
   testRunner.And("When I Click Go Back", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 510
+#line 508
  testRunner.Then("I should be able to log into \"United Kingdom\" Brother Online using my account det" +
                     "ails", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 511
+#line 509
  testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();

@@ -465,13 +465,13 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             WhenIEnterAValidEmailAddress(string.Empty); // Auto Generates with an empty string
             CurrentPage.As<RegistrationPage>().PopulateTaxNumberTextBox(form.CodiceFiscale); //tax number for Italy
         }
+
+        [When(@"I fill in the registration information using a valid email address and excluding ID number for italy")]
         [When(@"I fill in the Italy registration information using a valid email address")]
-        [When(
-            @"I fill in the Italy registration information using a valid email address and excluding ID number for italy"
-            )]
-        [When(
-            @"I fill in the Portugal registration information using a valid email address and excluding the VAT number")
+        [When(@"I fill in the Italy registration information using a valid email address and excluding ID number for italy")]
+        [When(@"I fill in the Portugal registration information using a valid email address and excluding the VAT number")
         ]
+        
         public void WhenIFillInTheItalyRegistrationInformationUsingAValidEmailAddressAndExcludingIdNumberForItaly(
             Table table)
         {
@@ -494,6 +494,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<RegistrationPage>().PopulateTaxNumberTextBox(validTaxCode);
         }
+        [When(@"I enter an invalid VAT Number as ""(.*)""")]
         [When(@"I enter an invalid Italy VAT Number as ""(.*)""")]
         [When(@"I enter a valid VAT number as ""(.*)"" for Portugal")]
         public void WhenIEnterAnInvalidItalyVatNumberAs(string vatNumber)
@@ -508,12 +509,19 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         }
 
 
+        [Then(@"I should see an error message due to an invalid tax code")]
         [Then(@"I should see an error message due to an invalid tax code or codice fiscale")]
         public void ThenIShouldSeeAnErrorMessageOnTheCodiceFiscaleField()
         {
             CurrentPage.As<RegistrationConfirmationPage>().InvalidItalyTaxCodeErrorMessageDisplayed();
         }
 
+
+        [Then(@"I should see an error message  due to missing mandatory tax code field")]
+        public void ThenIShouldSeeAnErrorMessageDueToMissingMandatoryTaxCodeField()
+        {
+            CurrentPage.As<RegistrationPage>().ErrorMessageDisplayedMissingVatNumber();
+        }
         [Then(@"I should see an error message due to an invalid VAT number or Numero partita IVA")]
         public void ThenIShouldSeeAnErrorMessageOnTheNumeroPartitaIvaField()
         {
@@ -667,6 +675,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<BusinessDetailsPage>().DoNotUseAccountForBusiness();
         }
 
+        [When(@"I add my ""(.*)""")]
         [When(@"I add my company name as ""(.*)""")]
         public void WhenIAddMyCompanyNameAs(string companyName)
         {
@@ -697,6 +706,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<BusinessDetailsPage>().PopulateVatNumberTextBox(vatNumber);
         }
 
+        [When(@"I select my ""(.*)""")]
         [When(@"I select my Business Sector as ""(.*)""")]
         public void WhenISelectMyBusinessSectorAs(string businessSector)
         {
@@ -715,6 +725,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<BusinessDetailsPage>().PopulateBusinessSectorDropDown(businessSector);
         }
 
+        [When(@"I select (.*) - (.*)")]
         [When(@"I select number of Employees as ""(.*)""")]
         public void WhenISelectNumberOfEmployeesAs(string numberOfEmployees)
         {

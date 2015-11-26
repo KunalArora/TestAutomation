@@ -74,13 +74,15 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherMainSite.PrinterSearch
             "ept Spain and Portugal")]
         [NUnit.Framework.CategoryAttribute("UAT")]
         [NUnit.Framework.CategoryAttribute("TEST")]
+        [NUnit.Framework.CategoryAttribute("SMOKE")]
         [NUnit.Framework.TestCaseAttribute("Ireland", "printers/laser-printers", null)]
         [NUnit.Framework.TestCaseAttribute("Netherlands", "printers/laserprinters", null)]
         public virtual void ViewTheListOfAvailableLaserPrintersOnBrotherMainSitesForLanguagesExceptSpainAndPortugal(string country, string site, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "UAT",
-                    "TEST"};
+                    "TEST",
+                    "SMOKE"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));

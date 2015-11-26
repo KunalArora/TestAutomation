@@ -216,6 +216,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SuperCarousel.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specification\BrotherMainSite\Printer Search\SiteAccess\SiteAccessDevEnv.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SiteAccessDevEnv.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Steps\BrotherMainSite\FooterNavigation\AboutFooterSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Test Specification\BrotherMainSite\ContactUs\ContactUs.feature.cs">
@@ -295,6 +300,7 @@
     <Compile Include="Test Steps\OmniJoin\Plans\ManagePlanSteps.cs" />
     <Compile Include="Test Steps\OmniJoin\Plans\PurchasePlansSteps.cs" />
     <Compile Include="Test Steps\OmniJoin\WebConferencingHomePageSteps.cs" />
+    <Compile Include="Test Steps\SiteAccess\SiteAccessSteps.cs" />
     <Compile Include="Test Steps\ThirdPartyProductsSteps.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -507,6 +513,10 @@
     <None Include="Test Specification\OmniJoin\PurchasePlans.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>PurchasePlans.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specification\BrotherMainSite\Printer Search\SiteAccess\SiteAccessDevEnv.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>SiteAccessDevEnv.feature.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

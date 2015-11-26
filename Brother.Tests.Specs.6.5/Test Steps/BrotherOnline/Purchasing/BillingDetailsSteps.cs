@@ -1,5 +1,6 @@
 ﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
+using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement.PaymentMethods;
 using Brother.WebSites.Core.Pages.BrotherOnline.Checkout;
 using TechTalk.SpecFlow;
 
