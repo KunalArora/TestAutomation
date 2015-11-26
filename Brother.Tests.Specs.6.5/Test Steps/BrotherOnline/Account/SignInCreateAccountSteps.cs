@@ -514,6 +514,12 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<RegistrationConfirmationPage>().InvalidItalyTaxCodeErrorMessageDisplayed();
         }
 
+
+        [Then(@"I should see an error message  due to missing mandatory tax code field")]
+        public void ThenIShouldSeeAnErrorMessageDueToMissingMandatoryTaxCodeField()
+        {
+            CurrentPage.As<RegistrationPage>().ErrorMessageDisplayedMissingVatNumber();
+        }
         [Then(@"I should see an error message due to an invalid VAT number or Numero partita IVA")]
         public void ThenIShouldSeeAnErrorMessageOnTheNumeroPartitaIvaField()
         {
@@ -667,6 +673,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<BusinessDetailsPage>().DoNotUseAccountForBusiness();
         }
 
+        [When(@"I add my ""(.*)""")]
         [When(@"I add my company name as ""(.*)""")]
         public void WhenIAddMyCompanyNameAs(string companyName)
         {
@@ -697,6 +704,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<BusinessDetailsPage>().PopulateVatNumberTextBox(vatNumber);
         }
 
+        [When(@"I select my ""(.*)""")]
         [When(@"I select my Business Sector as ""(.*)""")]
         public void WhenISelectMyBusinessSectorAs(string businessSector)
         {
@@ -715,6 +723,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<BusinessDetailsPage>().PopulateBusinessSectorDropDown(businessSector);
         }
 
+        [When(@"I select (.*) - (.*)")]
         [When(@"I select number of Employees as ""(.*)""")]
         public void WhenISelectNumberOfEmployeesAs(string numberOfEmployees)
         {
