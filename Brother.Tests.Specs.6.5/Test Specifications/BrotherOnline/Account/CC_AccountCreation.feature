@@ -170,7 +170,7 @@ Scenario: (Failing on Prod - BBAU-2575) Validate that a user cannot create a bus
 
 	
 @TEST @UAT @PROD
-# Accounts created on DV2, QAS and Prod for the following test - existinguseraccount@guerrillamail.com/existingbusinessaccount@guerrillamail.com/Password100
+# Accounts created on DV2, QAS and Prod for the following test - autouseracc@guerrillamail.com/autobusinessacc@guerrillamail.com/Password100
 # Check that existing creative center family and business account holders cannot login with valid/invalid username/password combinations
 Scenario Outline: (Failing on Prod - BBAU-2575) Validate that family or business account holders are unable to login to creative center with invalid credentials
 	Given I launch Brother Online for "United Kingdom"
@@ -187,16 +187,16 @@ Scenario Outline: (Failing on Prod - BBAU-2575) Validate that family or business
 	Then I should see the invalid credentials error message preventing login to creative center
 
 	Scenarios:
-		| Email Address                                 | Password                 |
-		| "existinguseraccount@guerrillamail.com"       | "InvalidPasswordEntered" |
-		| "existingbusinessaccount@guerrillamail.wrong" | "Password100"            |
-		| "existinguseraccount@guerrillamail.com"       | "PaSsWoRd100"			   |
-		| "existingbusinessaccount@guerrillamail.com"	| "   Password100   "      |
-		| "existinguseraccount@guerrillamail.com"       | "Pass  word  100"	       |
+		| Email Address                             | Password                 |
+		| "autouseracc@guerrillamail.com"			| "InvalidPasswordEntered" |
+		| "autobusinessacc@guerrillamail.com.wrong" | "Password100"            |
+		| "autouseracc@guerrillamail.com"			| "PaSsWoRd100"			   |
+		| "autobusinessacc@guerrillamail.com"		| "   Password100   "      |
+		| "autouseracc@guerrillamail.com"           | "Pass  word  100"	       |
 
 
 @TEST @UAT @PROD
-# Accounts created on DV2, QAS and Prod for the following test - existinguseraccount@guerrillamail.com/existingbusinessaccount@guerrillamail.com/Password100
+# Accounts created on DV2, QAS and Prod for the following test - autouseracc@guerrillamail.com/autobusinessacc@guerrillamail.com/Password100
 # Check that existing family and business account holders can still login with a username that has leading/trailing spaces or mixed letter casing
 Scenario Outline: (Failing on Prod - BBAU-2575) (Failing BBAU-2601) Validate that family or business account holders can still login to creative center with spaces or different case in the username providing the password is correct
 	Given I launch Brother Online for "United Kingdom"
@@ -218,8 +218,8 @@ Scenario Outline: (Failing on Prod - BBAU-2575) (Failing BBAU-2601) Validate tha
 
 	Scenarios:
 		| Email Address											| Password      |
-		| "ExIsTiNgBuSiNeSsAcCoUnT@gUeRrIlLaMaIl.CoM"			| "Password100" |
-		#| "     existinguseraccount@guerrillamail.com    "		| "Password100" | #It's not allowing user to login 
+		| "AuToBuSiNeSsAcC@gUeRrIlLaMaIl.CoM"			| "Password100" |
+		#| "     autouseracc@guerrillamail.com      "	| "Password100" | #It's not allowing user to login 
 
 @TEST @UAT @PROD
 # Check creative center password and confirm password fields need to match
@@ -239,7 +239,7 @@ Scenario Outline: (Failing on Prod - BBAU-2575) Validate that an error message i
 
 	Scenarios:
 		| Email Address                               | Password      | Confirm Password |
-		| "existingbusinessaccount@guerillamail.com"  | "Password100" | "Password200"	 |
+		| "autobusinessacc@guerrillamail.com"  | "Password100" | "Password200"	 |
 
 @TEST @UAT @PROD
 # Customer cannot register for a creative center account using an invalid email format	
@@ -298,9 +298,9 @@ Scenario Outline: (Failing on Prod - BBAU-2575) Customer cannot register for a n
 	Then I should see the creative center duplicate email error message preventing account creation
 
 Scenarios:
-	| Email Address                               |
-	| "existinguseraccount@guerrillamail.com"     |
-	| "existingbusinessaccount@guerrillamail.com" |
+	| Email Address                       |
+	| "autouseracc@guerrillamail.com"     |
+	| "autobusinessacc@guerrillamail.com" |
 
 
 @TEST @UAT @PROD
@@ -331,6 +331,6 @@ Scenario Outline: (Failing on Prod - BBAU-2575) Customer cannot register for a n
 	Then I should see the creative center duplicate email error message preventing account creation
 
 Scenarios:
-	| Email Address                               |
-	| "existinguseraccount@guerrillamail.com"     |
-	| "existingbusinessaccount@guerrillamail.com" |
+	| Email Address                       |
+	| "autouseracc@guerrillamail.com"     |
+	| "autobusinessacc@guerrillamail.com" |

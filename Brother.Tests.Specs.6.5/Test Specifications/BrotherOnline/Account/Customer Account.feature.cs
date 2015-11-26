@@ -1225,7 +1225,7 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.CategoryAttribute("TEST")]
         [NUnit.Framework.CategoryAttribute("UAT")]
         [NUnit.Framework.CategoryAttribute("PROD")]
-        [NUnit.Framework.TestCaseAttribute("\"existinguseraccount@guerrillamail.com\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"autouseracc@guerrillamail.com\"", null)]
         public virtual void CustomerCannotRegisterForANewUserAccountUsingAnEmailAddressThatAlreadyExistsForAnotherUser(string emailAddress, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -1286,7 +1286,7 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.CategoryAttribute("TEST")]
         [NUnit.Framework.CategoryAttribute("UAT")]
         [NUnit.Framework.CategoryAttribute("PROD")]
-        [NUnit.Framework.TestCaseAttribute("\"existingbusinessaccount@guerrillamail.com\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"autobusinessacc@guerrillamail.com\"", null)]
         public virtual void CustomerCannotRegisterForANewUserAccountUsingAnEmailAddressThatAlreadyExistsForAnotherBusinessAccount(string emailAddress, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -1642,7 +1642,7 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.CategoryAttribute("TEST")]
         [NUnit.Framework.CategoryAttribute("UAT")]
         [NUnit.Framework.CategoryAttribute("PROD")]
-        [NUnit.Framework.TestCaseAttribute("\"existingcustomeraccwithorder@guerrillamail.com\"", "\"Password100\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"autocustaccwithorder@guerrillamail.com\"", "\"Password100\"", null)]
         public virtual void CustomerAccountHolderIsUnableToSwitchToABusinessAccountOnceAnOrderHasBeenPlaced(string emailAddress, string password, string[] exampleTags)
         {
             string[] @__tags = new string[] {
