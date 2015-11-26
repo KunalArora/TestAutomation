@@ -500,7 +500,7 @@ Scenario: Validate that the correct error messages are displayed when Terms and 
 	And I press create account button
 	Then I should get an error message displayed on the Terms and Conditions
 
-# Accounts created on DV2, QAS and Prod for the following test - existinguseraccount@guerrillamail.com/existingbusinessaccount@guerrillamail.com/Password100
+# Accounts created on DV2, QAS and Prod for the following test - autouseracc@guerrillamail.com/autobusinessacc@guerrillamail.com/Password100
 # Check that a user account cannot be created with an email address that already exists for another user account 
 # Check that a user account cannot be created with an email address that already exists for another business account
 
@@ -524,8 +524,8 @@ Scenario Outline: Customer cannot register for a new user account using an email
 	Then I should see the duplicate email error message preventing account creation
 
 Scenarios:
-	| Email Address                               |
-	| "existinguseraccount@guerrillamail.com"     |
+	| Email Address                       |
+	| "autouseracc@guerrillamail.com"     |
 	
 
 @TEST @UAT @PROD
@@ -548,8 +548,8 @@ Scenario Outline: Customer cannot register for a new user account using an email
 	Then I should see the duplicate email error message preventing account creation
 
 Examples:
-	| Email Address                                     |
-	| "existingbusinessaccount@guerrillamail.com"       |
+	| Email Address                             |
+	| "autobusinessacc@guerrillamail.com"       |
 
 # Check that a user account which is not validated does not have the ability to register a device
 @TEST @UAT @PROD
@@ -664,8 +664,8 @@ Scenario: Validate that a newly created customer account can be swapped to a bus
 	Then I can verify successfull update message appeared at the top
 	Then I can sign out of Brother Online
 
-# Accounts created on DV2, QAS and Prod for the following test - existingcustomeraccwithorder@guerrillamail.com/Password100 
-# Validate that a Customer Account holder who has made an order is not able to swap to a Business account
+# Accounts created on DV2 and QAS and Prod for the following test - autocustaccwithorder@guerrillamail.com/Password100 
+# Validate that a Customer Account holder who has made an order is not able to swap to a Business account (Note this cannot be run on prod due to lack of purchase)
 
 @TEST @UAT @PROD
 Scenario Outline: Customer account holder is unable to switch to a business account once an order has been placed
@@ -684,8 +684,8 @@ Scenario Outline: Customer account holder is unable to switch to a business acco
 	Then I am redirected to the Brother Home Page
 
 	Scenarios:
-		| Email Address				                        | Password      |
-		| "existingcustomeraccwithorder@guerrillamail.com"	| "Password100" |
+		| Email Address				                | Password      |
+		| "autocustaccwithorder@guerrillamail.com"	| "Password100" |
 
 @TEST @UAT 
 Scenario Outline: Customer creates new account on UK and Non-UK BOL then wishes to change their password

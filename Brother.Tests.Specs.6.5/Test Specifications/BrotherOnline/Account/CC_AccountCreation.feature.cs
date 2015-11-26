@@ -508,11 +508,11 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.CategoryAttribute("TEST")]
         [NUnit.Framework.CategoryAttribute("UAT")]
         [NUnit.Framework.CategoryAttribute("PROD")]
-        [NUnit.Framework.TestCaseAttribute("\"existinguseraccount@guerrillamail.com\"", "\"InvalidPasswordEntered\"", null)]
-        [NUnit.Framework.TestCaseAttribute("\"existingbusinessaccount@guerrillamail.wrong\"", "\"Password100\"", null)]
-        [NUnit.Framework.TestCaseAttribute("\"existinguseraccount@guerrillamail.com\"", "\"PaSsWoRd100\"", null)]
-        [NUnit.Framework.TestCaseAttribute("\"existingbusinessaccount@guerrillamail.com\"", "\"   Password100   \"", null)]
-        [NUnit.Framework.TestCaseAttribute("\"existinguseraccount@guerrillamail.com\"", "\"Pass  word  100\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"autouseracc@guerrillamail.com\"", "\"InvalidPasswordEntered\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"autobusinessacc@guerrillamail.com.wrong\"", "\"Password100\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"autouseracc@guerrillamail.com\"", "\"PaSsWoRd100\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"autobusinessacc@guerrillamail.com\"", "\"   Password100   \"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"autouseracc@guerrillamail.com\"", "\"Pass  word  100\"", null)]
         public virtual void FailingOnProd_BBAU_2575ValidateThatFamilyOrBusinessAccountHoldersAreUnableToLoginToCreativeCenterWithInvalidCredentials(string emailAddress, string password, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -563,7 +563,7 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.CategoryAttribute("TEST")]
         [NUnit.Framework.CategoryAttribute("UAT")]
         [NUnit.Framework.CategoryAttribute("PROD")]
-        [NUnit.Framework.TestCaseAttribute("\"ExIsTiNgBuSiNeSsAcCoUnT@gUeRrIlLaMaIl.CoM\"", "\"Password100\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"AuToBuSiNeSsAcC@gUeRrIlLaMaIl.CoM\"", "\"Password100\"", null)]
         public virtual void FailingOnProd_BBAU_2575FailingBBAU_2601ValidateThatFamilyOrBusinessAccountHoldersCanStillLoginToCreativeCenterWithSpacesOrDifferentCaseInTheUsernameProvidingThePasswordIsCorrect(string emailAddress, string password, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -617,7 +617,7 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.CategoryAttribute("TEST")]
         [NUnit.Framework.CategoryAttribute("UAT")]
         [NUnit.Framework.CategoryAttribute("PROD")]
-        [NUnit.Framework.TestCaseAttribute("\"existingbusinessaccount@guerillamail.com\"", "\"Password100\"", "\"Password200\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"autobusinessacc@guerrillamail.com\"", "\"Password100\"", "\"Password200\"", null)]
         public virtual void FailingOnProd_BBAU_2575ValidateThatAnErrorMessageIsDisplayedOnCreativeCenterIfThePasswordAndCreatePasswordFieldsDoNotMatch(string emailAddress, string password, string confirmPassword, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -730,8 +730,8 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.CategoryAttribute("TEST")]
         [NUnit.Framework.CategoryAttribute("UAT")]
         [NUnit.Framework.CategoryAttribute("PROD")]
-        [NUnit.Framework.TestCaseAttribute("\"existinguseraccount@guerrillamail.com\"", null)]
-        [NUnit.Framework.TestCaseAttribute("\"existingbusinessaccount@guerrillamail.com\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"autouseracc@guerrillamail.com\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"autobusinessacc@guerrillamail.com\"", null)]
         public virtual void FailingOnProd_BBAU_2575CustomerCannotRegisterForANewFamilyCreativeCenterAccountUsingAnEmailAddressThatAlreadyExistsForAnotherBrotherOnlineUserOrBusinessAccount(string emailAddress, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -805,8 +805,8 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.CategoryAttribute("TEST")]
         [NUnit.Framework.CategoryAttribute("UAT")]
         [NUnit.Framework.CategoryAttribute("PROD")]
-        [NUnit.Framework.TestCaseAttribute("\"existinguseraccount@guerrillamail.com\"", null)]
-        [NUnit.Framework.TestCaseAttribute("\"existingbusinessaccount@guerrillamail.com\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"autouseracc@guerrillamail.com\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"autobusinessacc@guerrillamail.com\"", null)]
         public virtual void FailingOnProd_BBAU_2575CustomerCannotRegisterForANewBusinessCreativeCenterAccountUsingAnEmailAddressThatAlreadyExistsForAnotherBrotherOnlineBusinessOrUserAccount(string emailAddress, string[] exampleTags)
         {
             string[] @__tags = new string[] {

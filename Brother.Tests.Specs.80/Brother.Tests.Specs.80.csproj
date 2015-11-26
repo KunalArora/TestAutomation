@@ -216,7 +216,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SuperCarousel.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specification\SiteAccess\SiteAccessDevEnv.feature.cs">
+    <Compile Include="Test Specification\BrotherMainSite\Printer Search\SiteAccess\SiteAccessDevEnv.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SiteAccessDevEnv.feature</DependentUpon>
@@ -514,7 +514,7 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>PurchasePlans.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specification\SiteAccess\SiteAccessDevEnv.feature">
+    <None Include="Test Specification\BrotherMainSite\Printer Search\SiteAccess\SiteAccessDevEnv.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>SiteAccessDevEnv.feature.cs</LastGenOutput>
     </None>
