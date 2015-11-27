@@ -9,7 +9,7 @@ Scenario Outline: Get 200 OK response back from the following Brother Main Sites
 	Given The following site "<Site Url>" to validate I should receive an Ok response back	on mainsite login
 	And I enter an username containing "<UserName>"
 	And I enter password containing "<Password>"
-	#When I press login button 
+	And I press login button "<country>"
 	#Then I should be able to see the experience editor page
 
 

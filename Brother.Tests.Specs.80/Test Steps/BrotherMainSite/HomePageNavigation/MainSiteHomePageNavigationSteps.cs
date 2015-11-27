@@ -89,11 +89,11 @@ namespace Brother.Tests.Specs._80.BrotherMainSite.HomePageNavigation
         {
             CurrentPage.As<LoginPage>().PopulatePasswordTextBox(password);
         }
-        [When(@"I press login button")]
+        [Given(@"I press login button ""(.*)""")]
         public void WhenIPressLoginButton(string country)
         {
             //NextPage = CurrentPage.As<LoginPage>().ClickOnLoginButton();
-            CurrentPage.As<LoginPage>().ClickOnLoginButton();
+            CurrentPage.As<LoginPage>().ClickOnLoginButton(country);
         }
         [Then(@"I should be able to see the experience editor page")]
         public void ThenIShouldBeAbleToSeeTheExperienceEditorPage(string country)
