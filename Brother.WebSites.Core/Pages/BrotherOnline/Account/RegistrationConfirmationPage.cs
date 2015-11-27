@@ -21,6 +21,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         [FindsBy(How = How.CssSelector, Using = "#Warnings")]
         public IWebElement InvalidItalyTaxCodeErrorMessage;
 
+        [FindsBy(How = How.CssSelector, Using = "#Warnings")]
+        public IWebElement InvalidPortugalTaxCodeErrorMessage;
+
         [FindsBy(How = How.CssSelector, Using = "#Warnings")] 
         public IWebElement InvalidItalyVatNumberErrorMessage;
 
@@ -39,13 +42,15 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             GoBackButton.Click();
             return GetInstance<RegistrationPage>(Driver);
         }
-
         public void InvalidItalyTaxCodeErrorMessageDisplayed()
         {  
             WebDriver.Wait(DurationType.Millisecond, 15);
             TestCheck.AssertIsEqual(true, InvalidItalyTaxCodeErrorMessage.Displayed, "Is Error Message Displayed");
         }
-
+        public void InvalidPortugalTaxCodeErrorMessageDisplayed()
+        {
+            TestCheck.AssertIsEqual(true, InvalidPortugalTaxCodeErrorMessage.Displayed, "Is Error Message Displayed");
+        }
         public void InvalidItalyTVatNumberErrorMessageDisplayed()
         {
             TestCheck.AssertIsEqual(true, InvalidItalyVatNumberErrorMessage.Displayed, "Is Error Message Displayed");

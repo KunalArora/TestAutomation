@@ -503,7 +503,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         }
 
         [When(@"I can see a warning message for using already used VAT number")]
-        public void WhenICanSeeAWarningMessageForUsingAlreadyUsedVATNumber()
+        public void WhenICanSeeAWarningMessageForUsingAlreadyUsedVatNumber()
         {
             CurrentPage.As<RegistrationPage>().ErrorMessageDisplayedForUsingSameVATNumber();
         }
@@ -513,10 +513,8 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [Then(@"I should see an error message due to an invalid tax code or codice fiscale")]
         public void ThenIShouldSeeAnErrorMessageOnTheCodiceFiscaleField()
         {
-            CurrentPage.As<RegistrationConfirmationPage>().InvalidItalyTaxCodeErrorMessageDisplayed();
+            CurrentPage.As<RegistrationConfirmationPage>().InvalidPortugalTaxCodeErrorMessageDisplayed();
         }
-
-
         [Then(@"I should see an error message  due to missing mandatory tax code field")]
         public void ThenIShouldSeeAnErrorMessageDueToMissingMandatoryTaxCodeField()
         {
