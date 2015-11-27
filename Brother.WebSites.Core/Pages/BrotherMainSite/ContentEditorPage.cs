@@ -1,0 +1,33 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Brother.WebSites.Core.Pages.Base;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Support.PageObjects;
+
+namespace Brother.WebSites.Core.Pages.BrotherMainSite
+{
+    public class ContentEditorPage : BasePage
+    {
+        public static string Url = "/";
+
+        public override string DefaultTitle
+        {
+            get { return string.Empty; }
+        }
+
+        [FindsBy(How = How.Id, Using = "Ribbon")]
+        public IWebElement RibbonBarExist;
+
+        public void IsRibbonBarExist()
+        {
+            if (RibbonBarExist == null)
+            {
+                throw new NullReferenceException("Unable to locate ribbon on page");
+            }
+            AssertElementPresent(RibbonBarExist, "ShowRibbonContextMenu");
+        }
+    }
+}

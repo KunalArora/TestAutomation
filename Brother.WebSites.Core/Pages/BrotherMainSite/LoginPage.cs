@@ -41,10 +41,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
             return responseCode;
         }
-        //public ExperienceEditorPage NavigateToExperienceEditorPage(string country)
-        //{
-        //return GetInstance<ExperienceEditorPage>(Driver, BasePage.BaseUrl, string.Empty);
-        //}
+       
 
         [FindsBy(How = How.Id, Using = "UserName")]
         public IWebElement UserNameTextBox;
@@ -68,6 +65,10 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         public void ClickOnLoginButton(string country)
         {   
            LogInButton.Click();
+        }
+        public ExperienceEditorPage NavigateToExperienceEditorPage(string country)
+        {
+            return GetInstance<ExperienceEditorPage>(Driver, BasePage.BaseUrl, string.Empty);
         }
     }
 }
