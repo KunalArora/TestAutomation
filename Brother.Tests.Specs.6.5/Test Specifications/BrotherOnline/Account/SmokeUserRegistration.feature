@@ -6,7 +6,7 @@ Feature: B2C and B2B Registration
 
 #B2C User Registration without tax code
 
-@TEST @UAT @PROD
+@TEST @UAT @PROD @SMOKE
 Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on IE and UK site
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -270,7 +270,6 @@ Scenarios:
 | Russia      |  
 
 @TEST @UAT @PROD @SMOKE
-#Hungary BOL site is not up and running.
 Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on Hungary site
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -374,7 +373,7 @@ Scenario Outline: Customer creates a new account with Brother Online using valid
 	Then I am redirected to the Brother Home Page
 Scenarios: 
 | Country       |	
-| ITaly    |  
+| ITaly         |  
 
 @TEST @UAT @PROD @SMOKE
 Scenario Outline: Customer creates a new account with BOL using valid credentials, confirm by email on Spain site
@@ -431,7 +430,7 @@ Scenarios:
 
 # B2C User registration with tax codes
 
-@TEST @UAT @PROD
+@TEST @UAT @PROD @SMOKE
 # Create an account for Brother Online for spain sites
 Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on Spain sitesign in and Sign Out
 	Given I want to create a new account with Brother Online "<Country>"
@@ -458,7 +457,7 @@ Scenarios:
 | Country |
 |Spain	  | 
 
-@TEST @UAT @PROD
+@TEST @UAT @PROD @SMOKE
 # Create an account for Brother Online for spain sites
 Scenario Outline: Customer creates a new account with Brother Online using valid credentials, Portugal sitesign in and Sign Out
 	Given I want to create a new account with Brother Online "<Country>"
@@ -486,7 +485,7 @@ Scenarios:
 | Portugal | 
 
 
-@TEST @UAT @PROD
+@TEST @UAT @PROD @SMOKE
 # Create an account for Brother Online for Italy
 Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on Italy site sign in and Sign Out
 	Given I want to create a new account with Brother Online "<Country>"
@@ -516,7 +515,7 @@ Scenarios:
 
 # B2B Business User registration with tax codes and provides error message if tax code not given
 
-@TEST @UAT @PROD
+@TEST @UAT @PROD @SMOKE
 Scenario Outline: Customer creates a new Business account with Brother Online using valid credentials without VAT NUMBER, confirm by email on UK site and sign in and Sign Out
 Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -547,7 +546,7 @@ Scenarios:
 | United Kingdom  |
 
 
-@TEST @UAT @PROD
+@TEST @UAT @PROD @SMOKE
 Scenario Outline: Customer creates a new Business account with Brother Online using valid credentialS without VAT NUMBER, confirm by email on Ireland site and sign in and Sign Out
 Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -577,7 +576,7 @@ Scenarios:
 | Ireland   |  
 
 
-@TEST @UAT @PROD
+@TEST @UAT @PROD @SMOKE
 Scenario Outline: Customer able to create a new BOL Portugal account using the valid taxcode on Portugal BOL site
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -606,7 +605,7 @@ Scenarios:
 | Country  | Tax Code    |
 | Portugal | PT181161699 |
 
-@TEST @UAT @PROD
+@TEST @UAT @PROD @SMOKE
 Scenario Outline: Customer gets valid error message on BOL Portugal site  with Invalid tax code.
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -631,7 +630,7 @@ Scenarios:
 | Country		| Business Sector		| VAT Number       |
 | Portugal		| Fabrico				| INVALIDVATNUMBER |
 
-@TEST @UAT @PROD
+@TEST @UAT @PROD @SMOKE
 Scenario Outline: Customer gets valid error message on BOL Czech site with invalid tax code 
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -657,7 +656,7 @@ Scenarios:
 | Country		| Business Sector		| VAT Number       |
 | Czech			| Velkoprodej			| INVALIDVATNUMBER |
 
-@TEST @UAT @PROD
+@TEST @UAT @PROD @SMOKE
 Scenario Outline: Customer gets valid error message on BOL Denmark site with invalid tax code
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -683,7 +682,7 @@ Scenarios:
 | Country		| Business Sector		| VAT Number       |
 | Denmark		| Byggeri				| INVALIDVATNUMBER |
 
-@TEST @UAT @PROD
+@TEST @UAT @PROD @SMOKE
 Scenario Outline: Customer gets valid error message on BOL Netherlands site with invalid tax code
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -710,7 +709,7 @@ Scenarios:
 | Country		| Business Sector		| VAT Number       |
 | Netherlands	| Bouw					| INVALIDVATNUMBER |
 
-@TEST @UAT @PROD
+@TEST @UAT @PROD @SMOKE
 Scenario Outline: Customer gets valid error message on BOL Norway site with invalid tax code
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -736,7 +735,7 @@ Scenarios:
 | Country		| Business Sector		| VAT Number       |
 | Norway		| Industri				| INVALIDVATNUMBER |
 
-@TEST @UAT @PROD
+@TEST @UAT @PROD @SMOKE
 Scenario Outline: Customer gets valid error message on BOL poland site with invalid tax code
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -763,7 +762,7 @@ Scenarios:
 | Poland		| Produkcja				| INVALIDVATNUMBER |  
 
 
-@TEST @UAT @PROD
+@TEST @UAT @PROD @SMOKE
 Scenario Outline: Customer gets valid error message on BOL spain site with invalid tax code
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -789,7 +788,7 @@ Scenarios:
 | Country		| Business Sector		| VAT Number       |
 | Spain			| Servicios personales	| INVALIDVATNUMBER | 
 
-@TEST @UAT @PROD
+@TEST @UAT @PROD @SMOKE
 Scenario Outline: Customer gets valid error message on BOL France site  with invalid tax code
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -815,7 +814,7 @@ Scenarios:
 | Country		| Business Sector		| VAT Number       |
 | France		| Fabrication			| INVALIDVATNUMBER |
 
-@TEST @UAT @PROD
+@TEST @UAT @PROD @SMOKE
 Scenario Outline: Customer gets valid error message on BOL Germany site  with invalid tax code
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -841,7 +840,7 @@ Scenarios:
 | Country		| Business Sector		| VAT Number       |
 | Germany		| Bildung				| INVALIDVATNUMBER |
 
-@TEST @UAT @PROD
+@TEST @UAT @PROD @SMOKE
 Scenario Outline: Customer gets valid error message on BOL Austria site  with invalid tax code
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -863,13 +862,11 @@ Scenario Outline: Customer gets valid error message on BOL Austria site  with in
 	When I press Create Your Account
     Then I should see an error message due to an invalid tax code 
 
-
-
 Scenarios:
 | Country		| Business Sector		| VAT Number       |
 | Austria		| Bildung				| INVALIDVATNUMBER | 
 
-@TEST @UAT @PROD
+@TEST @UAT @PROD @SMOKE
 Scenario Outline: Customer gets valid error message on BOL Belgium site  with invalid tax code
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -894,4 +891,5 @@ Scenario Outline: Customer gets valid error message on BOL Belgium site  with in
 Scenarios:
 | Country		| Business Sector		| VAT Number       |
 | Belgium		| Fabrication		    | INVALIDVATNUMBER | 
+
 
