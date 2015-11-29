@@ -41,10 +41,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
             return responseCode;
         }
-        //public ExperienceEditorPage NavigateToExperienceEditorPage(string country)
-        //{
-        //return GetInstance<ExperienceEditorPage>(Driver, BasePage.BaseUrl, string.Empty);
-        //}
+       
 
         [FindsBy(How = How.Id, Using = "UserName")]
         public IWebElement UserNameTextBox;
@@ -52,9 +49,10 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         [FindsBy(How = How.Id, Using = "Password")]
         public IWebElement PasswordTextBox;
 
-        [FindsBy(How = How.CssSelector, Using = ".btn.btn-primary.btn-block")] 
+        //[FindsBy(How = How.CssSelector, Using = ".btn.btn-primary.btn-block")]
+        [FindsBy(How = How.CssSelector, Using = "#login > input")] 
         public IWebElement LogInButton;
-
+    
         public void PopulateUserNameTextBox(string userName)
         {
             UserNameTextBox.SendKeys(userName);
@@ -64,9 +62,13 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
             PasswordTextBox.SendKeys(password);
         }
 
-        public void ClickOnLoginButton()
+        public void ClickOnLoginButton(string country)
         {   
            LogInButton.Click();
+        }
+        public ExperienceEditorPage NavigateToExperienceEditorPage(string country)
+        {
+            return GetInstance<ExperienceEditorPage>(Driver, BasePage.BaseUrl, string.Empty);
         }
     }
 }

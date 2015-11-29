@@ -89,19 +89,29 @@ namespace Brother.Tests.Specs._80.BrotherMainSite.HomePageNavigation
         {
             CurrentPage.As<LoginPage>().PopulatePasswordTextBox(password);
         }
-        [When(@"I press login button")]
+        [Given(@"I press login button ""(.*)""")]
         public void WhenIPressLoginButton(string country)
         {
-            //NextPage = CurrentPage.As<LoginPage>().ClickOnLoginButton();
-            CurrentPage.As<LoginPage>().ClickOnLoginButton();
+            CurrentPage.As<LoginPage>().ClickOnLoginButton(country);
         }
-        [Then(@"I should be able to see the experience editor page")]
+        [Then(@"I should be able to see the experience editor page ""(.*)""")]
         public void ThenIShouldBeAbleToSeeTheExperienceEditorPage(string country)
         {
-            //CurrentPage = BasePage.LoadExperienceEditorPage(CurrentDriver, url);
-            //NextPage = CurrentPage.As<LoginPage>().NavigateToExperienceEditorPage(country);
-           // CurrentPage.As<ExperienceEditorPage>().IsContentEditorLinkAvailable();
+            CurrentPage = BasePage.LoadExperienceEditorPage(CurrentDriver, country);
+            CurrentPage.As<ExperienceEditorPage>().IsContentEditorLinkAvailable();
+           
         }
+       [Then(@"I click on the Content Editor option ""(.*)""")]
+        public void ThenIClickOnTheContentEditorOption(string country)
+        {
+            CurrentPage.As<ExperienceEditorPage>().ClickOnContentEditor(country);
+        }
+       [Then(@"I should be able to see the content editor page ""(.*)""")]
+       public void ThenIShouldBeAbleToSeeTheContentEditorPage(string country)
+       {
+           CurrentPage = BasePage.LoadContentEditorPage(CurrentDriver, country);
+           CurrentPage.As<ContentEditorPage>().IsRibbonBarExist();
+       }
 
 
 

@@ -59,6 +59,13 @@ namespace Brother.WebSites.Core.Pages.Base
             return GetInstance<ExperienceEditorPage>(driver, baseUrl, "");
         }
 
+        public static ContentEditorPage LoadContentEditorPage(IWebDriver driver, string baseUrl)
+        {
+            driver = SetDriver(driver);
+            NavigateToPage(driver, baseUrl.TrimEnd(new char[] { '/' }));
+            return GetInstance<ContentEditorPage>(driver, baseUrl, "");
+        }
+
         public static FooterNavigationPage LoadFooterPage(IWebDriver driver, string baseUrl)
         {
             driver = SetDriver(driver);
