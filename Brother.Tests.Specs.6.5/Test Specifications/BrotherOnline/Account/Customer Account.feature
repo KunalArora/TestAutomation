@@ -4,8 +4,6 @@ Feature: Customer Account
 	As a customer
 	I need to create a new online account
 
-
-@TEST @UAT @PROD
 # Validate that the correct error messages are displayed when address details mandatory fields are not completed
 Scenario: Customer get the correct error messages when address details mandatory fields are not completed on my address page	
 Given I want to create a new account with Brother Online "United Kingdom"
@@ -98,32 +96,8 @@ Scenario: Customer or Dealer role persists after email address change
 	Then If I sign back into Brother Online "United Kingdom" using the same credentials
 	And I can see the Instant Ink menu option from the BOL home page
 	Then I can sign out of Brother Online
+	
 
-# Set this test to ignore as it was causing problems with the cookie test due to BOL login not signing out (Sign out step commented out for some reason)
-# Create an account and sign in, change registered email address and sign out, re-sign in again using new address
-@IGNORE
-Scenario Outline: Customer can change their Brother Online email address after registration 
-	Given I am logged onto Brother Online "<Country>" using valid credentials
-	When I navigate to my account for "<Country>"
-	And I click on Sign In Details
-	And If I enter a new email address "<EmailPrefixForChange>"
-	And If I enter the current password for email change
-	And I click on Update details
-	Then I can verify the email change occurred
-	When I validate the new Customer Email changes via email
-	And I can sign out of Brother Online
-	Then If I sign back into Brother Online "<Country>" using the same credentials
-	When I navigate to my account for "<Country>"
-	And I click on Sign In Details
-	Then I can validate the update was successful
-	Then I can sign out of Brother Online
-
-Scenarios:
-	| Country        | EmailPrefixForChange |
-	| United Kingdom | changed              |
-	| Ireland        | changed              |
-
-@TEST @UAT @PROD 
 # Validate that an existing user has the option to change their sign in preferences to social login 
 Scenario: Customer has the option to change their sign in preferences to social login	
    Given I want to create a new account with Brother Online "United Kingdom"
@@ -150,7 +124,6 @@ Scenario: Customer has the option to change their sign in preferences to social 
 	And I can navigate back to Brother Online home page
 	And I can sign out of Brother Online
 
-@TEST @UAT @PROD 
 # Validate that the correct error messages are displayed when business details mandatory fields are not completed
 Scenario: Customer get the correct error message when business details mandatory fields are not completed
    Given I want to create a new account with Brother Online "United Kingdom"
@@ -180,7 +153,6 @@ Scenario: Customer get the correct error message when business details mandatory
 	And I can navigate back to Brother Online home page
 	And I can sign out of Brother Online
 
-@TEST @UAT @PROD
 #Validate that a user with a Customer Account can amend their personal details
 Scenario: Customer cannot update the personal details if mandatory fields are left blank
    Given I want to create a new account with Brother Online "United Kingdom"
@@ -208,7 +180,6 @@ Scenario: Customer cannot update the personal details if mandatory fields are le
 	And I can navigate back to Brother Online home page
 	And I can sign out of Brother Online
 
-@TEST @UAT @PROD
 #User can add their address to their account by manually entering their personal details
 Scenario: Customer can add a new address to their account by manually entering address details
    Given I want to create a new account with Brother Online "United Kingdom"
@@ -247,7 +218,6 @@ Scenario: Customer can add a new address to their account by manually entering a
 	And I can sign out of Brother Online
 
 #Validate that a user can edit an existing address
-@TEST @UAT @PROD
 Scenario Outline: Customer can edit their entered address details
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
@@ -291,7 +261,6 @@ Scenarios:
 | House Number    |
 | appt 12         |
 
-@TEST @UAT @PROD
 # Create a new user account - NEED TO ADD SCENARIOS for emails with Leading and Trailing spaces
 Scenario: Customer creates a new account with Brother Online using valid credentials specified, confirm by email sign in and Sign Out
 	Given I want to create a new account with Brother Online "United Kingdom"
@@ -319,7 +288,6 @@ Scenario: Customer creates a new account with Brother Online using valid credent
 # Create an account and sign in, change registered email address and sign out, try to Register a new account using
 # the changed email addrress. It should not be possible
 
-@TEST @UAT @PROD
 Scenario Outline: Customer cannot register for a Brother Online account using an invalid email address 
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
@@ -347,63 +315,6 @@ Scenarios:
 	# | "TrailingSpace@guerrillamail.com     "      |
 	# simply trim them. No error message is displayed
 
-@IGNORE
-Scenario Outline: Create an account for Brother Online for different language sites
-	Given I Need A Brother Online "<Country>" Account In Order To Use Brother Online Services
-	When I have clicked on Add Device
-	And I am redirected to the Register Device page
-	# Note: Invalid serial code will always produce error message
-	Given I have entered my Product Serial Code "U1T000000"
-	Then I can validate that an error message was displayed
-	Then I can sign out of Brother Online
-	Then I am redirected to the Brother Home Page
-
-Scenarios:
-	| Country        |
-	| France         |
-	| Germany        |
-	| Netherlands    |
-	| Denmark        |
-	| Finland        |
-	| Austria        |
-#	| Romania        | - Links for validation set of for UK so needs updating - BBAU-2665
-#	| Spain          | - Need NI number
-#	| Russia         |- Red warning on page - look into
-#	| Hungary        |- unknown error - possibly cannot get to site 
-#	| Switzerland    | - need to add specific default language to URL
-#	| Slovakia       | - Links for validation set of for UK so needs updating - BBAU-2665
-#	| Slovenia       | - Links for validation set of for UK so needs updating - BBAU-2665
-#	| Czech          | - Links for validation set of for UK so needs updating - BBAU-2665
-#	| Bulgaria       | - Links for validation set of for UK so needs updating - maybe no version in SiteCore on DV2 - BBAU-2665
-#	| Norway         | - Link for validation of registration links to something completely different - BBAU-2665
-#	| Italy          | - NEEDS to have Número de identificación fiscal added to test otherwise registration fails
-
-
-@IGNORE
-Scenario Outline: Create an account for Brother Online - failing language site version
-	Given I Need A Brother Online "<Country>" Account In Order To Use Brother Online Services
-	When I have clicked on Add Device
-	And I am redirected to the Register Device page
-	# Note: Invalid serial code will always produce error message
-	Given I have entered my Product Serial Code "U1T000000"
-	Then I can validate that an error message was displayed
-	Then I can sign out of Brother Online
-	Then I am redirected to the Brother Home Page
-
-Scenarios:
-	| Country        |
-#	| Belgium        | - no email 
-#	| Romania        | - Links for validation set of for UK so needs updating
-#	| Spain          | - Need NI number
-#	| Russia         |- Red warning on page - look into
-#	| Hungary        |- unknown error - possibly cannot get to site 
-#	| Switzerland    | - need to add specific default language to URL
-#	| Slovakia       | - Links for validation set of for UK so needs updating
-#	| Slovenia       | - Links for validation set of for UK so needs updating
-#	| Czech          | - Links for validation set of for UK so needs updating
-#	| Bulgaria       | - Links for validation set of for UK so needs updating - maybe no version in SiteCore on DV2
-#	| Norway         | - Link for validation of registration links to something completely different
-#	| Italy          | - NEEDS to have Número de identificación fiscal added to test otherwise registration fails
 
 
 @IGNORE
@@ -434,7 +345,7 @@ Scenario: Customer creates a new account with Brother Online using valid credent
 	Then I can sign out of Brother Online
 	Then I am redirected to the Brother Home Page
 
-@TEST @UAT @PROD
+
 Scenario: Validate that the correct error messages are displayed when a mandatory field Email is missing while creating a User Account
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
@@ -443,7 +354,7 @@ Scenario: Validate that the correct error messages are displayed when a mandator
 	When I press tab in the email address field
 	Then I should see an error message
 
-@TEST @UAT @PROD
+
 Scenario Outline: Validate that the correct error messages are displayed when a mandatory field Password is missing while creating a User Account
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
@@ -483,7 +394,6 @@ Scenarios:
 	| Email Address                 |Password						 |
 	| "aaa@yahoo.com"				|"stwer"						 |
 
-@TEST @UAT @PROD
 Scenario: Validate that the correct error messages are displayed when Terms and Conditions are not selected
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom
@@ -504,7 +414,7 @@ Scenario: Validate that the correct error messages are displayed when Terms and 
 # Check that a user account cannot be created with an email address that already exists for another user account 
 # Check that a user account cannot be created with an email address that already exists for another business account
 
-@TEST @UAT @PROD
+
 Scenario Outline: Customer cannot register for a new user account using an email address that already exists for another user
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
@@ -528,7 +438,6 @@ Scenarios:
 	| "autouseracc@guerrillamail.com"     |
 	
 
-@TEST @UAT @PROD
 Scenario Outline: Customer cannot register for a new user account using an email address that already exists for another business account
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
@@ -552,7 +461,6 @@ Examples:
 	| "autobusinessacc@guerrillamail.com"       |
 
 # Check that a user account which is not validated does not have the ability to register a device
-@TEST @UAT @PROD
 Scenario: User account which is not validated does not permit device registration
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
@@ -607,7 +515,6 @@ Scenario: Create a user but test for BPID
 # Create a new user account but add a check for the Users BPID in the dbo.Users table
 
 # User unable to create a BOL Italy account without entering a valid tax code
-@TEST @UAT @PROD
 Scenario Outline: Customer unable to create a new BOL Italy account without entering a valid tax code
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -632,8 +539,6 @@ Scenarios:
 
 
 #Validate that a Customer Account holder is able to swap to a Business Account
-
-@TEST @UAT @PROD
 Scenario: Validate that a newly created customer account can be swapped to a business account
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
@@ -687,7 +592,6 @@ Scenario Outline: Customer account holder is unable to switch to a business acco
 		| Email Address				                | Password      |
 		| "autocustaccwithorder@guerrillamail.com"	| "Password100" |
 
-@TEST @UAT 
 Scenario Outline: Customer creates new account on UK and Non-UK BOL then wishes to change their password
 Given I want to create a new account with Brother Online <Country>
 	When I click on Create Account for <Country>
@@ -730,7 +634,6 @@ Examples:
 | "Portugal"       | "Pt123@12"    |
 | "Denmark"        | "Denmark1"    |
 
-@TEST @UAT
 Scenario Outline: Customer creates a new BOL Italy account with a valid tax code and wishes to change password 
 Given I want to create a new account with Brother Online <Country>
 	When I click on Create Account for <Country>

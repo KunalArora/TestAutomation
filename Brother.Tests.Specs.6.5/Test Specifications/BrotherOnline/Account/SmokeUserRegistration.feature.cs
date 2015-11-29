@@ -2361,6 +2361,239 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Sign Up for 14 day Free trial already signed into Brother Online")]
+        [NUnit.Framework.CategoryAttribute("SMOKE")]
+        public virtual void SignUpFor14DayFreeTrialAlreadySignedIntoBrotherOnline()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Sign Up for 14 day Free trial already signed into Brother Online", new string[] {
+                        "SMOKE"});
+#line 897
+this.ScenarioSetup(scenarioInfo);
+#line 899
+ testRunner.Given("I want to create a new account with Brother Online \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 900
+ testRunner.When("I click on Create Account for \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 901
+ testRunner.And("I am redirected to the Brother Login/Register page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 902
+ testRunner.And("I have Checked No I Do Not Have An Account Checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table34 = new TechTalk.SpecFlow.Table(new string[] {
+                        "field",
+                        "value"});
+            table34.AddRow(new string[] {
+                        "FirstName",
+                        "AutoTest"});
+            table34.AddRow(new string[] {
+                        "LastName",
+                        "AutoTest"});
+            table34.AddRow(new string[] {
+                        "Password",
+                        "@@@@@"});
+            table34.AddRow(new string[] {
+                        "ConfirmPassword",
+                        "@@@@@"});
+#line 903
+ testRunner.And("I fill in the registration information using a valid email address", ((string)(null)), table34, "And ");
+#line 910
+ testRunner.And("I have Agreed to the Terms and Conditions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 911
+ testRunner.And("I declare that I do not use this account for business", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 912
+ testRunner.When("I press Create Your Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 913
+ testRunner.Then("I should see my account confirmation page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 914
+ testRunner.And("When I Click Go Back", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 915
+ testRunner.Then("I should be able to log into \"United Kingdom\" Brother Online using my account det" +
+                    "ails", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 916
+ testRunner.When("I navigate to my account for \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 918
+ testRunner.And("I have navigated to the OmniJoin home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 919
+ testRunner.And("If I click on Start Free Trial", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 920
+ testRunner.Then("I should be directed to the OmniJoin Free Trial page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 921
+ testRunner.When("I have entered a valid First and Last name, \"AutoTest\", \"AutoTest\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 922
+ testRunner.And("I have entered a valid email address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 923
+ testRunner.And("I have entered a valid phone number \"01555 522522\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 924
+ testRunner.And("I have Agreed to the Free Trial Terms and Conditions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 925
+ testRunner.And("if I click Submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 926
+ testRunner.Then("I should be directed to the download page indicating I have 14 days Free trial", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 927
+ testRunner.And("Once I have Validated a Free Trial confirmation Email was received", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 928
+ testRunner.Then("If I go back to Brother Online Home Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 929
+ testRunner.Then("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 930
+ testRunner.Then("I am redirected to the Brother Home Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Purchase OmniJoin subscription plan for <country> for a <Plan Type> plan on <Bill" +
+            "ing Type> billing")]
+        [NUnit.Framework.CategoryAttribute("SMOKE")]
+        [NUnit.Framework.TestCaseAttribute("Lite", "United Kingdom", "Monthly", "1", "OmniJoin Lite", "£18.00", null)]
+        [NUnit.Framework.TestCaseAttribute("Lite", "United Kingdom", "Annual", "1", "OmniJoin Lite", "£144.00", null)]
+        [NUnit.Framework.TestCaseAttribute("Business", "United Kingdom", "Monthly", "1", "OmniJoin Pro", "£70.80", null)]
+        [NUnit.Framework.TestCaseAttribute("Business", "United Kingdom", "Annual", "1", "OmniJoin Pro", "£678.00", null)]
+        [NUnit.Framework.TestCaseAttribute("Professional", "United Kingdom", "Monthly", "1", "OmniJoin", "£34.80", null)]
+        [NUnit.Framework.TestCaseAttribute("Professional", "United Kingdom", "Annual", "1", "OmniJoin", "£331.20", null)]
+        public virtual void PurchaseOmniJoinSubscriptionPlanForCountryForAPlanTypePlanOnBillingTypeBilling(string planType, string country, string billingType, string qty, string orderName, string price, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "SMOKE"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Purchase OmniJoin subscription plan for <country> for a <Plan Type> plan on <Bill" +
+                    "ing Type> billing", @__tags);
+#line 934
+this.ScenarioSetup(scenarioInfo);
+#line 935
+ testRunner.Given("I have navigated to the OmniJoin home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 936
+ testRunner.And("I have clicked on Buy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 937
+ testRunner.Then("I should be redirected to the Plans page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 938
+ testRunner.And(string.Format("If I then Choose the \"{0}\" Plan option column", planType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 939
+ testRunner.Then("I should be directed to the relevant plan page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 940
+ testRunner.And(string.Format("I check the correct billing type as \"{0}\"", billingType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 941
+ testRunner.When("I click Agree to terms and conditions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 942
+ testRunner.And("I Click Buy Now At Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 943
+ testRunner.Then("I should be directed to the Brother Online Basket page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 944
+ testRunner.And("When I click CheckOut", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 945
+ testRunner.Then(string.Format("I can add billing address details for Country \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 946
+ testRunner.And(string.Format("I can go through the order process for Country \"{0}\" with order info \"{1}\"", country, qty), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 947
+ testRunner.Then("I should see the Order Confirmation page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 948
+ testRunner.And(string.Format("The purchased plan billing type is correct \"{0}\"", billingType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 949
+ testRunner.And("If I click on My Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 950
+ testRunner.And("I can click on Orders", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 951
+ testRunner.And(string.Format("I can validate the order \"{0}\" of \"{1}\" @ \"{2}\" on My Account page", qty, orderName, price), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 952
+ testRunner.And("If I sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 953
+ testRunner.Then("I am redirected to the Brother Home Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 954
+ testRunner.And("I can validate an Order Confirmation email was received", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Purchase a Lite Use plan on Monthly Billing but click Cancel before submitting pa" +
+            "yment")]
+        [NUnit.Framework.CategoryAttribute("PROD")]
+        [NUnit.Framework.CategoryAttribute("UAT")]
+        [NUnit.Framework.CategoryAttribute("TEST")]
+        public virtual void PurchaseALiteUsePlanOnMonthlyBillingButClickCancelBeforeSubmittingPayment()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Purchase a Lite Use plan on Monthly Billing but click Cancel before submitting pa" +
+                    "yment", new string[] {
+                        "PROD",
+                        "UAT",
+                        "TEST"});
+#line 968
+this.ScenarioSetup(scenarioInfo);
+#line 969
+  testRunner.And("I have navigated to the OmniJoin home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 970
+  testRunner.And("I have clicked on Buy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 971
+ testRunner.Then("I should be redirected to the Plans page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 972
+ testRunner.And("If I then Choose the \"Lite\" Plan option column", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 973
+ testRunner.Then("I should be directed to the relevant plan page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 974
+ testRunner.When("I click Agree to terms and conditions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 975
+ testRunner.And("I Click Buy Now At Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 976
+ testRunner.Then("I should be directed to the Brother Online Basket page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 977
+ testRunner.And("When I click CheckOut", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 978
+ testRunner.Then("I can add billing address details for Country \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 979
+ testRunner.And("I can go through a dummy order process for Country \"United Kingdom\" with order in" +
+                    "fo \"1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 980
+ testRunner.Then("I can navigate back to Brother Online home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 981
+ testRunner.Then("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Sign Up for 14 day Free trial without an existing Brother Online account(BBAU-253" +
+            "3)")]
+        [NUnit.Framework.CategoryAttribute("SMOKE")]
+        public virtual void SignUpFor14DayFreeTrialWithoutAnExistingBrotherOnlineAccountBBAU_2533()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Sign Up for 14 day Free trial without an existing Brother Online account(BBAU-253" +
+                    "3)", new string[] {
+                        "SMOKE"});
+#line 986
+this.ScenarioSetup(scenarioInfo);
+#line 987
+ testRunner.Given("I have navigated to the OmniJoin home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 988
+ testRunner.And("If I click on Start Free Trial", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 989
+ testRunner.Then("I should be directed to the OmniJoin Free Trial page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 990
+ testRunner.When("I have entered a valid First and Last name, \"AutoTest\", \"AutoTest\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 991
+ testRunner.And("I have entered a Free Trial AutoGenerated email address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 992
+ testRunner.And("I enter a Free Trial Password of \"Abcd1234\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 993
+ testRunner.And("I enter a Free Trial Password confirmation of \"Abcd1234\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 994
+ testRunner.And("I have entered a valid phone number \"01555 522522\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 995
+ testRunner.And("I have Agreed to the Free Trial Terms and Conditions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 996
+ testRunner.And("if I click Submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 997
+ testRunner.Then("I should be directed to the download page indicating I have 14 days Free trial", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 998
+ testRunner.Then("If I go back to Brother Online Home Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 999
+ testRunner.And("Once I have Validated a Free Trial confirmation Email was received", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

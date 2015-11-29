@@ -4,7 +4,6 @@ Feature: Business Account
 	As a Business customer
 	I need to be able to have account management options
 
-@TEST @UAT @PROD
 #Validate that a Business Account holder is able to swap to a Customer Account
 Scenario: Create a business account and change the business account to be Customer Account
 	Given I want to create a new account with Brother Online "United Kingdom"
@@ -36,7 +35,6 @@ Scenario: Create a business account and change the business account to be Custom
 	# And I can navigate back to Brother Online home page
 	And I can sign out of Brother Online
 
- @TEST @UAT
 # Accounts created on DV2 and QAS for the following test - autobussaccwithorder@guerrillamail.com/Password100 
 # Validate that a Business Account holder who has made an order is not able to swap to a Customer account (Note this cannot be run on prod due to lack of purchase)
 Scenario Outline: Business account holder is unable to switch to a customer account once an order has been placed
@@ -58,7 +56,6 @@ Scenario Outline: Business account holder is unable to switch to a customer acco
 		| Email Address								| Password      |
 		| "autobussaccwithorder@guerrillamail.com"  | "Password100" |
 		
-@TEST @UAT @PROD
 # Change Business details in your created account, go to my account and change/add your business details
 Scenario: Business Customer can change their business details after logging into account
 	Given I want to create a new account with Brother Online "United Kingdom"
@@ -94,7 +91,6 @@ Scenario: Business Customer can change their business details after logging into
 	Then I can verify successfull update message appeared at the top
 	Then I can sign out of Brother Online
 
-@TEST @UAT @PROD
 # Create a new user account - Add business details for new user 
 Scenario: Business user creates a new account with Brother Online and add Business details in My account page
 	Given I want to create a new account with Brother Online "United Kingdom"
@@ -130,7 +126,6 @@ Scenario: Business user creates a new account with Brother Online and add Busine
 	Then I can sign out of Brother Online
 
 
-@SMOKE @TEST @UAT @PROD
 # Create a new business account
 Scenario: Customer creates a new Business account with Brother Online using valid credentials (NO VAT NUMBER), confirm by email sign in and Sign Out
 	Given I want to create a new account with Brother Online "United Kingdom"
@@ -157,7 +152,6 @@ Scenario: Customer creates a new Business account with Brother Online using vali
 	And I can sign out of Brother Online
 	Then I am redirected to the Brother Home Page
 
-@IGNORE
 #To register device email validation required
 # Create a new Business user account and check Add Device so that we know the user registration was successful
 Scenario: Business customer creates a new account with Brother Online using valid credentials, and validates the user is validated so it can create a device registration but not actually register
@@ -191,8 +185,6 @@ Scenario: Business customer creates a new account with Brother Online using vali
 	Then I can sign out of Brother Online
 	Then I am redirected to the Brother Home Page
 
-
-@TEST @UAT @PROD
 # Check mandatory terms and conditions when creating a business account
 Scenario: Validate that an error message is displayed for mandatory terms and conditions if they are not accepted during creation of a business account
 	Given I want to create a new account with Brother Online "United Kingdom"
@@ -218,7 +210,6 @@ Scenario: Validate that an error message is displayed for mandatory terms and co
 # Check that a business account cannot be created with an email address that already exists for another business account
 # Check that a business account cannot be created with an email address that already exists for another user account
 
-@TEST @UAT @PROD
 Scenario Outline: Customer cannot register for a new business account using an email address that already exists for another business or user account
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
@@ -247,7 +238,6 @@ Scenarios:
 	| "autouseracc@guerrillamail.com"     |
 
 # Check that a business account which is not validated does not have the ability to register a device	
-@TEST @UAT @PROD	
 Scenario: Business account which is not validated does not permit device registration
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
@@ -277,7 +267,6 @@ Scenario: Business account which is not validated does not permit device registr
 # Accounts created on DV2, QAS and Prod for the following test - autouseracc@guerrillamail.com/autobusinessacc@guerrillamail.com/Password100
 # Check that existing brother online user and business account holders cannot login with valid/invalid username/password combinations
 
-@TEST @UAT @PROD
 Scenario Outline: Validate that user or business account holders are unable to login to brother online with invalid credentials
 	Given I launch Brother Online for "United Kingdom"
 	When I click on Create Account for "United Kingdom"
@@ -298,7 +287,6 @@ Scenario Outline: Validate that user or business account holders are unable to l
 # Accounts created on DV2, QAS and Prod for the following test - autouseracc@guerrillamail.com/autobusinessacc@guerrillamail.com/Password100
 # Check that existing brother online user and business account holders can still login with a username that has leading/trailing spaces or mixed letter casing
 
-@TEST @UAT @PROD
 Scenario Outline: Validate that user or business account holders can still login to brother online with spaces or different case in the username providing the password is correct
 	Given I launch Brother Online for "United Kingdom"
 	When I click on Create Account for "United Kingdom"
@@ -317,8 +305,6 @@ Scenario Outline: Validate that user or business account holders can still login
 
 
 # Check maximun username(241) and password(30) length when creating a business accoun
-
-@TEST @UAT @PROD
 Scenario: Validate that a business account can be created using the maximun 241 username and 30 password character lengths 																		
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
@@ -344,7 +330,6 @@ Scenario: Validate that a business account can be created using the maximun 241 
 	And I can sign out of Brother Online
 	Then I am redirected to the Brother Home Page
 
-@TEST @UAT @PROD
 # Change Personal details in your created account, go to my account and add your new Email address
 Scenario: Business Customer can change their Email Address   (BBAU - 2377, 2355)
 	Given I want to create a new account with Brother Online "United Kingdom"
@@ -379,7 +364,6 @@ Scenario: Business Customer can change their Email Address   (BBAU - 2377, 2355)
 	And I can sign out of Brother Online
 	Then If I sign back into Brother Online "United Kingdom" using the same credentials
 
-@TEST @UAT @PROD
 #Change Sign In details in your created account, go to my account and change/add your new password
 Scenario: Business Customer can reset their password 
 	Given I want to create a new account with Brother Online "United Kingdom"
@@ -413,7 +397,6 @@ Scenario: Business Customer can reset their password
 	And If I sign back into Brother Online "United Kingdom" using the same credentials
 	Then I can sign out of Brother Online
 
-@TEST @UAT @PROD
 # Check mandatory email/password/first name/ last name/company name/business sector fields when creating business account
 Scenario: Validate that an error message is displayed for all mandatory fields during creation of a business account
 	Given I want to create a new account with Brother Online "United Kingdom"
@@ -434,7 +417,6 @@ Scenario: Validate that an error message is displayed for all mandatory fields d
 	When I press tab in the business sector field
 	Then I should see an error message on the business sector field
 
-@TEST @UAT @PROD
 # VAT number is mandatory during business account creation for a non UK country
 Scenario Outline: Customer unable to create a new BOL Italy account without entering a valid tax code
 	Given I want to create a new account with Brother Online "<Country>"
@@ -481,8 +463,6 @@ Scenarios:
 
 
 # Create Portugal business account
-
-@TEST @UAT @PROD
 Scenario Outline: Customer able to create a new BOL Portugal account using the same VAT code multiple times (BBAU-2603 Business User part)
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
