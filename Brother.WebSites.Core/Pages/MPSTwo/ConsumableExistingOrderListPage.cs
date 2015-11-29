@@ -54,6 +54,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return consumableOrderId;
         }
 
+        public void RemoveExistingConsumableOrder()
+        {
+            if (GetConsumableOrderId() != String.Empty)
+            {
+                MPSJobRunnerPage.RunRemoveConsumableOrderByIdJob(GetConsumableOrderId());
+            }
+        }
+
+        public void RemoveExistingConsumableOrderBySerialNumber()
+        {
+            MPSJobRunnerPage.RunRemoveConsumableOrderByInstalledPrinterJob(GetSerialNumber());
+        }
+
 
         public void ClosedConsumableOrder()
         {
