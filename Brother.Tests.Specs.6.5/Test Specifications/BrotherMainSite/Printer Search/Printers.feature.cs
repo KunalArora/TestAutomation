@@ -72,32 +72,21 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherMainSite.PrinterSearch
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("View the list of available Laser Printers on Brother Main sites for languages exc" +
             "ept Spain and Portugal")]
-        [NUnit.Framework.CategoryAttribute("UAT")]
-        [NUnit.Framework.CategoryAttribute("TEST")]
-        [NUnit.Framework.CategoryAttribute("SMOKE")]
         [NUnit.Framework.TestCaseAttribute("Ireland", "printers/laser-printers", null)]
         [NUnit.Framework.TestCaseAttribute("Netherlands", "printers/laserprinters", null)]
         public virtual void ViewTheListOfAvailableLaserPrintersOnBrotherMainSitesForLanguagesExceptSpainAndPortugal(string country, string site, string[] exampleTags)
         {
-            string[] @__tags = new string[] {
-                    "UAT",
-                    "TEST",
-                    "SMOKE"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("View the list of available Laser Printers on Brother Main sites for languages exc" +
-                    "ept Spain and Portugal", @__tags);
-#line 8
+                    "ept Spain and Portugal", exampleTags);
+#line 7
 this.ScenarioSetup(scenarioInfo);
-#line 9
+#line 8
  testRunner.Given(string.Format("I have navigated to the Brother Main Site \"{0}\" products pages", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 10
+#line 9
  testRunner.Given(string.Format("I have navigated to the \"{0}\" MainSite URL for country \"{1}\"", site, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 11
+#line 10
  testRunner.Then("I should see a list of Laser printers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 12
+#line 11
  testRunner.And("I can validate that each printer is a valid printer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -105,8 +94,6 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("View the list of available Printers on some Live Brother Main sites")]
-        [NUnit.Framework.CategoryAttribute("PROD")]
-        [NUnit.Framework.CategoryAttribute("UAT")]
         [NUnit.Framework.TestCaseAttribute("Czech", "printers/laser-printers", null)]
         [NUnit.Framework.TestCaseAttribute("Finland", "printers/printers/mono-laser-printers", null)]
         [NUnit.Framework.TestCaseAttribute("France", "imprimantes/imprimantes-multifonctions/multifonctions-laser", null)]
@@ -123,23 +110,16 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "printers/all-mono-lasers", null)]
         public virtual void ViewTheListOfAvailablePrintersOnSomeLiveBrotherMainSites(string country, string site, string[] exampleTags)
         {
-            string[] @__tags = new string[] {
-                    "PROD",
-                    "UAT"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("View the list of available Printers on some Live Brother Main sites", @__tags);
-#line 37
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("View the list of available Printers on some Live Brother Main sites", exampleTags);
+#line 35
 this.ScenarioSetup(scenarioInfo);
-#line 38
+#line 36
  testRunner.Given(string.Format("I have navigated to the Brother Main Site \"{0}\" products pages", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 39
+#line 37
  testRunner.Given(string.Format("I have navigated to the \"{0}\" MainSite URL for country \"{1}\"", site, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 40
+#line 38
  testRunner.Then("I should see a list of Laser printers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 41
+#line 39
  testRunner.And("I can validate that each printer is a valid printer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -148,30 +128,21 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("View the list of available Laser Printers on Brother Main sites for Spain and Por" +
             "tugal")]
-        [NUnit.Framework.IgnoreAttribute()]
-        [NUnit.Framework.CategoryAttribute("SMOKE")]
         [NUnit.Framework.TestCaseAttribute("Portugal", "printers/laser-printers", null)]
         [NUnit.Framework.TestCaseAttribute("Spain", "impresoras/laser-printers", null)]
         public virtual void ViewTheListOfAvailableLaserPrintersOnBrotherMainSitesForSpainAndPortugal(string country, string site, string[] exampleTags)
         {
-            string[] @__tags = new string[] {
-                    "SMOKE",
-                    "ignore"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("View the list of available Laser Printers on Brother Main sites for Spain and Por" +
-                    "tugal", @__tags);
-#line 67
+                    "tugal", exampleTags);
+#line 64
 this.ScenarioSetup(scenarioInfo);
-#line 68
+#line 65
  testRunner.Given(string.Format("I have navigated to the Brother Main Site \"{0}\" products pages", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 69
+#line 66
  testRunner.Given(string.Format("I have navigated to the \"{0}\" MainSite URL for country \"{1}\"", site, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 70
+#line 67
  testRunner.Then("I should see a list of Laser printers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 71
+#line 68
  testRunner.And("I can validate that each printer for Spain and Portugal is a valid printer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();

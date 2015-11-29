@@ -72,14 +72,10 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherMainSite.Navigation.Foot
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("User is able to navigate to the terms and conditions page via the website informa" +
             "tion footer section")]
-        [NUnit.Framework.CategoryAttribute("TEST")]
-        [NUnit.Framework.CategoryAttribute("UAT")]
         public virtual void UserIsAbleToNavigateToTheTermsAndConditionsPageViaTheWebsiteInformationFooterSection()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the terms and conditions page via the website informa" +
-                    "tion footer section", new string[] {
-                        "TEST",
-                        "UAT"});
+                    "tion footer section", ((string[])(null)));
 #line 9
 this.ScenarioSetup(scenarioInfo);
 #line 10
@@ -96,21 +92,17 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("User is able to navigate to the brother network page via the website information " +
             "footer section")]
-        [NUnit.Framework.CategoryAttribute("TEST")]
-        [NUnit.Framework.CategoryAttribute("UAT")]
         public virtual void UserIsAbleToNavigateToTheBrotherNetworkPageViaTheWebsiteInformationFooterSection()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the brother network page via the website information " +
-                    "footer section", new string[] {
-                        "TEST",
-                        "UAT"});
-#line 16
+                    "footer section", ((string[])(null)));
+#line 15
 this.ScenarioSetup(scenarioInfo);
-#line 17
+#line 16
  testRunner.Given("I have navigated to the Brother Main Site \"United Kingdom\" products pages", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 18
+#line 17
  testRunner.Then("I have clicked the brother network link within the website information footer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 19
+#line 18
  testRunner.Then("I am navigated to the brother network page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

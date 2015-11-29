@@ -4,7 +4,7 @@ Feature: Named Host Activation Keys
 	As a dealer
 	I want to be able to purchase Named Host Licenses for different OmniJoin Plans
 
-@SMOKE @ignore
+@ignore
 Scenario: Order and validate a new subscription activation code for Named Host licensing, with Professional Plan and Annual Term
 	Given I am logged into Brother Online "United Kingdom" using "AutomatedTesterDealer1@guerrillamail.com"
 	And I click on the Partner Portal menu option
