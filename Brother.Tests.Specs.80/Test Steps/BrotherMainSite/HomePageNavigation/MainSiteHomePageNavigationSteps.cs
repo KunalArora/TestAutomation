@@ -77,8 +77,9 @@ namespace Brother.Tests.Specs._80.BrotherMainSite.HomePageNavigation
         {
             CurrentPage.As<LoginPage>().PopulateUserNameTextBox(username);
         }
-        [Given(@"The following site ""(.*)"" to validate I should receive an Ok response back\ton mainsite login")]
-        public void GivenTheFollowingSiteToValidateIShouldReceiveAnOkResponseBackOnMainsiteLogin(string url)
+
+        [Given(@"That I navigate to ""(.*)"" in order to validate the CMS site")]
+        public void GivenThatINavigateToInOrderToValidateTheCmsSite(string url)
         {
             CurrentPage = BasePage.LoadBrotherMainSiteLoginPage(CurrentDriver, url);
             CurrentPage.As<LoginPage>().GetLoginpage(url);
