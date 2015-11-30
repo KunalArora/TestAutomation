@@ -1,4 +1,4 @@
-﻿@TEST @UAT
+﻿@ignore @TEST @UAT
 Feature: Validate User Role
 	In order to utilise the Instant Ink feature
 	As a user
@@ -9,6 +9,7 @@ Feature: Validate User Role
 	#Given I am logged onto Brother Online "United Kingdom" using valid credentials
 
 # Note : This scenario needs to be updated to reflect the additional steps below
+#user need to be set up for this test to run
 Scenario: Validate user has correct role for Instant Ink
 	#Given I cannot see the Instant Ink menu option from the BOL home page
 	Given I want to create a new account with Brother Online "United Kingdom"
