@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Brother.Tests.Specs._80.TestSpecification.BrotherMainSite.PrinterSearch.SiteAccess
+namespace Brother.Tests.Specs._80.TestSpecification.CMSSitecore.SiteAccess
 {
     using TechTalk.SpecFlow;
     
@@ -19,25 +19,24 @@ namespace Brother.Tests.Specs._80.TestSpecification.BrotherMainSite.PrinterSearc
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.9.0.77")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Access 8.0 Dev environmemnt sites")]
+    [NUnit.Framework.DescriptionAttribute("CMS website access")]
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("PROD")]
     [NUnit.Framework.CategoryAttribute("TEST")]
-    public partial class Access8_0DevEnvironmemntSitesFeature
+    public partial class CMSWebsiteAccessFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "SiteAccessDevEnv.feature"
+#line 1 "SiteAccess.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Access 8.0 Dev environmemnt sites", "In order to validate the status of a Website on the 8.0 Dev environment\r\nAs a san" +
-                    "ity check\r\nWe need to receive a 200 OK request back from a list of selected site" +
-                    "s", ProgrammingLanguage.CSharp, new string[] {
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CMS website access", "In order to validate that the CMS site is accessible a number of content editor a" +
+                    "ctions are conducted", ProgrammingLanguage.CSharp, new string[] {
                         "UAT",
                         "PROD",
                         "TEST"});
@@ -73,13 +72,12 @@ namespace Brother.Tests.Specs._80.TestSpecification.BrotherMainSite.PrinterSearc
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Get 200 OK response back from the following Brother Main Sites on the Test enviro" +
-            "nment UK")]
+        [NUnit.Framework.DescriptionAttribute("Verify that a user is able to login to the CMS system")]
         [NUnit.Framework.CategoryAttribute("SMOKE")]
         [NUnit.Framework.CategoryAttribute("TEST")]
         [NUnit.Framework.CategoryAttribute("UAT")]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "http://main.co.uk.brotherdv2.eu/sitecore/login", "Automation", "Password1", null)]
-        public virtual void Get200OKResponseBackFromTheFollowingBrotherMainSitesOnTheTestEnvironmentUK(string country, string siteUrl, string userName, string password, string[] exampleTags)
+        public virtual void VerifyThatAUserIsAbleToLoginToTheCMSSystem(string country, string siteUrl, string userName, string password, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "SMOKE",
@@ -89,24 +87,22 @@ namespace Brother.Tests.Specs._80.TestSpecification.BrotherMainSite.PrinterSearc
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get 200 OK response back from the following Brother Main Sites on the Test enviro" +
-                    "nment UK", @__tags);
-#line 8
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify that a user is able to login to the CMS system", @__tags);
+#line 6
 this.ScenarioSetup(scenarioInfo);
-#line 9
- testRunner.Given(string.Format("The following site \"{0}\" to validate I should receive an Ok response back\ton main" +
-                        "site login", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 10
+#line 7
+ testRunner.Given(string.Format("That I navigate to \"{0}\" in order to validate the CMS site", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 8
  testRunner.And(string.Format("I enter an username containing \"{0}\"", userName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 11
+#line 9
  testRunner.And(string.Format("I enter password containing \"{0}\"", password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 12
+#line 10
  testRunner.And(string.Format("I press login button \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 13
+#line 11
  testRunner.Then(string.Format("I should be able to see the experience editor page \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 14
+#line 12
  testRunner.And(string.Format("I click on the Content Editor option \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 15
+#line 13
  testRunner.Then(string.Format("I should be able to see the content editor page \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
