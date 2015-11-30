@@ -20,3 +20,18 @@ Scenarios:
 	| country        | Site Url                                       | UserName   | Password  |
 	| United Kingdom | http://main.co.uk.brotherdv2.eu/sitecore/login | Automation | Password1 |
 
+
+Scenario Outline: Verify that a user is able to add grid on the page
+	Given That I navigate to "<Site Url>" in order to validate the CMS site
+	And I enter an username containing "<UserName>"
+	And I enter password containing "<Password>"
+	And I press login button "<country>"
+	And I click on the Main Header placeholder "<country>"
+#And I click on the add here option
+#Then I should be able to see and click the grid option
+
+
+Scenarios: 
+	
+	| country        | Site Url                                       | UserName   | Password  |
+	| United Kingdom | http://main.co.uk.brotherdv2.eu/?sc_mode=edit&sc_itemid={4BAA835A-AB17-410E-BAE8-66821388806B}&sc_lang=en | Automation | Password1 |

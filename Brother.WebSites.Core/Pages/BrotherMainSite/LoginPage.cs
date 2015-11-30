@@ -49,9 +49,12 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         [FindsBy(How = How.Id, Using = "Password")]
         public IWebElement PasswordTextBox;
 
-        //[FindsBy(How = How.CssSelector, Using = ".btn.btn-primary.btn-block")]
         [FindsBy(How = How.CssSelector, Using = "#login > input")] 
         public IWebElement LogInButton;
+
+        [FindsBy(How = How.Id, Using = "Main_Body")]
+        public IWebElement ClickOnMainHeaderBar;
+
     
         public void PopulateUserNameTextBox(string userName)
         {
@@ -69,6 +72,11 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         public ExperienceEditorPage NavigateToExperienceEditorPage(string country)
         {
             return GetInstance<ExperienceEditorPage>(Driver, BasePage.BaseUrl, string.Empty);
+        }
+
+        public void ClickOnMainHeader(string country)
+        {
+            ClickOnMainHeaderBar.Click();
         }
     }
 }

@@ -35,7 +35,8 @@ Scenario: Create a business account and change the business account to be Custom
 	# And I can navigate back to Brother Online home page
 	And I can sign out of Brother Online
 
-# Accounts created on DV2 and QAS for the following test - autobussaccwithorder@guerrillamail.com/Password100 
+@ignore 
+# Accounts created on DV2 and QAS for the following test - autobussaccwithorder@guerrillamail.com/Password100  Create user 
 # Validate that a Business Account holder who has made an order is not able to swap to a Customer account (Note this cannot be run on prod due to lack of purchase)
 Scenario Outline: Business account holder is unable to switch to a customer account once an order has been placed
 	Given I launch Brother Online for "United Kingdom"
