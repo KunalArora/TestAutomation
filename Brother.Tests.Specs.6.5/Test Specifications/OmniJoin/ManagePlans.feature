@@ -7,6 +7,7 @@ Background:
 	# Create an account on BOL and log in
 	#Given I am logged onto Brother Online "United Kingdom" using valid credentials
 
+@ignore
 # Order an OmniJoin plan, change the plan term to a different term (e.g Monthly to Annualy)
 Scenario: Change Plan Term
 	Given I have navigated to the OmniJoin home page

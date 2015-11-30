@@ -1,4 +1,6 @@
-﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+﻿using System.Security.Policy;
+using Brother.Tests.Selenium.Lib.Support;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherMainSite;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
@@ -113,6 +115,12 @@ namespace Brother.Tests.Specs._80.BrotherMainSite.HomePageNavigation
            CurrentPage = BasePage.LoadContentEditorPage(CurrentDriver, country);
            CurrentPage.As<ContentEditorPage>().IsRibbonBarExist();
        }
+       [Then(@"I navigate to the url ""(.*)""")]
+       public void ThenINavigateToTheUrl(string p0)
+       {
+           CurrentDriver.Navigate().GoToUrl(p0);
+       }
+
 
 
 

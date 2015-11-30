@@ -1,4 +1,4 @@
-﻿@TEST
+﻿@ignore @TEST
 Feature: Log in to Ink with valid user
 	In order to utilise the Status Monitor feature
 	As a valid user
@@ -7,8 +7,8 @@ Feature: Log in to Ink with valid user
 
 Background: Create an account on BOL and add Ink Supply user role to it
 	 Given I am logged onto "United Kingdom" BOL with "inktestmarko@mailinator.com" username and "Password999" password
-
-@TEST
+#user doesnt exist anymore
+@ignore @TEST
 Scenario:Validate a valid user can sign in to Ink
 	And I can see the Ink Supply menu option from the Bol home page
 	When I click Ink Supply button

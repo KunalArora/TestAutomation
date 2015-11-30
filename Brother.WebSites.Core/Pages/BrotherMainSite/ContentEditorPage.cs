@@ -21,13 +21,21 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         [FindsBy(How = How.Id, Using = "Ribbon")]
         public IWebElement RibbonBarExist;
 
+        [FindsBy(How = How.Id, Using = "Tree_Glyph_0DE95AE441AB4D019EB067441B7C2450")]
+        public IWebElement ContentEditor;
+
         public void IsRibbonBarExist()
         {
-            if (RibbonBarExist == null)
+            if (ContentEditor == null)
             {
                 throw new NullReferenceException("Unable to locate ribbon on page");
             }
-            AssertElementPresent(RibbonBarExist, "ShowRibbonContextMenu");
+            AssertElementPresent(ContentEditor, "ShowRibbonContextMenu");
+        }
+
+        public void ClickOnContent(string country)
+        {
+            ContentEditor.Click();
         }
     }
 }
