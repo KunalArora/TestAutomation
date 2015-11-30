@@ -24,7 +24,8 @@ Background:
 	And When I Click Go Back
 	Then I should be able to log into "United Kingdom" Brother Online using my account details
 
-# Card details page flow has been changed to iframe content
+@ignore 
+# Card details page flow has been changed to iframe content - need changes as the page has been revamped
 Scenario: Add payment method with new address
     Then If I go to My Account
 	And I can click on Payment Methods

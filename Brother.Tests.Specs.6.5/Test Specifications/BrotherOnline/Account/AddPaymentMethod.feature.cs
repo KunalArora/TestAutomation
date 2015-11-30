@@ -116,31 +116,33 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.Account
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Add payment method with new address")]
+        [NUnit.Framework.IgnoreAttribute()]
         public virtual void AddPaymentMethodWithNewAddress()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add payment method with new address", ((string[])(null)));
-#line 28
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add payment method with new address", new string[] {
+                        "ignore"});
+#line 29
 this.ScenarioSetup(scenarioInfo);
 #line 8
 this.FeatureBackground();
-#line 29
-    testRunner.Then("If I go to My Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 30
- testRunner.And("I can click on Payment Methods", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.Then("If I go to My Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 31
- testRunner.Then("I can add a new payment method", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("I can click on Payment Methods", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 32
- testRunner.And("If I click on Add New Address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("I can add a new payment method", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 33
- testRunner.Then("I can add a new billing address details for Country \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("If I click on Add New Address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 34
+ testRunner.Then("I can add a new billing address details for Country \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 35
  testRunner.When("I enter valid credit card details for a Visa Credit Card with an expired date of " +
                     "\"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 35
- testRunner.When("I click Send to commit the new card details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 36
- testRunner.Then("I can see the Credit Card details I have added", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("I click Send to commit the new card details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 37
+ testRunner.Then("I can see the Credit Card details I have added", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 38
  testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -153,26 +155,26 @@ this.FeatureBackground();
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add payment method with new address and Cancel before submitting", new string[] {
                         "IGNORE"});
-#line 41
+#line 42
 this.ScenarioSetup(scenarioInfo);
 #line 8
 this.FeatureBackground();
-#line 42
- testRunner.Then("If I go to My Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 43
- testRunner.And("I can click on Payment Methods", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("If I go to My Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 44
- testRunner.Then("I can add a new payment method", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("I can click on Payment Methods", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 45
- testRunner.And("If I click on Add New Address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("I can add a new payment method", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 46
- testRunner.Then("I can add a new billing address details for Country \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("If I click on Add New Address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 47
+ testRunner.Then("I can add a new billing address details for Country \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 48
  testRunner.When("I enter valid credit card details for a Visa Credit Card with an expired date of " +
                     "\"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 48
- testRunner.When("I click Cancel submit card details I should return to the My Payment Method page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 49
+ testRunner.When("I click Cancel submit card details I should return to the My Payment Method page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 50
  testRunner.Then("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -187,25 +189,25 @@ this.FeatureBackground();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer get the error message if mandatory fields are not completed by a custome" +
                     "r", new string[] {
                         "IGNORE"});
-#line 53
+#line 54
 this.ScenarioSetup(scenarioInfo);
 #line 8
 this.FeatureBackground();
-#line 54
-   testRunner.Then("If I go to My Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 55
- testRunner.And("I can click on Payment Methods", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+   testRunner.Then("If I go to My Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 56
- testRunner.Then("I can add a new payment method", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("I can click on Payment Methods", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 57
- testRunner.And("If I click on Add New Address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("I can add a new payment method", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 58
- testRunner.Then("I can add a new billing address details for Country \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("If I click on Add New Address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 59
- testRunner.And("I am redirtected to the card details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("I can add a new billing address details for Country \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 60
- testRunner.When("I click Send to commit the new card details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("I am redirtected to the card details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 61
+ testRunner.When("I click Send to commit the new card details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 62
  testRunner.Then("I should get error message to enter the card details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -218,18 +220,18 @@ this.FeatureBackground();
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add payment method with existing address", new string[] {
                         "ignore"});
-#line 64
+#line 65
 this.ScenarioSetup(scenarioInfo);
 #line 8
 this.FeatureBackground();
-#line 65
- testRunner.Given("I am logged into my Brother Online account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 66
- testRunner.Then("If I go to My Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Given("I am logged into my Brother Online account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 67
+ testRunner.Then("If I go to My Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 68
  testRunner.And("I can click on Payment Methods", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 68
+#line 69
  testRunner.Then("I can add a new payment method", @"
 Switching to a different card number works okay so the hypothesis is that the problem is that this fails because the card number is the same for the old and new cards.
 
@@ -254,7 +256,7 @@ This has only been looked at in Production as far as I know - with live customer
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Update Credit Card from expired card", new string[] {
                         "ignore"});
-#line 71
+#line 72
 this.ScenarioSetup(scenarioInfo);
 #line 8
 this.FeatureBackground();
