@@ -106,7 +106,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             {"Finland", "fi"},
             {"France", "fr"},
             {"Germany", "de"},
-            {"Hungary", "hr"},
+            {"Hungary", "hu"},
    	        {"Ireland", "ie"},
             {"Netherlands", "nl"},
             {"Norway", "no"},
