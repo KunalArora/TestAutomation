@@ -1,4 +1,5 @@
-﻿@UAT @PROD @TEST
+﻿@IGNORE
+# @UAT @PROD @TEST
 Feature: Navigate main site top About Brother menu
 		 As a visitor of the Brother main site
          I am able to navigate to each of the
