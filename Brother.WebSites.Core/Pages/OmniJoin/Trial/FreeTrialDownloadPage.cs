@@ -1,4 +1,5 @@
 ﻿using System;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -17,6 +18,10 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Trial
         [FindsBy(How = How.CssSelector, Using = ".enddate")]
         public IWebElement TrialEndDateText;
 
+        [FindsBy(How = How.XPath, Using = ".//*[@id='content']/div/div[1]/hgroup/h2")]
+        public IWebElement FreeTrail30DaysOmniJoinAccess;
+
+
         [FindsBy(How = How.CssSelector, Using = ".info-tile-image")]
         public IWebElement InfoTileImage;
 
@@ -32,6 +37,12 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Trial
         public string GetTrialExpiryDate()
         {
             return TrialEndDateText.Text;
+        }
+
+
+        public void FreeTrail30DaysOmniJoinAcessMessDisplayed()
+        {
+            TestCheck.AssertIsEqual(true, FreeTrail30DaysOmniJoinAccess.Displayed, "Is Message Displayed");
         }
     }
 }
