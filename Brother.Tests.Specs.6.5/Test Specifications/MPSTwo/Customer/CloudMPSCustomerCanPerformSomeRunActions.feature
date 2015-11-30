@@ -1,4 +1,4 @@
-﻿@TEST @UAT @MPS
+﻿@ignore @TEST @UAT @MPS
 Feature: CustomerCanPerformSomeRunActions
 	In order for customer to perform some run portion actions
 	As a customer
@@ -24,6 +24,7 @@ Scenarios:
 	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Email  | Cloud MPS Customer |
 
 
+@ignore
 Scenario Outline: Customer can order consumable after initial communication with device
 	Given I sign back into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to customer dashboard page
