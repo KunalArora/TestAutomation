@@ -120,6 +120,18 @@ namespace Brother.Tests.Specs._80.BrotherMainSite.HomePageNavigation
        {
            CurrentDriver.Navigate().GoToUrl(p0);
        }
+       [Given(@"I navigate to the url ""(.*)""")]
+       public void GivenINavigateToTheUrl(string p0)
+       {
+           CurrentDriver.Navigate().GoToUrl(p0);
+       }
+       [Given(@"I click on the Main Header placeholder ""(.*)""")]
+       public void GivenIClickOnTheMainHeaderPlaceholder(string country)
+       {
+          CurrentPage.As<LoginPage>().ClickOnMainHeader(country);
+       }
+
+
 
 
 
