@@ -1,10 +1,9 @@
-﻿@UAT @TEST
+﻿@ignore @UAT @TEST
 Feature: Correct printer product listings
 	In order to purchase a new Printer
 	As a customer
 	I want to be able to view the list of available printers
 
-@UAT @TEST @SMOKE
 Scenario Outline: View the list of available Laser Printers on Brother Main sites for languages except Spain and Portugal
 	Given I have navigated to the Brother Main Site "<country>" products pages
 	Given I have navigated to the "<site>" MainSite URL for country "<country>"
@@ -32,8 +31,8 @@ Scenarios:
 ##	| Switzerland    | imprimantes/imprimantes-laser?sc_lang=fr-CH                 | - language switching problem
 ##	| United Kingdom | printers/all-mono-lasers                                    |
 
+
 # Prod only as the urls are different between DV2,QAS and Production
-@PROD @UAT
 Scenario Outline: View the list of available Printers on some Live Brother Main sites
 	Given I have navigated to the Brother Main Site "<country>" products pages
 	Given I have navigated to the "<site>" MainSite URL for country "<country>"
@@ -42,7 +41,7 @@ Scenario Outline: View the list of available Printers on some Live Brother Main 
 
 Scenarios:
 	| country        | site                                                        |
-	| Czech          | printers/laser-printers                                     |
+	| Czech Republic | printers/laser-printers                                     |
 	| Finland        | printers/printers/mono-laser-printers                       |
 	| France         | imprimantes/imprimantes-multifonctions/multifonctions-laser |
 	| Hungary        | printers/laser-printers                                     |
@@ -62,8 +61,7 @@ Scenarios:
 ##	| Switzerland    | drucker/laserdrucker?sc_lang=de-CH                          | - language switching problem
 ##	| Switzerland    | imprimantes/imprimantes-laser?sc_lang=fr-CH                 | - language switching problem
 
-
-@SMOKE @ignore
+@ignore
 Scenario Outline: View the list of available Laser Printers on Brother Main sites for Spain and Portugal
 	Given I have navigated to the Brother Main Site "<country>" products pages
 	Given I have navigated to the "<site>" MainSite URL for country "<country>"

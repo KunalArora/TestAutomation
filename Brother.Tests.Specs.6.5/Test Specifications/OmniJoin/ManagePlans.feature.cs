@@ -76,15 +76,11 @@ namespace Brother.Tests.Specs.TestSpecifications.OmniJoin
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Change Plan Term")]
-        [NUnit.Framework.CategoryAttribute("TEST")]
-        [NUnit.Framework.CategoryAttribute("UAT")]
-        [NUnit.Framework.CategoryAttribute("SMOKE")]
+        [NUnit.Framework.IgnoreAttribute()]
         public virtual void ChangePlanTerm()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Change Plan Term", new string[] {
-                        "TEST",
-                        "UAT",
-                        "SMOKE"});
+                        "ignore"});
 #line 12
 this.ScenarioSetup(scenarioInfo);
 #line 6

@@ -1,4 +1,6 @@
-﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+﻿using System.Security.Policy;
+using Brother.Tests.Selenium.Lib.Support;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherMainSite;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
@@ -77,8 +79,9 @@ namespace Brother.Tests.Specs._80.BrotherMainSite.HomePageNavigation
         {
             CurrentPage.As<LoginPage>().PopulateUserNameTextBox(username);
         }
-        [Given(@"The following site ""(.*)"" to validate I should receive an Ok response back\ton mainsite login")]
-        public void GivenTheFollowingSiteToValidateIShouldReceiveAnOkResponseBackOnMainsiteLogin(string url)
+
+        [Given(@"That I navigate to ""(.*)"" in order to validate the CMS site")]
+        public void GivenThatINavigateToInOrderToValidateTheCmsSite(string url)
         {
             CurrentPage = BasePage.LoadBrotherMainSiteLoginPage(CurrentDriver, url);
             CurrentPage.As<LoginPage>().GetLoginpage(url);
@@ -112,6 +115,24 @@ namespace Brother.Tests.Specs._80.BrotherMainSite.HomePageNavigation
            CurrentPage = BasePage.LoadContentEditorPage(CurrentDriver, country);
            CurrentPage.As<ContentEditorPage>().IsRibbonBarExist();
        }
+       [Then(@"I navigate to the url ""(.*)""")]
+       public void ThenINavigateToTheUrl(string p0)
+       {
+           CurrentDriver.Navigate().GoToUrl(p0);
+       }
+       [Given(@"I navigate to the url ""(.*)""")]
+       public void GivenINavigateToTheUrl(string p0)
+       {
+           CurrentDriver.Navigate().GoToUrl(p0);
+       }
+       [Given(@"I click on the Main Header placeholder ""(.*)""")]
+       public void GivenIClickOnTheMainHeaderPlaceholder(string country)
+       {
+          CurrentPage.As<LoginPage>().ClickOnMainHeader(country);
+       }
+
+
+
 
 
 

@@ -101,12 +101,12 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         private static readonly Dictionary<string, string> _countries = new Dictionary<string, string>
         {
             {"Belgium", "be"},
-            {"Czech", "cz"},
+            {"Czech Republic", "cz"},
             {"Denmark", "dk"},
             {"Finland", "fi"},
             {"France", "fr"},
             {"Germany", "de"},
-            {"Hungary", "hr"},
+            {"Hungary", "hu"},
    	        {"Ireland", "ie"},
             {"Netherlands", "nl"},
             {"Norway", "no"},

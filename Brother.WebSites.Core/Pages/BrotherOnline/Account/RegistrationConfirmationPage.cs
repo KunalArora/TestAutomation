@@ -27,6 +27,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         [FindsBy(How = How.CssSelector, Using = "#Warnings")] 
         public IWebElement InvalidItalyVatNumberErrorMessage;
 
+        [FindsBy(How = How.CssSelector, Using = "#Warnings")]
+        public IWebElement InvalidTaxCodeErrorMessage;
+
         public void IsGoBackButtonAvailable()
         {
             if (GoBackButton == null)
@@ -54,6 +57,10 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         public void InvalidItalyTVatNumberErrorMessageDisplayed()
         {
             TestCheck.AssertIsEqual(true, InvalidItalyVatNumberErrorMessage.Displayed, "Is Error Message Displayed");
+        }
+        public void InvalidTaxCodeErrorMessageDisplayed()
+        {
+            TestCheck.AssertIsEqual(true, InvalidTaxCodeErrorMessage.Displayed, "Is Error Message Displayed");
         }
     }
 }

@@ -20,6 +20,7 @@ namespace Brother.Tests.Specs.TestSpecifications.InstantInk
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("Log in to Ink with valid user")]
+    [NUnit.Framework.IgnoreAttribute()]
     [NUnit.Framework.CategoryAttribute("TEST")]
     public partial class LogInToInkWithValidUserFeature
     {
@@ -35,6 +36,7 @@ namespace Brother.Tests.Specs.TestSpecifications.InstantInk
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Log in to Ink with valid user", "In order to utilise the Status Monitor feature\r\nAs a valid user\r\nI need to login " +
                     "to BOL and see the status monitor screen", ProgrammingLanguage.CSharp, new string[] {
+                        "ignore",
                         "TEST"});
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -78,10 +80,12 @@ namespace Brother.Tests.Specs.TestSpecifications.InstantInk
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Validate a valid user can sign in to Ink")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.CategoryAttribute("TEST")]
         public virtual void ValidateAValidUserCanSignInToInk()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate a valid user can sign in to Ink", new string[] {
+                        "ignore",
                         "TEST"});
 #line 12
 this.ScenarioSetup(scenarioInfo);

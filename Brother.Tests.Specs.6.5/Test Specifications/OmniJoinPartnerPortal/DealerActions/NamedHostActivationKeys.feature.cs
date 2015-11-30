@@ -73,12 +73,10 @@ namespace Brother.Tests.Specs.TestSpecifications.OmniJoinPartnerPortal.DealerAct
         [NUnit.Framework.DescriptionAttribute("Order and validate a new subscription activation code for Named Host licensing, w" +
             "ith Professional Plan and Annual Term")]
         [NUnit.Framework.IgnoreAttribute()]
-        [NUnit.Framework.CategoryAttribute("SMOKE")]
         public virtual void OrderAndValidateANewSubscriptionActivationCodeForNamedHostLicensingWithProfessionalPlanAndAnnualTerm()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Order and validate a new subscription activation code for Named Host licensing, w" +
                     "ith Professional Plan and Annual Term", new string[] {
-                        "SMOKE",
                         "ignore"});
 #line 8
 this.ScenarioSetup(scenarioInfo);

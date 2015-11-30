@@ -116,13 +116,11 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.Account
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Add payment method with new address")]
-        [NUnit.Framework.CategoryAttribute("TEST")]
-        [NUnit.Framework.CategoryAttribute("UAT")]
+        [NUnit.Framework.IgnoreAttribute()]
         public virtual void AddPaymentMethodWithNewAddress()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add payment method with new address", new string[] {
-                        "TEST",
-                        "UAT"});
+                        "ignore"});
 #line 29
 this.ScenarioSetup(scenarioInfo);
 #line 8

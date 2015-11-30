@@ -2,19 +2,17 @@
 using System.Net;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
-using Brother.WebSites.Core.Pages.BrotherMainSite;
-using Brother.WebSites.Core.Pages.BrotherOnline.Account;
-using Brother.WebSites.Core.Pages8._0.CMS;
+using NUnit.Framework;
+using OpenQA.Selenium.Remote;
 using TechTalk.SpecFlow;
-using TechTalk.SpecFlow.Assist;
 
-namespace Brother.Tests.Specs._80.SiteAccess
+namespace Brother.Tests.Specs._80.Test_Steps.BrotherMainSite.EnvAccess
 {
     [Binding]
-    public class SiteAccessSteps : BaseSteps
-    {
-        [Given(@"The following site ""(.*)"" to validate I should receive an Ok response back\ton mainsite")]
-        public void GivenTheFollowingSiteToValidateIShouldReceiveAnOkResponseBackOnMainsite(string url)
+    public class EnvAccessSteps : BaseSteps
+      {
+        [Given(@"The following site ""(.*)"" to validate I should receive an Ok response back")]
+        public void GivenTheFollowingSiteToValidateIShouldReceiveAnOkResponseBack(string url)
         {
             // Perform a page GET
             TestCheck.AssertIsEqual(HttpStatusCode.OK, GetWebPageResponse(url), "Incorrect Http Status Code returned");
@@ -37,7 +35,7 @@ namespace Brother.Tests.Specs._80.SiteAccess
             WebDriver.SetPageLoadTimeout(WebDriver.DefaultTimeout);
         }
 
-        [Given(@"The following site (.*) (.*) to validate I should receive an Ok response back")]
+        [Given(@"The following site (.*) (.*) to validate then I should receive an Ok response back")]
         public void GivenTheFollowingSiteToValidateIShouldReceiveAnOkResponseBack(string country, string url)
         {
             const int maxTries = 5;
@@ -85,17 +83,5 @@ namespace Brother.Tests.Specs._80.SiteAccess
 
             return responseCode;
         }
-
-
-        [When(@"I have entered a valid username and password, ""(.*)"", ""(.*)""")]
-        public void WhenIHaveEnteredAValidUsernameAndPassword(string username, string password)
-        {
-            CurrentPage.As<CmsHomepage>().PopulateFirstNameTextBox(username);
-            CurrentPage.As<CmsHomepage>().PopulateLastNameTextBox(password);            
-        }
-
     }
-
-
-                   
 }

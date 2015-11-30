@@ -20,8 +20,7 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherMainSite.Navigation.Foot
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("WebsiteInformation footer navigation")]
-    [NUnit.Framework.CategoryAttribute("TEST")]
-    [NUnit.Framework.CategoryAttribute("UAT")]
+    [NUnit.Framework.IgnoreAttribute()]
     public partial class WebsiteInformationFooterNavigationFeature
     {
         
@@ -36,8 +35,7 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherMainSite.Navigation.Foot
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "WebsiteInformation footer navigation", "As a visitor of the Brother main site\r\nI am able to navigate to each of the\r\nlink" +
                     "s within the website information footer", ProgrammingLanguage.CSharp, new string[] {
-                        "TEST",
-                        "UAT"});
+                        "IGNORE"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -72,22 +70,18 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherMainSite.Navigation.Foot
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("User is able to navigate to the terms and conditions page via the website informa" +
             "tion footer section")]
-        [NUnit.Framework.CategoryAttribute("TEST")]
-        [NUnit.Framework.CategoryAttribute("UAT")]
         public virtual void UserIsAbleToNavigateToTheTermsAndConditionsPageViaTheWebsiteInformationFooterSection()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the terms and conditions page via the website informa" +
-                    "tion footer section", new string[] {
-                        "TEST",
-                        "UAT"});
-#line 9
-this.ScenarioSetup(scenarioInfo);
+                    "tion footer section", ((string[])(null)));
 #line 10
- testRunner.Given("I have navigated to the Brother Main Site \"United Kingdom\" products pages", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioSetup(scenarioInfo);
 #line 11
+ testRunner.Given("I have navigated to the Brother Main Site \"United Kingdom\" products pages", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 12
  testRunner.Then("I have clicked the terms and conditions link within the website information foote" +
                     "r", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 12
+#line 13
  testRunner.Then("I am navigated to the terms and conditions page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -96,14 +90,10 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("User is able to navigate to the brother network page via the website information " +
             "footer section")]
-        [NUnit.Framework.CategoryAttribute("TEST")]
-        [NUnit.Framework.CategoryAttribute("UAT")]
         public virtual void UserIsAbleToNavigateToTheBrotherNetworkPageViaTheWebsiteInformationFooterSection()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the brother network page via the website information " +
-                    "footer section", new string[] {
-                        "TEST",
-                        "UAT"});
+                    "footer section", ((string[])(null)));
 #line 16
 this.ScenarioSetup(scenarioInfo);
 #line 17

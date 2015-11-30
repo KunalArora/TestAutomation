@@ -20,9 +20,7 @@ namespace Brother.Tests.Specs._80.TestSpecification.BrotherMainSite.Navigation
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("Navigate main site top business solutions menu")]
-    [NUnit.Framework.CategoryAttribute("UAT")]
-    [NUnit.Framework.CategoryAttribute("PROD")]
-    [NUnit.Framework.CategoryAttribute("TEST")]
+    [NUnit.Framework.IgnoreAttribute()]
     public partial class NavigateMainSiteTopBusinessSolutionsMenuFeature
     {
         
@@ -37,9 +35,7 @@ namespace Brother.Tests.Specs._80.TestSpecification.BrotherMainSite.Navigation
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Navigate main site top business solutions menu", "     As a visitor of the Brother main site\r\n     I am able to navigate to each of" +
                     " the\r\n     tab items within the top business solutions menu", ProgrammingLanguage.CSharp, new string[] {
-                        "UAT",
-                        "PROD",
-                        "TEST"});
+                        "IGNORE"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -78,13 +74,13 @@ namespace Brother.Tests.Specs._80.TestSpecification.BrotherMainSite.Navigation
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the products page via the top main site business solu" +
                     "tions menu", ((string[])(null)));
-#line 7
-this.ScenarioSetup(scenarioInfo);
 #line 8
- testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioSetup(scenarioInfo);
 #line 9
- testRunner.And("I have clicked the top business solutions menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 10
+ testRunner.And("I have clicked the top business solutions menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 11
  testRunner.Then("I am navigated to the business solutions page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -97,15 +93,15 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the Manage Print Services page via the top main site " +
                     "business solutions menu", ((string[])(null)));
-#line 12
-this.ScenarioSetup(scenarioInfo);
 #line 13
- testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioSetup(scenarioInfo);
 #line 14
-    testRunner.And("I hover over the top Business Solutions menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 15
-    testRunner.Then("I hover and click the Manage Print Services option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.And("I hover over the top Business Solutions menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 16
+    testRunner.Then("I hover and click the Manage Print Services option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 17
     testRunner.Then("I am navigated to the View All Print Management page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -118,15 +114,15 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the Document Capture Workflow page via the top main s" +
                     "ite  business solutions menu", ((string[])(null)));
-#line 18
-this.ScenarioSetup(scenarioInfo);
 #line 19
-    testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioSetup(scenarioInfo);
 #line 20
-    testRunner.And("I hover over the top Business Solutions menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 21
-    testRunner.Then("I hover and click the Document Capture Workflow option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.And("I hover over the top Business Solutions menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 22
+    testRunner.Then("I hover and click the Document Capture Workflow option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 23
     testRunner.Then("I am navigated to the View All Document Capture and Workflow page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -139,15 +135,15 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the Cost Control and Security page via the top main s" +
                     "ite  business solutions menu", ((string[])(null)));
-#line 24
-this.ScenarioSetup(scenarioInfo);
 #line 25
-    testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioSetup(scenarioInfo);
 #line 26
-    testRunner.And("I hover over the top Business Solutions menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 27
-    testRunner.Then("I hover and click the Cost Control and Security option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.And("I hover over the top Business Solutions menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 28
+    testRunner.Then("I hover and click the Cost Control and Security option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 29
     testRunner.Then("I am navigated to the View All Cost Control and Security page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -160,15 +156,15 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the Mobile and Cloud page via the top main site  busi" +
                     "ness solutions menu", ((string[])(null)));
-#line 30
-this.ScenarioSetup(scenarioInfo);
 #line 31
-    testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioSetup(scenarioInfo);
 #line 32
-    testRunner.And("I hover over the top Business Solutions menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 33
-    testRunner.Then("I hover and click the Mobile and Cloud option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.And("I hover over the top Business Solutions menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 34
+    testRunner.Then("I hover and click the Mobile and Cloud option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 35
     testRunner.Then("I am navigated to the View All Mobile and Cloud page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -181,15 +177,15 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the Portable Print and Label page via the top main si" +
                     "te  business solutions menu", ((string[])(null)));
-#line 36
-this.ScenarioSetup(scenarioInfo);
 #line 37
-    testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioSetup(scenarioInfo);
 #line 38
-    testRunner.And("I hover over the top Business Solutions menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 39
-    testRunner.Then("I hover and click the Portable Print and Label option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.And("I hover over the top Business Solutions menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 40
+    testRunner.Then("I hover and click the Portable Print and Label option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 41
     testRunner.Then("I am navigated to the View All Portable Print and Label page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -202,15 +198,15 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the Communication and Collaboration page via the top " +
                     "main site  business solutions menu", ((string[])(null)));
-#line 42
-this.ScenarioSetup(scenarioInfo);
 #line 43
-    testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioSetup(scenarioInfo);
 #line 44
-    testRunner.And("I hover over the top Business Solutions menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 45
-    testRunner.Then("I hover and click the Communication and Collaboration option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.And("I hover over the top Business Solutions menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 46
+    testRunner.Then("I hover and click the Communication and Collaboration option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 47
     testRunner.Then("I am navigated to the View All Communication and Collaboration page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -223,15 +219,15 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the Visitor and Event Management page via the top mai" +
                     "n site  business solutions menu", ((string[])(null)));
-#line 48
-this.ScenarioSetup(scenarioInfo);
 #line 49
-    testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioSetup(scenarioInfo);
 #line 50
-    testRunner.And("I hover over the top Business Solutions menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 51
-    testRunner.Then("I hover and click the Visitor and Event Management option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.And("I hover over the top Business Solutions menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 52
+    testRunner.Then("I hover and click the Visitor and Event Management option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 53
     testRunner.Then("I am navigated to the View All Visitor and Event Management page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -244,15 +240,15 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the Search by Industry page via the top main site  bu" +
                     "siness solutions menu", ((string[])(null)));
-#line 55
-this.ScenarioSetup(scenarioInfo);
 #line 56
-    testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioSetup(scenarioInfo);
 #line 57
-    testRunner.And("I hover over the top Business Solutions menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 58
-    testRunner.Then("I hover and click the Search by Industry option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.And("I hover over the top Business Solutions menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 59
+    testRunner.Then("I hover and click the Search by Industry option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 60
     testRunner.Then("I am navigated to the View All Search by Industry page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -265,15 +261,15 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the View our Industry Partners page via the top main " +
                     "site  business solutions menu", ((string[])(null)));
-#line 61
-this.ScenarioSetup(scenarioInfo);
 #line 62
-    testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioSetup(scenarioInfo);
 #line 63
-    testRunner.And("I hover over the top Business Solutions menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 64
-    testRunner.Then("I hover and click the View our Industry Partners option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.And("I hover over the top Business Solutions menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 65
+    testRunner.Then("I hover and click the View our Industry Partners option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 66
     testRunner.Then("I am navigated to the View our Industry Partners page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -286,15 +282,15 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the View our Case Studies page via the top main site " +
                     " business solutions menu", ((string[])(null)));
-#line 67
-this.ScenarioSetup(scenarioInfo);
 #line 68
-    testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioSetup(scenarioInfo);
 #line 69
-    testRunner.And("I hover over the top Business Solutions menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 70
-    testRunner.Then("I hover and click the View our Case Studies option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.And("I hover over the top Business Solutions menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 71
+    testRunner.Then("I hover and click the View our Case Studies option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 72
     testRunner.Then("I am navigated to the View our Case Studies page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

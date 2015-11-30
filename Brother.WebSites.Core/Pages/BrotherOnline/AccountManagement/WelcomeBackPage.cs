@@ -27,7 +27,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         public IWebElement RegisterDeviceLink;
         [FindsBy(How = How.CssSelector, Using = "#content_2_CurrentControlPanelItem_ConferenceButtons.two-conference-buttons .conference-button.right")]
         public IWebElement OmniJoinTryNowButton;
-        [FindsBy(How = How.CssSelector, Using = "#content_2_CurrentControlPanelItem_ConferenceButtons.two-conference-buttons .conference-button.left")]
+       // [FindsBy(How = How.CssSelector, Using = "#content_2_CurrentControlPanelItem_ConferenceButtons.two-conference-buttons .conference-button.left")]
+        [FindsBy(How = How.XPath, Using = ".//*[@id='content_2_CurrentControlPanelItem_ConferenceButtons']/a[2]")]
+        //.//*[@id='content_2_CurrentControlPanelItem_ConferenceButtons']/a[2]
         public IWebElement OmniJoinBuyNowButton;
         [FindsBy(How = How.CssSelector, Using = "[id*=\"content_2_ProductsTabRepeater_tabItem\"] p strong")]
         public IList<IWebElement> MpsPrintSmartButton;

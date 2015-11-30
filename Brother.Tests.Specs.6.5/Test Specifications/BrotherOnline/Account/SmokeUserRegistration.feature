@@ -6,7 +6,6 @@ Feature: B2C and B2B Registration
 
 #B2C User Registration without tax code
 
-@TEST @UAT @PROD @SMOKE
 Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on IE and UK site
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -33,7 +32,6 @@ Scenarios:
 | United Kingdom    |
 | Ireland           |
 
-@TEST @UAT @PROD @SMOKE
 Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on Portugal site 
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -60,7 +58,6 @@ Scenarios:
 | Portugal | 
 
 
-@TEST @UAT @PROD @SMOKE
 Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on Denmark Site
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -86,7 +83,6 @@ Scenarios:
 | Country  |	
 | Germany | 
 
-@TEST @UAT @PROD @SMOKE
 Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on Austria Site
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -112,7 +108,6 @@ Scenarios:
 | Country  |	
 | Austria | 
 
-@TEST @UAT @PROD @SMOKE
 Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on switzerland site
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -138,7 +133,6 @@ Scenarios:
 | Country  |	
 | Switzerland | 
 
-@TEST @UAT @PROD @SMOKE
 Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on Belgium site
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -164,7 +158,6 @@ Scenarios:
 | Country  |	
 | Belgium | 
 
-@TEST @UAT @PROD @SMOKE
 Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on French site
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -190,7 +183,7 @@ Scenarios:
 | Country  |	
 | France | 
 
-@TEST @UAT @PROD @SMOKE
+
 Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on netherlands site
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -216,7 +209,7 @@ Scenarios:
 | Country     |	
 | Netherlands | 
 
-@TEST @UAT @PROD @SMOKE
+
 Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on Ireland site
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -243,7 +236,6 @@ Scenarios:
 | Ireland     |
 
 
-@TEST @UAT @PROD @SMOKE
 Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on Russia site
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -269,34 +261,7 @@ Scenarios:
 | Country     |	
 | Russia      |  
 
-@TEST @UAT @PROD @SMOKE
-Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on Hungary site
-	Given I want to create a new account with Brother Online "<Country>"
-	When I click on Create Account for "<Country>"
-	And I am redirected to the Brother Login/Register page
-	And I have Checked No I Do Not Have An Account Checkbox
-	And I fill in the registration information using a valid email address 
-	| field           | value          |
-	| FirstName       | AutoTest       |
-	| LastName        | AutoTest       |
-	| Password        | @@@@@	       |
-	| ConfirmPassword | @@@@@		   |
 
-	And I have Agreed to the Terms and Conditions
-	And I declare that I do not use this account for business
-	When I press Create Your Account
-	Then I should see my account confirmation page
-	And When I Click Go Back
-	#And Once I have Validated an Email was received and verified my account
-	Then I should be able to log into "<Country>" Brother Online using my account details
-	And I can sign out of Brother Online
-	Then I am redirected to the Brother Home Page
-Scenarios: 
-| Country      |	
-| Hungary      |  
-
-
-@TEST @UAT @PROD @SMOKE
 Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on poland site
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -323,7 +288,6 @@ Scenarios:
 | Poland      |  
 
 
-@TEST @UAT @PROD @SMOKE
 Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on Slovakia site
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -349,7 +313,7 @@ Scenarios:
 | Country       |	
 | Slovakia      |  
  
-@TEST @UAT @PROD @SMOKE
+
 Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on italian site
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -373,9 +337,9 @@ Scenario Outline: Customer creates a new account with Brother Online using valid
 	Then I am redirected to the Brother Home Page
 Scenarios: 
 | Country       |	
-| ITaly         |  
+| Italy         |  
 
-@TEST @UAT @PROD @SMOKE
+
 Scenario Outline: Customer creates a new account with BOL using valid credentials, confirm by email on Spain site
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -402,7 +366,6 @@ Scenarios:
 | Spain         |  
 
 
-@TEST @UAT @PROD @SMOKE
 Scenario Outline: Customer creates a new account with BOL using valid credentials, confirm by email on Czech Republic site
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -430,7 +393,7 @@ Scenarios:
 
 # B2C User registration with tax codes
 
-@TEST @UAT @PROD @SMOKE
+
 # Create an account for Brother Online for spain sites
 Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on Spain sitesign in and Sign Out
 	Given I want to create a new account with Brother Online "<Country>"
@@ -457,7 +420,7 @@ Scenarios:
 | Country |
 |Spain	  | 
 
-@TEST @UAT @PROD @SMOKE
+
 # Create an account for Brother Online for spain sites
 Scenario Outline: Customer creates a new account with Brother Online using valid credentials, Portugal sitesign in and Sign Out
 	Given I want to create a new account with Brother Online "<Country>"
@@ -470,7 +433,7 @@ Scenario Outline: Customer creates a new account with Brother Online using valid
 	| LastName        | AutoTest       |
 	| Password        | @@@@@	       |
 	| ConfirmPassword | @@@@@		   |
-	| NumeroDNI		  | PT000023T	   |
+	| NumeroDNI		  | 980254698	   |
 	And I have Agreed to the Terms and Conditions
 	And I declare that I do not use this account for business
 	When I press Create Your Account
@@ -485,7 +448,6 @@ Scenarios:
 | Portugal | 
 
 
-@TEST @UAT @PROD @SMOKE
 # Create an account for Brother Online for Italy
 Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on Italy site sign in and Sign Out
 	Given I want to create a new account with Brother Online "<Country>"
@@ -515,7 +477,6 @@ Scenarios:
 
 # B2B Business User registration with tax codes and provides error message if tax code not given
 
-@TEST @UAT @PROD @SMOKE
 Scenario Outline: Customer creates a new Business account with Brother Online using valid credentials without VAT NUMBER, confirm by email on UK site and sign in and Sign Out
 Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -546,7 +507,7 @@ Scenarios:
 | United Kingdom  |
 
 
-@TEST @UAT @PROD @SMOKE
+
 Scenario Outline: Customer creates a new Business account with Brother Online using valid credentialS without VAT NUMBER, confirm by email on Ireland site and sign in and Sign Out
 Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -576,7 +537,6 @@ Scenarios:
 | Ireland   |  
 
 
-@TEST @UAT @PROD @SMOKE
 Scenario Outline: Customer able to create a new BOL Portugal account using the valid taxcode on Portugal BOL site
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -605,7 +565,7 @@ Scenarios:
 | Country  | Tax Code    |
 | Portugal | PT181161699 |
 
-@TEST @UAT @PROD @SMOKE
+
 Scenario Outline: Customer gets valid error message on BOL Portugal site  with Invalid tax code.
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -630,7 +590,7 @@ Scenarios:
 | Country		| Business Sector		| VAT Number       |
 | Portugal		| Fabrico				| INVALIDVATNUMBER |
 
-@TEST @UAT @PROD @SMOKE
+
 Scenario Outline: Customer gets valid error message on BOL Czech site with invalid tax code 
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -654,9 +614,9 @@ Scenario Outline: Customer gets valid error message on BOL Czech site with inval
 
 Scenarios:
 | Country		| Business Sector		| VAT Number       |
-| Czech			| Velkoprodej			| INVALIDVATNUMBER |
+| Czech Republic			| Velkoprodej			| INVALIDVATNUMBER |
 
-@TEST @UAT @PROD @SMOKE
+
 Scenario Outline: Customer gets valid error message on BOL Denmark site with invalid tax code
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -682,7 +642,7 @@ Scenarios:
 | Country		| Business Sector		| VAT Number       |
 | Denmark		| Byggeri				| INVALIDVATNUMBER |
 
-@TEST @UAT @PROD @SMOKE
+
 Scenario Outline: Customer gets valid error message on BOL Netherlands site with invalid tax code
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -709,7 +669,7 @@ Scenarios:
 | Country		| Business Sector		| VAT Number       |
 | Netherlands	| Bouw					| INVALIDVATNUMBER |
 
-@TEST @UAT @PROD @SMOKE
+
 Scenario Outline: Customer gets valid error message on BOL Norway site with invalid tax code
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -735,7 +695,6 @@ Scenarios:
 | Country		| Business Sector		| VAT Number       |
 | Norway		| Industri				| INVALIDVATNUMBER |
 
-@TEST @UAT @PROD @SMOKE
 Scenario Outline: Customer gets valid error message on BOL poland site with invalid tax code
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -762,7 +721,6 @@ Scenarios:
 | Poland		| Produkcja				| INVALIDVATNUMBER |  
 
 
-@TEST @UAT @PROD @SMOKE
 Scenario Outline: Customer gets valid error message on BOL spain site with invalid tax code
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -788,7 +746,6 @@ Scenarios:
 | Country		| Business Sector		| VAT Number       |
 | Spain			| Servicios personales	| INVALIDVATNUMBER | 
 
-@TEST @UAT @PROD @SMOKE
 Scenario Outline: Customer gets valid error message on BOL France site  with invalid tax code
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -814,7 +771,6 @@ Scenarios:
 | Country		| Business Sector		| VAT Number       |
 | France		| Fabrication			| INVALIDVATNUMBER |
 
-@TEST @UAT @PROD @SMOKE
 Scenario Outline: Customer gets valid error message on BOL Germany site  with invalid tax code
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -840,7 +796,7 @@ Scenarios:
 | Country		| Business Sector		| VAT Number       |
 | Germany		| Bildung				| INVALIDVATNUMBER |
 
-@TEST @UAT @PROD @SMOKE
+
 Scenario Outline: Customer gets valid error message on BOL Austria site  with invalid tax code
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -866,7 +822,7 @@ Scenarios:
 | Country		| Business Sector		| VAT Number       |
 | Austria		| Bildung				| INVALIDVATNUMBER | 
 
-@TEST @UAT @PROD @SMOKE
+
 Scenario Outline: Customer gets valid error message on BOL Belgium site  with invalid tax code
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -892,4 +848,196 @@ Scenarios:
 | Country		| Business Sector		| VAT Number       |
 | Belgium		| Fabrication		    | INVALIDVATNUMBER | 
 
+@TEST
+Scenario: Sign Up for 14 day Free trial already signed into Brother Online
+	# Create an account on BOL and sign in
+	Given I want to create a new account with Brother Online "United Kingdom"
+	When I click on Create Account for "United Kingdom"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I fill in the registration information using a valid email address 
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Password        | @@@@@	       |
+	| ConfirmPassword | @@@@@		   |
 
+	And I have Agreed to the Terms and Conditions
+	And I declare that I do not use this account for business
+	When I press Create Your Account
+	Then I should see my account confirmation page
+	And When I Click Go Back
+	Then I should be able to log into "United Kingdom" Brother Online using my account details
+	When I navigate to my account for "United Kingdom"
+	#Given I am logged onto Brother Online "United Kingdom" using valid credentials
+	And I have navigated to the OmniJoin home page
+	And If I click on Start Free Trial
+	Then I should be directed to the OmniJoin Free Trial page
+	When I have entered a valid First and Last name, "AutoTest", "AutoTest"
+	And I have entered a valid email address
+	And I have entered a valid phone number "01555 522522"
+	And I have Agreed to the Free Trial Terms and Conditions
+	And if I click Submit
+	Then I should be directed to the download page indicating I have 14 days Free trial
+	And Once I have Validated a Free Trial confirmation Email was received
+	Then If I go back to Brother Online Home Page 
+	Then I can sign out of Brother Online
+	Then I am redirected to the Brother Home Page
+
+	
+@ignore
+Scenario Outline: Purchase OmniJoin subscription plan for <country> for a <Plan Type> plan on <Billing Type> billing
+	Given I have navigated to the OmniJoin home page
+	And I have clicked on Buy
+	Then I should be redirected to the Plans page
+	And If I then Choose the "<Plan Type>" Plan option column
+	Then I should be directed to the relevant plan page
+	And I check the correct billing type as "<Billing Type>"
+	When I click Agree to terms and conditions
+	And I Click Buy Now At Brother Online
+	Then I should be directed to the Brother Online Basket page
+	And When I click CheckOut
+	Then I can add billing address details for Country "<Country>"
+	And I can go through the order process for Country "<Country>" with order info "<Qty>"
+	Then I should see the Order Confirmation page
+	And The purchased plan billing type is correct "<Billing Type>"
+	And If I click on My Account
+	And I can click on Orders
+	And I can validate the order "<Qty>" of "<Order Name>" @ "<Price>" on My Account page
+	Then I am redirected to the Brother Home Page
+	And I can validate an Order Confirmation email was received
+
+Scenarios: 
+	
+	| Plan Type    | Country        | Billing Type | Qty | Order Name            | Price   |
+	| Lite         | United Kingdom | Monthly      | 1   | OmniJoin Lite         | £18.00  |
+	| Lite         | United Kingdom | Annual       | 1   | OmniJoin Lite         | £144.00 |
+	| Business     | United Kingdom | Monthly      | 1   | OmniJoin Pro          | £70.80  |
+	| Business     | United Kingdom | Annual       | 1   | OmniJoin Pro          | £678.00 |
+	| Professional | United Kingdom | Monthly      | 1   | OmniJoin              | £34.80  |
+	| Professional | United Kingdom | Annual       | 1   | OmniJoin              | £331.20 |
+
+@ignore
+# OmniJoin plan purchase - add existing accounts
+Scenario: Purchase a Lite Use plan on Monthly Billing but click Cancel before submitting payment
+	 And I have navigated to the OmniJoin home page
+	 And I have clicked on Buy
+	Then I should be redirected to the Plans page
+	And If I then Choose the "Lite" Plan option column
+	Then I should be directed to the relevant plan page
+	When I click Agree to terms and conditions
+	And I Click Buy Now At Brother Online
+   Then I should be directed to the Brother Online Basket page
+	And When I click CheckOut
+	When I press Create Your Account
+	Then I can add billing address details for Country "United Kingdom"
+	And I can go through a dummy order process for Country "United Kingdom" with order info "1"
+	Then I can navigate back to Brother Online home page
+	Then I can sign out of Brother Online
+
+# Create Omnijoin free trials create it for france, ireland, germany
+
+@IGNORE
+#Test Fails with Timeout exception error message on FreeTrail OJ SignUp Page
+Scenario: Sign Up for 14 day Free trial already signed into Brother Online Ireland
+	Given I want to create a new account with Brother Online "Ireland"
+	When I click on Create Account for "Ireland"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I fill in the registration information using a valid email address 
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Password        | @@@@@	       |
+	| ConfirmPassword | @@@@@		   |
+
+	And I have Agreed to the Terms and Conditions
+	And I declare that I do not use this account for business
+	When I press Create Your Account
+	Then I should see my account confirmation page
+	And When I Click Go Back
+	Then I should be able to log into "Ireland" Brother Online using my account details
+	And I click on Try Now
+	Then I should see OmniJOin Free trail page
+	When I have entered a valid FirstName as "Test"
+	 And I have  entered a valid LastName as "User"
+ 	 And I fill in valid email address
+	When I have fill in a phone number "12341234131"
+	And I have Agreed to the Free Trial Terms and Conditions
+	And if I click Submit
+	And I click start free trail button
+	Then I should be directed to the download page indicating I have 14 days Free trial
+	And Once I have Validated a Free Trial confirmation Email was received
+	Then If I go back to Brother Online Home Page 
+	Then I can sign out of Brother Online
+	Then I am redirected to the Brother Home Page
+
+@IGNORE
+#Test Fails with Timeout exception error message on FreeTrail OJ SignUp Page
+Scenario: Sign Up for 14 day Free trial already signed into Brother Online Germany
+	Given I want to create a new account with Brother Online "Germany"
+	When I click on Create Account for "Germany"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I fill in the registration information using a valid email address 
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Password        | @@@@@	       |
+	| ConfirmPassword | @@@@@		   |
+
+	And I have Agreed to the Terms and Conditions
+	And I declare that I do not use this account for business
+	When I press Create Your Account
+	Then I should see my account confirmation page
+	And When I Click Go Back
+	Then I should be able to log into "Germany" Brother Online using my account details
+	And I click on Try Now
+	Then I should see OmniJOin Free trail page
+	When I have entered a valid FirstName as "Test"
+	 And I have  entered a valid LastName as "User"
+ 	 And I fill in valid email address
+	When I have fill in a phone number "12341234131"
+	And I have Agreed to the Free Trial Terms and Conditions
+	And if I click Submit
+	And I click start free trail button
+	Then I should be directed to the download page indicating I have 14 days Free trial
+	And Once I have Validated a Free Trial confirmation Email was received
+	Then If I go back to Brother Online Home Page 
+	Then I can sign out of Brother Online
+	Then I am redirected to the Brother Home Page
+
+@IGNORE
+#Test Fails with Timeout exception error message on FreeTrail OJ SignUp Page
+Scenario: Sign Up for 14 day Free trial already signed into Brother Online France
+	Given I want to create a new account with Brother Online "France"
+	When I click on Create Account for "France"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I fill in the registration information using a valid email address 
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Password        | @@@@@	       |
+	| ConfirmPassword | @@@@@		   |
+
+	And I have Agreed to the Terms and Conditions
+	And I declare that I do not use this account for business
+	When I press Create Your Account
+	Then I should see my account confirmation page
+	And When I Click Go Back
+	Then I should be able to log into "France" Brother Online using my account details
+	And I click on Try Now
+	Then I should see OmniJOin Free trail page
+	When I have entered a valid FirstName as "Test"
+	 And I have  entered a valid LastName as "User"
+ 	 And I fill in valid email address
+	When I have fill in a phone number "12341234131"
+	And I have Agreed to the Free Trial Terms and Conditions
+	And if I click Submit
+	And I click start free trail button
+	Then I should be directed to the download page indicating I have 14 days Free trial
+	And Once I have Validated a Free Trial confirmation Email was received
+	Then If I go back to Brother Online Home Page 
+	Then I can sign out of Brother Online
+	Then I am redirected to the Brother Home Page

@@ -30,42 +30,8 @@ Given I want to create a new account with Brother Online "United Kingdom"
 	Then I should see my account confirmation page
 	And When I Click Go Back
 	Then I should be able to log into "United Kingdom" Brother Online using my account details
-	
 
-@SMOKE
-Scenario Outline: Purchase OmniJoin subscription plan for <country> for a <Plan Type> plan on <Billing Type> billing
-	Given I have navigated to the OmniJoin home page
-	And I have clicked on Buy
-	Then I should be redirected to the Plans page
-	And If I then Choose the "<Plan Type>" Plan option column
-	Then I should be directed to the relevant plan page
-	And I check the correct billing type as "<Billing Type>"
-	When I click Agree to terms and conditions
-	And I Click Buy Now At Brother Online
-	Then I should be directed to the Brother Online Basket page
-	And When I click CheckOut
-	Then I can add billing address details for Country "<Country>"
-	And I can go through the order process for Country "<Country>" with order info "<Qty>"
-	Then I should see the Order Confirmation page
-	And The purchased plan billing type is correct "<Billing Type>"
-	And If I click on My Account
-	And I can click on Orders
-	And I can validate the order "<Qty>" of "<Order Name>" @ "<Price>" on My Account page
-	And If I sign out of Brother Online
-	Then I am redirected to the Brother Home Page
-	And I can validate an Order Confirmation email was received
-
-Scenarios: 
-	
-	| Plan Type    | Country        | Billing Type | Qty | Order Name            | Price   |
-	| Lite         | United Kingdom | Monthly      | 1   | OmniJoin Lite         | £18.00  |
-	| Lite         | United Kingdom | Annual       | 1   | OmniJoin Lite         | £144.00 |
-	| Business     | United Kingdom | Monthly      | 1   | OmniJoin Pro          | £70.80  |
-	| Business     | United Kingdom | Annual       | 1   | OmniJoin Pro          | £678.00 |
-	| Professional | United Kingdom | Monthly      | 1   | OmniJoin              | £34.80  |
-	| Professional | United Kingdom | Annual       | 1   | OmniJoin              | £331.20 |
-
-@PROD @UAT @TEST
+@ignore	
 ## OmniJoin plan purchase - 
 Scenario: Purchase a Lite Use plan on Monthly Billing but click Cancel before submitting payment
 	 And I have navigated to the OmniJoin home page

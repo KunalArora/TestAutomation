@@ -513,7 +513,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [Then(@"I should see an error message due to an invalid tax code or codice fiscale")]
         public void ThenIShouldSeeAnErrorMessageOnTheCodiceFiscaleField()
         {
-            CurrentPage.As<RegistrationConfirmationPage>().InvalidPortugalTaxCodeErrorMessageDisplayed();
+            CurrentPage.As<RegistrationConfirmationPage>().InvalidTaxCodeErrorMessageDisplayed();
         }
         [Then(@"I should see an error message  due to missing mandatory tax code field")]
         public void ThenIShouldSeeAnErrorMessageDueToMissingMandatoryTaxCodeField()
@@ -523,7 +523,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [Then(@"I should see an error message due to an invalid VAT number or Numero partita IVA")]
         public void ThenIShouldSeeAnErrorMessageOnTheNumeroPartitaIvaField()
         {
-            CurrentPage.As<RegistrationConfirmationPage>().InvalidItalyTaxCodeErrorMessageDisplayed();
+            CurrentPage.As<RegistrationConfirmationPage>().InvalidTaxCodeErrorMessageDisplayed();
         }
 
 
@@ -539,7 +539,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         }
 
         [Then(@"I fill in the creative center registration information using a valid email address")]
-        public void WhenIFillInTheCCRegistrationInformationUsingAValidEmailAddress(Table table)
+        public void WhenIFillInTheCcRegistrationInformationUsingAValidEmailAddress(Table table)
         {
             dynamic form = table.CreateDynamicInstance();
             CurrentPage.As<HomePage>().PopulateCCFirstNameTextBox(form.FirstName);
