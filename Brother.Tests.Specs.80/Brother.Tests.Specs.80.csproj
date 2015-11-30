@@ -56,6 +56,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Test Specification\CMS Sitecore\EnvAccess\EnvAccess.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EnvAccess.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specification\CMS Sitecore\ExperienceEditor\Components\Accordian.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -221,6 +226,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SiteAccess.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Steps\BrotherMainSite\EnvAccess\EnvAccessSteps.cs" />
     <Compile Include="Test Steps\BrotherMainSite\FooterNavigation\AboutFooterSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Test Specification\BrotherMainSite\ContactUs\ContactUs.feature.cs">
@@ -314,7 +320,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />
-    <Folder Include="Test Specification\CMS Sitecore\EnvAccess\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Drivers\chromedriver.exe">
@@ -373,6 +378,10 @@
     <None Include="Test Specification\BrotherMainSite\Navigation\Products.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Products.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specification\CMS Sitecore\EnvAccess\EnvAccess.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>EnvAccess.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specification\CMS Sitecore\ExperienceEditor\Components\Accordian.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

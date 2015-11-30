@@ -1,4 +1,5 @@
-﻿@UAT @PROD @TEST
+﻿@IGNORE
+# @UAT @PROD @TEST
 Feature: Navigate main site top business solutions menu
        As a visitor of the Brother main site
        I am able to navigate to each of the

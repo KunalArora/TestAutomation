@@ -20,9 +20,7 @@ namespace Brother.Tests.Specs._80.TestSpecification.BrotherMainSite.Navigation
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("Navigate main site top support menu")]
-    [NUnit.Framework.CategoryAttribute("UAT")]
-    [NUnit.Framework.CategoryAttribute("PROD")]
-    [NUnit.Framework.CategoryAttribute("TEST")]
+    [NUnit.Framework.IgnoreAttribute()]
     public partial class NavigateMainSiteTopSupportMenuFeature
     {
         
@@ -37,9 +35,7 @@ namespace Brother.Tests.Specs._80.TestSpecification.BrotherMainSite.Navigation
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Navigate main site top support menu", "As a visitor of the Brother main site\r\nI am able to navigate to each of the\r\ntab " +
                     "items within the top support menu", ProgrammingLanguage.CSharp, new string[] {
-                        "UAT",
-                        "PROD",
-                        "TEST"});
+                        "IGNORE"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -78,13 +74,13 @@ namespace Brother.Tests.Specs._80.TestSpecification.BrotherMainSite.Navigation
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the support us page via the top main site support men" +
                     "u", ((string[])(null)));
-#line 7
-this.ScenarioSetup(scenarioInfo);
 #line 8
- testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioSetup(scenarioInfo);
 #line 9
- testRunner.And("I have clicked the top support menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 10
+ testRunner.And("I have clicked the top support menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 11
  testRunner.Then("I am navigated to the brother support page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -97,15 +93,15 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the contact us page via the top main site support men" +
                     "u", ((string[])(null)));
-#line 13
-this.ScenarioSetup(scenarioInfo);
 #line 14
- testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioSetup(scenarioInfo);
 #line 15
- testRunner.And("I hover over the top support menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 16
- testRunner.Then("I hover and click the contact us option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("I hover over the top support menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 17
+ testRunner.Then("I hover and click the contact us option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 18
  testRunner.Then("I am navigated to the contact us page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -118,15 +114,15 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the where to buy page via the top main site support m" +
                     "enu", ((string[])(null)));
-#line 20
-this.ScenarioSetup(scenarioInfo);
 #line 21
- testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioSetup(scenarioInfo);
 #line 22
- testRunner.And("I hover over the top support menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 23
- testRunner.Then("I hover and click the where to buy option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("I hover over the top support menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 24
+ testRunner.Then("I hover and click the where to buy option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 25
  testRunner.Then("I am navigated to the where to buy page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -139,15 +135,15 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the recycling page via the top main site support menu" +
                     "", ((string[])(null)));
-#line 27
-this.ScenarioSetup(scenarioInfo);
 #line 28
- testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioSetup(scenarioInfo);
 #line 29
- testRunner.And("I hover over the top support menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 30
- testRunner.Then("I hover and click the recycling option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("I hover over the top support menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 31
+ testRunner.Then("I hover and click the recycling option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 32
  testRunner.Then("I am navigated to the recycling page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -160,17 +156,17 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the toner recycling page via the top main site suppor" +
                     "t menu", ((string[])(null)));
-#line 34
-  this.ScenarioSetup(scenarioInfo);
 #line 35
-   testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+  this.ScenarioSetup(scenarioInfo);
 #line 36
-   testRunner.And("I hover over the top support menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+   testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 37
-   testRunner.Then("I hover and click the recycling option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+   testRunner.And("I hover over the top support menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 38
-   testRunner.Then("I click the toner recycling button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+   testRunner.Then("I hover and click the recycling option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 39
+   testRunner.Then("I click the toner recycling button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 40
    testRunner.Then("I am navigated to the toner recycling page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -183,19 +179,19 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the toner recycling download label page via the top m" +
                     "ain site support menu", ((string[])(null)));
-#line 42
-    this.ScenarioSetup(scenarioInfo);
 #line 43
-     testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+    this.ScenarioSetup(scenarioInfo);
 #line 44
-     testRunner.And("I hover over the top support menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+     testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 45
-     testRunner.Then("I hover and click the recycling option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+     testRunner.And("I hover over the top support menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 46
-     testRunner.Then("I click the toner recycling button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+     testRunner.Then("I hover and click the recycling option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 47
-     testRunner.Then("I click the download your label button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+     testRunner.Then("I click the toner recycling button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 48
+     testRunner.Then("I click the download your label button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 49
      testRunner.Then("I am navigated to the download your label page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -208,19 +204,19 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the toner recycling order collection box page via the" +
                     " top main site support menu", ((string[])(null)));
-#line 51
-    this.ScenarioSetup(scenarioInfo);
 #line 52
-     testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+    this.ScenarioSetup(scenarioInfo);
 #line 53
-     testRunner.And("I hover over the top support menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+     testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 54
-     testRunner.Then("I hover and click the recycling option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+     testRunner.And("I hover over the top support menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 55
-     testRunner.Then("I click the toner recycling button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+     testRunner.Then("I hover and click the recycling option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 56
-     testRunner.Then("I click the order collection box button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+     testRunner.Then("I click the toner recycling button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 57
+     testRunner.Then("I click the order collection box button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 58
      testRunner.Then("I am navigated to the order your collection box", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -233,17 +229,17 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the inkjet recycling page via the top main site suppo" +
                     "rt menu", ((string[])(null)));
-#line 60
-  this.ScenarioSetup(scenarioInfo);
 #line 61
-   testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+  this.ScenarioSetup(scenarioInfo);
 #line 62
-   testRunner.And("I hover over the top support menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+   testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 63
-   testRunner.Then("I hover and click the recycling option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+   testRunner.And("I hover over the top support menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 64
-   testRunner.Then("I click the inkjet recycling button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+   testRunner.Then("I hover and click the recycling option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 65
+   testRunner.Then("I click the inkjet recycling button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 66
    testRunner.Then("I am navigated to the inkjet recycling page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -256,19 +252,19 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the inkjet recycling form page via the top main site " +
                     "support menu", ((string[])(null)));
-#line 68
-    this.ScenarioSetup(scenarioInfo);
 #line 69
-     testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+    this.ScenarioSetup(scenarioInfo);
 #line 70
-     testRunner.And("I hover over the top support menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+     testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 71
-     testRunner.Then("I hover and click the recycling option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+     testRunner.And("I hover over the top support menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 72
-     testRunner.Then("I click the inkjet recycling button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+     testRunner.Then("I hover and click the recycling option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 73
-     testRunner.Then("I click the inkjet recycling form button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+     testRunner.Then("I click the inkjet recycling button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 74
+     testRunner.Then("I click the inkjet recycling form button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 75
      testRunner.Then("I am navigated to the inkkjet recycling form page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -281,17 +277,17 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the machine recycling page via the top main site supp" +
                     "ort menu", ((string[])(null)));
-#line 77
-  this.ScenarioSetup(scenarioInfo);
 #line 78
-   testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+  this.ScenarioSetup(scenarioInfo);
 #line 79
-   testRunner.And("I hover over the top support menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+   testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 80
-   testRunner.Then("I hover and click the recycling option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+   testRunner.And("I hover over the top support menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 81
-   testRunner.Then("I click the machine recycling button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+   testRunner.Then("I hover and click the recycling option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 82
+   testRunner.Then("I click the machine recycling button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 83
    testRunner.Then("I am navigated to the machine recycling page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -304,19 +300,19 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the machine recycling statement page via the top main" +
                     " site support menu", ((string[])(null)));
-#line 85
-    this.ScenarioSetup(scenarioInfo);
 #line 86
-     testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+    this.ScenarioSetup(scenarioInfo);
 #line 87
-     testRunner.And("I hover over the top support menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+     testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 88
-     testRunner.Then("I hover and click the recycling option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+     testRunner.And("I hover over the top support menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 89
-     testRunner.Then("I click the machine recycling button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+     testRunner.Then("I hover and click the recycling option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 90
-     testRunner.Then("I click the view statement page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+     testRunner.Then("I click the machine recycling button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 91
+     testRunner.Then("I click the view statement page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 92
      testRunner.Then("I am navigated to the machine recycling statement page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -329,15 +325,15 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User is able to navigate to the locate a service centre page via the top main sit" +
                     "e support menu", ((string[])(null)));
-#line 94
-this.ScenarioSetup(scenarioInfo);
 #line 95
- testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioSetup(scenarioInfo);
 #line 96
- testRunner.And("I hover over the top support menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("I have navigated to the \"<site>\" MainSite URL for country \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 97
- testRunner.Then("I hover and click the locate a service centre option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("I hover over the top support menu button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 98
+ testRunner.Then("I hover and click the locate a service centre option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 99
  testRunner.Then("I am navigated to the locate a service centre page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

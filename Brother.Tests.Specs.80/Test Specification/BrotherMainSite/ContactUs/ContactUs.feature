@@ -1,4 +1,5 @@
-﻿@UAT @PROD @TEST
+﻿@IGNORE
+@UAT @PROD @TEST
 Feature: Contact us feature
 	As a visitor of the Brother main site
 	I am able to use the contact us
