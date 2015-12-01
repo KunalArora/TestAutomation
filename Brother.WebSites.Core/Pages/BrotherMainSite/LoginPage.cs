@@ -57,6 +57,12 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         [FindsBy(How = How.CssSelector, Using = ".scInsertionHandle")] 
         public IWebElement ClickOnAddHereButton;
+
+        [FindsBy(How = How.CssSelector, Using = "#I5D6D39F4FE9549C0AAF4DF8A5B9F880B > div > img")]
+        public IWebElement ClickOnGridContentOneColumnGrid;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='OpenPropertiesBorder']")]
+        public IWebElement ClickOnSelectRendering ;
     
         public void PopulateUserNameTextBox(string userName)
         {
@@ -86,5 +92,14 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
             ClickOnAddHereButton.Click();
         }
 
+        public void ClickOnGrid(string country)
+        {
+            ClickOnGridContentOneColumnGrid.Click();
+        }
+
+        public void ClickOnSelectRenderingWindow(string country)
+        {
+            ClickOnSelectRendering.Click();
+        }
     }
 }

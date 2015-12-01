@@ -135,10 +135,15 @@ namespace Brother.Tests.Specs._80.BrotherMainSite.HomePageNavigation
        {
            CurrentPage.As<LoginPage>().ClickOnAddHere(country);
        }
+       [Given(@"I click on the Select a Rendering ""(.*)""")]
+       public void GivenIClickOnTheSelectARendering(string country)
+       {
+          CurrentPage.As<LoginPage>().ClickOnSelectRenderingWindow(country);
+       }
        [Then(@"I should be able to add grid from the grid option ""(.*)""")]
        public void ThenIShouldBeAbleToAddGridFromTheGridOption(string country)
        {
-           //ScenarioContext.Current.Pending(country);
+           CurrentPage.As<LoginPage>().ClickOnGrid(country);
        }
 
 
