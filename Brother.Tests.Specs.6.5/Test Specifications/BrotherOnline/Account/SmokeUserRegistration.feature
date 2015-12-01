@@ -832,7 +832,7 @@ Scenario: Purchase a Lite Use plan on Monthly Billing but click Cancel before su
 # Create Omnijoin free trials create it for france, ireland, germany
 
 @TEST
-#QAS:Test fails on OJFreeTrail Page with 404 error message
+#QAS:Test fails on OJFreeTrail Page with 404 error message (BBAU-2828)
 Scenario: Sign Up for 14 day Free trial already signed into Brother Online Ireland
 	Given I want to create a new account with Brother Online "Ireland"
 	When I click on Create Account for "Ireland"
@@ -895,7 +895,7 @@ Scenario: Sign Up for 14 day Free trial already signed into Brother Online Germa
 	Then I am redirected to the Brother Home Page
 
 @IGNORE
-#On Dv2 and QAS :Test fails on OJFreeTrail Page.
+#On Dv2 and QAS :Test fails on OJFreeTrail Page.(BBAU 2928 and 2932)
 Scenario: Sign Up for 14 day Free trial already signed into Brother Online France
 	Given I want to create a new account with Brother Online "France"
 	When I click on Create Account for "France"
