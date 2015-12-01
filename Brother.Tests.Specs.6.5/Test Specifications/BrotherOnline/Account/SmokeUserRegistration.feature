@@ -937,8 +937,8 @@ Scenario: Purchase a Lite Use plan on Monthly Billing but click Cancel before su
 
 # Create Omnijoin free trials create it for france, ireland, germany
 
-@IGNORE
-#Test Fails with Timeout exception error message on FreeTrail OJ SignUp Page
+@TEST
+#QAS:Test fails on OJFreeTrail Page with 404 error message
 Scenario: Sign Up for 14 day Free trial already signed into Brother Online Ireland
 	Given I want to create a new account with Brother Online "Ireland"
 	When I click on Create Account for "Ireland"
@@ -961,19 +961,15 @@ Scenario: Sign Up for 14 day Free trial already signed into Brother Online Irela
 	Then I should see OmniJOin Free trail page
 	When I have entered a valid FirstName as "Test"
 	 And I have  entered a valid LastName as "User"
- 	 And I fill in valid email address
-	When I have fill in a phone number "12341234131"
-	And I have Agreed to the Free Trial Terms and Conditions
-	And if I click Submit
-	And I click start free trail button
-	Then I should be directed to the download page indicating I have 14 days Free trial
+ 	 And I agreed to the free trail terms and services
+ 	 And I click start free trail button
+	Then I should be on download page
 	And Once I have Validated a Free Trial confirmation Email was received
 	Then If I go back to Brother Online Home Page 
 	Then I can sign out of Brother Online
 	Then I am redirected to the Brother Home Page
 
-@IGNORE
-#Test Fails with Timeout exception error message on FreeTrail OJ SignUp Page
+@TEST @UAT
 Scenario: Sign Up for 14 day Free trial already signed into Brother Online Germany
 	Given I want to create a new account with Brother Online "Germany"
 	When I click on Create Account for "Germany"
@@ -996,19 +992,16 @@ Scenario: Sign Up for 14 day Free trial already signed into Brother Online Germa
 	Then I should see OmniJOin Free trail page
 	When I have entered a valid FirstName as "Test"
 	 And I have  entered a valid LastName as "User"
- 	 And I fill in valid email address
-	When I have fill in a phone number "12341234131"
-	And I have Agreed to the Free Trial Terms and Conditions
-	And if I click Submit
-	And I click start free trail button
-	Then I should be directed to the download page indicating I have 14 days Free trial
+ 	 And I agreed to the free trail terms and services
+ 	 And I click start free trail button
+	Then I should be on download page
 	And Once I have Validated a Free Trial confirmation Email was received
 	Then If I go back to Brother Online Home Page 
 	Then I can sign out of Brother Online
 	Then I am redirected to the Brother Home Page
 
 @IGNORE
-#Test Fails with Timeout exception error message on FreeTrail OJ SignUp Page
+#On Dv2 and QAS :Test fails on OJFreeTrail Page.
 Scenario: Sign Up for 14 day Free trial already signed into Brother Online France
 	Given I want to create a new account with Brother Online "France"
 	When I click on Create Account for "France"
@@ -1031,12 +1024,9 @@ Scenario: Sign Up for 14 day Free trial already signed into Brother Online Franc
 	Then I should see OmniJOin Free trail page
 	When I have entered a valid FirstName as "Test"
 	 And I have  entered a valid LastName as "User"
- 	 And I fill in valid email address
-	When I have fill in a phone number "12341234131"
-	And I have Agreed to the Free Trial Terms and Conditions
-	And if I click Submit
-	And I click start free trail button
-	Then I should be directed to the download page indicating I have 14 days Free trial
+ 	 And I agreed to the free trail terms and services
+ 	 And I click start free trail button
+	 Then I should be on download page
 	And Once I have Validated a Free Trial confirmation Email was received
 	Then If I go back to Brother Online Home Page 
 	Then I can sign out of Brother Online
