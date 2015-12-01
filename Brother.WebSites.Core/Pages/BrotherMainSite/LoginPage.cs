@@ -52,9 +52,17 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         [FindsBy(How = How.CssSelector, Using = "#login > input")] 
         public IWebElement LogInButton;
 
-        [FindsBy(How = How.Id, Using = "Main_Body")]
+        [FindsBy(How = How.CssSelector, Using = "body > div:nth-child(15)")]
         public IWebElement ClickOnMainHeaderBar;
 
+        [FindsBy(How = How.CssSelector, Using = ".scInsertionHandle")] 
+        public IWebElement ClickOnAddHereButton;
+
+        [FindsBy(How = How.CssSelector, Using = "#I5D6D39F4FE9549C0AAF4DF8A5B9F880B > div > img")]
+        public IWebElement ClickOnGridContentOneColumnGrid;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='OpenPropertiesBorder']")]
+        public IWebElement ClickOnSelectRendering ;
     
         public void PopulateUserNameTextBox(string userName)
         {
@@ -77,6 +85,21 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         public void ClickOnMainHeader(string country)
         {
             ClickOnMainHeaderBar.Click();
+        }
+
+        public void ClickOnAddHere(string country)
+        {
+            ClickOnAddHereButton.Click();
+        }
+
+        public void ClickOnGrid(string country)
+        {
+            ClickOnGridContentOneColumnGrid.Click();
+        }
+
+        public void ClickOnSelectRenderingWindow(string country)
+        {
+            ClickOnSelectRendering.Click();
         }
     }
 }

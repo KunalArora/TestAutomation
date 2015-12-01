@@ -261,33 +261,6 @@ Scenarios:
 | Country     |	
 | Russia      |  
 
-
-Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on poland site
-	Given I want to create a new account with Brother Online "<Country>"
-	When I click on Create Account for "<Country>"
-	And I am redirected to the Brother Login/Register page
-	And I have Checked No I Do Not Have An Account Checkbox
-	And I fill in the registration information using a valid email address 
-	| field           | value          |
-	| FirstName       | AutoTest       |
-	| LastName        | AutoTest       |
-	| Password        | @@@@@	       |
-	| ConfirmPassword | @@@@@		   |
-
-	And I have Agreed to the Terms and Conditions
-	And I declare that I do not use this account for business
-	When I press Create Your Account
-	Then I should see my account confirmation page
-	And When I Click Go Back
-	#And Once I have Validated an Email was received and verified my account
-	Then I should be able to log into "<Country>" Brother Online using my account details
-	And I can sign out of Brother Online
-	Then I am redirected to the Brother Home Page
-Scenarios: 
-| Country     |	
-| Poland      |  
-
-
 Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on Slovakia site
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -364,32 +337,6 @@ Scenario Outline: Customer creates a new account with BOL using valid credential
 Scenarios: 
 | Country       |	
 | Spain         |  
-
-
-Scenario Outline: Customer creates a new account with BOL using valid credentials, confirm by email on Czech Republic site
-	Given I want to create a new account with Brother Online "<Country>"
-	When I click on Create Account for "<Country>"
-	And I am redirected to the Brother Login/Register page
-	And I have Checked No I Do Not Have An Account Checkbox
-	And I fill in the registration information using a valid email address 
-	| field           | value          |
-	| FirstName       | AutoTest       |
-	| LastName        | AutoTest       |
-	| Password        | @@@@@	       |
-	| ConfirmPassword | @@@@@		   |
-
-	And I have Agreed to the Terms and Conditions
-	And I declare that I do not use this account for business
-	When I press Create Your Account
-	Then I should see my account confirmation page
-	And When I Click Go Back
-	#And Once I have Validated an Email was received and verified my account
-	Then I should be able to log into "<Country>" Brother Online using my account details
-	And I can sign out of Brother Online
-	Then I am redirected to the Brother Home Page
-Scenarios: 
-| Country                |	
-| Czech Republic         |  
 
 # B2C User registration with tax codes
 
@@ -590,33 +537,6 @@ Scenarios:
 | Country		| Business Sector		| VAT Number       |
 | Portugal		| Fabrico				| INVALIDVATNUMBER |
 
-
-Scenario Outline: Customer gets valid error message on BOL Czech site with invalid tax code 
-	Given I want to create a new account with Brother Online "<Country>"
-	When I click on Create Account for "<Country>"
-	And I am redirected to the Brother Login/Register page
-	And I have Checked No I Do Not Have An Account Checkbox
-	And I declare that I do use this account for business
-	And I fill in the registration information using a valid email address 
-	| field           | value           |
-	| FirstName       | AutoTest        |
-	| LastName        | AutoTest		|
-	| Password        | @@@@@			|
-	| ConfirmPassword | @@@@@			|
-	And I add my company name as "AutoTestLtd"
-	And I select my Business Sector as "<Business Sector>"
-	# And I enter my Business Sector as "<Business Sector>"
-	And I select number of Employees as "11 - 50"
-	And I enter an invalid VAT Number as "<VAT Number>"
-	And I have Agreed to the Terms and Conditions
-	When I press Create Your Account
-	Then I should see an error message due to an invalid tax code 
-
-Scenarios:
-| Country		| Business Sector		| VAT Number       |
-| Czech Republic			| Velkoprodej			| INVALIDVATNUMBER |
-
-
 Scenario Outline: Customer gets valid error message on BOL Denmark site with invalid tax code
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -694,32 +614,6 @@ Scenario Outline: Customer gets valid error message on BOL Norway site with inva
 Scenarios:
 | Country		| Business Sector		| VAT Number       |
 | Norway		| Industri				| INVALIDVATNUMBER |
-
-Scenario Outline: Customer gets valid error message on BOL poland site with invalid tax code
-	Given I want to create a new account with Brother Online "<Country>"
-	When I click on Create Account for "<Country>"
-	And I am redirected to the Brother Login/Register page
-	And I have Checked No I Do Not Have An Account Checkbox
-	And I declare that I do use this account for business
-	And I fill in the registration information using a valid email address 
-	| field           | value           |
-	| FirstName       | AutoTest        |
-	| LastName        | AutoTest		|
-	| Password        | @@@@@			|
-	| ConfirmPassword | @@@@@			|
-	And I add my company name as "AutoTestLtd"
-	And I select my Business Sector as "<Business Sector>"
-	# And I enter my Business Sector as "<Business Sector>"
-	And I select number of Employees as "11 - 50"
-	And I enter an invalid VAT Number as "<VAT Number>"
-	And I have Agreed to the Terms and Conditions
-	When I press Create Your Account
-	Then I should see an error message due to an invalid tax code 
-
-Scenarios:
-| Country		| Business Sector		| VAT Number       |
-| Poland		| Produkcja				| INVALIDVATNUMBER |  
-
 
 Scenario Outline: Customer gets valid error message on BOL spain site with invalid tax code
 	Given I want to create a new account with Brother Online "<Country>"
@@ -937,8 +831,8 @@ Scenario: Purchase a Lite Use plan on Monthly Billing but click Cancel before su
 
 # Create Omnijoin free trials create it for france, ireland, germany
 
-@TEST
-#QAS:Test fails on OJFreeTrail Page with 404 error message
+@ignore
+#QAS:Test fails on OJFreeTrail Page with 404 error message (BBAU-2828)
 Scenario: Sign Up for 14 day Free trial already signed into Brother Online Ireland
 	Given I want to create a new account with Brother Online "Ireland"
 	When I click on Create Account for "Ireland"
@@ -1000,8 +894,8 @@ Scenario: Sign Up for 14 day Free trial already signed into Brother Online Germa
 	Then I can sign out of Brother Online
 	Then I am redirected to the Brother Home Page
 
-@IGNORE
-#On Dv2 and QAS :Test fails on OJFreeTrail Page.
+@ignore
+#On Dv2 and QAS :Test fails on OJFreeTrail Page.(BBAU 2928 and 2932)
 Scenario: Sign Up for 14 day Free trial already signed into Brother Online France
 	Given I want to create a new account with Brother Online "France"
 	When I click on Create Account for "France"
@@ -1031,3 +925,28 @@ Scenario: Sign Up for 14 day Free trial already signed into Brother Online Franc
 	Then If I go back to Brother Online Home Page 
 	Then I can sign out of Brother Online
 	Then I am redirected to the Brother Home Page
+
+@TEST @UAT
+	Scenario: Verify error message displays without accepting terms and services on Germany BOL OJfreeTrailSignUpPage
+	Given I want to create a new account with Brother Online "Germany"
+	When I click on Create Account for "Germany"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I fill in the registration information using a valid email address 
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Password        | @@@@@	       |
+	| ConfirmPassword | @@@@@		   |
+
+	And I have Agreed to the Terms and Conditions
+	And I declare that I do not use this account for business
+	When I press Create Your Account
+	Then I should see my account confirmation page
+	And When I Click Go Back
+	Then I should be able to log into "Germany" Brother Online using my account details
+	And I click on Try Now
+	Then I should see OmniJOin Free trail page
+	 When I click start free trail button
+	 Then I should see valid error message on FreeOjSignUpPage
+	

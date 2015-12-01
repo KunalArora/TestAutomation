@@ -138,6 +138,13 @@ namespace Brother.Tests.Specs.OmniJoin.FreeTrial
             CurrentPage.As<FreeTrialPage>().AgreeToTermsAndServices();
         }
 
+
+        [Then(@"I should see valid error message on FreeOjSignUpPage")]
+        public void ThenIShouldSeeValidErrorMessageOnFreeOjSignUpPage()
+        {
+            CurrentPage.As<FreeTrialDownloadPage>().ValidErrorMessageonFreeOjSignupPageDisplayed();
+        }
+
         [When(@"if I click Submit")]
         public void WhenIfIClickSubmit()
         {
