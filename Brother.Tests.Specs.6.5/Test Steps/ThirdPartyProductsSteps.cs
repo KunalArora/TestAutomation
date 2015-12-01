@@ -104,6 +104,7 @@ namespace Brother.Tests.Specs
             //}
         }
 
+        [Then(@"I have Validated a Free Trial confirmation Email was received")]
         [Then(@"Once I have Validated a Free Trial confirmation Email was received")]
         public void ThenOnceIHaveValidatedAFreeTrialConfirmationEmailWasReceived()
         {

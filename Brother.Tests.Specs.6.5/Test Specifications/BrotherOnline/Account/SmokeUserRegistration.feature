@@ -779,7 +779,7 @@ Scenario: Sign Up for 14 day Free trial already signed into Brother Online
 	Then I am redirected to the Brother Home Page
 
 	
-@TEST
+@ignore
 Scenario Outline: Purchase OmniJoin subscription plan for <country> for a <Plan Type> plan on <Billing Type> billing
 	Given I have navigated to the OmniJoin home page
 	And I have clicked on Buy
@@ -974,7 +974,26 @@ Scenario: Sign Up for 14 day Free trial already signed into Brother Online Franc
 	Then I should see OmniJOin Free trail page
 	 When I click start free trail button
 	 Then I should see valid error message on FreeOjSignUpPage
+
+@TEST @UAT
+#DV2: Oj FreeTrail new user signup displays 14days 
+#QAS:OJ Free Trail new user signup displays 30 days
+Scenario: New user without Uk BOL account wants to sign up for FreeOJTrail
+Given I have navigated to the OmniJoin home page
+	And If I click on Start Free Trial
+	Then I should be directed to the OmniJoinFreeTrail page
+	When I fill Firstname as "Test" 
+	And I fill in LastName as "User"
+	And I fill in a valid new email address
+	And I fill in a password as "Password123"
+	And I fill in a Change password as "Password123"
+	And I fill in  valid phone number as "01234561237"
+	And I agreed to the FreeTrail Terms of services 
+	And I click Submit
+	Then I should be directed to the download page indicating I have 14 days Free trial
+	And I have Validated a Free Trial confirmation Email was received
 	
+
 
 
 

@@ -1740,7 +1740,7 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Purchase OmniJoin subscription plan for <country> for a <Plan Type> plan on <Bill" +
             "ing Type> billing")]
-        [NUnit.Framework.CategoryAttribute("TEST")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Lite", "United Kingdom", "Monthly", "1", "OmniJoin Lite", "£18.00", null)]
         [NUnit.Framework.TestCaseAttribute("Lite", "United Kingdom", "Annual", "1", "OmniJoin Lite", "£144.00", null)]
         [NUnit.Framework.TestCaseAttribute("Business", "United Kingdom", "Monthly", "1", "OmniJoin Pro", "£70.80", null)]
@@ -1750,7 +1750,7 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void PurchaseOmniJoinSubscriptionPlanForCountryForAPlanTypePlanOnBillingTypeBilling(string planType, string country, string billingType, string qty, string orderName, string price, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "TEST"};
+                    "ignore"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -2186,6 +2186,47 @@ this.ScenarioSetup(scenarioInfo);
   testRunner.When("I click start free trail button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 976
   testRunner.Then("I should see valid error message on FreeOjSignUpPage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("New user without Uk BOL account wants to sign up for FreeOJTrail")]
+        [NUnit.Framework.CategoryAttribute("TEST")]
+        [NUnit.Framework.CategoryAttribute("UAT")]
+        public virtual void NewUserWithoutUkBOLAccountWantsToSignUpForFreeOJTrail()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("New user without Uk BOL account wants to sign up for FreeOJTrail", new string[] {
+                        "TEST",
+                        "UAT"});
+#line 981
+this.ScenarioSetup(scenarioInfo);
+#line 982
+testRunner.Given("I have navigated to the OmniJoin home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 983
+ testRunner.And("If I click on Start Free Trial", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 984
+ testRunner.Then("I should be directed to the OmniJoinFreeTrail page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 985
+ testRunner.When("I fill Firstname as \"Test\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 986
+ testRunner.And("I fill in LastName as \"User\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 987
+ testRunner.And("I fill in a valid new email address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 988
+ testRunner.And("I fill in a password as \"Password123\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 989
+ testRunner.And("I fill in a Change password as \"Password123\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 990
+ testRunner.And("I fill in  valid phone number as \"01234561237\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 991
+ testRunner.And("I agreed to the FreeTrail Terms of services", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 992
+ testRunner.And("I click Submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 993
+ testRunner.Then("I should be directed to the download page indicating I have 14 days Free trial", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 994
+ testRunner.And("I have Validated a Free Trial confirmation Email was received", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
