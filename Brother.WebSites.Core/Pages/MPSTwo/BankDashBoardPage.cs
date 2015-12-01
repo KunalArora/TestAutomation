@@ -1,5 +1,6 @@
 ﻿using System;
 using Brother.Tests.Selenium.Lib.Support;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -34,6 +35,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             if (OffersLinkElement == null)
                 throw new Exception("Unable to locate Offers link on dashboard page");
+           
 
             AssertElementPresent(OffersLinkElement, "Create New Offers Link");
         }
