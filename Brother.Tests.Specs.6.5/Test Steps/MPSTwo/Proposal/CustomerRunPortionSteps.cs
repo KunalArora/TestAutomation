@@ -22,7 +22,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         public void WhenINavigateToConsumableOrderingPage()
         {
             CurrentPage.As<CustomerConsummablePage>().IsConsumableScreenDisplayed();
-            //CurrentPage.As<CustomerConsummablePage>().IsCorrectContractIdDisplayed();
+            CurrentPage.As<CustomerConsummablePage>().RemoveExistingConsumableOrderBySerialNumber();
             CurrentPage.As<CustomerConsummablePage>().IsCorrectDeviceSerialNumberDisplayed();
             NextPage = CurrentPage.As<CustomerConsummablePage>().NavigateToConsumableRaiseOrderPage();
         }

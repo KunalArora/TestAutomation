@@ -4,14 +4,14 @@ Feature: CustomerCanPerformSomeRunActions
 	As a customer
 	I want to be to sign in using my newly generated credentials
 
-@ignore
+
 Scenario Outline: Customer cannot order consumable before initial communication with device
-	Given Dealer have created a contract of "<ContractType>" and "<UsageType>"
-	And I sign into Cloud MPS as a "<Role>" from "<Country>"
-	And the contract created above is approved
-	And I sign back into Cloud MPS as a "<Role1>" from "<Country>"
-	And I installed the device in the contract through "<Method>"
-	And I can sign out of Brother Online
+	#Given Dealer have created a contract of "<ContractType>" and "<UsageType>"
+	#And I sign into Cloud MPS as a "<Role>" from "<Country>"
+	#And the contract created above is approved
+	#And I sign back into Cloud MPS as a "<Role1>" from "<Country>"
+	#And I installed the device in the contract through "<Method>"
+	#And I can sign out of Brother Online
 	When I sign back into Cloud MPS as a "<Role2>" from "<Country>"
 	And I navigate to customer dashboard page
 	And I navigate to consumable ordering page
@@ -24,7 +24,7 @@ Scenarios:
 	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Email  | Cloud MPS Customer |
 
 
-@ignore
+
 Scenario Outline: Customer can order consumable after initial communication with device
 	Given I sign back into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to customer dashboard page
