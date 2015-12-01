@@ -52,9 +52,11 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         [FindsBy(How = How.CssSelector, Using = "#login > input")] 
         public IWebElement LogInButton;
 
-        [FindsBy(How = How.Id, Using = "Main_Body")]
+        [FindsBy(How = How.CssSelector, Using = "body > div:nth-child(15)")]
         public IWebElement ClickOnMainHeaderBar;
 
+        [FindsBy(How = How.CssSelector, Using = ".scInsertionHandle")] 
+        public IWebElement ClickOnAddHereButton;
     
         public void PopulateUserNameTextBox(string userName)
         {
@@ -78,5 +80,11 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         {
             ClickOnMainHeaderBar.Click();
         }
+
+        public void ClickOnAddHere(string country)
+        {
+            ClickOnAddHereButton.Click();
+        }
+
     }
 }
