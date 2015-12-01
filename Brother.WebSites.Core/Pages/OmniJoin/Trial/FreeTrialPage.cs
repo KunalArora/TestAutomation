@@ -21,6 +21,12 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Trial
         [FindsBy(How = How.CssSelector, Using = "#txtFirstName")]
         public IWebElement FirstNameTextBox;
 
+        [FindsBy(How = How.XPath, Using = ".//*[@id='content_0_trynowcontentright_0_FirstNameTextBox']/input")] public IWebElement FirstNameTxtBox;
+        [FindsBy(How = How.XPath, Using = ".//*[@id='content_0_trynowcontentright_0_LastNameTextBox']/input")] public IWebElement LastNameTxtBox;
+        [FindsBy(How = How.XPath, Using = ".//*[@id='content_0_trynowcontentright_0_EmailAddressTextBox']/input")] public IWebElement EmailAddressTxtBox;
+        [FindsBy(How = How.CssSelector, Using = "#content_0_trynowcontentright_0_OptionalPhoneNumberTextBox")] public IWebElement PhoneNumberTxtBox;
+        [FindsBy(How = How.CssSelector, Using = "#content_0_trynowcontentright_0_StartFreeTrialButton")] public IWebElement StartFreeTrailButton;
+                                              
         [FindsBy(How = How.CssSelector, Using = "#txtLastName")]
         public IWebElement LastNameTextBox;
 
@@ -39,8 +45,11 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Trial
         [FindsBy(How = How.CssSelector, Using = "#content_0_maincontent_2_chkMarketingOptIn")]
         public IWebElement SendInfoCheckBox;
 
-        [FindsBy(How = How.CssSelector, Using = "#content_0_maincontent_2_chkTerms")]
+        [FindsBy(How = How.CssSelector, Using = "#content_0_maincontent_2_chkTerms")] 
         public IWebElement TermsAndConditionsCheckBox;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='content_0_trynowcontentright_0_TermsAndConditionsCheckbox']")]
+        public IWebElement TermsAndServicesCheckBox;
 
         [FindsBy(How = How.CssSelector, Using = "#content_0_maincontent_2_vldRegExEmail")]
         public IWebElement EmailAddressErrorMessage;
@@ -59,16 +68,30 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Trial
          
         public void IsSubmitButtonAvailable()
         {
-            if (SubmitButton == null)
+            if (StartFreeTrailButton == null)
             {
                 throw new NullReferenceException("Unable to locate button on page");
             }
-            AssertElementPresent(SubmitButton, "Submit (Free-trial) Button");
+            AssertElementPresent(StartFreeTrailButton, "Submit (Free-trial) Button");
         }
+        public void IsStartFreeTrailButtonAvailable()
+        {
+            if (StartFreeTrailButton == null)
+            {
+                throw new NullReferenceException("Unable to locate button on page");
+            }
+            AssertElementPresent(StartFreeTrailButton, "StartWebFreeTrailButton");
+        }
+
 
         public FreeTrialDownloadPage SubmitButtonClick()
         {
-            SubmitButton.Click();
+            StartFreeTrailButton.Click();
+            return GetInstance<FreeTrialDownloadPage>(Driver);
+        }
+        public FreeTrialDownloadPage StartFreeTrailButtonClick()
+        {
+            StartFreeTrailButton.Click();
             return GetInstance<FreeTrialDownloadPage>(Driver);
         }
 
@@ -78,10 +101,25 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Trial
             TestCheck.AssertIsEqual(firstName, GetTextBoxValue("txtFirstName"), "FirstName Text Box");
         }
 
+        public void PopulateFirstNameTxtBox(string firstName)
+        {
+            FirstNameTxtBox.Clear();
+            FirstNameTxtBox.SendKeys(firstName);
+            
+        }
         public void PopulateLastNameTextBox(string lastName)
         {
+           
             LastNameTextBox.SendKeys(lastName);
             TestCheck.AssertIsEqual(lastName, GetTextBoxValue("txtLastName"), "LastName Text Box");
+        }
+
+        public void PopulateLastNameTxtBox(string lastName)
+        {
+            LastNameTxtBox.Clear();
+            LastNameTxtBox.SendKeys(lastName);
+            LastNameTxtBox.SendKeys(Keys.Tab);
+            
         }
 
         public void PopulateEmailAddressTextBox(string emailAddress)
@@ -91,10 +129,24 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Trial
                 emailAddress = Email.GenerateUniqueEmailAddress();
             }
 
-            EmailAddressTextBox.Clear();
-            EmailAddressTextBox.SendKeys(emailAddress);
-            EmailAddressTextBox.SendKeys(Keys.Tab);
+            EmailAddressTxtBox.Clear();
+            EmailAddressTxtBox.SendKeys(emailAddress);
+            EmailAddressTxtBox.SendKeys(Keys.Tab);
             TestCheck.AssertIsEqual(emailAddress, GetTextBoxValue("txtEmailAddress"), "Email Address Text Box");
+        }
+
+
+        public void PopulateEmailAddressTxtBox(string emailAddress)
+        {
+            EmailAddressTxtBox.Clear();
+            if (emailAddress.Equals(string.Empty))
+            {
+                emailAddress = Email.GenerateUniqueEmailAddress();
+            }
+         
+            EmailAddressTxtBox.SendKeys(emailAddress);
+            EmailAddressTxtBox.SendKeys(Keys.Tab);
+           TestCheck.AssertIsEqual(emailAddress, GetTextBoxValue("txtEmailAddress"), "Email Address Text Box");
         }
 
         public void PopulateConfirmPasswordTextBox(string password)
@@ -133,8 +185,14 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Trial
 
         public void PopulatePhoneNumberTextBox(string phoneNumber)
         {
-            PhoneNumberTextBox.SendKeys(phoneNumber);
+            PhoneNumberTxtBox.SendKeys(phoneNumber);
             TestCheck.AssertIsEqual(phoneNumber, GetTextBoxValue("content_0_maincontent_2_txtPhoneNumber"), "Phone Number Text Box");
+        }
+
+        public void PopulatePhoneNumberTxtBox(string phoneNumber)
+        {
+            PhoneNumberTxtBox.SendKeys(phoneNumber);
+            TestCheck.AssertIsEqual(phoneNumber, GetTextBoxValue("#content_0_trynowcontentright_0_OptionalPhoneNumberTextBox"), "Phone Number Text Box");
         }
 
         public void AgreeToTermsAndConditions()
@@ -143,11 +201,17 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Trial
             TermsAndConditionsCheckBox.Click();
             TestCheck.AssertIsEqual(TermsAndConditionsCheckBox.Selected.ToString(), "True", "Accept Terms and Conditions Button");
         }
+        public void AgreeToTermsAndServices()
+        {
+            ScrollTo(TermsAndServicesCheckBox);
+            TermsAndServicesCheckBox.Click();
+           
+        }
 
         public void PopulateInvalidEmailAddressTextBox(string invalidemailaddress)
         {
-            EmailAddressTextBox.SendKeys(invalidemailaddress);
-            EmailAddressTextBox.SendKeys(Keys.Tab);
+            EmailAddressTxtBox.SendKeys(invalidemailaddress);
+            EmailAddressTxtBox.SendKeys(Keys.Tab);
         }
 
         public void ErrorMessageDisplayed()
@@ -162,7 +226,7 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Trial
 
         public void SubmitButtonClickBeforeTAndC()
         {
-            SubmitButton.Click();
+            StartFreeTrailButton.Click();
         }
         public void ErrorMessageDisplayedPasswordConfirmationField()
         {

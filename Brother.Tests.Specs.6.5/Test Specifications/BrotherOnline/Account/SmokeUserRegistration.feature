@@ -848,7 +848,7 @@ Scenarios:
 | Country		| Business Sector		| VAT Number       |
 | Belgium		| Fabrication		    | INVALIDVATNUMBER | 
 
-
+@TEST
 Scenario: Sign Up for 14 day Free trial already signed into Brother Online
 	# Create an account on BOL and sign in
 	Given I want to create a new account with Brother Online "United Kingdom"
@@ -936,3 +936,98 @@ Scenario: Purchase a Lite Use plan on Monthly Billing but click Cancel before su
 	Then I can sign out of Brother Online
 
 # Create Omnijoin free trials create it for france, ireland, germany
+
+@TEST
+#QAS:Test fails on OJFreeTrail Page with 404 error message
+Scenario: Sign Up for 14 day Free trial already signed into Brother Online Ireland
+	Given I want to create a new account with Brother Online "Ireland"
+	When I click on Create Account for "Ireland"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I fill in the registration information using a valid email address 
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Password        | @@@@@	       |
+	| ConfirmPassword | @@@@@		   |
+
+	And I have Agreed to the Terms and Conditions
+	And I declare that I do not use this account for business
+	When I press Create Your Account
+	Then I should see my account confirmation page
+	And When I Click Go Back
+	Then I should be able to log into "Ireland" Brother Online using my account details
+	And I click on Try Now
+	Then I should see OmniJOin Free trail page
+	When I have entered a valid FirstName as "Test"
+	 And I have  entered a valid LastName as "User"
+ 	 And I agreed to the free trail terms and services
+ 	 And I click start free trail button
+	Then I should be on download page
+	And Once I have Validated a Free Trial confirmation Email was received
+	Then If I go back to Brother Online Home Page 
+	Then I can sign out of Brother Online
+	Then I am redirected to the Brother Home Page
+
+@TEST @UAT
+Scenario: Sign Up for 14 day Free trial already signed into Brother Online Germany
+	Given I want to create a new account with Brother Online "Germany"
+	When I click on Create Account for "Germany"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I fill in the registration information using a valid email address 
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Password        | @@@@@	       |
+	| ConfirmPassword | @@@@@		   |
+
+	And I have Agreed to the Terms and Conditions
+	And I declare that I do not use this account for business
+	When I press Create Your Account
+	Then I should see my account confirmation page
+	And When I Click Go Back
+	Then I should be able to log into "Germany" Brother Online using my account details
+	And I click on Try Now
+	Then I should see OmniJOin Free trail page
+	When I have entered a valid FirstName as "Test"
+	 And I have  entered a valid LastName as "User"
+ 	 And I agreed to the free trail terms and services
+ 	 And I click start free trail button
+	Then I should be on download page
+	And Once I have Validated a Free Trial confirmation Email was received
+	Then If I go back to Brother Online Home Page 
+	Then I can sign out of Brother Online
+	Then I am redirected to the Brother Home Page
+
+@IGNORE
+#On Dv2 and QAS :Test fails on OJFreeTrail Page.
+Scenario: Sign Up for 14 day Free trial already signed into Brother Online France
+	Given I want to create a new account with Brother Online "France"
+	When I click on Create Account for "France"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I fill in the registration information using a valid email address 
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Password        | @@@@@	       |
+	| ConfirmPassword | @@@@@		   |
+
+	And I have Agreed to the Terms and Conditions
+	And I declare that I do not use this account for business
+	When I press Create Your Account
+	Then I should see my account confirmation page
+	And When I Click Go Back
+	Then I should be able to log into "France" Brother Online using my account details
+	And I click on Try Now
+	Then I should see OmniJOin Free trail page
+	When I have entered a valid FirstName as "Test"
+	 And I have  entered a valid LastName as "User"
+ 	 And I agreed to the free trail terms and services
+ 	 And I click start free trail button
+	 Then I should be on download page
+	And Once I have Validated a Free Trial confirmation Email was received
+	Then If I go back to Brother Online Home Page 
+	Then I can sign out of Brother Online
+	Then I am redirected to the Brother Home Page

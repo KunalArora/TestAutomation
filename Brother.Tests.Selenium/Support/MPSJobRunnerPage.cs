@@ -30,6 +30,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string resetSerialNumberJob = @"resetinstalledprinter.aspx?serial=";
         private const string setCustomerSAPIdJob = @"setcustomersapid.aspx?name={0}&sapid={1}";
         private const string setPersonSAPIdJob = @"setpersonsapid.aspx?email={0}&sapid={1}";
+        private const string removeConsumableOrderById = @"removeconsumableorderbyid.aspx?orderid=";
+        private const string removeConsumableOrderByInstalledPrinter = @"removeconsumableorderbyinstalledprinter.aspx?serial=";
        
         private const string setConsumableStatusJob = @"setconsumableorderstatus.aspx?orderid={0}&statusid={1}";
 
@@ -95,6 +97,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public static void RunClickRateInvoiceCommandJob()
         {
             var webSite = CoinedUrl() + clickRateInvoiceCommand;
+
+            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, authHeader);
+        }
+
+        public static void RunRemoveConsumableOrderByIdJob(string id)
+        {
+            var webSite = CoinedUrl() + removeConsumableOrderById + id;
+
+            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, authHeader);
+        }
+
+        public static void RunRemoveConsumableOrderByInstalledPrinterJob(string serial)
+        {
+            var webSite = CoinedUrl() + removeConsumableOrderByInstalledPrinter + serial;
 
             Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, authHeader);
         }
