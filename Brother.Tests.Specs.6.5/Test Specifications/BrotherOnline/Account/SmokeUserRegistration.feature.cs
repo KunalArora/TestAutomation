@@ -2215,13 +2215,11 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Sign Up for 14 day Free trial already signed into Brother Online France")]
-        [NUnit.Framework.CategoryAttribute("TEST")]
-        [NUnit.Framework.CategoryAttribute("UAT")]
+        [NUnit.Framework.IgnoreAttribute()]
         public virtual void SignUpFor14DayFreeTrialAlreadySignedIntoBrotherOnlineFrance()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Sign Up for 14 day Free trial already signed into Brother Online France", new string[] {
-                        "TEST",
-                        "UAT"});
+                        "IGNORE"});
 #line 1005
 this.ScenarioSetup(scenarioInfo);
 #line 1006

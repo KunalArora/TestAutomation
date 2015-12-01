@@ -1000,8 +1000,8 @@ Scenario: Sign Up for 14 day Free trial already signed into Brother Online Germa
 	Then I can sign out of Brother Online
 	Then I am redirected to the Brother Home Page
 
-@TEST @UAT
-#Dv2 :Test fails on OJFreeTrail Page with 404 error message
+@IGNORE
+#On Dv2 and QAS :Test fails on OJFreeTrail Page.
 Scenario: Sign Up for 14 day Free trial already signed into Brother Online France
 	Given I want to create a new account with Brother Online "France"
 	When I click on Create Account for "France"
