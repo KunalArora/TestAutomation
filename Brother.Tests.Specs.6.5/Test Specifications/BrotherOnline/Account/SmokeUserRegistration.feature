@@ -926,6 +926,31 @@ Scenario: Sign Up for 14 day Free trial already signed into Brother Online Franc
 	Then I can sign out of Brother Online
 	Then I am redirected to the Brother Home Page
 
+@TEST
+#QAS:Test fails with 404 error message on FreeSignUpOJTrailPage (BBAU-2928)
+	Scenario: Verify error message displays without accepting terms and services on Ireland BOL OJfreeTrailSignUpPage
+	Given I want to create a new account with Brother Online "Ireland"
+	When I click on Create Account for "Ireland"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I fill in the registration information using a valid email address 
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Password        | @@@@@	       |
+	| ConfirmPassword | @@@@@		   |
+
+	And I have Agreed to the Terms and Conditions
+	And I declare that I do not use this account for business
+	When I press Create Your Account
+	Then I should see my account confirmation page
+	And When I Click Go Back
+	Then I should be able to log into "Ireland" Brother Online using my account details
+	And I click on Try Now
+	Then I should see OmniJOin Free trail page
+	 When I click start free trail button
+	 Then I should see valid error message on FreeOjSignUpPage
+
 @TEST @UAT
 	Scenario: Verify error message displays without accepting terms and services on Germany BOL OJfreeTrailSignUpPage
 	Given I want to create a new account with Brother Online "Germany"
@@ -949,4 +974,26 @@ Scenario: Sign Up for 14 day Free trial already signed into Brother Online Franc
 	Then I should see OmniJOin Free trail page
 	 When I click start free trail button
 	 Then I should see valid error message on FreeOjSignUpPage
+
+@TEST @UAT
+#DV2: Oj FreeTrail new user signup displays 14days 
+#QAS:OJ Free Trail new user signup displays 30 days
+Scenario: New user without Uk BOL account wants to sign up for FreeOJTrail
+Given I have navigated to the OmniJoin home page
+	And If I click on Start Free Trial
+	Then I should be directed to the OmniJoinFreeTrail page
+	When I fill Firstname as "Test" 
+	And I fill in LastName as "User"
+	And I fill in a valid new email address
+	And I fill in a password as "Password123"
+	And I fill in a Change password as "Password123"
+	And I fill in  valid phone number as "01234561237"
+	And I agreed to the FreeTrail Terms of services 
+	And I click Submit
+	Then I should be directed to the download page indicating I have 14 days Free trial
+	And I have Validated a Free Trial confirmation Email was received
 	
+
+
+
+

@@ -24,7 +24,6 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Trial
         [FindsBy(How = How.XPath, Using = ".//*[@id='content']/div/div[2]/div[2]/div/div/div[6]/span[2]")]
         public IWebElement ValidErrorMessageonFreeOjSignupPage;
 
-
         [FindsBy(How = How.CssSelector, Using = ".info-tile-image")]
         public IWebElement InfoTileImage;
 
@@ -52,5 +51,8 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Trial
         {
             TestCheck.AssertIsEqual(true, ValidErrorMessageonFreeOjSignupPage.Displayed, " Is Error message Displayed");
         }
+
     }
 }
+
+
