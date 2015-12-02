@@ -7,7 +7,6 @@ namespace Brother.Tests.Specs.OmniJoin
     [Binding]
     public class WebConferencingHomePageSteps : BaseSteps
     {
-        [Given(@"I have navigated to the OmniJoin home page of country ""(.*)""")]
         [When(@"I have navigated to the OmniJoin home page")]
         [Then(@"I have navigated to the OmniJoin home page")]
         [Given(@"I have navigated to the OmniJoin home page")]

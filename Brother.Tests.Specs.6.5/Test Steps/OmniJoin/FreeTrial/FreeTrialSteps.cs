@@ -33,12 +33,6 @@ namespace Brother.Tests.Specs.OmniJoin.FreeTrial
         {
             CurrentPage.As<FreeTrialPage>().IsStartFreeTrailButtonAvailable();
         }
-        [Then(@"I should be directed to the OmniJoinFreeTrail page")]
-        public void ThenIShouldBeDirectedToTheOmniJoinFreeTrailPage()
-        {
-            CurrentPage.As<FreeTrialPage>().GetYourFreeTrailTextDisplayed();
-        }
-
         [Then(@"I should see OmniJOin Free trail page")]
         public void ThenIShouldSeeOmniJOinFreeTrailPage()
         {
@@ -49,8 +43,8 @@ namespace Brother.Tests.Specs.OmniJoin.FreeTrial
         [When(@"I have entered a valid First and Last name, ""(.*)"", ""(.*)""")]
         public void WhenIHaveEnteredAValidFirstAndLastName(string firstName, string lastName)
         {
-            CurrentPage.As<FreeTrialPage>().PopulateFirstNameTextBox(firstName);
-            CurrentPage.As<FreeTrialPage>().PopulateLastNameTextBox(lastName);
+            CurrentPage.As<FreeTrialPage>().PopulateFirstNameTxtBox(firstName);
+            CurrentPage.As<FreeTrialPage>().PopulateLastNameTxtBox(lastName);
         }
         [When(@"I have entered a valid FirstName as ""(.*)"" and LastName as ""(.*)""")]
         public void WhenIHaveEnteredAValidFirstNameAsAndLastNameAs(string firstName, string lastname)
@@ -111,46 +105,6 @@ namespace Brother.Tests.Specs.OmniJoin.FreeTrial
         {
             CurrentPage.As<FreeTrialPage>().PopulateEmailAddressTextBox(Email.RegistrationEmailAddress);
         }
-        [When(@"I fill Firstname as ""(.*)""")]
-        public void WhenIFillFirstnameAs(string firstName)
-        {
-            CurrentPage.As<FreeTrialPage>().PopulateFreeOjSignUpFirstNameTextBox(firstName);
-        }
-
-        [When(@"I fill in LastName as ""(.*)""")]
-        public void WhenIFillInLastNameAs(string lastName)
-        {
-           CurrentPage.As<FreeTrialPage>().PopulateFreeOjSignUpLastNameTextBox(lastName);
-        }
-        [When(@"I fill in a valid new email address")]
-        public void WhenIFillInAValidNewEmailAddress()
-        {
-            CurrentPage.As<FreeTrialPage>().PopulateFreeOjSignUpEmailAddressTextBox(Email.RegistrationEmailAddress);
-        }
-
-        [When(@"I fill in a valid email address")]
-        public void WhenIFillInAValidEmailAddress()
-        {
-            CurrentPage.As<FreeTrialPage>().PopulateInvalidEmailAddressTextBox(Email.RegistrationEmailAddress);
-        }
-
-        [When(@"I fill in a password as ""(.*)""")]
-        public void WhenIFillInAPasswordAs(string password)
-        {
-            CurrentPage.As<FreeTrialPage>().PopulateFreeOjSignUpPasswordTxtBox(password);
-        }
-
-        [When(@"I fill in a Change password as ""(.*)""")]
-        public void WhenIFillInAChangePasswordAs(string confirmPassword )
-        {
-            CurrentPage.As<FreeTrialPage>().PopulateFreeOjSignUpConfirmPasswordTxtBox(confirmPassword);
-        }
-
-        [When(@"I fill in  valid phone number as ""(.*)""")]
-        public void WhenIFillInValidPhoneNumberAs(string phoneNumber)
-        {
-            CurrentPage.As<FreeTrialPage>().PopulateFreeOjSignUpPhoneNumberTxtBox(phoneNumber);
-        }
 
         [When(@"I fill in valid email address")]
         public void WhenIFillInValidEmailAddress()
@@ -171,21 +125,17 @@ namespace Brother.Tests.Specs.OmniJoin.FreeTrial
             CurrentPage.As<FreeTrialPage>().PopulateEmailAddressTxtBox(phoneNumber);
         }
 
+
         [When(@"I have Agreed to the Free Trial Terms and Conditions")]
         public void WhenIHaveAgreedToTheFreeTrialTermsAndConditions()
         {
             CurrentPage.As<FreeTrialPage>().AgreeToTermsAndConditions();
         }
-        [When(@"I agreed to the FreeTrail Terms of services")]
-        public void WhenIAgreedToTheFreeTrailTermsOfServices()
-        {
-           CurrentPage.As<FreeTrialPage>().FreeOjSignUpTermstoServices();
-        }
 
         [When(@"I agreed to the free trail terms and services")]
         public void WhenIAgreedToTheFreeTrailTermsAndServices()
         {
-            CurrentPage.As<FreeTrialPage>().FreeOjSignUpTermstoServices();
+            CurrentPage.As<FreeTrialPage>().AgreeToTermsAndServices();
         }
 
 
@@ -201,11 +151,6 @@ namespace Brother.Tests.Specs.OmniJoin.FreeTrial
             NextPage = CurrentPage.As<FreeTrialPage>().StartFreeTrailButtonClick();
         }
 
-        [When(@"I click Submit")]
-        public void WhenIClickSubmit()
-        {
-            NextPage = CurrentPage.As<FreeTrialPage>().FreeOjTrailSignUpButtonClick();
-        }
 
         [When(@"I click start free trail button")]
         public void WhenIClickStartFreeTrailButton()
