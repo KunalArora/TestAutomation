@@ -19,7 +19,7 @@ namespace Brother.Tests.Specs.OmniJoin.FreeTrial
         {
             NextPage = CurrentPage.As<WebConferencingHomePage>().GettingStartedButtonClick();
         }
-       
+        //added
         [Then(@"I click on Try Now")]
         [When(@"I click on Try Now")]
         [Given(@"I click on Try Now")]
@@ -132,12 +132,6 @@ namespace Brother.Tests.Specs.OmniJoin.FreeTrial
             CurrentPage.As<FreeTrialPage>().AgreeToTermsAndConditions();
         }
 
-        [When(@"I agreed to the free trail terms and services")]
-        public void WhenIAgreedToTheFreeTrailTermsAndServices()
-        {
-            CurrentPage.As<FreeTrialPage>().AgreeToTermsAndServices();
-        }
-
         [When(@"if I click Submit")]
         public void WhenIfIClickSubmit()
         {
@@ -163,12 +157,6 @@ namespace Brother.Tests.Specs.OmniJoin.FreeTrial
             var expiryDate = CurrentPage.As<FreeTrialDownloadPage>().GetTrialExpiryDate();
             var currentDate = DateTime.Today.AddDays(freeTrialPeriod).ToString("dd MMMM yyyy");
             TestCheck.AssertIsEqual(currentDate, expiryDate, "OmniJoin Free Trial - Invalid expiry Date");
-        }
-
-        [Then(@"I should be on download page")]
-        public void ThenIShouldBeOnDownloadPage()
-        {
-            CurrentPage.As<FreeTrialDownloadPage>().FreeTrail30DaysOmniJoinAcessMessDisplayed();
         }
 
         [When(@"I enter a Free Trial Password of ""(.*)""")]
