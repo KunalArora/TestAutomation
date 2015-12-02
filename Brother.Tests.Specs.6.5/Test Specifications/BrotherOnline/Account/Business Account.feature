@@ -418,7 +418,7 @@ Scenario: Validate that an error message is displayed for all mandatory fields d
 	When I press tab in the business sector field
 	Then I should see an error message on the business sector field
 
-# Create Portugal business account
+#Create Portugal business account
 Scenario Outline: Customer able to create a new BOL Portugal account using the same VAT code multiple times (BBAU-2603 Business User part)
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"

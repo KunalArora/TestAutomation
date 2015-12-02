@@ -49,6 +49,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             TestCheck.AssertTextContains(contractRef, consumableMessage, "The right proposal id is not displayed");
         }
 
+        public void RemoveExistingConsumableOrderBySerialNumber()
+        {
+            var serialNumber = MPSUserLogins.UsedSerialNumber(Driver);
+            MPSJobRunnerPage.RunRemoveConsumableOrderByInstalledPrinterJob(serialNumber);
+        }
+
         public void IsConsumableScreenDisplayed()
         {
             if(ConsumableDeviceScreenTab == null)

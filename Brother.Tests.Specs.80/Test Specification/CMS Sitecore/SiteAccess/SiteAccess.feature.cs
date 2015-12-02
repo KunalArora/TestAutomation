@@ -119,6 +119,12 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.And(string.Format("I press login button \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 29
  testRunner.And(string.Format("I click on the Main Header placeholder \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 30
+    testRunner.And(string.Format("I click on the add here option \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 31
+ testRunner.And(string.Format("I click on the Select a Rendering \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 32
+    testRunner.Then(string.Format("I should be able to add grid from the grid option \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

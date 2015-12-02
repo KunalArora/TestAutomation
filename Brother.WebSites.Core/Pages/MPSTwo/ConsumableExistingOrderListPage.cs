@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
@@ -43,7 +44,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         
         private string GetConsumableOrderId()
         {
-            //WaitForElementToExistByCssSelector(".btn-group.pull-right.js-mps-filter-ignore", 5, 5);
             WebDriver.Wait(DurationType.Second, 5);
             OpenConsumableActionButton();
 
@@ -62,12 +62,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
-        public void RemoveExistingConsumableOrderBySerialNumber()
-        {
-            MPSJobRunnerPage.RunRemoveConsumableOrderByInstalledPrinterJob(GetSerialNumber());
-        }
-
-
+        
         public void ClosedConsumableOrder()
         {
             var success = MPSJobRunnerPage.GetConsumableOrderStatusResetMsg(GetConsumableOrderId(), "7");

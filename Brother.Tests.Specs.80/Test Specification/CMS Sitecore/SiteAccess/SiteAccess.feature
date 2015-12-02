@@ -27,9 +27,9 @@ Scenario Outline: Verify that a user is able to add grid on the page
 	And I enter password containing "<Password>"
 	And I press login button "<country>"
 	And I click on the Main Header placeholder "<country>"
-#And I click on the add here option
-#Then I should be able to see and click the grid option
-
+    And I click on the add here option "<country>"
+	And I click on the Select a Rendering "<country>"
+    Then I should be able to add grid from the grid option "<country>"
 
 Scenarios: 
 	
