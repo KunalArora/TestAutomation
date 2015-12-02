@@ -2065,69 +2065,6 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify error message displays without accepting terms and services on Germany BOL" +
-            " OJfreeTrailSignUpPage")]
-        [NUnit.Framework.CategoryAttribute("TEST")]
-        [NUnit.Framework.CategoryAttribute("UAT")]
-        public virtual void VerifyErrorMessageDisplaysWithoutAcceptingTermsAndServicesOnGermanyBOLOJfreeTrailSignUpPage()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify error message displays without accepting terms and services on Germany BOL" +
-                    " OJfreeTrailSignUpPage", new string[] {
-                        "TEST",
-                        "UAT"});
-#line 930
- this.ScenarioSetup(scenarioInfo);
-#line 931
- testRunner.Given("I want to create a new account with Brother Online \"Germany\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 932
- testRunner.When("I click on Create Account for \"Germany\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 933
- testRunner.And("I am redirected to the Brother Login/Register page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 934
- testRunner.And("I have Checked No I Do Not Have An Account Checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-            TechTalk.SpecFlow.Table table33 = new TechTalk.SpecFlow.Table(new string[] {
-                        "field",
-                        "value"});
-            table33.AddRow(new string[] {
-                        "FirstName",
-                        "AutoTest"});
-            table33.AddRow(new string[] {
-                        "LastName",
-                        "AutoTest"});
-            table33.AddRow(new string[] {
-                        "Password",
-                        "@@@@@"});
-            table33.AddRow(new string[] {
-                        "ConfirmPassword",
-                        "@@@@@"});
-#line 935
- testRunner.And("I fill in the registration information using a valid email address", ((string)(null)), table33, "And ");
-#line 942
- testRunner.And("I have Agreed to the Terms and Conditions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 943
- testRunner.And("I declare that I do not use this account for business", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 944
- testRunner.When("I press Create Your Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 945
- testRunner.Then("I should see my account confirmation page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 946
- testRunner.And("When I Click Go Back", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 947
- testRunner.Then("I should be able to log into \"Germany\" Brother Online using my account details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 948
- testRunner.And("I click on Try Now", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 949
- testRunner.Then("I should see OmniJOin Free trail page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 950
-  testRunner.When("I click start free trail button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 951
-  testRunner.Then("I should see valid error message on FreeOjSignUpPage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            this.ScenarioCleanup();
-        }
     }
 }
 #pragma warning restore

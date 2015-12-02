@@ -21,9 +21,6 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Trial
         [FindsBy(How = How.XPath, Using = ".//*[@id='content']/div/div[1]/hgroup/h2")]
         public IWebElement FreeTrail30DaysOmniJoinAccess;
 
-        [FindsBy(How = How.XPath, Using = ".//*[@id='content']/div/div[2]/div[2]/div/div/div[6]/span[2]")]
-        public IWebElement ValidErrorMessageonFreeOjSignupPage;
-
 
         [FindsBy(How = How.CssSelector, Using = ".info-tile-image")]
         public IWebElement InfoTileImage;
@@ -46,11 +43,6 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Trial
         public void FreeTrail30DaysOmniJoinAcessMessDisplayed()
         {
             TestCheck.AssertIsEqual(true, FreeTrail30DaysOmniJoinAccess.Displayed, "Is Message Displayed");
-        }
-
-        public void ValidErrorMessageonFreeOjSignupPageDisplayed()
-        {
-            TestCheck.AssertIsEqual(true, ValidErrorMessageonFreeOjSignupPage.Displayed, " Is Error message Displayed");
         }
     }
 }

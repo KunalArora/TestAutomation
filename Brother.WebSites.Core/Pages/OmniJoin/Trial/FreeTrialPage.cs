@@ -26,7 +26,7 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Trial
         [FindsBy(How = How.XPath, Using = ".//*[@id='content_0_trynowcontentright_0_EmailAddressTextBox']/input")] public IWebElement EmailAddressTxtBox;
         [FindsBy(How = How.CssSelector, Using = "#content_0_trynowcontentright_0_OptionalPhoneNumberTextBox")] public IWebElement PhoneNumberTxtBox;
         [FindsBy(How = How.CssSelector, Using = "#content_0_trynowcontentright_0_StartFreeTrialButton")] public IWebElement StartFreeTrailButton;
-                                             
+                                              
         [FindsBy(How = How.CssSelector, Using = "#txtLastName")]
         public IWebElement LastNameTextBox;
 
@@ -238,6 +238,5 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Trial
         {
             TestCheck.AssertIsEqual(true, ErrorMessageDisplayedPasswordField.Displayed, "Is Error Message Displayed");
         }
-     
     }
 }
