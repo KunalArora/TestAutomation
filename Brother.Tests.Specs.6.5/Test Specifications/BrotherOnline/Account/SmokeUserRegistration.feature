@@ -1,4 +1,5 @@
-﻿@SMOKE @UAT @TEST @PROD
+﻿@SMOKE 
+@STAGING
 Feature: B2C and B2B Registration
 	In order to register myself with brother
 	As a customer
@@ -260,59 +261,6 @@ Scenario Outline: Customer creates a new account with Brother Online using valid
 Scenarios: 
 | Country     |	
 | Russia      |  
-
-
-Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on poland site
-	Given I want to create a new account with Brother Online "<Country>"
-	When I click on Create Account for "<Country>"
-	And I am redirected to the Brother Login/Register page
-	And I have Checked No I Do Not Have An Account Checkbox
-	And I fill in the registration information using a valid email address 
-	| field           | value          |
-	| FirstName       | AutoTest       |
-	| LastName        | AutoTest       |
-	| Password        | @@@@@	       |
-	| ConfirmPassword | @@@@@		   |
-
-	And I have Agreed to the Terms and Conditions
-	And I declare that I do not use this account for business
-	When I press Create Your Account
-	Then I should see my account confirmation page
-	And When I Click Go Back
-	#And Once I have Validated an Email was received and verified my account
-	Then I should be able to log into "<Country>" Brother Online using my account details
-	And I can sign out of Brother Online
-	Then I am redirected to the Brother Home Page
-Scenarios: 
-| Country     |	
-| Poland      |  
-
-
-Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on Slovakia site
-	Given I want to create a new account with Brother Online "<Country>"
-	When I click on Create Account for "<Country>"
-	And I am redirected to the Brother Login/Register page
-	And I have Checked No I Do Not Have An Account Checkbox
-	And I fill in the registration information using a valid email address 
-	| field           | value          |
-	| FirstName       | AutoTest       |
-	| LastName        | AutoTest       |
-	| Password        | @@@@@	       |
-	| ConfirmPassword | @@@@@		   |
-
-	And I have Agreed to the Terms and Conditions
-	And I declare that I do not use this account for business
-	When I press Create Your Account
-	Then I should see my account confirmation page
-	And When I Click Go Back
-	#And Once I have Validated an Email was received and verified my account
-	Then I should be able to log into "<Country>" Brother Online using my account details
-	And I can sign out of Brother Online
-	Then I am redirected to the Brother Home Page
-Scenarios: 
-| Country       |	
-| Slovakia      |  
- 
 
 Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on italian site
 	Given I want to create a new account with Brother Online "<Country>"
@@ -695,32 +643,6 @@ Scenarios:
 | Country		| Business Sector		| VAT Number       |
 | Norway		| Industri				| INVALIDVATNUMBER |
 
-Scenario Outline: Customer gets valid error message on BOL poland site with invalid tax code
-	Given I want to create a new account with Brother Online "<Country>"
-	When I click on Create Account for "<Country>"
-	And I am redirected to the Brother Login/Register page
-	And I have Checked No I Do Not Have An Account Checkbox
-	And I declare that I do use this account for business
-	And I fill in the registration information using a valid email address 
-	| field           | value           |
-	| FirstName       | AutoTest        |
-	| LastName        | AutoTest		|
-	| Password        | @@@@@			|
-	| ConfirmPassword | @@@@@			|
-	And I add my company name as "AutoTestLtd"
-	And I select my Business Sector as "<Business Sector>"
-	# And I enter my Business Sector as "<Business Sector>"
-	And I select number of Employees as "11 - 50"
-	And I enter an invalid VAT Number as "<VAT Number>"
-	And I have Agreed to the Terms and Conditions
-	When I press Create Your Account
-	Then I should see an error message due to an invalid tax code 
-
-Scenarios:
-| Country		| Business Sector		| VAT Number       |
-| Poland		| Produkcja				| INVALIDVATNUMBER |  
-
-
 Scenario Outline: Customer gets valid error message on BOL spain site with invalid tax code
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -935,6 +857,3 @@ Scenario: Purchase a Lite Use plan on Monthly Billing but click Cancel before su
 	Then I can navigate back to Brother Online home page
 	Then I can sign out of Brother Online
 
-# Create Omnijoin free trials create it for france, ireland, germany
-#Test Fails with Timeout exception error message on FreeTrail OJ SignUp Page
-#Test Fails with Timeout exception error message on FreeTrail OJ SignUp Page
