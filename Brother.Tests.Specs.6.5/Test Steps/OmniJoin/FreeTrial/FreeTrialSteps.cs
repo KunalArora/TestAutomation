@@ -19,9 +19,7 @@ namespace Brother.Tests.Specs.OmniJoin.FreeTrial
         {
             NextPage = CurrentPage.As<WebConferencingHomePage>().GettingStartedButtonClick();
         }
-        //added
-        [Then(@"I click on Try Now")]
-        [When(@"I click on Try Now")]
+
         [Given(@"I click on Try Now")]
         public void GivenIClickOnTryNow()
         {
@@ -31,38 +29,15 @@ namespace Brother.Tests.Specs.OmniJoin.FreeTrial
         [Then(@"I should be directed to the OmniJoin Free Trial page")]
         public void ThenIShouldBeDirectedToTheOmniJoinFreeTrialPage()
         {
-            CurrentPage.As<FreeTrialPage>().IsStartFreeTrailButtonAvailable();
+            CurrentPage.As<FreeTrialPage>().IsSubmitButtonAvailable();
         }
-        [Then(@"I should see OmniJOin Free trail page")]
-        public void ThenIShouldSeeOmniJOinFreeTrailPage()
-        {
-            CurrentPage.As<FreeTrialPage>().IsStartFreeTrailButtonAvailable();
-        }
-
 
         [When(@"I have entered a valid First and Last name, ""(.*)"", ""(.*)""")]
         public void WhenIHaveEnteredAValidFirstAndLastName(string firstName, string lastName)
         {
-            CurrentPage.As<FreeTrialPage>().PopulateFirstNameTxtBox(firstName);
-            CurrentPage.As<FreeTrialPage>().PopulateLastNameTxtBox(lastName);
+            CurrentPage.As<FreeTrialPage>().PopulateFirstNameTextBox(firstName);
+            CurrentPage.As<FreeTrialPage>().PopulateLastNameTextBox(lastName);
         }
-        [When(@"I have entered a valid FirstName as ""(.*)"" and LastName as ""(.*)""")]
-        public void WhenIHaveEnteredAValidFirstNameAsAndLastNameAs(string firstName, string lastname)
-        {
-            CurrentPage.As<FreeTrialPage>().PopulateFirstNameTxtBox(firstName);
-            CurrentPage.As<FreeTrialPage>().PopulateLastNameTxtBox(lastname);
-        }
-        [When(@"I have entered a valid FirstName as ""(.*)""")]
-        public void WhenIHaveEnteredAValidFirstNameAs(string firstName)
-        {
-            CurrentPage.As<FreeTrialPage>().PopulateFirstNameTxtBox(firstName);
-        }
-        [When(@"I have  entered a valid LastName as ""(.*)""")]
-        public void WhenIHaveEnteredAValidLastNameAs(string lastName)
-        {
-            CurrentPage.As<FreeTrialPage>().PopulateLastNameTxtBox(lastName);
-        }
-
         [Then(@"I enter an invalid email address as ""(.*)"" for omnijoin free trial")]
         public void ThenIEnterAnInvalidEmailAddressAsForOmnijoinFreeTrial(string invalidemailaddress)
         {
@@ -106,25 +81,11 @@ namespace Brother.Tests.Specs.OmniJoin.FreeTrial
             CurrentPage.As<FreeTrialPage>().PopulateEmailAddressTextBox(Email.RegistrationEmailAddress);
         }
 
-        [When(@"I fill in valid email address")]
-        public void WhenIFillInValidEmailAddress()
-        {
-            CurrentPage.As<FreeTrialPage>().PopulateEmailAddressTxtBox(Email.RegistrationEmailAddress);
-        }
-
         [When(@"I have entered a valid phone number ""(.*)""")]
         public void WhenIHaveEnteredAValidPhoneNumber(string phoneNumber)
         {
-            CurrentPage.As<FreeTrialPage>().PopulatePhoneNumberTxtBox(phoneNumber);
+            CurrentPage.As<FreeTrialPage>().PopulatePhoneNumberTextBox(phoneNumber);
         }
-
-        [When(@"I have fill in a phone number ""(.*)""")]
-        public void WhenIHaveFillInAPhoneNumber(string phoneNumber)
-        {
-        
-            CurrentPage.As<FreeTrialPage>().PopulateEmailAddressTxtBox(phoneNumber);
-        }
-
 
         [When(@"I have Agreed to the Free Trial Terms and Conditions")]
         public void WhenIHaveAgreedToTheFreeTrialTermsAndConditions()
@@ -135,16 +96,8 @@ namespace Brother.Tests.Specs.OmniJoin.FreeTrial
         [When(@"if I click Submit")]
         public void WhenIfIClickSubmit()
         {
-            NextPage = CurrentPage.As<FreeTrialPage>().StartFreeTrailButtonClick();
+            NextPage = CurrentPage.As<FreeTrialPage>().SubmitButtonClick();
         }
-
-
-        [When(@"I click start free trail button")]
-        public void WhenIClickStartFreeTrailButton()
-        {
-            NextPage = CurrentPage.As<FreeTrialPage>().StartFreeTrailButtonClick();
-        }
-
         [When(@"I click Submit without ticking the terms and conditions field")]
         public void WhenIClickSubmitWithoutTickingTheTermsAndConditionsField()
         {
