@@ -26,16 +26,6 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Trial
         [FindsBy(How = How.XPath, Using = ".//*[@id='content_0_trynowcontentright_0_EmailAddressTextBox']/input")] public IWebElement EmailAddressTxtBox;
         [FindsBy(How = How.CssSelector, Using = "#content_0_trynowcontentright_0_OptionalPhoneNumberTextBox")] public IWebElement PhoneNumberTxtBox;
         [FindsBy(How = How.CssSelector, Using = "#content_0_trynowcontentright_0_StartFreeTrialButton")] public IWebElement StartFreeTrailButton;
-             
-        [FindsBy(How = How.XPath, Using = ".//*[@id='main']/div/div/div[3]/div[2]")] public IWebElement GetYourFreeTrailText;
-        [FindsBy(How = How.XPath, Using = ".//*[@id='txtFirstName']")] public IWebElement FreeOjSignUpFirstNameTextBox;
-        [FindsBy(How = How.XPath, Using = ".//*[@id='txtLastName']")]  public IWebElement FreeOjSignUpLastNameTextBox;
-        [FindsBy(How = How.XPath, Using = ".//*[@id='txtEmailAddress']")] public IWebElement FreeOjSignUpEmailAddressTextBox; 
-        [FindsBy(How = How.XPath, Using = ".//*[@id='content_0_maincontent_2_txtPassword']")] public IWebElement FreeOjSignUpPasswordTxtBox;
-        [FindsBy(How = How.XPath, Using = ".//*[@id='txtConfirmPassword']")] public IWebElement FreeOjSignUpChangePasswordTxtBox;
-        [FindsBy(How = How.XPath, Using = ".//*[@id='content_0_maincontent_2_txtPhoneNumber']")] public IWebElement FreeOjSignUpPhoneNumberTxtBox;
-        [FindsBy(How = How.XPath, Using = ".//*[@id='content_0_maincontent_2_chkTerms']")] public IWebElement FreeOjSignUpTermsofServicesCheckbox;
-        [FindsBy(How = How.XPath, Using = ".//*[@id='main']/div/div/div[3]/div[3]/div[8]/input")] public IWebElement FreeOjTrailSignUpButton;
                                              
         [FindsBy(How = How.CssSelector, Using = "#txtLastName")]
         public IWebElement LastNameTextBox;
@@ -111,26 +101,6 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Trial
             TestCheck.AssertIsEqual(firstName, GetTextBoxValue("txtFirstName"), "FirstName Text Box");
         }
 
-        public void PopulateFreeOjSignUpFirstNameTextBox(string firstName)
-        {
-            FreeOjSignUpFirstNameTextBox.SendKeys(firstName);
-          
-        }
-        public void PopulateFreeOjSignUpLastNameTextBox(string lastName)
-        {
-
-            FreeOjSignUpLastNameTextBox.SendKeys(lastName);
-        
-          
-        }
-        public void PopulateFreeOjSignUpEmailAddressTextBox(string emailAddress)
-        {
-            emailAddress = Email.GenerateUniqueEmailAddress();
-            FreeOjSignUpEmailAddressTextBox.SendKeys(emailAddress);
-            FreeOjSignUpEmailAddressTextBox.SendKeys(Keys.Tab);
-            TestCheck.AssertIsEqual(emailAddress, GetTextBoxValue("txtEmailAddress"), "Email Address Text Box");
-        }
-
         public void PopulateFirstNameTxtBox(string firstName)
         {
             FirstNameTxtBox.Clear();
@@ -141,7 +111,6 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Trial
         {
            
             LastNameTextBox.SendKeys(lastName);
-            LastNameTextBox.SendKeys(Keys.Tab);
             TestCheck.AssertIsEqual(lastName, GetTextBoxValue("txtLastName"), "LastName Text Box");
         }
 
@@ -159,9 +128,10 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Trial
             {
                 emailAddress = Email.GenerateUniqueEmailAddress();
             }
-            emailAddress = Email.GenerateUniqueEmailAddress();
-            EmailAddressTextBox.SendKeys(emailAddress);
-            EmailAddressTextBox.SendKeys(Keys.Tab);
+
+            EmailAddressTxtBox.Clear();
+            EmailAddressTxtBox.SendKeys(emailAddress);
+            EmailAddressTxtBox.SendKeys(Keys.Tab);
             TestCheck.AssertIsEqual(emailAddress, GetTextBoxValue("txtEmailAddress"), "Email Address Text Box");
         }
 
@@ -213,25 +183,6 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Trial
             PasswordTextBox.SendKeys(password);
         }
 
-        public void PopulateFreeOjSignUpPasswordTxtBox(string password)
-        {
-            FreeOjSignUpPasswordTxtBox.SendKeys(password);
-        }
-        public void PopulateFreeOjSignUpConfirmPasswordTxtBox(string password)
-        {
-            FreeOjSignUpChangePasswordTxtBox.SendKeys(password);
-        }
-        public void PopulateFreeOjSignUpPhoneNumberTxtBox(string phoneNumber)
-        {
-            FreeOjSignUpPhoneNumberTxtBox.SendKeys(phoneNumber);
-           
-        }
-        public void FreeOjSignUpTermstoServices()
-        {
-            ScrollTo(FreeOjSignUpTermsofServicesCheckbox);
-            FreeOjSignUpTermsofServicesCheckbox.Click();
-
-        }
         public void PopulatePhoneNumberTextBox(string phoneNumber)
         {
             PhoneNumberTxtBox.SendKeys(phoneNumber);
@@ -287,15 +238,6 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Trial
         {
             TestCheck.AssertIsEqual(true, ErrorMessageDisplayedPasswordField.Displayed, "Is Error Message Displayed");
         }
-
-        public void GetYourFreeTrailTextDisplayed()
-        {
-            TestCheck.AssertIsEqual(true, GetYourFreeTrailText.Displayed,"Is Text Displayed");
-        }
-        public FreeTrialDownloadPage FreeOjTrailSignUpButtonClick()
-        {
-            FreeOjTrailSignUpButton.Click();
-            return GetInstance<FreeTrialDownloadPage>(Driver);
-        }
+     
     }
 }
