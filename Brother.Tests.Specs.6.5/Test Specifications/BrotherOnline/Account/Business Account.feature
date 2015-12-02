@@ -418,6 +418,51 @@ Scenario: Validate that an error message is displayed for all mandatory fields d
 	When I press tab in the business sector field
 	Then I should see an error message on the business sector field
 
+# VAT number is mandatory during business account creation for a non UK country
+Scenario Outline: Customer unable to create a new BOL Italy account without entering a valid tax code
+	Given I want to create a new account with Brother Online "<Country>"
+	When I click on Create Account for "<Country>"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I declare that I do use this account for business
+	And I fill in the Italy registration information using a valid email address and excluding ID number for italy
+	| field           | value           |
+	| FirstName       | AutoTest        |
+	| LastName        | AutoTest		|
+	| Password        | @@@@@			|
+	| ConfirmPassword | @@@@@			|
+	And I add my company name as "AutoTestLtd"
+	And I select my Business Sector as "<Business Sector>"
+	# And I enter my Business Sector as "<Business Sector>"
+	And I select number of Employees as "11 - 50"
+	And I enter an invalid Italy VAT Number as "<VAT Number>"
+	And I have Agreed to the Terms and Conditions for Italy
+	When I press Create Your Account
+	Then I should see an error message due to an invalid tax code or codice fiscale
+
+Scenarios: 
+| Country		| Business Sector		| VAT Number       |
+| Italy			| Edilizia				| INVALIDVATNUMBER |
+| Czech			| Velkoprodej			| INVALIDVATNUMBER |
+| Denmark		| Byggeri				| INVALIDVATNUMBER |
+#| Finland		| Overige				| INVALIDVATNUMBER | Finland not working as number of employees listbox has different values e.g. 11-50 as 11 - 50
+| France		| Fabrication			| INVALIDVATNUMBER |
+| Germany		| Bildung				| INVALIDVATNUMBER |
+#| Hungary		|						| INVALIDVATNUMBER | No BOL site for Hungry
+| Netherlands	| Bouw					| INVALIDVATNUMBER |
+| Norway		| Industri				| INVALIDVATNUMBER |
+| Poland		| Produkcja				| INVALIDVATNUMBER |  	 	 		
+| Portugal		| Fabrico				| INVALIDVATNUMBER | 
+#| Russia		| строительство			| INVALIDVATNUMBER | # Not taking business sector
+#| Romania		| Construction			| INVALIDVATNUMBER | # BOL site is currently UK
+#| Slovakia		| Construction			| INVALIDVATNUMBER | # BOL site is currently UK
+#| Slovenia		| Construction			| INVALIDVATNUMBER | # BOL site is currently UK
+| Spain			| Servicios personales	| INVALIDVATNUMBER | 
+#| Switzerland  | Bildung				| INVALIDVATNUMBER | # VAT not mandatory
+#| Bulgaria		| Construction			| INVALIDVATNUMBER | # BOL site is currently UK
+| Austria		| Bildung				| INVALIDVATNUMBER | 
+
+
 # Create Portugal business account
 Scenario Outline: Customer able to create a new BOL Portugal account using the same VAT code multiple times (BBAU-2603 Business User part)
 	Given I want to create a new account with Brother Online "<Country>"
