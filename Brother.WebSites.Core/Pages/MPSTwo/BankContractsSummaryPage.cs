@@ -1,4 +1,5 @@
 ﻿using System;
+using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
@@ -129,6 +130,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement FinanceTotalNetElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_FinanceTotalGross")]
         public IWebElement FinanceTotalGrossElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_InputOpenOfferRejectBankCustomerNumber_Input")]
+        public IWebElement RejectionCustomerNumberElement;
 
         public void ClickRejectButton()
         {
@@ -146,7 +149,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public BankContractsPage ClickFinalRejectButton()
         {
             ScrollTo(FinalRejectButtonElement);
-            FinalRejectButtonElement.Click();
+           // FinalRejectButtonElement.Click();
+
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, FinalRejectButtonElement);
 
             return GetTabInstance<BankContractsPage>(Driver);
         }
@@ -162,6 +167,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void SelectRejectionReason(string reason)
         {
             SelectFromDropdown(BankRejectReasonElement, reason);
+            EnterRejectionCustomerNumber();
+        }
+
+        public void EnterRejectionCustomerNumber()
+        {
+            if (RejectionCustomerNumberElement==null)
+                throw new Exception("Proposal Decline Bank Customer Number field is not displayed");
+
+            if (IsGermanSystem())
+            {
+                ClearAndType(RejectionCustomerNumberElement, MpsUtil.CustomerReference());
+            }
         }
 
         public void IsAcceptButtonAvailable()

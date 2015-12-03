@@ -105,6 +105,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         }
 
+        public static IWebElement SearchFieldFucntionality(IWebDriver driver)
+        {
+            var element = driver.FindElement(By.Id("content_1_ProposalListFilter_InputFilterBy"));
+            return element;
+        }
+
+        public static void SearchForNewProposal(IWebDriver driver)
+        {
+            var searchField = SearchFieldFucntionality(driver);
+            searchField.SendKeys(MpsUtil.CreatedProposal());
+            searchField.SendKeys(Keys.Tab);
+            WebDriver.Wait(Helper.DurationType.Second, 3);
+        }
         
 
         public static IWebElement SpecificActionsDropdownElement()
