@@ -1,4 +1,4 @@
-﻿@TEST
+﻿# @TEST
 # @SMOKE @PROD
 Feature: AccessAllProductionSites
 	In order to validate the status of a Websites on the Production environment

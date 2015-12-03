@@ -20,7 +20,6 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("AccessALLTestSites")]
-    [NUnit.Framework.CategoryAttribute("TEST")]
     public partial class AccessALLTestSitesFeature
     {
         
@@ -34,8 +33,7 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "AccessALLTestSites", "In order to validate the status of a Websites on the Test environment\r\nAs a sanit" +
-                    "y check\r\nWe need to receive a 200 OK request back from a list of selected sites", ProgrammingLanguage.CSharp, new string[] {
-                        "TEST"});
+                    "y check\r\nWe need to receive a 200 OK request back from a list of selected sites", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
