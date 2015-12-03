@@ -63,6 +63,9 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='OpenPropertiesBorder']")]
         public IWebElement ClickOnSelectRendering ;
+
+        [FindsBy(How = How.CssSelector, Using = "#body > header > div > div > a:nth-child(1)")]
+        public IWebElement PageHeader;
     
         public void PopulateUserNameTextBox(string userName)
         {
@@ -100,6 +103,15 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         public void ClickOnSelectRenderingWindow(string country)
         {
             ClickOnSelectRendering.Click();
+        }
+
+        public void IsPageHeaderDisplayed()
+        {
+            if (PageHeader == null)
+            {
+              throw new NullReferenceException("Unable to locate page header");
+            }         
+            AssertElementPresent(PageHeader, "Page Header", 80);
         }
     }
 }

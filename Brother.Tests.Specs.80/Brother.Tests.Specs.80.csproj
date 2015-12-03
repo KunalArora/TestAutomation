@@ -221,6 +221,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SuperCarousel.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specification\CMS Sitecore\PublishedPages\PublishedPages.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PublishedPages.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specification\CMS Sitecore\SiteAccess\SiteAccess.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -301,6 +306,7 @@
     <Compile Include="Test Steps\BrotherMainSite\HomePageNavigation\MainSiteHomePageNavigationSteps.cs" />
     <Compile Include="Test Steps\BrotherMainSite\HomePageNavigation\ProductsMenuSteps.cs" />
     <Compile Include="Test Steps\BrotherMainSite\PrinterSearch\PrinterSearchSteps.cs" />
+    <Compile Include="Test Steps\BrotherMainSite\PublishedPages\PublishedPagesSteps.cs" />
     <Compile Include="Test Steps\Global\GlobalSteps.cs" />
     <Compile Include="Test Steps\OmniJoin\FreeTrial\FreeTrialSteps.cs" />
     <Compile Include="Test Steps\OmniJoin\Plans\ManagePlanSteps.cs" />
@@ -510,6 +516,10 @@
     <None Include="Test Specification\CMS Sitecore\ExperienceEditor\Components\SuperCarousel.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>SuperCarousel.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specification\CMS Sitecore\PublishedPages\PublishedPages.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>PublishedPages.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specification\OmniJoin\FreeTrial.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

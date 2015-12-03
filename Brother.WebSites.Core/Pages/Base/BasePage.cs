@@ -52,6 +52,13 @@ namespace Brother.WebSites.Core.Pages.Base
             return GetInstance<LoginPage>(driver, baseUrl, "");
         }
 
+        public static PublishedPage LoadPublishedPage(IWebDriver driver, string baseUrl)
+        {
+            driver = SetDriver(driver);
+            NavigateToPage(driver, baseUrl.TrimEnd(new char[] { '/' }));
+            return GetInstance<PublishedPage>(driver, baseUrl, "");
+        }
+
         public static ExperienceEditorPage LoadExperienceEditorPage(IWebDriver driver, string baseUrl)
         {
             driver = SetDriver(driver);
