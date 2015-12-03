@@ -5,7 +5,7 @@ Feature: AccessALLTestSites
 	We need to receive a 200 OK request back from a list of selected sites
 
 # BrotherMainSite
-@SMOKE
+# @SMOKE
 Scenario Outline: Get 200 OK response back from the following Brother Main Sites on the Test environment
 	Given The following site <Language> <Main Site> to validate I should receive an Ok response back	
 
