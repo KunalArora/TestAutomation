@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using NUnit.Framework.Constraints;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
@@ -76,18 +77,24 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public static string GetConsumableOrderStatusResetMsg(string orderid, string status)
         {
-            var webSite = CoinedUrl() + setConsumableStatusJob;
+            string response = null;
 
-            webSite = String.Format(webSite, orderid, status);
+            if (String.IsNullOrWhiteSpace(orderid))
+            {
+                var webSite = CoinedUrl() + setConsumableStatusJob;
 
-            var response = Utils.GetSuccessStringFromUrl(webSite, 5, authHeader);
+                webSite = String.Format(webSite, orderid, status);
 
+                response = Utils.GetSuccessStringFromUrl(webSite, 5, authHeader);  
+            }
+            
             return response;
         }
 
 
         public static void RunResetSerialNumberJob(string serial)
         {
+            if (String.IsNullOrWhiteSpace(serial)) return;
             var reset = CoinedUrl() + resetSerialNumberJob + serial;
             var response = Utils.GetPageResponse(reset, WebRequestMethods.Http.Get, authHeader);
             // TestCheck.AssertIsEqual(true, response.Equals(HttpStatusCode.OK), "");
@@ -103,15 +110,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public static void RunRemoveConsumableOrderByIdJob(string id)
         {
+            if (String.IsNullOrWhiteSpace(id)) return;
             var webSite = CoinedUrl() + removeConsumableOrderById + id;
-
             Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, authHeader);
         }
 
         public static void RunRemoveConsumableOrderByInstalledPrinterJob(string serial)
         {
+            if (String.IsNullOrWhiteSpace(serial)) return;
             var webSite = CoinedUrl() + removeConsumableOrderByInstalledPrinter + serial;
-
             Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, authHeader);
         }
 

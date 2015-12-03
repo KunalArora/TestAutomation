@@ -21,6 +21,9 @@ namespace Brother.Tests.Selenium.Lib.Support
         private const string existingSerialNumber = @"A1T010004";
         private const string existingSerialNumberBIG = @"A1T010005";
         private const string existingSerialNumberAUT = @"A1T010006";
+        private const string SerialNumber = @"A1T010007";
+        private const string SerialNumberBIG = @"A1T010008";
+        private const string SerialNumberAUT = @"A1T010009";
 
 
         public static string UsedSerialNumber(IWebDriver driver)
