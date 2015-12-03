@@ -20,8 +20,7 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("AccessAllProductionSites")]
-    [NUnit.Framework.CategoryAttribute("SMOKE")]
-    [NUnit.Framework.CategoryAttribute("PROD")]
+    [NUnit.Framework.CategoryAttribute("TEST")]
     public partial class AccessAllProductionSitesFeature
     {
         
@@ -37,8 +36,7 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "AccessAllProductionSites", "In order to validate the status of a Websites on the Production environment\r\nAs a" +
                     " sanity check\r\nWe need to receive a 200 OK request back from a list of selected " +
                     "sites", ProgrammingLanguage.CSharp, new string[] {
-                        "SMOKE",
-                        "PROD"});
+                        "TEST"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -103,9 +101,9 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get 200 OK response back from Brother Main Site \"<Country>\" on the LIVE environme" +
                     "nt", @__tags);
-#line 8
-this.ScenarioSetup(scenarioInfo);
 #line 9
+this.ScenarioSetup(scenarioInfo);
+#line 10
  testRunner.Given(string.Format("The following site \"{0}\" to validate I should receive an Ok response back", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             this.ScenarioCleanup();
@@ -143,9 +141,9 @@ this.ScenarioSetup(scenarioInfo);
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get 200 OK response back from Brother Online \"<Country>\" on the LIVE environment", @__tags);
-#line 38
-this.ScenarioSetup(scenarioInfo);
 #line 39
+this.ScenarioSetup(scenarioInfo);
+#line 40
  testRunner.Given(string.Format("The following site \"{0}\" to validate I should receive an Ok response back", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             this.ScenarioCleanup();
@@ -170,9 +168,9 @@ this.ScenarioSetup(scenarioInfo);
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get 200 OK response back from Web Conferencing \"<Country>\" on the LIVE environmen" +
                     "t", @__tags);
-#line 69
-this.ScenarioSetup(scenarioInfo);
 #line 70
+this.ScenarioSetup(scenarioInfo);
+#line 71
  testRunner.Given(string.Format("The following site \"{0}\" to validate I should receive an Ok response back", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             this.ScenarioCleanup();
@@ -193,9 +191,9 @@ this.ScenarioSetup(scenarioInfo);
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get 200 OK response back from Creative Centre \"<Country>\" on the LIVE environment" +
                     "", @__tags);
-#line 83
-this.ScenarioSetup(scenarioInfo);
 #line 84
+this.ScenarioSetup(scenarioInfo);
+#line 85
  testRunner.Given(string.Format("The following site \"{0}\" to validate I should receive an Ok response back", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             this.ScenarioCleanup();
@@ -420,9 +418,9 @@ this.ScenarioSetup(scenarioInfo);
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Test all CD servers on Live Environment", @__tags);
-#line 92
-this.ScenarioSetup(scenarioInfo);
 #line 93
+this.ScenarioSetup(scenarioInfo);
+#line 94
   testRunner.Given(string.Format("The following site \"{0}\" to validate I should receive an Ok response back", brotherSite), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             this.ScenarioCleanup();
