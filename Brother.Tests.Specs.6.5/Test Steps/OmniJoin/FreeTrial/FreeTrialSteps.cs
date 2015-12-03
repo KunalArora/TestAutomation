@@ -138,6 +138,57 @@ namespace Brother.Tests.Specs.OmniJoin.FreeTrial
             ThenIShouldBeDirectedToTheDownloadPageIndicatingIHaveDaysFreeTrial(14);
         }
 #endregion
+      //ADDED NEW STEP METHODS FOR 0JFreeTrailSignUp with BOL Account on Germany Site
+        [Then(@"I click on Try Now")]
+        public void ThenIClickOnTryNow()
+        {
+            NextPage = CurrentPage.As<WelcomeBackPage>().TryNowOmniJoinFreeTrailButtonClick();
+        }
+
+        [Then(@"I should see OmniJOin Free trail page")]
+        public void ThenIShouldSeeOmniJOinFreeTrailPage()
+        {
+            CurrentPage.As<FreeTrialPage>().IsStartFreeTrailOmniJoinButtonAvailable();
+        }
+
+        [When(@"I have entered a valid FirstName as ""(.*)""")]
+        public void WhenIHaveEnteredAValidFirstNameAs(string firstName)
+        {
+           CurrentPage.As<FreeTrialPage>().PopulateStartFreeTrailOmniJoinFirstNameTxtBox(firstName);
+        }
+
+        [When(@"I have  entered a valid LastName as ""(.*)""")]
+        public void WhenIHaveEnteredAValidLastNameAs(string lastName)
+        {
+         CurrentPage.As<FreeTrialPage>().PopulateStartFreeTrailOmniJoinLastNameTxtBox(lastName);
+        }
+        [When(@"I have entered a valid company name as ""(.*)""")]
+        public void WhenIHaveEnteredAValidCompanyNameAs(string companyName)
+        {
+         CurrentPage.As<FreeTrialPage>().PopulateStartFreeTrailCompanyNameTxtBox(companyName);   
+        }
+        [When(@"I have entered a valid phone number as ""(.*)""")]
+        public void WhenIHaveEnteredAValidPhoneNumberAs(string phoneNumber)
+        {
+        CurrentPage.As<FreeTrialPage>().PopulateStartFreeTrailOmniJoinPhoneNumberTxtBox(phoneNumber);
+        }
+        [When(@"I agreed to the free trail terms and services")]
+        public void WhenIAgreedToTheFreeTrailTermsAndServices()
+        {
+          CurrentPage.As<FreeTrialPage>().AgreeToStartFreeTrailOmniJoinTermsofServices();
+        }
+
+        [When(@"I click start free trail button")]
+        public void WhenIClickStartFreeTrailButton()
+        {
+            NextPage = CurrentPage.As<FreeTrialPage>().StartFreeTrailSignUpOmniJoinButtonClick();
+        }
+
+        [Then(@"I should be on download page")]
+        public void ThenIShouldBeOnDownloadPage()
+        {
+            CurrentPage.As<FreeTrialDownloadPage>().StartFreeTrail30DaysSignUpTextDisplayed();
+        }
 
     }
 }
