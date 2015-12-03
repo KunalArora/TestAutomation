@@ -1,7 +1,7 @@
 ﻿@ignore @TEST @UAT @PROD
 Feature: CreativeCenterTests
 
-# 2940 raised
+# 2940 raised until then ignore tag is added
 
 
 

@@ -52,7 +52,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         [FindsBy(How = How.CssSelector, Using = "#login > input")] 
         public IWebElement LogInButton;
 
-        [FindsBy(How = How.CssSelector, Using = "body > div:nth-child(15)")]
+        [FindsBy(How = How.Id, Using = "Main_Body")]
         public IWebElement ClickOnMainHeaderBar;
 
         [FindsBy(How = How.CssSelector, Using = ".scInsertionHandle")] 

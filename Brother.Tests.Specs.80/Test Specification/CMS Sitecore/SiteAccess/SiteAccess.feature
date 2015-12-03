@@ -31,7 +31,6 @@ Scenario Outline: Verify that a user is able to add grid on the page
 	And I click on the Select a Rendering "<country>"
     Then I should be able to add grid from the grid option "<country>"
 
-
 Scenarios: 
 	
 	| country        | Site Url                                       | UserName   | Password  |

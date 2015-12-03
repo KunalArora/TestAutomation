@@ -7,7 +7,6 @@ Feature: FreeTrial
 @ignore
 Scenario: Sign Up for 14 day Free trial with a Brother Online account but start from Purchase plans page
 
-
 #Once the defect is fixed take out the last comments off the test
 Scenario Outline: Validate Free Trial form displays error messages when an invalid email is entered (BBAU-2721)
 	Given I have navigated to the OmniJoin home page
