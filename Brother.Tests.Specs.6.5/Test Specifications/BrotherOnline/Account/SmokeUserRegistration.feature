@@ -1,4 +1,4 @@
-﻿
+﻿@TEST
 Feature: B2C and B2B Registration
 	In order to register myself with brother
 	As a customer

@@ -20,6 +20,7 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.Account
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("B2C and B2B Registration")]
+    [NUnit.Framework.CategoryAttribute("TEST")]
     public partial class B2CAndB2BRegistrationFeature
     {
         
@@ -33,7 +34,8 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.Account
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "B2C and B2B Registration", "In order to register myself with brother\r\nAs a customer\r\nI need to create a new o" +
-                    "nline account", ProgrammingLanguage.CSharp, ((string[])(null)));
+                    "nline account", ProgrammingLanguage.CSharp, new string[] {
+                        "TEST"});
             testRunner.OnFeatureStart(featureInfo);
         }
         

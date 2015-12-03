@@ -1,4 +1,4 @@
-﻿@TEST
+﻿# @TEST
 Feature: AccessALLTestSites
 	In order to validate the status of a Websites on the Test environment
 	As a sanity check
