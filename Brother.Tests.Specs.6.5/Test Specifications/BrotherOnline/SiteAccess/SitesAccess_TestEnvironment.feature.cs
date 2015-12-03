@@ -70,7 +70,6 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Get 200 OK response back from the following Brother Main Sites on the Test enviro" +
             "nment")]
-        [NUnit.Framework.CategoryAttribute("SMOKE")]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "http://uk.brotherdv2.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Germany", "http://de.brotherdv2.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Slovakia", "http://sk.brotherdv2.eu/", null)]
@@ -91,14 +90,8 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess
         [NUnit.Framework.TestCaseAttribute("Ireland", "http://ie.brotherdv2.eu/", null)]
         public virtual void Get200OKResponseBackFromTheFollowingBrotherMainSitesOnTheTestEnvironment(string language, string mainSite, string[] exampleTags)
         {
-            string[] @__tags = new string[] {
-                    "SMOKE"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get 200 OK response back from the following Brother Main Sites on the Test enviro" +
-                    "nment", @__tags);
+                    "nment", exampleTags);
 #line 9
 this.ScenarioSetup(scenarioInfo);
 #line 10
