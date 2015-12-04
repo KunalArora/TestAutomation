@@ -114,6 +114,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         [FindsBy(How = How.CssSelector, Using = "#txtTax1")] public IWebElement NiNumberTextBox;
 
+        [FindsBy(How = How.CssSelector, Using = "#txtTax1")] public IWebElement PersonalNiNumberPortugalTextBox;
+
         [FindsBy(How = How.CssSelector, Using = "#txtTax1")] public IWebElement TaxNumberTextBox;
 
         [FindsBy(How = How.CssSelector, Using = "#TopNavigationControl_rptPrimaryLevelNav_aSectionLink_3")] public
@@ -350,6 +352,11 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         public void PopulateTaxNumberTextBox(string codiceFiscale)
         {
             TaxNumberTextBox.SendKeys(codiceFiscale);
+        }
+
+        public void PopulatePersonalNiNumberPortugalTextBox(string númerodeContribuinte)
+        {
+            PersonalNiNumberPortugalTextBox.SendKeys(númerodeContribuinte);
         }
 
         public void PopulateInvalidTaxNumberTextBox(string invalidTaxCode)
