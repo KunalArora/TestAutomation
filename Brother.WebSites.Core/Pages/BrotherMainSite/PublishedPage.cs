@@ -38,6 +38,29 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         [FindsBy(How = How.CssSelector, Using = "body > header > div > div > a.common-global-header--toggle.active")]
         public IWebElement SearchIcon;
 
+        [FindsBy(How = How.CssSelector, Using = "body > div:nth-child(3) > nav > div > ul.common-global-nav--list.common-global-nav--list--primary > li:nth-child(1) > a")]
+        public IWebElement TopNavi;
+
+        [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div:nth-child(1) > div > div > div.common-accordion--item--header > div > h1")]
+        public IWebElement Accordion;
+
+        [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div:nth-child(1) > section.common--features-carousel > a.right.common--features-carousel-control.active > span.glyphicon.glyphicon-chevron-right")]
+        public IWebElement FeaturesCarousel;
+
+        [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div:nth-child(1) > section.common--features-carousel > ul > li:nth-child(1) > a > img")]
+        public IWebElement FeaturesCarouselTile;
+
+        [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div:nth-child(1) > section.common--banner-bar > div.col-xs-12 > h1")]
+        public IWebElement BannerBar;
+
+        [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div:nth-child(1) > section.common--banner-bar > div.common--banner-bar--items > div:nth-child(1) > p")]
+        public IWebElement BannerBarTile;
+
+        [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div:nth-child(1) > article > picture > img")]
+        public IWebElement ImageTextModule;
+
+        
+
         public void GetPublishedPage(string url)
         {
             TestCheck.AssertIsEqual(HttpStatusCode.OK, GetWebPageResponse(url), "Incorrect Http Status Code returned");
@@ -81,9 +104,75 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
             AssertElementPresent(SearchIcon, "Search Icon", 30);
         }
 
-                    
+        public void IsTopNavDisplayed()
+        {
+            WaitForElementToExistByCssSelector("body > div:nth-child(3) > nav > div > ul.common-global-nav--list.common-global-nav--list--primary > li:nth-child(1) > a");
+            if (TopNavi == null)
+            {
+                throw new NullReferenceException("Unable to locate top navigation component");
+            }
+            AssertElementPresent(TopNavi, "Top Navigation", 30);
+        }
 
+        public void IsAccordionDisplayed()
+        {
+            WaitForElementToExistByCssSelector("body > div.container.container--grid > div > div:nth-child(1) > div > div > div.common-accordion--item--header > div > h1");
+            if (Accordion == null)
+            {
+                throw new NullReferenceException("Unable to locate accordion component");
+            }
+            AssertElementPresent(Accordion, "Accordion Component", 30);
+        }
 
+        public void IsFeaturesCarouselDisplayed()
+        {
+            WaitForElementToExistByCssSelector("body > div.container.container--grid > div > div:nth-child(1) > section.common--features-carousel > a.right.common--features-carousel-control.active > span.glyphicon.glyphicon-chevron-right");
+            if (FeaturesCarousel == null)
+            {
+                throw new NullReferenceException("Unable to locate features carousel component");
+            }
+            AssertElementPresent(FeaturesCarousel, "Features Carousel", 30);
+        }
+
+        public void IsFeaturesCarouselTileDisplayed()
+        {
+            WaitForElementToExistByCssSelector("body > div.container.container--grid > div > div:nth-child(1) > section.common--features-carousel > ul > li:nth-child(1) > a > img");
+            if (FeaturesCarouselTile == null)
+            {
+                throw new NullReferenceException("Unable to locate features carousel tile component");
+            }
+            AssertElementPresent(FeaturesCarouselTile, "Features Carousel Tile", 30);
+        }
+
+        public void IsBannerBarDisplayedDisplayed()
+        {
+            WaitForElementToExistByCssSelector("body > div.container.container--grid > div > div:nth-child(1) > section.common--banner-bar > div.col-xs-12 > h1");
+            if (BannerBar == null)
+            {
+                throw new NullReferenceException("Unable to locate banner bar component");
+            }
+            AssertElementPresent(BannerBar, "BannerBar", 30);
+        }
+
+        public void IsBannerBarTileDisplayed()
+        {
+            WaitForElementToExistByCssSelector("body > div.container.container--grid > div > div:nth-child(1) > section.common--banner-bar > div.common--banner-bar--items > div:nth-child(1) > p");
+            if (BannerBarTile == null)
+            {
+                throw new NullReferenceException("Unable to locate banner bar tile component");
+            }
+            AssertElementPresent(BannerBarTile, "Banner Bar Tile", 30);
+        }
+
+        public void IsImageTextModuleDisplayed()
+        {
+            WaitForElementToExistByCssSelector("body > div.container.container--grid > div > div:nth-child(1) > div > div > div.common-accordion--item--header > div > h1");
+            if (ImageTextModule == null)
+            {
+                throw new NullReferenceException("Unable to locate image text module component");
+            }
+            AssertElementPresent(ImageTextModule, "Image Text Module", 30);
+        }
 
     }
 }

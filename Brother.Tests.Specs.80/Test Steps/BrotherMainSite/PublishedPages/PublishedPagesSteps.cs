@@ -44,6 +44,48 @@ namespace Brother.Tests.Specs._80.Test_Steps.BrotherMainSite.PublishedPages
             CurrentPage.As<PublishedPage>().IsSearchIconDisplayed();
         }
 
+        [Then(@"I can verify that the top navigation component is displayed")]
+        public void ThenICanVerifyThatTheTopNavigationComponentIsDisplayed()
+        {
+            CurrentPage.As<PublishedPage>().IsTopNavDisplayed();
+        }
+
+        [Then(@"I can verify that the accordion compoment is displayed")]
+        public void ThenICanVerifyThatTheAccordionCompomentIsDisplayed()
+        {
+            CurrentPage.As<PublishedPage>().IsAccordionDisplayed();
+        }
+
+        [Then(@"I can verify that the features carousel component is displayed")]
+        public void ThenICanVerifyThatTheFeaturesCarouselComponentIsDisplayed()
+        {
+            CurrentPage.As<PublishedPage>().IsFeaturesCarouselDisplayed();
+        }
+
+        [Then(@"I can verify that a features carousel tile is displayed")]
+        public void ThenICanVerifyThatAFeaturesCarouselTileIsDisplayed()
+        {
+            CurrentPage.As<PublishedPage>().IsFeaturesCarouselTileDisplayed();
+        }
+
+        [Then(@"I can verify that a banner bar component is displayed")]
+        public void ThenICanVerifyThatABannerBarComponentIsDisplayed()
+        {
+            CurrentPage.As<PublishedPage>().IsBannerBarDisplayedDisplayed();
+        }
+
+        [Then(@"I can verify that a banner bar tile is displayed")]
+        public void ThenICanVerifyThatABannerBarTileIsDisplayed()
+        {
+            CurrentPage.As<PublishedPage>().IsBannerBarTileDisplayed();
+        }
+
+        [Then(@"I can verify that an infor image text module component is displayed")]
+        public void ThenICanVerifyThatAnInforImageTextModuleComponentIsDisplayed()
+        {
+            CurrentPage.As<PublishedPage>().IsImageTextModuleDisplayed();
+        }
+
 
     }
 
