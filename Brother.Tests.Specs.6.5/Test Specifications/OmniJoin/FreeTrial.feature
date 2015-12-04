@@ -69,6 +69,72 @@ Given I have navigated to the OmniJoin home page
 	Then I should see an error message on Password field
 
 
+
+@IGNORE
+Scenario: Sign Up for 14 day Free trial already signed into Brother Online Germany
+	Given I want to create a new account with Brother Online "Germany"
+	When I click on Create Account for "Germany"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I fill in the registration information using a valid email address 
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Password        | @@@@@	       |
+	| ConfirmPassword | @@@@@		   |
+
+	And I have Agreed to the Terms and Conditions
+	And I declare that I do not use this account for business
+	When I press Create Your Account
+	Then I should see my account confirmation page
+	And When I Click Go Back
+	Then I should be able to log into "Germany" Brother Online using my account details
+	And I click on Try Now
+	Then I should see OmniJOin Free trail page
+	When I have entered a valid FirstName as "Test"
+	And I have  entered a valid LastName as "User"
+	And I have entered a valid company name as "adfasdfadsf"
+	And I have entered a valid phone number as "01555 522522"
+    And I agreed to the free trail terms and services
+ 	And I click start free trail button
+	Then I should be on download page
+	And Once I have Validated a Free Trial confirmation Email was received
+	Then If I go back to Brother Online Home Page 
+	Then I can sign out of Brother Online
+	Then I am redirected to the Brother Home Page
+
+@IGNORE
+Scenario: Sign Up for 14 day Free trial already signed into Brother Online Ireland
+	Given I want to create a new account with Brother Online "Ireland"
+	When I click on Create Account for "Ireland"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I fill in the registration information using a valid email address 
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Password        | @@@@@	       |
+	| ConfirmPassword | @@@@@		   |
+
+	And I have Agreed to the Terms and Conditions
+	And I declare that I do not use this account for business
+	When I press Create Your Account
+	Then I should see my account confirmation page
+	And When I Click Go Back
+	Then I should be able to log into "Ireland" Brother Online using my account details
+	And I click on Try Now
+	Then I should see OmniJOin Free trail page
+	When I have entered a valid FirstName as "Test"
+	And I have  entered a valid LastName as "User"
+	#And I have entered a valid company name as "adfasdfadsf"
+	#And I have entered a valid phone number as "01555 522522"
+    And I agreed to the free trail terms and services
+ 	And I click start free trail button
+	Then I should be on download page
+	And Once I have Validated a Free Trial confirmation Email was received
+	Then If I go back to Brother Online Home Page 
+	Then I can sign out of Brother Online
+	Then I am redirected to the Brother Home Page
 @ignore 
 Scenario: Validate Free Trial form displays error messages when a mandatory field is missing
 
