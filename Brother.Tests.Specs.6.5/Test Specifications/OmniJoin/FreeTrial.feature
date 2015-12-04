@@ -70,7 +70,6 @@ Given I have navigated to the OmniJoin home page
 
 
 
-@IGNORE
 Scenario: Sign Up for 14 day Free trial already signed into Brother Online Germany
 	Given I want to create a new account with Brother Online "Germany"
 	When I click on Create Account for "Germany"
