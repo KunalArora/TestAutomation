@@ -11,6 +11,7 @@ Scenario Outline: Dealer can delete an open proposal
 	And I am on Proposal List page
 	When I can click delete button on proposal item of Exisiting Proposal table
 	Then the deleted proposal is no longer displayed
+	And I sign out of Cloud MPS
 
 
 Scenarios:
@@ -24,6 +25,7 @@ Scenario Outline: German Dealer can delete an open Leasing and Click proposal
 	And I am on Proposal List page
 	When I can click delete button on proposal item of Exisiting Proposal table
 	Then the deleted proposal is no longer displayed
+	And I sign out of Cloud MPS
 
 Scenarios:
 
@@ -36,6 +38,7 @@ Scenario Outline: German Dealer can delete an open Purchase and Click proposal
 	And I am on Proposal List page
 	When I can click delete button on proposal item of Exisiting Proposal table
 	Then the deleted proposal is no longer displayed
+	And I sign out of Cloud MPS
 
 Scenarios:
 

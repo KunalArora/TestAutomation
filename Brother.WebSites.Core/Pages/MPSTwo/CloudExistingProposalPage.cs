@@ -79,6 +79,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         
         
         
+        
+        
 
         public void IsProposalFilterDiplayed()
         {
@@ -160,26 +162,33 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 "Is new proposal template created?");
         }
 
+        public void IsNewProposalTemplateCreated(bool option)
+        {
+            //var createdProposal = CreatedProposal();
+            //var newlyAdded = @"//td[text()='{0}']";
+            //newlyAdded = String.Format(newlyAdded, createdProposal);
+            
+            //var  newProposal = Driver.FindElement(By.XPath(newlyAdded));
+
+            var proposal = GetElementByCssSelector(".js-mps-delete-remove", 10).Displayed;
+
+            //var found = IsElementPresent(proposal);
+
+            TestCheck.AssertIsEqual(option, proposal,
+                "Is new proposal template created?");
+        }
 
 
         public void IsProposalSuccessfullyDeletedFromTheList()
         {
             WaitForElementToExistByCssSelector(".alert.alert-success.fade.in.mps-alert.js-mps-alert");
 
-            var createdProposal = CreatedProposal();
-            var proposalContainer = new ArrayList();
-            var proposalItems = ProposalItemsElements(proposalTableColumn);
+            ActionsModule.SearchForNewProposal(Driver);
 
-            foreach (var propopsalItem in proposalItems)
-            {
-                proposalContainer.Add(propopsalItem);
-            }
-
-            TestCheck.AssertIsEqual(false, proposalContainer.Contains(createdProposal), 
-                "Is proposal successfully sent to bank?");
+            IsNewProposalTemplateCreated(false);
         }
 
-
+        
         public void CopyAProposalWithoutCustomer(IWebDriver driver)
         {
             ActionsModule.CopyAProposal(driver);

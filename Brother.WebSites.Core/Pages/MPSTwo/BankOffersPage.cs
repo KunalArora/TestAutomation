@@ -38,6 +38,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement RejectionCancelButtonElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-proposal-list-container .table .js-mps-searchable tr")]
         public IList<IWebElement> ProposalListContainerElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_InputProposalDeclineBankCustomerNumber_Input")]
+        public IWebElement RejectionCustomerNumberElement;
+
+        
         
 
         public void IsAwaitingApprovalLinkAvailable()
@@ -115,6 +119,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             
         }
 
+        public void EnterRejectionCustomerNumber()
+        {
+            if (IsGermanSystem())
+            {
+                ClearAndType(RejectionCustomerNumberElement, MpsUtil.CustomerReference());
+            }
+        }
+
         public void EnterRejectionComment()
         {
             ClearAndType(RejectionCommentBoxElement, "It is rejected by auto");
@@ -124,13 +136,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             if(RejectButtonElement == null)
                 throw new Exception("Reject button not displayed, are you trying to reject the proposal?");
-            RejectButtonElement.Click();
+            //RejectButtonElement.Click();
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, RejectButtonElement);
         }
 
         public void DeclineAnAwaitingApprovalProposal()
         {
             ClickOnDeclineButton();
             SelectRejectionReason();
+            EnterRejectionCustomerNumber();
             EnterRejectionComment();
             ClickOnRejectionButton();
             WebDriver.Wait(DurationType.Second, 3);
