@@ -56,6 +56,31 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Trial
 
         [FindsBy(How = How.CssSelector, Using = "#content_0_maincontent_2_vldRegExPassword")]
         public IWebElement ErrorMessageDisplayedPasswordField;
+
+
+        //Added StartFreeTrailOmniJoinSignUpPage Locators
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='content_0_trynowcontentright_0_StartFreeTrialButton']")] 
+        public IWebElement StartFreeTrailSignUpOmniJoinButton;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='content_0_trynowcontentright_0_FirstNameTextBox']/input")]
+        public IWebElement StartFreeTrailSignUpPageFirstNameTxtBox;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='content_0_trynowcontentright_0_LastNameTextBox']/input")]
+        public IWebElement StartFreeTrialSignUpPageLastNameTxtBox;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='content_0_trynowcontentright_0_CompanyNameTextBox']/input")] 
+        public IWebElement StartFreeTrailSignUpPageCompanyNameTxtBox;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='content_0_trynowcontentright_0_MandatoryPhoneNumberTextBox']/input")]
+        public IWebElement StartFreeTrailOmniJoinPhoneNumberTxtBox;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='content_0_trynowcontentright_0_TermsAndConditionsCheckbox']")] 
+        public IWebElement StartFreeTrailOmniJoinTermsofServciesCheckBox;
+
+       
+
+
          
         public void IsSubmitButtonAvailable()
         {
@@ -174,5 +199,56 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Trial
         {
             TestCheck.AssertIsEqual(true, ErrorMessageDisplayedPasswordField.Displayed, "Is Error Message Displayed");
         }
+
+        // Added FreeTrailSignUp PO's methods
+
+        public void PopulateStartFreeTrailOmniJoinFirstNameTxtBox(string firstName)
+        {
+            StartFreeTrailSignUpPageFirstNameTxtBox.Clear();
+            StartFreeTrailSignUpPageFirstNameTxtBox.SendKeys(firstName);
+           
+        }
+
+        public void PopulateStartFreeTrailOmniJoinLastNameTxtBox(string lastName)
+        {
+            StartFreeTrialSignUpPageLastNameTxtBox.Clear();
+            StartFreeTrialSignUpPageLastNameTxtBox.SendKeys(lastName);
+            StartFreeTrialSignUpPageLastNameTxtBox.SendKeys(Keys.Tab);
+
+        }
+
+        public void PopulateStartFreeTrailCompanyNameTxtBox(string companyName)
+        {
+            StartFreeTrailSignUpPageCompanyNameTxtBox.SendKeys(companyName);
+            StartFreeTrailSignUpPageCompanyNameTxtBox.SendKeys(Keys.Tab);
+        }
+        public void IsStartFreeTrailOmniJoinButtonAvailable()
+        {
+            if (StartFreeTrailSignUpOmniJoinButton == null)
+            {
+                throw new NullReferenceException("Unable to locate button on page");
+            }
+            AssertElementPresent(StartFreeTrailSignUpOmniJoinButton, "Submit (Free-trial) Button");
+        }
+
+
+        public void PopulateStartFreeTrailOmniJoinPhoneNumberTxtBox(string phoneNumber)
+        {
+            StartFreeTrailOmniJoinPhoneNumberTxtBox.SendKeys(phoneNumber);
+        }
+
+        public void AgreeToStartFreeTrailOmniJoinTermsofServices()
+        {
+            ScrollTo(StartFreeTrailOmniJoinTermsofServciesCheckBox);
+            StartFreeTrailOmniJoinTermsofServciesCheckBox.Click();
+            TestCheck.AssertIsEqual(StartFreeTrailOmniJoinTermsofServciesCheckBox.Selected.ToString(), "True", "Accept Terms and Services CheckBox");
+        }
+
+        public FreeTrialDownloadPage StartFreeTrailSignUpOmniJoinButtonClick()
+        {
+            StartFreeTrailSignUpOmniJoinButton.Click();
+            return GetInstance<FreeTrialDownloadPage>(Driver);
+        }
+      
     }
 }

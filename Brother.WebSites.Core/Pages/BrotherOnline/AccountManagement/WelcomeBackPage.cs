@@ -68,6 +68,11 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         [FindsBy(How = How.Id, Using = "f200cbab-dac8-4dfd-a10f-9c1af427a95c")]
         public IWebElement InstantInkSupplyMenuItem;
 
+
+        // Added TryNow button Locator 
+        [FindsBy(How = How.XPath, Using = ".//*[@id='content_2_CurrentControlPanelItem_ConferenceButtons']/a[2]")] 
+        public IWebElement TryNowOmniJoinFreeTrailButton;
+
         public bool IsWarningBarPresent(int retry, int timeToWait)
         {
             try
@@ -457,6 +462,12 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         public void UseAccountForBusinessIsSelectedForCc()
         {
             TestCheck.AssertIsEqual("True", UseMyAccountForBusinessCheckbox.Selected.ToString(), "Use Account For Business Button");
+        }
+
+        public FreeTrialPage TryNowOmniJoinFreeTrailButtonClick()
+        {
+          TryNowOmniJoinFreeTrailButton.Click();
+            return GetInstance<FreeTrialPage>(Driver);
         }
     }
 }

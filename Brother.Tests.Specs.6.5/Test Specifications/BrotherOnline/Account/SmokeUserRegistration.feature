@@ -357,13 +357,14 @@ Scenario Outline: Customer creates a new account with Brother Online using valid
 	When I click on Create Account for "<Country>"
 	And I am redirected to the Brother Login/Register page
 	And I have Checked No I Do Not Have An Account Checkbox
-	And I fill in the registration information using a valid email address and ID number
+	And I fill in the registration information using a valid email address on Portugal signin page
 	| field           | value          |
 	| FirstName       | AutoTest       |
 	| LastName        | AutoTest       |
 	| Password        | @@@@@	       |
 	| ConfirmPassword | @@@@@		   |
-	| NumeroDNI		  | 980254698	   |
+	
+	And I fill in personal tax number as "980254698"
 	And I have Agreed to the Terms and Conditions
 	And I declare that I do not use this account for business
 	When I press Create Your Account
@@ -816,4 +817,3 @@ Scenario: Purchase a Lite Use plan on Monthly Billing but click Cancel before su
 	And I can go through a dummy order process for Country "United Kingdom" with order info "1"
 	Then I can navigate back to Brother Online home page
 	Then I can sign out of Brother Online
-

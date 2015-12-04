@@ -440,9 +440,8 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<RegistrationPage>().PopulateConfirmPasswordTextBox(form.Password);
             WhenIEnterAValidEmailAddress(string.Empty); // Auto Generates with an empty string
         }
-
         [When(@"I fill in the registration information using a valid email address and ID number")]
-        public void WhenIFillInTheRegistrationInformationUsingAValidEmailAddressAndIdNumber(Table table)
+        public void WhenIFillInTheRegistrationInformationUsingAValidEmailAddressAndIDNumber(Table table)
         {
             dynamic form = table.CreateDynamicInstance();
             CurrentPage.As<RegistrationPage>().PopulateFirstNameTextBox(form.FirstName);
@@ -452,6 +451,26 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             WhenIEnterAValidEmailAddress(string.Empty); // Auto Generates with an empty string
             CurrentPage.As<RegistrationPage>().PopulateNiNumberTextBox(form.NumeroDNI); //tax number for Spain
             //CurrentPage.As<RegistrationPage>().PopulateTaxNumberTextBox(form.CodiceFiscale);//tax number for Italy
+        }
+
+        [When(@"I fill in the registration information using a valid email address on Portugal signin page")]
+        public void WhenIFillInTheRegistrationInformationUsingAValidEmailAddressOnPortugalSigninPage(Table table)
+        {
+           
+            dynamic form = table.CreateDynamicInstance();
+            CurrentPage.As<RegistrationPage>().PopulateFirstNameTextBox(form.FirstName);
+            CurrentPage.As<RegistrationPage>().PopulateLastNameTextBox(form.LastName);
+            CurrentPage.As<RegistrationPage>().PopulatePasswordTextBox(form.Password);
+            CurrentPage.As<RegistrationPage>().PopulateConfirmPasswordTextBox(form.Password);
+            WhenIEnterAValidEmailAddress(string.Empty); // Auto Generates with an empty string
+            
+        }
+
+        [When(@"I fill in personal tax number as ""(.*)""")]
+        public void WhenIFillInPersonalTaxNumberAs(string númerodeContribuinte)
+        {
+
+            CurrentPage.As<RegistrationPage>().PopulatePersonalNiNumberPortugalTextBox(númerodeContribuinte);
         }
 
         [When(@"I fill in the registration information using a valid email address and ID number for italy")]
@@ -1049,6 +1068,13 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         public void WhenIEnterAValidCCAccountEmailAddress(string validEmailAddress)
         {
             CurrentPage.As<HomePage>().PopulateEmailAddressTextBoxWithValidCCEmail(validEmailAddress);
+        }
+        [When(@"I fill in  valid NumerodeContribuinte as ""(.*)""")]
+        public void WhenIFillInValidNumerodeContribuinteAs(string numerodeContribuinte)
+        {
+
+            CurrentPage.As<RegistrationPage>().PopulatePersonalNiNumberPortugalTextBox(numerodeContribuinte);
+
         }
 
         [When(@"I enter a valid creative center Password ""(.*)""")]
