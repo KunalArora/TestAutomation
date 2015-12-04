@@ -69,7 +69,7 @@ Given I have navigated to the OmniJoin home page
 	Then I should see an error message on Password field
 
 
-
+#On Germany BOL FreeOjSignUpPage : Phone number field is mandatory.
 Scenario: Sign Up for 14 day Free trial already signed into Brother Online Germany
 	Given I want to create a new account with Brother Online "Germany"
 	When I click on Create Account for "Germany"
@@ -102,7 +102,7 @@ Scenario: Sign Up for 14 day Free trial already signed into Brother Online Germa
 	Then I can sign out of Brother Online
 	Then I am redirected to the Brother Home Page
 
-@IGNORE
+#On Ireland BOL FreeOjSignUpPage : Phone number field is optional.
 Scenario: Sign Up for 14 day Free trial already signed into Brother Online Ireland
 	Given I want to create a new account with Brother Online "Ireland"
 	When I click on Create Account for "Ireland"
@@ -125,9 +125,7 @@ Scenario: Sign Up for 14 day Free trial already signed into Brother Online Irela
 	Then I should see OmniJOin Free trail page
 	When I have entered a valid FirstName as "Test"
 	And I have  entered a valid LastName as "User"
-	#And I have entered a valid company name as "adfasdfadsf"
-	#And I have entered a valid phone number as "01555 522522"
-    And I agreed to the free trail terms and services
+	And I agreed to the free trail terms and services
  	And I click start free trail button
 	Then I should be on download page
 	And Once I have Validated a Free Trial confirmation Email was received
