@@ -363,7 +363,7 @@ Scenario Outline: Customer creates a new account with Brother Online using valid
 	| LastName        | AutoTest       |
 	| Password        | @@@@@	       |
 	| ConfirmPassword | @@@@@		   |
-	| NumeroDNI		  | 980254698	   |
+	| NumeroDNI		  | PT980254698	   |
 	And I have Agreed to the Terms and Conditions
 	And I declare that I do not use this account for business
 	When I press Create Your Account

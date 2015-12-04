@@ -936,7 +936,7 @@ this.ScenarioSetup(scenarioInfo);
                         "@@@@@"});
             table14.AddRow(new string[] {
                         "NumeroDNI",
-                        "980254698"});
+                        "PT980254698"});
 #line 360
  testRunner.And("I fill in the registration information using a valid email address and ID number", ((string)(null)), table14, "And ");
 #line 367
