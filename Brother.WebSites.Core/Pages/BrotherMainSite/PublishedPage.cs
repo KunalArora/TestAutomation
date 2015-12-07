@@ -62,7 +62,20 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div:nth-child(1) > section.common-header-bar > nav")]
         public IWebElement SecondaryNav;
 
-        
+        [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div:nth-child(1) > ol")]
+        public IWebElement Breadcrumb;
+
+        [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div:nth-child(1) > div.common-case-study")]
+        public IWebElement OjCaseStudy;
+
+        [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div:nth-child(1) > div.common--contact-bar")]
+        public IWebElement ContactBar;
+
+        [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div:nth-child(1) > div.common--benefits-bar > div:nth-child(1) > h1")]
+        public IWebElement BenefitBar;
+
+        [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div:nth-child(1) > div.common--benefits-bar > div.common--benefits-bar--body-container > div")]
+        public IWebElement BenefitBarTile;  
 
         public void GetPublishedPage(string url)
         {
@@ -187,6 +200,56 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
             AssertElementPresent(SecondaryNav, "Secondary Navigation", 30);
         }
 
+        public void IsBreadcrumbsDisplayed()
+        {
+            WaitForElementToExistByCssSelector("body > div.container.container--grid > div > div:nth-child(1) > ol");
+            if (Breadcrumb == null)
+            {
+                throw new NullReferenceException("Unable to locate breadcrumb component");
+            }
+            AssertElementPresent(Breadcrumb, "Breadcrumb", 30);
+        }
+
+        public void IsCaseStudyDisplayed()
+        {
+            WaitForElementToExistByCssSelector("body > div.container.container--grid > div > div:nth-child(1) > div.common-case-study");
+            if (OjCaseStudy == null)
+            {
+                throw new NullReferenceException("Unable to locate OJ case study component");
+            }
+            AssertElementPresent(OjCaseStudy, "OJ Case Study", 30);
+        }
+
+        public void IsContactBarDisplayed()
+        {
+            WaitForElementToExistByCssSelector("body > div.container.container--grid > div > div:nth-child(1) > div.common--contact-bar");
+            if (ContactBar == null)
+            {
+                throw new NullReferenceException("Unable to locate contact bar component");
+            }
+            AssertElementPresent(ContactBar, "Contact Bar", 30);
+        }
+
+        public void IsBenefitBarDisplayed()
+        {
+            WaitForElementToExistByCssSelector("body > div.container.container--grid > div > div:nth-child(1) > div.common--benefits-bar > div:nth-child(1) > h1");
+            if (BenefitBar == null)
+            {
+                throw new NullReferenceException("Unable to locate benefit bar component");
+            }
+            AssertElementPresent(BenefitBar, "Benefit Bar", 30);
+        }
+
+        public void IsBenefitBarTileDisplayed()
+        {
+            WaitForElementToExistByCssSelector("body > div.container.container--grid > div > div:nth-child(1) > div.common--benefits-bar > div.common--benefits-bar--body-container > div");
+            if (BenefitBarTile == null)
+            {
+                throw new NullReferenceException("Unable to locate benefit bar tile component");
+            }
+            AssertElementPresent(BenefitBarTile, "Benefit Bar Tile", 30);
+        }
+        
         
 
     }
