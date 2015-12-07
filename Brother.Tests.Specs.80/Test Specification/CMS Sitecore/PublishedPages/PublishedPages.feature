@@ -18,6 +18,11 @@ Scenario Outline: Navigate to published page to verify all page components
 	Then I can verify that a banner bar tile is displayed
 	Then I can verify that an info image text module component is displayed
 	Then I can verify that the secondary navigation component is displayed
+	Then I can verify that the breadcrumbs component is displayed
+	Then I can verify the case study component is displayed
+	Then I can verify that the contact bar component is displayed
+	Then I can verify that the benefit bar component is displayed
+	Then I can verify that the benefit bar tile component is displayed
 
 
 Scenarios: 

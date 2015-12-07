@@ -92,6 +92,35 @@ namespace Brother.Tests.Specs._80.Test_Steps.BrotherMainSite.PublishedPages
             CurrentPage.As<PublishedPage>().IsSecondaryNavigationDisplayed();
         }
 
+        [Then(@"I can verify that the breadcrumbs component is displayed")]
+        public void ThenICanVerifyThatTheBreadcrumbsComponentIsDisplayed()
+        {
+            CurrentPage.As<PublishedPage>().IsBreadcrumbsDisplayed();
+        }
+
+        [Then(@"I can verify the case study component is displayed")]
+        public void ThenICanVerifyTheCaseStudyComponentIsDisplayed()
+        {
+            CurrentPage.As<PublishedPage>().IsCaseStudyDisplayed();
+        }
+
+        [Then(@"I can verify that the contact bar component is displayed")]
+        public void ThenICanVerifyThatTheContactBarComponentIsDisplayed()
+        {
+            CurrentPage.As<PublishedPage>().IsContactBarDisplayed();
+        }
+
+        [Then(@"I can verify that the benefit bar component is displayed")]
+        public void ThenICanVerifyThatTheBenefitBarComponentIsDisplayed()
+        {
+            CurrentPage.As<PublishedPage>().IsBenefitBarDisplayed();
+        }
+
+        [Then(@"I can verify that the benefit bar tile component is displayed")]
+        public void ThenICanVerifyThatTheBenefitBarTileComponentIsDisplayed()
+        {
+            CurrentPage.As<PublishedPage>().IsBenefitBarTileDisplayed();
+        }
 
 
     }
