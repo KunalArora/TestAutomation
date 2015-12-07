@@ -10,13 +10,14 @@ Scenario Outline: Verify that a user is able to login to the CMS system
 	Then I should be able to see the experience editor page "<country>"
 	And I click on the Content Editor option "<country>"
 	Then I should be able to see the content editor page "<country>"
-	And I navigate to the url "http://main.co.uk.brotherdv2.eu/?sc_mode=edit&sc_itemid={4BAA835A-AB17-410E-BAE8-66821388806B}&sc_lang=en"
-
+	
 Scenarios: 
 	
 	| country        | Site Url                                       | UserName   | Password  |
 	| United Kingdom | http://main.co.uk.brotherdv2.eu/sitecore/login | Automation | Password1 |
+	| United Kingdom | http://main.co.uk.cms.brotherqas.eu/sitecore/login | Automation | Password1 |
 
+@ignore
 Scenario Outline: Verify that a user is able to login to the CMS system	- Germany
 	Given That I navigate to "<Site Url>" in order to validate the CMS site
 	And I enter an username containing "<UserName>"
@@ -29,9 +30,9 @@ Scenario Outline: Verify that a user is able to login to the CMS system	- German
 
 Scenarios: 
 	
-	| country        | Site Url                             | UserName   | Password  |
-	| Germany | http://main.de.brotherdv2.eu/sitecore/login | Automation | Password1 |
-
+	| country | Site Url                                        | UserName   | Password  |
+	| Germany | http://main.de.brotherdv2.eu/sitecore/login     | Automation | Password1 |
+	| Germany | http://main.de.cms.brotherqas.eu/sitecore/login | Automation | Password1 |
 
 
 Scenario Outline: Verify that a user is able to login to the CMS system	- France
@@ -48,6 +49,7 @@ Scenarios:
 	
 	| country        | Site Url                            | UserName   | Password  |
 	| France | http://main.fr.brotherdv2.eu/sitecore/login | Automation | Password1 |
+	| France | http://main.fr.cms.brotherqas.eu/sitecore/login | Automation | Password1 |
 
 Scenario Outline: Verify that a user is able to login to the CMS system	- Italy
 	Given That I navigate to "<Site Url>" in order to validate the CMS site
@@ -63,8 +65,9 @@ Scenarios:
 	
 	| country        | Site Url                           | UserName   | Password  |
 	| Italy | http://main.it.brotherdv2.eu/sitecore/login | Automation | Password1 |
+	| Italy | http://main.it.cms.brotherqas.eu/sitecore/login | Automation | Password1 |
 
-
+@ignore
 Scenario Outline: Verify that a user is able to add grid on the page
 	Given That I navigate to "<Site Url>" in order to validate the CMS site
 	And I enter an username containing "<UserName>"
