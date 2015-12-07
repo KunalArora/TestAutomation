@@ -80,11 +80,18 @@ namespace Brother.Tests.Specs._80.Test_Steps.BrotherMainSite.PublishedPages
             CurrentPage.As<PublishedPage>().IsBannerBarTileDisplayed();
         }
 
-        [Then(@"I can verify that an infor image text module component is displayed")]
+        [Then(@"I can verify that an info image text module component is displayed")]
         public void ThenICanVerifyThatAnInforImageTextModuleComponentIsDisplayed()
         {
             CurrentPage.As<PublishedPage>().IsImageTextModuleDisplayed();
         }
+
+        [Then(@"I can verify that the secondary navigation component is displayed")]
+        public void ThenICanVerifyThatTheSecondaryNavigationComponentIsDisplayed()
+        {
+            CurrentPage.As<PublishedPage>().IsSecondaryNavigationDisplayed();
+        }
+
 
 
     }

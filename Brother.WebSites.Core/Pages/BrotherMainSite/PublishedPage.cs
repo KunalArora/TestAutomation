@@ -44,7 +44,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div:nth-child(1) > div > div > div.common-accordion--item--header > div > h1")]
         public IWebElement Accordion;
 
-        [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div:nth-child(1) > section.common--features-carousel > a.right.common--features-carousel-control.active > span.glyphicon.glyphicon-chevron-right")]
+        [FindsBy(How = How.CssSelector, Using = "	body > div.container.container--grid > div > div:nth-child(1) > section.common--features-carousel > ul")]
         public IWebElement FeaturesCarousel;
 
         [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div:nth-child(1) > section.common--features-carousel > ul > li:nth-child(1) > a > img")]
@@ -58,6 +58,9 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div:nth-child(1) > article > picture > img")]
         public IWebElement ImageTextModule;
+
+        [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div:nth-child(1) > section.common-header-bar > nav")]
+        public IWebElement SecondaryNav;
 
         
 
@@ -126,7 +129,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public void IsFeaturesCarouselDisplayed()
         {
-            WaitForElementToExistByCssSelector("body > div.container.container--grid > div > div:nth-child(1) > section.common--features-carousel > a.right.common--features-carousel-control.active > span.glyphicon.glyphicon-chevron-right");
+            WaitForElementToExistByCssSelector("	body > div.container.container--grid > div > div:nth-child(1) > section.common--features-carousel > ul");
             if (FeaturesCarousel == null)
             {
                 throw new NullReferenceException("Unable to locate features carousel component");
@@ -173,6 +176,18 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
             }
             AssertElementPresent(ImageTextModule, "Image Text Module", 30);
         }
+
+        public void IsSecondaryNavigationDisplayed()
+        {
+            WaitForElementToExistByCssSelector("body > div.container.container--grid > div > div:nth-child(1) > section.common-header-bar > nav");
+            if (SecondaryNav == null)
+            {
+                throw new NullReferenceException("Unable to locate secondary navigation component");
+            }
+            AssertElementPresent(SecondaryNav, "Secondary Navigation", 30);
+        }
+
+        
 
     }
 }
