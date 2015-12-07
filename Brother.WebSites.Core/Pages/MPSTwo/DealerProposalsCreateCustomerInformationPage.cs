@@ -25,6 +25,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string nthCustomerOrg = @"#content_1_PersonList_List_Organisation_{0}";
         private const string nthCustomerName = @"#content_1_PersonList_List_CustomerName_{0}";
         private const string nthCustomerEmail = @"#content_1_PersonList_List_CustomerEmail_{0}";
+        private const string CustomerSearchData = @"20151111";
 
         [FindsBy(How = How.CssSelector, Using = "input[id*=\"content_1_PersonList_List_InputChoice\"]")]
         public IList<IWebElement> ExistingContactRadioButtonElement;
@@ -68,17 +69,34 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement RegionElement;
         [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputPersonTitle_Input")]
         public IWebElement ContactTitleElement;
+        [FindsBy(How = How.Id, Using = "content_1_PersonListFilter_InputFilterBy")]
+        public IWebElement ExistingCustomerFilterElement;
+        
 
         public void SelectARandomExistingContact()
         {
-            var noOfContacts = ExistingContactRadioButtonElement.Count;
-            var ranClick = noOfContacts > 20 ? new Random().Next(10, 21) : new Random().Next(0, noOfContacts);
+           SelectAnExistingCustomer();
+            
+        }
 
-            //var ranClick = new Random().Next(10, 21);
 
-            ExistingContactRadioButtonElement[ranClick].Click();
-            //ExistingContactRadioButtonElement.Last().Click();
-            //ExistingContactRadioButtonElement.ElementAt(ranClick).Click();
+        private void SelectAnExistingCustomer()
+        {
+            var ranClick = new Random().Next(0, 20);
+            var customerString = String.Format(nthCustomerChoice, ranClick);
+
+            var customerChoice = Driver.FindElement(By.CssSelector(customerString));
+            customerChoice.Click();
+        }
+
+
+        public void SearchForACustomer()
+        {
+            if(ExistingCustomerFilterElement == null)
+                throw new Exception("Filter for existing customer during proposal creation is missing");
+            ExistingCustomerFilterElement.SendKeys(CustomerSearchData);
+            ExistingCustomerFilterElement.SendKeys(Keys.Tab);
+            WebDriver.Wait(DurationType.Second, 3);
         }
 
         public void IsCustomerInfoTextDisplayed()
