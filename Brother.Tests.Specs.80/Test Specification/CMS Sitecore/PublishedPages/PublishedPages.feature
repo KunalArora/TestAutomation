@@ -16,7 +16,8 @@ Scenario Outline: Navigate to published page to verify all page components
 	Then I can verify that a features carousel tile is displayed
 	Then I can verify that a banner bar component is displayed
 	Then I can verify that a banner bar tile is displayed
-	Then I can verify that an infor image text module component is displayed
+	Then I can verify that an info image text module component is displayed
+	Then I can verify that the secondary navigation component is displayed
 
 
 Scenarios: 
