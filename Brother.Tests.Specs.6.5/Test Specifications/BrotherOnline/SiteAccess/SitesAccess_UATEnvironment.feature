@@ -5,7 +5,6 @@ Feature: AccessAllUATSites
 	We need to receive a 200 OK request back from a list of selected sites
 
 # BrotherMainSite
-@SMOKE
 Scenario Outline: Get 200 OK response back from the following Brother Main Sites on the UAT environment
 	Given The following site <Country> <Main Site> to validate I should receive an Ok response back	
 
@@ -32,7 +31,6 @@ Scenario Outline: Get 200 OK response back from the following Brother Main Sites
 #	| Austria        | http://as.brotherqas.eu/ |
 
 # BrotherOnline
-@SMOKE
 Scenario Outline: Get 200 OK response back from the following Brother Online Sites on the UAT environment
 	Given The following site <Country> <Brother Online> to validate I should receive an Ok response back
 	
@@ -59,6 +57,5 @@ Scenario Outline: Get 200 OK response back from the following Brother Online Sit
 #	| Austria        | https://online.as.brotherqas.eu/ |
 
 # CreativeCentre - UK
-@SMOKE
 Scenario: Get 200 OK response back from Creative Centre United Kingdom on the UAT environment
 	Given The following site "United Kingdom" https://creativecenter.eu.brotherqas.eu/ to validate I should receive an Ok response back
