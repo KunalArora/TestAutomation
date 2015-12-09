@@ -23,6 +23,7 @@ namespace Brother.Tests.Specs._80.TestSpecification.CMSSitecore.SiteAccess
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("PROD")]
     [NUnit.Framework.CategoryAttribute("TEST")]
+    [NUnit.Framework.CategoryAttribute("SMOKE")]
     public partial class CMSWebsiteAccessFeature
     {
         
@@ -39,7 +40,8 @@ namespace Brother.Tests.Specs._80.TestSpecification.CMSSitecore.SiteAccess
                     "ctions are conducted", ProgrammingLanguage.CSharp, new string[] {
                         "UAT",
                         "PROD",
-                        "TEST"});
+                        "TEST",
+                        "SMOKE"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
