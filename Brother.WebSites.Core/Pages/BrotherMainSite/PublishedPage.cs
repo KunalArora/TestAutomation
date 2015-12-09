@@ -75,7 +75,16 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         public IWebElement BenefitBar;
 
         [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div:nth-child(1) > div.common--benefits-bar > div.common--benefits-bar--body-container > div")]
-        public IWebElement BenefitBarTile;  
+        public IWebElement BenefitBarTile;
+
+        [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div:nth-child(1) > section.common--latest-news > div:nth-child(2)")]
+        public IWebElement LatestNews;
+
+        [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div:nth-child(1) > section:nth-child(13) > nav")]
+        public IWebElement HeaderBar;
+
+        [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div:nth-child(1) > section.common-richtext")]
+        public IWebElement FullInfoTile;  
 
         public void GetPublishedPage(string url)
         {
@@ -248,6 +257,36 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
                 throw new NullReferenceException("Unable to locate benefit bar tile component");
             }
             AssertElementPresent(BenefitBarTile, "Benefit Bar Tile", 30);
+        }
+
+        public void IsLatestNewsDisplayed()
+        {
+            WaitForElementToExistByCssSelector("body > div.container.container--grid > div > div:nth-child(1) > section.common--latest-news > div:nth-child(2)");
+            if (LatestNews == null)
+            {
+                throw new NullReferenceException("Unable to locate latest news component");
+            }
+            AssertElementPresent(LatestNews, "Latest News", 30);
+        }
+
+        public void IsHeaderBarDisplayed()
+        {
+            WaitForElementToExistByCssSelector("body > div.container.container--grid > div > div:nth-child(1) > section:nth-child(13) > nav");
+            if (HeaderBar == null)
+            {
+                throw new NullReferenceException("Unable to locate header bar component");
+            }
+            AssertElementPresent(HeaderBar, "Header Bar", 30);
+        }
+
+        public void IsFullInfoTileDisplayed()
+        {
+            WaitForElementToExistByCssSelector("body > div.container.container--grid > div > div:nth-child(1) > section.common-richtext");
+            if (FullInfoTile == null)
+            {
+                throw new NullReferenceException("Unable to locate full info tile component");
+            }
+            AssertElementPresent(FullInfoTile, "Full Info Tile", 30);
         }
         
         

@@ -122,6 +122,24 @@ namespace Brother.Tests.Specs._80.Test_Steps.BrotherMainSite.PublishedPages
             CurrentPage.As<PublishedPage>().IsBenefitBarTileDisplayed();
         }
 
+        [Then(@"I can verify that the latest news component is displayed")]
+        public void ThenICanVerifyThatTheLatestNewsComponentIsDisplayed()
+        {
+            CurrentPage.As<PublishedPage>().IsLatestNewsDisplayed();
+        }
+
+        [Then(@"I can verify that the header bar component is displayed")]
+        public void ThenICanVerifyThatTheHeaderBarComponentIsDisplayed()
+        {
+            CurrentPage.As<PublishedPage>().IsHeaderBarDisplayed();
+        }
+
+        [Then(@"I can verify that the full info tile component is displayed")]
+        public void ThenICanVerifyThatTheFullInfoTileComponentIsDisplayed()
+        {
+            CurrentPage.As<PublishedPage>().IsFullInfoTileDisplayed();
+        }
+
 
     }
 
