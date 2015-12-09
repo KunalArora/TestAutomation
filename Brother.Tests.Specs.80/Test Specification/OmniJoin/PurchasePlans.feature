@@ -1,4 +1,4 @@
-﻿@UAT @TEST
+﻿@IGNORE
 Feature: Purchase A Plan
 	In order to continue to use OmniJoin
 	As a Customer

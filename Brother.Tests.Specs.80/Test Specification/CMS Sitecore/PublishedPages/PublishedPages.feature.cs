@@ -23,6 +23,7 @@ namespace Brother.Tests.Specs._80.TestSpecification.CMSSitecore.PublishedPages
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("PROD")]
     [NUnit.Framework.CategoryAttribute("TEST")]
+    [NUnit.Framework.CategoryAttribute("SMOKE")]
     public partial class PublishedPagesFeature
     {
         
@@ -39,7 +40,8 @@ namespace Brother.Tests.Specs._80.TestSpecification.CMSSitecore.PublishedPages
                     " verified to ensure \r\na CMS code change has not had an adverse effect", ProgrammingLanguage.CSharp, new string[] {
                         "UAT",
                         "PROD",
-                        "TEST"});
+                        "TEST",
+                        "SMOKE"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -118,6 +120,12 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.Then("I can verify that the benefit bar component is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 25
  testRunner.Then("I can verify that the benefit bar tile component is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 26
+ testRunner.Then("I can verify that the latest news component is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 27
+ testRunner.Then("I can verify that the header bar component is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 28
+ testRunner.Then("I can verify that the full info tile component is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

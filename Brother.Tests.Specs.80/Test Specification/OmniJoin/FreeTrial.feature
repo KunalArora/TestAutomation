@@ -1,4 +1,4 @@
-﻿@PROD @UAT @TEST @DEV
+﻿@IGNORE
 Feature: FreeTrial
 	In order to try out OmniJoin for 30 days
 	As a customer

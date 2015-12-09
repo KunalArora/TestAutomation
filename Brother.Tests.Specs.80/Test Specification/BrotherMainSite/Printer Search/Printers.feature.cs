@@ -20,10 +20,7 @@ namespace Brother.Tests.Specs._80.TestSpecification.BrotherMainSite.PrinterSearc
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("Correct printer product listings")]
-    [NUnit.Framework.CategoryAttribute("UAT")]
-    [NUnit.Framework.CategoryAttribute("PROD")]
-    [NUnit.Framework.CategoryAttribute("TEST")]
-    [NUnit.Framework.CategoryAttribute("SMOKE")]
+    [NUnit.Framework.IgnoreAttribute()]
     public partial class CorrectPrinterProductListingsFeature
     {
         
@@ -38,10 +35,7 @@ namespace Brother.Tests.Specs._80.TestSpecification.BrotherMainSite.PrinterSearc
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Correct printer product listings", "In order to purchase a new Printer\r\nAs a customer\r\nI want to be able to view the " +
                     "list of available printers", ProgrammingLanguage.CSharp, new string[] {
-                        "UAT",
-                        "PROD",
-                        "TEST",
-                        "SMOKE"});
+                        "IGNORE"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -76,7 +70,6 @@ namespace Brother.Tests.Specs._80.TestSpecification.BrotherMainSite.PrinterSearc
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("View the list of available Laser Printers on Brother Main sites for languages exc" +
             "ept Spain and Portugal sites")]
-        [NUnit.Framework.CategoryAttribute("SMOKE")]
         [NUnit.Framework.CategoryAttribute("TEST")]
         [NUnit.Framework.CategoryAttribute("UAT")]
         [NUnit.Framework.TestCaseAttribute("Czech", "printers/laser-printers", null)]
@@ -92,7 +85,6 @@ namespace Brother.Tests.Specs._80.TestSpecification.BrotherMainSite.PrinterSearc
         public virtual void ViewTheListOfAvailableLaserPrintersOnBrotherMainSitesForLanguagesExceptSpainAndPortugalSites(string country, string site, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "SMOKE",
                     "TEST",
                     "UAT"};
             if ((exampleTags != null))
@@ -118,14 +110,12 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("View the list of available Laser Printers on Brother Main sites for Spain and Por" +
             "tugal")]
-        [NUnit.Framework.CategoryAttribute("SMOKE")]
         [NUnit.Framework.CategoryAttribute("TEST")]
         [NUnit.Framework.CategoryAttribute("UAT")]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "printers/laser-printers", null)]
         public virtual void ViewTheListOfAvailableLaserPrintersOnBrotherMainSitesForSpainAndPortugal(string country, string site, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "SMOKE",
                     "TEST",
                     "UAT"};
             if ((exampleTags != null))

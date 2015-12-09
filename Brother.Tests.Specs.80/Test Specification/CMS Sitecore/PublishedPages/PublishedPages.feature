@@ -1,4 +1,4 @@
-﻿@UAT @PROD @TEST
+﻿@UAT @PROD @TEST @SMOKE
 Feature: PublishedPages
 	In order to validate the success of a new build, 
 	previously published pages are verified to ensure 
@@ -23,6 +23,9 @@ Scenario Outline: Navigate to published page to verify all page components
 	Then I can verify that the contact bar component is displayed
 	Then I can verify that the benefit bar component is displayed
 	Then I can verify that the benefit bar tile component is displayed
+	Then I can verify that the latest news component is displayed
+	Then I can verify that the header bar component is displayed
+	Then I can verify that the full info tile component is displayed
 
 
 Scenarios: 

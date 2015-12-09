@@ -1,7 +1,8 @@
-﻿@UAT @PROD @TEST
+﻿@SMOKE
+#@UAT @PROD @TEST 
 Feature: CMS website access
 	In order to validate that the CMS site is accessible a number of content editor actions are conducted
-
+@SMOKE
 Scenario Outline: Verify that a user is able to login to the CMS system	
 	Given That I navigate to "<Site Url>" in order to validate the CMS site
 	And I enter an username containing "<UserName>"
@@ -34,7 +35,7 @@ Scenarios:
 	| Germany | http://main.de.brotherdv2.eu/sitecore/login     | Automation | Password1 |
 	| Germany | http://main.de.cms.brotherqas.eu/sitecore/login | Automation | Password1 |
 
-
+@SMOKE
 Scenario Outline: Verify that a user is able to login to the CMS system	- France
 	Given That I navigate to "<Site Url>" in order to validate the CMS site
 	And I enter an username containing "<UserName>"
@@ -51,6 +52,7 @@ Scenarios:
 	| France | http://main.fr.brotherdv2.eu/sitecore/login | Automation | Password1 |
 	| France | http://main.fr.cms.brotherqas.eu/sitecore/login | Automation | Password1 |
 
+@SMOKE
 Scenario Outline: Verify that a user is able to login to the CMS system	- Italy
 	Given That I navigate to "<Site Url>" in order to validate the CMS site
 	And I enter an username containing "<UserName>"
