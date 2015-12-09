@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Brother.Tests.Specs.TestSpecifications.OmniJoin
+namespace Brother.Tests.Specs._80.TestSpecification.OmniJoin
 {
     using TechTalk.SpecFlow;
     
@@ -20,10 +20,7 @@ namespace Brother.Tests.Specs.TestSpecifications.OmniJoin
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("FreeTrial")]
-    [NUnit.Framework.CategoryAttribute("PROD")]
-    [NUnit.Framework.CategoryAttribute("UAT")]
-    [NUnit.Framework.CategoryAttribute("TEST")]
-    [NUnit.Framework.CategoryAttribute("DEV")]
+    [NUnit.Framework.IgnoreAttribute()]
     public partial class FreeTrialFeature
     {
         
@@ -38,10 +35,7 @@ namespace Brother.Tests.Specs.TestSpecifications.OmniJoin
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "FreeTrial", "In order to try out OmniJoin for 30 days\r\nAs a customer\r\nI need to sign up for a " +
                     "Free trial", ProgrammingLanguage.CSharp, new string[] {
-                        "PROD",
-                        "UAT",
-                        "TEST",
-                        "DEV"});
+                        "IGNORE"});
             testRunner.OnFeatureStart(featureInfo);
         }
         

@@ -1,4 +1,4 @@
-﻿@UAT @TEST
+﻿@IGNORE
 Feature: Manage Plan (BOL-178)
 	As a customer 
 	I would like to upgrade or cancel my OmniJoin subscription

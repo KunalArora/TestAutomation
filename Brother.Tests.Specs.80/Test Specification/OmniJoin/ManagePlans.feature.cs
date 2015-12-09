@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Brother.Tests.Specs.TestSpecifications.OmniJoin
+namespace Brother.Tests.Specs._80.TestSpecification.OmniJoin
 {
     using TechTalk.SpecFlow;
     
@@ -20,8 +20,7 @@ namespace Brother.Tests.Specs.TestSpecifications.OmniJoin
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("Manage Plan (BOL-178)")]
-    [NUnit.Framework.CategoryAttribute("UAT")]
-    [NUnit.Framework.CategoryAttribute("TEST")]
+    [NUnit.Framework.IgnoreAttribute()]
     public partial class ManagePlanBOL_178Feature
     {
         
@@ -35,8 +34,7 @@ namespace Brother.Tests.Specs.TestSpecifications.OmniJoin
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Manage Plan (BOL-178)", "As a customer \r\nI would like to upgrade or cancel my OmniJoin subscription", ProgrammingLanguage.CSharp, new string[] {
-                        "UAT",
-                        "TEST"});
+                        "IGNORE"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
