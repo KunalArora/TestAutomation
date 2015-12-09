@@ -5,7 +5,6 @@ Feature: AccessAllProductionSites
 	As a sanity check
 	We need to receive a 200 OK request back from a list of selected sites
 
-@SMOKE
 Scenario Outline: Get 200 OK response back from Brother Main Site "<Country>" on the LIVE environment
 	Given The following site "<Site Url>" to validate I should receive an Ok response back	
 
@@ -35,7 +34,6 @@ Scenarios:
 #	| Bulgaria       | http://www.brother.bg/    |
 #	| Romania        | http://www.brother.ro/    |
 
-@SMOKE
 Scenario Outline: Get 200 OK response back from Brother Online "<Country>" on the LIVE environment
 	Given The following site "<Site Url>" to validate I should receive an Ok response back	
 
@@ -66,7 +64,6 @@ Scenarios:
 #	| Bulgaria       | https://online.brother.bg/    |
 #	| Romania        | https://online.brother.ro/    |
 
-@SMOKE
 Scenario Outline: Get 200 OK response back from Web Conferencing "<Country>" on the LIVE environment
 	Given The following site "<Site Url>" to validate I should receive an Ok response back	
 
@@ -80,7 +77,6 @@ Scenarios:
 	| Germany        | http://videokonferenzen.brother.de/   |
 #	| Spain          | http://videoconferencia.brother.es/   |
 
-@SMOKE
 Scenario Outline: Get 200 OK response back from Creative Centre "<Country>" on the LIVE environment
 	Given The following site "<Site Url>" to validate I should receive an Ok response back
 
