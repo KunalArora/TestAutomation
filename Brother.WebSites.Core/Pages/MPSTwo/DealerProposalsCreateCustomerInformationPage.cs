@@ -82,7 +82,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void SelectAnExistingCustomer()
         {
-            var ranClick = new Random().Next(0, 20);
+            var contactNumber = ExistingContactRadioButtonElement.Count;
+
+            var frIt = IsFranceSystem() || IsItalySystem();
+
+            var ranClick = frIt ? new Random().Next(1, contactNumber) : new Random().Next(0, 20);
             var customerString = String.Format(nthCustomerChoice, ranClick);
 
             var customerChoice = Driver.FindElement(By.CssSelector(customerString));
@@ -261,9 +265,32 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 PropertyTownElement.SendKeys(MpsUtil.PropertyTown());
         }
 
+
+        private string PostCode()
+        {
+            string code = null;
+
+            if (IsGermanSystem())
+            {
+                code = MpsUtil.PostCode();
+            } else if (IsFranceSystem())
+            {
+                code = MpsUtil.PostCodeFr();
+            }else if (IsUKSystem())
+            {
+                code = MpsUtil.PostCodeGB();
+            } else if (IsItalySystem())
+            {
+                code = MpsUtil.PostCodeIt();
+            }
+
+            return code;
+        }
+
+
         public void EnterPropertyPostCode()
         {
-            PropertyPostcodeElement.SendKeys(!IsGermanSystem() ? MpsUtil.PostCodeGB() : MpsUtil.PostCode());
+            PropertyPostcodeElement.SendKeys(PostCode());
         }
 
         public void SelectRegionFromDropdown(string region)
