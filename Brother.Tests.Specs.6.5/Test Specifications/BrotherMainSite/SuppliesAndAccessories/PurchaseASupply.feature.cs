@@ -70,12 +70,10 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherMainSite.SuppliesAndAcce
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("(BBAU-2877) Purchase a new Inkjet Cartridge with a valid supply code and valid cr" +
             "edit card details")]
-        [NUnit.Framework.CategoryAttribute("SMOKE")]
         public virtual void BBAU_2877PurchaseANewInkjetCartridgeWithAValidSupplyCodeAndValidCreditCardDetails()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("(BBAU-2877) Purchase a new Inkjet Cartridge with a valid supply code and valid cr" +
-                    "edit card details", new string[] {
-                        "SMOKE"});
+                    "edit card details", ((string[])(null)));
 #line 14
 this.ScenarioSetup(scenarioInfo);
 #line 15
@@ -373,13 +371,11 @@ testRunner.Given("I want to create a new account with Brother Online \"United Ki
         [NUnit.Framework.DescriptionAttribute("Purchase a product by product number on Brother \"Ireland\" but click Cancel before" +
             " submitting payment")]
         [NUnit.Framework.CategoryAttribute("PROD")]
-        [NUnit.Framework.CategoryAttribute("SMOKE")]
         public virtual void PurchaseAProductByProductNumberOnBrotherIrelandButClickCancelBeforeSubmittingPayment()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Purchase a product by product number on Brother \"Ireland\" but click Cancel before" +
                     " submitting payment", new string[] {
-                        "PROD",
-                        "SMOKE"});
+                        "PROD"});
 #line 145
 this.ScenarioSetup(scenarioInfo);
 #line 146

@@ -29,6 +29,12 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement.PaymentMet
         [FindsBy(How = How.CssSelector, Using = "#Warnings")]
         public IWebElement WarningMessagePaymentMethod;
 
+        //AddedLocator 
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='AddPaymentBtn']")]
+        public IWebElement AddPaymentMethodBtn;
+
+
         public void IsAddPaymentMethodButtonAvailable()
         {
             if (AddPaymentMethodButton == null)
@@ -36,6 +42,12 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement.PaymentMet
                 throw new Exception("Unable to locate button on page");
             }
             AssertElementPresent(AddPaymentMethodButton, "Add Payment Method Button");
+        }
+
+        public void IsAddPaymentMethodBtnDisplayed()
+        {
+            TestCheck.AssertIsEqual(true, AddPaymentMethodBtn.Displayed,"Is Button Displayed");
+            
         }
 
         public BillingDetailsPage MyPaymentMethodsAddPaymentMethodButtonClick()
