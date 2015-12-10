@@ -44,7 +44,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div:nth-child(1) > div > div > div.common-accordion--item--header > div > h1")]
         public IWebElement Accordion;
 
-        [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div:nth-child(1) > section.common--features-carousel > a.right.common--features-carousel-control.active > span.glyphicon.glyphicon-chevron-right")]
+        [FindsBy(How = How.CssSelector, Using = "	body > div.container.container--grid > div > div:nth-child(1) > section.common--features-carousel > ul")]
         public IWebElement FeaturesCarousel;
 
         [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div:nth-child(1) > section.common--features-carousel > ul > li:nth-child(1) > a > img")]
@@ -59,7 +59,32 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div:nth-child(1) > article > picture > img")]
         public IWebElement ImageTextModule;
 
-        
+        [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div:nth-child(1) > section.common-header-bar > nav")]
+        public IWebElement SecondaryNav;
+
+        [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div:nth-child(1) > ol")]
+        public IWebElement Breadcrumb;
+
+        [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div:nth-child(1) > div.common-case-study")]
+        public IWebElement OjCaseStudy;
+
+        [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div:nth-child(1) > div.common--contact-bar")]
+        public IWebElement ContactBar;
+
+        [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div:nth-child(1) > div.common--benefits-bar > div:nth-child(1) > h1")]
+        public IWebElement BenefitBar;
+
+        [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div:nth-child(1) > div.common--benefits-bar > div.common--benefits-bar--body-container > div")]
+        public IWebElement BenefitBarTile;
+
+        [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div:nth-child(1) > section.common--latest-news > div:nth-child(2)")]
+        public IWebElement LatestNews;
+
+        [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div:nth-child(1) > section:nth-child(13) > nav")]
+        public IWebElement HeaderBar;
+
+        [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div:nth-child(1) > section.common-richtext")]
+        public IWebElement FullInfoTile;  
 
         public void GetPublishedPage(string url)
         {
@@ -126,7 +151,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public void IsFeaturesCarouselDisplayed()
         {
-            WaitForElementToExistByCssSelector("body > div.container.container--grid > div > div:nth-child(1) > section.common--features-carousel > a.right.common--features-carousel-control.active > span.glyphicon.glyphicon-chevron-right");
+            WaitForElementToExistByCssSelector("	body > div.container.container--grid > div > div:nth-child(1) > section.common--features-carousel > ul");
             if (FeaturesCarousel == null)
             {
                 throw new NullReferenceException("Unable to locate features carousel component");
@@ -173,6 +198,98 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
             }
             AssertElementPresent(ImageTextModule, "Image Text Module", 30);
         }
+
+        public void IsSecondaryNavigationDisplayed()
+        {
+            WaitForElementToExistByCssSelector("body > div.container.container--grid > div > div:nth-child(1) > section.common-header-bar > nav");
+            if (SecondaryNav == null)
+            {
+                throw new NullReferenceException("Unable to locate secondary navigation component");
+            }
+            AssertElementPresent(SecondaryNav, "Secondary Navigation", 30);
+        }
+
+        public void IsBreadcrumbsDisplayed()
+        {
+            WaitForElementToExistByCssSelector("body > div.container.container--grid > div > div:nth-child(1) > ol");
+            if (Breadcrumb == null)
+            {
+                throw new NullReferenceException("Unable to locate breadcrumb component");
+            }
+            AssertElementPresent(Breadcrumb, "Breadcrumb", 30);
+        }
+
+        public void IsCaseStudyDisplayed()
+        {
+            WaitForElementToExistByCssSelector("body > div.container.container--grid > div > div:nth-child(1) > div.common-case-study");
+            if (OjCaseStudy == null)
+            {
+                throw new NullReferenceException("Unable to locate OJ case study component");
+            }
+            AssertElementPresent(OjCaseStudy, "OJ Case Study", 30);
+        }
+
+        public void IsContactBarDisplayed()
+        {
+            WaitForElementToExistByCssSelector("body > div.container.container--grid > div > div:nth-child(1) > div.common--contact-bar");
+            if (ContactBar == null)
+            {
+                throw new NullReferenceException("Unable to locate contact bar component");
+            }
+            AssertElementPresent(ContactBar, "Contact Bar", 30);
+        }
+
+        public void IsBenefitBarDisplayed()
+        {
+            WaitForElementToExistByCssSelector("body > div.container.container--grid > div > div:nth-child(1) > div.common--benefits-bar > div:nth-child(1) > h1");
+            if (BenefitBar == null)
+            {
+                throw new NullReferenceException("Unable to locate benefit bar component");
+            }
+            AssertElementPresent(BenefitBar, "Benefit Bar", 30);
+        }
+
+        public void IsBenefitBarTileDisplayed()
+        {
+            WaitForElementToExistByCssSelector("body > div.container.container--grid > div > div:nth-child(1) > div.common--benefits-bar > div.common--benefits-bar--body-container > div");
+            if (BenefitBarTile == null)
+            {
+                throw new NullReferenceException("Unable to locate benefit bar tile component");
+            }
+            AssertElementPresent(BenefitBarTile, "Benefit Bar Tile", 30);
+        }
+
+        public void IsLatestNewsDisplayed()
+        {
+            WaitForElementToExistByCssSelector("body > div.container.container--grid > div > div:nth-child(1) > section.common--latest-news > div:nth-child(2)");
+            if (LatestNews == null)
+            {
+                throw new NullReferenceException("Unable to locate latest news component");
+            }
+            AssertElementPresent(LatestNews, "Latest News", 30);
+        }
+
+        public void IsHeaderBarDisplayed()
+        {
+            WaitForElementToExistByCssSelector("body > div.container.container--grid > div > div:nth-child(1) > section:nth-child(13) > nav");
+            if (HeaderBar == null)
+            {
+                throw new NullReferenceException("Unable to locate header bar component");
+            }
+            AssertElementPresent(HeaderBar, "Header Bar", 30);
+        }
+
+        public void IsFullInfoTileDisplayed()
+        {
+            WaitForElementToExistByCssSelector("body > div.container.container--grid > div > div:nth-child(1) > section.common-richtext");
+            if (FullInfoTile == null)
+            {
+                throw new NullReferenceException("Unable to locate full info tile component");
+            }
+            AssertElementPresent(FullInfoTile, "Full Info Tile", 30);
+        }
+        
+        
 
     }
 }

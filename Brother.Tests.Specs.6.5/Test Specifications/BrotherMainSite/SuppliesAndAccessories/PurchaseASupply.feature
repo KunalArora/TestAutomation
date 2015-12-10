@@ -9,7 +9,7 @@ Feature: PurchaseANewInkCartridge
 #	# Create an account on BOL and sign in
 #	Given I am logged onto Brother Online "United Kingdom" using valid credentials
 
-@SMOKE
+
 # Valid Supply code with valid CC details, addresses etc
 Scenario: (BBAU-2877) Purchase a new Inkjet Cartridge with a valid supply code and valid credit card details
    Given I want to create a new account with Brother Online "United Kingdom"
@@ -140,7 +140,7 @@ Given I want to create a new account with Brother Online "United Kingdom"
 	Then I am redirected to the Brother Home Page
 	And I can validate an Order Confirmation email was received
 
-@PROD @SMOKE
+@PROD
 ## Product Purchase by Product ID - see main BrotherMainSite->SuppliesAndAccessories->PurchaseASupply feature file for TEST and UAT versions
 Scenario: Purchase a product by product number on Brother "Ireland" but click Cancel before submitting payment
 	Given I am logged onto Brother Online "Ireland" using valid credentials

@@ -80,10 +80,64 @@ namespace Brother.Tests.Specs._80.Test_Steps.BrotherMainSite.PublishedPages
             CurrentPage.As<PublishedPage>().IsBannerBarTileDisplayed();
         }
 
-        [Then(@"I can verify that an infor image text module component is displayed")]
+        [Then(@"I can verify that an info image text module component is displayed")]
         public void ThenICanVerifyThatAnInforImageTextModuleComponentIsDisplayed()
         {
             CurrentPage.As<PublishedPage>().IsImageTextModuleDisplayed();
+        }
+
+        [Then(@"I can verify that the secondary navigation component is displayed")]
+        public void ThenICanVerifyThatTheSecondaryNavigationComponentIsDisplayed()
+        {
+            CurrentPage.As<PublishedPage>().IsSecondaryNavigationDisplayed();
+        }
+
+        [Then(@"I can verify that the breadcrumbs component is displayed")]
+        public void ThenICanVerifyThatTheBreadcrumbsComponentIsDisplayed()
+        {
+            CurrentPage.As<PublishedPage>().IsBreadcrumbsDisplayed();
+        }
+
+        [Then(@"I can verify the case study component is displayed")]
+        public void ThenICanVerifyTheCaseStudyComponentIsDisplayed()
+        {
+            CurrentPage.As<PublishedPage>().IsCaseStudyDisplayed();
+        }
+
+        [Then(@"I can verify that the contact bar component is displayed")]
+        public void ThenICanVerifyThatTheContactBarComponentIsDisplayed()
+        {
+            CurrentPage.As<PublishedPage>().IsContactBarDisplayed();
+        }
+
+        [Then(@"I can verify that the benefit bar component is displayed")]
+        public void ThenICanVerifyThatTheBenefitBarComponentIsDisplayed()
+        {
+            CurrentPage.As<PublishedPage>().IsBenefitBarDisplayed();
+        }
+
+        [Then(@"I can verify that the benefit bar tile component is displayed")]
+        public void ThenICanVerifyThatTheBenefitBarTileComponentIsDisplayed()
+        {
+            CurrentPage.As<PublishedPage>().IsBenefitBarTileDisplayed();
+        }
+
+        [Then(@"I can verify that the latest news component is displayed")]
+        public void ThenICanVerifyThatTheLatestNewsComponentIsDisplayed()
+        {
+            CurrentPage.As<PublishedPage>().IsLatestNewsDisplayed();
+        }
+
+        [Then(@"I can verify that the header bar component is displayed")]
+        public void ThenICanVerifyThatTheHeaderBarComponentIsDisplayed()
+        {
+            CurrentPage.As<PublishedPage>().IsHeaderBarDisplayed();
+        }
+
+        [Then(@"I can verify that the full info tile component is displayed")]
+        public void ThenICanVerifyThatTheFullInfoTileComponentIsDisplayed()
+        {
+            CurrentPage.As<PublishedPage>().IsFullInfoTileDisplayed();
         }
 
 

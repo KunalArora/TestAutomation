@@ -70,7 +70,6 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Get 200 OK response back from the following Brother Main Sites on the UAT environ" +
             "ment")]
-        [NUnit.Framework.CategoryAttribute("SMOKE")]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "http://uk.brotherqas.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Germany", "http://de.brotherqas.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Slovakia", "http://sk.brotherqas.eu/", null)]
@@ -91,17 +90,11 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess
         [NUnit.Framework.TestCaseAttribute("Hungary", "http://hr.brotherqas.eu/", null)]
         public virtual void Get200OKResponseBackFromTheFollowingBrotherMainSitesOnTheUATEnvironment(string country, string mainSite, string[] exampleTags)
         {
-            string[] @__tags = new string[] {
-                    "SMOKE"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get 200 OK response back from the following Brother Main Sites on the UAT environ" +
-                    "ment", @__tags);
-#line 9
+                    "ment", exampleTags);
+#line 8
 this.ScenarioSetup(scenarioInfo);
-#line 10
+#line 9
  testRunner.Given(string.Format("The following site {0} {1} to validate I should receive an Ok response back", country, mainSite), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             this.ScenarioCleanup();
@@ -110,7 +103,6 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Get 200 OK response back from the following Brother Online Sites on the UAT envir" +
             "onment")]
-        [NUnit.Framework.CategoryAttribute("SMOKE")]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "https://online.uk.brotherqas.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Spain", "https://online.es.brotherqas.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Poland", "https://online.pl.brotherqas.eu/", null)]
@@ -130,17 +122,11 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestCaseAttribute("Ireland", "https://online.ie.brotherqas.eu/", null)]
         public virtual void Get200OKResponseBackFromTheFollowingBrotherOnlineSitesOnTheUATEnvironment(string country, string brotherOnline, string[] exampleTags)
         {
-            string[] @__tags = new string[] {
-                    "SMOKE"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get 200 OK response back from the following Brother Online Sites on the UAT envir" +
-                    "onment", @__tags);
-#line 36
+                    "onment", exampleTags);
+#line 34
 this.ScenarioSetup(scenarioInfo);
-#line 37
+#line 35
  testRunner.Given(string.Format("The following site {0} {1} to validate I should receive an Ok response back", country, brotherOnline), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             this.ScenarioCleanup();
@@ -149,15 +135,13 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Get 200 OK response back from Creative Centre United Kingdom on the UAT environme" +
             "nt")]
-        [NUnit.Framework.CategoryAttribute("SMOKE")]
         public virtual void Get200OKResponseBackFromCreativeCentreUnitedKingdomOnTheUATEnvironment()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get 200 OK response back from Creative Centre United Kingdom on the UAT environme" +
-                    "nt", new string[] {
-                        "SMOKE"});
-#line 63
+                    "nt", ((string[])(null)));
+#line 60
 this.ScenarioSetup(scenarioInfo);
-#line 64
+#line 61
  testRunner.Given("The following site \"United Kingdom\" https://creativecenter.eu.brotherqas.eu/ to v" +
                     "alidate I should receive an Ok response back", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden

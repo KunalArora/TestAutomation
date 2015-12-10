@@ -23,6 +23,7 @@ namespace Brother.Tests.Specs._80.TestSpecification.CMSSitecore.EnvAccess
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("PROD")]
     [NUnit.Framework.CategoryAttribute("TEST")]
+    [NUnit.Framework.CategoryAttribute("SMOKE")]
     public partial class EnvironmemntAccessFeature
     {
         
@@ -39,7 +40,8 @@ namespace Brother.Tests.Specs._80.TestSpecification.CMSSitecore.EnvAccess
                     "ed from all related URLs", ProgrammingLanguage.CSharp, new string[] {
                         "UAT",
                         "PROD",
-                        "TEST"});
+                        "TEST",
+                        "SMOKE"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
