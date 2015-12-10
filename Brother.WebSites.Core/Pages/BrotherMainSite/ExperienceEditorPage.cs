@@ -24,6 +24,9 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         [FindsBy(How = How.CssSelector, Using = "[href=\"/sitecore/shell/Applications/Content Editor.aspx?sc_bw=1\"]")]
         public IWebElement ContentEditorLink;
 
+        [FindsBy(How = How.CssSelector, Using = "body > header > div > div > a:nth-child(1)")]
+        public IWebElement PageHeader;
+
         public void IsContentEditorLinkAvailable()
         {
             if (LinkTextAvailable == null)
@@ -36,5 +39,15 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         {   
             ContentEditorLink.Click();
         }
+        public void IsPageHeaderDisplayed()
+        {
+            WaitForElementToExistByCssSelector("body > header > div > div > a:nth-child(1)");
+            if (PageHeader == null)
+            {
+                throw new NullReferenceException("Unable to locate page header");
+            }
+            AssertElementPresent(PageHeader, "Page Header", 30);
+        }
+
     }
 }
