@@ -1123,7 +1123,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 var srpCost = IsUKSystem() ? MpsUtil.GetValue(ModelSrpElement.Text) : MpsUtil.GetEuroValue(ModelSrpElement.Text);
                 var costText = srpCost.ToString();
-                ClearAndType(ProductCostPriceElement, costText);
+                var optionText = costText.Substring(0, 3);
+                ClearAndType(ProductCostPriceElement, optionText);
                 SetProductCostPrice();
             }
             
