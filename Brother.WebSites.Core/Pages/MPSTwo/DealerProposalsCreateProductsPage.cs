@@ -1118,11 +1118,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
         public void EnterModelUnitCost()
         {
-            if (!ModelSrpElement.Text.Contains("£")) return;
-            var srpCost = MpsUtil.GetValue(ModelSrpElement.Text);
-            var costText = srpCost.ToString();
-            ClearAndType(ProductCostPriceElement, costText);
-            SetProductCostPrice();
+            //if (!ModelSrpElement.Text.Contains("£")) return;
+            if (!IsAustriaSystem() || !IsGermanSystem())
+            {
+                var srpCost = IsUKSystem() ? MpsUtil.GetValue(ModelSrpElement.Text) : MpsUtil.GetEuroValue(ModelSrpElement.Text);
+                var costText = srpCost.ToString();
+                ClearAndType(ProductCostPriceElement, costText);
+                SetProductCostPrice();
+            }
+            
 
         }
 

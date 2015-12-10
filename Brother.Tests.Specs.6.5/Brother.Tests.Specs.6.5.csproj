@@ -239,12 +239,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CloudMPSSummaryPageValidationForAllProposalTypes.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\SendToBank\CloudMPSDealerCanSubmitAllGermanProposalsForApproval.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\SendForApproval\CloudMPSDealerCanSubmitAllGermanProposalsForApproval.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CloudMPSDealerCanSubmitAllGermanProposalsForApproval.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\SendToBank\CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\SendForApproval\CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature</DependentUpon>
@@ -692,11 +692,11 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSVerificationOnProductScreenVariations.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\SendToBank\CloudMPSDealerCanSubmitAllGermanProposalsForApproval.feature">
+    <None Include="Test Specifications\MPSTwo\SendForApproval\CloudMPSDealerCanSubmitAllGermanProposalsForApproval.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSDealerCanSubmitAllGermanProposalsForApproval.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\SendToBank\CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature">
+    <None Include="Test Specifications\MPSTwo\SendForApproval\CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature.cs</LastGenOutput>
     </None>

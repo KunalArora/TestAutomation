@@ -25,6 +25,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         private const string austriaUrl = @"online.at";
         private const string englandUrl = @"online.uk";
         private const string franceUrl = @"online.fr";
+        private const string italyUrl = @"online.it";
 
         public static void AcceptCookieLaw(IWebDriver driver)
         {
@@ -82,6 +83,11 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         public bool IsFranceSystem()
         {
             return GetUrl().Contains(franceUrl);
+        }
+
+        public bool IsItalySystem()
+        {
+            return GetUrl().Contains(italyUrl);
         }
 
 

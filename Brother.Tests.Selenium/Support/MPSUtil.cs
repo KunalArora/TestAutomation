@@ -680,6 +680,66 @@ namespace Brother.Tests.Selenium.Lib.Support
             return postCode;
         }
 
+        public static string PostCodeFr()
+        {
+            String[] zip = {
+                                    "25310",
+                                    "54800",
+                                    "60480",
+                                    "80100",
+                                    "80132",
+                                    "91150",
+                                    "95690",
+                                    "51800",
+                                    "81100",
+                                    "81120",
+                                    "81090",
+                                    "81130",
+                                    "81140",
+                                    "81150",
+                                    "81160",
+                                    "81170",
+                                    "81190",
+                                    "81200",
+                                    "81210",
+                                    "81220",
+                                    "81230"
+					            };
+            var postCode = zip[new Random().Next(20)];
+
+            return postCode;
+        }
+
+        public static string PostCodeIt()
+        {
+            String[] zip = {
+                                    "00120",
+                                    "01100",
+                                    "60480",
+                                    "02100",
+                                    "03100",
+                                    "04100",
+                                    "07100",
+                                    "13900",
+                                    "15100",
+                                    "18100",
+                                    "26900",
+                                    "28100",
+                                    "29100",
+                                    "31100",
+                                    "33170",
+                                    "43100",
+                                    "63100",
+                                    "67100",
+                                    "75100",
+                                    "81100",
+                                    "82100"
+					            };
+            var postCode = zip[new Random().Next(20)];
+
+            return postCode;
+        }
+
 
         public static string PostCodeGB()
         {
