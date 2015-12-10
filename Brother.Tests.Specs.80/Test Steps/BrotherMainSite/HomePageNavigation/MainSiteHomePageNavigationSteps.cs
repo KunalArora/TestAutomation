@@ -86,7 +86,17 @@ namespace Brother.Tests.Specs._80.BrotherMainSite.HomePageNavigation
             CurrentPage = BasePage.LoadBrotherMainSiteLoginPage(CurrentDriver, url);
             CurrentPage.As<LoginPage>().GetLoginpage(url);
         }
-      
+        [Given(@"I navigate to ""(.*)"" and check page")]
+        public void GivenINavigateToAndCheckPage(string website)
+        {
+            TestController.CurrentDriver.Navigate().GoToUrl(website);
+        }
+
+        [Then(@"I navigate to ""(.*)"" and check page")]
+        public void ThenINavigateToAndCheckPage(string webSite)
+        {
+            TestController.CurrentDriver.Navigate().GoToUrl(webSite);
+        }
         [Given(@"I enter password containing ""(.*)""")]
         public void GivenIEnterPasswordContaining(string password)
         {
@@ -102,8 +112,14 @@ namespace Brother.Tests.Specs._80.BrotherMainSite.HomePageNavigation
         {
             CurrentPage = BasePage.LoadExperienceEditorPage(CurrentDriver, country);
             CurrentPage.As<ExperienceEditorPage>().IsContentEditorLinkAvailable();
-           
         }
+        [Then(@"I can verify that the page header is displayed on the experience editor ""(.*)""")]
+        public void ThenICanVerifyThatThePageHeaderIsDisplayedOnTheExperienceEditor(string country)
+        {
+            CurrentPage = BasePage.LoadExperienceEditorPage(CurrentDriver, country);
+            CurrentPage.As<ExperienceEditorPage>().IsPageHeaderDisplayed();
+        }
+
        [Then(@"I click on the Content Editor option ""(.*)""")]
         public void ThenIClickOnTheContentEditorOption(string country)
         {
