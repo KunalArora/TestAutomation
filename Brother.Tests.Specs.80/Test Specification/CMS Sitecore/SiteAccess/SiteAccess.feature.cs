@@ -78,7 +78,6 @@ namespace Brother.Tests.Specs._80.TestSpecification.CMSSitecore.SiteAccess
         [NUnit.Framework.CategoryAttribute("SMOKE")]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "http://main.co.uk.brotherdv2.eu/sitecore/login", "Automation", "Password1", null)]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "http://main.co.uk.cms.brotherqas.eu/sitecore/login", "Automation", "Password1", null)]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "http://main.co.uk.brotherdev.eu/sitecore/login", "Automation", "Password1", null)]
         public virtual void VerifyThatAUserIsAbleToLoginToTheCMSSystem(string country, string siteUrl, string userName, string password, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -115,17 +114,17 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void VerifyThatAUserIsAbleToLoginToTheCMSSystemAndCheckPageExists(string country, string siteUrl, string userName, string password, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify that a user is able to login to the CMS system\tand check page exists", exampleTags);
-#line 24
+#line 23
 this.ScenarioSetup(scenarioInfo);
-#line 25
+#line 24
 testRunner.Given(string.Format("That I navigate to \"{0}\" in order to validate the CMS site", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 26
+#line 25
  testRunner.And(string.Format("I enter an username containing \"{0}\"", userName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 27
+#line 26
  testRunner.And(string.Format("I enter password containing \"{0}\"", password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 28
+#line 27
  testRunner.And(string.Format("I press login button \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 29
+#line 28
  testRunner.Then(string.Format("I can verify that the page header is displayed on the experience editor \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -145,21 +144,21 @@ testRunner.Given(string.Format("That I navigate to \"{0}\" in order to validate 
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify that a user is able to login to the CMS system\t- Germany", @__tags);
-#line 37
+#line 36
 this.ScenarioSetup(scenarioInfo);
-#line 38
+#line 37
  testRunner.Given(string.Format("That I navigate to \"{0}\" in order to validate the CMS site", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 39
+#line 38
  testRunner.And(string.Format("I enter an username containing \"{0}\"", userName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 40
+#line 39
  testRunner.And(string.Format("I enter password containing \"{0}\"", password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 41
+#line 40
  testRunner.And(string.Format("I press login button \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 42
+#line 41
  testRunner.Then(string.Format("I should be able to see the experience editor page \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 43
+#line 42
  testRunner.And(string.Format("I click on the Content Editor option \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 44
+#line 43
  testRunner.Then(string.Format("I should be able to see the content editor page \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -179,21 +178,21 @@ this.ScenarioSetup(scenarioInfo);
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify that a user is able to login to the CMS system\t- France", @__tags);
-#line 54
+#line 53
 this.ScenarioSetup(scenarioInfo);
-#line 55
+#line 54
  testRunner.Given(string.Format("That I navigate to \"{0}\" in order to validate the CMS site", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 56
+#line 55
  testRunner.And(string.Format("I enter an username containing \"{0}\"", userName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 57
+#line 56
  testRunner.And(string.Format("I enter password containing \"{0}\"", password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 58
+#line 57
  testRunner.And(string.Format("I press login button \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 59
+#line 58
  testRunner.Then(string.Format("I should be able to see the experience editor page \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 60
+#line 59
  testRunner.And(string.Format("I click on the Content Editor option \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 61
+#line 60
  testRunner.Then(string.Format("I should be able to see the content editor page \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -213,21 +212,21 @@ this.ScenarioSetup(scenarioInfo);
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify that a user is able to login to the CMS system\t- Italy", @__tags);
-#line 71
+#line 70
 this.ScenarioSetup(scenarioInfo);
-#line 72
+#line 71
  testRunner.Given(string.Format("That I navigate to \"{0}\" in order to validate the CMS site", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 73
+#line 72
  testRunner.And(string.Format("I enter an username containing \"{0}\"", userName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 74
+#line 73
  testRunner.And(string.Format("I enter password containing \"{0}\"", password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 75
+#line 74
  testRunner.And(string.Format("I press login button \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 76
+#line 75
  testRunner.Then(string.Format("I should be able to see the experience editor page \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 77
+#line 76
  testRunner.And(string.Format("I click on the Content Editor option \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 78
+#line 77
  testRunner.Then(string.Format("I should be able to see the content editor page \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -247,23 +246,23 @@ this.ScenarioSetup(scenarioInfo);
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify that a user is able to add grid on the page", @__tags);
-#line 88
+#line 87
 this.ScenarioSetup(scenarioInfo);
-#line 89
+#line 88
  testRunner.Given(string.Format("That I navigate to \"{0}\" in order to validate the CMS site", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 90
+#line 89
  testRunner.And(string.Format("I enter an username containing \"{0}\"", userName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 91
+#line 90
  testRunner.And(string.Format("I enter password containing \"{0}\"", password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 92
+#line 91
  testRunner.And(string.Format("I press login button \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 93
+#line 92
  testRunner.And(string.Format("I click on the Main Header placeholder \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 94
+#line 93
     testRunner.And(string.Format("I click on the add here option \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 95
+#line 94
  testRunner.And(string.Format("I click on the Select a Rendering \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 96
+#line 95
     testRunner.Then(string.Format("I should be able to add grid from the grid option \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

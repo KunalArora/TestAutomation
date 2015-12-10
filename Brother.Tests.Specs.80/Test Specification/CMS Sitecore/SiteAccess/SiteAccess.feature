@@ -18,8 +18,7 @@ Scenarios:
 	| country        | Site Url                                           | UserName   | Password  |
 	| United Kingdom | http://main.co.uk.brotherdv2.eu/sitecore/login     | Automation | Password1 | 
 	| United Kingdom | http://main.co.uk.cms.brotherqas.eu/sitecore/login | Automation | Password1 | 
-	| United Kingdom | http://main.co.uk.brotherdev.eu/sitecore/login     | Automation | Password1 | 
-
+	
 
 Scenario Outline: Verify that a user is able to login to the CMS system	and check page exists
 Given That I navigate to "<Site Url>" in order to validate the CMS site
