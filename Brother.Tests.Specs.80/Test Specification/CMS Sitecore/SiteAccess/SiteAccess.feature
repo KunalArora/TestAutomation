@@ -1,5 +1,4 @@
-﻿@SMOKE
-#@UAT @PROD @TEST 
+﻿@SMOKE @UAT @PROD @TEST 
 Feature: CMS website access
 	In order to validate that the CMS site is accessible a number of content editor actions are conducted
 @SMOKE
@@ -18,7 +17,7 @@ Scenarios:
 	| United Kingdom | http://main.co.uk.brotherdv2.eu/sitecore/login | Automation | Password1 |
 	| United Kingdom | http://main.co.uk.cms.brotherqas.eu/sitecore/login | Automation | Password1 |
 
-@ignore
+
 Scenario Outline: Verify that a user is able to login to the CMS system	- Germany
 	Given That I navigate to "<Site Url>" in order to validate the CMS site
 	And I enter an username containing "<UserName>"
