@@ -20,7 +20,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
 
         private const string CreditCardTestPage = "https://testpage.payments.digitalriver.com/pay/?creq=BEii9whIovYlcGLxmfpW6BbtbwV8_Xdk8eulgVCMGaCTa5tOw9muh0vlW3Ssy5q-yR3VkBJrejq5rzxpEV_Q2Dk4Y828PQ4ry3SHMArP--5Yx_mmfVFGW54xZ_ZPXDFrpicvXPqlwSometDrmeMIHKakP096tQsIZkNqnwRbxCfIcoPNHd-fM8k9h38WIwtupxClzqdvbYGVeMt026yRAvJon6hYH9kDw3A-weaTf_5qytndiGB5q1XKiNFM_x7FvBOtUCbYR_ic-aGJlKU4rDTbDJ4fOzKz1qmkJ2LMw3H1nrei1FI5aRPbZoN2UtsFHyuPQ9r7UCuHzj4o2_GTHc0IiGyJA1lQZbSRUKtejiCiEMI2DErwxuKCc15uz7Qiu-fvZw0XJZ0WAgCcSNL129yFT8TJpCSwsrOrgHowWvOkrYYC8ek77OkyxvVJ-9b1dfKfMJ-PTlG__kw7S-zZgGRHa3ZGyLkjU-cs-Uj7lTN-Ix4oR7FmHRFcdiIbRHeDHoS7SVsAZZRSgX2OYWj_RwN-WrGYJgyeaacNo4wb8s4EhCb56Nnq6Ycm0RZej6oWFCqvFJyD77HENyOPB4t9Sp7Bd1dvjj21bXhACZmrh930hkopctYK-b9h8FgGjlrWcU_QLIdqkBn0";
 
-        [FindsBy(How = How.CssSelector, Using = "#VISA")]
+        [FindsBy(How = How.CssSelector, Using = "#VISA")] 
         public IWebElement VisaCreditCardOptionButton;
 
         [FindsBy(How = How.CssSelector, Using = "#MASTERCARD")]
@@ -38,7 +38,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
         [FindsBy(How = How.CssSelector, Using = "#expdateyear")]
         public IWebElement CreditCardExpDateYearPicker;
 
-        [FindsBy(How = How.CssSelector, Using = "#creditCard > div.button > span > input")]
+        [FindsBy(How = How.CssSelector, Using = "#creditCard > div.button > span > input")] 
         public IWebElement SendButton;
 
         [FindsBy(How = How.CssSelector, Using = "#paymentChoiceCC > form.paymentForm > span > input")]
@@ -49,6 +49,32 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
 
         [FindsBy(How = How.CssSelector, Using = "#content_2_innercontent_1_PaymentControl_PaymentGatewayIFrame")]
         public IWebElement CreditCardDetailsFramePageAddNewCard;
+
+        //added locators
+        [FindsBy(How = How.CssSelector, Using = "#creditCard > div.buttonDR > span > input")]
+        public IWebElement AddNewCardSendPaymentButton;
+
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='creditCard']//input[@data-control='CARD']")]
+        public IWebElement CreditCardNumberTextBox;
+
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='creditCard']//input[@data-control='CVV']")]
+        public IWebElement CreditCardCvvTextBox;
+
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='creditCard']//select[@data-control='MONTH']")]
+        public IWebElement CreditCardExpiryMonth;
+
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='creditCard']//select[@data-control='YEAR']")]
+        public IWebElement CreditCardExpiryYear;
+ 
+
+      
+
+        
+
 
         #region IWrapsElement
 
@@ -120,7 +146,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
         {
             get
             {
-                var element = Driver.FindElement(By.XPath("html/body/div[1]/div/form[1]/table/tbody/tr[4]/td[2]/input"));
+                var element = Driver.FindElement(By.XPath("html/body/div[1]/div/form[1]/table/tbody/tr[4]/td[2]/input")); 
                 return element;
             }
         }
@@ -183,6 +209,47 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
             MoveToElement(SendPaymentButton);
             AssertElementPresent(SendButton, "Send Payment Button");
         }
+        //added methods
+        public void IsAddNewCardSendPaymentButtonAvailable()
+        {
+            if (AddNewCardSendPaymentButton == null)
+            {
+                throw new Exception("Unable to locate button on page");
+            }
+            MoveToElement(AddNewCardSendPaymentButton);
+            AssertElementPresent(AddNewCardSendPaymentButton, "Send Payment Button");
+        }
+
+        public void PopulateCreditCardNumber(string number)
+        {
+            CreditCardNumberTextBox.SendKeys(number);
+        }
+
+
+        public void PopulateCreditCardCvvNumber(string cvvNumber)
+        {
+            CreditCardCvvTextBox.SendKeys(cvvNumber);
+        }
+
+       
+        public void PopulateCreditCardExpiryMonthDropDown(string month)
+        {
+            SelectFromDropdown(CreditCardExpiryMonth, month);
+        }
+
+
+        public void PopulateCreditCardExpiryYearDropDown(string year)
+        {
+            SelectFromDropdown(CreditCardExpiryYear, year);
+            
+        }
+
+        public MyPaymentMethodsPage AddNewCardSendPaymentButtonClick()
+        {
+            AddNewCardSendPaymentButton.Click();
+            return GetInstance<MyPaymentMethodsPage>(Driver);
+        }
+
 
         public void SwitchToCreditCardDetailsFrameAddCard()
         {
@@ -203,6 +270,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
             }
             MsgOutput("Switching to Credit Card details frame (Add New Card)");
             Driver.SwitchTo().Frame(CreditCardDetailsFramePageAddNewCardPage);
+            
         }
 
         public void SwitchToCreditCardDetailsFrameOrderSummary()

@@ -24,7 +24,7 @@ Background:
 	And When I Click Go Back
 	Then I should be able to log into "United Kingdom" Brother Online using my account details
 
-@ignore 
+@IGNORE
 # Card details page flow has been changed to iframe content - need changes as the page has been revamped
 Scenario: Add payment method with new address
     Then If I go to My Account
@@ -34,8 +34,31 @@ Scenario: Add payment method with new address
 	Then I can add a new billing address details for Country "United Kingdom"
 	When I enter valid credit card details for a Visa Credit Card with an expired date of ""
 	When I click Send to commit the new card details
+	Then I should see added credit card details
 	Then I can see the Credit Card details I have added
 	And I can sign out of Brother Online
+
+@TEST 
+Scenario Outline: Add payment method with new address and visa credit card details
+    Then If I go to My Account
+	And I can click on Payment Methods
+	Then I can add a new payment method
+	And If I click on Add New Address
+	Then I can add a new billing address details for "<Country>"
+	And I see payment details page
+	When I fill in valid credit card details for a Visa Credit card 
+	 And I fill in creditCard details "<CreditCardNumber>"
+	 And I select a month as "<ExpiryMonth>"
+	 And I select a year as "<ExpiryYear>"
+	 And I fill in security number as  "<CVV>"
+	 And I click send to sumbit card details
+	Then I should see added credit card details
+     And I can sign out of Brother Online
+
+Examples:
+| Country                | CreditCardNumber | ExpiryMonth | ExpiryYear | CVV    |
+| United Kingdom         | 4006162717519460 |     12      |   2017     |  624   |
+
 
 @IGNORE
 # Card details page flow has been changed to iframe content
