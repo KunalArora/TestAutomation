@@ -48,6 +48,12 @@ namespace Brother.Tests.Specs.BrotherOnline.Purchasing
             CurrentPage.As<MyPaymentMethodsPage>().ValidateCorrectCreditCardTypeWasAdded();
         }
 
+        [Then(@"I should see added credit card details")]
+        public void ThenIShouldSeeAddedCreditCardDetails()
+        {
+            CurrentPage.As<MyPaymentMethodsPage>().IsAddPaymentMethodBtnDisplayed();
+        }
+
         [Then(@"I can add a new payment method using a valid ""(.*)"" card")]
         public void ThenICanAddANewPaymentMethodUsingAValidCard(string creditCardType)
         {

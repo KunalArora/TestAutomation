@@ -47,7 +47,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Purchasing
             }
             CurrentPage.As<BillingDetailsPage>().PopulatePhoneNumberTextBox(Helper.GetAddressInfo("PhoneNumber"));
         }
-
+        [Then(@"I can add a new billing address details for ""(.*)""")]
         [Then(@"I can add a new billing address details for Country ""(.*)""")]
         public void ThenICanAddANewBillingAddressDetailsFor(string country)
         {
@@ -62,5 +62,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Purchasing
             CurrentPage.As<BillingDetailsPage>().IsAddNewAddressButtonAvailable();
             CurrentPage.As<BillingDetailsPage>().AddNewAddressButtonClick();
         }
+
+        // added new step
     }
 }

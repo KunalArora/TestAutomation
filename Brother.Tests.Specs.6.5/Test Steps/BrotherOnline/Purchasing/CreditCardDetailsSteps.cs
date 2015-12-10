@@ -1,4 +1,5 @@
-﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+﻿using System;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement.PaymentMethods;
 using Brother.WebSites.Core.Pages.BrotherOnline.Checkout;
@@ -71,8 +72,57 @@ namespace Brother.Tests.Specs.BrotherOnline.Purchasing
         {
             NextPage = BasePage.LoadCreditCardDetailsFrame(CurrentDriver);
             CurrentPage.As<CreditCardDetailsPage>().SwitchToCreditCardDetailsFrameAddCard();
-            AddVisaCreditCardDetails(expiryDateOverride);
+           AddVisaCreditCardDetails(expiryDateOverride);
         }
+        // added below steps
+        [When(@"I fill in valid credit card details for a Visa Credit card")]
+        public void WhenIFillInValidCreditCardDetailsForAVisaCreditCard()
+        {
+
+            NextPage = BasePage.LoadCreditCardDetailsFrame(CurrentDriver);
+            CurrentPage.As<CreditCardDetailsPage>().SwitchToCreditCardDetailsFrameAddCard();
+        }
+
+        [When(@"I fill in an expired date of ""(.*)""")]
+        public void WhenIFillInAnExpiredDateOf(string expiryDateOverride)
+        {
+           AddNewVisaCreditCardDetails(expiryDateOverride);
+
+        }
+        
+        [When(@"I fill in creditCard details ""(.*)""")]   
+        public void WhenIFillInCreditCardNumberAs(string number)
+        {
+     
+            CurrentPage.As<CreditCardDetailsPage>().PopulateCreditCardNumber(number);
+        }
+
+        [When(@"I select a month as ""(.*)""")]
+        public void WhenISelectExpiryMonthAs(string month)
+        {
+
+            CurrentPage.As<CreditCardDetailsPage>().PopulateCreditCardExpiryMonthDropDown(month);
+        }
+        [When(@"I select a year as ""(.*)""")]     
+        public void WhenISelectExpiryYearAs(string  year)
+        {
+            CurrentPage.As<CreditCardDetailsPage>().PopulateCreditCardExpiryYearDropDown(year);
+        }
+
+        [When(@"I fill in security number as  ""(.*)""")]
+        public void WhenIFillInSecurityNumberAs(string number)
+        {
+           CurrentPage.As<CreditCardDetailsPage>().PopulateCreditCardCvvNumber(number);
+        }
+
+        [When(@"I click send to sumbit card details")]
+        public void WhenIClickSendToSumbitCardDetails()
+        {
+            NextPage = CurrentPage.As<CreditCardDetailsPage>().AddNewCardSendPaymentButtonClick();
+        }
+
+        // End of steps
+
         [Then(@"I am redirtected to the card details page")]
         public void ThenIAmRedirtectedToTheCardDetailsPage()
         {
@@ -110,6 +160,15 @@ namespace Brother.Tests.Specs.BrotherOnline.Purchasing
             CurrentPage.As<CreditCardDetailsPage>().PopulateCreditCardInformation(true, expiryOverride);
         }
 
+        //added method
+
+        private void AddNewVisaCreditCardDetails(string expiryOverride)
+        {
+            CurrentPage.As<CreditCardDetailsPage>().IsAddNewCardSendPaymentButtonAvailable();
+           When("I click Select the Visa Credit Card Option");
+            CurrentPage.As<CreditCardDetailsPage>().PopulateCreditCardInformation(true, expiryOverride);
+        }
+
         [When(@"I click Cancel submit card details I should return to the My Payment Method page")]
         public void ClickCancelSubmitCardDetailsIShouldReturnToTheMyPaymentMethodPage()
         {
@@ -122,6 +181,13 @@ namespace Brother.Tests.Specs.BrotherOnline.Purchasing
             NextPage = CurrentPage.As<CreditCardDetailsPage>().CancelPaymentButtonClick();
             TestCheck.AssertIsEqual(CurrentPage.As<OrderSummaryPage>().GetOrderCancellationInformation().Contains("Payment cancel"), true, "Unable to determine Order cancellation information");
         }
+        // added step
+        [Then(@"I see payment details page")]
+        public void ThenISeePaymentDetailsPage()
+        {
+           CurrentPage.As<AddNewCardPage>().IsAddNewCardChangeBillingAddressButtonAvailable();
+        }
+
         
     }
 }
