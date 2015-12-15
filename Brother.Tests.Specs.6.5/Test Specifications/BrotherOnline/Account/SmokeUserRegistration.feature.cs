@@ -2085,6 +2085,98 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Customer creates a new account with Brother Online using valid credentials, confi" +
+            "rm by bpid on UK site")]
+        [NUnit.Framework.CategoryAttribute("SMOKE")]
+        [NUnit.Framework.CategoryAttribute("TEST")]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", null)]
+        public virtual void CustomerCreatesANewAccountWithBrotherOnlineUsingValidCredentialsConfirmByBpidOnUKSite(string country, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "SMOKE",
+                    "TEST"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer creates a new account with Brother Online using valid credentials, confi" +
+                    "rm by bpid on UK site", @__tags);
+#line 867
+this.ScenarioSetup(scenarioInfo);
+#line 868
+ testRunner.Given(string.Format("I want to create a new account with Brother Online \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 869
+ testRunner.When(string.Format("I click on Create Account for \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 870
+ testRunner.And("I am redirected to the Brother Login/Register page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 871
+ testRunner.And("I have Checked No I Do Not Have An Account Checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table31 = new TechTalk.SpecFlow.Table(new string[] {
+                        "field",
+                        "value"});
+            table31.AddRow(new string[] {
+                        "FirstName",
+                        "AutoTest"});
+            table31.AddRow(new string[] {
+                        "LastName",
+                        "AutoTest"});
+            table31.AddRow(new string[] {
+                        "Password",
+                        "@@@@@"});
+            table31.AddRow(new string[] {
+                        "ConfirmPassword",
+                        "@@@@@"});
+#line 872
+ testRunner.And("I fill in the registration information using a valid email address", ((string)(null)), table31, "And ");
+#line 879
+ testRunner.And("I have Agreed to the Terms and Conditions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 880
+ testRunner.And("I declare that I do not use this account for business", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 881
+ testRunner.When("I press Create Your Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 882
+ testRunner.Then("I should see my account confirmation page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 883
+ testRunner.And("When I Click Go Back", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 885
+ testRunner.Then(string.Format("I should be able to log into \"{0}\" Brother Online using my account details", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 886
+ testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 887
+ testRunner.Then("I am redirected to the Brother Home Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Go to Data Manager and verify the bpid for the existing user")]
+        [NUnit.Framework.CategoryAttribute("SMOKE")]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "http://uk.brotherdv2.eu/test/DataManager.aspx", "Automation", "Password1", null)]
+        public virtual void GoToDataManagerAndVerifyTheBpidForTheExistingUser(string country, string siteUrl, string userName, string password, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "SMOKE"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Go to Data Manager and verify the bpid for the existing user", @__tags);
+#line 896
+this.ScenarioSetup(scenarioInfo);
+#line 897
+testRunner.Given(string.Format("That I navigate to \"{0}\" in order to validate the CMS site", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 898
+ testRunner.And(string.Format("I enter an username containing \"{0}\"", userName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 899
+ testRunner.And(string.Format("I enter password containing \"{0}\"", password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 900
+ testRunner.And(string.Format("I press login button \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

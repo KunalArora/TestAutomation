@@ -5,6 +5,7 @@ using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherMainSite.Basket;
 using Brother.WebSites.Core.Pages.BrotherOnline.Account;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
+using Brother.WebSites.Core.Pages.BrotherOnline.DataManager;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
@@ -1123,6 +1124,27 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         public void WhenIEnterAValidMaxPassword()
         {
             CurrentPage.As<RegistrationPage>().PopulateMaxPassword();
+        }
+        [Given(@"That I navigate to ""(.*)"" in order to validate the CMS site")]
+        public void GivenThatINavigateToInOrderToValidateTheCMSSite(string url)
+        {
+            CurrentPage = BasePage.LoadDataManagerPage(CurrentDriver, url);
+            CurrentPage.As<DataManagerPage>().GetDataManagerpage(url);
+        }
+        [Given(@"I enter an username containing ""(.*)""")]
+        public void GivenIEnterAnUsernameContaining(string username)
+        {
+            CurrentPage.As<DataManagerPage>().PopulateUserNameTextBox(username); ;
+        }
+        [Given(@"I enter password containing ""(.*)""")]
+        public void GivenIEnterPasswordContaining(string password)
+        {
+            CurrentPage.As<DataManagerPage>().PopulatePasswordTextBox(password);
+        }
+        [Given(@"I press login button ""(.*)""")]
+        public void GivenIPressLoginButton(string country)
+        {
+            CurrentPage.As<DataManagerPage>().ClickOnLoginButton(country);    
         }
 
         [Then(@"When I Click Go Back")]
