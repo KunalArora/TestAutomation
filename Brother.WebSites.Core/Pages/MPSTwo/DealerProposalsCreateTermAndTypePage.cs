@@ -113,6 +113,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             SelectFromDropdown(PayPerClickBillingElement, billing);
         }
 
+
+        
         public void SelectUsageType(string usage)
         {
             if (!IsElementPresent(GetElementByCssSelector("#content_1_InputUsageType_Input", 10))) return;

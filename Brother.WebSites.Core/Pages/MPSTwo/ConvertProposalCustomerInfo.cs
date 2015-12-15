@@ -160,7 +160,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 SelectFromDropdown(LegalFormDropdown, "Aktiengesellschaft");
 
             }
-            else if (IsUKSystem())
+            else if (IsUKSystem()|| IsFranceSystem())
             {
                SelectFromDropdown(LegalFormDropdown, "Church"); 
             }
@@ -178,13 +178,31 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void EnterCompanyRegistration()
         {
             if (IsUKSystem())
+            {
                 ClearAndType(CompanyRegistrationNumberField, "00664172");
+            }
+            else if (IsFranceSystem())
+            {
+                ClearAndType(CompanyRegistrationNumberField, "453983245");
+            }
+                
+            
         }
 
         public void EnterVatNumber()
         {
             if (IsUKSystem())
+            {
                 ClearAndType(VATNumberField, "GB100000132");
+            }
+            else if(IsFranceSystem())
+            {
+                ClearAndType(VATNumberField, "FR40303265045");
+            } else if (IsItalySystem())
+            {
+                ClearAndType(VATNumberField, "IT00743110157");
+            }
+                
         }
 
         public void EnterAuthoriisedSignatoryNumber()
@@ -194,7 +212,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SelectATradingStyle()
         {
-            if (IsUKSystem())
+            if (IsUKSystem() || IsFranceSystem() || IsItalySystem())
                 SelectFromDropdown(TradingStyleElement, "Non-Regulated");
                 WebDriver.Wait(DurationType.Second, 3);
         }
@@ -210,6 +228,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             else if (IsUKSystem())
             {
                 SelectFromDropdown(PaymentTypeDropdown, "Direct Debit");
+
+            } else if (IsFranceSystem())
+            {
+                SelectFromDropdown(PaymentTypeDropdown, "Débit direct");
             }
             
             //WebDriver.
@@ -249,25 +271,36 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterBankPropertyStreet()
         {
-            if (IsUKSystem() || IsFranceSystem())
+            if (!(IsGermanSystem() || IsAustriaSystem()))
                  ClearAndType(BankPropertyStreetElement, "Lloyds House");
         }
 
         public void EnterBankPropertyTown()
         {
-            if (IsUKSystem() || IsFranceSystem())
+            if (!(IsGermanSystem()|| IsAustriaSystem()))
                  ClearAndType(BankPropertyTownElement, "Cockney");
         }
 
         public void EnterBankPropertyPostcode()
         {
-            if (IsUKSystem() || IsFranceSystem())
-                 ClearAndType(BankPropertyPostcodeElement, "M1 3ED");
+            if (IsUKSystem())
+            {
+                ClearAndType(BankPropertyPostcodeElement, "M1 3ED");
+            }
+            else if (IsFranceSystem())
+            {
+                ClearAndType(BankPropertyPostcodeElement, "25310");
+            }
+            else if (IsItalySystem())
+            {
+                ClearAndType(BankPropertyPostcodeElement, "01100");
+            }
+                 
         }
 
         public void FillAllCustomerDetailsOnConvert()
         {
-            if (IsUKSystem() || IsFranceSystem()) return;
+            if (!(IsGermanSystem() || IsAustriaSystem())) return;
             CreateANewCustomerInConvertProcess();
             FillGermanOrganisationDetails();
             FillOrganisationContactDetail();
@@ -567,7 +600,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public ConvertProposalTermAndType ProceedToConvertProposalTermAndType()
         {
-            NextElement.Click();
+            //NextElement.Click();
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, NextElement);
             return GetInstance<ConvertProposalTermAndType>(Driver);
         }
         
