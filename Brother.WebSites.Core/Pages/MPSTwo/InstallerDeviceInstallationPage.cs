@@ -20,6 +20,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string existingSerialNumber = @"A1T010004";
         private const string existingSerialNumberBIG = @"A1T010005";
         private const string existingSerialNumberAUT = @"A1T010006";
+        private const string serialNumberBFR = @"A1T010007";
+        private const string serialNumberBIT = @"A1T010008";
+        private const string serialNumberBES = @"A1T010009";
 
         public override string DefaultTitle
         {
@@ -125,6 +128,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             else if (IsAustriaSystem())
             {
                 serial = serialNumberAUT;
+
+            } else if (IsFranceSystem())
+            {
+                serial = serialNumberBFR;
+            }
+            else if (IsItalySystem())
+            {
+                serial = serialNumberBIT;
             }
 
             SpecFlow.SetContext("SerialNumber", serial);

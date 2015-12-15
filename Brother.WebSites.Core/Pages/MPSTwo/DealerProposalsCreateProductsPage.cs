@@ -1139,14 +1139,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private IWebElement InstallationQuantityElement()
         {
-            string element = String.Format("{0} {1}", InstallationQuantityElementString, QuantityElementString);
+            var element = String.Format("{0} {1}", InstallationQuantityElementString, QuantityElementString);
 
             return GetElementByCssSelector(element);
         }
 
         public void IsInstallationQuantityNotEditable()
         {
-            string element = String.Format("{0} {1} input", InstallationQuantityElementString, QuantityElementString);
+            var element = String.Format("{0} {1} input", InstallationQuantityElementString, QuantityElementString);
 
             TestCheck.AssertIsNotEqual(0, InstallationQuantityElement(), "Unable to locate Installation Quantity field");
             if (GetElementByCssSelector(element, 5) == null)
@@ -1155,14 +1155,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private IWebElement ServicepackQuantityElement()
         {
-            string element = String.Format("{0} {1}", ServicePackElementString, QuantityElementString);
+            var element = String.Format("{0} {1}", ServicePackElementString, QuantityElementString);
 
             return GetElementByCssSelector(element);
         }
 
         public void IsServicepackQuantityNotEditable()
         {
-            string element = String.Format("{0} {1} input", ServicePackElementString, QuantityElementString);
+            var element = String.Format("{0} {1} input", ServicePackElementString, QuantityElementString);
 
             TestCheck.AssertIsNotEqual(0, ServicepackQuantityElement(), "Unable to locate Servicepack Quantity field");
             if (GetElementByCssSelector(element, 5) == null)
@@ -1171,8 +1171,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyThatProductQuantityElementChanged()
         {
-            string before = SpecFlow.GetContext("ProductQuantity");
-            string after = ProductQuantityElement.GetAttribute("value");
+            var before = SpecFlow.GetContext("ProductQuantity");
+            var after = ProductQuantityElement.GetAttribute("value");
             TestCheck.AssertIsNotEqual(before, after, "ProductQuantity value is changed");
         }
 

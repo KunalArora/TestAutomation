@@ -772,7 +772,7 @@ namespace Brother.Tests.Selenium.Lib.Support
 
         public static decimal GetValue(string money)
         {
-            NumberFormatInfo poundNumberFormatInfo = new NumberFormatInfo();
+            var poundNumberFormatInfo = new NumberFormatInfo();
             poundNumberFormatInfo.CurrencySymbol = "£";
 
             return decimal.Parse(money, NumberStyles.Currency, poundNumberFormatInfo);
@@ -780,7 +780,7 @@ namespace Brother.Tests.Selenium.Lib.Support
 
         public static decimal GetEuroValue(string money)
         {
-            NumberFormatInfo euroNumberFormatInfo = new NumberFormatInfo();
+            var euroNumberFormatInfo = new NumberFormatInfo();
             euroNumberFormatInfo.CurrencySymbol = "€";
 
             return decimal.Parse(money, NumberStyles.Currency, euroNumberFormatInfo);

@@ -109,6 +109,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         }
 
+       
+
         public void SelectContractType(string contract)
         {
             var selectable = "";
