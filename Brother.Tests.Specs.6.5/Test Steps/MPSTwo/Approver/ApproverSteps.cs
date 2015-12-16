@@ -27,11 +27,13 @@ namespace Brother.Tests.Specs.MPSTwo.Approver
                 if (kv.Key.Equals("CreateUsageType"))
                     UsageType = kv.Value.ToString();
             }
-            if (ContractType.Equals("Purchase & Click with Service") || ContractType.Equals(string.Empty) || ContractType.Equals("Easy Print Pro & Service"))
+            if (ContractType.Equals("Purchase & Click with Service") || ContractType.Equals(string.Empty)
+                || ContractType.Equals("Easy Print Pro & Service") || ContractType.Equals("Buy & Click") || ContractType.Equals("Acquisto + Consumo con assistenza"))
                 PurchaseAndClick = true;
             if (ContractType.Equals("Lease & Click with Service") || ContractType.Equals("Leasing & Service"))
                 LeaseAndClick = true;
-            if (UsageType.Equals("Minimum Volume"))
+            if (UsageType.Equals("Minimum Volume") || UsageType.Equals("Engagement sur un minimum volume de pages") ||
+                UsageType.Equals("Volume minimo"))
                 MinimumVolume = true;
             if (UsageType.Equals("Pay As You Go"))
                 PayAsYouGo = true;
@@ -85,13 +87,13 @@ namespace Brother.Tests.Specs.MPSTwo.Approver
             if (LeaseAndClick)
             {
                 CurrentPage.As<BankProposalsSummaryPage>().ClickDeclineButton();
-                CurrentPage.As<BankProposalsSummaryPage>().SelectDeclineReason(reason);
+                CurrentPage.As<BankProposalsSummaryPage>().SelectDeclineReason();
                 NextPage = CurrentPage.As<BankProposalsSummaryPage>().ClickRejectButton();
             }
             else if (PurchaseAndClick)
             {
                 CurrentPage.As<LocalOfficeApproverProposalsSummaryPage>().ClickDeclineButton();
-                CurrentPage.As<LocalOfficeApproverProposalsSummaryPage>().SelectDeclineReason(reason);
+                CurrentPage.As<LocalOfficeApproverProposalsSummaryPage>().SelectDeclineReason();
                 NextPage = CurrentPage.As<LocalOfficeApproverProposalsSummaryPage>().ClickRejectButton();
             }
         }
@@ -103,13 +105,13 @@ namespace Brother.Tests.Specs.MPSTwo.Approver
             if (LeaseAndClick)
             {
                 CurrentPage.As<BankProposalsSummaryPage>().ClickDeclineButton();
-                CurrentPage.As<BankProposalsSummaryPage>().SelectDeclineReason("Expired");
+                CurrentPage.As<BankProposalsSummaryPage>().SelectDeclineReason();
                 NextPage = CurrentPage.As<BankProposalsSummaryPage>().ClickRejectButton();
             }
             else if (PurchaseAndClick)
             {
                 CurrentPage.As<LocalOfficeApproverProposalsSummaryPage>().ClickDeclineButton();
-                CurrentPage.As<LocalOfficeApproverProposalsSummaryPage>().SelectDeclineReason("Expired");
+                CurrentPage.As<LocalOfficeApproverProposalsSummaryPage>().SelectDeclineReason();
                 NextPage = CurrentPage.As<LocalOfficeApproverProposalsSummaryPage>().ClickRejectButton();
             }
         }
@@ -305,13 +307,13 @@ namespace Brother.Tests.Specs.MPSTwo.Approver
             if (LeaseAndClick)
             {
                 CurrentPage.As<BankProposalsSummaryPage>().ClickDeclineButton();
-                CurrentPage.As<BankProposalsSummaryPage>().SelectDeclineReason("Expired");
+                CurrentPage.As<BankProposalsSummaryPage>().SelectDeclineReason();
                 NextPage = CurrentPage.As<BankProposalsSummaryPage>().ClickRejectButton();
             }
             else if (PurchaseAndClick)
             {
                 CurrentPage.As<LocalOfficeApproverProposalsSummaryPage>().ClickDeclineButton();
-                CurrentPage.As<LocalOfficeApproverProposalsSummaryPage>().SelectDeclineReason("Expired");
+                CurrentPage.As<LocalOfficeApproverProposalsSummaryPage>().SelectDeclineReason();
                 NextPage = CurrentPage.As<LocalOfficeApproverProposalsSummaryPage>().ClickRejectButton();
             }
         }

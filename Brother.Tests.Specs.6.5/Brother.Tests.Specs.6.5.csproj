@@ -239,6 +239,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CloudMPSSummaryPageValidationForAllProposalTypes.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\MPSTwo\Proposal\CloudMPSApproverDecisionForOtherCountries.feature.cs">
+      <DependentUpon>CloudMPSApproverDecisionForOtherCountries.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Test Specifications\MPSTwo\SendForApproval\CloudMPSDealerCanSubmitAllGermanProposalsForApproval.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -691,6 +696,10 @@
     <None Include="Test Specifications\MPSTwo\Proposal\CloudMPSVerificationOnProductScreenVariations.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSVerificationOnProductScreenVariations.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwo\Proposal\CloudMPSApproverDecisionForOtherCountries.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CloudMPSApproverDecisionForOtherCountries.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwo\SendForApproval\CloudMPSDealerCanSubmitAllGermanProposalsForApproval.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

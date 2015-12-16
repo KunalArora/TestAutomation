@@ -53,9 +53,25 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             DeclineButtonElement.Click();
         }
 
-        public void SelectDeclineReason(string reason)
+        public void SelectDeclineReason()
         {
-            SelectFromDropdown(DeclineReasonElement, reason);
+            if (IsAustriaSystem() || IsGermanSystem())
+            {
+                SelectFromDropdown(DeclineReasonElement, "Andere");
+            }
+            else if (IsUKSystem())
+            {
+                SelectFromDropdown(DeclineReasonElement, "Other");
+            }
+            else if (IsItalySystem())
+            {
+                SelectFromDropdown(DeclineReasonElement, "Alto");
+            }
+            else if (IsFranceSystem())
+            {
+                SelectFromDropdown(DeclineReasonElement, "Autre");
+            }
+            
         }
 
         public LocalOfficeApproverProposalsPage ClickRejectButton()

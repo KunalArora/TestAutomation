@@ -58,9 +58,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void IsDeclinedLinkAvailable()
         {
             if (DeclinedLinkElement == null)
-                throw new Exception("Unable to locate Delicind");
+                throw new Exception("Unable to locate Declined");
 
-            AssertElementPresent(ApprovedLinkElement, "Create New Delicind Link");
+            AssertElementPresent(ApprovedLinkElement, "Create New Declined Link");
         }
 
         public void IsProposalSentToLocalOfficeApproverAwaitingProposalPage()
@@ -74,9 +74,36 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             TestCheck.AssertIsEqual(true, newProposal.Displayed, "Is new sent to bank awaiting proposal page?");
         }
 
+        private string Reason()
+        {
+            var reason = "";
+
+            if (IsUKSystem())
+            {
+                reason = "Other";
+
+            }
+            else if (IsFranceSystem())
+            {
+                reason = "Autre";
+
+            }
+            else if (IsItalySystem())
+            {
+                reason = "Scaduta";
+            }
+            else if (IsGermanSystem() || IsAustriaSystem())
+            {
+                reason = "Andere";
+            }
+
+            return reason;
+        }
+
+
         public void SelectRejectionReason()
         {
-            SelectFromDropdown(RejectionReasonDropdownElement, "Other");
+            SelectFromDropdown(RejectionReasonDropdownElement, Reason());
         }
 
         public void EnterRejectionComment()
