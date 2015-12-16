@@ -66,6 +66,10 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         }
 
 
+
+
+
+
         public void GivenDealerHaveCreatedProposalOfOpen(string country, string contractType, string usageType, string length, string billing)
         {
             contractType = ContractType(contractType);
@@ -156,6 +160,13 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             }
         }
 
+
+
+        [Given(@"""(.*)"" dealer has created ""(.*)"" proposal of awaiting proposal with ""(.*)"" and ""(.*)"" and ""(.*)""")]
+        public void GivenDealerHasCreatedProposalOfAwaitingProposalWithAndAnd(string country, string contractType, string usageType, string length, string billing)
+        {
+            GivenDealerHaveCreatedProposalOfAwaitingApproval(country, contractType, usageType, length, billing);
+        }
 
         public void GivenDealerHaveCreatedProposalOfAwaitingApproval(string country, string contractType, string usageType, string length, string billing)
         {

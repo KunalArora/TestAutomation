@@ -1,4 +1,4 @@
-﻿@MPS @UAT @TEST
+﻿@ignore @MPS @UAT @TEST
 Feature: CloudMPSNoDuplicateProposalIsCreated
 	In order to ensure duplicate proposal is not created for proposals and contracts
 	As a MPS user

@@ -116,7 +116,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 SelectFromDropdown(RejectionReasonDropdownElement, "Other");
             }
-            
+            else if (IsItalySystem())
+            {
+                SelectFromDropdown(RejectionReasonDropdownElement, "Scaduta");
+            }
+            else if (IsFranceSystem())
+            {
+                SelectFromDropdown(RejectionReasonDropdownElement, "Autre");
+            }
         }
 
         public void EnterRejectionCustomerNumber()

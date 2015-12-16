@@ -20,6 +20,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Proposal
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("CloudMPSNoDuplicateProposalIsCreated")]
+    [NUnit.Framework.IgnoreAttribute()]
     [NUnit.Framework.CategoryAttribute("MPS")]
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("TEST")]
@@ -38,6 +39,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Proposal
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CloudMPSNoDuplicateProposalIsCreated", "In order to ensure duplicate proposal is not created for proposals and contracts\r" +
                     "\nAs a MPS user\r\nI want to check that distinct proposal/contracts are displayed o" +
                     "n each view", ProgrammingLanguage.CSharp, new string[] {
+                        "ignore",
                         "MPS",
                         "UAT",
                         "TEST"});
