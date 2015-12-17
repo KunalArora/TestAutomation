@@ -237,9 +237,11 @@ testRunner.Given("I have navigated to the OmniJoin home page", ((string)(null)),
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Sign Up for 14 day Free trial already signed into Brother Online Germany")]
+        [NUnit.Framework.IgnoreAttribute()]
         public virtual void SignUpFor14DayFreeTrialAlreadySignedIntoBrotherOnlineGermany()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Sign Up for 14 day Free trial already signed into Brother Online Germany", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Sign Up for 14 day Free trial already signed into Brother Online Germany", new string[] {
+                        "IGNORE"});
 #line 73
 this.ScenarioSetup(scenarioInfo);
 #line 74
@@ -312,18 +314,20 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Sign Up for 14 day Free trial already signed into Brother Online Ireland")]
+        [NUnit.Framework.IgnoreAttribute()]
         public virtual void SignUpFor14DayFreeTrialAlreadySignedIntoBrotherOnlineIreland()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Sign Up for 14 day Free trial already signed into Brother Online Ireland", ((string[])(null)));
-#line 106
-this.ScenarioSetup(scenarioInfo);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Sign Up for 14 day Free trial already signed into Brother Online Ireland", new string[] {
+                        "IGNORE"});
 #line 107
- testRunner.Given("I want to create a new account with Brother Online \"Ireland\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioSetup(scenarioInfo);
 #line 108
- testRunner.When("I click on Create Account for \"Ireland\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("I want to create a new account with Brother Online \"Ireland\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 109
- testRunner.And("I am redirected to the Brother Login/Register page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("I click on Create Account for \"Ireland\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 110
+ testRunner.And("I am redirected to the Brother Login/Register page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 111
  testRunner.And("I have Checked No I Do Not Have An Account Checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
@@ -341,41 +345,41 @@ this.ScenarioSetup(scenarioInfo);
             table2.AddRow(new string[] {
                         "ConfirmPassword",
                         "@@@@@"});
-#line 111
+#line 112
  testRunner.And("I fill in the registration information using a valid email address", ((string)(null)), table2, "And ");
-#line 118
- testRunner.And("I have Agreed to the Terms and Conditions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 119
- testRunner.And("I declare that I do not use this account for business", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I have Agreed to the Terms and Conditions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 120
- testRunner.When("I press Create Your Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("I declare that I do not use this account for business", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 121
- testRunner.Then("I should see my account confirmation page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("I press Create Your Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 122
- testRunner.And("When I Click Go Back", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("I should see my account confirmation page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 123
- testRunner.Then("I should be able to log into \"Ireland\" Brother Online using my account details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("When I Click Go Back", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 124
- testRunner.And("I click on Try Now", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("I should be able to log into \"Ireland\" Brother Online using my account details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 125
- testRunner.Then("I should see OmniJOin Free trail page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("I click on Try Now", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 126
- testRunner.When("I have entered a valid FirstName as \"Test\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Then("I should see OmniJOin Free trail page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 127
- testRunner.And("I have  entered a valid LastName as \"User\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("I have entered a valid FirstName as \"Test\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 128
- testRunner.And("I agreed to the free trail terms and services", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I have  entered a valid LastName as \"User\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 129
-  testRunner.And("I click start free trail button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I agreed to the free trail terms and services", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 130
- testRunner.Then("I should be on download page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+  testRunner.And("I click start free trail button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 131
- testRunner.And("Once I have Validated a Free Trial confirmation Email was received", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("I should be on download page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 132
- testRunner.Then("If I go back to Brother Online Home Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("Once I have Validated a Free Trial confirmation Email was received", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 133
- testRunner.Then("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("If I go back to Brother Online Home Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 134
+ testRunner.Then("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 135
  testRunner.Then("I am redirected to the Brother Home Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -390,7 +394,7 @@ this.ScenarioSetup(scenarioInfo);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate Free Trial form displays error messages when a mandatory field is missin" +
                     "g", new string[] {
                         "ignore"});
-#line 136
+#line 137
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
@@ -405,7 +409,7 @@ this.ScenarioSetup(scenarioInfo);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate Free Trial form when already signed into Brother Online and a Free-trial" +
                     " is already in progress", new string[] {
                         "ignore"});
-#line 139
+#line 140
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
@@ -420,7 +424,7 @@ this.ScenarioSetup(scenarioInfo);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate Free Trial form when already signed into Brother Online and a Free-trial" +
                     " has expired", new string[] {
                         "ignore"});
-#line 142
+#line 143
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
@@ -435,7 +439,7 @@ this.ScenarioSetup(scenarioInfo);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate Free Trial form when already signed into Brother Online, Free-trial has " +
                     "expired but is within the wait time for a new trial", new string[] {
                         "ignore"});
-#line 145
+#line 146
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();

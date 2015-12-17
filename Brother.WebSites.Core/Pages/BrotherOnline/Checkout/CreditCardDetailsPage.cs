@@ -69,11 +69,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='creditCard']//select[@data-control='YEAR']")]
         public IWebElement CreditCardExpiryYear;
- 
 
-      
-
-        
+        [FindsBy(How = How.Id, Using = "MASTERCARD")]  
+        public IWebElement MasterCardRadioButton;
 
 
         #region IWrapsElement
@@ -218,6 +216,12 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
             }
             MoveToElement(AddNewCardSendPaymentButton);
             AssertElementPresent(AddNewCardSendPaymentButton, "Send Payment Button");
+        }
+
+        public void SelectMasterCardRadioButton()
+        {
+          
+            MasterCardRadioButton.Click();
         }
 
         public void PopulateCreditCardNumber(string number)

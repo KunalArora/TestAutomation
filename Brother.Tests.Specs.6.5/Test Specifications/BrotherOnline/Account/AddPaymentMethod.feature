@@ -60,6 +60,31 @@ Examples:
 | United Kingdom         | 4006162717519460 |     12      |   2017     |  624   |
 
 
+@TEST
+Scenario Outline: Add payment method with new address and master credit card details
+Then If I go to My Account
+	And I can click on Payment Methods
+	Then I can add a new payment method
+	And If I click on Add New Address
+	Then I can add a new billing address details for "<Country>"
+	And I see payment details page
+	When I fill in valid credit card details for a Master Credit card 
+     And I fill in creditCard details "<CreditCardNumber>"
+	 And I select a master card option
+	 And I select a month as "<ExpiryMonth>"
+	 And I select a year as "<ExpiryYear>"
+	 And I fill in security number as  "<CVV>"
+	 And I click send to sumbit card details
+	Then I should see added credit card details
+     And I can sign out of Brother Online
+
+Examples:
+| Country                | CreditCardNumber | ExpiryMonth | ExpiryYear | CVV    |
+| United Kingdom         | 5105781454975390 |     12      |   2017     |  132   |
+
+
+
+
 @IGNORE
 # Card details page flow has been changed to iframe content
 Scenario: Add payment method with new address and Cancel before submitting
