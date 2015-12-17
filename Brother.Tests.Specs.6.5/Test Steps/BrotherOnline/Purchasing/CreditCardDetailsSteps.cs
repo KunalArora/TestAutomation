@@ -75,12 +75,19 @@ namespace Brother.Tests.Specs.BrotherOnline.Purchasing
            AddVisaCreditCardDetails(expiryDateOverride);
         }
         // added below steps
+        [When(@"I fill in valid credit card details for a Master Credit card")]
         [When(@"I fill in valid credit card details for a Visa Credit card")]
         public void WhenIFillInValidCreditCardDetailsForAVisaCreditCard()
         {
 
             NextPage = BasePage.LoadCreditCardDetailsFrame(CurrentDriver);
             CurrentPage.As<CreditCardDetailsPage>().SwitchToCreditCardDetailsFrameAddCard();
+        }
+
+        [When(@"I select a master card option")]
+        public void WhenISelectAMasterCardOption()
+        {
+            CurrentPage.As<CreditCardDetailsPage>().SelectMasterCardRadioButton();
         }
 
         [When(@"I fill in an expired date of ""(.*)""")]
