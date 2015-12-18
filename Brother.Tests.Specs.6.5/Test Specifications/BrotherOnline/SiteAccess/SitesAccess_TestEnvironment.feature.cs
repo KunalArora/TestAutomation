@@ -127,7 +127,6 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestCaseAttribute("Portugal", "https://online.pt.brotherdv2.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Romania", "https://online.ro.brotherdv2.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Czech", "https://online.cz.brotherdv2.eu/", null)]
-        [NUnit.Framework.TestCaseAttribute("Hungary", "https://online.hr.brotherdv2.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Belgium", "https://online.be.brotherdv2.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Denmark", "https://online.dk.brotherdv2.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Switzerland", "https://online.ch.brotherdv2.eu/", null)]
