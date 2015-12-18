@@ -84,7 +84,6 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess
         [NUnit.Framework.TestCaseAttribute("Portugal", "http://pt.brotherdv2.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Romania", "http://ro.brotherdv2.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Czech", "http://cz.brotherdv2.eu/", null)]
-        [NUnit.Framework.TestCaseAttribute("Hungary", "http://hr.brotherdv2.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Belgium", "http://be.brotherdv2.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Denmark", "http://dk.brotherdv2.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Switzerland", "http://ch.brotherdv2.eu/", null)]
