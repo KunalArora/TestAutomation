@@ -1,11 +1,11 @@
-﻿# @TEST
+﻿@SMOKE @TEST
 Feature: AccessALLTestSites
 	In order to validate the status of a Websites on the Test environment
 	As a sanity check
 	We need to receive a 200 OK request back from a list of selected sites
 
 # BrotherMainSite
-# @SMOKE
+@TEST @SMOKE
 Scenario Outline: Get 200 OK response back from the following Brother Main Sites on the Test environment
 	Given The following site <Language> <Main Site> to validate I should receive an Ok response back	
 
@@ -29,10 +29,10 @@ Scenario Outline: Get 200 OK response back from the following Brother Main Sites
 	| Spain          | http://es.brotherdv2.eu/ |
 	| Italy          | http://it.brotherdv2.eu/ |
 	| Ireland        | http://ie.brotherdv2.eu/ |
-#| Austria        | http://as.brotherdv2.eu/ | - site not live
+    | Austria        | http://at.brotherdv2.eu/ |
 
 # BrotherOnline
-@ignore @SMOKE
+@SMOKE
 # Https returning Multiple Options from HTTP request. Need to change in code accordingly
 Scenario Outline: Get 200 OK response back from the following Brother Online Sites on the Test environment
 	Given The following site <Language> <Brother Online> to validate I should receive an Ok response back
@@ -55,7 +55,7 @@ Scenario Outline: Get 200 OK response back from the following Brother Online Sit
 	| Belgium        | https://online.be.brotherdv2.eu/ |
 	| Denmark        | https://online.dk.brotherdv2.eu/ |
 	| Switzerland    | https://online.ch.brotherdv2.eu/ |
-	#| Austria        | https://online.as.brotherdv2.eu/ | - Site not live
+	| Austria        | https://online.at.brotherdv2.eu/ |
 	| Slovenia       | https://online.si.brotherdv2.eu/ |
 	| Italy          | https://online.it.brotherdv2.eu/ |
 

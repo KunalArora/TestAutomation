@@ -880,27 +880,15 @@ Scenario Outline: Customer creates a new account with Brother Online using valid
 	And I declare that I do not use this account for business
 	When I press Create Your Account
 	Then I should see my account confirmation page
-	And When I Click Go Back
 	#And Once I have Validated an Email was received and verified my account
-	Then I should be able to log into "<Country>" Brother Online using my account details
-	And I can sign out of Brother Online
-	Then I am redirected to the Brother Home Page
-	
-Scenarios: 
-| Country  |	
-| United Kingdom    |
-
-
-#Waiting on 2956
-@SMOKE
-Scenario Outline: Go to Data Manager and verify the bpid for the existing user
-Given That I navigate to "<Site Url>" in order to validate the CMS site
+	When That I navigate to "<Site Url>" in order to validate the CMS site
 	And I enter an username containing "<UserName>"
 	And I enter password containing "<Password>"
-	And I press login button "<country>"
+	And I press login button "<Country>"
+	And I find email address used in the registration "<Country>"
+	And I click on Email Radio button "<Country>"
 
-
+	
 Scenarios: 
-| country        | Site Url                                      | UserName   | Password  |
-| United Kingdom| http://uk.brotherdv2.eu/test/DataManager.aspx | Automation | Password1 |                                     
-      
+| Country			|	Site Url                                   | UserName   | Password  |
+| United Kingdom    |http://uk.brotherdv2.eu/test/DataManager.aspx | Automation | Password1 |                                     

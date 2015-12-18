@@ -819,6 +819,16 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             WhenIEnterAValidPassword(Helper.Password);
             WhenIClickOnSignIn(country);
         }
+        [When(@"I find email address used in the registration ""(.*)""")]
+        public void WhenIFindEmailAddressUsedInTheRegistration(string country)
+        {
+            WhenIEnterAValidEmailAddressDataManager(Email.RegistrationEmailAddress);
+        }
+        [When(@"I click on Email Radio button ""(.*)""")]
+        public void WhenIClickOnEmailRadioButton(string country)
+        {
+            CurrentPage.As<DataManagerPage>().ClickRadioButtonEmail();
+        }
 
         [Then(@"I should be able to log into ""(.*)"" Brother Online using my creative center account details")]
         public void ThenIShouldBeAbleToLogIntoBrotherOnlineUsingMyCreativeCenterAccountDetails(string country)
@@ -1064,7 +1074,12 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<RegistrationPage>().PopulateEmailAddressTextBox(validEmailAddress);
         }
-
+        [When(@"I enter a valid Email Address ""(.*)""")]
+        public void WhenIEnterAValidEmailAddressDataManager(string validEmailAddress)
+        {
+            CurrentPage.As<DataManagerPage>().PopulateSearchBox(validEmailAddress);
+        }
+       
         [When(@"I enter a valid creative center Email Address ""(.*)""")]
         public void WhenIEnterAValidCCAccountEmailAddress(string validEmailAddress)
         {
@@ -1131,10 +1146,31 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage = BasePage.LoadDataManagerPage(CurrentDriver, url);
             CurrentPage.As<DataManagerPage>().GetDataManagerpage(url);
         }
+        [When(@"That I navigate to ""(.*)"" in order to validate the CMS site")]
+        public void WhenThatINavigateToInOrderToValidateTheCMSSite(string url)
+        {
+            CurrentPage = BasePage.LoadDataManagerPage(CurrentDriver, url);
+            CurrentPage.As<DataManagerPage>().GetDataManagerpage(url);
+        }
+        [When(@"I enter an username containing ""(.*)""")]
+        public void WhenIEnterAnUsernameContaining(string username)
+        {
+            CurrentPage.As<DataManagerPage>().PopulateUserNameTextBox(username);
+        }
+        [When(@"I enter password containing ""(.*)""")]
+        public void WhenIEnterPasswordContaining(string password)
+        {
+            CurrentPage.As<DataManagerPage>().PopulatePasswordTextBox(password);
+        }
+        [When(@"I press login button ""(.*)""")]
+        public void WhenIPressLoginButton(string country)
+        {
+            CurrentPage.As<DataManagerPage>().ClickOnLoginButton(country); 
+        }
         [Given(@"I enter an username containing ""(.*)""")]
         public void GivenIEnterAnUsernameContaining(string username)
         {
-            CurrentPage.As<DataManagerPage>().PopulateUserNameTextBox(username); ;
+            CurrentPage.As<DataManagerPage>().PopulateUserNameTextBox(username); 
         }
         [Given(@"I enter password containing ""(.*)""")]
         public void GivenIEnterPasswordContaining(string password)
