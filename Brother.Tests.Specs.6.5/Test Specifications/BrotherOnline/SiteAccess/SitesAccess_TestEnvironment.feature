@@ -21,7 +21,7 @@ Scenario Outline: Get 200 OK response back from the following Brother Main Sites
 	| Portugal       | http://pt.brotherdv2.eu/ |
 	| Romania        | http://ro.brotherdv2.eu/ |
 	| Czech          | http://cz.brotherdv2.eu/ |
-	| Hungary        | http://hr.brotherdv2.eu/ |
+	#| Hungary        | http://hr.brotherdv2.eu/ |
 	| Belgium        | http://be.brotherdv2.eu/ |
 	| Denmark        | http://dk.brotherdv2.eu/ |
 	| Switzerland    | http://ch.brotherdv2.eu/ |
