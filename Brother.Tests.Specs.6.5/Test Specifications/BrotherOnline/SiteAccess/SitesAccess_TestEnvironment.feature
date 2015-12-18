@@ -51,7 +51,6 @@ Scenario Outline: Get 200 OK response back from the following Brother Online Sit
 	| Portugal       | https://online.pt.brotherdv2.eu/ |
 	| Romania        | https://online.ro.brotherdv2.eu/ |
 	| Czech          | https://online.cz.brotherdv2.eu/ |
-	#| Hungary        | https://online.hr.brotherdv2.eu/ |
 	| Belgium        | https://online.be.brotherdv2.eu/ |
 	| Denmark        | https://online.dk.brotherdv2.eu/ |
 	| Switzerland    | https://online.ch.brotherdv2.eu/ |

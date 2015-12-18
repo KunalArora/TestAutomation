@@ -160,9 +160,9 @@ this.ScenarioSetup(scenarioInfo);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get 200 OK response back from Creative Centre United Kingdom on the Test environm" +
                     "ent", new string[] {
                         "ignore"});
-#line 65
+#line 64
 this.ScenarioSetup(scenarioInfo);
-#line 66
+#line 65
  testRunner.Given("The following site United Kingdom http://creativecenter.eu.brotherdv2.eu/ to vali" +
                     "date I should receive an Ok response back", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
