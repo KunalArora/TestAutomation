@@ -597,7 +597,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     SpecFlow.SetContext("ProductQuantity", ProductQuantityElement.GetAttribute("value"));
 
                
-                if (IsUKSystem() || IsAustriaSystem())
+                if (!IsGermanSystem())
                     SpecFlow.SetContext("SelectedInstallationType", SelectedInstallationTypeElement.Text);
 
                 if (IsGermanSystem())

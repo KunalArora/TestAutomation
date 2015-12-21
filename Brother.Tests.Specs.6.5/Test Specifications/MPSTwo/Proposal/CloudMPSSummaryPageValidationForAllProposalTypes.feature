@@ -90,10 +90,10 @@ Scenario Outline: Summary Page Validation For Minimum Volume Purchase and Click 
 	And Service Pack payment method is displayed
 	And I choose to pay Service Packs "<PaymentMethod>"
 	And I enter click price volume of "<ClickVolume>" and "<ColourVolume>"
-	Then the billing basis for product is "Pay upfront"
-	And the billing basis for Accessory is "Pay upfront"
-	And the billing basis for Installation is "Pay upfront"
-	And the billing basis for Service Pack is "Included in Click Price"
+	Then the billing basis for product is "<Basis2>"
+	And the billing basis for Accessory is "<Basis2>"
+	And the billing basis for Installation is "<Basis2>"
+	And the billing basis for Service Pack is "<Basis1>"
 	And the installation type displayed is correct
 	And the installation cost displayed is correct
 	And the quantity displayed is the same as the one entered
@@ -110,8 +110,12 @@ Scenario Outline: Summary Page Validation For Minimum Volume Purchase and Click 
 	
 
 	Scenarios: 
-	| Role             | Country        | ContractType                  | UsageType      | Contract | Leasing                  | Billing                  | PriceHardware | Printer      | DeviceScreen | PaymentMethod           | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Minimum Volume | 3 years  | Quarterly in Arrears | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Included in Click Price | 800        | 800         |
+	| Role             | Country        | ContractType                  | UsageType                                 | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod                    | ClickVolume | ColourVolume | Basis1                        | Basis2                           |
+	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Minimum Volume                            | 3 years  | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Included in Click Price          | 800         | 800          | Included in Click Price       | Pay upfront                      |
+	| Cloud MPS Dealer | France         | Buy & Click                   | Engagement sur un minimum volume de pages | 3 ans    | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Paiement au démarrage du contrat | 800         | 800          | Inclus dans le coût à la page | Paiement au démarrage du contrat |
+	#| Cloud MPS Dealer | Italy          | Acquisto & Consumo            | Engagement sur un minimum volume de pages | 36       | Quarterly in Advance | Tick          | MFC-L8650CDW | Full         | Incluso nel click | 800         | 800          | Incluso nel click | Pagamento anticipato |
+	
+	
 
 
 Scenario Outline: Summary Page Validation For Minimum Volume Purchase and Click proposal Upfront Payment
@@ -127,10 +131,10 @@ Scenario Outline: Summary Page Validation For Minimum Volume Purchase and Click 
 	And Service Pack payment method is displayed
 	And I choose to pay Service Packs "<PaymentMethod>"
 	And I enter click price volume of "<ClickVolume>" and "<ColourVolume>"
-	Then the billing basis for product is "Pay upfront"
-	And the billing basis for Accessory is "Pay upfront"
-	And the billing basis for Installation is "Pay upfront"
-	And the billing basis for Service Pack is "Pay upfront"
+	Then the billing basis for product is "<Basis1>"
+	And the billing basis for Accessory is "<Basis1>"
+	And the billing basis for Installation is "<Basis1>"
+	And the billing basis for Service Pack is "<Basis1>"
 	And the installation type displayed is correct
 	And the installation cost displayed is correct
 	And the quantity displayed is the same as the one entered
@@ -147,9 +151,14 @@ Scenario Outline: Summary Page Validation For Minimum Volume Purchase and Click 
 	
 
 	Scenarios: 
-	| Role             | Country        | ContractType                  | UsageType      | Contract | Leasing   | Billing   | PriceHardware | Printer      | DeviceScreen | PaymentMethod | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Minimum Volume | 3 years  | Quarterly in Arrears | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Pay Upfront   | 800         | 800          |
+	| Role             | Country        | ContractType                  | UsageType                                 | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod                 | ClickVolume | ColourVolume | Basis1                        |
+	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Minimum Volume                            | 3 years  | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Pay upfront                   | 800         | 800          | Pay upfront                   | 
+	| Cloud MPS Dealer | France         | Buy & Click                   | Engagement sur un minimum volume de pages | 3 ans    | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Inclus dans le coût à la page | 800         | 800          | Paiement au démarrage du contrat |
 	
+
+
+
+
 Scenario Outline: Summary Page Validation For Pay As you Go Purchase and Click proposal
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -161,10 +170,10 @@ Scenario Outline: Summary Page Validation For Pay As you Go Purchase and Click p
 	And I redisplay "<Printer>" device screen
 	And I confirm the values entered for the device
 	And I type in click price volume of "<ClickVolume>"
-	Then the billing basis for product is "Pay upfront"
-	And the billing basis for Accessory is "Pay upfront"
-	And the billing basis for Installation is "Pay upfront"
-	And the billing basis for Service Pack is "Pay upfront"
+	Then the billing basis for product is "<Basis1>"
+	And the billing basis for Accessory is "<Basis1>"
+	And the billing basis for Installation is "<Basis1>"
+	And the billing basis for Service Pack is "<Basis1>"
 	And the installation type displayed is correct
 	And the installation cost displayed is correct
 	And the quantity displayed is the same as the one entered
@@ -179,5 +188,7 @@ Scenario Outline: Summary Page Validation For Pay As you Go Purchase and Click p
 	
 
 	Scenarios: 
-	| Role             | Country        | ContractType                  | CreateOption        | UsageType     | Contract | Leasing   | Billing   | PriceHardware | Printer    | DeviceScreen | ClickVolume |
-	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Create new customer | Pay As You Go | 4 years  | Quarterly in Arrears | Quarterly in Arrears | Tick        | MFC-8510DN | Full     | 800        |
+	| Role             | Country        | ContractType                  | CreateOption        | UsageType                                      | Contract | Billing              | PriceHardware | Printer    | DeviceScreen | ClickVolume | Basis1                           |
+	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Create new customer | Pay As You Go                                  | 4 years  | Quarterly in Arrears | Tick          | MFC-8510DN | Full         | 800         | Pay upfront                      |
+	| Cloud MPS Dealer | France         | Buy & Click                   | Create new customer | Paiement selon la consommation réelle de pages | 4 ans    | Quarterly in Arrears | Tick          | MFC-8510DN | Full         | 800         | Paiement au démarrage du contrat |
+	

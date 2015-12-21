@@ -372,13 +372,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyThatCalculationsAreNotBasedOnEstimates()
         {
-            if (GrandTotalPriceNetElement.Text.Contains("£"))
+            if (IsUKSystem())
             {
                 TestCheck.AssertTextContains(CalculationBasisElement.Text, "Minimum Volume");
             }
-            else if (GrandTotalPriceNetElement.Text.Contains("€"))
+            else if (IsGermanSystem()||IsAustriaSystem())
             {
                 TestCheck.AssertTextContains(CalculationBasisElement.Text, "vereinbarten Mindestdruckvolumina");
+            }
+            else if (IsFranceSystem())
+            {
+                TestCheck.AssertTextContains(CalculationBasisElement.Text, "Coût total par matériel sur la base du volume minimum");
             }
             
         }
@@ -395,9 +399,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyInstallationCostIsConsistent()
         {
+            var savedInstallationPrice = SpecFlow.GetContext("SelectedInstallationPrice");
+            var summaryInstallationCost = InstallationCostNameElement.Text;
 
-            TestCheck.AssertIsEqual(SpecFlow.GetContext("SelectedInstallationPrice"),
-                InstallationCostNameElement.Text,
+            TestCheck.AssertIsEqual(savedInstallationPrice, summaryInstallationCost,
                 "Summary Installation Cost is different from Selected Installation Cost");
         }
 
@@ -424,13 +429,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyThatCalculationsAreBasedOnEstimates()
         {
-            if (GrandTotalPriceNetElement.Text.Contains("£"))
+            if (IsUKSystem())
             {
                 TestCheck.AssertTextContains(CalculationBasisElement.Text, "Estimated Volume");
             }
-            else if (GrandTotalPriceNetElement.Text.Contains("€"))
+            else if (IsGermanSystem() || IsAustriaSystem())
             {
                 TestCheck.AssertTextContains(CalculationBasisElement.Text, "geschätzten Druckvolumina");
+            } else if (IsFranceSystem())
+            {
+                TestCheck.AssertTextContains(CalculationBasisElement.Text, "Coût total par matériel sur la base de l'estimation de volume de pages");
             }
             
         }

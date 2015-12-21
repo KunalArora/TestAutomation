@@ -159,9 +159,36 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetTabInstance<LocalOfficeApproverContractsPage>(Driver);
         }
 
-        public void SelectRejectionReason(string reason)
+
+        private string Reason()
         {
-            SelectFromDropdown(BankRejectReasonElement, reason);
+            var reason = "";
+
+            if (IsAustriaSystem() || IsGermanSystem())
+            {
+                reason = "Andere";
+
+            }
+            else if (IsUKSystem())
+            {
+                reason = "Expired";
+
+            }
+            else if (IsFranceSystem())
+            {
+                reason = "Expiré";
+            }
+            else if (IsItalySystem())
+            {
+                reason = "Scaduta";
+            }
+
+            return reason;
+        }
+
+        public void SelectRejectionReason()
+        {
+            SelectFromDropdown(BankRejectReasonElement, Reason());
         }
 
         public void IsAcceptButtonAvailable()
