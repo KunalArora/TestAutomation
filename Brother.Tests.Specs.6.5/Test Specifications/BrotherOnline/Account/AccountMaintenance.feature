@@ -66,7 +66,7 @@ Scenarios:
 	| FirstName						|LastName							|
 	| Test						    |Test								|
 
-@SMOKE
+@ignore @SMOKE
 Scenario Outline: Customer gets valid error message on BOL Norway site with invalid tax code
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
