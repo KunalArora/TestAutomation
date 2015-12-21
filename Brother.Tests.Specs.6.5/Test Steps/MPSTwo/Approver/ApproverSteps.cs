@@ -198,14 +198,14 @@ namespace Brother.Tests.Specs.MPSTwo.Approver
             {
                 NextPage = CurrentPage.As<BankContractsPage>().NavigateToViewSummary();
                 CurrentPage.As<BankContractsSummaryPage>().ClickRejectButton();
-                CurrentPage.As<BankContractsSummaryPage>().SelectRejectionReason("Expired");
+                CurrentPage.As<BankContractsSummaryPage>().SelectRejectionReason();
                 NextPage = CurrentPage.As<BankContractsSummaryPage>().ClickFinalRejectButton();
             }
             else if (PurchaseAndClick)
             {
                 NextPage = CurrentPage.As<LocalOfficeApproverContractsPage>().NavigateToViewSummary();
                 CurrentPage.As<LocalOfficeApproverContractsSummaryPage>().ClickRejectButton();
-                CurrentPage.As<LocalOfficeApproverContractsSummaryPage>().SelectRejectionReason("Expired");
+                CurrentPage.As<LocalOfficeApproverContractsSummaryPage>().SelectRejectionReason();
                 NextPage = CurrentPage.As<LocalOfficeApproverContractsSummaryPage>().ClickFinalRejectButton();  
             }
         }
@@ -217,14 +217,14 @@ namespace Brother.Tests.Specs.MPSTwo.Approver
             {
                 NextPage = CurrentPage.As<BankContractsPage>().NavigateToViewSummary();
                 CurrentPage.As<BankContractsSummaryPage>().ClickRejectButton();
-                CurrentPage.As<BankContractsSummaryPage>().SelectRejectionReason(option);
+                CurrentPage.As<BankContractsSummaryPage>().SelectRejectionReason();
                 NextPage = CurrentPage.As<BankContractsSummaryPage>().ClickFinalRejectButton();
             }
             else if (PurchaseAndClick)
             {
                 NextPage = CurrentPage.As<LocalOfficeApproverContractsPage>().NavigateToViewSummary();
                 CurrentPage.As<LocalOfficeApproverContractsSummaryPage>().ClickRejectButton();
-                CurrentPage.As<LocalOfficeApproverContractsSummaryPage>().SelectRejectionReason(option);
+                CurrentPage.As<LocalOfficeApproverContractsSummaryPage>().SelectRejectionReason();
                 NextPage = CurrentPage.As<LocalOfficeApproverContractsSummaryPage>().ClickFinalRejectButton();
             }
         }

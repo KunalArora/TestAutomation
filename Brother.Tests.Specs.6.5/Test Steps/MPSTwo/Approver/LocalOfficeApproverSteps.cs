@@ -121,7 +121,7 @@ namespace Brother.Tests.Specs.MPSTwo.LocalOfficeApprover
         {
             NextPage = CurrentPage.As<LocalOfficeApproverContractsPage>().NavigateToViewSummary();
             CurrentPage.As<LocalOfficeApproverContractsSummaryPage>().ClickRejectButton();
-            CurrentPage.As<LocalOfficeApproverContractsSummaryPage>().SelectRejectionReason("Expired");
+            CurrentPage.As<LocalOfficeApproverContractsSummaryPage>().SelectRejectionReason();
             NextPage = CurrentPage.As<LocalOfficeApproverContractsSummaryPage>().ClickFinalRejectButton();
         }
 

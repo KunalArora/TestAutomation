@@ -58,7 +58,7 @@ Scenario Outline: German and Austria Dealer can cancel a proposal in Awaiting Ap
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created German Purchase and Click proposal 
 	And I am on Proposal List page
-	And I send the created proposal for approval
+	And I send the created German proposal for approval
 	When I navigate to the Summary page of the proposal awaiting approval
 	Then I can close the proposal on the summary page
 	And I can sign out of Brother Online

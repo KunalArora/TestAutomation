@@ -1,4 +1,4 @@
-﻿@ignore @MPS @TEST @UAT
+﻿@MPS @TEST @UAT
 Feature: CloudMPSApprover decision feature for other Countries
 	In order to approve/decline Proposal/Contract
 	As a Approver
@@ -18,8 +18,8 @@ Scenario Outline: Approver Decline Proposal for other Countries
 	And I sign out of Cloud MPS
 
 	Scenarios: 
-	| Country | Role                           | ContractType | UsageType                                 | Length | Billing              |
-	| France  | Cloud MPS Local Office Approver | Buy & Click  | Engagement sur un minimum volume de pages | 3 ans  | Quarterly in Arrears |
+	| Country | Role                            | ContractType                      | UsageType                                 | Length | Billing              |
+	| France  | Cloud MPS Local Office Approver | Buy & Click                       | Engagement sur un minimum volume de pages | 3 ans  | Quarterly in Arrears |
 	#| Italy   | Cloud MPS Local Office Approver | Acquisto + Consumo con assistenza | Volume minimo                             | 36     | Quarterly in Advance |
 	
 
@@ -135,10 +135,11 @@ Scenario Outline: Dealer can resign rejected contract for other Countries
 	And I sign out of Cloud MPS
 
 	Scenarios: 
-	| Role               | Country        |
-	| Cloud MPS Dealer   | France |
-
+	| Role             | Country |
+	| Cloud MPS Dealer | France  |
+	
 # View open offers
+@ignore
 Scenario Outline: Bank can view opened offers for other Countries
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When I navigate to OfferPage
@@ -147,9 +148,9 @@ Scenario Outline: Bank can view opened offers for other Countries
 	And I sign out of Cloud MPS
 
 	Scenarios: 
-	| Role           | Country        |
-	| Cloud MPS Bank | United Kingdom |
-
+	| Role           | Country |
+	| Cloud MPS Bank | France  |
+	
 
 # View confirmed/rejected/signed offers
 @ignore
@@ -160,11 +161,11 @@ Scenario Outline: Bank can view confirmed/rejected/signed offers for other Count
 	And I sign out of Cloud MPS
 
 	Scenarios: 
-	| Role                            | Country        | Acceptance         |
-	| Cloud MPS Bank                  | United Kingdom | Awating Acceptance |
-	| Cloud MPS Bank                  | United Kingdom | Rejected           |
-	| Cloud MPS Bank                  | United Kingdom | Accepted           |
-
+	| Role           | Country | Acceptance         |
+	| Cloud MPS Bank | France  | Awating Acceptance |
+	| Cloud MPS Bank | France  | Rejected           |
+	| Cloud MPS Bank | France  | Accepted           |
+	
 # LO Approver can view open offers
 Scenario Outline: Local Office Approver can view opened offers for other Countries
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
@@ -174,9 +175,9 @@ Scenario Outline: Local Office Approver can view opened offers for other Countri
 	And I sign out of Cloud MPS
 
 	Scenarios: 
-	| Role                            | Country        |
-	| Cloud MPS Local Office Approver | United Kingdom |
-
+	| Role                            | Country |
+	| Cloud MPS Local Office Approver | France  |
+	
 # LO Approver can view confirmed/rejected/signed contracts
 Scenario Outline: Local Office Approver can view confirmed/rejected/signed contracts for other Countries
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
@@ -185,8 +186,8 @@ Scenario Outline: Local Office Approver can view confirmed/rejected/signed contr
 	And I sign out of Cloud MPS
 
 	Scenarios: 
-	| Role                            | Country        | Acceptance         |
-	| Cloud MPS Local Office Approver | United Kingdom | Awating Acceptance |
-	| Cloud MPS Local Office Approver | United Kingdom | Rejected           |
-	| Cloud MPS Local Office Approver | United Kingdom | Accepted           |
-
+	| Role                            | Country | Acceptance         |
+	| Cloud MPS Local Office Approver | France  | Awating Acceptance |
+	| Cloud MPS Local Office Approver | France  | Rejected           |
+	| Cloud MPS Local Office Approver | France  | Accepted           |
+	

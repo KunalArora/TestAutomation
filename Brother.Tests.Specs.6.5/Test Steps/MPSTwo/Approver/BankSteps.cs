@@ -120,7 +120,7 @@ namespace Brother.Tests.Specs.MPSTwo.Bank
         {
             NextPage = CurrentPage.As<BankContractsPage>().NavigateToViewSummary();
             CurrentPage.As<BankContractsSummaryPage>().ClickRejectButton();
-            CurrentPage.As<BankContractsSummaryPage>().SelectRejectionReason("Expired");
+            CurrentPage.As<BankContractsSummaryPage>().SelectRejectionReason();
             NextPage = CurrentPage.As<BankContractsSummaryPage>().ClickFinalRejectButton();
         }
 

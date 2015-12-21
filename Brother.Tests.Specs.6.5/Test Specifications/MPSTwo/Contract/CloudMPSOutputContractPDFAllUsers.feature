@@ -15,6 +15,7 @@ Scenario Outline: Bank can download Contract PDFs on Awaiting Acceptance page
 	Scenarios: 
 	| Role           | Country        |
 	| Cloud MPS Bank | Germany        |
+	| Cloud MPS Bank | Austria        |
 	#| Cloud MPS Bank | United Kingdom |
 
 #@ignore
@@ -28,6 +29,7 @@ Scenario Outline: Bank can download Contract PDFs on Rejected page
 	Scenarios: 
 	| Role           | Country        |
 	| Cloud MPS Bank | Germany        |
+	| Cloud MPS Bank | Austria        |
 	#| Cloud MPS Bank | United Kingdom |
 
 	
@@ -44,6 +46,7 @@ Scenario Outline: Local Office Approver can download Contract PDFs on Awaiting A
 	| Role                            | Country        |
 	| Cloud MPS Local Office Approver | United Kingdom |
 	| Cloud MPS Local Office Approver | Germany        |
+	| Cloud MPS Local Office Approver | France         |
 	
 
 
@@ -58,7 +61,7 @@ Scenario Outline: Local Office Approver can download Contract PDFs on Rejected p
 	| Role                            | Country        |
 	| Cloud MPS Local Office Approver | United Kingdom |
 	| Cloud MPS Local Office Approver | Germany        |
-	
+	| Cloud MPS Local Office Approver | France         |
 
 
 
@@ -72,6 +75,7 @@ Scenario Outline: Dealer can download Contract PDFs on Approved proposal page
 	| Role             | Country        |
 	| Cloud MPS Dealer | United Kingdom |
 	| Cloud MPS Dealer | Germany        |
+	| Cloud MPS Dealer | France         |
 	
 
 Scenario Outline: Dealer can download Contract PDFs on Awaiting Acceptance page
@@ -85,6 +89,7 @@ Scenario Outline: Dealer can download Contract PDFs on Awaiting Acceptance page
 	| Role             | Country        |
 	| Cloud MPS Dealer | United Kingdom |
 	| Cloud MPS Dealer | Germany        |
+	| Cloud MPS Dealer | France         |
 
 
 Scenario Outline: Dealer can download Contract PDFs on Rejected page
@@ -98,4 +103,5 @@ Scenario Outline: Dealer can download Contract PDFs on Rejected page
 	| Role             | Country        |
 	| Cloud MPS Dealer | United Kingdom |
 	| Cloud MPS Dealer | Germany        |
+	| Cloud MPS Dealer | France         |
 	
