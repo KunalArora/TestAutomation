@@ -84,7 +84,6 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess
         [NUnit.Framework.TestCaseAttribute("Portugal", "http://pt.brotherdv2.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Romania", "http://ro.brotherdv2.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Czech", "http://cz.brotherdv2.eu/", null)]
-        [NUnit.Framework.TestCaseAttribute("Hungary", "http://hr.brotherdv2.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Belgium", "http://be.brotherdv2.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Denmark", "http://dk.brotherdv2.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Switzerland", "http://ch.brotherdv2.eu/", null)]
@@ -128,7 +127,6 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestCaseAttribute("Portugal", "https://online.pt.brotherdv2.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Romania", "https://online.ro.brotherdv2.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Czech", "https://online.cz.brotherdv2.eu/", null)]
-        [NUnit.Framework.TestCaseAttribute("Hungary", "https://online.hr.brotherdv2.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Belgium", "https://online.be.brotherdv2.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Denmark", "https://online.dk.brotherdv2.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Switzerland", "https://online.ch.brotherdv2.eu/", null)]
@@ -162,9 +160,9 @@ this.ScenarioSetup(scenarioInfo);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get 200 OK response back from Creative Centre United Kingdom on the Test environm" +
                     "ent", new string[] {
                         "ignore"});
-#line 65
+#line 64
 this.ScenarioSetup(scenarioInfo);
-#line 66
+#line 65
  testRunner.Given("The following site United Kingdom http://creativecenter.eu.brotherdv2.eu/ to vali" +
                     "date I should receive an Ok response back", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden

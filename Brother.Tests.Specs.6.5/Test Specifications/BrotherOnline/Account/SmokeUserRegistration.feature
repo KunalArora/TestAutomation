@@ -1,4 +1,4 @@
-﻿@SMOKE @TEST @PROD @QAS
+﻿@SMOKE @TEST @PROD @UAT
 Feature: B2C and B2B Registration
 	In order to register myself with brother
 	As a customer
@@ -602,32 +602,6 @@ Scenarios:
 | Spain			| Servicios personales	| INVALIDVATNUMBER | 
 
 @SMOKE
-Scenario Outline: Customer gets valid error message on BOL Norway site with invalid tax code
-	Given I want to create a new account with Brother Online "<Country>"
-	When I click on Create Account for "<Country>"
-	And I am redirected to the Brother Login/Register page
-	And I have Checked No I Do Not Have An Account Checkbox
-	And I declare that I do use this account for business
-	And I fill in the registration information using a valid email address 
-	| field           | value           |
-	| FirstName       | AutoTest        |
-	| LastName        | AutoTest		|
-	| Password        | @@@@@			|
-	| ConfirmPassword | @@@@@			|
-	And I add my company name as "AutoTestLtd"
-	And I select my Business Sector as "<Business Sector>"
-	# And I enter my Business Sector as "<Business Sector>"
-	And I select number of Employees as "11 - 50"
-	And I enter an invalid VAT Number as "<VAT Number>"
-	And I have Agreed to the Terms and Conditions 
-	When I press Create Your Account
-	Then I should see an error message due to an invalid tax code 
-
-Scenarios:
-| Country		| Business Sector		| VAT Number       |
-| Norway		| Industri				| INVALIDVATNUMBER |
-
-@SMOKE
 Scenario Outline: Customer gets valid error message on BOL France site  with invalid tax code
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -863,7 +837,7 @@ Scenario: Sign Up for 14 day Free trial already signed into Brother Online - ema
 	Then I can sign out of Brother Online
 	Then I am redirected to the Brother Home Page
 
-@SMOKE @TEST
+@UAT
 Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by bpid on UK site
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -887,8 +861,10 @@ Scenario Outline: Customer creates a new account with Brother Online using valid
 	And I press login button "<Country>"
 	And I find email address used in the registration "<Country>"
 	And I click on Email Radio button "<Country>"
+	And I click on User Email "<Country>"
+	Then I should see BPID for registered user "<Country>"
 
 	
 Scenarios: 
-| Country			|	Site Url                                   | UserName   | Password  |
-| United Kingdom    |http://uk.brotherdv2.eu/test/DataManager.aspx | Automation | Password1 |                                     
+| Country			|	Site Url											  | UserName   | Password  |
+| United Kingdom    |http://online.uk.cms.brotherqas.eu/test/DataManager.aspx | Automation | Password1 |                                     
