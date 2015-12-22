@@ -829,7 +829,18 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<DataManagerPage>().ClickRadioButtonEmail();
         }
+        [When(@"I click on Search button to find the user email  ""(.*)""")]
+        public void WhenIClickOnSearchButtonToFindTheUserEmail(string country)
+        {
+            CurrentPage.As<DataManagerPage>().ClickSearchButton();
+        }
 
+        [When(@"I click on User Email ""(.*)""")]
+        public void WhenIClickOnUserEmail(string country)
+        {
+            CurrentPage.As<DataManagerPage>().ClickOnUserEmail();
+        }
+        
         [Then(@"I should be able to log into ""(.*)"" Brother Online using my creative center account details")]
         public void ThenIShouldBeAbleToLogIntoBrotherOnlineUsingMyCreativeCenterAccountDetails(string country)
         {

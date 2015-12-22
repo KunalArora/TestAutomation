@@ -57,6 +57,13 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.DataManager
         [FindsBy(How = How.Id, Using = "MainContentPlaceHolder_rbEmail")]
         public IWebElement EmailRadioButton;
 
+        [FindsBy(How = How.CssSelector, Using = "#DataTables_Table_3 > tbody > tr > td.details-control")]
+        public IWebElement UserEmail;
+
+       [FindsBy(How = How.Id, Using = "MainContentPlaceHolder_btnSearch")]
+        public IWebElement SearchButton;
+       
+
         public void PopulateUserNameTextBox(string userName)
         {
             UserNameTextBox.SendKeys(userName);
@@ -82,6 +89,15 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.DataManager
             ScrollTo(EmailRadioButton);
             EmailRadioButton.Click();
         }
-       
+       public void ClickOnUserEmail()
+       {    
+           ScrollTo(UserEmail);
+           UserEmail.Click();
+       }
+
+       public void ClickSearchButton()
+       {    
+           SearchButton.Click();
+       }
     }
 }
