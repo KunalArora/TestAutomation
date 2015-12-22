@@ -19,6 +19,15 @@ namespace Brother.Tests.Specs.BrotherMainSite.SuppliesAndAccessories
             NextPage = CurrentPage.As<MainSiteHomePage>().ClickSuppliesLink();
         }
 
+    
+        [Given(@"I have entered supply code ""(.*)""")]
+        public void GivenIHaveEnteredSupplyCode(string supplyNumber)
+        {
+           
+            CurrentPage.As<SuppliesPage>().AddSupplyCode(supplyNumber);
+        }
+
+
         [Given(@"I have entered my valid device code for an InkJet printer ""(.*)""")]
         public void GivenIHaveEnteredMyValidDeviceCodeForAnInkJetPrinter(string modelNumber)
         {
@@ -37,8 +46,31 @@ namespace Brother.Tests.Specs.BrotherMainSite.SuppliesAndAccessories
             NextPage = CurrentPage.As<SuppliesPage>().SearchModelSuppliesButtonClick();
         }
 
+   
+        [When(@"I click on search for""(.*)""")]
+        public void WhenIClickOnSearchFor(string p0)
+        {
+            NextPage = CurrentPage.As<SuppliesPage>().SearchSuppliesButtonClick();
+        }
+        [Then(@"I should be on Basket page of ""(.*)""")]
+        public void ThenIShouldBeOnBasketPageOf(string supplyCode)
+        {
+           
+           //CurrentPage.As<BasketPage>().GetBasketInformationItem();
+          //  CurrentPage.As<BasketPage>().GetItemInBasket();
+            InkJetCartridgePage.SetExtraPageTitle = supplyCode; // sets the supply page title based on supply item
+            NextPage = CurrentPage.As<SuppliesPage>().SearchSuppliesButtonClick();
+        }
+
         [Then(@"I should see the selected item information page priced at ""(.*)"" inc vat")]
         public void ThenIShouldSeeTheSelectedItemInformationPagePricedAtIncVat(string productItem)
+        {
+            CurrentPage.As<InkJetCartridgePage>().IsAddToBasketButtonAvailable();
+            TestCheck.AssertIsEqual(BasketModule.GetItemPrice(TestController.CurrentDriver).Contains(productItem), true, "Invalid price for item");
+        }
+      
+        [Then(@"I should see the selected item information page priced at ""(.*)"" inc vat on basket page")]
+        public void ThenIShouldSeeTheSelectedItemInformationPagePricedAtIncVatOnBasketPage(string productItem)
         {
             CurrentPage.As<InkJetCartridgePage>().IsAddToBasketButtonAvailable();
             TestCheck.AssertIsEqual(BasketModule.GetItemPrice(TestController.CurrentDriver).Contains(productItem), true, "Invalid price for item");
@@ -61,6 +93,13 @@ namespace Brother.Tests.Specs.BrotherMainSite.SuppliesAndAccessories
         public void ThenIShouldSeeAnAListOfAssociatedItems(string productName)
         {
             CurrentPage.As<OriginalSuppliesPage>().IsSuppliesCategoryListAvailable();
+        }
+
+     
+        [Then(@"I should see an a list of associated items for entered supply code")]
+        public void ThenIShouldSeeAnAListOfAssociatedItemsForEnteredSupplyCode()
+        {
+            CurrentPage.As<SuppliesPage>().IsSuppliesSearchButtonAvailable();
         }
 
         [Then(@"If I click on the item ""(.*)""")]

@@ -1,6 +1,7 @@
 ﻿using System;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
+using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement.PaymentMethods;
 using Brother.WebSites.Core.Pages.BrotherOnline.Checkout;
 using NUnit.Framework;
@@ -122,10 +123,18 @@ namespace Brother.Tests.Specs.BrotherOnline.Purchasing
            CurrentPage.As<CreditCardDetailsPage>().PopulateCreditCardCvvNumber(number);
         }
 
-        [When(@"I click send to sumbit card details")]
-        public void WhenIClickSendToSumbitCardDetails()
+        [When(@"I click send to sumbit card details to see order confirmation")]
+        public void WhenIClickSendToSumbitCardDetailsToSeeOrderConfirmation()
         {
             NextPage = CurrentPage.As<CreditCardDetailsPage>().AddNewCardSendPaymentButtonClick();
+          
+        }
+        [Then(@"I should see Order Confirmation")]
+        public void ThenIShouldSeeOrderConfirmation()
+        {
+
+           CurrentPage.As<OrderConfirmationPage>().IsOrderConfirmationPageMessageDisplayed();    
+        
         }
 
         // End of steps

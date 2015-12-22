@@ -139,6 +139,22 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<RegistrationPage>().NavigateToMyAccountPage();
         }
 
+        //added
+
+        [When(@"I clicked on orders menu")]
+        public void WhenIClickedOnOrdersMenu()
+        {
+            CurrentPage.As<OrderDetailsPage>().ClickOrdersMenuLink();
+        }
+
+        [Then(@"I should see created orders")]
+        public void ThenIShouldSeeCreatedOrders()
+        {
+        
+            CurrentPage.As<MyOrdersPage>().IsViewOrderDetailsButtonAvailable();
+              
+        }
+
         [When(@"I navigate to my account using creative center details")]
         public void WhenINavigateToMyAccountForUsingCcDetails()
         {

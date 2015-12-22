@@ -1134,6 +1134,13 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<RegistrationPage>().PopulatePassword(validPassword);
         }
 
+        //added Create
+        [When(@"I press sign in with valid details")]
+        public void WhenIPressSignInWithValidDetails()
+        {
+            
+        }
+
         [When(@"I enter a valid Password for creative center ""(.*)""")]
         public void WhenIEnterAValidCcPassword(string validPassword)
         {

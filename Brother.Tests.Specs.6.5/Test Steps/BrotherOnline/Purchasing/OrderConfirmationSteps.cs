@@ -9,7 +9,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Purchasing
 {
     [Binding]
     public class OrderConfirmationSteps : BaseSteps
-    {
+    {     
         [When(@"I should see the Order Confirmation page")]
         [Then(@"I should see the Order Confirmation page")]
         public void ThenIShouldSeeTheOrderConfirmationPage()
@@ -43,6 +43,18 @@ namespace Brother.Tests.Specs.BrotherOnline.Purchasing
         public void ThenIfIClickOnMyAccount()
         {
             NextPage = CurrentPage.As<OrderConfirmationPage>().MyAccountButtonClick();
+        }  
+    
+        //added
+
+        [Then(@"I should see order confirmation page")]
+        public void ThenIShouldSeeOrderConfirmationPage()
+        {
+          //CurrentPage.As<OrderConfirmationPage>().IsOrderConfirmationPageMessageDisplayed();
+            CurrentPage.As<OrderConfirmationPage>().IsMyAccountButtonAvailable();
+            // store order confirmation number
+            ScenarioContext.Current.Add("OrderConfirmationNumber", CurrentPage.As<OrderConfirmationPage>().GetOrderConfirmationNumber());
+            ScenarioContext.Current.Add("ProductInfo", CurrentPage.As<OrderConfirmationPage>().GetProductInfo());
         }
 
     }

@@ -74,6 +74,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
         public IWebElement MasterCardRadioButton;
 
 
+
+
+
         #region IWrapsElement
 
         private IWebElement VisaOptionButton
