@@ -1,9 +1,9 @@
-﻿@TEST @UAT
+﻿@TEST
 Feature:
 As a user I want to register and create an order on BOL Site.
  
 
-@TEST @UAT
+@TEST 
 Scenario Outline: Customer creates an account and places an order on UK BOL site
    Given I launch Brother Online for "United Kingdom"
     When I click on Create Account for "United Kingdom"
@@ -55,7 +55,8 @@ Scenario Outline: Customer creates an account and places an order on UK BOL site
 	 And I select a month as "<ExpiryMonth>"
 	 And I select a year as "<ExpiryYear>"
 	 And I fill in security number as  "<CVV>"
-	 And I click send to sumbit card details to see order confirmation	
+     And I click send to sumbit card details to see order confirmation
+	#Then I have navigated to MyAccountPage
 	#Then I should see order confirmation page
 	# When If I click on My Account
 	# When I navigate to my account
