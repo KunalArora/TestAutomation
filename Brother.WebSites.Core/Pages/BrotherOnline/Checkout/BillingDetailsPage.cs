@@ -63,6 +63,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
 
         [FindsBy(How = How.CssSelector, Using = "#content_1_innercontent_2_billingedit_btnPaymentContinue")] 
         public IWebElement SaveAddressAndReturnToPaymentMethodsButton;
+    
 
         public void AddNewAddressButtonClick()
         {

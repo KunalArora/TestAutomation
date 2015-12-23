@@ -15,6 +15,12 @@ namespace Brother.Tests.Specs.BrotherOnline.Purchasing
         {
             CurrentPage.As<DeliveryDetailsPage>().IsSaveAndUseAddressButtonAvailable();
         }
+          
+        [Then(@"I should see DeliveryAddress page")]
+        public void ThenIShouldSeeDeliveryAddressPage()
+        {
+          CurrentPage.As<DeliveryDetailsPage>().IsDeliveryPageSaveAndUserAddressButtonDisplayed();
+        }
 
         [Then(@"I can add delivery address details")]
         public void ThenICanAddDeliveryAddressDetails()
@@ -63,6 +69,49 @@ namespace Brother.Tests.Specs.BrotherOnline.Purchasing
             CurrentPage.As<DeliveryDetailsPage>().PopulateCountyDropDown(form.County);
             CurrentPage.As<DeliveryDetailsPage>().PopulatePhoneTextBox(form.Phone.ToString());
         }
+
+        [Then(@"I fill in firstname as ""(.*)""")]
+        public void ThenIFillInFirstnameAs(string firstName)
+        {
+            CurrentPage.As<DeliveryDetailsPage>().PopulateFirstNameTextBox(firstName);
+        }
+
+        [Then(@"I fill in LastName as ""(.*)""")]
+        public void ThenIFillInLastNameAs(string lastName)
+        {
+            CurrentPage.As<DeliveryDetailsPage>().PopulateLastNameTextBox(lastName);
+        }
+
+        [Then(@"I fill in HouseNumber as ""(.*)""")]
+        public void ThenIFillInHouseNumberAs(string houseNumber)
+        {
+            CurrentPage.As<DeliveryDetailsPage>().PopulateHouseNameTextBox(houseNumber);
+        }
+        [Then(@"I fill in AddressLine(.*) as ""(.*)""")]
+        public void ThenIFillInAddressLineAs(int p0, string addressLine1)
+        {
+         CurrentPage.As<DeliveryDetailsPage>().PopulateAddressLine1TextBox(addressLine1);
+        }
+
+        [Then(@"I fill in CityTown as ""(.*)""")]
+        public void ThenIFillInCityTownAs(string cityTown)
+        {
+            CurrentPage.As<DeliveryDetailsPage>().PopulateDeliveryPageCityTownTextBox(cityTown);
+        }
+        
+        [Then(@"I fill in PhoneNumber as ""(.*)""")]
+        public void ThenIFillInPhoneNumberAs(string phoneNumber)
+        {
+           CurrentPage.As<DeliveryDetailsPage>().PopulateDeliveryPagePhoneNumberTextBox(phoneNumber);
+        }
+
+        [Then(@"I Click Save & use address")]
+        public void ThenIClickSaveUseAddress()
+        {
+            NextPage = CurrentPage.As<DeliveryDetailsPage>().DeliveryPageSaveAndUseAddressButtonClick();
+
+        }
+
 
         [When(@"I Click Save & use address")]
         public void WhenIClickSaveUseAddress()

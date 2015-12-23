@@ -29,11 +29,17 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement.PaymentMet
         [FindsBy(How = How.CssSelector, Using = "#Warnings")]
         public IWebElement WarningMessagePaymentMethod;
 
-        //AddedLocator 
-
         [FindsBy(How = How.XPath, Using = ".//*[@id='AddPaymentBtn']")]
         public IWebElement AddPaymentMethodBtn;
 
+        [FindsBy(How = How.CssSelector, Using = ".box-out.purchase-confirmed>h3")]
+        public IWebElement OrderConfirmationPageMessage;
+
+
+        public void IsOrderConfirmationPageMessageDisplayed()
+        {
+            TestCheck.AssertIsEqual(true, OrderConfirmationPageMessage.Displayed, " Is order confirmation message displayed");
+        }
 
         public void IsAddPaymentMethodButtonAvailable()
         {

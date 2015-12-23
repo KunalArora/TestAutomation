@@ -81,14 +81,13 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.Basket
 
         public static int GetBasketItemsCount(IWebDriver driver)
         {
-            WebDriver.Wait(Helper.DurationType.Second, 3); // wait for basket to get updated
+            //WebDriver.Wait(Helper.DurationType.Second, 3); // wait for basket to get updated
             return Convert.ToInt32(BasketIcon(driver).Text);
         }
 
         public static string GetBasketInformationItem(IWebDriver driver)
         {
             
-            //WebDriver.Wait(Helper.DurationType.Millisecond, 25);
             SeleniumHelper.MoveToElement(driver, ProductInformationList(driver));            
             const string error = "Error!";
             SeleniumHelper.WaitUpTo(90, () => SeleniumHelper.IsElementPresent(ProductInformationList(driver)), "Basket");

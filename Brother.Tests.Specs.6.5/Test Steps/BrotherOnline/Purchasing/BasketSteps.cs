@@ -53,5 +53,17 @@ namespace Brother.Tests.Specs.BrotherOnline.Purchasing
         {
             NextPage = BasketModule.BasketIconClick(CurrentDriver);
         }
+
+        [Then(@"I should see Basket page")]
+        public void ThenIShouldSeeBasketPage()
+        {
+            CurrentPage.As<BasketPage>().IsBasketPageCheckoutButtonDisplayed();
+        }
+        [When(@"I click Checkout on BasketPage")]
+        public void WhenIClickCheckoutOnBasketPage()
+        {
+            NextPage = CurrentPage.As<BasketPage>().BasketPageCheckOutButtonClick();
+        }
+
     }
 }

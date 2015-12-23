@@ -36,6 +36,39 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
         [FindsBy(How = How.CssSelector, Using = ".info-bar")]
         public IWebElement InformationBar;
 
+        // added  - 
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='content_0_checkoutcontent_1_PlaceOrderButton']")]
+        public IWebElement SummaryPageProceedtoPaymentButton;
+
+
+        //added
+        [FindsBy(How = How.XPath, Using = ".//*[@id='content_0_checkoutcontent_1_chk_TNC']")]
+        public IWebElement SummaryPageTermsAndConditionCheckBox;
+
+
+
+        public void IsSummaryPageProceedtoPaymentButtonDisplayed()
+        {
+            TestCheck.AssertIsEqual(true, SummaryPageProceedtoPaymentButton.Displayed, " Is proceed to payment button displayed");
+        }
+
+        public CreditCardDetailsPage SummaryPageProceedtoPaymentButtonClick()
+        {
+            SummaryPageProceedtoPaymentButton.Click();
+            return GetInstance<CreditCardDetailsPage>(Driver);
+        }
+
+        public void CheckSummaryPageTermsAndConditions()
+        {
+            ScrollTo(SummaryPageTermsAndConditionCheckBox);
+            SummaryPageTermsAndConditionCheckBox.Click();
+            TestCheck.AssertIsEqual(SummaryPageTermsAndConditionCheckBox.Selected.ToString(), "True", "Accept Terms and Conditions");
+        }
+
+      
+
+//End
         public string GetItemPrice()
         {
             return ItemPrice.Text;

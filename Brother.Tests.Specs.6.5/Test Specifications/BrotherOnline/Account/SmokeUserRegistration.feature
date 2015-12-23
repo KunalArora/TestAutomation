@@ -861,6 +861,7 @@ Scenario Outline: Customer creates a new account with Brother Online using valid
 	And I press login button "<Country>"
 	And I find email address used in the registration "<Country>"
 	And I click on Email Radio button "<Country>"
+	And I click on Search button to find the user email  "<Country>"
 	And I click on User Email "<Country>"
 	Then I should see BPID for registered user "<Country>"
 
