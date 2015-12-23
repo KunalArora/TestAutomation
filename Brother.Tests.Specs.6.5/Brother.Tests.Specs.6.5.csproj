@@ -89,6 +89,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CC_AccountCreation.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\BrotherOnline\Account\CreateAnOrder.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreateAnOrder.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specifications\BrotherOnline\Account\SmokeUserRegistration.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -492,6 +497,10 @@
     <None Include="Test Specifications\BrotherOnline\Account\AddPaymentMethod.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>AddPaymentMethod.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\BrotherOnline\Account\CreateAnOrder.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CreateAnOrder.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\BrotherOnline\Account\SmokeUserRegistration.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

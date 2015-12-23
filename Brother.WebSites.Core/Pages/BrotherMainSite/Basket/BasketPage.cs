@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.Design;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
@@ -32,6 +33,12 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.Basket
 
         [FindsBy(How = How.CssSelector, Using = "#main > div > div > div.content-unit.six > div.cart-view > div:nth-child(2) > div.col-item > div.product-info")]
         public IWebElement MyBasketProductInformationList;
+        
+        //Added locator
+        [FindsBy(How = How.CssSelector, Using = "#content_0_CheckOutButton")]
+        public IWebElement BasketPageCheckOutButton;
+
+
 
         private static IWebElement FindElement(ISearchContext driver, string element, string message)
         {
@@ -70,6 +77,26 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.Basket
             CheckOutButton.Click();
             return GetInstance<DeliveryDetailsPage>(Driver);
         }
+//Added
+
+        public void IsBasketPageCheckoutButtonDisplayed()
+        {
+
+            TestCheck.AssertIsEqual(true, BasketPageCheckOutButton.Displayed, "Is BasketPage checkout button dislayed");
+           //if (BasketPageCheckOutButton == null)
+           // {
+           //     throw new NullReferenceException("Unable to locate button on page");
+           // }
+           // AssertElementPresent(BasketPageCheckOutButton, "Is BasketPage Checkout Button present and correct");
+
+        }
+        public DeliveryDetailsPage BasketPageCheckOutButtonClick()
+        {
+            ScrollTo(BasketPageCheckOutButton);
+            BasketPageCheckOutButton.Click();
+            return GetInstance<DeliveryDetailsPage>(Driver);
+        }
+
 
         // slight variation for OmniJoin as there is no delivery address
         public BillingDetailsPage OmniJoinCheckOutButtonClick()

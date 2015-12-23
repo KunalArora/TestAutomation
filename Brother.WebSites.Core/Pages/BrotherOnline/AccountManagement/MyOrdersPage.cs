@@ -32,6 +32,11 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         [FindsBy(How = How.CssSelector, Using = ".orders-list-container .item-header [href*='orderid')")]
         public  IList<IWebElement>OrdersList;
 
+       
+        [FindsBy(How = How.CssSelector, Using = ".button-blue")] 
+        public IWebElement ViewOrderLink;
+
+
         public void ValidateOmniJoinPlanChange()
         {
             // NOTE: For an OmniJoin package change the PurchStatus is not used so cannot be validated
@@ -95,5 +100,10 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             return GetInstance<OrderDetailsPage>(Driver);
         }
 
+
+        public void ViewOrderLinkDisplayed()
+        {
+            TestCheck.AssertIsEqual(true, ViewOrderLink.Displayed, "Is view order link displayed");
+        }
     }
 }

@@ -21,6 +21,42 @@ namespace Brother.Tests.Specs.BrotherOnline.Purchasing
             CurrentPage.As<SavedPaymentDetailsPage>().IsAddBillingButtonAvailable();
         }
 
+        [Then(@"I click AddANewDebitCard/CreditCard")]
+        public void ThenIClickAddANewDebitCardCreditCard()
+        {
+            CurrentPage.As<SavedPaymentDetailsPage>().AddNewDebitorCreditCardButtonClick();
+        }
+
+        [Then(@"I click on CardAddress Button")]
+        public void ThenIClickOnCardAddressButton()
+        {
+            NextPage = CurrentPage.As<SavedPaymentDetailsPage>().PaymentDetailsPageCardAddressButtonClick();
+        }
+
+        [Then(@"I should see OrderSummary Page")]
+        public void ThenIShouldSeeOrderSummaryPage()
+        {
+            CurrentPage.As<OrderSummaryPage>().IsSummaryPageProceedtoPaymentButtonDisplayed();
+        }
+
+        [Then(@"I accept terms and conditions")]
+        public void ThenIAcceptTermsAndConditions()
+        {
+         CurrentPage.As<OrderSummaryPage>().CheckSummaryPageTermsAndConditions();
+        }
+        [Then(@"I click on proceed to payment button")]
+        public void ThenIClickOnProceedToPaymentButton()
+        {
+            NextPage = CurrentPage.As<OrderSummaryPage>().SummaryPageProceedtoPaymentButtonClick();
+        }
+
+        [Then(@"I should see summary payment page")]
+        public void ThenIShouldSeeSummaryPaymentPage()
+        {
+            CurrentPage.As<CreditCardDetailsPage>().IsAddNewCardSendPaymentButtonAvailable();
+        }
+
+        //End
         [When(@"I click on Add Payment Address")]
         public void WhenIClickOnAddPaymentAddress()
         {
