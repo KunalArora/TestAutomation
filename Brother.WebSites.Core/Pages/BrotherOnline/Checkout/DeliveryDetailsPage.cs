@@ -53,7 +53,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
         [FindsBy(How = How.CssSelector, Using = "#content_0_checkoutcontent_0_billingedit_btnDeliveryCancel")]
         public IWebElement CancelButton;
 
-        // Added Locator - content_0_checkoutcontent_0_billingedit_btnDeliveryContinue
         [FindsBy(How = How.XPath, Using = ".//*[@id='content_0_checkoutcontent_0_billingedit_btnDeliveryContinue']")]
         public IWebElement DeliveryPageSaveAndUseAddressButton;
 
@@ -73,7 +72,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
             }
             AssertElementPresent(SaveAndUseAddressButton, "Save And Use Address Button");
         }
-        //Added
+      
         public void IsDeliveryPageSaveAndUserAddressButtonDisplayed()
         {
             TestCheck.AssertIsEqual(true,DeliveryPageSaveAndUseAddressButton.Displayed," Is Delivery page SaveAndUseAddressButton Displayed");
@@ -87,7 +86,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
             return GetInstance<SavedPaymentDetailsPage>(Driver);
         }
 
-        //End
+     
         public SavedPaymentDetailsPage SaveAndUseAddressButtonClick()
         {
             ScrollTo(SaveAndUseAddressButton);
@@ -143,14 +142,11 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
             PhoneNumberTextBox.SendKeys(phone);
             TestCheck.AssertIsEqual(phone, GetTextBoxValue("PhoneNumberText"), "Phone Number Text Box");
         }
-//added
-
 
         public void PopulateDeliveryPageCityTownTextBox(string cityTown)
         {
             DeliveryPageCityTownTextBox.SendKeys(cityTown);
             DeliveryPageCityTownTextBox.SendKeys(Keys.Tab);
-            //TestCheck.AssertIsEqual(cityTown, GetTextBoxValue("CityTownText"), "City Town Text Box");
 
         }
         public void PopulateDeliveryPagePhoneNumberTextBox(string phoneNumber)

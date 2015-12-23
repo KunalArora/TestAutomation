@@ -29,14 +29,10 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement.PaymentMet
         [FindsBy(How = How.CssSelector, Using = "#Warnings")]
         public IWebElement WarningMessagePaymentMethod;
 
-        //AddedLocator 
-
         [FindsBy(How = How.XPath, Using = ".//*[@id='AddPaymentBtn']")]
         public IWebElement AddPaymentMethodBtn;
 
-        //added 22/12
-     
-        [FindsBy(How = How.XPath, Using = ".//*[@id='main']/div/div/div[2]/div/h3")]
+        [FindsBy(How = How.CssSelector, Using = ".box-out.purchase-confirmed>h3")]
         public IWebElement OrderConfirmationPageMessage;
 
 

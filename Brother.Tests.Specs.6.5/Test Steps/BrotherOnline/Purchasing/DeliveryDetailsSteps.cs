@@ -70,20 +70,6 @@ namespace Brother.Tests.Specs.BrotherOnline.Purchasing
             CurrentPage.As<DeliveryDetailsPage>().PopulatePhoneTextBox(form.Phone.ToString());
         }
 
-        [When(@"I fill in delivery details on DeliveryAddress Page")]
-        public void WhenIFillInDeliveryDetailsOnDeliveryAddressPage(Table table)
-        {
-            dynamic form = table.CreateDynamicInstance();
-            CurrentPage.As<DeliveryDetailsPage>().PopulateFirstNameTextBox(form.FirstName);
-            CurrentPage.As<DeliveryDetailsPage>().PopulateLastNameTextBox(form.LastName);
-            CurrentPage.As<DeliveryDetailsPage>().PopulateHouseNumberTextBox(form.HouseNumber.ToString());
-            CurrentPage.As<DeliveryDetailsPage>().PopulateHouseNameTextBox(form.HouseName);
-            CurrentPage.As<DeliveryDetailsPage>().PopulateAddressLine1TextBox(form.AddressLine1);
-            CurrentPage.As<DeliveryDetailsPage>().PopulateAddressLine2TextBox(form.AddressLine2);
-            CurrentPage.As<DeliveryDetailsPage>().PopulateCountyDropDown(form.County);
-          
-        }
-
         [Then(@"I fill in firstname as ""(.*)""")]
         public void ThenIFillInFirstnameAs(string firstName)
         {

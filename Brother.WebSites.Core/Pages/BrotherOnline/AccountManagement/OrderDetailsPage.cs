@@ -23,9 +23,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         [FindsBy(How = How.CssSelector, Using = "#content_2_innercontent_1_BackToOrder")]
         public IWebElement BackToOrderButton;
 
-        // added - .//*[@id='227d43a9-3489-4b80-b229-5b9366d978f0']
-
-        [FindsBy(How = How.XPath, Using = " .//*[@id='227d43a9-3489-4b80-b229-5b9366d978f0']")]
+        [FindsBy(How = How.CssSelector, Using = "#227d43a9-3489-4b80-b229-5b9366d978f0")]
         public IWebElement OrdersMenuLink;
 
         public void IsBackToOrderButtonAvailable()
@@ -43,7 +41,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             BackToOrderButton.Click();
             return GetInstance<MyOrdersPage>(Driver);
         }
-//added
+
         public MyOrdersPage ClickOrdersMenuLink()
         {
             ScrollTo(OrdersMenuLink);

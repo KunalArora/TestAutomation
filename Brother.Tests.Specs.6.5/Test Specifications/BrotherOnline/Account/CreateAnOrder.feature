@@ -67,4 +67,3 @@ Scenario Outline: Customer creates an account and places an order on UK BOL site
 | CreditCardNumber | ExpiryMonth | ExpiryYear | CVV    |
 | 4006162717519460 |     12      |   2017     |  624   |
 
-
