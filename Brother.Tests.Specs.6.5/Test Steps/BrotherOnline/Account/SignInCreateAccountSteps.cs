@@ -840,6 +840,12 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<DataManagerPage>().ClickOnUserEmail();
         }
+
+        [Then(@"I should click details to check BPID for registered user ""(.*)""")]
+        public void ThenIShouldClickDetailsToCheckBPIDForRegisteredUser(string country)
+        {
+            CurrentPage.As<DataManagerPage>().ClickDetailsPlusSignOnUserEmail();
+        }
         
         [Then(@"I should be able to log into ""(.*)"" Brother Online using my creative center account details")]
         public void ThenIShouldBeAbleToLogIntoBrotherOnlineUsingMyCreativeCenterAccountDetails(string country)
