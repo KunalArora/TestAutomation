@@ -27,6 +27,12 @@ namespace Brother.Tests.Specs.BrotherMainSite.SuppliesAndAccessories
             CurrentPage.As<SuppliesPage>().AddSupplyCode(supplyNumber);
         }
 
+        [Given(@"I have entered supply code as ""(.*)""")]
+        public void GivenIHaveEnteredSupplyCodeAs(string supplyNumber)
+        {
+            CurrentPage.As<SuppliesPage>().AddSupplyCode(supplyNumber);
+        }
+
 
         [Given(@"I have entered my valid device code for an InkJet printer ""(.*)""")]
         public void GivenIHaveEnteredMyValidDeviceCodeForAnInkJetPrinter(string modelNumber)
@@ -52,6 +58,13 @@ namespace Brother.Tests.Specs.BrotherMainSite.SuppliesAndAccessories
         {
             NextPage = CurrentPage.As<SuppliesPage>().SearchSuppliesButtonClick();
         }
+
+        [When(@"I click on search for supply code as ""(.*)""")]
+        public void WhenIClickOnSearchForSupplyCodeAs(string p0)
+        {
+            NextPage = CurrentPage.As<SuppliesPage>().SearchSuppliesButtonClick();
+        }
+
         [Then(@"I should be on Basket page of ""(.*)""")]
         public void ThenIShouldBeOnBasketPageOf(string supplyCode)
         {

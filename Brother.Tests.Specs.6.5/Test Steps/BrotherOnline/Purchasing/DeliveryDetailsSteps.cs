@@ -75,9 +75,9 @@ namespace Brother.Tests.Specs.BrotherOnline.Purchasing
         {
             CurrentPage.As<DeliveryDetailsPage>().PopulateFirstNameTextBox(firstName);
         }
-
-        [Then(@"I fill in LastName as ""(.*)""")]
-        public void ThenIFillInLastNameAs(string lastName)
+       
+        [Then(@"I fill in lastname as ""(.*)""")]
+        public void ThenIFillInLastnameAs(string lastName)
         {
             CurrentPage.As<DeliveryDetailsPage>().PopulateLastNameTextBox(lastName);
         }
@@ -98,8 +98,8 @@ namespace Brother.Tests.Specs.BrotherOnline.Purchasing
         {
             CurrentPage.As<DeliveryDetailsPage>().PopulateDeliveryPageCityTownTextBox(cityTown);
         }
-        
-        [Then(@"I fill in PhoneNumber as ""(.*)""")]
+
+        [Then(@"I fill in phoneNumber as ""(.*)""")]
         public void ThenIFillInPhoneNumberAs(string phoneNumber)
         {
            CurrentPage.As<DeliveryDetailsPage>().PopulateDeliveryPagePhoneNumberTextBox(phoneNumber);

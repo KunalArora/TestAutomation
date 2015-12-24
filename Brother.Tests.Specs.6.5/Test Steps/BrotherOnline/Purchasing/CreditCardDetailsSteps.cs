@@ -122,6 +122,11 @@ namespace Brother.Tests.Specs.BrotherOnline.Purchasing
         {
            CurrentPage.As<CreditCardDetailsPage>().PopulateCreditCardCvvNumber(number);
         }
+        [When(@"I click send to sumbit card details")]
+        public void WhenIClickSendToSumbitCardDetails()
+        {
+            NextPage = CurrentPage.As<CreditCardDetailsPage>().AddNewCardSendPaymentButtonClick();
+        }
 
         [When(@"I click send to sumbit card details to see order confirmation")]
         public void WhenIClickSendToSumbitCardDetailsToSeeOrderConfirmation()
