@@ -854,7 +854,7 @@ Scenario Outline: Customer creates a new account with Brother Online using valid
 	And I declare that I do not use this account for business
 	When I press Create Your Account
 	Then I should see my account confirmation page
-	#And Once I have Validated an Email was received and verified my account
+	# And Once I have Validated an Email was received and verified my account
 	When That I navigate to "<Site Url>" in order to validate the CMS site
 	And I enter an username containing "<UserName>"
 	And I enter password containing "<Password>"
@@ -862,10 +862,10 @@ Scenario Outline: Customer creates a new account with Brother Online using valid
 	And I find email address used in the registration "<Country>"
 	And I click on Email Radio button "<Country>"
 	And I click on Search button to find the user email  "<Country>"
-	And I click on User Email "<Country>"
-	Then I should see BPID for registered user "<Country>"
+	# And I click on User Email "<Country>"
+	Then I should click details to check BPID for registered user "<Country>"
 
 	
 Scenarios: 
-| Country			|	Site Url											  | UserName   | Password  |
-| United Kingdom    |http://online.uk.cms.brotherqas.eu/test/DataManager.aspx | Automation | Password1 |                                     
+| Country			|	Site Url											  | UserName            | Password  |
+| United Kingdom    |http://online.uk.cms.brotherqas.eu/test/DataManager.aspx | Sitecore\Automation | Password1 |                                     

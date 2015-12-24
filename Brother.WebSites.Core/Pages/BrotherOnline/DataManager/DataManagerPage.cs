@@ -60,6 +60,10 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.DataManager
         [FindsBy(How = How.CssSelector, Using = "#DataTables_Table_3 > tbody > tr > td.details-control")]
         public IWebElement UserEmail;
 
+        [FindsBy(How = How.CssSelector, Using = ".details-control")]
+        public IWebElement UserEmailPlusSign ;
+        
+
        [FindsBy(How = How.Id, Using = "MainContentPlaceHolder_btnSearch")]
         public IWebElement SearchButton;
        
@@ -98,6 +102,14 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.DataManager
        public void ClickSearchButton()
        {    
            SearchButton.Click();
+       }
+
+       public void ClickDetailsPlusSignOnUserEmail()
+       {
+           string PlusSignName = "details-control";
+           WaitForElementToExistByClassName(PlusSignName);
+           ScrollTo(UserEmailPlusSign);
+           UserEmailPlusSign.Click();
        }
     }
 }
