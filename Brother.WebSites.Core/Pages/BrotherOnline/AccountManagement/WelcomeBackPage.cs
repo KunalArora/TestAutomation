@@ -292,6 +292,13 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             return GetInstance<MyAccountPage>(Driver, BasePage.BaseUrl, string.Empty);
         }
 
+        public MyAccountPage MyAccountNavigationButtonClick()
+        {
+            MyAccountNavigationButton.Click();
+            return GetInstance<MyAccountPage>(Driver,BasePage.BaseUrl, string.Empty);
+
+        }
+
         public DealerDashBoardPage NavigateToDealerDashboard()
         {
             ClickOnManagedPrintServices("mps");

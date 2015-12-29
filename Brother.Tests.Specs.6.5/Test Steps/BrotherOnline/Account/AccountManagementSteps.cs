@@ -4,6 +4,7 @@ using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherOnline.Account;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using TechTalk.SpecFlow;
@@ -49,6 +50,18 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             GlobalNavigationModule.IsSignOutLinkAvailable(CurrentDriver);
         }
 
+        [Then(@"I navigate to my account top menu")]
+        public void ThenINavigateToMyAccountTopMenu()
+        {
+          NextPage = GlobalNavigationModule.MyAccountTopMenuItemClick(CurrentDriver); 
+           
+        }
+
+        [Then(@"I should see welcome back page")]
+        public void ThenIShouldSeeWelcomeBackPage()
+        {
+           GlobalNavigationModule.IsSignOutLinkAvailable(CurrentDriver);
+        }
         [Then(@"I can navigate back to Brother Online home page")]
         public void ThenICanNavigateBackToBrotherOnlineHomePage()
         {
@@ -67,7 +80,6 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             NextPage = GlobalNavigationModule.MyAccountTopMenuItemClick(CurrentDriver);
         }
-
 
         [Given(@"I can sign out of Brother Online")]
         [When(@"I can sign out of Brother Online")]
@@ -113,6 +125,13 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             NextPage = GlobalNavigationModule.PaymentMethodsMenuClick(CurrentDriver);
         }
+      
+        [Then(@"I click on orders menu to see created orders")]
+        [Then(@"I click on orders menu")]
+        public void ThenIClickOnOrdersMenu()
+        {
+            NextPage = GlobalNavigationModule.ClickOrdersMenu(CurrentDriver);
+        }
 
         [Then(@"I can click on Orders")]
         public void ThenICanClickOnOrders()
@@ -136,23 +155,8 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [When(@"I navigate to my account")]
         public void WhenINavigateToMyAccount()
         {
+            //NextPage = CurrentPage.As<WelcomeBackPage>().NavigateToMyAccountPage(country);
             CurrentPage.As<RegistrationPage>().NavigateToMyAccountPage();
-        }
-
-        //added
-
-        [When(@"I clicked on orders menu")]
-        public void WhenIClickedOnOrdersMenu()
-        {
-            CurrentPage.As<OrderDetailsPage>().ClickOrdersMenuLink();
-        }
-
-        [Then(@"I should see created orders")]
-        public void ThenIShouldSeeCreatedOrders()
-        {
-        
-            CurrentPage.As<MyOrdersPage>().IsViewOrderDetailsButtonAvailable();
-              
         }
 
         [When(@"I navigate to my account using creative center details")]

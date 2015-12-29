@@ -34,9 +34,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
         [FindsBy(How = How.CssSelector, Using = ".box-out.purchase-confirmed h3")]
         public IWebElement OrderConfirmationNumber;
 
-        [FindsBy(How = How.XPath, Using = ".//*[@id='main']/div/div/div[2]/div/h3")] 
-        public IWebElement OrderConfirmationPageMessage;
-
         private const string OrderNumberString = @"Order Number : ";
         private const string PriceString = @"PRICE";
         private const string BillingTermString = @"Term: ";
@@ -74,12 +71,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
             MyAccountButton = Driver.FindElement(By.CssSelector(".btns-container a.button-grey"));
             AssertElementPresent(MyAccountButton, "Order Confirmation : My Account Button availability check", 3000);
         }
-
-       
-        public void IsOrderConfirmationPageMessageDisplayed()
-        {
-            TestCheck.AssertIsEqual(true, OrderConfirmationPageMessage.Displayed," Is order confirmation message displayed");
-        }     
 
         public MyAccountPage MyAccountButtonClick()
         {
