@@ -31,6 +31,7 @@ Scenarios:
 
 	| Role             | Country |
 	| Cloud MPS Dealer | Germany |
+	| Cloud MPS Dealer | Austria |
 
 Scenario Outline: German Dealer can delete an open Purchase and Click proposal
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
@@ -44,3 +45,21 @@ Scenarios:
 
 	| Role             | Country |
 	| Cloud MPS Dealer | Germany |
+	| Cloud MPS Dealer | Austria |
+
+
+Scenario Outline: Other Dealers can delete an open Purchase and Click proposal
+	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
+	And I have created a "<ContractType>" proposal with "<UsageType>" and "<Length>" and "<Billing>"
+	And I am on Proposal List page
+	When I can click delete button on proposal item of Exisiting Proposal table
+	Then the deleted proposal is no longer displayed
+	And I sign out of Cloud MPS
+
+Scenarios:
+
+	| Role             | Country | Role2                           | ContractType                      | UsageType                                 | Length | Billing              |
+	| Cloud MPS Dealer | France  | Cloud MPS Local Office Approver | Buy & Click                       | Engagement sur un minimum volume de pages | 3 ans  | Quarterly in Arrears |
+	| Cloud MPS Dealer | Italy   | Cloud MPS Local Office Approver | Acquisto + Consumo con assistenza | Volume minimo                             | 36     | Quarterly in Advance |
+	
+	

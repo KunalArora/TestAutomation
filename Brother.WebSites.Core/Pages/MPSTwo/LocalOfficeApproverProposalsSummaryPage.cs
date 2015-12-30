@@ -65,7 +65,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
             else if (IsItalySystem())
             {
-                SelectFromDropdown(DeclineReasonElement, "Alto");
+                SelectFromDropdown(DeclineReasonElement, "Altro");
             }
             else if (IsFranceSystem())
             {

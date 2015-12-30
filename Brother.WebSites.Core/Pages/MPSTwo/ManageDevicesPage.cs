@@ -53,11 +53,54 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement InstallerLinkElement;
         [FindsBy(How = How.CssSelector, Using = ".modal-header .modal-title")]
         public IWebElement ModalPopUpElement;
+        [FindsBy(How = How.CssSelector, Using = ".active [href='/mps/dealer/contracts/manage-devices/manage'] span")]
+        public IWebElement ManageDevicesTabElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_RequestList_List_CellInstallationRequestStatus_0")]
+        public IWebElement InstallationRequestStatusElement;
 
-        
-        
-        
-        
+
+
+
+
+
+        private string GetCancelledInstallationStatus()
+        {
+            var status = "";
+
+            if (IsUKSystem())
+            {
+                status = "Cancelled";
+            }
+            else if (IsGermanSystem() || IsAustriaSystem())
+            {
+                status = "Abgebrochen";
+            } 
+            else if (IsItalySystem())
+            {
+                status = "Annullata";
+            }
+            else if (IsFranceSystem())
+            {
+                status = "Annulée";
+            }
+
+            return status;
+        }
+
+        public void IsInstallationRequestCancelled()
+        {
+            if(InstallationRequestStatusElement == null)
+                throw new Exception("Installation Request element is not displayed");
+            TestCheck.AssertTextContains(GetCancelledInstallationStatus(), InstallationRequestStatusElement.Text);
+        }
+
+        public void RefreshManageDeviceScreen()
+        {
+            if(ManageDevicesTabElement == null)
+                throw new Exception("Manage Device Screen is not displayed");
+            ManageDevicesTabElement.Click();
+            WebDriver.Wait(DurationType.Second, 2);
+        }
         
         private string GetGeneratedCompany()
         {
@@ -70,6 +113,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 throw new Exception("Managed Device screen is not displayed");
 
             AssertElementContainsText(CompanyConfirmationElement, GetGeneratedCompany(), "Generated Company");
+            HeadlessDismissAlertOk();
         }
 
         public void ClickOnActionButton()
@@ -77,6 +121,21 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if(InstallationRequestActionButtonElement == null)
                 throw new Exception("Installation Action is not displayed");
             InstallationRequestActionButtonElement.Click();
+        }
+
+        public void ClickOnCancelRequest()
+        {
+            if(CancelInstallationRequestElement == null)
+                throw new Exception("Cancel installation button not displayed");
+            CancelInstallationRequestElement.Click();
+            ClickAcceptOnConfrimation(Driver);
+        }
+
+        public void ClickAcceptOnConfrimation(IWebDriver driver)
+        {
+            WebDriver.Wait(DurationType.Millisecond, 1000);
+            HeadlessDismissAlertOk();
+            ClickAcceptOnJsAlert(driver);
         }
 
         public void ClickToExposeInstallationRequest()
@@ -158,6 +217,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             MPSJobRunnerPage.RunCompleteInstallationCommandJob();
             AssertElementPresent(InstallationRequestContainerElement, "Installation not finished");
+            HeadlessDismissAlertOk();
         }
 
 

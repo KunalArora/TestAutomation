@@ -144,6 +144,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CloudMPSCustomerCanPerformSomeRunActions.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\MPSTwo\Installation\CloudMPSCancelInstallationRequest.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CloudMPSCancelInstallationRequest.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specifications\MPSTwo\Installation\CloudMPSCompleteInstallationProcess.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -621,6 +626,10 @@
     <None Include="Test Specifications\MPSTwo\Customer\CloudMPSCustomerCanPerformSomeRunActions.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSCustomerCanPerformSomeRunActions.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwo\Installation\CloudMPSCancelInstallationRequest.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CloudMPSCancelInstallationRequest.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwo\Installation\CloudMPSCompleteInstallationProcess.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

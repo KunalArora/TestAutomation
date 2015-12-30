@@ -47,6 +47,7 @@ Scenario Outline: Local Office Approver can download Contract PDFs on Awaiting A
 	| Cloud MPS Local Office Approver | United Kingdom |
 	| Cloud MPS Local Office Approver | Germany        |
 	| Cloud MPS Local Office Approver | France         |
+	| Cloud MPS Local Office Approver | Italy          |
 	
 
 
@@ -62,6 +63,7 @@ Scenario Outline: Local Office Approver can download Contract PDFs on Rejected p
 	| Cloud MPS Local Office Approver | United Kingdom |
 	| Cloud MPS Local Office Approver | Germany        |
 	| Cloud MPS Local Office Approver | France         |
+	| Cloud MPS Local Office Approver | Italy          |
 
 
 
@@ -75,6 +77,7 @@ Scenario Outline: Dealer can download Contract PDFs on Approved proposal page
 	| Role             | Country        |
 	| Cloud MPS Dealer | United Kingdom |
 	| Cloud MPS Dealer | Germany        |
+	| Cloud MPS Dealer | France         |
 	| Cloud MPS Dealer | France         |
 	
 
@@ -90,6 +93,7 @@ Scenario Outline: Dealer can download Contract PDFs on Awaiting Acceptance page
 	| Cloud MPS Dealer | United Kingdom |
 	| Cloud MPS Dealer | Germany        |
 	| Cloud MPS Dealer | France         |
+	| Cloud MPS Dealer | France         |
 
 
 Scenario Outline: Dealer can download Contract PDFs on Rejected page
@@ -103,5 +107,6 @@ Scenario Outline: Dealer can download Contract PDFs on Rejected page
 	| Role             | Country        |
 	| Cloud MPS Dealer | United Kingdom |
 	| Cloud MPS Dealer | Germany        |
+	| Cloud MPS Dealer | France         |
 	| Cloud MPS Dealer | France         |
 	
