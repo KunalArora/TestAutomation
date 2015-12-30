@@ -82,5 +82,5 @@ Scenario Outline: Dealer Can Sign A Purchase And Click Contract for other countr
 	Scenarios: 
 	| Role             | Country | Role2                           | ContractType                      | UsageType                                 | Length | Billing              |
 	| Cloud MPS Dealer | France  | Cloud MPS Local Office Approver | Buy & Click                       | Engagement sur un minimum volume de pages | 3 ans  | Quarterly in Arrears |
-	#| Cloud MPS Dealer | Italy   | Cloud MPS Local Office Approver | Acquisto + Consumo con assistenza | Volume minimo                             | 36     | Quarterly in Advance |
+	| Cloud MPS Dealer | Italy   | Cloud MPS Local Office Approver | Acquisto + Consumo con assistenza | Volume minimo                             | 36     | Quarterly in Advance |
 	

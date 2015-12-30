@@ -29,7 +29,7 @@ Scenario Outline: German And Austria Dealer Can Sign A Leasing And Click Contrac
 	Scenarios: 
 	| Role             | Country | Role2          |
 	| Cloud MPS Dealer | Austria | Cloud MPS Bank |
-	#| Cloud MPS Dealer | Germany | Cloud MPS Bank |
+	| Cloud MPS Dealer | Germany | Cloud MPS Bank |
 	
 	
 
