@@ -11,6 +11,7 @@ using Brother.WebSites.Core.Pages.InstantInk;
 using Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal;
 using Brother.WebSites.Core.Pages.OmniJoin.Plans;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.PageObjects;
 
 namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
 {
@@ -37,8 +38,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         private const string TopNavigationBar = "#primary-nav .wrapper .cf";
         private const string SignOutLink = "a[href='/sign-out']";
         private const string BackToBrotherOnlineButton = ".back-button-holder";
-      
-
+        private const string OrdersMenu = "227d43a9-3489-4b80-b229-5b9366d978f0";
+ 
 #region Menu Navigation (Private)
 
         private static IWebElement FindElement(ISearchContext driver, string element)
@@ -415,6 +416,15 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             TestCheck.AssertIsNotNull(button, "Payment Method Menu");
             button.Click();
             return GetInstance<MyPaymentMethodsPage>(driver, "", "");
+        }
+
+        public static MyOrdersPage ClickOrdersMenu(IWebDriver driver)
+        {
+            var button = driver.FindElement(By.Id(OrdersMenu));
+            TestCheck.AssertIsNotNull(button, "Orders Menu");
+            button.Click();
+            return GetInstance<MyOrdersPage>(driver, "", "");
+            
         }
 
         public static MyOrdersPage OrdersMenuClick(IWebDriver driver, IWebElement button)

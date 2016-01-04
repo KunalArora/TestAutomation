@@ -75,7 +75,6 @@ namespace Brother.Tests.Specs.BrotherOnline.Purchasing
             CurrentPage.As<CreditCardDetailsPage>().SwitchToCreditCardDetailsFrameAddCard();
            AddVisaCreditCardDetails(expiryDateOverride);
         }
-        // added below steps
         [When(@"I fill in valid credit card details for a Master Credit card")]
         [When(@"I fill in valid credit card details for a Visa Credit card")]
         public void WhenIFillInValidCreditCardDetailsForAVisaCreditCard()
@@ -122,22 +121,18 @@ namespace Brother.Tests.Specs.BrotherOnline.Purchasing
         {
            CurrentPage.As<CreditCardDetailsPage>().PopulateCreditCardCvvNumber(number);
         }
+        [When(@"I click send to sumbit card details")]
+        public void WhenIClickSendToSumbitCardDetails()
+        {
+            NextPage = CurrentPage.As<CreditCardDetailsPage>().AddNewCardSendPaymentButtonClick();
+        }
 
-        [When(@"I click send to sumbit card details to see order confirmation")]
+        [When(@"I click send to submit card details to see order confirmation")]
         public void WhenIClickSendToSumbitCardDetailsToSeeOrderConfirmation()
         {
             NextPage = CurrentPage.As<CreditCardDetailsPage>().AddNewCardSendPaymentButtonClick();
           
         }
-        [Then(@"I should see Order Confirmation")]
-        public void ThenIShouldSeeOrderConfirmation()
-        {
-
-           CurrentPage.As<OrderConfirmationPage>().IsOrderConfirmationPageMessageDisplayed();    
-        
-        }
-
-        // End of steps
 
         [Then(@"I am redirtected to the card details page")]
         public void ThenIAmRedirtectedToTheCardDetailsPage()
@@ -197,7 +192,6 @@ namespace Brother.Tests.Specs.BrotherOnline.Purchasing
             NextPage = CurrentPage.As<CreditCardDetailsPage>().CancelPaymentButtonClick();
             TestCheck.AssertIsEqual(CurrentPage.As<OrderSummaryPage>().GetOrderCancellationInformation().Contains("Payment cancel"), true, "Unable to determine Order cancellation information");
         }
-        // added step
         [Then(@"I see payment details page")]
         public void ThenISeePaymentDetailsPage()
         {

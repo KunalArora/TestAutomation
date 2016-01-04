@@ -16,6 +16,14 @@ namespace Brother.Tests.Specs.BrotherOnline.Purchasing
             TestCheck.AssertIsEqual(basketItem.Contains(productItem), true, "Basket Product Comparison");
         }
 
+        [Then(@"I should see the item with ""(.*)"" in the Basket")]
+        public void ThenIShouldSeeTheItemWithInTheBasket(string productItem)
+        {
+            var basketItem = BasketModule.GetBasketInformationItem(CurrentDriver);
+            TestCheck.AssertIsEqual(basketItem.Contains(productItem), true, "Basket Product Comparison");
+        }
+
+
         [Then(@"I should see the Basket item count change to ""(.*)""")]
         public void ThenIShouldSeeTheBasketItemCountChangeTo(int itemCount)
         {

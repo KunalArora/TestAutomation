@@ -32,7 +32,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         [FindsBy(How = How.CssSelector, Using = ".orders-list-container .item-header [href*='orderid')")]
         public  IList<IWebElement>OrdersList;
 
-       
         [FindsBy(How = How.CssSelector, Using = ".button-blue")] 
         public IWebElement ViewOrderLink;
 
@@ -100,8 +99,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             return GetInstance<OrderDetailsPage>(Driver);
         }
 
-
-        public void ViewOrderLinkDisplayed()
+        public void IsViewOrderLinkDisplayed()
         {
             TestCheck.AssertIsEqual(true, ViewOrderLink.Displayed, "Is view order link displayed");
         }

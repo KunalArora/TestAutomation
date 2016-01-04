@@ -3,10 +3,10 @@ Feature:
 As a user I want to register and create an order on BOL Site.
  
 
-@TEST 
+@TEST
 Scenario Outline: Customer creates an account and places an order on UK BOL site
-   Given I launch Brother Online for "United Kingdom"
-    When I click on Create Account for "United Kingdom"
+   Given I launch Brother Online for "<Country>"
+    When I click on Create Account for "<Country>"
 	 And I am redirected to the Brother Login/Register page
      And I have Checked No I Do Not Have An Account Checkbox
 	And I fill in the registration information using a valid email address 
@@ -23,25 +23,25 @@ Scenario Outline: Customer creates an account and places an order on UK BOL site
 	And When I Click Go Back
 	#And Once I have Validated an Email was received and verified my account
 	Then I should be able to log into "<Country>" Brother Online using my account details
-	Given I have navigated to the Brother Main Site "United Kingdom" products pages 
-	And I have clicked on Supplies
-	And I have entered supply code "LC1000BK"
-	Then I should see an a list of associated items for entered supply code
-	When I click on search for"LC1000BK"
-	Then I should see the selected item information page priced at "£25.99" inc vat on basket page
+	Given I have navigated to the Brother Main Site "<Country>" products pages 
+	And I have clicked on Supplies	
+	And I have entered supply code as "<SupplyNumber>"
+	Then I should see an a list of associated items for entered supply code	
+	When I click on search for supply code as "<SupplyNumber>"
+	Then I should see the selected item information page priced at "<Price>" inc vat on basket page
 	When I click on Add To Basket 
-	Then I should see the item "LC1000BK" in the Basket
-	And I should see the Basket item count change to "1"
+	Then I should see the item with "<SupplyNumber>" in the Basket
+	And I should see the Basket item count change to "<CountChange>"
 	When I click on Go to Basket 
     Then I should see Basket page
 	When I click Checkout on BasketPage
 	Then I should see DeliveryAddress page
-	And I fill in firstname as "Test"
-	And I fill in LastName as "user"
-	And I fill in HouseNumber as "10"
-	And I fill in AddressLine1 as " Tame Street "
-	And I fill in CityTown as "Manchester"
-	And I fill in PhoneNumber as "1234567890"
+	And I fill in firstname as "<FirstName>"
+	And I fill in lastname as "<LastName>"
+	And I fill in HouseNumber as "<HouseNumber>"
+    And I fill in AddressLine1 as "<AddressLine1>"
+    And I fill in CityTown as "<CityTown>"
+	And I fill in phoneNumber as "<PhoneNumber>"
 	And I Click Save & use address
    Then I should see the Saved payment details page
 	And I click AddANewDebitCard/CreditCard
@@ -55,15 +55,13 @@ Scenario Outline: Customer creates an account and places an order on UK BOL site
 	 And I select a month as "<ExpiryMonth>"
 	 And I select a year as "<ExpiryYear>"
 	 And I fill in security number as  "<CVV>"
-     And I click send to sumbit card details to see order confirmation
-	#Then I have navigated to MyAccountPage
-	#Then I should see order confirmation page
-	# When If I click on My Account
-	# When I navigate to my account
-	# And I clicked on orders menu
-	# Then I should see created orders
+	 And I click send to submit card details to see order confirmation	
+	Then I have navigated to the Brother online "<Country>"
+	 And I should see welcome back page
+	Then I navigate to my account top menu
+	 And I click on orders menu to see created orders
+	#Then I should see created orders
 	 
  Examples:
-| CreditCardNumber | ExpiryMonth | ExpiryYear | CVV    |
-| 4006162717519460 |     12      |   2017     |  624   |
-
+| Country        | SupplyNumber | Price    | CountChange | FirstName | LastName | HouseNumber | AddressLine1 | CityTown   | PhoneNumber | CreditCardNumber | ExpiryMonth | ExpiryYear | CVV    |
+| United Kingdom | LC1000BK     | £25.99   | 1           | Test      | user     | 10          | Tame Street  | Manchester | 1234567890  | 4006162717519460 |     12      |   2017     |  624   |

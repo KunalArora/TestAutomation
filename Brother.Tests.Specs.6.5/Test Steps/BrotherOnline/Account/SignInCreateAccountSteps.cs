@@ -345,6 +345,14 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<HomePage>().ClickSignInCreateAccountButton();
         }
 
+        [Then(@"I have navigated to the Brother online ""(.*)""")]
+        public void ThenIHaveNavigatedToTheBrotherOnline(string country)
+        {
+
+            Helper.SetCountry(country);
+            CurrentPage = BasePage.LoadBolHomePage(CurrentDriver, BasePage.BaseUrl, "");         
+        }
+
 
         [When(@"I return to Cloud MPS as a ""(.*)"" from ""(.*)""")]
         [When(@"I sign back into Cloud MPS as a ""(.*)"" from ""(.*)""")]
@@ -359,8 +367,6 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             WhenISignInAsA(role, country);
 
         }
-
-
 
         [When(@"I sign back into ""(.*)"" Cloud MPS as a ""(.*)"" from ""(.*)""")]
         [Given(@"I sign back into ""(.*)"" Cloud MPS as a ""(.*)"" from ""(.*)""")]
@@ -839,6 +845,12 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         public void WhenIClickOnUserEmail(string country)
         {
             CurrentPage.As<DataManagerPage>().ClickOnUserEmail();
+        }
+
+        [Then(@"I should click details to check BPID for registered user ""(.*)""")]
+        public void ThenIShouldClickDetailsToCheckBPIDForRegisteredUser(string country)
+        {
+            CurrentPage.As<DataManagerPage>().ClickDetailsPlusSignOnUserEmail();
         }
         
         [Then(@"I should be able to log into ""(.*)"" Brother Online using my creative center account details")]
