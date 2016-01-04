@@ -61,6 +61,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='CityTownText']")]
         public IWebElement DeliveryPageCityTownTextBox;
+
+        [FindsBy(How = How.CssSelector, Using = "#RegexPostCodeText")]
+        public IWebElement DeliveryPagePostalCodeTextBox;
    
       
         public void IsSaveAndUseAddressButtonAvailable()
@@ -154,6 +157,12 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
             DeliveryPagePhoneNumberTextBox.SendKeys(phoneNumber);
             TestCheck.AssertIsEqual(phoneNumber, GetTextBoxValue("PhoneNumberText"), "Phone Number Text Box");
            
+        }
+        public void PopulateDeliveryPagePostalCodeTextBox(string postalCode)
+        {
+            DeliveryPagePostalCodeTextBox.SendKeys(postalCode);
+            DeliveryPagePostalCodeTextBox.SendKeys(Keys.Tab);
+          
         }
         public void ValidateAddressFields(string fields, string country)
         {
