@@ -55,14 +55,13 @@ Scenario Outline: Customer creates an account and places an order on UK BOL site
 	 And I select a month as "<ExpiryMonth>"
 	 And I select a year as "<ExpiryYear>"
 	 And I fill in security number as  "<CVV>"
-	 And I click send to sumbit card details to see order confirmation	
-	#Then I should see order confirmation page
-	#When If I click on My Account
-	# When I navigate to my account
-	# And I clicked on orders menu
-	# Then I should see created orders
+	 And I click send to submit card details to see order confirmation	
+	Then I have navigated to the Brother online "<Country>"
+	 And I should see welcome back page
+	Then I navigate to my account top menu
+	 And I click on orders menu to see created orders
+	#Then I should see created orders
 	 
  Examples:
 | Country        | SupplyNumber | Price    | CountChange | FirstName | LastName | HouseNumber | AddressLine1 | CityTown   | PhoneNumber | CreditCardNumber | ExpiryMonth | ExpiryYear | CVV    |
 | United Kingdom | LC1000BK     | £25.99   | 1           | Test      | user     | 10          | Tame Street  | Manchester | 1234567890  | 4006162717519460 |     12      |   2017     |  624   |
-
