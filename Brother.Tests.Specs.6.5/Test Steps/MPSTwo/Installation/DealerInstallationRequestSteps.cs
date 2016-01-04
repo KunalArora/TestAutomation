@@ -219,7 +219,7 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
         {
             CurrentPage.As<ManageDevicesPage>().ClickOnActionButton();
             CurrentPage.As<ManageDevicesPage>().ClickOnCancelRequest();
-            CurrentPage.As<ManageDevicesPage>().RefreshManageDeviceScreen();
+            //CurrentPage.As<ManageDevicesPage>().RefreshManageDeviceScreen();
             CurrentPage.As<ManageDevicesPage>().IsInstallationRequestCancelled();
             
         }

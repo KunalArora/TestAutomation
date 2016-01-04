@@ -237,8 +237,8 @@ Scenarios:
 	| Role                            | Country | ContractType                      | UsageType                                 | Role1            | Method | Length | Billing              | Type |
 	| Cloud MPS Local Office Approver | France  | Buy & Click                       | Engagement sur un minimum volume de pages | Cloud MPS Dealer | Cloud  | 3 ans  | Quarterly in Arrears | Web  |
 	| Cloud MPS Local Office Approver | France  | Buy & Click                       | Engagement sur un minimum volume de pages | Cloud MPS Dealer | Cloud  | 3 ans  | Quarterly in Arrears | BOR  |
-	| Cloud MPS Local Office Approver | Italy   | Acquisto + Consumo con assistenza | Volume minimo                             | Cloud MPS Dealer | Email  | 36     | Quarterly in Advance | Web  |
-	| Cloud MPS Local Office Approver | Italy   | Acquisto + Consumo con assistenza | Volume minimo                             | Cloud MPS Dealer | Email  | 36     | Quarterly in Advance | BOR  |
+	| Cloud MPS Local Office Approver | Italy   | Acquisto + Consumo con assistenza | Volume minimo                             | Cloud MPS Dealer | Cloud  | 36     | Quarterly in Advance | Web  |
+	| Cloud MPS Local Office Approver | Italy   | Acquisto + Consumo con assistenza | Volume minimo                             | Cloud MPS Dealer | Cloud  | 36     | Quarterly in Advance | BOR  |
 	
 
 Scenario Outline: Dealer can cancel installation request for Email Communication for other countries

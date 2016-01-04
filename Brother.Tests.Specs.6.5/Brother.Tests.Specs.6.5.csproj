@@ -174,7 +174,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CloudMPSClickPriceDeepDive.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Customer\CloudMPSDealerCanOperateCustomers.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Proposal\CloudMPSDealerCanOperateCustomers.feature.cs">
       <DependentUpon>CloudMPSDealerCanOperateCustomers.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -651,7 +651,7 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSClickPriceDeepDive.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Customer\CloudMPSDealerCanOperateCustomers.feature">
+    <None Include="Test Specifications\MPSTwo\Proposal\CloudMPSDealerCanOperateCustomers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSDealerCanOperateCustomers.feature.cs</LastGenOutput>
     </None>
