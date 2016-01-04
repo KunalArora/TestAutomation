@@ -838,6 +838,7 @@ Scenario: Sign Up for 14 day Free trial already signed into Brother Online - ema
 	Then I am redirected to the Brother Home Page
 
 @UAT
+# BBAU-2956
 Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by bpid on UK site
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
