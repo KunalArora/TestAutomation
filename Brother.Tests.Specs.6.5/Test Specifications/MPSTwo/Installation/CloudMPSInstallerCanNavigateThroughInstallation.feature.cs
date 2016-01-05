@@ -113,6 +113,7 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("Installer can progress with installation for Email Communication for other countr" +
             "ies")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "France", "Buy & Click", "Engagement sur un minimum volume de pages", "Cloud MPS Dealer", "Email", "3 ans", "Quarterly in Arrears", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Italy", "Acquisto + Consumo con assistenza", "Volume minimo", "Cloud MPS Dealer", "Email", "36", "Quarterly in Advance", null)]
         public virtual void InstallerCanProgressWithInstallationForEmailCommunicationForOtherCountries(string role, string country, string contractType, string usageType, string role1, string method, string length, string billing, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Installer can progress with installation for Email Communication for other countr" +
@@ -191,16 +192,16 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("German And Austria Dealer can create installation request for Cloud Communication" +
-            "")]
+        [NUnit.Framework.DescriptionAttribute("German And Austria installer can complete installation request for Cloud Communic" +
+            "ation")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Bank", "Germany", "Leasing & Service", "Minimum Volume", "Cloud MPS Dealer", "Cloud", "BOR", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Germany", "Easy Print Pro & Service", "Minimum Volume", "Cloud MPS Dealer", "Cloud", "Web", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Bank", "Austria", "Leasing & Service", "Minimum Volume", "Cloud MPS Dealer", "Cloud", "BOR", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Austria", "Easy Print Pro & Service", "Minimum Volume", "Cloud MPS Dealer", "Cloud", "Web", null)]
-        public virtual void GermanAndAustriaDealerCanCreateInstallationRequestForCloudCommunication(string role, string country, string contractType, string usageType, string role1, string method, string type, string[] exampleTags)
+        public virtual void GermanAndAustriaInstallerCanCompleteInstallationRequestForCloudCommunication(string role, string country, string contractType, string usageType, string role1, string method, string type, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("German And Austria Dealer can create installation request for Cloud Communication" +
-                    "", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("German And Austria installer can complete installation request for Cloud Communic" +
+                    "ation", exampleTags);
 #line 79
 this.ScenarioSetup(scenarioInfo);
 #line 80
@@ -239,6 +240,8 @@ this.ScenarioSetup(scenarioInfo);
             "s")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "France", "Buy & Click", "Engagement sur un minimum volume de pages", "Cloud MPS Dealer", "Cloud", "3 ans", "Quarterly in Arrears", "BOR", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "France", "Buy & Click", "Engagement sur un minimum volume de pages", "Cloud MPS Dealer", "Cloud", "4 ans", "Quarterly in Arrears", "Web", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Italy", "Acquisto + Consumo con assistenza", "Volume minimo", "Cloud MPS Dealer", "Cloud", "36", "Quarterly in Advance", "BOR", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Italy", "Acquisto + Consumo con assistenza", "Volume minimo", "Cloud MPS Dealer", "Cloud", "48", "Quarterly in Advance", "Web", null)]
         public virtual void DealerCanCreateInstallationRequestForCloudCommunicationForOtherCountries(string role, string country, string contractType, string usageType, string role1, string method, string length, string billing, string type, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer can create installation request for Cloud Communication for other countrie" +

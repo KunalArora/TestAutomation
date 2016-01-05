@@ -214,5 +214,16 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             CurrentPage.As<ManageDevicesPage>().IsInstallationRequestDisplayed();
         }
 
+        [Then(@"I can cancel the above created installation request")]
+        public void ThenICanCancelTheAboveCreatedInstallationRequest()
+        {
+            CurrentPage.As<ManageDevicesPage>().ClickOnActionButton();
+            CurrentPage.As<ManageDevicesPage>().ClickOnCancelRequest();
+            //CurrentPage.As<ManageDevicesPage>().RefreshManageDeviceScreen();
+            CurrentPage.As<ManageDevicesPage>().IsInstallationRequestCancelled();
+            
+        }
+
+
     }
 }

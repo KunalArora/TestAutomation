@@ -160,7 +160,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 SelectFromDropdown(LegalFormDropdown, "Aktiengesellschaft");
 
             }
-            else if (IsUKSystem()|| IsFranceSystem())
+            else if (IsUKSystem()|| IsFranceSystem() || IsItalySystem())
             {
                SelectFromDropdown(LegalFormDropdown, "Church"); 
             }
@@ -210,10 +210,26 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ClearAndType(AuthorizedSignatoryElement, "Mensha Uston");
         }
 
+
+        private string TradingStyle()
+        {
+            var trading = "";
+
+            if (IsUKSystem() || IsFranceSystem())
+            {
+                trading = "Non-Regulated";
+            } else if (IsItalySystem())
+            {
+                trading = "Non regolamentato";
+            }
+
+            return trading;
+        }
+
         public void SelectATradingStyle()
         {
             if (IsUKSystem() || IsFranceSystem() || IsItalySystem())
-                SelectFromDropdown(TradingStyleElement, "Non-Regulated");
+                SelectFromDropdown(TradingStyleElement, TradingStyle());
                 WebDriver.Wait(DurationType.Second, 3);
         }
 
@@ -232,9 +248,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             } else if (IsFranceSystem())
             {
                 SelectFromDropdown(PaymentTypeDropdown, "Débit direct");
+
+            } else if (IsItalySystem())
+            {
+                SelectFromDropdown(PaymentTypeDropdown, "Addebito diretto");
             }
             
-            //WebDriver.
             WebDriver.Wait(DurationType.Second, 3);
         }
 
@@ -265,7 +284,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterBankPropertyNumber()
         {
-            if (IsUKSystem() || IsFranceSystem())
+            if (IsUKSystem() || IsFranceSystem() || IsItalySystem())
                  ClearAndType(BankPropertyNumberElement, "12345");
         }
 
