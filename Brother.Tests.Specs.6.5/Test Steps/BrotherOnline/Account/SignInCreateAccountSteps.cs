@@ -852,6 +852,14 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<DataManagerPage>().ClickDetailsPlusSignOnUserEmail();
         }
+
+        [Then(@"I retrieve the BPID number generated for the user registration")]
+        public void ThenIRetrieveTheBPIDNumberGeneratedForTheUserRegistration()
+        {
+            CurrentPage.As<DataManagerPage>().CheckBPIDFromDataTable();
+        }
+
+
         
         [Then(@"I should be able to log into ""(.*)"" Brother Online using my creative center account details")]
         public void ThenIShouldBeAbleToLogIntoBrotherOnlineUsingMyCreativeCenterAccountDetails(string country)
