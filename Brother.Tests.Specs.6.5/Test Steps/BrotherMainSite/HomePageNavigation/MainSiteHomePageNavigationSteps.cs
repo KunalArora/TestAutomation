@@ -269,6 +269,21 @@ namespace Brother.Tests.Specs.BrotherMainSite.HomePageNavigation
         {
             CurrentPage.As<MainSiteHomePage>().HasDesktopScannersPageLoaded();
         }
-
+        [Given(@"I have entered supply code as ""(.*)"" on home page global search")]
+        public void GivenIHaveEnteredSupplyCodeAsOnHomePageGlobalSearch(string supplyNumber)
+        {
+            CurrentPage.As<MainSiteHomePage>().AddSupplyCode(supplyNumber);
+        }
+        [Then(@"I should see a resultlist of associated items for entered supply code number")]
+        public void ThenIShouldSeeAResultlistOfAssociatedItemsForEnteredSupplyCodeNumber()
+        {
+            CurrentPage.As<MainSiteHomePage>().SearchResultsDisplayed();
+        }
+        [Then(@"I click on search result")]
+        public void ThenIClickOnSearchResult()
+        {
+            NextPage = CurrentPage.As<MainSiteHomePage>().ClickResultLink();
+        }
+       
     }
 }

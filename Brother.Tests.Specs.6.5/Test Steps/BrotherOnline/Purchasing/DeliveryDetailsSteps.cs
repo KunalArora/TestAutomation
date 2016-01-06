@@ -104,6 +104,11 @@ namespace Brother.Tests.Specs.BrotherOnline.Purchasing
         {
            CurrentPage.As<DeliveryDetailsPage>().PopulateDeliveryPagePhoneNumberTextBox(phoneNumber);
         }
+        [Then(@"I fill in Postal code as ""(.*)""")]
+        public void ThenIFillInPostalCodeAs(string postalCode)
+        {
+           CurrentPage.As<DeliveryDetailsPage>().PopulateDeliveryPagePostalCodeTextBox(postalCode);
+        }
 
         [Then(@"I Click Save & use address")]
         public void ThenIClickSaveUseAddress()

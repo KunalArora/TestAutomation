@@ -1,5 +1,7 @@
 ﻿using System;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
+using Brother.WebSites.Core.Pages.BrotherMainSite.SuppliesAndAccessories;
 using Brother.WebSites.Core.Pages.BrotherMainSite.SuppliesAndAccessories.Printers;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
@@ -116,6 +118,15 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         [FindsBy(How = How.CssSelector, Using = "#results > article:nth-child(1) > div.price-listings-info > p:nth-child(3) > a")]
         public IWebElement ViewDetailsLink;
+      
+        [FindsBy(How = How.CssSelector, Using = ".header-search>input")]
+        public IWebElement SearchTextBox;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='header-search-autocomplete-results']/a[3]")]
+        public IWebElement ResultLink;
+        
+        [FindsBy(How = How.XPath, Using = ".//*[@id='header-search-autocomplete-results']")]
+        public IWebElement SearchResults;
 
         private const string CarouselItems = ".feature-carousel-items";
 
@@ -594,5 +605,27 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
             CreativeCentreLink.Click();
         }
 
+        public void AddSupplyCode(string code)
+        {
+            SearchTextBox.SendKeys(code);
+            WebDriver.Wait(DurationType.Second, 3);
+            SearchTextBox.SendKeys(Keys.ArrowDown);
+            WebDriver.Wait(DurationType.Second, 3);
+            SearchTextBox.SendKeys(Keys.Tab);
+            SearchTextBox.SendKeys(Keys.Tab);
+            SearchTextBox.Click();
+            
+        }
+
+        public void SearchResultsDisplayed()
+        {
+            TestCheck.AssertIsEqual(true,SearchResults.Displayed, "Is search results displayed");
+        }
+        public InkJetCartridgePage ClickResultLink()
+        {
+            ResultLink.Click();
+            return GetInstance<InkJetCartridgePage>(Driver);
+        }
+      
     }
 }

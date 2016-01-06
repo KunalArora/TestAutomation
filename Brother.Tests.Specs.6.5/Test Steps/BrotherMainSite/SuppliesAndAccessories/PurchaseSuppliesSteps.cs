@@ -88,7 +88,6 @@ namespace Brother.Tests.Specs.BrotherMainSite.SuppliesAndAccessories
             CurrentPage.As<InkJetCartridgePage>().IsAddToBasketButtonAvailable();
             TestCheck.AssertIsEqual(BasketModule.GetItemPrice(TestController.CurrentDriver).Contains(productItem), true, "Invalid price for item");
         }
-
         [Then(@"I should see the selected item information page")]
         public void ThenIShouldSeeTheSelectedItemInformationPage()
         {
@@ -129,6 +128,13 @@ namespace Brother.Tests.Specs.BrotherMainSite.SuppliesAndAccessories
             CurrentPage.As<InkJetCartridgePage>().AddToBasketButtonClick();
       
         }
+        [When(@"I click on AddToBasket button")]
+        public void WhenIClickOnAddToBasketButton()
+        {
+            TestCheck.AssertIsEqual(0, BasketModule.GetBasketItemsCount(CurrentDriver), "Invalid Basket item count");
+            CurrentPage.As<InkJetCartridgePage>().AddToBasketButtonClick();
+        }
+
     }
 }
 

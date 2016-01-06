@@ -69,7 +69,7 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.Account
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Customer creates an account and places an order on UK BOL site")]
         [NUnit.Framework.CategoryAttribute("TEST")]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "LC1000BK", "£25.99", "1", "Test", "user", "10", "Tame Street", "Manchester", "1234567890", "4006162717519460", "12", "2017", "624", null)]
+        [NUnit.Framework.TestCaseAttribute("UnitedKingdom", "LC1000BK", "£25.99", "1", "Test", "user", "10", "Tame Street", "Manchester", "1234567890", "4006162717519460", "12", "2017", "624", null)]
         public virtual void CustomerCreatesAnAccountAndPlacesAnOrderOnUKBOLSite(string country, string supplyNumber, string price, string countChange, string firstName, string lastName, string houseNumber, string addressLine1, string cityTown, string phoneNumber, string creditCardNumber, string expiryMonth, string expiryYear, string cVV, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -193,6 +193,136 @@ this.ScenarioSetup(scenarioInfo);
 #line 61
  testRunner.Then("I navigate to my account top menu", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 62
+  testRunner.And("I click on orders menu to see created orders", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Customer creates an account and places an order on France BOL site")]
+        [NUnit.Framework.CategoryAttribute("TEST")]
+        [NUnit.Framework.TestCaseAttribute("France", "LC900C", "6,05 €", "1", "Test", "user", "asdsadsd", "75008", "paris", "1234567890", "4006162717519460", "12", "2017", "624", null)]
+        public virtual void CustomerCreatesAnAccountAndPlacesAnOrderOnFranceBOLSite(string country, string supplyNumber, string price, string countChange, string firstName, string lastName, string addressLine1, string postalCode, string cityTown, string phoneNumber, string creditCardNumber, string expiryMonth, string expiryYear, string cVV, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "TEST"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer creates an account and places an order on France BOL site", @__tags);
+#line 70
+this.ScenarioSetup(scenarioInfo);
+#line 71
+   testRunner.Given(string.Format("I launch Brother Online for \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 72
+    testRunner.When(string.Format("I click on Create Account for \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 73
+  testRunner.And("I am redirected to the Brother Login/Register page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 74
+     testRunner.And("I have Checked No I Do Not Have An Account Checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "field",
+                        "value"});
+            table2.AddRow(new string[] {
+                        "FirstName",
+                        "AutoTest"});
+            table2.AddRow(new string[] {
+                        "LastName",
+                        "AutoTest"});
+            table2.AddRow(new string[] {
+                        "Password",
+                        "@@@@@"});
+            table2.AddRow(new string[] {
+                        "ConfirmPassword",
+                        "@@@@@"});
+#line 75
+ testRunner.And("I fill in the registration information using a valid email address", ((string)(null)), table2, "And ");
+#line 82
+ testRunner.And("I have Agreed to the Terms and Conditions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 83
+ testRunner.And("I declare that I do not use this account for business", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 84
+ testRunner.When("I press Create Your Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 85
+ testRunner.Then("I should see my account confirmation page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 86
+ testRunner.And("When I Click Go Back", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 88
+ testRunner.Then(string.Format("I should be able to log into \"{0}\" Brother Online using my account details", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 89
+ testRunner.Given(string.Format("I have navigated to the Brother Main Site \"{0}\" products pages", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 90
+ testRunner.And(string.Format("I have entered supply code as \"{0}\" on home page global search", supplyNumber), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 91
+ testRunner.Then("I should see a resultlist of associated items for entered supply code number", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 92
+ testRunner.And("I click on search result", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 93
+ testRunner.Then(string.Format("I should see the selected item information page priced at \"{0}\" inc vat on basket" +
+                        " page", price), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 94
+ testRunner.When("I click on AddToBasket button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 95
+ testRunner.Then(string.Format("I should see the item with \"{0}\" in the Basket", supplyNumber), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 96
+ testRunner.And(string.Format("I should see the Basket item count change to \"{0}\"", countChange), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 97
+ testRunner.When("I click on Go to Basket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 98
+    testRunner.Then("I should see Basket page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 99
+ testRunner.When("I click Checkout on BasketPage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 100
+ testRunner.Then("I should see DeliveryAddress page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 101
+ testRunner.And(string.Format("I fill in firstname as \"{0}\"", firstName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 102
+ testRunner.And(string.Format("I fill in lastname as \"{0}\"", lastName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 104
+    testRunner.And(string.Format("I fill in AddressLine1 as \"{0}\"", addressLine1), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 105
+    testRunner.And(string.Format("I fill in Postal code as \"{0}\"", postalCode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 106
+ testRunner.And(string.Format("I fill in CityTown as \"{0}\"", cityTown), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 107
+ testRunner.And(string.Format("I fill in phoneNumber as \"{0}\"", phoneNumber), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 108
+ testRunner.And("I Click Save & use address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 109
+   testRunner.Then("I should see the Saved payment details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 110
+ testRunner.And("I click AddANewDebitCard/CreditCard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 111
+    testRunner.Then("I should see the Saved payment details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 112
+ testRunner.And("I click on CardAddress Button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 113
+ testRunner.Then("I should see OrderSummary Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 114
+     testRunner.And("I accept terms and conditions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 115
+     testRunner.And("I click on proceed to payment button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 116
+    testRunner.Then("I should see summary payment page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 117
+  testRunner.When(string.Format("I fill in creditCard details \"{0}\"", creditCardNumber), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 118
+  testRunner.And(string.Format("I select a month as \"{0}\"", expiryMonth), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 119
+  testRunner.And(string.Format("I select a year as \"{0}\"", expiryYear), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 120
+  testRunner.And(string.Format("I fill in security number as  \"{0}\"", cVV), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 121
+  testRunner.And("I click send to submit card details to see order confirmation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 122
+ testRunner.Then(string.Format("I have navigated to the Brother online \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 123
+  testRunner.And("I should see welcome back page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 124
+ testRunner.Then("I navigate to my account top menu", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 125
   testRunner.And("I click on orders menu to see created orders", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
