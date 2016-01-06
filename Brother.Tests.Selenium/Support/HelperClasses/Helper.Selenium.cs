@@ -1176,6 +1176,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             }
         }
 
+
         public static bool AssertElementContainsText(IWebElement element, string expectedValue, string elementDescription)
         {
             AssertElementPresent(element, elementDescription, 200);
