@@ -869,5 +869,5 @@ Scenario Outline: Customer creates a new account with Brother Online using valid
 
 	
 Scenarios: 
-| Country			|	Site Url											  | UserName            | Password  |
-| United Kingdom    |http://online.uk.cms.brotherqas.eu/test/DataManager.aspx | Sitecore\Automation | Password1 |                                     
+| Country			|	Site Url											  | UserName   | Password  |
+| United Kingdom    |http://online.uk.cms.brotherqas.eu/test/DataManager.aspx | Automation | Password1 |                                     
