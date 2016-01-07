@@ -857,7 +857,7 @@ Scenario Outline: Customer creates a new account with Brother Online using valid
 	Then I should see my account confirmation page
 	# And Once I have Validated an Email was received and verified my account
 	When That I navigate to "<Site Url>" in order to validate the CMS site
-	And I enter an username containing "<UserName>"
+	And I enter a username containing "<UserName>"
 	And I enter password containing "<Password>"
 	And I press login button "<Country>"
 	And I find email address used in the registration "<Country>"
