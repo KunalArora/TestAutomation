@@ -736,6 +736,29 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<RegistrationPage>().PopulateBusinessSectorDropDown(businessSector);
         }
+        [When(@"I add my company name ""(.*)"" on Business Details page")]
+        public void WhenIAddMyCompanyNameOnBusinessDetailsPage(string companyName)
+        {
+            CurrentPage.As<BusinessDetailsPage>().PopulateCompanyNameTxtBox(companyName);
+        }
+
+        [When(@"I add my company VAT number ""(.*)"" on Business Details Page")]
+        public void WhenIAddMyCompanyVATNumberOnBusinessDetailsPage(string vatNumber)
+        {
+           CurrentPage.As<BusinessDetailsPage>().PopulateVatNumberTxtBox(vatNumber);
+        }
+
+        [When(@"I select my Business Sector ""(.*)"" on Business Details Page")]
+        public void WhenISelectMyBusinessSectorOnBusinessDetailsPage(string businessSector)
+        {
+            CurrentPage.As<BusinessDetailsPage>().PopulateBusinessSectorDropDownList(businessSector);
+        }
+
+        [When(@"I select number of Employees ""(.*)"" on Business Details Page")]
+        public void WhenISelectNumberOfEmployeesOnBusinessDetailsPage(string numberEmployees)
+        {
+           CurrentPage.As<BusinessDetailsPage>().PopulateEmployeeCountDropDownList(numberEmployees);
+        }
 
         [Then(@"I select my Business Sector on creative center as ""(.*)""")]
         public void WhenISelectMyBusinessSectorOnCcAs(string ccbusinessSector)

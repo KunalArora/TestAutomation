@@ -30,14 +30,26 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         [FindsBy(How = How.Id, Using = "txtCompanyName")]
         public IWebElement CompanyNameTextBox;
 
+        [FindsBy(How = How.CssSelector, Using = "#txtCompanyName")]
+        public IWebElement CompanyNameTxtBox;
+
+        [FindsBy(How = How.CssSelector, Using = "#VatNumberTextBox")]
+        public IWebElement VatNumberTxtBox;
+
+        [FindsBy(How = How.CssSelector, Using = "#BusinessSectorDropDown")]
+        public IWebElement BusinessSectorDdList;
+
+        [FindsBy(How = How.CssSelector, Using = "#CompanySizeDropDown")]
+        public IWebElement EmployeeCountDdList;
+
+        [FindsBy(How = How.Id, Using = "txtVatNumber")]
+        public IWebElement VatNumberTextBox;  
+
         [FindsBy(How = How.Id, Using = "BusinessSectorDropDown")]
         public IWebElement BusinessSectorDropDownList;
 
         [FindsBy(How = How.Id, Using = "CompanySizeDropDown")]
-        public IWebElement EmployeeCountDropDownList;
-        
-        [FindsBy(How = How.Id, Using = "txtVatNumber")]
-        public IWebElement VatNumberTextBox;
+        public IWebElement EmployeeCountDropDownList;    
 
         [FindsBy(How = How.CssSelector, Using = ".info-bar")]
         public IWebElement InformationMessageBar;
@@ -115,6 +127,35 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             VatNumberTextBox.SendKeys(vatNumber);
            // TestCheck.AssertIsEqual(vatNumber, GetTextBoxValue("VatNumberTextBox"), "Vat number Text Box");
         }
+
+        public void PopulateCompanyNameTxtBox(string companyName)
+        {
+
+            ScrollTo(CompanyNameTxtBox);
+            CompanyNameTxtBox.Clear();
+            CompanyNameTxtBox.SendKeys(companyName);
+            CompanyNameTxtBox.SendKeys(Keys.Tab);
+        }
+
+        public void PopulateVatNumberTxtBox(string vatNumber)
+        {
+            ScrollTo(VatNumberTxtBox);
+            VatNumberTxtBox.SendKeys(vatNumber);
+            VatNumberTxtBox.SendKeys(Keys.Tab);
+        }
+        
+        public void PopulateBusinessSectorDropDownList(string businessSector)
+        {
+            SelectFromDropdown(BusinessSectorDdList, businessSector);
+            BusinessSectorDdList.SendKeys(Keys.Tab);
+          
+        }
+        public void PopulateEmployeeCountDropDownList(string numEmployees)
+        {
+            SelectFromDropdown(EmployeeCountDdList, numEmployees);
+        }
+
+       
         public void DoNotUseAccountForBusiness()
         {
             DoNotUseMyAccountForBusinessCheckbox.Click();
