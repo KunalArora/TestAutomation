@@ -64,7 +64,7 @@ Scenario Outline: Customer creates an account and places an order on UK BOL site
 	 
  Examples:
 | Country             | SupplyNumber | Price    | CountChange | FirstName | LastName | HouseNumber | AddressLine1 | CityTown   | PhoneNumber | CreditCardNumber | ExpiryMonth | ExpiryYear | CVV    |
-| UnitedKingdom       | LC1000BK     | £25.99   | 1           | Test      | user     | 10          | Tame Street  | Manchester | 1234567890  | 4006162717519460 |     12      |   2017     |  624   |
+| United Kingdom      | LC1000BK     | £25.99   | 1           | Test      | user     | 10          | Tame Street  | Manchester | 1234567890  | 4006162717519460 |     12      |   2017     |  624   |
 
 @TEST
 Scenario Outline: Customer creates an account and places an order on France BOL site
