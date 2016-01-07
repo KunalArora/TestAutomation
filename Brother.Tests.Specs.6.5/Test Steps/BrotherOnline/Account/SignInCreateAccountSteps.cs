@@ -1182,6 +1182,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage = BasePage.LoadDataManagerPage(CurrentDriver, url);
             CurrentPage.As<DataManagerPage>().GetDataManagerpage(url);
+            NextPage = DataManagerPage.DataManagerPageload(CurrentDriver);
         }
         [When(@"I enter a username containing ""(.*)""")]
         public void WhenIEnterAUsernameContaining(string username)

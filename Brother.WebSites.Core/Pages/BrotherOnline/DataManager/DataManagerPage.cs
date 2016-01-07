@@ -20,6 +20,11 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.DataManager
             get { return string.Empty; }
         }
 
+        public static DataManagerPage DataManagerPageload(IWebDriver driver)
+        {
+            return GetInstance<DataManagerPage>(driver, "", "");
+        }
+
         public void GetDataManagerpage(string url)
         {
             TestCheck.AssertIsEqual(HttpStatusCode.OK, GetWebPageResponse(url), "Incorrect Http Status Code returned");
@@ -63,9 +68,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.DataManager
         [FindsBy(How = How.CssSelector, Using = ".details-control")]
         public IWebElement UserEmailPlusSign ;
 
-        [FindsBy(How = How.CssSelector, Using = ".btn-primary")]
-        public IWebElement Loginbutton;
-
         [FindsBy(How = How.CssSelector, Using = "[data-column=\"BusinessPartnerId\"]")]
         public IWebElement BPIDValueFromDataTable;
 
@@ -75,8 +77,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.DataManager
 
         public void PopulateUserNameTextBox(string userName)
         {
-            string loginbutton = "btn-primary";
-            WaitForElementToExistByClassName(loginbutton);
             UserNameTextBox.SendKeys(userName);
         }
 
