@@ -69,7 +69,7 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.Account
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Customer creates an account and places an order on UK BOL site")]
         [NUnit.Framework.CategoryAttribute("TEST")]
-        [NUnit.Framework.TestCaseAttribute("UnitedKingdom", "LC1000BK", "£25.99", "1", "Test", "user", "10", "Tame Street", "Manchester", "1234567890", "4006162717519460", "12", "2017", "624", null)]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "LC1000BK", "£25.99", "1", "Test", "user", "10", "Tame Street", "Manchester", "1234567890", "4006162717519460", "12", "2017", "624", null)]
         public virtual void CustomerCreatesAnAccountAndPlacesAnOrderOnUKBOLSite(string country, string supplyNumber, string price, string countChange, string firstName, string lastName, string houseNumber, string addressLine1, string cityTown, string phoneNumber, string creditCardNumber, string expiryMonth, string expiryYear, string cVV, string[] exampleTags)
         {
             string[] @__tags = new string[] {

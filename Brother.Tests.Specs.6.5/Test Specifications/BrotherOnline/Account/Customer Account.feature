@@ -124,7 +124,8 @@ Scenario: Customer has the option to change their sign in preferences to social 
 	And I can navigate back to Brother Online home page
 	And I can sign out of Brother Online
 
-# Validate that the correct error messages are displayed when business details mandatory fields are not completed
+#BBAU-3022 - Defect logged in jira.
+#Validate that the correct error messages are displayed when business details mandatory fields are not completed
 Scenario: Customer get the correct error message when business details mandatory fields are not completed
    Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
