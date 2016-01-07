@@ -63,6 +63,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.DataManager
         [FindsBy(How = How.CssSelector, Using = ".details-control")]
         public IWebElement UserEmailPlusSign ;
 
+        [FindsBy(How = How.CssSelector, Using = ".btn-primary")]
+        public IWebElement Loginbutton;
+
         [FindsBy(How = How.CssSelector, Using = "[data-column=\"BusinessPartnerId\"]")]
         public IWebElement BPIDValueFromDataTable;
 
@@ -72,6 +75,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.DataManager
 
         public void PopulateUserNameTextBox(string userName)
         {
+            string loginbutton = "btn-primary";
+            WaitForElementToExistByClassName(loginbutton);
             UserNameTextBox.SendKeys(userName);
         }
 
