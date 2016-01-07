@@ -20,6 +20,11 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.DataManager
             get { return string.Empty; }
         }
 
+        public static DataManagerPage DataManagerPageload(IWebDriver driver)
+        {
+            return GetInstance<DataManagerPage>(driver, "", "");
+        }
+
         public void GetDataManagerpage(string url)
         {
             TestCheck.AssertIsEqual(HttpStatusCode.OK, GetWebPageResponse(url), "Incorrect Http Status Code returned");
