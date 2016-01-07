@@ -49,6 +49,12 @@ namespace Brother.Tests.Specs.OmniJoin.FreeTrial
         {
             CurrentPage.As<FreeTrialPage>().ErrorMessageDisplayed();
         }
+        [Then(@"I should see the Error Message displayed on the Email Address field for omnijoin free trail page")]
+        public void ThenIShouldSeeTheErrorMessageDisplayedOnTheEmailAddressFieldForOmnijoinFreeTrailPage()
+        {
+         CurrentPage.As<FreeTrialPage>().ValidationErrorMessageDisplayed();
+        }
+
         [Then(@"I should see an error message on the first name and last name field")]
         public void ThenIShouldSeeAnErrorMessageOnTheFirstNameAndLastNameField()
         {
