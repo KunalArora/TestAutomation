@@ -74,6 +74,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement approvedProposalsTabElement;
         [FindsBy(How = How.CssSelector, Using = ".alert.alert-success.fade.in.mps-alert.js-mps-alert")]
         public IWebElement deleteConfirmationElement;
+        [FindsBy(How = How.CssSelector, Using = ".open .js-mps-copy-with-customer")]
+        public IWebElement copyProposalWithCustomerElement;
+        [FindsBy(How = How.CssSelector, Using = ".open .js-mps-copy")]
+        public IWebElement copyProposalWithoutCustomerElement;
         
         
         
@@ -343,6 +347,32 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             var actionitem = offerElement.FindElement(By.CssSelector(actionsButton));
             actionitem.Click();
+        }
+
+        public void CopyProposalWithOptions(string option)
+        {
+            //ActionsModule.ClickOnSpecificActionsElement();
+            var originCustomer = ActionsModule.CreatedProposalCustomerColumn(Driver).Text;
+            SpecFlow.SetContext("Original Customer", originCustomer);
+
+            if (option.Equals("Without"))
+            {
+                ActionsModule.CopyAProposal(Driver);
+                WebDriver.Wait(DurationType.Second, 5);
+            } else if(option.Equals("With"))
+            {
+                ActionsModule.CopyAProposalWithCustomer(Driver);
+                WebDriver.Wait(DurationType.Second, 5);
+            }
+        }
+
+        public void IsProposalCustomerCopied()
+        {
+            var copiedProposalCustomer = SpecFlow.GetContext("Original Customer");
+            var displayedCopiedCustomer = ActionsModule.ProposalCustomerColumn(Driver).Text;
+
+            TestCheck.AssertIsEqual(copiedProposalCustomer, displayedCopiedCustomer, 
+                "customer in copied proposal not equal to customer in original proposal");
         }
 
         public void ClickOnDeleteOnActionItem(IWebDriver driver)

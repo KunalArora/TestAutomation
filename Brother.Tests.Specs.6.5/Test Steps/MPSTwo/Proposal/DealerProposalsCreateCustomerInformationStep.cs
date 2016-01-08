@@ -53,18 +53,22 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         public void WhenISelectButtonForCustomerDataCapture(string customerOption)
         {
             CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().IsCustomerInfoTextDisplayed();
-            CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().CustomerCreationOptions(customerOption);
-            //CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().ClickNextButton();
-            CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().FillOrganisationContactDetail();
-            CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().FillOrganisationDetails();
-            NextPage = CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().ClickNextButton();
+            if (!customerOption.Equals("Skip customer creation"))
+            {
+                CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().CustomerCreationOptions(customerOption);
+                CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().FillOrganisationContactDetail();
+                CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().FillOrganisationDetails();
+                NextPage = CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().ClickNextButton();
+            }
+            else
+            {
+                NextPage =
+                 CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().ClickSkipCustomerButtonAndProceed(); 
+            }
+            
         }
 
-
-     
-
-
-        public void SelectExistingCustmerByRandomly()
+       public void SelectExistingCustmerByRandomly()
         {
             CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().IsCustomerInfoTextDisplayed();
             CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().ClickSelectExistingCustomerButtonAndProceed();
