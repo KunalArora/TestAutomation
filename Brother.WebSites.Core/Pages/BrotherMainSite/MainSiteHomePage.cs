@@ -609,12 +609,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         {
             SearchTextBox.SendKeys(code);
             WebDriver.Wait(DurationType.Second, 3);
-            SearchTextBox.SendKeys(Keys.ArrowDown);
-            WebDriver.Wait(DurationType.Second, 3);
-            SearchTextBox.SendKeys(Keys.Tab);
-            SearchTextBox.SendKeys(Keys.Tab);
-            //SearchTextBox.Click();
-            
+           
         }
 
         public void SearchResultsDisplayed()
