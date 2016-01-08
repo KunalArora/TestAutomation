@@ -151,9 +151,10 @@ Scenario Outline: Summary Page Validation For Minimum Volume Purchase and Click 
 	
 
 	Scenarios: 
-	| Role             | Country        | ContractType                  | UsageType                                 | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod                 | ClickVolume | ColourVolume | Basis1                        |
-	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Minimum Volume                            | 3 years  | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Pay upfront                   | 800         | 800          | Pay upfront                   | 
+	| Role             | Country        | ContractType                  | UsageType                                 | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod                 | ClickVolume | ColourVolume | Basis1                           |
+	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Minimum Volume                            | 3 years  | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Pay upfront                   | 800         | 800          | Pay upfront                      |
 	| Cloud MPS Dealer | France         | Buy & Click                   | Engagement sur un minimum volume de pages | 3 ans    | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Inclus dans le coût à la page | 800         | 800          | Paiement au démarrage du contrat |
+	| Cloud MPS Dealer | Italy          | Acquisto & Consumo            | Volume minimo                             | 36       | Quarterly in Advance | Tick          | MFC-L8650CDW | Full         | Pagamento anticipato          | 800         | 800          | Pagamento anticipato             |
 	
 
 
