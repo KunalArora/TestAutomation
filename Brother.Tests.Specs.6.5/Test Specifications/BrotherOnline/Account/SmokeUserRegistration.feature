@@ -837,7 +837,7 @@ Scenario: Sign Up for 14 day Free trial already signed into Brother Online - ema
 	Then I can sign out of Brother Online
 	Then I am redirected to the Brother Home Page
 
-@UAT @SMOKE @TEST
+@UAT @SMOKE
 # BBAU-2956
 Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by bpid on UK site
 	Given I want to create a new account with Brother Online "<Country>"
@@ -871,3 +871,39 @@ Scenario Outline: Customer creates a new account with Brother Online using valid
 Scenarios: 
 | Country			|	Site Url											  | UserName   | Password  |
 | United Kingdom    |http://prapp586v.brotherdc.eu/test/DataManager.aspx      | Automation | Password1 |                                     
+
+
+@SMOKE
+# BBAU-2956
+Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by bpid on UK dv2 site
+	Given I want to create a new account with Brother Online "<Country>"
+	When I click on Create Account for "<Country>"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I fill in the registration information using a valid email address 
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Password        | @@@@@	       |
+	| ConfirmPassword | @@@@@		   |
+
+	And I have Agreed to the Terms and Conditions
+	And I declare that I do not use this account for business
+	When I press Create Your Account
+	Then I should see my account confirmation page
+	# And Once I have Validated an Email was received and verified my account
+	When That I navigate to "<Site Url>" in order to validate the CMS site
+	And I enter a username containing "<UserName>"
+	And I enter password containing "<Password>"
+	And I press login button "<Country>"
+	And I find email address used in the registration "<Country>"
+	And I click on Email Radio button "<Country>"
+	And I click on Search button to find the user email  "<Country>"
+	# And I click on User Email "<Country>"
+	Then I should click details to check BPID for registered user "<Country>"
+	Then I retrieve the BPID number generated for the user registration
+
+	
+Scenarios: 
+| Country			|	Site Url											      | UserName   | Password  |
+| United Kingdom    |http://online.uk.cms.brotherdv2.eu/test/DataManager.aspx     | Automation | Password1 |    
