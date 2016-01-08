@@ -126,7 +126,7 @@ Scenario: Customer has the option to change their sign in preferences to social 
 
 #BBAU-3022 - Defect logged in jira.
 #Validate that the correct error messages are displayed when business details mandatory fields are not completed
-Scenario: Customer get the correct error message when business details mandatory fields are not completed
+Scenario:(BBAU-3022)Customer get the correct error message when business details mandatory fields are not completed
    Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
 	And I am redirected to the Brother Login/Register page
