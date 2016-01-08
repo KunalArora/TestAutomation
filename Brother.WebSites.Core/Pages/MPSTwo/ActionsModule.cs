@@ -182,7 +182,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
        
-        private static string ProposalCustomer()
+        private static string CopiedProposalCustomer()
         {
             return String.Format("//td[text()='{0}']/parent::tr/td[4]",
                 MpsUtil.CopiedProposal());
@@ -190,7 +190,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public static IWebElement ProposalCustomerColumn(IWebDriver driver)
         {
-            var actionsElement = driver.FindElement(By.XPath(ProposalCustomer()));
+            var actionsElement = driver.FindElement(By.XPath(CopiedProposalCustomer()));
+            return actionsElement;
+        }
+
+        private static string CreatedProposalCustomer()
+        {
+            return String.Format("//td[text()='{0}']/parent::tr/td[4]",
+                MpsUtil.CreatedProposal());
+        }
+
+        public static IWebElement CreatedProposalCustomerColumn(IWebDriver driver)
+        {
+            var actionsElement = driver.FindElement(By.XPath(CreatedProposalCustomer()));
             return actionsElement;
         }
 

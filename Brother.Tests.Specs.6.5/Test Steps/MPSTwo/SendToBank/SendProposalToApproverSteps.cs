@@ -14,6 +14,20 @@ namespace Brother.Tests.Specs.MPSTwo.SendToBank
             CurrentPage.As<CloudExistingProposalPage>().ClickOnActionButtonAgainstRelevantProposal();
         }
 
+        [When(@"I copy the proposal created above ""(.*)"" customer")]
+        public void WhenICopyTheProposalCreatedAboveCustomer(string status)
+        {
+            CurrentPage.As<CloudExistingProposalPage>().CopyProposalWithOptions(status);
+        }
+
+        [Then(@"the copied proposal above is displayed with appropriate customer status")]
+        public void ThenTheCopiedProposalAboveIsDisplayedWithAppropriateCustomerStatus()
+        {
+            CurrentPage.As<CloudExistingProposalPage>().IsProposalCopied();
+            CurrentPage.As<CloudExistingProposalPage>().IsProposalCustomerCopied();
+        }
+
+
         [Then(@"I can click on Convert to Contract button under the Action button")]
         public void ThenICanClickOnConvertToContractButtonUnderTheActionButton()
         {

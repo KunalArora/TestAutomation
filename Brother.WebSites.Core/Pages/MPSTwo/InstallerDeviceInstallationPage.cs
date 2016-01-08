@@ -78,7 +78,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 throw new Exception("Installer page is not displayed");
             AssertElementPresent(ContractReferencePageAlertElement, "Installer pager alert");
 
-            MPSJobRunnerPage.RunResetSerialNumberJob(IsUKSystem() ? serialNumber : serialNumberBIG);
+            MPSJobRunnerPage.RunResetSerialNumberJob(SerialNumberUsed());
         }
 
         public void EnterContractReference()
