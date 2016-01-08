@@ -837,7 +837,7 @@ Scenario: Sign Up for 14 day Free trial already signed into Brother Online - ema
 	Then I can sign out of Brother Online
 	Then I am redirected to the Brother Home Page
 
-@UAT
+@UAT @SMOKE @TEST
 # BBAU-2956
 Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by bpid on UK site
 	Given I want to create a new account with Brother Online "<Country>"
@@ -857,7 +857,7 @@ Scenario Outline: Customer creates a new account with Brother Online using valid
 	Then I should see my account confirmation page
 	# And Once I have Validated an Email was received and verified my account
 	When That I navigate to "<Site Url>" in order to validate the CMS site
-	And I enter an username containing "<UserName>"
+	And I enter a username containing "<UserName>"
 	And I enter password containing "<Password>"
 	And I press login button "<Country>"
 	And I find email address used in the registration "<Country>"
@@ -865,8 +865,9 @@ Scenario Outline: Customer creates a new account with Brother Online using valid
 	And I click on Search button to find the user email  "<Country>"
 	# And I click on User Email "<Country>"
 	Then I should click details to check BPID for registered user "<Country>"
+	Then I retrieve the BPID number generated for the user registration
 
 	
 Scenarios: 
-| Country			|	Site Url											  | UserName            | Password  |
-| United Kingdom    |http://online.uk.cms.brotherqas.eu/test/DataManager.aspx | Sitecore\Automation | Password1 |                                     
+| Country			|	Site Url											  | UserName   | Password  |
+| United Kingdom    |http://online.uk.cms.brotherdv2.eu/test/DataManager.aspx | Automation | Password1 |                                     

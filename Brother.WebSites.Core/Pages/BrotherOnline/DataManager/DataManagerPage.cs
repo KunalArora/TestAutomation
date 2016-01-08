@@ -20,6 +20,11 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.DataManager
             get { return string.Empty; }
         }
 
+        public static DataManagerPage DataManagerPageload(IWebDriver driver)
+        {
+            return GetInstance<DataManagerPage>(driver, "", "");
+        }
+
         public void GetDataManagerpage(string url)
         {
             TestCheck.AssertIsEqual(HttpStatusCode.OK, GetWebPageResponse(url), "Incorrect Http Status Code returned");
@@ -62,7 +67,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.DataManager
 
         [FindsBy(How = How.CssSelector, Using = ".details-control")]
         public IWebElement UserEmailPlusSign ;
-        
+
+        [FindsBy(How = How.CssSelector, Using = "[data-column=\"BusinessPartnerId\"]")]
+        public IWebElement BPIDValueFromDataTable;
 
        [FindsBy(How = How.Id, Using = "MainContentPlaceHolder_btnSearch")]
         public IWebElement SearchButton;
@@ -110,6 +117,16 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.DataManager
            WaitForElementToExistByClassName(PlusSignName);
            ScrollTo(UserEmailPlusSign);
            UserEmailPlusSign.Click();
+       }
+
+       public void CheckBPIDFromDataTable()
+       {
+           string bpidnumber = BPIDValueFromDataTable.Text;
+           if (bpidnumber == null)
+            {
+                throw new Exception("Unable to bpid value on page");
+            }
+           AssertElementPresent(BPIDValueFromDataTable, "BPIDNumber ihas been created successfully on user registration");
        }
     }
 }

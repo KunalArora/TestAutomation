@@ -44,6 +44,9 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Trial
 
         [FindsBy(How = How.CssSelector, Using = "#content_0_maincontent_2_vldRegExEmail")]
         public IWebElement EmailAddressErrorMessage;
+
+        [FindsBy(How = How.CssSelector, Using = "#content_0_maincontent_2_vldRegExEmailClient")]
+        public IWebElement EmailAddressValidationErrorMessage;
         
         [FindsBy(How = How.CssSelector, Using = ".button-orange")]
         public IWebElement SubmitButton;
@@ -180,6 +183,10 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Trial
             TestCheck.AssertIsEqual(true, EmailAddressErrorMessage.Displayed, "Is Email Error message displayed");
         }
 
+        public void ValidationErrorMessageDisplayed()
+        {
+            TestCheck.AssertIsEqual(true, EmailAddressValidationErrorMessage.Displayed, "Is Email Error message displayed");
+        }
         public void ErrorMessageDisplayedTermsConditionsField()
         {
             TestCheck.AssertIsEqual(true, ErrorMessageDisplayedTAndCField.Displayed, "Is Error Message Displayed");

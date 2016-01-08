@@ -111,7 +111,8 @@ this.ScenarioSetup(scenarioInfo);
 #line 16
  testRunner.Then(string.Format("I enter an invalid email address as {0} for omnijoin free trial", invalidEmailAddress), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 18
- testRunner.Then("I should see the Error Message displayed on the Email Address field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("I should see the Error Message displayed on the Email Address field for omnijoin " +
+                    "free trail page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

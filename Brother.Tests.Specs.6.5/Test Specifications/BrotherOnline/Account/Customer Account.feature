@@ -124,7 +124,8 @@ Scenario: Customer has the option to change their sign in preferences to social 
 	And I can navigate back to Brother Online home page
 	And I can sign out of Brother Online
 
-# Validate that the correct error messages are displayed when business details mandatory fields are not completed
+#BBAU-3022 - Defect logged in jira.
+#Validate that the correct error messages are displayed when business details mandatory fields are not completed
 Scenario: Customer get the correct error message when business details mandatory fields are not completed
    Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
@@ -514,7 +515,7 @@ Scenario: Log in as a Printer On dealer and ensure that they can see the require
 Scenario: Create a user but test for BPID 
 # Create a new user account but add a check for the Users BPID in the dbo.Users table
 
-# User unable to create a BOL Italy account without entering a valid tax code
+# User able to create a BOL Italy account without entering a valid tax code
 Scenario Outline: Customer unable to create a new BOL Italy account without entering a valid tax code
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -535,10 +536,11 @@ Scenario Outline: Customer unable to create a new BOL Italy account without ente
 Scenarios: 
 | Country | Tax Code	     |
 | Italy   | MRTMTT25DINVALID |
-| Italy	  |					 |
+#| Italy  |					 | - User can create BOL Italy B2C account without taxcode.
 
 
 #Validate that a Customer Account holder is able to swap to a Business Account
+@Ignore
 Scenario: Validate that a newly created customer account can be swapped to a business account
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
@@ -568,6 +570,41 @@ Scenario: Validate that a newly created customer account can be swapped to a bus
 	And I click on Update details on business details page
 	Then I can verify successfull update message appeared at the top
 	Then I can sign out of Brother Online
+
+#Validate that a Customer Account holder is able to swap to a Business Account
+Scenario Outline: Verify customer with B2C account able to switch B2B account before place an order
+	Given I want to create a new account with Brother Online "<Country>"
+	When I click on Create Account for "<Country>"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I declare that I do not use this account for business
+	And I fill in the registration information using a valid email address 
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Password        | @@@@@	       |
+	| ConfirmPassword | @@@@@		   |
+
+	And I have Agreed to the Terms and Conditions
+	When I press Create Your Account
+	Then I should see my account confirmation page
+	And When I Click Go Back
+	#And Once I have Validated an Email was received and verified my account
+	Then I should be able to log into "<Country>" Brother Online using my account details
+	When I navigate to my account for "<Country>"
+	When I clicked on Business Details
+	And I declare that I do use this account for business on my account page
+	And I add my company name "<CompanyName>" on Business Details page                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+	And I add my company VAT number "<VATNumber>" on Business Details Page
+	And I select my Business Sector "<BusinessSector>" on Business Details Page
+	#And I select number of Employees "<Number of Employess>" on Business Details Page
+	And I click on Update details on business details page
+	Then I can verify successfull update message appeared at the top
+	Then I can sign out of Brother Online
+
+Examples:
+| Country        | CompanyName | VATNumber       | BusinessSector                                   | Number of Employees |
+| United Kingdom | Test        | GB145937540     | IT and telecommunications services               | 11-50               |
 
 # Accounts created on DV2 and QAS and Prod for the following test - autocustaccwithorder@guerrillamail.com/Password100 
 # Validate that a Customer Account holder who has made an order is not able to swap to a Business account (Note this cannot be run on prod due to lack of purchase)

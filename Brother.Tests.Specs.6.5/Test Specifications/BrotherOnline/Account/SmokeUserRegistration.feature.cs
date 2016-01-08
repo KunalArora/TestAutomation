@@ -2029,11 +2029,15 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("Customer creates a new account with Brother Online using valid credentials, confi" +
             "rm by bpid on UK site")]
         [NUnit.Framework.CategoryAttribute("UAT")]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "http://online.uk.cms.brotherqas.eu/test/DataManager.aspx", "Sitecore\\Automation", "Password1", null)]
+        [NUnit.Framework.CategoryAttribute("SMOKE")]
+        [NUnit.Framework.CategoryAttribute("TEST")]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "http://online.uk.cms.brotherdv2.eu/test/DataManager.aspx", "Automation", "Password1", null)]
         public virtual void CustomerCreatesANewAccountWithBrotherOnlineUsingValidCredentialsConfirmByBpidOnUKSite(string country, string siteUrl, string userName, string password, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "UAT"};
+                    "UAT",
+                    "SMOKE",
+                    "TEST"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -2079,7 +2083,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 859
  testRunner.When(string.Format("That I navigate to \"{0}\" in order to validate the CMS site", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 860
- testRunner.And(string.Format("I enter an username containing \"{0}\"", userName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("I enter a username containing \"{0}\"", userName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 861
  testRunner.And(string.Format("I enter password containing \"{0}\"", password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 862
@@ -2092,6 +2096,8 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.And(string.Format("I click on Search button to find the user email  \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 867
  testRunner.Then(string.Format("I should click details to check BPID for registered user \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 868
+ testRunner.Then("I retrieve the BPID number generated for the user registration", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
