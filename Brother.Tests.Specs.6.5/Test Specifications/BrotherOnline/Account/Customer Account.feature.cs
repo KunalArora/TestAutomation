@@ -346,12 +346,12 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Customer get the correct error message when business details mandatory fields are" +
-            " not completed")]
-        public virtual void CustomerGetTheCorrectErrorMessageWhenBusinessDetailsMandatoryFieldsAreNotCompleted()
+        [NUnit.Framework.DescriptionAttribute("(BBAU-3022)Customer get the correct error message when business details mandatory" +
+            " fields are not completed")]
+        public virtual void BBAU_3022CustomerGetTheCorrectErrorMessageWhenBusinessDetailsMandatoryFieldsAreNotCompleted()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer get the correct error message when business details mandatory fields are" +
-                    " not completed", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("(BBAU-3022)Customer get the correct error message when business details mandatory" +
+                    " fields are not completed", ((string[])(null)));
 #line 129
 this.ScenarioSetup(scenarioInfo);
 #line 130
