@@ -613,7 +613,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
             WebDriver.Wait(DurationType.Second, 3);
             SearchTextBox.SendKeys(Keys.Tab);
             SearchTextBox.SendKeys(Keys.Tab);
-            SearchTextBox.Click();
+            //SearchTextBox.Click();
             
         }
 
