@@ -2031,7 +2031,7 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.CategoryAttribute("UAT")]
         [NUnit.Framework.CategoryAttribute("SMOKE")]
         [NUnit.Framework.CategoryAttribute("TEST")]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "http://online.uk.cms.brotherdv2.eu/test/DataManager.aspx", "Automation", "Password1", null)]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "http://prapp586v.brotherdc.eu/test/DataManager.aspx", "Automation", "Password1", null)]
         public virtual void CustomerCreatesANewAccountWithBrotherOnlineUsingValidCredentialsConfirmByBpidOnUKSite(string country, string siteUrl, string userName, string password, string[] exampleTags)
         {
             string[] @__tags = new string[] {
