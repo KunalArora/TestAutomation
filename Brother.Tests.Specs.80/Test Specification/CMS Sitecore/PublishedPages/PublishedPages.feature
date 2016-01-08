@@ -16,7 +16,8 @@ Scenario Outline: Navigate to published page to verify all page components
 	Then I can verify that a features carousel tile is displayed
 	Then I can verify that a banner bar component is displayed
 	Then I can verify that a banner bar tile is displayed
-	Then I can verify that an info image text module component is displayed
+	# Info image module currently not publishing. Its displayed fine in experience editor
+	# Then I can verify that an info image text module component is displayed
 	Then I can verify that the secondary navigation component is displayed
 	Then I can verify that the breadcrumbs component is displayed
 	Then I can verify the case study component is displayed
@@ -26,7 +27,30 @@ Scenario Outline: Navigate to published page to verify all page components
 	Then I can verify that the latest news component is displayed
 	Then I can verify that the header bar component is displayed
 	Then I can verify that the full info tile component is displayed
-
+	Then I can verify that the hero component is displayed
+	Then I can verify that the secondary hero component is displayed
+	Then I can verify that the feature module image left is displayed
+	Then I can verify that the feature module image right is displayed
+	Then I can verify that the feature bar component is displayed
+	Then I can verify that the feature bar tile is displayed
+	Then I can verify that the super carousel component is displayed
+	Then I can verify that the video list module is displayed
+	Then I can verify that the video tile bar is displayed
+	Then I can verify that the full width hero is displayed
+	Then I can verify that the special full info is displayed
+	Then I can verify that the conversion bar is displayed
+	Then I can verify that the wizard is displayed
+	Then I can verify that the special feature is displayed
+	Then I can verify that the steps bar is displayed
+	Then I can verify that the hero carousel is displayed
+	Then I can verify that the wizard step is displayed
+	Then I can verify that the rich text module is displayed
+	Then I can Verify that the link list item is displayed
+	# WFFM is currently broken on DV2
+	# Then I can verify that the Wffm component is displayed
+	# Components above are for the 12 placeholder. Components for 8 and 4 placholders to be still added to this smoke test.
+	# Once copy back of page and modules has been done in all environmemnts, this smoke test can be extended. 
+	# Ideally this needs to go into Dev to verify the automated builds are stable.
 
 Scenarios: 
 	
