@@ -140,6 +140,129 @@ namespace Brother.Tests.Specs._80.Test_Steps.BrotherMainSite.PublishedPages
             CurrentPage.As<PublishedPage>().IsFullInfoTileDisplayed();
         }
 
+        [Then(@"I can verify that the hero component is displayed")]
+        public void ThenICanVerifyThatTheHeroComponentIsDisplayed()
+        {
+            CurrentPage.As<PublishedPage>().IsHeroDisplayed();
+        }
+
+        [Then(@"I can verify that the secondary hero component is displayed")]
+        public void ThenICanVerifyThatTheSecondaryHeroComponentIsDisplayed()
+        {
+            CurrentPage.As<PublishedPage>().IsSecondaryHeroDisplayed();
+        }
+
+        [Then(@"I can verify that the feature module image left is displayed")]
+        public void ThenICanVerifyThatTheFeatureModuleImageLeftIsDisplayed()
+        {
+            CurrentPage.As<PublishedPage>().IsFeatureModuleLeftDisplayed();
+        }
+
+
+        [Then(@"I can verify that the feature module image right is displayed")]
+        public void ThenICanVerifyThatTheFeatureModuleImageRightIsDisplayed()
+        {
+            CurrentPage.As<PublishedPage>().IsFeatureModuleRightDisplayed();
+        }
+
+        [Then(@"I can verify that the feature bar component is displayed")]
+        public void ThenICanVerifyThatTheFeatureBarComponentIsDisplayed()
+        {
+            CurrentPage.As<PublishedPage>().IsFeatureBarComponentDisplayed();
+        }
+
+        [Then(@"I can verify that the feature bar tile is displayed")]
+        public void ThenICanVerifyThatTheFeatureBarTileIsDisplayed()
+        {
+            CurrentPage.As<PublishedPage>().IsFeatureBarTileDisplayed();
+        }
+
+        [Then(@"I can verify that the super carousel component is displayed")]
+        public void ThenICanVerifyThatTheSuperCarouselComponentIsDisplayed()
+        {
+            CurrentPage.As<PublishedPage>().IsSuperCarouselDisplayed();
+        }
+
+        [Then(@"I can verify that the video list module is displayed")]
+        public void ThenICanVerifyThatTheVideoListModuleIsDisplayed()
+        {
+            CurrentPage.As<PublishedPage>().IsVideoListModuleDisplayed();
+        }
+
+        [Then(@"I can verify that the video tile bar is displayed")]
+        public void ThenICanVerifyThatTheVideoTileBarIsDisplayed()
+        {
+            CurrentPage.As<PublishedPage>().IsVideoTileBarModuleDisplayed();
+        }
+
+        [Then(@"I can verify that the full width hero is displayed")]
+        public void ThenICanVerifyThatTheFullWidthHeroIsDisplayed()
+        {
+            CurrentPage.As<PublishedPage>().IsFullWidthHeroDisplayed();
+        }
+
+        [Then(@"I can verify that the special full info is displayed")]
+        public void ThenICanVerifyThatTheSpecialFullInfoIsDisplayed()
+        {
+            CurrentPage.As<PublishedPage>().IsSpecialFullInfoDisplayed();
+        }
+
+        [Then(@"I can verify that the conversion bar is displayed")]
+        public void ThenICanVerifyThatTheConversionBarIsDisplayed()
+        {
+            CurrentPage.As<PublishedPage>().IsConversionBarDisplayed();
+        }
+
+        [Then(@"I can verify that the wizard is displayed")]
+        public void ThenICanVerifyThatTheWizardIsDisplayed()
+        {
+            CurrentPage.As<PublishedPage>().IsWizardDisplayed();
+        }
+
+        [Then(@"I can verify that the special feature is displayed")]
+        public void ThenICanVerifyThatTheSpecialFeatureIsDisplayed()
+        {
+            CurrentPage.As<PublishedPage>().IsSpecialFeatureDisplayed();
+        }
+
+        [Then(@"I can verify that the steps bar is displayed")]
+        public void ThenICanVerifyThatTheStepsBarIsDisplayed()
+        {
+            CurrentPage.As<PublishedPage>().IsStepsBarDisplayed();
+        }
+
+        [Then(@"I can verify that the hero carousel is displayed")]
+        public void ThenICanVerifyThatTheHeroCarouselIsDisplayed()
+        {
+            CurrentPage.As<PublishedPage>().IsHeroCarouselDisplayed();
+        }
+
+        [Then(@"I can verify that the wizard step is displayed")]
+        public void ThenICanVerifyThatTheWizardStepIsDisplayed()
+        {
+            CurrentPage.As<PublishedPage>().IsWizardStepDisplayed();
+        }
+
+        [Then(@"I can verify that the rich text module is displayed")]
+        public void ThenICanVerifyThatTheRichTextModuleIsDisplayed()
+        {
+            CurrentPage.As<PublishedPage>().IsRichTextModuleDisplayed();
+        }
+
+        [Then(@"I can Verify that the link list item is displayed")]
+        public void ThenICanVerifyThatTheLinkListItemIsDisplayed()
+        {
+            CurrentPage.As<PublishedPage>().IsListItemIsDisplayed();
+        }
+
+        [Then(@"I can verify that the Wffm component is displayed")]
+        public void ThenICanVerifyThatTheWffmComponentIsDisplayed()
+        {
+            CurrentPage.As<PublishedPage>().IsWffmDisplayed();
+        }
+
+
+
 
     }
 
