@@ -74,7 +74,7 @@ Scenario Outline: Summary Page Validation For Minimum Volume German And Austria 
 	
 
 	Scenarios: 
-	| Role             | Country | ContractType                  | UsageType      | Contract | Billing      | PriceHardware | Printer      | PaymentMethod      | ClickVolume | ColourVolume |
+	| Role             | Country | ContractType             | UsageType      | Contract | Billing      | PriceHardware | Printer      | PaymentMethod      | ClickVolume | ColourVolume |
 	| Cloud MPS Dealer | Germany | Easy Print Pro & Service | Minimum Volume | 5 Jahre  | Halbjährlich | Tick          | MFC-L8650CDW | im Voraus bezahlen | 800         | 800          |
 	| Cloud MPS Dealer | Austria | Easy Print Pro & Service | Minimum Volume | 5 Jahre  | Halbjährlich | Tick          | MFC-L8650CDW | im Voraus bezahlen | 800         | 800          |
 	

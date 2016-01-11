@@ -614,6 +614,27 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
 
         }
 
+        [Given(@"I have created a ""(.*)"" proposal ""(.*)"" Customer detail with ""(.*)"" and ""(.*)"" and ""(.*)""")]
+        public void GivenIHaveCreatedAProposalCustomerDetailWithAndAnd(string contractType, string customer, string usageType, string length, string billing)
+        {
+            GivenIamOnMpsNewProposalPage();
+            WhenIFillProposalDescriptionForContractType(contractType);
+            DealerProposalsCreateCustomerInformationStep customerInformationStepInstance = new DealerProposalsCreateCustomerInformationStep();
+            customerInformationStepInstance.WhenISelectButtonForCustomerDataCapture(customer);
+            DealerProposalsCreateTermAndTypeStep stepInstance = new DealerProposalsCreateTermAndTypeStep();
+            stepInstance.WhenIEnterUsageTypeContractLengthAndBillingOnTermAndTypeDetails
+                (usageType, length, billing);
+            stepInstance.WhenIPriceHardwareRadioButton("Tick");
+
+            DealerProposalsCreateProductsStep instance = new DealerProposalsCreateProductsStep();
+            instance.WhenIDisplayDeviceScreen("MFC-L8650CDW");
+            instance.WhenIAcceptTheDefaultValuesOfTheDevice();
+
+            DealerProposalsCreateClickPriceStep clickPriceStepInstance = new DealerProposalsCreateClickPriceStep();
+            clickPriceStepInstance.WhenIEnterClickPriceVolumeOf("800", "800");
+
+        }
+
         [Given(@"I have created Purchase and Click proposal")]
         public void GivenIHaveCreatedPurchaseAndClickProposal()
         {
