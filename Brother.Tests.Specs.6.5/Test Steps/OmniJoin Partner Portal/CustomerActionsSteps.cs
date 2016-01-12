@@ -1,5 +1,6 @@
 ﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
+using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
 using Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal;
 using TechTalk.SpecFlow;
 
@@ -32,6 +33,26 @@ namespace Brother.Tests.Specs
         public void ThenICanSeeMyOmniJoinPlan()
         {
             ScenarioContext.Current.Pending();
+        }
+        [Then(@"I click on partner portal button")]
+        public void ThenIClickOnPartnerPortalButton()
+        {
+            NextPage = CurrentPage.As<WelcomeBackPage>().PartnerPortalButtonClick();
+        }
+        [Then(@"I should see manage userlist page")]
+        public void ThenIShouldSeeManageUserlistPage()
+        {
+            CurrentPage.As<PartnerPortalPage>().IsMaintainaListofUsersButonDisplayed();
+        }
+        [Then(@"I click on Manage a list of closed area")]
+        public void ThenIClickOnManageAListOfClosedArea()
+        {
+            CurrentPage.As<PartnerPortalPage>().IsMaintainaListofUsersButonDisplayed();
+        }
+        [Then(@"I should see Manage users list page")]
+        public void ThenIShouldSeeManageUsersListPage()
+        {
+            
         }
 
     }

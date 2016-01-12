@@ -48,6 +48,7 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
 
         [FindsBy(How = How.CssSelector, Using = "#content_1_breadcrumb_0_rptBreadcrumb_hlkBreadcrumb_0[href*='/partner-portal']")]
         public IWebElement PartnerPortalBreadcrumb;
+     
 
         public PartnerPortalPage PartnerPortalBreadcrumbClick()
         {
@@ -99,6 +100,10 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
             AddNewCustomer.Click();
         }
 
+        public void IsAddNewCustomerButtonDisplayed()
+        {
+            TestCheck.AssertIsEqual(true, AddNewCustomer.Displayed, "Is add new  customer button displayed");
+        }
         public void NextButtonClick()
         {
             try

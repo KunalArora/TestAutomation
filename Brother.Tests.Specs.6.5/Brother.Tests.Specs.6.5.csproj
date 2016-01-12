@@ -94,6 +94,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CreateAnOrder.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\BrotherOnline\Account\PartnerPortal.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PartnerPortal.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specifications\BrotherOnline\Account\SmokeUserRegistration.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -506,6 +511,10 @@
     <None Include="Test Specifications\BrotherOnline\Account\CreateAnOrder.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CreateAnOrder.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\BrotherOnline\Account\PartnerPortal.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>PartnerPortal.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\BrotherOnline\Account\SmokeUserRegistration.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

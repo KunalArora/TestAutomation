@@ -848,6 +848,22 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             WhenIEnterAValidPassword(Helper.Password);
             WhenIClickOnSignIn(country);
         }
+        [Then(@"I should be logged in successfully")]
+        public void ThenIShouldBeLoggedInSuccessfully()
+        {
+            CurrentPage.As<WelcomeBackPage>().IsSignOutButtonDisplayed();
+        }
+        [Then(@"I click on partner portal tab")]
+        public void ThenIClickOnPartnerPortalTab()
+        {
+            CurrentPage.As<WelcomeBackPage>().PartnerPortalMenuClick();
+        }
+        [Then(@"I should see partner portal home page")]
+        public void ThenIShouldSeePartnerPortalHomePage()
+        {
+          CurrentPage.As<WelcomeBackPage>().IsPartnerPortalButtonDisplayed();
+        }       
+
         [When(@"I find email address used in the registration ""(.*)""")]
         public void WhenIFindEmailAddressUsedInTheRegistration(string country)
         {
@@ -940,6 +956,12 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             NextPage = CurrentPage.As<RegistrationPage>().ClickSignInWithInvalidDetails();
         }
 
+        [When(@"I press sign in")]
+        public void WhenIPressSignIn()
+        {
+            NextPage = CurrentPage.As<RegistrationPage>().ClickSignInButton();
+        }
+
         [When(@"I press the creative center sign in with invalid details")]
         [When(@"I press the creative center sign in")]
         public void WhenIPressCcSignInWithInvalidDetails()
@@ -958,6 +980,19 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<RegistrationPage>().PopulateEmailAddressTextBox(emailAddress);
         }
+        [When(@"I fill in email as ""(.*)""")]
+        public void WhenIFillInEmailAs(string emailAddress)
+        {
+        
+        CurrentPage.As<RegistrationPage>().PopulateEmailAddress1TextBox(emailAddress);
+        
+        }
+        [When(@"I fill in password as ""(.*)""")]
+        public void WhenIFillInPasswordAs(string password)
+        {
+            CurrentPage.As<RegistrationPage>().PopulatePassword1TextBox(password);
+        }
+
 
         [When(@"I enter a creative center email address containing ""(.*)""")]
         public void WhenIEnterCcEmailAddressContaining(string emailAddress)

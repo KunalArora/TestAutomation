@@ -5,6 +5,7 @@ using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.MPSOne;
 using Brother.WebSites.Core.Pages.MPSTwo;
+using Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal;
 using Brother.WebSites.Core.Pages.OmniJoin.Plans;
 using Brother.WebSites.Core.Pages.OmniJoin.Trial;
 using OpenQA.Selenium;
@@ -68,6 +69,11 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         [FindsBy(How = How.Id, Using = "f200cbab-dac8-4dfd-a10f-9c1af427a95c")]
         public IWebElement InstantInkSupplyMenuItem;
 
+        [FindsBy(How = How.CssSelector, Using = "#content_2_ProductsTabRepeater_tabItem_2")]
+        public IWebElement PartnerPortalMenu;
+
+        [FindsBy(How = How.CssSelector, Using = ".dp-button-aqua")]
+        public IWebElement PartnerPortalButton;
 
         // Added TryNow button Locator 
         [FindsBy(How = How.XPath, Using = ".//*[@id='content_2_CurrentControlPanelItem_ConferenceButtons']/a[2]")] 
@@ -449,6 +455,16 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             BusinessDetailLink.Click();            
         }
 
+        public void PartnerPortalMenuClick()
+        {
+            //ScrollTo(PartnerPortalMenu);
+            PartnerPortalMenu.Click();
+        }
+
+        public void IsPartnerPortalButtonDisplayed()
+        {
+            TestCheck.AssertIsEqual(true, PartnerPortalButton.Displayed, "Is partnerportal button displayed");
+        }
         public void BroOnlineHomeClick()
         {
             ScrollTo(BroOnlineLink);
@@ -475,6 +491,12 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         {
           TryNowOmniJoinFreeTrailButton.Click();
             return GetInstance<FreeTrialPage>(Driver);
+        }
+
+        public PartnerPortalPage PartnerPortalButtonClick()
+        {
+            PartnerPortalButton.Click();
+            return GetInstance<PartnerPortalPage>(Driver);
         }
     }
 }
