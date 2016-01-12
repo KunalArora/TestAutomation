@@ -127,6 +127,11 @@
     <Compile Include="DealershipCustomerProduct.cs">
       <DependentUpon>BrotherDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Properties\MPSProd.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>MPSProd.settings</DependentUpon>
+    </Compile>
     <Compile Include="Properties\SeleniumGlobal.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -190,6 +195,10 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>BrotherDB.edmx</DependentUpon>
       <LastGenOutput>BrotherDB.cs</LastGenOutput>
+    </None>
+    <None Include="Properties\MPSProd.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>MPSProd.Designer.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\SeleniumGlobal.settings">

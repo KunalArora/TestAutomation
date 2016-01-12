@@ -375,16 +375,10 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [Given(@"I sign as ""(.*)"" into ""(.*)"" for ""(.*)""")]
         public void GivenISignAsIntoFor(string role, string web, string country)
         {
-            //GivenILaunchBrotherOnlineFor(country);
-            //WebDriver.Relaunchwebpage(web);
-            //MpsUtil.Relaunchwebpage(CurrentDriver, web);
-
             Helper.SetCountry(country);
             var title = HomePage.WelcomePageCountryTitle(country);
             CurrentPage = BasePage.LoadWebBoxes(CurrentDriver, web, title);
-            //WhenIClickOnSignInCreateAnAccount(country);
             NextPage = CurrentPage.As<HomePage>().ClickSignInCreateAccountButton();
-            //WhenISignInAsA(role, country);
             SignInAsARoleType(role, country);
             SignInButtonToAsARoleType(role);
         }

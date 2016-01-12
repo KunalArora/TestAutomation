@@ -17,7 +17,7 @@ namespace Brother.Tests.Selenium.Lib.Support
         /// <returns>Generated proposal Name as string</returns>
         public static string GenerateUniqueProposalName()
         {
-            var generatedProposalName = "MPS_" + SurName() + 
+            var generatedProposalName = "MPS_Smoke_" + SurName() + 
                 "-" + DateTime.Now.ToString("MMdHHmmss");
             HelperClasses.SpecFlow.SetContext("GeneratedProposalName", generatedProposalName);
             return generatedProposalName;

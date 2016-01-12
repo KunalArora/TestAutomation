@@ -1,0 +1,33 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Brother.Tests.Selenium.Lib.Properties" GeneratedClassName="MPSProd">
+  <Profiles />
+  <Settings>
+    <Setting Name="ProdMPSDealer" Type="System.String" Scope="User">
+      <Value Profile="(Default)">MPS-{0}-Prod-Dealer1@brother.co.uk</Value>
+    </Setting>
+    <Setting Name="ProdMPSLOApprover" Type="System.String" Scope="User">
+      <Value Profile="(Default)">MPS-{0}-Prod-LOApprover@brother.co.uk</Value>
+    </Setting>
+    <Setting Name="ProdMPSLOAdmin" Type="System.String" Scope="User">
+      <Value Profile="(Default)">MPS-{0}-Prod-LOAdmin@brother.co.uk</Value>
+    </Setting>
+    <Setting Name="ProdMPSBank" Type="System.String" Scope="User">
+      <Value Profile="(Default)">MPS-{0}-Prod-Bank@brother.co.uk</Value>
+    </Setting>
+    <Setting Name="ProdDealerPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">{0}dealer1</Value>
+    </Setting>
+    <Setting Name="ProdLOApproverPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">{0}loapprover1</Value>
+    </Setting>
+    <Setting Name="ProdLOAdminPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">{0}loadmin1</Value>
+    </Setting>
+    <Setting Name="ProdBankPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">{0}leasingbank1</Value>
+    </Setting>
+    <Setting Name="ProdCustomerPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">P@$$w0rd</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
