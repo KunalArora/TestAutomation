@@ -873,7 +873,7 @@ Scenarios:
 | United Kingdom    |http://prapp586v.brotherdc.eu/test/DataManager.aspx      | Automation | Password1 |                                     
 
 
-@SMOKE
+@SMOKE @TEST
 # BBAU-2956
 Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by bpid on UK dv2 site
 	Given I want to create a new account with Brother Online "<Country>"
@@ -906,4 +906,4 @@ Scenario Outline: Customer creates a new account with Brother Online using valid
 	
 Scenarios: 
 | Country			|	Site Url											      | UserName   | Password  |
-| United Kingdom    |http://online.uk.cms.brotherdv2.eu/test/DataManager.aspx     | Automation | Password1 |    
+| United Kingdom    |http://uk.brotherdv2.eu/test/DataManager.aspx                | Automation | Password1 |
