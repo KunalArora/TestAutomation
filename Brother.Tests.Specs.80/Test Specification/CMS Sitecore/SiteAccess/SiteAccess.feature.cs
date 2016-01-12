@@ -109,13 +109,13 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verify that a user is able to login to the CMS system\tand check page exists")]
-        [NUnit.Framework.CategoryAttribute("SMOKE")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "http://main.co.uk.brotherdv2.eu/?sc_mode=edit&sc_itemid=%7bF1D22F29-BECF-4ADF-A8F" +
             "F-A5411095D2B3%7d&sc_lang=en", "Automation", "Password1", null)]
         public virtual void VerifyThatAUserIsAbleToLoginToTheCMSSystemAndCheckPageExists(string country, string siteUrl, string userName, string password, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "SMOKE"};
+                    "ignore"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
