@@ -18,7 +18,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         {
             get { return string.Empty; }
         }
-        [FindsBy(How = How.CssSelector, Using = ".sc-text.sc_Text_6.data-sc-registered")] 
+        [FindsBy(How = How.CssSelector, Using = ".sc-text.sc_Text_3.data-sc-registered")] 
         public IWebElement LinkTextAvailable;
 
         [FindsBy(How = How.CssSelector, Using = "[href=\"/sitecore/shell/Applications/Content Editor.aspx?sc_bw=1\"]")]
