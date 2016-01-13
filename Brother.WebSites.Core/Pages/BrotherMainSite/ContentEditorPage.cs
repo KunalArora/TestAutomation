@@ -21,7 +21,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         [FindsBy(How = How.Id, Using = "Ribbon")]
         public IWebElement RibbonBarExist;
 
-        [FindsBy(How = How.Id, Using = "Tree_Glyph_0DE95AE441AB4D019EB067441B7C2450")]
+        [FindsBy(How = How.XPath, Using = ".//*[@id='Ribbon']")]
         public IWebElement ContentEditor;
 
         public void IsRibbonBarExist()
