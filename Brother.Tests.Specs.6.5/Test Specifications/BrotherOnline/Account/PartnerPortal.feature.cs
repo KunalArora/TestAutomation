@@ -20,6 +20,7 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.Account
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("PartnerPortal")]
+    [NUnit.Framework.CategoryAttribute("TEST")]
     public partial class PartnerPortalFeature
     {
         
@@ -32,7 +33,8 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.Account
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "PartnerPortal", "As a Dealeradmin user I want to add new users on Manage users list page.", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "PartnerPortal", "As a Dealeradmin user I want to add new users on Manage users list page.", ProgrammingLanguage.CSharp, new string[] {
+                        "TEST"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -77,55 +79,55 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.Account
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add a newuser to userlist page", @__tags);
-#line 5
-this.ScenarioSetup(scenarioInfo);
 #line 6
-testRunner.Given(string.Format("I launch Brother Online for \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioSetup(scenarioInfo);
 #line 7
-testRunner.When(string.Format("I click on Create Account for \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.Given(string.Format("I launch Brother Online for \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
-testRunner.And("I am redirected to the Brother Login/Register page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.When(string.Format("I click on Create Account for \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 9
-testRunner.And(string.Format("I fill in email as \"{0}\"", emailAddress1), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("I am redirected to the Brother Login/Register page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 10
-testRunner.And(string.Format("I fill in password as \"{0}\"", password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And(string.Format("I fill in email as \"{0}\"", emailAddress1), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
-testRunner.And("I press sign in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And(string.Format("I fill in password as \"{0}\"", password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 12
-testRunner.Then("I should be logged in successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.And("I press sign in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 13
-testRunner.And("I click on partner portal tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.Then("I should be logged in successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 14
-testRunner.Then("I should see partner portal button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.And("I click on partner portal tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 15
-testRunner.And("I click on partner portal button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.Then("I should see partner portal button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 16
-testRunner.Then("I should see manage userlist page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.And("I click on partner portal button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 17
-testRunner.And("I click on Manage a list of closed area", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.Then("I should see manage userlist page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 18
-testRunner.Then("I should see ManageCustomersandOrdersPage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.And("I click on Manage a list of closed area", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 19
-testRunner.And("I click on ADD a colleague", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.Then("I should see ManageCustomersandOrdersPage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 20
-testRunner.Then("I should see enter email address field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.And("I click on ADD a colleague", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 21
-testRunner.And(string.Format("I enter email address as \"{0}\"", emailAddress2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.Then("I should see enter email address field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 22
-testRunner.And("I click on submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And(string.Format("I enter email address as \"{0}\"", emailAddress2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 23
-testRunner.Then("I should see FirstName and LastName fields", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.And("I click on submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 24
-testRunner.And(string.Format("I fill in FirstName as \"{0}\"", firstName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.Then("I should see FirstName and LastName fields", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 25
-testRunner.And(string.Format("I fill in LastName as \"{0}\"", lastName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And(string.Format("I fill in FirstName as \"{0}\"", firstName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 26
-testRunner.And("I click submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And(string.Format("I fill in LastName as \"{0}\"", lastName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 27
-testRunner.Then("I should see success message on the page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.And("I click submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 28
-testRunner.And("I close the message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.Then("I should see success message on the page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 29
+testRunner.And("I close the message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 30
 testRunner.And("I should see created user in the user list page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
