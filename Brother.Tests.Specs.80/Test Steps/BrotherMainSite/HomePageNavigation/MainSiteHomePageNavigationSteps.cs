@@ -123,13 +123,16 @@ namespace Brother.Tests.Specs._80.BrotherMainSite.HomePageNavigation
        [Then(@"I click on the Content Editor option ""(.*)""")]
         public void ThenIClickOnTheContentEditorOption(string country)
         {
-            CurrentPage.As<ExperienceEditorPage>().ClickOnContentEditor(country);
+            //CurrentPage.As<ExperienceEditorPage>().ClickOnContentEditor(country);
+            NextPage = CurrentPage.As<ExperienceEditorPage>().ClickOnContentEditor(country);
+
         }
        [Then(@"I should be able to see the content editor page ""(.*)""")]
        public void ThenIShouldBeAbleToSeeTheContentEditorPage(string country)
        {
-           CurrentPage = BasePage.LoadContentEditorPage(CurrentDriver, country);
+           //CurrentPage = BasePage.LoadContentEditorPage(CurrentDriver, country);
            CurrentPage.As<ContentEditorPage>().IsRibbonBarExist();
+           //CurrentPage.As<ContentEditorPage>().IsRibbonBarExist();
        }
        [Then(@"I navigate to the url ""(.*)""")]
        public void ThenINavigateToTheUrl(string p0)

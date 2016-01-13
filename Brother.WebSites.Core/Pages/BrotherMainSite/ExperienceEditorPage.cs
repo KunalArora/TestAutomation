@@ -35,9 +35,10 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
             }
             AssertElementPresent(LinkTextAvailable, "Sitecore Experience Platform");
         }
-        public void ClickOnContentEditor(string country)
+        public ContentEditorPage ClickOnContentEditor(string country)
         {   
             ContentEditorLink.Click();
+            return GetInstance<ContentEditorPage>();
         }
         public void IsPageHeaderDisplayed()
         {
