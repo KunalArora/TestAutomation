@@ -49,6 +49,34 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
         [FindsBy(How = How.CssSelector, Using = "#content_1_breadcrumb_0_rptBreadcrumb_hlkBreadcrumb_0[href*='/partner-portal']")]
         public IWebElement PartnerPortalBreadcrumb;
 
+        [FindsBy(How = How.CssSelector, Using = ".btn-add-colleague.button-aqua")] 
+        public IWebElement AddNewColleaguebutton;
+
+        [FindsBy(How = How.CssSelector, Using = "#txtEmail")]
+        public IWebElement AddNewColleagueEmailAddressTxtBox;
+
+        [FindsBy(How = How.CssSelector, Using = ".check-email.button-blue")] 
+        public IWebElement FollowingButton;
+
+        [FindsBy(How = How.CssSelector, Using = "#txtFirstName")] 
+        public IWebElement FirstNameTxtBox;
+
+        [FindsBy(How = How.CssSelector, Using = "#txtLastName")] 
+        public IWebElement LastNameTxtBox;
+
+        [FindsBy(How = How.CssSelector, Using = "#content_1_innercontent_2_btnSumbit")] 
+        public IWebElement SubmitButton;
+
+        [FindsBy(How = How.CssSelector, Using = ".add-colleague-message.dp-pop-up.cf")]
+        public IWebElement SuccessMessage;
+       
+        [FindsBy(How = How.CssSelector, Using = ".lightbox-close")]
+        public IWebElement MessageClose;
+     
+        [FindsBy(How = How.CssSelector, Using = ".odd>td")]
+        public IWebElement CreatedUsersinList;
+
+
         public PartnerPortalPage PartnerPortalBreadcrumbClick()
         {
             if (PartnerPortalBreadcrumb == null)
@@ -82,8 +110,24 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
             closeMessage.Click();
             return GetInstance<ManageCustomersAndOrdersPage>(Driver);
         }
-        
 
+        public ManageCustomersAndOrdersPage AddNewColleagueButtonClick()
+        {
+            if (AddNewColleaguebutton == null)
+            {
+                throw new NullReferenceException("Add new colleague button");
+            }
+
+            AddNewColleaguebutton.Click();
+            return GetInstance<ManageCustomersAndOrdersPage>(Driver);
+
+        }
+
+        public void IsAddNewColleagueEmailAddressTxtBoxDisplayed()
+        {
+            TestCheck.AssertIsEqual(true, AddNewColleagueEmailAddressTxtBox.Displayed, "Is Email address textbox displayed");
+        }
+       
         public void AddLastName(string lastName)
         {
             LastNameTextField.SendKeys(lastName + Keys.Tab);
@@ -99,6 +143,10 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
             AddNewCustomer.Click();
         }
 
+        public void IsAddNewCustomerButtonDisplayed()
+        {
+            TestCheck.AssertIsEqual(true, AddNewCustomer.Displayed, "Is add new  customer button displayed");
+        }
         public void NextButtonClick()
         {
             try
@@ -137,6 +185,61 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
                 MsgOutput("Not visible");
             }
             AssertElementValue(CustomerEmailAddress, emailAddress, "Validate Customer Email Address");
+        }
+
+        public void PopulateAddNewColleagueEmailAddressTxtBox(string emailAddress)
+        {
+            if (emailAddress.Equals(string.Empty))
+            {
+                emailAddress = Email.GenerateUniqueEmailAddress();
+            }
+
+            AddNewColleagueEmailAddressTxtBox.SendKeys(emailAddress);
+        }
+
+        public ManageCustomersAndOrdersPage ClickFollowingButton()
+        {
+            FollowingButton.Click();
+            return GetInstance<ManageCustomersAndOrdersPage>(Driver);
+
+        }
+
+        public void IsSubmitButtonDisplayed()
+        {
+            TestCheck.AssertIsEqual(true, SubmitButton.Displayed,"Is submit button displayed");
+        }
+
+        public void  EnterFirstNameTextBox(string firstName)
+        {
+            FirstNameTxtBox.SendKeys(firstName);
+            FirstNameTxtBox.SendKeys(Keys.Tab);
+        }
+
+        public void EnterLastNameTextBox(string lastName)
+        {
+            LastNameTxtBox.SendKeys(lastName);
+        }
+        public ManageCustomersAndOrdersPage ClickSubmitButton()
+        {
+            SubmitButton.Click();
+            return GetInstance<ManageCustomersAndOrdersPage>(Driver);
+        }
+
+        public void IsSuccessMessageDisplayed()
+        {
+            TestCheck.AssertIsEqual(true, SuccessMessage.Displayed, "Is Success Message Displayed");
+        }
+
+        public ManageCustomersAndOrdersPage PopUpMessageClose()
+        {
+            var PopUpMessageClose = Driver.FindElement(By.CssSelector(".add-colleague-message.dp-pop-up.cf"));
+            PopUpMessageClose.Click();
+            return GetInstance<ManageCustomersAndOrdersPage>(Driver);
+        }
+
+        public void IsCreatedUsersListDisplayed()
+        {
+            TestCheck.AssertIsEqual(true, CreatedUsersinList.Displayed, "Is Cretaed User list Displayed");
         }
     }
 }

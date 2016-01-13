@@ -43,6 +43,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         [FindsBy(How = How.Id, Using = "PasswordTextBox")] public IWebElement PasswordTextBox;
 
+        [FindsBy(How = How.CssSelector, Using = "#Password")] public IWebElement Password1TextBox;
+      
+
         [FindsBy(How = How.Id, Using = "ConfirmPasswordTextBox")] public IWebElement ConfirmPasswordTextBox;
 
         [FindsBy(How = How.Id, Using = "CompanyNameTextBox")] public IWebElement CompanyNameTextBox;
@@ -73,6 +76,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         [FindsBy(How = How.Id, Using = "TermsAndConditionsCheckbox")] public IWebElement AgreeToTermsAndConditions;
 
         [FindsBy(How = How.Id, Using = "Email")] public IWebElement EmailAddressTextBox;
+
+        [FindsBy(How = How.Id, Using = "Email")] public IWebElement EmailAddress1TextBox;
 
         [FindsBy(How = How.CssSelector, Using = ".half-col.validation-failed.blur .error")] public IWebElement
             PasswordErrorMessage;
@@ -472,6 +477,17 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             TestCheck.AssertIsEqual(emailAddress, GetTextBoxValue("Email"), "Email Text Box");
         }
 
+        public void PopulateEmailAddress1TextBox(string emailAddress)
+        {
+            EmailAddress1TextBox.SendKeys(emailAddress);
+            EmailAddress1TextBox.SendKeys(Keys.Tab);
+        }
+
+        public void PopulatePassword1TextBox(string password)
+        {
+            Password1TextBox.SendKeys(password);
+            Password1TextBox.SendKeys(Keys.Tab);
+        }
 
         public void EmptyEmailAddressTextBox()
         {
