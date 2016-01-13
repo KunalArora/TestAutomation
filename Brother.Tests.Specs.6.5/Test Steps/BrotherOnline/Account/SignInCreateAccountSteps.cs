@@ -897,9 +897,6 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<DataManagerPage>().CheckBPIDFromDataTable();
         }
-
-
-        
         [Then(@"I should be able to log into ""(.*)"" Brother Online using my creative center account details")]
         public void ThenIShouldBeAbleToLogIntoBrotherOnlineUsingMyCreativeCenterAccountDetails(string country)
         {
