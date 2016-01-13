@@ -34,26 +34,8 @@ namespace Brother.Tests.Specs
         {
             ScenarioContext.Current.Pending();
         }
-        [Then(@"I click on partner portal button")]
-        public void ThenIClickOnPartnerPortalButton()
-        {
-            NextPage = CurrentPage.As<WelcomeBackPage>().PartnerPortalButtonClick();
-        }
-        [Then(@"I should see manage userlist page")]
-        public void ThenIShouldSeeManageUserlistPage()
-        {
-            CurrentPage.As<PartnerPortalPage>().IsMaintainaListofUsersButonDisplayed();
-        }
-        [Then(@"I click on Manage a list of closed area")]
-        public void ThenIClickOnManageAListOfClosedArea()
-        {
-            CurrentPage.As<PartnerPortalPage>().IsMaintainaListofUsersButonDisplayed();
-        }
-        [Then(@"I should see Manage users list page")]
-        public void ThenIShouldSeeManageUsersListPage()
-        {
-            
-        }
-
+       
     }
 }
+      
+     

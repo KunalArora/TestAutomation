@@ -17,7 +17,7 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
 
         private const string PartnerButtonsSearchString = ".content-box.article-page .content-unit [href*=]";
 
-        [FindsBy(How = How.CssSelector, Using = ".button-aqua")]
+        [FindsBy(How = How.XPath, Using = ".//*[@id='main']/div/div[2]/div/span/table/tbody/tr/td/a[1]")]
         public IWebElement MaintainaListofUsersButton;
 
 
@@ -49,7 +49,7 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
         {
             TestCheck.AssertIsEqual(true, MaintainaListofUsersButton.Displayed, "Is button displayed");
         }
-        public ManageCustomersAndOrdersPage MaintainaListUsersButtonClick()
+        public ManageCustomersAndOrdersPage MaintainaListofUsersButtonClick()
         {
             MaintainaListofUsersButton.Click();
             return GetInstance<ManageCustomersAndOrdersPage>(Driver);

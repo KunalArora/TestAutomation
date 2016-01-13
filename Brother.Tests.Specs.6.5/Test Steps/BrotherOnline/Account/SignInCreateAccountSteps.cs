@@ -858,8 +858,8 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<WelcomeBackPage>().PartnerPortalMenuClick();
         }
-        [Then(@"I should see partner portal home page")]
-        public void ThenIShouldSeePartnerPortalHomePage()
+        [Then(@"I should see partner portal button")]
+        public void ThenIShouldSeePartnerPortalButton()
         {
           CurrentPage.As<WelcomeBackPage>().IsPartnerPortalButtonDisplayed();
         }       
