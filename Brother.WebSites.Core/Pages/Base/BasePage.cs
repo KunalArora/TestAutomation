@@ -75,7 +75,7 @@ namespace Brother.WebSites.Core.Pages.Base
         public static ContentEditorPage LoadContentEditorPage(IWebDriver driver, string baseUrl)
         {
             driver = SetDriver(driver);
-            NavigateToPage(driver, baseUrl.TrimEnd(new char[] { '/' }));
+            NavigateToPageSitecore(driver, baseUrl.TrimEnd(new char[] { '/' }));
             return GetInstance<ContentEditorPage>(driver, baseUrl, "");
         }
 
