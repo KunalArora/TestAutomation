@@ -2,7 +2,7 @@
 Feature: PartnerPortal
 As a Dealeradmin user I want to add new users on Manage users list page.
 And
-And Dealeruser without adminrights I want to access partner portal page and cannot see manage users list page.
+As a Dealeruser without adminrights I want to access partner portal page and cannot see manage users list page.
 
 @TEST
 Scenario Outline: Add a newuser to userlist page

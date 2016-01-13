@@ -33,9 +33,9 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.Account
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "PartnerPortal", "As a Dealeradmin user I want to add new users on Manage users list page.\r\nAnd\r\nAn" +
-                    "d Dealeruser without adminrights I want to access partner portal page and cannot" +
-                    " see manage users list page.", ProgrammingLanguage.CSharp, new string[] {
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "PartnerPortal", "As a Dealeradmin user I want to add new users on Manage users list page.\r\nAnd\r\nAs" +
+                    " a Dealeruser without adminrights I want to access partner portal page and canno" +
+                    "t see manage users list page.", ProgrammingLanguage.CSharp, new string[] {
                         "TEST"});
             testRunner.OnFeatureStart(featureInfo);
         }
