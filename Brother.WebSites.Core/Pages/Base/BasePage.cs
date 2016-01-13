@@ -68,7 +68,7 @@ namespace Brother.WebSites.Core.Pages.Base
         public static ExperienceEditorPage LoadExperienceEditorPage(IWebDriver driver, string baseUrl)
         {
             driver = SetDriver(driver);
-            NavigateToPage(driver, baseUrl.TrimEnd(new char[] { '/' }));
+            NavigateToPageSitecore(driver, baseUrl.TrimEnd(new char[] { '/' }));
             return GetInstance<ExperienceEditorPage>(driver, baseUrl, "");
         }
 
