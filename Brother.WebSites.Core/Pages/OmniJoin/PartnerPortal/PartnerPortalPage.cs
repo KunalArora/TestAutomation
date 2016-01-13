@@ -21,6 +21,9 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
         public IWebElement MaintainaListofUsersButton;
 
 
+        [FindsBy(How = How.CssSelector, Using = ".button-aqua")]
+        public IWebElement HomeButton;
+
         public ManageServicePage ManageServicesButtonClick()
         {
             var manageServicesButton = Driver.FindElement(By.CssSelector(PartnerButtonsSearchString.Replace("href*=", "href*='my-services'")));
@@ -49,10 +52,16 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
         {
             TestCheck.AssertIsEqual(true, MaintainaListofUsersButton.Displayed, "Is button displayed");
         }
+       
         public ManageCustomersAndOrdersPage MaintainaListofUsersButtonClick()
         {
             MaintainaListofUsersButton.Click();
             return GetInstance<ManageCustomersAndOrdersPage>(Driver);
+        }
+
+        public void IsHomeButtonDisplayed()
+        {
+            TestCheck.AssertIsEqual(true, HomeButton.Displayed, "Is home button displayed");
         }
     }
 }
