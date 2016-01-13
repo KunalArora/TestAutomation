@@ -49,7 +49,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         [FindsBy(How = How.Id, Using = "Password")]
         public IWebElement PasswordTextBox;
 
-        [FindsBy(How = How.CssSelector, Using = "#login > input")] 
+        [FindsBy(How = How.XPath, Using = ".//*[@id='login']/input")] 
         public IWebElement LogInButton;
 
         [FindsBy(How = How.Id, Using = "Main_Body")]
