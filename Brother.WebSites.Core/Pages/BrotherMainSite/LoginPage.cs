@@ -76,9 +76,10 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
             PasswordTextBox.SendKeys(password);
         }
 
-        public void ClickOnLoginButton(string country)
+         public ExperienceEditorPage ClickOnLoginButton(string country)
         {   
-           LogInButton.Click();
+             LogInButton.Click();
+             return GetInstance<ExperienceEditorPage>();
         }
         public ExperienceEditorPage NavigateToExperienceEditorPage(string country)
         {
