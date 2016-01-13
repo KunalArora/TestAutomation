@@ -1,4 +1,5 @@
-﻿Feature: PartnerPortal
+﻿@TEST
+Feature: PartnerPortal
 As a Dealeradmin user I want to add new users on Manage users list page.
 
 @TEST
