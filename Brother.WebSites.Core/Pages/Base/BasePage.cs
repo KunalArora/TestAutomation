@@ -49,7 +49,7 @@ namespace Brother.WebSites.Core.Pages.Base
         public static LoginPage LoadBrotherMainSiteLoginPage(IWebDriver driver, string baseUrl)
         {
             driver = SetDriver(driver);
-            NavigateToPage(driver, baseUrl.TrimEnd(new char[] { '/' }));
+            NavigateToPageSitecore(driver, baseUrl.TrimEnd(new char[] { '/' }));
             return GetInstance<LoginPage>(driver, baseUrl, "");
         }
         public static DataManagerPage LoadDataManagerPage(IWebDriver driver, string baseUrl)
@@ -224,6 +224,42 @@ namespace Brother.WebSites.Core.Pages.Base
                 }
                 MsgOutput(string.Format("Browser is on Page {0}", url));
                 AcceptCookieLaw(driver);
+            }
+            catch (WebDriverException driverException)
+            {
+                MsgOutput(string.Format("Web Driver Critical Error!!!! {0}", driverException.Message));
+                MsgOutput(string.Format("Likelhood that WebDriver could not get to the URL {0}", url));
+            }
+        }
+
+        public static void NavigateToPageSitecore(IWebDriver driver, string url)
+        {
+            try
+            {
+                MsgOutput("Attempting to navigate to page ", url);
+                NavigateToUrl(driver, url);
+                MsgOutput(string.Format("Browser is on Page {0}", url));
+
+            }
+            catch (WebDriverException driverException)
+            {
+                MsgOutput(string.Format("Web Driver Critical Error!!!! {0}", driverException.Message));
+                MsgOutput(string.Format("Likelihood that WebDriver could not get to the URL {0}", url));
+            }
+        }
+
+        private static void NavigateToPageSitecore(IWebDriver driver, string url, bool doRefresh)
+        {
+            try
+            {
+                MsgOutput("Attempting to navigate to page ", url);
+                NavigateToUrl(driver, url);
+                if (doRefresh)
+                {
+                    driver.Navigate().Refresh();
+                }
+                MsgOutput(string.Format("Browser is on Page {0}", url));
+
             }
             catch (WebDriverException driverException)
             {
