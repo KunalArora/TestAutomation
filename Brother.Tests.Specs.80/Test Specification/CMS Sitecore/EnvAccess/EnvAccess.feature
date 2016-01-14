@@ -1,4 +1,4 @@
-﻿@ignore @UAT @PROD @TEST @SMOKE
+﻿@UAT @PROD @TEST @SMOKE
 Feature: Environmemnt access
 	In order to validate that the environments are available a 200 response is returned from all related URLs	
 

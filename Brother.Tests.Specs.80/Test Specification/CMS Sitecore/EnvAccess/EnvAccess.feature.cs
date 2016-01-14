@@ -20,7 +20,6 @@ namespace Brother.Tests.Specs._80.TestSpecification.CMSSitecore.EnvAccess
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("Environmemnt access")]
-    [NUnit.Framework.IgnoreAttribute()]
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("PROD")]
     [NUnit.Framework.CategoryAttribute("TEST")]
@@ -39,7 +38,6 @@ namespace Brother.Tests.Specs._80.TestSpecification.CMSSitecore.EnvAccess
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Environmemnt access", "In order to validate that the environments are available a 200 response is return" +
                     "ed from all related URLs", ProgrammingLanguage.CSharp, new string[] {
-                        "ignore",
                         "UAT",
                         "PROD",
                         "TEST",
