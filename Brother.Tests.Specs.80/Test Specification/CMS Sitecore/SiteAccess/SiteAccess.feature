@@ -17,7 +17,7 @@ Scenarios:
 	
 	| country        | Site Url                                           | UserName   | Password  |
 	| United Kingdom | http://main.co.uk.brotherdv2.eu/sitecore/login     | Automation | Password1 | 
-	| United Kingdom | http://main.co.uk.cms.brotherqas.eu/sitecore/login | Automation | Password1 | 
+	#| United Kingdom | http://main.co.uk.cms.brotherqas.eu/sitecore/login | Automation | Password1 | 
 	
 @ignore
 Scenario Outline: Verify that a user is able to login to the CMS system	and check page exists
@@ -64,7 +64,7 @@ Scenarios:
 	
 	| country        | Site Url                            | UserName   | Password  |
 	| France | http://main.fr.brotherdv2.eu/sitecore/login | Automation | Password1 |
-	| France | http://main.fr.cms.brotherqas.eu/sitecore/login | Automation | Password1 |
+	#| France | http://main.fr.cms.brotherqas.eu/sitecore/login | Automation | Password1 |
 
 @SMOKE
 Scenario Outline: Verify that a user is able to login to the CMS system	- Italy
@@ -81,7 +81,7 @@ Scenarios:
 	
 	| country        | Site Url                           | UserName   | Password  |
 	| Italy | http://main.it.brotherdv2.eu/sitecore/login | Automation | Password1 |
-	| Italy | http://main.it.cms.brotherqas.eu/sitecore/login | Automation | Password1 |
+	#| Italy | http://main.it.cms.brotherqas.eu/sitecore/login | Automation | Password1 |
 	
 @ignore
 Scenario Outline: Verify that a user is able to add grid on the page
