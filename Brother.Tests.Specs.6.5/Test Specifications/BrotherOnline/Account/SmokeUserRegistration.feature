@@ -216,32 +216,6 @@ Scenarios:
 | Netherlands | 
 
 @SMOKE
-Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on Ireland site
-	Given I want to create a new account with Brother Online "<Country>"
-	When I click on Create Account for "<Country>"
-	And I am redirected to the Brother Login/Register page
-	And I have Checked No I Do Not Have An Account Checkbox
-	And I fill in the registration information using a valid email address 
-	| field           | value          |
-	| FirstName       | AutoTest       |
-	| LastName        | AutoTest       |
-	| Password        | @@@@@	       |
-	| ConfirmPassword | @@@@@		   |
-
-	And I have Agreed to the Terms and Conditions
-	And I declare that I do not use this account for business
-	When I press Create Your Account
-	Then I should see my account confirmation page
-	And When I Click Go Back
-	#And Once I have Validated an Email was received and verified my account
-	Then I should be able to log into "<Country>" Brother Online using my account details
-	And I can sign out of Brother Online
-	Then I am redirected to the Brother Home Page
-Scenarios: 
-| Country     |	
-| Ireland     |
-
-@SMOKE
 Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on Russia site
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -774,7 +748,7 @@ Scenarios:
 	| Professional | United Kingdom | Monthly      | 1   | OmniJoin              | £34.80  |
 	| Professional | United Kingdom | Annual       | 1   | OmniJoin              | £331.20 |
 
-@SMOKE @PROD
+@ignore @SMOKE @PROD
 Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on IE and UK site - email verification
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -801,7 +775,7 @@ Scenarios:
 | United Kingdom    |
 | Ireland           |
 
-@SMOKE @PROD
+@ignore @SMOKE @PROD
 Scenario: Sign Up for 14 day Free trial already signed into Brother Online - email verification
 	# Create an account on BOL and sign in
 	Given I want to create a new account with Brother Online "United Kingdom"
