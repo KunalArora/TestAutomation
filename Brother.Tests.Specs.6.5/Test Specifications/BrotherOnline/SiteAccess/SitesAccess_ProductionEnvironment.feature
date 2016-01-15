@@ -1,5 +1,4 @@
-﻿# @TEST
-# @SMOKE @PROD
+﻿@TEST @SMOKE @PROD
 Feature: AccessAllProductionSites
 	In order to validate the status of a Websites on the Production environment
 	As a sanity check
@@ -33,6 +32,7 @@ Scenarios:
 #	| Hungary        | http://www.brother.hu/    |
 #	| Bulgaria       | http://www.brother.bg/    |
 #	| Romania        | http://www.brother.ro/    |
+
 
 Scenario Outline: Get 200 OK response back from Brother Online "<Country>" on the LIVE environment
 	Given The following site "<Site Url>" to validate I should receive an Ok response back	
