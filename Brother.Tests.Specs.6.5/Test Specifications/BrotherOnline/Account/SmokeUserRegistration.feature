@@ -774,7 +774,7 @@ Scenarios:
 	| Professional | United Kingdom | Monthly      | 1   | OmniJoin              | £34.80  |
 	| Professional | United Kingdom | Annual       | 1   | OmniJoin              | £331.20 |
 
-@SMOKE @PROD
+@ignore @SMOKE @PROD
 Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on IE and UK site - email verification
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -801,7 +801,7 @@ Scenarios:
 | United Kingdom    |
 | Ireland           |
 
-@SMOKE @PROD
+@ignore @SMOKE @PROD
 Scenario: Sign Up for 14 day Free trial already signed into Brother Online - email verification
 	# Create an account on BOL and sign in
 	Given I want to create a new account with Brother Online "United Kingdom"
