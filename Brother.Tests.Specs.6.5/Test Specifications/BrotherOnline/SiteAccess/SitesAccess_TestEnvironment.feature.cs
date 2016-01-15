@@ -20,7 +20,6 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("AccessALLTestSites")]
-    [NUnit.Framework.CategoryAttribute("SMOKE")]
     [NUnit.Framework.CategoryAttribute("TEST")]
     public partial class AccessALLTestSitesFeature
     {
@@ -36,7 +35,6 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "AccessALLTestSites", "In order to validate the status of a Websites on the Test environment\r\nAs a sanit" +
                     "y check\r\nWe need to receive a 200 OK request back from a list of selected sites", ProgrammingLanguage.CSharp, new string[] {
-                        "SMOKE",
                         "TEST"});
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -73,7 +71,6 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess
         [NUnit.Framework.DescriptionAttribute("Get 200 OK response back from the following Brother Main Sites on the Test enviro" +
             "nment")]
         [NUnit.Framework.CategoryAttribute("TEST")]
-        [NUnit.Framework.CategoryAttribute("SMOKE")]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "http://uk.brotherdv2.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Germany", "http://de.brotherdv2.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Slovakia", "http://sk.brotherdv2.eu/", null)]
@@ -95,8 +92,7 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess
         public virtual void Get200OKResponseBackFromTheFollowingBrotherMainSitesOnTheTestEnvironment(string language, string mainSite, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "TEST",
-                    "SMOKE"};
+                    "TEST"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -114,7 +110,7 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Get 200 OK response back from the following Brother Online Sites on the Test envi" +
             "ronment")]
-        [NUnit.Framework.CategoryAttribute("SMOKE")]
+        [NUnit.Framework.CategoryAttribute("TEST")]
         [NUnit.Framework.TestCaseAttribute("Ireland", "https://online.ie.brotherdv2.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "https://online.uk.brotherdv2.eu/", null)]
         [NUnit.Framework.TestCaseAttribute("Spain", "https://online.es.brotherdv2.eu/", null)]
@@ -136,7 +132,7 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void Get200OKResponseBackFromTheFollowingBrotherOnlineSitesOnTheTestEnvironment(string language, string brotherOnline, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "SMOKE"};
+                    "TEST"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));

@@ -20,6 +20,9 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("AccessAllProductionSites")]
+    [NUnit.Framework.CategoryAttribute("TEST")]
+    [NUnit.Framework.CategoryAttribute("SMOKE")]
+    [NUnit.Framework.CategoryAttribute("PROD")]
     public partial class AccessAllProductionSitesFeature
     {
         
@@ -34,7 +37,10 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "AccessAllProductionSites", "In order to validate the status of a Websites on the Production environment\r\nAs a" +
                     " sanity check\r\nWe need to receive a 200 OK request back from a list of selected " +
-                    "sites", ProgrammingLanguage.CSharp, ((string[])(null)));
+                    "sites", ProgrammingLanguage.CSharp, new string[] {
+                        "TEST",
+                        "SMOKE",
+                        "PROD"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -92,9 +98,9 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get 200 OK response back from Brother Main Site \"<Country>\" on the LIVE environme" +
                     "nt", exampleTags);
-#line 8
+#line 7
 this.ScenarioSetup(scenarioInfo);
-#line 9
+#line 8
  testRunner.Given(string.Format("The following site \"{0}\" to validate I should receive an Ok response back", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             this.ScenarioCleanup();
