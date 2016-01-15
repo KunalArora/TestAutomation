@@ -18,7 +18,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         {
             get { return string.Empty; }
         }
-        [FindsBy(How = How.CssSelector, Using = ".sc-text.sc_Text_3.data-sc-registered")] 
+        [FindsBy(How = How.CssSelector, Using = ".sc-applicationHeader-row1")] 
         public IWebElement LinkTextAvailable;
 
         [FindsBy(How = How.CssSelector, Using = "[href=\"/sitecore/shell/Applications/Content Editor.aspx?sc_bw=1\"]")]
@@ -35,9 +35,10 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
             }
             AssertElementPresent(LinkTextAvailable, "Sitecore Experience Platform");
         }
-        public void ClickOnContentEditor(string country)
+        public ContentEditorPage ClickOnContentEditor(string country)
         {   
             ContentEditorLink.Click();
+            return GetInstance<ContentEditorPage>();
         }
         public void IsPageHeaderDisplayed()
         {

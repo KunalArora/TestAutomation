@@ -2,6 +2,7 @@
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
+using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
 using Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
@@ -144,6 +145,77 @@ namespace Brother.Tests.Specs
             Email.CurrentEmailInUseForTest = dealerEmailAddress;
             Helper.OrpActivationCode = Sql.GetOrpActivationCode(Sql.GetOrpDealerId(Helper.OrpDealerEmail));
                 //Helper.OrpLicenseTerm, Helper.OrpNumLicenses, Helper.OrpComment);
+        }
+        [Then(@"I should see manage userlist page")]
+        public void ThenIShouldSeeManageUserlistPage()
+        {
+            CurrentPage.As<PartnerPortalPage>().IsMaintainaListofUsersButonDisplayed();
+        }
+        [Then(@"I click on Manage a list of closed area")]
+        public void ThenIClickOnManageAListOfClosedArea()
+        {
+            NextPage = CurrentPage.As<PartnerPortalPage>().MaintainaListofUsersButtonClick();
+        }
+        [Then(@"I should see ManageCustomersandOrdersPage")]
+        public void ThenIShouldSeeManageCustomersandOrdersPage()
+        {
+            CurrentPage.As<ManageCustomersAndOrdersPage>().IsAddNewCustomerButtonDisplayed();
+        }
+        [Then(@"I click on ADD a colleague")]
+        public void ThenIClickOnAddaColleague()
+        {
+            CurrentPage.As<ManageCustomersAndOrdersPage>().AddNewColleagueButtonClick();
+        }
+        [Then(@"I should see enter email address field")]
+        public void ThenIShouldSeeEnterEmailAddressField()
+        {
+            CurrentPage.As<ManageCustomersAndOrdersPage>().IsAddNewColleagueEmailAddressTxtBoxDisplayed();
+        }
+        [Then(@"I enter email address as ""(.*)""")]
+        public void ThenIEnterEmailAddressAs(string emailAddress)
+        {
+            CurrentPage.As<ManageCustomersAndOrdersPage>().PopulateAddNewColleagueEmailAddressTxtBox(emailAddress);
+        }
+        [Then(@"I click on submit")]
+        public void ThenIClickOnSubmit()
+        {
+            CurrentPage.As<ManageCustomersAndOrdersPage>().ClickFollowingButton();
+        }
+
+        [Then(@"I should see FirstName and LastName fields")]
+        public void ThenIShouldSeeFirstNameAndLastNameFields()
+        {
+           CurrentPage.As<ManageCustomersAndOrdersPage>().IsSubmitButtonDisplayed();
+        }
+        [Then(@"I fill in FirstName as """"(.*)""""")]
+        public void ThenIFillInFirstNameAs(string firstName)
+        {
+            CurrentPage.As<ManageCustomersAndOrdersPage>().EnterFirstNameTextBox(firstName);
+        }
+        [Then(@"I fill in LastName as ""(.*)""")]
+        public void ThenIFillInLastNameAs(string lastName)
+        {
+          CurrentPage.As<ManageCustomersAndOrdersPage>().EnterLastNameTextBox(lastName);  
+        }
+        [Then(@"I click submit")]
+        public void ThenIClickSubmit()
+        {
+            CurrentPage.As<ManageCustomersAndOrdersPage>().ClickSubmitButton();
+        }
+        [Then(@"I should see success message on the page")]
+        public void ThenIShouldSeeSuccessMessageOnThePage()
+        {
+            CurrentPage.As<ManageCustomersAndOrdersPage>().IsSuccessMessageDisplayed();
+        }
+        [Then(@"I close the message")]
+        public void ThenICloseTheMessage()
+        {
+            CurrentPage.As<ManageCustomersAndOrdersPage>().PopUpMessageClose();
+        }
+        [Then(@"I should see created user in the user list page")]
+        public void ThenIShouldSeeCreatedUserInTheUserListPage()
+        {
+           CurrentPage.As<ManageCustomersAndOrdersPage>().IsCreatedUsersListDisplayed();
         }
 
     }

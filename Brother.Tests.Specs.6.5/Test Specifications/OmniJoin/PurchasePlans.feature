@@ -31,7 +31,7 @@ Given I want to create a new account with Brother Online "United Kingdom"
 	And When I Click Go Back
 	Then I should be able to log into "United Kingdom" Brother Online using my account details
 
-@ignore	
+@ignore
 ## OmniJoin plan purchase - 
 Scenario: Purchase a Lite Use plan on Monthly Billing but click Cancel before submitting payment
 	 And I have navigated to the OmniJoin home page
