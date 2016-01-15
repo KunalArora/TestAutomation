@@ -14,8 +14,7 @@ And I fill in email as "<Email Address1>"
 And I fill in password as "<Password>"
 And I press sign in 
 Then I should be logged in successfully
-And I click on partner portal tab
-Then I should see partner portal button 
+And I click on Partner Portal menu
 And I click on partner portal button
 Then I should see manage userlist page
 And I click on Manage a list of closed area
@@ -28,8 +27,6 @@ Then I should see FirstName and LastName fields
 And I fill in FirstName as "<FirstName>"
 And I fill in LastName as "<LastName>"
 And I click submit
-Then I should see success message on the page
-And I close the message
 And I should see created user in the user list page
 
 
@@ -46,9 +43,8 @@ And I fill in email as "<Email Address1>"
 And I fill in password as "<Password>"
 And I press sign in 
 Then I should be logged in successfully
-And I click on partner portal tab
-Then I should see partner portal button 
-When I click on partner portal button
+And I click on Partner Portal menu
+And I click on partner portal button
 Then I should see partner portal homepage without manageusers list page access
 
 Examples:

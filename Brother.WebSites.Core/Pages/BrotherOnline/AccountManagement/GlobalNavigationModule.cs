@@ -34,11 +34,13 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         private const string BrotherHomePage = "#master-logo > a";
         private const string MyAccountButtons = ".conference-button[href*='']";
         private const string InstankInkButtons = ".dp-button-aqua[href*='']";
-        private const string PartnerPortalButtons = ".dp-button-aqua[href*='']";
+      //private const string PartnerPortalButtons = ".dp-button-aqua[href*='']";
+
         private const string TopNavigationBar = "#primary-nav .wrapper .cf";
         private const string SignOutLink = "a[href='/sign-out']";
         private const string BackToBrotherOnlineButton = ".back-button-holder";
         private const string OrdersMenu = "227d43a9-3489-4b80-b229-5b9366d978f0";
+        private const string PartnerPortalButtons = ".dp-button-aqua";
  
 #region Menu Navigation (Private)
 

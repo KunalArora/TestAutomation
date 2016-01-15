@@ -98,6 +98,7 @@ testRunner.And(string.Format("I fill in password as \"{0}\"", password), ((strin
 #line 15
 testRunner.And("I press sign in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 16
+<<<<<<< Updated upstream
 testRunner.Then("I should be logged in successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 17
 testRunner.And("I click on partner portal tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -132,6 +133,34 @@ testRunner.Then("I should see success message on the page", ((string)(null)), ((
 #line 32
 testRunner.And("I close the message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 33
+=======
+testRunner.And("I click on Partner Portal menu", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 17
+testRunner.And("I click on partner portal button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 18
+testRunner.Then("I should see manage userlist page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 19
+testRunner.And("I click on Manage a list of closed area", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 20
+testRunner.Then("I should see ManageCustomersandOrdersPage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 21
+testRunner.And("I click on ADD a colleague", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 22
+testRunner.Then("I should see enter email address field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 23
+testRunner.And(string.Format("I enter email address as \"{0}\"", emailAddress2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 24
+testRunner.And("I click on submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 25
+testRunner.Then("I should see FirstName and LastName fields", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 26
+testRunner.And(string.Format("I fill in FirstName as \"{0}\"", firstName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 27
+testRunner.And(string.Format("I fill in LastName as \"{0}\"", lastName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 28
+testRunner.And("I click submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 29
+>>>>>>> Stashed changes
 testRunner.And("I should see created user in the user list page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -150,6 +179,7 @@ testRunner.And("I should see created user in the user list page", ((string)(null
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User without adminrights cannot see manage users list page", @__tags);
+<<<<<<< Updated upstream
 #line 41
 this.ScenarioSetup(scenarioInfo);
 #line 42
@@ -173,6 +203,29 @@ testRunner.Then("I should see partner portal button", ((string)(null)), ((TechTa
 #line 51
 testRunner.When("I click on partner portal button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 52
+=======
+#line 37
+this.ScenarioSetup(scenarioInfo);
+#line 38
+testRunner.Given(string.Format("I launch Brother Online for \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 39
+testRunner.When(string.Format("I click on Create Account for \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 40
+testRunner.And("I am redirected to the Brother Login/Register page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 41
+testRunner.And(string.Format("I fill in email as \"{0}\"", emailAddress1), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 42
+testRunner.And(string.Format("I fill in password as \"{0}\"", password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 43
+testRunner.And("I press sign in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 44
+testRunner.Then("I should be logged in successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 45
+testRunner.And("I click on Partner Portal menu", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 46
+testRunner.And("I click on partner portal button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 47
+>>>>>>> Stashed changes
 testRunner.Then("I should see partner portal homepage without manageusers list page access", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

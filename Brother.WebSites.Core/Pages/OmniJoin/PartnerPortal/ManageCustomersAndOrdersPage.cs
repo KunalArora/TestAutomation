@@ -221,7 +221,11 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
         }
         public ManageCustomersAndOrdersPage ClickSubmitButton()
         {
-            SubmitButton.Click();
+            if (SubmitButton == null)
+            {
+                throw new NullReferenceException("Unable to locate element");
+            }
+            SubmitButton.Click();       
             return GetInstance<ManageCustomersAndOrdersPage>(Driver);
         }
 

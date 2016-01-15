@@ -146,11 +146,6 @@ namespace Brother.Tests.Specs
             Helper.OrpActivationCode = Sql.GetOrpActivationCode(Sql.GetOrpDealerId(Helper.OrpDealerEmail));
                 //Helper.OrpLicenseTerm, Helper.OrpNumLicenses, Helper.OrpComment);
         }
-        [Then(@"I click on partner portal button")]
-        public void ThenIClickOnPartnerPortalButton()
-        {
-            NextPage = CurrentPage.As<WelcomeBackPage>().PartnerPortalButtonClick();
-        }
         [Then(@"I should see manage userlist page")]
         public void ThenIShouldSeeManageUserlistPage()
         {
