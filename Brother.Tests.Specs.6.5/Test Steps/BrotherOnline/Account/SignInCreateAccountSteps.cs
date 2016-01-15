@@ -852,12 +852,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         public void ThenIShouldBeLoggedInSuccessfully()
         {
             CurrentPage.As<WelcomeBackPage>().IsSignOutButtonDisplayed();
-        }
-        [Then(@"I should see partner portal button")]
-        public void ThenIShouldSeePartnerPortalButton()
-        {
-          CurrentPage.As<WelcomeBackPage>().IsPartnerPortalButtonDisplayed();
-        }       
+        } 
 
         [When(@"I find email address used in the registration ""(.*)""")]
         public void WhenIFindEmailAddressUsedInTheRegistration(string country)
