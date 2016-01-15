@@ -1,4 +1,4 @@
-﻿@ignore @UAT @PROD @TEST @SMOKE
+﻿@UAT @PROD @TEST @SMOKE
 Feature: PublishedPages
 	In order to validate the success of a new build, 
 	previously published pages are verified to ensure 

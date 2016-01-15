@@ -105,18 +105,19 @@ namespace Brother.Tests.Specs._80.BrotherMainSite.HomePageNavigation
         [Given(@"I press login button ""(.*)""")]
         public void WhenIPressLoginButton(string country)
         {
-            CurrentPage.As<LoginPage>().ClickOnLoginButton(country);
+            //CurrentPage.As<LoginPage>().ClickOnLoginButton(country);
+            NextPage = CurrentPage.As<LoginPage>().ClickOnLoginButton(country);
         }
         [Then(@"I should be able to see the experience editor page ""(.*)""")]
         public void ThenIShouldBeAbleToSeeTheExperienceEditorPage(string country)
         {
-            CurrentPage = BasePage.LoadExperienceEditorPage(CurrentDriver, country);
+            //CurrentPage = BasePage.LoadExperienceEditorPage(CurrentDriver, country);
             CurrentPage.As<ExperienceEditorPage>().IsContentEditorLinkAvailable();
         }
         [Then(@"I can verify that the page header is displayed on the experience editor ""(.*)""")]
         public void ThenICanVerifyThatThePageHeaderIsDisplayedOnTheExperienceEditor(string country)
         {
-            CurrentPage = BasePage.LoadExperienceEditorPage(CurrentDriver, country);
+            //CurrentPage = BasePage.LoadExperienceEditorPage(CurrentDriver, country);
             CurrentPage.As<ExperienceEditorPage>().IsPageHeaderDisplayed();
         }
 
