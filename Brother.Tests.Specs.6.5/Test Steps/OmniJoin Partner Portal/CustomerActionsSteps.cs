@@ -34,11 +34,6 @@ namespace Brother.Tests.Specs
         {
             ScenarioContext.Current.Pending();
         }
-        //[When(@"I click on partner portal button")]
-        //public void WhenIClickOnPartnerPortalButton()
-        //{
-        //    NextPage = CurrentPage.As<WelcomeBackPage>().PartnerPortalButtonClick();
-        //}
         [Then(@"I should see partner portal homepage without manageusers list page access")]
         public void ThenIShouldSeePartnerPortalHomepageWithoutManageusersListPageAccess()
         {
