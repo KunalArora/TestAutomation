@@ -67,10 +67,10 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
         [FindsBy(How = How.CssSelector, Using = "#content_1_innercontent_2_btnSumbit")] 
         public IWebElement SubmitButton;
 
-        [FindsBy(How = How.CssSelector, Using = ".add-colleague-message.dp-pop-up.cf")]
+        [FindsBy(How = How.CssSelector, Using = ".add-colleague-message .box-out p")]
         public IWebElement SuccessMessage;
-       
-        [FindsBy(How = How.CssSelector, Using = ".lightbox-close")]
+
+        [FindsBy(How = How.CssSelector, Using = ".add-colleague-message.dp-pop-up.cf .lightbox-close")]
         public IWebElement MessageClose;
      
         [FindsBy(How = How.CssSelector, Using = ".odd>td")]
@@ -192,6 +192,7 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
             if (emailAddress.Equals(string.Empty))
             {
                 emailAddress = Email.GenerateUniqueEmailAddress();
+                SpecFlow.SetContext("Colleague Email Address", emailAddress);
             }
 
             AddNewColleagueEmailAddressTxtBox.SendKeys(emailAddress);
@@ -236,14 +237,34 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
 
         public ManageCustomersAndOrdersPage PopUpMessageClose()
         {
-            var PopUpMessageClose = Driver.FindElement(By.CssSelector(".add-colleague-message.dp-pop-up.cf"));
-            PopUpMessageClose.Click();
+            //var PopUpMessageClose = Driver.FindElement(By.CssSelector(".add-colleague-message.dp-pop-up.cf .lightbox-close"));
+            MessageClose.Click();
             return GetInstance<ManageCustomersAndOrdersPage>(Driver);
+        }
+
+        public void IsColleagueEmailAddressDisplayed()
+        {
+            var createdColleagueEmail = SpecFlow.GetContext("Colleague Email Address");
+
+            var newlyGenerated = CreatedEmailActionButton(createdColleagueEmail);
+
+            var newlyGeneratedColleague = FindElementByJs(newlyGenerated);
+
+            TestCheck.AssertIsEqual(true, newlyGeneratedColleague.Displayed, "");
+
+        }
+
+        private static string CreatedEmailActionButton(string user)
+        {
+            return String.Format("return $('td:contains(\"{0}\")')",
+                user);
         }
 
         public void IsCreatedUsersListDisplayed()
         {
             TestCheck.AssertIsEqual(true, CreatedUsersinList.Displayed, "Is Cretaed User list Displayed");
+            IsColleagueEmailAddressDisplayed();
+
         }
     }
 }
