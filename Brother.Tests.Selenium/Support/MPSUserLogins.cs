@@ -112,7 +112,8 @@ namespace Brother.Tests.Selenium.Lib.Support
 
         public static string CustomerUsername(IWebDriver driver)
         {
-            string username = null;
+            var username = "";
+
             var currentUrl = CurrentUrl(driver);
 
             if (currentUrl.Contains(germanUrl))
