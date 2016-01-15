@@ -1876,6 +1876,7 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Customer creates a new account with Brother Online using valid credentials, confi" +
             "rm by email on IE and UK site - email verification")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.CategoryAttribute("SMOKE")]
         [NUnit.Framework.CategoryAttribute("PROD")]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", null)]
@@ -1883,6 +1884,7 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void CustomerCreatesANewAccountWithBrotherOnlineUsingValidCredentialsConfirmByEmailOnIEAndUKSite_EmailVerification(string country, string[] exampleTags)
         {
             string[] @__tags = new string[] {
+                    "ignore",
                     "SMOKE",
                     "PROD"};
             if ((exampleTags != null))
@@ -1944,12 +1946,14 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Sign Up for 14 day Free trial already signed into Brother Online - email verifica" +
             "tion")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.CategoryAttribute("SMOKE")]
         [NUnit.Framework.CategoryAttribute("PROD")]
         public virtual void SignUpFor14DayFreeTrialAlreadySignedIntoBrotherOnline_EmailVerification()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Sign Up for 14 day Free trial already signed into Brother Online - email verifica" +
                     "tion", new string[] {
+                        "ignore",
                         "SMOKE",
                         "PROD"});
 #line 805
