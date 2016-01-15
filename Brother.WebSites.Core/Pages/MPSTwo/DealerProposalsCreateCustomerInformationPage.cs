@@ -273,12 +273,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if (IsGermanSystem())
             {
                 code = MpsUtil.PostCode();
+
             } else if (IsFranceSystem())
             {
                 code = MpsUtil.PostCodeFr();
+
             }else if (IsUKSystem())
             {
                 code = MpsUtil.PostCodeGB();
+
             } else if (IsItalySystem())
             {
                 code = MpsUtil.PostCodeIt();

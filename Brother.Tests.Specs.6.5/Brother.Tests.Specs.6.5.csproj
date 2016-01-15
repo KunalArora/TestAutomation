@@ -269,6 +269,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\MPSTwo\Service Request\CloudMPSServiceRequestOperations.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CloudMPSServiceRequestOperations.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specifications\Smart Supply\BrotherSupplyClubProductBenefits.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -735,6 +740,10 @@
     <None Include="Test Specifications\MPSTwo\SendForApproval\CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwo\Service Request\CloudMPSServiceRequestOperations.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CloudMPSServiceRequestOperations.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\OmniJoinPartnerPortal\CustomerActions\CustomerActions.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

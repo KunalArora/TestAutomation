@@ -26,6 +26,8 @@ Then I should see FirstName and LastName fields
 And I fill in FirstName as "<FirstName>"
 And I fill in LastName as "<LastName>"
 And I click submit
+Then I should see success message on the page
+And I close the message
 And I should see created user in the user list page
 
 

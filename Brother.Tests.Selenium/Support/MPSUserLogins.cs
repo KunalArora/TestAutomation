@@ -61,6 +61,9 @@ namespace Brother.Tests.Selenium.Lib.Support
                 case "TEST":
                     dealerUser = MPSDV2.Default.DV2MPSDealer;
                     break;
+                case "PROD":
+                    dealerUser = MPSProd.Default.ProdMPSDealer;
+                    break;
             }
 
             return dealerUser;
@@ -77,6 +80,9 @@ namespace Brother.Tests.Selenium.Lib.Support
                     break;
                 case "DV2" :
                     pwd = MPSDV2.Default.DV2DealerPassword;
+                    break;
+                case "PROD":
+                    pwd = MPSProd.Default.ProdDealerPassword;
                     break;
             }
 
@@ -96,6 +102,9 @@ namespace Brother.Tests.Selenium.Lib.Support
                 case "TEST":
                     BankUser = MPSDV2.Default.DV2MPSBank;
                     break;
+                case "PROD":
+                    BankUser = MPSProd.Default.ProdMPSBank;
+                    break;
             }
 
             return BankUser;
@@ -103,7 +112,8 @@ namespace Brother.Tests.Selenium.Lib.Support
 
         public static string CustomerUsername(IWebDriver driver)
         {
-            string username = null;
+            var username = "";
+
             var currentUrl = CurrentUrl(driver);
 
             if (currentUrl.Contains(germanUrl))
@@ -145,6 +155,10 @@ namespace Brother.Tests.Selenium.Lib.Support
                 case "DV2":
                     pwd = MPSDV2.Default.DV2BankPassword;
                     break;
+                case "PROD":
+                    pwd = MPSProd.Default.ProdBankPassword;
+                    break;
+
             }
 
             return pwd;
@@ -162,6 +176,10 @@ namespace Brother.Tests.Selenium.Lib.Support
                 case "TEST":
                     ApproverUser = MPSDV2.Default.DV2MPSLOApprover;
                     break;
+                case "PROD":
+                    ApproverUser = MPSProd.Default.ProdMPSLOApprover;
+                    break;
+
             }
 
             return ApproverUser;
@@ -178,6 +196,9 @@ namespace Brother.Tests.Selenium.Lib.Support
                     break;
                 case "DV2":
                     pwd = MPSDV2.Default.DV2LOApproverPassword;
+                    break;
+                case "PROD":
+                    pwd = MPSProd.Default.ProdLOApproverPassword;
                     break;
             }
 
@@ -196,6 +217,10 @@ namespace Brother.Tests.Selenium.Lib.Support
                 case "TEST":
                     AdminUser = MPSDV2.Default.DV2MPSLOAdmin;
                     break;
+                case "PROD":
+                    AdminUser = MPSProd.Default.ProdMPSLOAdmin;
+                    break;
+
             }
 
             return AdminUser;
@@ -212,6 +237,9 @@ namespace Brother.Tests.Selenium.Lib.Support
                     break;
                 case "DV2":
                     pwd = MPSDV2.Default.DV2LOAdminPassword;
+                    break;
+                case "PROD":
+                    pwd = MPSProd.Default.ProdLOAdminPassword;
                     break;
             }
 
