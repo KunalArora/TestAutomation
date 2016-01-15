@@ -156,6 +156,27 @@ namespace Brother.Tests.Specs
         {
             NextPage = CurrentPage.As<PartnerPortalPage>().MaintainaListofUsersButtonClick();
         }
+        [When(@"I click on Edit your personal info page")]
+        public void WhenIClickOnEditYourPersonalInfoPage()
+        {
+            NextPage = CurrentPage.As<PartnerPortalPage>().ClickEditYourPersonalInfoPage();
+        }
+        [When(@"I see Edit address page")]
+        public void WhenISeeEditAddressPage()
+        {
+           CurrentPage.As<EditAddressPage>().IsSaveButtonDisplayed();
+         }
+        [When(@"I click Save")]
+        public void WhenIClickSave()
+        {
+            CurrentPage.As<EditAddressPage>().ClickSaveButton();
+        }
+        [Then(@"I should see the validation error message on missing fields")]
+        public void ThenIShouldSeeTheValidationErrorMessageOnMissingFields()
+        {
+            CurrentPage.As<EditAddressPage>().IsMandatoryFieldValidationErrorMessageDisplayed();
+        }
+
         [Then(@"I should see ManageCustomersandOrdersPage")]
         public void ThenIShouldSeeManageCustomersandOrdersPage()
         {

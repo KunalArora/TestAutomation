@@ -31,6 +31,7 @@ And I close the message
 And I should see created user in the user list page
 
 
+
 Examples:
 | Country   |   Email Address1                               | Password          | Email Address2 | FirstName            | LastName    |
 | Belgium   |   lw_brother_be_dealer@mailinator.com          | Brother1          |                | "Test"	             | "user"      | 
@@ -52,3 +53,24 @@ Examples:
 | Country   |   Email Address1                           | Password          |
 | Belgium   |   lw_brother_be_user@mailinator.com        | Brother1          |                
 
+
+@TEST
+Scenario Outline: Missing mandatory fields display validation error message in edit your personal info page
+Given I launch Brother Online for "<Country>"
+When I click on Create Account for "<Country>"
+And I am redirected to the Brother Login/Register page
+And I fill in email as "<Email Address1>"
+And I fill in password as "<Password>"
+And I press sign in 
+Then I should be logged in successfully
+And I click on Partner Portal menu
+And I click on partner portal button
+Then I should see manage userlist page
+When I click on Edit your personal info page
+And I see Edit address page
+And I click Save
+Then I should see the validation error message on missing fields
+
+Examples:
+| Country   |   Email Address1                           | Password          |
+| Belgium   |   lw_brother_be_dealer@mailinator.com      | Brother1          |     

@@ -238,7 +238,7 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
         public ManageCustomersAndOrdersPage PopUpMessageClose()
         {
             //var PopUpMessageClose = Driver.FindElement(By.CssSelector(".add-colleague-message.dp-pop-up.cf .lightbox-close"));
-            MessageClose.Click();
+             MessageClose.Click();
             return GetInstance<ManageCustomersAndOrdersPage>(Driver);
         }
 
