@@ -437,6 +437,16 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
       {
           CurrentPage.As<BusinessDetailsPage>().BusinessSectorErrorMessageDisplayed();
       }
-           
+      [Then(@"I click on Partner Portal menu")]
+      public void ThenIClickOnPartnerPortalMenu()
+      {
+          NextPage = GlobalNavigationModule.PartnerPortalMenuItemClick(CurrentDriver);
+      }
+      [Then(@"I click on partner portal button")]
+      public void ThenIClickOnPartnerPortalButton()
+      {
+          var partnerPortalButton = GlobalNavigationModule.GetPartnerPortalInfoButton("DealerPortal", "PartnerPortal");
+          NextPage = GlobalNavigationModule.PartnerPortalButtonClick(CurrentDriver, partnerPortalButton);
+      }
     }
 }
