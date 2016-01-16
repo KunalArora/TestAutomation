@@ -748,68 +748,6 @@ Scenarios:
 	| Professional | United Kingdom | Monthly      | 1   | OmniJoin              | £34.80  |
 	| Professional | United Kingdom | Annual       | 1   | OmniJoin              | £331.20 |
 
-@ignore @SMOKE @PROD
-Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by email on IE and UK site - email verification
-	Given I want to create a new account with Brother Online "<Country>"
-	When I click on Create Account for "<Country>"
-	And I am redirected to the Brother Login/Register page
-	And I have Checked No I Do Not Have An Account Checkbox
-	And I fill in the registration information using a valid email address 
-	| field           | value          |
-	| FirstName       | AutoTest       |
-	| LastName        | AutoTest       |
-	| Password        | @@@@@	       |
-	| ConfirmPassword | @@@@@		   |
-
-	And I have Agreed to the Terms and Conditions
-	And I declare that I do not use this account for business
-	When I press Create Your Account
-	Then I should see my account confirmation page
-	And When I Click Go Back
-	And Once I have Validated an Email was received and verified my account
-	Then I should be able to log into "<Country>" Brother Online using my account details
-	And I can sign out of Brother Online
-	Then I am redirected to the Brother Home Page
-Scenarios: 
-| Country  |	
-| United Kingdom    |
-| Ireland           |
-
-@ignore @SMOKE @PROD
-Scenario: Sign Up for 14 day Free trial already signed into Brother Online - email verification
-	# Create an account on BOL and sign in
-	Given I want to create a new account with Brother Online "United Kingdom"
-	When I click on Create Account for "United Kingdom"
-	And I am redirected to the Brother Login/Register page
-	And I have Checked No I Do Not Have An Account Checkbox
-	And I fill in the registration information using a valid email address 
-	| field           | value          |
-	| FirstName       | AutoTest       |
-	| LastName        | AutoTest       |
-	| Password        | @@@@@	       |
-	| ConfirmPassword | @@@@@		   |
-
-	And I have Agreed to the Terms and Conditions
-	And I declare that I do not use this account for business
-	When I press Create Your Account
-	Then I should see my account confirmation page
-	And When I Click Go Back
-	Then I should be able to log into "United Kingdom" Brother Online using my account details
-	When I navigate to my account for "United Kingdom"
-	#Given I am logged onto Brother Online "United Kingdom" using valid credentials
-	And I have navigated to the OmniJoin home page
-	And If I click on Start Free Trial
-	Then I should be directed to the OmniJoin Free Trial page
-	When I have entered a valid First and Last name, "AutoTest", "AutoTest"
-	And I have entered a valid email address
-	And I have entered a valid phone number "01555 522522"
-	And I have Agreed to the Free Trial Terms and Conditions
-	And if I click Submit
-	Then I should be directed to the download page indicating I have 14 days Free trial
-	And Once I have Validated a Free Trial confirmation Email was received
-	Then If I go back to Brother Online Home Page 
-	Then I can sign out of Brother Online
-	Then I am redirected to the Brother Home Page
 
 @ignore @SMOKE @UAT 
 # BBAU-2956
