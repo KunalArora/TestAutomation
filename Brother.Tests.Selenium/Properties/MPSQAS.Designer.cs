@@ -166,5 +166,41 @@ namespace Brother.Tests.Selenium.Lib.Properties {
                 this["QASATCustomer"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("MPS-{0}-UAT-ServiceDesk@brother.co.uk\r\n")]
+        public string QASMPSServiceDesk {
+            get {
+                return ((string)(this["QASMPSServiceDesk"]));
+            }
+            set {
+                this["QASMPSServiceDesk"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Lonna2016017005932@mailinator.com")]
+        public string QASMPSUKServiceDeskCustomer {
+            get {
+                return ((string)(this["QASMPSUKServiceDeskCustomer"]));
+            }
+            set {
+                this["QASMPSUKServiceDeskCustomer"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("{0}service1")]
+        public string QASMPSServiceDeskPassword {
+            get {
+                return ((string)(this["QASMPSServiceDeskPassword"]));
+            }
+            set {
+                this["QASMPSServiceDeskPassword"] = value;
+            }
+        }
     }
 }

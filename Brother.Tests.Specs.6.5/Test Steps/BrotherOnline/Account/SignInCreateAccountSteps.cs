@@ -1271,30 +1271,32 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             switch (role)
             {
                 case "Cloud MPS Dealer":
-                {
                     NextPage = CurrentPage.As<RegistrationPage>().SignInButtonToDealerDashboard();
                     break;
-                }
+              
                 case "Cloud MPS Local Office":
-                {
                     NextPage = CurrentPage.As<RegistrationPage>().SignInButtonToLocalOfficeDashboard();
                     break;
-                }
+             
                 case "Cloud MPS Bank":
-                {
                     NextPage = CurrentPage.As<RegistrationPage>().SignInButtonToBankUser();
                     break;
-                }
+               
                 case "Cloud MPS Local Office Approver":
-                {
                     NextPage = CurrentPage.As<RegistrationPage>().SignInButtonToLocalOfficeApproverDashboard();
                     break;
-                }
+              
                 case "Cloud MPS Customer":
-                {
                     NextPage = CurrentPage.As<RegistrationPage>().ClickSignInButton();
                     break;
-                }
+               
+                case "Cloud MPS Service Desk Customer":
+                    NextPage = CurrentPage.As<RegistrationPage>().ClickSignInButton();
+                    break;
+                case "Cloud MPS Service Desk":
+                    NextPage = CurrentPage.As<RegistrationPage>().SignInButtonToServiceDeskDashBoardPage();
+                    break;
+               
             }
         }
 

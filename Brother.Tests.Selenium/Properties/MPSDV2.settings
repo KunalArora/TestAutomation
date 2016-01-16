@@ -28,5 +28,11 @@
     <Setting Name="DV2BankPassword" Type="System.String" Scope="User">
       <Value Profile="(Default)">{0}leasingbank1</Value>
     </Setting>
+    <Setting Name="DV2MPSServiceDesk" Type="System.String" Scope="User">
+      <Value Profile="(Default)">MPS-{0}-DV2-ServiceDesk@brother.co.uk</Value>
+    </Setting>
+    <Setting Name="DV2MPSServiceDeskPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">{0}service1</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

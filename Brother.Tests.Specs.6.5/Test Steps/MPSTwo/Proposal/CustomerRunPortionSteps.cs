@@ -14,13 +14,14 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         {
             NextPage = CurrentPage.As<WelcomeBackPage>().NavigateToCustomerDashboardPage();
             CurrentPage.As<CustomerDashboardPage>().IsCustomerDashboardPageDisplayed();
-            NextPage = CurrentPage.As<CustomerDashboardPage>().NavigateToCustomerConsummablePage();
+            
         }
 
         [Given(@"I navigate to consumable ordering page")]
         [When(@"I navigate to consumable ordering page")]
         public void WhenINavigateToConsumableOrderingPage()
         {
+            NextPage = CurrentPage.As<CustomerDashboardPage>().NavigateToCustomerConsummablePage();
             CurrentPage.As<CustomerConsummablePage>().IsConsumableScreenDisplayed();
             CurrentPage.As<CustomerConsummablePage>().RemoveExistingConsumableOrderBySerialNumber();
             CurrentPage.As<CustomerConsummablePage>().IsCorrectDeviceSerialNumberDisplayed();
