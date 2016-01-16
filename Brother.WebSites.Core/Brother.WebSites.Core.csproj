@@ -139,6 +139,7 @@
     <Compile Include="Pages\MPSTwo\ConsumableRaiseOrderPage.cs" />
     <Compile Include="Pages\MPSTwo\CustomerConsummablePage.cs" />
     <Compile Include="Pages\MPSTwo\CustomerDashboardPage.cs" />
+    <Compile Include="Pages\MPSTwo\CustomerServiceRequestsPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerApprovedProposalPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerClosedProposalPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerContractsApprovedPage.cs" />
@@ -188,6 +189,7 @@
     <Compile Include="Pages\MPSTwo\LocalOfficeAdminDashBoardPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeApproverDeviceManagementPage.cs" />
     <Compile Include="Pages\MPSTwo\SendToBankPage.cs" />
+    <Compile Include="Pages\MPSTwo\ServiceDeskDashBoardPage.cs" />
     <Compile Include="Pages\OmniJoin\PartnerPortal\CodeActivationPage.cs" />
     <Compile Include="Pages\OmniJoin\PartnerPortal\CreateActivationCodesPage.cs" />
     <Compile Include="Pages\OmniJoin\PartnerPortal\ManageCustomersAndOrdersPage.cs" />

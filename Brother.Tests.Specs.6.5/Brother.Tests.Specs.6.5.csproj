@@ -473,6 +473,7 @@
     <Compile Include="Test Steps\MPSTwo\Proposal\LocalOfficeApproverSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Proposal\ProposalSummaryPageSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\SendToBank\SendProposalToApproverSteps.cs" />
+    <Compile Include="Test Steps\MPSTwo\ServiceRequest\ServiceRequestsOperationsSteps.cs" />
     <Compile Include="Test Steps\OmniJoin Partner Portal\CustomerActionsSteps.cs" />
     <Compile Include="Test Steps\OmniJoin Partner Portal\DealerActionsSteps.cs" />
     <Compile Include="Test Steps\OmniJoin\FreeTrial\FreeTrialSteps.cs" />

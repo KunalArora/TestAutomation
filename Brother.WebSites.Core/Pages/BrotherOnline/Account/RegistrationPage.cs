@@ -279,6 +279,13 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             return GetInstance<BankDashBoardPage>(Driver);
         }
 
+        public ServiceDeskDashBoardPage SignInButtonToServiceDeskDashBoardPage()
+        {
+            ScrollTo(SignInButton);
+            SignInButton.Click();
+            return GetInstance<ServiceDeskDashBoardPage>(Driver);
+        }
+
         public RegistrationPage ClickSignUpButton()
         {
             ScrollTo(CreateYourAccountButton);

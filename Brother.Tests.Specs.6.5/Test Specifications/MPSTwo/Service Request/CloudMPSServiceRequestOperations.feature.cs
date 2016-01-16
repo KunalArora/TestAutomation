@@ -20,6 +20,10 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.ServiceRequest
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("CloudMPSServiceRequestOperations")]
+    [NUnit.Framework.IgnoreAttribute()]
+    [NUnit.Framework.CategoryAttribute("TEST")]
+    [NUnit.Framework.CategoryAttribute("UAT")]
+    [NUnit.Framework.CategoryAttribute("MPS")]
     public partial class CloudMPSServiceRequestOperationsFeature
     {
         
@@ -32,8 +36,12 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.ServiceRequest
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CloudMPSServiceRequestOperations", "In order to avoid silly mistakes\r\nAs a math idiot\r\nI want to be told the sum of t" +
-                    "wo numbers", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CloudMPSServiceRequestOperations", "In order to get my devices issues fix by Brother\r\nAs an MPS user\r\nI want to be ab" +
+                    "le to raise service request which can be worked on", ProgrammingLanguage.CSharp, new string[] {
+                        "ignore",
+                        "TEST",
+                        "UAT",
+                        "MPS"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -67,21 +75,20 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.ServiceRequest
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Add two numbers")]
-        [NUnit.Framework.CategoryAttribute("mytag")]
-        public virtual void AddTwoNumbers()
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "Cloud MPS Service Desk", "Email", "Cloud MPS Service Desk Customer", null)]
+        public virtual void AddTwoNumbers(string country, string role2, string method, string role1, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add two numbers", new string[] {
-                        "mytag"});
-#line 7
-this.ScenarioSetup(scenarioInfo);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add two numbers", exampleTags);
 #line 8
- testRunner.Given("I have entered 50 into the calculator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioSetup(scenarioInfo);
 #line 9
- testRunner.And("I have entered 70 into the calculator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given(string.Format("I sign back into Cloud MPS as a \"{0}\" from \"{1}\"", role1, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 10
- testRunner.When("I press add", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("I navigate to customer dashboard page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
- testRunner.Then("the result should be 120 on the screen", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("I navigate to customer request page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 12
+ testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

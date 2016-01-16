@@ -1,11 +1,18 @@
-﻿Feature: CloudMPSServiceRequestOperations
-	In order to avoid silly mistakes
-	As a math idiot
-	I want to be told the sum of two numbers
+﻿@ignore @TEST @UAT @MPS
+Feature: CloudMPSServiceRequestOperations
+	In order to get my devices issues fix by Brother
+	As an MPS user
+	I want to be able to raise service request which can be worked on
 
-@mytag
-Scenario: Add two numbers
-	Given I have entered 50 into the calculator
-	And I have entered 70 into the calculator
-	When I press add
-	Then the result should be 120 on the screen
+
+Scenario Outline: Add two numbers
+	Given I sign back into Cloud MPS as a "<Role1>" from "<Country>"
+	And I navigate to customer dashboard page
+	And I navigate to customer request page
+	And I can sign out of Brother Online
+	
+Scenarios:
+
+	| Country        | Role2                  | Method | Role1                           |
+	| United Kingdom | Cloud MPS Service Desk | Email  | Cloud MPS Service Desk Customer |
+	
