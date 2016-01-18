@@ -38,5 +38,15 @@
     <Setting Name="QASATCustomer" Type="System.String" Scope="User">
       <Value Profile="(Default)">Coleen2015119021438@mailinator.com</Value>
     </Setting>
+    <Setting Name="QASMPSServiceDesk" Type="System.String" Scope="User">
+      <Value Profile="(Default)">MPS-{0}-UAT-ServiceDesk@brother.co.uk
+</Value>
+    </Setting>
+    <Setting Name="QASMPSUKServiceDeskCustomer" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Lonna2016017005932@mailinator.com</Value>
+    </Setting>
+    <Setting Name="QASMPSServiceDeskPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">{0}service1</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

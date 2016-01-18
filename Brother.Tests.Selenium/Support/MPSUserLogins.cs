@@ -132,6 +132,53 @@ namespace Brother.Tests.Selenium.Lib.Support
             return username;
         }
 
+        private static string ServiceDeskCustomer()
+        {
+            var customer = "";
+
+            switch (Helper.GetRunTimeEnv())
+            {
+                case "UAT":
+                    customer = MPSQAS.Default.QASMPSUKServiceDeskCustomer;
+                    break;
+            }
+            return customer;
+        }
+
+        private static string ServiceDeskUser()
+        {
+            var customer = "";
+
+            switch (Helper.GetRunTimeEnv())
+            {
+                case "UAT":
+                    customer = MPSQAS.Default.QASMPSServiceDesk;
+                    break;
+
+                case "DV2":
+                    customer = MPSDV2.Default.DV2MPSServiceDesk;
+                    break;
+            }
+
+            return customer;
+        }
+
+        private static string ServiceDeskUserPassword()
+        {
+            var pwd = "";
+
+            switch (Helper.GetRunTimeEnv())
+            {
+                case "UAT":
+                    pwd = MPSQAS.Default.QASMPSServiceDeskPassword;
+                    break;
+                case "DV2":
+                    pwd = MPSDV2.Default.DV2MPSServiceDeskPassword;
+                    break;
+            }
+            return pwd;
+        }
+
         private static string CurrentUrl(IWebDriver driver)
         {
             var currentUrl = driver.Url;
@@ -271,8 +318,14 @@ namespace Brother.Tests.Selenium.Lib.Support
                 case "Cloud MPS Local Office Approver":
                     finishedUsername = String.Format(ApproverUsername(), abbr);
                     break;
+                case "Cloud MPS Service Desk":
+                    finishedUsername = String.Format(ServiceDeskUser(), abbr);
+                    break;
                 case "Cloud MPS Customer" :
                     finishedUsername = CustomerUsername(driver);
+                    break;
+                case "Cloud MPS Service Desk Customer":
+                    finishedUsername = ServiceDeskCustomer();
                     break;
 
             }
@@ -309,7 +362,17 @@ namespace Brother.Tests.Selenium.Lib.Support
                     finishPwd = ApproverPassword();
                     finishPwd = String.Format(finishPwd, PasswordPrefix());
                     break;
+                
+                case "Cloud MPS Service Desk":
+                    finishPwd = ServiceDeskUserPassword();
+                    finishPwd = String.Format(finishPwd, PasswordPrefix());
+                    break;
+                
                 case "Cloud MPS Customer":
+                    finishPwd = CustomerPassword();
+                    break;
+                
+                case "Cloud MPS Service Desk Customer":
                     finishPwd = CustomerPassword();
                     break;
             }

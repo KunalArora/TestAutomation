@@ -118,5 +118,29 @@ namespace Brother.Tests.Selenium.Lib.Properties {
                 this["DV2BankPassword"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("MPS-{0}-DV2-ServiceDesk@brother.co.uk")]
+        public string DV2MPSServiceDesk {
+            get {
+                return ((string)(this["DV2MPSServiceDesk"]));
+            }
+            set {
+                this["DV2MPSServiceDesk"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("{0}service1")]
+        public string DV2MPSServiceDeskPassword {
+            get {
+                return ((string)(this["DV2MPSServiceDeskPassword"]));
+            }
+            set {
+                this["DV2MPSServiceDeskPassword"] = value;
+            }
+        }
     }
 }

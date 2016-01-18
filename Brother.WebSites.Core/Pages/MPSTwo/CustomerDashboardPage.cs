@@ -39,5 +39,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetInstance<CustomerConsummablePage>(Driver);
         }
 
+        public CustomerServiceRequestsPage NavigateToCustomerServiceRequestsPage()
+        {
+            ScrollTo(CustomerDashboardConsummableLink);
+            CustomerDashboardServiceRequestsLink.Click();
+            return GetInstance<CustomerServiceRequestsPage>(Driver);
+        }
+
     }
 }
