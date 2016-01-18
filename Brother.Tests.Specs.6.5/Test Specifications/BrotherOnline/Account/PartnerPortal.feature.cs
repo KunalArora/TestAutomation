@@ -112,7 +112,7 @@ testRunner.And("I click on ADD a colleague", ((string)(null)), ((TechTalk.SpecFl
 #line 22
 testRunner.Then("I should see enter email address field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 23
-testRunner.And(string.Format("I enter email address as \"{0}\"", emailAddress2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And(string.Format("I enter email addresgits as \"{0}\"", emailAddress2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 24
 testRunner.And("I click on submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 25
@@ -173,11 +173,11 @@ testRunner.Then("I should see partner portal homepage without manageusers list p
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Missing mandatory fields display validation error message in edit your personal i" +
-            "nfo page")]
+        [NUnit.Framework.DescriptionAttribute("AdminUser on dealer portal gets valid error messages when personal info page  man" +
+            "datory fields are not completed")]
         [NUnit.Framework.CategoryAttribute("TEST")]
         [NUnit.Framework.TestCaseAttribute("Belgium", "lw_brother_be_dealer@mailinator.com", "Brother1", null)]
-        public virtual void MissingMandatoryFieldsDisplayValidationErrorMessageInEditYourPersonalInfoPage(string country, string emailAddress1, string password, string[] exampleTags)
+        public virtual void AdminUserOnDealerPortalGetsValidErrorMessagesWhenPersonalInfoPageMandatoryFieldsAreNotCompleted(string country, string emailAddress1, string password, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "TEST"};
@@ -185,8 +185,8 @@ testRunner.Then("I should see partner portal homepage without manageusers list p
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Missing mandatory fields display validation error message in edit your personal i" +
-                    "nfo page", @__tags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AdminUser on dealer portal gets valid error messages when personal info page  man" +
+                    "datory fields are not completed", @__tags);
 #line 58
 this.ScenarioSetup(scenarioInfo);
 #line 59
@@ -214,9 +214,25 @@ testRunner.When("I click on Edit your personal info page", ((string)(null)), ((T
 #line 70
 testRunner.And("I see Edit address page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 71
-testRunner.And("I click Save", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("I enter tab on HouseName field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 72
-testRunner.Then("I should see the validation error message on missing fields", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Then("I should see an error message on the HouseName field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 73
+testRunner.When("I enter tab on AddressLine name field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 74
+testRunner.Then("I should see an error message on the address field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 75
+testRunner.When("I enter tab on HouseNumber field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 76
+testRunner.Then("I should see an error message on house number field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 77
+testRunner.When("I enter tab on code postal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 78
+testRunner.Then("I should see error message on codepostal field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 79
+testRunner.When("I enter tab on phoneNumber field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 80
+testRunner.Then("I should see error message on PhoneNumber field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

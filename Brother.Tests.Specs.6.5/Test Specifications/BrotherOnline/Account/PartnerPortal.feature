@@ -20,7 +20,7 @@ And I click on Manage a list of closed area
 Then I should see ManageCustomersandOrdersPage
 And I click on ADD a colleague
 Then I should see enter email address field
-And I enter email address as "<Email Address2>"
+And I enter email addresgits as "<Email Address2>"
 And I click on submit
 Then I should see FirstName and LastName fields
 And I fill in FirstName as "<FirstName>"
@@ -55,7 +55,7 @@ Examples:
 
 
 @TEST
-Scenario Outline: Missing mandatory fields display validation error message in edit your personal info page
+Scenario Outline: AdminUser on dealer portal gets valid error messages when personal info page  mandatory fields are not completed
 Given I launch Brother Online for "<Country>"
 When I click on Create Account for "<Country>"
 And I am redirected to the Brother Login/Register page
@@ -68,8 +68,16 @@ And I click on partner portal button
 Then I should see manage userlist page
 When I click on Edit your personal info page
 And I see Edit address page
-And I click Save
-Then I should see the validation error message on missing fields
+And I enter tab on HouseName field
+Then I should see an error message on the HouseName field 
+When I enter tab on AddressLine name field
+Then I should see an error message on the address field 
+When I enter tab on HouseNumber field
+Then I should see an error message on house number field
+When I enter tab on code postal
+Then I should see error message on codepostal field
+When I enter tab on phoneNumber field
+Then I should see error message on PhoneNumber field
 
 Examples:
 | Country   |   Email Address1                           | Password          |

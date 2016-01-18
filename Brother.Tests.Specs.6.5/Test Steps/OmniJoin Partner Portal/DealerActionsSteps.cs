@@ -165,7 +165,65 @@ namespace Brother.Tests.Specs
         public void WhenISeeEditAddressPage()
         {
            CurrentPage.As<EditAddressPage>().IsSaveButtonDisplayed();
-         }
+        }
+
+        [When(@"I enter tab on HouseName field")]
+        public void WhenIEnterTabOnHouseNameField()
+        {
+            CurrentPage.As<EditAddressPage>().EmptyHouseNameTextBox();
+        }
+
+        [Then(@"I should see an error message on the HouseName field")]
+        public void ThenIShouldSeeAnErrorMessageOnTheHouseNameField()
+        {
+            CurrentPage.As<EditAddressPage>().IsHouseNameTextBoxErrorMessageDisplayed();
+        }
+
+        [When(@"I enter tab on AddressLine name field")]
+        public void WhenIEnterTabOnAddressLineNameField()
+        {
+            CurrentPage.As<EditAddressPage>().EmptyAddressLine1TextBox();
+        }
+
+        [Then(@"I should see an error message on the address field")]
+        public void ThenIShouldSeeAnErrorMessageOnTheAddressField()
+        {
+            CurrentPage.As<EditAddressPage>().IsAddressLine1TextBoxErrorMessageDisplayed();
+        }
+
+        [When(@"I enter tab on HouseNumber field")]
+        public void WhenIEnterTabOnHouseNumberField()
+        {
+            CurrentPage.As<EditAddressPage>().EmptyHouseNumberTextBox();
+        }
+        [Then(@"I should see an error message on house number field")]
+        public void ThenIShouldSeeAnErrorMessageOnHouseNumberField()
+        {
+            CurrentPage.As<EditAddressPage>().IsHouseNumberTextBoxErrorMessageDisplayed();
+        }
+        [When(@"I enter tab on code postal")]
+        public void WhenIEnterTabOnCodePostal()
+        {
+           CurrentPage.As<EditAddressPage>().EmptyPostCodeTextBox();
+        }
+
+        [Then(@"I should see error message on codepostal field")]
+        public void ThenIShouldSeeErrorMessageOnCodepostalField()
+        {
+            CurrentPage.As<EditAddressPage>().IsPostCodeTextBoxErrorMessageDisplayed();
+        }
+
+        [When(@"I enter tab on phoneNumber field")]
+        public void WhenIEnterTabOnPhoneNumberField()
+        {
+           CurrentPage.As<EditAddressPage>().EmptyPhoneNumberTextBox();
+        }
+
+        [Then(@"I should see error message on PhoneNumber field")]
+        public void ThenIShouldSeeErrorMessageOnPhoneNumberField()
+        {
+           CurrentPage.As<EditAddressPage>().IsPhoneNumberTextBoxErrorMessageDisplayed();
+        }
         [When(@"I click Save")]
         public void WhenIClickSave()
         {
