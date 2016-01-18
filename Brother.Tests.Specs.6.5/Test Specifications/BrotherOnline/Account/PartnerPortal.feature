@@ -20,7 +20,7 @@ And I click on Manage a list of closed area
 Then I should see ManageCustomersandOrdersPage
 And I click on ADD a colleague
 Then I should see enter email address field
-And I enter email addresgits as "<Email Address2>"
+And I enter email address as "<Email Address2>"
 And I click on submit
 Then I should see FirstName and LastName fields
 And I fill in FirstName as "<FirstName>"

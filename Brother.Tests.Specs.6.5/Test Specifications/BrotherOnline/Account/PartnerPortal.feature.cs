@@ -112,7 +112,7 @@ testRunner.And("I click on ADD a colleague", ((string)(null)), ((TechTalk.SpecFl
 #line 22
 testRunner.Then("I should see enter email address field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 23
-testRunner.And(string.Format("I enter email addresgits as \"{0}\"", emailAddress2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And(string.Format("I enter email address as \"{0}\"", emailAddress2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 24
 testRunner.And("I click on submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 25
