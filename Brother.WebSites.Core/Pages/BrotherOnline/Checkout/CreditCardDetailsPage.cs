@@ -51,7 +51,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
         public IWebElement CreditCardDetailsFramePageAddNewCard;
 
         //added locators
-        [FindsBy(How = How.CssSelector, Using = "#creditCard > div.buttonDR > span > input")]
+        [FindsBy(How = How.XPath, Using = "//*[@id='creditCard']//input[@data-control='SUBMIT']")]
         public IWebElement AddNewCardSendPaymentButton;
 
 
