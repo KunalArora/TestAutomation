@@ -53,26 +53,21 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
         //added locators
         [FindsBy(How = How.XPath, Using = "//*[@id='creditCard']//input[@data-control='SUBMIT']")]
         public IWebElement AddNewCardSendPaymentButton;
-
-
+  
         [FindsBy(How = How.XPath, Using = "//*[@id='creditCard']//input[@data-control='CARD']")]
         public IWebElement CreditCardNumberTextBox;
-
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='creditCard']//input[@data-control='CVV']")]
         public IWebElement CreditCardCvvTextBox;
 
-
         [FindsBy(How = How.XPath, Using = ".//*[@id='creditCard']//select[@data-control='MONTH']")]
         public IWebElement CreditCardExpiryMonth;
-
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='creditCard']//select[@data-control='YEAR']")]
         public IWebElement CreditCardExpiryYear;
 
         [FindsBy(How = How.Id, Using = "MASTERCARD")]  
         public IWebElement MasterCardRadioButton;
-
 
 
 
@@ -219,8 +214,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
             }
             MoveToElement(AddNewCardSendPaymentButton);
             AssertElementPresent(AddNewCardSendPaymentButton, "Send Payment Button");
-        }
-
+        }      
         public void SelectMasterCardRadioButton()
         {
           
