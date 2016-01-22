@@ -209,6 +209,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CloudMPSDealerCanUpdateProfile.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\MPSTwo\Proposal\CloudMPS1834EnteringLargeEstimatedVolume.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CloudMPS1834EnteringLargeEstimatedVolume.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specifications\MPSTwo\Proposal\CloudMPSGermanDealerCanCloseProposal.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -689,6 +694,10 @@
     <None Include="Test Specifications\MPSTwo\Proposal\CloudMPSDealerCanUpdateProfile.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSDealerCanUpdateProfile.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwo\Proposal\CloudMPS1834EnteringLargeEstimatedVolume.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CloudMPS1834EnteringLargeEstimatedVolume.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwo\Proposal\CloudMPSGermanDealerCanCloseProposal.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

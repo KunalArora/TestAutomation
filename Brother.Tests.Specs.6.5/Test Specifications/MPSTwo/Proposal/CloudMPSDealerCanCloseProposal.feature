@@ -129,9 +129,9 @@ Scenario Outline: Other Dealers can cancel a proposal in Open state
 
 Scenarios:
 
-	| Role             | Country | Role2                           | ContractType                      | UsageType                                 | Length | Billing              |
-	| Cloud MPS Dealer | France  | Cloud MPS Local Office Approver | Buy & Click                       | Engagement sur un minimum volume de pages | 3 ans  | Quarterly in Arrears |
-	| Cloud MPS Dealer | Italy   | Cloud MPS Local Office Approver | Acquisto + Consumo con assistenza | Volume minimo                             | 36     | Quarterly in Advance |
+	| Role             | Country | Role2                           | ContractType                      | UsageType                                 | Length | Billing                |
+	| Cloud MPS Dealer | France  | Cloud MPS Local Office Approver | Buy & Click                       | Engagement sur un minimum volume de pages | 3 ans  | Trimestrale anticipata |
+	| Cloud MPS Dealer | Italy   | Cloud MPS Local Office Approver | Acquisto + Consumo con assistenza | Volume minimo                             | 36     | Quarterly in Advance   |
 	
 
 
@@ -147,9 +147,9 @@ Scenario Outline: Other Dealers can cancel a proposal in Awaiting Approval state
 
 Scenarios:
 
-	| Role             | Country | Role2                           | ContractType                      | UsageType                                 | Length | Billing              |
-	| Cloud MPS Dealer | France  | Cloud MPS Local Office Approver | Buy & Click                       | Engagement sur un minimum volume de pages | 3 ans  | Quarterly in Arrears |
-	| Cloud MPS Dealer | Italy   | Cloud MPS Local Office Approver | Acquisto + Consumo con assistenza | Volume minimo                             | 36     | Quarterly in Advance |
+	| Role             | Country | Role2                           | ContractType                      | UsageType                                 | Length | Billing                |
+	| Cloud MPS Dealer | France  | Cloud MPS Local Office Approver | Buy & Click                       | Engagement sur un minimum volume de pages | 3 ans  | Trimestrale anticipata |
+	| Cloud MPS Dealer | Italy   | Cloud MPS Local Office Approver | Acquisto + Consumo con assistenza | Volume minimo                             | 36     | Quarterly in Advance   |
 	
 
 Scenario Outline: Other Dealers can cancel a proposal in Approved state
@@ -170,7 +170,7 @@ Scenario Outline: Other Dealers can cancel a proposal in Approved state
 
 Scenarios:
 
-	| Role             | Country | Role2                           | ContractType                      | UsageType                                 | Length | Billing              |
-	| Cloud MPS Dealer | France  | Cloud MPS Local Office Approver | Buy & Click                       | Engagement sur un minimum volume de pages | 3 ans  | Quarterly in Arrears |
-	| Cloud MPS Dealer | Italy   | Cloud MPS Local Office Approver | Acquisto + Consumo con assistenza | Volume minimo                             | 36     | Quarterly in Advance |
+	| Role             | Country | Role2                           | ContractType                      | UsageType                                 | Length | Billing                |
+	| Cloud MPS Dealer | France  | Cloud MPS Local Office Approver | Buy & Click                       | Engagement sur un minimum volume de pages | 3 ans  | Trimestrale anticipata |
+	| Cloud MPS Dealer | Italy   | Cloud MPS Local Office Approver | Acquisto + Consumo con assistenza | Volume minimo                             | 36     | Quarterly in Advance   |
 	

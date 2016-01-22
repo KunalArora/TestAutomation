@@ -46,9 +46,9 @@ Scenario Outline: Installer can progress with installation for Email Communicati
 	
 Scenarios:
 
-	| Role                            | Country | ContractType                      | UsageType                                 | Role1            | Method | Length | Billing              |
-	| Cloud MPS Local Office Approver | France  | Buy & Click                       | Engagement sur un minimum volume de pages | Cloud MPS Dealer | Email  | 3 ans  | Quarterly in Arrears |
-	| Cloud MPS Local Office Approver | Italy   | Acquisto + Consumo con assistenza | Volume minimo                             | Cloud MPS Dealer | Email  | 36     | Quarterly in Advance |
+	| Role                            | Country | ContractType                      | UsageType                                 | Role1            | Method | Length | Billing                |
+	| Cloud MPS Local Office Approver | France  | Buy & Click                       | Engagement sur un minimum volume de pages | Cloud MPS Dealer | Email  | 3 ans  | Trimestrale anticipata |
+	| Cloud MPS Local Office Approver | Italy   | Acquisto + Consumo con assistenza | Volume minimo                             | Cloud MPS Dealer | Email  | 36     | Quarterly in Advance   |
 	
 
 Scenario Outline: German And Austria Installer can progress with installation for Email Communication
@@ -117,10 +117,10 @@ Scenario Outline: Dealer can create installation request for Cloud Communication
 	
 Scenarios:
 	
-	| Role                            | Country | ContractType                      | UsageType                                 | Role1            | Method | Length | Billing              | Type |
-	| Cloud MPS Local Office Approver | France  | Buy & Click                       | Engagement sur un minimum volume de pages | Cloud MPS Dealer | Cloud  | 3 ans  | Quarterly in Arrears | BOR  |
-	| Cloud MPS Local Office Approver | France  | Buy & Click                       | Engagement sur un minimum volume de pages | Cloud MPS Dealer | Cloud  | 4 ans  | Quarterly in Arrears | Web  |
-	| Cloud MPS Local Office Approver | Italy   | Acquisto + Consumo con assistenza | Volume minimo                             | Cloud MPS Dealer | Cloud  | 36     | Quarterly in Advance | BOR  |
-	| Cloud MPS Local Office Approver | Italy   | Acquisto + Consumo con assistenza | Volume minimo                             | Cloud MPS Dealer | Cloud  | 48     | Quarterly in Advance | Web  |
+	| Role                            | Country | ContractType                      | UsageType                                 | Role1            | Method | Length | Billing                | Type |
+	| Cloud MPS Local Office Approver | France  | Buy & Click                       | Engagement sur un minimum volume de pages | Cloud MPS Dealer | Cloud  | 3 ans  | Trimestrale anticipata | BOR  |
+	| Cloud MPS Local Office Approver | France  | Buy & Click                       | Engagement sur un minimum volume de pages | Cloud MPS Dealer | Cloud  | 4 ans  | Trimestrale anticipata | Web  |
+	| Cloud MPS Local Office Approver | Italy   | Acquisto + Consumo con assistenza | Volume minimo                             | Cloud MPS Dealer | Cloud  | 36     | Quarterly in Advance   | BOR  |
+	| Cloud MPS Local Office Approver | Italy   | Acquisto + Consumo con assistenza | Volume minimo                             | Cloud MPS Dealer | Cloud  | 48     | Quarterly in Advance   | Web  |
 	
 

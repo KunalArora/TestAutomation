@@ -190,6 +190,9 @@
     <Compile Include="Pages\MPSTwo\LocalOfficeApproverDeviceManagementPage.cs" />
     <Compile Include="Pages\MPSTwo\SendToBankPage.cs" />
     <Compile Include="Pages\MPSTwo\ServiceDeskDashBoardPage.cs" />
+    <Compile Include="Pages\MPSTwo\ServiceDeskReportingPage.cs" />
+    <Compile Include="Pages\MPSTwo\ServiceDeskServiceRequestsPage.cs" />
+    <Compile Include="Pages\MPSTwo\ServiceRequestsPage.cs" />
     <Compile Include="Pages\OmniJoin\PartnerPortal\CodeActivationPage.cs" />
     <Compile Include="Pages\OmniJoin\PartnerPortal\CreateActivationCodesPage.cs" />
     <Compile Include="Pages\OmniJoin\PartnerPortal\ManageCustomersAndOrdersPage.cs" />
