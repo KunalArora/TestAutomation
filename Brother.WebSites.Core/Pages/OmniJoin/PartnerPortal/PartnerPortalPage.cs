@@ -20,6 +20,8 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
         [FindsBy(How = How.XPath, Using = ".//*[@id='main']/div/div[2]/div/span/table/tbody/tr/td/a[1]")]
         public IWebElement MaintainaListofUsersButton;
 
+        [FindsBy(How = How.XPath, Using = ".//*[@id='main']/div/div[2]/div/span/table/tbody/tr/td/a[2]")]
+        public IWebElement EditYourPersonalInfoButton;
 
         [FindsBy(How = How.CssSelector, Using = ".button-aqua")]
         public IWebElement HomeButton;
@@ -62,6 +64,17 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
         public void IsHomeButtonDisplayed()
         {
             TestCheck.AssertIsEqual(true, HomeButton.Displayed, "Is home button displayed");
+        }
+
+        public EditAddressPage ClickEditYourPersonalInfoPage()
+        {
+            if (EditYourPersonalInfoButton == null)
+            {
+                throw new NullReferenceException("Unable to locate EditButton");
+
+            }
+            EditYourPersonalInfoButton.Click();
+            return GetInstance<EditAddressPage>(Driver);
         }
     }
 }

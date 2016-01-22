@@ -195,6 +195,7 @@
     <Compile Include="Pages\MPSTwo\ServiceRequestsPage.cs" />
     <Compile Include="Pages\OmniJoin\PartnerPortal\CodeActivationPage.cs" />
     <Compile Include="Pages\OmniJoin\PartnerPortal\CreateActivationCodesPage.cs" />
+    <Compile Include="Pages\OmniJoin\PartnerPortal\EditAddressPage.cs" />
     <Compile Include="Pages\OmniJoin\PartnerPortal\ManageCustomersAndOrdersPage.cs" />
     <Compile Include="Pages\OmniJoin\PartnerPortal\ManageServicePage.cs" />
     <Compile Include="Pages\OmniJoin\PartnerPortal\MyCustomers.cs" />
