@@ -716,7 +716,7 @@ Scenario: Sign Up for 14 day Free trial already signed into Brother Online
 	Then I am redirected to the Brother Home Page
 
 @SMOKE
-Scenario: Sign Up for 14 day Free trial already signed into Uk Brother Online
+Scenario: Sign Up for 14 day Free trial already signed into Uk Brother Online without validating email
 	# Create an account on BOL and sign in
 	Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"

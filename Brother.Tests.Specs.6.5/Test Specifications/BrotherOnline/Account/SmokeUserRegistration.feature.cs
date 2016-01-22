@@ -1747,11 +1747,13 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Sign Up for 14 day Free trial already signed into Uk Brother Online")]
+        [NUnit.Framework.DescriptionAttribute("Sign Up for 14 day Free trial already signed into Uk Brother Online without valid" +
+            "ating email")]
         [NUnit.Framework.CategoryAttribute("SMOKE")]
-        public virtual void SignUpFor14DayFreeTrialAlreadySignedIntoUkBrotherOnline()
+        public virtual void SignUpFor14DayFreeTrialAlreadySignedIntoUkBrotherOnlineWithoutValidatingEmail()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Sign Up for 14 day Free trial already signed into Uk Brother Online", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Sign Up for 14 day Free trial already signed into Uk Brother Online without valid" +
+                    "ating email", new string[] {
                         "SMOKE"});
 #line 719
 this.ScenarioSetup(scenarioInfo);
