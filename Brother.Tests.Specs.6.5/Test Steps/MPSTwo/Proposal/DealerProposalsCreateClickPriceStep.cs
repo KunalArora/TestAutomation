@@ -19,6 +19,24 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             NextPage = CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateEnteredClickPriceAndProceed(monoVol);
         }
 
+        [When(@"I type in large click volume of ""(.*)""")]
+        public void WhenITypeInLargeClickVolumeOf(string volume)
+        {
+            CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateEnteredErrorClickPrice(volume);
+        }
+
+
+        [Then(@"appropriate error message is displayed")]
+        public void ThenAppropriateErrorMessageIsDisplayed()
+        {
+            CurrentPage.As<DealerProposalsCreateClickPricePage>().IsLargeEstimatedVolumeErrorMessageDisplayed();
+        }
+
+        [Then(@"calculate button is disabled")]
+        public void ThenCalculateButtonIsDisabled()
+        {
+            CurrentPage.As<DealerProposalsCreateClickPricePage>().IsCalculateButtonDisabled();
+        }
 
         [When(@"I calculate click price for the printer")]
         public void WhenICalculateClickPriceForThePrinter()

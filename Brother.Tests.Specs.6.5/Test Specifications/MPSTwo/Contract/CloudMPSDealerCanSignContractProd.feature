@@ -1,4 +1,4 @@
-﻿@ignore @PROD
+﻿@ignore @MPS @PROD
 Feature: CloudMPSDealerCanSignContractProd
 	In order to progress an approved proposal to contract
 	As a dealer
@@ -37,7 +37,7 @@ Scenario Outline: Dealer Can Sign A Leasing And Click Contract in Prod
 
 	
 	
-@ignore
+#@ignore
 Scenario Outline: Dealer Can Sign A Purchase And Click Contract in Prod
 	Given I sign as "<Role>" into "<Web>" for "<Country>"
 	And I have created Purchase and Click proposal for "<ServerName>" 
@@ -60,7 +60,7 @@ Scenario Outline: Dealer Can Sign A Purchase And Click Contract in Prod
 	
 	Scenarios: 
 	| Role             | Country        | Role2                           | Web                               | ServerName |
-	| Cloud MPS Dealer | United Kingdom | Cloud MPS Local Office Approver | https://web1.online.brother.co.uk | Web_1      |
-	| Cloud MPS Dealer | United Kingdom | Cloud MPS Local Office Approver | https://web2.online.brother.co.uk | Web_2      |
-	| Cloud MPS Dealer | United Kingdom | Cloud MPS Local Office Approver | https://web5.online.brother.co.uk | Web_5      |
-	| Cloud MPS Dealer | United Kingdom | Cloud MPS Local Office Approver | https://web6.online.brother.co.uk | Web_6      |
+	#| Cloud MPS Dealer | United Kingdom | Cloud MPS Local Office Approver | https://web1.online.brother.co.uk | Web_1      |
+	#| Cloud MPS Dealer | United Kingdom | Cloud MPS Local Office Approver | https://web2.online.brother.co.uk | Web_2      |
+	#| Cloud MPS Dealer | United Kingdom | Cloud MPS Local Office Approver | https://web5.online.brother.co.uk | Web_5      |
+	#| Cloud MPS Dealer | United Kingdom | Cloud MPS Local Office Approver | https://web6.online.brother.co.uk | Web_6      |
