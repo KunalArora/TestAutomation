@@ -189,7 +189,7 @@ Scenario Outline: Summary Page Validation For Pay As you Go Purchase and Click p
 	
 
 	Scenarios: 
-	| Role             | Country        | ContractType                  | CreateOption        | UsageType                                      | Contract | Billing                | PriceHardware | Printer    | DeviceScreen | ClickVolume | Basis1                           |
-	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Create new customer | Pay As You Go                                  | 4 years  | Quarterly in Arrears   | Tick          | MFC-8510DN | Full         | 800         | Pay upfront                      |
-	| Cloud MPS Dealer | France         | Buy & Click                   | Create new customer | Paiement selon la consommation réelle de pages | 4 ans    | Trimestrale anticipata | Tick          | MFC-8510DN | Full         | 800         | Paiement au démarrage du contrat |
+	| Role             | Country        | ContractType                  | CreateOption        | UsageType                                      | Contract | Billing                        | PriceHardware | Printer    | DeviceScreen | ClickVolume | Basis1                           |
+	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Create new customer | Pay As You Go                                  | 4 years  | Quarterly in Arrears           | Tick          | MFC-8510DN | Full         | 800         | Pay upfront                      |
+	| Cloud MPS Dealer | France         | Buy & Click                   | Create new customer | Paiement selon la consommation réelle de pages | 4 ans    | Trimestriellement à terme échu | Tick          | MFC-8510DN | Full         | 800         | Paiement au démarrage du contrat |
 	

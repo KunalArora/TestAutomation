@@ -66,9 +66,9 @@ Scenario Outline: Create different varieties of Purchase and Click proposal for 
 	
 
 	Scenarios: 
-	| Role             | Country        | ContractType                  | CreateOption        | UsageType                                      | Contract | Billing                | PriceHardware | Printer    | DeviceScreen | ClickVolume |
-	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Create new customer | Pay As You Go                                  | 4 years  | Quarterly in Arrears   | Tick          | MFC-8510DN | Full         | 750         |
-	| Cloud MPS Dealer | France         | Buy & Click                   | Create new customer | Paiement selon la consommation réelle de pages | 4 ans    | Trimestrale anticipata | Tick          | MFC-8510DN | Full         | 750         |
+	| Role             | Country        | ContractType                  | CreateOption        | UsageType                                      | Contract | Billing                        | PriceHardware | Printer    | DeviceScreen | ClickVolume |
+	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Create new customer | Pay As You Go                                  | 4 years  | Quarterly in Arrears           | Tick          | MFC-8510DN | Full         | 750         |
+	| Cloud MPS Dealer | France         | Buy & Click                   | Create new customer | Paiement selon la consommation réelle de pages | 4 ans    | Trimestriellement à terme échu | Tick          | MFC-8510DN | Full         | 750         |
 	
 	## Italy does not have Pay as you Go facility
 	#| Cloud MPS Dealer | Italy          | Acquisto & Consumo            | Create new customer | Pagamento a consumo                            | 48       | Quarterly in Advance | Tick          | MFC-8510DN | Full         | 750         |
@@ -133,9 +133,9 @@ Scenario Outline: Create different varieties of Purchase and Click proposal for 
 	
 
 	Scenarios: 
-	| Role             | Country        | ContractType                  | UsageType                                      | Contract | Billing                | PriceHardware | Printer    | DeviceScreen | ClickVolume |
-	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Pay As You Go                                  | 5 years  | Quarterly in Arrears   | Tick          | MFC-8510DN | Full         | 750         |
-	| Cloud MPS Dealer | France         | Buy & Click                   | Paiement selon la consommation réelle de pages | 5 ans    | Trimestrale anticipata | Tick          | MFC-8510DN | Full         | 750         |
+	| Role             | Country        | ContractType                  | UsageType                                      | Contract | Billing                        | PriceHardware | Printer    | DeviceScreen | ClickVolume |
+	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Pay As You Go                                  | 5 years  | Quarterly in Arrears           | Tick          | MFC-8510DN | Full         | 750         |
+	| Cloud MPS Dealer | France         | Buy & Click                   | Paiement selon la consommation réelle de pages | 5 ans    | Trimestriellement à terme échu | Tick          | MFC-8510DN | Full         | 750         |
 	
 	## Italy does not have Pay as you Go facility
 	#| Cloud MPS Dealer | Italy          | Acquisto & Consumo            | Create new customer | Pagamento a consumo                            | 48       | Quarterly in Advance | Tick          | MFC-8510DN | Full         | 750         |

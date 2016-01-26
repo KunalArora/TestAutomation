@@ -289,7 +289,7 @@ Scenario Outline: Send certain proposal for Approval for Privately Liable Custom
 	Scenarios:
 
 	| Role             | Country | Role2                           | ContractType                      | UsageType                                 | Length | Billing                | Private         |
-	| Cloud MPS Dealer | France  | Cloud MPS Local Office Approver | Buy & Click                       | Engagement sur un minimum volume de pages | 3 ans  | Trimestrale anticipata | Limited Company |
+	| Cloud MPS Dealer | France  | Cloud MPS Local Office Approver | Buy & Click                       | Engagement sur un minimum volume de pages | 3 ans  | Trimestrale anticipata | Autre           |
 	| Cloud MPS Dealer | Italy   | Cloud MPS Local Office Approver | Acquisto + Consumo con assistenza | Volume minimo                             | 36     | Quarterly in Advance   | Limited Company |
 	
 

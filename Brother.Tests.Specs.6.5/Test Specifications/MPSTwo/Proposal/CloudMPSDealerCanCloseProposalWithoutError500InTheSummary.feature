@@ -12,6 +12,7 @@ Scenario Outline: Dealer can cancel a proposal in Open state
 	When I can click edit button on proposal item of Exisiting Proposal table
 	And I go to "Summary" Tab in Proposal
 	Then I can close the proposal on the summary page
+	And the closed proposal summary page has no error message
 	And I can sign out of Brother Online
 
 
@@ -28,6 +29,7 @@ Scenario Outline: German and Austria Dealer can cancel a proposal in Open state
 	When I can click edit button on proposal item of Exisiting Proposal table
 	And I go to "Summary" Tab in Proposal
 	Then I can close the proposal on the summary page
+	And the closed proposal summary page has no error message
 	And I can sign out of Brother Online
 
 
@@ -45,6 +47,7 @@ Scenario Outline: Dealer can cancel a proposal in Awaiting Approval state
 	And I send the created proposal for approval
 	When I navigate to the Summary page of the proposal awaiting approval
 	Then I can close the proposal on the summary page
+	And the closed proposal summary page has no error message
 	And I can sign out of Brother Online
 
 
@@ -61,6 +64,7 @@ Scenario Outline: German and Austria Dealer can cancel a proposal in Awaiting Ap
 	And I send the created German proposal for approval
 	When I navigate to the Summary page of the proposal awaiting approval
 	Then I can close the proposal on the summary page
+	And the closed proposal summary page has no error message
 	And I can sign out of Brother Online
 
 
@@ -84,6 +88,7 @@ Scenario Outline: Dealer can cancel a proposal in Approved state
 	When I navigate to dealer approved proposal page
 	And I identify and navigate to the approved proposal summary
 	Then I can close the proposal on the summary page
+	And the closed proposal summary page has no error message
 	And I can sign out of Brother Online
 
 
@@ -105,6 +110,7 @@ Scenario Outline: German and Austria Dealer can cancel a proposal in Approved st
 	When I navigate to dealer approved proposal page
 	And I identify and navigate to the approved proposal summary
 	Then I can close the proposal on the summary page
+	And the closed proposal summary page has no error message
 	And I can sign out of Brother Online
 
 
@@ -124,6 +130,7 @@ Scenario Outline: Other Dealers can cancel a proposal in Open state
 	When I can click edit button on proposal item of Exisiting Proposal table
 	And I go to "Summary" Tab in Proposal
 	Then I can close the proposal on the summary page
+	And the closed proposal summary page has no error message
 	And I can sign out of Brother Online
 
 
@@ -142,6 +149,7 @@ Scenario Outline: Other Dealers can cancel a proposal in Awaiting Approval state
 	And I send the created proposal for approval
 	When I navigate to the Summary page of the proposal awaiting approval
 	Then I can close the proposal on the summary page
+	And the closed proposal summary page has no error message
 	And I can sign out of Brother Online
 
 
@@ -165,6 +173,7 @@ Scenario Outline: Other Dealers can cancel a proposal in Approved state
 	When I navigate to dealer approved proposal page
 	And I identify and navigate to the approved proposal summary
 	Then I can close the proposal on the summary page
+	And the closed proposal summary page has no error message
 	And I can sign out of Brother Online
 
 
