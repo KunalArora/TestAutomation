@@ -271,6 +271,22 @@ namespace Brother.Tests.Specs
         {
             CurrentPage.As<ManageCustomersAndOrdersPage>().EnterFirstNameTextBox(firstName);
         }
+        [When(@"I fill in FirstName as ""(.*)""")]
+        public void WhenIFillInFirstNameAs(string firstName)
+        {
+            CurrentPage.As<ManageCustomersAndOrdersPage>().EnterFirstNameTextBox(firstName);
+        }
+        [When(@"I fill in LastName as ""(.*)""")]
+        public void WhenIFillInLastNameAs(string lastName)
+        {
+           CurrentPage.As<ManageCustomersAndOrdersPage>().EnterLastNameTxtBox(lastName);
+        }
+        [When(@"I fill in companyName as ""(.*)""")]
+        public void WhenIFillInCompanyNameAs(string companyName)
+        {
+          CurrentPage.As<ManageCustomersAndOrdersPage>().EnterCompanyNameTextBox(companyName);
+        }
+
         [Then(@"I fill in LastName as ""(.*)""")]
         public void ThenIFillInLastNameAs(string lastName)
         {
@@ -281,6 +297,12 @@ namespace Brother.Tests.Specs
         {
             CurrentPage.As<ManageCustomersAndOrdersPage>().ClickSubmitButton();
         }
+        [When(@"I click submit")]
+        public void WhenIClickSubmit()
+        {
+            CurrentPage.As<ManageCustomersAndOrdersPage>().ClickSubmitButton(); 
+        }
+
         [Then(@"I should see success message on the page")]
         public void ThenIShouldSeeSuccessMessageOnThePage()
         {
@@ -291,10 +313,27 @@ namespace Brother.Tests.Specs
         {
             CurrentPage.As<ManageCustomersAndOrdersPage>().PopUpMessageClose();
         }
+        [When(@"I close the message")]
+        public void WhenICloseTheMessage()
+        {
+            CurrentPage.As<ManageCustomersAndOrdersPage>().PopUpMessageClose();
+        }
+
         [Then(@"I should see created user in the user list page")]
         public void ThenIShouldSeeCreatedUserInTheUserListPage()
         {
            CurrentPage.As<ManageCustomersAndOrdersPage>().IsCreatedUsersListDisplayed();
+        }
+        [Then(@"I should see added customer in the Managecustomersandorderspage")]
+        public void ThenIShouldSeeAddedCustomerInTheManagecustomersandorderspage()
+        {
+           CurrentPage.As<ManageCustomersAndOrdersPage>().IsAddedCustomerListDisplayed();
+        }
+
+        [Then(@"I click on ManageCustomersandOrders button")]
+        public void ThenIClickOnManageCustomersandOrdersButton()
+        {
+            NextPage = CurrentPage.As<PartnerPortalPage>().ClickManageCustomersAndOrdersPageButton();
         }
 
     }

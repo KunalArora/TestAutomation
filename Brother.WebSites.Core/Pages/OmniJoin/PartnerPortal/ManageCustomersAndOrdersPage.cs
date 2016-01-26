@@ -64,6 +64,9 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
         [FindsBy(How = How.CssSelector, Using = "#txtLastName")] 
         public IWebElement LastNameTxtBox;
 
+        [FindsBy(How = How.CssSelector, Using = "#txtCompanyName")]
+        public IWebElement CompanyNameTxtBox;
+
         [FindsBy(How = How.CssSelector, Using = "#content_1_innercontent_2_btnSumbit")] 
         public IWebElement SubmitButton;
 
@@ -76,6 +79,8 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
         [FindsBy(How = How.CssSelector, Using = ".odd>td")]
         public IWebElement CreatedUsersinList;
 
+        [FindsBy(How = How.CssSelector, Using = ".odd>td")]
+        public IWebElement AddedCustomerList;
 
         public PartnerPortalPage PartnerPortalBreadcrumbClick()
         {
@@ -145,6 +150,10 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
 
         public void IsAddNewCustomerButtonDisplayed()
         {
+            if (AddCustomerButton == null)
+            {
+                throw new NullReferenceException("Unable to locate the button");
+            }
             TestCheck.AssertIsEqual(true, AddNewCustomer.Displayed, "Is add new  customer button displayed");
         }
         public void NextButtonClick()
@@ -212,13 +221,38 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
 
         public void  EnterFirstNameTextBox(string firstName)
         {
+            if (FirstNameTxtBox == null)
+            {
+                throw new NullReferenceException("Unable to locate firstname textbox");
+            }
             FirstNameTxtBox.SendKeys(firstName);
             FirstNameTxtBox.SendKeys(Keys.Tab);
         }
 
         public void EnterLastNameTextBox(string lastName)
         {
+            if (LastNameTxtBox == null)
+            {
+                throw new NullReferenceException("Unable to locate lastName textbox");
+            }
             LastNameTxtBox.SendKeys(lastName);
+        }
+        public void EnterLastNameTxtBox(string lastName)
+        {
+            if (LastNameTxtBox == null)
+            {
+                throw new NullReferenceException("Unable to locate lastName textbox");
+            }
+            LastNameTxtBox.SendKeys(lastName);
+            LastNameTxtBox.SendKeys(Keys.Tab);
+        }
+        public void EnterCompanyNameTextBox(string companyName)
+        {
+            if (CompanyNameTxtBox == null)
+            {
+                throw new NullReferenceException("Unable to locate companyName textbox");
+            }
+            CompanyNameTxtBox.SendKeys(companyName);
         }
         public ManageCustomersAndOrdersPage ClickSubmitButton()
         {
@@ -237,7 +271,10 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
 
         public ManageCustomersAndOrdersPage PopUpMessageClose()
         {
-            //var PopUpMessageClose = Driver.FindElement(By.CssSelector(".add-colleague-message.dp-pop-up.cf .lightbox-close"));
+            if (MessageClose == null)
+            {
+               throw new NullReferenceException("Unable to locate popup message close icon"); 
+            }
              MessageClose.Click();
             return GetInstance<ManageCustomersAndOrdersPage>(Driver);
         }
@@ -262,9 +299,14 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
 
         public void IsCreatedUsersListDisplayed()
         {
-            TestCheck.AssertIsEqual(true, CreatedUsersinList.Displayed, "Is Cretaed User list Displayed");
+            TestCheck.AssertIsEqual(true, CreatedUsersinList.Displayed, "Is Created User list Displayed");
             IsColleagueEmailAddressDisplayed();
 
+        }
+        public void IsAddedCustomerListDisplayed()
+        {
+            TestCheck.AssertIsEqual(true, AddedCustomerList.Displayed, "Is Created User list Displayed");
+         
         }
     }
 }
