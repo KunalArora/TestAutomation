@@ -39,7 +39,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         [FindsBy(How = How.Id, Using = "content_2_innercontent_1_btnUpdateBasicDetails")]
         public IWebElement UpdateButtonDetails;
 
-        [FindsBy(How = How.CssSelector, Using = ".info-bar")]
+        [FindsBy(How = How.CssSelector, Using = "#Information")]
         public IWebElement InformationMessageBar;
 
         [FindsBy(How = How.CssSelector, Using = ".error")]
@@ -81,7 +81,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         {
             FirstNameTextBox.Clear();
             ScrollTo(FirstNameTextBox);
-            FirstNameTextBox.SendKeys(firstname);
+            FirstNameTextBox.SendKeys(firstname+Keys.Tab);
             
         }
         public void ClearFirstNameTextBox()
@@ -98,7 +98,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         }
         public void PopulateLastNameTextBox(string lastname)
         {
-            FirstNameTextBox.SendKeys(Keys.Tab);
+            LastNameTextBox.Clear();
             LastNameTextBox.SendKeys(lastname);
         }
         public void IsUpdateButtonAvailable()
@@ -134,7 +134,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
                 throw new Exception("Unable to locate Information Message Bar");
             }
             ScrollTo(InformationMessageBar);
-           TestCheck.AssertIsEqual(displayed, InformationMessageBar.Displayed, "Information Message Bar");
+           TestCheck.AssertIsEqual(true, InformationMessageBar.Displayed, "Information Message Bar");
         }
         public void FirstNameErrorMessageDisplayed()
         {

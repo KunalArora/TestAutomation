@@ -63,8 +63,8 @@ Scenario Outline: Customer create a new account and amend their personal details
 	And I can sign out of Brother Online
 
 Scenarios: 
-	| FirstName						|LastName							|
-	| Test						    |Test								|
+	| FirstName						| LastName							|
+	| Test						    | Test								|
 
 @ignore @SMOKE
 Scenario Outline: Customer gets valid error message on BOL Norway site with invalid tax code
