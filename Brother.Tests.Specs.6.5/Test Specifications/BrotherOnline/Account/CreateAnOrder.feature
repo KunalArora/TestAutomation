@@ -113,7 +113,7 @@ Scenario Outline: Customer creates an account and places an order on France BOL 
 	Then I should see OrderSummary Page
      And I accept terms and conditions
      And I click on proceed to payment button
-    Then I should see summary payment page
+     Then I should see summary payment page
 	 When I fill in creditCard details "<CreditCardNumber>"
 	 And I select a month as "<ExpiryMonth>"
 	 And I select a year as "<ExpiryYear>"

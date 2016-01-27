@@ -161,6 +161,12 @@ namespace Brother.Tests.Specs
         {
             NextPage = CurrentPage.As<PartnerPortalPage>().ClickEditYourPersonalInfoPage();
         }
+        [When(@"I click on Edit address button")]
+        public void WhenIClickOnEditAddressButton()
+        {
+            NextPage = CurrentPage.As<PartnerPortalPage>().ClickEditAddressButton();
+        }
+
         [When(@"I see Edit address page")]
         public void WhenISeeEditAddressPage()
         {
@@ -196,6 +202,24 @@ namespace Brother.Tests.Specs
         {
             CurrentPage.As<EditAddressPage>().EmptyHouseNumberTextBox();
         }
+        [When(@"I enter tab on Postcode")]
+        public void WhenIEnterTabOnPostcode()
+        {
+         CurrentPage.As<EditAddressPage>().PopulatePostCodeTextBox();
+        }
+
+        [When(@"I enter tab on CityorTown field")]
+        public void WhenIEnterTabOnCityorTownField()
+        {
+           CurrentPage.As<EditAddressPage>().PopulateCityorTownTextBox();
+        }
+
+        [Then(@"I should see an error message on CityorTown field")]
+        public void ThenIShouldSeeAnErrorMessageOnCityorTownField()
+        {
+          CurrentPage.As<EditAddressPage>().IsCityTownTextBoxErrorMessageDisplayed();
+        }
+
         [Then(@"I should see an error message on house number field")]
         public void ThenIShouldSeeAnErrorMessageOnHouseNumberField()
         {
