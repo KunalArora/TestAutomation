@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -21,6 +22,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         [FindsBy(How = How.CssSelector, Using = ".active a[href=\"/mps/dealer/proposals/closed\"] span")]
         public IWebElement ClosedProposalTab;
+        [FindsBy(How = How.CssSelector, Using = ".open .js-mps-view-summary")]
+        public IWebElement ClosedProposalOpenSummaryButton;
+        
+        
+        
+        
 
         public void IsClosedProposalTabOpened()
         {
@@ -34,6 +41,21 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             ActionsModule.IsClosedProposalDisplayed();
         }
+
+        public void ClickOnClosedProposal()
+        {
+            ActionsModule.ClickOnSpecificActionsElement();
+        }
+
+        public DealerClosedProposalSummaryPage OpenClosedProposalSummary()
+        {
+            ClosedProposalOpenSummaryButton.Click();
+            return GetInstance<DealerClosedProposalSummaryPage>();
+        }
+
+        
+
+        
 
 
     }

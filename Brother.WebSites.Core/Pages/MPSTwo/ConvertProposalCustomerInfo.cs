@@ -160,9 +160,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 SelectFromDropdown(LegalFormDropdown, "Aktiengesellschaft");
 
             }
-            else if (IsUKSystem()|| IsFranceSystem() || IsItalySystem())
+            else if (IsUKSystem() || IsItalySystem())
             {
-               SelectFromDropdown(LegalFormDropdown, "Church"); 
+               SelectFromDropdown(LegalFormDropdown, "Church");
+            }
+            else if (IsFranceSystem())
+            {
+                SelectFromDropdown(LegalFormDropdown, "Administration"); 
             }
                 
             WebDriver.Wait(DurationType.Second, 3);

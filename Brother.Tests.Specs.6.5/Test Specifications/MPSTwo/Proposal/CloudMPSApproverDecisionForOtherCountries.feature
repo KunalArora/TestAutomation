@@ -18,9 +18,9 @@ Scenario Outline: Approver Decline Proposal for other Countries
 	And I sign out of Cloud MPS
 
 	Scenarios: 
-	| Country | Role                            | ContractType                      | UsageType                                 | Length | Billing              |
-	| France  | Cloud MPS Local Office Approver | Buy & Click                       | Engagement sur un minimum volume de pages | 3 ans  | Quarterly in Arrears |
-	| Italy   | Cloud MPS Local Office Approver | Acquisto + Consumo con assistenza | Volume minimo                             | 36     | Quarterly in Advance |
+	| Country | Role                            | ContractType                      | UsageType                                 | Length | Billing                |
+	| France  | Cloud MPS Local Office Approver | Buy & Click                       | Engagement sur un minimum volume de pages | 3 ans  | Trimestrale anticipata |
+	| Italy   | Cloud MPS Local Office Approver | Acquisto + Consumo con assistenza | Volume minimo                             | 36     | Quarterly in Advance   |
 	
 
 @ignore
@@ -69,9 +69,9 @@ Scenario Outline: Approver can decide to reject or approve the contract for othe
 	And I sign out of Cloud MPS
 
 	Scenarios:
-	| Country | Role                           | ContractType                      | UsageType                                 | Length | Billing              |
-	| France  | Cloud MPS Local Office Approver | Buy & Click                       | Engagement sur un minimum volume de pages | 3 ans  | Quarterly in Arrears |
-	| Italy   | Cloud MPS Local Office Approver | Acquisto + Consumo con assistenza | Volume minimo                             | 36     | Quarterly in Advance |
+	| Country | Role                            | ContractType                      | UsageType                                 | Length | Billing                |
+	| France  | Cloud MPS Local Office Approver | Buy & Click                       | Engagement sur un minimum volume de pages | 3 ans  | Trimestrale anticipata |
+	| Italy   | Cloud MPS Local Office Approver | Acquisto + Consumo con assistenza | Volume minimo                             | 36     | Quarterly in Advance   |
 	
 
 # Accept3
@@ -107,9 +107,9 @@ Scenario Outline: Approver can approve the contract for other Countries
 
 	Scenarios:
 
-	| Country | Role                           | ContractType                      | UsageType                                 | Length | Billing              |
-	| France  | Cloud MPS Local Office Approver | Buy & Click                       | Engagement sur un minimum volume de pages | 3 ans  | Quarterly in Arrears |
-	| Italy   | Cloud MPS Local Office Approver | Acquisto + Consumo con assistenza | Volume minimo                             | 36     | Quarterly in Advance |
+	| Country | Role                            | ContractType                      | UsageType                                 | Length | Billing                |
+	| France  | Cloud MPS Local Office Approver | Buy & Click                       | Engagement sur un minimum volume de pages | 3 ans  | Trimestrale anticipata |
+	| Italy   | Cloud MPS Local Office Approver | Acquisto + Consumo con assistenza | Volume minimo                             | 36     | Quarterly in Advance   |
 	
 # Reject1,2
 Scenario Outline: Approver can reject the contract for other Countries
@@ -123,9 +123,9 @@ Scenario Outline: Approver can reject the contract for other Countries
 
 	Scenarios:
 
-	| Country | Role                           | ContractType                      | UsageType                                 | Length | Billing              |
-	| France  | Cloud MPS Local Office Approver | Buy & Click                       | Engagement sur un minimum volume de pages | 3 ans  | Quarterly in Arrears |
-	| Italy   | Cloud MPS Local Office Approver | Acquisto + Consumo con assistenza | Volume minimo                             | 36     | Quarterly in Advance |
+	| Country | Role                            | ContractType                      | UsageType                                 | Length | Billing                |
+	| France  | Cloud MPS Local Office Approver | Buy & Click                       | Engagement sur un minimum volume de pages | 3 ans  | Trimestrale anticipata |
+	| Italy   | Cloud MPS Local Office Approver | Acquisto + Consumo con assistenza | Volume minimo                             | 36     | Quarterly in Advance   |
 	
 # Reject3
 Scenario Outline: Dealer can resign rejected contract for other Countries

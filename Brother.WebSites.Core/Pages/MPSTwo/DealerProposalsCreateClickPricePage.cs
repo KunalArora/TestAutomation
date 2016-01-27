@@ -45,11 +45,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement MonoCoverageInputFieldElement;
         [FindsBy(How = How.CssSelector, Using = "[id='content_1_LineItems_InputColourCoverage_0']")]
         public IWebElement ColourCoverageInputFieldElement;
-        
         [FindsBy(How = How.Id, Using = "content_1_ButtonCalculate")]
         public IWebElement CalculateClickPriceElement;
         [FindsBy(How = How.Id, Using = "content_1_ButtonNext")]
         public IWebElement ProceedOnClickPricePageElement;
+        [FindsBy(How = How.CssSelector, Using = ".js-mps-calculate.disabled")]
+        public IWebElement DisabledCalculateButtonElement;
+        [FindsBy(How = How.CssSelector, Using = ".alert-danger.mps-alert.js-mps-alert strong")]
+        public IWebElement WarningAlertElement;
+        
+
 
         private IWebElement PaymentMethodElement()
         {
@@ -149,6 +154,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             for (var i = 0; i < ClickPriceValue().Count; i++)
             {
                 TestCheck.AssertIsEqual(false, ClickPriceValue().ElementAt(i).Text.Equals(string.Empty), "Price Value is Empty");
+            }
+        }
+
+        public void VerifyClickPriceValueIsNotDisplayed()
+        {
+            for (var i = 0; i < ClickPriceValue().Count; i++)
+            {
+                TestCheck.AssertIsEqual(true, ClickPriceValue().ElementAt(i).Text.Equals(string.Empty), "Price Value is Empty");
             }
         }
 
@@ -271,7 +284,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 throw new NullReferenceException("CalculateClickPriceElement can not be found");
 
             MonoVolumeInputFieldElement.SendKeys(volume);
-            WebDriver.Wait(Helper.DurationType.Second, 2);
+            MonoVolumeInputFieldElement.SendKeys(Keys.Tab);
+            WebDriver.Wait(DurationType.Second, 2);
             CalculateClickPriceElement.Click();
         }
 
@@ -281,7 +295,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 throw new NullReferenceException("Mono Coverage field can not be found");
 
             ClearAndType(MonoCoverageInputFieldElement, coverage);
-            WebDriver.Wait(Helper.DurationType.Second, 2);
+            WebDriver.Wait(DurationType.Second, 2);
         }
 
         private IWebElement MonoVolumeElement(string row)
@@ -327,7 +341,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 throw new NullReferenceException("Colour Volume field can not be found");
 
             ClearAndType(element, volume);
-            WebDriver.Wait(Helper.DurationType.Second, 2);
+            WebDriver.Wait(DurationType.Second, 2);
             SpecFlow.SetContext(String.Format("ColourVolume{0}-{1}", row, DateTime.Now.ToString("yyyyMMddHHmmss")), volume);
         }
 
@@ -343,27 +357,50 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
 //            MoveToClickPriceScreen();
             EnterMonoVolumeQuantity(volume);
-            WebDriver.Wait(Helper.DurationType.Second, 5);
+            WebDriver.Wait(DurationType.Second, 5);
             VerifyClickPriceValueIsDisplayed();
             SpecFlow.SetContext("ClickPriceMonoValue", ClickPriceValue().First().Text);
 
             return ProceedToProposalSummaryFromClickPrice();
         }
 
+        public void CalculateEnteredErrorClickPrice(string volume)
+        {
+            EnterMonoVolumeQuantity(volume);
+            WebDriver.Wait(DurationType.Second, 5);
+            VerifyClickPriceValueIsNotDisplayed();
+        }
+
+        public void IsLargeEstimatedVolumeErrorMessageDisplayed()
+        {
+            if(WarningAlertElement == null)
+                throw new Exception("Expected warning not displayed");
+
+            TestCheck.AssertIsEqual(true, WarningAlertElement.Displayed, "Warning error is not displayed");
+        }
+
+        public void IsCalculateButtonDisabled()
+        {
+            if(DisabledCalculateButtonElement == null)
+                throw new Exception("Calculate button is not disabled");
+
+            TestCheck.AssertIsEqual(true, DisabledCalculateButtonElement.Displayed, "Calculate button is not disabled");
+        }
+
         public void IsCoverageErrorDisplayed()
         {
-            string element = ".js-mps-alert";
+            const string element = ".js-mps-alert";
 
             AssertElementPresent(GetElementByCssSelector(element, 5), "Coverage error is not displayed");
         }
 
         private void MonoClickPriceValue()
         {
-            string str = ".mps-clickprice-group [data-click-price-mono=\"true\"]";
-            int i = 0;
-            foreach (IWebElement element in GetElementsByCssSelector(str, 5))
+            var str = ".mps-clickprice-group [data-click-price-mono=\"true\"]";
+            var i = 0;
+            foreach (var element in GetElementsByCssSelector(str, 5))
             {
-                string val = element.Text;
+                var val = element.Text;
                 if (!val.Equals("")) 
                     SpecFlow.SetContext(String.Format("MonoClickPrice{0}-{1}", i, DateTime.Now.ToString("yyyyMMddHHmmss")), val);
                 i++;

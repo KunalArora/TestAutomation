@@ -103,7 +103,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
        
         public void EnterValidUntil()
         {
-            if (IsUKSystem())
+            if (IsFranceSystem()||IsItalySystem())
                 ValidUntilElement.SendKeys(MpsUtil.SomeDaysFromToday());
         }
 
@@ -119,7 +119,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             EnterReference("");
             EnterValidUntil();
             EnterCreditLimit();
-            WebDriver.Wait(Helper.DurationType.Second, 3);
+            WebDriver.Wait(DurationType.Second, 3);
         }
 
     }

@@ -206,6 +206,25 @@ namespace Brother.Tests.Selenium.Lib.Support
 
         }
 
+        public static string ServiceRequestType()
+        {
+            String[] companyName = {
+                                    "Changing supplies",
+                                    "Print Quality",
+                                    "Machine not printing",
+                                    "Software/driver issues",
+                                    "General machine use",
+                                    "Paper Jam",
+                                    "Other faults",
+								};
+
+            var generatedServiceRequestType = companyName[new Random().Next(6)];
+
+           HelperClasses.SpecFlow.SetContext("ServiceRequestType", generatedServiceRequestType);
+            return generatedServiceRequestType;
+
+        }
+
         public static string AccountNumber()
         {
             String[] companyName = {

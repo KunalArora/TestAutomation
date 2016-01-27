@@ -169,7 +169,7 @@ namespace Brother.Tests.Selenium.Lib.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("MPS-{0}-UAT-ServiceDesk@brother.co.uk\r\n")]
+        [global::System.Configuration.DefaultSettingValueAttribute("MPS-{0}-UAT-ServiceDesk@brother.co.uk")]
         public string QASMPSServiceDesk {
             get {
                 return ((string)(this["QASMPSServiceDesk"]));

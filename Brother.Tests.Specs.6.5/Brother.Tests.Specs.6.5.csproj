@@ -184,10 +184,10 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Proposal\CloudMPSDealerCanCloseProposal.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Proposal\CloudMPSDealerCanCloseProposalWithoutError500InTheSummary.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CloudMPSDealerCanCloseProposal.feature</DependentUpon>
+      <DependentUpon>CloudMPSDealerCanCloseProposalWithoutError500InTheSummary.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Specifications\MPSTwo\Proposal\CloudMPSDealerCanDeleteProposal.feature.cs">
       <AutoGen>True</AutoGen>
@@ -208,6 +208,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CloudMPSDealerCanUpdateProfile.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPSTwo\Proposal\CloudMPS1834EnteringLargeEstimatedVolume.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CloudMPS1834EnteringLargeEstimatedVolume.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Specifications\MPSTwo\Proposal\CloudMPSGermanDealerCanCloseProposal.feature.cs">
       <AutoGen>True</AutoGen>
@@ -670,9 +675,9 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSDealerCanOperateCustomers.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Proposal\CloudMPSDealerCanCloseProposal.feature">
+    <None Include="Test Specifications\MPSTwo\Proposal\CloudMPSDealerCanCloseProposalWithoutError500InTheSummary.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSDealerCanCloseProposal.feature.cs</LastGenOutput>
+      <LastGenOutput>CloudMPSDealerCanCloseProposalWithoutError500InTheSummary.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwo\Proposal\CloudMPSDealerCanDeleteProposal.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
@@ -689,6 +694,10 @@
     <None Include="Test Specifications\MPSTwo\Proposal\CloudMPSDealerCanUpdateProfile.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSDealerCanUpdateProfile.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwo\Proposal\CloudMPS1834EnteringLargeEstimatedVolume.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CloudMPS1834EnteringLargeEstimatedVolume.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwo\Proposal\CloudMPSGermanDealerCanCloseProposal.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

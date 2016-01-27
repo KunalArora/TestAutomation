@@ -100,7 +100,7 @@ Scenario Outline: Create different varieties of Leasing and Click proposal for a
 	
 
 	Scenarios: 
-	| Role             | Country        | ContractType               | UsageType      | Contract | Leasing   | Billing   | Printer     | DeviceScreen | ClickVolume | ColourVolume |
+	| Role             | Country        | ContractType               | UsageType      | Contract | Leasing              | Billing              | Printer     | DeviceScreen | ClickVolume | ColourVolume |
 	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Minimum Volume | 4 years  | Quarterly in Arrears | Quarterly in Arrears | HL-L8350CDW | Full         | 750         | 750          |
 	
 	
@@ -131,5 +131,6 @@ Scenario Outline: Create different varieties of Leasing and Click proposal for a
 	
 
 	Scenarios: 
-	| Role             | Country        | ContractType               | UsageType     | Contract | Leasing   | Billing   | Printer    | DeviceScreen | ClickVolume |
-	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Pay As You Go | 5 years  | Quarterly in Arrears | Quarterly in Arrears | DCP-8110DN | Full         | 750        |
+	| Role             | Country        | ContractType               | UsageType     | Contract | Leasing              | Billing              | Printer    | DeviceScreen | ClickVolume |
+	| Cloud MPS Dealer | United Kingdom | Lease & Click with Service | Pay As You Go | 5 years  | Quarterly in Arrears | Quarterly in Arrears | DCP-8110DN | Full         | 750         |
+	
