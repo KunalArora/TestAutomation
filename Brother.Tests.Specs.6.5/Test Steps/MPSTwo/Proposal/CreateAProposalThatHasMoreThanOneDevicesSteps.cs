@@ -19,6 +19,13 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             NextPage = CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().ClickNextButton();
         }
 
+        [When(@"I skip contact creation process")]
+        public void WhenISkipContactsCreationProcess()
+        {
+            CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().IsCustomerInfoTextDisplayed();
+            NextPage = CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().ClickSkipCustomerButtonAndProceed();
+        }
+
       
     }
 }

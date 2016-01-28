@@ -185,6 +185,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement FlatColourProperty;
         [FindsBy(How = How.CssSelector, Using = ".mps-product-mono")]
         public IWebElement FlatMonoProperty;
+        [FindsBy(How = How.CssSelector, Using = ".js-mps-alert .js-mps-trigger-next")]
+        public IWebElement MoveToClickPriceButton;
+        
         
 
         
@@ -1209,9 +1212,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetTabInstance<DealerProposalsCreateClickPricePage>(Driver);
         }
 
+        public DealerProposalsCreateClickPricePage MoveToClickPriceScreenWithButton()
+        {
+            ScrollTo(MoveToClickPriceButton);
+            MoveToClickPriceButton.Click();
+
+            return GetTabInstance<DealerProposalsCreateClickPricePage>(Driver);
+        }
+
         public void VerifyProductAdditionConfirmationMessage()
         {
-            WebDriver.Wait(Helper.DurationType.Millisecond, 2000);
+            WebDriver.Wait(DurationType.Millisecond, 2000);
             ScrollTo(ProductsScreenAlertElement);
             var storedProductScreenText = SpecFlow.GetContext("InitialProductPageText");
             var finalProductScreenText = ProductsScreenAlertElement.Text;

@@ -78,11 +78,21 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement copyProposalWithCustomerElement;
         [FindsBy(How = How.CssSelector, Using = ".open .js-mps-copy")]
         public IWebElement copyProposalWithoutCustomerElement;
-        
-        
-        
-        
-        
+        [FindsBy(How = How.CssSelector, Using = "#content_1_InProgressListActions_ActionList_Button_0")]
+        public IWebElement CreateNewProposalButtonElement;
+
+
+
+
+
+        public DealerProposalsCreateDescriptionPage NavigateToProposalsCreateDescriptionPage()
+        {
+            if(CreateNewProposalButtonElement == null)
+                throw new Exception("Create a new proposal button is not displayed");
+
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, CreateNewProposalButtonElement);
+            return GetInstance<DealerProposalsCreateDescriptionPage>();
+        }
         
         
 
