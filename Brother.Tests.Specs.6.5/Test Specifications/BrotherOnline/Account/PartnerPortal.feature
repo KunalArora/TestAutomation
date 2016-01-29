@@ -143,4 +143,31 @@ Then I should see error message on PhoneNumber field
 Examples:
 | Country          |   Email Address1                           | Password          |
 | United Kingdom   |   bol_uk@mailinator.com                    | Password01        | 
-    
+
+
+@TEST
+Scenario Outline: DealerUser can add newuser on partnerportal edit user page
+Given I launch Brother Online for "<Country>"
+When I click on Create Account for "<Country>"
+And I am redirected to the Brother Login/Register page
+And I fill in email as "<Email Address1>"
+And I fill in password as "<Password>"
+And I press sign in 
+Then I should be logged in successfully
+And I click on Partner Portal menu
+And I click on partner portal button
+And I click on EditUsers role
+Then I should see EditUsersPage
+And I click on AddUser
+And I enter Email as "<Email Address2>"
+And I click next
+When I enter FirstName as "<FirstName>"
+And I enter LastName as "<LastName>"
+And I click on submit
+Then I should see success message
+And I close the message pop-up
+
+Examples:
+| Country        | Email Address1        | Password   | Email Address2 | FirstName | LastName | 
+| United Kingdom | bol_uk@mailinator.com | Password01 |                | Test      | User     | 
+           
