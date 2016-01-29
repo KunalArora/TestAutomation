@@ -308,5 +308,30 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
             TestCheck.AssertIsEqual(true, AddedCustomerList.Displayed, "Is Created User list Displayed");
          
         }
+        public void IsCreatedEmailAddressDisplayed()
+        {
+            var createdCustomerEmail = SpecFlow.GetContext("Customer Email Address");
+
+            var newlyGenerated = CreatedEmailButton(createdCustomerEmail);
+
+            var newlyGeneratedColleague = FindElementByJs(newlyGenerated);
+
+            TestCheck.AssertIsEqual(true, newlyGeneratedColleague.Displayed, "");
+
+        }
+
+        private static string CreatedEmailButton(string user)
+        {
+            return String.Format("return $('td:contains(\"{0}\")')",
+                user);
+        }
+
+        public void IsCreatedCustomerListDisplayed()
+        {
+            TestCheck.AssertIsEqual(true, CreatedUsersinList.Displayed, "Is Created User list Displayed");
+            IsCreatedEmailAddressDisplayed();
+
+        }       
+
     }
 }

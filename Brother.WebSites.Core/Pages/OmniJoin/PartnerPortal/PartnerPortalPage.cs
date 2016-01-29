@@ -33,6 +33,10 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
         [FindsBy(How = How.XPath, Using = ".//tbody/tr/td[3]/a[2]")] 
         public IWebElement EditAddressButton;
 
+        [FindsBy(How = How.XPath, Using = ".//tbody/tr/td[3]/a[1]")]
+        public IWebElement EditUserButton;
+
+
         public ManageServicePage ManageServicesButtonClick()
         {
             var manageServicesButton = Driver.FindElement(By.CssSelector(PartnerButtonsSearchString.Replace("href*=", "href*='my-services'")));
@@ -102,6 +106,16 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
             }
             EditAddressButton.Click();
             return GetInstance<EditAddressPage>(Driver);
+        }
+        public EditUsersPage ClickEditUserButton()
+        {
+            if (EditUserButton == null)
+            {
+                throw new NullReferenceException("Unable to locate EditButton");
+
+            }
+            EditUserButton.Click();
+            return GetInstance<EditUsersPage>(Driver);
         }
     }
 }

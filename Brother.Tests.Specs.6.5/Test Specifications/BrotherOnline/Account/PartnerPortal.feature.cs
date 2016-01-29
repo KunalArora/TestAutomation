@@ -368,6 +368,63 @@ testRunner.Then("I should see error message on PhoneNumber field", ((string)(nul
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("DealerUser can add newuser on partnerportal edit user page")]
+        [NUnit.Framework.CategoryAttribute("TEST")]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "bol_uk@mailinator.com", "Password01", "", "Test", "User", null)]
+        public virtual void DealerUserCanAddNewuserOnPartnerportalEditUserPage(string country, string emailAddress1, string password, string emailAddress2, string firstName, string lastName, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "TEST"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("DealerUser can add newuser on partnerportal edit user page", @__tags);
+#line 149
+this.ScenarioSetup(scenarioInfo);
+#line 150
+testRunner.Given(string.Format("I launch Brother Online for \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 151
+testRunner.When(string.Format("I click on Create Account for \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 152
+testRunner.And("I am redirected to the Brother Login/Register page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 153
+testRunner.And(string.Format("I fill in email as \"{0}\"", emailAddress1), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 154
+testRunner.And(string.Format("I fill in password as \"{0}\"", password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 155
+testRunner.And("I press sign in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 156
+testRunner.Then("I should be logged in successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 157
+testRunner.And("I click on Partner Portal menu", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 158
+testRunner.And("I click on partner portal button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 159
+testRunner.And("I click on EditUsers role", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 160
+testRunner.Then("I should see EditUsersPage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 161
+testRunner.And("I click on AddUser", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 162
+testRunner.And(string.Format("I enter Email as \"{0}\"", emailAddress2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 163
+testRunner.And("I click next", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 164
+testRunner.When(string.Format("I enter FirstName as \"{0}\"", firstName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 165
+testRunner.And(string.Format("I enter LastName as \"{0}\"", lastName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 166
+testRunner.And("I click on submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 167
+testRunner.Then("I should see success message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 168
+testRunner.And("I close the message pop-up", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

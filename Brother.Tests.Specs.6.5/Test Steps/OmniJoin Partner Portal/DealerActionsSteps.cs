@@ -269,6 +269,12 @@ namespace Brother.Tests.Specs
         {
             CurrentPage.As<ManageCustomersAndOrdersPage>().AddNewColleagueButtonClick();
         }
+        [Then(@"I click on AddUser")]
+        public void ThenIClickOnAddUser()
+        {
+            CurrentPage.As<EditUsersPage>().AdduserButtonClick();
+        }
+
         [Then(@"I should see enter email address field")]
         public void ThenIShouldSeeEnterEmailAddressField()
         {
@@ -295,11 +301,33 @@ namespace Brother.Tests.Specs
         {
             CurrentPage.As<ManageCustomersAndOrdersPage>().EnterFirstNameTextBox(firstName);
         }
+        [Then(@"I enter Email as ""(.*)""")]
+        public void ThenIEnterEmailAs(string emailAddress)
+        {
+            CurrentPage.As<EditUsersPage>().PopulateAddNewUserEmailAddressTxtBox(emailAddress); 
+        }
+        [Then(@"I click next")]
+        public void ThenIClickNext()
+        {
+            CurrentPage.As<EditUsersPage>().ClickNextButton();
+        }
+
         [When(@"I fill in FirstName as ""(.*)""")]
         public void WhenIFillInFirstNameAs(string firstName)
         {
             CurrentPage.As<ManageCustomersAndOrdersPage>().EnterFirstNameTextBox(firstName);
         }
+        [When(@"I enter FirstName as ""(.*)""")]
+        public void WhenIEnterFirstNameAs(string firstName)
+        {
+            CurrentPage.As<EditUsersPage>().EnterFirstNameTextBox(firstName);
+        }
+        [When(@"I enter LastName as ""(.*)""")]
+        public void WhenIEnterLastNameAs(string lastName)
+        {
+            CurrentPage.As<EditUsersPage>().EnterLastNameTextBox(lastName);
+        }
+
         [When(@"I fill in LastName as ""(.*)""")]
         public void WhenIFillInLastNameAs(string lastName)
         {
@@ -326,17 +354,34 @@ namespace Brother.Tests.Specs
         {
             CurrentPage.As<ManageCustomersAndOrdersPage>().ClickSubmitButton(); 
         }
+        [When(@"I click on submit")]
+        public void WhenIClickOnSubmit()
+        {
+            CurrentPage.As<EditUsersPage>().ClickSubmitButton(); 
+        }
 
         [Then(@"I should see success message on the page")]
         public void ThenIShouldSeeSuccessMessageOnThePage()
         {
             CurrentPage.As<ManageCustomersAndOrdersPage>().IsSuccessMessageDisplayed();
         }
+        [Then(@"I should see success message")]
+        public void ThenIShouldSeeSuccessMessage()
+        {
+            CurrentPage.As<EditUsersPage>().IsSuccessMessageDisplayed();
+        }
+
         [Then(@"I close the message")]
         public void ThenICloseTheMessage()
         {
             CurrentPage.As<ManageCustomersAndOrdersPage>().PopUpMessageClose();
         }
+        [Then(@"I close the message pop-up")]
+        public void ThenICloseTheMessagePop_Up()
+        {
+            CurrentPage.As<EditUsersPage>().PopUpMessageClose();
+        }
+
         [When(@"I close the message")]
         public void WhenICloseTheMessage()
         {
@@ -348,6 +393,12 @@ namespace Brother.Tests.Specs
         {
            CurrentPage.As<ManageCustomersAndOrdersPage>().IsCreatedUsersListDisplayed();
         }
+        [Then(@"I should see added user in the list")]
+        public void ThenIShouldSeeAddedUserInTheList()
+        {
+            CurrentPage.As<EditUsersPage>().IsCreatedUsersinListDisplayed();
+        }
+
         [Then(@"I should see added customer in the Managecustomersandorderspage")]
         public void ThenIShouldSeeAddedCustomerInTheManagecustomersandorderspage()
         {
@@ -359,6 +410,18 @@ namespace Brother.Tests.Specs
         {
             NextPage = CurrentPage.As<PartnerPortalPage>().ClickManageCustomersAndOrdersPageButton();
         }
+
+        [Then(@"I click on EditUsers role")]
+        public void ThenIClickOnEditUsersRole()
+        {
+            NextPage = CurrentPage.As<PartnerPortalPage>().ClickEditUserButton();
+        }
+
+        [Then(@"I should see EditUsersPage")]
+        public void ThenIShouldSeeEditUsersPage()
+        {
+          CurrentPage.As<EditUsersPage>().IsAddUserButtonDisplayed();
+        }     
 
     }
 }
