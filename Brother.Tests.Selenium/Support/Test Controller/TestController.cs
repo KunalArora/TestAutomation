@@ -158,7 +158,7 @@ namespace Brother.Tests.Selenium.Lib.Support
                 }
                 KillPhantomJsIfRunning();
                 CurrentDriver = null;
-                Helper.MsgOutput("Selenium stopped");
+                Helper.MsgOutput(String.Format("Selenium stopped @ {0}", DateTime.Now.ToString("dd-MM-yyyy H:mm:ss")));
             }
             catch (NullReferenceException nullReferenceException)
             {

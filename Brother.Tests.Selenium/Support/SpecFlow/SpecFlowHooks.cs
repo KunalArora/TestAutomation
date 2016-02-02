@@ -94,12 +94,14 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
                 IgnoreThisTest("Skipping this test as Staging flag is not set");
             }
             Helper.MsgOutput("Staging Scenario Found");
+            Helper.MsgOutput(String.Format("Test starts at {0}", DateTime.Now.ToString("dd-MM-yyyy H:mm:ss")));
         }
 
         [BeforeScenario("MPS")]
         public void BeforeScenarioMps()
         {
             Helper.MsgOutput("MPS Test found");
+            Helper.MsgOutput(String.Format("Test starts at {0}", DateTime.Now.ToString("dd-MM-yyyy H:mm:ss")));
         }
 
         [BeforeScenario()]
@@ -193,6 +195,7 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
             TestController.Test_Teardown();
             WebDriver.Wait(Helper.DurationType.Second, 3);
             BeforeFeatureHeadless();
+            Helper.MsgOutput(String.Format("Failed Test end at {0}", DateTime.Now.ToString("dd-MM-yyyy H:mm:ss")));
         }
 
         #endregion "Before and After Scenario Tags"
@@ -213,7 +216,8 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
 
         private static bool CheckForValidRunTimeEnv(string runTimeEnv)
         {
-            return (runTimeEnv.Equals(Helper.RunTimeLive)) || (runTimeEnv.Equals(Helper.RunTimeTest)) || (runTimeEnv.Equals(Helper.RunTimeUat)) || (runTimeEnv.Equals(Helper.RunTimeDev));
+            return (runTimeEnv.Equals(Helper.RunTimeLive)) || (runTimeEnv.Equals(Helper.RunTimeTest)) 
+                                || (runTimeEnv.Equals(Helper.RunTimeUat)) || (runTimeEnv.Equals(Helper.RunTimeDev));
         }
 
         private static void IgnoreThisTest(string why)
