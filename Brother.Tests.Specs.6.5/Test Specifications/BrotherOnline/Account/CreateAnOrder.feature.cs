@@ -305,7 +305,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 115
      testRunner.And("I click on proceed to payment button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 116
-    testRunner.Then("I should see summary payment page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+     testRunner.Then("I should see summary payment page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 117
   testRunner.When(string.Format("I fill in creditCard details \"{0}\"", creditCardNumber), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 118

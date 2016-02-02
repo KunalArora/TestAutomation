@@ -57,6 +57,7 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
         [FindsBy(How = How.CssSelector, Using = "#content_1_innercontent_2_rptAddressFields_AddrLine1Validtor_1")]
         public IWebElement MandatoryFieldValidationErrorMessage;
 
+
         public void ClickSaveButton()
         {
            AssertElementPresent(SaveButton, "Save Button");
@@ -150,6 +151,29 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
        {
            TestCheck.AssertIsEqual(true, PhoneNumberTextBox.Displayed, "Is PhoneNumberTextBox error message displayed");
        }
-
+       public void PopulatePostCodeTextBox()
+       {
+           if (PostCodeTextBox == null)
+           {
+               throw new NullReferenceException("Unable to locate postcode TextBox");
+           }
+           AssertElementPresent(PostCodeTextBox, "postcode TextBox");
+           PostCodeTextBox.Clear();
+           PostCodeTextBox.SendKeys(Keys.Tab);
+       }
+       public void PopulateCityorTownTextBox()
+       {
+           if (CityTownTextBox == null)
+           {
+               throw new NullReferenceException("Unable to locate postcode TextBox");
+           }
+           AssertElementPresent(PostCodeTextBox, "postcode TextBox");
+           CityTownTextBox.Clear();
+           CityTownTextBox.SendKeys(Keys.Tab);
+       }
+       public void IsCityTownTextBoxErrorMessageDisplayed()
+       {
+           TestCheck.AssertIsEqual(true, CityTownTextBox.Displayed, "Is postcode error message displayed");
+       }
     }
 }

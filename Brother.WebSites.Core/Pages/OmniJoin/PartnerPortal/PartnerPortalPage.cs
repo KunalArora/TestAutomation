@@ -23,8 +23,19 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
         [FindsBy(How = How.XPath, Using = ".//*[@id='main']/div/div[2]/div/span/table/tbody/tr/td/a[2]")]
         public IWebElement EditYourPersonalInfoButton;
 
+        [FindsBy(How = How.XPath, Using = ".//*[@id='main']/div/div[2]/div/span/table/tbody/tr/td[1]/a[2]")]
+
+        public IWebElement ManageCustomersandOrdersPageButton;
+
         [FindsBy(How = How.CssSelector, Using = ".button-aqua")]
         public IWebElement HomeButton;
+
+        [FindsBy(How = How.XPath, Using = ".//tbody/tr/td[3]/a[2]")] 
+        public IWebElement EditAddressButton;
+
+        [FindsBy(How = How.XPath, Using = ".//tbody/tr/td[3]/a[1]")]
+        public IWebElement EditUserButton;
+
 
         public ManageServicePage ManageServicesButtonClick()
         {
@@ -75,6 +86,36 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
             }
             EditYourPersonalInfoButton.Click();
             return GetInstance<EditAddressPage>(Driver);
+        }
+        public ManageCustomersAndOrdersPage ClickManageCustomersAndOrdersPageButton()
+        {
+            if (ManageCustomersandOrdersPageButton == null)
+            {
+                throw new NullReferenceException("Unable to locate ManageCustomersandOrdersPageButton");
+
+            }
+            ManageCustomersandOrdersPageButton.Click();
+            return GetInstance<ManageCustomersAndOrdersPage>(Driver);
+        }
+        public EditAddressPage ClickEditAddressButton()
+        {
+            if (EditAddressButton == null)
+            {
+                throw new NullReferenceException("Unable to locate EditButton");
+
+            }
+            EditAddressButton.Click();
+            return GetInstance<EditAddressPage>(Driver);
+        }
+        public EditUsersPage ClickEditUserButton()
+        {
+            if (EditUserButton == null)
+            {
+                throw new NullReferenceException("Unable to locate EditButton");
+
+            }
+            EditUserButton.Click();
+            return GetInstance<EditUsersPage>(Driver);
         }
     }
 }
