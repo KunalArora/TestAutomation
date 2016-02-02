@@ -441,6 +441,15 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             NextPage = CurrentPage.As<DealerProposalsCreateProductsPage>().MoveToClickPriceScreen();
         }
 
+        [When(@"I move to Click Price page")]
+        public void WhenIMoveToClickPricePage()
+        {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterModelUnitCost();
+            CurrentPage.As<DealerProposalsCreateProductsPage>().AddAllDetailsToProposal();
+            NextPage = CurrentPage.As<DealerProposalsCreateProductsPage>().MoveToClickPriceScreenWithButton();
+        }
+
+
         [When(@"I redisplay ""(.*)"" device screen")]
         [Then(@"I redisplay ""(.*)"" device screen")]
         public void WhenIRedisplayDeviceScreen(string printer)

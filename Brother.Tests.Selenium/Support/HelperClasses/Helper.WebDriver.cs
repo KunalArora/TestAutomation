@@ -36,6 +36,8 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             {
                 ShowAllCookies();
             }
+
+            MsgOutput(String.Format("Tests finished @ {0}", DateTime.Now.ToString("dd/MM/yyyy HHmmss")));
         }
 
         public static void ShowAllCookies()

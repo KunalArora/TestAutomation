@@ -34,6 +34,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IList<IWebElement> ContractListContainerElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-manage-devices")]
         public IWebElement ManageDevicesElement;
+        [FindsBy(How = How.CssSelector, Using = ".open .js-mps-download-contract-pdf")]
+        public IWebElement DownloadContractPdfElement;
+        
 
         
 
@@ -147,14 +150,40 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             MPSJobRunnerPage.RunCreateCustomerAndPersonCommandJob();
             
         }
-        
-        private IWebElement ActionButtonElementByName(string name, string tdcol)
+
+        public void GetDownloadedPdfPath()
         {
-            string element = String.Format("//td[text()=\"{0}\"]/parent::tr/td[{1}]/div/button", name, tdcol);
-            return Driver.FindElement(By.XPath(element));
+            ActionsModule.OpenTheFirstActionButton(Driver);
+            var contractid = DownloadContractPdfElement.GetAttribute("data-contract-id");
+            SpecFlow.SetContext("DownloadedContractId", contractid);
+            var downloadPath = String.Format("file:///C:/Users/afolabsa/Downloads/{0}-Vertrag.pdf", contractid);
+            SpecFlow.SetContext("DownloadedPdfPath", downloadPath);
+            ActionsModule.OpenTheFirstActionButton(Driver);
+            WebDriver.Wait(DurationType.Second, 10);
+
         }
 
-        public BankContractsSummaryPage NavigateToViewSummary()
+        public void DisplayDownloadedPdf()
+        {
+            var downloadedPdf = DownloadedPdf();
+            Driver.Navigate().GoToUrl(downloadedPdf);
+        }
+
+        private static string DownloadedPdf()
+        {
+            var downloadedPdf = SpecFlow.GetContext("DownloadedPdfPath");
+            return downloadedPdf;
+        }
+
+        public void DoesPdfContentContainSomeText()
+        {
+            var contractId = SpecFlow.GetContext("DownloadedContractId");
+            TestCheck.AssertTextContains(contractId, ExtractTextFromPdf(DownloadedPdf()), "Text is not available");
+            Driver.Navigate().Back();
+        }
+        
+        
+       public BankContractsSummaryPage NavigateToViewSummary()
         {
             RunCreateCustomerAndPersonJob();
             ActionsModule.ClickOnSpecificActionsElement();

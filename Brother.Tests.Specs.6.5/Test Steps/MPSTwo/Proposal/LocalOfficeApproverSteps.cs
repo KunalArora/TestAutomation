@@ -36,7 +36,9 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
         [Then(@"I can successfully download a Local Approver Contract Invoice PDF")]
         public void ThenICanSuccessfullyDownloadALocalApproverContractInvoicePDF()
         {
-            CurrentPage.As<LocalOfficeApproverContractsPage>().DownloadInvoicePDFOnBankContractPages();
+            CurrentPage.As<LocalOfficeApproverContractsPage>().GetDownloadedPdfPath();
+            CurrentPage.As<LocalOfficeApproverContractsPage>().DisplayDownloadedPdf();
+            CurrentPage.As<LocalOfficeApproverContractsPage>().DoesPdfContentContainSomeText();
         }
 
         [When(@"I decline the proposal created above as a Local Office Approver")]

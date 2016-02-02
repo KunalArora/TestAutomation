@@ -1,10 +1,8 @@
-using Brother.Tests.Specs.MPSTwo.Proposal;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.MPSTwo;
-using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using TechTalk.SpecFlow;
 
-namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
+namespace Brother.Tests.Specs.MPSTwo.Proposal
 {
     [Binding]
     public class DealerCanOperateProposalOffersSteps : BaseSteps
@@ -40,6 +38,13 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
             page.ClickOnEditOnActionItem();
             NextPage = page.NavigateToEditProposalPage();
         }
+
+        [Given(@"I begin the process of proposal creation process")]
+        public void GivenIBeginTheProcessOfProposalCreationProcess()
+        {
+            NextPage = CurrentPage.As<CloudExistingProposalPage>().NavigateToProposalsCreateDescriptionPage();
+        }
+
 
         [When(@"I can click delete button on proposal item of Exisiting Proposal table")]
         public void WhenICanClickDeleteButtonOnProposalItemOfExisitingProposalTable()

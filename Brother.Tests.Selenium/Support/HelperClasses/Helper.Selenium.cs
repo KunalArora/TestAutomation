@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Threading;
 using Brother.Tests.Selenium.Lib.Support.SpecFlow;
+using iTextSharp.text.pdf;
+using iTextSharp.text.pdf.parser;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
@@ -185,6 +188,25 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                 Driver.SwitchTo().Window(browserTabs[0]);
             }
             
+        }
+
+        public static string ExtractTextFromPdf(string pdfFileName)
+        {
+            var result = new StringBuilder();
+            // Create a reader for the given PDF file
+            using (var reader = new PdfReader(pdfFileName))
+            {
+                // Read pages
+                for (var page = 1; page <= reader.NumberOfPages; page++)
+                {
+                    var strategy =
+                        new SimpleTextExtractionStrategy();
+                    var pageText =
+                        PdfTextExtractor.GetTextFromPage(reader, page, strategy);
+                    result.Append(pageText);
+                }
+            }
+            return result.ToString();
         }
 
         public static bool WaitForElementToExistByCssSelector(string element)

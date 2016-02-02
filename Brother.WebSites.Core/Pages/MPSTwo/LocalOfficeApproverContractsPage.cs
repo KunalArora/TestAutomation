@@ -32,6 +32,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IList<IWebElement> ContractListContainerElement;
         [FindsBy(How = How.CssSelector, Using = ".separator a[href=\"/mps/local-office/manage-devices\"]")]
         public IWebElement LOApproverDeviceManagementElement;
+        [FindsBy(How = How.CssSelector, Using = ".open .js-mps-download-contract-pdf")]
+        public IWebElement DownloadContractPdfElement;
         
         
         
@@ -133,6 +135,37 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             ActionsModule.OpenTheFirstActionButton(Driver);
             ActionsModule.DownloadContractPDFAction(Driver);
+        }
+
+        public void GetDownloadedPdfPath()
+        {
+            ActionsModule.OpenTheFirstActionButton(Driver);
+            var contractid = DownloadContractPdfElement.GetAttribute("data-contract-id");
+            SpecFlow.SetContext("DownloadedContractId", contractid);
+            var downloadPath = String.Format("file:///C:/Users/afolabsa/Downloads/{0}-Vertrag.pdf", contractid);
+            SpecFlow.SetContext("DownloadedPdfPath", downloadPath);
+            ActionsModule.OpenTheFirstActionButton(Driver);
+            WebDriver.Wait(DurationType.Second, 10);
+
+        }
+
+        public void DisplayDownloadedPdf()
+        {
+            var downloadedPdf = DownloadedPdf();
+            Driver.Navigate().GoToUrl(downloadedPdf);
+        }
+
+        private static string DownloadedPdf()
+        {
+            var downloadedPdf = SpecFlow.GetContext("DownloadedPdfPath");
+            return downloadedPdf;
+        }
+
+        public void DoesPdfContentContainSomeText()
+        {
+            var contractId = SpecFlow.GetContext("DownloadedContractId");
+            TestCheck.AssertTextContains(contractId, ExtractTextFromPdf(DownloadedPdf()), "Text is not available");
+            Driver.Navigate().Back();
         }
 
         
