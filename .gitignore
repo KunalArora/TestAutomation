@@ -59,3 +59,4 @@ aspnet_client
 ~$*
 
 # Solution specific
+Dependencies/iTextSharp/itextsharp-dll-core/iTextSharp.xml
