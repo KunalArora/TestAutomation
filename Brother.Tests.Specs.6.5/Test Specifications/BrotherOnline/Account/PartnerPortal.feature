@@ -191,3 +191,26 @@ Then I should error message on Number of licenses field
 Examples:
 | Country        | Email Address1        | Password   |
 | United Kingdom | bol_uk@mailinator.com | Password01 |         
+
+
+@TEST
+Scenario Outline: Dealeruser gets valid errormessage if cancel subscription page mandatory fields are incomplete before cancelling the subscription
+Given I launch Brother Online for "<Country>"
+When I click on Create Account for "<Country>"
+And I am redirected to the Brother Login/Register page
+And I fill in email as "<Email Address1>"
+And I fill in password as "<Password>"
+And I press sign in 
+Then I should be logged in successfully
+And I click on Partner Portal menu
+And I click on partner portal button
+And I click on manage services button
+And I click on view subscription
+And I click on cancel subscription link
+And I click on cancel subscription button
+Then I should see error message on Reason for cancellation field
+And I should see error message on Confirm your account password field
+
+Examples:
+| Country        | Email Address1        | Password   |
+| United Kingdom | bol_uk@mailinator.com | Password01 | 
