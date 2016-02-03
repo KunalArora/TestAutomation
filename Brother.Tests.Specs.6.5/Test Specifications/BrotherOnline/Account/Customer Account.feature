@@ -124,8 +124,9 @@ Scenario: Customer has the option to change their sign in preferences to social 
 	And I can navigate back to Brother Online home page
 	And I can sign out of Brother Online
 
+@IGNORE
 #BBAU-3022 - Defect logged in jira.
-#Validate that the correct error messages are displayed when business details mandatory fields are not completed
+# Unable to open business details page, since BPID creation is taking time.
 Scenario:(BBAU-3022)Customer get the correct error message when business details mandatory fields are not completed
    Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
@@ -250,7 +251,7 @@ Scenario Outline: Customer can edit their entered address details
 		| Addressline1	  | TameSt		   |
 		| Addressline2	  | Audenshaw	   |
 		| City			  | Manchester	   |
-		| PhoneNumber	  | 0161 330 6531	   |
+		| PhoneNumber	  | 0161 330 6531	|
 	And I click on the save address button
 	And I click on Edit link
 	And I edit the "<House Number>"
