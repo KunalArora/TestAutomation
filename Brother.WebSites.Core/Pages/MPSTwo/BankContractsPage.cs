@@ -151,12 +151,36 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             
         }
 
+        private string DownloadFolderPath()
+        {
+            var path = "";
+
+            if (IsAustriaSystem() || IsGermanSystem())
+            {
+                path = "file:///C:/Users/afolabsa/Downloads/{0}-Vertrag.pdf";
+
+            } else if (IsUKSystem())
+            {
+                path = "file:///C:/Users/afolabsa/Downloads/{0}-Contract.pdf";
+
+            } else if (IsFranceSystem())
+            {
+                path = "file:///C:/Users/afolabsa/Downloads/{0}-Contrat.pdf";
+
+            } else if (IsItalySystem())
+            {
+                path = "file:///C:/Users/afolabsa/Downloads/{0}-Contratto.pdf";
+            }
+
+            return path;
+        }
+
         public void GetDownloadedPdfPath()
         {
             ActionsModule.OpenTheFirstActionButton(Driver);
             var contractid = DownloadContractPdfElement.GetAttribute("data-contract-id");
             SpecFlow.SetContext("DownloadedContractId", contractid);
-            var downloadPath = String.Format("file:///C:/Users/afolabsa/Downloads/{0}-Vertrag.pdf", contractid);
+            var downloadPath = String.Format(DownloadFolderPath(), contractid);
             SpecFlow.SetContext("DownloadedPdfPath", downloadPath);
             ActionsModule.OpenTheFirstActionButton(Driver);
             WebDriver.Wait(DurationType.Second, 10);

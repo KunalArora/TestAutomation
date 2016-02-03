@@ -33,8 +33,8 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Proposal
             CurrentPage.As<LocalOfficeApproverContractsPage>().DownloadPDFOnBankContractPages();
         }
 
-        [Then(@"I can successfully download a Local Approver Contract Invoice PDF")]
-        public void ThenICanSuccessfullyDownloadALocalApproverContractInvoicePDF()
+        [Then(@"I can successfully verify that Contract is downloaded")]
+        public void ThenICanSuccessfullyVerifyThatContractIsDownloaded()
         {
             CurrentPage.As<LocalOfficeApproverContractsPage>().GetDownloadedPdfPath();
             CurrentPage.As<LocalOfficeApproverContractsPage>().DisplayDownloadedPdf();

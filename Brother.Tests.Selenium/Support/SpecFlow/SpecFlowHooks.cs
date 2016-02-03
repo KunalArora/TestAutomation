@@ -101,7 +101,6 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
         public void BeforeScenarioMps()
         {
             Helper.MsgOutput("MPS Test found");
-            Helper.MsgOutput(String.Format("Test starts at {0}", DateTime.Now.ToString("dd-MM-yyyy H:mm:ss")));
         }
 
         [BeforeScenario()]
@@ -173,6 +172,7 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
             DoMpsTestEval(Helper.CheckFeatureEnv("MPS"));
             DoSmokeTestEval(Helper.IsSmokeTest());
             SetCurrentDriver();
+            Helper.MsgOutput(String.Format("Test starts at {0}", DateTime.Now.ToString("dd-MM-yyyy H:mm:ss")));
         }
 
         [AfterScenario()]

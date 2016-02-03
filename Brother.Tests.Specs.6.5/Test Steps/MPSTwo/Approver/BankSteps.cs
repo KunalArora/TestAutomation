@@ -156,8 +156,9 @@ namespace Brother.Tests.Specs.MPSTwo.Bank
             CurrentPage.As<BankContractsPage>().DownloadFirstPDFOnBankContractPages();
         }
 
-        [Then(@"I can successfully download a Contract Invoice PDF")]
-        public void ThenICanSuccessfullyDownloadAContractInvoicePDF()
+
+        [Then(@"I can successfully verify that Bank Contract is downloaded")]
+        public void ThenICanSuccessfullyVerifyThatBankContractIsDownloaded()
         {
             CurrentPage.As<BankContractsPage>().GetDownloadedPdfPath();
             CurrentPage.As<BankContractsPage>().DisplayDownloadedPdf();
