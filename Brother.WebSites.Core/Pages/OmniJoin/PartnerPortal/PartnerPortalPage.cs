@@ -36,6 +36,10 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
         [FindsBy(How = How.XPath, Using = ".//tbody/tr/td[3]/a[1]")]
         public IWebElement EditUserButton;
 
+        [FindsBy(How = How.XPath, Using = ".//tbody/tr/td[1]/a[1]")]
+        public IWebElement ManageServicesButton;
+
+
 
         public ManageServicePage ManageServicesButtonClick()
         {
@@ -116,6 +120,16 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
             }
             EditUserButton.Click();
             return GetInstance<EditUsersPage>(Driver);
+        }
+
+        public ManageServicePage ClickManageServicesButton()
+        {
+            if (ManageServicesButton == null)
+            {
+                throw new NullReferenceException("Unable to locate the Manageservices button");
+            }
+            ManageServicesButton.Click();
+            return GetInstance<ManageServicePage>(Driver);
         }
     }
 }
