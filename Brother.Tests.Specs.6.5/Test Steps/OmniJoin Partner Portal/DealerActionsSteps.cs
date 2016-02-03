@@ -450,6 +450,30 @@ namespace Brother.Tests.Specs
         {
            CurrentPage.As<SubscriptionOverviewPage>().IsNumberofLicensesRequiredErrorMessageDisplayed();
         }
+        [Then(@"I click on cancel subscription link")]
+        public void ThenIClickOnCancelSubscriptionLink()
+        {
+          NextPage = CurrentPage.As<SubscriptionOverviewPage>().ClickCancelSubscriptionLink();
+        }
+
+        [Then(@"I click on cancel subscription button")]
+        public void ThenIClickOnCancelSubscriptionButton()
+        {
+            CurrentPage.As<CancelSubscriptionPage>().ClickCancelSubscriptionButton();
+        }
+
+        [Then(@"I should see error message on Reason for cancellation field")]
+        public void ThenIShouldSeeErrorMessageOnReasonForCancellationField()
+        {
+          CurrentPage.As<CancelSubscriptionPage>().IsReasonForCancellationDropDownListErrorMessageDisplayed();
+        }
+
+        [Then(@"I should see error message on Confirm your account password field")]
+        public void ThenIShouldSeeErrorMessageOnConfirmYourAccountPasswordField()
+        {
+           CurrentPage.As<CancelSubscriptionPage>().IsConfirmwithYourAccountPasswordTxtBoxErrorMessage();
+        }
+
 
     }
 }

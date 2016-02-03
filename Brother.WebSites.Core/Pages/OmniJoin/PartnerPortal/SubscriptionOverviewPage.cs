@@ -24,6 +24,10 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
         [FindsBy(How = How.CssSelector, Using = "#content_0_innercontent_2_valNumberOfLicencesRequired")]
         public IWebElement NumberofLicensesRequiredErrorMessage;
 
+        [FindsBy(How = How.LinkText, Using = "Cancel Subscription")]
+        public IWebElement CancelSubscripitonLink;
+
+
        public SubscriptionOverviewPage ClickManageSubscriptionLink()
        {
            if (ManageSubscriptionLink == null)
@@ -48,5 +52,16 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
        {
            TestCheck.AssertIsEqual(true, NumberofLicensesRequiredErrorMessage.Displayed, "Is  number of licenses reuqired error mesage displayed");
        }
+
+       public CancelSubscriptionPage ClickCancelSubscriptionLink()
+       {
+           if (CancelSubscripitonLink == null)
+           {
+               throw new NullReferenceException("Unable to locate the cancel subscription link on the page");
+           }
+           CancelSubscripitonLink.Click();
+           return GetInstance<CancelSubscriptionPage>(Driver);
+       }
+
     }
 }
