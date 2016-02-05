@@ -679,8 +679,8 @@ Scenarios:
 | Country		| Business Sector		| VAT Number       |
 | Belgium		| Fabrication		    | INVALIDVATNUMBER | 
 
-
-#removed ignore tag since the emai delay has been deployed via a hotfix 4.68.1.7-beta
+@SMOKE
+#removed ignore tag since the email delay has been deployed via a hotfix 4.68.1.7-beta
 Scenario: Sign Up for 14 day Free trial already signed into Brother Online
 	# Create an account on BOL and sign in
 	Given I want to create a new account with Brother Online "United Kingdom"
