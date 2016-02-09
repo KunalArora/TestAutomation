@@ -56,3 +56,14 @@ Scenarios:
 	
 	 |Site Url													   |
 	 |http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseLeave |
+
+
+@SMOKE
+Scenario Outline: Navigate to published page to verify product page
+	Given That I navigate to "<Site Url>" in order to validate a published page
+	Then I can validate the product page title is displayed
+	
+Scenarios: 
+	
+	 |Site Url																	    |
+	 |http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseDoNotTouch/DCPL8400CDN |
