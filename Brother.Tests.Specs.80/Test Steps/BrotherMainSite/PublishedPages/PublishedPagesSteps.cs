@@ -37,6 +37,11 @@ namespace Brother.Tests.Specs._80.Test_Steps.BrotherMainSite.PublishedPages
         {
             CurrentPage.As<PublishedPage>().IsPageHeaderDisplayed();
         }
+        [Then(@"I can validate the product page title is displayed")]
+        public void ThenICanValidateTheProductPageTitleIsDisplayed()
+        {
+            CurrentPage.As<PublishedPage>().IsPageTitleDisplayed();
+        }
 
         [Then(@"I can verify that the search icon is displayed")]
         public void ThenICanVerifyThatTheSearchIconIsDisplayed()

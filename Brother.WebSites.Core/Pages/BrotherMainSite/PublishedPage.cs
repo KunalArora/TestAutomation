@@ -32,8 +32,11 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
             get { return string.Empty; }
         }
 
-        [FindsBy(How = How.CssSelector, Using = "body > header > div > h1")]
+        [FindsBy(How = How.CssSelector, Using = "common-global-header")]
         public IWebElement PageHeader;
+
+        [FindsBy(How = How.CssSelector, Using = ".col-xs-12.col-md-6.product-detail--container-title")]
+        public IWebElement PageTitle;
 
         [FindsBy(How = How.CssSelector, Using = "body > header > div > div > a.common-global-header--toggle.active")]
         public IWebElement SearchIcon;
@@ -156,9 +159,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         public void GetPublishedPage(string url)
         {
             TestCheck.AssertIsEqual(HttpStatusCode.OK, GetWebPageResponse(url), "Incorrect Http Status Code returned");
-
             WebDriver.SetPageLoadTimeout(TimeSpan.FromSeconds(120));
-
             WebSites.Core.Pages.General.SiteAccess.ValidateSiteUrl(url);
             WebDriver.SetPageLoadTimeout(WebDriver.DefaultTimeout);
         }
@@ -178,12 +179,23 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public void IsPageHeaderDisplayed()
         {
-            WaitForElementToExistByCssSelector("body > header > div > h1");
+            //WaitForElementToExistByCssSelector("body > header > div > h1");
+            WaitForElementToExistByCssSelector("common-global-header");
               if (PageHeader == null)
                  {
                    throw new NullReferenceException("Unable to locate page header");
                  }
             AssertElementPresent(PageHeader, "Page Header", 30);            
+        }
+
+        public void IsPageTitleDisplayed()
+        {
+            WaitForElementToExistByCssSelector("col-xs-12 col-md-6 product-detail--container-title");
+            if (PageTitle == null)
+            {
+                throw new NullReferenceException("Unable to locate page header");
+            }
+            AssertElementPresent(PageTitle, "Page Title", 30);
         }
 
         public void IsSearchIconDisplayed()
