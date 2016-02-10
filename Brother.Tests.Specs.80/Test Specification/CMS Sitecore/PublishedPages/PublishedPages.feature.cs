@@ -170,6 +170,7 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("Navigate to published page to verify product page")]
         [NUnit.Framework.CategoryAttribute("SMOKE")]
         [NUnit.Framework.TestCaseAttribute("http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseDoNotTouch/DCPL8400CDN", null)]
+        [NUnit.Framework.TestCaseAttribute("http://main.it.brotherdv2.eu/Home/TestAutomationProductDCP-L8450CDW", null)]
         public virtual void NavigateToPublishedPageToVerifyProductPage(string siteUrl, string[] exampleTags)
         {
             string[] @__tags = new string[] {
