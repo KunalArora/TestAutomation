@@ -67,3 +67,4 @@ Scenarios:
 	
 	 |Site Url																	    |
 	 |http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseDoNotTouch/DCPL8400CDN |
+	 |http://main.it.brotherdv2.eu/Home/TestAutomationProductDCP-L8450CDW |

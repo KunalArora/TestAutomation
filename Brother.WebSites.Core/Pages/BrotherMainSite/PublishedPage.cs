@@ -190,7 +190,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public void IsPageTitleDisplayed()
         {
-            WaitForElementToExistByCssSelector("col-xs-12 col-md-6 product-detail--container-title");
+            WaitForElementToExistByCssSelector(".col-xs-12.col-md-6.product-detail--container-title>h1");
             if (PageTitle == null)
             {
                 throw new NullReferenceException("Unable to locate page header");
