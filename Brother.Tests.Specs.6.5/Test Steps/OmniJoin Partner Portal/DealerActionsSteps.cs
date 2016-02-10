@@ -421,7 +421,59 @@ namespace Brother.Tests.Specs
         public void ThenIShouldSeeEditUsersPage()
         {
           CurrentPage.As<EditUsersPage>().IsAddUserButtonDisplayed();
-        }     
+        }
+        [Then(@"I click on manage services button")]
+        public void ThenIClickOnManageServicesButton()
+        {
+            NextPage = CurrentPage.As<PartnerPortalPage>().ClickManageServicesButton();
+        }      
+        [Then(@"I click on view subscription")]
+        public void ThenIClickOnViewSubscription()
+        {
+            NextPage = CurrentPage.As<ManageServicePage>().ClickViewSubscriptionButton();
+        }
+
+        [Then(@"I click manage subscription")]
+        public void ThenIClickManageSubscription()
+        {
+            CurrentPage.As<SubscriptionOverviewPage>().ClickManageSubscriptionLink();
+        }
+
+        [Then(@"I click submit button to upgrade the trail without selecting licenses")]
+        public void ThenIClickSubmitButtonToUpgradeTheTrailWithoutSelectingLicenses()
+        {
+            CurrentPage.As<SubscriptionOverviewPage>().ClickManageSubscriptionSubmitButton();
+        }
+
+        [Then(@"I should error message on Number of licenses field")]
+        public void ThenIShouldErrorMessageOnNumberOfLicensesField()
+        {
+           CurrentPage.As<SubscriptionOverviewPage>().IsNumberofLicensesRequiredErrorMessageDisplayed();
+        }
+        [Then(@"I click on cancel subscription link")]
+        public void ThenIClickOnCancelSubscriptionLink()
+        {
+          NextPage = CurrentPage.As<SubscriptionOverviewPage>().ClickCancelSubscriptionLink();
+        }
+
+        [Then(@"I click on cancel subscription button")]
+        public void ThenIClickOnCancelSubscriptionButton()
+        {
+            CurrentPage.As<CancelSubscriptionPage>().ClickCancelSubscriptionButton();
+        }
+
+        [Then(@"I should see error message on Reason for cancellation field")]
+        public void ThenIShouldSeeErrorMessageOnReasonForCancellationField()
+        {
+          CurrentPage.As<CancelSubscriptionPage>().IsReasonForCancellationDropDownListErrorMessageDisplayed();
+        }
+
+        [Then(@"I should see error message on Confirm your account password field")]
+        public void ThenIShouldSeeErrorMessageOnConfirmYourAccountPasswordField()
+        {
+           CurrentPage.As<CancelSubscriptionPage>().IsConfirmwithYourAccountPasswordTxtBoxErrorMessage();
+        }
+
 
     }
 }

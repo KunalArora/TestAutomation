@@ -1,6 +1,7 @@
 ﻿using System;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.PageObjects;
 
 namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
 {
@@ -14,6 +15,10 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
         }
 
         private const string PartnerButtonsSearchString = ".content-box.article-page .content-unit [href*=]";
+
+
+        [FindsBy(How = How.XPath, Using = ".//tbody/tr[1]/td[6]/a")] 
+        public IWebElement ViewSubscriptionButton;
 
         public CreateActivationCodesPage PurchaseCodesButtonClick()
         {
@@ -31,6 +36,16 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
             }
 
             AssertElementPresent(purchaseCodesButton, "Purchase Codes Button");
+        }
+
+        public SubscriptionOverviewPage ClickViewSubscriptionButton()
+        {
+            if (ViewSubscriptionButton == null)
+            {
+                throw new NullReferenceException("Unable to locate the ViewSubscription button the page");
+            }
+            ViewSubscriptionButton.Click();
+            return GetInstance<SubscriptionOverviewPage>(Driver);
         }
     }
 }

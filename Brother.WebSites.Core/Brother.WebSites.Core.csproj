@@ -194,6 +194,7 @@
     <Compile Include="Pages\MPSTwo\ServiceDeskReportingPage.cs" />
     <Compile Include="Pages\MPSTwo\ServiceDeskServiceRequestsPage.cs" />
     <Compile Include="Pages\MPSTwo\ServiceRequestsPage.cs" />
+    <Compile Include="Pages\OmniJoin\PartnerPortal\CancelSubscriptionPage.cs" />
     <Compile Include="Pages\OmniJoin\PartnerPortal\CodeActivationPage.cs" />
     <Compile Include="Pages\OmniJoin\PartnerPortal\CreateActivationCodesPage.cs" />
     <Compile Include="Pages\OmniJoin\PartnerPortal\EditAddressPage.cs" />
@@ -203,6 +204,7 @@
     <Compile Include="Pages\OmniJoin\PartnerPortal\MyCustomers.cs" />
     <Compile Include="Pages\OmniJoin\PartnerPortal\Navigation.cs" />
     <Compile Include="Pages\OmniJoin\PartnerPortal\PartnerPortalPage.cs" />
+    <Compile Include="Pages\OmniJoin\PartnerPortal\SubscriptionOverviewPage.cs" />
     <Compile Include="Pages\OmniJoin\PartnerPortal\SuccessPage.cs" />
     <Compile Include="Pages\OmniJoin\Plans\BusinessPlanPage.cs" />
     <Compile Include="Pages\OmniJoin\Plans\LitePlanPage.cs" />
