@@ -13,6 +13,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
     {
         public static string Url = "/";
 
+        private const string DownloadDirectory = @"C:/Users/afolabsa/Downloads";
+
         public override string DefaultTitle
         {
             get { return string.Empty; }
@@ -204,6 +206,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var contractId = SpecFlow.GetContext("DownloadedContractId");
             TestCheck.AssertTextContains(contractId, ExtractTextFromPdf(DownloadedPdf()), "Text is not available");
             Driver.Navigate().Back();
+            PurgeDownloads(DownloadDirectory);
         }
         
         

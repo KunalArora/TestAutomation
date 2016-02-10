@@ -28,6 +28,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement ResignInformationCheckboxElement;
         [FindsBy(How = How.Id, Using = "content_1_ButtonCancel")]
         public IWebElement SummaryCloseProposalElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_CustomerEmail")]
+        public IWebElement SummaryCustomerEmailElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_CustomerName")]
+        public IWebElement SummaryCustomerOrCompanyNameElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_ContractTerm")]
+        public IWebElement SummaryContractTermElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_ContractType")]
+        public IWebElement SummaryContractTypeElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_MonoClickRate_0")]
+        public IWebElement SummaryMonoClickRateElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_ColourClickRate_0")]
+        public IWebElement SummaryColourClickRateElement;
+
 
         public void ClickCancelButton()
         {
@@ -41,6 +54,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             SignButtonElement.Click();
             WebDriver.Wait(DurationType.Second, 3);
             return GetTabInstance<DealerContractsPage>(Driver);
+        }
+
+        public DealerContractsAwaitingAcceptancePage ClickSignButtonToNavigateToAwaitingAcceptance()
+        {
+            StoreValuesFromSummaryPage();
+            ScrollTo(SignButtonElement);
+            SignButtonElement.Click();
+            WebDriver.Wait(DurationType.Second, 3);
+            return GetTabInstance<DealerContractsAwaitingAcceptancePage>(Driver);
         }
 
         public void ClickReSignButton()
@@ -81,11 +103,24 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetInstance<DealerContractsPage>(Driver);
         }
 
+        private void StoreValuesFromSummaryPage()
+        {
+            SpecFlow.SetContext("SummaryCustomerEmail", SummaryCustomerEmailElement.Text);
+            SpecFlow.SetContext("SummaryCustomerOrCompanyName", SummaryCustomerOrCompanyNameElement.Text);
+            SpecFlow.SetContext("SummaryContractTerm", SummaryContractTermElement.Text);
+            SpecFlow.SetContext("SummaryContractType", SummaryContractTypeElement.Text);
+            SpecFlow.SetContext("SummaryMonoClickRate", SummaryMonoClickRateElement.Text);
+            SpecFlow.SetContext("SummaryColourClickRate", SummaryColourClickRateElement.Text);
+        }
+
         public DealerContractsAwaitingAcceptancePage DealerSignsApprovedProposalTAwaitingAcceptancePage()
         {
+            StoreValuesFromSummaryPage();
+
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, SignButtonElement);
             WebDriver.Wait(DurationType.Second, 3);
 
+            
             return GetInstance<DealerContractsAwaitingAcceptancePage>(Driver);
         }
 

@@ -12,6 +12,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
     public class LocalOfficeApproverContractsPage : BasePage
     {
         public static string Url = "/";
+        private const string DownloadDirectory = @"C:/Users/afolabsa/Downloads";
 
         public override string DefaultTitle
         {
@@ -137,12 +138,40 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ActionsModule.DownloadContractPDFAction(Driver);
         }
 
+        private string DownloadFolderPath()
+        {
+            var path = "";
+
+            if (IsAustriaSystem() || IsGermanSystem())
+            {
+                path = "file:///C:/Users/afolabsa/Downloads/{0}-Vertrag.pdf";
+
+            }
+            else if (IsUKSystem())
+            {
+                path = "file:///C:/Users/afolabsa/Downloads/{0}-Contract.pdf";
+
+            }
+            else if (IsFranceSystem())
+            {
+                path = "file:///C:/Users/afolabsa/Downloads/{0}-Contrat.pdf";
+
+            }
+            else if (IsItalySystem())
+            {
+                path = "file:///C:/Users/afolabsa/Downloads/{0}-Contratto.pdf";
+            }
+
+            return path;
+        }
+
+
         public void GetDownloadedPdfPath()
         {
             ActionsModule.OpenTheFirstActionButton(Driver);
             var contractid = DownloadContractPdfElement.GetAttribute("data-contract-id");
             SpecFlow.SetContext("DownloadedContractId", contractid);
-            var downloadPath = String.Format("file:///C:/Users/afolabsa/Downloads/{0}-Vertrag.pdf", contractid);
+            var downloadPath = String.Format(DownloadFolderPath(), contractid);
             SpecFlow.SetContext("DownloadedPdfPath", downloadPath);
             ActionsModule.OpenTheFirstActionButton(Driver);
             WebDriver.Wait(DurationType.Second, 10);
@@ -166,16 +195,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var contractId = SpecFlow.GetContext("DownloadedContractId");
             TestCheck.AssertTextContains(contractId, ExtractTextFromPdf(DownloadedPdf()), "Text is not available");
             Driver.Navigate().Back();
+            PurgeDownloads(DownloadDirectory);
         }
 
         
-
-        public void DownloadInvoicePDFOnBankContractPages()
-        {
-            ActionsModule.OpenTheFirstActionButton(Driver);
-            ActionsModule.DownloadContractInvoicePDFAction(Driver);
-        }
-
         public void IsContractsListAvailable()
         {
             if (ContractListContainerElement == null || !ContractListContainerElement.Any())

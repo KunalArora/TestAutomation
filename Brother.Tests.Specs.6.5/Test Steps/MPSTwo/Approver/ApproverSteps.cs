@@ -317,5 +317,46 @@ namespace Brother.Tests.Specs.MPSTwo.Approver
                 NextPage = CurrentPage.As<LocalOfficeApproverProposalsSummaryPage>().ClickRejectButton();
             }
         }
+
+
+        [When(@"dealer navigates to the contract summary page")]
+        public void WhenDealerNavigatesToTheContractSummaryPage()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+        [When(@"dealer makes note of some key values on the summary page")]
+        public void WhenDealerMakesNoteOfSomeKeyValuesOnTheSummaryPage()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+        [When(@"the dealer return to awaiting acceptance contract list page")]
+        public void WhenTheDealerReturnToAwaitingAcceptanceContractListPage()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+        [When(@"the dealer downloads PDF for the created contract")]
+        public void WhenTheDealerDownloadsPdfForTheCreatedContract()
+        {
+            CurrentPage.As<DealerContractsAwaitingAcceptancePage>().GetDownloadedPdfPath();
+            
+        }
+
+        [Then(@"the noted values above are available in the PDF content")]
+        public void ThenTheNotedValuesAboveAreAvailableInThePdfContent()
+        {
+            CurrentPage.As<DealerContractsAwaitingAcceptancePage>().DoesPdfContentContainSomeText();
+            CurrentPage.As<DealerContractsAwaitingAcceptancePage>().IsCustomerEmailPresentInPdf();
+            CurrentPage.As<DealerContractsAwaitingAcceptancePage>().IsCustomerNamePresentInPdf();
+            CurrentPage.As<DealerContractsAwaitingAcceptancePage>().IsSummaryColourClickRatePresentInPdf();
+            CurrentPage.As<DealerContractsAwaitingAcceptancePage>().IsSummaryContractTermPresentInPdf();
+            CurrentPage.As<DealerContractsAwaitingAcceptancePage>().IsSummaryContractTypePresentInPdf();
+            CurrentPage.As<DealerContractsAwaitingAcceptancePage>().IsSummaryMonoClickRatePresentInPdf();
+            CurrentPage.As<DealerContractsAwaitingAcceptancePage>().IsCorrectLanguagePdfDownloaded();
+            CurrentPage.As<DealerContractsAwaitingAcceptancePage>().PurgeDownloadsDirectory();
+        }
+
     }
 }
