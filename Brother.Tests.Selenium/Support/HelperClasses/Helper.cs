@@ -517,6 +517,27 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             MsgOutput(string.Format("Successfully Deleted {0} old SnapShots", snapShotCount));
         }
 
+        public static void PurgeDownloads(string filePath)
+        {
+            var dirInfo = new DirectoryInfo(filePath);
+
+            var snapShotCount = 0;
+            var snapShots = dirInfo.GetFiles("*.pdf", SearchOption.TopDirectoryOnly);
+            foreach (var snapShot in snapShots)
+            {
+               try
+                    {
+                        snapShot.Delete();
+                        snapShotCount++;
+                    }
+                    catch (IOException fileDeleteException)
+                    {
+                        MsgOutput(string.Format("Unable to delete download {0} due to {1}", snapShot.Name, fileDeleteException.Message));
+                    }
+                }
+            MsgOutput(string.Format("Successfully Deleted {0} contract(s)", snapShotCount));
+        }
+
         public static void TakeSnapshot(string additionalInformation)
         {
             if (!Directory.Exists(SnapShotDirectory()))

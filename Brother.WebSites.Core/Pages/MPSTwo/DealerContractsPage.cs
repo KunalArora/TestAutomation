@@ -220,7 +220,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public DealerContractsSummaryPage NavigateToViewOfferOnApprovedProposalsTab()
         {
             string proposalname = MpsUtil.CreatedProposal();
-            var element = ActionsModule.SpecificActionsDropdownElement();   //ActionButtonElementByName(proposalname, "9");
+            var element = ActionsModule.SpecificActionsDropdownElement();   
 
             element.Click();
             ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);

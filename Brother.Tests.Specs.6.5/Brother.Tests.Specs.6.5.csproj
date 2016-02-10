@@ -139,6 +139,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CloudMPSOutputContractPDFAllUsers.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\MPSTwo\Contract\CloudMPSVerifyPDFContentsAreCorrect.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CloudMPSVerifyPDFContentsAreCorrect.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specifications\MPSTwo\Customer\CloudMPSAddLocationToCustomerInformation.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -643,6 +648,10 @@
     <None Include="Test Specifications\MPSTwo\Contract\CloudMPSOutputContractPDFAllUsers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSOutputContractPDFAllUsers.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwo\Contract\CloudMPSVerifyPDFContentsAreCorrect.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CloudMPSVerifyPDFContentsAreCorrect.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwo\Customer\CloudMPSAddLocationToCustomerInformation.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
