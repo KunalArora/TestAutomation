@@ -18,8 +18,8 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
         [FindsBy(How = How.LinkText, Using = "Manage Subscription")]
         public IWebElement  ManageSubscriptionLink;
 
-        [FindsBy(How = How.CssSelector, Using = "#content_0_innercontent_2_btnSubmit")]
-        public IWebElement  ManageSubscriptionSubmitButton;
+        [FindsBy(How = How.CssSelector, Using = "#content_0_innercontent_2_btnPreview")]
+        public IWebElement  ManageSubscriptionUpdatePlanButton;
 
         [FindsBy(How = How.CssSelector, Using = "#content_0_innercontent_2_valNumberOfLicencesRequired")]
         public IWebElement NumberofLicensesRequiredErrorMessage;
@@ -39,13 +39,13 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
            return GetInstance<SubscriptionOverviewPage>(Driver);
        }
 
-       public SubscriptionOverviewPage ClickManageSubscriptionSubmitButton()
+       public SubscriptionOverviewPage ClickManageSubscriptionUpdatePlanButton()
        {
-           if (ManageSubscriptionSubmitButton == null)
+           if (ManageSubscriptionUpdatePlanButton == null)
            {
                throw new NullReferenceException("Unable to locate the ManageSubscriptionSubmitButton");
            }
-           ManageSubscriptionSubmitButton.Click();
+           ManageSubscriptionUpdatePlanButton.Click();
            return GetInstance<SubscriptionOverviewPage>(Driver);
        }
 

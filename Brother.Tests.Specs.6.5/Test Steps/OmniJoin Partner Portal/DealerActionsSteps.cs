@@ -442,7 +442,7 @@ namespace Brother.Tests.Specs
         [Then(@"I click submit button to upgrade the trail without selecting licenses")]
         public void ThenIClickSubmitButtonToUpgradeTheTrailWithoutSelectingLicenses()
         {
-            CurrentPage.As<SubscriptionOverviewPage>().ClickManageSubscriptionSubmitButton();
+            CurrentPage.As<SubscriptionOverviewPage>().ClickManageSubscriptionUpdatePlanButton();
         }
 
         [Then(@"I should error message on Number of licenses field")]
