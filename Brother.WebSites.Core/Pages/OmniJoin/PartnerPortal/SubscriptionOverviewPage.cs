@@ -39,7 +39,7 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
            return GetInstance<SubscriptionOverviewPage>(Driver);
        }
 
-       public SubscriptionOverviewPage ClickManageSubscriptionSubmitButton()
+       public SubscriptionOverviewPage ClickManageSubscriptionUpdatePlanButton()
        {
            if (ManageSubscriptionUpdatePlanButton == null)
            {
