@@ -25,6 +25,15 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
         [FindsBy(How = How.CssSelector, Using = ".error")]
         public IWebElement ConfirmwithYourAccountPasswordTxtBoxErrorMessage;
 
+        [FindsBy(How = How.CssSelector, Using = "#content_0_innercontent_1_SitecoreTextButton1")] 
+        public IWebElement RemoveCancellationButton;
+
+        [FindsBy(How = How.CssSelector, Using = "#content_0_innercontent_1_ReasonDropDwn")]
+        public IWebElement ReasonForCancellationDropDownList;
+
+        [FindsBy(How = How.CssSelector, Using = "#passwordTxt")] 
+        public IWebElement ConfirmAccountPasswordTextBox;
+
 
         public CancelSubscriptionPage ClickCancelSubscriptionButton()
         {
@@ -45,6 +54,49 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
         public void IsConfirmwithYourAccountPasswordTxtBoxErrorMessage()
         {
             TestCheck.AssertIsEqual(true ,ConfirmwithYourAccountPasswordTxtBoxErrorMessage.Displayed, "Is error message displayed on confirmwithyouraccount password field");
+        }
+
+        public void IsRemoveCancellationButtonDisplayed()
+        {
+            if (RemoveCancellationButton == null)
+            {
+                throw new NullReferenceException("Unable to locate the button");
+            }
+            TestCheck.AssertIsEqual(true, RemoveCancellationButton.Displayed, "Is remove cancellation button displayed");
+
+        }
+        public CancelSubscriptionPage ClickRemoveCancellationButton()
+        {
+            if (RemoveCancellationButton == null)
+            {
+                throw new NullReferenceException("Unable to locate the button");
+            }
+            RemoveCancellationButton.Click();
+            return GetInstance<CancelSubscriptionPage>(Driver);
+        }
+        public void PopulateReasonForCancellationDropDownList(string reasonForDropDownList)
+        {
+            SelectFromDropdown(ReasonForCancellationDropDownList, reasonForDropDownList);
+            AssertItemIsSelected(ReasonForCancellationDropDownList, reasonForDropDownList, "reason for cancellation dropdownlist");
+        }
+
+        public void IsCancelSubscriptionButtonDisplayed()
+        {
+            if (CancelSubscriptionButton == null)
+            {
+                throw new NullReferenceException("Unable to  locate the button");
+            }
+            TestCheck.AssertIsEqual(true, CancelSubscriptionButton.Displayed, "Is cancel subscription button displayed");
+        }
+
+        public void EnterConfirmAccountPassword(string confirmAccountPassword)
+        {
+            if (ConfirmAccountPasswordTextBox == null)
+            {
+                throw new NullReferenceException("unable to locat textbox");
+            }
+            ConfirmAccountPasswordTextBox.SendKeys(confirmAccountPassword+Keys.Tab);
+            
         }
     }
 }

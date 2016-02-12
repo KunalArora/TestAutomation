@@ -456,6 +456,33 @@ namespace Brother.Tests.Specs
           NextPage = CurrentPage.As<SubscriptionOverviewPage>().ClickCancelSubscriptionLink();
         }
 
+        [Then(@"I select ""(.*)""")]
+        public void ThenISelect(string cancellationReason)
+        {
+            CurrentPage.As<CancelSubscriptionPage>().PopulateReasonForCancellationDropDownList(cancellationReason);
+        }
+        [Then(@"I enter confirm with your password ""(.*)""")]
+        public void ThenIEnterConfirmWithYourPassword(string confirmAccountPassword)
+        {
+           CurrentPage.As<CancelSubscriptionPage>().EnterConfirmAccountPassword(confirmAccountPassword);
+        }
+
+        [Then(@"I should see remove cancellation button")]
+        public void ThenIShouldSeeRemoveCancellationButton()
+        {
+           CurrentPage.As<CancelSubscriptionPage>().IsRemoveCancellationButtonDisplayed(); 
+        }
+
+        [Then(@"I click on remove cancellation button")]
+        public void ThenIClickOnRemoveCancellationButton()
+        {
+            CurrentPage.As<CancelSubscriptionPage>().ClickRemoveCancellationButton();
+        }
+        [Then(@"I should be redirected to cancel subscription page")]
+        public void ThenIShouldBeRedirectedToCancelSubscriptionPage()
+        {
+          CurrentPage.As<CancelSubscriptionPage>().IsCancelSubscriptionButtonDisplayed();
+        }
         [Then(@"I click on cancel subscription button")]
         public void ThenIClickOnCancelSubscriptionButton()
         {

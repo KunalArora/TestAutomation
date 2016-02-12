@@ -27,6 +27,7 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
         [FindsBy(How = How.LinkText, Using = "Cancel Subscription")]
         public IWebElement CancelSubscripitonLink;
 
+     
 
        public SubscriptionOverviewPage ClickManageSubscriptionLink()
        {
@@ -62,6 +63,6 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
            CancelSubscripitonLink.Click();
            return GetInstance<CancelSubscriptionPage>(Driver);
        }
-
+    
     }
 }
