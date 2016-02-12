@@ -525,6 +525,61 @@ testRunner.And("I should see error message on Confirm your account password fiel
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Verify Dealeruser can remove cancellation of already placed order subscription")]
+        [NUnit.Framework.CategoryAttribute("TEST")]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "bol_uk@mailinator.com", "Password01", "Other", null)]
+        public virtual void VerifyDealeruserCanRemoveCancellationOfAlreadyPlacedOrderSubscription(string country, string emailAddress1, string password, string reasonForCancellation, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "TEST"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify Dealeruser can remove cancellation of already placed order subscription", @__tags);
+#line 219
+this.ScenarioSetup(scenarioInfo);
+#line 220
+testRunner.Given(string.Format("I launch Brother Online for \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 221
+testRunner.When(string.Format("I click on Create Account for \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 222
+testRunner.And("I am redirected to the Brother Login/Register page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 223
+testRunner.And(string.Format("I fill in email as \"{0}\"", emailAddress1), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 224
+testRunner.And(string.Format("I fill in password as \"{0}\"", password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 225
+testRunner.And("I press sign in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 226
+testRunner.Then("I should be logged in successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 227
+testRunner.And("I click on Partner Portal menu", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 228
+testRunner.And("I click on partner portal button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 229
+testRunner.And("I click on manage services button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 230
+testRunner.And("I click on view subscription", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 231
+testRunner.And("I click on cancel subscription link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 232
+testRunner.And(string.Format("I select \"{0}\"", reasonForCancellation), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 233
+testRunner.And(string.Format("I enter confirm with your password \"{0}\"", password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 234
+testRunner.And("I click on cancel subscription button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 235
+testRunner.Then("I should see remove cancellation button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 236
+testRunner.And("I click on remove cancellation button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 237
+testRunner.Then("I should be redirected to cancel subscription page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore
