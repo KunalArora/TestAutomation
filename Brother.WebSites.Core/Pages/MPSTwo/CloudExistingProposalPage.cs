@@ -408,12 +408,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ClickOnDeleteOnActionItemAgainstNewlyCreated(IWebDriver driver)
         {
-            var offer = GetNewlyCreatedProposalOfferElement(driver);
-            ClickActionButtonOnOffer(offer);
-            var deleteElem = offer.FindElement(By.CssSelector(".js-mps-delete"));
-            var id = deleteElem.GetAttribute("data-proposal-id");
-            SpecFlow.SetContext(DealerLatestOperatingItemId, id);
-            deleteElem.Click();
+            //var offer = GetNewlyCreatedProposalOfferElement(driver);
+            //ClickActionButtonOnOffer(offer);
+            //var deleteElem = offer.FindElement(By.CssSelector(".js-mps-delete"));
+            //var id = deleteElem.GetAttribute("data-proposal-id");
+            //SpecFlow.SetContext(DealerLatestOperatingItemId, id);
+            //deleteElem.Click();
+
+            ActionsModule.ClickOnSpecificActionsElement();
+            ActionsModule.DeleteAProposal(driver);
         }
 
         public void ClickOnCopyOnActionItemWithoutCustomer(IWebDriver driver, string operation, string target)

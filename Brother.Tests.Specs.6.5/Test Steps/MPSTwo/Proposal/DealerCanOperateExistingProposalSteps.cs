@@ -213,6 +213,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             var page = CurrentPage.As<CloudExistingProposalPage>();
             page.FindExistingPoposalList();
             page.HeadlessConfimation(confirm);
+
             if (targetItem == "NewlyCreatedItem")
             {
                 page.ClickOnDeleteOnActionItemAgainstNewlyCreated(CurrentDriver);
@@ -241,8 +242,9 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         public void ThenICanSeeTheDeletedItemDoesNotExistOnTheTable()
         {
             var page = CurrentPage.As<CloudExistingProposalPage>();
-            page.NotExistTheDeletedItem(CurrentDriver);
-            
+            //page.NotExistTheDeletedItem(CurrentDriver);
+            page.IsProposalSuccessfullyDeletedFromTheList();
+
         }
 
         [Then(@"I can see the deleted item still exists on the table")]
