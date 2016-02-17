@@ -104,8 +104,6 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.Then("I can verify that a features carousel tile is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 17
  testRunner.Then("I can verify that a banner bar component is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 18
- testRunner.Then("I can verify that a banner bar tile is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 21
  testRunner.Then("I can verify that the secondary navigation component is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 22
