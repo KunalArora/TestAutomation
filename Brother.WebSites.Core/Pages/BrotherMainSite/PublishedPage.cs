@@ -38,6 +38,9 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         [FindsBy(How = How.CssSelector, Using = ".col-xs-12.col-md-6.product-detail--container-title")]
         public IWebElement PageTitle;
 
+        [FindsBy(How = How.CssSelector, Using = ".common-results-list--article")]
+        public IWebElement PageArticle;
+        
         [FindsBy(How = How.CssSelector, Using = "body > header > div > div > a.common-global-header--toggle.active")]
         public IWebElement SearchIcon;
 
@@ -196,6 +199,16 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
                 throw new NullReferenceException("Unable to locate page header");
             }
             AssertElementPresent(PageTitle, "Page Title", 30);
+        }
+
+        public void IsPageArticleDisplayed()
+        {
+            WaitForElementToExistByCssSelector(".common-results-list--article");
+            if (PageArticle == null)
+            {
+                throw new NullReferenceException("Unable to locate page header");
+            }
+            AssertElementPresent(PageArticle, "Page Article", 30);
         }
 
         public void IsSearchIconDisplayed()

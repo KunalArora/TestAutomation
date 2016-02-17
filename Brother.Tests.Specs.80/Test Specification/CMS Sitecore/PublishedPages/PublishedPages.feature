@@ -59,7 +59,7 @@ Scenarios:
 
 
 @SMOKE
-Scenario Outline: Navigate to published page to verify product page
+Scenario Outline: Navigate to published page to verify product page - UK
 	Given That I navigate to "<Site Url>" in order to validate a published page
 	Then I can validate the product page title is displayed
 	
@@ -67,4 +67,25 @@ Scenarios:
 	
 	 |Site Url																	    |
 	 |http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseDoNotTouch/DCPL8400CDN |
-	 |http://main.it.brotherdv2.eu/Home/TestAutomationProductDCP-L8450CDW			|
+
+
+@SMOKE
+Scenario Outline: Navigate to published page to verify supplies page - UK
+	Given That I navigate to "<Site Url>" in order to validate a published page
+	Then I can validate the product page title is displayed
+	
+Scenarios: 
+	
+	 | Site Url                                                                                      |
+	 | http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseDoNotTouch/HGe131V5-SuppliesPage		 |
+
+
+@SMOKE
+Scenario Outline: Navigate to published page to verify News landing page - UK
+	Given That I navigate to "<Site Url>" in order to validate a published page
+	Then I can validate article is displayed on the page
+
+Scenarios: 
+	
+	 | Site Url                                                                                      |
+	 | http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseDoNotTouch/NewsLandingPage			 |
