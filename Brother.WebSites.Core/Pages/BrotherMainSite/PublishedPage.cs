@@ -32,7 +32,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
             get { return string.Empty; }
         }
 
-        [FindsBy(How = How.CssSelector, Using = "common-global-header")]
+        [FindsBy(How = How.CssSelector, Using = "body > header > div > h1")]
         public IWebElement PageHeader;
 
         [FindsBy(How = How.CssSelector, Using = ".col-xs-12.col-md-6.product-detail--container-title")]
@@ -53,7 +53,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div.col-xs-12.grid-cell > section.common--features-carousel > ul > li:nth-child(1) > a > img")]
         public IWebElement FeaturesCarouselTile;
 
-        [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div.col-xs-12.grid-cell > section:nth-child(4) > div.col-xs-12 > h1")]
+        [FindsBy(How = How.CssSelector, Using = ".common--banner-bar.component")]
         public IWebElement BannerBar;
 
         [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div.col-xs-12.grid-cell > section:nth-child(4) > div.common--banner-bar--items > div:nth-child(1) > img")]
@@ -62,7 +62,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid.scEnabledChrome > div > div.col-xs-12.grid-cell > div:nth-child(13) > article > div.common-info-image__content.common--wysiwyg-block")]
         public IWebElement ImageTextModule;
 
-        [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div.col-xs-12.grid-cell > section:nth-child(5) > nav")]
+        [FindsBy(How = How.CssSelector, Using = ".common-subheader")]
         public IWebElement SecondaryNav;
 
         [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div.col-xs-12.grid-cell > ol")]
@@ -179,8 +179,8 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public void IsPageHeaderDisplayed()
         {
-            //WaitForElementToExistByCssSelector("body > header > div > h1");
-            WaitForElementToExistByCssSelector("common-global-header");
+           WaitForElementToExistByCssSelector("body > header > div > h1");
+           //WaitForElementToExistByCssSelector(".common-global-header--title");
               if (PageHeader == null)
                  {
                    throw new NullReferenceException("Unable to locate page header");
@@ -250,7 +250,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public void IsBannerBarDisplayedDisplayed()
         {
-            WaitForElementToExistByCssSelector("body > div.container.container--grid > div > div.col-xs-12.grid-cell > section:nth-child(4) > div.col-xs-12 > h1");
+            WaitForElementToExistByCssSelector(".common--banner-bar.component");
             if (BannerBar == null)
             {
                 throw new NullReferenceException("Unable to locate banner bar component");
@@ -260,7 +260,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public void IsBannerBarTileDisplayed()
         {
-            WaitForElementToExistByCssSelector("body > div.container.container--grid > div > div.col-xs-12.grid-cell > section:nth-child(4) > div.common--banner-bar--items > div:nth-child(1) > img");
+            WaitForElementToExistByCssSelector(".common--banner-bar.component");
             if (BannerBarTile == null)
             {
                 throw new NullReferenceException("Unable to locate banner bar tile component");
@@ -280,7 +280,8 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public void IsSecondaryNavigationDisplayed()
         {
-            WaitForElementToExistByCssSelector("body > div.container.container--grid > div > div.col-xs-12.grid-cell > section:nth-child(5) > nav");
+            //WaitForElementToExistByCssSelector("body > div.container.container--grid > div > div.col-xs-12.grid-cell > section:nth-child(5) > nav");
+            WaitForElementToExistByCssSelector(".common-subheader"); 
             if (SecondaryNav == null)
             {
                 throw new NullReferenceException("Unable to locate secondary navigation component");
