@@ -89,3 +89,26 @@ Scenarios:
 	
 	 | Site Url                                                                                      |
 	 | http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseDoNotTouch/NewsLandingPage			 |
+
+@SMOKE
+Scenario Outline: Navigate to published page to verify Glossary page - UK
+	Given That I navigate to "<Site Url>" in order to validate a published page
+	Then I can validate the product page title is displayed
+
+Scenarios: 
+	
+	 | Site Url                                                                                      |
+	 | http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseDoNotTouch/glossary					 |
+
+
+@SMOKE
+Scenario Outline: Navigate to published page to verify Printer Listing page - UK
+	Given That I navigate to "<Site Url>" in order to validate a published page
+	Then I can validate the product page title is displayed
+
+Scenarios: 
+	
+	 | Site Url                                                                                      |
+	 | http://main.co.uk.brotherdv2.eu/Printers/All-Printers										 |
+
+	 
