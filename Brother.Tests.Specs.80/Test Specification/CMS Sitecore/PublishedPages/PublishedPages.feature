@@ -93,7 +93,7 @@ Scenarios:
 @SMOKE
 Scenario Outline: Navigate to published page to verify Glossary page - UK
 	Given That I navigate to "<Site Url>" in order to validate a published page
-	Then I can validate the product page title is displayed
+	Then I can validate glossary section is displayed
 
 Scenarios: 
 	
@@ -104,11 +104,11 @@ Scenarios:
 @SMOKE
 Scenario Outline: Navigate to published page to verify Printer Listing page - UK
 	Given That I navigate to "<Site Url>" in order to validate a published page
-	Then I can validate the product page title is displayed
+	Then I can validate printers filter section is displayed
 
 Scenarios: 
 	
-	 | Site Url                                                                                      |
-	 | http://main.co.uk.brotherdv2.eu/Printers/All-Printers										 |
+	 | Site Url																							 |
+	 | http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseDoNotTouch/All-Printers					 |
 
 	 

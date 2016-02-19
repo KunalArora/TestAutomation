@@ -42,6 +42,16 @@ namespace Brother.Tests.Specs._80.Test_Steps.BrotherMainSite.PublishedPages
         {
             CurrentPage.As<PublishedPage>().IsPageTitleDisplayed();
         }
+        [Then(@"I can validate printers filter section is displayed")]
+        public void ThenICanValidatePrintersFilterSectionIsDisplayed()
+        {
+            CurrentPage.As<PublishedPage>().IsFilterSectionDisplayed();
+        }
+        [Then(@"I can validate glossary section is displayed")]
+        public void ThenICanValidateGlossarySectionIsDisplayed()
+        {
+            CurrentPage.As<PublishedPage>().IsGlossarySectionDisplayed();
+        }
         [Then(@"I can validate article is displayed on the page")]
         public void ThenICanValidateArticleIsDisplayedOnThePage()
         {

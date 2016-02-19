@@ -40,7 +40,13 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         [FindsBy(How = How.CssSelector, Using = ".common-results-list--article")]
         public IWebElement PageArticle;
-        
+
+        [FindsBy(How = How.CssSelector, Using = ".row.glossary-listing_tab-item")] 
+        public IWebElement GlossarySection;
+
+        [FindsBy(How = How.CssSelector, Using = ".product-results-header.clearfix.component")] 
+        public IWebElement FilterSection;
+
         [FindsBy(How = How.CssSelector, Using = "body > header > div > div > a.common-global-header--toggle.active")]
         public IWebElement SearchIcon;
 
@@ -199,6 +205,26 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
                 throw new NullReferenceException("Unable to locate page header");
             }
             AssertElementPresent(PageTitle, "Page Title", 30);
+        }
+
+        public void IsFilterSectionDisplayed()
+        {
+            WaitForElementToExistByCssSelector(".product-results-header.clearfix.component");
+            if (FilterSection == null)
+            {
+                throw new NullReferenceException("Unable to locate page header");
+            }
+            AssertElementPresent(FilterSection, "Filter Section", 30);
+        }
+
+        public void IsGlossarySectionDisplayed()
+        {
+            WaitForElementToExistByCssSelector(".row.glossary-listing_tab-item");
+            if (GlossarySection == null)
+            {
+                throw new NullReferenceException("Unable to locate page header");
+            }
+            AssertElementPresent(GlossarySection, "Glossary Section", 30);
         }
 
         public void IsPageArticleDisplayed()
