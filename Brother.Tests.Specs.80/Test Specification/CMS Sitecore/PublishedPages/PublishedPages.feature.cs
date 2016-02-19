@@ -253,7 +253,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 95
  testRunner.Given(string.Format("That I navigate to \"{0}\" in order to validate a published page", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 96
- testRunner.Then("I can validate the product page title is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I can validate glossary section is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -261,7 +261,7 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Navigate to published page to verify Printer Listing page - UK")]
         [NUnit.Framework.CategoryAttribute("SMOKE")]
-        [NUnit.Framework.TestCaseAttribute("http://main.co.uk.brotherdv2.eu/Printers/All-Printers", null)]
+        [NUnit.Framework.TestCaseAttribute("http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseDoNotTouch/All-Printers", null)]
         public virtual void NavigateToPublishedPageToVerifyPrinterListingPage_UK(string siteUrl, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -276,7 +276,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 106
  testRunner.Given(string.Format("That I navigate to \"{0}\" in order to validate a published page", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 107
- testRunner.Then("I can validate the product page title is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I can validate printers filter section is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
