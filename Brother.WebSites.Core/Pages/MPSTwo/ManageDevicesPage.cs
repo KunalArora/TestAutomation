@@ -129,7 +129,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 throw new Exception("Cancel installation button not displayed");
             CancelInstallationRequestElement.Click();
             ClickAcceptOnConfrimation(Driver);
-            WebDriver.Wait(DurationType.Second, 5);
+            WebDriver.Wait(DurationType.Second, 3);
         }
 
         public void ClickAcceptOnConfrimation(IWebDriver driver)
@@ -144,7 +144,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if(ShowInstallationRequestEmailElement == null)
                 throw new Exception("Show Installation Request element is not displayed");
             ShowInstallationRequestEmailElement.Click();
-            WebDriver.Wait(DurationType.Second, 5);
+            WebDriver.Wait(DurationType.Second, 2);
         }
 
         public void IsInstallationRequestScreenDisplayed()

@@ -87,14 +87,22 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
         public void WhenIEnterDeviceSerialNumberForCommunication(string method)
         {
             CurrentPage.As<InstallerDeviceInstallationPage>().VerifyTimeZoneIsDisplayed(method);
-            if (method == "BOR") return;
-            CurrentPage.As<InstallerDeviceInstallationPage>().EnterSerialNumber();
+            if (method == "Email")
+            {
+                CurrentPage.As<InstallerDeviceInstallationPage>().EnterSerialNumber();
+            }
+            else
+            {
+                CurrentPage.As<InstallerDeviceInstallationPage>().EnterExistingSerialNumber(); 
+            }
+            
         }
 
         [When(@"I enter existing device serial number for ""(.*)"" communication")]
         public void WhenIEnterExistingDeviceSerialNumberForCommunication(string method)
         {
             CurrentPage.As<InstallerDeviceInstallationPage>().VerifyTimeZoneIsDisplayed(method);
+            CurrentPage.As<InstallerDeviceInstallationPage>().IsInstallationPinCloudInstallationDisplayed();
             if (method == "BOR") return;
             CurrentPage.As<InstallerDeviceInstallationPage>().EnterExistingSerialNumber();
         }
