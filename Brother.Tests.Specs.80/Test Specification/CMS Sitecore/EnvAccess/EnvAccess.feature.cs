@@ -80,7 +80,6 @@ namespace Brother.Tests.Specs._80.TestSpecification.CMSSitecore.EnvAccess
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "http://main.co.uk.brotherdev.eu/sitecore/login", null)]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "http://main.co.uk.brotherdv2.eu/sitecore/login", null)]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "http://main.co.uk.cms.brotherqas.eu/sitecore/login", null)]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "http://main.co.uk.cms.brother.eu/sitecore/login", null)]
         public virtual void Get200OKResponseBackFromTheFollowingBrotherMainSitesOnTheTestEnvironment(string language, string mainSite, string[] exampleTags)
         {
             string[] @__tags = new string[] {

@@ -15,7 +15,7 @@ Scenario Outline: Navigate to published page to verify all page components
 	Then I can verify that the features carousel component is displayed
 	Then I can verify that a features carousel tile is displayed
 	Then I can verify that a banner bar component is displayed
-	Then I can verify that a banner bar tile is displayed
+	#Then I can verify that a banner bar tile is displayed
 	# Info image module currently not publishing. Its displayed fine in experience editor
 	# Then I can verify that an info image text module component is displayed
 	Then I can verify that the secondary navigation component is displayed
@@ -59,7 +59,7 @@ Scenarios:
 
 
 @SMOKE
-Scenario Outline: Navigate to published page to verify product page
+Scenario Outline: Navigate to published page to verify product page - UK
 	Given That I navigate to "<Site Url>" in order to validate a published page
 	Then I can validate the product page title is displayed
 	
@@ -67,4 +67,48 @@ Scenarios:
 	
 	 |Site Url																	    |
 	 |http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseDoNotTouch/DCPL8400CDN |
-	 |http://main.it.brotherdv2.eu/Home/TestAutomationProductDCP-L8450CDW |
+
+
+@SMOKE
+Scenario Outline: Navigate to published page to verify supplies page - UK
+	Given That I navigate to "<Site Url>" in order to validate a published page
+	Then I can validate the product page title is displayed
+	
+Scenarios: 
+	
+	 | Site Url                                                                                      |
+	 | http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseDoNotTouch/HGe131V5-SuppliesPage		 |
+
+
+@SMOKE
+Scenario Outline: Navigate to published page to verify News landing page - UK
+	Given That I navigate to "<Site Url>" in order to validate a published page
+	Then I can validate article is displayed on the page
+
+Scenarios: 
+	
+	 | Site Url                                                                                      |
+	 | http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseDoNotTouch/NewsLandingPage			 |
+
+@SMOKE
+Scenario Outline: Navigate to published page to verify Glossary page - UK
+	Given That I navigate to "<Site Url>" in order to validate a published page
+	Then I can validate glossary section is displayed
+
+Scenarios: 
+	
+	 | Site Url                                                                                      |
+	 | http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseDoNotTouch/glossary					 |
+
+
+@SMOKE
+Scenario Outline: Navigate to published page to verify Printer Listing page - UK
+	Given That I navigate to "<Site Url>" in order to validate a published page
+	Then I can validate printers filter section is displayed
+
+Scenarios: 
+	
+	 | Site Url																							 |
+	 | http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseDoNotTouch/All-Printers					 |
+
+	 
