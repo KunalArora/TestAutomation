@@ -70,14 +70,14 @@ Scenarios:
 
 
 @SMOKE
-Scenario Outline: Navigate to published page to verify supplies page - UK
+Scenario Outline: Navigate to published page to verify supplies product page - UK
 	Given That I navigate to "<Site Url>" in order to validate a published page
 	Then I can validate the product page title is displayed
 	
 Scenarios: 
 	
-	 | Site Url                                                                                      |
-	 | http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseDoNotTouch/HGe131V5-SuppliesPage		 |
+	 | Site Url																							 |
+	 | http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseDoNotTouch/HGe131V5-SuppliesPage			 |
 
 
 @SMOKE
@@ -87,9 +87,9 @@ Scenario Outline: Navigate to published page to verify News landing page - UK
 
 Scenarios: 
 	
-	 | Site Url                                                                                      |
-	 | http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseDoNotTouch/NewsLandingPage			 |
-
+	 | Site Url																							|
+	 | http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseDoNotTouch/NewsLandingPage				|
+		
 @SMOKE
 Scenario Outline: Navigate to published page to verify Glossary page - UK
 	Given That I navigate to "<Site Url>" in order to validate a published page
@@ -97,8 +97,8 @@ Scenario Outline: Navigate to published page to verify Glossary page - UK
 
 Scenarios: 
 	
-	 | Site Url                                                                                      |
-	 | http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseDoNotTouch/glossary					 |
+	 | Site Url																							 |
+	 | http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseDoNotTouch/glossary						 |
 
 
 @SMOKE
@@ -111,4 +111,23 @@ Scenarios:
 	 | Site Url																							 |
 	 | http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseDoNotTouch/All-Printers					 |
 
-	 
+#write supplies once fixed
+@SMOKE
+Scenario Outline: Navigate to published page to verify Supplies page - UK
+	Given That I navigate to "<Site Url>" in order to validate a published page
+	Then I can validate printers filter section is displayed
+
+Scenarios: 
+	
+	 | Site Url																							 |
+	 | http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseDoNotTouch/Supplies						 |
+
+@SMOKE
+Scenario Outline: Navigate to published page to verify Accessory Product Page - UK
+	Given That I navigate to "<Site Url>" in order to validate a published page
+	Then I can validate accessory product title is displayed
+
+Scenarios: 
+	
+	 | Site Url																							 |
+	 | http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseDoNotTouch/AD18ESUK						 |	 

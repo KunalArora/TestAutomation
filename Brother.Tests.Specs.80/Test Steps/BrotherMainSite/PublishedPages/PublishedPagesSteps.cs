@@ -47,6 +47,11 @@ namespace Brother.Tests.Specs._80.Test_Steps.BrotherMainSite.PublishedPages
         {
             CurrentPage.As<PublishedPage>().IsFilterSectionDisplayed();
         }
+        [Then(@"I can validate accessory product title is displayed")]
+        public void ThenICanValidateAccessoryProductTitleIsDisplayed()
+        {
+            CurrentPage.As<PublishedPage>().IsAccessoryProductTitleDisplayed();
+        }
         [Then(@"I can validate glossary section is displayed")]
         public void ThenICanValidateGlossarySectionIsDisplayed()
         {
