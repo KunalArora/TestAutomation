@@ -35,6 +35,7 @@ Scenarios:
 	| Spain          | "InvalidEmailForUser"                                                                                                                                                                                                                                              |
 	| Spain          | "ThisIsAVeryLargeEmailAddressWhichExceeds241CharactersAndThisIsNotSupportedaaaaaaaaaaaThisIsAVeryLargeEmailAddressWhichExceeds241CharactersAndThisIsNotSupportedaaaaaaaaaaaThisIsAVeryLargeEmailAddressWhichExceed241CharactersExceed241Characters@mailinator.com" |
 
+#(BBAU-3095)
 #Change Personal details in your created account, go to my account and add your new Email address
 Scenario Outline: Customer create a new account and amend their personal details by going into my account page
 	Given I want to create a new account with Brother Online "United Kingdom"
