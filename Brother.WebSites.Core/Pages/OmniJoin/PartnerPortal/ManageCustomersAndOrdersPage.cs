@@ -343,7 +343,6 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
         {
 
             SelectFromDropdown(SelectActionDropDownList, selectAction);
-           // AssertItemIsSelected(SelectActionDropDownList, selectAction , "Edit customer");
             return GetInstance<EditDetailsPage>(Driver);
         }
 
