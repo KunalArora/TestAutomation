@@ -442,7 +442,7 @@ namespace Brother.Tests.Specs
         [Then(@"I click submit button to upgrade the trail without selecting licenses")]
         public void ThenIClickSubmitButtonToUpgradeTheTrailWithoutSelectingLicenses()
         {
-            CurrentPage.As<SubscriptionOverviewPage>().ClickManageSubscriptionUpdatePlanButton();
+            CurrentPage.As<SubscriptionOverviewPage>().ClickManageSubscriptionPlanButton();
         }
 
         [Then(@"I should error message on Number of licenses field")]
@@ -501,6 +501,39 @@ namespace Brother.Tests.Specs
            CurrentPage.As<CancelSubscriptionPage>().IsConfirmwithYourAccountPasswordTxtBoxErrorMessage();
         }
 
+        [Then(@"I select action ""(.*)""")]
+        public void ThenISelectAction(string selectAction)
+        {
+            NextPage = CurrentPage.As<ManageCustomersAndOrdersPage>().PopulateSelectActionDropDown(selectAction);
+        }
+        [Then(@"I should see EditDetails page")]
+        public void ThenIShouldSeeEditDetailsPage()
+        {
+           CurrentPage.As<EditDetailsPage>().IsSaveButtonDisplayed();
+        }
+
+        [Then(@"I click on DeleteCustomer")]
+        public void ThenIClickOnDeleteCustomer()
+        {
+            NextPage = CurrentPage.As<EditDetailsPage>().ClickDeleteCustomerLink();
+        }
+        [Then(@"I should see Deletecustomer page")]
+        public void ThenIShouldSeeDeletecustomerPage()
+        {
+            CurrentPage.As<DeleteCustomerPage>().IsDeleteButtonDisplayed();
+        }
+
+        [Then(@"I click on cancel")]
+        public void ThenIClickOnCancel()
+        {
+            NextPage = CurrentPage.As<DeleteCustomerPage>().ClickCancel();
+        }
+        [Then(@"I should see manage orders and customers page")]
+        public void ThenIShouldSeeManageOrdersAndCustomersPage()
+        {
+            CurrentPage.As<ManageCustomersAndOrdersPage>().IsAddNewCustomerButtonDisplayed();
+        }
+      
 
     }
 }
