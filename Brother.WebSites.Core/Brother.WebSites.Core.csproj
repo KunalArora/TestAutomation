@@ -197,7 +197,9 @@
     <Compile Include="Pages\OmniJoin\PartnerPortal\CancelSubscriptionPage.cs" />
     <Compile Include="Pages\OmniJoin\PartnerPortal\CodeActivationPage.cs" />
     <Compile Include="Pages\OmniJoin\PartnerPortal\CreateActivationCodesPage.cs" />
+    <Compile Include="Pages\OmniJoin\PartnerPortal\DeleteCustomerPage.cs" />
     <Compile Include="Pages\OmniJoin\PartnerPortal\EditAddressPage.cs" />
+    <Compile Include="Pages\OmniJoin\PartnerPortal\EditDetailsPage.cs" />
     <Compile Include="Pages\OmniJoin\PartnerPortal\EditUsersPage.cs" />
     <Compile Include="Pages\OmniJoin\PartnerPortal\ManageCustomersAndOrdersPage.cs" />
     <Compile Include="Pages\OmniJoin\PartnerPortal\ManageServicePage.cs" />
