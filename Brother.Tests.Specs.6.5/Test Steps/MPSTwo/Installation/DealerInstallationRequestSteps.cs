@@ -128,6 +128,7 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
         {
             CurrentPage.As<InstallerDeviceInstallationPage>().CompleteDeviceConnection();
             CurrentPage.As<InstallerDeviceInstallationPage>().ConfirmInstallationSucceed();
+            CurrentPage.As<InstallerDeviceInstallationPage>().ConfirmCompleteMessageIsDisplayed();
         }
 
 

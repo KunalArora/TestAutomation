@@ -15,19 +15,33 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string ProposalDeleteButton = @".open .js-mps-delete";
         private const string SendToBankButton = @".open ul.dropdown-menu .js-mps-send-to-approver";
         private const string OpenOfferViewSummaryButton = @".open ul.dropdown-menu .js-mps-view-summary";
-        private const string actionsButton = @".js-mps-filter-ignore .dropdown-toggle";
+        private const string ActionsButton = @".js-mps-filter-ignore .dropdown-toggle";
         private const string PreInstallationButton = @".open ul.dropdown-menu .js-mps-pre-installation";
         private const string MaintainOfferButton = @".open ul.dropdown-menu .js-mps-maintain-offer";
         private const string ProposalCopyElement = @".open .js-mps-copy";
         private const string ProposalCopyElementWithCustomer = @".open .js-mps-copy-with-customer";
-        private const string ContractDownloadPDF = @".open .js-mps-download-contract-pdf";
-        private const string ContractDownloadInvoicePDF = @".open .js-mps-download-contract-invoice-pdf";
+        private const string ContractDownloadPdf = @".open .js-mps-download-contract-pdf";
+        private const string ContractDownloadInvoicePdf = @".open .js-mps-download-contract-invoice-pdf";
         private const string ActionButtion = @".js-mps-filter-ignore [type='button']";
-
+        private const string SearchField = @"#content_1_ProposalListFilter_InputFilterBy";
+        private const string CustomerSearchFieldElement = @"#content_1_PersonListFilter_InputFilterBy";
+        private const string ContractSearchField = @"#content_1_ContractListFilter_InputFilterBy";
+       
+        
 
         private static IWebElement CopyProposalButtonElement(ISearchContext driver)
         {
             return driver.FindElement(By.CssSelector(ProposalCopyElement));
+        }
+
+        private static IWebElement SearchFieldElement(ISearchContext driver)
+        {
+            return driver.FindElement(By.CssSelector(SearchField));
+        }
+
+        private static IWebElement ContractSearchFieldElement(ISearchContext driver)
+        {
+            return driver.FindElement(By.CssSelector(ContractSearchField));
         }
 
         private static IWebElement CopyProposalWithCustomerButtonElement(ISearchContext driver)
@@ -47,12 +61,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private static IWebElement DownloadContractPDFElement(ISearchContext driver)
         {
-            return driver.FindElement(By.CssSelector(ContractDownloadPDF));
+            return driver.FindElement(By.CssSelector(ContractDownloadPdf));
         }
 
         private static IWebElement DownloadContractInvoicePDFElement(ISearchContext driver)
         {
-            return driver.FindElement(By.CssSelector(ContractDownloadInvoicePDF));
+            return driver.FindElement(By.CssSelector(ContractDownloadInvoicePdf));
         }
 
         private static IWebElement PreInstallationElement(ISearchContext driver)
@@ -68,6 +82,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private static IWebElement ProposalEditButtonElement(ISearchContext driver)
         {
             return driver.FindElement(By.CssSelector(ProposalEditButton));
+        }
+
+        private static IWebElement CustomerSearchField(ISearchContext driver)
+        {
+            return driver.FindElement(By.CssSelector(CustomerSearchFieldElement));
         }
 
         private static IWebElement ProposalDeleteButtonElement(ISearchContext driver)
@@ -87,7 +106,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private static IList<IWebElement> ActionsDropdownElement(ISearchContext driver)
         {
 
-            var actionsElement = driver.FindElements(By.CssSelector(actionsButton));
+            var actionsElement = driver.FindElements(By.CssSelector(ActionsButton));
             return actionsElement;
         }
 
@@ -97,6 +116,40 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             action.Click();
             
         }
+
+        private static string UrlValue(IWebDriver driver)
+        {
+            return driver.Url.ToLower();
+        }
+
+        public static void SearchForNewlyProposalItem(IWebDriver driver, string search)
+        {
+            var action = UrlValue(driver).Contains("contracts") ? ContractSearchFieldElement(driver) : SearchFieldElement(driver);
+            action.Clear();
+            action.SendKeys(search);
+            action.SendKeys(Keys.Tab);
+            WebDriver.Wait(Helper.DurationType.Second, 2);
+
+        }
+
+        public static void SearchForNewContractItem(IWebDriver driver, string search)
+        {
+            var action = ContractSearchFieldElement(driver);
+            action.Clear();
+            action.SendKeys(search);
+            action.SendKeys(Keys.Tab);
+
+        }
+
+        
+        public static void SearchForNewCustomer(IWebDriver driver)
+        {
+            var search = CustomerSearchField(driver);
+            search.Clear();
+            search.SendKeys(SpecFlow.GetContext("GeneratedEmailAddress"));
+        }
+
+
 
         public static void DownloadContractInvoicePDFAction(IWebDriver driver)
         {
@@ -118,22 +171,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             searchField.SendKeys(Keys.Tab);
             WebDriver.Wait(Helper.DurationType.Second, 3);
         }
-        
 
-        public static IWebElement SpecificActionsDropdownElement()
+        public static IWebElement SpecificActionsDropdownElement(IWebDriver driver)
         {
+            return AllActionsButton(driver).First();
 
-            var actionsElement = SeleniumHelper.FindElementByJs(ProposalCreatedActionButton());
-            return actionsElement;
+
         }
 
-        public static IWebElement InstallerPinElement()
+        public static int NumberOfActionButtonDisplayed(IWebDriver driver)
         {
-
-            var actionsElement = SeleniumHelper.FindElementByJs(GeneratedPinForInstallation());
-            return actionsElement;
+            return AllActionsButton(driver).Count;
         }
 
+      
         public static IWebElement SpecificCustomerActionsDropdownElement()
         {
 
@@ -141,21 +192,42 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return actionsElement;
         }
 
-        public static void ClickOnSpecificActionsElement()
+        public static void ClickOnSpecificActionsElement(IWebDriver driver)
         {
-            if (SpecificActionsDropdownElement() != null)
-                SpecificActionsDropdownElement().Click();
+            SearchForNewlyProposalItem(driver, MpsUtil.CreatedProposal());
+            ClickOnTheActionsDropdown(0, driver);
         }
 
-        public static void ClickOnSpecificCustomerActionsElement()
+        public static void ClickOnSpecificCustomerActions(IWebDriver driver)
         {
-            if (SpecificCustomerActionsDropdownElement() != null)
-                SpecificCustomerActionsDropdownElement().Click();
+            SearchForNewCustomer(driver);
+            ClickOnTheActionsDropdown(0, driver);
         }
 
-        public static bool IsClosedProposalDisplayed()
+        public static void ClickOnCopiedProposalActionsElement(IWebDriver driver)
         {
-            return SeleniumHelper.FindElementByJs(ProposalCreatedActionButton()).Displayed;
+            SearchForNewlyProposalItem(driver, MpsUtil.CopiedProposal());
+            ClickOnTheActionsDropdown(0, driver);
+        }
+
+        public static void IsNewlyCreatedItemDisplayed(IWebDriver driver)
+        {
+            SearchForNewlyProposalItem(driver, MpsUtil.CreatedProposal());
+            var actionCount = AllActionsButton(driver).Count.Equals(1);
+
+            var message = String.Format("{0} is not displayed", MpsUtil.CreatedProposal());
+
+            TestCheck.AssertIsEqual(true, actionCount, message);
+        }
+
+        public static void IsNewlyCreatedCustomerDisplayed(IWebDriver driver)
+        {
+            SearchForNewCustomer(driver);
+            var actionCount = AllActionsButton(driver).Count.Equals(1);
+
+            var message = String.Format("{0} is not displayed", SpecFlow.GetContext("GeneratedEmailAddress"));
+
+            TestCheck.AssertIsEqual(true, actionCount, message);
         }
 
         public static void OpenTheFirstActionButton(IWebDriver driver)
@@ -167,7 +239,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             return String.Format("return $('td:contains(\"{0}\")').parent('tr').children('td').children('div').children('button')", 
                 MpsUtil.CreatedProposal());
-            // //div/table/tbody/tr/td[text()='{0}']/parent::tr/td[6]/div/button
+
         }
 
         private static string CreatedEmailActionButton()
@@ -184,25 +256,29 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
        
         private static string CopiedProposalCustomer()
         {
-            return String.Format("//td[text()='{0}']/parent::tr/td[4]",
-                MpsUtil.CopiedProposal());
+            //return String.Format("//td[text()='{0}']/parent::tr/td[4]",
+            //    MpsUtil.CopiedProposal());
+
+            return "return $(('.js-mps-filter-ignore').parent('td').parent('tr').children('td'))[3]";
         }
 
-        public static IWebElement ProposalCustomerColumn(IWebDriver driver)
+        public static IWebElement ProposalCustomerColumn()
         {
-            var actionsElement = driver.FindElement(By.XPath(CopiedProposalCustomer()));
+            var actionsElement = SeleniumHelper.FindElementByJs(CopiedProposalCustomer());
             return actionsElement;
         }
 
         private static string CreatedProposalCustomer()
         {
-            return String.Format("//td[text()='{0}']/parent::tr/td[4]",
-                MpsUtil.CreatedProposal());
+            //return String.Format("//td[text()='{0}']/parent::tr/td[4]",
+            //    MpsUtil.CreatedProposal());
+
+            return "return $(('.js-mps-filter-ignore').parent().parent().children('td'))[3]";
         }
 
-        public static IWebElement CreatedProposalCustomerColumn(IWebDriver driver)
+        public static IWebElement CreatedProposalCustomerColumn()
         {
-            var actionsElement = driver.FindElement(By.XPath(CreatedProposalCustomer()));
+            var actionsElement = SeleniumHelper.FindElementByJs(CreatedProposalCustomer());
             return actionsElement;
         }
 

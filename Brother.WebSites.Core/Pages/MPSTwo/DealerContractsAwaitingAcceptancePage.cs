@@ -46,12 +46,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void VerifyAcceptedContractIsDisplayed()
         {
             var createdProposal = MpsUtil.CreatedProposal();
-            var newlyAdded = @"//td[text()='{0}']";
-            newlyAdded = String.Format(newlyAdded, createdProposal);
-
-            var newProposal = Driver.FindElement(By.XPath(newlyAdded));
-
-            TestCheck.AssertIsEqual(true, newProposal.Displayed, "Is new proposal displayed");
+            ActionsModule.SearchForNewlyProposalItem(Driver, createdProposal);
+            ActionsModule.IsNewlyCreatedItemDisplayed(Driver);
         }
 
         public ManageDevicesPage NavigateToManageDevicesPage()
@@ -61,8 +57,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             WebDriver.Wait(DurationType.Second, 30);
 
-            ScrollTo(ActionsModule.SpecificActionsDropdownElement());
-            ActionsModule.ClickOnSpecificActionsElement();
+            ActionsModule.ClickOnSpecificActionsElement(Driver);
 
             ScrollTo(ManageDevicesElement);
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ManageDevicesElement);
@@ -72,9 +67,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void DownloadContractPdfOnDealerAwaitingAcceptanceContractPages()
         {
-            ScrollTo(ActionsModule.SpecificActionsDropdownElement());
-
-            ActionsModule.ClickOnSpecificActionsElement();
+            ActionsModule.ClickOnSpecificActionsElement(Driver);
             ActionsModule.DownloadContractInvoicePDFAction(Driver);
         }
 
@@ -110,7 +103,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void GetDownloadedPdfPath()
         {
-            ActionsModule.ClickOnSpecificActionsElement();
+            ActionsModule.ClickOnSpecificActionsElement(Driver);
             var contractid = DownloadContractPdfElement.GetAttribute("data-contract-id");
             SpecFlow.SetContext("DownloadedContractId", contractid);
             var downloadPath = String.Format(DownloadFolderPath(), contractid);

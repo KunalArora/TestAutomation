@@ -45,12 +45,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             WebDriver.Wait(DurationType.Second, 30);
 
-            ScrollTo(ActionsModule.SpecificActionsDropdownElement());
-            ActionsModule.ClickOnSpecificActionsElement();
+            ActionsModule.ClickOnSpecificActionsElement(Driver);
 
             ScrollTo(ManageDevicesElement);
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ManageDevicesElement);
-            WebDriver.Wait(DurationType.Second, 30);
+            
             return GetInstance<ManageDevicesPage>(Driver);
         }
     }

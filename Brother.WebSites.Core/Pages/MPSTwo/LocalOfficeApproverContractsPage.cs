@@ -100,17 +100,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         
         public void IsContractsSignedByDealerDisplayed()
         {
-            WebDriver.Wait(DurationType.Second, 3);
-            var createdContract = MpsUtil.CreatedProposal();
-            var newlyAdded = @"//td[text()='{0}']";
-            newlyAdded = String.Format(newlyAdded, createdContract);
-
-            var newContract = Driver.FindElement(By.XPath(newlyAdded));
-
             RunCreateCustomerAndPersonJob();
 
-            TestCheck.AssertIsEqual(true, newContract.Displayed, "Is new sent to bank awaiting contract page?");
-            
+            var createdProposal = MpsUtil.CreatedProposal();
+            ActionsModule.SearchForNewlyProposalItem(Driver, createdProposal);
+            ActionsModule.IsNewlyCreatedItemDisplayed(Driver);
         }
 
 
@@ -127,7 +121,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public LocalOfficeApproverContractsSummaryPage NavigateToViewSummary()
         {
-            ActionsModule.ClickOnSpecificActionsElement();
+            ActionsModule.ClickOnSpecificActionsElement(Driver);
             ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
 
             return GetTabInstance<LocalOfficeApproverContractsSummaryPage>(Driver);

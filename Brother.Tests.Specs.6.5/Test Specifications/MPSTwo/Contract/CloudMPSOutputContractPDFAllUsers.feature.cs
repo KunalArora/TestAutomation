@@ -168,7 +168,7 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Germany", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "France", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "France", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Italy", null)]
         public virtual void DealerCanDownloadContractPDFsOnApprovedProposalPage(string role, string country, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer can download Contract PDFs on Approved proposal page", exampleTags);
@@ -191,7 +191,7 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Germany", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "France", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "France", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Italy", null)]
         public virtual void DealerCanDownloadContractPDFsOnAwaitingAcceptancePage(string role, string country, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer can download Contract PDFs on Awaiting Acceptance page", exampleTags);
@@ -214,7 +214,7 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Germany", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "France", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "France", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Italy", null)]
         public virtual void DealerCanDownloadContractPDFsOnRejectedPage(string role, string country, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer can download Contract PDFs on Rejected page", exampleTags);

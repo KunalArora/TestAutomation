@@ -206,7 +206,9 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>MPSProd.Designer.cs</LastGenOutput>
     </None>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\SeleniumGlobal.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>SeleniumGlobal.Designer.cs</LastGenOutput>

@@ -66,12 +66,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void IsProposalSentToLocalOfficeApproverAwaitingProposalPage()
         {
             var createdProposal = MpsUtil.CreatedProposal();
-            var newlyAdded = @"//td[text()='{0}']";
-            newlyAdded = String.Format(newlyAdded, createdProposal);
 
-            var newProposal = Driver.FindElement(By.XPath(newlyAdded));
+            ActionsModule.SearchForNewlyProposalItem(Driver, createdProposal);
 
-            TestCheck.AssertIsEqual(true, newProposal.Displayed, "Is new sent to bank awaiting proposal page?");
+            ActionsModule.IsNewlyCreatedItemDisplayed(Driver);
         }
 
         private string Reason()
@@ -145,18 +143,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void IsProposalSentToBankAwaitingProposalPage()
         {
             var createdProposal = MpsUtil.CreatedProposal();
-            var newlyAdded = @"//td[text()='{0}']";
-            newlyAdded = String.Format(newlyAdded, createdProposal);
 
-            var newProposal = Driver.FindElement(By.XPath(newlyAdded));
+            ActionsModule.SearchForNewlyProposalItem(Driver, createdProposal);
 
-            TestCheck.AssertIsEqual(true, newProposal.Displayed, "Is new sent to bank awaiting proposal page?");
+            ActionsModule.IsNewlyCreatedItemDisplayed(Driver);
         }
 
         public void ClickOnActionButtonAgainstRelevantProposal(IWebDriver driver)
         {
-            ScrollTo(ActionsModule.SpecificActionsDropdownElement());
-            ActionsModule.ClickOnSpecificActionsElement();
+            ActionsModule.ClickOnSpecificActionsElement(Driver);
         }
 
 
@@ -173,9 +168,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public LocalOfficeApproverProposalsSummaryPage NavigateToViewSummary()
         {
-            string proposalname = MpsUtil.CreatedProposal();
-            IWebElement element = ActionButtonElementByName(proposalname, "6");
-            element.Click();
+            ActionsModule.ClickOnSpecificActionsElement(Driver);
             ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
 
             return GetTabInstance<LocalOfficeApproverProposalsSummaryPage>(Driver);
@@ -183,8 +176,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public LocalOfficeApproverProposalsSummaryPage NavigateToViewSummary(string name)
         {
-            IWebElement element = ActionButtonElementByName(name, "6");
-            element.Click();
+            ActionsModule.ClickOnSpecificActionsElement(Driver);
             ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
 
             return GetTabInstance<LocalOfficeApproverProposalsSummaryPage>(Driver);
@@ -193,7 +185,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public LocalOfficeApproverProposalsSummaryPage NavigateToProposalSummary()
         {
             WebDriver.Wait(DurationType.Second, 2);
-            ActionsModule.ClickOnSpecificActionsElement();
+            ActionsModule.ClickOnSpecificActionsElement(Driver);
             ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
 
             return GetTabInstance<LocalOfficeApproverProposalsSummaryPage>(Driver);
@@ -220,33 +212,23 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void IsProposalSentToApproverAwaitingProposalPage()
         {
             var createdProposal = MpsUtil.CreatedProposal();
-            var newlyAdded = @"//td[text()='{0}']";
-            newlyAdded = String.Format(newlyAdded, createdProposal);
 
-            var newProposal = Driver.FindElement(By.XPath(newlyAdded));
+            ActionsModule.SearchForNewlyProposalItem(Driver, createdProposal);
 
-            TestCheck.AssertIsEqual(true, newProposal.Displayed, "Is new sent to bank awaiting proposal page?");
+            ActionsModule.IsNewlyCreatedItemDisplayed(Driver);
         }
 
         public void VerifyDeclinedProposalIsDisplayed()
         {
-            string name = SpecFlow.GetContext("GeneratedProposalName");
-
-            AssertElementPresent(ActionButtonElementByName(name, "7"), "The proposal is not found");
+            IsProposalSentToApproverAwaitingProposalPage();
         }
 
         public void VerifyApprovedProposalIsDisplayed()
         {
-            string name = SpecFlow.GetContext("GeneratedProposalName");
-
-            AssertElementPresent(ActionButtonElementByName(name, "7"), "The proposal is not found");
+            IsProposalSentToApproverAwaitingProposalPage();
         }
 
-        public void IsAllTheDeclinedProposalDisplayed()
-        {
-
-        }
-
+        
         public void IsProposalListAvailable()
         {
             if (ProposalListContainerElement == null || !ProposalListContainerElement.Any())

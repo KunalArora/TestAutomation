@@ -117,7 +117,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if(DealerContractSignButtonElement == null)
                 throw new NullReferenceException("Sign button is not displayed");
 
-            ActionsModule.ClickOnSpecificActionsElement();
+            ActionsModule.ClickOnSpecificActionsElement(driver);
             ActionsModule.NavigateToSummaryPageUsingActionButton(driver);
 
             DealerContractSignButtonElement.Click();
@@ -145,7 +145,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void DownloadAContractInvoicePDF()
         {
-            ActionsModule.ClickOnSpecificActionsElement();
+            ActionsModule.ClickOnSpecificActionsElement(Driver);
             ActionsModule.DownloadContractInvoicePDFAction(Driver);
         }
 
@@ -219,10 +219,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerContractsSummaryPage NavigateToViewOfferOnApprovedProposalsTab()
         {
-            string proposalname = MpsUtil.CreatedProposal();
-            var element = ActionsModule.SpecificActionsDropdownElement();   
-
-            element.Click();
+            ActionsModule.ClickOnSpecificActionsElement(Driver);
             ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
 
             return GetTabInstance<DealerContractsSummaryPage>(Driver);
@@ -250,7 +247,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             //IWebElement element = ActionButtonElementByName(proposalname, "8");
             //element.Click();
-            ActionsModule.ClickOnSpecificActionsElement();
+            ActionsModule.ClickOnSpecificActionsElement(Driver);
             ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
 
             return GetTabInstance<DealerContractsSummaryPage>(Driver);
@@ -266,7 +263,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerContractsSummaryPage NavigateToDealerContractSummaryPage(IWebDriver driver)
         {
-            ActionsModule.ClickOnSpecificActionsElement();
+            ActionsModule.ClickOnSpecificActionsElement(Driver);
             WebDriver.Wait(DurationType.Second, 3);
             ActionsModule.NavigateToSummaryPageUsingActionButton(driver);
             return GetInstance<DealerContractsSummaryPage>(Driver);
@@ -283,12 +280,24 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void IsSignedContractDisplayed()
         {
             var createdProposal = MpsUtil.CreatedProposal();
-            var newlyAdded = @"//td[text()='{0}']";
-            newlyAdded = String.Format(newlyAdded, createdProposal);
+            //var newlyAdded = @"//td[text()='{0}']";
+            //newlyAdded = String.Format(newlyAdded, createdProposal);
 
-            var newProposal = Driver.FindElement(By.XPath(newlyAdded));
+            //var newProposal = Driver.FindElement(By.XPath(newlyAdded));
 
-            TestCheck.AssertIsEqual(true, newProposal.Displayed, "Is new signed contract displayed?");
+            ActionsModule.SearchForNewlyProposalItem(Driver, createdProposal);
+
+            //TestCheck.AssertIsEqual(true, newProposal.Displayed, "Is new signed contract displayed?");
+            IsNewContractTemplateCreated(true);
+        }
+
+
+        public void IsNewContractTemplateCreated(bool option)
+        {
+            var proposal = GetElementByCssSelector(".js-mps-filter-ignore", 10).Displayed;
+
+            TestCheck.AssertIsEqual(option, proposal,
+                "Is new proposal template created?");
         }
     }
 }

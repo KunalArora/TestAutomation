@@ -184,10 +184,18 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             if (browserTabs.Count > 1)
             {
                 Driver.SwitchTo().Window(browserTabs[1]);
+                SpecFlow.SetContext("WebInstallUrl", Driver.Url);
                 Driver.Close();
                 Driver.SwitchTo().Window(browserTabs[0]);
             }
             
+        }
+
+        public void OpenLinkInADifferentWindow(IWebElement link)
+        {
+            var builder = new Actions(Driver);
+            builder.KeyDown(Keys.Shift).Click(link).KeyUp(Keys.Shift).Build().Perform();
+
         }
 
         public static string ExtractTextFromPdf(string pdfFileName)
@@ -975,7 +983,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             driver.SwitchTo().Window((driver.WindowHandles.Last()));
 
         }
-
+        
         public void ClickDismissOnJsAlert(IWebDriver driver)
         {
             if (!IsPhantomJsBrowser())

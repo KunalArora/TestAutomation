@@ -42,7 +42,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         };
         
         //Device Simulator variables
-        private const string DevSimUrl = @"http://10.2.23.137:8080/bvd/device/";
+        private const string DevSimUrl = @"http://localhost:8080/bvd/device/";
         private const string SetSupplyUrl = @"supply/set";
         private const string StatusChangeUrl = @"status/change?id={0}&online=true&subscribe=false";
         private const string RegisterDeviceUrl = @"register?id={0}&pin={1}";
@@ -73,7 +73,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public static void CreateNewVirtualDevice()
         {
-            var newDevice = String.Format(RegisterDeviceUrl, GetSavedNewDeviceSerial(), SetGuidForNewDevice());
+            var newDevice = String.Format(CreateNewDevice, GetSavedNewDeviceSerial(), SetGuidForNewDevice());
             var webSite = DevSimUrl + newDevice;
 
             Helper.MsgOutput(String.Format("The url formed for Create New Virtual Device is {0}", webSite));
@@ -83,7 +83,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public static void RegisterNewDevice()
         {
-            var newDevice = String.Format(CreateNewDevice, GetSavedDeviceId(), GetInstallationPin());
+            var newDevice = String.Format(RegisterDeviceUrl, GetSavedDeviceId(), GetInstallationPin());
             var webSite = DevSimUrl + newDevice;
 
             Helper.MsgOutput(String.Format("The url formed for Register New Device is {0}", webSite));
@@ -112,9 +112,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                                                        "{\"name\": \"PageCount_Mono\",\"value\": 100}," +
                                                        "{\"name\": \"PageCount_Color\",\"value\": 900}";
 
-            var json = "{\"id\": \"{0}\",\"items\": [{1}]}";
+            var json = "{\"id\": \"" + GetSavedDeviceId() + "\",\"items\": [" + deviceWithDefaultPrintCount + "]}";
 
-            json = String.Format(json, GetSavedDeviceId(), deviceWithDefaultPrintCount);
+            //var json = "{\"id\": \"{0}\",\"items\": [{1}]}";
+            //json = String.Format(json, GetSavedDeviceId(), deviceWithDefaultPrintCount);
 
             Utils.GetPageResponse(webSite, WebRequestMethods.Http.Post, "application/json", json, authHeader);
 

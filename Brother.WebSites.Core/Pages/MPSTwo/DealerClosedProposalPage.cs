@@ -39,12 +39,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsClosedProposalDisplayed()
         {
-            ActionsModule.IsClosedProposalDisplayed();
+            ActionsModule.IsNewlyCreatedItemDisplayed(Driver);
         }
 
         public void ClickOnClosedProposal()
         {
-            ActionsModule.ClickOnSpecificActionsElement();
+            ActionsModule.ClickOnSpecificActionsElement(Driver);
         }
 
         public DealerClosedProposalSummaryPage OpenClosedProposalSummary()

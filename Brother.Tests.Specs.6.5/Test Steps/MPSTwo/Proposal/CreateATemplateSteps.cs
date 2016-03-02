@@ -535,7 +535,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         {
             NextPage = CurrentPage.As<DealerDashBoardPage>().NavigateToContractScreenFromDealerDashboard();
             NextPage = CurrentPage.As<DealerContractsPage>().NavigateToViewOfferOnApprovedProposalsTab();
-            NextPage = CurrentPage.As<DealerContractsSummaryPage>().ClickSignButton();
+            NextPage = CurrentPage.As<DealerContractsSummaryPage>().ClickSignButtonToNavigateToAwaitingAcceptance();
         }
 
         private void WhenDealerSignAndNavigateToAwaitingAcceptance()

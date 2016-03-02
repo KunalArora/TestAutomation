@@ -71,12 +71,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void IsProposalSentToBankAwaitingProposalPage()
         {
             var createdProposal = MpsUtil.CreatedProposal();
-            var newlyAdded = @"//td[text()='{0}']";
-            newlyAdded = String.Format(newlyAdded, createdProposal);
-
-            var newProposal = Driver.FindElement(By.XPath(newlyAdded));
-
-            TestCheck.AssertIsEqual(true, newProposal.Displayed, "Is new sent to bank awaiting proposal page?");
+            ActionsModule.SearchForNewlyProposalItem(Driver, createdProposal);
+            ActionsModule.IsNewlyCreatedItemDisplayed(Driver);
         }
 
 
@@ -92,8 +88,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ClickOnActionButtonAgainstRelevantProposal()
         {
-            ScrollTo(ActionsModule.SpecificActionsDropdownElement());
-            ActionsModule.ClickOnSpecificActionsElement();
+            ScrollTo(ActionsModule.SpecificActionsDropdownElement(Driver));
+            ActionsModule.ClickOnSpecificActionsElement(Driver);
         }
 
         public void ClickOnDeclineButton()
@@ -159,14 +155,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private IWebElement ActionButtonElementByName(string name)
         {
-            var element = String.Format("//td[text()=\"{0}\"]", name);
+            //var element = String.Format("//td[text()=\"{0}\"]", name);
 
-            return Driver.FindElement(By.XPath(element));
+            //return Driver.FindElement(By.XPath(element));
+
+            return ActionsModule.SpecificActionsDropdownElement(Driver);
         }
 
         public BankProposalsSummaryPage NavigateToViewSummary()
         {
-            var element = ActionsModule.SpecificActionsDropdownElement();
+            var element = ActionsModule.SpecificActionsDropdownElement(Driver);
             ScrollTo(element);
             element.Click();
             ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
@@ -176,7 +174,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public BankProposalsSummaryPage NavigateToViewSummary(string name)
         {
-            var element = ActionsModule.SpecificActionsDropdownElement();
+            var element = ActionsModule.SpecificActionsDropdownElement(Driver);
             ScrollTo(element);
             element.Click();
             ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
@@ -186,7 +184,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public BankProposalsSummaryPage NavigateToProposalSummary()
         {
-            ActionsModule.ClickOnSpecificActionsElement(); 
+            ActionsModule.ClickOnSpecificActionsElement(Driver); 
             ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
 
             return GetTabInstance<BankProposalsSummaryPage>(Driver);

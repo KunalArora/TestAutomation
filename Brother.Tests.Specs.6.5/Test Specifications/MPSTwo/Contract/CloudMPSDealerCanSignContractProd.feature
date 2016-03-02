@@ -63,4 +63,4 @@ Scenario Outline: Dealer Can Sign A Purchase And Click Contract in Prod
 	#| Cloud MPS Dealer | United Kingdom | Cloud MPS Local Office Approver | https://web1.online.brother.co.uk | Web_1      |
 	#| Cloud MPS Dealer | United Kingdom | Cloud MPS Local Office Approver | https://web2.online.brother.co.uk | Web_2      |
 	#| Cloud MPS Dealer | United Kingdom | Cloud MPS Local Office Approver | https://web5.online.brother.co.uk | Web_5      |
-	#| Cloud MPS Dealer | United Kingdom | Cloud MPS Local Office Approver | https://web6.online.brother.co.uk | Web_6      |
+	| Cloud MPS Dealer | United Kingdom | Cloud MPS Local Office Approver | https://web6.online.brother.co.uk | Web_6      |

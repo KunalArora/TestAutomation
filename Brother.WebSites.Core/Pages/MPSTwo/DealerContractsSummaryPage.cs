@@ -51,8 +51,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public DealerContractsPage ClickSignButton()
         {
             ScrollTo(SignButtonElement);
-            SignButtonElement.Click();
             WebDriver.Wait(DurationType.Second, 3);
+            SignButtonElement.Click();
+            
             return GetTabInstance<DealerContractsPage>(Driver);
         }
 
@@ -60,8 +61,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             StoreValuesFromSummaryPage();
             ScrollTo(SignButtonElement);
+            WebDriver.Wait(DurationType.Second, 5);
             SignButtonElement.Click();
-            WebDriver.Wait(DurationType.Second, 3);
+            
             return GetTabInstance<DealerContractsAwaitingAcceptancePage>(Driver);
         }
 
