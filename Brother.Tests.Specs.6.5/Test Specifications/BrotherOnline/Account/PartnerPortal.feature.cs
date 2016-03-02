@@ -580,6 +580,112 @@ testRunner.Then("I should be redirected to cancel subscription page", ((string)(
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Dealeruser able to delete the customer in editdetails page")]
+        [NUnit.Framework.CategoryAttribute("TEST")]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "bol_uk@mailinator.com", "Password01", "Edit Customer", null)]
+        public virtual void DealeruserAbleToDeleteTheCustomerInEditdetailsPage(string country, string emailAddress1, string password, string selectAction, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "TEST"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealeruser able to delete the customer in editdetails page", @__tags);
+#line 245
+this.ScenarioSetup(scenarioInfo);
+#line 246
+testRunner.Given(string.Format("I launch Brother Online for \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 247
+testRunner.When(string.Format("I click on Create Account for \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 248
+testRunner.And("I am redirected to the Brother Login/Register page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 249
+testRunner.And(string.Format("I fill in email as \"{0}\"", emailAddress1), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 250
+testRunner.And(string.Format("I fill in password as \"{0}\"", password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 251
+testRunner.And("I press sign in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 252
+testRunner.Then("I should be logged in successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 253
+testRunner.And("I click on Partner Portal menu", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 254
+testRunner.And("I click on partner portal button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 255
+testRunner.And("I click on ManageCustomersandOrders button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 256
+testRunner.And(string.Format("I select action \"{0}\"", selectAction), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 257
+testRunner.Then("I should see EditDetails page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 258
+testRunner.And("I click on DeleteCustomer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 259
+testRunner.Then("I should see Deletecustomer page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 260
+testRunner.And("I click on cancel", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 261
+testRunner.Then("I should see manage orders and customers page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Verify clicking on BacktoCustomerListbutton on successpage takes to userlist page" +
+            "")]
+        [NUnit.Framework.CategoryAttribute("TEST")]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "bol_uk@mailinator.com", "Password01", "Edit Customer", "Test", null)]
+        public virtual void VerifyClickingOnBacktoCustomerListbuttonOnSuccesspageTakesToUserlistPage(string country, string emailAddress1, string password, string selectAction, string firstName, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "TEST"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify clicking on BacktoCustomerListbutton on successpage takes to userlist page" +
+                    "", @__tags);
+#line 269
+this.ScenarioSetup(scenarioInfo);
+#line 270
+testRunner.Given(string.Format("I launch Brother Online for \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 271
+testRunner.When(string.Format("I click on Create Account for \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 272
+testRunner.And("I am redirected to the Brother Login/Register page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 273
+testRunner.And(string.Format("I fill in email as \"{0}\"", emailAddress1), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 274
+testRunner.And(string.Format("I fill in password as \"{0}\"", password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 275
+testRunner.And("I press sign in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 276
+testRunner.Then("I should be logged in successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 277
+testRunner.And("I click on Partner Portal menu", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 278
+testRunner.And("I click on partner portal button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 279
+testRunner.And("I click on ManageCustomersandOrders button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 280
+testRunner.And(string.Format("I select action \"{0}\"", selectAction), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 281
+testRunner.Then("I should see EditDetails page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 282
+testRunner.And(string.Format("I edit firstname \"{0}\"", firstName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 283
+testRunner.And("I click on Save", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 284
+testRunner.Then("I should see Success page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 285
+testRunner.And("I click on ButtontoUserListPage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 286
+testRunner.Then("I should see the userlist page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

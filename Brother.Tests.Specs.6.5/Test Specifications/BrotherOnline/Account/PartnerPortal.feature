@@ -241,4 +241,51 @@ Examples:
 | United Kingdom | bol_uk@mailinator.com | Password01 | Other                   |
 
 
+@TEST
+Scenario Outline: Dealeruser able to delete the customer in editdetails page
+Given I launch Brother Online for "<Country>"
+When I click on Create Account for "<Country>"
+And I am redirected to the Brother Login/Register page
+And I fill in email as "<Email Address1>"
+And I fill in password as "<Password>"
+And I press sign in 
+Then I should be logged in successfully
+And I click on Partner Portal menu
+And I click on partner portal button
+And I click on ManageCustomersandOrders button
+And I select action "<Select Action>"
+Then I should see EditDetails page
+And I click on DeleteCustomer
+Then I should see Deletecustomer page
+And I click on cancel
+Then I should see manage orders and customers page
 
+Examples:
+| Country        | Email Address1        | Password   | Select Action |
+| United Kingdom | bol_uk@mailinator.com | Password01 | Edit Customer | 
+
+
+@TEST
+Scenario Outline: Verify clicking on BacktoCustomerListbutton on successpage takes to userlist page
+Given I launch Brother Online for "<Country>"
+When I click on Create Account for "<Country>"
+And I am redirected to the Brother Login/Register page
+And I fill in email as "<Email Address1>"
+And I fill in password as "<Password>"
+And I press sign in 
+Then I should be logged in successfully
+And I click on Partner Portal menu
+And I click on partner portal button
+And I click on ManageCustomersandOrders button
+And I select action "<Select Action>"
+Then I should see EditDetails page
+And I edit firstname "<FirstName>"
+And I click on Save
+Then I should see Success page
+And I click on ButtontoUserListPage
+Then I should see the userlist page
+
+
+Examples:
+| Country        | Email Address1        | Password   | Select Action | FirstName |
+| United Kingdom | bol_uk@mailinator.com | Password01 | Edit Customer | Test      |

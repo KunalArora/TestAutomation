@@ -82,6 +82,12 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
         [FindsBy(How = How.CssSelector, Using = ".odd>td")]
         public IWebElement AddedCustomerList;
 
+        [FindsBy(How = How.CssSelector, Using = ".last-child>select")] 
+        public IWebElement SelectActionDropDownList;
+
+        [FindsBy(How = How.CssSelector, Using = ".button-aqua")]
+        public IWebElement DeleteCustomerLink;
+
         public PartnerPortalPage PartnerPortalBreadcrumbClick()
         {
             if (PartnerPortalBreadcrumb == null)
@@ -331,7 +337,23 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
             TestCheck.AssertIsEqual(true, CreatedUsersinList.Displayed, "Is Created User list Displayed");
             IsCreatedEmailAddressDisplayed();
 
-        }       
+        }
 
+        public EditDetailsPage PopulateSelectActionDropDown(string selectAction)
+        {
+
+            SelectFromDropdown(SelectActionDropDownList, selectAction);
+            return GetInstance<EditDetailsPage>(Driver);
+        }
+
+        public ManageCustomersAndOrdersPage ClickDeleteCustomerLink()
+        {
+            if (DeleteCustomerLink == null)
+            {
+                throw new Exception("Unable to locate the element");
+            }
+            DeleteCustomerLink.Click();
+            return GetInstance<ManageCustomersAndOrdersPage>(Driver);
+        }
     }
 }
