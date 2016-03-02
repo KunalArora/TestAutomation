@@ -533,7 +533,35 @@ namespace Brother.Tests.Specs
         {
             CurrentPage.As<ManageCustomersAndOrdersPage>().IsAddNewCustomerButtonDisplayed();
         }
-      
+        [Then(@"I edit firstname ""(.*)""")]
+        public void ThenIEditFirstname(string firstName)
+        {
+           CurrentPage.As<EditDetailsPage>().EditFirstNameTextBox(firstName);
+        }
+
+        [Then(@"I click on Save")]
+        public void ThenIClickOnSave()
+        {
+            NextPage = CurrentPage.As<EditDetailsPage>().ClickSaveButton();
+        }
+
+        [Then(@"I should see Success page")]
+        public void ThenIShouldSeeSuccessPage()
+        {
+          CurrentPage.As<SuccessPage>().IsBacktoCustomerListButtonDisplayed();
+        }
+
+        [Then(@"I click on ButtontoUserListPage")]
+        public void ThenIClickOnButtontoUserListPage()
+        {
+            NextPage = CurrentPage.As<SuccessPage>().ClickBacktoCustomerListButton();
+        }
+        [Then(@"I should see the userlist page")]
+        public void ThenIShouldSeeTheUserlistPage()
+        {
+            CurrentPage.As<ManageCustomersAndOrdersPage>().IsAddNewCustomerButtonDisplayed();
+        }
+
 
     }
 }

@@ -25,6 +25,9 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
         [FindsBy(How = How.CssSelector, Using = "#content_1_innercontent_2_btnCancel")]
         public IWebElement CancelButton;
 
+        [FindsBy(How = How.CssSelector, Using = "#txtFirstname")]
+        public IWebElement FirstNameTextBox;
+
 
         public ManageCustomersAndOrdersPage ClickCancelButton()
         {
@@ -55,5 +58,25 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
             TestCheck.AssertIsEqual(true, SaveButton.Displayed, "Is save button displayed");
         }
 
+        public void EditFirstNameTextBox(string firstName)
+        {
+            if (FirstNameTextBox == null)
+            {
+                throw new Exception("Unable to locate the textbox");
+            }
+            FirstNameTextBox.Clear();
+            FirstNameTextBox.SendKeys(firstName);
+        }
+
+        public SuccessPage ClickSaveButton()
+        {
+            if (SaveButton == null)
+            {
+                throw new Exception("Unable to locate the button");
+            }
+            SaveButton.Click();
+            return GetInstance<SuccessPage>(Driver);
+        }
+       
     }
 }
