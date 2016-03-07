@@ -75,7 +75,7 @@ Scenarios:
 	
 
 
-
+@ignore
 Scenario Outline: German And Austria installer can complete installation request for Cloud Communication
 	Given German Dealer have created a "<Country>" contract of "<ContractType>" and "<UsageType>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
@@ -99,7 +99,7 @@ Scenarios:
 	| Cloud MPS Bank                  | Austria | Leasing & Service        | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR |
 	| Cloud MPS Local Office Approver | Austria | Easy Print Pro & Service | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  |
 
-
+@ignore
 Scenario Outline: Dealer can create installation request for Cloud Communication for other countries
 	Given "<Country>" Dealer have created a "<ContractType>" contract with "<UsageType>" and "<Length>" and "<Billing>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"

@@ -20,6 +20,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string AtText = @"Mindestdruckvolumen";
         private const string ItText = @"Volume minimo";
         private const string FrText = @"CONTRAT DE SERVICE PRINTSMART";
+        private const string SpText = @"CONTRATO DE PAGO";
         private const string DownloadDirectory = @"C:/Users/afolabsa/Downloads";
 
         public override string DefaultTitle
@@ -46,12 +47,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void VerifyAcceptedContractIsDisplayed()
         {
             var createdProposal = MpsUtil.CreatedProposal();
-            var newlyAdded = @"//td[text()='{0}']";
-            newlyAdded = String.Format(newlyAdded, createdProposal);
-
-            var newProposal = Driver.FindElement(By.XPath(newlyAdded));
-
-            TestCheck.AssertIsEqual(true, newProposal.Displayed, "Is new proposal displayed");
+            ActionsModule.SearchForNewlyProposalItem(Driver, createdProposal);
+            ActionsModule.IsNewlyCreatedItemDisplayed(Driver);
         }
 
         public ManageDevicesPage NavigateToManageDevicesPage()
@@ -61,8 +58,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             WebDriver.Wait(DurationType.Second, 30);
 
-            ScrollTo(ActionsModule.SpecificActionsDropdownElement());
-            ActionsModule.ClickOnSpecificActionsElement();
+            ActionsModule.ClickOnSpecificActionsElement(Driver);
 
             ScrollTo(ManageDevicesElement);
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ManageDevicesElement);
@@ -72,9 +68,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void DownloadContractPdfOnDealerAwaitingAcceptanceContractPages()
         {
-            ScrollTo(ActionsModule.SpecificActionsDropdownElement());
-
-            ActionsModule.ClickOnSpecificActionsElement();
+            ActionsModule.ClickOnSpecificActionsElement(Driver);
             ActionsModule.DownloadContractInvoicePDFAction(Driver);
         }
 
@@ -103,6 +97,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 //path = "file:///C:/Users/afolabsa/Downloads/{0}-Contratto.pdf";
                 path = "file:///C:/Users/afolabsa/Downloads/{0}-Contract.pdf";
             }
+            else if (IsSpainSystem())
+            {
+                //path = "file:///C:/Users/afolabsa/Downloads/{0}-Contrato.pdf";
+                path = "file:///C:/Users/afolabsa/Downloads/{0}-Contract.pdf";
+            }
 
             return path;
         }
@@ -110,7 +109,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void GetDownloadedPdfPath()
         {
-            ActionsModule.ClickOnSpecificActionsElement();
+            ActionsModule.ClickOnSpecificActionsElement(Driver);
             var contractid = DownloadContractPdfElement.GetAttribute("data-contract-id");
             SpecFlow.SetContext("DownloadedContractId", contractid);
             var downloadPath = String.Format(DownloadFolderPath(), contractid);
@@ -265,7 +264,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             } else if (IsItalySystem())
             {
                 lang = ItText;
+            } else if (IsItalySystem())
+            {
+                lang = SpText;
             }
+
+            
 
             return lang;
 

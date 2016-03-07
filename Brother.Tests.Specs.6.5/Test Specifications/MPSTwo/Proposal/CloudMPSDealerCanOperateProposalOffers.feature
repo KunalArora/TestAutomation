@@ -88,10 +88,10 @@ Scenario Outline: Dealer can copy an existing proposal offer
 	And I can sign out of Brother Online
 
 	Scenarios: 
-	| Role             | Country        | Operation | Target  |
+	| Role             | Country | Operation | Target  |
 	| Cloud MPS Dealer | Germany | Without   | Without |
 	| Cloud MPS Dealer | Austria | Without   | Without |
-
+	
 
 Scenario Outline: Dealer can copy an existing proposal offer for all countries
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"

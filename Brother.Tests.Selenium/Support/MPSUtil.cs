@@ -759,6 +759,36 @@ namespace Brother.Tests.Selenium.Lib.Support
             return postCode;
         }
 
+        public static string PostCodeSp()
+        {
+            String[] zip = {
+                                    "30001",
+                                    "25220",
+                                    "18412",
+                                    "28520",
+                                    "29100",
+                                    "29679",
+                                    "30153",
+                                    "35520",
+                                    "41092",
+                                    "48001",
+                                    "48330",
+                                    "03610",
+                                    "08003",
+                                    "13500",
+                                    "21400",
+                                    "25220",
+                                    "25589",
+                                    "03600",
+                                    "48820",
+                                    "35572",
+                                    "35017"
+					            };
+            var postCode = zip[new Random().Next(20)];
+
+            return postCode;
+        }
+
 
         public static string PostCodeGB()
         {

@@ -243,7 +243,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
 
         private string ContractType(string type)
         {
-            if (type == "Acquisto + Consumo con assistenza" || type == "Buy & Click")
+            if (type == "Acquisto + Consumo con assistenza" || type == "Buy & Click" || type == "Purchase & Click con Service")
             {
                 type = "Purchase & Click with Service";
             }
@@ -535,7 +535,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         {
             NextPage = CurrentPage.As<DealerDashBoardPage>().NavigateToContractScreenFromDealerDashboard();
             NextPage = CurrentPage.As<DealerContractsPage>().NavigateToViewOfferOnApprovedProposalsTab();
-            NextPage = CurrentPage.As<DealerContractsSummaryPage>().ClickSignButton();
+            NextPage = CurrentPage.As<DealerContractsSummaryPage>().ClickSignButtonToNavigateToAwaitingAcceptance();
         }
 
         private void WhenDealerSignAndNavigateToAwaitingAcceptance()

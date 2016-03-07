@@ -127,7 +127,7 @@ namespace Brother.Tests.Specs.MPSTwo.SendToBank
         {
             CurrentPage.As<CloudExistingProposalPage>().ClickOnActionButtonAgainstDeclinedProposal();
             CurrentPage.As<CloudExistingProposalPage>().CopyAProposalWithoutCustomer(CurrentDriver);
-            CurrentPage.As<CloudExistingProposalPage>().IsProposalCopiedWithoutCustomer(CurrentDriver);
+            CurrentPage.As<CloudExistingProposalPage>().IsProposalCopiedWithoutCustomer();
         }
 
         [Then(@"I can copy the declined proposal with customer")]
@@ -135,7 +135,7 @@ namespace Brother.Tests.Specs.MPSTwo.SendToBank
         {
             CurrentPage.As<CloudExistingProposalPage>().ClickOnActionButtonAgainstDeclinedProposal();
             CurrentPage.As<CloudExistingProposalPage>().CopyAProposalWithCustomer(CurrentDriver);
-            CurrentPage.As<CloudExistingProposalPage>().IsProposalCopiedWithCustomer(CurrentDriver);
+            CurrentPage.As<CloudExistingProposalPage>().IsProposalCopiedWithCustomer();
         }
 
         [Then(@"I am directed to customer detail page to begin data capture")]

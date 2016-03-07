@@ -114,9 +114,8 @@ Scenario Outline: Summary Page Validation For Minimum Volume Purchase and Click 
 	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Minimum Volume                            | 3 years  | Quarterly in Arrears   | Tick          | MFC-L8650CDW | Full         | Included in Click Price          | 800         | 800          | Included in Click Price       | Pay upfront                      |
 	| Cloud MPS Dealer | France         | Buy & Click                   | Engagement sur un minimum volume de pages | 3 ans    | Trimestrale anticipata | Tick          | MFC-L8650CDW | Full         | Paiement au démarrage du contrat | 800         | 800          | Inclus dans le coût à la page | Paiement au démarrage du contrat |
 	| Cloud MPS Dealer | Italy          | Acquisto & Consumo            | Volume minimo                             | 36       | Quarterly in Advance   | Tick          | MFC-L8650CDW | Full         | Incluso nel click                | 800         | 800          | Incluso nel click             | Pagamento anticipato             |
+	| Cloud MPS Dealer | Spain          | Purchase & Click con Service  | Volúmen mínimo                            | 3 años   | Quarterly in Arrears   | Tick          | MFC-L8650CDW | Full         | Pago por adelantado              | 800         | 800          | Pago por adelantado           | Pago por adelantado		         |
 	
-	
-
 
 Scenario Outline: Summary Page Validation For Minimum Volume Purchase and Click proposal Upfront Payment
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
@@ -156,6 +155,10 @@ Scenario Outline: Summary Page Validation For Minimum Volume Purchase and Click 
 	| Cloud MPS Dealer | France         | Buy & Click                   | Engagement sur un minimum volume de pages | 3 ans    | Trimestrale anticipata | Tick          | MFC-L8650CDW | Full         | Inclus dans le coût à la page | 800         | 800          | Paiement au démarrage du contrat |
 	| Cloud MPS Dealer | Italy          | Acquisto & Consumo            | Volume minimo                             | 36       | Quarterly in Advance   | Tick          | MFC-L8650CDW | Full         | Pagamento anticipato          | 800         | 800          | Pagamento anticipato             |
 	
+	
+	##Spain has no Service Pack Payment Method
+	##| Cloud MPS Dealer | Spain          | Purchase & Click con Service  | Pago por Uso	                            | 3 años   | Quarterly in Arrears   | Tick          | MFC-L8650CDW | Full         | Pago por adelantado           | 800         | 800          | Pago por adelantado			  | 
+	
 
 
 
@@ -192,4 +195,5 @@ Scenario Outline: Summary Page Validation For Pay As you Go Purchase and Click p
 	| Role             | Country        | ContractType                  | CreateOption        | UsageType                                      | Contract | Billing                        | PriceHardware | Printer    | DeviceScreen | ClickVolume | Basis1                           |
 	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Create new customer | Pay As You Go                                  | 4 years  | Quarterly in Arrears           | Tick          | MFC-8510DN | Full         | 800         | Pay upfront                      |
 	| Cloud MPS Dealer | France         | Buy & Click                   | Create new customer | Paiement selon la consommation réelle de pages | 4 ans    | Trimestriellement à terme échu | Tick          | MFC-8510DN | Full         | 800         | Paiement au démarrage du contrat |
+	| Cloud MPS Dealer | Spain          | Purchase & Click con Service  | Create new customer | Pago por Uso                                   | 3 años   | Quarterly in Arrears           | Tick          | MFC-8510DN | Full         | 800         | Pago por adelantado              |
 	

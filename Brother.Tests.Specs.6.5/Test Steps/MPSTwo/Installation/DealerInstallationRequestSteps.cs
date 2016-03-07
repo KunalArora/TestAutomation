@@ -87,14 +87,22 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
         public void WhenIEnterDeviceSerialNumberForCommunication(string method)
         {
             CurrentPage.As<InstallerDeviceInstallationPage>().VerifyTimeZoneIsDisplayed(method);
-            if (method == "BOR") return;
-            CurrentPage.As<InstallerDeviceInstallationPage>().EnterSerialNumber();
+            if (method == "Email")
+            {
+                CurrentPage.As<InstallerDeviceInstallationPage>().EnterSerialNumber();
+            }
+            else
+            {
+                CurrentPage.As<InstallerDeviceInstallationPage>().EnterExistingSerialNumber(); 
+            }
+            
         }
 
         [When(@"I enter existing device serial number for ""(.*)"" communication")]
         public void WhenIEnterExistingDeviceSerialNumberForCommunication(string method)
         {
             CurrentPage.As<InstallerDeviceInstallationPage>().VerifyTimeZoneIsDisplayed(method);
+            CurrentPage.As<InstallerDeviceInstallationPage>().IsInstallationPinCloudInstallationDisplayed();
             if (method == "BOR") return;
             CurrentPage.As<InstallerDeviceInstallationPage>().EnterExistingSerialNumber();
         }
@@ -120,6 +128,7 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
         {
             CurrentPage.As<InstallerDeviceInstallationPage>().CompleteDeviceConnection();
             CurrentPage.As<InstallerDeviceInstallationPage>().ConfirmInstallationSucceed();
+            CurrentPage.As<InstallerDeviceInstallationPage>().ConfirmCompleteMessageIsDisplayed();
         }
 
 
@@ -153,7 +162,7 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
         }
 
 
-
+        
         [When(@"I select Location in order to create installation request")]
         public void WhenISelectLocationInOrderToCreateInstallationRequest()
         {
@@ -161,6 +170,28 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             CurrentPage.As<ManageDevicesPage>().SelectCompanyLocation();
             NextPage =  CurrentPage.As<ManageDevicesPage>().CreateInstallationRequest();
         }
+
+        [When(@"I did not select Location but proceed to create installation request")]
+        public void WhenIDidNotSelectLocationButProceedToCreateInstallationRequest()
+        {
+            CurrentPage.As<ManageDevicesPage>().IsManagedDeviceScreenDisplayed();
+            CurrentPage.As<ManageDevicesPage>().ClickOnNextButtonToInvokeError();
+        }
+
+        [Then(@"an error message is displayed to prevent further progress")]
+        public void ThenAnErrorMessageIsDisplayedToPreventFurtherProgress()
+        {
+           CurrentPage.As<ManageDevicesPage>().SelectLocationErrorIsDisplayed();
+        }
+
+        [Then(@"I can progress if Location is selected")]
+        public void ThenICanProgressIfLocationIsSelected()
+        {
+            CurrentPage.As<ManageDevicesPage>().SelectCompanyLocation();
+            //CurrentPage.As<ManageDevicesPage>().ClickOnNextButtonToInvokeError();
+            NextPage = CurrentPage.As<ManageDevicesPage>().CreateInstallationRequest();
+        }
+
 
         [When(@"I set device communication method as ""(.*)""")]
         public void WhenISetDeviceCommunicationMethodAs(string method)

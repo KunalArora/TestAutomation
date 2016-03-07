@@ -33,9 +33,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 throw new Exception("Manage Device Element is not displayed");
 
             WebDriver.Wait(DurationType.Second, 30);
-            
-            ScrollTo(ActionsModule.SpecificActionsDropdownElement());
-            ActionsModule.ClickOnSpecificActionsElement();
+
+            ActionsModule.ClickOnSpecificActionsElement(Driver);
             
             ScrollTo(ManageDevicesElement);
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ManageDevicesElement);

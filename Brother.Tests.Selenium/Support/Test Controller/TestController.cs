@@ -291,6 +291,7 @@ namespace Brother.Tests.Selenium.Lib.Support
             capabilities.SetCapability("ignore-sss-errors", true);
             capabilities.SetCapability("unexpectedAlertBehaviour", "accept");
             capabilities.SetCapability("browserstack.local", "true");
+            capabilities.SetCapability("disable-popup-blocking", false);
 
             if (capabilities.IsJavaScriptEnabled)
             {

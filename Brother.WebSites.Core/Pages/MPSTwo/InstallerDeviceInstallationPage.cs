@@ -26,7 +26,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public override string DefaultTitle
         {
-            get { return string.Empty; }
+            get { return String.Empty; }
         }
 
         [FindsBy(How = How.CssSelector, Using = "#content_0_InputContractReference_Input")] 
@@ -50,8 +50,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [FindsBy(How = How.CssSelector, Using = "p.form-control-static")] 
         public IList<IWebElement> InstalledPinElements;
 
-        [FindsBy(How = How.CssSelector, Using = "[class*=\"js-mps-ip-a\"]")] 
-        public IWebElement IpElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_0_DeviceInstallList_List_ButtonConnectDevice_0")] 
+        public IWebElement WebInstallConnect;
 
         [FindsBy(How = How.CssSelector, Using = "[class*=\"js-mps-connect-device-to-\"]")] 
         public IWebElement ConnectButtonElement;
@@ -62,14 +62,28 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [FindsBy(How = How.CssSelector, Using = "#content_0_InstallationSuccessfullyFinished")] 
         public IWebElement CompleteInstallationComfirmationElement;
 
-       [FindsBy(How = How.CssSelector, Using = "#content_0_InputTimeZone_Input")] 
+        [FindsBy(How = How.CssSelector, Using = "#content_0_ButtonCompleteCloudInstallation")] 
+        public IWebElement CompleteCloudInstallationComfirmationElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_0_InstallationSuccessfullyFinished")] 
+        public IWebElement InstallationConfirmationMessageElement;
+
+        [FindsBy(How = How.CssSelector, Using = "#content_0_InputTimeZone_Input")] 
         public IWebElement TimeZoneOptionsElements;
+
+        [FindsBy(How = How.CssSelector, Using = "#content_0_ButtonRefresh")] 
+        public IWebElement RefreshCloudInstallationElements;
+
+        [FindsBy(How = How.CssSelector, Using = "#content_0_DeviceInstallList_List_CellConnectionStatusIcon_0")] 
+        public IWebElement CloudInstallationConnectionStatusElements;
+
+        [FindsBy(How = How.CssSelector, Using = "#content_0_DeviceInstallList_List_CellConnectionStatus_0[class=\" green\"]")] 
+        public IWebElement CloudInstallationConnectionStatusIconElements;
 
         
 
+        
 
-
-
+        
 
 
         public void IsInstallerScreenDisplayed()
@@ -94,14 +108,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsInstallationPinCloudInstallationDisplayed()
         {
+            if (Method() == "Email") return;
             var pin = PinAndAddressElement.Last().Text;
             var ePin = SpecFlow.GetContext("InstallationPin");
-
-            var message =
-                String.Format(
+            var message = String.Format(
                     "The installation pin {0} dispalyed on installer page does not match the pin {1} saved earlier", pin,
                     ePin);
-
             TestCheck.AssertIsEqual(true, pin.Equals(ePin), message);
         }
 
@@ -111,6 +123,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if (method != "Web") return;
             var option = SelectOption(TimeZoneOptionsElements);
             TestCheck.AssertIsEqual(true, option.Any(), "Time Zone does not contain any options");
+        }
+
+        private string GetConnectionStatus()
+        {
+            return CloudInstallationConnectionStatusElements.GetAttribute("data-original-title");
         }
 
         private string SerialNumberUsed()
@@ -160,44 +177,77 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 serial = existingSerialNumberAUT;
             }
+            else if (IsFranceSystem())
+            {
+                serial = serialNumberBFR;
+            }
+            else if (IsItalySystem())
+            {
+                serial = serialNumberBIT;
+            }
 
-            SpecFlow.SetContext("SerialNumber", serial);
+            SpecFlow.SetContext("UsedSerialNumber", serial);
 
             return serial;
         }
 
+        private void CreateNewSerialNumber()
+        {
+            var serial = GetSavedUsedSerialNumber();
+
+            serial = "U63783" + serial;
+
+            SpecFlow.SetContext("JoinedSerialNumber", serial);
+        }
+
+        private string GetSavedUsedSerialNumber()
+        {
+            return SpecFlow.GetContext("UsedSerialNumber");
+        }
+
+        public void CloudInstallationProcess()
+        {
+            if (Method() == "Email") return;
+            CreateNewSerialNumber();
+            MPSJobRunnerPage.CreateNewVirtualDevice();
+            WebDriver.Wait(DurationType.Second, 2);
+            MPSJobRunnerPage.RegisterNewDevice();
+            WebDriver.Wait(DurationType.Second, 2);
+            MPSJobRunnerPage.ChangeDeviceStatus();
+            WebDriver.Wait(DurationType.Second, 2);
+            MPSJobRunnerPage.SetSupplyStatusForNewPrinter();
+            WebDriver.Wait(DurationType.Second, 2);
+            MPSJobRunnerPage.NotifyBocOfNewChanges();
+            WebDriver.Wait(DurationType.Second, 2);
+        }
+        
 
         public void EnterSerialNumber()
         {
             MPSJobRunnerPage.RunResetSerialNumberJob(SerialNumberUsed());
 
-            WebDriver.Wait(DurationType.Second, 5);
+            WebDriver.Wait(DurationType.Second, 2);
 
             ClearAndType(SerialNumberFieldElement, SerialNumberUsed());
            
             SerialNumberFieldElement.SendKeys(Keys.Tab);
 
-            WebDriver.Wait(DurationType.Second, 5);
+            WebDriver.Wait(DurationType.Second, 2);
         }
 
         public void EnterExistingSerialNumber()
         {
             MPSJobRunnerPage.RunResetSerialNumberJob(UsedSerialNumber());
 
-            WebDriver.Wait(DurationType.Second, 5);
+            WebDriver.Wait(DurationType.Second, 2);
 
             ClearAndType(SerialNumberFieldElement, UsedSerialNumber());
 
             SerialNumberFieldElement.SendKeys(Keys.Tab);
 
-            WebDriver.Wait(DurationType.Second, 5);
+            WebDriver.Wait(DurationType.Second, 2);
         }
 
-
-        private IWebElement IpAddress()
-        {
-            return GetElementByCssSelector("[class*=\"js-mps-ip-a\"]");
-        }
 
         private string Method()
         {
@@ -206,16 +256,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterIpAddress()
         {
-            if (Method() == "Email")
-            { foreach (var ipAddressElement in IpAddressElements)
-                {
-                    ipAddressElement.Click();
-                    ClearAndType(ipAddressElement, "1");
-                    ipAddressElement.SendKeys(Keys.Tab);
-                    WebDriver.Wait(DurationType.Second, 2);
-                }
+            if (Method() == "BOR") return;
+            foreach (var ipAddressElement in IpAddressElements)
+            {
+                ipAddressElement.Click();
+                ClearAndType(ipAddressElement, "1");
+                ipAddressElement.SendKeys(Keys.Tab);
+                WebDriver.Wait(DurationType.Second, 1);
             }
-                WebDriver.Wait(DurationType.Second, 5);
         }
 
         public void ConnectDevice()
@@ -226,33 +274,53 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 {
                     ConnectButtonElement.Click();
                     WebDriver.Wait(DurationType.Second, 5);
+                    ReturnToOriginWindow();
                 }
+                else if (Method() == "BOR")
+                {
+                    CloudInstallationProcess();
+                    WebDriver.Wait(DurationType.Second, 5);
+                    RefreshCloudInstallationElements.Click();
+                }
+                else if (Method() == "Web")
+                {
+                    OpenLinkInADifferentWindow(WebInstallConnect);
+                    WebDriver.Wait(DurationType.Second, 3);
+                    ReturnToOriginWindow();
+                    GetInstallationFromUrl();
+                    WebDriver.Wait(DurationType.Second, 3);
+                    CloudInstallationProcess();
+                    WebDriver.Wait(DurationType.Second, 5);
+                    RefreshCloudInstallationElements.Click();
+                }
+
             }
-            catch (Exception)
+            catch (Exception exception)
             {
-                throw new Exception("ConnectButtonElement is not displayed");
+                throw new Exception(String.Format("Connect or Refresh button is not displayed because {0}", exception));
             }
+            
+        }
 
-            ReturnToOriginWindow();
-
+        private void GetInstallationFromUrl()
+        {
+            var webInstallUrl = SpecFlow.GetContext("WebInstallUrl");
+            var installationPin = webInstallUrl.Substring(36, 30);
+            SpecFlow.SetContext("InstallationPin", installationPin);
         }
 
         public void CompleteDeviceConnection()
         {
             try
             {
-                if (Method() == "Email")    
-                {
-                    CompleteInstallationElement.Click();
-                    WebDriver.Wait(DurationType.Second, 5);
-                }
+                if (Method() != "Email") return;
+                CompleteInstallationElement.Click();
+                WebDriver.Wait(DurationType.Second, 2);
             }
             catch (Exception)
             {
-                throw new Exception("CompleteInstallationElement is not displayed");
+                throw new Exception("Complete Installation Button is not displayed");
             }
-            
-            
         }
 
         public void ConfirmInstallationSucceed()
@@ -261,10 +329,24 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 TestCheck.AssertIsEqual(true, CompleteInstallationComfirmationElement.Displayed,
                 "Installation not successful");
+                WebDriver.Wait(DurationType.Second, 3);
+                CompleteInstallationComfirmationElement.Click();
+            }
+            else
+            {
+                TestCheck.AssertIsEqual(true, CompleteCloudInstallationComfirmationElement.Displayed,
+                "Installation not successful");
+                TestCheck.AssertIsEqual(true, CloudInstallationConnectionStatusIconElements.Displayed, "Device is not connect");
+                WebDriver.Wait(DurationType.Second, 3);
+                CompleteCloudInstallationComfirmationElement.Click();
             }
            
         }
-        
 
+        public void ConfirmCompleteMessageIsDisplayed()
+        {
+            TestCheck.AssertIsEqual(true, InstallationConfirmationMessageElement.Displayed, 
+                                        "Complete Installation message not displayed");
+        }
     }
 }

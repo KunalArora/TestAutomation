@@ -18,8 +18,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public const string DealerLatestCreatedContact = "DealerLatestCreatedContact";
         public const string DealerLatestCreatedBank = "DealerLatestCreatedBank";
         private const string DealerLatestOperatingCustomerItemId = "DealerLatestOperatingCustomerItemId";
-
-        private const string actionsButton = @".js-mps-filter-ignore .dropdown-toggle";
+        private const string ActionsButton = @".js-mps-filter-ignore .dropdown-toggle";
         private const string CustomerItemsSelecterFormat = "div.js-mps-customer-list-container tr.js-mps-delete-remove";
         private const string CustomerNthItemSelecterFormat = "div.js-mps-customer-list-container tr.js-mps-delete-remove:nth-child({0})";
 
@@ -77,8 +76,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private IWebElement FindExistingCustomerByEmail()
         {
             return CreatedCreated();
-            //driver.FindElements(By.CssSelector(CustomerItemsSelecterFormat))
-            //    .FirstOrDefault(x => x.FindElement(By.CssSelector("td:nth-child(3)")).Text == email);
         }
 
         private IWebElement FindNthProposalOfferElement(IWebDriver driver, int nth = 1)
@@ -110,14 +107,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void ClickActionButtonOnOffer()
         {
-           
-            var actionString =
-                                String.Format(
-                                    "return $('td:contains(\"{0}\")').parent('tr').children('td').children('div').children('button')",
-                                    SavedEmailAddress());
-
-            var actionitem = FindElementByJs(actionString);
-            actionitem.Click();
+           ActionsModule.ClickOnSpecificCustomerActions(Driver);
         }
 
         private bool ContainsItemById(IWebDriver driver, string id)
@@ -130,20 +120,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ClickOnDeleteOnActionItemAgainstNewlyCreated(IWebDriver driver)
         {
-            //var contact = SpecFlow.GetObject<DealerCustomersManagePage.OrganisationContactDetail>(DealerLatestCreatedContact);
-
-            //ClickDelete(driver, contact.Email);
-
             ClickDelete();
         }
 
         public void ClickOnDeleteOnActionItemAgainstNewlyCreatedProposalCustomer(IWebDriver driver)
         {
-            //var email = SpecFlow.GetContext("DealerLatestCreatedCustomerEmail");
-
-            //ClickDelete(driver, email);]
-
-            ClickDelete();
+           ClickDelete();
         }
 
         private void ClickDelete()
@@ -186,91 +168,33 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 "Deleted Item still exists on table.");
         }
 
-        public void NotExistTheDeletedItem()
-        {
-
-            var email = SpecFlow.GetContext("GeneratedEmailAddress");
-            var createdEmail = String.Format("//td[text()=\"{0}\"]", email);
-            var deletedCustomer = Driver.FindElement(By.XPath(createdEmail));
-            var isDeleted = deletedCustomer.Displayed;
-
-            WebDriver.Wait(DurationType.Second, 5);
-
-            TestCheck.AssertIsEqual(false, isDeleted,
-                "Deleted Item still exists on table.");
-        }
-
         public void CustomerIsDisplayed()
         {
-
-            var email = SpecFlow.GetContext("GeneratedEmailAddress");
-            var createdEmail = String.Format("//td[text()=\"{0}\"]", email);
-            var deletedCustomer = Driver.FindElement(By.XPath(createdEmail));
-            var isDeleted = deletedCustomer.Displayed;
-
-            WebDriver.Wait(DurationType.Second, 5);
-
-            TestCheck.AssertIsEqual(true, isDeleted,
-                "Deleted Item still exists on table.");
+            ActionsModule.IsNewlyCreatedCustomerDisplayed(Driver);
         }
 
         public void IsCustomerDeleted()
         {
-            WebDriver.Wait(DurationType.Second, 5);
-            var email = SpecFlow.GetContext("GeneratedEmailAddress");
-            var customersEmail = Driver.FindElements(By.CssSelector(".js-mps-searchable  td[id*=content_1_PersonList_List_CustomerEmail]"));
-            var customerEmailList = new ArrayList();
+           var cust = GetElementsByCssSelector(".js-mps-filter-ignore", 10).Count == 0;
 
-            foreach (var element in customersEmail)
-            {
-                var customerEmail = element.Text;
-                customerEmailList.Add(customerEmail);
-            }
-
-            var message = String.Format("Deleted customer with email address {0} is still displayed", email);
-
-            TestCheck.AssertIsEqual(false, customerEmailList.Contains(email), message);
+            TestCheck.AssertIsEqual(true, cust, "Customer is not deleted");
 
         }
 
         public void IsEditedCustomerCreated()
         {
-            //var email = SpecFlow.GetContext("GeneratedEmailAddress");
-            //var customersEmail = Driver.FindElements(By.CssSelector(".js-mps-searchable  td[id*=content_1_PersonList_List_CustomerEmail]"));
-            //var customerEmailList = new ArrayList();
-
-            //foreach (var element in customersEmail)
-            //{
-            //    var customerEmail = element.Text;
-            //    customerEmailList.Add(customerEmail);
-            //}
-
-            //var message = String.Format("Edited customer with email address {0} is displayed", email);
-
-            //TestCheck.AssertIsEqual(true, customerEmailList.Contains(email), message);
-
             CustomerIsDisplayed();
 
         }
 
         public void ExistsNotDeletedItem(IWebDriver driver)
         {
-            //var id = SpecFlow.GetContext(DealerLatestOperatingCustomerItemId);
-            //var exisitng = ContainsItemById(driver, id);
-
-            //TestCheck.AssertIsEqual(true, exisitng,
-            //    "Cancelled Item does not exist on table.");
-
             CustomerIsDisplayed();
         }
 
         public DealerCustomersManagePage ClickOnEditOnActionItemAgainstNewlyCreated()
         {
-            var contact = SpecFlow.GetObject<DealerCustomersManagePage.OrganisationContactDetail>(DealerLatestCreatedContact);
-
-            var customerelem = FindExistingCustomerByEmail();
-            ScrollTo(ActionsModule.SpecificCustomerActionsDropdownElement());
-            ClickActionButtonOnOffer();
+            ActionsModule.ClickOnSpecificCustomerActions(Driver);
             var editElem = Driver.FindElement(By.CssSelector(".open .js-mps-edit"));
             var id = editElem.GetAttribute("data-person-id");
             SpecFlow.SetContext(DealerLatestOperatingCustomerItemId, id);

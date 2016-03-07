@@ -12,6 +12,7 @@ using System.Runtime.Remoting;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
+using System.Web.Script.Serialization;
 using NUnit.Framework;
 
 namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
@@ -135,7 +136,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             return responseCode;
         }
 
-        public static HttpStatusCode GetPageResponse(string webPage, string method, Dictionary<string, string> additionalHeaders = null)
+        public static HttpStatusCode GetPageResponse(string webPage, string method, string contentType = null, string body = null, Dictionary<string, string> additionalHeaders = null)
         {
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls;
             HttpWebRequest webRequest = null;
@@ -162,19 +163,39 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                 TestCheck.AssertFailTest(string.Format("URI format exception [{0}]", uriFormatException.Message));
             }
 
-            if (additionalHeaders != null && additionalHeaders.Any())
+            if (webRequest != null)
             {
-                foreach (var header in additionalHeaders)
-                    webRequest.Headers.Add(header.Key, header.Value);
+                if (additionalHeaders != null && additionalHeaders.Any())
+                {
+                    foreach (var header in additionalHeaders)
+                        webRequest.Headers.Add(header.Key, header.Value);
+                }
+
+                webRequest.Method = method;
+                webRequest.Timeout = PageResponseTimeOut;
+                webRequest.KeepAlive = true;
+                webRequest.PreAuthenticate = true;
+                webRequest.AllowAutoRedirect = true;
+                webRequest.UseDefaultCredentials = true;
+                //MsgOutput("Credentials used in connection : ", webRequest.Credentials.ToString());
+
+                if (method.Contains("POST"))
+                {
+                    if (!string.IsNullOrWhiteSpace(contentType))
+                        webRequest.ContentType = contentType;
+
+                    if (!string.IsNullOrWhiteSpace(body))
+                    {
+                        using (var streamWriter = new StreamWriter(webRequest.GetRequestStream()))
+                        {
+                            streamWriter.Write(body);
+                        }
+                    }
+                }
             }
 
-            webRequest.Method = method;
-            webRequest.Timeout = PageResponseTimeOut;
-            webRequest.KeepAlive = true;
-            webRequest.PreAuthenticate = true;
-            webRequest.AllowAutoRedirect = true;
-            webRequest.UseDefaultCredentials = true;
-            //MsgOutput("Credentials used in connection : ", webRequest.Credentials.ToString());
+            
+
             string xmlData;
             return PageResponse(webRequest, out xmlData);
         }

@@ -92,7 +92,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void DownloadPDFOnBankContractPages()
         {
-            ActionsModule.ClickOnSpecificActionsElement();
+            ActionsModule.ClickOnSpecificActionsElement(Driver);
             ActionsModule.DownloadContractPDFAction(Driver);
         }
 
@@ -104,7 +104,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void DownloadInvoicePDFOnBankContractPages()
         {
-            ActionsModule.ClickOnSpecificActionsElement();
+            ActionsModule.ClickOnSpecificActionsElement(Driver);
             ActionsModule.DownloadContractInvoicePDFAction(Driver);
         }
 
@@ -126,7 +126,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 throw new Exception("Manage Device Element is not displayed");
 
             RunCreateCustomerAndPersonJob();
-            ActionsModule.ClickOnSpecificActionsElement();
+            ActionsModule.ClickOnSpecificActionsElement(Driver);
             ManageDevicesElement.Click();
             WebDriver.Wait(DurationType.Second, 2);
             return GetInstance<ManageDevicesPage>(Driver);
@@ -134,17 +134,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         
         public void IsContractsSignedByDealerDisplayed()
         {
-            var createdContract = MpsUtil.CreatedProposal();
-            var newlyAdded = @"//td[text()='{0}']";
-            newlyAdded = String.Format(newlyAdded, createdContract);
-
-            WebDriver.Wait(DurationType.Second, 3);
-
-            var newContract = Driver.FindElement(By.XPath(newlyAdded));
-
             RunCreateCustomerAndPersonJob();
 
-            TestCheck.AssertIsEqual(true, newContract.Displayed, "Is new sent to bank awaiting contract page?");
+            ActionsModule.IsNewlyCreatedItemDisplayed(Driver);
+
         }
 
         public void RunCreateCustomerAndPersonJob()
@@ -213,7 +206,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
        public BankContractsSummaryPage NavigateToViewSummary()
         {
             RunCreateCustomerAndPersonJob();
-            ActionsModule.ClickOnSpecificActionsElement();
+            ActionsModule.ClickOnSpecificActionsElement(Driver);
             ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
 
             return GetTabInstance<BankContractsSummaryPage>(Driver);

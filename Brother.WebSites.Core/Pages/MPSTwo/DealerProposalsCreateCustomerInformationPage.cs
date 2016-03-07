@@ -82,13 +82,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void SelectAnExistingCustomer()
         {
-            var contactNumber = ExistingContactRadioButtonElement.Count;
-
-            var frIt = IsFranceSystem() || IsItalySystem();
-
-            var ranClick = frIt ? new Random().Next(1, contactNumber) : new Random().Next(0, 20);
+            var ranClick = new Random().Next(0, 9);
             var customerString = String.Format(nthCustomerChoice, ranClick);
 
+            WebDriver.Wait(DurationType.Second, 3);
             var customerChoice = Driver.FindElement(By.CssSelector(customerString));
             customerChoice.Click();
         }
@@ -285,6 +282,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             } else if (IsItalySystem())
             {
                 code = MpsUtil.PostCodeIt();
+            } else if (IsSpainSystem())
+            {
+                code = MpsUtil.PostCodeSp();
             }
 
             return code;

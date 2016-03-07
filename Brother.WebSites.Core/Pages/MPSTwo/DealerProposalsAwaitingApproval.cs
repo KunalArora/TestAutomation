@@ -33,25 +33,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void IsProposalSentToDealerAwaitingProposalPage()
         {
             var createdProposal = CreatedProposal();
-            var newlyAdded = @"//td[text()='{0}']";
-            newlyAdded = String.Format(newlyAdded, createdProposal);
 
-            var newProposal = Driver.FindElement(By.XPath(newlyAdded));
+            ActionsModule.SearchForNewlyProposalItem(Driver, createdProposal);
 
-            TestCheck.AssertIsEqual(true, newProposal.Displayed, "Is new sent to dealer awaiting proposal page?");
-        }
-
-        private IWebElement ActionButtonElementByName(string name, string tdcol)
-        {
-            string element = String.Format("//td[text()=\"{0}\"]/parent::tr/td[{1}]/div/button", name, tdcol);
-            return Driver.FindElement(By.XPath(element));
+            ActionsModule.IsNewlyCreatedItemDisplayed(Driver);
         }
 
         public DealerProposalsCreateSummaryPage NavigateToViewSummary()
         {
-            string proposalname = MpsUtil.CreatedProposal();
-            IWebElement element = ActionButtonElementByName(proposalname, "6");
-            element.Click();
+            ActionsModule.ClickOnSpecificActionsElement(Driver);
             ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
 
             return GetTabInstance<DealerProposalsCreateSummaryPage>(Driver);

@@ -65,7 +65,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             else if (IsFranceSystem())
             {
                 SelectFromDropdown(DeclineReasonElement, "Autre");
+            } 
+            else if (IsSpainSystem())
+            {
+                SelectFromDropdown(DeclineReasonElement, "Otro");
             }
+
+            
         }
 
         public BankOffersPage ClickRejectButton()

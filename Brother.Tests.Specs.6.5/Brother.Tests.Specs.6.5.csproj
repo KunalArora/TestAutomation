@@ -144,6 +144,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CloudMPSVerifyPDFContentsAreCorrect.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\MPSTwo\Installation\CloudMPSInstallationRequestWithoutSelectingLocation.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CloudMPSInstallationRequestWithoutSelectingLocation.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specifications\MPSTwo\Customer\CloudMPSAddLocationToCustomerInformation.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -163,6 +168,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CloudMPSCompleteInstallationProcess.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPSTwo\Installation\CloudMPSFullCloudInstallation.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CloudMPSFullCloudInstallation.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Specifications\MPSTwo\Installation\CloudMPSInstallerCanNavigateThroughInstallation.feature.cs">
       <AutoGen>True</AutoGen>
@@ -653,6 +663,10 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSVerifyPDFContentsAreCorrect.feature.cs</LastGenOutput>
     </None>
+    <None Include="Test Specifications\MPSTwo\Installation\CloudMPSInstallationRequestWithoutSelectingLocation.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CloudMPSInstallationRequestWithoutSelectingLocation.feature.cs</LastGenOutput>
+    </None>
     <None Include="Test Specifications\MPSTwo\Customer\CloudMPSAddLocationToCustomerInformation.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSAddLocationToCustomerInformation.feature.cs</LastGenOutput>
@@ -668,6 +682,10 @@
     <None Include="Test Specifications\MPSTwo\Installation\CloudMPSCompleteInstallationProcess.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSCompleteInstallationProcess.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwo\Installation\CloudMPSFullCloudInstallation.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CloudMPSFullCloudInstallation.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwo\Installation\CloudMPSInstallerCanNavigateThroughInstallation.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

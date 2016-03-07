@@ -384,7 +384,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 TestCheck.AssertTextContains(CalculationBasisElement.Text, "Coût total par matériel sur la base du volume minimum");
             }
-            
+            else if (IsSpainSystem())
+            {
+                TestCheck.AssertTextContains(CalculationBasisElement.Text, "Total del contrato basado en el volumen mínimo por equipo");
+            }
+
         }
 
         public void VerifyInstallationTypeIsConsistent()
@@ -440,7 +444,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 TestCheck.AssertTextContains(CalculationBasisElement.Text, "Coût total par matériel sur la base de l'estimation de volume de pages");
             }
-            
+            else if (IsSpainSystem())
+            {
+                TestCheck.AssertTextContains(CalculationBasisElement.Text, "Total del contrato basado en el volumen estimado por equipo");
+            }
         }
 
         public void VerifyCreatedProposalSummaryPageElements(string summaryElement, string value)
