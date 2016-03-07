@@ -160,7 +160,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 SelectFromDropdown(LegalFormDropdown, "Aktiengesellschaft");
 
             }
-            else if (IsUKSystem() || IsItalySystem())
+            else if (IsUKSystem() || IsItalySystem() || IsSpainSystem())
             {
                SelectFromDropdown(LegalFormDropdown, "Church");
             }
@@ -205,6 +205,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             } else if (IsItalySystem())
             {
                 ClearAndType(VATNumberField, "IT00743110157");
+            } else if (IsSpainSystem())
+            {
+                ClearAndType(VATNumberField, "ES54362315K");
             }
                 
         }
@@ -226,13 +229,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 trading = "Non regolamentato";
             }
+            else if (IsSpainSystem())
+            {
+                trading = "No Regulado";
+            }
 
             return trading;
         }
 
         public void SelectATradingStyle()
         {
-            if (IsUKSystem() || IsFranceSystem() || IsItalySystem())
+            if (!(IsBigAtSystem()))
                 SelectFromDropdown(TradingStyleElement, TradingStyle());
                 WebDriver.Wait(DurationType.Second, 3);
         }
@@ -256,6 +263,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             } else if (IsItalySystem())
             {
                 SelectFromDropdown(PaymentTypeDropdown, "Addebito diretto");
+            } else if (IsSpainSystem())
+            {
+                SelectFromDropdown(PaymentTypeDropdown, "Debito directo");
             }
             
             WebDriver.Wait(DurationType.Second, 3);
@@ -288,7 +298,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterBankPropertyNumber()
         {
-            if (IsUKSystem() || IsFranceSystem() || IsItalySystem())
+            if (!(IsGermanSystem() || IsAustriaSystem()))
                  ClearAndType(BankPropertyNumberElement, "12345");
         }
 
@@ -318,7 +328,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 ClearAndType(BankPropertyPostcodeElement, "01100");
             }
-                 
+            else if (IsSpainSystem())
+            {
+                ClearAndType(BankPropertyPostcodeElement, MpsUtil.PostCodeSp());
+            }  
         }
 
         public void FillAllCustomerDetailsOnConvert()

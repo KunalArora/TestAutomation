@@ -243,7 +243,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
 
         private string ContractType(string type)
         {
-            if (type == "Acquisto + Consumo con assistenza" || type == "Buy & Click")
+            if (type == "Acquisto + Consumo con assistenza" || type == "Buy & Click" || type == "Purchase & Click con Service")
             {
                 type = "Purchase & Click with Service";
             }

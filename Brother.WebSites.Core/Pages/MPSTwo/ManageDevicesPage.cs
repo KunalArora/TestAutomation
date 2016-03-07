@@ -82,7 +82,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             else if (IsFranceSystem())
             {
                 status = "Annulée";
-            }
+            }else if (IsSpainSystem())
+            {
+                status = "Cancelado";
+            } 
+
+            
 
             return status;
         }
@@ -202,8 +207,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ClickOnNextButtonToInvokeError()
         {
-            MpsUtil.ClickButtonThenNavigateToSameUrl(Driver, CreateRequestElement);
-            TestCheck.AssertIsEqual(true, LocationSelectionAlertElement.Displayed, "Location alert is not displayed");
+            CreateRequestElement.Click();
+            
         }
 
         public DealerSetCommunicationMethodPage CreateInstallationRequest()
@@ -221,6 +226,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             HeadlessDismissAlertOk();
         }
 
+        public void SelectLocationErrorIsDisplayed()
+        {
+            TestCheck.AssertIsEqual(true, LocationSelectionAlertElement.Displayed, "Location alert is not displayed"); 
+        }
 
 
     }

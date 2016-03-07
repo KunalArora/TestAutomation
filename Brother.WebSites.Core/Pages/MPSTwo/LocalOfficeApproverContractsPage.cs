@@ -148,12 +148,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
             else if (IsFranceSystem())
             {
-                path = "file:///C:/Users/afolabsa/Downloads/{0}-Contrat.pdf";
+                path = "file:///C:/Users/afolabsa/Downloads/{0}-Contract.pdf";
 
             }
             else if (IsItalySystem())
             {
-                path = "file:///C:/Users/afolabsa/Downloads/{0}-Contratto.pdf";
+                path = "file:///C:/Users/afolabsa/Downloads/{0}-Contract.pdf";
             }
 
             return path;

@@ -29,10 +29,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement ProposalSummaryScreenElement;
         [FindsBy(How = How.Id, Using = "content_1_ComponentIntroductionAlert")]
         public IWebElement SummaryConfirmationTextElement;
-        [FindsBy(How = How.Id, Using = "content_1_InputServicePaymentOptions_Input_0")]
-        public IWebElement PayUpfrontElement;
-        [FindsBy(How = How.Id, Using = "content_1_InputServicePaymentOptions_Input_1")]
-        public IWebElement InClickPriceElement;
         [FindsBy(How = How.Id, Using = "content_1_LineItems_InputMonoVolumeBreaks_0")]
         public IWebElement monoVolumeDropdownElement;
         [FindsBy(How = How.Id, Using = "content_1_LineItems_InputColourVolumeBreaks_0")]
@@ -63,28 +59,40 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyPaymentMethodIsDisplayed()
         {
+            if (IsSpainSystem()) return;
             TestCheck.AssertIsEqual(true, PaymentMethodElement().Displayed, "Payment method is not displayed");
         }
 
         public void VerifyPaymentMethodIsNotDisplayed()
         {
-            IWebElement element = PaymentMethodElement();
+            var element = PaymentMethodElement();
             if (element != null)
                 TestCheck.AssertIsNotNull(element, "Payment method is displayed");
         }
 
+        private IWebElement PayUpfrontElement()
+        {
+            return GetElementByCssSelector("#content_1_InputServicePaymentOptions_Input_0");
+        }
+
+        private IWebElement InClickPriceElement()
+        {
+            return GetElementByCssSelector("#content_1_InputServicePaymentOptions_Input_1");
+        }
+
         public void PayServicePackMethod(string option)
         {
+            if (IsSpainSystem()) return;
             if (option.Equals("Pay upfront") || option.Equals("im Voraus bezahlen")
                 || option.Equals("Inclus dans le coût à la page") || option.Equals("Pagamento anticipato"))
             {
-                PayUpfrontElement.Click();
+                PayUpfrontElement().Click();
                 WebDriver.Wait(DurationType.Second, 5);
             }
-            else if (option.Equals("Included in Click Price") || option.Equals("über den Seitenpreis zahlen") 
-                || option.Equals("Paiement au démarrage du contrat") || option.Equals("Incluso nel click") )
+            else if (option.Equals("Included in Click Price") || option.Equals("über den Seitenpreis zahlen")
+                     || option.Equals("Paiement au démarrage du contrat") || option.Equals("Incluso nel click"))
             {
-                InClickPriceElement.Click();
+                InClickPriceElement().Click();
                 WebDriver.Wait(DurationType.Second, 5);
             }
         }

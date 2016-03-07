@@ -177,6 +177,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 serial = existingSerialNumberAUT;
             }
+            else if (IsFranceSystem())
+            {
+                serial = serialNumberBFR;
+            }
+            else if (IsItalySystem())
+            {
+                serial = serialNumberBIT;
+            }
 
             SpecFlow.SetContext("UsedSerialNumber", serial);
 

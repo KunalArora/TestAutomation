@@ -20,6 +20,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string AtText = @"Mindestdruckvolumen";
         private const string ItText = @"Volume minimo";
         private const string FrText = @"CONTRAT DE SERVICE PRINTSMART";
+        private const string SpText = @"CONTRATO DE PAGO";
         private const string DownloadDirectory = @"C:/Users/afolabsa/Downloads";
 
         public override string DefaultTitle
@@ -94,6 +95,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             else if (IsItalySystem())
             {
                 //path = "file:///C:/Users/afolabsa/Downloads/{0}-Contratto.pdf";
+                path = "file:///C:/Users/afolabsa/Downloads/{0}-Contract.pdf";
+            }
+            else if (IsSpainSystem())
+            {
+                //path = "file:///C:/Users/afolabsa/Downloads/{0}-Contrato.pdf";
                 path = "file:///C:/Users/afolabsa/Downloads/{0}-Contract.pdf";
             }
 
@@ -258,7 +264,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             } else if (IsItalySystem())
             {
                 lang = ItText;
+            } else if (IsItalySystem())
+            {
+                lang = SpText;
             }
+
+            
 
             return lang;
 

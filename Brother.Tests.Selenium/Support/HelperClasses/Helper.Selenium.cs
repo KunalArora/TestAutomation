@@ -29,6 +29,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         private const string englandUrl = @"online.uk";
         private const string franceUrl = @"online.fr";
         private const string italyUrl = @"online.it";
+        private const string spainUrl = @"online.es";
         private const string englandProdUrl = @".co.uk";
 
         public static void AcceptCookieLaw(IWebDriver driver)
@@ -92,6 +93,11 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         public bool IsItalySystem()
         {
             return GetUrl().Contains(italyUrl);
+        }
+
+        public bool IsSpainSystem()
+        {
+            return GetUrl().Contains(spainUrl);
         }
 
 
@@ -184,7 +190,9 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             if (browserTabs.Count > 1)
             {
                 Driver.SwitchTo().Window(browserTabs[1]);
-                SpecFlow.SetContext("WebInstallUrl", Driver.Url);
+                WebDriver.WaitForTitle(Driver, "Network Error", TimeSpan.FromSeconds(20));
+                var url = Driver.Url;
+                SpecFlow.SetContext("WebInstallUrl", url);
                 Driver.Close();
                 Driver.SwitchTo().Window(browserTabs[0]);
             }

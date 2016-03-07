@@ -65,7 +65,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyRejectedContractIsDisplayed()
         {
-            VerifyAcceptedContractIsDisplayed();
+            IsSignedContractDisplayed();
         }
 
         public void VerifyAcceptedContractIsDisplayed()
@@ -81,15 +81,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyAcceptedContractIsNotDisplayed()
         {
-            var createdProposal = CreatedProposalReference();
-            var expectedContractContainer = new ArrayList();
-
-            foreach (var reference in newContractReferenceElement)
-            {
-                expectedContractContainer.Add(reference.Text);
-            }
-
-            TestCheck.AssertIsEqual(false, expectedContractContainer.Contains(createdProposal), "Accepted Contract is not displayed");
+            var createdProposal = MpsUtil.CreatedProposal();
+            
+            ActionsModule.SearchForNewlyProposalItem(Driver, createdProposal);
+            IsNewContractTemplateCreated(false);
         }
 
         private static string CreatedProposalReference()
