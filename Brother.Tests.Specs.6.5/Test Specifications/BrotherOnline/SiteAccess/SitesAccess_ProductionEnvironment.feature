@@ -370,5 +370,22 @@ Scenario Outline: Test CD servers on Live Environment to check user registration
 	And I can sign out of Brother Online
 
 Scenarios:
-| Country | Web                            | ServerName | FirstName | LastName |
-| Ireland | https://web1.online.brother.ie | Web_1      |  Test     |   User   |
+| Country        | Web                               | ServerName | FirstName | LastName |
+| Ireland        | https://web1.online.brother.ie    | Web_1      | Test      | User     |
+| Ireland        | https://web2.online.brother.ie    | Web_2      | Test      | User     |
+| Ireland        | https://web5.online.brother.ie    | Web_5      | Test      | User     |
+| Ireland        | https://web6.online.brother.ie    | Web_6      | Test      | User     |
+| United Kingdom | https://web1.online.brother.co.uk | Web_1      | Test      | User     |
+| United Kingdom | https://web2.online.brother.co.uk | Web_2      | Test      | User     |
+| United Kingdom | https://web5.online.brother.co.uk | Web_5      | Test      | User     |
+| United Kingdom | https://web6.online.brother.co.uk | Web_6      | Test      | User     |
+| France         | https://web1.online.brother.fr    | Web_1      | Test      | User     |
+| France         | https://web2.online.brother.fr    | Web_2      | Test      | User     |
+| France         | https://web5.online.brother.fr    | Web_5      | Test      | User     |
+| France         | https://web6.online.brother.fr    | Web_6      | Test      | User     |
+| Germany        | https://web1.online.brother.de    | Web_1      | Test      | User     |
+| Germany        | https://web2.online.brother.de    | Web_2      | Test      | User     |
+| Germany        | https://web5.online.brother.de    | Web_5      | Test      | User     |
+| Germany        | https://web6.online.brother.de    | Web_6      | Test      | User     |
+
+
