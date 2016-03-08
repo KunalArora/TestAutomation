@@ -107,6 +107,8 @@
     <Compile Include="Pages\BrotherOnline\Account\HomePage.cs" />
     <Compile Include="Pages\BrotherOnline\Account\RegistrationConfirmationPage.cs" />
     <Compile Include="Pages\BrotherOnline\Account\RegistrationPage.cs" />
+    <Compile Include="Pages\BrotherOnline\Account\Web1HomePage.cs" />
+    <Compile Include="Pages\BrotherOnline\Account\Web1RegistrationPage.cs" />
     <Compile Include="Pages\BrotherOnline\BrotherOnlineHomePages.Designer.cs">
       <DependentUpon>BrotherOnlineHomePages.settings</DependentUpon>
       <AutoGen>True</AutoGen>
