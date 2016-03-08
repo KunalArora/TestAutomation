@@ -418,7 +418,6 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<RegistrationPage>().IsSignInButtonAvailable();
         }
-
         [When(@"I have Checked Yes I Do Have An Account Checkbox")]
         public void DoHaveAnAccountCheckbox()
         {
@@ -924,6 +923,21 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<HomePage>().IsSignInCreateAccountButtonAvailable();
             NextPage = CurrentPage.As<HomePage>().ClickSignInCreateAccountButton();
         }
+        
+        //Web1-Steps
+
+        //[When(@"I click on Create Account for ""(.*)"" on WebOne")]
+        //public void WhenIClickOnCreateAccountForOnWebOne(string country)
+        //{
+        //    CurrentPage.As<Web1HomePage>().IsSignInCreateAccountButtonAvailable();
+        //    NextPage = CurrentPage.As<Web1HomePage>().ClickSignInCreateAccountButton();
+        //}
+
+        //[When(@"I am redirected to the BOL Login/Register page")]
+        //public void WhenIAmRedirectedToTheBOLLoginRegisterPage()
+        //{
+        //    CurrentPage.As<Web1RegistrationPage>().IsSignInButtonAvailable(); 
+        //}
 
         [When(@"I click on ""(.*)"" Sign In")]
         public void WhenIClickOnSignIn(string country)
