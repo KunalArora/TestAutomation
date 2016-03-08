@@ -926,19 +926,15 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         
         //Web1-Steps
 
-        //[When(@"I click on Create Account for ""(.*)"" on WebOne")]
-        //public void WhenIClickOnCreateAccountForOnWebOne(string country)
-        //{
-        //    CurrentPage.As<Web1HomePage>().IsSignInCreateAccountButtonAvailable();
-        //    NextPage = CurrentPage.As<Web1HomePage>().ClickSignInCreateAccountButton();
-        //}
-
-        //[When(@"I am redirected to the BOL Login/Register page")]
-        //public void WhenIAmRedirectedToTheBOLLoginRegisterPage()
-        //{
-        //    CurrentPage.As<Web1RegistrationPage>().IsSignInButtonAvailable(); 
-        //}
-
+        [Given(@"I navigate to BOL ""(.*)"" for ""(.*)""")]
+        public void GivenINavigateToBOLFor(string web, string country)
+        {
+            Helper.SetCountry(country);
+            var title = HomePage.WelcomePageCountryTitle(country);
+            CurrentPage = BasePage.LoadWebBoxes(CurrentDriver, web, title);
+            NextPage = CurrentPage.As<HomePage>().ClickSignInCreateAccountButton();
+           
+        }
         [When(@"I click on ""(.*)"" Sign In")]
         public void WhenIClickOnSignIn(string country)
         {
