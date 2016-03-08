@@ -92,213 +92,213 @@ Scenario Outline: Test all CD servers on Live Environment
 Scenarios:
 
 | PRODUCTION CD SERVERS | Brother Site                                  |
-| 10.91.0.131           | https://web1.online.brother.at                |
-| 10.91.0.131           | https://web1.online.brother.ch                |
-| 10.91.0.131           | https://web1.online.brother.de                |
-| 10.91.0.131           | https://web1.online.brother.es                |
-| 10.91.0.131           | https://web1.online.brother.fr                |
+#| 10.91.0.131           | https://web1.online.brother.at                |
+#| 10.91.0.131           | https://web1.online.brother.ch                |
+#| 10.91.0.131           | https://web1.online.brother.de                |
+#| 10.91.0.131           | https://web1.online.brother.es                |
+#| 10.91.0.131           | https://web1.online.brother.fr                |
 | 10.91.0.131           | https://web1.online.brother.ie                |
 | 10.91.0.131           | https://web1.online.brother.co.uk             |
-| 10.91.0.131           | https://web1.online.brother.cz                |
-| 10.91.0.131           | https://web1.online.brother.dk                |
-| 10.91.0.131           | https://web1.online.brother.nl                |
-| 10.91.0.131           | https://web1.online.brother.hu                |
-| 10.91.0.131           | https://web1.online.brother.it                |
-| 10.91.0.131           | https://web1.online.brother.no                |
-| 10.91.0.131           | https://web1.online.brother.pl                |
-| 10.91.0.131           | https://web1.online.brother.pt                |
-| 10.91.0.131           | https://web1.online.brother.ru                |
-| 10.91.0.131           | https://web1.online.brother.se                |
-| 10.91.0.131           | https://web1.online.brother.fi                |
-| 10.91.0.131           | https://web1.online.brother.be                |
-| 10.91.0.131           | https://web1.online.brother.lu                |
-| 10.91.0.131           | https://web1.online.brother.bg                |
-| 10.91.0.131           | https://web1.online.brother.ro                |
-| 10.91.0.131           | https://web1.online.brother.sk                |
-| 10.91.0.131           | https://web1.online.brother.si                |
-| 10.91.0.131           | http://www.web1.brother.co.uk                 |
-| 10.91.0.131           | http://www.web1.brother.de                    |
-| 10.91.0.131           | http://www.web1.brother.at                    |
-| 10.91.0.131           | http://www.web1.brother.fr                    |
-| 10.91.0.131           | http://www.web1.brother.ie                    |
-| 10.91.0.131           | http://www.web1.brother.it                    |
-| 10.91.0.131           | http://www.web1.brother.nl                    |
-| 10.91.0.131           | http://www.web1.brother.be                    |
-| 10.91.0.131           | http://www.web1.brother.lu                    |
-| 10.91.0.131           | http://www.web1.brother.ch                    |
-| 10.91.0.131           | http://www.web1.brother.pt                    |
-| 10.91.0.131           | http://www.web1.brother.es                    |
-| 10.91.0.131           | http://www.web1.brother.dk                    |
-| 10.91.0.131           | http://www.web1.brother.no                    |
-| 10.91.0.131           | http://www.web1.brother.se                    |
-| 10.91.0.131           | http://www.web1.brother.fi                    |
-| 10.91.0.131           | http://www.web1.brother.lt                    |
-| 10.91.0.131           | http://www.web1.brother.ee                    |
-| 10.91.0.131           | http://www.web1.brother.is                    |
-| 10.91.0.131           | http://www.web1.brother.lv                    |
-| 10.91.0.131           | http://www.web1.brother.cz                    |
-| 10.91.0.131           | http://www.web1.brother.pl                    |
-| 10.91.0.131           | http://www.web1.brother.sk                    |
-| 10.91.0.131           | http://www.web1.brother.si                    |
-| 10.91.0.131           | http://www.web1.brother.hu                    |
-| 10.91.0.131           | http://www.web1.brother.hr                    |
-| 10.91.0.131           | http://www.web1.brother.bg                    |
-| 10.91.0.131           | http://www.web1.brother.ro                    |
-| 10.91.0.132           | https://web2.online.brother.at                |
-| 10.91.0.132           | https://web2.online.brother.ch                |
-| 10.91.0.132           | https://web2.online.brother.de                |
-| 10.91.0.132           | https://web2.online.brother.es                |
-| 10.91.0.132           | https://web2.online.brother.fr                |
-| 10.91.0.132           | https://web2.online.brother.ie                |
-| 10.91.0.132           | https://web2.online.brother.co.uk             |
-| 10.91.0.132           | https://web2.online.brother.cz                |
-| 10.91.0.132           | https://web2.online.brother.dk                |
-| 10.91.0.132           | https://web2.online.brother.nl                |
-| 10.91.0.132           | https://web2.online.brother.hu                |
-| 10.91.0.132           | https://web2.online.brother.it                |
-| 10.91.0.132           | https://web2.online.brother.no                |
-| 10.91.0.132           | https://web2.online.brother.pl                |
-| 10.91.0.132           | https://web2.online.brother.pt                |
-| 10.91.0.132           | https://web2.online.brother.ru                |
-| 10.91.0.132           | https://web2.online.brother.se                |
-| 10.91.0.132           | https://web2.online.brother.fi                |
-| 10.91.0.132           | https://web2.online.brother.be                |
-| 10.91.0.132           | https://web2.online.brother.lu                |
-| 10.91.0.132           | https://web2.online.brother.ru                |
-| 10.91.0.132           | https://web2.online.brother.se                |
-| 10.91.0.132           | https://web2.online.brother.bg                |
-| 10.91.0.132           | https://web2.online.brother.ro                |
-| 10.91.0.132           | https://web2.online.brother.sk                |
-| 10.91.0.132           | https://web2.online.brother.si                |
-| 10.91.0.132           | http://www.web2.brother.de                    |
-| 10.91.0.132           | http://www.web2.brother.at                    |
-| 10.91.0.132           | http://www.web2.brother.fr                    |
-| 10.91.0.132           | http://www.web2.brother.ie                    |
-| 10.91.0.132           | http://www.web2.brother.it                    |
-| 10.91.0.132           | http://www.web2.brother.nl                    |
-| 10.91.0.132           | http://www.web2.brother.be                    |
-| 10.91.0.132           | http://www.web2.brother.ch                    |
-| 10.91.0.132           | http://www.web2.brother.pt                    |
-| 10.91.0.132           | http://www.web2.brother.es                    |
-| 10.91.0.132           | http://www.web2.brother.no                    |
-| 10.91.0.132           | http://www.web2.brother.se                    |
-| 10.91.0.132           | http://www.web2.brother.dk                    |
-| 10.91.0.132           | http://www.web2.brother.fi                    |
-| 10.91.0.132           | http://www.web2.brother.lt                    |
-| 10.91.0.132           | http://www.web2.brother.lv                    |
-| 10.91.0.132           | http://www.web2.brother.is                    |
-| 10.91.0.132           | http://www.web2.brother.ee                    |
-| 10.91.0.132           | http://www.web2.brother.cz                    |
-| 10.91.0.132           | http://www.web2.brother.pl                    |
-| 10.91.0.132           | http://www.web2.brother.sk                    |
-| 10.91.0.132           | http://www.web2.brother.si                    |
-| 10.91.0.132           | http://www.web2.brother.hu                    |
-| 10.91.0.132           | http://www.web2.brother.hr                    |
-| 10.91.0.132           | http://www.web2.brother.bg                    |
-| 10.91.0.132           | http://www.web2.brother.ro                    |
-| 10.91.0.132           | http://www.web2.brother.ru                    |
-| 172.27.16.133         | https://web5.online.brother.at                |
-| 172.27.16.133         | https://web5.online.brother.ch                |
-| 172.27.16.133         | https://web5.online.brother.de                |
-| 172.27.16.133         | https://web5.online.brother.es                |
-| 172.27.16.133         | https://web5.online.brother.fr                |
-| 172.27.16.133         | https://web5.online.brother.ie                |
-| 172.27.16.133         | https://web5.online.brother.co.uk             |
-| 172.27.16.133         | https://web5.online.brother.cz                |
-| 172.27.16.133         | https://web5.online.brother.dk                |
-| 172.27.16.133         | https://web5.online.brother.nl                |
-| 172.27.16.133         | https://web5.online.brother.hu                |
-| 172.27.16.133         | https://web5.online.brother.it                |
-| 172.27.16.133         | https://web5.online.brother.no                |
-| 172.27.16.133         | https://web5.online.brother.pl                |
-| 172.27.16.133         | https://web5.online.brother.pt                |
-| 172.27.16.133         | https://web5.online.brother.ru                |
-| 172.27.16.133         | https://web5.online.brother.ch                |
-| 172.27.16.133         | https://web5.online.brother.se                |
-| 172.27.16.133         | https://web5.online.brother.fi                |
-| 172.27.16.133         | https://web5.online.brother.be                |
-| 172.27.16.133         | https://web5.online.brother.lu                |
-| 172.27.16.133         | https://web5.online.brother.bg                |
-| 172.27.16.133         | https://web5.online.brother.ro                |
-| 172.27.16.133         | https://web5.online.brother.sk                |
-| 172.27.16.133         | https://web5.online.brother.si                |
-| 172.27.16.133         | http://www.web5.brother.co.uk                 |
-| 172.27.16.133         | http://www.web5.brother.de                    |
-| 172.27.16.133         | http://www.web5.brother.at                    |
-| 172.27.16.133         | http://www.web5.brother.fr                    |
-| 172.27.16.133         | http://www.web5.brother.ie                    |
-| 172.27.16.133         | http://www.web5.brother.it                    |
-| 172.27.16.133         | http://www.web5.brother.be                    |
-| 172.27.16.133         | http://www.web5.brother.lu                    |
-| 172.27.16.133         | http://www.web5.brother.ch                    |
-| 172.27.16.133         | http://www.web5.brother.pt                    |
-| 172.27.16.133         | http://www.web5.brother.es                    |
-| 172.27.16.133         | http://www.web5.brother.dk                    |
-| 172.27.16.133         | http://www.web5.brother.no                    |
-| 172.27.16.133         | http://www.web5.brother.se                    |
-| 172.27.16.133         | http://www.web5.brother.fi                    |
-| 172.27.16.133         | http://www.web5.brother.lt                    |
-| 172.27.16.133         | http://www.web5.brother.lv                    |
-| 172.27.16.133         | http://www.web5.brother.is                    |
-| 172.27.16.133         | http://www.web5.brother.ee                    |
-| 172.27.16.133         | http://www.web5.brother.cz                    |
-| 172.27.16.133         | http://www.web5.brother.pl                    |
-| 172.27.16.133         | http://www.web5.brother.sk                    |
-| 172.27.16.133         | http://www.web5.brother.si                    |
-| 172.27.16.133         | http://www.web5.brother.hu                    |
-| 172.27.16.133         | http://www.web5.brother.hr                    |
-| 172.27.16.133         | http://www.web5.brother.bg                    |
-| 172.27.16.133         | http://www.web5.brother.ro                    |
-| 172.27.16.133         | http://www.web5.brother.ru                    |
-| 172.27.16.134         | https://web6.online.brother.at                |
-| 172.27.16.134         | https://web6.online.brother.ch                |
-| 172.27.16.134         | https://web6.online.brother.de                |
-| 172.27.16.134         | https://web6.online.brother.ie                |
-| 172.27.16.134         | https://web6.online.brother.co.uk             |
-| 172.27.16.134         | https://web6.online.brother.cz                |
-| 172.27.16.134         | https://web6.online.brother.dk                |
-| 172.27.16.134         | https://web6.online.brother.nl                |
-| 172.27.16.134         | https://web6.online.brother.hu                |
-| 172.27.16.134         | https://web6.online.brother.it                |
-| 172.27.16.134         | https://web6.online.brother.no                |
-| 172.27.16.134         | https://web6.online.brother.pl                |
-| 172.27.16.134         | https://web6.online.brother.pt                |
-| 172.27.16.134         | https://web6.online.brother.ru                |
-| 172.27.16.134         | https://web6.online.brother.se                |
-| 172.27.16.134         | https://web6.online.brother.fi                |
-| 172.27.16.134         | https://web6.online.brother.be                |
-| 172.27.16.134         | https://web6.online.brother.lu                |
-| 172.27.16.134         | https://web6.online.brother.bg                |
-| 172.27.16.134         | https://web6.online.brother.ro                |
-| 172.27.16.134         | https://web6.online.brother.sk                |
-| 172.27.16.134         | https://web6.online.brother.si                |
-| 172.27.16.134         | http://www.web6.brother.co.uk                 |
-| 172.27.16.134         | http://www.web6.brother.de                    |
-| 172.27.16.134         | http://www.web6.brother.at                    |
-| 172.27.16.134         | http://www.web6.brother.fr                    |
-| 172.27.16.134         | http://www.web6.brother.ie                    |
-| 172.27.16.134         | http://www.web6.brother.it                    |
-| 172.27.16.134         | http://www.web6.brother.nl                    |
-| 172.27.16.134         | http://www.web6.brother.be                    |
-| 172.27.16.134         | http://www.web6.brother.ch                    |
-| 172.27.16.134         | http://www.web6.brother.pt                    |
-| 172.27.16.134         | http://www.web6.brother.es                    |
-| 172.27.16.134         | http://www.web6.brother.dk                    |
-| 172.27.16.134         | http://www.web6.brother.se                    |
-| 172.27.16.134         | http://www.web6.brother.fi                    |
-| 172.27.16.134         | http://www.web6.brother.lu                    |
-| 172.27.16.134         | http://www.web6.brother.lt                    |
-| 172.27.16.134         | http://www.web6.brother.lv                    |
-| 172.27.16.134         | http://www.web6.brother.is                    |
-| 172.27.16.134         | http://www.web6.brother.ee                    |
-| 172.27.16.134         | http://www.web6.brother.cz                    |
-| 172.27.16.134         | http://www.web6.brother.pl                    |
-| 172.27.16.134         | http://www.web6.brother.sk                    |
-| 172.27.16.134         | http://www.web6.brother.si                    |
-| 172.27.16.134         | http://www.web6.brother.hu                    |
-| 172.27.16.134         | http://www.web6.brother.hr                    |
-| 172.27.16.134         | http://www.web6.brother.bg                    |
-| 172.27.16.134         | http://www.web6.brother.ru                    |
+#| 10.91.0.131           | https://web1.online.brother.cz                |
+#| 10.91.0.131           | https://web1.online.brother.dk                |
+#| 10.91.0.131           | https://web1.online.brother.nl                |
+#| 10.91.0.131           | https://web1.online.brother.hu                |
+#| 10.91.0.131           | https://web1.online.brother.it                |
+#| 10.91.0.131           | https://web1.online.brother.no                |
+#| 10.91.0.131           | https://web1.online.brother.pl                |
+#| 10.91.0.131           | https://web1.online.brother.pt                |
+#| 10.91.0.131           | https://web1.online.brother.ru                |
+#| 10.91.0.131           | https://web1.online.brother.se                |
+#| 10.91.0.131           | https://web1.online.brother.fi                |
+#| 10.91.0.131           | https://web1.online.brother.be                |
+#| 10.91.0.131           | https://web1.online.brother.lu                |
+#| 10.91.0.131           | https://web1.online.brother.bg                |
+#| 10.91.0.131           | https://web1.online.brother.ro                |
+#| 10.91.0.131           | https://web1.online.brother.sk                |
+#| 10.91.0.131           | https://web1.online.brother.si                |
+#| 10.91.0.131           | http://www.web1.brother.co.uk                 |
+#| 10.91.0.131           | http://www.web1.brother.de                    |
+#| 10.91.0.131           | http://www.web1.brother.at                    |
+#| 10.91.0.131           | http://www.web1.brother.fr                    |
+#| 10.91.0.131           | http://www.web1.brother.ie                    |
+#| 10.91.0.131           | http://www.web1.brother.it                    |
+#| 10.91.0.131           | http://www.web1.brother.nl                    |
+#| 10.91.0.131           | http://www.web1.brother.be                    |
+#| 10.91.0.131           | http://www.web1.brother.lu                    |
+#| 10.91.0.131           | http://www.web1.brother.ch                    |
+#| 10.91.0.131           | http://www.web1.brother.pt                    |
+#| 10.91.0.131           | http://www.web1.brother.es                    |
+#| 10.91.0.131           | http://www.web1.brother.dk                    |
+#| 10.91.0.131           | http://www.web1.brother.no                    |
+#| 10.91.0.131           | http://www.web1.brother.se                    |
+#| 10.91.0.131           | http://www.web1.brother.fi                    |
+#| 10.91.0.131           | http://www.web1.brother.lt                    |
+#| 10.91.0.131           | http://www.web1.brother.ee                    |
+#| 10.91.0.131           | http://www.web1.brother.is                    |
+#| 10.91.0.131           | http://www.web1.brother.lv                    |
+#| 10.91.0.131           | http://www.web1.brother.cz                    |
+#| 10.91.0.131           | http://www.web1.brother.pl                    |
+#| 10.91.0.131           | http://www.web1.brother.sk                    |
+#| 10.91.0.131           | http://www.web1.brother.si                    |
+#| 10.91.0.131           | http://www.web1.brother.hu                    |
+#| 10.91.0.131           | http://www.web1.brother.hr                    |
+#| 10.91.0.131           | http://www.web1.brother.bg                    |
+#| 10.91.0.131           | http://www.web1.brother.ro                    |
+#| 10.91.0.132           | https://web2.online.brother.at                |
+#| 10.91.0.132           | https://web2.online.brother.ch                |
+#| 10.91.0.132           | https://web2.online.brother.de                |
+#| 10.91.0.132           | https://web2.online.brother.es                |
+#| 10.91.0.132           | https://web2.online.brother.fr                |
+#| 10.91.0.132           | https://web2.online.brother.ie                |
+#| 10.91.0.132           | https://web2.online.brother.co.uk             |
+#| 10.91.0.132           | https://web2.online.brother.cz                |
+#| 10.91.0.132           | https://web2.online.brother.dk                |
+#| 10.91.0.132           | https://web2.online.brother.nl                |
+#| 10.91.0.132           | https://web2.online.brother.hu                |
+#| 10.91.0.132           | https://web2.online.brother.it                |
+#| 10.91.0.132           | https://web2.online.brother.no                |
+#| 10.91.0.132           | https://web2.online.brother.pl                |
+#| 10.91.0.132           | https://web2.online.brother.pt                |
+#| 10.91.0.132           | https://web2.online.brother.ru                |
+#| 10.91.0.132           | https://web2.online.brother.se                |
+#| 10.91.0.132           | https://web2.online.brother.fi                |
+#| 10.91.0.132           | https://web2.online.brother.be                |
+#| 10.91.0.132           | https://web2.online.brother.lu                |
+#| 10.91.0.132           | https://web2.online.brother.ru                |
+#| 10.91.0.132           | https://web2.online.brother.se                |
+#| 10.91.0.132           | https://web2.online.brother.bg                |
+#| 10.91.0.132           | https://web2.online.brother.ro                |
+#| 10.91.0.132           | https://web2.online.brother.sk                |
+#| 10.91.0.132           | https://web2.online.brother.si                |
+#| 10.91.0.132           | http://www.web2.brother.de                    |
+#| 10.91.0.132           | http://www.web2.brother.at                    |
+#| 10.91.0.132           | http://www.web2.brother.fr                    |
+#| 10.91.0.132           | http://www.web2.brother.ie                    |
+#| 10.91.0.132           | http://www.web2.brother.it                    |
+#| 10.91.0.132           | http://www.web2.brother.nl                    |
+#| 10.91.0.132           | http://www.web2.brother.be                    |
+#| 10.91.0.132           | http://www.web2.brother.ch                    |
+#| 10.91.0.132           | http://www.web2.brother.pt                    |
+#| 10.91.0.132           | http://www.web2.brother.es                    |
+#| 10.91.0.132           | http://www.web2.brother.no                    |
+#| 10.91.0.132           | http://www.web2.brother.se                    |
+#| 10.91.0.132           | http://www.web2.brother.dk                    |
+#| 10.91.0.132           | http://www.web2.brother.fi                    |
+#| 10.91.0.132           | http://www.web2.brother.lt                    |
+#| 10.91.0.132           | http://www.web2.brother.lv                    |
+#| 10.91.0.132           | http://www.web2.brother.is                    |
+#| 10.91.0.132           | http://www.web2.brother.ee                    |
+#| 10.91.0.132           | http://www.web2.brother.cz                    |
+#| 10.91.0.132           | http://www.web2.brother.pl                    |
+#| 10.91.0.132           | http://www.web2.brother.sk                    |
+#| 10.91.0.132           | http://www.web2.brother.si                    |
+#| 10.91.0.132           | http://www.web2.brother.hu                    |
+#| 10.91.0.132           | http://www.web2.brother.hr                    |
+#| 10.91.0.132           | http://www.web2.brother.bg                    |
+#| 10.91.0.132           | http://www.web2.brother.ro                    |
+#| 10.91.0.132           | http://www.web2.brother.ru                    |
+#| 172.27.16.133         | https://web5.online.brother.at                |
+#| 172.27.16.133         | https://web5.online.brother.ch                |
+#| 172.27.16.133         | https://web5.online.brother.de                |
+#| 172.27.16.133         | https://web5.online.brother.es                |
+#| 172.27.16.133         | https://web5.online.brother.fr                |
+#| 172.27.16.133         | https://web5.online.brother.ie                |
+#| 172.27.16.133         | https://web5.online.brother.co.uk             |
+#| 172.27.16.133         | https://web5.online.brother.cz                |
+#| 172.27.16.133         | https://web5.online.brother.dk                |
+#| 172.27.16.133         | https://web5.online.brother.nl                |
+#| 172.27.16.133         | https://web5.online.brother.hu                |
+#| 172.27.16.133         | https://web5.online.brother.it                |
+#| 172.27.16.133         | https://web5.online.brother.no                |
+#| 172.27.16.133         | https://web5.online.brother.pl                |
+#| 172.27.16.133         | https://web5.online.brother.pt                |
+#| 172.27.16.133         | https://web5.online.brother.ru                |
+#| 172.27.16.133         | https://web5.online.brother.ch                |
+#| 172.27.16.133         | https://web5.online.brother.se                |
+#| 172.27.16.133         | https://web5.online.brother.fi                |
+#| 172.27.16.133         | https://web5.online.brother.be                |
+#| 172.27.16.133         | https://web5.online.brother.lu                |
+#| 172.27.16.133         | https://web5.online.brother.bg                |
+#| 172.27.16.133         | https://web5.online.brother.ro                |
+#| 172.27.16.133         | https://web5.online.brother.sk                |
+#| 172.27.16.133         | https://web5.online.brother.si                |
+#| 172.27.16.133         | http://www.web5.brother.co.uk                 |
+#| 172.27.16.133         | http://www.web5.brother.de                    |
+#| 172.27.16.133         | http://www.web5.brother.at                    |
+#| 172.27.16.133         | http://www.web5.brother.fr                    |
+#| 172.27.16.133         | http://www.web5.brother.ie                    |
+#| 172.27.16.133         | http://www.web5.brother.it                    |
+#| 172.27.16.133         | http://www.web5.brother.be                    |
+#| 172.27.16.133         | http://www.web5.brother.lu                    |
+#| 172.27.16.133         | http://www.web5.brother.ch                    |
+#| 172.27.16.133         | http://www.web5.brother.pt                    |
+#| 172.27.16.133         | http://www.web5.brother.es                    |
+#| 172.27.16.133         | http://www.web5.brother.dk                    |
+#| 172.27.16.133         | http://www.web5.brother.no                    |
+#| 172.27.16.133         | http://www.web5.brother.se                    |
+#| 172.27.16.133         | http://www.web5.brother.fi                    |
+#| 172.27.16.133         | http://www.web5.brother.lt                    |
+#| 172.27.16.133         | http://www.web5.brother.lv                    |
+#| 172.27.16.133         | http://www.web5.brother.is                    |
+#| 172.27.16.133         | http://www.web5.brother.ee                    |
+#| 172.27.16.133         | http://www.web5.brother.cz                    |
+#| 172.27.16.133         | http://www.web5.brother.pl                    |
+#| 172.27.16.133         | http://www.web5.brother.sk                    |
+#| 172.27.16.133         | http://www.web5.brother.si                    |
+#| 172.27.16.133         | http://www.web5.brother.hu                    |
+#| 172.27.16.133         | http://www.web5.brother.hr                    |
+#| 172.27.16.133         | http://www.web5.brother.bg                    |
+#| 172.27.16.133         | http://www.web5.brother.ro                    |
+#| 172.27.16.133         | http://www.web5.brother.ru                    |
+#| 172.27.16.134         | https://web6.online.brother.at                |
+#| 172.27.16.134         | https://web6.online.brother.ch                |
+#| 172.27.16.134         | https://web6.online.brother.de                |
+#| 172.27.16.134         | https://web6.online.brother.ie                |
+#| 172.27.16.134         | https://web6.online.brother.co.uk             |
+#| 172.27.16.134         | https://web6.online.brother.cz                |
+#| 172.27.16.134         | https://web6.online.brother.dk                |
+#| 172.27.16.134         | https://web6.online.brother.nl                |
+#| 172.27.16.134         | https://web6.online.brother.hu                |
+#| 172.27.16.134         | https://web6.online.brother.it                |
+#| 172.27.16.134         | https://web6.online.brother.no                |
+#| 172.27.16.134         | https://web6.online.brother.pl                |
+#| 172.27.16.134         | https://web6.online.brother.pt                |
+#| 172.27.16.134         | https://web6.online.brother.ru                |
+#| 172.27.16.134         | https://web6.online.brother.se                |
+#| 172.27.16.134         | https://web6.online.brother.fi                |
+#| 172.27.16.134         | https://web6.online.brother.be                |
+#| 172.27.16.134         | https://web6.online.brother.lu                |
+#| 172.27.16.134         | https://web6.online.brother.bg                |
+#| 172.27.16.134         | https://web6.online.brother.ro                |
+#| 172.27.16.134         | https://web6.online.brother.sk                |
+#| 172.27.16.134         | https://web6.online.brother.si                |
+#| 172.27.16.134         | http://www.web6.brother.co.uk                 |
+#| 172.27.16.134         | http://www.web6.brother.de                    |
+#| 172.27.16.134         | http://www.web6.brother.at                    |
+#| 172.27.16.134         | http://www.web6.brother.fr                    |
+#| 172.27.16.134         | http://www.web6.brother.ie                    |
+#| 172.27.16.134         | http://www.web6.brother.it                    |
+#| 172.27.16.134         | http://www.web6.brother.nl                    |
+#| 172.27.16.134         | http://www.web6.brother.be                    |
+#| 172.27.16.134         | http://www.web6.brother.ch                    |
+#| 172.27.16.134         | http://www.web6.brother.pt                    |
+#| 172.27.16.134         | http://www.web6.brother.es                    |
+#| 172.27.16.134         | http://www.web6.brother.dk                    |
+#| 172.27.16.134         | http://www.web6.brother.se                    |
+#| 172.27.16.134         | http://www.web6.brother.fi                    |
+#| 172.27.16.134         | http://www.web6.brother.lu                    |
+#| 172.27.16.134         | http://www.web6.brother.lt                    |
+#| 172.27.16.134         | http://www.web6.brother.lv                    |
+#| 172.27.16.134         | http://www.web6.brother.is                    |
+#| 172.27.16.134         | http://www.web6.brother.ee                    |
+#| 172.27.16.134         | http://www.web6.brother.cz                    |
+#| 172.27.16.134         | http://www.web6.brother.pl                    |
+#| 172.27.16.134         | http://www.web6.brother.sk                    |
+#| 172.27.16.134         | http://www.web6.brother.si                    |
+#| 172.27.16.134         | http://www.web6.brother.hu                    |
+#| 172.27.16.134         | http://www.web6.brother.hr                    |
+#| 172.27.16.134         | http://www.web6.brother.bg                    |
+#| 172.27.16.134         | http://www.web6.brother.ru                    |
 
 #| 10.91.0.131           | http://web1.webconferencing.brother.co.uk     | | # Site exists but cannot be accessed via web1. reference
 #| 10.91.0.131           | http://web1.videokonferenzen.brother.at       | | # Site exists but cannot be accessed via web1. reference
@@ -342,3 +342,39 @@ Scenarios:
 #| 172.27.16.134         | http://www.web6.omnijoin.eu                   | # Site exists but cannot be accessed via web2. reference
 #| 172.27.16.134         | http://www.web6.eu.brother.eu                 | # Site exists but cannot be accessed via web1. reference
 #| 172.27.16.134         | http://www.web6.creativecenter.brother.eu     | # Site exists but cannot be accessed via web1. reference
+
+
+
+
+Scenario Outline: Test CD servers on Live Environment to check user registration
+	
+	Given The following site "<Brother Site>" to validate I should receive an Ok response back
+	#And I want to create a new account with Brother Online "United Kingdom"
+	When I click on Create Account for "United Kingdom" web1 server
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I fill in the registration information using a valid email address 
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Password        | @@@@@	       |
+	| ConfirmPassword | @@@@@		   |
+
+    And I have Agreed to the Terms and Conditions
+	And I declare that I do not use this account for business
+	When I press Create Your Account
+	Then I should see my account confirmation page
+	And When I Click Go Back
+	Then I should be able to log into "United Kingdom" Brother Online using my account details
+	When I navigate to my account for "United Kingdom"
+	And I enter First Name containing <FirstName>
+	And I enter the Last Name containing <LastName>
+	And I click on update details
+	Then my personal details should get updated
+	Then I can navigate back to Brother Online home page
+	And I can sign out of Brother Online
+
+Scenarios:
+
+| PRODUCTION CD SERVERS | Brother Site                                  |FirstName						| LastName							|
+| 10.91.0.131           | https://web1.online.brother.ie                |Test						    | Test								|

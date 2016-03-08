@@ -47,6 +47,9 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         [FindsBy(How = How.CssSelector, Using = ".product-results-header.clearfix.component")] 
         public IWebElement FilterSection;
 
+        [FindsBy(How = How.CssSelector, Using = ".col-xs-12.col-md-6.product-detail--container-title")]
+        public IWebElement AccessoryProductTitle;
+
         [FindsBy(How = How.CssSelector, Using = "body > header > div > div > a.common-global-header--toggle.active")]
         public IWebElement SearchIcon;
 
@@ -217,6 +220,16 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
             AssertElementPresent(FilterSection, "Filter Section", 30);
         }
 
+        public void IsAccessoryProductTitleDisplayed()
+        {
+            WaitForElementToExistByCssSelector(".col-xs-12.col-md-6.product-detail--container-title");
+            if (AccessoryProductTitle == null)
+            {
+                throw new NullReferenceException("Unable to locate page header");
+            }
+            AssertElementPresent(AccessoryProductTitle, "Accessory Product Title", 30);
+        }
+        
         public void IsGlossarySectionDisplayed()
         {
             WaitForElementToExistByCssSelector(".row.glossary-listing_tab-item");
