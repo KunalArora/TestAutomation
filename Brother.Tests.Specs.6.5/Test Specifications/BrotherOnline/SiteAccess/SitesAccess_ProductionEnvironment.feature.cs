@@ -199,14 +199,16 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Test CD servers on Live Environment to check user registration")]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.131", "https://web1.online.brother.ie", "Test", "Test", null)]
-        public virtual void TestCDServersOnLiveEnvironmentToCheckUserRegistration(string pRODUCTIONCDSERVERS, string brotherSite, string firstName, string lastName, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("Ireland", "https://web1.online.brother.ie", "Web_1", "Test", "User", null)]
+        public virtual void TestCDServersOnLiveEnvironmentToCheckUserRegistration(string country, string web, string serverName, string firstName, string lastName, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Test CD servers on Live Environment to check user registration", exampleTags);
-#line 349
+#line 348
 this.ScenarioSetup(scenarioInfo);
-#line 351
- testRunner.Given(string.Format("The following site \"{0}\" to validate I should receive an Ok response back", brotherSite), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 349
+   testRunner.Given(string.Format("I navigate to BOL \"{0}\" for \"{1}\"", web, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 350
+ testRunner.When("I have Checked No I Do Not Have An Account Checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "field",
@@ -223,8 +225,34 @@ this.ScenarioSetup(scenarioInfo);
             table1.AddRow(new string[] {
                         "ConfirmPassword",
                         "@@@@@"});
-#line 353
- testRunner.When("I click on Create Account for \"United Kingdom\" on WebOne", ((string)(null)), table1, "When ");
+#line 351
+ testRunner.When("I fill in the registration information using a valid email address", ((string)(null)), table1, "When ");
+#line 358
+    testRunner.And("I have Agreed to the Terms and Conditions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 359
+ testRunner.And("I declare that I do not use this account for business", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 360
+ testRunner.When("I press Create Your Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 361
+ testRunner.Then("I should see my account confirmation page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 362
+ testRunner.And("When I Click Go Back", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 363
+ testRunner.Then(string.Format("I should be able to log into \"{0}\" Brother Online using my account details", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 364
+ testRunner.When(string.Format("I navigate to my account for \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 365
+ testRunner.And(string.Format("I enter First Name containing {0}", firstName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 366
+ testRunner.And(string.Format("I enter the Last Name containing {0}", lastName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 367
+ testRunner.And("I click on update details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 368
+ testRunner.Then("my personal details should get updated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 369
+ testRunner.Then("I can navigate back to Brother Online home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 370
+ testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

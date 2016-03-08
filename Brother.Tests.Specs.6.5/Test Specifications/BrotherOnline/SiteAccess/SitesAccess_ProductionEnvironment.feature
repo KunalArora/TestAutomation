@@ -345,36 +345,30 @@ Scenarios:
 
 
 
-
 Scenario Outline: Test CD servers on Live Environment to check user registration
-	
-	Given The following site "<Brother Site>" to validate I should receive an Ok response back
-	#And I want to create a new account with Brother Online "United Kingdom"
-	When I click on Create Account for "United Kingdom" on WebOne
-	#And I am redirected to the BOL Login/Register page
-	#And I have Checked No I Do Not Have An Account Checkbox
-	#And I fill in the registration information using a valid email address 
+   Given I navigate to BOL "<Web>" for "<Country>"
+	When I have Checked No I Do Not Have An Account Checkbox
+	When I fill in the registration information using a valid email address 
 	| field           | value          |
 	| FirstName       | AutoTest       |
 	| LastName        | AutoTest       |
 	| Password        | @@@@@	       |
 	| ConfirmPassword | @@@@@		   |
 
-    #And I have Agreed to the Terms and Conditions
-	#And I declare that I do not use this account for business
-	#When I press Create Your Account
-	#Then I should see my account confirmation page
-	#And When I Click Go Back
-	#Then I should be able to log into "United Kingdom" Brother Online using my account details
-	#When I navigate to my account for "United Kingdom"
-	#And I enter First Name containing <FirstName>
-	#And I enter the Last Name containing <LastName>
-	#And I click on update details
-	#Then my personal details should get updated
-	#Then I can navigate back to Brother Online home page
-	#And I can sign out of Brother Online
+    And I have Agreed to the Terms and Conditions
+	And I declare that I do not use this account for business
+	When I press Create Your Account
+	Then I should see my account confirmation page
+	And When I Click Go Back
+	Then I should be able to log into "<Country>" Brother Online using my account details
+	When I navigate to my account for "<Country>"
+	And I enter First Name containing <FirstName>
+	And I enter the Last Name containing <LastName>
+	And I click on update details
+	Then my personal details should get updated
+	Then I can navigate back to Brother Online home page
+	And I can sign out of Brother Online
 
 Scenarios:
-
-| PRODUCTION CD SERVERS | Brother Site                                  |FirstName						| LastName							|
-| 10.91.0.131           | https://web1.online.brother.ie                |Test						    | Test								|
+| Country | Web                            | ServerName | FirstName | LastName |
+| Ireland | https://web1.online.brother.ie | Web_1      |  Test     |   User   |

@@ -81,14 +81,8 @@ namespace Brother.Tests.Specs.BrotherOnline.SiteAccess
             responseTimer.Stop();
             var responseTime = responseTimer.Elapsed;
             Helper.MsgOutput(string.Format("Response time from website [{0}] was [{1}ms]", webSite, responseTime.Milliseconds));
-
             return responseCode;
         }
-        [When(@"I click on Create Account for ""(.*)"" on WebOne")]
-        public void WhenIClickOnCreateAccountForOnWebOne(string country)
-        {
-            CurrentPage.As<Web1HomePage>().IsSignInCreateAccountButtonAvailable();
-            //NextPage = CurrentPage.As<Web1RegistrationPage>().ClickSignInCreateAccountButton();
-        }
+      
     }
 }
