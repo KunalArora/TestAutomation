@@ -178,213 +178,8 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Test all CD servers on Live Environment")]
         [NUnit.Framework.IgnoreAttribute()]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.131", "https://web1.online.brother.at", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.131", "https://web1.online.brother.ch", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.131", "https://web1.online.brother.de", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.131", "https://web1.online.brother.es", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.131", "https://web1.online.brother.fr", null)]
         [NUnit.Framework.TestCaseAttribute("10.91.0.131", "https://web1.online.brother.ie", null)]
         [NUnit.Framework.TestCaseAttribute("10.91.0.131", "https://web1.online.brother.co.uk", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.131", "https://web1.online.brother.cz", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.131", "https://web1.online.brother.dk", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.131", "https://web1.online.brother.nl", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.131", "https://web1.online.brother.hu", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.131", "https://web1.online.brother.it", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.131", "https://web1.online.brother.no", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.131", "https://web1.online.brother.pl", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.131", "https://web1.online.brother.pt", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.131", "https://web1.online.brother.ru", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.131", "https://web1.online.brother.se", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.131", "https://web1.online.brother.fi", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.131", "https://web1.online.brother.be", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.131", "https://web1.online.brother.lu", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.131", "https://web1.online.brother.bg", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.131", "https://web1.online.brother.ro", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.131", "https://web1.online.brother.sk", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.131", "https://web1.online.brother.si", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.131", "http://www.web1.brother.co.uk", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.131", "http://www.web1.brother.de", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.131", "http://www.web1.brother.at", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.131", "http://www.web1.brother.fr", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.131", "http://www.web1.brother.ie", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.131", "http://www.web1.brother.it", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.131", "http://www.web1.brother.nl", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.131", "http://www.web1.brother.be", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.131", "http://www.web1.brother.lu", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.131", "http://www.web1.brother.ch", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.131", "http://www.web1.brother.pt", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.131", "http://www.web1.brother.es", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.131", "http://www.web1.brother.dk", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.131", "http://www.web1.brother.no", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.131", "http://www.web1.brother.se", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.131", "http://www.web1.brother.fi", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.131", "http://www.web1.brother.lt", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.131", "http://www.web1.brother.ee", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.131", "http://www.web1.brother.is", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.131", "http://www.web1.brother.lv", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.131", "http://www.web1.brother.cz", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.131", "http://www.web1.brother.pl", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.131", "http://www.web1.brother.sk", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.131", "http://www.web1.brother.si", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.131", "http://www.web1.brother.hu", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.131", "http://www.web1.brother.hr", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.131", "http://www.web1.brother.bg", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.131", "http://www.web1.brother.ro", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.132", "https://web2.online.brother.at", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.132", "https://web2.online.brother.ch", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.132", "https://web2.online.brother.de", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.132", "https://web2.online.brother.es", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.132", "https://web2.online.brother.fr", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.132", "https://web2.online.brother.ie", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.132", "https://web2.online.brother.co.uk", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.132", "https://web2.online.brother.cz", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.132", "https://web2.online.brother.dk", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.132", "https://web2.online.brother.nl", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.132", "https://web2.online.brother.hu", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.132", "https://web2.online.brother.it", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.132", "https://web2.online.brother.no", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.132", "https://web2.online.brother.pl", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.132", "https://web2.online.brother.pt", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.132", "https://web2.online.brother.ru", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.132", "https://web2.online.brother.se", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.132", "https://web2.online.brother.fi", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.132", "https://web2.online.brother.be", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.132", "https://web2.online.brother.lu", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.132", "https://web2.online.brother.ru", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.132", "https://web2.online.brother.se", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.132", "https://web2.online.brother.bg", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.132", "https://web2.online.brother.ro", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.132", "https://web2.online.brother.sk", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.132", "https://web2.online.brother.si", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.132", "http://www.web2.brother.de", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.132", "http://www.web2.brother.at", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.132", "http://www.web2.brother.fr", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.132", "http://www.web2.brother.ie", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.132", "http://www.web2.brother.it", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.132", "http://www.web2.brother.nl", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.132", "http://www.web2.brother.be", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.132", "http://www.web2.brother.ch", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.132", "http://www.web2.brother.pt", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.132", "http://www.web2.brother.es", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.132", "http://www.web2.brother.no", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.132", "http://www.web2.brother.se", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.132", "http://www.web2.brother.dk", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.132", "http://www.web2.brother.fi", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.132", "http://www.web2.brother.lt", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.132", "http://www.web2.brother.lv", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.132", "http://www.web2.brother.is", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.132", "http://www.web2.brother.ee", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.132", "http://www.web2.brother.cz", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.132", "http://www.web2.brother.pl", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.132", "http://www.web2.brother.sk", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.132", "http://www.web2.brother.si", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.132", "http://www.web2.brother.hu", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.132", "http://www.web2.brother.hr", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.132", "http://www.web2.brother.bg", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.132", "http://www.web2.brother.ro", null)]
-        [NUnit.Framework.TestCaseAttribute("10.91.0.132", "http://www.web2.brother.ru", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.133", "https://web5.online.brother.at", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.133", "https://web5.online.brother.ch", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.133", "https://web5.online.brother.de", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.133", "https://web5.online.brother.es", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.133", "https://web5.online.brother.fr", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.133", "https://web5.online.brother.ie", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.133", "https://web5.online.brother.co.uk", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.133", "https://web5.online.brother.cz", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.133", "https://web5.online.brother.dk", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.133", "https://web5.online.brother.nl", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.133", "https://web5.online.brother.hu", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.133", "https://web5.online.brother.it", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.133", "https://web5.online.brother.no", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.133", "https://web5.online.brother.pl", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.133", "https://web5.online.brother.pt", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.133", "https://web5.online.brother.ru", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.133", "https://web5.online.brother.ch", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.133", "https://web5.online.brother.se", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.133", "https://web5.online.brother.fi", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.133", "https://web5.online.brother.be", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.133", "https://web5.online.brother.lu", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.133", "https://web5.online.brother.bg", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.133", "https://web5.online.brother.ro", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.133", "https://web5.online.brother.sk", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.133", "https://web5.online.brother.si", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.133", "http://www.web5.brother.co.uk", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.133", "http://www.web5.brother.de", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.133", "http://www.web5.brother.at", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.133", "http://www.web5.brother.fr", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.133", "http://www.web5.brother.ie", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.133", "http://www.web5.brother.it", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.133", "http://www.web5.brother.be", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.133", "http://www.web5.brother.lu", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.133", "http://www.web5.brother.ch", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.133", "http://www.web5.brother.pt", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.133", "http://www.web5.brother.es", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.133", "http://www.web5.brother.dk", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.133", "http://www.web5.brother.no", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.133", "http://www.web5.brother.se", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.133", "http://www.web5.brother.fi", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.133", "http://www.web5.brother.lt", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.133", "http://www.web5.brother.lv", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.133", "http://www.web5.brother.is", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.133", "http://www.web5.brother.ee", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.133", "http://www.web5.brother.cz", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.133", "http://www.web5.brother.pl", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.133", "http://www.web5.brother.sk", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.133", "http://www.web5.brother.si", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.133", "http://www.web5.brother.hu", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.133", "http://www.web5.brother.hr", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.133", "http://www.web5.brother.bg", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.133", "http://www.web5.brother.ro", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.133", "http://www.web5.brother.ru", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.134", "https://web6.online.brother.at", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.134", "https://web6.online.brother.ch", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.134", "https://web6.online.brother.de", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.134", "https://web6.online.brother.ie", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.134", "https://web6.online.brother.co.uk", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.134", "https://web6.online.brother.cz", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.134", "https://web6.online.brother.dk", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.134", "https://web6.online.brother.nl", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.134", "https://web6.online.brother.hu", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.134", "https://web6.online.brother.it", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.134", "https://web6.online.brother.no", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.134", "https://web6.online.brother.pl", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.134", "https://web6.online.brother.pt", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.134", "https://web6.online.brother.ru", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.134", "https://web6.online.brother.se", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.134", "https://web6.online.brother.fi", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.134", "https://web6.online.brother.be", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.134", "https://web6.online.brother.lu", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.134", "https://web6.online.brother.bg", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.134", "https://web6.online.brother.ro", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.134", "https://web6.online.brother.sk", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.134", "https://web6.online.brother.si", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.134", "http://www.web6.brother.co.uk", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.134", "http://www.web6.brother.de", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.134", "http://www.web6.brother.at", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.134", "http://www.web6.brother.fr", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.134", "http://www.web6.brother.ie", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.134", "http://www.web6.brother.it", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.134", "http://www.web6.brother.nl", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.134", "http://www.web6.brother.be", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.134", "http://www.web6.brother.ch", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.134", "http://www.web6.brother.pt", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.134", "http://www.web6.brother.es", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.134", "http://www.web6.brother.dk", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.134", "http://www.web6.brother.se", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.134", "http://www.web6.brother.fi", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.134", "http://www.web6.brother.lu", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.134", "http://www.web6.brother.lt", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.134", "http://www.web6.brother.lv", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.134", "http://www.web6.brother.is", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.134", "http://www.web6.brother.ee", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.134", "http://www.web6.brother.cz", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.134", "http://www.web6.brother.pl", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.134", "http://www.web6.brother.sk", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.134", "http://www.web6.brother.si", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.134", "http://www.web6.brother.hu", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.134", "http://www.web6.brother.hr", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.134", "http://www.web6.brother.bg", null)]
-        [NUnit.Framework.TestCaseAttribute("172.27.16.134", "http://www.web6.brother.ru", null)]
         public virtual void TestAllCDServersOnLiveEnvironment(string pRODUCTIONCDSERVERS, string brotherSite, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -398,6 +193,71 @@ this.ScenarioSetup(scenarioInfo);
 this.ScenarioSetup(scenarioInfo);
 #line 90
   testRunner.Given(string.Format("The following site \"{0}\" to validate I should receive an Ok response back", brotherSite), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Test CD servers on Live Environment to check user registration")]
+        [NUnit.Framework.TestCaseAttribute("10.91.0.131", "https://web1.online.brother.ie", "Test", "Test", null)]
+        public virtual void TestCDServersOnLiveEnvironmentToCheckUserRegistration(string pRODUCTIONCDSERVERS, string brotherSite, string firstName, string lastName, string[] exampleTags)
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Test CD servers on Live Environment to check user registration", exampleTags);
+#line 349
+this.ScenarioSetup(scenarioInfo);
+#line 351
+ testRunner.Given(string.Format("The following site \"{0}\" to validate I should receive an Ok response back", brotherSite), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 353
+ testRunner.When("I click on Create Account for \"United Kingdom\" web1 server", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 354
+ testRunner.And("I am redirected to the Brother Login/Register page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 355
+ testRunner.And("I have Checked No I Do Not Have An Account Checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                        "field",
+                        "value"});
+            table1.AddRow(new string[] {
+                        "FirstName",
+                        "AutoTest"});
+            table1.AddRow(new string[] {
+                        "LastName",
+                        "AutoTest"});
+            table1.AddRow(new string[] {
+                        "Password",
+                        "@@@@@"});
+            table1.AddRow(new string[] {
+                        "ConfirmPassword",
+                        "@@@@@"});
+#line 356
+ testRunner.And("I fill in the registration information using a valid email address", ((string)(null)), table1, "And ");
+#line 363
+    testRunner.And("I have Agreed to the Terms and Conditions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 364
+ testRunner.And("I declare that I do not use this account for business", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 365
+ testRunner.When("I press Create Your Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 366
+ testRunner.Then("I should see my account confirmation page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 367
+ testRunner.And("When I Click Go Back", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 368
+ testRunner.Then("I should be able to log into \"United Kingdom\" Brother Online using my account det" +
+                    "ails", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 369
+ testRunner.When("I navigate to my account for \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 370
+ testRunner.And(string.Format("I enter First Name containing {0}", firstName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 371
+ testRunner.And(string.Format("I enter the Last Name containing {0}", lastName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 372
+ testRunner.And("I click on update details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 373
+ testRunner.Then("my personal details should get updated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 374
+ testRunner.Then("I can navigate back to Brother Online home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 375
+ testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

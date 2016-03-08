@@ -192,6 +192,8 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.CategoryAttribute("SMOKE")]
         [NUnit.Framework.TestCaseAttribute("http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseDoNotTouch/HGe131V5-Suppli" +
             "esPage", null)]
+        [NUnit.Framework.TestCaseAttribute("http://main.co.uk.cms.brotherqas.eu/?sc_mode=preview&sc_itemid={7C650DE3-16DE-427" +
+            "9-AA5C-592D04D04B12}&sc_lang=en&sc_debug=0&sc_trace=0&sc_prof=0&sc_ri=0&sc_rb=0", null)]
         public virtual void NavigateToPublishedPageToVerifySuppliesProductPage_UK(string siteUrl, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -225,11 +227,11 @@ this.ScenarioSetup(scenarioInfo);
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Navigate to published page to verify News landing page - UK", @__tags);
-#line 84
-this.ScenarioSetup(scenarioInfo);
 #line 85
- testRunner.Given(string.Format("That I navigate to \"{0}\" in order to validate a published page", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioSetup(scenarioInfo);
 #line 86
+ testRunner.Given(string.Format("That I navigate to \"{0}\" in order to validate a published page", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 87
  testRunner.Then("I can validate article is displayed on the page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -248,11 +250,11 @@ this.ScenarioSetup(scenarioInfo);
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Navigate to published page to verify Glossary page - UK", @__tags);
-#line 94
-this.ScenarioSetup(scenarioInfo);
 #line 95
- testRunner.Given(string.Format("That I navigate to \"{0}\" in order to validate a published page", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioSetup(scenarioInfo);
 #line 96
+ testRunner.Given(string.Format("That I navigate to \"{0}\" in order to validate a published page", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 97
  testRunner.Then("I can validate glossary section is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -271,11 +273,11 @@ this.ScenarioSetup(scenarioInfo);
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Navigate to published page to verify Printer Listing page - UK", @__tags);
-#line 105
-this.ScenarioSetup(scenarioInfo);
 #line 106
- testRunner.Given(string.Format("That I navigate to \"{0}\" in order to validate a published page", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioSetup(scenarioInfo);
 #line 107
+ testRunner.Given(string.Format("That I navigate to \"{0}\" in order to validate a published page", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 108
  testRunner.Then("I can validate printers filter section is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -294,11 +296,11 @@ this.ScenarioSetup(scenarioInfo);
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Navigate to published page to verify Supplies page - UK", @__tags);
-#line 116
-this.ScenarioSetup(scenarioInfo);
 #line 117
- testRunner.Given(string.Format("That I navigate to \"{0}\" in order to validate a published page", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioSetup(scenarioInfo);
 #line 118
+ testRunner.Given(string.Format("That I navigate to \"{0}\" in order to validate a published page", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 119
  testRunner.Then("I can validate printers filter section is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -317,11 +319,11 @@ this.ScenarioSetup(scenarioInfo);
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Navigate to published page to verify Accessory Product Page - UK", @__tags);
-#line 126
-this.ScenarioSetup(scenarioInfo);
 #line 127
- testRunner.Given(string.Format("That I navigate to \"{0}\" in order to validate a published page", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioSetup(scenarioInfo);
 #line 128
+ testRunner.Given(string.Format("That I navigate to \"{0}\" in order to validate a published page", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 129
  testRunner.Then("I can validate accessory product title is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
