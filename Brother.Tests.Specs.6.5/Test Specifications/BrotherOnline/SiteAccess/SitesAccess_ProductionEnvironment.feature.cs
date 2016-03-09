@@ -201,18 +201,10 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("Test CD servers on Live Environment to check user registration")]
         [NUnit.Framework.TestCaseAttribute("Ireland", "https://web1.online.brother.ie", "Web_1", "Test", "User", null)]
         [NUnit.Framework.TestCaseAttribute("Ireland", "https://web2.online.brother.ie", "Web_2", "Test", "User", null)]
-        [NUnit.Framework.TestCaseAttribute("Ireland", "https://web5.online.brother.ie", "Web_5", "Test", "User", null)]
-        [NUnit.Framework.TestCaseAttribute("Ireland", "https://web6.online.brother.ie", "Web_6", "Test", "User", null)]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "https://web1.online.brother.co.uk", "Web_1", "Test", "User", null)]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "https://web2.online.brother.co.uk", "Web_2", "Test", "User", null)]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "https://web5.online.brother.co.uk", "Web_5", "Test", "User", null)]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "https://web6.online.brother.co.uk", "Web_6", "Test", "User", null)]
-        [NUnit.Framework.TestCaseAttribute("France", "https://web1.online.brother.fr", "Web_1", "Test", "User", null)]
-        [NUnit.Framework.TestCaseAttribute("France", "https://web2.online.brother.fr", "Web_2", "Test", "User", null)]
         [NUnit.Framework.TestCaseAttribute("France", "https://web5.online.brother.fr", "Web_5", "Test", "User", null)]
         [NUnit.Framework.TestCaseAttribute("France", "https://web6.online.brother.fr", "Web_6", "Test", "User", null)]
-        [NUnit.Framework.TestCaseAttribute("Germany", "https://web1.online.brother.de", "Web_1", "Test", "User", null)]
-        [NUnit.Framework.TestCaseAttribute("Germany", "https://web2.online.brother.de", "Web_2", "Test", "User", null)]
         [NUnit.Framework.TestCaseAttribute("Germany", "https://web5.online.brother.de", "Web_5", "Test", "User", null)]
         [NUnit.Framework.TestCaseAttribute("Germany", "https://web6.online.brother.de", "Web_6", "Test", "User", null)]
         public virtual void TestCDServersOnLiveEnvironmentToCheckUserRegistration(string country, string web, string serverName, string firstName, string lastName, string[] exampleTags)
@@ -251,22 +243,24 @@ this.ScenarioSetup(scenarioInfo);
 #line 361
  testRunner.Then("I should see my account confirmation page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 362
- testRunner.And("When I Click Go Back", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Once I have Validated an Email was received and verified my account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 363
- testRunner.Then(string.Format("I should be able to log into \"{0}\" Brother Online using my account details", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("When I Click Go Back", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 364
- testRunner.When(string.Format("I navigate to my account for \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Then(string.Format("I should be able to log into \"{0}\" Brother Online using my account details", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 365
- testRunner.And(string.Format("I enter First Name containing {0}", firstName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When(string.Format("I navigate to my account for \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 366
- testRunner.And(string.Format("I enter the Last Name containing {0}", lastName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("I enter First Name containing {0}", firstName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 367
- testRunner.And("I click on update details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("I enter the Last Name containing {0}", lastName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 368
- testRunner.Then("my personal details should get updated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("I click on update details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 369
- testRunner.Then("I can navigate back to Brother Online home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("my personal details should get updated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 370
+ testRunner.Then("I can navigate back to Brother Online home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 371
  testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();

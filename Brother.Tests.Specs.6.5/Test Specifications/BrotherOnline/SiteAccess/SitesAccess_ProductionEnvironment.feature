@@ -359,6 +359,7 @@ Scenario Outline: Test CD servers on Live Environment to check user registration
 	And I declare that I do not use this account for business
 	When I press Create Your Account
 	Then I should see my account confirmation page
+	And Once I have Validated an Email was received and verified my account
 	And When I Click Go Back
 	Then I should be able to log into "<Country>" Brother Online using my account details
 	When I navigate to my account for "<Country>"
@@ -373,18 +374,18 @@ Scenarios:
 | Country        | Web                               | ServerName | FirstName | LastName |
 | Ireland        | https://web1.online.brother.ie    | Web_1      | Test      | User     |
 | Ireland        | https://web2.online.brother.ie    | Web_2      | Test      | User     |
-| Ireland        | https://web5.online.brother.ie    | Web_5      | Test      | User     |
-| Ireland        | https://web6.online.brother.ie    | Web_6      | Test      | User     |
+#| Ireland        | https://web5.online.brother.ie    | Web_5      | Test      | User     |
+#| Ireland        | https://web6.online.brother.ie    | Web_6      | Test      | User     |
 | United Kingdom | https://web1.online.brother.co.uk | Web_1      | Test      | User     |
 | United Kingdom | https://web2.online.brother.co.uk | Web_2      | Test      | User     |
-| United Kingdom | https://web5.online.brother.co.uk | Web_5      | Test      | User     |
-| United Kingdom | https://web6.online.brother.co.uk | Web_6      | Test      | User     |
-| France         | https://web1.online.brother.fr    | Web_1      | Test      | User     |
-| France         | https://web2.online.brother.fr    | Web_2      | Test      | User     |
+#| United Kingdom | https://web5.online.brother.co.uk | Web_5      | Test      | User     |
+#| United Kingdom | https://web6.online.brother.co.uk | Web_6      | Test      | User     |
+#| France         | https://web1.online.brother.fr    | Web_1      | Test      | User     |
+#| France         | https://web2.online.brother.fr    | Web_2      | Test      | User     |
 | France         | https://web5.online.brother.fr    | Web_5      | Test      | User     |
 | France         | https://web6.online.brother.fr    | Web_6      | Test      | User     |
-| Germany        | https://web1.online.brother.de    | Web_1      | Test      | User     |
-| Germany        | https://web2.online.brother.de    | Web_2      | Test      | User     |
+#| Germany        | https://web1.online.brother.de    | Web_1      | Test      | User     |
+#| Germany        | https://web2.online.brother.de    | Web_2      | Test      | User     |
 | Germany        | https://web5.online.brother.de    | Web_5      | Test      | User     |
 | Germany        | https://web6.online.brother.de    | Web_6      | Test      | User     |
 
