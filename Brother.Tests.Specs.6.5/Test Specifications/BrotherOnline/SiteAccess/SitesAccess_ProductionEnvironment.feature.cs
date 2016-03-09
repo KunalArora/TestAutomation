@@ -21,8 +21,6 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("AccessAllProductionSites")]
     [NUnit.Framework.CategoryAttribute("TEST")]
-    [NUnit.Framework.CategoryAttribute("SMOKE")]
-    [NUnit.Framework.CategoryAttribute("PROD")]
     public partial class AccessAllProductionSitesFeature
     {
         
@@ -38,9 +36,7 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "AccessAllProductionSites", "In order to validate the status of a Websites on the Production environment\r\nAs a" +
                     " sanity check\r\nWe need to receive a 200 OK request back from a list of selected " +
                     "sites", ProgrammingLanguage.CSharp, new string[] {
-                        "TEST",
-                        "SMOKE",
-                        "PROD"});
+                        "TEST"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -75,6 +71,7 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Get 200 OK response back from Brother Main Site \"<Country>\" on the LIVE environme" +
             "nt")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Ireland", "http://www.brother.ie/", null)]
         [NUnit.Framework.TestCaseAttribute("Germany", "http://www.brother.de/", null)]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "http://www.brother.co.uk/", null)]
@@ -96,11 +93,17 @@ namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.SiteAccess
         [NUnit.Framework.TestCaseAttribute("Luxembourg", "http://www.brother.lu/", null)]
         public virtual void Get200OKResponseBackFromBrotherMainSiteCountryOnTheLIVEEnvironment(string country, string siteUrl, string[] exampleTags)
         {
+            string[] @__tags = new string[] {
+                    "ignore"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get 200 OK response back from Brother Main Site \"<Country>\" on the LIVE environme" +
-                    "nt", exampleTags);
-#line 7
-this.ScenarioSetup(scenarioInfo);
+                    "nt", @__tags);
 #line 8
+this.ScenarioSetup(scenarioInfo);
+#line 9
  testRunner.Given(string.Format("The following site \"{0}\" to validate I should receive an Ok response back", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             this.ScenarioCleanup();
@@ -108,6 +111,7 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Get 200 OK response back from Brother Online \"<Country>\" on the LIVE environment")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Ireland", "https://online.brother.ie/", null)]
         [NUnit.Framework.TestCaseAttribute("Spain", "https://online.brother.es/", null)]
         [NUnit.Framework.TestCaseAttribute("Poland", "https://online.brother.pl/", null)]
@@ -130,10 +134,16 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestCaseAttribute("Luxembourg", "https://online.brother.lu/", null)]
         public virtual void Get200OKResponseBackFromBrotherOnlineCountryOnTheLIVEEnvironment(string country, string siteUrl, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get 200 OK response back from Brother Online \"<Country>\" on the LIVE environment", exampleTags);
-#line 37
-this.ScenarioSetup(scenarioInfo);
+            string[] @__tags = new string[] {
+                    "ignore"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get 200 OK response back from Brother Online \"<Country>\" on the LIVE environment", @__tags);
 #line 38
+this.ScenarioSetup(scenarioInfo);
+#line 39
  testRunner.Given(string.Format("The following site \"{0}\" to validate I should receive an Ok response back", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             this.ScenarioCleanup();
@@ -142,6 +152,7 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Get 200 OK response back from Web Conferencing \"<Country>\" on the LIVE environmen" +
             "t")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "http://webconferencing.brother.co.uk/", null)]
         [NUnit.Framework.TestCaseAttribute("France", "http://webconference.brother.fr/", null)]
         [NUnit.Framework.TestCaseAttribute("Switzerland", "http://visioconference.brother.ch/", null)]
@@ -149,11 +160,17 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestCaseAttribute("Germany", "http://videokonferenzen.brother.de/", null)]
         public virtual void Get200OKResponseBackFromWebConferencingCountryOnTheLIVEEnvironment(string country, string siteUrl, string[] exampleTags)
         {
+            string[] @__tags = new string[] {
+                    "ignore"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get 200 OK response back from Web Conferencing \"<Country>\" on the LIVE environmen" +
-                    "t", exampleTags);
-#line 67
+                    "t", @__tags);
+#line 69
 this.ScenarioSetup(scenarioInfo);
-#line 68
+#line 70
  testRunner.Given(string.Format("The following site \"{0}\" to validate I should receive an Ok response back", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             this.ScenarioCleanup();
@@ -162,14 +179,21 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Get 200 OK response back from Creative Centre \"<Country>\" on the LIVE environment" +
             "")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "https://creativecenter.brother.eu", null)]
         public virtual void Get200OKResponseBackFromCreativeCentreCountryOnTheLIVEEnvironment(string country, string siteUrl, string[] exampleTags)
         {
+            string[] @__tags = new string[] {
+                    "ignore"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get 200 OK response back from Creative Centre \"<Country>\" on the LIVE environment" +
-                    "", exampleTags);
-#line 80
+                    "", @__tags);
+#line 82
 this.ScenarioSetup(scenarioInfo);
-#line 81
+#line 83
  testRunner.Given(string.Format("The following site \"{0}\" to validate I should receive an Ok response back", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             this.ScenarioCleanup();
@@ -189,9 +213,9 @@ this.ScenarioSetup(scenarioInfo);
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Test all CD servers on Live Environment", @__tags);
-#line 89
+#line 91
 this.ScenarioSetup(scenarioInfo);
-#line 90
+#line 92
   testRunner.Given(string.Format("The following site \"{0}\" to validate I should receive an Ok response back", brotherSite), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             this.ScenarioCleanup();
@@ -200,21 +224,21 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Test CD servers on Live Environment to check user registration")]
         [NUnit.Framework.TestCaseAttribute("Ireland", "https://web1.online.brother.ie", "Web_1", "Test", "User", null)]
-        [NUnit.Framework.TestCaseAttribute("Ireland", "https://web2.online.brother.ie", "Web_2", "Test", "User", null)]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "https://web1.online.brother.co.uk", "Web_1", "Test", "User", null)]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "https://web2.online.brother.co.uk", "Web_2", "Test", "User", null)]
-        [NUnit.Framework.TestCaseAttribute("France", "https://web5.online.brother.fr", "Web_5", "Test", "User", null)]
-        [NUnit.Framework.TestCaseAttribute("France", "https://web6.online.brother.fr", "Web_6", "Test", "User", null)]
-        [NUnit.Framework.TestCaseAttribute("Germany", "https://web5.online.brother.de", "Web_5", "Test", "User", null)]
-        [NUnit.Framework.TestCaseAttribute("Germany", "https://web6.online.brother.de", "Web_6", "Test", "User", null)]
+        [NUnit.Framework.TestCaseAttribute("France", "https://web2.online.brother.ie", "Web_1", "Test", "User", null)]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "https://web1.online.brother.co.uk", "Web_2", "Test", "User", null)]
+        [NUnit.Framework.TestCaseAttribute("Netherlands", "https://web2.online.brother.co.uk", "Web_2", "Test", "User", null)]
+        [NUnit.Framework.TestCaseAttribute("Ireland", "https://web5.online.brother.fr", "Web_5", "Test", "User", null)]
+        [NUnit.Framework.TestCaseAttribute("Belgium", "https://web6.online.brother.fr", "Web_5", "Test", "User", null)]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "https://web5.online.brother.de", "Web_5", "Test", "User", null)]
+        [NUnit.Framework.TestCaseAttribute("Poland", "https://web6.online.brother.de", "Web_6", "Test", "User", null)]
         public virtual void TestCDServersOnLiveEnvironmentToCheckUserRegistration(string country, string web, string serverName, string firstName, string lastName, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Test CD servers on Live Environment to check user registration", exampleTags);
-#line 348
-this.ScenarioSetup(scenarioInfo);
-#line 349
-   testRunner.Given(string.Format("I navigate to BOL \"{0}\" for \"{1}\"", web, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 350
+this.ScenarioSetup(scenarioInfo);
+#line 351
+   testRunner.Given(string.Format("I navigate to BOL \"{0}\" for \"{1}\"", web, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 352
  testRunner.When("I have Checked No I Do Not Have An Account Checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
@@ -232,35 +256,35 @@ this.ScenarioSetup(scenarioInfo);
             table1.AddRow(new string[] {
                         "ConfirmPassword",
                         "@@@@@"});
-#line 351
+#line 353
  testRunner.When("I fill in the registration information using a valid email address", ((string)(null)), table1, "When ");
-#line 358
-    testRunner.And("I have Agreed to the Terms and Conditions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 359
- testRunner.And("I declare that I do not use this account for business", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 360
- testRunner.When("I press Create Your Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+    testRunner.And("I have Agreed to the Terms and Conditions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 361
- testRunner.Then("I should see my account confirmation page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("I declare that I do not use this account for business", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 362
- testRunner.And("Once I have Validated an Email was received and verified my account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("I press Create Your Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 363
- testRunner.And("When I Click Go Back", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("I should see my account confirmation page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 364
- testRunner.Then(string.Format("I should be able to log into \"{0}\" Brother Online using my account details", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("Once I have Validated an Email was received and verified my account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 365
- testRunner.When(string.Format("I navigate to my account for \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("When I Click Go Back", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 366
- testRunner.And(string.Format("I enter First Name containing {0}", firstName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then(string.Format("I should be able to log into \"{0}\" Brother Online using my account details", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 367
- testRunner.And(string.Format("I enter the Last Name containing {0}", lastName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When(string.Format("I navigate to my account for \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 368
- testRunner.And("I click on update details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("I enter First Name containing {0}", firstName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 369
- testRunner.Then("my personal details should get updated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And(string.Format("I enter the Last Name containing {0}", lastName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 370
- testRunner.Then("I can navigate back to Brother Online home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("I click on update details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 371
+ testRunner.Then("my personal details should get updated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 372
+ testRunner.Then("I can navigate back to Brother Online home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 373
  testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
