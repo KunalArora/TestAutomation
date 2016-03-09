@@ -1,9 +1,10 @@
-﻿@TEST @SMOKE @PROD
+﻿@TEST 
 Feature: AccessAllProductionSites
 	In order to validate the status of a Websites on the Production environment
 	As a sanity check
 	We need to receive a 200 OK request back from a list of selected sites
 
+@ignore
 Scenario Outline: Get 200 OK response back from Brother Main Site "<Country>" on the LIVE environment
 	Given The following site "<Site Url>" to validate I should receive an Ok response back	
 
@@ -33,7 +34,7 @@ Scenarios:
 #	| Bulgaria       | http://www.brother.bg/    |
 #	| Romania        | http://www.brother.ro/    |
 
-
+@ignore
 Scenario Outline: Get 200 OK response back from Brother Online "<Country>" on the LIVE environment
 	Given The following site "<Site Url>" to validate I should receive an Ok response back	
 
@@ -64,6 +65,7 @@ Scenarios:
 #	| Bulgaria       | https://online.brother.bg/    |
 #	| Romania        | https://online.brother.ro/    |
 
+@ignore
 Scenario Outline: Get 200 OK response back from Web Conferencing "<Country>" on the LIVE environment
 	Given The following site "<Site Url>" to validate I should receive an Ok response back	
 
@@ -76,7 +78,7 @@ Scenarios:
 	| Ireland        | http://webconferencing.brother.ie/    |
 	| Germany        | http://videokonferenzen.brother.de/   |
 #	| Spain          | http://videoconferencia.brother.es/   |
-
+@ignore
 Scenario Outline: Get 200 OK response back from Creative Centre "<Country>" on the LIVE environment
 	Given The following site "<Site Url>" to validate I should receive an Ok response back
 
@@ -373,20 +375,12 @@ Scenario Outline: Test CD servers on Live Environment to check user registration
 Scenarios:
 | Country        | Web                               | ServerName | FirstName | LastName |
 | Ireland        | https://web1.online.brother.ie    | Web_1      | Test      | User     |
-| Ireland        | https://web2.online.brother.ie    | Web_2      | Test      | User     |
-#| Ireland        | https://web5.online.brother.ie    | Web_5      | Test      | User     |
-#| Ireland        | https://web6.online.brother.ie    | Web_6      | Test      | User     |
-| United Kingdom | https://web1.online.brother.co.uk | Web_1      | Test      | User     |
-| United Kingdom | https://web2.online.brother.co.uk | Web_2      | Test      | User     |
-#| United Kingdom | https://web5.online.brother.co.uk | Web_5      | Test      | User     |
-#| United Kingdom | https://web6.online.brother.co.uk | Web_6      | Test      | User     |
-#| France         | https://web1.online.brother.fr    | Web_1      | Test      | User     |
-#| France         | https://web2.online.brother.fr    | Web_2      | Test      | User     |
-| France         | https://web5.online.brother.fr    | Web_5      | Test      | User     |
-| France         | https://web6.online.brother.fr    | Web_6      | Test      | User     |
-#| Germany        | https://web1.online.brother.de    | Web_1      | Test      | User     |
-#| Germany        | https://web2.online.brother.de    | Web_2      | Test      | User     |
-| Germany        | https://web5.online.brother.de    | Web_5      | Test      | User     |
-| Germany        | https://web6.online.brother.de    | Web_6      | Test      | User     |
+| France         | https://web2.online.brother.ie    | Web_1      | Test      | User     |
+| United Kingdom | https://web1.online.brother.co.uk | Web_2      | Test      | User     |
+| Netherlands    | https://web2.online.brother.co.uk | Web_2      | Test      | User     |
+| Ireland        | https://web5.online.brother.fr    | Web_5      | Test      | User     |
+| Belgium        | https://web6.online.brother.fr    | Web_5      | Test      | User     |
+| United Kingdom | https://web5.online.brother.de    | Web_5      | Test      | User     |
+| Poland         | https://web6.online.brother.de    | Web_6      | Test      | User     |
 
 
