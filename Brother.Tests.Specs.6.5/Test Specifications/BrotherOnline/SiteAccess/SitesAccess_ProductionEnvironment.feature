@@ -384,3 +384,18 @@ Scenarios:
 | Poland         | https://web6.online.brother.de    | Web_6      | Test      | User     |
 
 
+@PROD
+Scenario Outline: View  list of available Laser Printers 
+    Given I navigate to  "<Web>" for "<country>"
+	And I click on Topmenu
+	#Given I have navigated to the Brother Main Site "<country>" products pages
+	Given I have navigated to the "<site>" MainSite URL for country "<country>"
+	Then I should see a list of Laser printers
+	And I can validate that each printer is a valid printer
+
+Scenarios:
+| country             | site                     | Web                               |
+| Ireland             | printers/laser-printers  | https://web1.online.brother.ie    |
+| United Kingdom      | printers/all-mono-lasers | https://web1.online.brother.co.uk |
+	
+	

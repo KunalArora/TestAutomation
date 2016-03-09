@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Drawing;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
+using Brother.WebSites.Core.Pages.BrotherMainSite;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.PageObjects;
@@ -183,6 +184,16 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         [FindsBy(How = How.Id, Using = "cccontent_1_singlecolumnform_0_Warnings")]
         public IWebElement DuplicateCcEmailErrorMessage;
 
+        [FindsBy(How = How.CssSelector, Using = "#TopNavigationControl_rptPrimaryLevelNav_aSectionLink_0")]
+        public IWebElement TopMenuTab;
+
+
+
+        public MainSiteHomePage ClickTopMenuTab()
+        {
+            TopMenuTab.Click();
+            return GetInstance<MainSiteHomePage>(Driver);
+        }
         private static readonly Dictionary<string, string> _pageTitle = new Dictionary<string, string>
         {
             {"Spain", "Inicio de sesión / Cree una cuenta"},
