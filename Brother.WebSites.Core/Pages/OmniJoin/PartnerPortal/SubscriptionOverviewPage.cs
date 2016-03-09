@@ -18,7 +18,7 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal
         [FindsBy(How = How.LinkText, Using = "Manage Subscription")]
         public IWebElement  ManageSubscriptionLink;
 
-        [FindsBy(How = How.CssSelector, Using = "#content_0_innercontent_2_btnPreview")]
+        [FindsBy(How = How.CssSelector, Using = "#content_0_innercontent_2_btnSubmit")]
         public IWebElement  ManageSubscriptionPlanButton;
 
         [FindsBy(How = How.CssSelector, Using = "#content_0_innercontent_2_valNumberOfLicencesRequired")]
