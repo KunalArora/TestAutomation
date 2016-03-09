@@ -2,6 +2,7 @@
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
+using Brother.WebSites.Core.Pages.BrotherMainSite;
 using Brother.WebSites.Core.Pages.BrotherMainSite.Basket;
 using Brother.WebSites.Core.Pages.BrotherOnline.Account;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
@@ -935,6 +936,19 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             NextPage = CurrentPage.As<HomePage>().ClickSignInCreateAccountButton();
            
         }
+        [Given(@"I navigate to  ""(.*)"" for ""(.*)""")]
+        public void GivenINavigateToFor(string web, string country)
+        {
+            Helper.SetCountry(country);
+            var title = HomePage.WelcomePageCountryTitle(country);
+            CurrentPage = BasePage.LoadWebBoxes(CurrentDriver, web, title);
+        }
+        [Given(@"I click on Topmenu")]
+        public void GivenIClickOnTopmenu()
+        {
+            NextPage = CurrentPage.As<HomePage>().ClickTopMenuTab();
+        }
+
         [When(@"I click on ""(.*)"" Sign In")]
         public void WhenIClickOnSignIn(string country)
         {

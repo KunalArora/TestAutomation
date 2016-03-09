@@ -289,6 +289,36 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("View  list of available Laser Printers")]
+        [NUnit.Framework.CategoryAttribute("PROD")]
+        [NUnit.Framework.TestCaseAttribute("Ireland", "printers/laser-printers", "https://web1.online.brother.ie", null)]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "printers/all-mono-lasers", "https://web1.online.brother.co.uk", null)]
+        public virtual void ViewListOfAvailableLaserPrinters(string country, string site, string web, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "PROD"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("View  list of available Laser Printers", @__tags);
+#line 388
+this.ScenarioSetup(scenarioInfo);
+#line 389
+    testRunner.Given(string.Format("I navigate to  \"{0}\" for \"{1}\"", web, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 390
+ testRunner.And("I click on Topmenu", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 392
+ testRunner.Given(string.Format("I have navigated to the \"{0}\" MainSite URL for country \"{1}\"", site, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 393
+ testRunner.Then("I should see a list of Laser printers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 394
+ testRunner.And("I can validate that each printer is a valid printer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore
