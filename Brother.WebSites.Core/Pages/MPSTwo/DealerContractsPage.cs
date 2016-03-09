@@ -68,17 +68,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             IsSignedContractDisplayed();
         }
 
-        public void VerifyAcceptedContractIsDisplayed()
-        {
-            var createdProposal = CreatedProposalReference();
-            var newlyAdded = @"//td[text()='{0}']";
-            newlyAdded = String.Format(newlyAdded, createdProposal);
-
-            var newProposal = Driver.FindElement(By.XPath(newlyAdded));
-
-            TestCheck.AssertIsEqual(true, newProposal.Displayed, "Is new proposal displayed");
-        }
-
         public void VerifyAcceptedContractIsNotDisplayed()
         {
             var createdProposal = MpsUtil.CreatedProposal();

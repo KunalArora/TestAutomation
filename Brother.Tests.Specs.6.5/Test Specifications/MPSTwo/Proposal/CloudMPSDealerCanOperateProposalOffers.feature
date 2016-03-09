@@ -112,5 +112,7 @@ Scenario Outline: Dealer can copy an existing proposal offer for all countries
 	| Cloud MPS Dealer | Italy          | Acquisto + Consumo con assistenza | Volume minimo                             | 48      | Quarterly in Advance   | Create new customer    | With    |
 	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service     | Minimum Volume                            | 3 years | Quarterly in Arrears   | Skip customer creation | Without |
 	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service     | Minimum Volume                            | 4 years | Quarterly in Arrears   | Create new customer    | With    |
+	| Cloud MPS Dealer | Spain          | Purchase & Click con Service      | Volúmen mínimo                            | 3 años  | Quarterly in Arrears   | Skip customer creation | Without |
+	| Cloud MPS Dealer | Spain          | Purchase & Click con Service      | Volúmen mínimo                            | 3 años  | Quarterly in Arrears   | Create new customer    | With    |
 	
 

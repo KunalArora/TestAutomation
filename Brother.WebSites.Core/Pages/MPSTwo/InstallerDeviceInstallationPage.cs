@@ -154,6 +154,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 serial = serialNumberBIT;
             }
+            else if (IsSpainSystem())
+            {
+                serial = serialNumberBES;
+            }
 
             SpecFlow.SetContext("SerialNumber", serial);
 
@@ -185,7 +189,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 serial = serialNumberBIT;
             }
-
+            else if (IsSpainSystem())
+            {
+                serial = serialNumberBES;
+            }
             SpecFlow.SetContext("UsedSerialNumber", serial);
 
             return serial;

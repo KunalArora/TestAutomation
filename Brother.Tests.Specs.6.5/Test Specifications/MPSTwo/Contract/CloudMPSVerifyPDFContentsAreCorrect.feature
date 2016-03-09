@@ -30,7 +30,8 @@ Scenarios:
 	| ContractType                      | Country | UsageType                                 | Length | Billing                |
 	| Buy & Click                       | France  | Engagement sur un minimum volume de pages | 3 ans  | Trimestrale anticipata |
 	| Acquisto + Consumo con assistenza | Italy   | Volume minimo                             | 36     | Quarterly in Advance   |
-
+	| Purchase & Click con Service      | Spain   | Volúmen mínimo                            | 3 años | Quarterly in Arrears   |
+	
 
 Scenario Outline: Verify German PDF Contents Are Correct
 	Given German Dealer have created a "<Country>" awating acceptance contract of "<ContractType>" and "<UsageType>"

@@ -94,6 +94,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 reason = "Andere";
             }
+            else if (IsSpainSystem())
+            {
+                reason = "Otro";
+            }
 
             return reason;
         }
@@ -149,7 +153,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ActionsModule.IsNewlyCreatedItemDisplayed(Driver);
         }
 
-        public void ClickOnActionButtonAgainstRelevantProposal(IWebDriver driver)
+        public void ClickOnActionButtonAgainstRelevantProposal()
         {
             ActionsModule.ClickOnSpecificActionsElement(Driver);
         }
@@ -159,13 +163,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             ActionsModule.NavigateToSummaryPageUsingActionButton(driver);
         }
-
-        private IWebElement ActionButtonElementByName(string name, string tdcol)
-        {
-            string element = String.Format("//td[text()=\"{0}\"]/parent::tr/td[{1}]/div/button", name, tdcol);
-            return Driver.FindElement(By.XPath(element));
-        }
-
+        
         public LocalOfficeApproverProposalsSummaryPage NavigateToViewSummary()
         {
             ActionsModule.ClickOnSpecificActionsElement(Driver);
