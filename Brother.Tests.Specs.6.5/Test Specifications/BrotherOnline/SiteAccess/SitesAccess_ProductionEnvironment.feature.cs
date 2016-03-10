@@ -314,6 +314,80 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Create B2C account and sign Up for 14 day Free trial on uk")]
+        [NUnit.Framework.CategoryAttribute("PROD")]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "https://web1.online.brother.co.uk", null)]
+        public virtual void CreateB2CAccountAndSignUpFor14DayFreeTrialOnUk(string country, string web, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "PROD"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create B2C account and sign Up for 14 day Free trial on uk", @__tags);
+#line 400
+this.ScenarioSetup(scenarioInfo);
+#line 401
+ testRunner.Given(string.Format("I navigate to BOL \"{0}\" for \"{1}\"", web, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 402
+ testRunner.When("I am redirected to the Brother Login/Register page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 403
+ testRunner.And("I have Checked No I Do Not Have An Account Checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "field",
+                        "value"});
+            table2.AddRow(new string[] {
+                        "FirstName",
+                        "AutoTest"});
+            table2.AddRow(new string[] {
+                        "LastName",
+                        "AutoTest"});
+            table2.AddRow(new string[] {
+                        "Password",
+                        "@@@@@"});
+            table2.AddRow(new string[] {
+                        "ConfirmPassword",
+                        "@@@@@"});
+#line 404
+ testRunner.And("I fill in the registration information using a valid email address", ((string)(null)), table2, "And ");
+#line 410
+ testRunner.And("I have Agreed to the Terms and Conditions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 411
+ testRunner.And("I declare that I do not use this account for business", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 412
+ testRunner.When("I press Create Your Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 413
+ testRunner.Then("I should see my account confirmation page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 414
+ testRunner.And("When I Click Go Back", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 415
+ testRunner.Then(string.Format("I should be able to log into \"{0}\" and \"{1}\" Brother site using my account detail" +
+                        "s", web, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 416
+ testRunner.And("I click on Try Now", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 417
+    testRunner.Then("I should be directed to the OmniJoin Free Trial page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 418
+   testRunner.When("I have entered a valid First and Last name, \"AutoTest\", \"AutoTest\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 419
+   testRunner.And("I have entered a valid email address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 420
+   testRunner.And("I have entered a valid password and confirmpassword, \"Brother123\", \"Brother123\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 421
+   testRunner.When("I have entered a valid phone number \"01555 522522\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 422
+    testRunner.And("I have Agreed to the Free Trial Terms and Conditions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 423
+ testRunner.And("if I click Submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 424
+ testRunner.Then("I should be directed to the download page indicating I have 14 days Free trial", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

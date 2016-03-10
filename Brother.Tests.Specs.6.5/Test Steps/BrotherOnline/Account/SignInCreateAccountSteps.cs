@@ -842,6 +842,19 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             WhenIEnterAValidPassword(Helper.Password);
             WhenIClickOnSignIn(country);
         }
+        // Added steps
+        [Then(@"I should be able to log into ""(.*)"" and ""(.*)"" Brother site using my account details")]
+        public void ThenIShouldBeAbleToLogIntoAndBrotherSiteUsingMyAccountDetails(string web, string country)
+        {
+            TestCheck.AssertIsNotEqual(true, CurrentPage.As<RegistrationPage>().IsWarningBarPresent(0, 5),
+              "Warning Bar - account validation");
+
+            WhenIAmRedirectedToTheBrotherLoginRegisterPage();
+            WhenIEnterAValidEmailAddress(Email.RegistrationEmailAddress);
+            WhenIEnterAValidPassword(Helper.Password);
+            WhenIClickOnSignIn(country);
+        }
+
         [Then(@"I should be logged in successfully")]
         public void ThenIShouldBeLoggedInSuccessfully()
         {

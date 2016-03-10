@@ -396,7 +396,37 @@ Scenarios:
 | United Kingdom      | printers/all-mono-lasers | http://www.web1.brother.co.uk/     |
 
 
-
-
+@PROD
+Scenario Outline: Create B2C account and sign Up for 14 day Free trial on uk
+	Given I navigate to BOL "<Web>" for "<Country>"
+	When I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I fill in the registration information using a valid email address 
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Password        | @@@@@	       |
+	| ConfirmPassword | @@@@@		   |
+	And I have Agreed to the Terms and Conditions
+	And I declare that I do not use this account for business
+	When I press Create Your Account
+	Then I should see my account confirmation page
+	And When I Click Go Back
+	Then I should be able to log into "<Web>" and "<Country>" Brother site using my account details
+	And I click on Try Now
+    Then I should be directed to the OmniJoin Free Trial page
+   When I have entered a valid First and Last name, "AutoTest", "AutoTest"
+   And I have entered a valid email address
+   And I have entered a valid password and confirmpassword, "Brother123", "Brother123"
+   When I have entered a valid phone number "01555 522522"
+    And I have Agreed to the Free Trial Terms and Conditions
+	And if I click Submit
+	Then I should be directed to the download page indicating I have 14 days Free trial
+	#And Once I have Validated a Free Trial confirmation Email was received
+	#Then If I go back to Brother Online Home Page 
+	#Then I can sign out of Brother Online
+	#Then I am redirected to the Brother Home Page
 	
-	
+Scenarios:
+| Country        | Web                               |
+| United Kingdom | https://web1.online.brother.co.uk |
