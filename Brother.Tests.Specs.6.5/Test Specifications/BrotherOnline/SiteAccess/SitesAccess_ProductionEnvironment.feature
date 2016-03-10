@@ -397,7 +397,7 @@ Scenarios:
 
 
 @PROD
-Scenario Outline: Create B2C account and sign Up for 14 day Free trial on 
+Scenario Outline: Create B2C account and sign Up for 14 day Free trial on uk
 	Given I navigate to BOL "<Web>" for "<Country>"
 	When I am redirected to the Brother Login/Register page
 	And I have Checked No I Do Not Have An Account Checkbox
@@ -407,7 +407,6 @@ Scenario Outline: Create B2C account and sign Up for 14 day Free trial on
 	| LastName        | AutoTest       |
 	| Password        | @@@@@	       |
 	| ConfirmPassword | @@@@@		   |
-
 	And I have Agreed to the Terms and Conditions
 	And I declare that I do not use this account for business
 	When I press Create Your Account
@@ -430,4 +429,4 @@ Scenario Outline: Create B2C account and sign Up for 14 day Free trial on
 	
 Scenarios:
 | Country        | Web                               |
-| United Kingdom | https://web2.online.brother.co.uk |
+| United Kingdom | https://web1.online.brother.co.uk |

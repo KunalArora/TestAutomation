@@ -316,10 +316,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Create B2C account and sign Up for 14 day Free trial on")]
+        [NUnit.Framework.DescriptionAttribute("Create B2C account and sign Up for 14 day Free trial on uk")]
         [NUnit.Framework.CategoryAttribute("PROD")]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "https://web2.online.brother.co.uk", null)]
-        public virtual void CreateB2CAccountAndSignUpFor14DayFreeTrialOn(string country, string web, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "https://web1.online.brother.co.uk", null)]
+        public virtual void CreateB2CAccountAndSignUpFor14DayFreeTrialOnUk(string country, string web, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "PROD"};
@@ -327,7 +327,7 @@ this.ScenarioSetup(scenarioInfo);
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create B2C account and sign Up for 14 day Free trial on", @__tags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create B2C account and sign Up for 14 day Free trial on uk", @__tags);
 #line 400
 this.ScenarioSetup(scenarioInfo);
 #line 401
@@ -354,36 +354,36 @@ this.ScenarioSetup(scenarioInfo);
                         "@@@@@"});
 #line 404
  testRunner.And("I fill in the registration information using a valid email address", ((string)(null)), table2, "And ");
-#line 411
+#line 410
  testRunner.And("I have Agreed to the Terms and Conditions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 412
+#line 411
  testRunner.And("I declare that I do not use this account for business", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 413
+#line 412
  testRunner.When("I press Create Your Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 414
+#line 413
  testRunner.Then("I should see my account confirmation page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 415
+#line 414
  testRunner.And("When I Click Go Back", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 416
+#line 415
  testRunner.Then(string.Format("I should be able to log into \"{0}\" and \"{1}\" Brother site using my account detail" +
                         "s", web, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 417
+#line 416
  testRunner.And("I click on Try Now", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 418
+#line 417
     testRunner.Then("I should be directed to the OmniJoin Free Trial page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 419
+#line 418
    testRunner.When("I have entered a valid First and Last name, \"AutoTest\", \"AutoTest\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 420
+#line 419
    testRunner.And("I have entered a valid email address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 421
+#line 420
    testRunner.And("I have entered a valid password and confirmpassword, \"Brother123\", \"Brother123\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 422
+#line 421
    testRunner.When("I have entered a valid phone number \"01555 522522\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 423
+#line 422
     testRunner.And("I have Agreed to the Free Trial Terms and Conditions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 424
+#line 423
  testRunner.And("if I click Submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 425
+#line 424
  testRunner.Then("I should be directed to the download page indicating I have 14 days Free trial", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
