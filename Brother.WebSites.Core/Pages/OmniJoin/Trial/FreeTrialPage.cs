@@ -81,8 +81,7 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Trial
         [FindsBy(How = How.XPath, Using = ".//*[@id='content_0_trynowcontentright_0_TermsAndConditionsCheckbox']")] 
         public IWebElement StartFreeTrailOmniJoinTermsofServciesCheckBox;
 
-       
-
+     
 
          
         public void IsSubmitButtonAvailable()
@@ -91,11 +90,13 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Trial
             {
                 throw new NullReferenceException("Unable to locate button on page");
             }
+            AcceptCookieLaw(Driver);
             AssertElementPresent(SubmitButton, "Submit (Free-trial) Button");
         }
 
         public FreeTrialDownloadPage SubmitButtonClick()
-        {
+        {   
+           
             SubmitButton.Click();
             return GetInstance<FreeTrialDownloadPage>(Driver);
         }
