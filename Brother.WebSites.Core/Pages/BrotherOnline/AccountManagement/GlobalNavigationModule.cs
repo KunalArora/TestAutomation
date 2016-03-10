@@ -225,15 +225,11 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         public static LaserPrintersPage NavigateToLaserPrintersSite(IWebDriver driver, string url)
         {
             var currentUrl = TestController.CurrentDriver.Url;
-         
             if (url.Contains("?sc_lang")) // language specific site
             {
                 var language = url.Split('=');
-              
-
                 // set the language for the site
                 TestController.CurrentDriver.Navigate().GoToUrl(string.Format("{0}?sc_lang={1}", currentUrl, language[1]));
-                
             }
             else
             {
@@ -242,7 +238,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             }
             return GetInstance<LaserPrintersPage>(driver, "", "");
         }
-
         public static LaserPrintersPage NavigateToLaserPrintersonBrotherSite(IWebDriver driver, string url)
         {
             var currentUrl = TestController.CurrentDriver.Url;
@@ -263,7 +258,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             }
             return GetInstance<LaserPrintersPage>(driver, "", "");
         }
-
         // Notes: 
         //
         //**DISCARDED - Use GUIDs now please
