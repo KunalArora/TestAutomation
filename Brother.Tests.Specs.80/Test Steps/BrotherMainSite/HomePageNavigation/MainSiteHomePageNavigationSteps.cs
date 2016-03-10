@@ -30,7 +30,7 @@ namespace Brother.Tests.Specs._80.BrotherMainSite.HomePageNavigation
         public void GivenIHaveNavigatedToTheMainSiteUrlForCountry(string url, string country)
         {
             Helper.SetCountry(country);
-            CurrentPage = GlobalNavigationModule.NavigateToLaserPrintersSite(CurrentDriver, url);
+            CurrentPage = GlobalNavigationModule.NavigateToLaserPrintersonBrotherSite(CurrentDriver, url);
         }
         [Given(@"I have navigated to the Brother Main Site ""(.*)"" products header pages")]
         public void GivenIHaveNavigatedToTheBrotherMainSiteProductsHeaderPages(string country)

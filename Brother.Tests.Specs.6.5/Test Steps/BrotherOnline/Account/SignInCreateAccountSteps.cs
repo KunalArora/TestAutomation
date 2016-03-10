@@ -943,12 +943,6 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             var title = HomePage.WelcomePageCountryTitle(country);
             CurrentPage = BasePage.LoadWebBoxes(CurrentDriver, web, title);
         }
-        [Given(@"I click on Topmenu")]
-        public void GivenIClickOnTopmenu()
-        {
-            NextPage = CurrentPage.As<HomePage>().ClickTopMenuTab();
-        }
-
         [When(@"I click on ""(.*)"" Sign In")]
         public void WhenIClickOnSignIn(string country)
         {
