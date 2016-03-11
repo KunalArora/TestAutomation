@@ -226,13 +226,13 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Test CD servers on Live Environment to check user registration")]
         [NUnit.Framework.TestCaseAttribute("Ireland", "https://web1.online.brother.ie", "Web_1", "Test", "User", null)]
-        [NUnit.Framework.TestCaseAttribute("France", "https://web2.online.brother.ie", "Web_1", "Test", "User", null)]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "https://web1.online.brother.co.uk", "Web_2", "Test", "User", null)]
-        [NUnit.Framework.TestCaseAttribute("Netherlands", "https://web2.online.brother.co.uk", "Web_2", "Test", "User", null)]
-        [NUnit.Framework.TestCaseAttribute("Ireland", "https://web5.online.brother.fr", "Web_5", "Test", "User", null)]
-        [NUnit.Framework.TestCaseAttribute("Belgium", "https://web6.online.brother.fr", "Web_5", "Test", "User", null)]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "https://web5.online.brother.de", "Web_5", "Test", "User", null)]
-        [NUnit.Framework.TestCaseAttribute("Poland", "https://web6.online.brother.de", "Web_6", "Test", "User", null)]
+        [NUnit.Framework.TestCaseAttribute("Ireland", "https://web2.online.brother.ie", "Web_2", "Test", "User", null)]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "https://web1.online.brother.co.uk", "Web_1", "Test", "User", null)]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "https://web2.online.brother.co.uk", "Web_2", "Test", "User", null)]
+        [NUnit.Framework.TestCaseAttribute("France", "https://web5.online.brother.fr", "Web_5", "Test", "User", null)]
+        [NUnit.Framework.TestCaseAttribute("France", "https://web6.online.brother.fr", "Web_6", "Test", "User", null)]
+        [NUnit.Framework.TestCaseAttribute("Germany", "https://web5.online.brother.de", "Web_5", "Test", "User", null)]
+        [NUnit.Framework.TestCaseAttribute("Germany", "https://web6.online.brother.de", "Web_6", "Test", "User", null)]
         public virtual void TestCDServersOnLiveEnvironmentToCheckUserRegistration(string country, string web, string serverName, string firstName, string lastName, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Test CD servers on Live Environment to check user registration", exampleTags);
