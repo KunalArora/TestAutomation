@@ -30,6 +30,10 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.SuppliesAndAccessories.Pri
 
         public void IsPrinterListingsInfoDisplayed()
         {
+            if (PrinterListingsInformation == null)
+            {
+                throw new Exception("unable to find printerlisting information");
+            }
             var element = GetElementByCssSelector(".copyright");
             MsgOutput("Scrolling page to trigger product listing full load");
             ScrollToLocation(TestController.CurrentDriver, 0, element.Location.Y);
