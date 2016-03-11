@@ -396,7 +396,7 @@ Scenarios:
 | United Kingdom      | printers/all-mono-lasers | http://www.web1.brother.co.uk/     |
 
 
-@PROD
+@Ignore
 Scenario Outline: Create B2C account and sign Up for 14 day Free trial on uk
 	Given I navigate to BOL "<Web>" for "<Country>"
 	When I am redirected to the Brother Login/Register page
@@ -413,7 +413,8 @@ Scenario Outline: Create B2C account and sign Up for 14 day Free trial on uk
 	Then I should see my account confirmation page
 	And When I Click Go Back
 	Then I should be able to log into "<Web>" and "<Country>" Brother site using my account details
-	And I click on Try Now
+	And I have navigated to the OmniJoin home page
+	And If I click on Start Free Trial
     Then I should be directed to the OmniJoin Free Trial page
    When I have entered a valid First and Last name, "AutoTest", "AutoTest"
    And I have entered a valid email address
@@ -430,3 +431,43 @@ Scenario Outline: Create B2C account and sign Up for 14 day Free trial on uk
 Scenarios:
 | Country        | Web                               |
 | United Kingdom | https://web1.online.brother.co.uk |
+
+
+ @PROD
+ Scenario Outline: Create a B2C account and Sign Up for 14 day Free trial already signed into Ireland Brother site on Test CD servers Live Environment
+	Given I navigate to BOL "<Web>" for "<Country>"
+	When I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I fill in the registration information using a valid email address 
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Password        | @@@@@	       |
+	| ConfirmPassword | @@@@@		   |
+
+	And I have Agreed to the Terms and Conditions
+	And I declare that I do not use this account for business
+	When I press Create Your Account
+	Then I should see my account confirmation page
+	And When I Click Go Back
+	Then I should be able to log into "<Country>" Brother Online using my account details
+	And I click on Try Now
+	Then I should see OmniJOin Free trail page
+	When I have entered a valid FirstName as "<FirstName>"
+	And I have  entered a valid LastName as "<LastName>"
+	And I entered a valid email address
+	And I agreed to the free trail terms and services
+ 	And I click start free trail button
+	Then I should be on download page
+	And Once I have Validated a Free Trial confirmation Email was received
+	Then If I go back to Brother Online Home Page 
+	Then If I go back to Brother Site home page on "<Web>" and "<Country>"
+	Then I can sign out of Brother Online
+	Then I am redirected to the Brother Home Page
+
+Scenarios:
+| Country | Web                            | FirstName | LastName |
+| Ireland | https://web1.online.brother.ie | Test      | User     |
+| Ireland | https://web2.online.brother.ie | Test      | User     |
+| Ireland | https://web5.online.brother.ie | Test      | User     |
+| Ireland | https://web6.online.brother.ie | Test      | User     |

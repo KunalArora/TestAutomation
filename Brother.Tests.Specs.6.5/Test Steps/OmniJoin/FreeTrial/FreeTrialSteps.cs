@@ -94,6 +94,11 @@ namespace Brother.Tests.Specs.OmniJoin.FreeTrial
         {
             CurrentPage.As<FreeTrialPage>().PopulateEmailAddressTextBox(Email.RegistrationEmailAddress);
         }
+        [When(@"I entered a valid email address")]
+        public void WhenIEnteredAValidEmailAddress()
+        {
+            CurrentPage.As<FreeTrialPage>().EnterEmailAddressTextBox(Email.RegistrationEmailAddress);
+        }
 
         [When(@"I have entered a valid phone number ""(.*)""")]
         public void WhenIHaveEnteredAValidPhoneNumber(string phoneNumber)
