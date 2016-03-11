@@ -391,8 +391,10 @@ Scenario Outline: View  list of available Laser Printers
 	#And I can validate that each printer is a valid printer
 
 Scenarios:
-| country             | site                     | Web                                |
-| United Kingdom      | printers/all-mono-lasers | http://www.web1.brother.co.uk/     |
+| country             | site								| Web                                |
+| United Kingdom      | printers/all-mono-lasers			| http://www.web1.brother.co.uk/     |
+| Germany		      | drucker/alle-lasergeraete/farblaser | http://www.web1.brother.de	     |
+
 
 
 @Ignore
