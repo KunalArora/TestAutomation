@@ -400,7 +400,14 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             // logged into BOL. Should navigate to the WelcomeBack page
             NextPage = BasePage.LoadBolHomePage(CurrentDriver, BasePage.BaseUrl, "");
         }
-
+        [Then(@"If I go back to Brother Site home page on ""(.*)"" and ""(.*)""")]
+        public void ThenIfIGoBackToBrotherSiteHomePageOnAnd(string web, string country)
+        {
+            Helper.SetCountry(country);
+            var title = HomePage.WelcomePageCountryTitle(country);
+            CurrentPage = BasePage.LoadWebBoxes(CurrentDriver, web, title);
+  
+        }
         // Placeholder - called via other pages
         [Then(@"I am redirected to the Brother Home Page")]
         public void ThenIAmRedirectedToTheBrotherHomePage()
