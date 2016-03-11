@@ -964,14 +964,6 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage = BasePage.LoadWebBoxes(CurrentDriver, web, title);
             
         }
-        //[Given(@"I navigate to Brother site on ""(.*)""(.*)""")]
-        //public void GivenINavigateToBrotherSiteOn(string web, string country)
-        //{
-        //    Helper.SetCountry(country);
-        //    var title = HomePage.WelcomePageCountryTitle(country);
-            
-        //    CurrentPage = BasePage.LoadWebBoxes(CurrentDriver, web, title);
-        //}
 
         [When(@"I click on ""(.*)"" Sign In")]
         public void WhenIClickOnSignIn(string country)
