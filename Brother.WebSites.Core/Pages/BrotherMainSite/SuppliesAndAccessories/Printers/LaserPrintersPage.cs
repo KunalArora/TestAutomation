@@ -21,9 +21,17 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.SuppliesAndAccessories.Pri
         [FindsBy(How = How.CssSelector, Using = ".content-box.cf .box-out #total-results-heading")]
         public IWebElement PrinterSearchResultsBar;
 
+        [FindsBy(How = How.CssSelector, Using = ".cf.feature-listings-info")]
+        public IWebElement PrinterListingsInformation;
+
         private string standardPrinterFeatureList = @".cf.feature-listings-info .feature-list";
         private string secondaryPrinterFeatureList = ".cf.feature-listings-info p";
-        
+
+
+        public void IsPrinterListingsInfoDisplayed()
+        {
+            TestCheck.AssertIsEqual(true, PrinterListingsInformation.Displayed, " is priceListingsInformation displayed");
+        }
         private bool CheckPrinterDesc(ISearchContext element, string printerName, string featureListSearch)
         {
             try
