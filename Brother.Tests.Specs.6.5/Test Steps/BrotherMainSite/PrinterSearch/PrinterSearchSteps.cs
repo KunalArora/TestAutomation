@@ -59,6 +59,12 @@ namespace Brother.Tests.Specs.BrotherMainSite.PrinterSearch
         {
             TestCheck.AssertIsGreater(CurrentPage.As<LaserPrintersPage>().WaitForPrinterSearchResults(), 0, "Printer search returned zero");
         }
+        [Then(@"I should see list of printers once loaded page")]
+        public void ThenIShouldSeeListOfPrintersOnceLoadedPage()
+        {
+            CurrentPage.As<LaserPrintersPage>().IsPrinterListingsInfoDisplayed();
+        }
+
 
         [Then(@"I can validate that each printer is a valid printer")]
         public void ThenICanValidateThatEachPrinterIsAValidPrinter()
