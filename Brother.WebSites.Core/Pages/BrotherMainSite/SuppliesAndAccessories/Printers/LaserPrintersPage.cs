@@ -30,6 +30,10 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.SuppliesAndAccessories.Pri
 
         public void IsPrinterListingsInfoDisplayed()
         {
+            var element = GetElementByCssSelector(".copyright");
+            MsgOutput("Scrolling page to trigger product listing full load");
+            ScrollToLocation(TestController.CurrentDriver, 0, element.Location.Y);
+            WebDriver.Wait(DurationType.Second, 2);
             TestCheck.AssertIsEqual(true, PrinterListingsInformation.Displayed, " is priceListingsInformation displayed");
         }
         private bool CheckPrinterDesc(ISearchContext element, string printerName, string featureListSearch)

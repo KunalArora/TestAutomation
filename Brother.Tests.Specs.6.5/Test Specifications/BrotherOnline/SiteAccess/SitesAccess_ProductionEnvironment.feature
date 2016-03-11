@@ -387,7 +387,6 @@ Scenarios:
 Scenario Outline: View  list of available Laser Printers 
     Given I navigate to  "<Web>" for "<country>"
 	When I have navigated to the "<site>" MainSite URL for country "<country>"
-	#Then I should see a list of Laser printers
 	Then I should see list of printers once loaded page
 	#And I can validate that each printer is a valid printer
 
@@ -403,7 +402,6 @@ Scenarios:
 | Russia              | printers/laser-printers/mono-laser-printers            | http://www.web6.brother.ru     |
 | Spain               | impresoras/impresoras-laser/impresoras-laser-monocromo | http://www.web1.brother.es     |
 | Italy               | printers-and-all-in-one/gamma-stampanti                | http://www.web2.brother.it     |
-| Portugal            | impressoras-laser/impressoras-laser-monocromaticas     | http://www.web5.brother.pt     |
 | Poland              | printers/laser-printers/                               | http://www.web1.brother.pl     |
 | Switzerland         | drucker/laserdrucker/mono-laser-printers               | http://www.web2.brother.ch     |
 
