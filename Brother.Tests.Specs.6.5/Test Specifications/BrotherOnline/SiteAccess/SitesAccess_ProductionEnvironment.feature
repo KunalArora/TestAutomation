@@ -393,17 +393,17 @@ Scenario Outline: View  list of available Laser Printers
 Scenarios:
 | country             | site                                                   | Web                            |
 | United Kingdom      | printers/all-mono-lasers                               | http://www.web1.brother.co.uk/ |
-| Germany             | drucker/alle-lasergeraete/farblaser                    | http://www.web2.brother.de     |
-| France              | imprimantes/imprimantes-laser                          | http://www.web5.brother.fr     |
-| Ireland             | printers/laser-printers/mono-laser-printers            | http://www.web6.brother.ie     |
-| Netherlands         | printers/laserprinters/zwart-wit                       | http://www.web1.brother.nl     |
-| Norway              | printers/all-mono-lasers                               | http://www.web2.brother.no     |
-| Belgium             | printers/all-in-one-printers                           | http://www.web5.brother.be     |
-| Russia              | printers/laser-printers/mono-laser-printers            | http://www.web6.brother.ru     |
-| Spain               | impresoras/impresoras-laser/impresoras-laser-monocromo | http://www.web1.brother.es     |
-| Italy               | printers-and-all-in-one/gamma-stampanti                | http://www.web2.brother.it     |
-| Poland              | printers/laser-printers/                               | http://www.web1.brother.pl     |
-| Switzerland         | drucker/laserdrucker/mono-laser-printers               | http://www.web2.brother.ch     |
+#| Germany             | drucker/alle-lasergeraete/farblaser                    | http://www.web2.brother.de     |
+#| France              | imprimantes/imprimantes-laser                          | http://www.web5.brother.fr     |
+#| Ireland             | printers/laser-printers/mono-laser-printers            | http://www.web6.brother.ie     |
+#| Netherlands         | printers/laserprinters/zwart-wit                       | http://www.web1.brother.nl     |
+#| Norway              | printers/all-mono-lasers                               | http://www.web2.brother.no     |
+#| Belgium             | printers/all-in-one-printers                           | http://www.web5.brother.be     |
+#| Russia              | printers/laser-printers/mono-laser-printers            | http://www.web6.brother.ru     |
+#| Spain               | impresoras/impresoras-laser/impresoras-laser-monocromo | http://www.web1.brother.es     |
+#| Italy               | printers-and-all-in-one/gamma-stampanti                | http://www.web2.brother.it     |
+#| Poland              | printers/laser-printers/                               | http://www.web1.brother.pl     |
+#| Switzerland         | drucker/laserdrucker/mono-laser-printers               | http://www.web2.brother.ch     |
 
 
 @Ignore
