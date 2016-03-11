@@ -384,6 +384,7 @@ Scenarios:
 | Germany        | https://web6.online.brother.de    | Web_6      | Test      | User     |
 
 
+@Ignore
 Scenario Outline: View  list of available Laser Printers 
     Given I navigate to  "<Web>" for "<country>"
 	When I have navigated to the "<site>" MainSite URL for country "<country>"
