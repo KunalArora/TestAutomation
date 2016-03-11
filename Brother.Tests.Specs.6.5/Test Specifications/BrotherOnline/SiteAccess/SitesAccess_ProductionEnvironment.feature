@@ -1,4 +1,4 @@
-﻿@TEST 
+﻿@UAT @PROD
 Feature: AccessAllProductionSites
 	In order to validate the status of a Websites on the Production environment
 	As a sanity check
@@ -384,7 +384,6 @@ Scenarios:
 | Poland         | https://web6.online.brother.de    | Web_6      | Test      | User     |
 
 
-@PROD
 Scenario Outline: View  list of available Laser Printers 
     Given I navigate to  "<Web>" for "<country>"
 	When I have navigated to the "<site>" MainSite URL for country "<country>"
@@ -433,7 +432,7 @@ Scenarios:
 | United Kingdom | https://web1.online.brother.co.uk |
 
 
- @PROD
+ 
  Scenario Outline: Create a B2C account and Sign Up for 14 day Free trial already signed into Ireland Brother site on Test CD servers Live Environment
 	Given I navigate to BOL "<Web>" for "<Country>"
 	When I am redirected to the Brother Login/Register page
