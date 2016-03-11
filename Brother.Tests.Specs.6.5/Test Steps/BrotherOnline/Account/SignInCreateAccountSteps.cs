@@ -962,7 +962,9 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             Helper.SetCountry(country);
             var title = HomePage.WelcomePageCountryTitle(country);
             CurrentPage = BasePage.LoadWebBoxes(CurrentDriver, web, title);
+            
         }
+
         [When(@"I click on ""(.*)"" Sign In")]
         public void WhenIClickOnSignIn(string country)
         {
