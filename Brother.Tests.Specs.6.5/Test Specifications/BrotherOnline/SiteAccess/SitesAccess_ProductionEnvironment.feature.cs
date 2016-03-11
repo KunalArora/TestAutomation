@@ -295,6 +295,17 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("View  list of available Laser Printers")]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "printers/all-mono-lasers", "http://www.web1.brother.co.uk/", null)]
+        [NUnit.Framework.TestCaseAttribute("Germany", "drucker/alle-lasergeraete/farblaser", "http://www.web2.brother.de", null)]
+        [NUnit.Framework.TestCaseAttribute("France", "imprimantes/imprimantes-laser", "http://www.web5.brother.fr", null)]
+        [NUnit.Framework.TestCaseAttribute("Ireland", "printers/laser-printers/mono-laser-printers", "http://www.web6.brother.ie", null)]
+        [NUnit.Framework.TestCaseAttribute("Netherlands", "printers/laserprinters/zwart-wit", "http://www.web1.brother.nl", null)]
+        [NUnit.Framework.TestCaseAttribute("Norway", "printers/all-mono-lasers", "http://www.web2.brother.no", null)]
+        [NUnit.Framework.TestCaseAttribute("Belgium", "printers/all-in-one-printers", "http://www.web5.brother.be", null)]
+        [NUnit.Framework.TestCaseAttribute("Russia", "printers/laser-printers/mono-laser-printers", "http://www.web6.brother.ru", null)]
+        [NUnit.Framework.TestCaseAttribute("Spain", "impresoras/impresoras-laser/impresoras-laser-monocromo", "http://www.web1.brother.es", null)]
+        [NUnit.Framework.TestCaseAttribute("Italy", "printers-and-all-in-one/gamma-stampanti", "http://www.web2.brother.it", null)]
+        [NUnit.Framework.TestCaseAttribute("Poland", "printers/laser-printers/", "http://www.web1.brother.pl", null)]
+        [NUnit.Framework.TestCaseAttribute("Switzerland", "drucker/laserdrucker/mono-laser-printers", "http://www.web2.brother.ch", null)]
         public virtual void ViewListOfAvailableLaserPrinters(string country, string site, string web, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("View  list of available Laser Printers", exampleTags);
