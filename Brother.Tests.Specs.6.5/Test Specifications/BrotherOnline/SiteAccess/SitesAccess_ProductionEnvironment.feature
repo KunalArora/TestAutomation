@@ -375,13 +375,13 @@ Scenario Outline: Test CD servers on Live Environment to check user registration
 Scenarios:
 | Country        | Web                               | ServerName | FirstName | LastName |
 | Ireland        | https://web1.online.brother.ie    | Web_1      | Test      | User     |
-| France         | https://web2.online.brother.ie    | Web_1      | Test      | User     |
-| United Kingdom | https://web1.online.brother.co.uk | Web_2      | Test      | User     |
-| Netherlands    | https://web2.online.brother.co.uk | Web_2      | Test      | User     |
-| Ireland        | https://web5.online.brother.fr    | Web_5      | Test      | User     |
-| Belgium        | https://web6.online.brother.fr    | Web_5      | Test      | User     |
-| United Kingdom | https://web5.online.brother.de    | Web_5      | Test      | User     |
-| Poland         | https://web6.online.brother.de    | Web_6      | Test      | User     |
+| Ireland        | https://web2.online.brother.ie    | Web_2      | Test      | User     |
+| United Kingdom | https://web1.online.brother.co.uk | Web_1      | Test      | User     |
+| United Kingdom | https://web2.online.brother.co.uk | Web_2      | Test      | User     |
+| France         | https://web5.online.brother.fr    | Web_5      | Test      | User     |
+| France         | https://web6.online.brother.fr    | Web_6      | Test      | User     |
+| Germany        | https://web5.online.brother.de    | Web_5      | Test      | User     |
+| Germany        | https://web6.online.brother.de    | Web_6      | Test      | User     |
 
 
 Scenario Outline: View  list of available Laser Printers 
