@@ -192,7 +192,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             {
                 throw new Exception("Unable to locate link on page");
             }
-            //AssertElementPresent(CloseAccountlink, "Close Account Link");
+            AssertElementPresent(CloseAccountlink, "Close Account Link");
             CloseAccountlink.Click();
             return GetInstance<CloseAccountPage>(Driver);
         }
