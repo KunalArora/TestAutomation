@@ -92,3 +92,35 @@ Scenario Outline: Customer gets valid error message on BOL Norway site with inva
 Scenarios:
 | Country		| Business Sector		| VAT Number       |
 | Norway		| Industri				| INVALIDVATNUMBER |
+
+
+Scenario Outline: Customer create a new B2C account and closes that account on signin details page
+	Given I want to create a new account with Brother Online "<Country>"
+	When I click on Create Account for "<Country>"
+	And I am redirected to the Brother Login/Register page
+	And I have Checked No I Do Not Have An Account Checkbox
+	And I fill in the registration information using a valid email address 
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| Password        | @@@@@	       |
+	| ConfirmPassword | @@@@@		   |
+
+    And I have Agreed to the Terms and Conditions
+	And I declare that I do not use this account for business
+	When I press Create Your Account
+	Then I should see my account confirmation page
+	And When I Click Go Back
+	Then I should be able to log into "<Country>" Brother Online using my account details
+	When I navigate to my account for "<Country>"
+	And I click on Sign In Details
+	And I click close account
+	And I select "<Reason for cancellation>"
+	And I click closeaccount button
+	Then I should see email sent message	
+	Then I can navigate back to Brother Online home page
+	And I can sign out of Brother Online
+
+Scenarios: 
+| Country       | Reason for cancellation |
+| United Kingdom| Other                   | 
