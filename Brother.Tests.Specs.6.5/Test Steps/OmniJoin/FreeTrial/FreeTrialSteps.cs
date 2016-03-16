@@ -38,6 +38,14 @@ namespace Brother.Tests.Specs.OmniJoin.FreeTrial
             CurrentPage.As<FreeTrialPage>().PopulateFirstNameTextBox(firstName);
             CurrentPage.As<FreeTrialPage>().PopulateLastNameTextBox(lastName);
         }
+       
+        [When(@"I have entered a valid password and confirmpassword, ""(.*)"", ""(.*)""")]
+        public void WhenIHaveEnteredAValidPasswordAndConfirmpassword(string password, string confirmPassword)
+        {
+            CurrentPage.As<FreeTrialPage>().PopulatePasswordTextBox(password);
+            CurrentPage.As<FreeTrialPage>().PopulateConfirmPasswordTextBox(confirmPassword);
+        }
+
         [Then(@"I enter an invalid email address as ""(.*)"" for omnijoin free trial")]
         public void ThenIEnterAnInvalidEmailAddressAsForOmnijoinFreeTrial(string invalidemailaddress)
         {
@@ -85,6 +93,11 @@ namespace Brother.Tests.Specs.OmniJoin.FreeTrial
         public void WhenIHaveEnteredAValidEmailAddress()
         {
             CurrentPage.As<FreeTrialPage>().PopulateEmailAddressTextBox(Email.RegistrationEmailAddress);
+        }
+        [When(@"I entered a valid email address")]
+        public void WhenIEnteredAValidEmailAddress()
+        {
+            CurrentPage.As<FreeTrialPage>().EnterEmailAddressTextBox(Email.RegistrationEmailAddress);
         }
 
         [When(@"I have entered a valid phone number ""(.*)""")]

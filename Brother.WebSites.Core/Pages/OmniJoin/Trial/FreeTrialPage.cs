@@ -78,12 +78,22 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Trial
         [FindsBy(How = How.XPath, Using = ".//*[@id='content_0_trynowcontentright_0_MandatoryPhoneNumberTextBox']/input")]
         public IWebElement StartFreeTrailOmniJoinPhoneNumberTxtBox;
 
-        [FindsBy(How = How.XPath, Using = ".//*[@id='content_0_trynowcontentright_0_TermsAndConditionsCheckbox']")] 
+        [FindsBy(How = How.XPath, Using = ".//*[@id='content_0_trynowcontentright_0_TermsAndConditionsCheckbox']")]
         public IWebElement StartFreeTrailOmniJoinTermsofServciesCheckBox;
 
-       
+        [FindsBy(How = How.XPath, Using = ".//*[@id='content_0_trynowcontentright_0_EmailAddressTextBox']/input")]
+        public IWebElement FreeTrailEmailAddressTextBox;
 
 
+        public void EnterEmailAddressTextBox(string emailAddress)
+        {
+            if (emailAddress.Equals(string.Empty))
+            {
+                emailAddress = Email.GenerateUniqueEmailAddress();
+            }
+            FreeTrailEmailAddressTextBox.SendKeys(emailAddress);
+         
+        }
          
         public void IsSubmitButtonAvailable()
         {
@@ -91,11 +101,13 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Trial
             {
                 throw new NullReferenceException("Unable to locate button on page");
             }
+            AcceptCookieLaw(Driver);
             AssertElementPresent(SubmitButton, "Submit (Free-trial) Button");
         }
 
         public FreeTrialDownloadPage SubmitButtonClick()
-        {
+        {   
+           
             SubmitButton.Click();
             return GetInstance<FreeTrialDownloadPage>(Driver);
         }

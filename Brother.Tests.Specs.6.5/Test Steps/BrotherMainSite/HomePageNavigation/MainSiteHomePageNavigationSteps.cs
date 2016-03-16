@@ -23,6 +23,13 @@ namespace Brother.Tests.Specs.BrotherMainSite.HomePageNavigation
             Helper.SetCountry(country);
             CurrentPage = GlobalNavigationModule.NavigateToLaserPrintersSite(CurrentDriver, url);
         }
+        [When(@"I have navigated to the ""(.*)"" MainSite URL for country ""(.*)""")]
+        public void WhenIHaveNavigatedToTheMainSiteUrlForCountry(string url, string country)
+        {
+            Helper.SetCountry(country);
+            CurrentPage = GlobalNavigationModule.NavigateToLaserPrintersonBrotherSite(CurrentDriver, url);
+        }
+
         [Then(@"I have clicked the top products menu button")]
         public void ThenIHaveClickedTopProductsMenu()
         {

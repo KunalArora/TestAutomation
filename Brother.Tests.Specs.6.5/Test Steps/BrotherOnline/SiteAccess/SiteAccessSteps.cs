@@ -2,6 +2,7 @@
 using System.Net;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
+using Brother.WebSites.Core.Pages.BrotherOnline.Account;
 using NUnit.Framework;
 using OpenQA.Selenium.Remote;
 using TechTalk.SpecFlow;
@@ -80,8 +81,8 @@ namespace Brother.Tests.Specs.BrotherOnline.SiteAccess
             responseTimer.Stop();
             var responseTime = responseTimer.Elapsed;
             Helper.MsgOutput(string.Format("Response time from website [{0}] was [{1}ms]", webSite, responseTime.Milliseconds));
-
             return responseCode;
         }
+      
     }
 }

@@ -16,44 +16,39 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             get { return BrotherOnlineHomePages.Default["MySignInPreference"].ToString(); }
         }
 
-        [FindsBy(How = How.CssSelector, Using = "a[href*='sign-out']")]
-        public IWebElement SignOutLink;
+        [FindsBy(How = How.CssSelector, Using = "a[href*='sign-out']")] public IWebElement SignOutLink;
 
-        [FindsBy(How = How.CssSelector, Using = "#content_1_innercontent_1_innerbottom_1_btnEmailUpdate.submit.button-blue")]
-        public IWebElement UpdateDetailsButton;
+        [FindsBy(How = How.CssSelector,
+            Using = "#content_1_innercontent_1_innerbottom_1_btnEmailUpdate.submit.button-blue")] public IWebElement
+            UpdateDetailsButton;
 
-        [FindsBy(How = How.CssSelector, Using = "#content_1_innercontent_1_innerbottom_1_btnPasswordUpdate.submit.button-blue")]
-        public IWebElement UpdatePasswordButton;
+        [FindsBy(How = How.CssSelector,
+            Using = "#content_1_innercontent_1_innerbottom_1_btnPasswordUpdate.submit.button-blue")] public IWebElement
+            UpdatePasswordButton;
 
-        [FindsBy(How = How.CssSelector, Using = ".info-bar")]
-        public IWebElement InformationMessageBar;
+        [FindsBy(How = How.CssSelector, Using = ".info-bar")] public IWebElement InformationMessageBar;
 
-        [FindsBy(How = How.CssSelector, Using = "#CurrentPWText")]
-        public IWebElement CurrentPasswordEditBox;
+        [FindsBy(How = How.CssSelector, Using = "#CurrentPWText")] public IWebElement CurrentPasswordEditBox;
 
-        [FindsBy(How = How.CssSelector, Using = "#NewPWText")]
-        public IWebElement NewPasswordEditBox;
+        [FindsBy(How = How.CssSelector, Using = "#NewPWText")] public IWebElement NewPasswordEditBox;
 
-        [FindsBy(How = How.CssSelector, Using = "#ConfirmNewPWText")]
-        public IWebElement ConfirmNewPasswordEditBox;
+        [FindsBy(How = How.CssSelector, Using = "#ConfirmNewPWText")] public IWebElement ConfirmNewPasswordEditBox;
 
-        [FindsBy(How = How.CssSelector, Using = "#content_1_innercontent_1_innerbottom_1_emailPasswordText")]
-        public IWebElement CurrentPasswordEmailChangeEditBox;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_innercontent_1_innerbottom_1_emailPasswordText")] public
+            IWebElement CurrentPasswordEmailChangeEditBox;
 
-        [FindsBy(How = How.CssSelector, Using = "#emailText")]
-        public IWebElement EmailAddressEditBox;
-        
-        [FindsBy(How = How.Id, Using = "social")]
-        public IWebElement SocialLoginRadioButton;
+        [FindsBy(How = How.CssSelector, Using = "#emailText")] public IWebElement EmailAddressEditBox;
 
-        [FindsBy(How = How.Id, Using = "content_1_innercontent_1_innerbottom_0_LinkedInBtn")]
-        public IWebElement LinkedinButton;
+        [FindsBy(How = How.Id, Using = "social")] public IWebElement SocialLoginRadioButton;
 
-        [FindsBy(How = How.Id, Using = "content_1_innercontent_1_innerbottom_0_googleBtn")]
-        public IWebElement Google;
+        [FindsBy(How = How.Id, Using = "content_1_innercontent_1_innerbottom_0_LinkedInBtn")] public IWebElement
+            LinkedinButton;
 
-        [FindsBy(How = How.Id, Using = "content_1_innercontent_1_innerbottom_0_facebookBtn")]
-        public IWebElement Facebook;
+        [FindsBy(How = How.Id, Using = "content_1_innercontent_1_innerbottom_0_googleBtn")] public IWebElement Google;
+
+        [FindsBy(How = How.Id, Using = "content_1_innercontent_1_innerbottom_0_facebookBtn")] public IWebElement Facebook;
+
+        [FindsBy(How = How.CssSelector, Using = "#content_1_innercontent_2_CloseAccountHref")] public IWebElement CloseAccountlink;
 
         public void IsSignOutLinkAvailable()
         {
@@ -176,17 +171,30 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             ScrollTo(InformationMessageBar);
             TestCheck.AssertIsEqual(displayed, InformationMessageBar.Displayed, "Information Message Bar");
         }
+
         public void ClickRadioButtonSocialLogin()
         {
             ScrollTo(SocialLoginRadioButton);
             SocialLoginRadioButton.Click();
         }
+
         public void VerifySocialButtonsExist(bool displayed)
         {
             TestCheck.AssertIsEqual(displayed, LinkedinButton.Displayed, "linkedin button");
             TestCheck.AssertIsEqual(displayed, Google.Displayed, "Google button");
             TestCheck.AssertIsEqual(displayed, Facebook.Displayed, "Facebook button");
-           
+
+        }
+
+        public CloseAccountPage ClickCloseAccount()
+        {
+            if (CloseAccountlink == null)
+            {
+                throw new Exception("Unable to locate link on page");
+            }
+            AssertElementPresent(CloseAccountlink, "Close Account Link");
+            CloseAccountlink.Click();
+            return GetInstance<CloseAccountPage>(Driver);
         }
 
     }

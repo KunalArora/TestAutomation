@@ -119,7 +119,31 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             NextPage = GlobalNavigationModule.MySignInDetailsMenuOptionClick(CurrentDriver);
         }
-        
+
+        [When(@"I click close account")]
+        public void WhenIClickCloseAccount()
+        {
+           NextPage = CurrentPage.As<MySignInDetailsPage>().ClickCloseAccount();
+        }
+        [When(@"I select ""(.*)""")]
+        public void WhenISelect(string cancellationReason)
+        {
+           CurrentPage.As<CloseAccountPage>().SelectReasonForCancellationDropDownList(cancellationReason);
+           
+        }
+
+        [When(@"I click closeaccount button")]
+        public void WhenIClickCloseaccountButton()
+        {
+            CurrentPage.As<CloseAccountPage>().ClickCloseAccountButton();
+            
+        }
+        [Then(@"I should see email sent message")]
+        public void ThenIShouldSeeEmailSentMessage()
+        {
+            CurrentPage.As<CloseAccountPage>().IsEmailSentMessageDisplayed(); 
+        }
+
         [Then(@"I can click on Payment Methods")]
         public void ThenICanClickOnPaymentMethods()
         {

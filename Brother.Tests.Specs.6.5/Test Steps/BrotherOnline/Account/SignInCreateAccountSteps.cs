@@ -2,6 +2,7 @@
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
+using Brother.WebSites.Core.Pages.BrotherMainSite;
 using Brother.WebSites.Core.Pages.BrotherMainSite.Basket;
 using Brother.WebSites.Core.Pages.BrotherOnline.Account;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
@@ -399,7 +400,14 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             // logged into BOL. Should navigate to the WelcomeBack page
             NextPage = BasePage.LoadBolHomePage(CurrentDriver, BasePage.BaseUrl, "");
         }
-
+        [Then(@"If I go back to Brother Site home page on ""(.*)"" and ""(.*)""")]
+        public void ThenIfIGoBackToBrotherSiteHomePageOnAnd(string web, string country)
+        {
+            Helper.SetCountry(country);
+            var title = HomePage.WelcomePageCountryTitle(country);
+            CurrentPage = BasePage.LoadWebBoxes(CurrentDriver, web, title);
+  
+        }
         // Placeholder - called via other pages
         [Then(@"I am redirected to the Brother Home Page")]
         public void ThenIAmRedirectedToTheBrotherHomePage()
@@ -418,7 +426,6 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<RegistrationPage>().IsSignInButtonAvailable();
         }
-
         [When(@"I have Checked Yes I Do Have An Account Checkbox")]
         public void DoHaveAnAccountCheckbox()
         {
@@ -842,6 +849,19 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             WhenIEnterAValidPassword(Helper.Password);
             WhenIClickOnSignIn(country);
         }
+        // Added steps
+        [Then(@"I should be able to log into ""(.*)"" and ""(.*)"" Brother site using my account details")]
+        public void ThenIShouldBeAbleToLogIntoAndBrotherSiteUsingMyAccountDetails(string web, string country)
+        {
+            TestCheck.AssertIsNotEqual(true, CurrentPage.As<RegistrationPage>().IsWarningBarPresent(0, 5),
+              "Warning Bar - account validation");
+
+            WhenIAmRedirectedToTheBrotherLoginRegisterPage();
+            WhenIEnterAValidEmailAddress(Email.RegistrationEmailAddress);
+            WhenIEnterAValidPassword(Helper.Password);
+            WhenIClickOnSignIn(country);
+        }
+
         [Then(@"I should be logged in successfully")]
         public void ThenIShouldBeLoggedInSuccessfully()
         {
@@ -923,6 +943,26 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<HomePage>().IsSignInCreateAccountButtonAvailable();
             NextPage = CurrentPage.As<HomePage>().ClickSignInCreateAccountButton();
+        }
+        
+        //Web1-Steps
+
+        [Given(@"I navigate to BOL ""(.*)"" for ""(.*)""")]
+        public void GivenINavigateToBOLFor(string web, string country)
+        {
+            Helper.SetCountry(country);
+            var title = HomePage.WelcomePageCountryTitle(country);
+            CurrentPage = BasePage.LoadWebBoxes(CurrentDriver, web, title);
+            NextPage = CurrentPage.As<HomePage>().ClickSignInCreateAccountButton();
+           
+        }
+        [Given(@"I navigate to  ""(.*)"" for ""(.*)""")]
+        public void GivenINavigateToFor(string web, string country)
+        {
+            Helper.SetCountry(country);
+            var title = HomePage.WelcomePageCountryTitle(country);
+            CurrentPage = BasePage.LoadWebBoxes(CurrentDriver, web, title);
+            
         }
 
         [When(@"I click on ""(.*)"" Sign In")]
