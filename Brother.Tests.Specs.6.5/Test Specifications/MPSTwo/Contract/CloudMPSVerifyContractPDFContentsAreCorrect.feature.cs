@@ -28,7 +28,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Contract
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "CloudMPSVerifyPDFContentsAreCorrect.feature"
+#line 1 "CloudMPSVerifyContractPDFContentsAreCorrect.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]

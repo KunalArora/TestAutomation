@@ -28,7 +28,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string closeConsumableOrdersCommand = @"runcommand.aspx?command=MPS:CloseConsumableOrdersCommand";
         private const string pollConsumableOrderStatusCommand = @"runcommand.aspx?command=MPS:PollConsumableOrderStatusCommand";
         private const string checkForSilentDevicesCommand = @"runcommand.aspx?command=MPS:CheckForSilentDevicesCommand";
-        private const string resetSerialNumberJob = @"resetinstalledprinter.aspx?serial=";
+        private const string resetSerialNumberJob = @"recycleserial.aspx?serial=";
         private const string setCustomerSAPIdJob = @"setcustomersapid.aspx?name={0}&sapid={1}";
         private const string setPersonSAPIdJob = @"setpersonsapid.aspx?email={0}&sapid={1}";
         private const string removeConsumableOrderById = @"removeconsumableorderbyid.aspx?orderid=";

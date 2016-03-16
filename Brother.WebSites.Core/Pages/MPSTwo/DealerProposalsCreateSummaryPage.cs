@@ -217,11 +217,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void DownloadDealersProposalDocument()
         {
+            StoreProposalSummaryData();
             DownloadProposalPdfWithCalcElement.Click();
         }
 
         public void DownloadCustomersProposalDocument()
         {
+            StoreProposalSummaryData();
             DownloadProposalPdfElement.Click();
         }
 

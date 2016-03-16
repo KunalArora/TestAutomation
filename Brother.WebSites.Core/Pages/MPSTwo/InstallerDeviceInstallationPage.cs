@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
@@ -15,10 +16,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public static string Url = "/";
 
         private const string serialNumber = @"A1T010001";
-        private const string serialNumberBIG = @"A1T010002";
+        private const string serialNumberBIG = @"A1T010012";
         private const string serialNumberAUT = @"A1T010003";
         private const string existingSerialNumber = @"A1T010004";
-        private const string existingSerialNumberBIG = @"A1T010005";
+        private const string existingSerialNumberBIG = @"A1T010012";
         private const string existingSerialNumberAUT = @"A1T010006";
         private const string serialNumberBFR = @"A1T010007";
         private const string serialNumberBIT = @"A1T010008";
@@ -355,5 +356,28 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             TestCheck.AssertIsEqual(true, InstallationConfirmationMessageElement.Displayed, 
                                         "Complete Installation message not displayed");
         }
+
+        private void ReturnBackToContractAcceptedPage()
+        {
+            var currentUrl = Driver.Url;
+            var firstPart = currentUrl.Substring(0, 31);
+            var newUrl = firstPart + "/mps/dealer/contracts/accepted";
+            Driver.Navigate().GoToUrl(newUrl);
+        }
+
+        public void ConfirmThatInstallationRequestIsNoLongerDisplayed()
+        {
+            if (Method() == "Email") return;
+            ReturnBackToContractAcceptedPage();
+            ActionsModule.ClickOnSpecificActionsElement(Driver);
+            var buttonCount = ActionsModule.NumberOfActionButtonDisplayed(Driver);
+            TestCheck.AssertIsEqual(1, buttonCount,
+                String.Format("{0} Actions buttons were return meaning installation request is not removed", buttonCount));
+
+        }
+
+        
+
+
     }
 }

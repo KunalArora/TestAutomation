@@ -73,8 +73,8 @@ Scenario Outline: Dealer Can Generate PDF Purchase and Click Minimum Summary Pag
 	
 
 	Scenarios: 
-	| Role             | Country        | ContractType                  | UsageType      | Contract | Leasing              | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod           | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Minimum Volume | 3 years  | Quarterly in Arrears | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Included in Click Price | 2000        | 2000         |
+	| Role             | Country        | ContractType                  | UsageType      | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod           | ClickVolume | ColourVolume |
+	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Minimum Volume | 3 years  | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Included in Click Price | 2000        | 2000         |
 	
 Scenario Outline: Dealer Can Generate PDF Purchase and Click PAYG Summary Page
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
@@ -97,6 +97,6 @@ Scenario Outline: Dealer Can Generate PDF Purchase and Click PAYG Summary Page
 	
 
 	Scenarios: 
-	| Role             | Country        | ContractType                  | UsageType     | Contract | Leasing   | Billing   | PriceHardware | Printer    | DeviceScreen | ClickVolume |
-	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Pay As You Go | 5 years  | Quarterly in Arrears | Quarterly in Arrears | Tick          | MFC-8510DN | Full         | 3000        |
+	| Role             | Country        | ContractType                  | UsageType     | Contract | Billing              | PriceHardware | Printer    | DeviceScreen | ClickVolume |
+	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Pay As You Go | 5 years  | Quarterly in Arrears | Tick          | MFC-8510DN | Full         | 3000        |
 	

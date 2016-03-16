@@ -758,6 +758,25 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
 
         }
 
+        [When(@"I download the generated proposal PDF")]
+        public void WhenIDownloadTheGeneratedProposalPDF()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+        [Then(@"the PDF is downloaded")]
+        public void ThenThePDFIsDownloaded()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+        [Then(@"the contents of the PDF are correct")]
+        public void ThenTheContentsOfThePDFAreCorrect()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+
         [Given(@"I have created Purchase and Click proposal")]
         public void GivenIHaveCreatedPurchaseAndClickProposal()
         {
