@@ -109,22 +109,31 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         
         private string GetGeneratedCompany()
         {
-            return SpecFlow.GetContext("GeneratedCompanyName");
+            var genCompany = "";
+
+            try
+            {
+                genCompany = SpecFlow.GetContext("GeneratedCompanyName");
+
+            }
+            catch (KeyNotFoundException e)
+            {
+                genCompany = "Middle Mall_160322123145 Ltd";
+                MsgOutput(String.Format("Generated company was empty so {0} was used", genCompany));
+            }
+
+            return genCompany;
         }
 
         public void IsManagedDeviceScreenDisplayed()
         {
             if(CompanyConfirmationElement == null)
                 throw new Exception("Managed Device screen is not displayed");
-            
+
             var genCompany = GetGeneratedCompany();
 
-            if (String.IsNullOrWhiteSpace(genCompany))
-            {
-                genCompany = "Middle Mall_160322123145 Ltd";
-            }
-
             AssertElementContainsText(CompanyConfirmationElement, genCompany, "Generated Company is empty");
+            
             HeadlessDismissAlertOk();
         }
 
