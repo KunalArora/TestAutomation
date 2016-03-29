@@ -29,6 +29,22 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             ThenTheInstallationRequestForThatDeviceIsCompleted();
         }
 
+        [When(@"I install the device on the contract with ""(.*)"" communication and ""(.*)"" installation")]
+        public void WhenIInstallTheDeviceOnTheContractWithCommunicationAndInstallation(string method, string type)
+        {
+            GivenIGenerateInstallationRequestForTheContractWithCommunicationAndInstallation(method, type);
+            GivenIExtractTheInstallerUrlFromInstallationRequest();
+            GivenINavigateToTheInstallerPage();
+            WhenIEnterTheContractReferenceNumber();
+            WhenIEnterDeviceSerialNumberForCommunication(type);
+            WhenIEnterTheDeviceIPAddress();
+            ThenICanConnectTheDeviceToBrotherEnvironment();
+            ThenICanCompleteDeviceInstallation();
+
+
+        }
+
+
         [Given(@"I installed the device in the contract through ""(.*)""")]
         public void GivenIInstalledTheDeviceInTheContractThrough(string method)
         {

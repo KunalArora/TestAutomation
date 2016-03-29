@@ -187,16 +187,10 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         {
             var browserTabs = new List<String> (Driver.WindowHandles);
 
-            if (browserTabs.Count > 1)
-            {
-                Driver.SwitchTo().Window(browserTabs[1]);
-                WebDriver.WaitForTitle(Driver, "Network Error", TimeSpan.FromSeconds(20));
-                var url = Driver.Url;
-                SpecFlow.SetContext("WebInstallUrl", url);
-                Driver.Close();
-                Driver.SwitchTo().Window(browserTabs[0]);
-            }
-            
+            if (browserTabs.Count <= 1) return;
+            Driver.SwitchTo().Window(browserTabs[1]);
+            Driver.Close();
+            Driver.SwitchTo().Window(browserTabs[0]);
         }
 
         public void OpenLinkInADifferentWindow(IWebElement link)

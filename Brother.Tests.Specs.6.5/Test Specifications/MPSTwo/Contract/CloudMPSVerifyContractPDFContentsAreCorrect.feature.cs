@@ -95,7 +95,7 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verify Other Countries PDF Contents Are Correct")]
         [NUnit.Framework.TestCaseAttribute("Buy & Click", "France", "Engagement sur un minimum volume de pages", "3 ans", "Trimestrale anticipata", null)]
-        [NUnit.Framework.TestCaseAttribute("Acquisto + Consumo con assistenza", "Italy", "Volume minimo", "36", "Quarterly in Advance", null)]
+        [NUnit.Framework.TestCaseAttribute("Acquisto + Consumo con assistenza", "Italy", "Volume minimo", "36", "Trimestrale anticipata", null)]
         [NUnit.Framework.TestCaseAttribute("Purchase & Click con Service", "Spain", "Volúmen mínimo", "3 años", "Quarterly in Arrears", null)]
         public virtual void VerifyOtherCountriesPDFContentsAreCorrect(string contractType, string country, string usageType, string length, string billing, string[] exampleTags)
         {

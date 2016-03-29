@@ -29,7 +29,7 @@ Scenarios:
 
 	| ContractType                      | Country | UsageType                                 | Length | Billing                |
 	| Buy & Click                       | France  | Engagement sur un minimum volume de pages | 3 ans  | Trimestrale anticipata |
-	| Acquisto + Consumo con assistenza | Italy   | Volume minimo                             | 36     | Quarterly in Advance   |
+	| Acquisto + Consumo con assistenza | Italy   | Volume minimo                             | 36     | Trimestrale anticipata |
 	| Purchase & Click con Service      | Spain   | Volúmen mínimo                            | 3 años | Quarterly in Arrears   |
 	
 

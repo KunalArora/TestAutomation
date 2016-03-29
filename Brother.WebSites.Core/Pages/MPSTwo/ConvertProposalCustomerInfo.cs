@@ -239,7 +239,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SelectATradingStyle()
         {
-            if (!(IsBigAtSystem()))
+            if (IsUKSystem()||IsSpainSystem())
                 SelectFromDropdown(TradingStyleElement, TradingStyle());
                 WebDriver.Wait(DurationType.Second, 3);
         }
@@ -288,11 +288,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterIbanNumber()
         {
+            if(!IsItalySystem())
             ClearAndType(IBANElement, "GB15MIDL40051512345678");
         }
 
         public void EnterBicNumber()
         {
+            if (!IsItalySystem())
             ClearAndType(BICElement, "MIDLGB22");
         }
 

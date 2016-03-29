@@ -124,11 +124,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public static void SearchForNewlyProposalItem(IWebDriver driver, string search)
         {
+            SeleniumHelper.WaitForElementToExistByCssSelector("#DataTables_Table_0");
             var action = UrlValue(driver).Contains("contracts") ? ContractSearchFieldElement(driver) : SearchFieldElement(driver);
             action.Clear();
             action.SendKeys(search);
             action.SendKeys(Keys.Tab);
-            WebDriver.Wait(Helper.DurationType.Second, 2);
+            WebDriver.Wait(Helper.DurationType.Second, 5);
 
         }
 
@@ -167,6 +168,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public static void SearchForNewProposal(IWebDriver driver)
         {
             var searchField = SearchFieldFucntionality(driver);
+            searchField.Clear();
             searchField.SendKeys(MpsUtil.CreatedProposal());
             searchField.SendKeys(Keys.Tab);
             WebDriver.Wait(Helper.DurationType.Second, 3);
@@ -195,6 +197,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public static void ClickOnSpecificActionsElement(IWebDriver driver)
         {
             SearchForNewlyProposalItem(driver, MpsUtil.CreatedProposal());
+
             ClickOnTheActionsDropdown(0, driver);
         }
 
@@ -213,6 +216,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public static void IsNewlyCreatedItemDisplayed(IWebDriver driver)
         {
             SearchForNewlyProposalItem(driver, MpsUtil.CreatedProposal());
+            var actionCount = AllActionsButton(driver).Count.Equals(1);
+
+            var message = String.Format("{0} is not displayed", MpsUtil.CreatedProposal());
+
+            TestCheck.AssertIsEqual(true, actionCount, message);
+        }
+
+
+        public static void IsNewlyCopiedItemDisplayed(IWebDriver driver)
+        {
+            SearchForNewlyProposalItem(driver, MpsUtil.CopiedProposal());
             var actionCount = AllActionsButton(driver).Count.Equals(1);
 
             var message = String.Format("{0} is not displayed", MpsUtil.CreatedProposal());
@@ -292,12 +306,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             var copyButton = CopyProposalButtonElement(driver);
             copyButton.Click();
+            WebDriver.Wait(Helper.DurationType.Second, 3);
+            SearchFieldFucntionality(driver).Clear();
         }
 
         public static void CopyAProposalWithCustomer(IWebDriver driver)
         {
             var copyButton = CopyProposalWithCustomerButtonElement(driver);
             copyButton.Click();
+            WebDriver.Wait(Helper.DurationType.Second, 3);
+            SearchFieldFucntionality(driver).Clear();
         }
 
         public static void NavigateToPreInstallationScreen(IWebDriver driver)

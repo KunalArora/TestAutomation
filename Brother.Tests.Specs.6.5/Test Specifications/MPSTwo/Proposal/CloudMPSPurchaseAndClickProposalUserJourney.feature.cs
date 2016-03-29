@@ -77,7 +77,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Proposal
             "imum Volume Term")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Purchase & Click with Service", "Create new customer", "Minimum Volume", "3 years", "Quarterly in Arrears", "Tick", "MFC-L8650CDW", "Full", "Pay upfront", "800", "800", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "France", "Buy & Click", "Create new customer", "Engagement sur un minimum volume de pages", "4 ans", "Trimestrale anticipata", "Tick", "MFC-L8650CDW", "Full", "Pay upfront", "800", "800", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Italy", "Acquisto & Consumo", "Create new customer", "Volume minimo", "48", "Quarterly in Advance", "Tick", "MFC-L8650CDW", "Full", "Pagamento anticipato", "800", "800", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Italy", "Acquisto & Consumo", "Create new customer", "Volume minimo", "48", "Trimestrale anticipata", "Tick", "MFC-L8650CDW", "Full", "Pagamento anticipato", "800", "800", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Spain", "Purchase & Click con Service", "Create new customer", "Volúmen mínimo", "3 años", "Quarterly in Arrears", "Tick", "MFC-L8650CDW", "Full", "Pago por adelantado", "800", "800", null)]
         public virtual void CreateDifferentVarietiesOfPurchaseAndClickProposalForNewCustomerOnMinimumVolumeTerm(string role, string country, string contractType, string createOption, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string[] exampleTags)
         {
@@ -203,7 +203,7 @@ this.ScenarioSetup(scenarioInfo);
             "r")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Purchase & Click with Service", "Minimum Volume", "3 years", "Quarterly in Arrears", "Tick", "MFC-L8650CDW", "Full", "Included in Click Price", "800", "800", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "France", "Buy & Click", "Engagement sur un minimum volume de pages", "3 ans", "Trimestrale anticipata", "Tick", "MFC-L8650CDW", "Full", "Inclus dans le coût à la page", "800", "800", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Italy", "Acquisto & Consumo", "Volume minimo", "36", "Quarterly in Advance", "Tick", "MFC-L8650CDW", "Full", "Incluso nel click", "800", "800", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Italy", "Acquisto & Consumo", "Volume minimo", "36", "Trimestrale anticipata", "Tick", "MFC-L8650CDW", "Full", "Incluso nel click", "800", "800", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Spain", "Purchase & Click con Service", "Volúmen mínimo", "3 años", "Quarterly in Arrears", "Tick", "MFC-L8650CDW", "Full", "Pago por adelantado", "800", "800", null)]
         public virtual void CreateDifferentVarietiesOfPurchaseAndClickProposalForAnExistingCustomer(string role, string country, string contractType, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string[] exampleTags)
         {

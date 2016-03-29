@@ -8,13 +8,12 @@ using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-using TechTalk.SpecFlow;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class DealerContractsAwaitingAcceptancePage : BasePage
+    public class DealerContractPdfPage : BasePage
     {
-        public static string Url = "/mps/dealer/contracts";
+
         private const string UkText = @"Purchase + Click Agreement Number";
         private const string DeText = @"Mehrwertsteuer";
         private const string AtText = @"Mindestdruckvolumen";
@@ -23,54 +22,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string SpText = @"CONTRATO DE PAGO";
         private const string DownloadDirectory = @"C:/Users/afolabsa/Downloads";
 
-        public override string DefaultTitle
-        {
-            get { return string.Empty; }
-        }
-
-        [FindsBy(How = How.CssSelector, Using = ".active [href=\"/mps/dealer/contracts/awaiting-acceptance\"]")]
-        public IWebElement ContractAwaitingAcceptanceTabElement;
-        [FindsBy(How = How.CssSelector, Using = ".open .js-mps-manage-devices")]
-        public IWebElement ManageDevicesElement;
         [FindsBy(How = How.CssSelector, Using = ".open .js-mps-download-contract-pdf")]
         public IWebElement DownloadContractPdfElement;
-
-
-        public void IsContractAwaitingAcceptanceTabDisplayed()
-        {
-            if(ContractAwaitingAcceptanceTabElement == null)
-                throw new Exception("Dealer Contract Awaiting Acceptance tab is not displayed");
-            AssertElementPresent(ContractAwaitingAcceptanceTabElement, "Dealer Contract Awaiting Acceptance tab");
-        }
-
-
-        public void VerifyAcceptedContractIsDisplayed()
-        {
-            var createdProposal = MpsUtil.CreatedProposal();
-            ActionsModule.SearchForNewlyProposalItem(Driver, createdProposal);
-            ActionsModule.IsNewlyCreatedItemDisplayed(Driver);
-        }
-
-        public ManageDevicesPage NavigateToManageDevicesPage()
-        {
-            if (ManageDevicesElement == null)
-                throw new Exception("Manage Device Element is not displayed");
-
-            WebDriver.Wait(DurationType.Second, 30);
-
-            ActionsModule.ClickOnSpecificActionsElement(Driver);
-
-            ScrollTo(ManageDevicesElement);
-            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ManageDevicesElement);
-            WebDriver.Wait(DurationType.Second, 30);
-            return GetInstance<ManageDevicesPage>(Driver);
-        }
-
-        public void DownloadContractPdfOnDealerAwaitingAcceptanceContractPages()
-        {
-            ActionsModule.ClickOnSpecificActionsElement(Driver);
-            ActionsModule.DownloadContractInvoicePDFAction(Driver);
-        }
 
         private string DownloadFolderPath()
         {
@@ -134,12 +87,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void DoesPdfContentContainSomeText()
         {
             var contractId = SpecFlow.GetContext("DownloadedContractId");
-            TestCheck.AssertTextContains(contractId, ExtractTextFromPdf(DownloadedPdf()), 
+            TestCheck.AssertTextContains(contractId, ExtractTextFromPdf(DownloadedPdf()),
                 "Contract Id is not available in the PDF");
-            
-        }
 
-        
+        }
 
         public void PurgeDownloadsDirectory()
         {
@@ -149,7 +100,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsCustomerEmailPresentInPdf()
         {
-            if(IsBigAtSystem()) return;
+            if (IsBigAtSystem()) return;
             var customerEmail = SpecFlow.GetContext("SummaryCustomerEmail");
             TestCheck.AssertTextContains(customerEmail, ExtractTextFromPdf(DownloadedPdf()),
                 "Customer Email is not available in the PDF");
@@ -210,7 +161,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private string ConvertClickRatePrice(string clickPrice)
         {
-            
+
             decimal clickDecimal = 0;
 
             if (IsBigAtSystem())
@@ -218,7 +169,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 clickDecimal = MpsUtil.GetEuroValue(clickPrice);
             }
 
-            
+
             return clickDecimal.ToString();
         }
 
@@ -254,24 +205,29 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if (IsAustriaSystem())
             {
                 lang = AtText;
-            } else if (IsUKSystem())
+            }
+            else if (IsUKSystem())
             {
                 lang = UkText;
-            } else if (IsGermanSystem())
+            }
+            else if (IsGermanSystem())
             {
                 lang = DeText;
-            } else if (IsFranceSystem())
+            }
+            else if (IsFranceSystem())
             {
                 lang = FrText;
-            } else if (IsItalySystem())
+            }
+            else if (IsItalySystem())
             {
                 lang = ItText;
-            } else if (IsItalySystem())
+            }
+            else if (IsItalySystem())
             {
                 lang = SpText;
             }
 
-            
+
 
             return lang;
 
@@ -282,7 +238,5 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             TestCheck.AssertTextContains(SpecificLanguageText(), ExtractTextFromPdf(DownloadedPdf()),
                 "The correct language PDF is not downloaded");
         }
-
-
     }
 }

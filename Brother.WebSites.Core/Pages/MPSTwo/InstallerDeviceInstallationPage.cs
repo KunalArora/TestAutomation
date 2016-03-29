@@ -16,14 +16,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public static string Url = "/";
 
         private const string serialNumber = @"A1T010001";
-        private const string serialNumberBIG = @"A1T010012";
+        private const string serialNumberBIG = @"A1T010002";
         private const string serialNumberAUT = @"A1T010003";
-        private const string existingSerialNumber = @"A1T010004";
-        private const string existingSerialNumberBIG = @"A1T010012";
-        private const string existingSerialNumberAUT = @"A1T010006";
-        private const string serialNumberBFR = @"A1T010007";
-        private const string serialNumberBIT = @"A1T010008";
-        private const string serialNumberBES = @"A1T010009";
+        private const string existingSerialNumber = @"A1T010001";
+        private const string existingSerialNumberBIG = @"A1T010002";
+        private const string existingSerialNumberAUT = @"A1T010003";
+        private const string serialNumberBFR = @"A1T010014";
+        private const string serialNumberBIT = @"A1T010015";
+        private const string serialNumberBES = @"A1T010016";
 
         public override string DefaultTitle
         {
@@ -72,7 +72,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement TimeZoneOptionsElements;
 
         [FindsBy(How = How.CssSelector, Using = "#content_0_ButtonRefresh")] 
-        public IWebElement RefreshCloudInstallationElements;
+        public IWebElement RefreshCloudInstallationElement;
 
         [FindsBy(How = How.CssSelector, Using = "#content_0_DeviceInstallList_List_CellConnectionStatusIcon_0")] 
         public IWebElement CloudInstallationConnectionStatusElements;
@@ -80,13 +80,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [FindsBy(How = How.CssSelector, Using = "#content_0_DeviceInstallList_List_CellConnectionStatus_0[class=\" green\"]")] 
         public IWebElement CloudInstallationConnectionStatusIconElements;
 
+        [FindsBy(How = How.CssSelector, Using = ".js-mps-pin-code")] 
+        public IWebElement CloudInstallationWebInstallPinElements;
         
 
         
-
-        
-
-
         public void IsInstallerScreenDisplayed()
         {
             if (ContractReferencePageAlertElement == null)
@@ -278,28 +276,27 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             try
             {
-                if (Method() == "Email")
+                switch (Method())
                 {
-                    ConnectButtonElement.Click();
-                    WebDriver.Wait(DurationType.Second, 5);
-                    ReturnToOriginWindow();
-                }
-                else if (Method() == "BOR")
-                {
-                    CloudInstallationProcess();
-                    WebDriver.Wait(DurationType.Second, 5);
-                    RefreshCloudInstallationElements.Click();
-                }
-                else if (Method() == "Web")
-                {
-                    OpenLinkInADifferentWindow(WebInstallConnect);
-                    WebDriver.Wait(DurationType.Second, 3);
-                    ReturnToOriginWindow();
-                    GetInstallationFromUrl();
-                    WebDriver.Wait(DurationType.Second, 3);
-                    CloudInstallationProcess();
-                    WebDriver.Wait(DurationType.Second, 5);
-                    RefreshCloudInstallationElements.Click();
+                    case "Email":
+                        ConnectButtonElement.Click();
+                        WebDriver.Wait(DurationType.Second, 5);
+                        ReturnToOriginWindow();
+                        break;
+                    case "BOR":
+                        CloudInstallationProcess();
+                        WebDriver.Wait(DurationType.Second, 5);
+                        RefreshCloudInstallationElement.Click();
+                        break;
+                    case "Web":
+                        GetWebInstallationPin();
+                        WebInstallConnect.Click();
+                        WebDriver.Wait(DurationType.Second, 1);
+                        ReturnToOriginWindow();
+                        CloudInstallationProcess();
+                        WebDriver.Wait(DurationType.Second, 5);
+                        RefreshCloudInstallationElement.Click();
+                        break;
                 }
 
             }
@@ -310,11 +307,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             
         }
 
-        private void GetInstallationFromUrl()
+        private void GetWebInstallationPin()
         {
-            var webInstallUrl = SpecFlow.GetContext("WebInstallUrl");
-            var installationPin = webInstallUrl.Substring(36, 30);
-            SpecFlow.SetContext("InstallationPin", installationPin);
+            var webInstalPin = CloudInstallationWebInstallPinElements.GetAttribute("value");
+            SpecFlow.SetContext("InstallationPin", webInstalPin);
         }
 
         public void CompleteDeviceConnection()

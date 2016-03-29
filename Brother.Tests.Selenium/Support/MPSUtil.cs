@@ -39,6 +39,12 @@ namespace Brother.Tests.Selenium.Lib.Support
             return createdProposal;
         }
 
+        public static string GeneratedLeadCodeRef()
+        {
+            var createdProposal = HelperClasses.SpecFlow.GetContext("GeneratedLeadCodeRef");
+            return createdProposal;
+        }
+
         public static string CreatedEmail()
         {
             var createdProposal = HelperClasses.SpecFlow.GetContext("GeneratedEmailAddress");
@@ -107,6 +113,9 @@ namespace Brother.Tests.Selenium.Lib.Support
         {
             var generatedLeadCodeRef = "Ref_"
                 + DateTime.Now.ToString("MMdHHmmss");
+
+            HelperClasses.SpecFlow.SetContext("GeneratedLeadCodeRef", generatedLeadCodeRef);
+
             return generatedLeadCodeRef;
         }
 

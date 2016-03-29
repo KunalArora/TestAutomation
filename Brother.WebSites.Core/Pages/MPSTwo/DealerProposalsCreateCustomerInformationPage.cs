@@ -7,6 +7,7 @@ using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using TechTalk.SpecFlow;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
@@ -71,12 +72,42 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement ContactTitleElement;
         [FindsBy(How = How.Id, Using = "content_1_PersonListFilter_InputFilterBy")]
         public IWebElement ExistingCustomerFilterElement;
+        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerCompanyRegistrationNumber_Input")]
+        public IWebElement FrenchSirentElement;
+        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerVatRegistrationNumber_Input")]
+        public IWebElement VatFieldElement;
+        
+        
+        
         
 
         public void SelectARandomExistingContact()
         {
            SelectAnExistingCustomer();
             
+        }
+
+        public void SelectASpecificExistingContact(string contact)
+        {
+            ClearAndType(ExistingCustomerFilterElement, contact);
+            WebDriver.Wait(DurationType.Second, 3);
+
+            
+            var customerString = String.Format(nthCustomerChoice, 0);
+            try
+            {
+                var customerChoice =
+                    Driver.FindElement(
+                        By.CssSelector(
+                            "#DataTables_Table_0 tbody tr:first-child td:first-child"));
+
+                customerChoice.Click();
+            }
+            catch (WebDriverException wde)
+            {
+                MsgOutput(String.Format("The exception thrown was {0}", wde));
+            }
+
         }
 
 
@@ -86,7 +117,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var customerString = String.Format(nthCustomerChoice, ranClick);
 
             WebDriver.Wait(DurationType.Second, 3);
-            var customerChoice = Driver.FindElement(By.CssSelector(customerString));
+            var customerChoice =
+                Driver.FindElement(By.CssSelector(customerString));
             customerChoice.Click();
         }
 
@@ -111,7 +143,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void CheckPrivateLiableBox(string liable)
         {
-            if (liable.Equals("tick"))
+            if (liable.ToLower().Equals("tick"))
             {
                 PrivateLiableElement.Click();
             }
@@ -189,11 +221,25 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
            EnterCompanyName();
            EnterPropertyNumber();
            EnterPropertyStreet();
+           EnterSiretNumber();
            //EnterPropertyArea();
            EnterPropertyTown();
            EnterPropertyPostCode();
+           EnterItalyVat();
            //SelectRegionFromDropdown("Greater Manchester");
        }
+
+        public void EnterSiretNumber()
+        {
+            if(IsFranceSystem())
+            ClearAndType(FrenchSirentElement, "RCS PARIS 453 983 245");
+        }
+
+        public void EnterItalyVat()
+        {
+            if(IsItalySystem())
+            ClearAndType(VatFieldElement, "IT00743110157");
+        }
 
        public void EnterContactFirstName()
        {

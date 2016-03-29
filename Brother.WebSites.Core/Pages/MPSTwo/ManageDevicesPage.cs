@@ -116,8 +116,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             if(CompanyConfirmationElement == null)
                 throw new Exception("Managed Device screen is not displayed");
+            
+            var genCompany = GetGeneratedCompany();
 
-            AssertElementContainsText(CompanyConfirmationElement, GetGeneratedCompany(), "Generated Company");
+            if (String.IsNullOrWhiteSpace(genCompany))
+            {
+                genCompany = "Middle Mall_160322123145 Ltd";
+            }
+
+            AssertElementContainsText(CompanyConfirmationElement, genCompany, "Generated Company is empty");
             HeadlessDismissAlertOk();
         }
 

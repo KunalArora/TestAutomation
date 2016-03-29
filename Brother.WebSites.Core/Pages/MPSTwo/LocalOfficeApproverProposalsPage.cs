@@ -159,9 +159,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
 
-        public void NavigateToAwaitingApprovalSummaryPage(IWebDriver driver)
+        public void NavigateToAwaitingApprovalSummaryPage()
         {
-            ActionsModule.NavigateToSummaryPageUsingActionButton(driver);
+            ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
         }
         
         public LocalOfficeApproverProposalsSummaryPage NavigateToViewSummary()

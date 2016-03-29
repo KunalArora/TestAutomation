@@ -8,114 +8,43 @@ using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-using TechTalk.SpecFlow;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class DealerContractsAwaitingAcceptancePage : BasePage
+    public class DealerProposalPdfPage : BasePage
     {
-        public static string Url = "/mps/dealer/contracts";
-        private const string UkText = @"Purchase + Click Agreement Number";
-        private const string DeText = @"Mehrwertsteuer";
-        private const string AtText = @"Mindestdruckvolumen";
-        private const string ItText = @"Volume minimo";
-        private const string FrText = @"CONTRAT DE SERVICE PRINTSMART";
-        private const string SpText = @"CONTRATO DE PAGO";
+
+        private const string DownloadPath = @"file:///C:/Users/afolabsa/Downloads/";
+        private const string UkText = @"Total Quarterly In Arrears";
+        private const string DeText = @"Brother EasyPrint Pro";
+        private const string AtText = @"Bedingung";
+        private const string ItText = @"Pacchetto assistenza MPS per inkjet";
+        private const string FrText = @"COUT D’ACQUISITION";
+        private const string SpText = @"Propuesta";
         private const string DownloadDirectory = @"C:/Users/afolabsa/Downloads";
 
-        public override string DefaultTitle
-        {
-            get { return string.Empty; }
-        }
 
-        [FindsBy(How = How.CssSelector, Using = ".active [href=\"/mps/dealer/contracts/awaiting-acceptance\"]")]
-        public IWebElement ContractAwaitingAcceptanceTabElement;
-        [FindsBy(How = How.CssSelector, Using = ".open .js-mps-manage-devices")]
-        public IWebElement ManageDevicesElement;
-        [FindsBy(How = How.CssSelector, Using = ".open .js-mps-download-contract-pdf")]
-        public IWebElement DownloadContractPdfElement;
-
-
-        public void IsContractAwaitingAcceptanceTabDisplayed()
-        {
-            if(ContractAwaitingAcceptanceTabElement == null)
-                throw new Exception("Dealer Contract Awaiting Acceptance tab is not displayed");
-            AssertElementPresent(ContractAwaitingAcceptanceTabElement, "Dealer Contract Awaiting Acceptance tab");
-        }
-
-
-        public void VerifyAcceptedContractIsDisplayed()
-        {
-            var createdProposal = MpsUtil.CreatedProposal();
-            ActionsModule.SearchForNewlyProposalItem(Driver, createdProposal);
-            ActionsModule.IsNewlyCreatedItemDisplayed(Driver);
-        }
-
-        public ManageDevicesPage NavigateToManageDevicesPage()
-        {
-            if (ManageDevicesElement == null)
-                throw new Exception("Manage Device Element is not displayed");
-
-            WebDriver.Wait(DurationType.Second, 30);
-
-            ActionsModule.ClickOnSpecificActionsElement(Driver);
-
-            ScrollTo(ManageDevicesElement);
-            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ManageDevicesElement);
-            WebDriver.Wait(DurationType.Second, 30);
-            return GetInstance<ManageDevicesPage>(Driver);
-        }
-
-        public void DownloadContractPdfOnDealerAwaitingAcceptanceContractPages()
-        {
-            ActionsModule.ClickOnSpecificActionsElement(Driver);
-            ActionsModule.DownloadContractInvoicePDFAction(Driver);
-        }
+        [FindsBy(How = How.CssSelector, Using = "#content_1_SummaryTable_ProposalDetailsContainer")]
+        public IWebElement SummaryPageContractIdElement;
 
         private string DownloadFolderPath()
         {
-            var path = "";
 
-            if (IsAustriaSystem() || IsGermanSystem())
-            {
-                path = "file:///C:/Users/afolabsa/Downloads/{0}-Vertrag.pdf";
+            var propRef = MpsUtil.GeneratedLeadCodeRef();
+            var propName = MpsUtil.CreatedProposal();
 
-            }
-            else if (IsUKSystem())
-            {
-                path = "file:///C:/Users/afolabsa/Downloads/{0}-Contract.pdf";
+            var partialPath = DownloadPath + propName + "-" + propRef + "-";
 
-            }
-            else if (IsFranceSystem())
-            {
-                //path = "file:///C:/Users/afolabsa/Downloads/{0}-Contrat.pdf";
-                path = "file:///C:/Users/afolabsa/Downloads/{0}-Contract.pdf";
-
-            }
-            else if (IsItalySystem())
-            {
-                //path = "file:///C:/Users/afolabsa/Downloads/{0}-Contratto.pdf";
-                path = "file:///C:/Users/afolabsa/Downloads/{0}-Contract.pdf";
-            }
-            else if (IsSpainSystem())
-            {
-                //path = "file:///C:/Users/afolabsa/Downloads/{0}-Contrato.pdf";
-                path = "file:///C:/Users/afolabsa/Downloads/{0}-Contract.pdf";
-            }
-
-            return path;
+            return partialPath;
         }
-
 
         public void GetDownloadedPdfPath()
         {
-            ActionsModule.ClickOnSpecificActionsElement(Driver);
-            var contractid = DownloadContractPdfElement.GetAttribute("data-contract-id");
-            SpecFlow.SetContext("DownloadedContractId", contractid);
-            var downloadPath = String.Format(DownloadFolderPath(), contractid);
+            var contractid = SummaryPageContractIdElement.GetAttribute("data-mps-qa-id");
+            SpecFlow.SetContext("SummaryPageContractId", contractid);
+
+            var downloadPath = DownloadFolderPath() + contractid;
             SpecFlow.SetContext("DownloadedPdfPath", downloadPath);
-            ActionsModule.DownloadContractPDFAction(Driver);
-            WebDriver.Wait(DurationType.Second, 5);
 
         }
 
@@ -131,25 +60,25 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return downloadedPdf;
         }
 
-        public void DoesPdfContentContainSomeText()
+        public void DoesPdfContentContainContractId()
         {
-            var contractId = SpecFlow.GetContext("DownloadedContractId");
-            TestCheck.AssertTextContains(contractId, ExtractTextFromPdf(DownloadedPdf()), 
+            var contractId = SpecFlow.GetContext("SummaryPageContractId");
+            TestCheck.AssertTextContains(contractId, ExtractTextFromPdf(DownloadedPdf()),
                 "Contract Id is not available in the PDF");
-            
+
         }
 
-        
-
-        public void PurgeDownloadsDirectory()
+        public DealerProposalsCreateSummaryPage PurgeDownloadsDirectory()
         {
-            //Driver.Navigate().Back();
+            Driver.Navigate().Back();
             PurgeDownloads(DownloadDirectory);
+
+            return GetInstance<DealerProposalsCreateSummaryPage>();
         }
 
         public void IsCustomerEmailPresentInPdf()
         {
-            if(IsBigAtSystem()) return;
+            if (IsBigAtSystem()) return;
             var customerEmail = SpecFlow.GetContext("SummaryCustomerEmail");
             TestCheck.AssertTextContains(customerEmail, ExtractTextFromPdf(DownloadedPdf()),
                 "Customer Email is not available in the PDF");
@@ -210,7 +139,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private string ConvertClickRatePrice(string clickPrice)
         {
-            
+
             decimal clickDecimal = 0;
 
             if (IsBigAtSystem())
@@ -218,7 +147,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 clickDecimal = MpsUtil.GetEuroValue(clickPrice);
             }
 
-            
+
             return clickDecimal.ToString();
         }
 
@@ -254,24 +183,29 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if (IsAustriaSystem())
             {
                 lang = AtText;
-            } else if (IsUKSystem())
+            }
+            else if (IsUKSystem())
             {
                 lang = UkText;
-            } else if (IsGermanSystem())
+            }
+            else if (IsGermanSystem())
             {
                 lang = DeText;
-            } else if (IsFranceSystem())
+            }
+            else if (IsFranceSystem())
             {
                 lang = FrText;
-            } else if (IsItalySystem())
+            }
+            else if (IsItalySystem())
             {
                 lang = ItText;
-            } else if (IsItalySystem())
+            }
+            else if (IsItalySystem())
             {
                 lang = SpText;
             }
 
-            
+
 
             return lang;
 
@@ -282,7 +216,5 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             TestCheck.AssertTextContains(SpecificLanguageText(), ExtractTextFromPdf(DownloadedPdf()),
                 "The correct language PDF is not downloaded");
         }
-
-
     }
 }
