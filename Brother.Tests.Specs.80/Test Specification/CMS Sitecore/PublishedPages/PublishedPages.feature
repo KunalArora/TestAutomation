@@ -67,6 +67,7 @@ Scenarios:
 	
 	 |Site Url																	    |
 	 |http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseDoNotTouch/DCPL8400CDN |
+	 |http://main.co.uk.brotherqas.eu/QA/TestAutomationPleaseDoNotTouch/DCP9020CDW |
 
 
 @SMOKE
@@ -76,9 +77,9 @@ Scenario Outline: Navigate to published page to verify supplies product page - U
 	
 Scenarios: 
 	
-	 | Site Url                                                                                                                                                         |
-	 | http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseDoNotTouch/HGe131V5-SuppliesPage                                                                          |
-	 | http://main.co.uk.cms.brotherqas.eu/?sc_mode=preview&sc_itemid={7C650DE3-16DE-4279-AA5C-592D04D04B12}&sc_lang=en&sc_debug=0&sc_trace=0&sc_prof=0&sc_ri=0&sc_rb=0 |
+	 | Site Url                                                                                           |
+	 | http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseDoNotTouch/HGe131V5-SuppliesPage            |                                                               
+	 | http://main.co.uk.brotherqas.eu/QA/TestAutomationPleaseDoNotTouch/AD18ESUK						  |
 
 
 @SMOKE
@@ -90,6 +91,8 @@ Scenarios:
 	
 	 | Site Url																							|
 	 | http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseDoNotTouch/NewsLandingPage				|
+	 | http://main.co.uk.cms.brotherqas.eu/QA/TestAutomationPleaseDoNotTouch/News-Landing-Page			|
+
 		
 @SMOKE
 Scenario Outline: Navigate to published page to verify Glossary page - UK
@@ -100,6 +103,7 @@ Scenarios:
 	
 	 | Site Url																							 |
 	 | http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseDoNotTouch/glossary						 |
+	 | http://main.co.uk.brotherqas.eu/QA/TestAutomationPleaseDoNotTouch/glossary						 |
 
 
 @SMOKE
@@ -112,23 +116,15 @@ Scenarios:
 	 | Site Url																							 |
 	 | http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseDoNotTouch/All-Printers					 |
 
-#write supplies once fixed
 @SMOKE
 Scenario Outline: Navigate to published page to verify Supplies page - UK
 	Given That I navigate to "<Site Url>" in order to validate a published page
-	Then I can validate printers filter section is displayed
-
+	Then I can validate supplies section is displayed
+	
 Scenarios: 
 	
 	 | Site Url																							 |
-	 | http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseDoNotTouch/Supplies						 |
+	 | http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseDoNotTouch/AD18ESUK						 |
+	 | http://main.co.uk.brotherqas.eu/QA/TestAutomationPleaseDoNotTouch/HGe131V5				 |
 
-@SMOKE
-Scenario Outline: Navigate to published page to verify Accessory Product Page - UK
-	Given That I navigate to "<Site Url>" in order to validate a published page
-	Then I can validate accessory product title is displayed
-
-Scenarios: 
-	
-	 | Site Url																							 |
-	 | http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseDoNotTouch/AD18ESUK						 |	 
+ 
