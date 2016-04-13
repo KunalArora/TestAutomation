@@ -55,7 +55,7 @@ Scenario Outline: Navigate to published page to verify all page components
 Scenarios: 
 	
 	 | Site Url                                                                                    |
-	 | http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseLeave                                |
+	 | http://main.co.uk.brotherdv2.eu/qa/testautomationpleaseleave                                |
 	#| http://main.co.uk.brotherqas.eu/qa/testautomationpleasedonottouch/testautomationpleaseleave |
 
 
