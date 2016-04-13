@@ -20,6 +20,7 @@ namespace Brother.Tests.Specs._80.TestSpecification.BrotherMainSite.PrinterSearc
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("Correct printer product listings")]
+    [NUnit.Framework.IgnoreAttribute()]
     public partial class CorrectPrinterProductListingsFeature
     {
         
@@ -33,7 +34,8 @@ namespace Brother.Tests.Specs._80.TestSpecification.BrotherMainSite.PrinterSearc
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Correct printer product listings", "In order to purchase a new Printer\r\nAs a customer\r\nI want to be able to view the " +
-                    "list of available printers", ProgrammingLanguage.CSharp, ((string[])(null)));
+                    "list of available printers", ProgrammingLanguage.CSharp, new string[] {
+                        "ignore"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
