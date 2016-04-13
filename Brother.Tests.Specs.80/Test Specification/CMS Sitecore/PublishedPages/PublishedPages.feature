@@ -56,7 +56,7 @@ Scenarios:
 	
 	 | Site Url                                                                                    |
 	 | http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseLeave                                |
-	 | http://main.co.uk.brotherqas.eu/qa/testautomationpleasedonottouch/testautomationpleaseleave |
+	#| http://main.co.uk.brotherqas.eu/qa/testautomationpleasedonottouch/testautomationpleaseleave |
 
 
 @SMOKE
