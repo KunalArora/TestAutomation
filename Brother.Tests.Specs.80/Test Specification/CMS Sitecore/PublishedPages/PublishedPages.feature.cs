@@ -76,7 +76,7 @@ namespace Brother.Tests.Specs._80.TestSpecification.CMSSitecore.PublishedPages
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Navigate to published page to verify all page components")]
         [NUnit.Framework.CategoryAttribute("SMOKE")]
-        [NUnit.Framework.TestCaseAttribute("http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseLeave", null)]
+        [NUnit.Framework.TestCaseAttribute("http://main.co.uk.brotherdv2.eu/qa/testautomationpleaseleave", null)]
         public virtual void NavigateToPublishedPageToVerifyAllPageComponents(string siteUrl, string[] exampleTags)
         {
             string[] @__tags = new string[] {
