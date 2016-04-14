@@ -160,7 +160,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 SelectFromDropdown(LegalFormDropdown, "Aktiengesellschaft");
 
             }
-            else if (IsUKSystem() || IsItalySystem() || IsSpainSystem())
+            else if (IsUKSystem() || IsItalySystem())
             {
                SelectFromDropdown(LegalFormDropdown, "Church");
             }
@@ -300,7 +300,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterBankPropertyNumber()
         {
-            if (!(IsGermanSystem() || IsAustriaSystem()))
+            if (IsUKSystem())
                  ClearAndType(BankPropertyNumberElement, "12345");
         }
 
@@ -352,6 +352,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             EnterVatNumber();
             SelectATradingStyle();
             EnterAuthoriisedSignatoryNumber();
+            EnterRegionNameForCustomer();
         }
 
         public void EnterPrivateLiableCustomerInfo(string company)
@@ -456,7 +457,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             EnterGermanAreaName();
             EnterGermanKostenstelleName();
             EnterGermanPostCode();
-            EnterGermanRegionName();
+            EnterRegionNameForCustomer();
             EnterGermanStadtName();
             EnterGermanStreetName();
             EnterGermanStreetNumber();
@@ -501,15 +502,38 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             GermanGeschäftsfeldElement.SendKeys("German Town");
         }
 
-        public void EnterGermanRegionName()
+        public void EnterRegionNameForCustomer()
         {
+            var regionName = "";
+            
             if (IsGermanSystem())
             {
-                SelectFromDropdown(GermanBundeslandElement, "Hamburg");
+                regionName = "Hamburg";
+
             } else if (IsAustriaSystem())
             {
-                SelectFromDropdown(GermanBundeslandElement, "Salzburg");
+                regionName =  "Salzburg";
             }
+            else if (IsSpainSystem())
+            {
+                regionName = "Barcelona";
+
+            }
+            else if (IsUKSystem())
+            {
+                regionName = "Manchester";
+
+            }
+            else if (IsItalySystem())
+            {
+                regionName = "Alessandria";
+            }
+            else if (IsFranceSystem())
+            {
+                regionName = "Paris";
+            }
+
+            SelectFromDropdown(GermanBundeslandElement, regionName);
              
         }
 

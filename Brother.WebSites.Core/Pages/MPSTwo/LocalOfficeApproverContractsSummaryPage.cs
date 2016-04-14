@@ -186,6 +186,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 reason = "Caducado";
             }
+            else if (IsSpainSystem())
+            {
+                reason = "Otro";
+            }
             
             return reason;
         }

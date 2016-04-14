@@ -75,7 +75,8 @@ Scenario Outline: Dealer Can Generate PDF Purchase and Click Minimum Summary Pag
 	Scenarios: 
 	| Role             | Country        | ContractType                  | UsageType      | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod           | ClickVolume | ColourVolume |
 	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Minimum Volume | 3 years  | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Included in Click Price | 2000        | 2000         |
-	
+
+@ignore	
 Scenario Outline: Dealer Can Generate PDF Purchase and Click PAYG Summary Page
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -114,8 +115,8 @@ Scenario Outline: Dealer Can Generate PDF for Purchase and Click in Awaiting App
 	
 	
 	Scenarios: 
-	| Role             | Country | Role2                           | ContractType                      | UsageType                                 | Length | Billing                |
-	| Cloud MPS Dealer | France  | Cloud MPS Local Office Approver | Buy & Click                       | Engagement sur un minimum volume de pages | 3 ans  | Trimestrale anticipata |
-	| Cloud MPS Dealer | Italy   | Cloud MPS Local Office Approver | Acquisto + Consumo con assistenza | Volume minimo                             | 36     | Trimestrale anticipata |
-	| Cloud MPS Dealer | Spain   | Cloud MPS Local Office Approver | Purchase & Click con Service      | Volúmen mínimo                            | 3 años | Quarterly in Arrears   |
+	| Role             | Country | Role2                           | ContractType                      | UsageType                                 | Length | Billing                 |
+	| Cloud MPS Dealer | France  | Cloud MPS Local Office Approver | Buy & Click                       | Engagement sur un minimum volume de pages | 3 ans  | Trimestrale anticipata  |
+	| Cloud MPS Dealer | Italy   | Cloud MPS Local Office Approver | Acquisto + Consumo con assistenza | Volume minimo                             | 36     | Trimestrale anticipata  |
+	| Cloud MPS Dealer | Spain   | Cloud MPS Local Office Approver | Purchase & Click con Service      | Volúmen mínimo                            | 3 años | Por trimestres vencidos |
 	

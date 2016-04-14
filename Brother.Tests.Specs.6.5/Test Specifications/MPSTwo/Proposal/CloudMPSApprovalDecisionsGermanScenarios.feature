@@ -19,8 +19,8 @@ Scenario Outline: German And Austria Approver Decline Proposal
 
 	Scenarios: 
 	| Role                            | Country | ContractType             | UsageType      | Reason |
-	| Cloud MPS Local Office Approver | Austria | Easy Print Pro & Service | Minimum Volume | Andere |
-	| Cloud MPS Local Office Approver | Germany | Easy Print Pro & Service | Minimum Volume | Andere |
+	| Cloud MPS Local Office Approver | Austria | Easy Print Pro & Service | Mindestvolumen | Andere |
+	| Cloud MPS Local Office Approver | Germany | Easy Print Pro & Service | Mindestvolumen | Andere |
 	
 	#| Cloud MPS Bank                  | United Kingdom | Lease & Click with Service    | Pay As You Go  |
 	
@@ -74,8 +74,8 @@ Scenario Outline: German And Austria Approver can decide to reject or approve th
 
 	Scenarios:
 	| Role                            | Country | ContractType             | UsageType      |
-	| Cloud MPS Local Office Approver | Germany | Easy Print Pro & Service | Minimum Volume |
-	| Cloud MPS Local Office Approver | Austria | Easy Print Pro & Service | Minimum Volume |
+	| Cloud MPS Local Office Approver | Germany | Easy Print Pro & Service | Mindestvolumen |
+	| Cloud MPS Local Office Approver | Austria | Easy Print Pro & Service | Mindestvolumen |
 	
 	#| Cloud MPS Bank                  | United Kingdom | Leasing & Service   | Pay As You Go  |
 
@@ -115,9 +115,9 @@ Scenario Outline: German And Austria Approver can approve the contract
 	Scenarios:
 
 	| Role                            | Country | ContractType             | UsageType      |
-	| Cloud MPS Local Office Approver | Germany | Easy Print Pro & Service | Minimum Volume |
+	| Cloud MPS Local Office Approver | Germany | Easy Print Pro & Service | Mindestvolumen |
 	| Cloud MPS Bank                  | Germany | Leasing & Service        | Pay As You Go  |
-	| Cloud MPS Local Office Approver | Austria | Easy Print Pro & Service | Minimum Volume |
+	| Cloud MPS Local Office Approver | Austria | Easy Print Pro & Service | Mindestvolumen |
 	| Cloud MPS Bank                  | Austria | Leasing & Service        | Pay As You Go  |
 	
 
@@ -135,9 +135,9 @@ Scenario Outline: German And Austria Approver can reject the contract
 
 	| Role                            | Country | ContractType             | UsageType      | Option |
 	| Cloud MPS Local Office Approver | Germany | Easy Print Pro & Service | Pay As You Go  | Andere |
-	| Cloud MPS Bank                  | Germany | Leasing & Service        | Minimum Volume | Andere |
+	| Cloud MPS Bank                  | Germany | Leasing & Service        | Mindestvolumen | Andere |
 	| Cloud MPS Local Office Approver | Austria | Easy Print Pro & Service | Pay As You Go  | Andere |
-	| Cloud MPS Bank                  | Austria | Leasing & Service        | Minimum Volume | Andere |
+	| Cloud MPS Bank                  | Austria | Leasing & Service        | Mindestvolumen | Andere |
 	
 	
 	

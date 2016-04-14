@@ -185,25 +185,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public InstallerDeviceInstallationPage LaunchInstallerPage()
         {
+            MPSJobRunnerPage.RunCompleteInstallationCommandJob();
             Driver.Navigate().GoToUrl(GetInstallationLink());
             return GetInstance<InstallerDeviceInstallationPage>(Driver);
         }
 
-        public void CloseInstallationrequestPopUp()
-        {
-            var potentialAlert = GetSeleniumAlert();
-
-            if (potentialAlert != null)
-            {
-                InstallationRequestClosePopUpElement.Click();
-            }
-
-            WebDriver.Wait(DurationType.Second, 5);
-        }
-        
-        
-
-        public void SelectCompanyLocation()
+      public void SelectCompanyLocation()
         {
             var company = new SelectElement(CompanyLocationElement);
 
@@ -218,6 +205,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
 
             WebDriver.Wait(DurationType.Second, 2);
+            MPSJobRunnerPage.RunCreateCustomerAndPersonCommandJob();
 
         }
 
@@ -230,7 +218,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public DealerSetCommunicationMethodPage CreateInstallationRequest()
         {
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, CreateRequestElement);
-            WebDriver.Wait(DurationType.Second, 10);
+            MPSJobRunnerPage.RunCreateCustomerAndPersonCommandJob();
 
             return GetTabInstance<DealerSetCommunicationMethodPage>(Driver);
         }
@@ -238,6 +226,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void IsInstallationRequestDisplayed()
         {
             MPSJobRunnerPage.RunCompleteInstallationCommandJob();
+            MPSJobRunnerPage.RunCreateCustomerAndPersonCommandJob();
             AssertElementPresent(InstallationRequestContainerElement, "Installation not finished");
             HeadlessDismissAlertOk();
         }

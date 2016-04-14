@@ -96,7 +96,7 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("Verify Other Countries PDF Contents Are Correct")]
         [NUnit.Framework.TestCaseAttribute("Buy & Click", "France", "Engagement sur un minimum volume de pages", "3 ans", "Trimestrale anticipata", null)]
         [NUnit.Framework.TestCaseAttribute("Acquisto + Consumo con assistenza", "Italy", "Volume minimo", "36", "Trimestrale anticipata", null)]
-        [NUnit.Framework.TestCaseAttribute("Purchase & Click con Service", "Spain", "Volúmen mínimo", "3 años", "Quarterly in Arrears", null)]
+        [NUnit.Framework.TestCaseAttribute("Purchase & Click con Service", "Spain", "Volúmen mínimo", "3 años", "Por trimestres vencidos", null)]
         public virtual void VerifyOtherCountriesPDFContentsAreCorrect(string contractType, string country, string usageType, string length, string billing, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify Other Countries PDF Contents Are Correct", exampleTags);
@@ -117,10 +117,10 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verify German PDF Contents Are Correct")]
-        [NUnit.Framework.TestCaseAttribute("Germany", "Easy Print Pro & Service", "Minimum Volume", null)]
-        [NUnit.Framework.TestCaseAttribute("Germany", "Leasing & Service", "Minimum Volume", null)]
-        [NUnit.Framework.TestCaseAttribute("Austria", "Easy Print Pro & Service", "Minimum Volume", null)]
-        [NUnit.Framework.TestCaseAttribute("Austria", "Leasing & Service", "Minimum Volume", null)]
+        [NUnit.Framework.TestCaseAttribute("Germany", "Easy Print Pro & Service", "Mindestvolumen", null)]
+        [NUnit.Framework.TestCaseAttribute("Germany", "Leasing & Service", "Mindestvolumen", null)]
+        [NUnit.Framework.TestCaseAttribute("Austria", "Easy Print Pro & Service", "Mindestvolumen", null)]
+        [NUnit.Framework.TestCaseAttribute("Austria", "Leasing & Service", "Mindestvolumen", null)]
         public virtual void VerifyGermanPDFContentsAreCorrect(string country, string contractType, string usageType, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify German PDF Contents Are Correct", exampleTags);

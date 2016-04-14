@@ -20,7 +20,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement DeviceScreenRef;
         [FindsBy(How = How.CssSelector, Using = "[href=\"/mps/customer/consumables/devices\"] span")]
         public IWebElement ConsumableDeviceScreenTab;
-        [FindsBy(How = How.CssSelector, Using = "#content_1_ContractDevicesList_Contracts_List_0_CellSerialNo_0")]
+        [FindsBy(How = How.CssSelector, Using = "#content_1_ContractDevicesList_Contracts_List_1_CellSerialNo_0")]
         public IWebElement ConsumableDeviceSerialNumber;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-filter-ignore")]
         public IWebElement ConsumableDeviceActionButton;
@@ -59,6 +59,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             if(ConsumableDeviceScreenTab == null)
                 throw new Exception("Consumable screen not displayed");
+            MPSJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob();
+            MPSJobRunnerPage.RunConsumableOrderRequestsCommandJob();
 
             AssertElementPresent(ConsumableDeviceScreenTab, "Consumable screen");
         }
@@ -70,7 +72,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             WebDriver.Wait(DurationType.Second, 2);
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ConsumableDeviceRaiseConsummableButton);
             //ConsumableDeviceRaiseConsummableButton.Click();
-
+            
             return GetInstance<ConsumableRaiseOrderPage>(Driver);
         }
 

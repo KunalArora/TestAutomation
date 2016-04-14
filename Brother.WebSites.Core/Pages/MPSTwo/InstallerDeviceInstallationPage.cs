@@ -204,6 +204,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             serial = "U63783" + serial;
 
             SpecFlow.SetContext("JoinedSerialNumber", serial);
+            MsgOutput(String.Format("New serial number is created as {0}", serial));
         }
 
         private string GetSavedUsedSerialNumber()
@@ -231,27 +232,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void EnterSerialNumber()
         {
             MPSJobRunnerPage.RunResetSerialNumberJob(SerialNumberUsed());
-
-            WebDriver.Wait(DurationType.Second, 2);
-
+            
             ClearAndType(SerialNumberFieldElement, SerialNumberUsed());
            
             SerialNumberFieldElement.SendKeys(Keys.Tab);
-
-            WebDriver.Wait(DurationType.Second, 2);
         }
 
         public void EnterExistingSerialNumber()
         {
             MPSJobRunnerPage.RunResetSerialNumberJob(UsedSerialNumber());
 
-            WebDriver.Wait(DurationType.Second, 2);
-
             ClearAndType(SerialNumberFieldElement, UsedSerialNumber());
 
             SerialNumberFieldElement.SendKeys(Keys.Tab);
-
-            WebDriver.Wait(DurationType.Second, 2);
         }
 
 
@@ -262,13 +255,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterIpAddress()
         {
+            WaitForElementToBeClickableByCssSelector(".js-mps-ip-d", 3, 10);
+
             if (Method() == "BOR") return;
             foreach (var ipAddressElement in IpAddressElements)
             {
                 ipAddressElement.Click();
                 ClearAndType(ipAddressElement, "1");
                 ipAddressElement.SendKeys(Keys.Tab);
-                WebDriver.Wait(DurationType.Second, 1);
             }
         }
 
@@ -363,12 +357,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ConfirmThatInstallationRequestIsNoLongerDisplayed()
         {
+            MPSJobRunnerPage.RunCompleteInstallationCommandJob();
+            MPSJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob();
             if (Method() == "Email") return;
             ReturnBackToContractAcceptedPage();
             ActionsModule.ClickOnSpecificActionsElement(Driver);
             var buttonCount = ActionsModule.NumberOfActionButtonDisplayed(Driver);
             TestCheck.AssertIsEqual(1, buttonCount,
-                String.Format("{0} Actions buttons were return meaning installation request is not removed", buttonCount));
+                String.Format("{0} Actions buttons were returned meaning installation request is not removed", buttonCount));
+            MPSJobRunnerPage.NotifyBocOfNewChanges();
+            MPSJobRunnerPage.RunPollConsumableOrderStatusCommandJob();
+            MPSJobRunnerPage.RunCreateOrderAndServiceRequestsCommandJob();
+            MPSJobRunnerPage.RunConsumableOrderRequestsCommandJob();
 
         }
 

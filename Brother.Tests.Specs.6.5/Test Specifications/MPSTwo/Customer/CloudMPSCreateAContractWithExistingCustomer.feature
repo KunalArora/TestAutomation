@@ -12,14 +12,14 @@ Scenario Outline: Existing Customer can be used to create a new contract for Run
 	And I sign back into Cloud MPS as a "<Role1>" from "<Country>"
 	When I install the device on the contract with "<Method>" communication and "<Type>" installation 
 	And I can sign out of Brother Online
-	And I sign back into Cloud MPS as a "<Role2>" from "<Country>"
+	And I sign into Cloud MPS as a "<Role2>" from "<Country>"
 	And I navigate to customer dashboard page
-	And I navigate to consumable ordering page
+	##And I navigate to consumable ordering page
 
 	
 Scenarios:
 
-	| Role                            | Country        | ContractType                  | UsageType      | Role1            | Method | Type | ExistingCustomer                      | Length  | Billing              | Role3              |
+	| Role                            | Country        | ContractType                  | UsageType      | Role1            | Method | Type | ExistingCustomer                      | Length  | Billing              | Role2              |
 	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  | lashonda20160322123145@mailinator.com | 3 years | Quarterly in Arrears | Cloud MPS Customer |
 	
 	

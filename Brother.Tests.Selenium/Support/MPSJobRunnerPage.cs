@@ -58,7 +58,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: authHeader);
             
-            WebDriver.Wait(Helper.DurationType.Second, 5);
+            WebDriver.Wait(Helper.DurationType.Second, 1);
+
+            Helper.MsgOutput("CreateCustomerAndPersonCommand job ran successfully");
         }
 
         private static string GetSavedNewDeviceSerial()
@@ -79,6 +81,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             Helper.MsgOutput(String.Format("The url formed for Create New Virtual Device is {0}", webSite));
 
             Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: authHeader);
+
+            Helper.MsgOutput("CreateNewVirtualDevice job ran successfully");
         }
 
         public static void RegisterNewDevice()
@@ -89,6 +93,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             Helper.MsgOutput(String.Format("The url formed for Register New Device is {0}", webSite));
 
             Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: authHeader);
+            Helper.MsgOutput("RegisterNewDevice job ran successfully");
         }
 
         public static void ChangeDeviceStatus()
@@ -99,6 +104,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             Helper.MsgOutput(String.Format("The url formed for Change Device Status is {0}", webSite));
 
             Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: authHeader);
+            Helper.MsgOutput("ChangeDeviceStatus job ran successfully");
         }
 
         public static void SetSupplyStatusForNewPrinter()
@@ -120,6 +126,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             Utils.GetPageResponse(webSite, WebRequestMethods.Http.Post, "application/json", json, authHeader);
 
             WebDriver.Wait(Helper.DurationType.Second, 5);
+            Helper.MsgOutput("SetSupplyStatusForNewPrinter job ran successfully");
         }
 
         public static void NotifyBocOfNewChanges()
@@ -130,6 +137,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             Helper.MsgOutput(String.Format("The url formed for Notify BOC of New Changes is {0}", webSite));
 
             Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: authHeader);
+
+            Helper.MsgOutput("NotifyBocOfNewChanges job ran successfully");
         }
 
        private static string SetGuidForNewDevice()
@@ -138,6 +147,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             var deviceId = "babeface" + guid.ToString().Substring(8);
             SpecFlow.SetContext("DeviceId", deviceId);
+
+            Helper.MsgOutput(String.Format("Device Simulators Guid set as {0}", deviceId));
 
             return deviceId;
         }

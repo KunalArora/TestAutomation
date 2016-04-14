@@ -28,7 +28,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string UkText = @"Total Quarterly In Arrears";
         private const string DeText = @"Brother EasyPrint Pro";
         private const string AtText = @"Bedingung";
-        private const string ItText = @"Pacchetto assistenza MPS per inkjet";
+        private const string ItText = @"Pagine + Cloud";
         private const string FrText = @"COUT D’ACQUISITION";
         private const string SpText = @"Propuesta";
         private const string DownloadDirectory = @"C:/Users/afolabsa/Downloads";
@@ -305,6 +305,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void DoesPdfContentContainContractId()
         {
+            WebDriver.Wait(DurationType.Second, 10);
             var contractId = SpecFlow.GetContext("SummaryPageContractId");
             WebDriver.Wait(DurationType.Second, 10);
             TestCheck.AssertTextContains(contractId, ExtractTextFromPdf(DownloadedPdf()),
@@ -326,19 +327,23 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 TestCheck.AssertTextContains(SpecFlow.GetContext("SummaryCustomerDeviceTotalNet"), ExtractTextFromPdf(DownloadedPdf()),
                  "Device Total is not available in the PDF"); 
             }
-            else
-            {
-                TestCheck.AssertTextContains(SpecFlow.GetContext("SummaryCustomerDeviceTotalGross"), ExtractTextFromPdf(DownloadedPdf()),
-                 "Device Total is not available in the PDF"); 
-            }
+            //else
+            //{
+            //    TestCheck.AssertTextContains(SpecFlow.GetContext("SummaryCustomerDeviceTotalGross"), ExtractTextFromPdf(DownloadedPdf()),
+            //     "Device Total is not available in the PDF"); 
+            //}
             
         }
 
         public void IsConsumableTotalNetPresentInPdf()
         {
-            var deviceTotal = SpecFlow.GetContext("SummaryProposalConsumableTotalNet");
-            TestCheck.AssertTextContains(deviceTotal, ExtractTextFromPdf(DownloadedPdf()),
-                "Consumable Total is not available in the PDF");
+            if (IsUKSystem())
+            {
+                var deviceTotal = SpecFlow.GetContext("SummaryProposalConsumableTotalNet");
+                TestCheck.AssertTextContains(deviceTotal, ExtractTextFromPdf(DownloadedPdf()),
+                    "Consumable Total is not available in the PDF");
+            }
+            
         }
 
         public void StoreValuesFromSummaryPage()
@@ -350,12 +355,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             SpecFlow.SetContext("SummaryMonoClickRate", SummaryMonoClickRateElement.Text);
             SpecFlow.SetContext("SummaryColourClickRate", SummaryColourClickRateElement.Text);
             SpecFlow.SetContext("SummaryProposalConsumableTotalNet", SummaryProposalConsumableTotalNetElement.Text);
+            if (!IsElementPresent(GetElementByCssSelector("content_1_SummaryTable_RepeaterModels_DeviceTotalPriceGross_0", 5))) 
             SpecFlow.SetContext("SummaryCustomerDeviceTotalGross", SummaryCustomerDeviceTotalGrossElement.Text);
+            
+            
         }
 
         public void IsCustomerNamePresentInPdf()
         {
             var customerName = SpecFlow.GetContext("SummaryCustomerOrCompanyName");
+            customerName = customerName.Substring(0, 15);
             TestCheck.AssertTextContains(customerName, ExtractTextFromPdf(DownloadedPdf()),
                 "Customer Name is not available in the PDF");
         }
@@ -400,8 +409,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void DoesPdfContentContractItems(string type)
         {
+            if(!IsItalySystem())
             TestCheck.AssertTextContains(type, ExtractTextFromPdf(DownloadedPdf()),
-                "Contract Id is not available in the PDF");
+                "Contract Type is not available in the PDF");
 
         }
 
@@ -476,7 +486,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 lang = ItText;
             }
-            else if (IsItalySystem())
+            else if (IsSpainSystem())
             {
                 lang = SpText;
             }

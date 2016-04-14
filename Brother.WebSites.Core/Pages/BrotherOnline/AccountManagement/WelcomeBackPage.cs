@@ -253,11 +253,21 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
                     noSuchElementException.Message));
             }
 
-            WebDriver.Wait(Helper.DurationType.Second, 3);
+            WebDriver.Wait(DurationType.Second, 3);
 
         }
 
+        public void ClickOnMpsLinkOnWelcomePage()
+        {
+            var mpsLink = FindElementByJs(MpsStringLink());
+            mpsLink.Click();
+            WaitForElementToExistByCssSelector("a[href=\"/mps/local-office\"].mps-link");
+        }
 
+        private string MpsStringLink()
+        {
+            return "return $(('[alt=\"Managed Print Services\"]').parent().parent().children('p')[0])";
+        }
         public ExistingContractPage NavigateToContractPage(string country)
         {
             ExistingContractButton.Click();
@@ -296,6 +306,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         public CustomerDashboardPage NavigateToCustomerDashboardPage()
         {
             ClickOnManagedPrintServices("MANAGED PRINT SERVICES");
+            //ClickOnMpsLinkOnWelcomePage();
             IsCustomerLinkOnDashboardDisplayed();
             CustomerLinkButton.Click();
             return GetInstance<CustomerDashboardPage>(Driver);

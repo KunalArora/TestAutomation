@@ -122,32 +122,28 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return driver.Url.ToLower();
         }
 
+        private static void WaitForRowToAppearBeforeProceeding()
+        {
+            SeleniumHelper.WaitForElementToExistByCssSelector("#DataTables_Table_0 .js-mps-searchable tr", 5, 10);
+        }
+
         public static void SearchForNewlyProposalItem(IWebDriver driver, string search)
         {
-            SeleniumHelper.WaitForElementToExistByCssSelector("#DataTables_Table_0");
+            WaitForRowToAppearBeforeProceeding();
             var action = UrlValue(driver).Contains("contracts") ? ContractSearchFieldElement(driver) : SearchFieldElement(driver);
             action.Clear();
             action.SendKeys(search);
             action.SendKeys(Keys.Tab);
-            WebDriver.Wait(Helper.DurationType.Second, 5);
-
+            WaitForRowToAppearBeforeProceeding();
         }
 
-        public static void SearchForNewContractItem(IWebDriver driver, string search)
-        {
-            var action = ContractSearchFieldElement(driver);
-            action.Clear();
-            action.SendKeys(search);
-            action.SendKeys(Keys.Tab);
-
-        }
-
-        
+       
         public static void SearchForNewCustomer(IWebDriver driver)
         {
             var search = CustomerSearchField(driver);
             search.Clear();
             search.SendKeys(SpecFlow.GetContext("GeneratedEmailAddress"));
+            WaitForRowToAppearBeforeProceeding();
         }
 
 
@@ -165,15 +161,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return element;
         }
 
-        public static void SearchForNewProposal(IWebDriver driver)
-        {
-            var searchField = SearchFieldFucntionality(driver);
-            searchField.Clear();
-            searchField.SendKeys(MpsUtil.CreatedProposal());
-            searchField.SendKeys(Keys.Tab);
-            WebDriver.Wait(Helper.DurationType.Second, 3);
-        }
-
+        
         public static IWebElement SpecificActionsDropdownElement(IWebDriver driver)
         {
             return AllActionsButton(driver).First();

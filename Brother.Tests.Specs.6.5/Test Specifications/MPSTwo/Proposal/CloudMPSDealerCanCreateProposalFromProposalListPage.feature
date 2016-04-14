@@ -40,11 +40,11 @@ Scenario Outline: Dealer Can Create Proposal From Proposal List Page
 
 
 Scenarios: 
-	| Role             | Country        | ContractType                  | UsageType                                 | Contract | Billing                | PriceHardware | Printer      | DeviceScreen | PaymentMethod                    | ClickVolume | ColourVolume | Basis1                        | Basis2                           |
-	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Minimum Volume                            | 3 years  | Quarterly in Arrears   | Tick          | MFC-L8650CDW | Full         | Included in Click Price          | 800         | 800          | Included in Click Price       | Pay upfront                      |
-	| Cloud MPS Dealer | France         | Buy & Click                   | Engagement sur un minimum volume de pages | 3 ans    | Trimestrale anticipata | Tick          | MFC-L8650CDW | Full         | Paiement au démarrage du contrat | 800         | 800          | Inclus dans le coût à la page | Paiement au démarrage du contrat |
-	| Cloud MPS Dealer | Italy          | Acquisto & Consumo            | Volume minimo                             | 36       | Trimestrale anticipata | Tick          | MFC-L8650CDW | Full         | Incluso nel click                | 800         | 800          | Incluso nel click             | Pagamento anticipato             |
-	| Cloud MPS Dealer | Spain          | Purchase & Click con Service  | Volúmen mínimo                            | 3 años   | Quarterly in Arrears   | Tick          | MFC-L8650CDW | Full         | Pago por adelantado              | 800         | 800          | Pago por adelantado           | Pago por adelantado              |
+	| Role             | Country        | ContractType                  | UsageType                                 | Contract | Billing                 | PriceHardware | Printer      | DeviceScreen | PaymentMethod                    | ClickVolume | ColourVolume | Basis1                        | Basis2                           |
+	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Minimum Volume                            | 3 years  | Quarterly in Arrears    | Tick          | MFC-L8650CDW | Full         | Included in Click Price          | 800         | 800          | Included in Click Price       | Pay upfront                      |
+	| Cloud MPS Dealer | France         | Buy & Click                   | Engagement sur un minimum volume de pages | 3 ans    | Trimestrale anticipata  | Tick          | MFC-L8650CDW | Full         | Paiement au démarrage du contrat | 800         | 800          | Inclus dans le coût à la page | Paiement au démarrage du contrat |
+	| Cloud MPS Dealer | Italy          | Acquisto & Consumo            | Volume minimo                             | 36       | Trimestrale anticipata  | Tick          | MFC-L8650CDW | Full         | Incluso nel click                | 800         | 800          | Incluso nel click             | Pagamento anticipato             |
+	| Cloud MPS Dealer | Spain          | Purchase & Click con Service  | Volúmen mínimo                            | 3 años   | Por trimestres vencidos | Tick          | MFC-L8650CDW | Full         | Pago por adelantado              | 800         | 800          | Pago por adelantado           | Pago por adelantado              |
 	
 
 Scenario Outline: German Dealer Can Create Proposal From Proposal List Page
@@ -76,6 +76,6 @@ Scenario Outline: German Dealer Can Create Proposal From Proposal List Page
 
 Scenarios: 
 	| Role             | Country | ContractType             | CreateOption        | UsageType      | Contract | Billing         | PriceHardware | Printer      | DeviceScreen | PaymentMethod | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | Austria | Easy Print Pro & Service | Create new customer | Minimum Volume | 5 Jahre  | Vierteljährlich | Tick          | MFC-L8650CDW | Full         | Pay upfront   | 800         | 800          |
-	| Cloud MPS Dealer | Germany | Easy Print Pro & Service | Create new customer | Minimum Volume | 5 Jahre  | Vierteljährlich | Tick          | MFC-L8650CDW | Full         | Pay upfront   | 800         | 800          |
+	| Cloud MPS Dealer | Austria | Easy Print Pro & Service | Create new customer | Mindestvolumen | 5 Jahre  | Vierteljährlich | Tick          | MFC-L8650CDW | Full         | Pay upfront   | 800         | 800          |
+	| Cloud MPS Dealer | Germany | Easy Print Pro & Service | Create new customer | Mindestvolumen | 5 Jahre  | Vierteljährlich | Tick          | MFC-L8650CDW | Full         | Pay upfront   | 800         | 800          |
 	

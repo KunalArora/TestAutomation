@@ -75,8 +75,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Proposal
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Create different varieties of German And Austria Purchase and Click proposal for " +
             "new customer on Minimum Volume Term")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Austria", "Easy Print Pro & Service", "Create new customer", "Minimum Volume", "5 Jahre", "Vierteljährlich", "Tick", "MFC-L8650CDW", "Full", "Pay upfront", "800", "800", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Germany", "Easy Print Pro & Service", "Create new customer", "Minimum Volume", "5 Jahre", "Vierteljährlich", "Tick", "MFC-L8650CDW", "Full", "Pay upfront", "800", "800", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Austria", "Easy Print Pro & Service", "Create new customer", "Mindestvolumen", "5 Jahre", "Vierteljährlich", "Tick", "MFC-L8650CDW", "Full", "Pay upfront", "800", "800", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Germany", "Easy Print Pro & Service", "Create new customer", "Mindestvolumen", "5 Jahre", "Vierteljährlich", "Tick", "MFC-L8650CDW", "Full", "Pay upfront", "800", "800", null)]
         public virtual void CreateDifferentVarietiesOfGermanAndAustriaPurchaseAndClickProposalForNewCustomerOnMinimumVolumeTerm(string role, string country, string contractType, string createOption, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create different varieties of German And Austria Purchase and Click proposal for " +
@@ -206,8 +206,8 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Create different varieties of German And Austria Purchase and Click proposal for " +
             "an existing customer")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Germany", "Easy Print Pro & Service", "Create new customer", "Minimum Volume", "5 Jahre", "Vierteljährlich", "Tick", "MFC-L8650CDW", "Full", "Included in Click Price", "800", "800", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Austria", "Easy Print Pro & Service", "Create new customer", "Minimum Volume", "5 Jahre", "Vierteljährlich", "Tick", "MFC-L8650CDW", "Full", "Included in Click Price", "800", "800", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Germany", "Easy Print Pro & Service", "Create new customer", "Mindestvolumen", "5 Jahre", "Vierteljährlich", "Tick", "MFC-L8650CDW", "Full", "Included in Click Price", "800", "800", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Austria", "Easy Print Pro & Service", "Create new customer", "Mindestvolumen", "5 Jahre", "Vierteljährlich", "Tick", "MFC-L8650CDW", "Full", "Included in Click Price", "800", "800", null)]
         public virtual void CreateDifferentVarietiesOfGermanAndAustriaPurchaseAndClickProposalForAnExistingCustomer(string role, string country, string contractType, string createOption, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create different varieties of German And Austria Purchase and Click proposal for " +

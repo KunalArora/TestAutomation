@@ -231,6 +231,8 @@ Scenarios:
 	| Cloud MPS Local Office Approver | France  | Buy & Click                       | Engagement sur un minimum volume de pages | Cloud MPS Dealer | Cloud  | 3 ans  | Trimestrale anticipata | BOR  |
 	| Cloud MPS Local Office Approver | Italy   | Acquisto + Consumo con assistenza | Volume minimo                             | Cloud MPS Dealer | Cloud  | 36     | Quarterly in Advance   | Web  |
 	| Cloud MPS Local Office Approver | Italy   | Acquisto + Consumo con assistenza | Volume minimo                             | Cloud MPS Dealer | Cloud  | 48     | Quarterly in Advance   | BOR  |
+	| Cloud MPS Local Office Approver | Spain   | Purchase & Click con Service      | Volúmen mínimo                            | Cloud MPS Dealer | Cloud  | 3 años | Quarterly in Arrears   | BOR  |
+	
 	
 
 Scenario Outline: Dealer can create installation request for Email Communication for other countries

@@ -17,10 +17,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public static string Url = "/mps/dealer/contracts";
         private const string UkText = @"Purchase + Click Agreement Number";
         private const string DeText = @"Mehrwertsteuer";
-        private const string AtText = @"Mindestdruckvolumen";
-        private const string ItText = @"Volume minimo";
+        private const string AtText = @"Deckungsgrades";
+        private const string ItText = @"Durata del Contratto";
         private const string FrText = @"CONTRAT DE SERVICE PRINTSMART";
-        private const string SpText = @"CONTRATO DE PAGO";
+        private const string SpText = @"Referencia número contrato";
         private const string DownloadDirectory = @"C:/Users/afolabsa/Downloads";
 
         public override string DefaultTitle
@@ -56,13 +56,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if (ManageDevicesElement == null)
                 throw new Exception("Manage Device Element is not displayed");
 
-            WebDriver.Wait(DurationType.Second, 30);
-
+            MPSJobRunnerPage.RunCreateCustomerAndPersonCommandJob();
             ActionsModule.ClickOnSpecificActionsElement(Driver);
 
             ScrollTo(ManageDevicesElement);
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ManageDevicesElement);
-            WebDriver.Wait(DurationType.Second, 30);
+            MPSJobRunnerPage.RunCreateCustomerAndPersonCommandJob();
             return GetInstance<ManageDevicesPage>(Driver);
         }
 
@@ -88,14 +87,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
             else if (IsFranceSystem())
             {
-                //path = "file:///C:/Users/afolabsa/Downloads/{0}-Contrat.pdf";
-                path = "file:///C:/Users/afolabsa/Downloads/{0}-Contract.pdf";
-
+                path = "file:///C:/Users/afolabsa/Downloads/{0}-Contrat.pdf";
+                
             }
             else if (IsItalySystem())
             {
-                //path = "file:///C:/Users/afolabsa/Downloads/{0}-Contratto.pdf";
-                path = "file:///C:/Users/afolabsa/Downloads/{0}-Contract.pdf";
+                path = "file:///C:/Users/afolabsa/Downloads/{0}-Contratto.pdf";
             }
             else if (IsSpainSystem())
             {
@@ -115,7 +112,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var downloadPath = String.Format(DownloadFolderPath(), contractid);
             SpecFlow.SetContext("DownloadedPdfPath", downloadPath);
             ActionsModule.DownloadContractPDFAction(Driver);
-            WebDriver.Wait(DurationType.Second, 5);
+            WebDriver.Wait(DurationType.Second, 2);
 
         }
 
@@ -149,7 +146,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsCustomerEmailPresentInPdf()
         {
-            if(IsBigAtSystem()) return;
+            if(IsBigAtSystem() || IsSpainSystem()) return;
             var customerEmail = SpecFlow.GetContext("SummaryCustomerEmail");
             TestCheck.AssertTextContains(customerEmail, ExtractTextFromPdf(DownloadedPdf()),
                 "Customer Email is not available in the PDF");
@@ -157,6 +154,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsCustomerNamePresentInPdf()
         {
+            if (IsSpainSystem()) return;
             var customerName = SpecFlow.GetContext("SummaryCustomerOrCompanyName");
             TestCheck.AssertTextContains(customerName, ExtractTextFromPdf(DownloadedPdf()),
                 "Customer Name is not available in the PDF");
@@ -194,8 +192,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsSummaryContractTypePresentInPdf()
         {
+            var contractType = "";
+
             if (IsBigAtSystem()) return;
-            var contractType = SpecFlow.GetContext("SummaryContractType");
+            contractType = IsItalySystem() ? "Programma \"Pagine+ Cloud\"" : SpecFlow.GetContext("SummaryContractType");
             TestCheck.AssertTextContains(contractType, ExtractTextFromPdf(DownloadedPdf()),
                 "Summary Contract Type is not available in the PDF");
         }
@@ -237,12 +237,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             var colourClickRate = SpecFlow.GetContext("SummaryColourClickRate");
             colourClickRate = ConvertClickRatePrice(colourClickRate);
-
-            if (IsBigAtSystem())
+            if (IsGermanSystem())
             {
                 colourClickRate = AddCommaToColourClickPrice(colourClickRate);
             }
-
             TestCheck.AssertTextContains(colourClickRate, ExtractTextFromPdf(DownloadedPdf()),
                 "Summary Colour Click Rate is not available in the PDF");
         }
@@ -266,7 +264,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             } else if (IsItalySystem())
             {
                 lang = ItText;
-            } else if (IsItalySystem())
+            } else if (IsSpainSystem())
             {
                 lang = SpText;
             }

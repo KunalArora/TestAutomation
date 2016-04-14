@@ -133,7 +133,7 @@ namespace Brother.Tests.Selenium.Lib.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Bradon20151112102155@mailinator.com")]
+        [global::System.Configuration.DefaultSettingValueAttribute("lashonda20160322123145@mailinator.com")]
         public string QASUKCustomer {
             get {
                 return ((string)(this["QASUKCustomer"]));

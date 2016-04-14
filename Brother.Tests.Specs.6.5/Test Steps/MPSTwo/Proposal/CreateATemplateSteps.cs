@@ -754,7 +754,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         private void GivenIHaveCreatedGermanLeasingAndClickProposal(string UsageType)
         {
             if (UsageType.Equals(string.Empty))
-                UsageType = "Minimum Volume";
+                UsageType = "Mindestvolumen";
             GivenIamOnMpsNewProposalPage();
             WhenIFillProposalDescriptionForContractType("Leasing & Service");
             DealerProposalsCreateTermAndTypeStep termAndTypeStepInstance = new DealerProposalsCreateTermAndTypeStep();
@@ -773,7 +773,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [Given(@"I have created German Leasing and Click proposal")]
         public void GivenIHaveCreatedGermanLeasingAndClickProposal()
         {
-            GivenIHaveCreatedGermanLeasingAndClickProposal("Minimum Volume");
+            GivenIHaveCreatedGermanLeasingAndClickProposal("Mindestvolumen");
         }
 
 
@@ -953,13 +953,13 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [Given(@"I have created German Purchase and Click proposal")]
         public void GivenIHaveCreatedGermanPurchaseAndClickProposal()
         {
-            GivenIHaveCreatedGermanPurchaseAndClickProposal("Minimum Volume");
+            GivenIHaveCreatedGermanPurchaseAndClickProposal("Mindestvolumen");
         }
 
         private void GivenIHaveCreatedGermanPurchaseAndClickProposal(string UsageType)
         {
             if (UsageType.Equals(string.Empty))
-                UsageType = "Minimum Volume";
+                UsageType = "Mindestvolumen";
             GivenIamOnMpsNewProposalPage();
             WhenIFillProposalDescriptionForContractType("Easy Print Pro & Service");
             
@@ -1111,7 +1111,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<DealerProposalsCreateSummaryPage>().DoesPdfContentContractItems(contractType);
             CurrentPage.As<DealerProposalsCreateSummaryPage>().IsSummaryMonoClickRatePresentInPdf();
             CurrentPage.As<DealerProposalsCreateSummaryPage>().IsCorrectLanguagePdfDownloaded();
-            CurrentPage.As<DealerProposalsCreateSummaryPage>().IsConsumableTotalNetPresentInPdf();
+           // CurrentPage.As<DealerProposalsCreateSummaryPage>().IsConsumableTotalNetPresentInPdf();
             CurrentPage.As<DealerProposalsCreateSummaryPage>().PurgeDownloadsDirectory();
         }
 

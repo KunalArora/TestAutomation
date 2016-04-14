@@ -74,7 +74,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Customer
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Existing Customer can be used to create a new contract for Run purpose")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Cloud", "Web", "lashonda20160322123145@mailinator.com", "3 years", "Quarterly in Arrears", "Cloud MPS Customer", null)]
-        public virtual void ExistingCustomerCanBeUsedToCreateANewContractForRunPurpose(string role, string country, string contractType, string usageType, string role1, string method, string type, string existingCustomer, string length, string billing, string role3, string[] exampleTags)
+        public virtual void ExistingCustomerCanBeUsedToCreateANewContractForRunPurpose(string role, string country, string contractType, string usageType, string role1, string method, string type, string existingCustomer, string length, string billing, string role2, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Existing Customer can be used to create a new contract for Run purpose", exampleTags);
 #line 8
@@ -94,11 +94,9 @@ this.ScenarioSetup(scenarioInfo);
 #line 14
  testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 15
- testRunner.And(string.Format("I sign back into Cloud MPS as a \"<Role2>\" from \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role2, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 16
  testRunner.And("I navigate to customer dashboard page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 17
- testRunner.And("I navigate to consumable ordering page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
