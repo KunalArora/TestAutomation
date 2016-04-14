@@ -35,7 +35,7 @@ namespace Brother.Tests.Specs._80.TestSpecification.BrotherMainSite.PrinterSearc
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Correct printer product listings", "In order to purchase a new Printer\r\nAs a customer\r\nI want to be able to view the " +
                     "list of available printers", ProgrammingLanguage.CSharp, new string[] {
-                        "IGNORE"});
+                        "ignore"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -72,21 +72,14 @@ namespace Brother.Tests.Specs._80.TestSpecification.BrotherMainSite.PrinterSearc
             "ept Spain and Portugal sites")]
         [NUnit.Framework.CategoryAttribute("TEST")]
         [NUnit.Framework.CategoryAttribute("UAT")]
-        [NUnit.Framework.TestCaseAttribute("Czech", "printers/laser-printers", null)]
-        [NUnit.Framework.TestCaseAttribute("Finland", "printers/laser-printers", null)]
-        [NUnit.Framework.TestCaseAttribute("France", "imprimantes/imprimantes-multifonctions/multifonctions-laser", null)]
-        [NUnit.Framework.TestCaseAttribute("Hungary", "printers/laser-printers", null)]
-        [NUnit.Framework.TestCaseAttribute("Ireland", "printers/laser-printers", null)]
-        [NUnit.Framework.TestCaseAttribute("Netherlands", "printers/laserprinters", null)]
-        [NUnit.Framework.TestCaseAttribute("Poland", "printers/laser-printers", null)]
-        [NUnit.Framework.TestCaseAttribute("Romania", "printers/laser-printers", null)]
-        [NUnit.Framework.TestCaseAttribute("Slovakia", "printers/laser-printers", null)]
-        [NUnit.Framework.TestCaseAttribute("Slovenia", "printers/laser-printers", null)]
+        [NUnit.Framework.CategoryAttribute("PROD")]
+        [NUnit.Framework.TestCaseAttribute("Italy", "Printers-and-All-in-one/LaserMono-Printers", null)]
         public virtual void ViewTheListOfAvailableLaserPrintersOnBrotherMainSitesForLanguagesExceptSpainAndPortugalSites(string country, string site, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "TEST",
-                    "UAT"};
+                    "UAT",
+                    "PROD"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -124,15 +117,15 @@ this.ScenarioSetup(scenarioInfo);
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("View the list of available Laser Printers on Brother Main sites for Spain and Por" +
                     "tugal", @__tags);
-#line 37
-this.ScenarioSetup(scenarioInfo);
 #line 38
- testRunner.Given(string.Format("I have navigated to the Brother Main Site \"{0}\" products pages", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioSetup(scenarioInfo);
 #line 39
- testRunner.Given(string.Format("I have navigated to the \"{0}\" MainSite URL for country \"{1}\"", site, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given(string.Format("I have navigated to the Brother Main Site \"{0}\" products pages", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 40
- testRunner.Then("I should see a list of Laser printers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Given(string.Format("I have navigated to the \"{0}\" MainSite URL for country \"{1}\"", site, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 41
+ testRunner.Then("I should see a list of Laser printers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 42
  testRunner.And("I can validate that each printer for Spain and Portugal is a valid printer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();

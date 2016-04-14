@@ -44,8 +44,11 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         [FindsBy(How = How.CssSelector, Using = ".row.glossary-listing_tab-item")] 
         public IWebElement GlossarySection;
 
-        [FindsBy(How = How.CssSelector, Using = ".product-results-header.clearfix.component")] 
+        [FindsBy(How = How.CssSelector, Using = ".product-results-header.clearfix.component")]
         public IWebElement FilterSection;
+
+        [FindsBy(How = How.CssSelector, Using = ".btn-info")]
+        public IWebElement FindOutMoreButton;
 
         [FindsBy(How = How.CssSelector, Using = ".col-xs-12.col-md-6.product-detail--container-title")]
         public IWebElement AccessoryProductTitle;
@@ -217,9 +220,18 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
             {
                 throw new NullReferenceException("Unable to locate page header");
             }
-            AssertElementPresent(FilterSection, "Filter Section", 30);
+            AssertElementPresent(FilterSection, "Is filter section present", 30);
         }
 
+        public void IsFindOutMoreButtonDisplayed()
+        {
+            WaitForElementToExistByCssSelector(".btn-info");
+            if (FindOutMoreButton == null)
+            {
+                throw new NullReferenceException("Unable to locate page header");
+            }
+            AssertElementPresent(FindOutMoreButton, "Find out More", 30);
+        }
         public void IsAccessoryProductTitleDisplayed()
         {
             WaitForElementToExistByCssSelector(".col-xs-12.col-md-6.product-detail--container-title");

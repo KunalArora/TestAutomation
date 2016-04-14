@@ -38,14 +38,16 @@ namespace Brother.Tests.Selenium.Lib.Pages.BrotherMainSite.Smart_Supply
             }
         }
 
-        [FindsBy(How = How.CssSelector, Using = ".button-blue.add-to-basket-button")]
+
+        [FindsBy(How = How.Id, Using = "buybutton")]
         public IWebElement AddtoBasketBrotherSupplyClubProduct;
+
 
         public void AddSmartSupplyProductToBasketButtonClick()
         {
             AddtoBasketBrotherSupplyClubProduct.Click();
             // Checking if the add to cart click event is performed fully
-            WebDriver.Wait(DurationType.Second, 10);
+            WebDriver.Wait(DurationType.Second, 2);
         }
 
         [FindsBy(How = How.CssSelector, Using = ".basket-container")]

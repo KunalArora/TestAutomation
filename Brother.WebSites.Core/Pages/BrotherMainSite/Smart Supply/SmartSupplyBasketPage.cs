@@ -16,7 +16,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.Smart_Supply
             return GetInstance<SmartSupplyBasketPage>(driver, "", "");
         }
 
-        [FindsBy(How = How.CssSelector, Using = ".styled-checkbox")]
+        [FindsBy(How = How.Id, Using = "content_0_basketoptions_0_chkBrotherSupplyClubOptIn")]
         public IWebElement BSCOptInCheckBox;
         public void IsBSCOptInCheckBoxAvailable()
         {
