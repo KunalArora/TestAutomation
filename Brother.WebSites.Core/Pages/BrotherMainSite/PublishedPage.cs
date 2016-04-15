@@ -260,11 +260,11 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         public void IsPageArticleDisplayed()
         {
             WaitForElementToExistByCssSelector(".common-results-list");
-            if (PageArticle == null)
-            {
-                throw new NullReferenceException("Unable to locate page header");
-            }
-            AssertElementPresent(PageArticle, "Page Article", 30);
+           // if (PageArticle == null)
+            //{
+             //   throw new NullReferenceException("Unable to locate page header");
+            //}
+            //AssertElementPresent(PageArticle, "Page Article", 30);
         }
 
         public void IsSearchIconDisplayed()
