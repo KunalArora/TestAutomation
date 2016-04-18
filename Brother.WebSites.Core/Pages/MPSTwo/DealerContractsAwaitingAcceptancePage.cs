@@ -56,7 +56,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if (ManageDevicesElement == null)
                 throw new Exception("Manage Device Element is not displayed");
 
-            MPSJobRunnerPage.RunCreateCustomerAndPersonCommandJob();
             ActionsModule.ClickOnSpecificActionsElement(Driver);
 
             ScrollTo(ManageDevicesElement);

@@ -155,7 +155,7 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
         {
             NextPage = CurrentPage.As<DealerDashBoardPage>().NavigateToContractScreenFromDealerDashboard();
             NextPage = CurrentPage.As<DealerContractsPage>().NavigateToAcceptedContract();
-            NextPage = CurrentPage.As<DealerContractsApprovedPage>().NavigateToManageDevicesPage();
+            NextPage = CurrentPage.As<DealerContractsAcceptedPage>().NavigateToManageDevicesPage();
 
         }
 

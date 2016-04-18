@@ -11,7 +11,7 @@ using OpenQA.Selenium.Support.PageObjects;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class DealerContractsApprovedPage : BasePage
+    public class DealerContractsAcceptedPage : BasePage
     {
         public static string URL = "/mps/dealer/contracts";
 
@@ -31,8 +31,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             if (ManageDevicesElement == null)
                 throw new Exception("Manage Device Element is not displayed");
-
-            MPSJobRunnerPage.RunCreateCustomerAndPersonCommandJob();
 
             ActionsModule.ClickOnSpecificActionsElement(Driver);
             

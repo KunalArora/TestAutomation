@@ -20,6 +20,7 @@ namespace Brother.Tests.Selenium.Lib.Support
             var generatedProposalName = "MPS_Smoke_" + SurName() + 
                 "-" + DateTime.Now.ToString("MMdHHmmss");
             HelperClasses.SpecFlow.SetContext("GeneratedProposalName", generatedProposalName);
+            Helper.MsgOutput(String.Format("The proposal generated is {0}", generatedProposalName));
             return generatedProposalName;
         }
 
@@ -30,6 +31,7 @@ namespace Brother.Tests.Selenium.Lib.Support
                 DateTime.Now.ToString("yyyyMMdHHmmss")
                 +"@mailinator.com";
             HelperClasses.SpecFlow.SetContext("GeneratedEmailAddress", generatedEmailAddress);
+            Helper.MsgOutput(String.Format("The unique email generated is {0}", generatedEmailAddress));
             return generatedEmailAddress;
         }
 
@@ -184,6 +186,7 @@ namespace Brother.Tests.Selenium.Lib.Support
             var generatedCompanyName = companyName[new Random().Next(20)] + "_" + DateTime.Now.ToString("yyMMdHHmmss") + " Ltd";
             HelperClasses.SpecFlow.SetContext("GeneratedCompanyName", generatedCompanyName);
 
+            Helper.MsgOutput(String.Format("The company generated is {0}", generatedCompanyName));
             return generatedCompanyName;
             
         }

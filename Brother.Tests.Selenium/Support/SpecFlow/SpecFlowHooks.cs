@@ -94,7 +94,7 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
                 IgnoreThisTest("Skipping this test as Staging flag is not set");
             }
             Helper.MsgOutput("Staging Scenario Found");
-            Helper.MsgOutput(String.Format("Test starts at {0}", DateTime.Now.ToString("dd-MM-yyyy H:mm:ss")));
+            //Helper.MsgOutput(String.Format("Test starts at {0}", DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss.FFF")));
         }
 
         [BeforeScenario("MPS")]
@@ -172,7 +172,7 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
             DoMpsTestEval(Helper.CheckFeatureEnv("MPS"));
             DoSmokeTestEval(Helper.IsSmokeTest());
             SetCurrentDriver();
-            Helper.MsgOutput(String.Format("Test starts at {0}", DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss")));
+            //Helper.MsgOutput(String.Format("Test starts at {0}", DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss")));
         }
 
         [AfterScenario()]
@@ -195,7 +195,7 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
             TestController.Test_Teardown();
             WebDriver.Wait(Helper.DurationType.Second, 3);
             BeforeFeatureHeadless();
-            Helper.MsgOutput(String.Format("Failed Test end at {0}", DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss")));
+            //Helper.MsgOutput(String.Format("Failed Test end at {0}", DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss")));
         }
 
         #endregion "Before and After Scenario Tags"

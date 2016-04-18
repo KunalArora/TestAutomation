@@ -366,7 +366,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             TestCheck.AssertIsEqual(1, buttonCount,
                 String.Format("{0} Actions buttons were returned meaning installation request is not removed", buttonCount));
             MPSJobRunnerPage.NotifyBocOfNewChanges();
-            MPSJobRunnerPage.RunPollConsumableOrderStatusCommandJob();
+           // MPSJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob();
             MPSJobRunnerPage.RunCreateOrderAndServiceRequestsCommandJob();
             MPSJobRunnerPage.RunConsumableOrderRequestsCommandJob();
 

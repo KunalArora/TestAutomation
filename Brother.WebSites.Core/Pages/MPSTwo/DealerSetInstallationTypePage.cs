@@ -64,8 +64,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerSendInstallationEmailPage ProccedToDealerSendInstallationEmailPage()
         {
-            MPSJobRunnerPage.RunCreateCustomerAndPersonCommandJob();
-            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, NextElement);
+           MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, NextElement);
            
             return GetInstance<DealerSendInstallationEmailPage>(Driver);
         }

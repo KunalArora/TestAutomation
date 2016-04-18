@@ -100,18 +100,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         
         public void IsContractsSignedByDealerDisplayed()
         {
-            RunCreateCustomerAndPersonJob();
-
+            
             var createdProposal = MpsUtil.CreatedProposal();
             ActionsModule.SearchForNewlyProposalItem(Driver, createdProposal);
             ActionsModule.IsNewlyCreatedItemDisplayed(Driver);
         }
 
 
-        public void RunCreateCustomerAndPersonJob()
-        {
-            MPSJobRunnerPage.RunCreateCustomerAndPersonCommandJob();
-        }
+        
 
         private IWebElement ActionButtonElementByName(string name, string tdcol)
         {
@@ -208,7 +204,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public LocalOfficeApproverDeviceManagementPage NavigateTOfficeDeviceManagementPage()
         {
-            RunCreateCustomerAndPersonJob();
+            MPSJobRunnerPage.RunCreateCustomerAndPersonCommandJob();
             LOApproverDeviceManagementElement.Click();
             return GetInstance<LocalOfficeApproverDeviceManagementPage>(Driver);
 
