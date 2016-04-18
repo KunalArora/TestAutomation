@@ -75,8 +75,8 @@ Scenario Outline: Summary Page Validation For Minimum Volume German And Austria 
 
 	Scenarios: 
 	| Role             | Country | ContractType             | UsageType      | Contract | Billing      | PriceHardware | Printer      | PaymentMethod      | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | Germany | Easy Print Pro & Service | Minimum Volume | 5 Jahre  | Halbjährlich | Tick          | MFC-L8650CDW | im Voraus bezahlen | 800         | 800          |
-	| Cloud MPS Dealer | Austria | Easy Print Pro & Service | Minimum Volume | 5 Jahre  | Halbjährlich | Tick          | MFC-L8650CDW | im Voraus bezahlen | 800         | 800          |
+	| Cloud MPS Dealer | Germany | Easy Print Pro & Service | Mindestvolumen | 5 Jahre  | Halbjährlich | Tick          | MFC-L8650CDW | im Voraus bezahlen | 800         | 800          |
+	| Cloud MPS Dealer | Austria | Easy Print Pro & Service | Mindestvolumen | 5 Jahre  | Halbjährlich | Tick          | MFC-L8650CDW | im Voraus bezahlen | 800         | 800          |
 	
 	
 
@@ -114,6 +114,6 @@ Scenario Outline: Summary Page Validation For Minimum Volume German And Austria 
 
 	Scenarios: 
 	| Role             | Country | ContractType                  | UsageType      | Contract | Billing         | PriceHardware | Printer      | PaymentMethod      | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | Germany | Easy Print Pro & Service | Minimum Volume | 4 Jahre  | Vierteljährlich | Tick          | MFC-L8650CDW | im Voraus bezahlen | 800         | 800          |
-	| Cloud MPS Dealer | Austria | Easy Print Pro & Service | Minimum Volume | 4 Jahre  | Vierteljährlich | Tick          | MFC-L8650CDW | im Voraus bezahlen | 800         | 800          |
+	| Cloud MPS Dealer | Germany | Easy Print Pro & Service | Mindestvolumen | 4 Jahre  | Vierteljährlich | Tick          | MFC-L8650CDW | im Voraus bezahlen | 800         | 800          |
+	| Cloud MPS Dealer | Austria | Easy Print Pro & Service | Mindestvolumen | 4 Jahre  | Vierteljährlich | Tick          | MFC-L8650CDW | im Voraus bezahlen | 800         | 800          |
 	

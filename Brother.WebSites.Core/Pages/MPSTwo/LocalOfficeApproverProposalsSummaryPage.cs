@@ -111,7 +111,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         
         public void EnterValidUntil()
         {
-            if (IsFranceSystem()||IsItalySystem()||IsAustriaSystem())
+            if (IsFranceSystem() || IsItalySystem() || IsAustriaSystem() || IsUKSystem())
                 ValidUntilElement.SendKeys(MpsUtil.SomeDaysFromToday());
         }
 

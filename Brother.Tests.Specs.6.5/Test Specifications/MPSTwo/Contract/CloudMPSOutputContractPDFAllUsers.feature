@@ -48,6 +48,7 @@ Scenario Outline: Local Office Approver can download Contract PDFs on Awaiting A
 	| Cloud MPS Local Office Approver | Germany        |
 	| Cloud MPS Local Office Approver | France         |
 	| Cloud MPS Local Office Approver | Italy          |
+	| Cloud MPS Local Office Approver | Spain          |
 	
 
 
@@ -64,7 +65,7 @@ Scenario Outline: Local Office Approver can download Contract PDFs on Rejected p
 	| Cloud MPS Local Office Approver | Germany        |
 	| Cloud MPS Local Office Approver | France         |
 	| Cloud MPS Local Office Approver | Italy          |
-
+	| Cloud MPS Local Office Approver | Spain          |
 
 
 Scenario Outline: Dealer can download Contract PDFs on Approved proposal page
@@ -78,9 +79,9 @@ Scenario Outline: Dealer can download Contract PDFs on Approved proposal page
 	| Cloud MPS Dealer | United Kingdom |
 	| Cloud MPS Dealer | Germany        |
 	| Cloud MPS Dealer | France         |
-	| Cloud MPS Dealer | Italy         |
+	| Cloud MPS Dealer | Italy          |
+	| Cloud MPS Dealer | Spain          |
 	
-
 Scenario Outline: Dealer can download Contract PDFs on Awaiting Acceptance page
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When I navigate to dealer contract Awaiting Acceptance page
@@ -93,8 +94,9 @@ Scenario Outline: Dealer can download Contract PDFs on Awaiting Acceptance page
 	| Cloud MPS Dealer | United Kingdom |
 	| Cloud MPS Dealer | Germany        |
 	| Cloud MPS Dealer | France         |
-	| Cloud MPS Dealer | Italy         |
-
+	| Cloud MPS Dealer | Italy          |
+	| Cloud MPS Dealer | Spain          |
+	
 
 Scenario Outline: Dealer can download Contract PDFs on Rejected page
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
@@ -108,5 +110,6 @@ Scenario Outline: Dealer can download Contract PDFs on Rejected page
 	| Cloud MPS Dealer | United Kingdom |
 	| Cloud MPS Dealer | Germany        |
 	| Cloud MPS Dealer | France         |
-	| Cloud MPS Dealer | Italy         |
+	| Cloud MPS Dealer | Italy          |
+	| Cloud MPS Dealer | Spain          |
 	

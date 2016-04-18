@@ -64,6 +64,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerSetInstallationTypePage ProceedToNextPage()
         {
+            
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ProceedElement);
             
             return GetTabInstance<DealerSetInstallationTypePage>(Driver);
@@ -72,6 +73,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerSendInstallationEmailPage ProceedToNextPageForEmail()
         {
+            
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ProceedElement);
 
             return GetTabInstance<DealerSendInstallationEmailPage>(Driver);

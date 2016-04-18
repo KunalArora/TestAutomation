@@ -354,7 +354,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage = BasePage.LoadBolHomePage(CurrentDriver, BasePage.BaseUrl, "");         
         }
 
-
+        [When(@"I sign into Cloud MPS as a ""(.*)"" from ""(.*)""")]
         [When(@"I return to Cloud MPS as a ""(.*)"" from ""(.*)""")]
         [When(@"I sign back into Cloud MPS as a ""(.*)"" from ""(.*)""")]
         [Then(@"I sign back into Cloud MPS as a ""(.*)"" from ""(.*)""")]

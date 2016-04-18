@@ -27,10 +27,11 @@ Scenario Outline: Verify Other Countries PDF Contents Are Correct
 
 Scenarios:
 
-	| ContractType                      | Country | UsageType                                 | Length | Billing                |
-	| Buy & Click                       | France  | Engagement sur un minimum volume de pages | 3 ans  | Trimestrale anticipata |
-	| Acquisto + Consumo con assistenza | Italy   | Volume minimo                             | 36     | Quarterly in Advance   |
-
+	| ContractType                      | Country | UsageType                                 | Length | Billing                 |
+	| Buy & Click                       | France  | Engagement sur un minimum volume de pages | 3 ans  | Trimestrale anticipata  |
+	| Acquisto + Consumo con assistenza | Italy   | Volume minimo                             | 36     | Trimestrale anticipata  |
+	| Purchase & Click con Service      | Spain   | Volúmen mínimo                            | 3 años | Por trimestres vencidos |
+	
 
 Scenario Outline: Verify German PDF Contents Are Correct
 	Given German Dealer have created a "<Country>" awating acceptance contract of "<ContractType>" and "<UsageType>"
@@ -41,7 +42,7 @@ Scenario Outline: Verify German PDF Contents Are Correct
 	Scenarios:
 
 	| Country | ContractType             | UsageType      | 
-	| Germany | Easy Print Pro & Service | Minimum Volume | 
-	| Germany | Leasing & Service        | Minimum Volume | 
-	| Austria | Easy Print Pro & Service | Minimum Volume | 
-	| Austria | Leasing & Service        | Minimum Volume | 
+	| Germany | Easy Print Pro & Service | Mindestvolumen | 
+	| Germany | Leasing & Service        | Mindestvolumen | 
+	| Austria | Easy Print Pro & Service | Mindestvolumen | 
+	| Austria | Leasing & Service        | Mindestvolumen | 

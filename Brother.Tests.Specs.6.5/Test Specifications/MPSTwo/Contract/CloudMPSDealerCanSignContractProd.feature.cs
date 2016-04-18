@@ -20,7 +20,6 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Contract
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("CloudMPSDealerCanSignContractProd")]
-    [NUnit.Framework.IgnoreAttribute()]
     [NUnit.Framework.CategoryAttribute("MPS")]
     [NUnit.Framework.CategoryAttribute("PROD")]
     public partial class CloudMPSDealerCanSignContractProdFeature
@@ -37,7 +36,6 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Contract
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CloudMPSDealerCanSignContractProd", "In order to progress an approved proposal to contract\r\nAs a dealer\r\nI want to be " +
                     "able to sign an approve proposal", ProgrammingLanguage.CSharp, new string[] {
-                        "ignore",
                         "MPS",
                         "PROD"});
             testRunner.OnFeatureStart(featureInfo);
@@ -131,8 +129,6 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("Dealer Can Sign A Purchase And Click Contract in Prod")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Cloud MPS Local Office Approver", "https://web1.online.brother.co.uk", "Web_1", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Cloud MPS Local Office Approver", "https://web2.online.brother.co.uk", "Web_2", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Cloud MPS Local Office Approver", "https://web5.online.brother.co.uk", "Web_5", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Cloud MPS Local Office Approver", "https://web6.online.brother.co.uk", "Web_6", null)]
         public virtual void DealerCanSignAPurchaseAndClickContractInProd(string role, string country, string role2, string web, string serverName, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer Can Sign A Purchase And Click Contract in Prod", exampleTags);

@@ -18,12 +18,9 @@ namespace Brother.Tests.Selenium.Lib.Support
         private const string austriaUrl = @"online.at";
         private const string englandUrl = @"online.uk";
         private const string franceUrl = @"online.fr";
-        private const string existingSerialNumber = @"A1T010004";
-        private const string existingSerialNumberBIG = @"A1T010005";
-        private const string existingSerialNumberAUT = @"A1T010006";
-        private const string SerialNumber = @"A1T010007";
-        private const string SerialNumberBIG = @"A1T010008";
-        private const string SerialNumberAUT = @"A1T010009";
+        private const string existingSerialNumber = @"A1T010001";
+        private const string existingSerialNumberBIG = @"A1T010002";
+        private const string existingSerialNumberAUT = @"A1T010003";
 
 
         public static string UsedSerialNumber(IWebDriver driver)

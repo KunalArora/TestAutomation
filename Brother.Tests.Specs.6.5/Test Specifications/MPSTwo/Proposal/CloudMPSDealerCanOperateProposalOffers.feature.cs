@@ -226,10 +226,12 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("Dealer can copy an existing proposal offer for all countries")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "France", "Buy & Click", "Engagement sur un minimum volume de pages", "3 ans", "Trimestrale anticipata", "Skip customer creation", "Without", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "France", "Buy & Click", "Engagement sur un minimum volume de pages", "4 ans", "Trimestrale anticipata", "Create new customer", "With", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Italy", "Acquisto + Consumo con assistenza", "Volume minimo", "36", "Quarterly in Advance", "Skip customer creation", "Without", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Italy", "Acquisto + Consumo con assistenza", "Volume minimo", "48", "Quarterly in Advance", "Create new customer", "With", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Italy", "Acquisto + Consumo con assistenza", "Volume minimo", "36", "Trimestrale anticipata", "Skip customer creation", "Without", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Italy", "Acquisto + Consumo con assistenza", "Volume minimo", "48", "Trimestrale anticipata", "Create new customer", "With", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Purchase & Click with Service", "Minimum Volume", "3 years", "Quarterly in Arrears", "Skip customer creation", "Without", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Purchase & Click with Service", "Minimum Volume", "4 years", "Quarterly in Arrears", "Create new customer", "With", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Spain", "Purchase & Click con Service", "Volúmen mínimo", "3 años", "Por trimestres vencidos", "Skip customer creation", "Without", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Spain", "Purchase & Click con Service", "Volúmen mínimo", "3 años", "Por trimestres vencidos", "Create new customer", "With", null)]
         public virtual void DealerCanCopyAnExistingProposalOfferForAllCountries(string role, string country, string contractType, string usageType, string length, string billing, string customer, string status, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer can copy an existing proposal offer for all countries", exampleTags);

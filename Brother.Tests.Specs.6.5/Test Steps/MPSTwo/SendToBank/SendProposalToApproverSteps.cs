@@ -34,6 +34,11 @@ namespace Brother.Tests.Specs.MPSTwo.SendToBank
             NextPage = CurrentPage.As<CloudExistingProposalPage>().ClickOnConvertToContractButton(CurrentDriver);
         }
 
+        public void ThenICanClickOnConvertToContractButtonToNavigateToConvertSummaryPage()
+        {
+            NextPage = CurrentPage.As<CloudExistingProposalPage>().ClickOnConvertToContractButton();
+        }
+
         [Then(@"I am taken to the proposal summary where I can enter envisage contract start date")]
         public void ThenIAmTakenToTheProposalSummaryWhereICanEnterEnvisageContractStartDate()
         {
@@ -52,7 +57,8 @@ namespace Brother.Tests.Specs.MPSTwo.SendToBank
             CurrentPage.As<ConvertProposalSummaryPage>().GiveSchufaAuthorization();
         }
 
-        
+
+        [When(@"I send the created proposal for approval")]
         [Given(@"I send the created proposal for approval")]
         public void GivenISendTheCreatedProposalForApproval()
         {
@@ -68,6 +74,8 @@ namespace Brother.Tests.Specs.MPSTwo.SendToBank
         public void WhenINavigateToTheSummaryPageOfTheProposalAwaitingApproval()
         {
             NextPage = CurrentPage.As<DealerProposalsAwaitingApproval>().NavigateToViewSummary();
+            CurrentPage.As<DealerProposalsCreateSummaryPage>().StoreValuesFromSummaryPage();
+            CurrentPage.As<DealerProposalsCreateSummaryPage>().GetDownloadedPdfPath();
            // NextPage = CurrentPage.As<DealerProposalsCreateSummaryPage>().CloseProposal();
         }
 

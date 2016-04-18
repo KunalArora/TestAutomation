@@ -34,8 +34,8 @@ Scenario Outline: Create different varieties of German And Austria Purchase and 
 
 	Scenarios: 
 	| Role             | Country | ContractType             | CreateOption        | UsageType      | Contract | Billing         | PriceHardware | Printer      | DeviceScreen | PaymentMethod | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | Austria | Easy Print Pro & Service | Create new customer | Minimum Volume | 5 Jahre  | Vierteljährlich | Tick          | MFC-L8650CDW | Full         | Pay upfront   | 800         | 800          |
-	| Cloud MPS Dealer | Germany | Easy Print Pro & Service | Create new customer | Minimum Volume | 5 Jahre  | Vierteljährlich | Tick          | MFC-L8650CDW | Full         | Pay upfront   | 800         | 800          |
+	| Cloud MPS Dealer | Austria | Easy Print Pro & Service | Create new customer | Mindestvolumen | 5 Jahre  | Vierteljährlich | Tick          | MFC-L8650CDW | Full         | Pay upfront   | 800         | 800          |
+	| Cloud MPS Dealer | Germany | Easy Print Pro & Service | Create new customer | Mindestvolumen | 5 Jahre  | Vierteljährlich | Tick          | MFC-L8650CDW | Full         | Pay upfront   | 800         | 800          |
 	
 @Ignore
 Scenario Outline: Create different varieties of German And Austria Purchase and Click proposal for new customer on Pay As You Go Term
@@ -98,8 +98,8 @@ Scenario Outline: Create different varieties of German And Austria Purchase and 
 
 	Scenarios: 
 	| Role             | Country | ContractType             | CreateOption        | UsageType      | Contract | Billing         | PriceHardware | Printer      | DeviceScreen | PaymentMethod           | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | Germany | Easy Print Pro & Service | Create new customer | Minimum Volume | 5 Jahre  | Vierteljährlich | Tick          | MFC-L8650CDW | Full         | Included in Click Price | 800         | 800          |
-	| Cloud MPS Dealer | Austria | Easy Print Pro & Service | Create new customer | Minimum Volume | 5 Jahre  | Vierteljährlich | Tick          | MFC-L8650CDW | Full         | Included in Click Price | 800         | 800          |
+	| Cloud MPS Dealer | Germany | Easy Print Pro & Service | Create new customer | Mindestvolumen | 5 Jahre  | Vierteljährlich | Tick          | MFC-L8650CDW | Full         | Included in Click Price | 800         | 800          |
+	| Cloud MPS Dealer | Austria | Easy Print Pro & Service | Create new customer | Mindestvolumen | 5 Jahre  | Vierteljährlich | Tick          | MFC-L8650CDW | Full         | Included in Click Price | 800         | 800          |
 
 @Ignore
 Scenario Outline: Create different varieties of German And Austria Purchase and Click proposal for an existing customer on Pay As You Go Term

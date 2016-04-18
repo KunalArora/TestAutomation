@@ -308,8 +308,8 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Send certain proposals for approval")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "France", "Cloud MPS Local Office Approver", "Buy & Click", "Engagement sur un minimum volume de pages", "3 ans", "Trimestrale anticipata", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Italy", "Cloud MPS Local Office Approver", "Acquisto + Consumo con assistenza", "Volume minimo", "36", "Quarterly in Advance", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Spain", "Cloud MPS Local Office Approver", "Purchase & Click con Service", "Volúmen mínimo", "3 años", "Quarterly in Arrears", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Italy", "Cloud MPS Local Office Approver", "Acquisto + Consumo con assistenza", "Volume minimo", "36", "Trimestrale anticipata", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Spain", "Cloud MPS Local Office Approver", "Purchase & Click con Service", "Volúmen mínimo", "3 años", "Por trimestres vencidos", null)]
         public virtual void SendCertainProposalsForApproval(string role, string country, string role2, string contractType, string usageType, string length, string billing, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Send certain proposals for approval", exampleTags);
@@ -394,8 +394,8 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Send certain approval for Privately Liable Customer")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "France", "Cloud MPS Local Office Approver", "Buy & Click", "Engagement sur un minimum volume de pages", "3 ans", "Trimestrale anticipata", "Autre", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Italy", "Cloud MPS Local Office Approver", "Acquisto + Consumo con assistenza", "Volume minimo", "36", "Quarterly in Advance", "Cittadino privato", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Spain", "Cloud MPS Local Office Approver", "Purchase & Click con Service", "Volúmen mínimo", "3 años", "Quarterly in Arrears", "Private Citizen", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Italy", "Cloud MPS Local Office Approver", "Acquisto + Consumo con assistenza", "Volume minimo", "36", "Trimestrale anticipata", "Cittadino privato", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Spain", "Cloud MPS Local Office Approver", "Purchase & Click con Service", "Volúmen mínimo", "3 años", "Por trimestres vencidos", "Private Citizen", null)]
         public virtual void SendCertainApprovalForPrivatelyLiableCustomer(string role, string country, string role2, string contractType, string usageType, string length, string billing, string @private, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Send certain approval for Privately Liable Customer", exampleTags);
@@ -482,8 +482,8 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Send certain proposal for Approval for Customer who can order consumables")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "France", "Cloud MPS Local Office Approver", "Buy & Click", "Engagement sur un minimum volume de pages", "3 ans", "Trimestrale anticipata", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Italy", "Cloud MPS Local Office Approver", "Acquisto + Consumo con assistenza", "Volume minimo", "36", "Quarterly in Advance", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Spain", "Cloud MPS Local Office Approver", "Purchase & Click con Service", "Volúmen mínimo", "3 años", "Quarterly in Arrears", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Italy", "Cloud MPS Local Office Approver", "Acquisto + Consumo con assistenza", "Volume minimo", "36", "Trimestrale anticipata", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Spain", "Cloud MPS Local Office Approver", "Purchase & Click con Service", "Volúmen mínimo", "3 años", "Por trimestres vencidos", null)]
         public virtual void SendCertainProposalForApprovalForCustomerWhoCanOrderConsumables(string role, string country, string role2, string contractType, string usageType, string length, string billing, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Send certain proposal for Approval for Customer who can order consumables", exampleTags);
@@ -572,8 +572,8 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("Send certain proposal for Approval for Privately Liable Customer who can order co" +
             "nsumables")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "France", "Cloud MPS Local Office Approver", "Buy & Click", "Engagement sur un minimum volume de pages", "3 ans", "Trimestrale anticipata", "Autre", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Italy", "Cloud MPS Local Office Approver", "Acquisto + Consumo con assistenza", "Volume minimo", "36", "Quarterly in Advance", "Cittadino privato", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Spain", "Cloud MPS Local Office Approver", "Purchase & Click con Service", "Volúmen mínimo", "3 años", "Quarterly in Arrears", "Private Citizen", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Italy", "Cloud MPS Local Office Approver", "Acquisto + Consumo con assistenza", "Volume minimo", "36", "Trimestrale anticipata", "Cittadino privato", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Spain", "Cloud MPS Local Office Approver", "Purchase & Click con Service", "Volúmen mínimo", "3 años", "Por trimestres vencidos", "Private Citizen", null)]
         public virtual void SendCertainProposalForApprovalForPrivatelyLiableCustomerWhoCanOrderConsumables(string role, string country, string role2, string contractType, string usageType, string length, string billing, string @private, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Send certain proposal for Approval for Privately Liable Customer who can order co" +

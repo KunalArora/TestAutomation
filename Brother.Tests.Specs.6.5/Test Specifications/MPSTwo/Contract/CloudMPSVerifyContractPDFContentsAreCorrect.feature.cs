@@ -28,7 +28,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Contract
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "CloudMPSVerifyPDFContentsAreCorrect.feature"
+#line 1 "CloudMPSVerifyContractPDFContentsAreCorrect.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
@@ -95,7 +95,8 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verify Other Countries PDF Contents Are Correct")]
         [NUnit.Framework.TestCaseAttribute("Buy & Click", "France", "Engagement sur un minimum volume de pages", "3 ans", "Trimestrale anticipata", null)]
-        [NUnit.Framework.TestCaseAttribute("Acquisto + Consumo con assistenza", "Italy", "Volume minimo", "36", "Quarterly in Advance", null)]
+        [NUnit.Framework.TestCaseAttribute("Acquisto + Consumo con assistenza", "Italy", "Volume minimo", "36", "Trimestrale anticipata", null)]
+        [NUnit.Framework.TestCaseAttribute("Purchase & Click con Service", "Spain", "Volúmen mínimo", "3 años", "Por trimestres vencidos", null)]
         public virtual void VerifyOtherCountriesPDFContentsAreCorrect(string contractType, string country, string usageType, string length, string billing, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify Other Countries PDF Contents Are Correct", exampleTags);
@@ -116,23 +117,23 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verify German PDF Contents Are Correct")]
-        [NUnit.Framework.TestCaseAttribute("Germany", "Easy Print Pro & Service", "Minimum Volume", null)]
-        [NUnit.Framework.TestCaseAttribute("Germany", "Leasing & Service", "Minimum Volume", null)]
-        [NUnit.Framework.TestCaseAttribute("Austria", "Easy Print Pro & Service", "Minimum Volume", null)]
-        [NUnit.Framework.TestCaseAttribute("Austria", "Leasing & Service", "Minimum Volume", null)]
+        [NUnit.Framework.TestCaseAttribute("Germany", "Easy Print Pro & Service", "Mindestvolumen", null)]
+        [NUnit.Framework.TestCaseAttribute("Germany", "Leasing & Service", "Mindestvolumen", null)]
+        [NUnit.Framework.TestCaseAttribute("Austria", "Easy Print Pro & Service", "Mindestvolumen", null)]
+        [NUnit.Framework.TestCaseAttribute("Austria", "Leasing & Service", "Mindestvolumen", null)]
         public virtual void VerifyGermanPDFContentsAreCorrect(string country, string contractType, string usageType, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify German PDF Contents Are Correct", exampleTags);
-#line 35
-this.ScenarioSetup(scenarioInfo);
 #line 36
+this.ScenarioSetup(scenarioInfo);
+#line 37
  testRunner.Given(string.Format("German Dealer have created a \"{0}\" awating acceptance contract of \"{1}\" and \"{2}\"" +
                         "", country, contractType, usageType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 37
- testRunner.When("the dealer downloads PDF for the created contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 38
- testRunner.Then("the noted values above are available in the PDF content", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("the dealer downloads PDF for the created contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 39
+ testRunner.Then("the noted values above are available in the PDF content", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 40
  testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();

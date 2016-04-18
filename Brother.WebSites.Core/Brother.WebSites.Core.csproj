@@ -144,8 +144,10 @@
     <Compile Include="Pages\MPSTwo\DealerApprovedProposalPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerClosedProposalPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerClosedProposalSummaryPage.cs" />
-    <Compile Include="Pages\MPSTwo\DealerContractsApprovedPage.cs" />
+    <Compile Include="Pages\MPSTwo\DealerContractPdfPage.cs" />
+    <Compile Include="Pages\MPSTwo\DealerContractsAcceptedPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerContractsAwaitingAcceptancePage.cs" />
+    <Compile Include="Pages\MPSTwo\DealerProposalPdfPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeAdminProgramPage.cs" />
     <Compile Include="Pages\MPSTwo\ManageDevicesPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerProposalsCreateNavTabs.cs" />
