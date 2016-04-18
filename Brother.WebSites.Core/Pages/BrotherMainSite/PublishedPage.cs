@@ -203,14 +203,19 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
             AssertElementPresent(PageHeader, "Page Header", 30);            
         }
 
+        public void IsSupplyDescriptionDisplayed()
+        {
+            WaitForElementToExistByCssSelector(".product-detail--section.product-detail--product-description");
+        }
+
         public void IsPageTitleDisplayed()
         {
-            WaitForElementToExistByCssSelector(".col-xs-12.col-md-6.product-detail--container-title>h1");
-            if (PageTitle == null)
-            {
-                throw new NullReferenceException("Unable to locate page header");
-            }
-            AssertElementPresent(PageTitle, "Page Title", 30);
+            WaitForElementToExistByCssSelector(".product-detail--links.row");
+            //if (PageTitle == null)
+            //{
+             //   throw new NullReferenceException("Unable to locate page header");
+            //}
+            //AssertElementPresent(PageTitle, "Page Title", 30);
         }
 
         public void IsFilterSectionDisplayed()
@@ -254,12 +259,12 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public void IsPageArticleDisplayed()
         {
-            WaitForElementToExistByCssSelector(".common-results-list--article");
-            if (PageArticle == null)
-            {
-                throw new NullReferenceException("Unable to locate page header");
-            }
-            AssertElementPresent(PageArticle, "Page Article", 30);
+            WaitForElementToExistByCssSelector(".common-results-list");
+           // if (PageArticle == null)
+            //{
+             //   throw new NullReferenceException("Unable to locate page header");
+            //}
+            //AssertElementPresent(PageArticle, "Page Article", 30);
         }
 
         public void IsSearchIconDisplayed()

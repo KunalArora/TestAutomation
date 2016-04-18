@@ -208,7 +208,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 76
  testRunner.Given(string.Format("That I navigate to \"{0}\" in order to validate a published page", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 77
- testRunner.Then("I can validate the product page title is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I can validate supply description is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -218,8 +218,8 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.CategoryAttribute("SMOKE")]
         [NUnit.Framework.TestCaseAttribute("http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseDoNotTouch/NewsLandingPage" +
             "", null)]
-        [NUnit.Framework.TestCaseAttribute("http://main.co.uk.cms.brotherqas.eu/QA/TestAutomationPleaseDoNotTouch/News-Landin" +
-            "g-Page", null)]
+        [NUnit.Framework.TestCaseAttribute("http://main.co.uk.brotherqas.eu/QA/TestAutomationPleaseDoNotTouch/News-Landing-Pa" +
+            "ge", null)]
         public virtual void NavigateToPublishedPageToVerifyNewsLandingPage_UK(string siteUrl, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -282,30 +282,6 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.Given(string.Format("That I navigate to \"{0}\" in order to validate a published page", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 113
  testRunner.Then("I can validate printers filter section is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Navigate to published page to verify Supplies page - UK")]
-        [NUnit.Framework.CategoryAttribute("SMOKE")]
-        [NUnit.Framework.TestCaseAttribute("http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseDoNotTouch/AD18ESUK", null)]
-        [NUnit.Framework.TestCaseAttribute("http://main.co.uk.brotherqas.eu/QA/TestAutomationPleaseDoNotTouch/HGe131V5", null)]
-        public virtual void NavigateToPublishedPageToVerifySuppliesPage_UK(string siteUrl, string[] exampleTags)
-        {
-            string[] @__tags = new string[] {
-                    "SMOKE"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Navigate to published page to verify Supplies page - UK", @__tags);
-#line 121
-this.ScenarioSetup(scenarioInfo);
-#line 122
- testRunner.Given(string.Format("That I navigate to \"{0}\" in order to validate a published page", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 123
- testRunner.Then("I can validate supplies section is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

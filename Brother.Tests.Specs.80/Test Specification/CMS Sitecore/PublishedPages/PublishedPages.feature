@@ -74,7 +74,7 @@ Scenarios:
 @SMOKE
 Scenario Outline: Navigate to published page to verify supplies product page - UK
 	Given That I navigate to "<Site Url>" in order to validate a published page
-	Then I can validate the product page title is displayed
+	Then I can validate supply description is displayed
 	
 Scenarios: 
 	
@@ -92,7 +92,7 @@ Scenarios:
 	
 	 | Site Url																							|
 	 | http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseDoNotTouch/NewsLandingPage				|
-	 | http://main.co.uk.cms.brotherqas.eu/QA/TestAutomationPleaseDoNotTouch/News-Landing-Page			|
+	 | http://main.co.uk.brotherqas.eu/QA/TestAutomationPleaseDoNotTouch/News-Landing-Page				|
 
 		
 @SMOKE
@@ -117,15 +117,5 @@ Scenarios:
 	 | Site Url																							 |
 	 | http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseDoNotTouch/All-Printers					 |
 
-@SMOKE
-Scenario Outline: Navigate to published page to verify Supplies page - UK
-	Given That I navigate to "<Site Url>" in order to validate a published page
-	Then I can validate supplies section is displayed
-	
-Scenarios: 
-	
-	 | Site Url																							 |
-	 | http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseDoNotTouch/AD18ESUK						 |
-	 | http://main.co.uk.brotherqas.eu/QA/TestAutomationPleaseDoNotTouch/HGe131V5				 |
 
  
