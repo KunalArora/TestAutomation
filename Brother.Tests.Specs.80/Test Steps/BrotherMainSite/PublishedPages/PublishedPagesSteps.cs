@@ -11,6 +11,7 @@ using Brother.WebSites.Core.Pages.BrotherMainSite;
 using NUnit.Framework;
 using OpenQA.Selenium.Remote;
 using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Assist;
 
 
 namespace Brother.Tests.Specs._80.Test_Steps.BrotherMainSite.PublishedPages
@@ -295,7 +296,20 @@ namespace Brother.Tests.Specs._80.Test_Steps.BrotherMainSite.PublishedPages
             CurrentPage.As<PublishedPage>().IsWffmDisplayed();
         }
 
+        [Given(@"I fill in the registration information using a valid email address")]
+        public void GivenIFillInTheRegistrationInformationUsingAValidEmailAddress(Table table)
+        {
+            dynamic form = table.CreateDynamicInstance();
+            CurrentPage.As<PublishedPage>().PopulateFirstNameTextBox(form.FirstName);
+            CurrentPage.As<PublishedPage>().PopulateLastNameTextBox(form.LastName);
+            WhenIEnterAValidEmailAddress(string.Empty); // Auto Generates with an empty string
+            CurrentPage.As<PublishedPage>().PopulatePhoneNumberTextBox(form.PhoneNumber);
+        }
 
+        public void WhenIEnterAValidEmailAddress(string validEmailAddress)
+        {
+            CurrentPage.As<PublishedPage>().PopulateEmailAddressTextBox(validEmailAddress);
+        }
 
 
     }

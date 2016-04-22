@@ -170,6 +170,17 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         [FindsBy(How = How.CssSelector, Using = "")]
         public IWebElement Wffm;
 
+        [FindsBy(How = How.CssSelector, Using = "#txtForename")]
+        public IWebElement FirstNameTextBox;
+
+        [FindsBy(How = How.CssSelector, Using = "#txtSurname")]
+        public IWebElement LastNameTextBox;
+
+        [FindsBy(How = How.CssSelector, Using = "#txtEmail")]
+        public IWebElement EmailAddressTextBox;
+
+        [FindsBy(How = How.CssSelector, Using = "txtTelephone")]
+        public IWebElement PhoneNumberTextBox;
 
         public void GetPublishedPage(string url)
         {
@@ -639,7 +650,30 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
             }
             AssertElementPresent(Wffm, "Web Forms For Marketing", 30);
         }
-        
+        public void PopulateFirstNameTextBox(string firstName)
+        {
+            FirstNameTextBox.SendKeys(firstName);
+
+        }
+        public void PopulateLastNameTextBox(string lastName)
+        {
+            LastNameTextBox.SendKeys(lastName);
+        }
+        public void PopulateEmailAddressTextBox(string emailAddress)
+        {
+            if (emailAddress.Equals(string.Empty))
+            {
+                emailAddress = Email.GenerateUniqueEmailAddress();
+            }
+            EmailAddressTextBox.Clear();
+            EmailAddressTextBox.SendKeys(emailAddress);
+            //EmailAddressTextBox.SendKeys(Keys.Tab);
+        }
+        public void PopulatePhoneNumberTextBox(string phoneNumber)
+        {
+            PhoneNumberTextBox.SendKeys(phoneNumber);
+        }
+
 
     }
 }
