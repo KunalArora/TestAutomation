@@ -118,4 +118,17 @@ Scenarios:
 	 | http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseDoNotTouch/All-Printers					 |
 
 
- 
+@SMOKE
+Scenario Outline: Omnijoin Free Trial Sign up
+	Given That I navigate to "<Site Url>" in order to validate a published page
+	And I fill in the registration information using a valid email address 
+	
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	| PhoneNumber     | 01555522522    |
+
+Scenarios: 
+	
+	 | Site Url																							 |
+	 | http://main.co.uk.brotherdv2.eu/business-solutions/web-conferencing/free-trial?sc_lang=en		 |
