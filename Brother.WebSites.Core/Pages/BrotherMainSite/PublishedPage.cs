@@ -41,7 +41,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         [FindsBy(How = How.CssSelector, Using = ".common-results-list--article")]
         public IWebElement PageArticle;
 
-        [FindsBy(How = How.CssSelector, Using = ".row.glossary-listing_tab-item")] 
+        [FindsBy(How = How.CssSelector, Using = ".col-xs-12.tab.glossary-listing")] 
         public IWebElement GlossarySection;
 
         [FindsBy(How = How.CssSelector, Using = ".product-results-header.clearfix.component")]
@@ -260,7 +260,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         
         public void IsGlossarySectionDisplayed()
         {
-            WaitForElementToExistByCssSelector(".row.glossary-listing_tab-item");
+            WaitForElementToExistByCssSelector(".col-xs-12.tab.glossary-listing");
             if (GlossarySection == null)
             {
                 throw new NullReferenceException("Unable to locate page header");
