@@ -75,6 +75,11 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             return GetUrl().Contains(germanUrl);
         }
 
+        public string GetContractType()
+        {
+            return SpecFlow.GetContext("ContractType");
+        }
+
         public bool IsAustriaSystem()
         {
             return GetUrl().Contains(austriaUrl);

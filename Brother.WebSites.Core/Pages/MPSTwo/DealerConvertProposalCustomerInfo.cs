@@ -12,12 +12,14 @@ using OpenQA.Selenium.Support.UI;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class ConvertProposalCustomerInfo : BasePage
+    public class DealerConvertProposalCustomerInfo : BasePage
     {
         public static string Url = "/";
 
         private const string germanUrl = @"online.de";
         private const string austriaUrl = @"online.at";
+        private const string CustomerString = "#DataTables_Table_0 tbody tr:first-child td:first-child";
+        private const string CustomerContainer = @"#DataTables_Table_0";
 
         public override string DefaultTitle
         {
@@ -28,6 +30,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         [FindsBy(How = How.CssSelector, Using = "#content_1_InputCustomerChoiceNew")]
         public IWebElement ConvertCreateNewCustomer;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_InputCustomerChoiceExisting")]
+        public IWebElement ConvertExistingCustomer;
         [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputPersonCanOrderConsumables_Label")]
         public IWebElement CanOrderConsumablesTick;
         [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputCustomerLegalForm_Input")]
@@ -130,6 +134,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement GermanCreditreformNummerElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputCustomerAuthorisedSignatory_Input")]
         public IWebElement GermanZeichnungsberechtigterElement;
+        [FindsBy(How = How.Id, Using = "content_1_PersonListFilter_InputFilterBy")]
+        public IWebElement ExistingCustomerFilterElement;
 
 
 
@@ -148,6 +154,40 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             NextElement.Click();
         }
 
+        public void ChooseExistingCustomerInConvertProcess()
+        {
+            if (ConvertExistingCustomer == null)
+                throw new Exception("Cannot choose customer creation option");
+            ConvertExistingCustomer.Click();
+            NextElement.Click();
+        }
+
+        public void SelectASpecificExistingContact(string contact)
+        {
+
+            WaitForElementToExistByCssSelector(CustomerContainer);
+            ClearAndType(ExistingCustomerFilterElement, contact);
+            WebDriver.Wait(DurationType.Second, 3);
+
+            try
+            {
+                var customerChoice =
+                    Driver.FindElement(By.CssSelector(CustomerString));
+
+                WaitForElementToExistByCssSelector(CustomerContainer);
+
+                customerChoice.Click();
+            }
+            catch (WebDriverException wde)
+            {
+                MsgOutput(String.Format("The exception thrown was {0}", wde));
+            }
+
+            NextElement.Click();
+
+        }
+
+        
         public void CustomerCanOrderConsumables()
         {
             CanOrderConsumablesTick.Click();
@@ -660,11 +700,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
 
-        public ConvertProposalTermAndType ProceedToConvertProposalTermAndType()
+        public DealerConvertProposalTermAndType ProceedToConvertProposalTermAndType()
         {
             //NextElement.Click();
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, NextElement);
-            return GetInstance<ConvertProposalTermAndType>(Driver);
+            return GetInstance<DealerConvertProposalTermAndType>(Driver);
         }
         
     }

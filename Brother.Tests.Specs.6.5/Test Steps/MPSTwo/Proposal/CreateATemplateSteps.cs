@@ -268,7 +268,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
                 GivenIHaveCreatedGermanLeasingAndClickProposal(UsageType);
 
                 var instance1 = new ProposalCreateAProposalThatWillBeUsedForContractSteps();
-                                instance1.GivenIAmOnProposalListPage();
+                instance1.GivenIAmOnProposalListPage();
 
                 var instance2 = new SendProposalToApprover();
                 instance2.GivenISendTheCreatedGermanProposalForApproval();
@@ -293,6 +293,42 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             }
         }
 
+
+        public void GivenGermanDealerHaveCreatedProposalOfAwaitingApproval(string ContractType, string UsageType, string Country, string customer)
+        {
+            var instance4 = new CreateNewAccountSteps();
+            instance4.GivenISignIntoMpsasAFrom("Cloud MPS Dealer", Country);
+
+            if (ContractType.Equals("Leasing & Service"))
+            {
+
+                GivenIHaveCreatedGermanLeasingAndClickProposal(UsageType);
+
+                var instance1 = new ProposalCreateAProposalThatWillBeUsedForContractSteps();
+                instance1.GivenIAmOnProposalListPage();
+
+                var instance2 = new SendProposalToApprover();
+                instance2.GivenISendTheCreatedGermanProposalForApproval(customer);
+
+
+
+                var instance3 = new AccountManagementSteps();
+                instance3.ThenIfISignOutOfBrotherOnline();
+            }
+            else if (ContractType.Equals("Easy Print Pro & Service"))
+            {
+                GivenIHaveCreatedGermanPurchaseAndClickProposal(UsageType);
+
+                var instance1 = new ProposalCreateAProposalThatWillBeUsedForContractSteps();
+                instance1.GivenIAmOnProposalListPage();
+
+                var instance2 = new SendProposalToApprover();
+                instance2.GivenISendTheCreatedGermanProposalForApproval(customer);
+
+                var instance3 = new AccountManagementSteps();
+                instance3.ThenIfISignOutOfBrotherOnline();
+            }
+        }
 
         private string ContractType(string type)
         {
@@ -344,8 +380,8 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             }
         }
 
-        [Given(@"""(.*)"" Dealer have created a ""(.*)"" contract choosing ""(.*)"" with ""(.*)"" and ""(.*)"" and ""(.*)""")]
-        public void GivenDealerHaveCreatedAContractChoosingWithAndAnd(string country, string contractType, string customer, string usageType, string length, string billing)
+        [Given(@"""(.*)"" Dealer have created ""(.*)"" contract choosing ""(.*)"" with ""(.*)"" and ""(.*)"" and ""(.*)""")]
+        public void GivenDealerHaveCreatedContractChoosingWithAndAnd(string country, string contractType, string customer, string usageType, string length, string billing)
         {
             GivenDealerHaveCreatedAContractWithAndAnd(country, contractType, customer, usageType, length, billing);
         }
@@ -587,6 +623,46 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
                 instance3.ThenIfISignOutOfBrotherOnline();
                 instance4.GivenISignIntoMpsasAFrom("Cloud MPS Dealer", Country);
                 WhenISignTheContractToNavigateToAwaitingAcceptance();
+            }
+        }
+
+
+        [Given(@"""(.*)"" Dealer have created a ""(.*)"" contract choosing ""(.*)"" with ""(.*)""")]
+        public void GivenGermanDealerHaveCreatedAAwatingAcceptanceContractOfAnd(string country, string contractType, string usageType, string customer)
+        {
+            if (contractType.Equals("Leasing & Service"))
+            {
+                GivenGermanDealerHaveCreatedProposalOfAwaitingApproval(contractType, usageType, country, customer);
+                var instance4 = new CreateNewAccountSteps();
+                var instance2 = new SendProposalToApprover();
+                var instance3 = new AccountManagementSteps();
+                instance4.GivenISignIntoMpsasAFrom("Cloud MPS Bank", country);
+                instance2.ThenINavigateToBankAwaitingApprovalScreenUnderOfferPage();
+                instance2.ThenTheConvertedLeasingAndClickAndServiceProposalAboveIsDisplayedOnTheScreen();
+                var instance5 = new ApproverSteps();
+                instance5.ThenApproverSelectTheProposalOnAwaitingProposal();
+                instance5.ThenIShouldBeAbleToApproveThatProposal();
+                instance3.ThenIfISignOutOfBrotherOnline();
+                instance4.GivenISignIntoMpsasAFrom("Cloud MPS Dealer", country);
+                WhenISignTheContractToNavigateToAwaitingAcceptance();
+                instance3.ThenIfISignOutOfBrotherOnline();
+            }
+            else if (contractType.Equals("Easy Print Pro & Service"))
+            {
+                GivenGermanDealerHaveCreatedProposalOfAwaitingApproval(contractType, usageType, country, customer);
+                var instance4 = new CreateNewAccountSteps();
+                var instance2 = new SendProposalToApprover();
+                var instance3 = new AccountManagementSteps();
+                instance4.GivenISignIntoMpsasAFrom("Cloud MPS Local Office Approver", country);
+                instance2.ThenINavigateToLOApproverAwaitingApprovalScreenUnderProposalsPage();
+                instance2.ThenTheConvertedPurchaseAndClickAndServiceProposalAboveIsDisplayedOnTheScreen();
+                var instance5 = new ApproverSteps();
+                instance5.ThenApproverSelectTheProposalOnAwaitingProposal();
+                instance5.ThenIShouldBeAbleToApproveThatProposal();
+                instance3.ThenIfISignOutOfBrotherOnline();
+                instance4.GivenISignIntoMpsasAFrom("Cloud MPS Dealer", country);
+                WhenISignTheContractToNavigateToAwaitingAcceptance();
+                instance3.ThenIfISignOutOfBrotherOnline();
             }
         }
 

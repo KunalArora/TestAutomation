@@ -18,6 +18,8 @@ namespace Brother.Tests.Selenium.Lib.Support
         private const string austriaUrl = @"online.at";
         private const string englandUrl = @"online.uk";
         private const string franceUrl = @"online.fr";
+        private const string spainUrl = @"online.es";
+        private const string italyUrl = @"online.it";
         private const string existingSerialNumber = @"A1T010001";
         private const string existingSerialNumberBIG = @"A1T010002";
         private const string existingSerialNumberAUT = @"A1T010003";
@@ -107,7 +109,7 @@ namespace Brother.Tests.Selenium.Lib.Support
             return BankUser;
         }
 
-        public static string CustomerUsername(IWebDriver driver)
+        private static string CustomerUsername(IWebDriver driver)
         {
             var username = "";
 
@@ -125,7 +127,18 @@ namespace Brother.Tests.Selenium.Lib.Support
             {
                 username = MPSQAS.Default.QASUKCustomer;
             }
-
+            else if (currentUrl.Contains(franceUrl))
+            {
+                username = MPSQAS.Default.QASFRCustomer;
+            }
+            else if (currentUrl.Contains(spainUrl))
+            {
+                username = MPSQAS.Default.QASESCustomer;
+            }
+            else if (currentUrl.Contains(italyUrl))
+            {
+                username = MPSQAS.Default.QASITCustomer;
+            }
             return username;
         }
 

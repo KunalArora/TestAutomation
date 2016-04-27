@@ -42,19 +42,19 @@ namespace Brother.Tests.Specs.MPSTwo.SendToBank
         [Then(@"I am taken to the proposal summary where I can enter envisage contract start date")]
         public void ThenIAmTakenToTheProposalSummaryWhereICanEnterEnvisageContractStartDate()
         {
-            CurrentPage.As<ConvertProposalSummaryPage>().IsConvertSummaryPageDisplayed();
-            CurrentPage.As<ConvertProposalSummaryPage>().EnterProposedStartDateForContract();
-            CurrentPage.As<ConvertProposalSummaryPage>().GiveThirdPartyCheckApproval();
-            CurrentPage.As<ConvertProposalSummaryPage>().GiveSchufaAuthorization();
+            CurrentPage.As<DealerConvertProposalSummaryPage>().IsConvertSummaryPageDisplayed();
+            CurrentPage.As<DealerConvertProposalSummaryPage>().EnterProposedStartDateForContract();
+            CurrentPage.As<DealerConvertProposalSummaryPage>().GiveThirdPartyCheckApproval();
+            CurrentPage.As<DealerConvertProposalSummaryPage>().GiveSchufaAuthorization();
         }
 
         [Then(@"I am taken to purchase and click summary where I can enter envisage contract start date")]
         public void ThenIAmTakenToPurchaseAndClickSummaryWhereICanEnterEnvisageContractStartDate()
         {
-            CurrentPage.As<ConvertProposalSummaryPage>().IsConvertSummaryPageDisplayed();
-            CurrentPage.As<ConvertProposalSummaryPage>().EnterProposedStartDateForContract();
-            CurrentPage.As<ConvertProposalSummaryPage>().GiveBrotherAuthorisation();
-            CurrentPage.As<ConvertProposalSummaryPage>().GiveSchufaAuthorization();
+            CurrentPage.As<DealerConvertProposalSummaryPage>().IsConvertSummaryPageDisplayed();
+            CurrentPage.As<DealerConvertProposalSummaryPage>().EnterProposedStartDateForContract();
+            CurrentPage.As<DealerConvertProposalSummaryPage>().GiveBrotherAuthorisation();
+            CurrentPage.As<DealerConvertProposalSummaryPage>().GiveSchufaAuthorization();
         }
 
 
@@ -85,11 +85,25 @@ namespace Brother.Tests.Specs.MPSTwo.SendToBank
         {
             WhenIClickOnActionButtonAgainstTheProposalCreatedAbove();
             ThenICanClickOnConvertToContractButtonUnderTheActionButton();
-            CurrentPage.As<ConvertProposalCustomerInfo>().FillAllCustomerDetailsOnConvert();
-            CurrentPage.As<ConvertProposalCustomerInfo>().EnterRemainingCustomerInfo();
-            CurrentPage.As<ConvertProposalCustomerInfo>().EnterAllBankInformation();
-            NextPage = CurrentPage.As<ConvertProposalCustomerInfo>().ProceedToConvertProposalTermAndType();
-            NextPage = CurrentPage.As<ConvertProposalTermAndType>().NavigateToSummaryPageUsingTab();
+            CurrentPage.As<DealerConvertProposalCustomerInfo>().FillAllCustomerDetailsOnConvert();
+            CurrentPage.As<DealerConvertProposalCustomerInfo>().EnterRemainingCustomerInfo();
+            CurrentPage.As<DealerConvertProposalCustomerInfo>().EnterAllBankInformation();
+            NextPage = CurrentPage.As<DealerConvertProposalCustomerInfo>().ProceedToConvertProposalTermAndType();
+            NextPage = CurrentPage.As<DealerConvertProposalTermAndType>().NavigateToSummaryPageUsingTab();
+
+            ThenIAmTakenToTheProposalSummaryWhereICanEnterEnvisageContractStartDate();
+            ThenICanSuccessfullyConvertTheProposalToContract();
+            ThenTheNewlyConvertedContractIsAvailableUnderAwaitingApprovalTab();
+        }
+
+        public void GivenISendTheCreatedGermanProposalForApproval(string customer)
+        {
+            WhenIClickOnActionButtonAgainstTheProposalCreatedAbove();
+            ThenICanClickOnConvertToContractButtonUnderTheActionButton();
+            CurrentPage.As<DealerConvertProposalCustomerInfo>().ChooseExistingCustomerInConvertProcess();
+            CurrentPage.As<DealerConvertProposalCustomerInfo>().SelectASpecificExistingContact(customer);
+            NextPage = CurrentPage.As<DealerConvertProposalCustomerInfo>().ProceedToConvertProposalTermAndType();
+            NextPage = CurrentPage.As<DealerConvertProposalTermAndType>().NavigateToSummaryPageUsingTab();
 
             ThenIAmTakenToTheProposalSummaryWhereICanEnterEnvisageContractStartDate();
             ThenICanSuccessfullyConvertTheProposalToContract();
@@ -149,68 +163,68 @@ namespace Brother.Tests.Specs.MPSTwo.SendToBank
         [Then(@"I am directed to customer detail page to begin data capture")]
         public void ThenIAmDirectedToCustomerDetailPageToBeginDataCapture()
         {
-            CurrentPage.As<ConvertProposalCustomerInfo>().FillAllCustomerDetailsOnConvert();
-            CurrentPage.As<ConvertProposalCustomerInfo>().EnterRemainingCustomerInfo();
-            CurrentPage.As<ConvertProposalCustomerInfo>().EnterAllBankInformation();
-            NextPage = CurrentPage.As<ConvertProposalCustomerInfo>().ProceedToConvertProposalTermAndType();
-            NextPage = CurrentPage.As<ConvertProposalTermAndType>().NavigateToSummaryPageUsingTab();
+            CurrentPage.As<DealerConvertProposalCustomerInfo>().FillAllCustomerDetailsOnConvert();
+            CurrentPage.As<DealerConvertProposalCustomerInfo>().EnterRemainingCustomerInfo();
+            CurrentPage.As<DealerConvertProposalCustomerInfo>().EnterAllBankInformation();
+            NextPage = CurrentPage.As<DealerConvertProposalCustomerInfo>().ProceedToConvertProposalTermAndType();
+            NextPage = CurrentPage.As<DealerConvertProposalTermAndType>().NavigateToSummaryPageUsingTab();
         }
 
 
         [Then(@"I am directed to customer detail page for more data capture")]
         public void ThenIAmDirectedToCustomerDetailPageForMoreDataCapture()
         {
-            CurrentPage.As<ConvertProposalCustomerInfo>().EnterRemainingCustomerInfo();
-            CurrentPage.As<ConvertProposalCustomerInfo>().EnterAllBankInformation();
-            NextPage = CurrentPage.As<ConvertProposalCustomerInfo>().ProceedToConvertProposalTermAndType();
-            NextPage = CurrentPage.As<ConvertProposalTermAndType>().NavigateToSummaryPageUsingTab();
+            CurrentPage.As<DealerConvertProposalCustomerInfo>().EnterRemainingCustomerInfo();
+            CurrentPage.As<DealerConvertProposalCustomerInfo>().EnterAllBankInformation();
+            NextPage = CurrentPage.As<DealerConvertProposalCustomerInfo>().ProceedToConvertProposalTermAndType();
+            NextPage = CurrentPage.As<DealerConvertProposalTermAndType>().NavigateToSummaryPageUsingTab();
         }
 
         [Then(@"I am directed to customer detail page for can order data capture")]
         public void ThenIAmDirectedToCustomerDetailPageForCanOrderDataCapture()
         {
-            CurrentPage.As<ConvertProposalCustomerInfo>().FillAllCustomerDetailsOnConvert();
-            CurrentPage.As<ConvertProposalCustomerInfo>().EnterRemainingCustomerInfo();
-            CurrentPage.As<ConvertProposalCustomerInfo>().CustomerCanOrderConsumables();
-            CurrentPage.As<ConvertProposalCustomerInfo>().EnterAllBankInformation();
+            CurrentPage.As<DealerConvertProposalCustomerInfo>().FillAllCustomerDetailsOnConvert();
+            CurrentPage.As<DealerConvertProposalCustomerInfo>().EnterRemainingCustomerInfo();
+            CurrentPage.As<DealerConvertProposalCustomerInfo>().CustomerCanOrderConsumables();
+            CurrentPage.As<DealerConvertProposalCustomerInfo>().EnterAllBankInformation();
             NavigateToSummaryPage();
         }
 
         private void NavigateToSummaryPage()
         {
-            NextPage = CurrentPage.As<ConvertProposalCustomerInfo>().ProceedToConvertProposalTermAndType();
-            NextPage = CurrentPage.As<ConvertProposalTermAndType>().NavigateToSummaryPageUsingTab();
+            NextPage = CurrentPage.As<DealerConvertProposalCustomerInfo>().ProceedToConvertProposalTermAndType();
+            NextPage = CurrentPage.As<DealerConvertProposalTermAndType>().NavigateToSummaryPageUsingTab();
         }
 
 
         [Then(@"I am directed to customer detail page for ""(.*)"" privately liable data capture")]
         public void ThenIAmDirectedToCustomerDetailPageForPrivatelyLiableDataCapture(string company)
         {
-            CurrentPage.As<ConvertProposalCustomerInfo>().FillAllCustomerDetailsOnConvert();
-            CurrentPage.As<ConvertProposalCustomerInfo>().EnterPrivateLiableCustomerInfo(company);
-            CurrentPage.As<ConvertProposalCustomerInfo>().EnterAllBankInformation();
+            CurrentPage.As<DealerConvertProposalCustomerInfo>().FillAllCustomerDetailsOnConvert();
+            CurrentPage.As<DealerConvertProposalCustomerInfo>().EnterPrivateLiableCustomerInfo(company);
+            CurrentPage.As<DealerConvertProposalCustomerInfo>().EnterAllBankInformation();
             //CurrentPage.As<ConvertProposalCustomerInfo>().EnterPrivateLiableInfo();
-            NextPage = CurrentPage.As<ConvertProposalCustomerInfo>().ProceedToConvertProposalTermAndType();
-            NextPage = CurrentPage.As<ConvertProposalTermAndType>().NavigateToSummaryPageUsingTab();
+            NextPage = CurrentPage.As<DealerConvertProposalCustomerInfo>().ProceedToConvertProposalTermAndType();
+            NextPage = CurrentPage.As<DealerConvertProposalTermAndType>().NavigateToSummaryPageUsingTab();
         }
 
         [Then(@"I am directed to capture customer detail page for ""(.*)"" privately liable customer who can order")]
         public void ThenIAmDirectedToCaptureCustomerDetailPageForPrivatelyLiableCustomerWhoCanOrder(string company)
         {
-            CurrentPage.As<ConvertProposalCustomerInfo>().FillAllCustomerDetailsOnConvert();
-            CurrentPage.As<ConvertProposalCustomerInfo>().EnterPrivateLiableCustomerInfo(company);
-            CurrentPage.As<ConvertProposalCustomerInfo>().CustomerCanOrderConsumables();
-            CurrentPage.As<ConvertProposalCustomerInfo>().EnterAllBankInformation();
+            CurrentPage.As<DealerConvertProposalCustomerInfo>().FillAllCustomerDetailsOnConvert();
+            CurrentPage.As<DealerConvertProposalCustomerInfo>().EnterPrivateLiableCustomerInfo(company);
+            CurrentPage.As<DealerConvertProposalCustomerInfo>().CustomerCanOrderConsumables();
+            CurrentPage.As<DealerConvertProposalCustomerInfo>().EnterAllBankInformation();
             //CurrentPage.As<ConvertProposalCustomerInfo>().EnterPrivateLiableInfo();
-            NextPage = CurrentPage.As<ConvertProposalCustomerInfo>().ProceedToConvertProposalTermAndType();
-            NextPage = CurrentPage.As<ConvertProposalTermAndType>().NavigateToSummaryPageUsingTab();
+            NextPage = CurrentPage.As<DealerConvertProposalCustomerInfo>().ProceedToConvertProposalTermAndType();
+            NextPage = CurrentPage.As<DealerConvertProposalTermAndType>().NavigateToSummaryPageUsingTab();
         }
 
         
         [Then(@"I can successfully convert the proposal to contract")]
         public void ThenICanSuccessfullyConvertTheProposalToContract()
         {
-            NextPage = CurrentPage.As<ConvertProposalSummaryPage>().SaveProposalAsAContract();
+            NextPage = CurrentPage.As<DealerConvertProposalSummaryPage>().SaveProposalAsAContract();
         }
 
         [Then(@"the newly converted contract is available under Awaiting Approval tab")]

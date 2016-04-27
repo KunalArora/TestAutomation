@@ -118,11 +118,41 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
             catch (KeyNotFoundException e)
             {
-                genCompany = "Middle Mall_160322123145 Ltd";
+                genCompany = GenCoyOptions();
                 MsgOutput(String.Format("Generated company was empty so {0} was used", genCompany));
             }
 
             return genCompany;
+        }
+
+        private string GenCoyOptions()
+        {
+            var coy = "";
+
+            if (IsAustriaSystem())
+            {
+                coy = "Blue Hollow_160322133924 Ltd";
+            } else if (IsUKSystem())
+            {
+                coy = "Middle Mall_160322123145 Ltd";
+            } else if (IsGermanSystem())
+            {
+                coy = "Middle Mall_160322135029 Ltd";
+            }
+            else if (IsSpainSystem())
+            {
+                coy = "Rocky Bear_160322140949 Ltd";
+            }
+            else if (IsItalySystem())
+            {
+                coy = "Colonial Avenue_160322121421 Ltd";
+            }
+            else if (IsFranceSystem())
+            {
+                coy = "Silent Field_160322142114 Ltd";
+            }
+
+            return coy;
         }
 
         public void IsManagedDeviceScreenDisplayed()
@@ -196,12 +226,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             var selectableList = company.Options;
 
+          var genCoy = GetGeneratedCompany();
+
             foreach (var coy in selectableList)
             {
-                if (coy.Text.Contains(GetGeneratedCompany()))
-                {
-                    coy.Click();
-                }
+                if (!coy.Text.Contains(genCoy)) continue;
+                coy.Click();
+                return;
             }
 
             

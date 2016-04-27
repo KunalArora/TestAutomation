@@ -295,7 +295,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
         public static string CheckForCdServer(string baseUrl)
         {
-            if (Helper.GetRunTimeEnv().Contains("PROD") && UseCdServerDomain().Contains("web"))
+            if (GetRunTimeEnv().Contains("PROD") && UseCdServerDomain().Contains("web"))
             {
                 if (baseUrl.Contains("online"))
                 {

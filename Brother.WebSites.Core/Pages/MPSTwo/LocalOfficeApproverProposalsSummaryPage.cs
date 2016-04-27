@@ -71,6 +71,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 SelectFromDropdown(DeclineReasonElement, "Autre");
             }
+            else if (IsSpainSystem())
+            {
+                SelectFromDropdown(DeclineReasonElement, "Otro");
+            }
             
         }
 

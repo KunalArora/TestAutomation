@@ -12,33 +12,33 @@ namespace Brother.Tests.Specs.MPSTwo.ServiceRequest
         [Given(@"I navigate to customer request page")]
         public void GivenINavigateToCustomerRequestPage()
         {
-            NextPage = CurrentPage.As<CustomerDashboardPage>().NavigateToCustomerServiceRequestsPage();
-            CurrentPage.As<CustomerServiceRequestsPage>().IsServiceRequestPageDisplayed();
+            NextPage = CurrentPage.As<CustomerPortalDashboardPage>().NavigateToCustomerServiceRequestsPage();
+            CurrentPage.As<CustomerPortalServiceRequestsPage>().IsServiceRequestPageDisplayed();
         }
         
         [When(@"I raise a service request")]
         public void WhenIRaiseAServiceRequest()
         {
-            CurrentPage.As<CustomerServiceRequestsPage>().CreateANewServiceRequest();
+            CurrentPage.As<CustomerPortalServiceRequestsPage>().CreateANewServiceRequest();
         }
 
         [Then(@"the service request is created and displayed")]
         [When(@"the service request is created and displayed")]
         public void WhenTheServiceRequestIsCreatedAndDisplayed()
         {
-            CurrentPage.As<CustomerServiceRequestsPage>().IsServiceRequestCreated();
-            CurrentPage.As<CustomerServiceRequestsPage>().IsCorrectServiceRequestTypeDisplayed();
+            CurrentPage.As<CustomerPortalServiceRequestsPage>().IsServiceRequestCreated();
+            CurrentPage.As<CustomerPortalServiceRequestsPage>().IsCorrectServiceRequestTypeDisplayed();
         }
 
         [When(@"all the functionalities of the service request work")]
         public void WhenAllTheFunctionalitiesOfTheServiceRequestWork()
         {
-            CurrentPage.As<CustomerServiceRequestsPage>().ExpandCreatedServiceRequestRow();
-            CurrentPage.As<CustomerServiceRequestsPage>().IsServiceRequestDetailDisplayed();
-            CurrentPage.As<CustomerServiceRequestsPage>().VerifyContactPersonPopUpWorks();
-            CurrentPage.As<CustomerServiceRequestsPage>().VerifyDeviceLocationPopUpWorks();
-            CurrentPage.As<CustomerServiceRequestsPage>().VerifyMeterReadingPopUpWorks();
-            CurrentPage.As<CustomerServiceRequestsPage>().CloseServiceRequestDetailPanel();
+            CurrentPage.As<CustomerPortalServiceRequestsPage>().ExpandCreatedServiceRequestRow();
+            CurrentPage.As<CustomerPortalServiceRequestsPage>().IsServiceRequestDetailDisplayed();
+            CurrentPage.As<CustomerPortalServiceRequestsPage>().VerifyContactPersonPopUpWorks();
+            CurrentPage.As<CustomerPortalServiceRequestsPage>().VerifyDeviceLocationPopUpWorks();
+            CurrentPage.As<CustomerPortalServiceRequestsPage>().VerifyMeterReadingPopUpWorks();
+            CurrentPage.As<CustomerPortalServiceRequestsPage>().CloseServiceRequestDetailPanel();
         }
 
         
@@ -64,7 +64,7 @@ namespace Brother.Tests.Specs.MPSTwo.ServiceRequest
         [When(@"I can send message to Service Desk user")]
         public void WhenICanSendMessageToServiceDeskUser()
         {
-            CurrentPage.As<CustomerServiceRequestsPage>().CustomerSendMessage();
+            CurrentPage.As<CustomerPortalServiceRequestsPage>().CustomerSendMessage();
         }
 
         [Then(@"I can see the message sent by customer and reply")]
@@ -82,8 +82,8 @@ namespace Brother.Tests.Specs.MPSTwo.ServiceRequest
             page.WhenINavigateToCustomerDashboardPage();
 
             GivenINavigateToCustomerRequestPage();
-            CurrentPage.As<CustomerServiceRequestsPage>().ExpandCreatedServiceRequestRow();
-            CurrentPage.As<CustomerServiceRequestsPage>().IsServiceDeskMessageDisplayed(2);
+            CurrentPage.As<CustomerPortalServiceRequestsPage>().ExpandCreatedServiceRequestRow();
+            CurrentPage.As<CustomerPortalServiceRequestsPage>().IsServiceDeskMessageDisplayed(2);
         }
 
 

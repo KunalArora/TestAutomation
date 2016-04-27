@@ -234,6 +234,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public static void OpenTheFirstActionButton(IWebDriver driver)
         {
+            WaitForRowToAppearBeforeProceeding();
             AllActionsButton(driver).First().Click();
         }
 

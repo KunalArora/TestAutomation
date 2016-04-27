@@ -11,7 +11,7 @@ using OpenQA.Selenium.Support.PageObjects;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class ConvertProposalSummaryPage : BasePage
+    public class DealerConvertProposalSummaryPage : BasePage
     {
         public static string Url = "/";
 

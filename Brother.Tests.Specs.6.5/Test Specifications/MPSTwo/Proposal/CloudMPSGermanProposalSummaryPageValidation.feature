@@ -37,8 +37,8 @@ Scenario Outline: Summary Page Validation For German And Austria Leasing and Cli
 
 	Scenarios: 
 	| Role             | Country | ContractType      | UsageType      | Contract | Leasing         | Billing      | Printer     | ClickVolume | ColourVolume | Basis                    | Bank                         |
-	| Cloud MPS Dealer | Germany | Leasing & Service | Minimum Volume | 3 Jahre  | Vierteljährlich | Halbjährlich | HL-L8350CDW | 750         | 750          | zur Leasingrate addieren | BNP PARIBAS LEASE GROUP S.A. |
-	| Cloud MPS Dealer | Austria | Leasing & Service | Minimum Volume | 3 Jahre  | Vierteljährlich | Halbjährlich | HL-L8350CDW | 750         | 750          | zur Leasingrate addieren | BNP PARIBAS LEASE GROUP S.A. |
+	| Cloud MPS Dealer | Germany | Leasing & Service | Mindestvolumen | 3 Jahre  | Vierteljährlich | Halbjährlich | HL-L8350CDW | 750         | 750          | zur Leasingrate addieren | BNP PARIBAS LEASE GROUP S.A. |
+	| Cloud MPS Dealer | Austria | Leasing & Service | Mindestvolumen | 3 Jahre  | Vierteljährlich | Halbjährlich | HL-L8350CDW | 750         | 750          | zur Leasingrate addieren | BNP PARIBAS LEASE GROUP S.A. |
 	
 
 Scenario Outline: Summary Page Validation For Minimum Volume German And Austria Purchase and Click proposal In Click Payment
@@ -113,7 +113,7 @@ Scenario Outline: Summary Page Validation For Minimum Volume German And Austria 
 	
 
 	Scenarios: 
-	| Role             | Country | ContractType                  | UsageType      | Contract | Billing         | PriceHardware | Printer      | PaymentMethod      | ClickVolume | ColourVolume |
+	| Role             | Country | ContractType             | UsageType      | Contract | Billing         | PriceHardware | Printer      | PaymentMethod      | ClickVolume | ColourVolume |
 	| Cloud MPS Dealer | Germany | Easy Print Pro & Service | Mindestvolumen | 4 Jahre  | Vierteljährlich | Tick          | MFC-L8650CDW | im Voraus bezahlen | 800         | 800          |
 	| Cloud MPS Dealer | Austria | Easy Print Pro & Service | Mindestvolumen | 4 Jahre  | Vierteljährlich | Tick          | MFC-L8650CDW | im Voraus bezahlen | 800         | 800          |
 	

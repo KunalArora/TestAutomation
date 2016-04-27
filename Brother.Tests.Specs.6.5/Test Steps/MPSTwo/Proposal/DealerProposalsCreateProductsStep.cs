@@ -347,10 +347,14 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [When(@"I add the device that changed the default values")]
         public void WhenIChangeTheDefaultValuesOfTheDevice()
         {
-            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterProductQuantity("1");
-            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterModelUnitCost(); 
-            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterOptionsQuantity0("1");
-            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterOptionCostPrice();
+            if (!(CurrentPage.As<DealerProposalsCreateProductsPage>().IsGermanSystem()
+                && CurrentPage.As<DealerProposalsCreateProductsPage>().GetContractType() == "Easy Print Pro & Service"))
+            {
+                CurrentPage.As<DealerProposalsCreateProductsPage>().EnterProductQuantity("1");
+                CurrentPage.As<DealerProposalsCreateProductsPage>().EnterModelUnitCost();
+                CurrentPage.As<DealerProposalsCreateProductsPage>().EnterOptionsQuantity0("1");
+                CurrentPage.As<DealerProposalsCreateProductsPage>().EnterOptionCostPrice();
+            }
             CurrentPage.As<DealerProposalsCreateProductsPage>().AddAllDetailsToProposal();
             CurrentPage.As<DealerProposalsCreateProductsPage>().VerifyProductAdditionConfirmationMessage();
         }
@@ -358,10 +362,15 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [When(@"I accept the default values of the device")]
         public void WhenIAcceptTheDefaultValuesOfTheDevice()
         {
-            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterProductQuantity("1");
-            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterModelUnitCost();
-            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterOptionsQuantity0("1");
-            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterOptionCostPrice();
+            if (!(CurrentPage.As<DealerProposalsCreateProductsPage>().IsGermanSystem()
+                && CurrentPage.As<DealerProposalsCreateProductsPage>().GetContractType() == "Easy Print Pro & Service"))
+            {
+                CurrentPage.As<DealerProposalsCreateProductsPage>().EnterProductQuantity("1");
+                CurrentPage.As<DealerProposalsCreateProductsPage>().EnterModelUnitCost();
+                CurrentPage.As<DealerProposalsCreateProductsPage>().EnterOptionsQuantity0("1");
+                CurrentPage.As<DealerProposalsCreateProductsPage>().EnterOptionCostPrice(); 
+            }
+            
             CurrentPage.As<DealerProposalsCreateProductsPage>().AddAllDetailsToProposal();
             CurrentPage.As<DealerProposalsCreateProductsPage>().VerifyProductAdditionConfirmationMessage();
             NextPage = CurrentPage.As<DealerProposalsCreateProductsPage>().MoveToClickPriceScreen();
@@ -435,7 +444,11 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [When(@"I confirm the values entered for the device")]
         public void WhenIconfirmTheValuesEntereForTheDevice()
         {
-            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterModelUnitCost();
+            if (!(CurrentPage.As<DealerProposalsCreateProductsPage>().IsGermanSystem()
+                  && CurrentPage.As<DealerProposalsCreateProductsPage>().GetContractType() == "Easy Print Pro & Service"))
+            {
+                CurrentPage.As<DealerProposalsCreateProductsPage>().EnterModelUnitCost();
+            }
             CurrentPage.As<DealerProposalsCreateProductsPage>().AddAllDetailsToProposal();
             //CurrentPage.As<DealerProposalsCreateProductsPage>().VerifyProductAdditionConfirmationMessage();
             NextPage = CurrentPage.As<DealerProposalsCreateProductsPage>().MoveToClickPriceScreen();
@@ -444,7 +457,11 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [When(@"I move to Click Price page")]
         public void WhenIMoveToClickPricePage()
         {
-            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterModelUnitCost();
+            if (!(CurrentPage.As<DealerProposalsCreateProductsPage>().IsGermanSystem()
+                  && CurrentPage.As<DealerProposalsCreateProductsPage>().GetContractType() == "Easy Print Pro & Service"))
+            {
+                CurrentPage.As<DealerProposalsCreateProductsPage>().EnterModelUnitCost();
+            }
             CurrentPage.As<DealerProposalsCreateProductsPage>().AddAllDetailsToProposal();
             NextPage = CurrentPage.As<DealerProposalsCreateProductsPage>().MoveToClickPriceScreenWithButton();
         }
@@ -462,9 +479,16 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         public void WhenEnterAQuantityOfForAccessoryFor(string quantity, string printer)
         {
             CurrentPage.As<DealerProposalsCreateProductsPage>().ClickOnAPrinter(printer);
-            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterModelUnitCost();
-            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterOptionCostPrice();
-            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterOptionsQuantity0(quantity);
+
+            if (!(CurrentPage.As<DealerProposalsCreateProductsPage>().IsGermanSystem()
+                && CurrentPage.As<DealerProposalsCreateProductsPage>().GetContractType() == "Easy Print Pro & Service"))
+            {
+                
+                CurrentPage.As<DealerProposalsCreateProductsPage>().EnterModelUnitCost();
+                CurrentPage.As<DealerProposalsCreateProductsPage>().EnterOptionCostPrice();
+                CurrentPage.As<DealerProposalsCreateProductsPage>().EnterOptionsQuantity0(quantity);
+            }
+           
             CurrentPage.As<DealerProposalsCreateProductsPage>().AddAllDetailsToProposal();
         }
 
@@ -472,7 +496,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         public void WhenIEditProductsTabAndInProposal(string action)
         {
             EditProducts(action);
-            GoThrowClickPriceTab(false);
+            GoThrowClickPriceTab();
         }
 
         public void EditProducts()
