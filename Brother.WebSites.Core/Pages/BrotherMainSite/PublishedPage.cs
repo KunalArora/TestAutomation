@@ -265,7 +265,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
             {
                 throw new NullReferenceException("Unable to locate page header");
             }
-            AssertElementPresent(GlossarySection, "Glossary Section", 30);
+           
         }
 
         public void IsPageArticleDisplayed()
