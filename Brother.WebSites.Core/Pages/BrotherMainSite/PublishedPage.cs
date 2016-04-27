@@ -56,7 +56,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         [FindsBy(How = How.CssSelector, Using = "body > header > div > div > a.common-global-header--toggle.active")]
         public IWebElement SearchIcon;
 
-        [FindsBy(How = How.CssSelector, Using = "body > div:nth-child(5) > nav > div")]
+        [FindsBy(How = How.CssSelector, Using = ".common-global-nav--list.common-global-nav--list--secondary")]
         public IWebElement TopNavi;
 
         [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div.col-xs-12.grid-cell > div.common-accordion > div:nth-child(1) > div.collapsed.common-accordion--item--header > div")]
@@ -98,16 +98,16 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div.col-xs-12.grid-cell > section.common--latest-news > div:nth-child(1) > h2")]
         public IWebElement LatestNews;
 
-        [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div.col-xs-12.grid-cell > section:nth-child(13)")]
+        [FindsBy(How = How.CssSelector, Using = ".common-global-nav")]
         public IWebElement HeaderBar;
 
-        [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div.col-xs-12.grid-cell > section:nth-child(13)")]
+        [FindsBy(How = How.CssSelector, Using = ".common-richtext")]
         public IWebElement FullInfoTile;
 
         [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div.col-xs-12.grid-cell > header.common-hero")]
         public IWebElement Hero;
 
-        [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div.col-xs-12.grid-cell > section:nth-child(15) > picture")]
+        [FindsBy(How = How.CssSelector, Using = ".common-secondary-hero--container.common--wysiwyg-block")]
         public IWebElement SecondaryHero;
 
         [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div.col-xs-12.grid-cell > section:nth-child(16) > div")]
@@ -131,40 +131,40 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         [FindsBy(How = How.CssSelector, Using = "#player_uid_949430660_1 > div.ytp-thumbnail-overlay.ytp-cued-thumbnail-overlay > button")]
         public IWebElement VidOnListMod;
 
-        [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div.col-xs-12.grid-cell > section:nth-child(21)")]
+        [FindsBy(How = How.CssSelector, Using = ".common-video-bar")]
         public IWebElement VidTileBar;
 
-        [FindsBy(How = How.CssSelector, Using = "#player_uid_152450143_1 > div.ytp-thumbnail-overlay.ytp-cued-thumbnail-overlay")]
+        [FindsBy(How = How.CssSelector, Using = ".ytp-thumbnail-overlay.ytp-cued-thumbnail-overlay")]
         public IWebElement VidOnTileBar;
 
-        [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div.col-xs-12.grid-cell > section:nth-child(22) > div")]
+        [FindsBy(How = How.CssSelector, Using = ".common-secondary-hero--container")]
         public IWebElement FullWidthHero;
 
-        [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div.col-xs-12.grid-cell > div.common--special-full-info-tile")]
+        [FindsBy(How = How.CssSelector, Using = ".common--special-full-info-tile.component")]
         public IWebElement SpecFullInfo;
 
-        [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div.col-xs-12.grid-cell > div.common--conversion-bar.component")]
+        [FindsBy(How = How.CssSelector, Using = ".common--conversion-bar.component")]
         public IWebElement ConvBar;
 
-        [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div.col-xs-12.grid-cell > header.common--wizard.common--wizard__alt")]
+        [FindsBy(How = How.CssSelector, Using = ".common--wizard.common--wizard__alt.component>picture>img")]
         public IWebElement Wizard;
 
-        [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div.col-xs-12.grid-cell > section.common-special-feature.common-special-feature__first")]
+        [FindsBy(How = How.CssSelector, Using = ".common-special-feature.common-special-feature__first")]
         public IWebElement SpecFeature;
 
-        [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div.col-xs-12.grid-cell > div.omnijoin-wizard-step > div")]
+        [FindsBy(How = How.CssSelector, Using = ".common--steps-tiles")]
         public IWebElement StepsBar;
 
-        [FindsBy(How = How.CssSelector, Using = "#heroCarousel > div > div > div")]
+        [FindsBy(How = How.CssSelector, Using = ".common-hero--text.common--wysiwyg-block")]
         public IWebElement HeroCarousel;
 
-        [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div.col-xs-12.grid-cell > div.omnijoin-wizard-step > div")]
+        [FindsBy(How = How.CssSelector, Using = ".omnijoin-wizard-step--step-number--status")]
         public IWebElement WizardStep;
 
-        [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div.col-xs-12.grid-cell > section:nth-child(31)")]
+        [FindsBy(How = How.CssSelector, Using = ".common-richtext.component")]
         public IWebElement RichTextMod;
 
-        [FindsBy(How = How.CssSelector, Using = "body > div.container.container--grid > div > div.col-xs-12.grid-cell > nav")]
+        [FindsBy(How = How.CssSelector, Using = ".common-link-list.component")]
         public IWebElement LinkListItem;
 
         [FindsBy(How = How.CssSelector, Using = "")]
@@ -290,12 +290,12 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public void IsTopNavDisplayed()
         {
-            WaitForElementToExistByCssSelector("body > div:nth-child(5) > nav > div");
+            WaitForElementToExistByCssSelector(".common-global-nav--list.common-global-nav--list--secondary");
             if (TopNavi == null)
             {
                 throw new NullReferenceException("Unable to locate top navigation component");
             }
-            AssertElementPresent(TopNavi, "Top Navigation", 30);
+            AssertElementPresent(TopNavi, "Secondary nav icon basket", 30);
         }
 
         public void IsAccordionDisplayed()
@@ -431,22 +431,20 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public void IsHeaderBarDisplayed()
         {
-            WaitForElementToExistByCssSelector("body > div.container.container--grid > div > div.col-xs-12.grid-cell > section:nth-child(13)");
+            WaitForElementToExistByCssSelector(".common-global-nav");
             if (HeaderBar == null)
             {
                 throw new NullReferenceException("Unable to locate header bar component");
             }
-            AssertElementPresent(HeaderBar, "Header Bar", 30);
         }
 
         public void IsFullInfoTileDisplayed()
         {
-            WaitForElementToExistByCssSelector("body > div.container.container--grid > div > div.col-xs-12.grid-cell > section:nth-child(13)");
+            WaitForElementToExistByCssSelector(".common-richtext");
             if (FullInfoTile == null)
             {
                 throw new NullReferenceException("Unable to locate full info tile component");
             }
-            AssertElementPresent(FullInfoTile, "Full Info Tile", 30);
         }
 
         public void IsHeroDisplayed()
@@ -461,12 +459,12 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public void IsSecondaryHeroDisplayed()
         {
-            WaitForElementToExistByCssSelector("body > div.container.container--grid > div > div.col-xs-12.grid-cell > section:nth-child(15) > picture");
+            WaitForElementToExistByCssSelector(".common-secondary-hero--container.common--wysiwyg-block");
             if (SecondaryHero == null)
             {
                 throw new NullReferenceException("Unable to locate secondary hero component");
             }
-            AssertElementPresent(SecondaryHero, "Secondary Hero", 30);
+           
         }
 
         public void IsFeatureModuleLeftDisplayed()
@@ -532,113 +530,110 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         
         public void IsVideoTileBarModuleDisplayed()
         {
-            WaitForElementToExistByCssSelector("body > div.container.container--grid > div > div.col-xs-12.grid-cell > section:nth-child(21)");
+            WaitForElementToExistByCssSelector(".common-video-bar");
             if (VidTileBar == null)
             {
                 throw new NullReferenceException("Unable to locate video tile bar component");
             }
-            AssertElementPresent(VidTileBar, "Video Tile Bar", 30);
-        }
+            }
 
 
         public void IsFullWidthHeroDisplayed()
         {
-            WaitForElementToExistByCssSelector("body > div.container.container--grid > div > div.col-xs-12.grid-cell > section:nth-child(22) > div");
+            WaitForElementToExistByCssSelector(".common-secondary-hero--container");
             if (FullWidthHero == null)
             {
                 throw new NullReferenceException("Unable to locate full width hero component");
             }
-            AssertElementPresent(FullWidthHero, "Full Width Hero", 30);
         }
 
         public void IsSpecialFullInfoDisplayed()
         {
-            WaitForElementToExistByCssSelector("body > div.container.container--grid > div > div.col-xs-12.grid-cell > div.common--special-full-info-tile");
+            WaitForElementToExistByCssSelector(".common--special-full-info-tile.component");
             if (SpecFullInfo == null)
             {
                 throw new NullReferenceException("Unable to locate special full info component");
             }
-            AssertElementPresent(SpecFullInfo, "Special Full Info", 30);
         }
 
         public void IsConversionBarDisplayed()
         {
-            WaitForElementToExistByCssSelector("body > div.container.container--grid > div > div.col-xs-12.grid-cell > div.common--conversion-bar.component");
+            WaitForElementToExistByCssSelector(".common--conversion-bar.component");
             if (ConvBar == null)
             {
                 throw new NullReferenceException("Unable to locate conversion bar component");
             }
-            AssertElementPresent(ConvBar, "Conversion Bar", 30);
+           
         }
 
         public void IsWizardDisplayed()
         {
-            WaitForElementToExistByCssSelector("body > div.container.container--grid > div > div.col-xs-12.grid-cell > header.common--wizard.common--wizard__alt");
+            WaitForElementToExistByCssSelector(".common--wizard.common--wizard__alt.component>picture>img");
             if (Wizard == null)
             {
                 throw new NullReferenceException("Unable to locate wizard component");
             }
-            AssertElementPresent(Wizard, "Wizard", 30);
+            AssertElementPresent(Wizard, "Wizard ", 10);
         }
 
         public void IsSpecialFeatureDisplayed()
         {
-            WaitForElementToExistByCssSelector("body > div.container.container--grid > div > div.col-xs-12.grid-cell > section.common-special-feature.common-special-feature__first");
+            WaitForElementToExistByCssSelector(".common-special-feature.common-special-feature__first");
             if (SpecFeature == null)
             {
                 throw new NullReferenceException("Unable to locate special feature component");
             }
-            AssertElementPresent(SpecFeature, "Special Feature", 30);
+           
         }
 
         public void IsStepsBarDisplayed()
         {
-            WaitForElementToExistByCssSelector("body > div.container.container--grid > div > div.col-xs-12.grid-cell > div.omnijoin-wizard-step > div");
+            WaitForElementToExistByCssSelector(".common--steps-tiles");
             if (StepsBar == null)
             {
                 throw new NullReferenceException("Unable to locate step bar component");
             }
-            AssertElementPresent(StepsBar, "Steps Bar", 30);
+            
         }
 
         public void IsHeroCarouselDisplayed()
         {
-            WaitForElementToExistByCssSelector("#heroCarousel > div > div > div");
+            WaitForElementToExistByCssSelector(".common-hero--text.common--wysiwyg-block");
             if (HeroCarousel == null)
             {
                 throw new NullReferenceException("Unable to hero carousel component");
             }
-            AssertElementPresent(HeroCarousel, "Hero Carousel", 30);
+            AssertElementPresent(HeroCarousel, "Hero", 10);
         }
 
         public void IsWizardStepDisplayed()
         {
-            WaitForElementToExistByCssSelector("body > div.container.container--grid > div > div.col-xs-12.grid-cell > div.omnijoin-wizard-step > div");
+            WaitForElementToExistByCssSelector(".omnijoin-wizard-step--step-number--status");
             if (WizardStep == null)
             {
                 throw new NullReferenceException("Unable to locate wizard step");
             }
-            AssertElementPresent(WizardStep, "Wizard Step; ", 30);
+            
         }
 
         public void IsRichTextModuleDisplayed()
         {
-            WaitForElementToExistByCssSelector("body > div.container.container--grid > div > div.col-xs-12.grid-cell > section:nth-child(31)");
+            WaitForElementToExistByCssSelector(".common-richtext.component");
             if (RichTextMod == null)
             {
                 throw new NullReferenceException("Unable to locate rich text module");
             }
-            AssertElementPresent(RichTextMod, "Rich Text Module", 30);
+            
         }
 
         public void IsListItemIsDisplayed()
         {
-            WaitForElementToExistByCssSelector("body > div.container.container--grid > div > div.col-xs-12.grid-cell > nav > div:nth-child(1) > a");
+            WaitForElementToExistByCssSelector(".common-link-list.component");
             if (LinkListItem == null)
             {
                 throw new NullReferenceException("Unable to locate link list item");
             }
-            AssertElementPresent(LinkListItem, "Link List Item", 30);
+            
         }
 
         public void IsWffmDisplayed()
