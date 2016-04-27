@@ -42,7 +42,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         {
             CurrentPage.As<CloudExistingProposalPage>().ClickOnActionButtonAgainstCopiedProposal();
             NextPage = CurrentPage.As<CloudExistingProposalPage>().ClickOnConvertToContractButton(CurrentDriver);
-            CurrentPage.As<ConvertProposalCustomerInfo>().IsConvertCustomerInfoScreenDisplayed();
+            CurrentPage.As<DealerConvertProposalCustomerInfo>().IsConvertCustomerInfoScreenDisplayed();
         }
 
 
@@ -51,7 +51,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         {
             CurrentPage.As<CloudExistingProposalPage>().ClickOnActionButtonAgainstCopiedProposal();
             NextPage = CurrentPage.As<CloudExistingProposalPage>().ClickOnConvertToContractButtonForCopiedProposalWithCustomer(CurrentDriver);
-            CurrentPage.As<ConvertProposalSummaryPage>().IsConvertSummaryPageDisplayed();
+            CurrentPage.As<DealerConvertProposalSummaryPage>().IsConvertSummaryPageDisplayed();
         }
 
      

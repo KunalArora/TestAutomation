@@ -327,16 +327,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 TestCheck.AssertIsEqual(true, CompleteInstallationComfirmationElement.Displayed,
                 "Installation not successful");
-                WebDriver.Wait(DurationType.Second, 3);
+               // WaitForElementToBeClickableById("content_0_InstallationSuccessfullyFinished", 10);
                 CompleteInstallationComfirmationElement.Click();
+
             }
             else
             {
                 TestCheck.AssertIsEqual(true, CompleteCloudInstallationComfirmationElement.Displayed,
                 "Installation not successful");
                 TestCheck.AssertIsEqual(true, CloudInstallationConnectionStatusIconElements.Displayed, "Device is not connect");
-                WebDriver.Wait(DurationType.Second, 3);
+                //WaitForElementToBeClickableById("content_0_InstallationSuccessfullyFinished", 10);
                 CompleteCloudInstallationComfirmationElement.Click();
+                MPSJobRunnerPage.NotifyBocOfNewChanges();
             }
            
         }
@@ -366,9 +368,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             TestCheck.AssertIsEqual(1, buttonCount,
                 String.Format("{0} Actions buttons were returned meaning installation request is not removed", buttonCount));
             MPSJobRunnerPage.NotifyBocOfNewChanges();
-           // MPSJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob();
             MPSJobRunnerPage.RunCreateOrderAndServiceRequestsCommandJob();
             MPSJobRunnerPage.RunConsumableOrderRequestsCommandJob();
+            MPSJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob();
 
         }
 

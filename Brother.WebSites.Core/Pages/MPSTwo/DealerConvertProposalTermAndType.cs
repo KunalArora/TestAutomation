@@ -9,7 +9,7 @@ using OpenQA.Selenium.Support.PageObjects;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class ConvertProposalTermAndType : BasePage
+    public class DealerConvertProposalTermAndType : BasePage
     {
         public static string Url = "/";
 
@@ -36,10 +36,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
 
-        public ConvertProposalSummaryPage NavigateToSummaryPageUsingTab()
+        public DealerConvertProposalSummaryPage NavigateToSummaryPageUsingTab()
         {
             SummaryTabElement.Click();
-            return GetInstance<ConvertProposalSummaryPage>(Driver);
+            return GetInstance<DealerConvertProposalSummaryPage>(Driver);
         }
 
 

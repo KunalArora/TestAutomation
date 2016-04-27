@@ -601,10 +601,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     SpecFlow.SetContext("ProductQuantity", ProductQuantityElement.GetAttribute("value"));
 
                
-                if (!IsGermanSystem())
+                if (IsElementPresent(GetElementByCssSelector("#InstallationPackId [selected=\"true\"]", 5)))
                     SpecFlow.SetContext("SelectedInstallationType", SelectedInstallationTypeElement.Text);
 
-                if (IsGermanSystem())
+                if (IsElementPresent(GetElementByCssSelector(".js-mps-installation.mps-qa-installation", 5)))
                     SpecFlow.SetContext("SelectedInstallationType", DisplayedInstallationTypeElement.First().Text);
 
                 if (IsElementPresent(SelectedServicePackPriceElement))
@@ -748,7 +748,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             ScrollTo(AddToProposalElement);
             AddToProposalElement.Click();
-            WebDriver.Wait(Helper.DurationType.Second, 2);
+            WebDriver.Wait(DurationType.Second, 2);
         }
 
         private IWebElement AddToProposalButtonElement()
@@ -1188,7 +1188,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             if (option.Equals("Full"))
             {
-                IsFullDeviceScreenDisplayedForPrinterSelected();
+               // IsFullDeviceScreenDisplayedForPrinterSelected();
             }
             else if (option.Equals("Reduced"))
             {

@@ -158,8 +158,8 @@
     <Compile Include="Support\HelperClasses\Helper.SpecFlow.cs" />
     <Compile Include="Support\HelperClasses\Helper.SQL.cs" />
     <Compile Include="Support\HelperClasses\Helper.TestCheck.cs" />
-    <Compile Include="Support\MPSJobRunnerPage.cs" />
-    <Compile Include="Support\MPSUserLogins.cs" />
+    <Compile Include="Support\MPS\MPSJobRunnerPage.cs" />
+    <Compile Include="Support\MPS\MPSUserLogins.cs" />
     <Compile Include="Support\SpecFlow\SpecFlowHooks.cs" />
     <Compile Include="Support\HelperClasses\Helper.Email.cs" />
     <Compile Include="Support\HelperClasses\Helper.Language.cs" />
@@ -167,7 +167,7 @@
     <Compile Include="Support\HelperClasses\Helper.Utils.cs" />
     <Compile Include="Support\HelperClasses\Helper.WebDriver.cs" />
     <Compile Include="Support\HelperClasses\Helper.Validation.cs" />
-    <Compile Include="Support\MPSUtil.cs" />
+    <Compile Include="Support\MPS\MPSUtil.cs" />
     <Compile Include="Support\HelperClasses\Helper.Selenium.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Support\Test Controller\TestController.cs" />

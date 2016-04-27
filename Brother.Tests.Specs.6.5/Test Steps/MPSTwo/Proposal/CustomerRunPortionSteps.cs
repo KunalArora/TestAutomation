@@ -13,7 +13,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         public void WhenINavigateToCustomerDashboardPage()
         {
             NextPage = CurrentPage.As<WelcomeBackPage>().NavigateToCustomerDashboardPage();
-            CurrentPage.As<CustomerDashboardPage>().IsCustomerDashboardPageDisplayed();
+            CurrentPage.As<CustomerPortalDashboardPage>().IsCustomerDashboardPageDisplayed();
             
         }
 
@@ -21,12 +21,30 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [When(@"I navigate to consumable ordering page")]
         public void WhenINavigateToConsumableOrderingPage()
         {
-            NextPage = CurrentPage.As<CustomerDashboardPage>().NavigateToCustomerConsummablePage();
-            CurrentPage.As<CustomerConsummablePage>().IsConsumableScreenDisplayed();
-            CurrentPage.As<CustomerConsummablePage>().RemoveExistingConsumableOrderBySerialNumber();
-            CurrentPage.As<CustomerConsummablePage>().IsCorrectDeviceSerialNumberDisplayed();
-            NextPage = CurrentPage.As<CustomerConsummablePage>().NavigateToConsumableRaiseOrderPage();
+            NextPage = CurrentPage.As<CustomerPortalDashboardPage>().NavigateToCustomerConsummablePage();
+            CurrentPage.As<CustomerPortalConsummablePage>().IsConsumableScreenDisplayed();
+            CurrentPage.As<CustomerPortalConsummablePage>().RemoveExistingConsumableOrderBySerialNumber();
+            CurrentPage.As<CustomerPortalConsummablePage>().IsCorrectDeviceSerialNumberDisplayed();
+            NextPage = CurrentPage.As<CustomerPortalConsummablePage>().NavigateToConsumableRaiseOrderPage();
         }
+
+        [When(@"I navigate to Print Count page")]
+        public void WhenINavigateToPrintCountPage()
+        {
+            NextPage = CurrentPage.As<CustomerPortalDashboardPage>().NavigateToCustomerPortalPrintCountPage();
+            CurrentPage.As<CustomerPortalPrintCountPage>().IsCustomerPrintCountDisplayed();
+        }
+
+        [Then(@"the print counts attached to the device are correct")]
+        public void ThenThePrintCountsAttachedToTheDeviceAreCorrect()
+        {
+            CurrentPage.As<CustomerPortalPrintCountPage>().VerifyPrintCountTotalDisplayedIsCorrect();
+            CurrentPage.As<CustomerPortalPrintCountPage>().VerifyPrintCountColourDisplayedIsCorrect();
+            CurrentPage.As<CustomerPortalPrintCountPage>().VerifyPrintCountMonoDisplayedIsCorrect();
+
+        }
+
+
 
         [Then(@"it is not possible to order a consumable")]
         public void ThenItIsNotPossibleToOrderAConsumable()

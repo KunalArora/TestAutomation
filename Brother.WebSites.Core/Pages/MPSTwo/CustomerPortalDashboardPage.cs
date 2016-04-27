@@ -10,7 +10,7 @@ using OpenQA.Selenium.Support.PageObjects;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class CustomerDashboardPage : BasePage
+    public class CustomerPortalDashboardPage : BasePage
     {
         public static string Url = "/";
 
@@ -32,18 +32,27 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             AssertElementPresent(CustomerDashboardInvoiceLink, "Customer Dashboard page");
         }
 
-        public CustomerConsummablePage NavigateToCustomerConsummablePage()
+        public CustomerPortalConsummablePage NavigateToCustomerConsummablePage()
         {
             ScrollTo(CustomerDashboardConsummableLink);
             CustomerDashboardConsummableLink.Click();
-            return GetInstance<CustomerConsummablePage>(Driver);
+            MPSJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob();
+            return GetInstance<CustomerPortalConsummablePage>(Driver);
         }
 
-        public CustomerServiceRequestsPage NavigateToCustomerServiceRequestsPage()
+        public CustomerPortalServiceRequestsPage NavigateToCustomerServiceRequestsPage()
         {
             ScrollTo(CustomerDashboardConsummableLink);
             CustomerDashboardServiceRequestsLink.Click();
-            return GetInstance<CustomerServiceRequestsPage>(Driver);
+            return GetInstance<CustomerPortalServiceRequestsPage>(Driver);
+        }
+
+        public CustomerPortalPrintCountPage NavigateToCustomerPortalPrintCountPage()
+        {
+            ScrollTo(CustomerDashboardPrintCountsLink);
+            CustomerDashboardPrintCountsLink.Click();
+            MPSJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob();
+            return GetInstance<CustomerPortalPrintCountPage>(Driver);
         }
 
     }

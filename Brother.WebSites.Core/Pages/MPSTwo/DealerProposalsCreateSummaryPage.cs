@@ -355,8 +355,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             SpecFlow.SetContext("SummaryMonoClickRate", SummaryMonoClickRateElement.Text);
             SpecFlow.SetContext("SummaryColourClickRate", SummaryColourClickRateElement.Text);
             SpecFlow.SetContext("SummaryProposalConsumableTotalNet", SummaryProposalConsumableTotalNetElement.Text);
-            if (!IsElementPresent(GetElementByCssSelector("content_1_SummaryTable_RepeaterModels_DeviceTotalPriceGross_0", 5))) 
-            SpecFlow.SetContext("SummaryCustomerDeviceTotalGross", SummaryCustomerDeviceTotalGrossElement.Text);
+            if (
+                IsElementPresent(
+                    GetElementByCssSelector("content_1_SummaryTable_RepeaterModels_DeviceTotalPriceGross_0", 5)))
+            {
+                SpecFlow.SetContext("SummaryCustomerDeviceTotalGross", SummaryCustomerDeviceTotalGrossElement.Text);
+            }
+            
             
             
         }
@@ -538,23 +543,32 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyThatCorrectModelBillingBasisIsDisplayed(string basis)
         {
-            TestCheck.AssertIsEqual(basis, 
-                ModelBillingBasisElement.Text, 
-                "Model Billing Basis is not matching");
+            if (!(IsGermanSystem() && GetContractType() == "Easy Print Pro & Service"))
+            {
+                TestCheck.AssertIsEqual(basis,
+                    ModelBillingBasisElement.Text,
+                    "Model Billing Basis is not matching");
+            }
         }
 
         public void VerifyThatCorrectAccessoryBillingBasisIsDisplayed(string basis)
         {
-            TestCheck.AssertIsEqual(basis, 
-                AccessoryBillingBasisElement.Text, 
-                "Accessory Billing Basis is not matching");
+            if (!(IsGermanSystem() && GetContractType() == "Easy Print Pro & Service"))
+            {
+                TestCheck.AssertIsEqual(basis,
+                    AccessoryBillingBasisElement.Text,
+                    "Accessory Billing Basis is not matching");
+            }
         }
 
         public void VerifyThatCorrectInstallationBillingBasisIsDisplayed(string basis)
         {
-            TestCheck.AssertIsEqual(basis, 
-                InstallationBillingBasisElement.Text, 
-                "Installation Billing Basis is not matching");
+            if (!(IsGermanSystem() && GetContractType() == "Easy Print Pro & Service"))
+            {
+                TestCheck.AssertIsEqual(basis,
+                    InstallationBillingBasisElement.Text,
+                    "Installation Billing Basis is not matching");
+            }
         }
 
         public void VerifyThatCorrectServicePackBillingBasisIsDisplayed(string basis)
@@ -672,21 +686,27 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyInstallationTypeIsConsistent()
         {
-            var storedDisplayedInstallationType = SpecFlow.GetContext("SelectedInstallationType");
-            var InstallationType = InstallationTypeNameElement.Text;
+            if (!(IsGermanSystem() && GetContractType() == "Easy Print Pro & Service"))
+            {
+                var storedDisplayedInstallationType = SpecFlow.GetContext("SelectedInstallationType");
+                var InstallationType = InstallationTypeNameElement.Text;
 
-            TestCheck.AssertIsEqual(storedDisplayedInstallationType.Trim(),
-                InstallationType,
-                "Summary Installation Type is different from Selected Installation Type");
+                TestCheck.AssertIsEqual(storedDisplayedInstallationType.Trim(),
+                    InstallationType,
+                    "Summary Installation Type is different from Selected Installation Type");
+            }
         }
 
         public void VerifyInstallationCostIsConsistent()
         {
-            var savedInstallationPrice = SpecFlow.GetContext("SelectedInstallationPrice");
-            var summaryInstallationCost = InstallationCostNameElement.Text;
+            if (!(IsGermanSystem() && GetContractType() == "Easy Print Pro & Service"))
+            {
+                var savedInstallationPrice = SpecFlow.GetContext("SelectedInstallationPrice");
+                var summaryInstallationCost = InstallationCostNameElement.Text;
 
-            TestCheck.AssertIsEqual(savedInstallationPrice, summaryInstallationCost,
-                "Summary Installation Cost is different from Selected Installation Cost");
+                TestCheck.AssertIsEqual(savedInstallationPrice, summaryInstallationCost,
+                    "Summary Installation Cost is different from Selected Installation Cost");
+            }
         }
 
         public void VerifyServicePackNameIsConsistent()
@@ -697,16 +717,22 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyServicePackCostIsConssistent()
         {
-            TestCheck.AssertIsEqual(SpecFlow.GetContext("SelectedServicePackPrice"), 
-                ServiceCostNameElement.Text, 
-                "Service Pack cost are the same");
+            if (!(IsGermanSystem() && GetContractType() == "Easy Print Pro & Service"))
+            {
+                TestCheck.AssertIsEqual(SpecFlow.GetContext("SelectedServicePackPrice"),
+                    ServiceCostNameElement.Text,
+                    "Service Pack cost are the same");
+            }
         }
 
         public void VerifyProductQuantityIsConsistent()
         {
-            TestCheck.AssertIsEqual(SpecFlow.GetContext("ProductQuantity"),
-                ModelQuantityNameElement.Text, 
-                "Quantity on Product Page is different from Quantity on Summary Page");
+            if (!(IsGermanSystem() && GetContractType() == "Easy Print Pro & Service"))
+            {
+                TestCheck.AssertIsEqual(SpecFlow.GetContext("ProductQuantity"),
+                    ModelQuantityNameElement.Text,
+                    "Quantity on Product Page is different from Quantity on Summary Page");
+            }
         }
 
 
@@ -718,7 +744,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
             else if (IsGermanSystem() || IsAustriaSystem())
             {
-                TestCheck.AssertTextContains(CalculationBasisElement.Text, "geschätzten Druckvolumina");
+                TestCheck.AssertTextContains(CalculationBasisElement.Text, "Mindestdruckvolumina");
             } else if (IsFranceSystem())
             {
                 TestCheck.AssertTextContains(CalculationBasisElement.Text, "Coût total par matériel sur la base de l'estimation de volume de pages");

@@ -291,25 +291,25 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return createdProposal;
         }
 
-        public ConvertProposalCustomerInfo ClickOnConvertToContractButton(IWebDriver driver)
+        public DealerConvertProposalCustomerInfo ClickOnConvertToContractButton(IWebDriver driver)
         {
             ActionsModule.StartConvertToContractProcess(driver);
-            return GetTabInstance<ConvertProposalCustomerInfo>(Driver);
+            return GetTabInstance<DealerConvertProposalCustomerInfo>(Driver);
 
         }
 
-        public ConvertProposalSummaryPage ClickOnConvertToContractButton()
+        public DealerConvertProposalSummaryPage ClickOnConvertToContractButton()
         {
             ActionsModule.StartConvertToContractProcess(Driver);
-            return GetTabInstance<ConvertProposalSummaryPage>(Driver);
+            return GetTabInstance<DealerConvertProposalSummaryPage>(Driver);
 
         }
 
-        public ConvertProposalSummaryPage ClickOnConvertToContractButtonForCopiedProposalWithCustomer(IWebDriver driver)
+        public DealerConvertProposalSummaryPage ClickOnConvertToContractButtonForCopiedProposalWithCustomer(IWebDriver driver)
         {
             ActionsModule.StartConvertToContractProcess(driver);
             //VerifyThatTheCorrectProposalOpened();
-            return GetTabInstance<ConvertProposalSummaryPage>(Driver);
+            return GetTabInstance<DealerConvertProposalSummaryPage>(Driver);
 
         }
 

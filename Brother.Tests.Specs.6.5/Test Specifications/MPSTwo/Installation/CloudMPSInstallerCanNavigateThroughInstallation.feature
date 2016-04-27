@@ -76,7 +76,7 @@ Scenarios:
 	
 
 
-
+@ignore
 Scenario Outline: German And Austria installer can complete installation request for Cloud Communication
 	Given German Dealer have created a "<Country>" contract of "<ContractType>" and "<UsageType>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"

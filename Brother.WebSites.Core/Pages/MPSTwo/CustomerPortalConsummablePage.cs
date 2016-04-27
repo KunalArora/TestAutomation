@@ -11,7 +11,7 @@ using OpenQA.Selenium.Support.PageObjects;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class CustomerConsummablePage : BasePage
+    public class CustomerPortalConsummablePage : BasePage
     {
         public static string Url = "/";
 

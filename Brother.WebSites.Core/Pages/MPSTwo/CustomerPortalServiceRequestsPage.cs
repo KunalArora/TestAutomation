@@ -11,7 +11,7 @@ using OpenQA.Selenium.Support.PageObjects;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class CustomerServiceRequestsPage : BasePage
+    public class CustomerPortalServiceRequestsPage : BasePage
     {
         private const string SelectorId= @"content_1_InputDevice_Input";
         private const string ContactPerson = @".mps-info-icon.pull-right.js-mps-view-person-details";

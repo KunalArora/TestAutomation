@@ -20,6 +20,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Contract
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("CloudMPSDealerCanSignContractProd")]
+    [NUnit.Framework.IgnoreAttribute()]
     [NUnit.Framework.CategoryAttribute("MPS")]
     [NUnit.Framework.CategoryAttribute("PROD")]
     public partial class CloudMPSDealerCanSignContractProdFeature
@@ -36,6 +37,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwo.Contract
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CloudMPSDealerCanSignContractProd", "In order to progress an approved proposal to contract\r\nAs a dealer\r\nI want to be " +
                     "able to sign an approve proposal", ProgrammingLanguage.CSharp, new string[] {
+                        "ignore",
                         "MPS",
                         "PROD"});
             testRunner.OnFeatureStart(featureInfo);
