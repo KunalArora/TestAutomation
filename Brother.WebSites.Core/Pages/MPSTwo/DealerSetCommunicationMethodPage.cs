@@ -22,9 +22,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         [FindsBy(How = How.CssSelector, Using = ".active a[href*=\"/set-communication-method\"]")]
         public IWebElement SetCommunicationTabElement;
-        [FindsBy(How = How.CssSelector, Using = "#content_1_InputCommunicationChoiceCloud_Input")]
+        [FindsBy(How = How.CssSelector, Using = "#content_1_InputCloud_Input")]
         public IWebElement CloudCommunicationElement;
-        [FindsBy(How = How.CssSelector, Using = "#content_1_InputCommunicationChoiceEmail_Input")]
+        [FindsBy(How = How.CssSelector, Using = "#content_1_InputEmail_Input")]
         public IWebElement EmailCommunicationTabElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_ButtonNext")]
         public IWebElement ProceedElement;
