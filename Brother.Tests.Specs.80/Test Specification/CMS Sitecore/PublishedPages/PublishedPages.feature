@@ -114,7 +114,7 @@ Scenarios:
 	 | http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseDoNotTouch/All-Printers					 |
 
 
-@ignore
+@TEST
 Scenario Outline: Omnijoin Free Trial Sign up
 	Given That I navigate to "<Site Url>" in order to validate a published page
 	And I fill in the registration information using a valid email address 
