@@ -68,17 +68,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             IsSignedContractDisplayed();
         }
 
-        public void VerifyAcceptedContractIsDisplayed()
-        {
-            var createdProposal = CreatedProposalReference();
-            var newlyAdded = @"//td[text()='{0}']";
-            newlyAdded = String.Format(newlyAdded, createdProposal);
-
-            var newProposal = Driver.FindElement(By.XPath(newlyAdded));
-
-            TestCheck.AssertIsEqual(true, newProposal.Displayed, "Is new proposal displayed");
-        }
-
         public void VerifyAcceptedContractIsNotDisplayed()
         {
             var createdProposal = MpsUtil.CreatedProposal();
@@ -152,7 +141,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             AwaitingAcceptanceTabElement.Click();
         }
 
-        public DealerContractsApprovedPage NavigateToAcceptedContract()
+        public DealerContractsAcceptedPage NavigateToAcceptedContract()
         {
             if (AcceptedTabElement == null)
                 throw new Exception("Accepted Tab is not displayed");
@@ -160,7 +149,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, AcceptedTabElement);
 
-            return GetTabInstance<DealerContractsApprovedPage>(Driver);
+            return GetTabInstance<DealerContractsAcceptedPage>(Driver);
         }
 
         public void NavigateToRejectedContract()

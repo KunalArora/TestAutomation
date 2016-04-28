@@ -251,19 +251,19 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
        public static void MsgOutput(string message)
         {
             #if DEBUG
-                Trace.WriteLine(String.Format("@@TESTMSG - {0}", message));
+            Trace.WriteLine(String.Format("@@TESTMSG @ {0} - {1}", DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss.FFF"), message));
             #else
-                Console.WriteLine("@@TESTMSG - {0}", message);
-            #endif
+                Console.WriteLine("@@TESTMSG @ {0} - {1}", DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss.FFF"), message);
+#endif
         }
 
         public static void MsgOutput(string msgPrefix, string message)
         {
             #if DEBUG
-                Trace.WriteLine(String.Format("{0} --> {1} -", msgPrefix, message));
+            Trace.WriteLine(String.Format("{0} @ {1} --> {2} -", msgPrefix, DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss.FFF"), message));
             #else
-                Console.WriteLine("{0} --> {1} -", msgPrefix, message);
-            #endif
+                Console.WriteLine("{0} @ {1} --> {2} -", msgPrefix, DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss.FFF"), message);
+#endif
         }
 
         public static string GetVisaCcInfo(string infoItem, bool valid)
@@ -295,7 +295,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
         public static string CheckForCdServer(string baseUrl)
         {
-            if (Helper.GetRunTimeEnv().Contains("PROD") && UseCdServerDomain().Contains("web"))
+            if (GetRunTimeEnv().Contains("PROD") && UseCdServerDomain().Contains("web"))
             {
                 if (baseUrl.Contains("online"))
                 {

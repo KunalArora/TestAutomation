@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.Design;
+using System.IO;
 using System.Linq;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
@@ -28,6 +29,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string actionsButton = @".js-mps-filter-ignore .dropdown-toggle";
         private const string ProposalItemsSelecterFormat = "div.js-mps-proposal-list-container tr.js-mps-delete-remove";
         private const string ProposalNthItemSelecterFormat = "div.js-mps-proposal-list-container tr.js-mps-delete-remove:nth-child({0})";
+        
 
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/dashboard\"]")]
         private IWebElement DashboradLink;
@@ -80,10 +82,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement copyProposalWithoutCustomerElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_InProgressListActions_ActionList_Button_0")]
         public IWebElement CreateNewProposalButtonElement;
-
-
-
-
+        
+        
+        
 
         public DealerProposalsCreateDescriptionPage NavigateToProposalsCreateDescriptionPage()
         {
@@ -150,41 +151,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetInstance<DealerProposalsRejectedPage>();
         }
 
+
         public void IsProposalCopiedWithoutCustomer()
         {
-            //TestCheck.AssertIsEqual(true, 
-            //    ActionsModule.ProposalCustomerColumn().Text.Equals("-"), 
-            //    "Proposal was copied with customer detail");
-
+           
             TestCheck.AssertIsEqual(true,
                 ActionsModule.NumberOfActionButtonDisplayed(Driver).Equals(1),
-                "Proposal was copied with customer detail");
-            
-            //var companyName = SpecFlow.GetContext("GeneratedCompanyName");
-            //var proposal = MpsUtil.CopiedProposal();
-
-            //ActionsModule.SearchForNewlyProposalItem(Driver, companyName);
-
-            //var actionButton = GetElementsByCssSelector(".js-mps-filter-ignore [type='button']").Count > 0;
-
-            //IsNewProposalTemplateCreated(false);
-
-            //TestCheck.AssertIsEqual(false, actionButton, "Proposal was copied with customer detail");
-
-            //ActionsModule.SearchForNewlyProposalItem(Driver, proposal);
-
-            //TestCheck.AssertIsEqual(true,
-            //    ActionsModule.NumberOfActionButtonDisplayed(Driver).Equals(1),
-            //    "Proposal was copied with customer detail");
+                "Proposal was copied with customer detail");  
 
         }
 
         public void IsProposalCopiedWithCustomer()
         {
-            //TestCheck.AssertIsEqual(false,
-            //    ActionsModule.ProposalCustomerColumn().Text.Equals("-"),
-            //    "Proposal was copied with customer detail");
-
             var companyName = SpecFlow.GetContext("GeneratedCompanyName");
 
             ActionsModule.SearchForNewlyProposalItem(Driver, companyName);
@@ -198,17 +176,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
 
             var createdProposal = CreatedProposal();
-            //var newlyAdded = String.Format("return $('td:contains(\"{0}\")')", createdProposal);
-
-            //Driver.FindElement(By.CssSelector("#DataTables_Table_0_next a")).Click();
-
+            
             ActionsModule.SearchForNewlyProposalItem(Driver, createdProposal);
-
-            //var newProposal = GetElementByCssSelector(".js-mps-delete-remove", 10);     
-            //FindElementByJs(newlyAdded);              //Driver.FindElement(By.XPath(newlyAdded));
-
-            //TestCheck.AssertIsEqual(true, newProposal.Displayed, 
-            //    "Is new proposal template created?");
 
             IsNewProposalTemplateCreated(true);
         }
@@ -221,14 +190,23 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 "Is new proposal template created?");
         }
 
+        public void ActionButtonCount()
+        {
+            TestCheck.AssertIsEqual(true, GetElementByCssSelector(".dataTables_empty").Displayed, 
+                                                                            "Is new proposal template created?");
+        }
+
 
         public void IsProposalSuccessfullyDeletedFromTheList()
         {
             WaitForElementToExistByCssSelector(".alert.alert-success.fade.in.mps-alert.js-mps-alert");
 
-            ActionsModule.SearchForNewProposal(Driver);
+            TestCheck.AssertIsEqual(true, GetElementByCssSelector(".alert.alert-success.fade.in.mps-alert.js-mps-alert").Displayed, 
+                                                "Proposal was not deleted");
 
-            IsNewProposalTemplateCreated(false);
+            //ActionsModule.SearchForNewProposal(Driver);
+
+            //ActionButtonCount();
         }
 
         
@@ -313,18 +291,25 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return createdProposal;
         }
 
-        public ConvertProposalCustomerInfo ClickOnConvertToContractButton(IWebDriver driver)
+        public DealerConvertProposalCustomerInfo ClickOnConvertToContractButton(IWebDriver driver)
         {
             ActionsModule.StartConvertToContractProcess(driver);
-            return GetTabInstance<ConvertProposalCustomerInfo>(Driver);
+            return GetTabInstance<DealerConvertProposalCustomerInfo>(Driver);
 
         }
 
-        public ConvertProposalSummaryPage ClickOnConvertToContractButtonForCopiedProposalWithCustomer(IWebDriver driver)
+        public DealerConvertProposalSummaryPage ClickOnConvertToContractButton()
+        {
+            ActionsModule.StartConvertToContractProcess(Driver);
+            return GetTabInstance<DealerConvertProposalSummaryPage>(Driver);
+
+        }
+
+        public DealerConvertProposalSummaryPage ClickOnConvertToContractButtonForCopiedProposalWithCustomer(IWebDriver driver)
         {
             ActionsModule.StartConvertToContractProcess(driver);
             //VerifyThatTheCorrectProposalOpened();
-            return GetTabInstance<ConvertProposalSummaryPage>(Driver);
+            return GetTabInstance<DealerConvertProposalSummaryPage>(Driver);
 
         }
 
@@ -380,8 +365,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void CopyProposalWithOptions(string option)
         {
             ActionsModule.ClickOnSpecificActionsElement(Driver);
-            var originCustomer = ActionsModule.CreatedProposalCustomerColumn().Text;
-            SpecFlow.SetContext("Original Customer", originCustomer);
+            ActionsModule.ClickOnTheActionsDropdown(0, Driver);
+            //var originCustomer = ActionsModule.CreatedProposalCustomerColumn().Text;
+            //SpecFlow.SetContext("Original Customer", originCustomer);
 
             if (option.Equals("Without"))
             {
@@ -396,11 +382,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsProposalCustomerCopied()
         {
-            var copiedProposalCustomer = SpecFlow.GetContext("Original Customer");
-            var displayedCopiedCustomer = ActionsModule.ProposalCustomerColumn().Text;
+            //var copiedProposalCustomer = SpecFlow.GetContext("Original Customer");
+            //var displayedCopiedCustomer = ActionsModule.ProposalCustomerColumn().Text;
 
-            TestCheck.AssertIsEqual(copiedProposalCustomer, displayedCopiedCustomer, 
-                "customer in copied proposal not equal to customer in original proposal");
+            //TestCheck.AssertIsEqual(copiedProposalCustomer, displayedCopiedCustomer, 
+            //    "customer in copied proposal not equal to customer in original proposal");
+
+            ActionsModule.IsNewlyCopiedItemDisplayed(Driver);
         }
 
         public void ClickOnDeleteOnActionItem(IWebDriver driver)

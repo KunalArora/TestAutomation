@@ -125,7 +125,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if(ManageDevicesElement == null)
                 throw new Exception("Manage Device Element is not displayed");
 
-            RunCreateCustomerAndPersonJob();
+            MPSJobRunnerPage.RunCreateCustomerAndPersonCommandJob();
             ActionsModule.ClickOnSpecificActionsElement(Driver);
             ManageDevicesElement.Click();
             WebDriver.Wait(DurationType.Second, 2);
@@ -134,17 +134,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         
         public void IsContractsSignedByDealerDisplayed()
         {
-            RunCreateCustomerAndPersonJob();
+            
 
             ActionsModule.IsNewlyCreatedItemDisplayed(Driver);
 
         }
 
-        public void RunCreateCustomerAndPersonJob()
-        {
-            MPSJobRunnerPage.RunCreateCustomerAndPersonCommandJob();
-            
-        }
+        
 
         private string DownloadFolderPath()
         {
@@ -205,7 +201,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         
        public BankContractsSummaryPage NavigateToViewSummary()
         {
-            RunCreateCustomerAndPersonJob();
+            
             ActionsModule.ClickOnSpecificActionsElement(Driver);
             ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
 

@@ -29,6 +29,22 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             ThenTheInstallationRequestForThatDeviceIsCompleted();
         }
 
+        [When(@"I install the device on the contract with ""(.*)"" communication and ""(.*)"" installation")]
+        public void WhenIInstallTheDeviceOnTheContractWithCommunicationAndInstallation(string method, string type)
+        {
+            GivenIGenerateInstallationRequestForTheContractWithCommunicationAndInstallation(method, type);
+            GivenIExtractTheInstallerUrlFromInstallationRequest();
+            GivenINavigateToTheInstallerPage();
+            WhenIEnterTheContractReferenceNumber();
+            WhenIEnterDeviceSerialNumberForCommunication(type);
+            WhenIEnterTheDeviceIPAddress();
+            ThenICanConnectTheDeviceToBrotherEnvironment();
+            ThenICanCompleteDeviceInstallation();
+
+
+        }
+
+
         [Given(@"I installed the device in the contract through ""(.*)""")]
         public void GivenIInstalledTheDeviceInTheContractThrough(string method)
         {
@@ -129,6 +145,7 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             CurrentPage.As<InstallerDeviceInstallationPage>().CompleteDeviceConnection();
             CurrentPage.As<InstallerDeviceInstallationPage>().ConfirmInstallationSucceed();
             CurrentPage.As<InstallerDeviceInstallationPage>().ConfirmCompleteMessageIsDisplayed();
+            CurrentPage.As<InstallerDeviceInstallationPage>().ConfirmThatInstallationRequestIsNoLongerDisplayed();
         }
 
 
@@ -138,7 +155,7 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
         {
             NextPage = CurrentPage.As<DealerDashBoardPage>().NavigateToContractScreenFromDealerDashboard();
             NextPage = CurrentPage.As<DealerContractsPage>().NavigateToAcceptedContract();
-            NextPage = CurrentPage.As<DealerContractsApprovedPage>().NavigateToManageDevicesPage();
+            NextPage = CurrentPage.As<DealerContractsAcceptedPage>().NavigateToManageDevicesPage();
 
         }
 

@@ -100,18 +100,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         
         public void IsContractsSignedByDealerDisplayed()
         {
-            RunCreateCustomerAndPersonJob();
-
+            
             var createdProposal = MpsUtil.CreatedProposal();
             ActionsModule.SearchForNewlyProposalItem(Driver, createdProposal);
             ActionsModule.IsNewlyCreatedItemDisplayed(Driver);
         }
 
 
-        public void RunCreateCustomerAndPersonJob()
-        {
-            MPSJobRunnerPage.RunCreateCustomerAndPersonCommandJob();
-        }
+        
 
         private IWebElement ActionButtonElementByName(string name, string tdcol)
         {
@@ -148,11 +144,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
             else if (IsFranceSystem())
             {
-                path = "file:///C:/Users/afolabsa/Downloads/{0}-Contract.pdf";
+                path = "file:///C:/Users/afolabsa/Downloads/{0}-Contrat.pdf";
 
             }
             else if (IsItalySystem())
             {
+                path = "file:///C:/Users/afolabsa/Downloads/{0}-Contratto.pdf";
+            }
+            else if (IsSpainSystem())
+            {
+                //path = "file:///C:/Users/afolabsa/Downloads/{0}-Contrato.pdf";
                 path = "file:///C:/Users/afolabsa/Downloads/{0}-Contract.pdf";
             }
 
@@ -203,7 +204,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public LocalOfficeApproverDeviceManagementPage NavigateTOfficeDeviceManagementPage()
         {
-            RunCreateCustomerAndPersonJob();
+            MPSJobRunnerPage.RunCreateCustomerAndPersonCommandJob();
             LOApproverDeviceManagementElement.Click();
             return GetInstance<LocalOfficeApproverDeviceManagementPage>(Driver);
 

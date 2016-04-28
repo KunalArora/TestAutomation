@@ -109,7 +109,50 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         
         private string GetGeneratedCompany()
         {
-            return SpecFlow.GetContext("GeneratedCompanyName");
+            var genCompany = "";
+
+            try
+            {
+                genCompany = SpecFlow.GetContext("GeneratedCompanyName");
+
+            }
+            catch (KeyNotFoundException e)
+            {
+                genCompany = GenCoyOptions();
+                MsgOutput(String.Format("Generated company was empty so {0} was used", genCompany));
+            }
+
+            return genCompany;
+        }
+
+        private string GenCoyOptions()
+        {
+            var coy = "";
+
+            if (IsAustriaSystem())
+            {
+                coy = "Blue Hollow_160322133924 Ltd";
+            } else if (IsUKSystem())
+            {
+                coy = "Middle Mall_160322123145 Ltd";
+            } else if (IsGermanSystem())
+            {
+                coy = "Middle Mall_160322135029 Ltd";
+            }
+            else if (IsSpainSystem())
+            {
+                coy = "Rocky Bear_160322140949 Ltd";
+            }
+            else if (IsItalySystem())
+            {
+                coy = "Colonial Avenue_160322121421 Ltd";
+            }
+            else if (IsFranceSystem())
+            {
+                coy = "Silent Field_160322142114 Ltd";
+            }
+
+            return coy;
         }
 
         public void IsManagedDeviceScreenDisplayed()
@@ -117,7 +160,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if(CompanyConfirmationElement == null)
                 throw new Exception("Managed Device screen is not displayed");
 
-            AssertElementContainsText(CompanyConfirmationElement, GetGeneratedCompany(), "Generated Company");
+            var genCompany = GetGeneratedCompany();
+
+            AssertElementContainsText(CompanyConfirmationElement, genCompany, "Generated Company is empty");
+            
             HeadlessDismissAlertOk();
         }
 
@@ -169,39 +215,27 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public InstallerDeviceInstallationPage LaunchInstallerPage()
         {
+            MPSJobRunnerPage.RunCompleteInstallationCommandJob();
             Driver.Navigate().GoToUrl(GetInstallationLink());
             return GetInstance<InstallerDeviceInstallationPage>(Driver);
         }
 
-        public void CloseInstallationrequestPopUp()
-        {
-            var potentialAlert = GetSeleniumAlert();
-
-            if (potentialAlert != null)
-            {
-                InstallationRequestClosePopUpElement.Click();
-            }
-
-            WebDriver.Wait(DurationType.Second, 5);
-        }
-        
-        
-
-        public void SelectCompanyLocation()
+      public void SelectCompanyLocation()
         {
             var company = new SelectElement(CompanyLocationElement);
 
             var selectableList = company.Options;
 
+          var genCoy = GetGeneratedCompany();
+
             foreach (var coy in selectableList)
             {
-                if (coy.Text.Contains(GetGeneratedCompany()))
-                {
-                    coy.Click();
-                }
+                if (!coy.Text.Contains(genCoy)) continue;
+                coy.Click();
+                return;
             }
 
-            WebDriver.Wait(DurationType.Second, 2);
+            
 
         }
 
@@ -214,7 +248,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public DealerSetCommunicationMethodPage CreateInstallationRequest()
         {
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, CreateRequestElement);
-            WebDriver.Wait(DurationType.Second, 10);
+            
 
             return GetTabInstance<DealerSetCommunicationMethodPage>(Driver);
         }

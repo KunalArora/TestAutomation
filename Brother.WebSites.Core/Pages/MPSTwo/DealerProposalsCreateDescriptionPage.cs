@@ -107,6 +107,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if (IsElementPresent(ContractTypeSelectorDropdown()))
                 SelectContractType(contract);
 
+            SpecFlow.SetContext("ContractType", contract);
+
         }
 
        

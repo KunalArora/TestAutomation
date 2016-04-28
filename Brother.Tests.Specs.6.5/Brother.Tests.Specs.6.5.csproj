@@ -56,16 +56,18 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="TechTalk.SpecFlow">
       <HintPath>..\Dependencies\SpecFlow\SpecFlow.1.9.0\lib\net35\TechTalk.SpecFlow.dll</HintPath>
     </Reference>
-    <Reference Include="WebDriver, Version=2.42.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="WebDriver, Version=2.53.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Dependencies\Selenium\net40\WebDriver.dll</HintPath>
+      <HintPath>..\packages\Selenium.WebDriver.2.53.0\lib\net40\WebDriver.dll</HintPath>
     </Reference>
-    <Reference Include="WebDriver.Support">
-      <HintPath>..\Dependencies\Selenium\net40\WebDriver.Support.dll</HintPath>
+    <Reference Include="WebDriver.Support, Version=2.42.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Selenium.Support.2.53.0\lib\net40\WebDriver.Support.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -139,10 +141,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CloudMPSOutputContractPDFAllUsers.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwo\Contract\CloudMPSVerifyPDFContentsAreCorrect.feature.cs">
+    <Compile Include="Test Specifications\MPSTwo\Contract\CloudMPSVerifyContractPDFContentsAreCorrect.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CloudMPSVerifyPDFContentsAreCorrect.feature</DependentUpon>
+      <DependentUpon>CloudMPSVerifyContractPDFContentsAreCorrect.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPSTwo\Customer\CloudMPSExistingCustomerCanViewPrintCount.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CloudMPSExistingCustomerCanViewPrintCount.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Specifications\MPSTwo\Installation\CloudMPSInstallationRequestWithoutSelectingLocation.feature.cs">
       <AutoGen>True</AutoGen>
@@ -283,6 +290,11 @@
       <DependentUpon>CloudMPSApproverDecisionForOtherCountries.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Test Specifications\MPSTwo\Proposal\CloudMPSVerifyProposalPDFContentsAreCorrect.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CloudMPSVerifyProposalPDFContentsAreCorrect.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Specifications\MPSTwo\SendForApproval\CloudMPSDealerCanSubmitAllGermanProposalsForApproval.feature.cs">
       <AutoGen>True</AutoGen>
@@ -659,9 +671,13 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSOutputContractPDFAllUsers.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwo\Contract\CloudMPSVerifyPDFContentsAreCorrect.feature">
+    <None Include="Test Specifications\MPSTwo\Contract\CloudMPSVerifyContractPDFContentsAreCorrect.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSVerifyPDFContentsAreCorrect.feature.cs</LastGenOutput>
+      <LastGenOutput>CloudMPSVerifyContractPDFContentsAreCorrect.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwo\Customer\CloudMPSExistingCustomerCanViewPrintCount.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CloudMPSExistingCustomerCanViewPrintCount.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwo\Installation\CloudMPSInstallationRequestWithoutSelectingLocation.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
@@ -778,6 +794,10 @@
     <None Include="Test Specifications\MPSTwo\Proposal\CloudMPSApproverDecisionForOtherCountries.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSApproverDecisionForOtherCountries.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwo\Proposal\CloudMPSVerifyProposalPDFContentsAreCorrect.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CloudMPSVerifyProposalPDFContentsAreCorrect.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwo\SendForApproval\CloudMPSDealerCanSubmitAllGermanProposalsForApproval.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

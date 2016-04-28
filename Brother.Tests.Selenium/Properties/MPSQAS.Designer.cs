@@ -133,7 +133,7 @@ namespace Brother.Tests.Selenium.Lib.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Bradon20151112102155@mailinator.com")]
+        [global::System.Configuration.DefaultSettingValueAttribute("lashonda20160322123145@mailinator.com")]
         public string QASUKCustomer {
             get {
                 return ((string)(this["QASUKCustomer"]));
@@ -145,7 +145,7 @@ namespace Brother.Tests.Selenium.Lib.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Misty20151023194141@mailinator.com")]
+        [global::System.Configuration.DefaultSettingValueAttribute("shane20160322135034@mailinator.com")]
         public string QASDECustomer {
             get {
                 return ((string)(this["QASDECustomer"]));
@@ -157,7 +157,7 @@ namespace Brother.Tests.Selenium.Lib.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Coleen2015119021438@mailinator.com")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Slater20160322133929@mailinator.com")]
         public string QASATCustomer {
             get {
                 return ((string)(this["QASATCustomer"]));
@@ -181,7 +181,7 @@ namespace Brother.Tests.Selenium.Lib.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Lonna2016017005932@mailinator.com")]
+        [global::System.Configuration.DefaultSettingValueAttribute("lashonda20160322123145@mailinator.com")]
         public string QASMPSUKServiceDeskCustomer {
             get {
                 return ((string)(this["QASMPSUKServiceDeskCustomer"]));
@@ -200,6 +200,42 @@ namespace Brother.Tests.Selenium.Lib.Properties {
             }
             set {
                 this["QASMPSServiceDeskPassword"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("brady20160322142114@mailinator.com")]
+        public string QASFRCustomer {
+            get {
+                return ((string)(this["QASFRCustomer"]));
+            }
+            set {
+                this["QASFRCustomer"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("delsie20160322121420@mailinator.com")]
+        public string QASITCustomer {
+            get {
+                return ((string)(this["QASITCustomer"]));
+            }
+            set {
+                this["QASITCustomer"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("kassie20160322140949@mailinator.com")]
+        public string QASESCustomer {
+            get {
+                return ((string)(this["QASESCustomer"]));
+            }
+            set {
+                this["QASESCustomer"] = value;
             }
         }
     }

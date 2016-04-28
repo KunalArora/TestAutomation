@@ -24,6 +24,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string QuantityFormat = "#content_1_SummaryTable_RepeaterModels_{0}Quantity_{1}";
         private const string MarginFormat = "#content_1_SummaryTable_RepeaterModels_{0}MarginPercentage_{1}";
         private const string ClickRateFormat = "#content_1_SummaryTable_RepeaterModels_{0}ClickRate_{1}";
+        private const string DownloadPath = @"file:///C:/Users/afolabsa/Downloads/";
+        private const string UkText = @"Total Quarterly In Arrears";
+        private const string DeText = @"Brother EasyPrint Pro";
+        private const string AtText = @"Bedingung";
+        private const string ItText = @"Pagine + Cloud";
+        private const string FrText = @"COUT D’ACQUISITION";
+        private const string SpText = @"Propuesta";
+        private const string DownloadDirectory = @"C:/Users/afolabsa/Downloads";
 
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_ContractType")]
         public IWebElement ContractTypeElement;
@@ -213,18 +221,294 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement FinanceTotalGrossElement;
         [FindsBy(How = How.Id, Using = "content_1_ButtonCancel")]
         public IWebElement SummaryCloseProposalElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_SummaryTable_ProposalDetailsContainer")]
+        public IWebElement SummaryPageContractIdElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_ButtonDownloadProposalPdf")]
+        public IWebElement SummaryPageDownloadElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_DeviceTotalPriceNet_0")]
+        public IWebElement SummaryCustomerDeviceTotalNetElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_CustomerName")]
+        public IWebElement SummaryCustomerOrCompanyNameElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_ContractTerm")]
+        public IWebElement SummaryContractTermElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_ContractType")]
+        public IWebElement SummaryContractTypeElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_MonoClickRate_0")]
+        public IWebElement SummaryMonoClickRateElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_ColourClickRate_0")]
+        public IWebElement SummaryColourClickRateElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_ConsumablesTotalPriceNet_0")]
+        public IWebElement SummaryProposalConsumableTotalNetElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_DeviceTotalPriceGross_0")]
+        public IWebElement SummaryCustomerDeviceTotalGrossElement;
+        
+        
         
 
         public void DownloadDealersProposalDocument()
         {
+            StoreValuesFromSummaryPage();
+            StoreInitialProposalSummaryData();
             DownloadProposalPdfWithCalcElement.Click();
         }
 
         public void DownloadCustomersProposalDocument()
         {
+            StoreValuesFromSummaryPage();
+            StoreInitialProposalSummaryData();
             DownloadProposalPdfElement.Click();
+            WebDriver.Wait(DurationType.Second, 5);
         }
 
+        private string DownloadFolderPath()
+        {
+
+            var propRef = MpsUtil.GeneratedLeadCodeRef();
+            var propName = MpsUtil.CreatedProposal();
+
+            var partialPath = DownloadPath + propName + "-" + propRef + "-";
+
+            return partialPath;
+        }
+
+        public void GetDownloadedPdfPath()
+        {
+            var contractid = SummaryPageContractIdElement.GetAttribute("data-mps-qa-id");
+            SpecFlow.SetContext("SummaryPageContractId", contractid);
+
+            var downloadPath = DownloadFolderPath() + contractid + ".pdf";
+            SpecFlow.SetContext("DownloadedPdfPath", downloadPath);
+
+        }
+
+        public DealerProposalPdfPage DisplayDownloadedPdf()
+        {
+            var downloadedPdf = DownloadedPdf();
+            Driver.Navigate().GoToUrl(downloadedPdf);
+            return GetInstance<DealerProposalPdfPage>();
+        }
+
+        private static string DownloadedPdf()
+        {
+            var downloadedPdf = SpecFlow.GetContext("DownloadedPdfPath");
+            return downloadedPdf;
+        }
+
+        public void DownloadProposalPdf()
+        {
+            if(SummaryPageDownloadElement != null)
+                SummaryPageDownloadElement.Click();
+
+            WebDriver.Wait(DurationType.Second, 5);
+
+        }
+
+        public void DoesPdfContentContainContractId()
+        {
+            WebDriver.Wait(DurationType.Second, 10);
+            var contractId = SpecFlow.GetContext("SummaryPageContractId");
+            WebDriver.Wait(DurationType.Second, 10);
+            TestCheck.AssertTextContains(contractId, ExtractTextFromPdf(DownloadedPdf()),
+                "Contract Id is not available in the PDF");
+
+        }
+
+        public void PurgeDownloadsDirectory()
+        {
+            //Driver.Navigate().Back();
+            PurgeDownloads(DownloadDirectory);
+        }
+
+        public void IsDeviceTotalPresentInPdf()
+        {
+
+            if (IsUKSystem())
+            {
+                TestCheck.AssertTextContains(SpecFlow.GetContext("SummaryCustomerDeviceTotalNet"), ExtractTextFromPdf(DownloadedPdf()),
+                 "Device Total is not available in the PDF"); 
+            }
+            //else
+            //{
+            //    TestCheck.AssertTextContains(SpecFlow.GetContext("SummaryCustomerDeviceTotalGross"), ExtractTextFromPdf(DownloadedPdf()),
+            //     "Device Total is not available in the PDF"); 
+            //}
+            
+        }
+
+        public void IsConsumableTotalNetPresentInPdf()
+        {
+            if (IsUKSystem())
+            {
+                var deviceTotal = SpecFlow.GetContext("SummaryProposalConsumableTotalNet");
+                TestCheck.AssertTextContains(deviceTotal, ExtractTextFromPdf(DownloadedPdf()),
+                    "Consumable Total is not available in the PDF");
+            }
+            
+        }
+
+        public void StoreValuesFromSummaryPage()
+        {
+            SpecFlow.SetContext("SummaryCustomerDeviceTotalNet", SummaryCustomerDeviceTotalNetElement.Text);
+            SpecFlow.SetContext("SummaryCustomerOrCompanyName", SummaryCustomerOrCompanyNameElement.Text);
+            SpecFlow.SetContext("SummaryContractTerm", SummaryContractTermElement.Text);
+            SpecFlow.SetContext("SummaryContractType", SummaryContractTypeElement.Text);
+            SpecFlow.SetContext("SummaryMonoClickRate", SummaryMonoClickRateElement.Text);
+            SpecFlow.SetContext("SummaryColourClickRate", SummaryColourClickRateElement.Text);
+            SpecFlow.SetContext("SummaryProposalConsumableTotalNet", SummaryProposalConsumableTotalNetElement.Text);
+            if (
+                IsElementPresent(
+                    GetElementByCssSelector("content_1_SummaryTable_RepeaterModels_DeviceTotalPriceGross_0", 5)))
+            {
+                SpecFlow.SetContext("SummaryCustomerDeviceTotalGross", SummaryCustomerDeviceTotalGrossElement.Text);
+            }
+            
+            
+            
+        }
+
+        public void IsCustomerNamePresentInPdf()
+        {
+            var customerName = SpecFlow.GetContext("SummaryCustomerOrCompanyName");
+            customerName = customerName.Substring(0, 15);
+            TestCheck.AssertTextContains(customerName, ExtractTextFromPdf(DownloadedPdf()),
+                "Customer Name is not available in the PDF");
+        }
+
+        public void DoesPdfContentContainSomeText()
+        {
+            var contractId = SpecFlow.GetContext("DownloadedContractId");
+            TestCheck.AssertTextContains(contractId, ExtractTextFromPdf(DownloadedPdf()),
+                "Contract Id is not available in the PDF");
+
+        }
+
+        private string ConvertTermForUk(string term)
+        {
+            var convertedTerm = "";
+            if (!IsUKSystem()) return convertedTerm;
+            switch (term)
+            {
+                case "3 years":
+                    convertedTerm = "36";
+                    break;
+
+                case "4 years":
+                    convertedTerm = "48";
+                    break;
+
+                case "5 years":
+                    convertedTerm = "60";
+                    break;
+            }
+            return convertedTerm;
+        }
+
+        public void IsSummaryContractTermPresentInPdf()
+        {
+            if (IsBigAtSystem()) return;
+            var contractTerm = SpecFlow.GetContext("SummaryContractTerm");
+            contractTerm = ConvertTermForUk(contractTerm);
+            TestCheck.AssertTextContains(contractTerm, ExtractTextFromPdf(DownloadedPdf()),
+                "Summary Contract Term is not available in the PDF");
+        }
+
+        public void DoesPdfContentContractItems(string type)
+        {
+            if(!IsItalySystem())
+            TestCheck.AssertTextContains(type, ExtractTextFromPdf(DownloadedPdf()),
+                "Contract Type is not available in the PDF");
+
+        }
+
+        public void IsSummaryMonoClickRatePresentInPdf()
+        {
+            var monoClickRate = SpecFlow.GetContext("SummaryMonoClickRate");
+            monoClickRate = ConvertClickRatePrice(monoClickRate);
+            TestCheck.AssertTextContains(monoClickRate, ExtractTextFromPdf(DownloadedPdf()),
+                "Summary Mono Click Rate is not available in the PDF");
+        }
+
+        private string ConvertClickRatePrice(string clickPrice)
+        {
+
+            decimal clickDecimal = 0;
+
+            if (IsBigAtSystem())
+            {
+                clickDecimal = MpsUtil.GetEuroValue(clickPrice);
+            }
+
+
+            return clickDecimal.ToString();
+        }
+
+        private string AddCommaToColourClickPrice(string clickRate)
+        {
+            var sectionOne = clickRate.Substring(0, 1);
+            var sectionTwo = clickRate.Substring(1);
+
+            var coJoin = sectionOne + "," + sectionTwo;
+
+            return coJoin;
+
+        }
+
+        public void IsSummaryColourClickRatePresentInPdf()
+        {
+            var colourClickRate = SpecFlow.GetContext("SummaryColourClickRate");
+            colourClickRate = ConvertClickRatePrice(colourClickRate);
+
+            if (IsBigAtSystem())
+            {
+                colourClickRate = AddCommaToColourClickPrice(colourClickRate);
+            }
+
+            TestCheck.AssertTextContains(colourClickRate, ExtractTextFromPdf(DownloadedPdf()),
+                "Summary Colour Click Rate is not available in the PDF");
+        }
+
+        private string SpecificLanguageText()
+        {
+            var lang = "";
+
+            if (IsAustriaSystem())
+            {
+                lang = AtText;
+            }
+            else if (IsUKSystem())
+            {
+                lang = UkText;
+            }
+            else if (IsGermanSystem())
+            {
+                lang = DeText;
+            }
+            else if (IsFranceSystem())
+            {
+                lang = FrText;
+            }
+            else if (IsItalySystem())
+            {
+                lang = ItText;
+            }
+            else if (IsSpainSystem())
+            {
+                lang = SpText;
+            }
+
+
+
+            return lang;
+
+        }
+
+        public void IsCorrectLanguagePdfDownloaded()
+        {
+            TestCheck.AssertTextContains(SpecificLanguageText(), ExtractTextFromPdf(DownloadedPdf()),
+                "The correct language PDF is not downloaded");
+        }
+
+       
         private string PrinterString(string printer)
         {
             return String.Format(".mps-qa-printer-{0} .panel-heading a", printer);
@@ -259,23 +543,32 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyThatCorrectModelBillingBasisIsDisplayed(string basis)
         {
-            TestCheck.AssertIsEqual(basis, 
-                ModelBillingBasisElement.Text, 
-                "Model Billing Basis is not matching");
+            if (!(IsGermanSystem() && GetContractType() == "Easy Print Pro & Service"))
+            {
+                TestCheck.AssertIsEqual(basis,
+                    ModelBillingBasisElement.Text,
+                    "Model Billing Basis is not matching");
+            }
         }
 
         public void VerifyThatCorrectAccessoryBillingBasisIsDisplayed(string basis)
         {
-            TestCheck.AssertIsEqual(basis, 
-                AccessoryBillingBasisElement.Text, 
-                "Accessory Billing Basis is not matching");
+            if (!(IsGermanSystem() && GetContractType() == "Easy Print Pro & Service"))
+            {
+                TestCheck.AssertIsEqual(basis,
+                    AccessoryBillingBasisElement.Text,
+                    "Accessory Billing Basis is not matching");
+            }
         }
 
         public void VerifyThatCorrectInstallationBillingBasisIsDisplayed(string basis)
         {
-            TestCheck.AssertIsEqual(basis, 
-                InstallationBillingBasisElement.Text, 
-                "Installation Billing Basis is not matching");
+            if (!(IsGermanSystem() && GetContractType() == "Easy Print Pro & Service"))
+            {
+                TestCheck.AssertIsEqual(basis,
+                    InstallationBillingBasisElement.Text,
+                    "Installation Billing Basis is not matching");
+            }
         }
 
         public void VerifyThatCorrectServicePackBillingBasisIsDisplayed(string basis)
@@ -393,21 +686,27 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyInstallationTypeIsConsistent()
         {
-            var storedDisplayedInstallationType = SpecFlow.GetContext("SelectedInstallationType");
-            var InstallationType = InstallationTypeNameElement.Text;
+            if (!(IsGermanSystem() && GetContractType() == "Easy Print Pro & Service"))
+            {
+                var storedDisplayedInstallationType = SpecFlow.GetContext("SelectedInstallationType");
+                var InstallationType = InstallationTypeNameElement.Text;
 
-            TestCheck.AssertIsEqual(storedDisplayedInstallationType.Trim(),
-                InstallationType,
-                "Summary Installation Type is different from Selected Installation Type");
+                TestCheck.AssertIsEqual(storedDisplayedInstallationType.Trim(),
+                    InstallationType,
+                    "Summary Installation Type is different from Selected Installation Type");
+            }
         }
 
         public void VerifyInstallationCostIsConsistent()
         {
-            var savedInstallationPrice = SpecFlow.GetContext("SelectedInstallationPrice");
-            var summaryInstallationCost = InstallationCostNameElement.Text;
+            if (!(IsGermanSystem() && GetContractType() == "Easy Print Pro & Service"))
+            {
+                var savedInstallationPrice = SpecFlow.GetContext("SelectedInstallationPrice");
+                var summaryInstallationCost = InstallationCostNameElement.Text;
 
-            TestCheck.AssertIsEqual(savedInstallationPrice, summaryInstallationCost,
-                "Summary Installation Cost is different from Selected Installation Cost");
+                TestCheck.AssertIsEqual(savedInstallationPrice, summaryInstallationCost,
+                    "Summary Installation Cost is different from Selected Installation Cost");
+            }
         }
 
         public void VerifyServicePackNameIsConsistent()
@@ -418,16 +717,22 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyServicePackCostIsConssistent()
         {
-            TestCheck.AssertIsEqual(SpecFlow.GetContext("SelectedServicePackPrice"), 
-                ServiceCostNameElement.Text, 
-                "Service Pack cost are the same");
+            if (!(IsGermanSystem() && GetContractType() == "Easy Print Pro & Service"))
+            {
+                TestCheck.AssertIsEqual(SpecFlow.GetContext("SelectedServicePackPrice"),
+                    ServiceCostNameElement.Text,
+                    "Service Pack cost are the same");
+            }
         }
 
         public void VerifyProductQuantityIsConsistent()
         {
-            TestCheck.AssertIsEqual(SpecFlow.GetContext("ProductQuantity"),
-                ModelQuantityNameElement.Text, 
-                "Quantity on Product Page is different from Quantity on Summary Page");
+            if (!(IsGermanSystem() && GetContractType() == "Easy Print Pro & Service"))
+            {
+                TestCheck.AssertIsEqual(SpecFlow.GetContext("ProductQuantity"),
+                    ModelQuantityNameElement.Text,
+                    "Quantity on Product Page is different from Quantity on Summary Page");
+            }
         }
 
 
@@ -439,7 +744,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
             else if (IsGermanSystem() || IsAustriaSystem())
             {
-                TestCheck.AssertTextContains(CalculationBasisElement.Text, "geschätzten Druckvolumina");
+                TestCheck.AssertTextContains(CalculationBasisElement.Text, "Mindestdruckvolumina");
             } else if (IsFranceSystem())
             {
                 TestCheck.AssertTextContains(CalculationBasisElement.Text, "Coût total par matériel sur la base de l'estimation de volume de pages");
@@ -605,6 +910,34 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             VerifyEnteredInstallationPackMarginIsDisplayed();
             VerifyEnteredServicePackMarginIsDisplayed();
             VerifyEnteredOptionMargin0IsDisplayed();
+        }
+
+        public void StoreInitialProposalSummaryData()
+        {
+            if (IsElementPresent(RepeaterModels_DeviceTotalPriceNetElement))
+                SpecFlow.SetContext("DealerProposalSummaryRepeaterModels_DeviceTotalPriceNetElement", RepeaterModels_DeviceTotalPriceNetElement.Text);
+            if (IsElementPresent(RepeaterModels_DeviceTotalPriceGrossElement))
+                SpecFlow.SetContext("DealerProposalSummaryRepeaterModels_DeviceTotalPriceGrossElement", RepeaterModels_DeviceTotalPriceGrossElement.Text);
+            if (IsElementPresent(RepeaterModels_ConsumablesTotalPriceNetElement))
+                SpecFlow.SetContext("DealerProposalSummaryRepeaterModels_ConsumablesTotalPriceNetElement", RepeaterModels_ConsumablesTotalPriceNetElement.Text);
+            if (IsElementPresent(RepeaterModels_ConsumablesTotalPriceGrossElement))
+                SpecFlow.SetContext("DealerProposalSummaryRepeaterModels_ConsumablesTotalPriceGrossElement", RepeaterModels_ConsumablesTotalPriceGrossElement.Text);
+            if (IsElementPresent(DeviceTotalsTotalCostNetElement))
+                SpecFlow.SetContext("DealerProposalSummaryDeviceTotalsTotalCostNetElement", DeviceTotalsTotalCostNetElement.Text);
+            if (IsElementPresent(DeviceTotalsTotalMarginNetElement))
+                SpecFlow.SetContext("DealerProposalSummaryDeviceTotalsTotalMarginNetElement", DeviceTotalsTotalMarginNetElement.Text);
+            if (IsElementPresent(ConsumableTotalsTotalMarginNetElement))
+                SpecFlow.SetContext("DealerProposalSummaryConsumableTotalsTotalMarginNetElement", ConsumableTotalsTotalMarginNetElement.Text);
+            if (IsElementPresent(ConsumableTotalsTotalPriceNetElement))
+                SpecFlow.SetContext("DealerProposalSummaryConsumableTotalsTotalPriceNetElement", ConsumableTotalsTotalPriceNetElement.Text);
+            if (IsElementPresent(ConsumableTotalsTotalMarginGrossElement))
+                SpecFlow.SetContext("DealerProposalSummaryConsumableTotalsTotalMarginGrossElement", ConsumableTotalsTotalMarginGrossElement.Text);
+            if (IsElementPresent(ConsumableTotalsTotalPriceGrossElement))
+                SpecFlow.SetContext("DealerProposalSummaryConsumableTotalsTotalPriceGrossElement", ConsumableTotalsTotalPriceGrossElement.Text);
+            if (IsElementPresent(GrandTotalMarginNetElement))
+                SpecFlow.SetContext("DealerProposalSummaryGrandTotalMarginNetElement", GrandTotalMarginNetElement.Text);
+            if (IsElementPresent(GrandTotalPriceNetElement))
+                SpecFlow.SetContext("DealerProposalSummaryGrandTotalPriceNetElement", GrandTotalPriceNetElement.Text);
         }
 
         public void StoreProposalSummaryData()

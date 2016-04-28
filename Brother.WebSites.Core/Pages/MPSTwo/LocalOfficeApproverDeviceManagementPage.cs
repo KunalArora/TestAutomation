@@ -43,7 +43,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public ManageDevicesPage NavigateToManageDevicesPage()
         {
-            WebDriver.Wait(DurationType.Second, 30);
+            MPSJobRunnerPage.RunCompleteInstallationCommandJob();
 
             ActionsModule.ClickOnSpecificActionsElement(Driver);
 

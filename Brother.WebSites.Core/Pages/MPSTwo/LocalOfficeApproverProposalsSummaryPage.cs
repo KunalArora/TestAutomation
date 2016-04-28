@@ -71,6 +71,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 SelectFromDropdown(DeclineReasonElement, "Autre");
             }
+            else if (IsSpainSystem())
+            {
+                SelectFromDropdown(DeclineReasonElement, "Otro");
+            }
             
         }
 
@@ -111,7 +115,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         
         public void EnterValidUntil()
         {
-            if (IsFranceSystem()||IsItalySystem()||IsAustriaSystem())
+            if (IsFranceSystem() || IsItalySystem() || IsAustriaSystem() || IsUKSystem())
                 ValidUntilElement.SendKeys(MpsUtil.SomeDaysFromToday());
         }
 

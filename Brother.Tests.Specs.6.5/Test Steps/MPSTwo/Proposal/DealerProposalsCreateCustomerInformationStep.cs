@@ -76,6 +76,14 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             NextPage = CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().ClickNextButton();
         }
 
+       public void SelectASpecificExistingCustomer(string customer)
+       {
+           CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().IsCustomerInfoTextDisplayed();
+           CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().ClickSelectExistingCustomerButtonAndProceed();
+           CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().SelectASpecificExistingContact(customer);
+           NextPage = CurrentPage.As<DealerProposalsCreateCustomerInformationPage>().ClickNextButton();
+       }
+
         public void EditCustomerInformationTab()
         {
             var page = CurrentPage.As<DealerProposalsCreateCustomerInformationPage>();

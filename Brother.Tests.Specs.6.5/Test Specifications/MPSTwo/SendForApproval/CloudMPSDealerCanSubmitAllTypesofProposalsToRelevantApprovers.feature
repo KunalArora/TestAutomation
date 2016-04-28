@@ -144,10 +144,10 @@ Scenario Outline: Send certain proposals for approval
 	
 	Scenarios:
 
-	| Role             | Country | Role2                           | ContractType                      | UsageType                                 | Length | Billing                |
-	| Cloud MPS Dealer | France  | Cloud MPS Local Office Approver | Buy & Click                       | Engagement sur un minimum volume de pages | 3 ans  | Trimestrale anticipata |
-	| Cloud MPS Dealer | Italy   | Cloud MPS Local Office Approver | Acquisto + Consumo con assistenza | Volume minimo                             | 36     | Quarterly in Advance   |
-	| Cloud MPS Dealer | Spain   | Cloud MPS Local Office Approver | Purchase & Click con Service      | Volúmen mínimo                            | 3 años | Quarterly in Arrears   |
+	| Role             | Country | Role2                           | ContractType                      | UsageType                                 | Length | Billing                 |
+	| Cloud MPS Dealer | France  | Cloud MPS Local Office Approver | Buy & Click                       | Engagement sur un minimum volume de pages | 3 ans  | Trimestrale anticipata  |
+	| Cloud MPS Dealer | Italy   | Cloud MPS Local Office Approver | Acquisto + Consumo con assistenza | Volume minimo                             | 36     | Trimestrale anticipata  |
+	| Cloud MPS Dealer | Spain   | Cloud MPS Local Office Approver | Purchase & Click con Service      | Volúmen mínimo                            | 3 años | Por trimestres vencidos |
 	
 
 
@@ -194,10 +194,11 @@ Scenario Outline: Send certain approval for Privately Liable Customer
 	
 	Scenarios:
 
-	| Role             | Country | Role2                           | ContractType                      | UsageType                                 | Length | Billing                | Private           |
-	| Cloud MPS Dealer | France  | Cloud MPS Local Office Approver | Buy & Click                       | Engagement sur un minimum volume de pages | 3 ans  | Trimestrale anticipata | Autre             |
-	| Cloud MPS Dealer | Italy   | Cloud MPS Local Office Approver | Acquisto + Consumo con assistenza | Volume minimo                             | 36     | Quarterly in Advance   | Cittadino privato |
-	| Cloud MPS Dealer | Spain   | Cloud MPS Local Office Approver | Purchase & Click con Service      | Volúmen mínimo                            | 3 años | Quarterly in Arrears   | Private Citizen   |
+	| Role             | Country | Role2                           | ContractType                      | UsageType                                 | Length | Billing                 | Private           |
+	| Cloud MPS Dealer | France  | Cloud MPS Local Office Approver | Buy & Click                       | Engagement sur un minimum volume de pages | 3 ans  | Trimestrale anticipata  | Autre             |
+	| Cloud MPS Dealer | Italy   | Cloud MPS Local Office Approver | Acquisto + Consumo con assistenza | Volume minimo                             | 36     | Trimestrale anticipata  | Cittadino privato |
+	## Spain no longer use Legal form
+	####| Cloud MPS Dealer | Spain   | Cloud MPS Local Office Approver | Purchase & Click con Service      | Volúmen mínimo                            | 3 años | Por trimestres vencidos | Private Citizen   |
 	
 
 
@@ -243,10 +244,10 @@ Scenario Outline: Send certain proposal for Approval for Customer who can order 
 
 	Scenarios:
 
-	| Role             | Country | Role2                           | ContractType                      | UsageType                                 | Length | Billing                |
-	| Cloud MPS Dealer | France  | Cloud MPS Local Office Approver | Buy & Click                       | Engagement sur un minimum volume de pages | 3 ans  | Trimestrale anticipata |
-	| Cloud MPS Dealer | Italy   | Cloud MPS Local Office Approver | Acquisto + Consumo con assistenza | Volume minimo                             | 36     | Quarterly in Advance   |
-	| Cloud MPS Dealer | Spain   | Cloud MPS Local Office Approver | Purchase & Click con Service      | Volúmen mínimo                            | 3 años | Quarterly in Arrears   |
+	| Role             | Country | Role2                           | ContractType                      | UsageType                                 | Length | Billing                 |
+	| Cloud MPS Dealer | France  | Cloud MPS Local Office Approver | Buy & Click                       | Engagement sur un minimum volume de pages | 3 ans  | Trimestrale anticipata  |
+	| Cloud MPS Dealer | Italy   | Cloud MPS Local Office Approver | Acquisto + Consumo con assistenza | Volume minimo                             | 36     | Trimestrale anticipata  |
+	| Cloud MPS Dealer | Spain   | Cloud MPS Local Office Approver | Purchase & Click con Service      | Volúmen mínimo                            | 3 años | Por trimestres vencidos |
 	
 
 Scenario Outline: Send Purchase and Click proposal for Approval for Privately Liable Customer who can order consumables
@@ -290,10 +291,11 @@ Scenario Outline: Send certain proposal for Approval for Privately Liable Custom
 	
 	Scenarios:
 
-	| Role             | Country | Role2                           | ContractType                      | UsageType                                 | Length | Billing                | Private           |
-	| Cloud MPS Dealer | France  | Cloud MPS Local Office Approver | Buy & Click                       | Engagement sur un minimum volume de pages | 3 ans  | Trimestrale anticipata | Autre             |
-	| Cloud MPS Dealer | Italy   | Cloud MPS Local Office Approver | Acquisto + Consumo con assistenza | Volume minimo                             | 36     | Quarterly in Advance   | Cittadino privato |
-	| Cloud MPS Dealer | Spain   | Cloud MPS Local Office Approver | Purchase & Click con Service      | Volúmen mínimo                            | 3 años | Quarterly in Arrears   | Private Citizen   |
+	| Role             | Country | Role2                           | ContractType                      | UsageType                                 | Length | Billing                 | Private           |
+	| Cloud MPS Dealer | France  | Cloud MPS Local Office Approver | Buy & Click                       | Engagement sur un minimum volume de pages | 3 ans  | Trimestrale anticipata  | Autre             |
+	| Cloud MPS Dealer | Italy   | Cloud MPS Local Office Approver | Acquisto + Consumo con assistenza | Volume minimo                             | 36     | Trimestrale anticipata  | Cittadino privato |
+	## Spain no longer use Legal form
+	####| Cloud MPS Dealer | Spain   | Cloud MPS Local Office Approver | Purchase & Click con Service      | Volúmen mínimo                            | 3 años | Por trimestres vencidos | Private Citizen   |
 	
 
 

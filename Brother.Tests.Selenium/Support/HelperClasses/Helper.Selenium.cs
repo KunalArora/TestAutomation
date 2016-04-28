@@ -75,6 +75,11 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             return GetUrl().Contains(germanUrl);
         }
 
+        public string GetContractType()
+        {
+            return SpecFlow.GetContext("ContractType");
+        }
+
         public bool IsAustriaSystem()
         {
             return GetUrl().Contains(austriaUrl);
@@ -134,6 +139,22 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             return elementStatus;
         }
 
+        public bool WaitForElementToBeClickableById(string element, int timeOut)
+        {
+            var elementStatus = false;
+            try
+            {
+                var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(timeOut));
+                elementStatus = wait.Until(ExpectedConditions.ElementIsVisible(By.Id(element))).Enabled;
+            }
+            catch (WebDriverException elementSearchTimeout)
+            {
+                MsgOutput(elementSearchTimeout.Message);
+                throw new WebDriverTimeoutException(String.Format("Timeout searching for Element [{0}]. Timeout after [{1}]", element, ElementSearchTimeout));
+            }
+            return elementStatus;
+        }
+
         public bool WaitForElementToExistByClassName(string element)
         {
             var elementStatus = false;
@@ -141,6 +162,22 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             {
                 var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(ElementSearchTimeout));
                 elementStatus = wait.Until(ExpectedConditions.ElementIsVisible(By.ClassName(element))).Displayed;
+            }
+            catch (WebDriverException elementSearchTimeout)
+            {
+                MsgOutput(elementSearchTimeout.Message);
+                throw new WebDriverTimeoutException(String.Format("Timeout searching for Element [{0}]. Timeout after [{1}]", element, ElementSearchTimeout));
+            }
+            return elementStatus;
+        }
+
+        public bool WaitForElementToBeClickableByClassName(string element)
+        {
+            var elementStatus = false;
+            try
+            {
+                var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(ElementSearchTimeout));
+                elementStatus = wait.Until(ExpectedConditions.ElementIsVisible(By.ClassName(element))).Enabled;
             }
             catch (WebDriverException elementSearchTimeout)
             {
@@ -187,16 +224,10 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         {
             var browserTabs = new List<String> (Driver.WindowHandles);
 
-            if (browserTabs.Count > 1)
-            {
-                Driver.SwitchTo().Window(browserTabs[1]);
-                WebDriver.WaitForTitle(Driver, "Network Error", TimeSpan.FromSeconds(20));
-                var url = Driver.Url;
-                SpecFlow.SetContext("WebInstallUrl", url);
-                Driver.Close();
-                Driver.SwitchTo().Window(browserTabs[0]);
-            }
-            
+            if (browserTabs.Count <= 1) return;
+            Driver.SwitchTo().Window(browserTabs[1]);
+            Driver.Close();
+            Driver.SwitchTo().Window(browserTabs[0]);
         }
 
         public void OpenLinkInADifferentWindow(IWebElement link)
@@ -246,6 +277,43 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                 {
                     MsgOutput(String.Format("Retry count = [{0}]", retries));
                     var searchElement = wait.Until(dr => dr.FindElement(By.CssSelector(element)).Displayed);
+                    elementStatus = searchElement;
+                    MsgOutput(String.Format("Element Status = [{0}]", elementStatus));
+                    MsgOutput(String.Format("Timeout waited = [{0}]", wait.Timeout.TotalSeconds));
+                    retries++;
+                }
+                catch (StaleElementReferenceException staleElement)
+                {
+                    MsgOutput(String.Format("Element [{0}] Not Found. Retrying [{1}] times", element, staleElement));
+                    retries++;
+                }
+                catch (WebDriverException timeOutException)
+                {
+                    MsgOutput(String.Format("Element [{0}] Not Found after [{1}] seconds. Retrying [{2}] times", element, wait.Timeout.Seconds, retries));
+                    MsgOutput(String.Format("Exception was [{0}]", timeOutException));
+                    retries++;
+                }
+            }
+            WebDriver.SetWebDriverDefaultTimeOuts(WebDriver.DefaultTimeOut.Implicit);
+            return elementStatus;
+        }
+
+        public static bool WaitForElementToBeClickableByCssSelector(string element, int retryCount, int timeOut)
+        {
+            WebDriver.SetWebDriverImplicitTimeout(new TimeSpan(0, 0, 0, timeOut));
+            var wait = new DefaultWait<IWebDriver>(TestController.CurrentDriver);
+            wait.Timeout = new TimeSpan(0, 0, 0, timeOut);
+            var methodName = MethodBase.GetCurrentMethod();
+            wait.Message = String.Format("{0}:: Timeout of [{1}] seconds trying to locate element {2}", methodName, wait.Timeout, element);
+            var retries = 0;
+            var elementStatus = false;
+
+            while ((!elementStatus) && (retries != retryCount))
+            {
+                try
+                {
+                    MsgOutput(String.Format("Retry count = [{0}]", retries));
+                    var searchElement = wait.Until(dr => dr.FindElement(By.CssSelector(element)).Enabled);
                     elementStatus = searchElement;
                     MsgOutput(String.Format("Element Status = [{0}]", elementStatus));
                     MsgOutput(String.Format("Timeout waited = [{0}]", wait.Timeout.TotalSeconds));
@@ -686,6 +754,10 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             {
                 MsgOutput(String.Format("Element not found", timeoutException.Message));
             }
+            catch (WebDriverException webException)
+            {
+                MsgOutput(String.Format("Element not found", webException.Message));
+            }
             return element;
         }
 
@@ -709,6 +781,10 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             catch (WebDriverTimeoutException timeoutException)
             {
                 MsgOutput(String.Format("Element not found", timeoutException.Message));
+            }
+            catch (WebDriverException webException)
+            {
+                MsgOutput(String.Format("Element not found", webException.Message));
             }
             return element;
         }
@@ -734,6 +810,10 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             {
                 MsgOutput(String.Format("Element not found", timeoutException.Message));
             }
+            catch (WebDriverException webException)
+            {
+                MsgOutput(String.Format("Element not found", webException.Message));
+            }
             return element;
         }
 
@@ -756,6 +836,10 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             catch (WebDriverTimeoutException timeoutException)
             {
                 MsgOutput(String.Format("Element not found", timeoutException.Message));
+            }
+            catch (WebDriverException webException)
+            {
+                MsgOutput(String.Format("Element not found", webException.Message));
             }
             WebDriver.SetPageLoadTimeout(defaultTimeout);
             WebDriver.SetWebDriverImplicitTimeout(implicitTimeout);
@@ -783,6 +867,10 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             {
                 MsgOutput(String.Format("Element not found", timeoutException.Message));
             }
+            catch (WebDriverException webException)
+            {
+                MsgOutput(String.Format("Element not found", webException.Message));
+            }
             WebDriver.SetPageLoadTimeout(defaultTimeout);
             WebDriver.SetWebDriverImplicitTimeout(implicitTimeout);
 
@@ -808,6 +896,10 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             catch (WebDriverTimeoutException timeoutException)
             {
                 MsgOutput(String.Format("Element not found", timeoutException.Message));
+            }
+            catch (WebDriverException webException)
+            {
+                MsgOutput(String.Format("Element not found", webException.Message));
             }
             WebDriver.SetPageLoadTimeout(defaultTimeout);
             WebDriver.SetWebDriverImplicitTimeout(implicitTimeout);

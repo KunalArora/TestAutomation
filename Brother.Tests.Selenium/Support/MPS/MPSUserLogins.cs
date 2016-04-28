@@ -1,0 +1,402 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Xml.Schema;
+using Brother.Tests.Selenium.Lib.Properties;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.WebSites.Core.Pages.MPSTwo;
+using OpenQA.Selenium;
+
+namespace Brother.Tests.Selenium.Lib.Support
+{
+    public class MPSUserLogins
+    {
+
+        private const string germanUrl = @"online.de";
+        private const string austriaUrl = @"online.at";
+        private const string englandUrl = @"online.uk";
+        private const string franceUrl = @"online.fr";
+        private const string spainUrl = @"online.es";
+        private const string italyUrl = @"online.it";
+        private const string existingSerialNumber = @"A1T010001";
+        private const string existingSerialNumberBIG = @"A1T010002";
+        private const string existingSerialNumberAUT = @"A1T010003";
+
+
+        public static string UsedSerialNumber(IWebDriver driver)
+        {
+            string serial = null;
+            var currentUrl = CurrentUrl(driver);
+
+            if (currentUrl.Contains(englandUrl))
+            {
+                serial = existingSerialNumber;
+            }
+            else if (currentUrl.Contains(germanUrl))
+            {
+                serial = existingSerialNumberBIG;
+            }
+            else if (currentUrl.Contains(austriaUrl))
+            {
+                serial = existingSerialNumberAUT;
+            }
+
+            HelperClasses.SpecFlow.SetContext("SerialNumber", serial);
+
+            return serial;
+        }
+
+        public static string DealerUsername()
+        {
+            string dealerUser = null;
+
+            switch (Helper.GetRunTimeEnv())
+            {
+                case "UAT":
+                    dealerUser = MPSQAS.Default.QASMPSDealer;
+                    break;
+                case "TEST":
+                    dealerUser = MPSDV2.Default.DV2MPSDealer;
+                    break;
+                case "PROD":
+                    dealerUser = MPSProd.Default.ProdMPSDealer;
+                    break;
+            }
+
+            return dealerUser;
+        }
+
+        public static string DealerPassword()
+        {
+            string pwd = null;
+
+            switch (Helper.GetRunTimeEnv())
+            {
+                case "UAT" :
+                    pwd = MPSQAS.Default.QASDealerPassword;
+                    break;
+                case "DV2" :
+                    pwd = MPSDV2.Default.DV2DealerPassword;
+                    break;
+                case "PROD":
+                    pwd = MPSProd.Default.ProdDealerPassword;
+                    break;
+            }
+
+            return pwd;
+        }
+
+
+        public static string BankUsername()
+        {
+            string BankUser = null;
+
+            switch (Helper.GetRunTimeEnv())
+            {
+                case "UAT":
+                    BankUser = MPSQAS.Default.QASMPSBank;
+                    break;
+                case "TEST":
+                    BankUser = MPSDV2.Default.DV2MPSBank;
+                    break;
+                case "PROD":
+                    BankUser = MPSProd.Default.ProdMPSBank;
+                    break;
+            }
+
+            return BankUser;
+        }
+
+        private static string CustomerUsername(IWebDriver driver)
+        {
+            var username = "";
+
+            var currentUrl = CurrentUrl(driver);
+
+            if (currentUrl.Contains(germanUrl))
+            {
+                username = MPSQAS.Default.QASDECustomer;
+
+            } else if (currentUrl.Contains(austriaUrl))
+            {
+                username = MPSQAS.Default.QASATCustomer;
+            }
+            else if(currentUrl.Contains(englandUrl))
+            {
+                username = MPSQAS.Default.QASUKCustomer;
+            }
+            else if (currentUrl.Contains(franceUrl))
+            {
+                username = MPSQAS.Default.QASFRCustomer;
+            }
+            else if (currentUrl.Contains(spainUrl))
+            {
+                username = MPSQAS.Default.QASESCustomer;
+            }
+            else if (currentUrl.Contains(italyUrl))
+            {
+                username = MPSQAS.Default.QASITCustomer;
+            }
+            return username;
+        }
+
+        private static string ServiceDeskCustomer()
+        {
+            var customer = "";
+
+            switch (Helper.GetRunTimeEnv())
+            {
+                case "UAT":
+                    customer = MPSQAS.Default.QASMPSUKServiceDeskCustomer;
+                    break;
+            }
+            return customer;
+        }
+
+        private static string ServiceDeskUser()
+        {
+            var customer = "";
+
+            switch (Helper.GetRunTimeEnv())
+            {
+                case "UAT":
+                    customer = MPSQAS.Default.QASMPSServiceDesk;
+                    break;
+
+                case "DV2":
+                    customer = MPSDV2.Default.DV2MPSServiceDesk;
+                    break;
+            }
+
+            return customer;
+        }
+
+        private static string ServiceDeskUserPassword()
+        {
+            var pwd = "";
+
+            switch (Helper.GetRunTimeEnv())
+            {
+                case "UAT":
+                    pwd = MPSQAS.Default.QASMPSServiceDeskPassword;
+                    break;
+                case "DV2":
+                    pwd = MPSDV2.Default.DV2MPSServiceDeskPassword;
+                    break;
+            }
+            return pwd;
+        }
+
+        private static string CurrentUrl(IWebDriver driver)
+        {
+            var currentUrl = driver.Url;
+            return currentUrl;
+        }
+
+        public static string CustomerPassword()
+        {
+            return MPSQAS.Default.QASCustomerPassword;
+        }
+
+        public static string BankPassword()
+        {
+            string pwd = null;
+
+            switch (Helper.GetRunTimeEnv())
+            {
+                case "UAT":
+                    pwd = MPSQAS.Default.QASBankPassword;
+                    break;
+                case "DV2":
+                    pwd = MPSDV2.Default.DV2BankPassword;
+                    break;
+                case "PROD":
+                    pwd = MPSProd.Default.ProdBankPassword;
+                    break;
+
+            }
+
+            return pwd;
+        }
+
+        public static string ApproverUsername()
+        {
+            string ApproverUser = null;
+
+            switch (Helper.GetRunTimeEnv())
+            {
+                case "UAT":
+                    ApproverUser = MPSQAS.Default.QASMPSLOApprover;
+                    break;
+                case "TEST":
+                    ApproverUser = MPSDV2.Default.DV2MPSLOApprover;
+                    break;
+                case "PROD":
+                    ApproverUser = MPSProd.Default.ProdMPSLOApprover;
+                    break;
+
+            }
+
+            return ApproverUser;
+        }
+
+        public static string ApproverPassword()
+        {
+            string pwd = null;
+
+            switch (Helper.GetRunTimeEnv())
+            {
+                case "UAT":
+                    pwd = MPSQAS.Default.QASLOApproverPassword;
+                    break;
+                case "DV2":
+                    pwd = MPSDV2.Default.DV2LOApproverPassword;
+                    break;
+                case "PROD":
+                    pwd = MPSProd.Default.ProdLOApproverPassword;
+                    break;
+            }
+
+            return pwd;
+        }
+
+        public static string AdminUsername()
+        {
+            string AdminUser = null;
+
+            switch (Helper.GetRunTimeEnv())
+            {
+                case "UAT":
+                    AdminUser = MPSQAS.Default.QASMPSLOAdmin;
+                    break;
+                case "TEST":
+                    AdminUser = MPSDV2.Default.DV2MPSLOAdmin;
+                    break;
+                case "PROD":
+                    AdminUser = MPSProd.Default.ProdMPSLOAdmin;
+                    break;
+
+            }
+
+            return AdminUser;
+        }
+
+        public static string AdminPassword()
+        {
+            string pwd = null;
+
+            switch (Helper.GetRunTimeEnv())
+            {
+                case "UAT":
+                    pwd = MPSQAS.Default.QASLOAdminPassword;
+                    break;
+                case "DV2":
+                    pwd = MPSDV2.Default.DV2LOAdminPassword;
+                    break;
+                case "PROD":
+                    pwd = MPSProd.Default.ProdLOAdminPassword;
+                    break;
+            }
+
+            return pwd;
+        }
+
+        
+        public static string Username(string country, string userType, IWebDriver driver)
+        {
+            Helper.SetMPSCountryAbbreviation(country);
+
+            string finishedUsername = null;
+            var abbr = Helper.Abbrev.ToUpper();
+
+            switch (userType)
+            {
+                case "Cloud MPS Dealer" :
+                    finishedUsername = String.Format(DealerUsername(), abbr);
+                    break;
+
+                case "Cloud MPS Bank":
+                    finishedUsername = String.Format(BankUsername(), abbr);
+                    break;
+
+                case "Cloud MPS Local Office":
+                    finishedUsername = String.Format(AdminUsername(), abbr);
+                    break;
+
+                case "Cloud MPS Local Office Approver":
+                    finishedUsername = String.Format(ApproverUsername(), abbr);
+                    break;
+                case "Cloud MPS Service Desk":
+                    finishedUsername = String.Format(ServiceDeskUser(), abbr);
+                    break;
+                case "Cloud MPS Customer" :
+                    finishedUsername = CustomerUsername(driver);
+                    break;
+                case "Cloud MPS Service Desk Customer":
+                    finishedUsername = ServiceDeskCustomer();
+                    break;
+
+            }
+
+            Helper.MsgOutput(String.Format("The username formed for {0} is {1}", country, finishedUsername));
+
+            return finishedUsername;
+        }
+
+
+        public static string Password(string userType)
+        {
+            string finishPwd = null;
+            
+
+            switch (userType)
+            {
+                case "Cloud MPS Dealer" :
+                    finishPwd = DealerPassword();
+                    finishPwd = String.Format(finishPwd, PasswordPrefix());
+                    break;
+
+                case "Cloud MPS Bank" :
+                    finishPwd = BankPassword();
+                    finishPwd = String.Format(finishPwd, PasswordPrefix());
+                    break;
+
+                case "Cloud MPS Local Office":
+                    finishPwd = AdminPassword();
+                    finishPwd = String.Format(finishPwd, PasswordPrefix());
+                    break;
+
+                case "Cloud MPS Local Office Approver":
+                    finishPwd = ApproverPassword();
+                    finishPwd = String.Format(finishPwd, PasswordPrefix());
+                    break;
+                
+                case "Cloud MPS Service Desk":
+                    finishPwd = ServiceDeskUserPassword();
+                    finishPwd = String.Format(finishPwd, PasswordPrefix());
+                    break;
+                
+                case "Cloud MPS Customer":
+                    finishPwd = CustomerPassword();
+                    break;
+                
+                case "Cloud MPS Service Desk Customer":
+                    finishPwd = CustomerPassword();
+                    break;
+            }
+            
+            Helper.MsgOutput(String.Format("The password formed for {0} is {1}", userType, finishPwd));
+
+            return finishPwd;
+        }
+        
+
+        public static string PasswordPrefix()
+        {
+            var pre = Helper.Locale;
+            return pre.ToUpper();
+        }
+    }
+}

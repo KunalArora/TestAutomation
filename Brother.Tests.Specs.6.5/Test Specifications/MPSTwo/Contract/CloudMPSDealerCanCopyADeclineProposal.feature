@@ -24,7 +24,7 @@ Scenario Outline: Dealer Can Copy A Declined Leasing and Click Proposal without 
 
 	| Role             | Country | Role2          |
 	| Cloud MPS Dealer | Germany | Cloud MPS Bank |
-	#| Cloud MPS Dealer | Austria | Cloud MPS Bank |
+	| Cloud MPS Dealer | Austria | Cloud MPS Bank |
 	
 
 
@@ -113,9 +113,10 @@ Scenario Outline: Dealer Can Copy A Declined Purchase and Click Proposal without
 	
 	Scenarios:
 
-	| Role             | Country | Role2                           | ContractType                      | UsageType                                 | Length | Billing                |
-	| Cloud MPS Dealer | France  | Cloud MPS Local Office Approver | Buy & Click                       | Engagement sur un minimum volume de pages | 3 ans  | Trimestrale anticipata |
-	| Cloud MPS Dealer | Italy   | Cloud MPS Local Office Approver | Acquisto + Consumo con assistenza | Volume minimo                             | 36     | Quarterly in Advance   |
+	| Role             | Country | Role2                           | ContractType                      | UsageType                                 | Length | Billing                 |
+	| Cloud MPS Dealer | France  | Cloud MPS Local Office Approver | Buy & Click                       | Engagement sur un minimum volume de pages | 3 ans  | Trimestrale anticipata  |
+	| Cloud MPS Dealer | Italy   | Cloud MPS Local Office Approver | Acquisto + Consumo con assistenza | Volume minimo                             | 36     | Trimestrale anticipata  |
+	| Cloud MPS Dealer | Spain   | Cloud MPS Local Office Approver | Purchase & Click con Service      | Volúmen mínimo                            | 3 años | Por trimestres vencidos |
 	
 
 
@@ -136,7 +137,8 @@ Scenario Outline: Dealer Can Copy A Declined Purchase and Click Proposal with cu
 	
 	Scenarios:
 
-	| Role             | Country | Role2                           | ContractType                      | UsageType                                 | Length | Billing                |
-	| Cloud MPS Dealer | France  | Cloud MPS Local Office Approver | Buy & Click                       | Engagement sur un minimum volume de pages | 3 ans  | Trimestrale anticipata |
-	| Cloud MPS Dealer | Italy   | Cloud MPS Local Office Approver | Acquisto + Consumo con assistenza | Volume minimo                             | 36     | Quarterly in Advance   |
+	| Role             | Country | Role2                           | ContractType                      | UsageType                                 | Length | Billing                 |
+	| Cloud MPS Dealer | France  | Cloud MPS Local Office Approver | Buy & Click                       | Engagement sur un minimum volume de pages | 3 ans  | Trimestrale anticipata  |
+	| Cloud MPS Dealer | Italy   | Cloud MPS Local Office Approver | Acquisto + Consumo con assistenza | Volume minimo                             | 36     | Trimestrale anticipata  |
+	| Cloud MPS Dealer | Spain   | Cloud MPS Local Office Approver | Purchase & Click con Service      | Volúmen mínimo                            | 3 años | Por trimestres vencidos |
 	

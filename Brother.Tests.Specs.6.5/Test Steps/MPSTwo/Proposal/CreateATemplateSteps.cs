@@ -65,10 +65,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             }
         }
 
-
-
-
-
+        
 
         public void GivenDealerHaveCreatedProposalOfOpen(string country, string contractType, string usageType, string length, string billing)
         {
@@ -87,6 +84,28 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
                 var instance4 = new CreateNewAccountSteps();
                 instance4.GivenISignIntoMpsasAFrom("Cloud MPS Dealer", country);
                 GivenIHaveCreatedPurchaseAndClickProposal(contractType, usageType, length, billing);
+                var instance = new ProposalCreateAProposalThatWillBeUsedForContractSteps();
+                instance.GivenIAmOnProposalListPage();
+            }
+        }
+
+        public void GivenDealerHaveCreatedProposalOfOpen(string country, string contractType, string customer, string usageType, string length, string billing)
+        {
+            contractType = ContractType(contractType);
+
+            if (contractType.Equals("Lease & Click with Service"))
+            {
+                var instance4 = new CreateNewAccountSteps();
+                instance4.GivenISignIntoMpsasAFrom("Cloud MPS Dealer", country);
+                GivenIHaveCreatedLeasingAndClickProposal(contractType, customer, usageType, length, billing);
+                var instance = new ProposalCreateAProposalThatWillBeUsedForContractSteps();
+                instance.GivenIAmOnProposalListPage();
+            }
+            else if (contractType.Equals("Purchase & Click with Service"))
+            {
+                var instance4 = new CreateNewAccountSteps();
+                instance4.GivenISignIntoMpsasAFrom("Cloud MPS Dealer", country);
+                GivenIHaveCreatedPurchaseAndClickProposal(contractType, customer, usageType, length, billing);
                 var instance = new ProposalCreateAProposalThatWillBeUsedForContractSteps();
                 instance.GivenIAmOnProposalListPage();
             }
@@ -202,6 +221,40 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             }
         }
 
+        public void GivenDealerHaveCreatedProposalOfAwaitingApproval(string country, string contractType, string customer, string usageType, string length, string billing)
+        {
+            contractType = ContractType(contractType);
+
+            if (contractType.Equals("Lease & Click with Service"))
+            {
+                GivenDealerHaveCreatedProposalOfOpen(country, contractType, customer, usageType, length, billing);
+                var instance2 = new SendProposalToApprover();
+                instance2.WhenIClickOnActionButtonAgainstTheProposalCreatedAbove();
+                instance2.ThenICanClickOnConvertToContractButtonToNavigateToConvertSummaryPage();
+                //instance2.ThenIAmDirectedToCustomerDetailPageForMoreDataCapture();
+                instance2.ThenIAmTakenToTheProposalSummaryWhereICanEnterEnvisageContractStartDate();
+                instance2.ThenICanSuccessfullyConvertTheProposalToContract();
+                instance2.ThenTheNewlyConvertedContractIsAvailableUnderAwaitingApprovalTab();
+                instance2.ThenINavigateToProposalSummaryPageUnderAwaitingApprovalTab();
+                var instance3 = new AccountManagementSteps();
+                instance3.ThenIfISignOutOfBrotherOnline();
+            }
+            else if (contractType.Equals("Purchase & Click with Service"))
+            {
+                GivenDealerHaveCreatedProposalOfOpen(country, contractType, customer, usageType, length, billing);
+                var instance2 = new SendProposalToApprover();
+                instance2.WhenIClickOnActionButtonAgainstTheProposalCreatedAbove();
+                instance2.ThenICanClickOnConvertToContractButtonToNavigateToConvertSummaryPage();
+                //instance2.ThenIAmDirectedToCustomerDetailPageForMoreDataCapture();
+                instance2.ThenIAmTakenToTheProposalSummaryWhereICanEnterEnvisageContractStartDate();
+                instance2.ThenICanSuccessfullyConvertTheProposalToContract();
+                instance2.ThenTheNewlyConvertedContractIsAvailableUnderAwaitingApprovalTab();
+                instance2.ThenINavigateToProposalSummaryPageUnderAwaitingApprovalTab();
+                var instance3 = new AccountManagementSteps();
+                instance3.ThenIfISignOutOfBrotherOnline();
+            }
+        }
+
 
         [Given(@"Dealer have created an Awaiting Approval proposal of ""(.*)"" and ""(.*)"" from ""(.*)""")]
         public void GivenGermanDealerHaveCreatedProposalOfAwaitingApproval(string ContractType, string UsageType, string Country)
@@ -215,7 +268,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
                 GivenIHaveCreatedGermanLeasingAndClickProposal(UsageType);
 
                 var instance1 = new ProposalCreateAProposalThatWillBeUsedForContractSteps();
-                                instance1.GivenIAmOnProposalListPage();
+                instance1.GivenIAmOnProposalListPage();
 
                 var instance2 = new SendProposalToApprover();
                 instance2.GivenISendTheCreatedGermanProposalForApproval();
@@ -240,6 +293,42 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             }
         }
 
+
+        public void GivenGermanDealerHaveCreatedProposalOfAwaitingApproval(string ContractType, string UsageType, string Country, string customer)
+        {
+            var instance4 = new CreateNewAccountSteps();
+            instance4.GivenISignIntoMpsasAFrom("Cloud MPS Dealer", Country);
+
+            if (ContractType.Equals("Leasing & Service"))
+            {
+
+                GivenIHaveCreatedGermanLeasingAndClickProposal(UsageType);
+
+                var instance1 = new ProposalCreateAProposalThatWillBeUsedForContractSteps();
+                instance1.GivenIAmOnProposalListPage();
+
+                var instance2 = new SendProposalToApprover();
+                instance2.GivenISendTheCreatedGermanProposalForApproval(customer);
+
+
+
+                var instance3 = new AccountManagementSteps();
+                instance3.ThenIfISignOutOfBrotherOnline();
+            }
+            else if (ContractType.Equals("Easy Print Pro & Service"))
+            {
+                GivenIHaveCreatedGermanPurchaseAndClickProposal(UsageType);
+
+                var instance1 = new ProposalCreateAProposalThatWillBeUsedForContractSteps();
+                instance1.GivenIAmOnProposalListPage();
+
+                var instance2 = new SendProposalToApprover();
+                instance2.GivenISendTheCreatedGermanProposalForApproval(customer);
+
+                var instance3 = new AccountManagementSteps();
+                instance3.ThenIfISignOutOfBrotherOnline();
+            }
+        }
 
         private string ContractType(string type)
         {
@@ -291,6 +380,53 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             }
         }
 
+        [Given(@"""(.*)"" Dealer have created ""(.*)"" contract choosing ""(.*)"" with ""(.*)"" and ""(.*)"" and ""(.*)""")]
+        public void GivenDealerHaveCreatedContractChoosingWithAndAnd(string country, string contractType, string customer, string usageType, string length, string billing)
+        {
+            GivenDealerHaveCreatedAContractWithAndAnd(country, contractType, customer, usageType, length, billing);
+        }
+        
+        public void GivenDealerHaveCreatedAContractWithAndAnd(string country, string contractType, string customer, string usageType, string length, string billing)
+        {
+            contractType = ContractType(contractType);
+
+            if (contractType.Equals("Lease & Click with Service"))
+            {
+                GivenDealerHaveCreatedProposalOfAwaitingApproval(country, contractType, customer, usageType, length, billing);
+                var instance4 = new CreateNewAccountSteps();
+                var instance2 = new SendProposalToApprover();
+                var instance3 = new AccountManagementSteps();
+                var instance = new ProposalCreateAProposalThatWillBeUsedForContractSteps();
+                instance4.GivenISignIntoMpsasAFrom("Cloud MPS Bank", country);
+                instance2.ThenINavigateToBankAwaitingApprovalScreenUnderOfferPage();
+                instance2.ThenTheConvertedLeasingAndClickAndServiceProposalAboveIsDisplayedOnTheScreen();
+                var instance5 = new ApproverSteps();
+                instance5.ThenApproverSelectTheProposalOnAwaitingProposal();
+                instance5.ThenIShouldBeAbleToApproveThatProposal();
+                instance3.ThenIfISignOutOfBrotherOnline();
+                instance4.GivenISignIntoMpsasAFrom("Cloud MPS Dealer", country);
+                WhenISignTheContractAsADealer();
+                instance3.ThenIfISignOutOfBrotherOnline();
+            }
+            else if (contractType.Equals("Purchase & Click with Service"))
+            {
+                GivenDealerHaveCreatedProposalOfAwaitingApproval(country, contractType, customer, usageType, length, billing);
+                var instance4 = new CreateNewAccountSteps();
+                var instance2 = new SendProposalToApprover();
+                var instance3 = new AccountManagementSteps();
+                instance4.GivenISignIntoMpsasAFrom("Cloud MPS Local Office Approver", country);
+                instance2.ThenINavigateToLOApproverAwaitingApprovalScreenUnderProposalsPage();
+                instance2.ThenTheConvertedPurchaseAndClickAndServiceProposalAboveIsDisplayedOnTheScreen();
+                var instance5 = new ApproverSteps();
+                instance5.ThenApproverSelectTheProposalOnAwaitingProposal();
+                instance5.ThenIShouldBeAbleToApproveThatProposal();
+                instance3.ThenIfISignOutOfBrotherOnline();
+                instance4.GivenISignIntoMpsasAFrom("Cloud MPS Dealer", country);
+                WhenISignTheContractAsADealer();
+                instance3.ThenIfISignOutOfBrotherOnline();
+            }
+        }
+
 
 
         [Given(@"""(.*)"" Dealer have created a ""(.*)"" contract with ""(.*)"" and ""(.*)"" and ""(.*)""")]
@@ -300,7 +436,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             
             if (contractType.Equals("Lease & Click with Service"))
             {
-                GivenDealerHaveCreatedProposalOfOpen(country, contractType, usageType, length, billing);
+                GivenDealerHaveCreatedProposalOfAwaitingApproval(country, contractType, usageType, length, billing);
                 var instance4 = new CreateNewAccountSteps();
                 var instance2 = new SendProposalToApprover();
                 var instance3 = new AccountManagementSteps();
@@ -338,6 +474,45 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
 
         [Given(@"Dealer have created a contract of ""(.*)"" and ""(.*)""")]
         public void GivenDealerHaveCreatedAContractOfAnd(string ContractType, string UsageType)
+        {
+            if (ContractType.Equals("Lease & Click with Service"))
+            {
+                GivenDealerHaveCreatedProposalOfAwaitingApproval(ContractType, UsageType);
+                var instance4 = new CreateNewAccountSteps();
+                var instance2 = new SendProposalToApprover();
+                var instance3 = new AccountManagementSteps();
+                instance4.GivenISignIntoMpsasAFrom("Cloud MPS Bank", "United Kingdom");
+                instance2.ThenINavigateToBankAwaitingApprovalScreenUnderOfferPage();
+                instance2.ThenTheConvertedLeasingAndClickAndServiceProposalAboveIsDisplayedOnTheScreen();
+                var instance5 = new ApproverSteps();
+                instance5.ThenApproverSelectTheProposalOnAwaitingProposal();
+                instance5.ThenIShouldBeAbleToApproveThatProposal();
+                instance3.ThenIfISignOutOfBrotherOnline();
+                instance4.GivenISignIntoMpsasAFrom("Cloud MPS Dealer", "United Kingdom");
+                WhenISignTheContractAsADealer();
+                instance3.ThenIfISignOutOfBrotherOnline();
+            }
+            else if (ContractType.Equals("Purchase & Click with Service"))
+            {
+                GivenDealerHaveCreatedProposalOfAwaitingApproval(ContractType, UsageType);
+                var instance4 = new CreateNewAccountSteps();
+                var instance2 = new SendProposalToApprover();
+                var instance3 = new AccountManagementSteps();
+                instance4.GivenISignIntoMpsasAFrom("Cloud MPS Local Office Approver", "United Kingdom");
+                instance2.ThenINavigateToLOApproverAwaitingApprovalScreenUnderProposalsPage();
+                instance2.ThenTheConvertedPurchaseAndClickAndServiceProposalAboveIsDisplayedOnTheScreen();
+                var instance5 = new ApproverSteps();
+                instance5.ThenApproverSelectTheProposalOnAwaitingProposal();
+                instance5.ThenIShouldBeAbleToApproveThatProposal();
+                instance3.ThenIfISignOutOfBrotherOnline();
+                instance4.GivenISignIntoMpsasAFrom("Cloud MPS Dealer", "United Kingdom");
+                WhenISignTheContractAsADealer();
+                instance3.ThenIfISignOutOfBrotherOnline();
+            }
+        }
+
+
+        public void GivenDealerHaveCreatedAContractWithExistingCustomerOfAnd(string customer, string ContractType, string UsageType)
         {
             if (ContractType.Equals("Lease & Click with Service"))
             {
@@ -448,6 +623,46 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
                 instance3.ThenIfISignOutOfBrotherOnline();
                 instance4.GivenISignIntoMpsasAFrom("Cloud MPS Dealer", Country);
                 WhenISignTheContractToNavigateToAwaitingAcceptance();
+            }
+        }
+
+
+        [Given(@"""(.*)"" Dealer have created a ""(.*)"" contract choosing ""(.*)"" with ""(.*)""")]
+        public void GivenGermanDealerHaveCreatedAAwatingAcceptanceContractOfAnd(string country, string contractType, string usageType, string customer)
+        {
+            if (contractType.Equals("Leasing & Service"))
+            {
+                GivenGermanDealerHaveCreatedProposalOfAwaitingApproval(contractType, usageType, country, customer);
+                var instance4 = new CreateNewAccountSteps();
+                var instance2 = new SendProposalToApprover();
+                var instance3 = new AccountManagementSteps();
+                instance4.GivenISignIntoMpsasAFrom("Cloud MPS Bank", country);
+                instance2.ThenINavigateToBankAwaitingApprovalScreenUnderOfferPage();
+                instance2.ThenTheConvertedLeasingAndClickAndServiceProposalAboveIsDisplayedOnTheScreen();
+                var instance5 = new ApproverSteps();
+                instance5.ThenApproverSelectTheProposalOnAwaitingProposal();
+                instance5.ThenIShouldBeAbleToApproveThatProposal();
+                instance3.ThenIfISignOutOfBrotherOnline();
+                instance4.GivenISignIntoMpsasAFrom("Cloud MPS Dealer", country);
+                WhenISignTheContractToNavigateToAwaitingAcceptance();
+                instance3.ThenIfISignOutOfBrotherOnline();
+            }
+            else if (contractType.Equals("Easy Print Pro & Service"))
+            {
+                GivenGermanDealerHaveCreatedProposalOfAwaitingApproval(contractType, usageType, country, customer);
+                var instance4 = new CreateNewAccountSteps();
+                var instance2 = new SendProposalToApprover();
+                var instance3 = new AccountManagementSteps();
+                instance4.GivenISignIntoMpsasAFrom("Cloud MPS Local Office Approver", country);
+                instance2.ThenINavigateToLOApproverAwaitingApprovalScreenUnderProposalsPage();
+                instance2.ThenTheConvertedPurchaseAndClickAndServiceProposalAboveIsDisplayedOnTheScreen();
+                var instance5 = new ApproverSteps();
+                instance5.ThenApproverSelectTheProposalOnAwaitingProposal();
+                instance5.ThenIShouldBeAbleToApproveThatProposal();
+                instance3.ThenIfISignOutOfBrotherOnline();
+                instance4.GivenISignIntoMpsasAFrom("Cloud MPS Dealer", country);
+                WhenISignTheContractToNavigateToAwaitingAcceptance();
+                instance3.ThenIfISignOutOfBrotherOnline();
             }
         }
 
@@ -592,11 +807,30 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             clickPricestepInstance.WhenIEnterClickPriceVolumeOf("2000", "2000");
         }
 
+        private void GivenIHaveCreatedLeasingAndClickProposal(string contractType, string customer, string usageType, string length, string billing)
+        {
+            contractType = ContractType(contractType);
+            GivenIamOnMpsNewProposalPage();
+            WhenIFillProposalDescriptionForContractType(contractType);
+            DealerProposalsCreateCustomerInformationStep customerInformationStepInstance = new DealerProposalsCreateCustomerInformationStep();
+            customerInformationStepInstance.SelectASpecificExistingCustomer(customer);
+            DealerProposalsCreateTermAndTypeStep termAndTypeStepInstance = new DealerProposalsCreateTermAndTypeStep();
+            termAndTypeStepInstance.WhenIEnterUsageTypeOfAndContractTermsLeasingAndBillingOnTermAndTypeDetails
+                (usageType, length, "Quarterly in Advance", billing);
+
+            DealerProposalsCreateProductsStep instance = new DealerProposalsCreateProductsStep();
+            instance.WhenIDisplayDeviceScreen("HL-L8350CDW");
+            instance.WhenIAcceptTheDefaultValuesOfTheDevice();
+
+            DealerProposalsCreateClickPriceStep clickPricestepInstance = new DealerProposalsCreateClickPriceStep();
+            clickPricestepInstance.WhenIEnterClickPriceVolumeOf("2000", "2000");
+        }
+
 
         private void GivenIHaveCreatedGermanLeasingAndClickProposal(string UsageType)
         {
             if (UsageType.Equals(string.Empty))
-                UsageType = "Minimum Volume";
+                UsageType = "Mindestvolumen";
             GivenIamOnMpsNewProposalPage();
             WhenIFillProposalDescriptionForContractType("Leasing & Service");
             DealerProposalsCreateTermAndTypeStep termAndTypeStepInstance = new DealerProposalsCreateTermAndTypeStep();
@@ -615,7 +849,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [Given(@"I have created German Leasing and Click proposal")]
         public void GivenIHaveCreatedGermanLeasingAndClickProposal()
         {
-            GivenIHaveCreatedGermanLeasingAndClickProposal("Minimum Volume");
+            GivenIHaveCreatedGermanLeasingAndClickProposal("Mindestvolumen");
         }
 
 
@@ -715,6 +949,27 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
 
         }
 
+        private void GivenIHaveCreatedPurchaseAndClickProposal(string contractType, string customer, string usageType, string length, string billing)
+        {
+            contractType = ContractType(contractType);
+            GivenIamOnMpsNewProposalPage();
+            WhenIFillProposalDescriptionForContractType(contractType);
+            DealerProposalsCreateCustomerInformationStep customerInformationStepInstance = new DealerProposalsCreateCustomerInformationStep();
+            customerInformationStepInstance.SelectASpecificExistingCustomer(customer);
+            DealerProposalsCreateTermAndTypeStep stepInstance = new DealerProposalsCreateTermAndTypeStep();
+            stepInstance.WhenIEnterUsageTypeContractLengthAndBillingOnTermAndTypeDetails
+                (usageType, length, billing);
+            stepInstance.WhenIPriceHardwareRadioButton("Tick");
+
+            DealerProposalsCreateProductsStep instance = new DealerProposalsCreateProductsStep();
+            instance.WhenIDisplayDeviceScreen("MFC-L8650CDW");
+            instance.WhenIAcceptTheDefaultValuesOfTheDevice();
+
+            DealerProposalsCreateClickPriceStep clickPriceStepInstance = new DealerProposalsCreateClickPriceStep();
+            clickPriceStepInstance.WhenIEnterClickPriceVolumeOf("800", "800");
+
+        }
+
 
         [Given(@"I have created a ""(.*)"" proposal with ""(.*)"" and ""(.*)"" and ""(.*)""")]
         public void GivenIHaveCreatedAProposalWithAndAnd(string contractType, string usageType, string length, string billing)
@@ -737,26 +992,33 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
 
         }
 
-        [Given(@"I have created a ""(.*)"" proposal ""(.*)"" Customer detail with ""(.*)"" and ""(.*)"" and ""(.*)""")]
-        public void GivenIHaveCreatedAProposalCustomerDetailWithAndAnd(string contractType, string customer, string usageType, string length, string billing)
+        [When(@"I download the generated proposal PDF")]
+        public void WhenIDownloadTheGeneratedProposalPDF()
         {
-            GivenIamOnMpsNewProposalPage();
-            WhenIFillProposalDescriptionForContractType(contractType);
-            DealerProposalsCreateCustomerInformationStep customerInformationStepInstance = new DealerProposalsCreateCustomerInformationStep();
-            customerInformationStepInstance.WhenISelectButtonForCustomerDataCapture(customer);
-            DealerProposalsCreateTermAndTypeStep stepInstance = new DealerProposalsCreateTermAndTypeStep();
-            stepInstance.WhenIEnterUsageTypeContractLengthAndBillingOnTermAndTypeDetails
-                (usageType, length, billing);
-            stepInstance.WhenIPriceHardwareRadioButton("Tick");
-
-            DealerProposalsCreateProductsStep instance = new DealerProposalsCreateProductsStep();
-            instance.WhenIDisplayDeviceScreen("MFC-L8650CDW");
-            instance.WhenIAcceptTheDefaultValuesOfTheDevice();
-
-            DealerProposalsCreateClickPriceStep clickPriceStepInstance = new DealerProposalsCreateClickPriceStep();
-            clickPriceStepInstance.WhenIEnterClickPriceVolumeOf("800", "800");
-
+            CurrentPage.As<DealerProposalsCreateSummaryPage>().DownloadProposalPdf();
         }
+
+        [Then(@"the PDF is downloaded")]
+        public void ThenThePDFIsDownloaded()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+        [Then(@"the contents of the PDF are correct")]
+        public void ThenTheContentsOfThePDFAreCorrect()
+        {
+            CurrentPage.As<DealerProposalsCreateSummaryPage>().DoesPdfContentContainSomeText();
+            CurrentPage.As<DealerProposalsCreateSummaryPage>().IsDeviceTotalPresentInPdf();
+            CurrentPage.As<DealerProposalsCreateSummaryPage>().IsCustomerNamePresentInPdf();
+            CurrentPage.As<DealerProposalsCreateSummaryPage>().IsSummaryColourClickRatePresentInPdf();
+            CurrentPage.As<DealerProposalsCreateSummaryPage>().IsSummaryContractTermPresentInPdf();
+            CurrentPage.As<DealerProposalsCreateSummaryPage>().DoesPdfContentContainContractId();
+            CurrentPage.As<DealerProposalsCreateSummaryPage>().IsSummaryMonoClickRatePresentInPdf();
+            CurrentPage.As<DealerProposalsCreateSummaryPage>().IsCorrectLanguagePdfDownloaded();
+            CurrentPage.As<DealerProposalsCreateSummaryPage>().IsConsumableTotalNetPresentInPdf();
+            CurrentPage.As<DealerProposalsCreateSummaryPage>().PurgeDownloadsDirectory();
+        }
+
 
         [Given(@"I have created Purchase and Click proposal")]
         public void GivenIHaveCreatedPurchaseAndClickProposal()
@@ -767,13 +1029,13 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [Given(@"I have created German Purchase and Click proposal")]
         public void GivenIHaveCreatedGermanPurchaseAndClickProposal()
         {
-            GivenIHaveCreatedGermanPurchaseAndClickProposal("Minimum Volume");
+            GivenIHaveCreatedGermanPurchaseAndClickProposal("Mindestvolumen");
         }
 
         private void GivenIHaveCreatedGermanPurchaseAndClickProposal(string UsageType)
         {
             if (UsageType.Equals(string.Empty))
-                UsageType = "Minimum Volume";
+                UsageType = "Mindestvolumen";
             GivenIamOnMpsNewProposalPage();
             WhenIFillProposalDescriptionForContractType("Easy Print Pro & Service");
             
@@ -893,8 +1155,9 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         {
             //It is assumed that if pdf downloads normally then one is able to save the proposal
             CurrentPage.As<DealerProposalsCreateSummaryPage>().DownloadCustomersProposalDocument();
+            CurrentPage.As<DealerProposalsCreateSummaryPage>().GetDownloadedPdfPath();
         }
-
+        
         [Then(@"I am directed to Templates screen of Proposal List page")]
         public void ThenIAmDirectedToTemplatesScreenOfProposalListPage()
         {
@@ -906,6 +1169,28 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         {
             CurrentPage.As<CloudExistingProposalPage>().IsNewProposalTemplateCreated();
         }
+
+        [When(@"I navigate to Dealer proposal Awaiting Approval screen")]
+        public void WhenINavigateToDealerProposalAwaitingApprovalScreen()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+        [Then(@"the contents of the PDF is correct including correct ""(.*)""")]
+        public void ThenTheContentsOfThePDFIsCorrectIncludingCorrect(string contractType)
+        {
+            CurrentPage.As<DealerProposalsCreateSummaryPage>().DoesPdfContentContainContractId();
+            CurrentPage.As<DealerProposalsCreateSummaryPage>().IsDeviceTotalPresentInPdf();
+            CurrentPage.As<DealerProposalsCreateSummaryPage>().IsCustomerNamePresentInPdf();
+            CurrentPage.As<DealerProposalsCreateSummaryPage>().IsSummaryColourClickRatePresentInPdf();
+            CurrentPage.As<DealerProposalsCreateSummaryPage>().IsSummaryContractTermPresentInPdf();
+            CurrentPage.As<DealerProposalsCreateSummaryPage>().DoesPdfContentContractItems(contractType);
+            CurrentPage.As<DealerProposalsCreateSummaryPage>().IsSummaryMonoClickRatePresentInPdf();
+            CurrentPage.As<DealerProposalsCreateSummaryPage>().IsCorrectLanguagePdfDownloaded();
+           // CurrentPage.As<DealerProposalsCreateSummaryPage>().IsConsumableTotalNetPresentInPdf();
+            CurrentPage.As<DealerProposalsCreateSummaryPage>().PurgeDownloadsDirectory();
+        }
+
 
         [When(@"I navigate to Dealer Dashboard page")]
         [Given(@"I navigate to Dealer Dashboard page")]

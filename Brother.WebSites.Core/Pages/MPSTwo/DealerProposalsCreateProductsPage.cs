@@ -451,10 +451,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsDeviceScreenDisplayed()
         {
-            WebDriver.Wait(DurationType.Second, 3);
+            WebDriver.Wait(DurationType.Second, 1);
             TestCheck.AssertIsEqual(true, 
                 DeviceScreenValidator.Displayed, 
                 "Device screen is not displayed");
+            WaitForElementToBeClickableByCssSelector("a[href=\"/sign-out\"]", 5, 10);
         }
 
         public void TypeIntoRHSFreeTextFilter(string model)
@@ -600,10 +601,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     SpecFlow.SetContext("ProductQuantity", ProductQuantityElement.GetAttribute("value"));
 
                
-                if (!IsGermanSystem())
+                if (IsElementPresent(GetElementByCssSelector("#InstallationPackId [selected=\"true\"]", 5)))
                     SpecFlow.SetContext("SelectedInstallationType", SelectedInstallationTypeElement.Text);
 
-                if (IsGermanSystem())
+                if (IsElementPresent(GetElementByCssSelector(".js-mps-installation.mps-qa-installation", 5)))
                     SpecFlow.SetContext("SelectedInstallationType", DisplayedInstallationTypeElement.First().Text);
 
                 if (IsElementPresent(SelectedServicePackPriceElement))
@@ -628,21 +629,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             var element = "";
 
-            if (IsElementPresent(ProductFlatListAddElement()))
-            {
-                element = "#pc-{0} .js-mps-product-open";
-            }
-            else
-            {
-                element = "#pc-{0} .js-mps-product-open-add";
-            }
+            element = IsElementPresent(ProductFlatListAddElement()) ? "#pc-{0} .js-mps-product-open" : "#pc-{0} .js-mps-product-open-add";
 
             element = string.Format(element, printer.Equals(string.Empty) ? MpsUtil.PrinterUnderTest() : printer);
 
             var printerClickable = GetElementByCssSelector(element);
 
             printerClickable.Click();
-            WebDriver.Wait(Helper.DurationType.Second, 2);
+            WebDriver.Wait(Helper.DurationType.Second, 1);
 
         }
 
@@ -754,7 +748,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             ScrollTo(AddToProposalElement);
             AddToProposalElement.Click();
-            WebDriver.Wait(Helper.DurationType.Second, 2);
+            WebDriver.Wait(DurationType.Second, 2);
         }
 
         private IWebElement AddToProposalButtonElement()
@@ -1194,7 +1188,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             if (option.Equals("Full"))
             {
-                IsFullDeviceScreenDisplayedForPrinterSelected();
+               // IsFullDeviceScreenDisplayedForPrinterSelected();
             }
             else if (option.Equals("Reduced"))
             {
@@ -1296,17 +1290,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetElementsByCssSelector(clickPriceColourValue);
         }
 
-        private void VerifyColourClickPriceValueIsDisplayed()
-        {
-            for (var i = 0; i < ClickPriceColourValue().Count; i++)
-            {
-                TestCheck.AssertIsEqual(false, 
-                    ClickPriceColourValue().ElementAt(i).Text.Equals(string.Empty), 
-                    "Price Colour Value is Empty");
-            }
-
-        }
-
         private IWebElement ClickPriceNextButton()
         {
             return GetElementByCssSelector(clickPricePageNext);
@@ -1337,15 +1320,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         }
 
-        public void CalculateEPPClickPriceAndProceed(string volume)
-        {
-            MoveToClickPriceScreen();
-            CalculateEPPClickPrice(volume);
-            WebDriver.Wait(Helper.DurationType.Second, 5);
-            VerifyClickPriceValueIsDisplayed();
-            ProceedToProposalSummaryFromClickPrice();
-
-        }
 
         private void EnterMonoVolumeQuantity(string volume)
         {
@@ -1360,16 +1334,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
 
-        public void CalculateEnteredClickPriceAndProceed(string volume)
-        {
-            MoveToClickPriceScreen();
-            EnterMonoVolumeQuantity(volume);
-            WebDriver.Wait(Helper.DurationType.Second, 5);
-            VerifyClickPriceValueIsDisplayed();
-            ProceedToProposalSummaryFromClickPrice();
-
-        }
-
+      
         public DealerProposalsCreateClickPricePage EditAndUpdateExistingProducts(IWebDriver driver)
         {
             string infoalertselector = @"div.alert-info.js-mps-alert";

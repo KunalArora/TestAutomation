@@ -22,9 +22,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         [FindsBy(How = How.CssSelector, Using = ".active a[href*=\"/set-communication-method\"]")]
         public IWebElement SetCommunicationTabElement;
-        [FindsBy(How = How.CssSelector, Using = "#content_1_InputCommunicationChoiceCloud")]
+        [FindsBy(How = How.CssSelector, Using = "#content_1_InputCloud_Input")]
         public IWebElement CloudCommunicationElement;
-        [FindsBy(How = How.CssSelector, Using = "#content_1_InputCommunicationChoiceEmail")]
+        [FindsBy(How = How.CssSelector, Using = "#content_1_InputEmail_Input")]
         public IWebElement EmailCommunicationTabElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_ButtonNext")]
         public IWebElement ProceedElement;
@@ -64,6 +64,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerSetInstallationTypePage ProceedToNextPage()
         {
+            
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ProceedElement);
             
             return GetTabInstance<DealerSetInstallationTypePage>(Driver);
@@ -72,6 +73,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerSendInstallationEmailPage ProceedToNextPageForEmail()
         {
+            
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ProceedElement);
 
             return GetTabInstance<DealerSendInstallationEmailPage>(Driver);

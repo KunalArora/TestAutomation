@@ -45,7 +45,7 @@ namespace Brother.WebSites.Core.Pages.OmniJoin.Trial
         [FindsBy(How = How.CssSelector, Using = "#content_0_maincontent_2_vldRegExEmail")]
         public IWebElement EmailAddressErrorMessage;
 
-        [FindsBy(How = How.CssSelector, Using = "#content_0_maincontent_2_vldRegExEmailClient")]
+        [FindsBy(How = How.CssSelector, Using = "#content_0_maincontent_2_vldRegExEmail")]
         public IWebElement EmailAddressValidationErrorMessage;
         
         [FindsBy(How = How.CssSelector, Using = ".button-orange")]

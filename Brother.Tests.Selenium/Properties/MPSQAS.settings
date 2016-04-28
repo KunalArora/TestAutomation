@@ -30,22 +30,31 @@
       <Value Profile="(Default)">P@$$w0rd</Value>
     </Setting>
     <Setting Name="QASUKCustomer" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Bradon20151112102155@mailinator.com</Value>
+      <Value Profile="(Default)">lashonda20160322123145@mailinator.com</Value>
     </Setting>
     <Setting Name="QASDECustomer" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Misty20151023194141@mailinator.com</Value>
+      <Value Profile="(Default)">shane20160322135034@mailinator.com</Value>
     </Setting>
     <Setting Name="QASATCustomer" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Coleen2015119021438@mailinator.com</Value>
+      <Value Profile="(Default)">Slater20160322133929@mailinator.com</Value>
     </Setting>
     <Setting Name="QASMPSServiceDesk" Type="System.String" Scope="User">
       <Value Profile="(Default)">MPS-{0}-UAT-ServiceDesk@brother.co.uk</Value>
     </Setting>
     <Setting Name="QASMPSUKServiceDeskCustomer" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Lonna2016017005932@mailinator.com</Value>
+      <Value Profile="(Default)">lashonda20160322123145@mailinator.com</Value>
     </Setting>
     <Setting Name="QASMPSServiceDeskPassword" Type="System.String" Scope="User">
       <Value Profile="(Default)">{0}service1</Value>
+    </Setting>
+    <Setting Name="QASFRCustomer" Type="System.String" Scope="User">
+      <Value Profile="(Default)">brady20160322142114@mailinator.com</Value>
+    </Setting>
+    <Setting Name="QASITCustomer" Type="System.String" Scope="User">
+      <Value Profile="(Default)">delsie20160322121420@mailinator.com</Value>
+    </Setting>
+    <Setting Name="QASESCustomer" Type="System.String" Scope="User">
+      <Value Profile="(Default)">kassie20160322140949@mailinator.com</Value>
     </Setting>
   </Settings>
 </SettingsFile>
