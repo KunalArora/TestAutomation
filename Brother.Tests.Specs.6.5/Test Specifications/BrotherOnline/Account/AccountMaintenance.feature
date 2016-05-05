@@ -35,7 +35,7 @@ Scenarios:
 	| Spain          | "InvalidEmailForUser"                                                                                                                                                                                                                                              |
 	| Spain          | "ThisIsAVeryLargeEmailAddressWhichExceeds241CharactersAndThisIsNotSupportedaaaaaaaaaaaThisIsAVeryLargeEmailAddressWhichExceeds241CharactersAndThisIsNotSupportedaaaaaaaaaaaThisIsAVeryLargeEmailAddressWhichExceed241CharactersExceed241Characters@mailinator.com" |
 
-#(BBAU-3095)
+#(BBAU-3095) aka (SBAU-189)
 #Change Personal details in your created account, go to my account and add your new Email address
 Scenario Outline: Customer create a new account and amend their personal details by going into my account page
 	Given I want to create a new account with Brother Online "United Kingdom"
@@ -65,7 +65,7 @@ Scenario Outline: Customer create a new account and amend their personal details
 
 Scenarios: 
 	| FirstName						| LastName							|
-	| Test						    | Test								|
+	| Test			                | Test				                |
 
 @ignore @SMOKE
 Scenario Outline: Customer gets valid error message on BOL Norway site with invalid tax code
