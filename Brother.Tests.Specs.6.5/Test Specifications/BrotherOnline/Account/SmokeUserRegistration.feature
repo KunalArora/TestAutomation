@@ -679,8 +679,8 @@ Scenarios:
 | Country		| Business Sector		| VAT Number       |
 | Belgium		| Fabrication		    | INVALIDVATNUMBER | 
 
-@SMOKE @UAT
-#Added UAT to avoid it running on DV2. On DV2 it is failing to send the e-mail and also to generate BPID with in 60 Sec.
+@ignore @SMOKE
+#Added ignore to avoid it running on DV2. On DV2 it is failing to send the e-mail and also to generate BPID with in 60 Sec.
 #removed ignore tag since the email delay has been deployed via a hotfix 4.68.1.7-beta
 Scenario: Sign Up for 14 day Free trial already signed into Brother Online
 	# Create an account on BOL and sign in
