@@ -286,7 +286,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         {
             var mpsLink = MpsIconElement;
             mpsLink.Click();
-            WaitForElementToExistByCssSelector("a[href=\"/mps/local-office\"].mps-link");
+            WaitForElementToExistByCssSelector("a[href*=\"/mps/customer\"].mps-link");
         }
 
         

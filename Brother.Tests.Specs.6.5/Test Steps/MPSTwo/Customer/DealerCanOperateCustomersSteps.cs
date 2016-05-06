@@ -60,16 +60,16 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Customer
 
             if (targertitem == "NewlyCreatedItem")
             {
-                page.ClickOnDeleteOnActionItemAgainstNewlyCreated(CurrentDriver);
+                page.ClickOnDeleteOnActionItemAgainstNewlyCreated();
             }
             else if (targertitem == "NewlyCreatedProposalCustomer")
             {
-                page.ClickOnDeleteOnActionItemAgainstNewlyCreatedProposalCustomer(CurrentDriver);
+                page.ClickOnDeleteOnActionItemAgainstNewlyCreatedProposalCustomer();
             }
-            else
-            {
-                page.ClickOnDeleteOnActionItem(CurrentDriver);
-            }
+		    //else
+            //{
+            //    page.ClickOnDeleteOnActionItem(CurrentDriver);
+            //}
         }
 		
         [When(@"I click the ""(.*)"" button on Confirmation Dialog in Customers")]

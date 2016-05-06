@@ -146,6 +146,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             var status = CreatedServiceRequestStatusElement.Text;
             SpecFlow.SetContext("Service Request Status", status);
+            WebDriver.Wait(DurationType.Second, 3);
         }
 
 
