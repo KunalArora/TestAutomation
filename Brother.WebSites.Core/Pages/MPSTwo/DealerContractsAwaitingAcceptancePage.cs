@@ -236,7 +236,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             var colourClickRate = SpecFlow.GetContext("SummaryColourClickRate");
             colourClickRate = ConvertClickRatePrice(colourClickRate);
-            if (IsBigAtSystem())
+            if (IsGermanSystem())
             {
                 colourClickRate = AddCommaToColourClickPrice(colourClickRate);
             }

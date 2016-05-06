@@ -77,7 +77,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [FindsBy(How = How.CssSelector, Using = "#content_0_DeviceInstallList_List_CellConnectionStatusIcon_0")] 
         public IWebElement CloudInstallationConnectionStatusElements;
 
-        [FindsBy(How = How.CssSelector, Using = "#content_0_DeviceInstallList_List_CellConnectionStatus_0[class=\" green\"]")] 
+        [FindsBy(How = How.CssSelector, Using = "#content_0_DeviceInstallList_List_CellConnectionStatus_0 .glyphicon-ok")] 
         public IWebElement CloudInstallationConnectionStatusIconElements;
 
         [FindsBy(How = How.CssSelector, Using = ".js-mps-pin-code")] 

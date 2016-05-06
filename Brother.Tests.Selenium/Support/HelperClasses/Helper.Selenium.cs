@@ -1059,9 +1059,17 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         {
             if (!IsPhantomJsBrowser())
             {
-                WebDriver.Wait(DurationType.Millisecond, 1000);
-                var alert = driver.SwitchTo().Alert();
-                alert.Accept();
+                WebDriver.Wait(DurationType.Millisecond, 3000);
+                try
+                {
+                    var alert = driver.SwitchTo().Alert();
+                    alert.Accept();
+                }
+                catch (NoAlertPresentException nape)
+                {
+                    MsgOutput("No Alert found so proceed");
+                }
+               
             }
         }
 
