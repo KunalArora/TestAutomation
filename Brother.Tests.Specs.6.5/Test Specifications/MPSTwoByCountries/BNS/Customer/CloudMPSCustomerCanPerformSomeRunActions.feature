@@ -5,7 +5,7 @@ Feature: SwedishCustomerCanPerformSomeRunActions
 	I want to be to sign in using my newly generated credentials
 
 
-Scenario Outline: Spanish Customer cannot order consumable before initial communication with device
+Scenario Outline: Customer cannot order consumable before initial communication with device
 	#Given Dealer have created a contract of "<ContractType>" and "<UsageType>"
 	#And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	#And the contract created above is approved
@@ -20,12 +20,12 @@ Scenario Outline: Spanish Customer cannot order consumable before initial commun
 	
 Scenarios:
 
-	| Role                            | Country        | ContractType                  | UsageType      | Role1            | Method | Role2              |
-	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Email  | Cloud MPS Customer |
+	| Role                            | Country | ContractType                  | UsageType      | Role1            | Method | Role2              |
+	| Cloud MPS Local Office Approver | Sweden  | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Email  | Cloud MPS Customer |
+	
 
 
-
-Scenario Outline: Spanish Customer can order consumable after initial communication with device
+Scenario Outline: Customer can order consumable after initial communication with device
 	Given I sign back into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to customer dashboard page
 	And I navigate to consumable ordering page
@@ -37,6 +37,6 @@ Scenario Outline: Spanish Customer can order consumable after initial communicat
 	
 Scenarios:
 
-	| Role               | Country        |
-	| Cloud MPS Customer | United Kingdom |
-
+	| Role               | Country |
+	| Cloud MPS Customer | Sweden  |
+	
