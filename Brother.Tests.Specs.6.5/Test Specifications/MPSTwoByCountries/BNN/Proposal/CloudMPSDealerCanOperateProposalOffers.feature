@@ -11,9 +11,9 @@ Scenario Outline: Dealer can see proposal offers
 	And I can sign out of Brother Online
 
 	Scenarios: 
-	| Role             | Country        |
-	| Cloud MPS Dealer | United Kingdom |
-
+	| Role             | Country |
+	| Cloud MPS Dealer | Norway  |
+	
 
 Scenario Outline: Dealer can edit an existing proposal offer
 	Given Dealer have created a Open proposal of "<ContractType>" and "<UsageType>"
@@ -34,7 +34,7 @@ Scenario Outline: Dealer can edit an existing proposal offer
 	#| Lease & Click with Service    | Minimum Volume | Cloud MPS Dealer | United Kingdom | TermAndType         |
 	#| Lease & Click with Service    | Minimum Volume | Cloud MPS Dealer | United Kingdom | Products            |
 	#| Lease & Click with Service    | Minimum Volume | Cloud MPS Dealer | United Kingdom | ClickPrice          |
-	| Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | United Kingdom | TermAndType         |
+	| Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Norway | TermAndType         |
 
 ##@ignore
 Scenario Outline: Dealer can edit products in an existing proposal offer
@@ -50,24 +50,11 @@ Scenario Outline: Dealer can edit products in an existing proposal offer
 	And I can sign out of Brother Online
 
 	Scenarios:
-	| ContractType                  | UsageType      | Role             | Country        | TabName  | Action |
-	| Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | United Kingdom | Products | Add    |
-	| Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | United Kingdom | Products | Remove |
+	| ContractType                  | UsageType      | Role             | Country | TabName  | Action |
+	| Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Norway  | Products | Add    |
+	| Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Norway  | Products | Remove |
 	
 
-#@ignore
-Scenario Outline: Dealer can delete an existing proposal offer
-    Given Dealer have created a Open proposal of "<ContractType>" and "<UsageType>"
-	When I click the delete button against "<TargetItem>" on Existing Proposal table to be "<Confirm>"
-	And I click the "<Confirm>" button on Confirmation Dialog
-	Then I can see the deleted item does not exist on the table
-	And I can sign out of Brother Online
-
-	Scenarios: 
-	| ContractType                  | UsageType      | Confirm | TargetItem       |
-	| Purchase & Click with Service | Minimum Volume | OK      | NewlyCreatedItem |
-	
-	
 Scenario Outline: Dealer can cancel deleting proposal offer
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to existing proposal screen
@@ -77,20 +64,9 @@ Scenario Outline: Dealer can cancel deleting proposal offer
 	And I can sign out of Brother Online
 
 	Scenarios: 
-	| Role             | Country        | Confirm | TargetItem |
-	| Cloud MPS Dealer | United Kingdom | Dismiss | AnyItem    |
+	| Role             | Country | Confirm | TargetItem |
+	| Cloud MPS Dealer | Norway  | Dismiss | AnyItem    |
 
-Scenario Outline: Dealer can copy an existing proposal offer
-	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
-	And I navigate to existing proposal screen
-	When I can Copy "<Operation>" Customer an item of Exisiting Proposal table "<Target>" Customer
-	Then I can see the Proposal offer which copied "<Operation>" Customer
-	And I can sign out of Brother Online
-
-	Scenarios: 
-	| Role             | Country | Operation | Target  |
-	| Cloud MPS Dealer | Germany | Without   | Without |
-	| Cloud MPS Dealer | Austria | Without   | Without |
 	
 
 Scenario Outline: Dealer can copy an existing proposal offer for all countries
@@ -105,14 +81,7 @@ Scenario Outline: Dealer can copy an existing proposal offer for all countries
 	
 	Scenarios:
 
-	| Role             | Country        | ContractType                      | UsageType                                 | Length  | Billing                 | Customer               | Status  |
-	| Cloud MPS Dealer | France         | Buy & Click                       | Engagement sur un minimum volume de pages | 3 ans   | Trimestrale anticipata  | Skip customer creation | Without |
-	| Cloud MPS Dealer | France         | Buy & Click                       | Engagement sur un minimum volume de pages | 4 ans   | Trimestrale anticipata  | Create new customer    | With    |
-	| Cloud MPS Dealer | Italy          | Acquisto + Consumo con assistenza | Volume minimo                             | 36      | Trimestrale anticipata  | Skip customer creation | Without |
-	| Cloud MPS Dealer | Italy          | Acquisto + Consumo con assistenza | Volume minimo                             | 48      | Trimestrale anticipata  | Create new customer    | With    |
-	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service     | Minimum Volume                            | 3 years | Quarterly in Arrears    | Skip customer creation | Without |
-	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service     | Minimum Volume                            | 4 years | Quarterly in Arrears    | Create new customer    | With    |
-	| Cloud MPS Dealer | Spain          | Purchase & Click con Service      | Volúmen mínimo                            | 3 años  | Por trimestres vencidos | Skip customer creation | Without |
-	| Cloud MPS Dealer | Spain          | Purchase & Click con Service      | Volúmen mínimo                            | 3 años  | Por trimestres vencidos | Create new customer    | With    |
+	| Role             | Country | ContractType | UsageType                                 | Length | Billing                | Customer               | Status  |
+	| Cloud MPS Dealer | Norway  | Buy & Click  | Engagement sur un minimum volume de pages | 3 ans  | Trimestrale anticipata | Skip customer creation | Without |
+	| Cloud MPS Dealer | Norway  | Buy & Click  | Engagement sur un minimum volume de pages | 4 ans  | Trimestrale anticipata | Create new customer    | With    |
 	
-

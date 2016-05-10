@@ -211,11 +211,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\BBE\SendForApproval\CloudMPSDealerCanSubmitAllBelgianProposalsForApproval.feature.cs">
-      <DependentUpon>CloudMPSDealerCanSubmitAllBelgianProposalsForApproval.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BBE\SendForApproval\CloudMPSDealerCanSubmitAllTypesofBelgianProposalsToRelevantApprovers.feature.cs">
       <DependentUpon>CloudMPSDealerCanSubmitAllTypesofBelgianProposalsToRelevantApprovers.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -316,13 +311,8 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\BES\SendForApproval\CloudMPSDealerCanSubmitAllBelgianProposalsForApproval.feature.cs">
-      <DependentUpon>CloudMPSDealerCanSubmitAllBelgianProposalsForApproval.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\BES\SendForApproval\CloudMPSDealerCanSubmitAllTypesofBelgianProposalsToRelevantApprovers.feature.cs">
-      <DependentUpon>CloudMPSDealerCanSubmitAllTypesofBelgianProposalsToRelevantApprovers.feature</DependentUpon>
+    <Compile Include="Test Specifications\MPSTwoByCountries\BES\SendForApproval\CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature.cs">
+      <DependentUpon>CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -596,8 +586,8 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\BIR\SendForApproval\CloudMPSDealerCanSubmitAllTypesofBelgianProposalsToRelevantApprovers.feature.cs">
-      <DependentUpon>CloudMPSDealerCanSubmitAllTypesofBelgianProposalsToRelevantApprovers.feature</DependentUpon>
+    <Compile Include="Test Specifications\MPSTwoByCountries\BIR\SendForApproval\CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature.cs">
+      <DependentUpon>CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -671,8 +661,8 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\BIT\SendForApproval\CloudMPSDealerCanSubmitAllTypesofBelgianProposalsToRelevantApprovers.feature.cs">
-      <DependentUpon>CloudMPSDealerCanSubmitAllTypesofBelgianProposalsToRelevantApprovers.feature</DependentUpon>
+    <Compile Include="Test Specifications\MPSTwoByCountries\BIT\SendForApproval\CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature.cs">
+      <DependentUpon>CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -746,8 +736,8 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\BND\SendForApproval\CloudMPSDealerCanSubmitAllTypesofBelgianProposalsToRelevantApprovers.feature.cs">
-      <DependentUpon>CloudMPSDealerCanSubmitAllTypesofBelgianProposalsToRelevantApprovers.feature</DependentUpon>
+    <Compile Include="Test Specifications\MPSTwoByCountries\BND\SendForApproval\CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature.cs">
+      <DependentUpon>CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -801,11 +791,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\BNL\Proposal\CloudMPSDealerCanCloseProposal.feature.cs">
-      <DependentUpon>CloudMPSDealerCanCloseProposal.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BNL\Proposal\CloudMPSDealerCanCreateProposalFromProposalListPage.feature.cs">
       <DependentUpon>CloudMPSDealerCanCreateProposalFromProposalListPage.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -826,16 +811,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\BNL\Proposal\CloudMPSLeasingAndClickProposalUserJourney.feature.cs">
-      <DependentUpon>CloudMPSLeasingAndClickProposalUserJourney.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\BNL\Proposal\CloudMPSProposalSummaryPageValidation.feature.cs">
-      <DependentUpon>CloudMPSProposalSummaryPageValidation.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BNL\Proposal\CloudMPSPurchaseAndClickProposalUserJourney.feature.cs">
       <DependentUpon>CloudMPSPurchaseAndClickProposalUserJourney.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -846,13 +821,8 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\BNL\SendForApproval\CloudMPSDealerCanSubmitAllBelgianProposalsForApproval.feature.cs">
-      <DependentUpon>CloudMPSDealerCanSubmitAllBelgianProposalsForApproval.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\BNL\SendForApproval\CloudMPSDealerCanSubmitAllTypesofBelgianProposalsToRelevantApprovers.feature.cs">
-      <DependentUpon>CloudMPSDealerCanSubmitAllTypesofBelgianProposalsToRelevantApprovers.feature</DependentUpon>
+    <Compile Include="Test Specifications\MPSTwoByCountries\BNL\SendForApproval\CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature.cs">
+      <DependentUpon>CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -906,11 +876,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\BNN\Proposal\CloudMPSDealerCanCloseProposal.feature.cs">
-      <DependentUpon>CloudMPSDealerCanCloseProposal.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BNN\Proposal\CloudMPSDealerCanCreateProposalFromProposalListPage.feature.cs">
       <DependentUpon>CloudMPSDealerCanCreateProposalFromProposalListPage.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -931,16 +896,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\BNN\Proposal\CloudMPSLeasingAndClickProposalUserJourney.feature.cs">
-      <DependentUpon>CloudMPSLeasingAndClickProposalUserJourney.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\BNN\Proposal\CloudMPSProposalSummaryPageValidation.feature.cs">
-      <DependentUpon>CloudMPSProposalSummaryPageValidation.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BNN\Proposal\CloudMPSPurchaseAndClickProposalUserJourney.feature.cs">
       <DependentUpon>CloudMPSPurchaseAndClickProposalUserJourney.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -951,13 +906,8 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\BNN\SendForApproval\CloudMPSDealerCanSubmitAllBelgianProposalsForApproval.feature.cs">
-      <DependentUpon>CloudMPSDealerCanSubmitAllBelgianProposalsForApproval.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\BNN\SendForApproval\CloudMPSDealerCanSubmitAllTypesofBelgianProposalsToRelevantApprovers.feature.cs">
-      <DependentUpon>CloudMPSDealerCanSubmitAllTypesofBelgianProposalsToRelevantApprovers.feature</DependentUpon>
+    <Compile Include="Test Specifications\MPSTwoByCountries\BNN\SendForApproval\CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature.cs">
+      <DependentUpon>CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -1011,11 +961,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\BNS\Proposal\CloudMPSDealerCanCloseProposal.feature.cs">
-      <DependentUpon>CloudMPSDealerCanCloseProposal.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BNS\Proposal\CloudMPSDealerCanCreateProposalFromProposalListPage.feature.cs">
       <DependentUpon>CloudMPSDealerCanCreateProposalFromProposalListPage.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -1036,16 +981,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\BNS\Proposal\CloudMPSLeasingAndClickProposalUserJourney.feature.cs">
-      <DependentUpon>CloudMPSLeasingAndClickProposalUserJourney.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\BNS\Proposal\CloudMPSProposalSummaryPageValidation.feature.cs">
-      <DependentUpon>CloudMPSProposalSummaryPageValidation.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BNS\Proposal\CloudMPSPurchaseAndClickProposalUserJourney.feature.cs">
       <DependentUpon>CloudMPSPurchaseAndClickProposalUserJourney.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -1056,13 +991,8 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\BNS\SendForApproval\CloudMPSDealerCanSubmitAllBelgianProposalsForApproval.feature.cs">
-      <DependentUpon>CloudMPSDealerCanSubmitAllBelgianProposalsForApproval.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\BNS\SendForApproval\CloudMPSDealerCanSubmitAllTypesofBelgianProposalsToRelevantApprovers.feature.cs">
-      <DependentUpon>CloudMPSDealerCanSubmitAllTypesofBelgianProposalsToRelevantApprovers.feature</DependentUpon>
+    <Compile Include="Test Specifications\MPSTwoByCountries\BNS\SendForApproval\CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature.cs">
+      <DependentUpon>CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -1116,11 +1046,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\BPL\Proposal\CloudMPSDealerCanCloseProposal.feature.cs">
-      <DependentUpon>CloudMPSDealerCanCloseProposal.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BPL\Proposal\CloudMPSDealerCanCreateProposalFromProposalListPage.feature.cs">
       <DependentUpon>CloudMPSDealerCanCreateProposalFromProposalListPage.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -1141,16 +1066,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\BPL\Proposal\CloudMPSLeasingAndClickProposalUserJourney.feature.cs">
-      <DependentUpon>CloudMPSLeasingAndClickProposalUserJourney.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\BPL\Proposal\CloudMPSProposalSummaryPageValidation.feature.cs">
-      <DependentUpon>CloudMPSProposalSummaryPageValidation.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BPL\Proposal\CloudMPSPurchaseAndClickProposalUserJourney.feature.cs">
       <DependentUpon>CloudMPSPurchaseAndClickProposalUserJourney.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -1161,13 +1076,8 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\BPL\SendForApproval\CloudMPSDealerCanSubmitAllBelgianProposalsForApproval.feature.cs">
-      <DependentUpon>CloudMPSDealerCanSubmitAllBelgianProposalsForApproval.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\BPL\SendForApproval\CloudMPSDealerCanSubmitAllTypesofBelgianProposalsToRelevantApprovers.feature.cs">
-      <DependentUpon>CloudMPSDealerCanSubmitAllTypesofBelgianProposalsToRelevantApprovers.feature</DependentUpon>
+    <Compile Include="Test Specifications\MPSTwoByCountries\BPL\SendForApproval\CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature.cs">
+      <DependentUpon>CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -1221,11 +1131,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\BSW\Proposal\CloudMPSDealerCanCloseProposal.feature.cs">
-      <DependentUpon>CloudMPSDealerCanCloseProposal.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BSW\Proposal\CloudMPSDealerCanCreateProposalFromProposalListPage.feature.cs">
       <DependentUpon>CloudMPSDealerCanCreateProposalFromProposalListPage.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -1243,16 +1148,6 @@
     </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BSW\Proposal\CloudMPSDealerCanOperateProposalOffers.feature.cs">
       <DependentUpon>CloudMPSDealerCanOperateProposalOffers.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\BSW\Proposal\CloudMPSLeasingAndClickProposalUserJourney.feature.cs">
-      <DependentUpon>CloudMPSLeasingAndClickProposalUserJourney.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\BSW\Proposal\CloudMPSProposalSummaryPageValidation.feature.cs">
-      <DependentUpon>CloudMPSProposalSummaryPageValidation.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -2027,10 +1922,6 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSSummaryPageValidationForAllProposalTypes.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwoByCountries\BBE\SendForApproval\CloudMPSDealerCanSubmitAllBelgianProposalsForApproval.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSDealerCanSubmitAllBelgianProposalsForApproval.feature.cs</LastGenOutput>
-    </None>
     <None Include="Test Specifications\MPSTwoByCountries\BBE\SendForApproval\CloudMPSDealerCanSubmitAllTypesofBelgianProposalsToRelevantApprovers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSDealerCanSubmitAllTypesofBelgianProposalsToRelevantApprovers.feature.cs</LastGenOutput>
@@ -2111,13 +2002,9 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSSummaryPageValidationForAllProposalTypes.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwoByCountries\BES\SendForApproval\CloudMPSDealerCanSubmitAllBelgianProposalsForApproval.feature">
+    <None Include="Test Specifications\MPSTwoByCountries\BES\SendForApproval\CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSDealerCanSubmitAllBelgianProposalsForApproval.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPSTwoByCountries\BES\SendForApproval\CloudMPSDealerCanSubmitAllTypesofBelgianProposalsToRelevantApprovers.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSDealerCanSubmitAllTypesofBelgianProposalsToRelevantApprovers.feature.cs</LastGenOutput>
+      <LastGenOutput>CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwoByCountries\BFR\Contract\CloudMPSOutputContractPDFAllUsers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
@@ -2335,9 +2222,9 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSSummaryPageValidationForAllProposalTypes.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwoByCountries\BIR\SendForApproval\CloudMPSDealerCanSubmitAllTypesofBelgianProposalsToRelevantApprovers.feature">
+    <None Include="Test Specifications\MPSTwoByCountries\BIR\SendForApproval\CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSDealerCanSubmitAllTypesofBelgianProposalsToRelevantApprovers.feature.cs</LastGenOutput>
+      <LastGenOutput>CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwoByCountries\BIT\Contract\CloudMPSDealerCanCopyADeclineProposal.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
@@ -2395,9 +2282,9 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSSummaryPageValidationForAllProposalTypes.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwoByCountries\BIT\SendForApproval\CloudMPSDealerCanSubmitAllTypesofBelgianProposalsToRelevantApprovers.feature">
+    <None Include="Test Specifications\MPSTwoByCountries\BIT\SendForApproval\CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSDealerCanSubmitAllTypesofBelgianProposalsToRelevantApprovers.feature.cs</LastGenOutput>
+      <LastGenOutput>CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwoByCountries\BND\Contract\CloudMPSDealerCanCopyADeclineProposal.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
@@ -2455,9 +2342,9 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSSummaryPageValidationForAllProposalTypes.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwoByCountries\BND\SendForApproval\CloudMPSDealerCanSubmitAllTypesofBelgianProposalsToRelevantApprovers.feature">
+    <None Include="Test Specifications\MPSTwoByCountries\BND\SendForApproval\CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSDealerCanSubmitAllTypesofBelgianProposalsToRelevantApprovers.feature.cs</LastGenOutput>
+      <LastGenOutput>CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwoByCountries\BNL\Contract\CloudMPSDealerCanCopyADeclineProposal.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
@@ -2499,10 +2386,6 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSClickPriceDeepDive.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwoByCountries\BNL\Proposal\CloudMPSDealerCanCloseProposal.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSDealerCanCloseProposal.feature.cs</LastGenOutput>
-    </None>
     <None Include="Test Specifications\MPSTwoByCountries\BNL\Proposal\CloudMPSDealerCanCreateProposalFromProposalListPage.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSDealerCanCreateProposalFromProposalListPage.feature.cs</LastGenOutput>
@@ -2519,14 +2402,6 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSDealerCanOperateProposalOffers.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwoByCountries\BNL\Proposal\CloudMPSLeasingAndClickProposalUserJourney.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSLeasingAndClickProposalUserJourney.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPSTwoByCountries\BNL\Proposal\CloudMPSProposalSummaryPageValidation.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSProposalSummaryPageValidation.feature.cs</LastGenOutput>
-    </None>
     <None Include="Test Specifications\MPSTwoByCountries\BNL\Proposal\CloudMPSPurchaseAndClickProposalUserJourney.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSPurchaseAndClickProposalUserJourney.feature.cs</LastGenOutput>
@@ -2535,13 +2410,9 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSSummaryPageValidationForAllProposalTypes.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwoByCountries\BNL\SendForApproval\CloudMPSDealerCanSubmitAllBelgianProposalsForApproval.feature">
+    <None Include="Test Specifications\MPSTwoByCountries\BNL\SendForApproval\CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSDealerCanSubmitAllBelgianProposalsForApproval.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPSTwoByCountries\BNL\SendForApproval\CloudMPSDealerCanSubmitAllTypesofBelgianProposalsToRelevantApprovers.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSDealerCanSubmitAllTypesofBelgianProposalsToRelevantApprovers.feature.cs</LastGenOutput>
+      <LastGenOutput>CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwoByCountries\BNN\Contract\CloudMPSDealerCanCopyADeclineProposal.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
@@ -2583,10 +2454,6 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSClickPriceDeepDive.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwoByCountries\BNN\Proposal\CloudMPSDealerCanCloseProposal.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSDealerCanCloseProposal.feature.cs</LastGenOutput>
-    </None>
     <None Include="Test Specifications\MPSTwoByCountries\BNN\Proposal\CloudMPSDealerCanCreateProposalFromProposalListPage.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSDealerCanCreateProposalFromProposalListPage.feature.cs</LastGenOutput>
@@ -2603,14 +2470,6 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSDealerCanOperateProposalOffers.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwoByCountries\BNN\Proposal\CloudMPSLeasingAndClickProposalUserJourney.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSLeasingAndClickProposalUserJourney.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPSTwoByCountries\BNN\Proposal\CloudMPSProposalSummaryPageValidation.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSProposalSummaryPageValidation.feature.cs</LastGenOutput>
-    </None>
     <None Include="Test Specifications\MPSTwoByCountries\BNN\Proposal\CloudMPSPurchaseAndClickProposalUserJourney.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSPurchaseAndClickProposalUserJourney.feature.cs</LastGenOutput>
@@ -2619,13 +2478,9 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSSummaryPageValidationForAllProposalTypes.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwoByCountries\BNN\SendForApproval\CloudMPSDealerCanSubmitAllBelgianProposalsForApproval.feature">
+    <None Include="Test Specifications\MPSTwoByCountries\BNN\SendForApproval\CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSDealerCanSubmitAllBelgianProposalsForApproval.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPSTwoByCountries\BNN\SendForApproval\CloudMPSDealerCanSubmitAllTypesofBelgianProposalsToRelevantApprovers.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSDealerCanSubmitAllTypesofBelgianProposalsToRelevantApprovers.feature.cs</LastGenOutput>
+      <LastGenOutput>CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwoByCountries\BNS\Contract\CloudMPSDealerCanCopyADeclineProposal.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
@@ -2667,10 +2522,6 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSClickPriceDeepDive.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwoByCountries\BNS\Proposal\CloudMPSDealerCanCloseProposal.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSDealerCanCloseProposal.feature.cs</LastGenOutput>
-    </None>
     <None Include="Test Specifications\MPSTwoByCountries\BNS\Proposal\CloudMPSDealerCanCreateProposalFromProposalListPage.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSDealerCanCreateProposalFromProposalListPage.feature.cs</LastGenOutput>
@@ -2687,14 +2538,6 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSDealerCanOperateProposalOffers.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwoByCountries\BNS\Proposal\CloudMPSLeasingAndClickProposalUserJourney.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSLeasingAndClickProposalUserJourney.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPSTwoByCountries\BNS\Proposal\CloudMPSProposalSummaryPageValidation.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSProposalSummaryPageValidation.feature.cs</LastGenOutput>
-    </None>
     <None Include="Test Specifications\MPSTwoByCountries\BNS\Proposal\CloudMPSPurchaseAndClickProposalUserJourney.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSPurchaseAndClickProposalUserJourney.feature.cs</LastGenOutput>
@@ -2703,13 +2546,9 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSSummaryPageValidationForAllProposalTypes.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwoByCountries\BNS\SendForApproval\CloudMPSDealerCanSubmitAllBelgianProposalsForApproval.feature">
+    <None Include="Test Specifications\MPSTwoByCountries\BNS\SendForApproval\CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSDealerCanSubmitAllBelgianProposalsForApproval.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPSTwoByCountries\BNS\SendForApproval\CloudMPSDealerCanSubmitAllTypesofBelgianProposalsToRelevantApprovers.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSDealerCanSubmitAllTypesofBelgianProposalsToRelevantApprovers.feature.cs</LastGenOutput>
+      <LastGenOutput>CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwoByCountries\BPL\Contract\CloudMPSDealerCanCopyADeclineProposal.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
@@ -2751,10 +2590,6 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSClickPriceDeepDive.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwoByCountries\BPL\Proposal\CloudMPSDealerCanCloseProposal.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSDealerCanCloseProposal.feature.cs</LastGenOutput>
-    </None>
     <None Include="Test Specifications\MPSTwoByCountries\BPL\Proposal\CloudMPSDealerCanCreateProposalFromProposalListPage.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSDealerCanCreateProposalFromProposalListPage.feature.cs</LastGenOutput>
@@ -2771,14 +2606,6 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSDealerCanOperateProposalOffers.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwoByCountries\BPL\Proposal\CloudMPSLeasingAndClickProposalUserJourney.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSLeasingAndClickProposalUserJourney.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPSTwoByCountries\BPL\Proposal\CloudMPSProposalSummaryPageValidation.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSProposalSummaryPageValidation.feature.cs</LastGenOutput>
-    </None>
     <None Include="Test Specifications\MPSTwoByCountries\BPL\Proposal\CloudMPSPurchaseAndClickProposalUserJourney.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSPurchaseAndClickProposalUserJourney.feature.cs</LastGenOutput>
@@ -2787,13 +2614,9 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSSummaryPageValidationForAllProposalTypes.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwoByCountries\BPL\SendForApproval\CloudMPSDealerCanSubmitAllBelgianProposalsForApproval.feature">
+    <None Include="Test Specifications\MPSTwoByCountries\BPL\SendForApproval\CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSDealerCanSubmitAllBelgianProposalsForApproval.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPSTwoByCountries\BPL\SendForApproval\CloudMPSDealerCanSubmitAllTypesofBelgianProposalsToRelevantApprovers.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSDealerCanSubmitAllTypesofBelgianProposalsToRelevantApprovers.feature.cs</LastGenOutput>
+      <LastGenOutput>CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwoByCountries\BSW\Contract\CloudMPSDealerCanCopyADeclineProposal.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
@@ -2835,10 +2658,6 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSClickPriceDeepDive.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwoByCountries\BSW\Proposal\CloudMPSDealerCanCloseProposal.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSDealerCanCloseProposal.feature.cs</LastGenOutput>
-    </None>
     <None Include="Test Specifications\MPSTwoByCountries\BSW\Proposal\CloudMPSDealerCanCreateProposalFromProposalListPage.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSDealerCanCreateProposalFromProposalListPage.feature.cs</LastGenOutput>
@@ -2854,14 +2673,6 @@
     <None Include="Test Specifications\MPSTwoByCountries\BSW\Proposal\CloudMPSDealerCanOperateProposalOffers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSDealerCanOperateProposalOffers.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPSTwoByCountries\BSW\Proposal\CloudMPSLeasingAndClickProposalUserJourney.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSLeasingAndClickProposalUserJourney.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPSTwoByCountries\BSW\Proposal\CloudMPSProposalSummaryPageValidation.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSProposalSummaryPageValidation.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwoByCountries\BSW\Proposal\CloudMPSPurchaseAndClickProposalUserJourney.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

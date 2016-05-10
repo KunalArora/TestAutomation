@@ -28,7 +28,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BND.SendForAp
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "CloudMPSDealerCanSubmitAllTypesofBelgianProposalsToRelevantApprovers.feature"
+#line 1 "CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]

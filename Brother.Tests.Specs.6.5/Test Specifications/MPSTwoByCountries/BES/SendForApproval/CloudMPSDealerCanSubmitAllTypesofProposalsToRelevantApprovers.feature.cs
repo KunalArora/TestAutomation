@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BNS.SendForApproval
+namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BES.SendForApproval
 {
     using TechTalk.SpecFlow;
     
@@ -19,23 +19,23 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BNS.SendForAp
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.9.0.77")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("CloudMPSSwedishDealerSubmitAllTypesofProposalsToRelevantApprovers")]
+    [NUnit.Framework.DescriptionAttribute("CloudMPSSpanishDealerSubmitAllTypesofProposalsToRelevantApprovers")]
     [NUnit.Framework.CategoryAttribute("MPS")]
     [NUnit.Framework.CategoryAttribute("TEST")]
     [NUnit.Framework.CategoryAttribute("UAT")]
-    public partial class CloudMPSSwedishDealerSubmitAllTypesofProposalsToRelevantApproversFeature
+    public partial class CloudMPSSpanishDealerSubmitAllTypesofProposalsToRelevantApproversFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "CloudMPSDealerCanSubmitAllTypesofBelgianProposalsToRelevantApprovers.feature"
+#line 1 "CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CloudMPSSwedishDealerSubmitAllTypesofProposalsToRelevantApprovers", "In order to progress a proposal to contract\r\nAs a dealer\r\nI want to be able to su" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CloudMPSSpanishDealerSubmitAllTypesofProposalsToRelevantApprovers", "In order to progress a proposal to contract\r\nAs a dealer\r\nI want to be able to su" +
                     "bmit different types of proposals to relevant approvers", ProgrammingLanguage.CSharp, new string[] {
                         "MPS",
                         "TEST",
