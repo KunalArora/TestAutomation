@@ -124,6 +124,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             {
                 throw new Exception("Unable to locate Update Details Button");
             }
+            // added to test SBAU-189
+            //WebDriver.Wait(DurationType.Second,60);
             ScrollTo(UpdateButtonDetails);
             UpdateButtonDetails.Click();
         }

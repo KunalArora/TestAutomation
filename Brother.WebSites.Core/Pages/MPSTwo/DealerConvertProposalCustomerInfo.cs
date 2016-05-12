@@ -286,26 +286,28 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SelectAPaymentType()
         {
+            if (IsElementPresent(GetElementByCssSelector("#content_1_PersonManage_InputBankPaymentType_Input", 10)))
+            {
+                if (IsGermanSystem() || IsAustriaSystem())
+                {
+                    SelectFromDropdown(PaymentTypeDropdown, "Bankeinzug");
 
-            if (IsGermanSystem() || IsAustriaSystem())
-            {
-                SelectFromDropdown(PaymentTypeDropdown, "Bankeinzug");
+                }
+                else if (IsUKSystem())
+                {
+                    SelectFromDropdown(PaymentTypeDropdown, "Direct Debit");
 
-            }
-            else if (IsUKSystem())
-            {
-                SelectFromDropdown(PaymentTypeDropdown, "Direct Debit");
+                } else if (IsFranceSystem())
+                {
+                    SelectFromDropdown(PaymentTypeDropdown, "Débit direct");
 
-            } else if (IsFranceSystem())
-            {
-                SelectFromDropdown(PaymentTypeDropdown, "Débit direct");
-
-            } else if (IsItalySystem())
-            {
-                SelectFromDropdown(PaymentTypeDropdown, "Addebito diretto");
-            } else if (IsSpainSystem())
-            {
-                SelectFromDropdown(PaymentTypeDropdown, "Debito directo");
+                } else if (IsItalySystem())
+                {
+                    SelectFromDropdown(PaymentTypeDropdown, "Addebito diretto");
+                } else if (IsSpainSystem())
+                {
+                    SelectFromDropdown(PaymentTypeDropdown, "Debito directo");
+                }
             }
             
             WebDriver.Wait(DurationType.Second, 3);

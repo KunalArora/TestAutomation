@@ -88,16 +88,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void ClickAcceptOnConfrimation(IWebDriver driver)
         {
             WebDriver.Wait(DurationType.Millisecond, 3000);
-            HeadlessDismissAlertOk();
-            ClickAcceptOnJsAlert(driver);
             //AcceptAlert();
+            ClickAcceptOnJsAlert(driver);
+            HeadlessDismissAlertOk();
+            
         }
 
         public void ClickDismissOnConfrimation(IWebDriver driver)
         {
             WebDriver.Wait(DurationType.Millisecond, 100);
-            HeadlessDismissAlertCancel();
             ClickDismissOnJsAlert(driver);
+            HeadlessDismissAlertCancel();
+            
         }
 
         private string SavedEmailAddress()
@@ -110,7 +112,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
            ActionsModule.ClickOnSpecificCustomerActions(Driver);
         }
 
-        private bool ContainsItemById(IWebDriver driver, string id)
+        private bool ContainsItemById(ISearchContext driver, string id)
         {
             return
                 driver.FindElements(By.CssSelector(".js-mps-delete"))
@@ -118,26 +120,37 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 .Contains(id);
         }
 
-        public void ClickOnDeleteOnActionItemAgainstNewlyCreated(IWebDriver driver)
+        public void ClickOnDeleteOnActionItemAgainstNewlyCreated()
         {
             ClickDelete();
         }
 
-        public void ClickOnDeleteOnActionItemAgainstNewlyCreatedProposalCustomer(IWebDriver driver)
+        public void ClickOnDeleteOnActionItemAgainstNewlyCreatedProposalCustomer()
         {
            ClickDelete();
         }
 
         private void ClickDelete()
         {
+            const string deleteButton = @".open .js-mps-delete";
+            
             HeadlessDismissAlertOk();
            // var customerelem = FindExistingCustomerByEmail();
             ClickActionButtonOnOffer();
-            WaitForElementToExistByCssSelector(".open .js-mps-delete");
-            var deleteElem = Driver.FindElement(By.CssSelector(".open .js-mps-delete"));
+            WaitForElementToExistByCssSelector(deleteButton);
+            var deleteElem = Driver.FindElement(By.CssSelector(deleteButton));
             var id = deleteElem.GetAttribute("data-person-id");
             SpecFlow.SetContext(DealerLatestOperatingCustomerItemId, id);
-            deleteElem.Click();
+
+            try
+            {
+                deleteElem.Click();
+                WebDriver.Wait(DurationType.Second, 3);
+            }
+            catch (UnhandledAlertException uae)
+            {
+                // do nothing;
+            }
             
         }
 
@@ -151,8 +164,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var deleteElem = Driver.FindElement(By.CssSelector(".open .js-mps-delete"));
             var id = deleteElem.GetAttribute("data-person-id");
             SpecFlow.SetContext(DealerLatestOperatingCustomerItemId, id);
-            deleteElem.Click();
-            WebDriver.Wait(DurationType.Second, 5);
+            try
+            {
+                deleteElem.Click();
+                WebDriver.Wait(DurationType.Second, 5);
+            }
+            catch (UnhandledAlertException uae)
+            {
+                // do nothing;
+            }
+
+            
             
         }
 

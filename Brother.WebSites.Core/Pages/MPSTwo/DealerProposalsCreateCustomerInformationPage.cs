@@ -76,7 +76,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [FindsBy(How = How.Id, Using = "content_1_PersonListFilter_InputFilterBy")]
         public IWebElement ExistingCustomerFilterElement;
         [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerCompanyRegistrationNumber_Input")]
-        public IWebElement FrenchSirentElement;
+        public IWebElement CompanyRegistrationNumerElement;
         [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerVatRegistrationNumber_Input")]
         public IWebElement VatFieldElement;
         
@@ -233,7 +233,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
            EnterCompanyName();
            EnterPropertyNumber();
            EnterPropertyStreet();
-           EnterSiretNumber();
+           EnterRegistrationNumber();
            //EnterPropertyArea();
            EnterPropertyTown();
            EnterPropertyPostCode();
@@ -241,10 +241,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
            //SelectRegionFromDropdown("Greater Manchester");
        }
 
-        public void EnterSiretNumber()
+        public void EnterRegistrationNumber()
         {
-            if(IsFranceSystem())
-            ClearAndType(FrenchSirentElement, "RCS PARIS 453 983 245");
+            if (IsFranceSystem())
+            {
+                ClearAndType(CompanyRegistrationNumerElement, "RCS PARIS 453 983 245");
+            }
+            else if (IsUKSystem())
+            {
+                ClearAndType(CompanyRegistrationNumerElement, "06488522");
+            }
+
         }
 
         public void EnterInitialVat()
@@ -256,6 +263,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             else if (IsFranceSystem())
             {
                 ClearAndType(VatFieldElement, "FR40303265045");
+            } else if (IsUKSystem())
+            {
+                ClearAndType(VatFieldElement, "GB980780684");
             }
             
         }

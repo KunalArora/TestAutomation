@@ -691,8 +691,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 var storedDisplayedInstallationType = SpecFlow.GetContext("SelectedInstallationType");
                 var InstallationType = InstallationTypeNameElement.Text;
 
-                TestCheck.AssertIsEqual(storedDisplayedInstallationType.Trim(),
-                    InstallationType,
+                TestCheck.AssertTextContains(InstallationType, storedDisplayedInstallationType.Trim(),
                     "Summary Installation Type is different from Selected Installation Type");
             }
         }
@@ -744,7 +743,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
             else if (IsGermanSystem() || IsAustriaSystem())
             {
-                TestCheck.AssertTextContains(CalculationBasisElement.Text, "Mindestdruckvolumina");
+                TestCheck.AssertTextContains(CalculationBasisElement.Text, "Druckvolumina");
             } else if (IsFranceSystem())
             {
                 TestCheck.AssertTextContains(CalculationBasisElement.Text, "Coût total par matériel sur la base de l'estimation de volume de pages");
