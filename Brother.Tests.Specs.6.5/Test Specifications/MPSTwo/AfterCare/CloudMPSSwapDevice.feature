@@ -12,6 +12,10 @@ Scenario Outline: Installer can swap device that is on a contract
 	And I generate installation request for the contract with "<Method>" communication and "<Type>" installation
 	And I extract the installer url from Installation Request
 	When I have completed installation for "<Type>" communication
+	And I begin device swapping process
+	And I generate swapping device request
+	And installer installed the new swap device
+	Then the newly installed device is displayed on Managed Device screen
 	And I can sign out of Brother Online
 
 	
