@@ -38,41 +38,49 @@ namespace Brother.Tests.Specs._80.Test_Steps.BrotherMainSite.PublishedPages
         {
             CurrentPage.As<PublishedPage>().IsPageHeaderDisplayed();
         }
+
         [Then(@"I can validate the product page title is displayed")]
         public void ThenICanValidateTheProductPageTitleIsDisplayed()
         {
             CurrentPage.As<PublishedPage>().IsPageTitleDisplayed();
         }
+
         [Then(@"I can validate supply description is displayed")]
         public void ThenICanValidateSupplyDescriptionIsDisplayed()
         {
             CurrentPage.As<PublishedPage>().IsSupplyDescriptionDisplayed();
         }
+
         [Then(@"I can validate printers filter section is displayed")]
         public void ThenICanValidatePrintersFilterSectionIsDisplayed()
         {
             CurrentPage.As<PublishedPage>().IsFilterSectionDisplayed();
         }
+
         [Then(@"I can validate supplies section is displayed")]
         public void ThenICanValidateSuppliesSectionIsDisplayed()
         {
             CurrentPage.As<PublishedPage>().IsFindOutMoreButtonDisplayed();
         }
+
         [Then(@"I can validate accessory product title is displayed")]
         public void ThenICanValidateAccessoryProductTitleIsDisplayed()
         {
             CurrentPage.As<PublishedPage>().IsAccessoryProductTitleDisplayed();
         }
+
         [Then(@"I can validate glossary section is displayed")]
         public void ThenICanValidateGlossarySectionIsDisplayed()
         {
             CurrentPage.As<PublishedPage>().IsGlossarySectionDisplayed();
         }
+
         [Then(@"I can validate article is displayed on the page")]
         public void ThenICanValidateArticleIsDisplayedOnThePage()
         {
             CurrentPage.As<PublishedPage>().IsPageArticleDisplayed();
         }
+
         [Then(@"I can verify that the search icon is displayed")]
         public void ThenICanVerifyThatTheSearchIconIsDisplayed()
         {
@@ -311,6 +319,25 @@ namespace Brother.Tests.Specs._80.Test_Steps.BrotherMainSite.PublishedPages
             CurrentPage.As<PublishedPage>().PopulateEmailAddressTextBox(validEmailAddress);
         }
 
+        [Given(@"I enter phone number as ""(.*)""")]
+        public void GivenIEnterPhoneNumberAs(string phoneNumber)
+        {
+            CurrentPage.As<PublishedPage>().PopulatePhoneNumberTextBox(phoneNumber);
+        }
+
+        [Given(@"I have Agreed to the Terms and Conditions")]
+        public void GivenIHaveAgreedToTheTermsAndConditions()
+        {
+            CurrentPage.As<PublishedPage>().CheckTermsAndConditions();
+        }
+
+        [Given(@"I press submit button")]
+        public void GivenIPressSubmitButton()
+        {
+            CurrentPage.As<PublishedPage>().ClickSubmitButton();
+        }
+
+    
 
     }
 
