@@ -47,10 +47,3 @@ Scenario: Add My Device with an extended warranty pack
 	And If I click Back To Brother online
 	And If I sign out of Brother Online
 	Then I am redirected to the Brother Home Page  
-		
-@ignore @UAT @TEST 
-Scenario: Add My Device with an promotional code
-
-@ignore @UAT @TEST
-Scenario: Add an Invalid device and check for correct error messages
-

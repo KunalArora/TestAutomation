@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Pages\BrotherMainSite\ContentEditorPage.cs" />
+    <Compile Include="Pages\BrotherMainSite\DownloadPage.cs" />
     <Compile Include="Pages\BrotherMainSite\ExperienceEditorPage.cs" />
     <Compile Include="Pages\BrotherMainSite\LoginPage.cs" />
     <Compile Include="Pages\BrotherMainSite\HeaderNavigationPage.cs" />
@@ -125,7 +126,6 @@
     <Compile Include="Pages\BrotherOnline\ThirdParty\GuerrillaEmailConfirmation.cs" />
     <Compile Include="Pages\BrotherOnline\ThirdParty\MailinatorEmailConfirmation.cs" />
     <Compile Include="Pages\General\SiteAccess.cs" />
-    <Compile Include="Pages\InstantInk\StatusMonitorPage.cs" />
     <Compile Include="Pages\MPSOne\ConsumablePage.cs" />
     <Compile Include="Pages\MPSOne\ContractConfirmationPage.cs" />
     <Compile Include="Pages\MPSOne\ExistingContractPage.cs" />

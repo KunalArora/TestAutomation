@@ -117,7 +117,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         [FindsBy(How = How.CssSelector, Using = "#Warnings.warning-bar p")] public IWebElement
             InvalidCredentialsErrorMessage;
 
-        [FindsBy(How = How.CssSelector, Using = "#txtTax1")] public IWebElement NiNumberTextBox;
+        [FindsBy(How = How.CssSelector, Using = "#txtTax1")] 
+        public IWebElement NiNumberTextBox;
 
         [FindsBy(How = How.CssSelector, Using = "#txtTax1")] public IWebElement PersonalNiNumberPortugalTextBox;
 

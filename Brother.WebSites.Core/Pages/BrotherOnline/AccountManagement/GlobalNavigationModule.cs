@@ -7,7 +7,6 @@ using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherMainSite.SuppliesAndAccessories.Printers;
 using Brother.WebSites.Core.Pages.BrotherOnline.Account;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement.PaymentMethods;
-using Brother.WebSites.Core.Pages.InstantInk;
 using Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal;
 using Brother.WebSites.Core.Pages.OmniJoin.Plans;
 using OpenQA.Selenium;
@@ -372,13 +371,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             TestCheck.AssertIsNotNull(button, "Partner Portal Button");
             button.Click();
             return GetInstance<PartnerPortalPage>(driver, "", "");
-        }
-
-        public static StatusMonitorPage StatusMonitorButtonClick(IWebDriver driver, IWebElement button)
-        {
-            TestCheck.AssertIsNotNull(button, "Status Monitor Button");
-            button.Click();
-            return GetInstance<StatusMonitorPage>(driver, "", "");
         }
 
 #endregion NAVIGATION

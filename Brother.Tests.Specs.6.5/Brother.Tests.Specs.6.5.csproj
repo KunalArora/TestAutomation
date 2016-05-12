@@ -1511,25 +1511,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CloudMPSServiceRequestOperations.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\Smart Supply\BrotherSupplyClubProductBenefits.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BrotherSupplyClubProductBenefits.feature</DependentUpon>
-    </Compile>
     <Compile Include="Test Specifications\MPSTwo\Proposal\CloudMPSVerificationOnProductScreenVariations.feature.cs">
       <DependentUpon>CloudMPSVerificationOnProductScreenVariations.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Test Specifications\Smart Supply\BrotherSupplyClubAnonymousUserProductBenefits.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BrotherSupplyClubAnonymousUserProductBenefits.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Test Specifications\Smart Supply\BITTestDuiscountSingleItem_BBAU-532.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BITTestDuiscountSingleItem_BBAU-532.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Steps\Global\GlobalSteps.cs" />
     <Compile Include="Test Specifications\BrotherMainSite\Printer Search\Printers.feature.cs">
@@ -1571,21 +1556,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SitesAccess_TestEnvironment.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Test Specifications\InstantInk\LoginWithValidCredential.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LoginWithValidCredential.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Test Specifications\InstantInk\StatusMonitor.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>StatusMonitor.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Test Specifications\InstantInk\ValidateRole.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ValidateRole.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Specifications\MPSOne\Contract\MPSOneContractSearch.feature.cs">
       <AutoGen>True</AutoGen>
@@ -1671,8 +1641,6 @@
     <Compile Include="Test Steps\BrotherOnline\Purchasing\OrderProcessSteps.cs" />
     <Compile Include="Test Steps\BrotherOnline\Purchasing\SavedPaymentDetailsSteps.cs" />
     <Compile Include="Test Steps\BrotherOnline\SiteAccess\SiteAccessSteps.cs" />
-    <Compile Include="Test Steps\Instant Ink\InstantInkSteps.cs" />
-    <Compile Include="Test Steps\Instant Ink\ValidateUserRoleSteps.cs" />
     <Compile Include="Test Steps\MPSOne\ConsumableSteps.cs" />
     <Compile Include="Test Steps\MPSOne\ExistingContractSteps.cs" />
     <Compile Include="Test Steps\MPSOne\ExistingProposalSteps.cs" />
@@ -1717,7 +1685,6 @@
     <Compile Include="Test Steps\OmniJoin\Plans\ManagePlanSteps.cs" />
     <Compile Include="Test Steps\OmniJoin\Plans\PurchasePlansSteps.cs" />
     <Compile Include="Test Steps\OmniJoin\WebConferencingHomePageSteps.cs" />
-    <Compile Include="Test Steps\Smart Supply\BITTestDiscountSingleItem_BBAU_532Steps.cs" />
     <Compile Include="Test Steps\Smart Supply\BrotherSupplyClubProductBenefitsSteps.cs" />
     <Compile Include="Test Steps\ThirdPartyProductsSteps.cs" />
     <Compile Include="Test Steps\tmpScratchSteps.cs" />
@@ -1806,18 +1773,6 @@
     <None Include="Test Specifications\BrotherOnline\SiteAccess\SitesAccess_TestEnvironment.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>SitesAccess_TestEnvironment.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\InstantInk\LoginWithValidCredential.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>LoginWithValidCredential.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\InstantInk\StatusMonitor.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>StatusMonitor.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\InstantInk\ValidateRole.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>ValidateRole.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSOne\Contract\MPSOneContractSearch.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
@@ -2994,18 +2949,6 @@
     <None Include="Test Specifications\OmniJoin\PurchasePlans.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>PurchasePlans.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\Smart Supply\BrotherSupplyClubProductBenefits.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>BrotherSupplyClubProductBenefits.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\Smart Supply\BrotherSupplyClubAnonymousUserProductBenefits.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>BrotherSupplyClubAnonymousUserProductBenefits.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\Smart Supply\BITTestDuiscountSingleItem_BBAU-532.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>BITTestDuiscountSingleItem_BBAU-532.feature.cs</LastGenOutput>
     </None>
     <None Include="tmpScratch\TestTmpTest.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

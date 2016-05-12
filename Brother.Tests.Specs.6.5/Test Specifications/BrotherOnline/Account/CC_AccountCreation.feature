@@ -3,8 +3,6 @@ Feature: CreativeCenterTests
 
 # 2940 raised until then ignore tag is added
 
-
-
 @TEST @UAT @PROD
 # Validate that the creation of a new family creative center account also creates a validated brother online user account
 Scenario: (Failing on Prod - BBAU-2575) Validate that a user can create a family creative center account and that this action automatically creates a brother online account that is already validated

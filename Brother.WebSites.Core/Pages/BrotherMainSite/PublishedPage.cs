@@ -182,6 +182,13 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         [FindsBy(How = How.CssSelector, Using = "txtTelephone")]
         public IWebElement PhoneNumberTextBox;
 
+        [FindsBy(How = How.CssSelector, Using = "#btnSubmit")]
+        public IWebElement SubmitButton;
+
+        [FindsBy(How = How.CssSelector, Using = "div.checkbox [for=\"chkTerms\"]")]
+        public IWebElement AgreeToTermsAndConditions;
+
+
         public void GetPublishedPage(string url)
         {
             TestCheck.AssertIsEqual(HttpStatusCode.OK, GetWebPageResponse(url), "Incorrect Http Status Code returned");
@@ -662,13 +669,23 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
             }
             EmailAddressTextBox.Clear();
             EmailAddressTextBox.SendKeys(emailAddress);
-            //EmailAddressTextBox.SendKeys(Keys.Tab);
-        }
+         }
         public void PopulatePhoneNumberTextBox(string phoneNumber)
         {
             PhoneNumberTextBox.SendKeys(phoneNumber);
         }
-
+        public void CheckTermsAndConditions()
+        {
+            ScrollTo(AgreeToTermsAndConditions);
+            AgreeToTermsAndConditions.Click();
+           
+        }
+        public DownloadPage ClickSubmitButton()
+        {
+            ScrollTo(SubmitButton);
+            SubmitButton.Click();
+            return GetInstance<DownloadPage>(Driver);
+        }
 
     }
 }

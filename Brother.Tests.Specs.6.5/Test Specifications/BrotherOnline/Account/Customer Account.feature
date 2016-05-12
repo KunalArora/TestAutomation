@@ -73,31 +73,7 @@ Scenario: Customer has created a Brother Online account but has forgotten their 
 	And I am redirected to the Brother Login/Register page
 	Then I can sign back into Brother Online "United Kingdom" using the updated credentials
 	Then I can sign out of Brother Online
-
-# Create account, sign in, note missing menu option, add role to user, sign out and in again, note menu option present
-# Instant Ink role used as a baseline
-# ***-need to add additional scenario (see ticket number for steps) or ValidateRole Feature test 
-@IGNORE
-Scenario: Customer or Dealer role persists after email address change 
-	Given I am logged onto Brother Online "United Kingdom" using valid credentials
-	Then I can sign out of Brother Online
-	And If I grant the user account the "Extranet\Brother Online Ink Supply User" role
-	When I sign back into Brother Online "United Kingdom" using the same credentials
-	Then I can see the Instant Ink menu option from the BOL home page
-	When I navigate to my account for "United Kingdom"
-	And I click on Sign In Details
-	And If I enter a new email address "changed"
-	And If I enter the current password for email change
-	And I click on Update details
-	Then I can verify the email change occurred
-	Then I validate the new Business Email changes via email 
-	Then I can validate the update was successful
-	And I can sign out of Brother Online
-	Then If I sign back into Brother Online "United Kingdom" using the same credentials
-	And I can see the Instant Ink menu option from the BOL home page
-	Then I can sign out of Brother Online
 	
-
 # Validate that an existing user has the option to change their sign in preferences to social login 
 Scenario: Customer has the option to change their sign in preferences to social login	
    Given I want to create a new account with Brother Online "United Kingdom"
@@ -124,9 +100,6 @@ Scenario: Customer has the option to change their sign in preferences to social 
 	And I can navigate back to Brother Online home page
 	And I can sign out of Brother Online
 
-@IGNORE
-#BBAU-3022 - Defect logged in jira.
-# Unable to open business details page, since BPID creation is taking time.
 Scenario:(BBAU-3022)Customer get the correct error message when business details mandatory fields are not completed
    Given I want to create a new account with Brother Online "United Kingdom"
 	When I click on Create Account for "United Kingdom"
@@ -507,14 +480,6 @@ Scenario: Validate that a user account can be created using the maximun 241 user
 	Then I should be able to log into ""(.*)"" Brother Online using my max length username and password account details
 	And I can sign out of Brother Online
 	Then I am redirected to the Brother Home Page
-
-@ignore
-Scenario: Log in as a Printer On dealer and ensure that they can see the required permissions BBAU-2189
-# (ensure that a customer cannot see the same permissions)
-	
-@ignore
-Scenario: Create a user but test for BPID 
-# Create a new user account but add a check for the Users BPID in the dbo.Users table
 
 # User able to create a BOL Italy account without entering a valid tax code
 Scenario Outline: Customer unable to create a new BOL Italy account without entering a valid tax code
