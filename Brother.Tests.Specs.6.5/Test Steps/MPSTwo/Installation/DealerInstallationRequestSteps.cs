@@ -149,6 +149,17 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
         }
 
 
+        [When(@"I have completed installation for ""(.*)"" communication")]
+        public void WhenIHaveCompletedInstallationForCommunication(string type)
+        {
+            GivenINavigateToTheInstallerPage();
+            WhenIEnterTheContractReferenceNumber();
+            WhenIEnterDeviceSerialNumberForCommunication(type);
+            WhenIEnterTheDeviceIPAddress();
+            ThenICanConnectTheDeviceToBrotherEnvironment();
+            ThenICanCompleteDeviceInstallation();
+        }
+
 
         [When(@"I navigate to the contract Manage Device Screen")]
         public void WhenINavigateToTheContractManageDeviceScreen()
