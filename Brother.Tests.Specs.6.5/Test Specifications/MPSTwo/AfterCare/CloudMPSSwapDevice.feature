@@ -11,12 +11,7 @@ Scenario Outline: Installer can swap device that is on a contract
 	And I sign back into Cloud MPS as a "<Role1>" from "<Country>"
 	And I generate installation request for the contract with "<Method>" communication and "<Type>" installation
 	And I extract the installer url from Installation Request
-	When I navigate to the installer page
-	And I enter the contract reference number
-	And I enter device serial number for "<Type>" communication 
-	And I enter the device IP address
-	Then I can connect the device to Brother environment
-	And I can complete device installation
+	When I have completed installation for "<Type>" communication
 	And I can sign out of Brother Online
 
 	
