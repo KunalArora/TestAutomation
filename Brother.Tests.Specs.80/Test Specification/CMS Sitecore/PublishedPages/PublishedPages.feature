@@ -123,7 +123,10 @@ Scenario Outline: Omnijoin Free Trial Sign up
 	| FirstName       | AutoTest       |
 	| LastName        | AutoTest       |
 	| PhoneNumber     | 01555522522    |
-
+	
+	And I enter phone number as "<PhoneNumber>"
+	And I have Agreed to the Terms and Conditions
+	And I press submit button
 Scenarios: 
 	
 	 | Site Url																							 |
