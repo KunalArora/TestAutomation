@@ -4,8 +4,7 @@
 	I want to be able to swap contract's current device to a new device
 
 
-Scenario: Installer can swap device that is on a contract
-	Scenario Outline: Installer can complete installation for Cloud Communication for other countries
+Scenario Outline: Installer can swap device that is on a contract
 	Given "<Country>" Dealer have created a "<ContractType>" contract with "<UsageType>" and "<Length>" and "<Billing>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And the contract created above is approved
