@@ -234,9 +234,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 coy.Click();
                 return;
             }
-
-            
-
+          
         }
 
         public void ClickOnNextButtonToInvokeError()
