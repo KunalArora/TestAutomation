@@ -145,7 +145,9 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             CurrentPage.As<InstallerDeviceInstallationPage>().CompleteDeviceConnection();
             CurrentPage.As<InstallerDeviceInstallationPage>().ConfirmInstallationSucceed();
             CurrentPage.As<InstallerDeviceInstallationPage>().ConfirmCompleteMessageIsDisplayed();
-            CurrentPage.As<InstallerDeviceInstallationPage>().ConfirmThatInstallationRequestIsNoLongerDisplayed();
+            NextPage = CurrentPage.As<InstallerDeviceInstallationPage>()._ReturnBackToContractAcceptedPage();
+            NextPage = CurrentPage.As<DealerContractsAcceptedPage>().ConfirmThatInstallationRequestIsNoLongerDisplayed();
+            CurrentPage.As<ManageDevicesPage>().IsInstallationCompleted();
         }
 
 
@@ -169,6 +171,31 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             NextPage = CurrentPage.As<DealerContractsAcceptedPage>().NavigateToManageDevicesPage();
 
         }
+
+        [When(@"I begin device swapping process")]
+        public void WhenIBeginDeviceSwappingProcess()
+        {
+            
+        }
+
+        [When(@"I generate swapping device request")]
+        public void WhenIGenerateSwappingDeviceRequest()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+        [When(@"installer installed the new swap device")]
+        public void WhenInstallerInstalledTheNewSwapDevice()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+        [Then(@"the newly installed device is displayed on Managed Device screen")]
+        public void ThenTheNewlyInstalledDeviceIsDisplayedOnManagedDeviceScreen()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
 
 
         [When(@"I navigate to the Local Office Approver device management Screen")]

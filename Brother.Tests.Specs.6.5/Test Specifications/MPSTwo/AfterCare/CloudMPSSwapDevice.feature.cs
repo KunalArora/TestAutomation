@@ -94,6 +94,14 @@ this.ScenarioSetup(scenarioInfo);
 #line 14
  testRunner.When(string.Format("I have completed installation for \"{0}\" communication", type), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 15
+ testRunner.And("I begin device swapping process", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 16
+ testRunner.And("I generate swapping device request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 17
+ testRunner.And("installer installed the new swap device", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 18
+ testRunner.Then("the newly installed device is displayed on Managed Device screen", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 19
  testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
