@@ -122,12 +122,14 @@ Scenario Outline: Omnijoin Free Trial Sign up
 	| field           | value          |
 	| FirstName       | AutoTest       |
 	| LastName        | AutoTest       |
-	| PhoneNumber     | 01555522522    |
-	
+
 	And I enter phone number as "<PhoneNumber>"
 	And I have Agreed to the Terms and Conditions
-	And I press submit button
+	And I press submit button "<country>"
+	Then I should see download page
+	And Once I have Validated an Omnijoin Email was received and verified my account
+
 Scenarios: 
 	
-	 | Site Url																							 |
-	 | http://main.co.uk.brotherdv2.eu/business-solutions/web-conferencing/free-trial?sc_lang=en		 |
+	 | Site Url																							 |PhoneNumber     | 
+	 | http://main.co.uk.brotherdv2.eu/business-solutions/web-conferencing/free-trial?sc_lang=en		 |01555522522		|

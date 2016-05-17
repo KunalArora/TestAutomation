@@ -311,7 +311,6 @@ namespace Brother.Tests.Specs._80.Test_Steps.BrotherMainSite.PublishedPages
             CurrentPage.As<PublishedPage>().PopulateFirstNameTextBox(form.FirstName);
             CurrentPage.As<PublishedPage>().PopulateLastNameTextBox(form.LastName);
             WhenIEnterAValidEmailAddress(string.Empty); // Auto Generates with an empty string
-            CurrentPage.As<PublishedPage>().PopulatePhoneNumberTextBox(form.PhoneNumber);
         }
 
         public void WhenIEnterAValidEmailAddress(string validEmailAddress)
@@ -331,13 +330,17 @@ namespace Brother.Tests.Specs._80.Test_Steps.BrotherMainSite.PublishedPages
             CurrentPage.As<PublishedPage>().CheckTermsAndConditions();
         }
 
-        [Given(@"I press submit button")]
-        public void GivenIPressSubmitButton()
+        [Given(@"I press submit button ""(.*)""")]
+        public void GivenIPressSubmitButton(string country)
         {
-            CurrentPage.As<PublishedPage>().ClickSubmitButton();
+            NextPage = CurrentPage.As<PublishedPage>().ClickSubmitButton(country);
         }
 
-    
+        [Then(@"I should see download page")]
+        public void ThenIShouldSeeDownloadPage()
+        {
+            CurrentPage.As<DownloadPage>().VerifyPageTitleExist();
+        }
 
     }
 
