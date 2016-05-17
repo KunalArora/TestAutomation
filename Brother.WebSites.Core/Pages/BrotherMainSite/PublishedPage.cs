@@ -179,7 +179,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         [FindsBy(How = How.CssSelector, Using = "#txtEmail")]
         public IWebElement EmailAddressTextBox;
 
-        [FindsBy(How = How.CssSelector, Using = "txtTelephone")]
+        [FindsBy(How = How.CssSelector, Using = "#txtTelephone")]
         public IWebElement PhoneNumberTextBox;
 
         [FindsBy(How = How.CssSelector, Using = "#btnSubmit")]
@@ -229,11 +229,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         public void IsPageTitleDisplayed()
         {
             WaitForElementToExistByCssSelector(".product-detail--links.row");
-            //if (PageTitle == null)
-            //{
-             //   throw new NullReferenceException("Unable to locate page header");
-            //}
-            //AssertElementPresent(PageTitle, "Page Title", 30);
+            
         }
 
         public void IsFilterSectionDisplayed()
@@ -680,9 +676,9 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
             AgreeToTermsAndConditions.Click();
            
         }
-        public DownloadPage ClickSubmitButton()
+        public DownloadPage ClickSubmitButton(string country)
         {
-            ScrollTo(SubmitButton);
+            //ScrollTo(SubmitButton);
             SubmitButton.Click();
             return GetInstance<DownloadPage>(Driver);
         }

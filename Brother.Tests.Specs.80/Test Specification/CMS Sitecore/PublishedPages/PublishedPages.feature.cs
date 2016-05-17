@@ -290,8 +290,8 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("Omnijoin Free Trial Sign up")]
         [NUnit.Framework.CategoryAttribute("TEST")]
         [NUnit.Framework.TestCaseAttribute("http://main.co.uk.brotherdv2.eu/business-solutions/web-conferencing/free-trial?sc" +
-            "_lang=en", null)]
-        public virtual void OmnijoinFreeTrialSignUp(string siteUrl, string[] exampleTags)
+            "_lang=en", "01555522522", null)]
+        public virtual void OmnijoinFreeTrialSignUp(string siteUrl, string phoneNumber, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "TEST"};
@@ -314,17 +314,18 @@ this.ScenarioSetup(scenarioInfo);
             table1.AddRow(new string[] {
                         "LastName",
                         "AutoTest"});
-            table1.AddRow(new string[] {
-                        "PhoneNumber",
-                        "01555522522"});
 #line 120
  testRunner.And("I fill in the registration information using a valid email address", ((string)(null)), table1, "And ");
+#line 126
+ testRunner.And(string.Format("I enter phone number as \"{0}\"", phoneNumber), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 127
- testRunner.And("I enter phone number as \"<PhoneNumber>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 128
  testRunner.And("I have Agreed to the Terms and Conditions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 128
+ testRunner.And("I press submit button \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 129
- testRunner.And("I press submit button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("I should see download page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 130
+ testRunner.And("Once I have Validated an Omnijoin Email was received and verified my account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
