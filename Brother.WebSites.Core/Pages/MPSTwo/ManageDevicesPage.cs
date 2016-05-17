@@ -57,11 +57,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement ManageDevicesTabElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_RequestList_List_CellInstallationRequestStatus_0")]
         public IWebElement InstallationRequestStatusElement;
-
-
-
-
-
+        [FindsBy(How = How.CssSelector, Using = ".open .js-mps-swap-device")]
+        public IWebElement SwapRequestElement;
+        [FindsBy(How = How.CssSelector, Using = ".js-mps-swap-device-confirm")]
+        public IWebElement SwapCommencementConfirmationElement;
+        
+        
+        
 
         private string GetCancelledInstallationStatus()
         {
@@ -174,16 +176,32 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             InstallationRequestActionButtonElement.Click();
         }
 
+        public void BeginSwapProcess()
+        {
+            ClickOnActionButton();
+            WaitForElementToBeClickableByCssSelector(".open .js-mps-swap-device", 5, 5);
+            SwapRequestElement.Click();
+        }
+
+        public DealerSendInstallationEmailPage ConfirmSwapProcessCommencement()
+        {
+            if (SwapCommencementConfirmationElement == null)
+                throw new Exception("Swap confirmation pop up not displayed");
+            SwapCommencementConfirmationElement.Click();
+
+            return GetInstance<DealerSendInstallationEmailPage>();
+        }
+
         public void ClickOnCancelRequest()
         {
             if(CancelInstallationRequestElement == null)
                 throw new Exception("Cancel installation button not displayed");
             CancelInstallationRequestElement.Click();
-            ClickAcceptOnConfrimation(Driver);
+            ClickAcceptOnConfirmation(Driver);
             WebDriver.Wait(DurationType.Second, 3);
         }
 
-        public void ClickAcceptOnConfrimation(IWebDriver driver)
+        public void ClickAcceptOnConfirmation(IWebDriver driver)
         {
             WebDriver.Wait(DurationType.Millisecond, 1000);
             HeadlessDismissAlertOk();
@@ -256,6 +274,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             MPSJobRunnerPage.RunCompleteInstallationCommandJob();
             AssertElementPresent(InstallationRequestContainerElement, "Installation not finished");
             HeadlessDismissAlertOk();
+        }
+
+        public void IsInstallationCompleted()
+        {
+            var buttonCount = ActionsModule.NumberOfActionButtonDisplayed(Driver);
+            TestCheck.AssertIsEqual(1, buttonCount,
+                String.Format("{0} Actions buttons were returned meaning installation request is not removed", buttonCount));
+            MPSJobRunnerPage.NotifyBocOfNewChanges();
+            MPSJobRunnerPage.RunCreateOrderAndServiceRequestsCommandJob();
+            MPSJobRunnerPage.RunConsumableOrderRequestsCommandJob();
+            MPSJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob();
         }
 
         public void SelectLocationErrorIsDisplayed()

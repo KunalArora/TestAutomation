@@ -349,30 +349,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                                         "Complete Installation message not displayed");
         }
 
-        private void ReturnBackToContractAcceptedPage()
+        public DealerContractsAcceptedPage _ReturnBackToContractAcceptedPage()
         {
             var currentUrl = Driver.Url;
             var firstPart = currentUrl.Substring(0, 31);
             var newUrl = firstPart + "/mps/dealer/contracts/accepted";
             Driver.Navigate().GoToUrl(newUrl);
+
+            return GetInstance<DealerContractsAcceptedPage>();
         }
 
-        public void ConfirmThatInstallationRequestIsNoLongerDisplayed()
-        {
-            MPSJobRunnerPage.RunCompleteInstallationCommandJob();
-            MPSJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob();
-            if (Method() == "Email") return;
-            ReturnBackToContractAcceptedPage();
-            ActionsModule.ClickOnSpecificActionsElement(Driver);
-            var buttonCount = ActionsModule.NumberOfActionButtonDisplayed(Driver);
-            TestCheck.AssertIsEqual(1, buttonCount,
-                String.Format("{0} Actions buttons were returned meaning installation request is not removed", buttonCount));
-            MPSJobRunnerPage.NotifyBocOfNewChanges();
-            MPSJobRunnerPage.RunCreateOrderAndServiceRequestsCommandJob();
-            MPSJobRunnerPage.RunConsumableOrderRequestsCommandJob();
-            MPSJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob();
-
-        }
+        
 
         
 
