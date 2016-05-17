@@ -787,7 +787,7 @@ Scenarios:
 	| Professional | United Kingdom | Annual       | 1   | OmniJoin              | £331.20 |
 
 
-@ignore @SMOKE @UAT 
+@SMOKE @UAT 
 # BBAU-2956
 Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by bpid on UK site
 	Given I want to create a new account with Brother Online "<Country>"
@@ -819,8 +819,9 @@ Scenario Outline: Customer creates a new account with Brother Online using valid
 
 	
 Scenarios: 
-| Country			|	Site Url											  | UserName   | Password  |
-| United Kingdom    |http://prapp586v.brotherdc.eu/test/DataManager.aspx      | Automation | Password1 |                                     
+| Country        | Site Url                                      | UserName   | Password  |
+| United Kingdom | http://uk.brotherdv2.eu/test/DataManager.aspx | Automation | Password1 |
+#| United Kingdom    |http://prapp586v.brotherdc.eu/test/DataManager.aspx      | Automation | Password1 |
 
 
 @SMOKE @TEST
