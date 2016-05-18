@@ -40,7 +40,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetInstance<ManageDevicesPage>(Driver);
         }
 
-        public ManageDevicesPage ConfirmThatInstallationRequestIsNoLongerDisplayed()
+        public ManageDevicesPage NavigateToManageDevicesPageToConfirmThatInstallationRequestAvailability()
         {
             MPSJobRunnerPage.RunCompleteInstallationCommandJob();
             MPSJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob();
