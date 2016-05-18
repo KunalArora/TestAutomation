@@ -1,4 +1,5 @@
-﻿Feature: CloudMPSSwapDevice
+﻿@MPS @UAT @TEST
+Feature: CloudMPSSwapDevice
 	In order to remove a broken device from a contract
 	As an installer
 	I want to be able to swap contract's current device to a new device
@@ -14,8 +15,9 @@ Scenario Outline: Installer can swap device that is on a contract
 	When I have completed installation for "<Type>" communication
 	And I begin device swapping process
 	And I generate swapping device request
-	And installer installed the new swap device
+	And installer installed the new swap device for "<Type>" communication
 	Then the newly installed device is displayed on Managed Device screen
+	And I can complete the swap process
 	And I can sign out of Brother Online
 
 	
@@ -23,9 +25,9 @@ Scenarios:
 
 	| Role                            | Country | ContractType                      | UsageType                                 | Role1            | Method | Type | Length | Billing                 |
 	| Cloud MPS Local Office Approver | France  | Buy & Click                       | Engagement sur un minimum volume de pages | Cloud MPS Dealer | Cloud  | Web  | 3 ans  | Trimestrale anticipata  |
-	| Cloud MPS Local Office Approver | France  | Buy & Click                       | Engagement sur un minimum volume de pages | Cloud MPS Dealer | Cloud  | BOR  | 4 ans  | Trimestrale anticipata  |
-	| Cloud MPS Local Office Approver | Italy   | Acquisto + Consumo con assistenza | Volume minimo                             | Cloud MPS Dealer | Cloud  | BOR  | 36     | Trimestrale anticipata  |
-	| Cloud MPS Local Office Approver | Italy   | Acquisto + Consumo con assistenza | Volume minimo                             | Cloud MPS Dealer | Cloud  | Web  | 48     | Trimestrale anticipata  |
-	| Cloud MPS Local Office Approver | Spain   | Purchase & Click con Service      | Volúmen mínimo                            | Cloud MPS Dealer | Cloud  | BOR  | 3 años | Por trimestres vencidos |
-	| Cloud MPS Local Office Approver | Spain   | Purchase & Click con Service      | Volúmen mínimo                            | Cloud MPS Dealer | Cloud  | Web  | 3 años | Por trimestres vencidos |
+	#| Cloud MPS Local Office Approver | France  | Buy & Click                       | Engagement sur un minimum volume de pages | Cloud MPS Dealer | Cloud  | BOR  | 4 ans  | Trimestrale anticipata  |
+	#| Cloud MPS Local Office Approver | Italy   | Acquisto + Consumo con assistenza | Volume minimo                             | Cloud MPS Dealer | Cloud  | BOR  | 36     | Trimestrale anticipata  |
+	#| Cloud MPS Local Office Approver | Italy   | Acquisto + Consumo con assistenza | Volume minimo                             | Cloud MPS Dealer | Cloud  | Web  | 48     | Trimestrale anticipata  |
+	#| Cloud MPS Local Office Approver | Spain   | Purchase & Click con Service      | Volúmen mínimo                            | Cloud MPS Dealer | Cloud  | BOR  | 3 años | Por trimestres vencidos |
+	#| Cloud MPS Local Office Approver | Spain   | Purchase & Click con Service      | Volúmen mínimo                            | Cloud MPS Dealer | Cloud  | Web  | 3 años | Por trimestres vencidos |
 	

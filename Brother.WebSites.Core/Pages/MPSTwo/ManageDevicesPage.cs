@@ -61,6 +61,22 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement SwapRequestElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-swap-device-confirm")]
         public IWebElement SwapCommencementConfirmationElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_ComponentSuccess")]
+        public IWebElement SwapRequestSuccessConfirmationElement;
+        [FindsBy(How = How.CssSelector, Using = ".js-mps-filter-ignore .mps-txt-r")]
+        public IWebElement SwapProgressIndicatorElement;
+        [FindsBy(How = How.CssSelector, Using = ".mps-device-container")]
+        public IList<IWebElement> DisplayedDevicesLineElement;
+        [FindsBy(How = How.CssSelector, Using = "[id*=\"content_1_DeviceList_List_CellSerial_\"]")]
+        public IList<IWebElement> DisplayedSerialNumberElement;
+        [FindsBy(How = How.CssSelector, Using = ".open .js-mps-complete-swap-device")]
+        public IWebElement CompleteSwapProcessElement;
+
+        
+        
+        
+        
+        
         
         
         
@@ -88,8 +104,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 status = "Cancelado";
             } 
-
-            
 
             return status;
         }
@@ -183,14 +197,39 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             SwapRequestElement.Click();
         }
 
+        public CompleteSwapProcessPage CompleteSwapProcess()
+        {
+            ClickOnActionButton();
+            WaitForElementToBeClickableByCssSelector(".open .js-mps-complete-swap-device", 5, 5);
+            CompleteSwapProcessElement.Click();
+
+            return GetInstance<CompleteSwapProcessPage>();
+        }
+
         public DealerSendInstallationEmailPage ConfirmSwapProcessCommencement()
         {
             if (SwapCommencementConfirmationElement == null)
                 throw new Exception("Swap confirmation pop up not displayed");
+            WaitForElementToBeClickableByCssSelector(".js-mps-swap-device-confirm", 5, 5);
             SwapCommencementConfirmationElement.Click();
 
             return GetInstance<DealerSendInstallationEmailPage>();
         }
+
+        public void IsSwapInstallationRequestSent()
+        {
+            if(SwapRequestSuccessConfirmationElement == null)
+                throw new Exception("Swap request success confirmation is not displayed");
+            AssertElementPresent(SwapRequestSuccessConfirmationElement, "Swap request installation not sent");
+        }
+
+        public void IsSwapDeviceLineDisplayed()
+        {
+            var lineCount = DisplayedDevicesLineElement.Count;
+
+            TestCheck.AssertIsEqual(true, lineCount > 1, "Swap device line is not displayed");
+        }
+        
 
         public void ClickOnCancelRequest()
         {
@@ -208,12 +247,35 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ClickAcceptOnJsAlert(driver);
         }
 
+        public void IsSwapProgressTextDisplayed()
+        {
+           TestCheck.AssertIsEqual(false, String.IsNullOrWhiteSpace(SwapProgressIndicatorElement.Text),
+                                            "Swap progress text is not displayed");
+        }
+
         public void ClickToExposeInstallationRequest()
         {
             if(ShowInstallationRequestEmailElement == null)
                 throw new Exception("Show Installation Request element is not displayed");
             ShowInstallationRequestEmailElement.Click();
             WebDriver.Wait(DurationType.Second, 2);
+        }
+
+        public void IsNewlySwappedDeviceDisplayed()
+        {
+            var serialContainer = new List<String>();
+            var swapSerial = SpecFlow.GetContext("SwapSerialNumber");
+
+            foreach (var serial in DisplayedSerialNumberElement)
+            {
+                var serialText = serial.Text;
+
+                serialContainer.Add(serialText);
+            }
+
+            TestCheck.AssertIsEqual(true, serialContainer.Contains(swapSerial), 
+                                                "Swapped Device is not displayed");
+
         }
 
         public void IsInstallationRequestScreenDisplayed()

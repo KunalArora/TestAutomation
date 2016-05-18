@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +25,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string serialNumberBFR = @"A1T010014";
         private const string serialNumberBIT = @"A1T010015";
         private const string serialNumberBES = @"A1T010016";
+        private const string swapSerialNumberUK = @"F3Y112553";
+        private const string swapSerialNumberDE = @"F3Y112555";
+        private const string swapSerialNumberAT = @"F3Y112561";
+        private const string swapSerialNumberFR = @"F3Y111491";
+        private const string swapSerialNumberIT = @"F3Y111493";
+        private const string swapSerialNumberES = @"F3Y111494";
+         
 
         public override string DefaultTitle
         {
@@ -163,6 +171,40 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return serial;
         }
 
+        private string SwapSerialNumberUsed()
+        {
+            string serial = null;
+
+            if (IsUKSystem())
+            {
+                serial = swapSerialNumberUK;
+            }
+            else if (IsGermanSystem())
+            {
+                serial = swapSerialNumberDE;
+            }
+            else if (IsAustriaSystem())
+            {
+                serial = swapSerialNumberAT;
+            }
+            else if (IsFranceSystem())
+            {
+                serial = swapSerialNumberFR;
+            }
+            else if (IsItalySystem())
+            {
+                serial = swapSerialNumberIT;
+            }
+            else if (IsSpainSystem())
+            {
+                serial = swapSerialNumberES;
+            }
+
+            SpecFlow.SetContext("SwapSerialNumber", serial);
+
+            return serial;
+        }
+
 
         private string UsedSerialNumber()
         {
@@ -235,6 +277,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             
             ClearAndType(SerialNumberFieldElement, SerialNumberUsed());
            
+            SerialNumberFieldElement.SendKeys(Keys.Tab);
+        }
+
+        public void EnterSwapSerialNumber()
+        {
+            MPSJobRunnerPage.RunResetSerialNumberJob(SwapSerialNumberUsed());
+
+            ClearAndType(SerialNumberFieldElement, SwapSerialNumberUsed());
+
             SerialNumberFieldElement.SendKeys(Keys.Tab);
         }
 
