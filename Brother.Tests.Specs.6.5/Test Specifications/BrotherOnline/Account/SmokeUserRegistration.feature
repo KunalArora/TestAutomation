@@ -402,7 +402,7 @@ Given I want to create a new account with Brother Online "<Country>"
 	And I have Agreed to the Terms and Conditions
 	When I press Create Your Account
 	Then I should see my account confirmation page
-	And When I Click Go Back
+	And When I Click Go Backb
 	#And Once I have Validated an Email was received and verified my account
 	Then I should be able to log into "<Country>" Brother Online using my account details
 	And I can sign out of Brother Online
@@ -787,8 +787,9 @@ Scenarios:
 	| Professional | United Kingdom | Annual       | 1   | OmniJoin              | £331.20 |
 
 
-@SMOKE @UAT 
-# BBAU-2956
+
+
+@UAT 
 Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by bpid on UK site
 	Given I want to create a new account with Brother Online "<Country>"
 	When I click on Create Account for "<Country>"
@@ -819,9 +820,9 @@ Scenario Outline: Customer creates a new account with Brother Online using valid
 
 	
 Scenarios: 
-| Country        | Site Url                                      | UserName   | Password  |
-| United Kingdom | http://uk.brotherdv2.eu/test/DataManager.aspx | Automation | Password1 |
-#| United Kingdom    |http://prapp586v.brotherdc.eu/test/DataManager.aspx      | Automation | Password1 |
+| Country			|	Site Url											      | UserName   | Password  |
+| United Kingdom    |http://online.uk.cms.brotherqas.eu/test/DataManager.aspx     | Automation | Password1 |                                     
+
 
 
 @SMOKE @TEST
