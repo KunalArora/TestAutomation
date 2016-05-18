@@ -402,7 +402,7 @@ Given I want to create a new account with Brother Online "<Country>"
 	And I have Agreed to the Terms and Conditions
 	When I press Create Your Account
 	Then I should see my account confirmation page
-	And When I Click Go Backb
+	And When I Click Go Back
 	#And Once I have Validated an Email was received and verified my account
 	Then I should be able to log into "<Country>" Brother Online using my account details
 	And I can sign out of Brother Online
