@@ -1027,7 +1027,7 @@ testRunner.Given(string.Format("I want to create a new account with Brother Onli
 #line 404
  testRunner.Then("I should see my account confirmation page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 405
- testRunner.And("When I Click Go Backb", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("When I Click Go Back", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 407
  testRunner.Then(string.Format("I should be able to log into \"{0}\" Brother Online using my account details", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 408
@@ -1894,7 +1894,7 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("Customer creates a new account with Brother Online using valid credentials, confi" +
             "rm by bpid on UK site")]
         [NUnit.Framework.CategoryAttribute("UAT")]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "http://online.uk.cms.brotherqas.eu/test/DataManager.aspx", "Automation", "Password1", null)]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "http://prapp586v.brotherdc.eu/test/DataManager.aspx", "Automation", "Password1", null)]
         public virtual void CustomerCreatesANewAccountWithBrotherOnlineUsingValidCredentialsConfirmByBpidOnUKSite(string country, string siteUrl, string userName, string password, string[] exampleTags)
         {
             string[] @__tags = new string[] {
