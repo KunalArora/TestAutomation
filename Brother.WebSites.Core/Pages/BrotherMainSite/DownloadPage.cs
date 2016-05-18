@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Support.PageObjects;
 
 namespace Brother.WebSites.Core.Pages.BrotherMainSite
 {
@@ -17,6 +19,9 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         {
             get { return string.Empty; }
         }
+        
+        [FindsBy(How = How.CssSelector, Using = ".common-global-header--title")]
+        public IWebElement PageTitle;
 
         public void GetDownloadPage(string url)
         {
@@ -37,5 +42,40 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
             Helper.MsgOutput(string.Format("Response time from website [{0}] was [{1}ms]", webSite, responseTime.Milliseconds));
             return responseCode;
         }
+
+        public void VerifyPageTitleExist()
+        {
+            WaitForElementToExistByCssSelector(".common-global-header--title");
+            if (PageTitle == null)
+            {
+                throw new NullReferenceException("Unable to locate rich text module");
+            }
+
+        }
+
+        public bool VerifyPageTitleExists(int retry, int timeToWait)
+        {
+            try
+            {
+                if (WaitForElementToExistByCssSelector(".common-global-header--title", retry, timeToWait))
+                {
+                    var pageTitle =
+                        Driver.FindElement(By.CssSelector(".common-global-header--title"));
+                    if (pageTitle != null)
+                    {
+                        if (pageTitle.Displayed)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            catch (ElementNotVisibleException elementNotVisible)
+            {
+                MsgOutput(string.Format("Title does not exist [{0}]", elementNotVisible.Message));
+            }
+            return false;
+        }
+
     }
 }

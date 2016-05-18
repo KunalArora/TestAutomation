@@ -491,6 +491,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<RegistrationPage>().PopulateConfirmPasswordTextBox(form.Password);
             WhenIEnterAValidEmailAddress(string.Empty); // Auto Generates with an empty string
             CurrentPage.As<RegistrationPage>().PopulateTaxNumberTextBox(form.CodiceFiscale); //tax number for Italy
+            //CurrentPage.As<RegistrationPage>().PopulateTaxNumberTextBox(form.CodiceFiscale); //tax number for Portugal
         }
 
         [When(@"I fill in the registration information using a valid email address and excluding ID number for italy")]

@@ -2,6 +2,7 @@
 using System.Threading;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
+using Brother.WebSites.Core.Pages.BrotherMainSite;
 using Brother.WebSites.Core.Pages.BrotherOnline.Account;
 using Brother.WebSites.Core.Pages.BrotherOnline.ThirdParty;
 using TechTalk.SpecFlow;
@@ -120,6 +121,13 @@ namespace Brother.Tests.Specs._80
             ValidateAccountEmail();
         }
 
+        [Then(@"Once I have Validated an Omnijoin Email was received and verified my account")]
+        public void ThenOnceIHaveValidatedAnOmnijoinEmailWasReceivedAndVerifiedMyAccount()
+        {
+            Thread.Sleep(new TimeSpan(0, 0, 0, 10)); //  deliberate wait for account to finalise before validation
+            ValidateOmnijoinAccountEmail();
+        }
+        
         private void LaunchGuerrillaEmail(string inBox)
         {
             if (inBox == string.Empty)
@@ -151,6 +159,16 @@ namespace Brother.Tests.Specs._80
             CurrentPage.As<GuerillaEmailConfirmationPage>().SelectEmail("registration");
             NextPage = CurrentPage.As<GuerillaEmailConfirmationPage>().ValidateRegistrationEmail();
             TestCheck.AssertIsNotEqual(true, CurrentPage.As<RegistrationPage>().IsWarningBarPresent(2,5), "Warning Bar detected - Account could not be validated");
+        }
+
+        private void ValidateOmnijoinAccountEmail()
+        {
+            if (!Email.CheckEmailPackage("GuerrillaEmail")) return;
+            LaunchGuerrillaEmail(string.Empty);
+            CurrentPage.As<GuerillaEmailConfirmationPage>().SelectEmail("Omnijoin");
+            NextPage = CurrentPage.As<GuerillaEmailConfirmationPage>().ValidateOmnijoinFreeTrialEmail();
+            TestCheck.AssertIsNotEqual(true, CurrentPage.As<DownloadPage>().VerifyPageTitleExists(2, 5), "Warning Bar detected - Account could not be validated");
+
         }
 
         [Then(@"Once I have Validated an Email Token")]

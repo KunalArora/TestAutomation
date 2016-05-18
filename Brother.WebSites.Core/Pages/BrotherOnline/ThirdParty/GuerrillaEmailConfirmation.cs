@@ -4,6 +4,7 @@ using System.Net;
 using System.Threading;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
+using Brother.WebSites.Core.Pages.BrotherMainSite;
 using Brother.WebSites.Core.Pages.BrotherOnline.Account;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
 using OpenQA.Selenium;
@@ -616,6 +617,12 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.ThirdParty
         {
             ValidateEmailUrl("Account Validation", true, true);
             return GetInstance<RegistrationPage>(Driver, "", "");
+        }
+
+        public DownloadPage ValidateOmnijoinFreeTrialEmail()
+        {
+            ValidateEmailUrl("Omnijoin Free Trial", true, true);
+            return GetInstance<DownloadPage>(Driver, "", "");
         }
 
         public void DeleteEmail(string emailSubject)
