@@ -1027,7 +1027,7 @@ testRunner.Given(string.Format("I want to create a new account with Brother Onli
 #line 404
  testRunner.Then("I should see my account confirmation page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 405
- testRunner.And("When I Click Go Back", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("When I Click Go Backb", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 407
  testRunner.Then(string.Format("I should be able to log into \"{0}\" Brother Online using my account details", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 408
@@ -1893,15 +1893,11 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Customer creates a new account with Brother Online using valid credentials, confi" +
             "rm by bpid on UK site")]
-        [NUnit.Framework.IgnoreAttribute()]
-        [NUnit.Framework.CategoryAttribute("SMOKE")]
         [NUnit.Framework.CategoryAttribute("UAT")]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "http://prapp586v.brotherdc.eu/test/DataManager.aspx", "Automation", "Password1", null)]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "http://online.uk.cms.brotherqas.eu/test/DataManager.aspx", "Automation", "Password1", null)]
         public virtual void CustomerCreatesANewAccountWithBrotherOnlineUsingValidCredentialsConfirmByBpidOnUKSite(string country, string siteUrl, string userName, string password, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "ignore",
-                    "SMOKE",
                     "UAT"};
             if ((exampleTags != null))
             {
@@ -1909,15 +1905,15 @@ this.ScenarioSetup(scenarioInfo);
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer creates a new account with Brother Online using valid credentials, confi" +
                     "rm by bpid on UK site", @__tags);
-#line 792
+#line 791
 this.ScenarioSetup(scenarioInfo);
-#line 793
+#line 792
  testRunner.Given(string.Format("I want to create a new account with Brother Online \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 794
+#line 793
  testRunner.When(string.Format("I click on Create Account for \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 795
+#line 794
  testRunner.And("I am redirected to the Brother Login/Register page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 796
+#line 795
  testRunner.And("I have Checked No I Do Not Have An Account Checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table28 = new TechTalk.SpecFlow.Table(new string[] {
@@ -1935,33 +1931,33 @@ this.ScenarioSetup(scenarioInfo);
             table28.AddRow(new string[] {
                         "ConfirmPassword",
                         "@@@@@"});
-#line 797
+#line 796
  testRunner.And("I fill in the registration information using a valid email address", ((string)(null)), table28, "And ");
-#line 804
+#line 803
  testRunner.And("I have Agreed to the Terms and Conditions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 805
+#line 804
  testRunner.And("I declare that I do not use this account for business", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 806
+#line 805
  testRunner.When("I press Create Your Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 807
+#line 806
  testRunner.Then("I should see my account confirmation page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 809
+#line 808
  testRunner.When(string.Format("That I navigate to \"{0}\" in order to validate the CMS site", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 810
+#line 809
  testRunner.And(string.Format("I enter a username containing \"{0}\"", userName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 811
+#line 810
  testRunner.And(string.Format("I enter password containing \"{0}\"", password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 812
+#line 811
  testRunner.And(string.Format("I press login button \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 813
+#line 812
  testRunner.And(string.Format("I find email address used in the registration \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 814
+#line 813
  testRunner.And(string.Format("I click on Email Radio button \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 815
+#line 814
  testRunner.And(string.Format("I click on Search button to find the user email  \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 817
+#line 816
  testRunner.Then(string.Format("I should click details to check BPID for registered user \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 818
+#line 817
  testRunner.Then("I retrieve the BPID number generated for the user registration", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -1984,15 +1980,15 @@ this.ScenarioSetup(scenarioInfo);
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer creates a new account with Brother Online using valid credentials, confi" +
                     "rm by bpid on UK dv2 site", @__tags);
-#line 828
+#line 827
 this.ScenarioSetup(scenarioInfo);
-#line 829
+#line 828
  testRunner.Given(string.Format("I want to create a new account with Brother Online \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 830
+#line 829
  testRunner.When(string.Format("I click on Create Account for \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 831
+#line 830
  testRunner.And("I am redirected to the Brother Login/Register page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 832
+#line 831
  testRunner.And("I have Checked No I Do Not Have An Account Checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table29 = new TechTalk.SpecFlow.Table(new string[] {
@@ -2010,33 +2006,33 @@ this.ScenarioSetup(scenarioInfo);
             table29.AddRow(new string[] {
                         "ConfirmPassword",
                         "@@@@@"});
-#line 833
+#line 832
  testRunner.And("I fill in the registration information using a valid email address", ((string)(null)), table29, "And ");
-#line 840
+#line 839
  testRunner.And("I have Agreed to the Terms and Conditions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 841
+#line 840
  testRunner.And("I declare that I do not use this account for business", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 842
+#line 841
  testRunner.When("I press Create Your Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 843
+#line 842
  testRunner.Then("I should see my account confirmation page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 845
+#line 844
  testRunner.When(string.Format("That I navigate to \"{0}\" in order to validate the CMS site", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 846
+#line 845
  testRunner.And(string.Format("I enter a username containing \"{0}\"", userName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 847
+#line 846
  testRunner.And(string.Format("I enter password containing \"{0}\"", password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 848
+#line 847
  testRunner.And(string.Format("I press login button \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 849
+#line 848
  testRunner.And(string.Format("I find email address used in the registration \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 850
+#line 849
  testRunner.And(string.Format("I click on Email Radio button \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 851
+#line 850
  testRunner.And(string.Format("I click on Search button to find the user email  \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 853
+#line 852
  testRunner.Then(string.Format("I should click details to check BPID for registered user \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 854
+#line 853
  testRunner.Then("I retrieve the BPID number generated for the user registration", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
