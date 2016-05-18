@@ -114,6 +114,12 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             
         }
 
+        public void WhenIEnterSwapDeviceSerialNumberForCommunication(string method)
+        {
+            CurrentPage.As<InstallerDeviceInstallationPage>().VerifyTimeZoneIsDisplayed(method);
+            CurrentPage.As<InstallerDeviceInstallationPage>().EnterSwapSerialNumber();
+        }
+
         [When(@"I enter existing device serial number for ""(.*)"" communication")]
         public void WhenIEnterExistingDeviceSerialNumberForCommunication(string method)
         {
@@ -145,9 +151,22 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             CurrentPage.As<InstallerDeviceInstallationPage>().CompleteDeviceConnection();
             CurrentPage.As<InstallerDeviceInstallationPage>().ConfirmInstallationSucceed();
             CurrentPage.As<InstallerDeviceInstallationPage>().ConfirmCompleteMessageIsDisplayed();
-            CurrentPage.As<InstallerDeviceInstallationPage>().ConfirmThatInstallationRequestIsNoLongerDisplayed();
+            NextPage = CurrentPage.As<InstallerDeviceInstallationPage>()._ReturnBackToContractAcceptedPage();
+            NextPage = CurrentPage.As<DealerContractsAcceptedPage>().NavigateToManageDevicesPageToConfirmThatInstallationRequestAvailability();
+            CurrentPage.As<ManageDevicesPage>().IsInstallationCompleted();
         }
 
+
+        [When(@"I have completed installation for ""(.*)"" communication")]
+        public void WhenIHaveCompletedInstallationForCommunication(string type)
+        {
+            GivenINavigateToTheInstallerPage();
+            WhenIEnterTheContractReferenceNumber();
+            WhenIEnterDeviceSerialNumberForCommunication(type);
+            WhenIEnterTheDeviceIPAddress();
+            ThenICanConnectTheDeviceToBrotherEnvironment();
+            ThenICanCompleteDeviceInstallation();
+        }
 
 
         [When(@"I navigate to the contract Manage Device Screen")]
@@ -159,6 +178,60 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
 
         }
 
+        [When(@"I begin device swapping process")]
+        public void WhenIBeginDeviceSwappingProcess()
+        {
+            CurrentPage.As<ManageDevicesPage>().BeginSwapProcess();
+            NextPage = CurrentPage.As<ManageDevicesPage>().ConfirmSwapProcessCommencement();
+        }
+
+        [When(@"I generate swapping device request")]
+        public void WhenIGenerateSwappingDeviceRequest()
+        {
+            CurrentPage.As<DealerSendInstallationEmailPage>().IsDeviceModelDisplayedOnSwapConfirmationPage();
+            CurrentPage.As<DealerSendInstallationEmailPage>().EnterInstallaterEmail();
+            NextPage = CurrentPage.As<DealerSendInstallationEmailPage>().SendSwapInstallationRequest();
+            CurrentPage.As<ManageDevicesPage>().IsSwapInstallationRequestSent();
+            CurrentPage.As<ManageDevicesPage>().IsSwapProgressTextDisplayed();
+            CurrentPage.As<ManageDevicesPage>().IsSwapDeviceLineDisplayed();
+        }
+
+        [When(@"installer installed the new swap device for ""(.*)"" communication")]
+        public void WhenInstallerInstalledTheNewSwapDeviceForCommunication(string type)
+        {
+            CurrentPage.As<ManageDevicesPage>().ClickToExposeInstallationRequest();
+            CurrentPage.As<ManageDevicesPage>().IsInstallationRequestScreenDisplayed();
+            NextPage = CurrentPage.As<ManageDevicesPage>().LaunchInstallerPage();
+            CurrentPage.As<InstallerDeviceInstallationPage>().EnterContractReference();
+            CurrentPage.As<InstallerDeviceInstallationPage>().ProceedOnInstaller();
+
+            WhenIEnterSwapDeviceSerialNumberForCommunication(type);
+            WhenIEnterTheDeviceIPAddress();
+            ThenICanConnectTheDeviceToBrotherEnvironment();
+            //ThenICanCompleteDeviceInstallation();
+        }
+
+        [Then(@"the newly installed device is displayed on Managed Device screen")]
+        public void ThenTheNewlyInstalledDeviceIsDisplayedOnManagedDeviceScreen()
+        {
+            CurrentPage.As<InstallerDeviceInstallationPage>().CompleteDeviceConnection();
+            CurrentPage.As<InstallerDeviceInstallationPage>().ConfirmInstallationSucceed();
+            CurrentPage.As<InstallerDeviceInstallationPage>().ConfirmCompleteMessageIsDisplayed();
+            NextPage = CurrentPage.As<InstallerDeviceInstallationPage>()._ReturnBackToContractAcceptedPage();
+            NextPage = CurrentPage.As<DealerContractsAcceptedPage>().NavigateToManageDevicesPageToConfirmThatInstallationRequestAvailability();
+        }
+
+        [Then(@"I can complete the swap process")]
+        public void ThenICanCompleteTheSwapProcess()
+        {
+            CurrentPage.As<ManageDevicesPage>().IsNewlySwappedDeviceDisplayed();
+            NextPage = CurrentPage.As<ManageDevicesPage>().CompleteSwapProcess();
+            CurrentPage.As<CompleteSwapProcessPage>().IsCompleteSwapProcessScreenDisplayed();
+            CurrentPage.As<CompleteSwapProcessPage>().IsNewDeviceSerialNumberDisplayed();
+            CurrentPage.As<CompleteSwapProcessPage>().IsOldDeviceSerialNumberDisplayed();
+            NextPage = CurrentPage.As<CompleteSwapProcessPage>().CompleteSwapProcessThroughPrintCountSwap();
+            CurrentPage.As<ManageDevicesPage>().IsSwapInstallationRequestSent();
+        }
 
         [When(@"I navigate to the Local Office Approver device management Screen")]
         public void WhenINavigateToTheLocalOfficeApproverDeviceManagementScreen()

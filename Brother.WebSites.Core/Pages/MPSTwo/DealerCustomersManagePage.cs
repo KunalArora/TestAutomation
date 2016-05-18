@@ -146,6 +146,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [FindsBy(How = How.CssSelector, Using = "input[type=\"submit\"]#content_1_ButtonSave")]
         public IWebElement saveButtonElement;
 
+        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerCompanyRegistrationNumber_Input")]
+        public IWebElement CompanyRegistrationNumerElement;
+        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerVatRegistrationNumber_Input")]
+        public IWebElement VatFieldElement;
+
         public override string DefaultTitle
         {
             get { return string.Empty; }
@@ -218,6 +223,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             EnterPropertyLegalForm(org.LegalForm);
             EnterPropertyTradingStyle(org.TradingStyle);
             EnterPropertyAuthorisedSignatory(org.AuthorisedSignatory);
+            EnterRegistrationNumber();
+            EnterInitialVat();
 
             //EnterTextboxArea(CompanyNameElement, org.Name);
             //EnterTextboxArea(PropertyNumberElement, org.PropertyNumber);
@@ -302,6 +309,36 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             PropertyAreaElement.Clear();
             PropertyAreaElement.SendKeys(propertyArea);
             WebDriver.Wait(Helper.DurationType.Millisecond, 100);
+        }
+
+        public void EnterRegistrationNumber()
+        {
+            if (IsFranceSystem())
+            {
+                ClearAndType(CompanyRegistrationNumerElement, "RCS PARIS 453 983 245");
+            }
+            else if (IsUKSystem())
+            {
+                ClearAndType(CompanyRegistrationNumerElement, "06488522");
+            }
+
+        }
+
+        public void EnterInitialVat()
+        {
+            if (IsItalySystem())
+            {
+                ClearAndType(VatFieldElement, "IT00743110157");
+            }
+            else if (IsFranceSystem())
+            {
+                ClearAndType(VatFieldElement, "FR40303265045");
+            }
+            else if (IsUKSystem())
+            {
+                ClearAndType(VatFieldElement, "GB980780684");
+            }
+
         }
 
         private void EnterPropertyTown(string propertyTown)

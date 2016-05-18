@@ -27,7 +27,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.DataManager
 
         public void GetDataManagerpage(string url)
         {
-            TestCheck.AssertIsEqual(HttpStatusCode.OK, GetWebPageResponse(url), "Incorrect Http Status Code returned");
+            //TestCheck.AssertIsEqual(HttpStatusCode.OK, GetWebPageResponse(url), "Incorrect Http Status Code returned");
 
             WebDriver.SetPageLoadTimeout(TimeSpan.FromSeconds(120));
 
@@ -121,12 +121,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.DataManager
 
        public void CheckBPIDFromDataTable()
        {
-           string bpidnumber = BPIDValueFromDataTable.Text;
-           if (bpidnumber == null)
-            {
-                throw new Exception("Unable to bpid value on page");
-            }
-           AssertElementPresent(BPIDValueFromDataTable, "BPIDNumber ihas been created successfully on user registration");
-       }
+           string bpidnumber = BPIDValueFromDataTable.Text.Trim();
+           TestCheck.AssertIsNotNullOrEmpty(bpidnumber,
+               "BPIDNumber has not been created successfully on user registration");
+           }
     }
 }

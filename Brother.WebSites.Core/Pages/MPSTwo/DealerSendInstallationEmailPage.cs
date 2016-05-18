@@ -53,6 +53,21 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             
         }
 
+
+        public void IsDeviceModelDisplayedOnSwapConfirmationPage()
+        {
+            var aContainer = new List<String>();
+            var serialNumber = SpecFlow.GetContext("SerialNumber");
+
+            foreach (var item in PinLabelElement)
+            {
+                var itemText = item.Text;
+                aContainer.Add(itemText);
+            }
+
+            TestCheck.AssertIsEqual(true, aContainer.Contains(serialNumber), "Device Model is displayed");
+        }
+
         public void IsPinFieldPopulated()
         {
 
@@ -66,6 +81,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             NextButtonElement.Click();
             ConfirmInstallationEmailSent();
 
+        }
+
+        public ManageDevicesPage SendSwapInstallationRequest()
+        {
+            NextButtonElement.Click();
+            return GetTabInstance<ManageDevicesPage>();
         }
 
         public void EnterInstallaterEmail()

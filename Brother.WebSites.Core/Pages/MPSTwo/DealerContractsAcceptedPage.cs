@@ -39,6 +39,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             MPSJobRunnerPage.RunCreateCustomerAndPersonCommandJob();
             return GetInstance<ManageDevicesPage>(Driver);
         }
+
+        public ManageDevicesPage NavigateToManageDevicesPageToConfirmThatInstallationRequestAvailability()
+        {
+            MPSJobRunnerPage.RunCompleteInstallationCommandJob();
+            MPSJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob();
+            ActionsModule.ClickOnSpecificActionsElement(Driver);
+            ScrollTo(ManageDevicesElement);
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ManageDevicesElement);
+
+            return GetInstance<ManageDevicesPage>();
+        }
     
     }
 }
