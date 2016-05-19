@@ -127,7 +127,8 @@ Scenario Outline: Omnijoin Free Trial Sign up
 	And I have Agreed to the Terms and Conditions
 	And I press submit button "<country>"
 	Then I should see download page
-	And Once I have Validated an Omnijoin Email was received and verified my account
+	#And Once I have Validated an Omnijoin Email was received and verified my account
+	And I have Validated an Omnijoin Email was received and verified my account
 
 Scenarios: 
 	
