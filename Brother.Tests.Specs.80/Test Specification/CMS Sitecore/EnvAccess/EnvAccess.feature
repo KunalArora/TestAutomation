@@ -10,7 +10,7 @@ Scenario Outline: Get 200 OK response back from the following Brother Main Sites
 	Scenarios:
 	| Language       | Main Site										  |
 	| United Kingdom | http://main.co.uk.brotherdev.eu/sitecore/login	  |
-	| United Kingdom | http://main.co.uk.brotherdv2.eu/sitecore/login	  |
+	#| United Kingdom | http://main.co.uk.brotherdv2.eu/sitecore/login	  |
 	| United Kingdom | http://main.co.uk.cms.brotherqas.eu/sitecore/login |
 #	| United Kingdom | http://main.co.uk.cms.brother.eu/sitecore/login	  |
 
