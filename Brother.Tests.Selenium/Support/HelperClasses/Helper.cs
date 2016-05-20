@@ -91,7 +91,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             set { _locale = value; }
         }
 
-        public static string Abbrev
+       public static string Abbrev
         {
             get { return _abbreviate.ToLower(); }
             set { _abbreviate = value; }
@@ -125,6 +125,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
         };
 
+      
 
         private static readonly Dictionary<string, string> _BrotherAbbrev = new Dictionary<string, string>
         {
@@ -146,7 +147,8 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             {"Slovakia", "BSK"},
             {"Slovenia", "BSI"},
             {"Spain", "BES"},
-            {"Switzerland", "BCH"},
+            {"Sweden", "BNS"},
+            {"Switzerland", "BSW"},
             {"Italy", "BIT"},
             {"Bulgaria", "BBG"},
             {"Austria", "BAT"},
@@ -165,9 +167,12 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             return String.Empty;
         }
 
+
+
         public static void SetCountry(string country)
         {
             string locale;
+            SpecFlow.SetContext("CountryOfTest", country);
             Locale = _countries.TryGetValue(country, out locale) ? locale : String.Empty;
             if (Locale.Equals(string.Empty))
             {
@@ -176,7 +181,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             MsgOutput("Setting Country to ", Locale);
         }
 
-        public static void SetMPSCountryAbbreviation(string country)
+        public static void SetMpsCountryAbbreviation(string country)
         {
             string abbr;
             Abbrev = _BrotherAbbrev.TryGetValue(country, out abbr) ? abbr : String.Empty;

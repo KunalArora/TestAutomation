@@ -12,6 +12,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
+using SpecFlow = Brother.Tests.Selenium.Lib.Support.HelperClasses.SpecFlow;
 
 namespace Brother.Tests.Specs.BrotherOnline.Account
 {

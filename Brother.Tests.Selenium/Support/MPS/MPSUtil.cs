@@ -801,7 +801,176 @@ namespace Brother.Tests.Selenium.Lib.Support
             return postCode;
         }
 
+        public static string PostCodeIr()
+        {
+            String[] zip = {
+                                    "DUBLIN1",
+                                    "DUBLIN2",
+                                    "DUBLIN3",
+                                    "DUBLIN4",
+                                    "DUBLIN5",
+                                    "DUBLIN6",
+                                    "DUBLIN7",
+                                    "DUBLIN8",
+                                    "DUBLIN9",
+                                    "DUBLIN10"
+					            };
+            var postCode = zip[new Random().Next(9)];
 
+            return postCode;
+        }
+
+        public static string PostCodeNs()
+        {
+            String[] zip = {
+                                    "18600",
+                                    "18601",
+                                    "18603",
+                                    "18621",
+                                    "18622",
+                                    "18623",
+                                    "18624",
+                                    "18625",
+                                    "18626",
+                                    "18630",
+                                    "18631",
+                                    "18632",
+                                    "18633",
+                                    "18634",
+                                    "18635",
+                                    "18636",
+                                    "18637",
+                                    "18638",
+                                    "18639",
+                                    "18640"
+
+					            };
+            var postCode = zip[new Random().Next(20)];
+
+            return postCode;
+        }
+
+        public static string PostCodePl()
+        {
+            String[] zip = {
+                                    "50-066",
+                                    "50-067",
+                                    "50-068",
+                                    "50-069",
+                                    "50-070",
+                                    "50-071",
+                                    "50-072",
+                                    "50-073",
+                                    "50-074",
+                                    "50-075",
+                                    "50-076",
+                                    "50-077",
+                                    "50-078",
+                                    "50-079",
+                                    "50-080",
+                                    "50-082",
+                                    "50-083",
+                                    "50-084",
+                                    "50-085",
+                                    "50-086",
+                                    "50-087"
+					            };
+            var postCode = zip[new Random().Next(20)];
+
+            return postCode;
+        }
+
+        public static string PostCodeNl()
+        {
+            String[] zip = {
+                                    "30001",
+                                    "25220",
+                                    "18412",
+                                    "28520",
+                                    "29100",
+                                    "29679",
+                                    "30153",
+                                    "35520",
+                                    "41092",
+                                    "48001",
+                                    "48330",
+                                    "03610",
+                                    "08003",
+                                    "13500",
+                                    "21400",
+                                    "25220",
+                                    "25589",
+                                    "03600",
+                                    "48820",
+                                    "35572",
+                                    "35017"
+					            };
+            var postCode = zip[new Random().Next(20)];
+
+            return postCode;
+        }
+
+        public static string PostCodeBe()
+        {
+            String[] zip = {
+                                    "3000",
+                                    "2522",
+                                    "1841",
+                                    "2852",
+                                    "2910",
+                                    "2967",
+                                    "3015",
+                                    "3552",
+                                    "4109",
+                                    "4800",
+                                    "4833",
+                                    "0361",
+                                    "0800",
+                                    "1350",
+                                    "2140",
+                                    "2522",
+                                    "2558",
+                                    "0360",
+                                    "4882",
+                                    "3557",
+                                    "3501"
+					            };
+            var postCode = zip[new Random().Next(20)];
+
+            return postCode;
+        }
+
+        public static string PostCodeSw()
+        {
+            String[] zip = {
+                                    "3001",
+                                    "2520",
+                                    "1412",
+                                    "8520",
+                                    "2100",
+                                    "2679",
+                                    "3153",
+                                    "3520",
+                                    "4092",
+                                    "4001",
+                                    "4330",
+                                    "0610",
+                                    "0003",
+                                    "1500",
+                                    "2400",
+                                    "2220",
+                                    "2589",
+                                    "0600",
+                                    "4820",
+                                    "3572",
+                                    "3517"
+					            };
+            var postCode = zip[new Random().Next(20)];
+
+            return postCode;
+        }
+
+     
         public static string PostCodeGB()
         {
             String[] zip = {

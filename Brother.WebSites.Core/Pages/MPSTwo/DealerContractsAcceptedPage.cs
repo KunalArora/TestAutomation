@@ -44,6 +44,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             MPSJobRunnerPage.RunCompleteInstallationCommandJob();
             MPSJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob();
+            WebDriver.Wait(DurationType.Second,  10);
             ActionsModule.ClickOnSpecificActionsElement(Driver);
             ScrollTo(ManageDevicesElement);
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ManageDevicesElement);

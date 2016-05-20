@@ -391,6 +391,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 CompleteCloudInstallationComfirmationElement.Click();
                 MPSJobRunnerPage.NotifyBocOfNewChanges();
             }
+
+            MPSJobRunnerPage.RunCompleteInstallationCommandJob();
            
         }
 

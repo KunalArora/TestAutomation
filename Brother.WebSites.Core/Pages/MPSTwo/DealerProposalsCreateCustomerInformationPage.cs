@@ -251,7 +251,30 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 ClearAndType(CompanyRegistrationNumerElement, "06488522");
             }
-
+            else if (IsIrelandSystem())
+            {
+                ClearAndType(CompanyRegistrationNumerElement, "159555");
+            }
+            else if (IsPolandSystem())
+            {
+                ClearAndType(CompanyRegistrationNumerElement, "8522470967");
+            }
+            else if (IsNetherlandSystem())
+            {
+                ClearAndType(CompanyRegistrationNumerElement, "66019702");
+            }
+            else if (IsSwedenSystem())
+            {
+                ClearAndType(CompanyRegistrationNumerElement, "556026-6883");
+            }
+            else if (IsBelgiumSystem())
+            {
+                ClearAndType(CompanyRegistrationNumerElement, "47706706");
+            }
+            else if (IsSwissSystem())
+            {
+                ClearAndType(CompanyRegistrationNumerElement, "CHE-106.568.179");
+            }
         }
 
         public void EnterInitialVat()
@@ -267,7 +290,30 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 ClearAndType(VatFieldElement, "GB980780684");
             }
-            
+            else if (IsIrelandSystem())
+            {
+                ClearAndType(VatFieldElement, "IE6433435F");
+            }
+            else if (IsBelgiumSystem())
+            {
+                ClearAndType(VatFieldElement, "BE0428759497");
+            }
+            else if (IsPolandSystem())
+            {
+                ClearAndType(VatFieldElement, "PL8567346216");
+            }
+            else if (IsNetherlandSystem())
+            {
+                ClearAndType(VatFieldElement, "NL004495445B01");
+            }
+            else if (IsSwedenSystem())
+            {
+                ClearAndType(VatFieldElement, "SE123456789701");
+            }
+            else if (IsSwissSystem())
+            {
+                ClearAndType(VatFieldElement, "PL8567346216");
+            }
         }
 
        public void EnterContactFirstName()
@@ -302,12 +348,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
            EnterContactEmailAdress();
        }
 
-       private IWebElement ColourClickPriceElement()
-       {
-           return GetElementByCssSelector(ColourElement, 10);
-       }
-
-
+      
         public void EnterCompanyName()
         {
             if (CompanyNameElement == null) return;
@@ -357,9 +398,39 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             } else if (IsItalySystem())
             {
                 code = MpsUtil.PostCodeIt();
+
             } else if (IsSpainSystem())
             {
                 code = MpsUtil.PostCodeSp();
+
+            }
+            else if (IsIrelandSystem())
+            {
+                code = MpsUtil.PostCodeIr();
+
+            }
+            else if (IsPolandSystem())
+            {
+                code = MpsUtil.PostCodePl();
+
+            }
+            else if (IsNetherlandSystem())
+            {
+                code = MpsUtil.PostCodeNl();
+
+            }
+            else if (IsSwedenSystem())
+            {
+                code = MpsUtil.PostCodeNs();
+
+            }
+            else if (IsBelgiumSystem())
+            {
+                code = MpsUtil.PostCodeBe();
+            }
+            else if (IsSwissSystem())
+            {
+                code = MpsUtil.PostCodeSw();
             }
 
             return code;
