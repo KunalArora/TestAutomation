@@ -306,7 +306,7 @@ namespace Brother.Tests.Selenium.Lib.Support
         
         public static string Username(string country, string userType, IWebDriver driver)
         {
-            Helper.SetMPSCountryAbbreviation(country);
+            Helper.SetMpsCountryAbbreviation(country);
 
             string finishedUsername = null;
             var abbr = Helper.Abbrev.ToUpper();
@@ -395,7 +395,17 @@ namespace Brother.Tests.Selenium.Lib.Support
 
         public static string PasswordPrefix()
         {
+            var country = HelperClasses.SpecFlow.GetContext("CountryOfTest");
             var pre = Helper.Locale;
+            switch (country)
+            {
+                case "Ireland":
+                    pre = "IR";
+                    break;
+                case "Switzerland":
+                    pre = "SW";
+                    break;
+            }
             return pre.ToUpper();
         }
     }

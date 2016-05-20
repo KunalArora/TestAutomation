@@ -76,7 +76,7 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
         [Given(@"I extract the installer url from Installation Request")]
         public void GivenIExtractTheInstallerUrlFromInstallationRequest()
         {
-            CurrentPage.As<ManageDevicesPage>().ClickOnActionButton();
+            CurrentPage.As<ManageDevicesPage>().ClickOnActionButtonOnDisplay();
             CurrentPage.As<ManageDevicesPage>().ClickToExposeInstallationRequest();
             CurrentPage.As<ManageDevicesPage>().IsInstallationRequestScreenDisplayed();
             CurrentPage.As<ManageDevicesPage>().GetInstallationLink();
@@ -199,7 +199,7 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
         [When(@"installer installed the new swap device for ""(.*)"" communication")]
         public void WhenInstallerInstalledTheNewSwapDeviceForCommunication(string type)
         {
-            CurrentPage.As<ManageDevicesPage>().ClickToExposeInstallationRequest();
+            CurrentPage.As<ManageDevicesPage>().ClickToExposeSwapInstallationRequest();
             CurrentPage.As<ManageDevicesPage>().IsInstallationRequestScreenDisplayed();
             NextPage = CurrentPage.As<ManageDevicesPage>().LaunchInstallerPage();
             CurrentPage.As<InstallerDeviceInstallationPage>().EnterContractReference();
@@ -208,7 +208,7 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             WhenIEnterSwapDeviceSerialNumberForCommunication(type);
             WhenIEnterTheDeviceIPAddress();
             ThenICanConnectTheDeviceToBrotherEnvironment();
-            //ThenICanCompleteDeviceInstallation();
+           // ThenICanCompleteDeviceInstallation();
         }
 
         [Then(@"the newly installed device is displayed on Managed Device screen")]
@@ -338,7 +338,7 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
         [Then(@"I can cancel the above created installation request")]
         public void ThenICanCancelTheAboveCreatedInstallationRequest()
         {
-            CurrentPage.As<ManageDevicesPage>().ClickOnActionButton();
+            CurrentPage.As<ManageDevicesPage>().ClickOnActionButtonOnDisplay();
             CurrentPage.As<ManageDevicesPage>().ClickOnCancelRequest();
             //CurrentPage.As<ManageDevicesPage>().RefreshManageDeviceScreen();
             CurrentPage.As<ManageDevicesPage>().IsInstallationRequestCancelled();

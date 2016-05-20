@@ -37,6 +37,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement InstallationRequestContainerElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-filter-ignore button")]
         public IWebElement InstallationRequestActionButtonElement;
+        [FindsBy(How = How.CssSelector, Using = ".js-mps-filter-ignore button")]
+        public IList<IWebElement> InstallationRequestActionButtonsElement;
         [FindsBy(How = How.CssSelector, Using = ".open .js-mps-delete-installation-request")]
         public IWebElement InstallationRequestDeleteActionElement;
         [FindsBy(How = How.CssSelector, Using = ".modal-header [aria-hidden=\"true\"]")]
@@ -183,23 +185,39 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             HeadlessDismissAlertOk();
         }
 
-        public void ClickOnActionButton()
+        public void ClickOnActionButtonOnDisplay()
         {
             if(InstallationRequestActionButtonElement == null)
                 throw new Exception("Installation Action is not displayed");
             InstallationRequestActionButtonElement.Click();
         }
 
+        public void ClickOnTheLastActionButton()
+        {
+            if(InstallationRequestActionButtonsElement == null)
+                throw new Exception("No action button displayed");
+
+            InstallationRequestActionButtonsElement.Last().Click();
+        }
+
         public void BeginSwapProcess()
         {
-            ClickOnActionButton();
+            if (InstallationRequestActionButtonsElement.Count > 1)
+            {
+                ClickOnTheLastActionButton();
+            }
+            else
+            {
+                ClickOnActionButtonOnDisplay();
+            }
+
             WaitForElementToBeClickableByCssSelector(".open .js-mps-swap-device", 5, 5);
             SwapRequestElement.Click();
         }
 
         public CompleteSwapProcessPage CompleteSwapProcess()
         {
-            ClickOnActionButton();
+            ClickOnActionButtonOnDisplay();
             WaitForElementToBeClickableByCssSelector(".open .js-mps-complete-swap-device", 5, 5);
             CompleteSwapProcessElement.Click();
 
@@ -210,7 +228,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             if (SwapCommencementConfirmationElement == null)
                 throw new Exception("Swap confirmation pop up not displayed");
-            WaitForElementToBeClickableByCssSelector(".js-mps-swap-device-confirm", 5, 5);
+            //WaitForElementToBeClickableByCssSelector(".js-mps-swap-device-confirm", 5, 5);
+            WebDriver.Wait(DurationType.Second, 3);
             SwapCommencementConfirmationElement.Click();
 
             return GetInstance<DealerSendInstallationEmailPage>();
@@ -257,6 +276,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             if(ShowInstallationRequestEmailElement == null)
                 throw new Exception("Show Installation Request element is not displayed");
+            ShowInstallationRequestEmailElement.Click();
+            WebDriver.Wait(DurationType.Second, 2);
+        }
+
+        public void ClickToExposeSwapInstallationRequest()
+        {
+            if (ShowInstallationRequestEmailElement == null)
+                throw new Exception("Show Installation Request element is not displayed");
+            ClickOnActionButtonOnDisplay();
             ShowInstallationRequestEmailElement.Click();
             WebDriver.Wait(DurationType.Second, 2);
         }
@@ -333,7 +361,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsInstallationRequestDisplayed()
         {
-            MPSJobRunnerPage.RunCompleteInstallationCommandJob();
             AssertElementPresent(InstallationRequestContainerElement, "Installation not finished");
             HeadlessDismissAlertOk();
         }
@@ -341,8 +368,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void IsInstallationCompleted()
         {
             var buttonCount = ActionsModule.NumberOfActionButtonDisplayed(Driver);
-            TestCheck.AssertIsEqual(1, buttonCount,
-                String.Format("{0} Actions buttons were returned meaning installation request is not removed", buttonCount));
+            //TestCheck.AssertIsEqual(1, buttonCount,
+            //  String.Format("{0} Actions buttons were returned meaning installation request is not removed", buttonCount));
             MPSJobRunnerPage.NotifyBocOfNewChanges();
             MPSJobRunnerPage.RunCreateOrderAndServiceRequestsCommandJob();
             MPSJobRunnerPage.RunConsumableOrderRequestsCommandJob();
