@@ -121,6 +121,22 @@ namespace Brother.Tests.Specs._80
             ValidateAccountEmail();
         }
 
+        [Then(@"I have Validated an Omnijoin Email was received and verified my account")]
+        public void ThenIHaveValidatedAnOmnijoinEmailWasReceivedAndVerifiedMyAccount()
+        {
+            if (Email.CheckEmailPackage("GuerrillaEmail"))
+            {
+                LaunchGuerrillaEmail(string.Empty);
+                CurrentPage.As<GuerillaEmailConfirmationPage>().SelectEmail("trial");
+                CurrentPage.As<GuerillaEmailConfirmationPage>().CheckAllEmailLinks();
+            }
+            else
+            {
+                Helper.MsgOutput("Skipping Email Validation for this step");
+            }
+        }
+
+
         [Then(@"Once I have Validated an Omnijoin Email was received and verified my account")]
         public void ThenOnceIHaveValidatedAnOmnijoinEmailWasReceivedAndVerifiedMyAccount()
         {
