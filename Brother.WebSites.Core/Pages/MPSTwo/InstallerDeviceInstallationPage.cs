@@ -25,6 +25,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string serialNumberBFR = @"A1T010014";
         private const string serialNumberBIT = @"A1T010015";
         private const string serialNumberBES = @"A1T010016";
+        private const string serialNumberBIR = @"F3Y112595";
+        private const string serialNumberBNS = @"F3Y112595";
+        private const string serialNumberBBE = @"F3Y112595";
+        private const string serialNumberBNN = @"F3Y112595";
+        private const string serialNumberBPL = @"F3Y112595";
         private const string swapSerialNumberUK = @"F3Y112553";
         private const string swapSerialNumberDE = @"F3Y112555";
         private const string swapSerialNumberAT = @"F3Y112561";
@@ -234,6 +239,26 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 serial = serialNumberBES;
             }
+            else if (IsIrelandSystem())
+            {
+                serial = serialNumberBIR;
+            }
+            else if (IsBelgiumSystem())
+            {
+                serial = serialNumberBBE;
+            }
+            else if (IsPolandSystem())
+            {
+                serial = serialNumberBPL;
+            }
+            else if (IsNetherlandSystem())
+            {
+                serial = serialNumberBNN;
+            }
+            else if (IsSwedenSystem())
+            {
+                serial = serialNumberBNS;
+            }
             SpecFlow.SetContext("UsedSerialNumber", serial);
 
             return serial;
@@ -249,15 +274,45 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             MsgOutput(String.Format("New serial number is created as {0}", serial));
         }
 
+        private void CreateNewSwapSerialNumber()
+        {
+            var serial = GetSavedSwapSerialNumber();
+
+            serial = "U63783" + serial;
+
+            SpecFlow.SetContext("JoinedSerialNumber", serial);
+            MsgOutput(String.Format("New swap serial number is created as {0}", serial));
+        }
+
         private string GetSavedUsedSerialNumber()
         {
             return SpecFlow.GetContext("UsedSerialNumber");
+        }
+
+        private string GetSavedSwapSerialNumber()
+        {
+            return SpecFlow.GetContext("SwapSerialNumber");
         }
 
         public void CloudInstallationProcess()
         {
             if (Method() == "Email") return;
             CreateNewSerialNumber();
+            MPSJobRunnerPage.CreateNewVirtualDevice();
+            WebDriver.Wait(DurationType.Second, 2);
+            MPSJobRunnerPage.RegisterNewDevice();
+            WebDriver.Wait(DurationType.Second, 2);
+            MPSJobRunnerPage.ChangeDeviceStatus();
+            WebDriver.Wait(DurationType.Second, 2);
+            MPSJobRunnerPage.SetSupplyStatusForNewPrinter();
+            WebDriver.Wait(DurationType.Second, 2);
+            MPSJobRunnerPage.NotifyBocOfNewChanges();
+            WebDriver.Wait(DurationType.Second, 2);
+        }
+        public void SwapCloudInstallationProcess()
+        {
+            if (Method() == "Email") return;
+            CreateNewSwapSerialNumber();
             MPSJobRunnerPage.CreateNewVirtualDevice();
             WebDriver.Wait(DurationType.Second, 2);
             MPSJobRunnerPage.RegisterNewDevice();
@@ -350,6 +405,41 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 throw new Exception(String.Format("Connect or Refresh button is not displayed because {0}", exception));
             }
             
+        }
+
+        public void ConnectSwapDevice()
+        {
+            try
+            {
+                switch (Method())
+                {
+                    case "Email":
+                        ConnectButtonElement.Click();
+                        WebDriver.Wait(DurationType.Second, 5);
+                        ReturnToOriginWindow();
+                        break;
+                    case "BOR":
+                        SwapCloudInstallationProcess();
+                        WebDriver.Wait(DurationType.Second, 5);
+                        RefreshCloudInstallationElement.Click();
+                        break;
+                    case "Web":
+                        GetWebInstallationPin();
+                        WebInstallConnect.Click();
+                        WebDriver.Wait(DurationType.Second, 1);
+                        ReturnToOriginWindow();
+                        SwapCloudInstallationProcess();
+                        WebDriver.Wait(DurationType.Second, 5);
+                        RefreshCloudInstallationElement.Click();
+                        break;
+                }
+
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(String.Format("Connect or Refresh button is not displayed because {0}", exception));
+            }
+
         }
 
         private void GetWebInstallationPin()
