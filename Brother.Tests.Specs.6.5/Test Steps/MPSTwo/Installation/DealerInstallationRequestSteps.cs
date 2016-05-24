@@ -145,6 +145,12 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
 
         }
 
+        public void ThenICanConnectSwapDeviceToBrotherEnvironment()
+        {
+            CurrentPage.As<InstallerDeviceInstallationPage>().ConnectSwapDevice();
+
+        }
+
         [Then(@"I can complete device installation")]
         public void ThenICanCompleteDeviceInstallation()
         {
@@ -207,7 +213,7 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
 
             WhenIEnterSwapDeviceSerialNumberForCommunication(type);
             WhenIEnterTheDeviceIPAddress();
-            ThenICanConnectTheDeviceToBrotherEnvironment();
+            ThenICanConnectSwapDeviceToBrotherEnvironment();
            // ThenICanCompleteDeviceInstallation();
         }
 
