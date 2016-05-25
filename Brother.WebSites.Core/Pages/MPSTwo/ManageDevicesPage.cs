@@ -87,7 +87,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             var status = "";
 
-            if (IsUKSystem())
+            if (IsUKSystem()|| IsIrelandSystem())
             {
                 status = "Cancelled";
             }
@@ -102,6 +102,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             else if (IsFranceSystem())
             {
                 status = "Annulée";
+
             }else if (IsSpainSystem())
             {
                 status = "Cancelado";
@@ -114,7 +115,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             if(InstallationRequestStatusElement == null)
                 throw new Exception("Installation Request element is not displayed");
-            TestCheck.AssertTextContains(GetCancelledInstallationStatus(), InstallationRequestStatusElement.Text);
+            //TestCheck.AssertTextContains(GetCancelledInstallationStatus(), InstallationRequestStatusElement.Text);
+            TestCheck.AssertIsEqual(false, String.IsNullOrWhiteSpace(InstallationRequestStatusElement.Text), "Installation has not been cancelled");
         }
 
         public void RefreshManageDeviceScreen()

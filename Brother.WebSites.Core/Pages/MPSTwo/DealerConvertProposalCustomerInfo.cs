@@ -310,7 +310,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SelectATradingStyle()
         {
-            if (IsUKSystem()||IsSpainSystem()|| IsIrelandSystem() || IsNetherlandSystem() || IsSwedenSystem() || IsBelgiumSystem())
+            if (IsUKSystem()||IsSpainSystem()|| IsIrelandSystem() || IsNetherlandSystem() || IsSwedenSystem() || IsBelgiumSystem() || IsPolandSystem())
                 SelectFromDropdown(TradingStyleElement, TradingStyle());
                 WebDriver.Wait(DurationType.Second, 3);
         }
@@ -389,19 +389,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterBankPropertyNumber()
         {
-            if (IsUKSystem()|| IsIrelandSystem() || IsNetherlandSystem() || IsSwedenSystem())
+            if (!IsBigAtSystem())
                  ClearAndType(BankPropertyNumberElement, "12345");
         }
 
         public void EnterBankPropertyStreet()
         {
-            if (!(IsGermanSystem() || IsAustriaSystem()))
+            if (!IsBigAtSystem())
                  ClearAndType(BankPropertyStreetElement, "Lloyds House");
         }
 
         public void EnterBankPropertyTown()
         {
-            if (!(IsGermanSystem()|| IsAustriaSystem()))
+            if (!IsBigAtSystem())
                  ClearAndType(BankPropertyTownElement, "Cockney");
         }
 

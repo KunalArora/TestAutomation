@@ -1002,16 +1002,46 @@ namespace Brother.Tests.Selenium.Lib.Support
 
         public static decimal GetValue(string money)
         {
-            var poundNumberFormatInfo = new NumberFormatInfo();
-            poundNumberFormatInfo.CurrencySymbol = "£";
+            var poundNumberFormatInfo = GetNumberFormatInfo(money);
 
             return decimal.Parse(money, NumberStyles.Currency, poundNumberFormatInfo);
         }
 
+
+
+        private static NumberFormatInfo GetNumberFormatInfo(string money)
+        {
+            NumberFormatInfo numberFormatInfo = null;
+
+            if (money.Contains("zł"))
+            {
+                numberFormatInfo = new NumberFormatInfo { CurrencySymbol = "zł" }; 
+  
+            } else if (money.Contains("£"))
+            {
+                numberFormatInfo = new NumberFormatInfo { CurrencySymbol = "£" };
+            }
+            else if (money.Contains("€"))
+            {
+                numberFormatInfo = new NumberFormatInfo { CurrencySymbol = "€" };
+            }
+            else if (money.Contains("CHF"))
+            {
+                numberFormatInfo = new NumberFormatInfo { CurrencySymbol = "CHF" };
+            }
+            else if (money.Contains("kr"))
+            {
+                numberFormatInfo = new NumberFormatInfo { CurrencySymbol = "kr" };
+            }
+            
+            return numberFormatInfo;
+
+        }
+        
+
         public static decimal GetEuroValue(string money)
         {
-            var euroNumberFormatInfo = new NumberFormatInfo();
-            euroNumberFormatInfo.CurrencySymbol = "€";
+            var euroNumberFormatInfo = new NumberFormatInfo {CurrencySymbol = "€"};
 
             return decimal.Parse(money, NumberStyles.Currency, euroNumberFormatInfo);
         }
@@ -1020,7 +1050,7 @@ namespace Brother.Tests.Selenium.Lib.Support
         {
             var previousUrl = driver.Url;
             element.Click();
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
             wait.Until(ExpectedConditionsEx.UrlChangeFrom(previousUrl));
         }
 
@@ -1028,7 +1058,7 @@ namespace Brother.Tests.Selenium.Lib.Support
         {
             var previousUrl = driver.Url;
             element.Click();
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
             wait.Until(ExpectedConditionsEx.UrlNotChangeFrom(previousUrl));
         }
 

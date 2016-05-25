@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BNN.Contract
+namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BNO.Proposal
 {
     using TechTalk.SpecFlow;
     
@@ -19,28 +19,27 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BNN.Contract
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.9.0.77")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("CloudMPSVerifyNorwegianPDFContentsAreCorrect")]
+    [NUnit.Framework.DescriptionAttribute("CloudMPSNorwegianDealerCanDeleteProposal")]
     [NUnit.Framework.CategoryAttribute("MPS")]
-    [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("TEST")]
-    public partial class CloudMPSVerifyNorwegianPDFContentsAreCorrectFeature
+    [NUnit.Framework.CategoryAttribute("UAT")]
+    public partial class CloudMPSNorwegianDealerCanDeleteProposalFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "CloudMPSVerifyContractPDFContentsAreCorrect.feature"
+#line 1 "CloudMPSDealerCanDeleteProposal.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CloudMPSVerifyNorwegianPDFContentsAreCorrect", "In order to ensure that PDF contents are correct when compared with Summary page\r" +
-                    "\nAs a MPS Dealer\r\nI want to be able to compare the values on summary page with P" +
-                    "DF contents", ProgrammingLanguage.CSharp, new string[] {
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CloudMPSNorwegianDealerCanDeleteProposal", "In order to stop the progress of a proposal\r\nAs a math dealer\r\nI want to be able " +
+                    "to delete an open proposal", ProgrammingLanguage.CSharp, new string[] {
                         "MPS",
-                        "UAT",
-                        "TEST"});
+                        "TEST",
+                        "UAT"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -73,21 +72,24 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BNN.Contract
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify PDF Contents Are Correct")]
-        [NUnit.Framework.TestCaseAttribute("Buy & Click", "Norway", "Engagement sur un minimum volume de pages", "3 ans", "Trimestrale anticipata", null)]
-        public virtual void VerifyPDFContentsAreCorrect(string contractType, string country, string usageType, string length, string billing, string[] exampleTags)
+        [NUnit.Framework.DescriptionAttribute("Other Dealers can delete an open Purchase and Click proposal")]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Norway", "Cloud MPS Local Office Approver", "Buy & Click", "Engagement sur un minimum volume de pages", "3 ans", "Trimestrale anticipata", null)]
+        public virtual void OtherDealersCanDeleteAnOpenPurchaseAndClickProposal(string role, string country, string role2, string contractType, string usageType, string length, string billing, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify PDF Contents Are Correct", exampleTags);
-#line 9
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Other Dealers can delete an open Purchase and Click proposal", exampleTags);
+#line 8
 this.ScenarioSetup(scenarioInfo);
+#line 9
+ testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 10
- testRunner.Given(string.Format("\"{0}\" Dealer has created an awaiting acceptance \"{1}\" contract of \"{2}\" and \"{3}\"" +
-                        " and \"{4}\"", country, contractType, usageType, length, billing), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.And(string.Format("I have created a \"{0}\" proposal with \"{1}\" and \"{2}\" and \"{3}\"", contractType, usageType, length, billing), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
- testRunner.When("the dealer downloads PDF for the created contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("I am on Proposal List page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 12
- testRunner.Then("the noted values above are available in the PDF content", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("I can click delete button on proposal item of Exisiting Proposal table", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 13
+ testRunner.Then("the deleted proposal is no longer displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 14
  testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();

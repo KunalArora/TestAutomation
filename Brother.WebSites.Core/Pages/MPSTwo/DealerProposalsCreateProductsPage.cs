@@ -257,7 +257,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             IWebElement element = FaxCheckboxElement();
 
-            WebDriver.Wait(Helper.DurationType.Second, 3);
+            WebDriver.Wait(DurationType.Second, 3);
             if (!element.Selected)
                 element.Click();
         }
@@ -266,7 +266,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             IWebElement element = ScannerCheckboxElement();
 
-            WebDriver.Wait(Helper.DurationType.Second, 3);
+            WebDriver.Wait(DurationType.Second, 3);
             if (!element.Selected)
                 element.Click();
         }
@@ -275,7 +275,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             IWebElement element = DuplexCheckboxElement();
 
-            WebDriver.Wait(Helper.DurationType.Second, 3);
+            WebDriver.Wait(DurationType.Second, 3);
             if (!element.Selected)
                 element.Click();
         }
@@ -284,7 +284,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             IWebElement element = AdditionalTrayCheckboxElement();
 
-            WebDriver.Wait(Helper.DurationType.Second, 3);
+            WebDriver.Wait(DurationType.Second, 3);
             if (!element.Selected)
                 element.Click();
         }
@@ -293,7 +293,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             IWebElement element = A4CheckboxElement();
 
-            WebDriver.Wait(Helper.DurationType.Second, 3);
+            WebDriver.Wait(DurationType.Second, 3);
             if (!element.Selected)
                 element.Click();
         }
@@ -302,7 +302,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             IWebElement element = A3CheckboxElement();
 
-            WebDriver.Wait(Helper.DurationType.Second, 3);
+            WebDriver.Wait(DurationType.Second, 3);
             if (!element.Selected)
                 element.Click();
         }
@@ -311,7 +311,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             IWebElement element = MonoCheckboxElement();
 
-            WebDriver.Wait(Helper.DurationType.Second, 3);
+            WebDriver.Wait(DurationType.Second, 3);
             if (!element.Selected)
                 element.Click();
         }
@@ -320,7 +320,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             IWebElement element = ColourCheckboxElement();
 
-            WebDriver.Wait(Helper.DurationType.Second, 3);
+            WebDriver.Wait(DurationType.Second, 3);
             if (!element.Selected)
                 element.Click();
         }
@@ -460,9 +460,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void TypeIntoRHSFreeTextFilter(string model)
         {
-            WebDriver.Wait(Helper.DurationType.Second, 4);
+            WebDriver.Wait(DurationType.Second, 4);
             ClearAndType(InputSearchProductElement, model);
-            WebDriver.Wait(Helper.DurationType.Second, 1);
+            WebDriver.Wait(DurationType.Second, 1);
         }
 
         private IList<IWebElement> DisplayedAllPrintersByFilteringOfFreeTextElement()
@@ -508,13 +508,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyThatAllProductsDisplayedAsAFlatListWithNoImages()
         {
-            WebDriver.Wait(Helper.DurationType.Second, 1);
+            WebDriver.Wait(DurationType.Second, 1);
             AssertElementPresent(DisplayedAllPrintersAsFlatListElement()[0], "Displayed with images");
         }
 
         public void VerifyThatAllProductsDisplayedAsAWithImages()
         {
-            WebDriver.Wait(Helper.DurationType.Second, 1);
+            WebDriver.Wait(DurationType.Second, 1);
             AssertElementPresent(DisplayedAllPrintersWithImagesElement()[0], "Displayed as flat list");
         }
 
@@ -636,7 +636,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var printerClickable = GetElementByCssSelector(element);
 
             printerClickable.Click();
-            WebDriver.Wait(Helper.DurationType.Second, 1);
+            WebDriver.Wait(DurationType.Second, 1);
 
         }
 
@@ -929,7 +929,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyMarginFieldValues()
         {
-            WebDriver.Wait(Helper.DurationType.Second, 2);
+            WebDriver.Wait(DurationType.Second, 2);
             var marginText = ProductMarginElement.Text;
             TestCheck.AssertIsNotNull(ProductMarginElement.GetAttribute("value"), "Product Margin Element");
             TestCheck.AssertIsEqual(false, marginText.StartsWith("-"), "Margin Text starts with -");
@@ -1050,7 +1050,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsNotModelFound(string model)
         {
-            WebDriver.Wait(Helper.DurationType.Second, 5);
+            WebDriver.Wait(DurationType.Second, 5);
             TestCheck.AssertIsEqual(false, SearchModelName(model), "model found");            
         }
 
@@ -1094,20 +1094,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void EnterOptionCostPrice()
         {
             
-            decimal srpOption = 0;
+            var srpOption = MpsUtil.GetValue(OptionSrpText());
 
-            if (OptionSrpText().Contains("£"))
-            {
-                srpOption = MpsUtil.GetValue(OptionSrpText());
-
-            }
-            else if (OptionSrpText().Contains("€"))
-            {
-                srpOption = MpsUtil.GetEuroValue(OptionSrpText());
-                
-            }
-
-                
             var OptionText = srpOption.ToString().Substring(0, 3);
 
             if (OptionCostPrice0Element() != null)
@@ -1118,7 +1106,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             //if (!ModelSrpElement.Text.Contains("£")) return;
             if (!IsAustriaSystem() || !IsGermanSystem())
             {
-                var srpCost = IsUKSystem() ? MpsUtil.GetValue(ModelSrpElement.Text) : MpsUtil.GetEuroValue(ModelSrpElement.Text);
+                var srpCost = MpsUtil.GetValue(ModelSrpElement.Text);
                 var costText = srpCost.ToString();
                 var optionText = costText.Substring(0, 3);
                 ClearAndType(ProductCostPriceElement, optionText);
@@ -1314,7 +1302,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             MoveToClickPriceScreen();
             CalculateClickPrice(volume, colour);
-            WebDriver.Wait(Helper.DurationType.Second, 5);
+            WebDriver.Wait(DurationType.Second, 5);
             VerifyClickPriceValueIsDisplayed();
             ProceedToProposalSummaryFromClickPrice();
 
@@ -1329,7 +1317,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 throw new NullReferenceException("CalculateClickPriceElement can not be found");
 
             MonoVolumeInputFieldElement.SendKeys(volume);
-            WebDriver.Wait(Helper.DurationType.Second, 2);
+            WebDriver.Wait(DurationType.Second, 2);
             CalculateClickPriceElement.Click();
         }
 

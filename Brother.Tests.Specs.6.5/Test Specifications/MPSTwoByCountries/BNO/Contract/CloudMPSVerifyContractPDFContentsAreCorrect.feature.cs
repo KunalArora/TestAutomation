@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BPL.Installation
+namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BNO.Contract
 {
     using TechTalk.SpecFlow;
     
@@ -19,24 +19,25 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BPL.Installat
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.9.0.77")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("CloudMPSPolishFullCloudInstallationForSmokeTest")]
+    [NUnit.Framework.DescriptionAttribute("CloudMPSVerifyNorwegianPDFContentsAreCorrect")]
     [NUnit.Framework.CategoryAttribute("MPS")]
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("TEST")]
-    public partial class CloudMPSPolishFullCloudInstallationForSmokeTestFeature
+    public partial class CloudMPSVerifyNorwegianPDFContentsAreCorrectFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "CloudMPSFullCloudInstallation.feature"
+#line 1 "CloudMPSVerifyContractPDFContentsAreCorrect.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CloudMPSPolishFullCloudInstallationForSmokeTest", "In order to get an installer to begin cloud installation\r\nAs a Dealer \r\nI want to" +
-                    " be able to complete cloud installation", ProgrammingLanguage.CSharp, new string[] {
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CloudMPSVerifyNorwegianPDFContentsAreCorrect", "In order to ensure that PDF contents are correct when compared with Summary page\r" +
+                    "\nAs a MPS Dealer\r\nI want to be able to compare the values on summary page with P" +
+                    "DF contents", ProgrammingLanguage.CSharp, new string[] {
                         "MPS",
                         "UAT",
                         "TEST"});
@@ -72,19 +73,22 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BPL.Installat
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Installer can complete installation for Cloud Communication")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Poland", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Cloud", "Web", "3 years", "Quarterly in Arrears", null)]
-        public virtual void InstallerCanCompleteInstallationForCloudCommunication(string role, string country, string contractType, string usageType, string role1, string method, string type, string length, string billing, string[] exampleTags)
+        [NUnit.Framework.DescriptionAttribute("Verify PDF Contents Are Correct")]
+        [NUnit.Framework.TestCaseAttribute("Buy & Click", "Norway", "Engagement sur un minimum volume de pages", "3 ans", "Trimestrale anticipata", null)]
+        public virtual void VerifyPDFContentsAreCorrect(string contractType, string country, string usageType, string length, string billing, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Installer can complete installation for Cloud Communication", exampleTags);
-#line 11
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify PDF Contents Are Correct", exampleTags);
+#line 9
 this.ScenarioSetup(scenarioInfo);
+#line 10
+ testRunner.Given(string.Format("\"{0}\" Dealer has created an awaiting acceptance \"{1}\" contract of \"{2}\" and \"{3}\"" +
+                        " and \"{4}\"", country, contractType, usageType, length, billing), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 11
+ testRunner.When("the dealer downloads PDF for the created contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 12
- testRunner.Given(string.Format("\"{0}\" Dealer have created a \"{1}\" contract with \"{2}\" and \"{3}\" and \"{4}\"", country, contractType, usageType, length, billing), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Then("the noted values above are available in the PDF content", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 13
- testRunner.And(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 14
- testRunner.And("the contract created above is approved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
