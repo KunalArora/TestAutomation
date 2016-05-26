@@ -206,7 +206,23 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
             else if (IsFranceSystem())
             {
-                SelectFromDropdown(LegalFormDropdown, "Administration"); 
+                SelectFromDropdown(LegalFormDropdown, "Administration");
+            }
+            else if (IsNetherlandSystem())
+            {
+                SelectFromDropdown(LegalFormDropdown, "Church");
+            }
+            else if (IsSwedenSystem())
+            {
+                SelectFromDropdown(LegalFormDropdown, "Church");
+            }
+            else if (IsPolandSystem())
+            {
+                SelectFromDropdown(LegalFormDropdown, "Church");
+            }
+            else if (IsBelgiumSystem())
+            {
+                SelectFromDropdown(LegalFormDropdown, "Church");
             }
                 
             WebDriver.Wait(DurationType.Second, 3);
@@ -273,13 +289,28 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 trading = "No Regulado";
             }
-
+            else if (IsSwedenSystem())
+            {
+                trading = "Non-Regulated";
+            }
+            else if (IsNetherlandSystem())
+            {
+                trading = "Non-Regulated";
+            }
+            else if (IsBelgiumSystem())
+            {
+                trading = "Non-Regulated";
+            }
+            else if (IsPolandSystem())
+            {
+                trading = "Non-Regulated";
+            }
             return trading;
         }
 
         public void SelectATradingStyle()
         {
-            if (IsUKSystem()||IsSpainSystem()|| IsIrelandSystem())
+            if (IsUKSystem()||IsSpainSystem()|| IsIrelandSystem() || IsNetherlandSystem() || IsSwedenSystem() || IsBelgiumSystem())
                 SelectFromDropdown(TradingStyleElement, TradingStyle());
                 WebDriver.Wait(DurationType.Second, 3);
         }
@@ -307,6 +338,22 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 } else if (IsSpainSystem())
                 {
                     SelectFromDropdown(PaymentTypeDropdown, "Debito directo");
+                }
+                else if (IsNetherlandSystem())
+                {
+                    SelectFromDropdown(PaymentTypeDropdown, "Direct Debit");
+                }
+                else if (IsSwedenSystem())
+                {
+                    SelectFromDropdown(PaymentTypeDropdown, "Direct Debit");
+                }
+                else if (IsPolandSystem())
+                {
+                    SelectFromDropdown(PaymentTypeDropdown, "Direct Debit");
+                }
+                else if (IsBelgiumSystem())
+                {
+                    SelectFromDropdown(PaymentTypeDropdown, "Direct Debit");
                 }
             }
             
@@ -342,7 +389,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterBankPropertyNumber()
         {
-            if (IsUKSystem()|| IsIrelandSystem())
+            if (IsUKSystem()|| IsIrelandSystem() || IsNetherlandSystem() || IsSwedenSystem())
                  ClearAndType(BankPropertyNumberElement, "12345");
         }
 
@@ -379,7 +426,23 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             else if (IsIrelandSystem())
             {
                 ClearAndType(BankPropertyPostcodeElement, MpsUtil.PostCodeIr());
-            } 
+            }
+            else if (IsNetherlandSystem())
+            {
+                ClearAndType(BankPropertyPostcodeElement, MpsUtil.PostCodeNl());
+            }
+            else if (IsSwedenSystem())
+            {
+                ClearAndType(BankPropertyPostcodeElement, MpsUtil.PostCodeNs());
+            }
+            else if (IsBelgiumSystem())
+            {
+                ClearAndType(BankPropertyPostcodeElement, MpsUtil.PostCodeBe());
+            }
+            else if (IsPolandSystem())
+            {
+                ClearAndType(BankPropertyPostcodeElement, MpsUtil.PostCodePl());
+            }
         }
 
         public void FillAllCustomerDetailsOnConvert()
@@ -578,13 +641,29 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 regionName = "Paris";
             }
-
             else if (IsIrelandSystem())
             {
                 regionName = "DUBLIN";
             }
+            else if (IsNetherlandSystem())
+            {
+                regionName = "";
+            }
+            else if (IsPolandSystem())
+            {
+                regionName = "";
+            }
+            else if (IsSwedenSystem())
+            {
+                regionName = "";
+            }
+            else if (IsBelgiumSystem())
+            {
+                regionName = "";
+            }
 
-            SelectFromDropdown(GermanBundeslandElement, regionName);
+            if (String.IsNullOrWhiteSpace(regionName)) return;
+                SelectFromDropdown(GermanBundeslandElement, regionName);
              
         }
 

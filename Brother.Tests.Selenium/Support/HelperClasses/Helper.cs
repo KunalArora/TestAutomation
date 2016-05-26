@@ -118,6 +118,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             {"Slovakia", "sk"},
             {"Slovenia", "si"},
             {"Spain", "es"},
+            {"Sweden", "se"},
             {"Switzerland", "ch"},
             {"Italy", "it"},
             {"Bulgaria", "bg"},
