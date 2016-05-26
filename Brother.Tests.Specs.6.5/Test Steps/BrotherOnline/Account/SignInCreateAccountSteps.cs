@@ -830,6 +830,12 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<RegistrationPage>().ClickCreateAccountButton();
         }
 
+        [When(@"I press create account button to continue checkout")]
+        public void WhenIPressCreateAccountButtonToContinueCheckout()
+        {
+            NextPage = CurrentPage.As<RegistrationPage>().ClickCreateAccountButtonToCheckout();
+        }
+
         [Then(@"I should see my account confirmation page")]
         public void ThenIShouldSeeMyAccountConfirmationScreen()
         {
