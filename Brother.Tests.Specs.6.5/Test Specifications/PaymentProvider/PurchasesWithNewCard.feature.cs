@@ -20,7 +20,7 @@ namespace Brother.Tests.Specs.TestSpecifications.PaymentProvider
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("Payments made for Online Purchases with newly Add Card")]
-    [NUnit.Framework.CategoryAttribute("ignoew")]
+    [NUnit.Framework.IgnoreAttribute()]
     [NUnit.Framework.CategoryAttribute("SMOKE")]
     [NUnit.Framework.CategoryAttribute("TEST")]
     [NUnit.Framework.CategoryAttribute("UAT")]
@@ -38,7 +38,7 @@ namespace Brother.Tests.Specs.TestSpecifications.PaymentProvider
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Payments made for Online Purchases with newly Add Card", "In order to make Payments\r\nAs an online customer\r\nI want to be able to add a vali" +
                     "d Credit Card to my user account", ProgrammingLanguage.CSharp, new string[] {
-                        "ignoew",
+                        "ignore",
                         "SMOKE",
                         "TEST",
                         "UAT"});
