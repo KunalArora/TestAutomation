@@ -1966,14 +1966,12 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Customer creates a new account with Brother Online using valid credentials, confi" +
             "rm by bpid on UK dv2 site")]
-        [NUnit.Framework.CategoryAttribute("SMOKE")]
-        [NUnit.Framework.CategoryAttribute("TEST")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "http://uk.brotherdv2.eu/test/DataManager.aspx", "Automation", "Password1", null)]
         public virtual void CustomerCreatesANewAccountWithBrotherOnlineUsingValidCredentialsConfirmByBpidOnUKDv2Site(string country, string siteUrl, string userName, string password, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "SMOKE",
-                    "TEST"};
+                    "ignore"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));

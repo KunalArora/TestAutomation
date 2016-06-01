@@ -1,4 +1,4 @@
-﻿@ignoew @SMOKE @TEST @UAT
+﻿@ignore @SMOKE @TEST @UAT
 Feature: Payments made for Online Purchases with newly Add Card
 	In order to make Payments
 	As an online customer
