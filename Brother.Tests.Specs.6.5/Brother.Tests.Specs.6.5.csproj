@@ -121,11 +121,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\BBE\Contract\CloudMPSBelgianDealerCanSignContract.feature.cs">
-      <DependentUpon>CloudMPSBelgianDealerCanSignContract.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BBE\Contract\CloudMPSOutputContractPDFAllUsers.feature.cs">
       <DependentUpon>CloudMPSOutputContractPDFAllUsers.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -223,11 +218,6 @@
     </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BES\Contract\CloudMPSDealerCanCopyADeclineProposal.feature.cs">
       <DependentUpon>CloudMPSDealerCanCopyADeclineProposal.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\BES\Contract\CloudMPSDealerCanSignContract.feature.cs">
-      <DependentUpon>CloudMPSDealerCanSignContract.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -331,11 +321,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\BFR\Contract\CloudMPSDealerCanSignContract.feature.cs">
-      <DependentUpon>CloudMPSDealerCanSignContract.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BFR\Contract\CloudMPSVerifyContractPDFContentsAreCorrect.feature.cs">
       <DependentUpon>CloudMPSVerifyContractPDFContentsAreCorrect.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -408,11 +393,6 @@
     </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BIG_AT\Contract\CloudMPSDealerCanCopyADeclineProposal.feature.cs">
       <DependentUpon>CloudMPSDealerCanCopyADeclineProposal.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\BIG_AT\Contract\CloudMPSGermanAndAustriaDealerCanSignContract.feature.cs">
-      <DependentUpon>CloudMPSGermanAndAustriaDealerCanSignContract.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -511,11 +491,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\BIR\Contract\CloudMPSDealerCanSignContract.feature.cs">
-      <DependentUpon>CloudMPSDealerCanSignContract.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BIR\Contract\CloudMPSOutputContractPDFAllUsers.feature.cs">
       <DependentUpon>CloudMPSOutputContractPDFAllUsers.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -606,11 +581,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\BIT\Contract\CloudMPSDealerCanSignContract.feature.cs">
-      <DependentUpon>CloudMPSDealerCanSignContract.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BIT\Contract\CloudMPSOutputContractPDFAllUsers.feature.cs">
       <DependentUpon>CloudMPSOutputContractPDFAllUsers.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -681,11 +651,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\BND\Contract\CloudMPSDealerCanSignContract.feature.cs">
-      <DependentUpon>CloudMPSDealerCanSignContract.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BND\Contract\CloudMPSOutputContractPDFAllUsers.feature.cs">
       <DependentUpon>CloudMPSOutputContractPDFAllUsers.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -753,11 +718,6 @@
     </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BNL\Contract\CloudMPSDealerCanCopyADeclineProposal.feature.cs">
       <DependentUpon>CloudMPSDealerCanCopyADeclineProposal.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\BNL\Contract\CloudMPSDealerCanSignContract.feature.cs">
-      <DependentUpon>CloudMPSDealerCanSignContract.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -838,11 +798,6 @@
     </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BNO\Contract\CloudMPSDealerCanCopyADeclineProposal.feature.cs">
       <DependentUpon>CloudMPSDealerCanCopyADeclineProposal.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\BNO\Contract\CloudMPSDealerCanSignContract.feature.cs">
-      <DependentUpon>CloudMPSDealerCanSignContract.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -936,11 +891,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\BNS\Contract\CloudMPSDealerCanSignContract.feature.cs">
-      <DependentUpon>CloudMPSDealerCanSignContract.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BNS\Contract\CloudMPSOutputContractPDFAllUsers.feature.cs">
       <DependentUpon>CloudMPSOutputContractPDFAllUsers.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -1023,11 +973,6 @@
     </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BPL\Contract\CloudMPSDealerCanCopyADeclineProposal.feature.cs">
       <DependentUpon>CloudMPSDealerCanCopyADeclineProposal.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\BPL\Contract\CloudMPSDealerCanSignContract.feature.cs">
-      <DependentUpon>CloudMPSDealerCanSignContract.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -1116,11 +1061,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\BSW\Contract\CloudMPSDealerCanSignContract.feature.cs">
-      <DependentUpon>CloudMPSDealerCanSignContract.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BSW\Contract\CloudMPSOutputContractPDFAllUsers.feature.cs">
       <DependentUpon>CloudMPSOutputContractPDFAllUsers.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -1198,11 +1138,6 @@
     </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BUK\Contract\CloudMPSDealerCanCopyADeclineProposal.feature.cs">
       <DependentUpon>CloudMPSDealerCanCopyADeclineProposal.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\BUK\Contract\CloudMPSDealerCanSignContract.feature.cs">
-      <DependentUpon>CloudMPSDealerCanSignContract.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -1850,10 +1785,6 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSBelgianDealerCanCopyADeclineProposal.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwoByCountries\BBE\Contract\CloudMPSBelgianDealerCanSignContract.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSBelgianDealerCanSignContract.feature.cs</LastGenOutput>
-    </None>
     <None Include="Test Specifications\MPSTwoByCountries\BBE\Contract\CloudMPSOutputContractPDFAllUsers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSOutputContractPDFAllUsers.feature.cs</LastGenOutput>
@@ -1933,10 +1864,6 @@
     <None Include="Test Specifications\MPSTwoByCountries\BES\Contract\CloudMPSDealerCanCopyADeclineProposal.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSDealerCanCopyADeclineProposal.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPSTwoByCountries\BES\Contract\CloudMPSDealerCanSignContract.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSDealerCanSignContract.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwoByCountries\BES\Contract\CloudMPSOutputContractPDFAllUsers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
@@ -2018,10 +1945,6 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSDealerCanCopyADeclineProposal.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwoByCountries\BFR\Contract\CloudMPSDealerCanSignContract.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSDealerCanSignContract.feature.cs</LastGenOutput>
-    </None>
     <None Include="Test Specifications\MPSTwoByCountries\BFR\Contract\CloudMPSVerifyContractPDFContentsAreCorrect.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSVerifyContractPDFContentsAreCorrect.feature.cs</LastGenOutput>
@@ -2081,10 +2004,6 @@
     <None Include="Test Specifications\MPSTwoByCountries\BIG_AT\Contract\CloudMPSDealerCanCopyADeclineProposal.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSDealerCanCopyADeclineProposal.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPSTwoByCountries\BIG_AT\Contract\CloudMPSGermanAndAustriaDealerCanSignContract.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSGermanAndAustriaDealerCanSignContract.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwoByCountries\BIG_AT\Contract\CloudMPSOutputContractPDFAllUsers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
@@ -2162,10 +2081,6 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSDealerCanCopyADeclineProposal.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwoByCountries\BIR\Contract\CloudMPSDealerCanSignContract.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSDealerCanSignContract.feature.cs</LastGenOutput>
-    </None>
     <None Include="Test Specifications\MPSTwoByCountries\BIR\Contract\CloudMPSOutputContractPDFAllUsers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSOutputContractPDFAllUsers.feature.cs</LastGenOutput>
@@ -2238,10 +2153,6 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSDealerCanCopyADeclineProposal.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwoByCountries\BIT\Contract\CloudMPSDealerCanSignContract.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSDealerCanSignContract.feature.cs</LastGenOutput>
-    </None>
     <None Include="Test Specifications\MPSTwoByCountries\BIT\Contract\CloudMPSOutputContractPDFAllUsers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSOutputContractPDFAllUsers.feature.cs</LastGenOutput>
@@ -2298,10 +2209,6 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSDealerCanCopyADeclineProposal.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwoByCountries\BND\Contract\CloudMPSDealerCanSignContract.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSDealerCanSignContract.feature.cs</LastGenOutput>
-    </None>
     <None Include="Test Specifications\MPSTwoByCountries\BND\Contract\CloudMPSOutputContractPDFAllUsers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSOutputContractPDFAllUsers.feature.cs</LastGenOutput>
@@ -2357,10 +2264,6 @@
     <None Include="Test Specifications\MPSTwoByCountries\BNL\Contract\CloudMPSDealerCanCopyADeclineProposal.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSDealerCanCopyADeclineProposal.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPSTwoByCountries\BNL\Contract\CloudMPSDealerCanSignContract.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSDealerCanSignContract.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwoByCountries\BNL\Contract\CloudMPSOutputContractPDFAllUsers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
@@ -2425,10 +2328,6 @@
     <None Include="Test Specifications\MPSTwoByCountries\BNO\Contract\CloudMPSDealerCanCopyADeclineProposal.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSDealerCanCopyADeclineProposal.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPSTwoByCountries\BNO\Contract\CloudMPSDealerCanSignContract.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSDealerCanSignContract.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwoByCountries\BNO\Contract\CloudMPSOutputContractPDFAllUsers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
@@ -2502,10 +2401,6 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSDealerCanCopyADeclineProposal.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwoByCountries\BNS\Contract\CloudMPSDealerCanSignContract.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSDealerCanSignContract.feature.cs</LastGenOutput>
-    </None>
     <None Include="Test Specifications\MPSTwoByCountries\BNS\Contract\CloudMPSOutputContractPDFAllUsers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSOutputContractPDFAllUsers.feature.cs</LastGenOutput>
@@ -2573,10 +2468,6 @@
     <None Include="Test Specifications\MPSTwoByCountries\BPL\Contract\CloudMPSDealerCanCopyADeclineProposal.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSDealerCanCopyADeclineProposal.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPSTwoByCountries\BPL\Contract\CloudMPSDealerCanSignContract.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSDealerCanSignContract.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwoByCountries\BPL\Contract\CloudMPSOutputContractPDFAllUsers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
@@ -2646,10 +2537,6 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSDealerCanCopyADeclineProposal.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwoByCountries\BSW\Contract\CloudMPSDealerCanSignContract.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSDealerCanSignContract.feature.cs</LastGenOutput>
-    </None>
     <None Include="Test Specifications\MPSTwoByCountries\BSW\Contract\CloudMPSOutputContractPDFAllUsers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSOutputContractPDFAllUsers.feature.cs</LastGenOutput>
@@ -2713,10 +2600,6 @@
     <None Include="Test Specifications\MPSTwoByCountries\BUK\Contract\CloudMPSDealerCanCopyADeclineProposal.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSDealerCanCopyADeclineProposal.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPSTwoByCountries\BUK\Contract\CloudMPSDealerCanSignContract.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSDealerCanSignContract.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwoByCountries\BUK\Contract\CloudMPSOutputContractPDFAllUsers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
