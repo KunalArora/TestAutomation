@@ -131,6 +131,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public static void NotifyBocOfNewChanges()
         {
+           
             var newDevice = String.Format(NotifyBocUrl, GetSavedDeviceId());
             var webSite = DevSimUrl + newDevice;
 

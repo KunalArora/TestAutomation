@@ -83,34 +83,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         
         
 
-        private string GetCancelledInstallationStatus()
-        {
-            var status = "";
-
-            if (IsUKSystem()|| IsIrelandSystem())
-            {
-                status = "Cancelled";
-            }
-            else if (IsGermanSystem() || IsAustriaSystem())
-            {
-                status = "Abgebrochen";
-            } 
-            else if (IsItalySystem())
-            {
-                status = "Annullata";
-            }
-            else if (IsFranceSystem())
-            {
-                status = "Annulée";
-
-            }else if (IsSpainSystem())
-            {
-                status = "Cancelado";
-            } 
-
-            return status;
-        }
-
         public void IsInstallationRequestCancelled()
         {
             if(InstallationRequestStatusElement == null)
@@ -129,7 +101,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         
         private string GetGeneratedCompany()
         {
-            var genCompany = "";
+            string genCompany;
 
             try
             {
@@ -367,12 +339,21 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             HeadlessDismissAlertOk();
         }
 
+        private string Method()
+        {
+            return SpecFlow.GetContext("InstallationMethod");
+        }
+
         public void IsInstallationCompleted()
         {
             var buttonCount = ActionsModule.NumberOfActionButtonDisplayed(Driver);
             //TestCheck.AssertIsEqual(1, buttonCount,
             //  String.Format("{0} Actions buttons were returned meaning installation request is not removed", buttonCount));
-            MPSJobRunnerPage.NotifyBocOfNewChanges();
+            if (Method() != "Email")
+            {
+                MPSJobRunnerPage.NotifyBocOfNewChanges();
+            }
+           
             MPSJobRunnerPage.RunCreateOrderAndServiceRequestsCommandJob();
             MPSJobRunnerPage.RunConsumableOrderRequestsCommandJob();
             MPSJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob();

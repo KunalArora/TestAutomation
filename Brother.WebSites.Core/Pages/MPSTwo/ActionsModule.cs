@@ -26,6 +26,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string SearchField = @"#content_1_ProposalListFilter_InputFilterBy";
         private const string CustomerSearchFieldElement = @"#content_1_PersonListFilter_InputFilterBy";
         private const string ContractSearchField = @"#content_1_ContractListFilter_InputFilterBy";
+        private const string BelgianLanguages = @".mps-lang > span > a";
        
         
 
@@ -98,6 +99,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return driver.FindElements(By.CssSelector(SendToBankButton));
         }
 
+        private static IList<IWebElement> BelgianLanguageSelectorElement(ISearchContext driver)
+        {
+            return driver.FindElements(By.CssSelector(BelgianLanguages));
+        }
+
         private static IList<IWebElement> AllActionsButton(ISearchContext driver)
         {
             return driver.FindElements(By.CssSelector(ActionButtion));
@@ -135,6 +141,21 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             action.SendKeys(search);
             action.SendKeys(Keys.Tab);
             WaitForRowToAppearBeforeProceeding();
+        }
+
+        private static IWebElement BelgianLanguageOption(ISearchContext driver, int count)
+        {
+            return BelgianLanguageSelectorElement(driver).ElementAt(count);
+        }
+
+        public static void SelectBelgianFrenchLanguageOption(ISearchContext driver)
+        {
+            BelgianLanguageOption(driver, 0).Click();
+        }
+
+        public static void SelectBelgianDutchLanguageOption(ISearchContext driver)
+        {
+            BelgianLanguageOption(driver, 1).Click();
         }
 
        

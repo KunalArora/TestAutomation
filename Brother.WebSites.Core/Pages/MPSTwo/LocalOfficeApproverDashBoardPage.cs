@@ -1,5 +1,8 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Brother.Tests.Selenium.Lib.Support;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -20,6 +23,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement ApprovalTabElement;
         [FindsBy(How = How.CssSelector, Using = ".separator [href=\"/mps/local-office/manage-devices\"]")]
         public IWebElement DeviceManagementTabTabElement;
+        [FindsBy(How = How.CssSelector, Using = ".mps-lang > span > a")]
+        public IList<IWebElement> BelgianLanguageElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href='/mps/dealer/contracts'] .media-body .media-heading")]
+        public IWebElement BelgianLanguageIdentifierElement;
+
+
 
 
         public void IsApprovalLinkAvailable()
@@ -39,8 +48,24 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetInstance<LocalOfficeApproverApprovalPage>(Driver);
         }
 
-        
+        public void ChangeBelgianLanguage()
+        {
+            if (!IsBelgiumSystem()) return;
+            var language = SpecFlow.GetContext("BelgianLanguage");
+            if (language.Equals("French"))
+            {
+                BelgianLanguageElement.First().Click();
+                //IsBelgianLanguageSelected("Contrats");
+            }
+            else if (language.Equals("Dutch"))
+            {
+                BelgianLanguageElement.Last().Click();
+               // IsBelgianLanguageSelected("Contracten");
+            }
 
+         }
+
+       
        
     }
 }

@@ -113,11 +113,18 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Local Office Approver can cancel installation request for Email Communication for" +
             " other countries")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Netherlands", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Email", "3 years", "Quarterly in Arrears", null)]
         public virtual void LocalOfficeApproverCanCancelInstallationRequestForEmailCommunicationForOtherCountries(string role, string country, string contractType, string usageType, string role1, string method, string length, string billing, string[] exampleTags)
         {
+            string[] @__tags = new string[] {
+                    "ignore"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Local Office Approver can cancel installation request for Email Communication for" +
-                    " other countries", exampleTags);
+                    " other countries", @__tags);
 #line 31
 this.ScenarioSetup(scenarioInfo);
 #line 32
@@ -147,8 +154,8 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Local Office can cancel installation request for Cloud Communication for other co" +
             "untries")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Netherlands", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Cloud", "3 ans", "Quarterly in Arrears", "Web", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Netherlands", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Cloud", "3 ans", "Quarterly in Arrears", "BOR", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Netherlands", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Cloud", "3 years", "Quarterly in Arrears", "Web", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Netherlands", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Cloud", "3 years", "Quarterly in Arrears", "BOR", null)]
         public virtual void LocalOfficeCanCancelInstallationRequestForCloudCommunicationForOtherCountries(string role, string country, string contractType, string usageType, string role1, string method, string length, string billing, string type, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Local Office can cancel installation request for Cloud Communication for other co" +
@@ -184,11 +191,18 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Dealer can cancel installation request for Email Communication for other countrie" +
             "s")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Netherlands", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Email", "3 years", "Quarterly in Arrears", null)]
         public virtual void DealerCanCancelInstallationRequestForEmailCommunicationForOtherCountries(string role, string country, string contractType, string usageType, string role1, string method, string length, string billing, string[] exampleTags)
         {
+            string[] @__tags = new string[] {
+                    "ignore"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer can cancel installation request for Email Communication for other countrie" +
-                    "s", exampleTags);
+                    "s", @__tags);
 #line 70
 this.ScenarioSetup(scenarioInfo);
 #line 71
