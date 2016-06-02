@@ -76,7 +76,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             var reason = "";
 
-            if (IsUKSystem())
+            if (IsUKSystem()|| IsIrelandSystem())
             {
                 reason = "Other";
 
