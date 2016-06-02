@@ -4,6 +4,7 @@ using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherMainSite.SuppliesAndAccessories;
+using Brother.WebSites.Core.Pages.BrotherOnline.Account;
 using Brother.WebSites.Core.Pages.BrotherOnline.Checkout;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -76,6 +77,13 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.Basket
             ScrollTo(CheckOutButton);
             CheckOutButton.Click();
             return GetInstance<DeliveryDetailsPage>(Driver);
+        }
+
+        public RegistrationPage CheckOutButtonClickBeforeLogin()
+        {
+            ScrollTo(CheckOutButton);
+            CheckOutButton.Click();
+            return GetInstance<RegistrationPage>(Driver);
         }
 //Added
 

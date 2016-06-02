@@ -1551,6 +1551,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Test Specifications\PaymentProvider\PurchasesWithNewCard.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PurchasesWithNewCard.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Steps\Global\GlobalSteps.cs" />
     <Compile Include="Test Specifications\BrotherMainSite\Printer Search\Printers.feature.cs">
       <AutoGen>True</AutoGen>
@@ -3012,6 +3017,10 @@
     <None Include="Test Specifications\OmniJoin\PurchasePlans.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>PurchasePlans.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\PaymentProvider\PurchasesWithNewCard.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>PurchasesWithNewCard.feature.cs</LastGenOutput>
     </None>
     <None Include="tmpScratch\TestTmpTest.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

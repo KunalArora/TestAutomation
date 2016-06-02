@@ -73,5 +73,11 @@ namespace Brother.Tests.Specs.BrotherOnline.Purchasing
             NextPage = CurrentPage.As<BasketPage>().BasketPageCheckOutButtonClick();
         }
 
+        [When(@"I click Checkout before loging")]
+        public void WhenIClickCheckoutBeforeLoging()
+        {
+            NextPage = CurrentPage.As<BasketPage>().CheckOutButtonClickBeforeLogin();
+        }
+
     }
 }

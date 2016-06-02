@@ -754,7 +754,7 @@ Scenario: Sign Up for 14 day Free trial already signed into Uk Brother Online wi
 
 
 	
-@ignore
+@ignore 
 Scenario Outline: Purchase OmniJoin subscription plan for <country> for a <Plan Type> plan on <Billing Type> billing
 	Given I have navigated to the OmniJoin home page
 	And I have clicked on Buy
@@ -825,7 +825,7 @@ Scenarios:
 
 
 
-@SMOKE @TEST
+@ignore
 # BBAU-2956
 Scenario Outline: Customer creates a new account with Brother Online using valid credentials, confirm by bpid on UK dv2 site
 	Given I want to create a new account with Brother Online "<Country>"
