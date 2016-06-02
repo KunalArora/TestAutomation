@@ -33,7 +33,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         private const string irelandUrl = @"online.ie";
         private const string polandUrl = @"online.pl";
         private const string netherlandUrl = @"online.nl";
-        private const string swedenUrl = @"online.ns";
+        private const string swedenUrl = @"online.se";
         private const string belgiumUrl = @"online.be";
         private const string swissUrl = @"online.ch";
         private const string englandProdUrl = @".co.uk";

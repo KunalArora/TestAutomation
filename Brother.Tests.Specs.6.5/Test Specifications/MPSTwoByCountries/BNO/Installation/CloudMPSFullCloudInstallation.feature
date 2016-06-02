@@ -1,5 +1,5 @@
 ﻿@MPS @UAT @TEST
-Feature: CloudMPSDutchFullCloudInstallationForSmokeTest
+Feature: CloudMPSNorwegianFullCloudInstallationForSmokeTest
 	In order to get an installer to begin cloud installation
 	As a Dealer 
 	I want to be able to complete cloud installation
@@ -27,6 +27,6 @@ Scenario Outline: Installer can complete installation for Cloud Communication
 Scenarios:
 
 	| Role                            | Country    | ContractType                  | UsageType      | Role1            | Method | Type | Length  | Billing              |
-	| Cloud MPS Local Office Approver | Netherlands | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  | 3 years | Quarterly in Arrears |
-	#| Cloud MPS Local Office Approver | Netherland | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR  | 4 years | Quarterly in Arrears |
+	| Cloud MPS Local Office Approver | Norway | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  | 3 years | Quarterly in Arrears |
+	#| Cloud MPS Local Office Approver | Norway | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR  | 4 years | Quarterly in Arrears |
 	

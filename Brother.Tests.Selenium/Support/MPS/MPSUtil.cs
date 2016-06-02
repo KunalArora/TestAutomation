@@ -823,26 +823,26 @@ namespace Brother.Tests.Selenium.Lib.Support
         public static string PostCodeNs()
         {
             String[] zip = {
-                                    "18600",
-                                    "18601",
-                                    "18603",
-                                    "18621",
-                                    "18622",
-                                    "18623",
-                                    "18624",
-                                    "18625",
-                                    "18626",
-                                    "18630",
-                                    "18631",
-                                    "18632",
-                                    "18633",
-                                    "18634",
-                                    "18635",
-                                    "18636",
-                                    "18637",
-                                    "18638",
-                                    "18639",
-                                    "18640"
+                                    "186 00",
+                                    "186 01",
+                                    "186 03",
+                                    "186 21",
+                                    "186 22",
+                                    "186 23",
+                                    "186 24",
+                                    "186 25",
+                                    "186 26",
+                                    "186 30",
+                                    "186 31",
+                                    "186 32",
+                                    "186 33",
+                                    "186 34",
+                                    "186 35",
+                                    "186 36",
+                                    "186 37",
+                                    "186 38",
+                                    "186 39",
+                                    "186 40"
 
 					            };
             var postCode = zip[new Random().Next(20)];
@@ -1002,25 +1002,53 @@ namespace Brother.Tests.Selenium.Lib.Support
 
         public static decimal GetValue(string money)
         {
-            var poundNumberFormatInfo = new NumberFormatInfo();
-            poundNumberFormatInfo.CurrencySymbol = "£";
+            var currencyNumberFormatInfo = GetNumberFormatInfo(money);
 
-            return decimal.Parse(money, NumberStyles.Currency, poundNumberFormatInfo);
+            return decimal.Parse(money, NumberStyles.Currency, currencyNumberFormatInfo);
         }
+
+
+
+        private static NumberFormatInfo GetNumberFormatInfo(string money)
+        {
+            NumberFormatInfo numberFormatInfo = null;
+
+            if (money.Contains("zł"))
+            {
+                numberFormatInfo = new NumberFormatInfo { CurrencySymbol = "zł" }; 
+  
+            } else if (money.Contains("£"))
+            {
+                numberFormatInfo = new NumberFormatInfo { CurrencySymbol = "£" };
+            }
+            else if (money.Contains("€"))
+            {
+                numberFormatInfo = new NumberFormatInfo { CurrencySymbol = "€" };
+            }
+            else if (money.Contains("CHF"))
+            {
+                numberFormatInfo = new NumberFormatInfo { CurrencySymbol = "CHF" };
+            }
+            else if (money.Contains("kr"))
+            {
+                numberFormatInfo = new NumberFormatInfo { CurrencySymbol = "kr" };
+            }
+            
+            return numberFormatInfo;
+
+        }
+        
 
         public static decimal GetEuroValue(string money)
         {
-            var euroNumberFormatInfo = new NumberFormatInfo();
-            euroNumberFormatInfo.CurrencySymbol = "€";
-
-            return decimal.Parse(money, NumberStyles.Currency, euroNumberFormatInfo);
+            return GetValue(money);
         }
 
         public static void ClickButtonThenNavigateToOtherUrl(IWebDriver driver, IWebElement element)
         {
             var previousUrl = driver.Url;
             element.Click();
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
             wait.Until(ExpectedConditionsEx.UrlChangeFrom(previousUrl));
         }
 
@@ -1028,7 +1056,7 @@ namespace Brother.Tests.Selenium.Lib.Support
         {
             var previousUrl = driver.Url;
             element.Click();
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
             wait.Until(ExpectedConditionsEx.UrlNotChangeFrom(previousUrl));
         }
 

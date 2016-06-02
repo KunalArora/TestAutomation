@@ -1,5 +1,8 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Brother.Tests.Selenium.Lib.Support;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -31,6 +34,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement AdminLinkElement;
         [FindsBy(How = How.CssSelector, Using = ".separator a[href='/mps/dealer/admin']")]
         public IWebElement DealerAdminTabElement;
+        [FindsBy(How = How.CssSelector, Using = ".mps-lang > span > a")]
+        public IList<IWebElement> BelgianLanguageElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href='/mps/dealer/contracts'] .media-body .media-heading")]
+        public IWebElement BelgianLanguageIdentifierElement;
+        
+        
 
         public void IsCreateNewProposalLinkAvailable()
         {
@@ -40,12 +49,30 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             AssertElementPresent(CreateProposalLinkElement, "Create New Proposal Link");
         }
 
-        public void IsExistingProposalLinkAvailable()
+        public void ChangeBelgianLanguage(string language)
         {
-            if (ExistingProposalLinkElement == null) 
+            if (!IsBelgiumSystem()) return;
+            if (language.Equals("French"))
+            {
+                BelgianLanguageElement.First().Click();
+                IsBelgianLanguageSelected("Contrats");
+            }
+            else if (language.Equals("Dutch"))
+            {
+                BelgianLanguageElement.Last().Click();
+                IsBelgianLanguageSelected("Contracten");
+            }
+
+            SpecFlow.SetContext("BelgianLanguage", language);
+        }
+
+        public void IsBelgianLanguageSelected(string text)
+        {
+            if (BelgianLanguageElement == null) 
                 throw new Exception("Unable to locate existing proposals link on dashboard page");
 
-            AssertElementPresent(ExistingProposalLinkElement, "Existing Proposals Link");
+            AssertElementContainsText(BelgianLanguageIdentifierElement, text, 
+                                    String.Format("The word displayed was {0}", BelgianLanguageIdentifierElement.Text));
         }
 
         public void IsExistingContractsLinkAvailable()

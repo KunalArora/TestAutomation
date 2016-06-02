@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BNN.SendForApproval
+namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BNO.SendForApproval
 {
     using TechTalk.SpecFlow;
     

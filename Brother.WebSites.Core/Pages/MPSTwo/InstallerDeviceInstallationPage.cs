@@ -16,26 +16,29 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
     {
         public static string Url = "/";
 
-        private const string serialNumber = @"A1T010001";
-        private const string serialNumberBIG = @"A1T010002";
-        private const string serialNumberAUT = @"A1T010003";
-        private const string existingSerialNumber = @"A1T010001";
-        private const string existingSerialNumberBIG = @"A1T010002";
-        private const string existingSerialNumberAUT = @"A1T010003";
-        private const string serialNumberBFR = @"A1T010014";
-        private const string serialNumberBIT = @"A1T010015";
-        private const string serialNumberBES = @"A1T010016";
-        private const string serialNumberBIR = @"F3Y112595";
-        private const string serialNumberBNS = @"F3Y112595";
-        private const string serialNumberBBE = @"F3Y112595";
-        private const string serialNumberBNN = @"F3Y112595";
-        private const string serialNumberBPL = @"F3Y112595";
-        private const string swapSerialNumberUK = @"F3Y112553";
-        private const string swapSerialNumberDE = @"F3Y112555";
-        private const string swapSerialNumberAT = @"F3Y112561";
-        private const string swapSerialNumberFR = @"F3Y111491";
-        private const string swapSerialNumberIT = @"F3Y111493";
-        private const string swapSerialNumberES = @"F3Y111494";
+        private const string SerialNumber = @"A1T010001";
+        private const string SerialNumberBig = @"A1T010002";
+        private const string SerialNumberAut = @"A1T010003";
+        private const string ExistingSerialNumber = @"A1T010001";
+        private const string ExistingSerialNumberBig = @"A1T010002";
+        private const string ExistingSerialNumberAut = @"A1T010003";
+        private const string ExistingSerialNumberBir = @"A1T010011";
+        private const string ExistingSerialNumberBpl = @"A1T010012";
+        private const string ExistingSerialNumberBbe = @"A1T010013";
+        private const string SerialNumberBfr = @"A1T010014";
+        private const string SerialNumberBit = @"A1T010015";
+        private const string SerialNumberBes = @"A1T010016";
+        private const string SerialNumberBir = @"F3Y112595";
+        private const string SerialNumberBns = @"F3Y112595";
+        private const string SerialNumberBbe = @"F3Y112595";
+        private const string SerialNumberBnn = @"F3Y112595";
+        private const string SerialNumberBpl = @"F3Y112595";
+        private const string SwapSerialNumberUk = @"F3Y112553";
+        private const string SwapSerialNumberDe = @"F3Y112555";
+        private const string SwapSerialNumberAt = @"F3Y112561";
+        private const string SwapSerialNumberFr = @"F3Y111491";
+        private const string SwapSerialNumberIt = @"F3Y111493";
+        private const string SwapSerialNumberEs = @"F3Y111494";
          
 
         public override string DefaultTitle
@@ -148,27 +151,39 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             if (IsUKSystem())
             {
-                serial = serialNumber;
+                serial = SerialNumber;
             }
             else if (IsGermanSystem())
             {
-                serial = serialNumberBIG;
+                serial = SerialNumberBig;
             }
             else if (IsAustriaSystem())
             {
-                serial = serialNumberAUT;
+                serial = SerialNumberAut;
 
             } else if (IsFranceSystem())
             {
-                serial = serialNumberBFR;
+                serial = SerialNumberBfr;
             }
             else if (IsItalySystem())
             {
-                serial = serialNumberBIT;
+                serial = SerialNumberBit;
             }
             else if (IsSpainSystem())
             {
-                serial = serialNumberBES;
+                serial = SerialNumberBes;
+            }
+            else if (IsIrelandSystem())
+            {
+                serial = ExistingSerialNumberBir;
+            }
+            else if (IsBelgiumSystem())
+            {
+                serial = ExistingSerialNumberBbe;
+            }
+            else if (IsPolandSystem())
+            {
+                serial = ExistingSerialNumberBpl;
             }
 
             SpecFlow.SetContext("SerialNumber", serial);
@@ -182,27 +197,27 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             if (IsUKSystem())
             {
-                serial = swapSerialNumberUK;
+                serial = SwapSerialNumberUk;
             }
             else if (IsGermanSystem())
             {
-                serial = swapSerialNumberDE;
+                serial = SwapSerialNumberDe;
             }
             else if (IsAustriaSystem())
             {
-                serial = swapSerialNumberAT;
+                serial = SwapSerialNumberAt;
             }
             else if (IsFranceSystem())
             {
-                serial = swapSerialNumberFR;
+                serial = SwapSerialNumberFr;
             }
             else if (IsItalySystem())
             {
-                serial = swapSerialNumberIT;
+                serial = SwapSerialNumberIt;
             }
             else if (IsSpainSystem())
             {
-                serial = swapSerialNumberES;
+                serial = SwapSerialNumberEs;
             }
 
             SpecFlow.SetContext("SwapSerialNumber", serial);
@@ -217,47 +232,47 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             if (IsUKSystem())
             {
-                serial = existingSerialNumber;
+                serial = ExistingSerialNumber;
             }
             else if (IsGermanSystem())
             {
-                serial = existingSerialNumberBIG;
+                serial = ExistingSerialNumberBig;
             }
             else if (IsAustriaSystem())
             {
-                serial = existingSerialNumberAUT;
+                serial = ExistingSerialNumberAut;
             }
             else if (IsFranceSystem())
             {
-                serial = serialNumberBFR;
+                serial = SerialNumberBfr;
             }
             else if (IsItalySystem())
             {
-                serial = serialNumberBIT;
+                serial = SerialNumberBit;
             }
             else if (IsSpainSystem())
             {
-                serial = serialNumberBES;
+                serial = SerialNumberBes;
             }
             else if (IsIrelandSystem())
             {
-                serial = serialNumberBIR;
+                serial = SerialNumberBir;
             }
             else if (IsBelgiumSystem())
             {
-                serial = serialNumberBBE;
+                serial = SerialNumberBbe;
             }
             else if (IsPolandSystem())
             {
-                serial = serialNumberBPL;
+                serial = SerialNumberBpl;
             }
             else if (IsNetherlandSystem())
             {
-                serial = serialNumberBNN;
+                serial = SerialNumberBnn;
             }
             else if (IsSwedenSystem())
             {
-                serial = serialNumberBNS;
+                serial = SerialNumberBns;
             }
             SpecFlow.SetContext("UsedSerialNumber", serial);
 

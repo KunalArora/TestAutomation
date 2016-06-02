@@ -20,6 +20,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string austriaUrl = @"online.at";
         private const string CustomerString = "#DataTables_Table_0 tbody tr:first-child td:first-child";
         private const string CustomerContainer = @"#DataTables_Table_0";
+       
 
         public override string DefaultTitle
         {
@@ -136,6 +137,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement GermanZeichnungsberechtigterElement;
         [FindsBy(How = How.Id, Using = "content_1_PersonListFilter_InputFilterBy")]
         public IWebElement ExistingCustomerFilterElement;
+        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputPersonPosition_Input")]
+        public IWebElement CustomerPositionElement;
+        
 
 
 
@@ -310,7 +314,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SelectATradingStyle()
         {
-            if (IsUKSystem()||IsSpainSystem()|| IsIrelandSystem() || IsNetherlandSystem() || IsSwedenSystem() || IsBelgiumSystem())
+            if (IsUKSystem()||IsSpainSystem()|| IsIrelandSystem() || IsNetherlandSystem() || IsSwedenSystem() || IsBelgiumSystem() || IsPolandSystem())
                 SelectFromDropdown(TradingStyleElement, TradingStyle());
                 WebDriver.Wait(DurationType.Second, 3);
         }
@@ -353,11 +357,34 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 }
                 else if (IsBelgiumSystem())
                 {
-                    SelectFromDropdown(PaymentTypeDropdown, "Direct Debit");
+                    var language = BelgianLanguage();
+                    SelectFromDropdown(PaymentTypeDropdown, language);
                 }
             }
             
             WebDriver.Wait(DurationType.Second, 3);
+        }
+
+        private String BelgianLanguage()
+        {
+            string lang;
+            var language = SpecFlow.GetContext("BelgianLanguage");
+
+            switch (language)
+            {
+                case "French" :
+                    lang = "Débit direct";
+                    break;
+                case "Dutch" :
+                    lang = "Direct Debit";
+                    break;
+
+                default : 
+                    lang = "Débit direct";
+                    break;
+            }
+
+            return lang;
         }
 
         public void EnterBankName()
@@ -389,20 +416,23 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterBankPropertyNumber()
         {
-            if (IsUKSystem()|| IsIrelandSystem() || IsNetherlandSystem() || IsSwedenSystem())
-                 ClearAndType(BankPropertyNumberElement, "12345");
+            if (!(IsBigAtSystem() || IsFranceSystem() || IsSpainSystem() || IsItalySystem()))
+            {
+                ClearAndType(BankPropertyNumberElement, "12345");
+            }
+                 
         }
 
         public void EnterBankPropertyStreet()
         {
-            if (!(IsGermanSystem() || IsAustriaSystem()))
-                 ClearAndType(BankPropertyStreetElement, "Lloyds House");
+            if (IsBigAtSystem()) return;
+            ClearAndType(BankPropertyStreetElement, "Lloyds House");
         }
 
         public void EnterBankPropertyTown()
         {
-            if (!(IsGermanSystem()|| IsAustriaSystem()))
-                 ClearAndType(BankPropertyTownElement, "Cockney");
+            if (IsBigAtSystem()) return;
+            ClearAndType(BankPropertyTownElement, "Cockney");
         }
 
         public void EnterBankPropertyPostcode()
@@ -461,6 +491,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             EnterVatNumber();
             SelectATradingStyle();
             EnterAuthoriisedSignatoryNumber();
+            EnterContactPosition();
             EnterRegionNameForCustomer();
         }
 
@@ -496,6 +527,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private void EnterPrivateLiableFirstName()
         {
             ClearAndType(PrivateLiableFirstNameElement, "Private");
+        }
+
+        private void EnterContactPosition()
+        {
+            if(IsIrelandSystem())
+            ClearAndType(CustomerPositionElement, "Manager");
         }
 
         private void EnterPrivateLiableLastName()
