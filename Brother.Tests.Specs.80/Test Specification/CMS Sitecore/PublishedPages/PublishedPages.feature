@@ -76,7 +76,7 @@ Scenarios:
 	
 	 | Site Url                                                                                           |
 	 | http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseDoNotTouch/HGe131V5-SuppliesPage            |                                                               
-	 | http://main.co.uk.brotherqas.eu/QA/TestAutomationPleaseDoNotTouch/AD18ESUK						  |
+	 #| http://main.co.uk.brotherqas.eu/QA/TestAutomationPleaseDoNotTouch/AD18ESUK						  |
 
 
 @SMOKE
