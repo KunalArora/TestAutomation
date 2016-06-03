@@ -185,9 +185,8 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         [FindsBy(How = How.CssSelector, Using = "#btnSubmit")]
         public IWebElement SubmitButton;
 
-        [FindsBy(How = How.CssSelector, Using = "div.checkbox [for=\"chkTerms\"]")]
+        [FindsBy(How = How.XPath, Using = ".//*[@for='chkTerms']")]
         public IWebElement AgreeToTermsAndConditions;
-
 
         public void GetPublishedPage(string url)
         {
