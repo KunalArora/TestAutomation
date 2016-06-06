@@ -56,5 +56,8 @@
     <Setting Name="QASESCustomer" Type="System.String" Scope="User">
       <Value Profile="(Default)">kassie20160322140949@mailinator.com</Value>
     </Setting>
+    <Setting Name="QASIRCustomer" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Ariana2016061114137@mailinator.com</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

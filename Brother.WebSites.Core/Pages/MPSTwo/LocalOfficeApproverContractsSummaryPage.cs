@@ -169,7 +169,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 reason = "Andere";
 
             }
-            else if (IsUKSystem())
+            else if (IsUKSystem() || IsIrelandSystem())
             {
                 reason = "Expired";
 
