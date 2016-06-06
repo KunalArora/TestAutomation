@@ -193,7 +193,6 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.CategoryAttribute("SMOKE")]
         [NUnit.Framework.TestCaseAttribute("http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseDoNotTouch/HGe131V5-Suppli" +
             "esPage", null)]
-        [NUnit.Framework.TestCaseAttribute("http://main.co.uk.brotherqas.eu/QA/TestAutomationPleaseDoNotTouch/AD18ESUK", null)]
         public virtual void NavigateToPublishedPageToVerifySuppliesProductPage_UK(string siteUrl, string[] exampleTags)
         {
             string[] @__tags = new string[] {
