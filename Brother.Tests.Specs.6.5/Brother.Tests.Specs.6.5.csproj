@@ -486,6 +486,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Test Specifications\MPSTwoByCountries\BIR\AfterCare\CloudMPSSwapDevice.feature.cs">
+      <DependentUpon>CloudMPSSwapDevice.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BIR\Contract\CloudMPSDealerCanCopyADeclineProposal.feature.cs">
       <DependentUpon>CloudMPSDealerCanCopyADeclineProposal.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -2076,6 +2081,10 @@
     <None Include="Test Specifications\MPSTwoByCountries\BIG_AT\Service Request\CloudMPSServiceRequestOperations.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSServiceRequestOperations.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwoByCountries\BIR\AfterCare\CloudMPSSwapDevice.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CloudMPSSwapDevice.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwoByCountries\BIR\Contract\CloudMPSDealerCanCopyADeclineProposal.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

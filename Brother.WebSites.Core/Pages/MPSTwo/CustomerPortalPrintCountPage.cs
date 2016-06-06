@@ -21,7 +21,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         [FindsBy(How = How.CssSelector, Using = ".alert.alert-info")]
         public IList<IWebElement> ContractInfo;
-        [FindsBy(How = How.CssSelector, Using = ".active a[href=\"/mps/customer/print-counts\"]")]
+        [FindsBy(How = How.CssSelector, Using = ".active a[href=\"/mps/customer/manage devices\"]")]
         public IWebElement PrintCountTab;
         [FindsBy(How = How.CssSelector, Using = "#content_1_PrintCountList_Contracts_List_0_CellTotalCount_0")]
         public IWebElement FirstPrintCountTotal;

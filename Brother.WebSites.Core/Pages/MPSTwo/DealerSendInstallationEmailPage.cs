@@ -65,7 +65,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 aContainer.Add(itemText);
             }
 
-            TestCheck.AssertIsEqual(true, aContainer.Any(x => x.Contains(serialNumber)), "Device Model is displayed");
+            var message = String.Format("Expect {0} but got {1}", serialNumber, aContainer);
+
+            TestCheck.AssertIsEqual(true, aContainer.Any(x => x.Contains(serialNumber)), message);
         }
 
         public void IsPinFieldPopulated()

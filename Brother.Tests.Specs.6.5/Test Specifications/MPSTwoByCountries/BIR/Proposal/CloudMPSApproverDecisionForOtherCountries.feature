@@ -18,8 +18,8 @@ Scenario Outline: Approver Decline Proposal for other Countries
 	And I sign out of Cloud MPS
 
 	Scenarios: 
-	| Country                         | Role    | ContractType                  | UsageType      | Length  | Billing              |
-	| Cloud MPS Local Office Approver | Ireland | Purchase & Click with Service | Minimum Volume | 3 years | Quarterly in Arrears |
+	| Country | Role                            | ContractType                  | UsageType      | Length  | Billing              |
+	| Ireland | Cloud MPS Local Office Approver | Purchase & Click with Service | Minimum Volume | 3 years | Quarterly in Arrears |
 	
 #
 # Approve Signed Contract
@@ -35,7 +35,7 @@ Scenario Outline: Approver can decide to reject or approve the contract for othe
 
 	Scenarios:
 	| Country                         | Role    | ContractType                  | UsageType      | Length  | Billing              |
-	| Cloud MPS Local Office Approver | Ireland | Purchase & Click with Service | Minimum Volume | 3 years | Quarterly in Arrears |
+	| Ireland | Cloud MPS Local Office Approver | Purchase & Click with Service | Minimum Volume | 3 years | Quarterly in Arrears |
 	
 
 # Accept5, 6
@@ -52,7 +52,7 @@ Scenario Outline: Approver can approve the contract for other Countries
 	Scenarios:
 
 	| Country                         | Role    | ContractType                  | UsageType      | Length  | Billing              |
-	| Cloud MPS Local Office Approver | Ireland | Purchase & Click with Service | Minimum Volume | 3 years | Quarterly in Arrears |
+	| Ireland | Cloud MPS Local Office Approver | Purchase & Click with Service | Minimum Volume | 3 years | Quarterly in Arrears |
 	
 # Reject1,2
 Scenario Outline: Approver can reject the contract for other Countries
@@ -67,7 +67,7 @@ Scenario Outline: Approver can reject the contract for other Countries
 	Scenarios:
 
 	| Country                         | Role    | ContractType                  | UsageType      | Length  | Billing              |
-	| Cloud MPS Local Office Approver | Ireland | Purchase & Click with Service | Minimum Volume | 3 years | Quarterly in Arrears |
+	| Ireland | Cloud MPS Local Office Approver | Purchase & Click with Service | Minimum Volume | 3 years | Quarterly in Arrears |
 	
 # Reject3
 Scenario Outline: Dealer can resign rejected contract for other Countries

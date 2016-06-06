@@ -14,12 +14,15 @@ namespace Brother.Tests.Selenium.Lib.Support
     public class MPSUserLogins
     {
 
-        private const string germanUrl = @"online.de";
-        private const string austriaUrl = @"online.at";
-        private const string englandUrl = @"online.uk";
-        private const string franceUrl = @"online.fr";
-        private const string spainUrl = @"online.es";
-        private const string italyUrl = @"online.it";
+        private const string GermanUrl = @"online.de";
+        private const string AustriaUrl = @"online.at";
+        private const string EnglandUrl = @"online.uk";
+        private const string FranceUrl = @"online.fr";
+        private const string SpainUrl = @"online.es";
+        private const string ItalyUrl = @"online.it";
+        private const string IrelandUrl = @"online.ie";
+        private const string BelgiumUrl = @"online.be";
+        private const string PolandUrl = @"online.it";
         private const string existingSerialNumber = @"A1T010001";
         private const string existingSerialNumberBIG = @"A1T010002";
         private const string existingSerialNumberAUT = @"A1T010003";
@@ -30,15 +33,15 @@ namespace Brother.Tests.Selenium.Lib.Support
             string serial = null;
             var currentUrl = CurrentUrl(driver);
 
-            if (currentUrl.Contains(englandUrl))
+            if (currentUrl.Contains(EnglandUrl))
             {
                 serial = existingSerialNumber;
             }
-            else if (currentUrl.Contains(germanUrl))
+            else if (currentUrl.Contains(GermanUrl))
             {
                 serial = existingSerialNumberBIG;
             }
-            else if (currentUrl.Contains(austriaUrl))
+            else if (currentUrl.Contains(AustriaUrl))
             {
                 serial = existingSerialNumberAUT;
             }
@@ -115,29 +118,33 @@ namespace Brother.Tests.Selenium.Lib.Support
 
             var currentUrl = CurrentUrl(driver);
 
-            if (currentUrl.Contains(germanUrl))
+            if (currentUrl.Contains(GermanUrl))
             {
                 username = MPSQAS.Default.QASDECustomer;
 
-            } else if (currentUrl.Contains(austriaUrl))
+            } else if (currentUrl.Contains(AustriaUrl))
             {
                 username = MPSQAS.Default.QASATCustomer;
             }
-            else if(currentUrl.Contains(englandUrl))
+            else if(currentUrl.Contains(EnglandUrl))
             {
                 username = MPSQAS.Default.QASUKCustomer;
             }
-            else if (currentUrl.Contains(franceUrl))
+            else if (currentUrl.Contains(FranceUrl))
             {
                 username = MPSQAS.Default.QASFRCustomer;
             }
-            else if (currentUrl.Contains(spainUrl))
+            else if (currentUrl.Contains(SpainUrl))
             {
                 username = MPSQAS.Default.QASESCustomer;
             }
-            else if (currentUrl.Contains(italyUrl))
+            else if (currentUrl.Contains(ItalyUrl))
             {
                 username = MPSQAS.Default.QASITCustomer;
+            }
+            else if (currentUrl.Contains(IrelandUrl))
+            {
+                username = MPSQAS.Default.QASIRCustomer;
             }
             return username;
         }

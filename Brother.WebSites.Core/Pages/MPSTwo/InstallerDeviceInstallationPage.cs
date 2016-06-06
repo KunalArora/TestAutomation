@@ -39,6 +39,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string SwapSerialNumberFr = @"F3Y111491";
         private const string SwapSerialNumberIt = @"F3Y111493";
         private const string SwapSerialNumberEs = @"F3Y111494";
+        private const string SwapSerialNumberIr = @"F3Y112650";
+        private const string SwapSerialNumberPl = @"F3Y112652";
+        private const string SwapSerialNumberNl = @"F3Y112656";
+        private const string SwapSerialNumberNs = @"F3Y112657";
+        private const string SwapSerialNumberBe = @"F3Y112658";
+        private const string SwapSerialNumberSw = @"F3Y112663";
          
 
         public override string DefaultTitle
@@ -175,15 +181,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
             else if (IsIrelandSystem())
             {
-                serial = ExistingSerialNumberBir;
+                serial = SerialNumberBir;
             }
             else if (IsBelgiumSystem())
             {
-                serial = ExistingSerialNumberBbe;
+                serial = SerialNumberBbe;
             }
             else if (IsPolandSystem())
             {
-                serial = ExistingSerialNumberBpl;
+                serial = SerialNumberBpl;
             }
 
             SpecFlow.SetContext("SerialNumber", serial);
@@ -218,6 +224,30 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             else if (IsSpainSystem())
             {
                 serial = SwapSerialNumberEs;
+            }
+            if (IsIrelandSystem())
+            {
+                serial = SwapSerialNumberIr;
+            }
+            else if (IsPolandSystem())
+            {
+                serial = SwapSerialNumberPl;
+            }
+            else if (IsBelgiumSystem())
+            {
+                serial = SwapSerialNumberBe;
+            }
+            else if (IsSwedenSystem())
+            {
+                serial = SwapSerialNumberNs;
+            }
+            else if (IsNetherlandSystem())
+            {
+                serial = SwapSerialNumberNl;
+            }
+            else if (IsSwissSystem())
+            {
+                serial = SwapSerialNumberSw;
             }
 
             SpecFlow.SetContext("SwapSerialNumber", serial);

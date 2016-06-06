@@ -79,7 +79,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 path = "file:///C:/Users/afolabsa/Downloads/{0}-Vertrag.pdf";
 
             }
-            else if (IsUKSystem())
+            else if (IsUKSystem() || IsIrelandSystem())
             {
                 path = "file:///C:/Users/afolabsa/Downloads/{0}-Contract.pdf";
 

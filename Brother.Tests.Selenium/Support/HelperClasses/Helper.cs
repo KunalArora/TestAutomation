@@ -177,7 +177,9 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             Locale = _countries.TryGetValue(country, out locale) ? locale : String.Empty;
             if (Locale.Equals(string.Empty))
             {
+                MsgOutput(String.Format("Inputted country inputted is {0}", country));
                 TestCheck.AssertFailTest(string.Format("Invalid Locale {0} - unable to proceed", Locale));
+                
             }
             MsgOutput("Setting Country to ", Locale);
         }
@@ -188,7 +190,9 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             Abbrev = _BrotherAbbrev.TryGetValue(country, out abbr) ? abbr : String.Empty;
             if (Abbrev.Equals(string.Empty))
             {
+                MsgOutput(String.Format("Inputted country inputted is {0}", country));
                 TestCheck.AssertFailTest(string.Format("Invalid Locale {0} - unable to proceed", Abbrev));
+                
             }
             MsgOutput("Setting Country Abbreviation to ", Abbrev);
         }

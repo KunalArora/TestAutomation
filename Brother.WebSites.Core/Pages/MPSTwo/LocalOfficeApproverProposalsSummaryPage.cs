@@ -59,7 +59,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 SelectFromDropdown(DeclineReasonElement, "Andere");
             }
-            else if (IsUKSystem())
+            else if (IsUKSystem() || IsIrelandSystem())
             {
                 SelectFromDropdown(DeclineReasonElement, "Other");
             }

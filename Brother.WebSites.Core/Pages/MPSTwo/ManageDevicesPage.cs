@@ -143,6 +143,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 coy = "Silent Field_160322142114 Ltd";
             }
+            else if (IsIrelandSystem())
+            {
+                coy = "Cotton Blossom_16061114137 Ltd";
+            }
 
             return coy;
         }
