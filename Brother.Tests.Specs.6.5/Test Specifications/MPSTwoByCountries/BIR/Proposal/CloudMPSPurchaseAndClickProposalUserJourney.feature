@@ -64,8 +64,8 @@ Scenario Outline: Create different varieties of Purchase and Click proposal for 
 	
 
 	Scenarios: 
-	| Role             | Country | ContractType                  | CreateOption        | UsageType     | Contract | Billing              | PriceHardware | Printer    | DeviceScreen | ClickVolume |
-	| Cloud MPS Dealer | Ireland | Purchase & Click with Service | Create new customer | Pay As You Go | 4 years  | Quarterly in Arrears | Tick          | MFC-8510DN | Full         | 750         |
+	| Role             | Country | ContractType                  | CreateOption        | UsageType     | Contract | Billing              | PriceHardware | Printer     | DeviceScreen | ClickVolume |
+	| Cloud MPS Dealer | Ireland | Purchase & Click with Service | Create new customer | Pay As You Go | 4 years  | Quarterly in Arrears | Tick          | DCP-L5500DN | Full         | 750         |
 	
 
 Scenario Outline: Create different varieties of Purchase and Click proposal for an existing customer
@@ -124,6 +124,6 @@ Scenario Outline: Create different varieties of Purchase and Click proposal for 
 	
 
 	Scenarios: 
-	| Role             | Country | ContractType                  | UsageType     | Contract | Billing              | PriceHardware | Printer    | DeviceScreen | ClickVolume |
-	| Cloud MPS Dealer | Ireland | Purchase & Click with Service | Pay As You Go | 5 years  | Quarterly in Arrears | Tick          | MFC-8510DN | Full         | 750         |
+	| Role             | Country | ContractType                  | UsageType     | Contract | Billing              | PriceHardware | Printer     | DeviceScreen | ClickVolume |
+	| Cloud MPS Dealer | Ireland | Purchase & Click with Service | Pay As You Go | 5 years  | Quarterly in Arrears | Tick          | DCP-L5500DN | Full         | 750         |
 	

@@ -4,6 +4,7 @@ Feature: CloudMPSIrishDealerCanOperateProposalOffers
 	As an MPS Dealer
 	I want to operate existing proposals
 
+@ignore
 Scenario Outline: Dealer can see proposal offers 
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to existing proposal screen
@@ -54,7 +55,7 @@ Scenario Outline: Dealer can edit products in an existing proposal offer
 	| Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Ireland | Products | Add    |
 	| Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Ireland | Products | Remove |
 	
-
+@ignore
 Scenario Outline: Dealer can cancel deleting proposal offer
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to existing proposal screen
