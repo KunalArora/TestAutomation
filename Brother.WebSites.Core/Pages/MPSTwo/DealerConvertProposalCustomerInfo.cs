@@ -497,11 +497,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterPrivateLiableCustomerInfo(string company)
         {
-                SelectAPrivatelyLiableCustomer(company);
-                EnterCompanyRegistration();
-                EnterVatNumber();
-                SelectATradingStyle();
-                EnterAuthoriisedSignatoryNumber();
+            SelectAPrivatelyLiableCustomer(company);
+            EnterCompanyRegistration();
+            EnterVatNumber();
+            EnterContactPosition();
+            SelectATradingStyle();
+            EnterAuthoriisedSignatoryNumber();
             
         }
 
