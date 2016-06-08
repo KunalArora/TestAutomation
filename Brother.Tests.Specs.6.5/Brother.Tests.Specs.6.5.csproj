@@ -566,6 +566,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Test Specifications\MPSTwoByCountries\BIR\Proposal\CloudMPSVerifyCurrenciesAreCorrectlyPlaced.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CloudMPSVerifyCurrenciesAreCorrectlyPlaced.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BIR\SendForApproval\CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature.cs">
       <DependentUpon>CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -2135,6 +2140,10 @@
     <None Include="Test Specifications\MPSTwoByCountries\BIR\Proposal\CloudMPSSummaryPageValidationForAllProposalTypes.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSSummaryPageValidationForAllProposalTypes.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwoByCountries\BIR\Proposal\CloudMPSVerifyCurrenciesAreCorrectlyPlaced.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CloudMPSVerifyCurrenciesAreCorrectlyPlaced.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwoByCountries\BIR\SendForApproval\CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
