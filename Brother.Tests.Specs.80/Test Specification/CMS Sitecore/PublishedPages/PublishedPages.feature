@@ -88,7 +88,7 @@ Scenarios:
 	
 	 | Site Url																							|
 	 | http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseDoNotTouch/NewsLandingPage				|
-	 | http://main.co.uk.brotherqas.eu/QA/TestAutomationPleaseDoNotTouch/News-Landing-Page				|
+	# | http://main.co.uk.brotherqas.eu/QA/TestAutomationPleaseDoNotTouch/News-Landing-Page				|
 
 		
 @SMOKE
@@ -114,7 +114,8 @@ Scenarios:
 	 | http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseDoNotTouch/All-Printers					 |
 
 
-@TEST
+@ignore
+## This test shouldn't run on teamcity as currently email takes about 5 minutes to come through.
 Scenario Outline: Omnijoin Free Trial Sign up
 	Given That I navigate to "<Site Url>" in order to validate a published page
 	And I fill in the registration information using a valid email address 
