@@ -217,8 +217,6 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.CategoryAttribute("SMOKE")]
         [NUnit.Framework.TestCaseAttribute("http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseDoNotTouch/NewsLandingPage" +
             "", null)]
-        [NUnit.Framework.TestCaseAttribute("http://main.co.uk.brotherqas.eu/QA/TestAutomationPleaseDoNotTouch/News-Landing-Pa" +
-            "ge", null)]
         public virtual void NavigateToPublishedPageToVerifyNewsLandingPage_UK(string siteUrl, string[] exampleTags)
         {
             string[] @__tags = new string[] {
