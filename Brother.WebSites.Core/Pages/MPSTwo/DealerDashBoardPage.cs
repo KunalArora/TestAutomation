@@ -35,9 +35,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [FindsBy(How = How.CssSelector, Using = ".separator a[href='/mps/dealer/admin']")]
         public IWebElement DealerAdminTabElement;
         [FindsBy(How = How.CssSelector, Using = ".mps-lang > span > a")]
-        public IList<IWebElement> BelgianLanguageElement;
+        public IList<IWebElement> MultipleLanguagesElement;
         [FindsBy(How = How.CssSelector, Using = "a[href='/mps/dealer/contracts'] .media-body .media-heading")]
-        public IWebElement BelgianLanguageIdentifierElement;
+        public IWebElement SwitchedLanguageIdentifierElement;
         
         
 
@@ -49,30 +49,54 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             AssertElementPresent(CreateProposalLinkElement, "Create New Proposal Link");
         }
 
-        public void ChangeBelgianLanguage(string language)
+        public void SwitchBetweenMultipleLanguages(string language)
         {
-            if (!IsBelgiumSystem()) return;
-            if (language.Equals("French"))
+            if (IsBelgiumSystem())
             {
-                BelgianLanguageElement.First().Click();
-                IsBelgianLanguageSelected("Contrats");
-            }
-            else if (language.Equals("Dutch"))
+                SwitchBelgianLanguage(language);
+            } else if (IsFinlandSystem())
             {
-                BelgianLanguageElement.Last().Click();
-                IsBelgianLanguageSelected("Contracten");
+                SwitchFinnishLanguage(language);
             }
 
             SpecFlow.SetContext("BelgianLanguage", language);
         }
 
-        public void IsBelgianLanguageSelected(string text)
+        public void SwitchBelgianLanguage(string lang)
         {
-            if (BelgianLanguageElement == null) 
+            if (lang.Equals("French"))
+            {
+                MultipleLanguagesElement.First().Click();
+                IsSwitchedLanguageSelected("Contrats");
+            }
+            else if (lang.Equals("Dutch"))
+            {
+                MultipleLanguagesElement.Last().Click();
+                IsSwitchedLanguageSelected("Contracten");
+            }
+        }
+
+        public void SwitchFinnishLanguage(string lang)
+        {
+            if (lang.Equals("Suomi"))
+            {
+                MultipleLanguagesElement.First().Click();
+                IsSwitchedLanguageSelected("Sopimukset");
+            }
+            else if (lang.Equals("Svenska"))
+            {
+                MultipleLanguagesElement.Last().Click();
+                IsSwitchedLanguageSelected("Avtal");
+            }
+        }
+
+        public void IsSwitchedLanguageSelected(string text)
+        {
+            if (MultipleLanguagesElement == null) 
                 throw new Exception("Unable to locate existing proposals link on dashboard page");
 
-            AssertElementContainsText(BelgianLanguageIdentifierElement, text, 
-                                    String.Format("The word displayed was {0}", BelgianLanguageIdentifierElement.Text));
+            AssertElementContainsText(SwitchedLanguageIdentifierElement, text, 
+                                    String.Format("The word displayed was {0}", SwitchedLanguageIdentifierElement.Text));
         }
 
         public void IsExistingContractsLinkAvailable()

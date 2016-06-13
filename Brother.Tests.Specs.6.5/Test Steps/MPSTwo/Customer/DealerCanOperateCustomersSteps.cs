@@ -1,9 +1,8 @@
 ﻿using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.MPSTwo;
-using NUnit.Framework.Constraints;
 using TechTalk.SpecFlow;
 
-namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Customer
+namespace Brother.Tests.Specs.MPSTwo.Customer
 {
     [Binding]
     public class DealerCanOperateCustomersSteps : BaseSteps

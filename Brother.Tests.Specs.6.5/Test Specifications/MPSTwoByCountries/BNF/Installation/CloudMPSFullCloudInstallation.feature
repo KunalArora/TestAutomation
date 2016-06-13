@@ -9,7 +9,7 @@ Feature: CloudMPSFinnishinArrearsFullCloudInstallationForSmokeTest
 
 
 Scenario Outline: Installer can complete installation for Cloud Communication
-	Given "<Country>" Dealer have created a "<ContractType>" contract with "<UsageType>" and "<Length>" and "<Billing>"
+	Given "<Country>" Dealer with "<Language>" language have created a "<ContractType>" contract with "<UsageType>" and "<Length>" and "<Billing>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And the contract created above is approved
 	And I sign back into Cloud MPS as a "<Role1>" from "<Country>"
@@ -26,7 +26,12 @@ Scenario Outline: Installer can complete installation for Cloud Communication
 	
 Scenarios:
 
-	| Role                            | Country | ContractType                  | UsageType      | Role1            | Method | Type | Length  | Billing              |
-	| Cloud MPS Local Office Approver | Finland | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  | 3 years | Quarterly in Arrears |
-	| Cloud MPS Local Office Approver | Finland | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR  | 4 years | Quarterly in Arrears |
+	| Role                            | Country | ContractType                  | UsageType      | Role1            | Method | Type | Length  | Billing              | language |
+	| Cloud MPS Local Office Approver | Finland | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  | 3 years | Quarterly in Arrears | Suomi    |
+	| Cloud MPS Local Office Approver | Finland | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR  | 4 years | Quarterly in Arrears | Suomi    |
+	| Cloud MPS Local Office Approver | Finland | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  | 3 years | Quarterly in Arrears | Svenska  |
+	| Cloud MPS Local Office Approver | Finland | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR  | 4 years | Quarterly in Arrears | Svenska  |
+
+	
+
 	

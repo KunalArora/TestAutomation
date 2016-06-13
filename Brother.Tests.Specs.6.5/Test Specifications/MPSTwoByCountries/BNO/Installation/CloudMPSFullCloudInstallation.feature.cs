@@ -73,7 +73,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BNO.Installat
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Installer can complete installation for Cloud Communication")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Norway", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Cloud", "Web", "3 years", "Quarterly in Arrears", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Norway", "Kjøp og klikk med service", "Minimum volum", "Cloud MPS Dealer", "Cloud", "Web", "36", "Quarterly in Arrears", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Norway", "Kjøp og klikk med service", "Minimum volum", "Cloud MPS Dealer", "Cloud", "BOR", "48", "Quarterly in Arrears", null)]
         public virtual void InstallerCanCompleteInstallationForCloudCommunication(string role, string country, string contractType, string usageType, string role1, string method, string type, string length, string billing, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Installer can complete installation for Cloud Communication", exampleTags);

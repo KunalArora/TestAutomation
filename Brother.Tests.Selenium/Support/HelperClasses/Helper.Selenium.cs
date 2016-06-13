@@ -24,19 +24,22 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         private const string ResultLoader = "results-loading";
 
         private const int ElementSearchTimeout = 60;
-        private const string germanUrl = @"online.de";
-        private const string austriaUrl = @"online.at";
-        private const string englandUrl = @"online.uk";
-        private const string franceUrl = @"online.fr";
-        private const string italyUrl = @"online.it";
-        private const string spainUrl = @"online.es";
-        private const string irelandUrl = @"online.ie";
-        private const string polandUrl = @"online.pl";
-        private const string netherlandUrl = @"online.nl";
-        private const string swedenUrl = @"online.se";
-        private const string belgiumUrl = @"online.be";
-        private const string swissUrl = @"online.ch";
-        private const string englandProdUrl = @".co.uk";
+        private const string GermanUrl = @"online.de";
+        private const string AustriaUrl = @"online.at";
+        private const string EnglandUrl = @"online.uk";
+        private const string FranceUrl = @"online.fr";
+        private const string ItalyUrl = @"online.it";
+        private const string SpainUrl = @"online.es";
+        private const string IrelandUrl = @"online.ie";
+        private const string PolandUrl = @"online.pl";
+        private const string NetherlandUrl = @"online.nl";
+        private const string SwedenUrl = @"online.se";
+        private const string BelgiumUrl = @"online.be";
+        private const string SwissUrl = @"online.ch";
+        private const string FinlandUrl = @"online.fi";
+        private const string DenmarkUrl = @"online.dk";
+        private const string NorwayUrl = @"online.no";
+        private const string EnglandProdUrl = @".co.uk";
 
         public static void AcceptCookieLaw(IWebDriver driver)
         {
@@ -78,7 +81,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
         public bool IsGermanSystem()
         {
-            return GetUrl().Contains(germanUrl);
+            return GetUrl().Contains(GermanUrl);
         }
 
         public string GetContractType()
@@ -88,57 +91,72 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
         public bool IsAustriaSystem()
         {
-            return GetUrl().Contains(austriaUrl);
+            return GetUrl().Contains(AustriaUrl);
         }
 
         public bool IsUKSystem()
         {
-            return GetUrl().Contains(englandUrl) || GetUrl().Contains(englandProdUrl);
+            return GetUrl().Contains(EnglandUrl) || GetUrl().Contains(EnglandProdUrl);
         }
 
         public bool IsFranceSystem()
         {
-            return GetUrl().Contains(franceUrl);
+            return GetUrl().Contains(FranceUrl);
         }
 
         public bool IsItalySystem()
         {
-            return GetUrl().Contains(italyUrl);
+            return GetUrl().Contains(ItalyUrl);
         }
 
         public bool IsSpainSystem()
         {
-            return GetUrl().Contains(spainUrl);
+            return GetUrl().Contains(SpainUrl);
         }
 
         public bool IsPolandSystem()
         {
-            return GetUrl().Contains(polandUrl);
+            return GetUrl().Contains(PolandUrl);
         }
 
         public bool IsIrelandSystem()
         {
-            return GetUrl().Contains(irelandUrl);
+            return GetUrl().Contains(IrelandUrl);
         }
 
         public bool IsNetherlandSystem()
         {
-            return GetUrl().Contains(netherlandUrl);
+            return GetUrl().Contains(NetherlandUrl);
         }
 
         public bool IsBelgiumSystem()
         {
-            return GetUrl().Contains(belgiumUrl);
+            return GetUrl().Contains(BelgiumUrl);
         }
 
         public bool IsSwedenSystem()
         {
-            return GetUrl().Contains(swedenUrl);
+            return GetUrl().Contains(SwedenUrl);
         }
 
         public bool IsSwissSystem()
         {
-            return GetUrl().Contains(swissUrl);
+            return GetUrl().Contains(SwissUrl);
+        }
+
+        public bool IsNorwaySystem()
+        {
+            return GetUrl().Contains(NorwayUrl);
+        }
+
+        public bool IsFinlandSystem()
+        {
+            return GetUrl().Contains(FinlandUrl);
+        }
+
+        public bool IsDenmarkSystem()
+        {
+            return GetUrl().Contains(DenmarkUrl);
         }
 
 
