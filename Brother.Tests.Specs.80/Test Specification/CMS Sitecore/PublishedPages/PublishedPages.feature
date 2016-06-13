@@ -88,7 +88,7 @@ Scenarios:
 	
 	 | Site Url																							|
 	 | http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseDoNotTouch/NewsLandingPage				|
-	 | http://main.co.uk.brotherqas.eu/QA/TestAutomationPleaseDoNotTouch/News-Landing-Page				|
+	# | http://main.co.uk.brotherqas.eu/QA/TestAutomationPleaseDoNotTouch/News-Landing-Page				|
 
 		
 @SMOKE
