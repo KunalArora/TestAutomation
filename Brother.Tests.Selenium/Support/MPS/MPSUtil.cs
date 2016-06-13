@@ -970,6 +970,96 @@ namespace Brother.Tests.Selenium.Lib.Support
             return postCode;
         }
 
+        public static string PostCodeDk()
+        {
+            String[] zip = {
+                                    "3000",
+                                    "3050",
+                                    "3060",
+                                    "3070",
+                                    "3100",
+                                    "3120",
+                                    "3160",
+                                    "3520",
+                                    "4000",
+                                    "4010",
+                                    "4020",
+                                    "4030",
+                                    "4050",
+                                    "4060",
+                                    "4070",
+                                    "4100",
+                                    "4130",
+                                    "4160",
+                                    "4170",
+                                    "4180",
+                                    "4210"
+					            };
+            var postCode = zip[new Random().Next(20)];
+
+            return postCode;
+        }
+
+        public static string PostCodeFi()
+        {
+            String[] zip = {
+                                    "00",
+                                    "50",
+                                    "60",
+                                    "70",
+                                    "10",
+                                    "12",
+                                    "16",
+                                    "52",
+                                    "11",
+                                    "12",
+                                    "22",
+                                    "31",
+                                    "51",
+                                    "61",
+                                    "70",
+                                    "21",
+                                    "13",
+                                    "26",
+                                    "17",
+                                    "18",
+                                    "25"
+					            };
+            var postCode = zip[new Random().Next(20)];
+
+            return postCode;
+        }
+
+        public static string PostCodeNo()
+        {
+            String[] zip = {    
+                                    "3000",
+                                    "2522",
+                                    "1841",
+                                    "2852",
+                                    "2910",
+                                    "2967",
+                                    "3015",
+                                    "3552",
+                                    "4109",
+                                    "4800",
+                                    "4833",
+                                    "0361",
+                                    "0800",
+                                    "1350",
+                                    "2140",
+                                    "2522",
+                                    "2558",
+                                    "0360",
+                                    "4882",
+                                    "3557",
+                                    "3501"
+					            };
+            var postCode = zip[new Random().Next(20)];
+
+            return postCode;
+        }
+
      
         public static string PostCodeGB()
         {

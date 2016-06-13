@@ -275,6 +275,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 ClearAndType(CompanyRegistrationNumerElement, "CHE-106.568.179");
             }
+            else if (IsDenmarkSystem())
+            {
+                ClearAndType(CompanyRegistrationNumerElement, "35679626");
+            }
+            else if (IsFinlandSystem())
+            {
+                ClearAndType(CompanyRegistrationNumerElement, "0572355-8");
+            }
+            else if (IsNorwaySystem())
+            {
+                ClearAndType(CompanyRegistrationNumerElement, "913992415");
+            }
         }
 
         public void EnterInitialVat()
@@ -313,6 +325,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             else if (IsSwissSystem())
             {
                 ClearAndType(VatFieldElement, "PL8567346216");
+            }
+            else if (IsNorwaySystem())
+            {
+                ClearAndType(VatFieldElement, "NO980395898");
+            }
+            else if (IsFinlandSystem())
+            {
+                ClearAndType(VatFieldElement, "FI20774740");
+            }
+            else if (IsDenmarkSystem())
+            {
+                ClearAndType(VatFieldElement, "DK13585628");
             }
         }
 
@@ -432,6 +456,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 code = MpsUtil.PostCodeSw();
             }
+            else if (IsFinlandSystem())
+            {
+                code = MpsUtil.PostCodeFi();
+
+            }
+            else if (IsDenmarkSystem())
+            {
+                code = MpsUtil.PostCodeDk();
+            }
+            else if (IsNorwaySystem())
+            {
+                code = MpsUtil.PostCodeNo();
+            }
+
 
             return code;
         }

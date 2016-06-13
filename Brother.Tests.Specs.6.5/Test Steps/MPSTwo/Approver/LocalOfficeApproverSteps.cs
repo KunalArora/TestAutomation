@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Brother.WebSites.Core.Pages.Base;
+﻿using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using TechTalk.SpecFlow;
 
-namespace Brother.Tests.Specs.MPSTwo.LocalOfficeApprover
+namespace Brother.Tests.Specs.MPSTwo.Approver
 {
     [Binding]
     public class LocalOfficeApproverSteps : BaseSteps

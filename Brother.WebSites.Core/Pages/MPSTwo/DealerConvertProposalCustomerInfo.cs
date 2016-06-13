@@ -16,8 +16,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
     {
         public static string Url = "/";
 
-        private const string germanUrl = @"online.de";
-        private const string austriaUrl = @"online.at";
         private const string CustomerString = "#DataTables_Table_0 tbody tr:first-child td:first-child";
         private const string CustomerContainer = @"#DataTables_Table_0";
        
@@ -228,6 +226,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 SelectFromDropdown(LegalFormDropdown, "Church");
             }
+            else if (IsFinlandSystem())
+            {
+                SelectFromDropdown(LegalFormDropdown, "Church");
+            }
+            else if (IsNorwaySystem())
+            {
+                SelectFromDropdown(LegalFormDropdown, "Church");
+            }
+            else if (IsDenmarkSystem())
+            {
+                SelectFromDropdown(LegalFormDropdown, "Church");
+            }
                 
             WebDriver.Wait(DurationType.Second, 3);
         }
@@ -308,13 +318,28 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             else if (IsPolandSystem())
             {
                 trading = "Non-Regulated";
+            }else if (IsNorwaySystem())
+            {
+                trading = "Ikke regulert";
             }
+            else if (IsDenmarkSystem())
+            {
+                trading = "Non-Regulated";
+            }
+            else if (IsFinlandSystem())
+            {
+                trading = "Non-Regulated";
+            }
+
+            
             return trading;
         }
 
         public void SelectATradingStyle()
         {
-            if (IsUKSystem()||IsSpainSystem()|| IsIrelandSystem() || IsNetherlandSystem() || IsSwedenSystem() || IsBelgiumSystem() || IsPolandSystem())
+            if (IsUKSystem()||IsSpainSystem()|| IsIrelandSystem() || IsNetherlandSystem() 
+                || IsSwedenSystem() || IsBelgiumSystem() || IsPolandSystem() || IsDenmarkSystem() 
+                || IsNorwaySystem() || IsFinlandSystem())
                 SelectFromDropdown(TradingStyleElement, TradingStyle());
                 WebDriver.Wait(DurationType.Second, 3);
         }
@@ -360,6 +385,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     var language = BelgianLanguage();
                     SelectFromDropdown(PaymentTypeDropdown, language);
                 }
+                else if (IsNorwaySystem())
+                {
+                    SelectFromDropdown(PaymentTypeDropdown, "Fast trekk");
+                }
+                else if (IsDenmarkSystem())
+                {
+                    SelectFromDropdown(PaymentTypeDropdown, "Direct Debit");
+                }
+                else if (IsFinlandSystem())
+                {
+                    SelectFromDropdown(PaymentTypeDropdown, "Direct Debit");
+                }
             }
             
             WebDriver.Wait(DurationType.Second, 3);
@@ -380,6 +417,28 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     break;
 
                 default : 
+                    lang = "Débit direct";
+                    break;
+            }
+
+            return lang;
+        }
+
+        private String FinnishLanguage()
+        {
+            string lang;
+            var language = SpecFlow.GetContext("BelgianLanguage");
+
+            switch (language)
+            {
+                case "French":
+                    lang = "Débit direct";
+                    break;
+                case "Dutch":
+                    lang = "Direct Debit";
+                    break;
+
+                default:
                     lang = "Débit direct";
                     break;
             }
@@ -472,6 +531,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             else if (IsPolandSystem())
             {
                 ClearAndType(BankPropertyPostcodeElement, MpsUtil.PostCodePl());
+            }
+            else if (IsDenmarkSystem())
+            {
+                ClearAndType(BankPropertyPostcodeElement, MpsUtil.PostCodeDk());
+            }
+            else if (IsFinlandSystem())
+            {
+                ClearAndType(BankPropertyPostcodeElement, MpsUtil.PostCodeFi());
+            }
+            else if (IsNorwaySystem())
+            {
+                ClearAndType(BankPropertyPostcodeElement, MpsUtil.PostCodeNo());
             }
         }
 

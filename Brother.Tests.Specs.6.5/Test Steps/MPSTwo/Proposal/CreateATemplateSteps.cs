@@ -388,7 +388,8 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
 
         private string ContractType(string type)
         {
-            if (type == "Acquisto + Consumo con assistenza" || type == "Buy & Click" || type == "Purchase & Click con Service")
+            if (type == "Acquisto + Consumo con assistenza" || type == "Buy & Click"
+                || type == "Purchase & Click con Service" || type == "Kjøp og klikk med service")
             {
                 type = "Purchase & Click with Service";
             }
@@ -1069,7 +1070,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
 
         private void GivenIChangeTheLanguageDisplayed(string language)
         {
-            CurrentPage.As<DealerDashBoardPage>().ChangeBelgianLanguage(language);
+            CurrentPage.As<DealerDashBoardPage>().SwitchBetweenMultipleLanguages(language);
         }
 
         private void GivenIHaveCreatedPurchaseAndClickProposalWithLanguage(string contractType, string language, string usageType, string length, string billing)
