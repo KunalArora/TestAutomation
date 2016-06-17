@@ -6,7 +6,7 @@ using OpenQA.Selenium.Support.PageObjects;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class SendToBankPage : BasePage
+    public class DealerSendForApproverPage : BasePage
     {
         public static string URL = "/mps/dealer/send-to-bank/";
 

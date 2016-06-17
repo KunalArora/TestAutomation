@@ -13,7 +13,7 @@ Scenario Outline:  Local Office Approver can download Contract PDFs on Awaiting 
 
 	Scenarios: 
 	| Role                            | Country |
-	| Cloud MPS Local Office Approver | Swedens |
+	| Cloud MPS Local Office Approver | Sweden  |
 	
 
 Scenario Outline: Local Office Approver can download Contract PDFs on Rejected page

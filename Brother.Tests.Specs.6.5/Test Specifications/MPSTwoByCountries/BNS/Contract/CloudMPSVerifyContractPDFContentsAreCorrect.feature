@@ -14,5 +14,7 @@ Scenario Outline: Verify PDF Contents Are Correct
 
 Scenarios:
 
-	| ContractType | Country | UsageType                                 | Length | Billing                |
-	| Buy & Click  | Sweden  | Engagement sur un minimum volume de pages | 3 ans  | Trimestrale anticipata |
+	| ContractType                       | Country | UsageType     | Length | Billing              |
+	| Purchase & click inklusive service | Sweden  | Minimum volym | 36     | Quarterly in Arrears |
+	
+	

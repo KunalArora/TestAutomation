@@ -504,12 +504,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             IsNewProposalTemplateCreated();
         }
 
-        public SendToBankPage StartSendToBankProcess(IWebDriver driver)
+        public DealerSendForApproverPage StartSendToBankProcess(IWebDriver driver)
         {
             var actionsElement = ActionsDropdownElement(actionsButton);
             actionsElement.Last().Click();
             ActionsModule.SendProposalToBankButton(driver);
-            return GetInstance<SendToBankPage>(Driver);
+            return GetInstance<DealerSendForApproverPage>(Driver);
         }
 
         public void FindExistingPoposalList()

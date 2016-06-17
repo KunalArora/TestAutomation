@@ -26,7 +26,7 @@ Scenario Outline: Installer can complete installation for Cloud Communication
 	
 Scenarios:
 
-	| Role                            | Country | ContractType                  | UsageType      | Role1            | Method | Type | Length  | Billing              | language |
+	| Role                            | Country | ContractType                  | UsageType      | Role1            | Method | Type | Length  | Billing              | Language |
 	| Cloud MPS Local Office Approver | Finland | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  | 3 years | Quarterly in Arrears | Suomi    |
 	| Cloud MPS Local Office Approver | Finland | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR  | 4 years | Quarterly in Arrears | Suomi    |
 	| Cloud MPS Local Office Approver | Finland | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  | 3 years | Quarterly in Arrears | Svenska  |

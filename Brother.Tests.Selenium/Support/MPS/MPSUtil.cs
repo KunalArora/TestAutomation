@@ -943,9 +943,9 @@ namespace Brother.Tests.Selenium.Lib.Support
         public static string PostCodeSw()
         {
             String[] zip = {
+                                    "4820",
                                     "3001",
-                                    "2520",
-                                    "1412",
+                                    "3002",
                                     "8520",
                                     "2100",
                                     "2679",
@@ -953,15 +953,15 @@ namespace Brother.Tests.Selenium.Lib.Support
                                     "3520",
                                     "4092",
                                     "4001",
-                                    "4330",
+                                    "4010",
                                     "0610",
-                                    "0003",
+                                    "3003",
                                     "1500",
                                     "2400",
                                     "2220",
                                     "2589",
-                                    "0600",
-                                    "4820",
+                                    "3000",
+                                    "4003",
                                     "3572",
                                     "3517"
 					            };
@@ -1003,29 +1003,17 @@ namespace Brother.Tests.Selenium.Lib.Support
         public static string PostCodeFi()
         {
             String[] zip = {
-                                    "00",
-                                    "50",
-                                    "60",
-                                    "70",
-                                    "10",
-                                    "12",
-                                    "16",
-                                    "52",
-                                    "11",
-                                    "12",
-                                    "22",
-                                    "31",
-                                    "51",
-                                    "61",
-                                    "70",
-                                    "21",
-                                    "13",
-                                    "26",
-                                    "17",
-                                    "18",
-                                    "25"
+                                    "00100",
+                                    "80100",
+                                    "04250",
+                                    "04430",
+                                    "33210",
+                                    "55100",
+                                    "68600",
+                                    "14240",
+                                    "84100"
 					            };
-            var postCode = zip[new Random().Next(20)];
+            var postCode = zip[new Random().Next(8)];
 
             return postCode;
         }
@@ -1119,6 +1107,10 @@ namespace Brother.Tests.Selenium.Lib.Support
             {
                 numberFormatInfo = new NumberFormatInfo { CurrencySymbol = "CHF" };
             }
+            else if (money.Contains("kr."))
+            {
+                numberFormatInfo = new NumberFormatInfo { CurrencySymbol = "kr." };
+            }
             else if (money.Contains("kr"))
             {
                 numberFormatInfo = new NumberFormatInfo { CurrencySymbol = "kr" };
@@ -1139,6 +1131,23 @@ namespace Brother.Tests.Selenium.Lib.Support
             var previousUrl = driver.Url;
             element.Click();
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+            wait.Until(ExpectedConditionsEx.UrlChangeFrom(previousUrl));
+        }
+
+        public static void ReClickButtonThenNavigateToOtherUrl(IWebDriver driver, IWebElement element)
+        {
+            var previousUrl = driver.Url;
+            element.Click();
+
+            WebDriver.Wait(Helper.DurationType.Second, 5);
+            var nowUrl = driver.Url;
+
+            if (previousUrl == nowUrl)
+            {
+                element.Click();
+            }
+
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             wait.Until(ExpectedConditionsEx.UrlChangeFrom(previousUrl));
         }
 

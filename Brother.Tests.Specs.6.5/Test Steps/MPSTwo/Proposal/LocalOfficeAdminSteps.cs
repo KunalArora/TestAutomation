@@ -50,7 +50,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         public void WhenINavigateToPurchaseAndClickPage()
         {
 
-            NextPage = CurrentPage.As<LocalOfficeAdminDashBoardPage>().NavigateToLOProgramPage();
+            NextPage = CurrentPage.As<LocalOfficeAdminDashBoardPage>().NavigateToLoProgramPage();
             NextPage = CurrentPage.As<LocalOfficeAdminProgramPage>().NavigateToPurchaseAndClickPage();
         }
 
@@ -58,14 +58,14 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [When(@"I navigate to admin Lease And Click page")]
         public void WhenINavigateToLeaseAndClickPage()
         {
-            NextPage = CurrentPage.As<LocalOfficeAdminDashBoardPage>().NavigateToLOProgramPage();
+            NextPage = CurrentPage.As<LocalOfficeAdminDashBoardPage>().NavigateToLoProgramPage();
             NextPage = CurrentPage.As<LocalOfficeAdminProgramPage>().NavigateToLeaseAndClickPage();
         }
 
         [When(@"I navigate to All In Click Page")]
         public void WhenINavigateToAllInClickPage()
         {
-            NextPage = CurrentPage.As<LocalOfficeAdminDashBoardPage>().NavigateToLOProgramPage();
+            NextPage = CurrentPage.As<LocalOfficeAdminDashBoardPage>().NavigateToLoProgramPage();
             NextPage = CurrentPage.As<LocalOfficeAdminProgramPage>().NavigateToAllInClickPage();
         }
 

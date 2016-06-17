@@ -51,14 +51,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
 
-        public ManageDevicesPage CompleteSwapProcessThroughPrintCountSwap()
+        public DealerManageDevicesPage CompleteSwapProcessThroughPrintCountSwap()
         {
             if(UpdateSwapElement == null)
                 throw new Exception("Print counts cannot be swapped");
 
             UpdateSwapElement.Click();
 
-            return GetInstance<ManageDevicesPage>();
+            return GetInstance<DealerManageDevicesPage>();
         }
     }
 }

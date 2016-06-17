@@ -1,4 +1,4 @@
-﻿@MPS @UAT @TEST
+﻿@ignore @MPS @UAT @TEST
 Feature: CloudMPSSwedishInstallerCanNavigateThroughEmailInstallation
 	In order to get an installer to begin installation
 	As a Dealer 
@@ -22,6 +22,7 @@ Scenario Outline: Belgian Installer can progress with installation for Email Com
 	
 Scenarios:
 
-	| Role                            | Country | ContractType | UsageType                                 | Role1            | Method | Length | Billing                |
-	| Cloud MPS Local Office Approver | Sweden  | Buy & Click  | Engagement sur un minimum volume de pages | Cloud MPS Dealer | Email  | 3 ans  | Trimestrale anticipata |
+	| Role                            | Country | ContractType                       | UsageType     | Role1            | Method | Length | Billing              |
+	| Cloud MPS Local Office Approver | Sweden  | Purchase & click inklusive service | Minimum volym | Cloud MPS Dealer | Email  | 36     | Quarterly in Arrears |
+	
 	

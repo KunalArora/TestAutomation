@@ -318,13 +318,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 ClearAndType(VatFieldElement, "NL004495445B01");
             }
-            else if (IsSwedenSystem())
-            {
-                ClearAndType(VatFieldElement, "SE123456789701");
-            }
             else if (IsSwissSystem())
             {
-                ClearAndType(VatFieldElement, "PL8567346216");
+                ClearAndType(VatFieldElement, "CHE-106.568.179 MWST");
             }
             else if (IsNorwaySystem())
             {
@@ -487,8 +483,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SelectTitleFromDropdown()
         {
-            if (ContactTitleElement == null) return;
-                //SelectFromDropdownByValue(ContactTitleElement, MpsUtil.ContactTitle());
+            if (IsSwedenSystem()) return;
                 SelectFromDropdownByValue(ContactTitleElement, "0002");
         }
 

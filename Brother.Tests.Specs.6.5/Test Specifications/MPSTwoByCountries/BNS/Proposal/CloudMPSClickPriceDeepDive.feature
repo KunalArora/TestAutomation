@@ -20,8 +20,8 @@ Scenario Outline: Purchase + Click, PAYG, Service Pack not displayed
 	
 
 	Scenarios: 
-	| Role             | Country | ContractType                  | CreateOption        | UsageType     | Contract | Leasing              | Billing              | PriceHardware | Printer    | DeviceScreen | PaymentMethod | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | Sweden  | Purchase & Click with Service | Create new customer | Pay As You Go | 3 years  | Quarterly in Arrears | Quarterly in Arrears | Tick          | MFC-8510DN | Full         | Pay upfront   | 0           | 2000         |
+	| Role             | Country | ContractType                       | CreateOption        | UsageType           | Contract | Billing              | PriceHardware | Printer    | DeviceScreen | PaymentMethod |
+	| Cloud MPS Dealer | Sweden  | Purchase & click inklusive service | Create new customer | Betala per utskrift | 36       | Quarterly in Arrears | Tick          | MFC-8510DN | Full         | Förskott   |
 	
 # 4
 Scenario Outline: Purchase + Click, Minimum Volume, Service Pack not displayed
@@ -39,8 +39,8 @@ Scenario Outline: Purchase + Click, Minimum Volume, Service Pack not displayed
 	
 
 	Scenarios: 
-	| Role             | Country | ContractType                  | CreateOption        | UsageType      | Contract | Leasing              | Billing              | PriceHardware | Printer    | DeviceScreen | PaymentMethod | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | Sweden  | Purchase & Click with Service | Create new customer | Minimum Volume | 3 years  | Quarterly in Arrears | Quarterly in Arrears | Tick          | MFC-8510DN | Full         | Pay upfront   | 0           | 2000         |
+	| Role             | Country | ContractType                       | CreateOption        | UsageType     | Contract | Billing              | PriceHardware | Printer    | DeviceScreen | PaymentMethod |
+	| Cloud MPS Dealer | Sweden  | Purchase & click inklusive service | Create new customer | Minimum volym | 36       | Quarterly in Arrears | Tick          | MFC-8510DN | Full         | Förskott   |
 	
 # 7
 Scenario Outline: Variation of "In Click" and "Upfront Payment" click price(3)
@@ -58,8 +58,8 @@ Scenario Outline: Variation of "In Click" and "Upfront Payment" click price(3)
 	
 
 	Scenarios: 
-	| Role             | Country | ContractType                  | CreateOption        | UsageType      | Contract | Leasing              | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | Sweden  | Purchase & Click with Service | Create new customer | Minimum Volume | 3 years  | Quarterly in Arrears | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Pay upfront   | 0           | 2000         |
+	| Role             | Country | ContractType                       | CreateOption        | UsageType     | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod |
+	| Cloud MPS Dealer | Sweden  | Purchase & click inklusive service | Create new customer | Minimum volym | 36       | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Förskott   |
 	
 
 # 8
@@ -84,8 +84,8 @@ Scenario Outline: Variation of "In Click" and "Upfront Payment" click price(4)
 	
 
 	Scenarios: 
-	| Role             | Country | ContractType                  | CreateOption        | UsageType      | Contract | Leasing              | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod           | MonoCoverage | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | Sweden  | Purchase & Click with Service | Create new customer | Minimum Volume | 3 years  | Quarterly in Arrears | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Included in Click Price | 6            | 2000        | 2000         |
+	| Role             | Country | ContractType                       | CreateOption        | UsageType     | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod           | MonoCoverage | ClickVolume | ColourVolume |
+	| Cloud MPS Dealer | Sweden  | Purchase & click inklusive service | Create new customer | Minimum volym | 36       | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Per utskrift | 6            | 2000        | 2000         |
 	
 
 # 9-10
@@ -104,6 +104,6 @@ Scenario Outline: No Variation of "In Click" and "Upfront Payment" click price(P
 	
 
 	Scenarios: 
-	| Role             | Country | ContractType                  | CreateOption        | UsageType     | Contract | Leasing              | Billing              | PriceHardware | Printer    | DeviceScreen | PaymentMethod           | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | Sweden  | Purchase & Click with Service | Create new customer | Pay As You Go | 3 years  | Quarterly in Arrears | Quarterly in Arrears | Tick          | MFC-8510DN | Full         | Included in Click Price | 2000        | 2000         |
+	| Role             | Country | ContractType                       | CreateOption        | UsageType           | Contract | Billing              | PriceHardware | Printer    | DeviceScreen | PaymentMethod | ClickVolume | ColourVolume |
+	| Cloud MPS Dealer | Sweden  | Purchase & click inklusive service | Create new customer | Betala per utskrift | 36       | Quarterly in Arrears | Tick          | MFC-8510DN | Full         | Per utskrift  | 2000        | 2000         |
 	

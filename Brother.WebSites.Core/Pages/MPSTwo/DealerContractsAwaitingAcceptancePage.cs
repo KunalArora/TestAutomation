@@ -51,7 +51,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ActionsModule.IsNewlyCreatedItemDisplayed(Driver);
         }
 
-        public ManageDevicesPage NavigateToManageDevicesPage()
+        public DealerManageDevicesPage NavigateToManageDevicesPage()
         {
             if (ManageDevicesElement == null)
                 throw new Exception("Manage Device Element is not displayed");
@@ -61,7 +61,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ScrollTo(ManageDevicesElement);
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ManageDevicesElement);
             MPSJobRunnerPage.RunCreateCustomerAndPersonCommandJob();
-            return GetInstance<ManageDevicesPage>(Driver);
+            return GetInstance<DealerManageDevicesPage>(Driver);
         }
 
         public void DownloadContractPdfOnDealerAwaitingAcceptanceContractPages()
@@ -98,7 +98,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 //path = "file:///C:/Users/afolabsa/Downloads/{0}-Contrato.pdf";
                 path = "file:///C:/Users/afolabsa/Downloads/{0}-Contract.pdf";
             }
-
+            else if (IsSwedenSystem())
+            {
+                path = "file:///C:/Users/afolabsa/Downloads/{0}-Avtal.pdf";
+            }
             return path;
         }
 

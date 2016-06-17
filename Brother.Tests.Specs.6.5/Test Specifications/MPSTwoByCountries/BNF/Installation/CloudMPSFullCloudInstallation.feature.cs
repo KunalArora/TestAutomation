@@ -83,8 +83,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BNF.Installat
 #line 11
 this.ScenarioSetup(scenarioInfo);
 #line 12
- testRunner.Given(string.Format("\"{0}\" Dealer with \"<Language>\" language have created a \"{1}\" contract with \"{2}\" " +
-                        "and \"{3}\" and \"{4}\"", country, contractType, usageType, length, billing), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given(string.Format("\"{0}\" Dealer with \"{1}\" language have created a \"{2}\" contract with \"{3}\" and \"{4" +
+                        "}\" and \"{5}\"", country, language, contractType, usageType, length, billing), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 13
  testRunner.And(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 14

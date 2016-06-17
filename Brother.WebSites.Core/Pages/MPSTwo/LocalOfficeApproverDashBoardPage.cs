@@ -50,14 +50,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SwitchBetweenMultipleLanguages()
         {
-            var language = SpecFlow.GetContext("BelgianLanguage");
-         
+            
             if (IsBelgiumSystem())
             {
+                var language = SpecFlow.GetContext("BelgianLanguage");
                 SwitchBelgianLanguage(language);
             }
             else if (IsFinlandSystem())
             {
+                var language = SpecFlow.GetContext("BelgianLanguage");
                 SwitchFinnishLanguage(language);
             }
 
@@ -68,12 +69,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if (lang.Equals("French"))
             {
                 MultipleLanguagesElement.First().Click();
-                IsSwitchedLanguageSelected("Contrats");
+                IsSwitchedLanguageSelected("Acceptation");
             }
             else if (lang.Equals("Dutch"))
             {
                 MultipleLanguagesElement.Last().Click();
-                IsSwitchedLanguageSelected("Contracten");
+                IsSwitchedLanguageSelected("Goedkeuring");
             }
         }
 
@@ -88,6 +89,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 MultipleLanguagesElement.Last().Click();
                 IsSwitchedLanguageSelected("Godkännande");
+            }
+        }
+
+        public void SwitchSwissLanguage(string lang)
+        {
+            if (lang.Equals("Deutsch"))
+            {
+                MultipleLanguagesElement.First().Click();
+                IsSwitchedLanguageSelected("Freigabe");
+            }
+            else if (lang.Equals("Français"))
+            {
+                MultipleLanguagesElement.Last().Click();
+                IsSwitchedLanguageSelected("Acceptation");
             }
         }
 

@@ -30,15 +30,16 @@ namespace Brother.Tests.Specs.MPSTwo.Approver
             if (ContractType.Equals("Purchase & Click with Service") || ContractType.Equals(string.Empty)
                 || ContractType.Equals("Easy Print Pro & Service") || ContractType.Equals("Buy & Click")
                 || ContractType.Equals("Acquisto + Consumo con assistenza") || ContractType.Equals("Purchase & Click con Service")
-                || ContractType.Equals("Kjøp og klikk med service"))
+                || ContractType.Equals("Kjøp og klikk med service") || ContractType.Equals("Purchase & click inklusive service"))
                 PurchaseAndClick = true;
             if (ContractType.Equals("Lease & Click with Service") || ContractType.Equals("Leasing & Service"))
                 LeaseAndClick = true;
             if (UsageType.Equals("Minimum Volume") || UsageType.Equals("Engagement sur un minimum volume de pages") ||
                 UsageType.Equals("Volume minimo") || UsageType.Equals("Volúmen mínimo")
-                || UsageType.Equals("Minimum volum"))
+                || UsageType.Equals("Minimum volum") || UsageType.Equals("Minimum volym"))
                 MinimumVolume = true;
-            if (UsageType.Equals("Pay As You Go") || UsageType.Equals("Pago por Uso") || UsageType.Equals("Betale ved forbruk"))
+            if (UsageType.Equals("Pay As You Go") || UsageType.Equals("Pago por Uso") || UsageType.Equals("Betale ved forbruk") 
+                || UsageType.Equals("Betala per utskrift"))
                 PayAsYouGo = true;
 
         }
