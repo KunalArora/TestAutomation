@@ -40,6 +40,6 @@ Scenario Outline: Dealer Can Create Proposal From Proposal List Page
 
 
 Scenarios: 
-	| Role             | Country | ContractType                  | UsageType      | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod           | ClickVolume | ColourVolume | Basis1                  | Basis2      |
-	| Cloud MPS Dealer | Sweden  | Purchase & Click with Service | Minimum Volume | 3 years  | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Included in Click Price | 800         | 800          | Included in Click Price | Pay upfront |
+	| Role             | Country | ContractType                       | UsageType     | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod | ClickVolume | ColourVolume | Basis1       | Basis2   |
+	| Cloud MPS Dealer | Sweden  | Purchase & click inklusive service | Minimum volym | 36       | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Per utskrift  | 800         | 800          | Per utskrift | Förskott |
 	

@@ -389,6 +389,52 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             return elementStatus;
         }
 
+
+        public static void RetryClickingAction(string element, string elementToVerify, int retryCount, int timeOut)
+        {
+            WebDriver.SetWebDriverImplicitTimeout(new TimeSpan(0, 0, 0, timeOut));
+            var wait = new DefaultWait<IWebDriver>(TestController.CurrentDriver)
+            {
+                Timeout = new TimeSpan(0, 0, 0, timeOut)
+            };
+            var methodName = MethodBase.GetCurrentMethod();
+            wait.Message = String.Format("{0}:: Timeout of [{1}] seconds trying to locate element {2}", methodName, wait.Timeout, element);
+            var retries = 0;
+            var elementStatus = false;
+
+            while ((!elementStatus) && (retries != retryCount))
+            {
+                try
+                {
+                    MsgOutput(String.Format("Retry count = [{0}]", retries));
+                    var searchElement = wait.Until(dr => dr.FindElement(By.CssSelector(element)));
+                    searchElement.Click();
+                    //WebDriver.Wait(DurationType.Second, timeOut);
+                    elementStatus = wait.Until(dr => dr.FindElement(By.CssSelector(elementToVerify))).Displayed;
+                    MsgOutput(String.Format("Element Status = [{0}]", elementStatus));
+                    MsgOutput(String.Format("Timeout waited = [{0}]", wait.Timeout.TotalSeconds));
+                    retries++;
+                    
+                }
+                catch (StaleElementReferenceException staleElement)
+                {
+                    MsgOutput(String.Format("Element [{0}] Not Found. Retrying [{1}] times", element, staleElement));
+                    elementStatus = wait.Until(dr => dr.FindElement(By.CssSelector(elementToVerify))).Displayed;
+                    retries++;
+                    WebDriver.Wait(DurationType.Second, timeOut);
+                }
+                catch (WebDriverException timeOutException)
+                {
+                    MsgOutput(String.Format("Element [{0}] is probabaly gone after [{1}] seconds. Retrying [{2}] times", element, wait.Timeout.Seconds, retries));
+                    MsgOutput(String.Format("Exception was [{0}]", timeOutException));
+                    retries++;
+                    //elementStatus = true;
+                }
+            }
+            WebDriver.SetWebDriverDefaultTimeOuts(WebDriver.DefaultTimeOut.Implicit);
+            
+        }
+
         public static bool WaitForElementToExistByXPath(string element, int retryCount, int timeOut)
         {
             WebDriver.SetWebDriverImplicitTimeout(new TimeSpan(0, 0, 0, timeOut));

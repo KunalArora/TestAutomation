@@ -137,6 +137,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement ExistingCustomerFilterElement;
         [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputPersonPosition_Input")]
         public IWebElement CustomerPositionElement;
+        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerCostCentre_Input")]
+        public IWebElement CostCentreElement;
+        
         
 
 
@@ -216,7 +219,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
             else if (IsSwedenSystem())
             {
-                SelectFromDropdown(LegalFormDropdown, "Church");
+                SelectFromDropdown(LegalFormDropdown, "Aktiebolag");
             }
             else if (IsPolandSystem())
             {
@@ -238,8 +241,35 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 SelectFromDropdown(LegalFormDropdown, "Church");
             }
+            else if (IsSwissSystem())
+            {
+                var language = SwissLegalForm();
+                SelectFromDropdown(LegalFormDropdown, language);
+            }
                 
             WebDriver.Wait(DurationType.Second, 3);
+        }
+
+        private String SwissLegalForm()
+        {
+            string lang;
+            var language = SpecFlow.GetContext("BelgianLanguage");
+
+            switch (language)
+            {
+                case "Français":
+                    lang = "Administration";
+                    break;
+                case "Deutsch":
+                    lang = "Church";
+                    break;
+
+                default:
+                    lang = "Bankeinzug";
+                    break;
+            }
+
+            return lang;
         }
 
         public void SelectAPrivatelyLiableCustomer(string company)
@@ -259,6 +289,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 ClearAndType(CompanyRegistrationNumberField, "453983245");
             }
+            //else if (IsSwedenSystem())
+            //{
+            //    ClearAndType(CompanyRegistrationNumberField, "556026-6883");
+            //}
                 
             
         }
@@ -278,6 +312,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             } else if (IsSpainSystem())
             {
                 ClearAndType(VATNumberField, "ES54362315K");
+            }
+            else if (IsSwedenSystem())
+            {
+                ClearAndType(VATNumberField, "SE123456789701");
             }
                 
         }
@@ -305,7 +343,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
             else if (IsSwedenSystem())
             {
-                trading = "Non-Regulated";
+                trading = "Icke reglerad";
             }
             else if (IsNetherlandSystem())
             {
@@ -330,6 +368,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 trading = "Non-Regulated";
             }
+            else if (IsSwissSystem())
+            {
+                trading = "Non-Regulated";
+            }
 
             
             return trading;
@@ -339,7 +381,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             if (IsUKSystem()||IsSpainSystem()|| IsIrelandSystem() || IsNetherlandSystem() 
                 || IsSwedenSystem() || IsBelgiumSystem() || IsPolandSystem() || IsDenmarkSystem() 
-                || IsNorwaySystem() || IsFinlandSystem())
+                || IsNorwaySystem() || IsFinlandSystem()|| IsSwissSystem() || IsSwedenSystem())
                 SelectFromDropdown(TradingStyleElement, TradingStyle());
                 WebDriver.Wait(DurationType.Second, 3);
         }
@@ -374,7 +416,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 }
                 else if (IsSwedenSystem())
                 {
-                    SelectFromDropdown(PaymentTypeDropdown, "Direct Debit");
+                    SelectFromDropdown(PaymentTypeDropdown, "Direktbetalning");
                 }
                 else if (IsPolandSystem())
                 {
@@ -395,7 +437,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 }
                 else if (IsFinlandSystem())
                 {
-                    SelectFromDropdown(PaymentTypeDropdown, "Direct Debit");
+                    var language = FinnishLanguage();
+                    SelectFromDropdown(PaymentTypeDropdown, language);
+                }
+                else if (IsSwissSystem())
+                {
+                    var language = SwissLanguage();
+                    SelectFromDropdown(PaymentTypeDropdown, language);
                 }
             }
             
@@ -431,15 +479,37 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             switch (language)
             {
-                case "French":
-                    lang = "Débit direct";
+                case "Suomi":
+                    lang = "Direct Debit";
                     break;
-                case "Dutch":
+                case "Svenska":
                     lang = "Direct Debit";
                     break;
 
                 default:
+                    lang = "Direct Debit";
+                    break;
+            }
+
+            return lang;
+        }
+
+        private String SwissLanguage()
+        {
+            string lang;
+            var language = SpecFlow.GetContext("BelgianLanguage");
+
+            switch (language)
+            {
+                case "Français":
                     lang = "Débit direct";
+                    break;
+                case "Deutsch":
+                    lang = "Bankeinzug";
+                    break;
+
+                default:
+                    lang = "Bankeinzug";
                     break;
             }
 
@@ -544,6 +614,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 ClearAndType(BankPropertyPostcodeElement, MpsUtil.PostCodeNo());
             }
+            else if (IsSwissSystem())
+            {
+                ClearAndType(BankPropertyPostcodeElement, MpsUtil.PostCodeSw());
+            }
+        }
+
+        private void EnterCostCentre()
+        {
+            if (IsSwedenSystem())
+            {
+                ClearAndType(CostCentreElement, "Marketing");
+            }
         }
 
         public void FillAllCustomerDetailsOnConvert()
@@ -560,6 +642,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             SelectALegalForm();
             EnterCompanyRegistration();
             EnterVatNumber();
+            EnterCostCentre();
             SelectATradingStyle();
             EnterAuthoriisedSignatoryNumber();
             EnterContactPosition();

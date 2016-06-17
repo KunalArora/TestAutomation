@@ -85,10 +85,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         }
 
-        public ManageDevicesPage SendSwapInstallationRequest()
+        public DealerManageDevicesPage SendSwapInstallationRequest()
         {
             NextButtonElement.Click();
-            return GetTabInstance<ManageDevicesPage>();
+            return GetTabInstance<DealerManageDevicesPage>();
         }
 
         public void EnterInstallaterEmail()
@@ -103,10 +103,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             
         }
 
-        public ManageDevicesPage CompleteInstallation()
+        public DealerManageDevicesPage CompleteInstallation()
         {
             FinishInstallationElement.Click();
-            return GetTabInstance<ManageDevicesPage>(Driver);
+            return GetTabInstance<DealerManageDevicesPage>(Driver);
         }
         
 

@@ -140,6 +140,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 case "Buy & Click":
                     selectable = "3";
                     break;
+                case "Purchase & click inklusive service":
+                    selectable = "3";
+                    break; 
+
                 default:
                     throw new InvalidEnumArgumentException(String.Format("{0} is not a valid contract type", contract));
             }

@@ -76,10 +76,10 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
         [Given(@"I extract the installer url from Installation Request")]
         public void GivenIExtractTheInstallerUrlFromInstallationRequest()
         {
-            CurrentPage.As<ManageDevicesPage>().ClickOnActionButtonOnDisplay();
-            CurrentPage.As<ManageDevicesPage>().ClickToExposeInstallationRequest();
-            CurrentPage.As<ManageDevicesPage>().IsInstallationRequestScreenDisplayed();
-            CurrentPage.As<ManageDevicesPage>().GetInstallationLink();
+            CurrentPage.As<DealerManageDevicesPage>().ClickOnActionButtonOnDisplay();
+            CurrentPage.As<DealerManageDevicesPage>().ClickToExposeInstallationRequest();
+            CurrentPage.As<DealerManageDevicesPage>().IsInstallationRequestScreenDisplayed();
+            CurrentPage.As<DealerManageDevicesPage>().GetInstallationLink();
             //CurrentPage.As<DealerManageDevicesPage>().CloseInstallationrequestPopUp();
         }
 
@@ -87,7 +87,7 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
         [Given(@"I navigate to the installer page")]
         public void GivenINavigateToTheInstallerPage()
         {
-            NextPage = CurrentPage.As<ManageDevicesPage>().LaunchInstallerPage();
+            NextPage = CurrentPage.As<DealerManageDevicesPage>().LaunchInstallerPage();
             CurrentPage.As<InstallerDeviceInstallationPage>().IsInstallerScreenDisplayed();
         }
 
@@ -159,7 +159,7 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             CurrentPage.As<InstallerDeviceInstallationPage>().ConfirmCompleteMessageIsDisplayed();
             NextPage = CurrentPage.As<InstallerDeviceInstallationPage>()._ReturnBackToContractAcceptedPage();
             NextPage = CurrentPage.As<DealerContractsAcceptedPage>().NavigateToManageDevicesPageToConfirmThatInstallationRequestAvailability();
-            CurrentPage.As<ManageDevicesPage>().IsInstallationCompleted();
+            CurrentPage.As<DealerManageDevicesPage>().IsInstallationCompleted();
         }
 
 
@@ -187,8 +187,8 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
         [When(@"I begin device swapping process")]
         public void WhenIBeginDeviceSwappingProcess()
         {
-            CurrentPage.As<ManageDevicesPage>().BeginSwapProcess();
-            NextPage = CurrentPage.As<ManageDevicesPage>().ConfirmSwapProcessCommencement();
+            CurrentPage.As<DealerManageDevicesPage>().BeginSwapProcess();
+            NextPage = CurrentPage.As<DealerManageDevicesPage>().ConfirmSwapProcessCommencement();
         }
 
         [When(@"I generate swapping device request")]
@@ -197,17 +197,17 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             CurrentPage.As<DealerSendInstallationEmailPage>().IsDeviceModelDisplayedOnSwapConfirmationPage();
             CurrentPage.As<DealerSendInstallationEmailPage>().EnterInstallaterEmail();
             NextPage = CurrentPage.As<DealerSendInstallationEmailPage>().SendSwapInstallationRequest();
-            CurrentPage.As<ManageDevicesPage>().IsSwapInstallationRequestSent();
-            CurrentPage.As<ManageDevicesPage>().IsSwapProgressTextDisplayed();
-            CurrentPage.As<ManageDevicesPage>().IsSwapDeviceLineDisplayed();
+            CurrentPage.As<DealerManageDevicesPage>().IsSwapInstallationRequestSent();
+            CurrentPage.As<DealerManageDevicesPage>().IsSwapProgressTextDisplayed();
+            CurrentPage.As<DealerManageDevicesPage>().IsSwapDeviceLineDisplayed();
         }
 
         [When(@"installer installed the new swap device for ""(.*)"" communication")]
         public void WhenInstallerInstalledTheNewSwapDeviceForCommunication(string type)
         {
-            CurrentPage.As<ManageDevicesPage>().ClickToExposeSwapInstallationRequest();
-            CurrentPage.As<ManageDevicesPage>().IsInstallationRequestScreenDisplayed();
-            NextPage = CurrentPage.As<ManageDevicesPage>().LaunchInstallerPage();
+            CurrentPage.As<DealerManageDevicesPage>().ClickToExposeSwapInstallationRequest();
+            CurrentPage.As<DealerManageDevicesPage>().IsInstallationRequestScreenDisplayed();
+            NextPage = CurrentPage.As<DealerManageDevicesPage>().LaunchInstallerPage();
             CurrentPage.As<InstallerDeviceInstallationPage>().EnterContractReference();
             CurrentPage.As<InstallerDeviceInstallationPage>().ProceedOnInstaller();
 
@@ -230,13 +230,13 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
         [Then(@"I can complete the swap process")]
         public void ThenICanCompleteTheSwapProcess()
         {
-            CurrentPage.As<ManageDevicesPage>().IsNewlySwappedDeviceDisplayed();
-            NextPage = CurrentPage.As<ManageDevicesPage>().CompleteSwapProcess();
+            CurrentPage.As<DealerManageDevicesPage>().IsNewlySwappedDeviceDisplayed();
+            NextPage = CurrentPage.As<DealerManageDevicesPage>().CompleteSwapProcess();
             CurrentPage.As<CompleteSwapProcessPage>().IsCompleteSwapProcessScreenDisplayed();
             CurrentPage.As<CompleteSwapProcessPage>().IsNewDeviceSerialNumberDisplayed();
             CurrentPage.As<CompleteSwapProcessPage>().IsOldDeviceSerialNumberDisplayed();
             NextPage = CurrentPage.As<CompleteSwapProcessPage>().CompleteSwapProcessThroughPrintCountSwap();
-            CurrentPage.As<ManageDevicesPage>().IsSwapInstallationRequestSent();
+            CurrentPage.As<DealerManageDevicesPage>().IsSwapInstallationRequestSent();
         }
 
         [When(@"I navigate to the Local Office Approver device management Screen")]
@@ -244,7 +244,7 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
         {
             NextPage = CurrentPage.As<LocalOfficeApproverContractsPage>().NavigateTOfficeDeviceManagementPage();
             NextPage = CurrentPage.As<LocalOfficeApproverDeviceManagementPage>().NavigateToManageDevicesPage();
-            CurrentPage.As<ManageDevicesPage>().IsManagedDeviceScreenDisplayed();
+            CurrentPage.As<DealerManageDevicesPage>().IsManagedDeviceScreenDisplayed();
 
         }
 
@@ -262,30 +262,30 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
         [When(@"I select Location in order to create installation request")]
         public void WhenISelectLocationInOrderToCreateInstallationRequest()
         {
-            CurrentPage.As<ManageDevicesPage>().IsManagedDeviceScreenDisplayed();
-            CurrentPage.As<ManageDevicesPage>().SelectCompanyLocation();
-            NextPage =  CurrentPage.As<ManageDevicesPage>().CreateInstallationRequest();
+            CurrentPage.As<DealerManageDevicesPage>().IsManagedDeviceScreenDisplayed();
+            CurrentPage.As<DealerManageDevicesPage>().SelectCompanyLocation();
+            NextPage =  CurrentPage.As<DealerManageDevicesPage>().CreateInstallationRequest();
         }
 
         [When(@"I did not select Location but proceed to create installation request")]
         public void WhenIDidNotSelectLocationButProceedToCreateInstallationRequest()
         {
-            CurrentPage.As<ManageDevicesPage>().IsManagedDeviceScreenDisplayed();
-            CurrentPage.As<ManageDevicesPage>().ClickOnNextButtonToInvokeError();
+            CurrentPage.As<DealerManageDevicesPage>().IsManagedDeviceScreenDisplayed();
+            CurrentPage.As<DealerManageDevicesPage>().ClickOnNextButtonToInvokeError();
         }
 
         [Then(@"an error message is displayed to prevent further progress")]
         public void ThenAnErrorMessageIsDisplayedToPreventFurtherProgress()
         {
-           CurrentPage.As<ManageDevicesPage>().SelectLocationErrorIsDisplayed();
+           CurrentPage.As<DealerManageDevicesPage>().SelectLocationErrorIsDisplayed();
         }
 
         [Then(@"I can progress if Location is selected")]
         public void ThenICanProgressIfLocationIsSelected()
         {
-            CurrentPage.As<ManageDevicesPage>().SelectCompanyLocation();
+            CurrentPage.As<DealerManageDevicesPage>().SelectCompanyLocation();
             //CurrentPage.As<ManageDevicesPage>().ClickOnNextButtonToInvokeError();
-            NextPage = CurrentPage.As<ManageDevicesPage>().CreateInstallationRequest();
+            NextPage = CurrentPage.As<DealerManageDevicesPage>().CreateInstallationRequest();
         }
 
 
@@ -337,17 +337,17 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
         [Then(@"the installation request for that device is completed")]
         public void ThenTheInstallationRequestForThatDeviceIsCompleted()
         {
-            CurrentPage.As<ManageDevicesPage>().IsManagedDeviceScreenDisplayed();
-            CurrentPage.As<ManageDevicesPage>().IsInstallationRequestDisplayed();
+            CurrentPage.As<DealerManageDevicesPage>().IsManagedDeviceScreenDisplayed();
+            CurrentPage.As<DealerManageDevicesPage>().IsInstallationRequestDisplayed();
         }
 
         [Then(@"I can cancel the above created installation request")]
         public void ThenICanCancelTheAboveCreatedInstallationRequest()
         {
-            CurrentPage.As<ManageDevicesPage>().ClickOnActionButtonOnDisplay();
-            CurrentPage.As<ManageDevicesPage>().ClickOnCancelRequest();
+            CurrentPage.As<DealerManageDevicesPage>().ClickOnActionButtonOnDisplay();
+            CurrentPage.As<DealerManageDevicesPage>().ClickOnCancelRequest();
             //CurrentPage.As<ManageDevicesPage>().RefreshManageDeviceScreen();
-            CurrentPage.As<ManageDevicesPage>().IsInstallationRequestCancelled();
+            CurrentPage.As<DealerManageDevicesPage>().IsInstallationRequestCancelled();
             
         }
 

@@ -409,9 +409,6 @@ namespace Brother.Tests.Selenium.Lib.Support
                 case "Ireland":
                     pre = "IR";
                     break;
-                case "Switzerland":
-                    pre = "SW";
-                    break;
             }
             return pre.ToUpper();
         }

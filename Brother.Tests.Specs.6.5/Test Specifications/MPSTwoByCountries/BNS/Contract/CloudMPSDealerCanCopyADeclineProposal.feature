@@ -21,8 +21,8 @@ Scenario Outline: Dealer Can Copy A Declined Purchase and Click Proposal without
 	
 	Scenarios:
 
-	| Role             | Country | Role2                           | ContractType                      | UsageType                                 | Length | Billing                 |
-	| Cloud MPS Dealer | Sweden  | Cloud MPS Local Office Approver | Buy & Click                       | Engagement sur un minimum volume de pages | 3 ans  | Trimestrale anticipata  |
+	| Role             | Country | Role2                           | ContractType                       | UsageType     | Length | Billing              |
+	| Cloud MPS Dealer | Sweden  | Cloud MPS Local Office Approver | Purchase & click inklusive service | Minimum volym | 36     | Quarterly in Arrears |
 	
 
 Scenario Outline: Dealer Can Copy A Declined Purchase and Click Proposal with customer detail for other countries
@@ -42,6 +42,6 @@ Scenario Outline: Dealer Can Copy A Declined Purchase and Click Proposal with cu
 	
 	Scenarios:
 
-	| Role             | Country | Role2                           | ContractType | UsageType                                 | Length | Billing                |
-	| Cloud MPS Dealer | Sweden  | Cloud MPS Local Office Approver | Buy & Click  | Engagement sur un minimum volume de pages | 3 ans  | Trimestrale anticipata |
+	| Role             | Country | Role2                           | ContractType                       | UsageType     | Length | Billing              |
+	| Cloud MPS Dealer | Sweden  | Cloud MPS Local Office Approver | Purchase & click inklusive service | Minimum volym | 36     | Quarterly in Arrears |
 	

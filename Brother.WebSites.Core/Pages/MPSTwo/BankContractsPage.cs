@@ -120,7 +120,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             RejectedLinkElement.Click();
         }
 
-        public ManageDevicesPage NavigateToManageDevicesPage()
+        public DealerManageDevicesPage NavigateToManageDevicesPage()
         {
             if(ManageDevicesElement == null)
                 throw new Exception("Manage Device Element is not displayed");
@@ -129,7 +129,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ActionsModule.ClickOnSpecificActionsElement(Driver);
             ManageDevicesElement.Click();
             WebDriver.Wait(DurationType.Second, 2);
-            return GetInstance<ManageDevicesPage>(Driver);
+            return GetInstance<DealerManageDevicesPage>(Driver);
         }
         
         public void IsContractsSignedByDealerDisplayed()

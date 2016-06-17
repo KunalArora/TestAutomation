@@ -41,7 +41,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
 
 
-        public ManageDevicesPage NavigateToManageDevicesPage()
+        public DealerManageDevicesPage NavigateToManageDevicesPage()
         {
             MPSJobRunnerPage.RunCompleteInstallationCommandJob();
 
@@ -50,7 +50,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ScrollTo(ManageDevicesElement);
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ManageDevicesElement);
             
-            return GetInstance<ManageDevicesPage>(Driver);
+            return GetInstance<DealerManageDevicesPage>(Driver);
         }
     }
 }

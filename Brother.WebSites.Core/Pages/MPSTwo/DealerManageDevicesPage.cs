@@ -13,7 +13,7 @@ using OpenQA.Selenium.Support.UI;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class ManageDevicesPage : BasePage
+    public class DealerManageDevicesPage : BasePage
     {
         public static string Url = "/";
 
@@ -331,7 +331,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerSetCommunicationMethodPage CreateInstallationRequest()
         {
-            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, CreateRequestElement);
+            MpsUtil.ReClickButtonThenNavigateToOtherUrl(Driver, CreateRequestElement);
             
 
             return GetTabInstance<DealerSetCommunicationMethodPage>(Driver);

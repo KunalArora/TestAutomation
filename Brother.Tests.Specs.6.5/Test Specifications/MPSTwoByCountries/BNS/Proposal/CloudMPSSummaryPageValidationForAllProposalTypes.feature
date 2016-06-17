@@ -38,10 +38,9 @@ Scenario Outline: Summary Page Validation For Minimum Volume Purchase and Click 
 	
 
 	Scenarios: 
-	| Role             | Country | ContractType                  | UsageType      | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod           | ClickVolume | ColourVolume | Basis1                  | Basis2      |
-	| Cloud MPS Dealer | Sweden  | Purchase & Click with Service | Minimum Volume | 3 years  | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Included in Click Price | 800         | 800          | Included in Click Price | Pay upfront |
+	| Role             | Country | ContractType                       | UsageType     | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod | ClickVolume | ColourVolume | Basis1       | Basis2   |
+	| Cloud MPS Dealer | Sweden  | Purchase & click inklusive service | Minimum volym | 36       | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Per utskrift  | 800         | 800          | Per utskrift | Förskott |
 	
-
 Scenario Outline: Summary Page Validation For Minimum Volume Purchase and Click proposal Upfront Payment
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -75,11 +74,9 @@ Scenario Outline: Summary Page Validation For Minimum Volume Purchase and Click 
 	
 
 	Scenarios: 
-	| Role             | Country | ContractType                  | UsageType      | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod | ClickVolume | ColourVolume | Basis1      |
-	| Cloud MPS Dealer | Sweden  | Purchase & Click with Service | Minimum Volume | 3 years  | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Pay upfront   | 800         | 800          | Pay upfront |
+	| Role             | Country | ContractType                       | UsageType     | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod | ClickVolume | ColourVolume | Basis1   |
+	| Cloud MPS Dealer | Sweden  | Purchase & click inklusive service | Minimum volym | 36       | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Förskott      | 800         | 800          | Förskott |
 	
-
-
 Scenario Outline: Summary Page Validation For Pay As you Go Purchase and Click proposal
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -109,6 +106,7 @@ Scenario Outline: Summary Page Validation For Pay As you Go Purchase and Click p
 	
 
 	Scenarios: 
-	| Role             | Country | ContractType                  | CreateOption        | UsageType     | Contract | Billing              | PriceHardware | Printer    | DeviceScreen | ClickVolume | Basis1      |
-	| Cloud MPS Dealer | Sweden  | Purchase & Click with Service | Create new customer | Pay As You Go | 4 years  | Quarterly in Arrears | Tick          | MFC-8510DN | Full         | 800         | Pay upfront |
+	| Role             | Country | ContractType                       | CreateOption        | UsageType           | Contract | Billing              | PriceHardware | Printer    | DeviceScreen | ClickVolume | Basis1   |
+	| Cloud MPS Dealer | Sweden  | Purchase & click inklusive service | Create new customer | Betala per utskrift | 48       | Quarterly in Arrears | Tick          | MFC-8510DN | Full         | 800         | Förskott |
 	
+		

@@ -23,9 +23,9 @@ Scenario Outline: Dealer can cancel installation request for Cloud Communication
 	
 Scenarios:
 
-	| Role                            | Country | ContractType | UsageType                                 | Role1            | Method | Type | Length | Billing                |
-	| Cloud MPS Local Office Approver | Denmark | Buy & Click  | Engagement sur un minimum volume de pages | Cloud MPS Dealer | Cloud  | Web  | 3 ans  | Trimestrale anticipata |
-	| Cloud MPS Local Office Approver | Denmark | Buy & Click  | Engagement sur un minimum volume de pages | Cloud MPS Dealer | Cloud  | BOR  | 4 ans  | Trimestrale anticipata |
+	| Role                            | Country | ContractType                  | UsageType      | Role1            | Method | Type | Length | Billing              |
+	| Cloud MPS Local Office Approver | Denmark | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  | 3 years | Quarterly in Arrears |
+	| Cloud MPS Local Office Approver | Denmark | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR  | 4 years | Quarterly in Arrears |
 	
 
 Scenario Outline: Local Office Approver can cancel installation request for Email Communication for other countries
@@ -42,8 +42,8 @@ Scenario Outline: Local Office Approver can cancel installation request for Emai
 
 Scenarios:
 
-	| Role                            | Country | ContractType | UsageType                                 | Role1            | Method | Length | Billing                |
-	| Cloud MPS Local Office Approver | Denmark | Buy & Click  | Engagement sur un minimum volume de pages | Cloud MPS Dealer | Email  | 3 ans  | Trimestrale anticipata |
+	| Role                            | Country | ContractType                  | UsageType      | Role1            | Method | Length | Billing              |
+	| Cloud MPS Local Office Approver | Denmark | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Email  | 3 years | Quarterly in Arrears |
 	
 
 Scenario Outline: Local Office can cancel installation request for Cloud Communication for other countries
@@ -62,9 +62,9 @@ Scenario Outline: Local Office can cancel installation request for Cloud Communi
 	
 Scenarios:
 
-	| Role                            | Country | ContractType | UsageType                                 | Role1            | Method | Length | Billing                | Type |
-	| Cloud MPS Local Office Approver | Denmark | Buy & Click  | Engagement sur un minimum volume de pages | Cloud MPS Dealer | Cloud  | 3 ans  | Trimestrale anticipata | Web  |
-	| Cloud MPS Local Office Approver | Denmark | Buy & Click  | Engagement sur un minimum volume de pages | Cloud MPS Dealer | Cloud  | 3 ans  | Trimestrale anticipata | BOR  |
+	| Role                            | Country | ContractType                  | UsageType      | Role1            | Method | Length  | Billing              | Type |
+	| Cloud MPS Local Office Approver | Denmark | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | 3 years | Quarterly in Arrears | Web  |
+	| Cloud MPS Local Office Approver | Denmark | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | 3 years | Quarterly in Arrears | BOR  |
 	
 	
 
@@ -84,6 +84,6 @@ Scenario Outline: Dealer can cancel installation request for Email Communication
 	
 Scenarios:
 
-	| Role                            | Country | ContractType | UsageType                                 | Role1            | Method | Length | Billing                |
-	| Cloud MPS Local Office Approver | Denmark | Buy & Click  | Engagement sur un minimum volume de pages | Cloud MPS Dealer | Email  | 3 ans  | Trimestrale anticipata |
+	| Role                            | Country | ContractType                  | UsageType      | Role1            | Method | Length | Billing              |
+	| Cloud MPS Local Office Approver | Denmark | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Email  | 3 years | Quarterly in Arrears |
 	

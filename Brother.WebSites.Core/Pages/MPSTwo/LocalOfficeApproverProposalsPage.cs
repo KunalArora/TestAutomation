@@ -98,6 +98,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 reason = "Otro";
             }
+            else if (IsSwedenSystem())
+            {
+                reason = "Annat";
+            }
 
             return reason;
         }

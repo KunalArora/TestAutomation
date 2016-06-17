@@ -369,7 +369,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void IsCustomerNamePresentInPdf()
         {
             var customerName = SpecFlow.GetContext("SummaryCustomerOrCompanyName");
-            customerName = customerName.Substring(0, 15);
+            customerName = customerName.Substring(0, 5);
             TestCheck.AssertTextContains(customerName, ExtractTextFromPdf(DownloadedPdf()),
                 "Customer Name is not available in the PDF");
         }
@@ -612,47 +612,31 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public string GetMonoClickValue()
         {
-            string MonoClickRate = null;
+            var monoClickRate = IsSwedenSystem() ? MonoClickRateElement.Text : MpsUtil.GetValue(MonoClickRateElement.Text).ToString();
 
-            if (MonoClickRateElement.Text.Contains("£"))
-            {
-                MonoClickRate = MpsUtil.GetValue(MonoClickRateElement.Text).ToString();
-            }
-            else if (MonoClickRateElement.Text.Contains("€"))
-            {
-                MonoClickRate = MpsUtil.GetEuroValue(MonoClickRateElement.Text).ToString();
-            }
-
-            return MonoClickRate;
+            return monoClickRate;
         }
 
 
         public string GetColourClickValue()
         {
-            string ColourClickRate = null;
+            var colourClickRate = IsSwedenSystem() ? ColourClickRateElement.Text : MpsUtil.GetValue(ColourClickRateElement.Text).ToString();
 
-            if (ColourClickRateElement.Text.Contains("£"))
-            {
-                ColourClickRate = MpsUtil.GetValue(ColourClickRateElement.Text).ToString();
-            }
-            else if (ColourClickRateElement.Text.Contains("€"))
-            {
-                ColourClickRate = MpsUtil.GetEuroValue(ColourClickRateElement.Text).ToString();
-            }
-
-            return ColourClickRate;
+            return colourClickRate;
         }
 
 
         public void IsMonoClickPriceDisplayedCorrectly()
         {
-            TestCheck.AssertTextContains(GetMonoClickValue(), SpecFlow.GetContext("ClickPriceMonoValue"),
+            var monoValue = SpecFlow.GetContext("ClickPriceMonoValue");
+            TestCheck.AssertTextContains(monoValue, GetMonoClickValue(),
                  "Mono Click Price displayed is different from the calculated on");
         }
 
         public void IsColourClickPriceDisplayedCorrectly()
         {
-            TestCheck.AssertTextContains(GetColourClickValue(), SpecFlow.GetContext("ClickPriceColourValue"),
+            var colourValue = SpecFlow.GetContext("ClickPriceColourValue");
+            TestCheck.AssertTextContains(colourValue, GetColourClickValue(),
                  "Colour Click Price displayed is different from the calculated on");
         }
 

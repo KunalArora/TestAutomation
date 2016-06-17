@@ -22,16 +22,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string ExistingSerialNumber = @"A1T010001";
         private const string ExistingSerialNumberBig = @"A1T010002";
         private const string ExistingSerialNumberAut = @"A1T010003";
-        private const string ExistingSerialNumberBir = @"A1T010011";
-        private const string ExistingSerialNumberBpl = @"A1T010012";
-        private const string ExistingSerialNumberBbe = @"A1T010013";
+        private const string SerialNumberBnn = @"A1T010011";
+        private const string SerialNumberBnf = @"A1T010012";
+        private const string SerialNumberBnd = @"A1T010013";
         private const string SerialNumberBfr = @"A1T010014";
         private const string SerialNumberBit = @"A1T010015";
         private const string SerialNumberBes = @"A1T010016";
         private const string SerialNumberBir = @"F3Y112595";
         private const string SerialNumberBns = @"F3Y112595";
         private const string SerialNumberBbe = @"F3Y112595";
-        private const string SerialNumberBnn = @"F3Y112595";
+        private const string SerialNumberBnl = @"F3Y112595";
         private const string SerialNumberBpl = @"F3Y112595";
         private const string SwapSerialNumberUk = @"F3Y112553";
         private const string SwapSerialNumberDe = @"F3Y112555";
@@ -191,6 +191,26 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 serial = SerialNumberBpl;
             }
+            else if (IsNetherlandSystem())
+            {
+                serial = SerialNumberBnl;
+            }
+            else if (IsSwedenSystem())
+            {
+                serial = SerialNumberBns;
+            }
+            else if (IsFinlandSystem())
+            {
+                serial = SerialNumberBnf;
+            }
+            else if (IsDenmarkSystem())
+            {
+                serial = SerialNumberBnd;
+            }
+            else if (IsNorwaySystem())
+            {
+                serial = SerialNumberBnn;
+            }
 
             SpecFlow.SetContext("SerialNumber", serial);
 
@@ -250,6 +270,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 serial = SwapSerialNumberSw;
             }
 
+
             SpecFlow.SetContext("SwapSerialNumber", serial);
 
             return serial;
@@ -298,11 +319,23 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
             else if (IsNetherlandSystem())
             {
-                serial = SerialNumberBnn;
+                serial = SerialNumberBnl;
             }
             else if (IsSwedenSystem())
             {
                 serial = SerialNumberBns;
+            }
+            else if (IsFinlandSystem())
+            {
+                serial = SerialNumberBnf;
+            }
+            else if (IsDenmarkSystem())
+            {
+                serial = SerialNumberBnd;
+            }
+            else if (IsNorwaySystem())
+            {
+                serial = SerialNumberBnn;
             }
             SpecFlow.SetContext("UsedSerialNumber", serial);
 
@@ -430,8 +463,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                         break;
                     case "BOR":
                         CloudInstallationProcess();
-                        WebDriver.Wait(DurationType.Second, 5);
-                        RefreshCloudInstallationElement.Click();
+                       // WebDriver.Wait(DurationType.Second, 5);
+                        //RefreshCloudInstallationElement.Click();
+                        RefreshCloudInstallation();
                         break;
                     case "Web":
                         GetWebInstallationPin();
@@ -439,8 +473,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                         WebDriver.Wait(DurationType.Second, 1);
                         ReturnToOriginWindow();
                         CloudInstallationProcess();
-                        WebDriver.Wait(DurationType.Second, 5);
-                        RefreshCloudInstallationElement.Click();
+                        //WebDriver.Wait(DurationType.Second, 5);
+                        //RefreshCloudInstallationElement.Click();
+                        RefreshCloudInstallation();
                         break;
                 }
 
@@ -465,8 +500,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                         break;
                     case "BOR":
                         SwapCloudInstallationProcess();
-                        WebDriver.Wait(DurationType.Second, 5);
-                        RefreshCloudInstallationElement.Click();
+                        //WebDriver.Wait(DurationType.Second, 5);
+                        //RefreshCloudInstallationElement.Click();
+                        RefreshCloudInstallation();
                         break;
                     case "Web":
                         GetWebInstallationPin();
@@ -474,8 +510,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                         WebDriver.Wait(DurationType.Second, 1);
                         ReturnToOriginWindow();
                         SwapCloudInstallationProcess();
-                        WebDriver.Wait(DurationType.Second, 5);
-                        RefreshCloudInstallationElement.Click();
+                       // WebDriver.Wait(DurationType.Second, 5);
+                        //RefreshCloudInstallationElement.Click();
+                        RefreshCloudInstallation();
                         break;
                 }
 
@@ -485,6 +522,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 throw new Exception(String.Format("Connect or Refresh button is not displayed because {0}", exception));
             }
 
+        }
+
+        private void RefreshCloudInstallation()
+        {
+            RetryClickingAction("#content_0_ButtonRefresh", "#content_0_DeviceInstallList_List_CellConnectionStatus_0 .glyphicon-ok", 5, 5);
         }
 
         private void GetWebInstallationPin()

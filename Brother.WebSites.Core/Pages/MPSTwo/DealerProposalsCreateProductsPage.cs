@@ -1093,28 +1093,25 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterOptionCostPrice()
         {
-            
+            if (IsSwedenSystem()) return;
             var srpOption = MpsUtil.GetValue(OptionSrpText());
-
             var OptionText = srpOption.ToString().Substring(0, 3);
-
             if (OptionCostPrice0Element() != null)
                 ClearAndType(OptionCostPrice0Element(), OptionText);
         }
         public void EnterModelUnitCost()
         {
             //if (!ModelSrpElement.Text.Contains("£")) return;
-            if (!IsAustriaSystem() || !IsGermanSystem())
-            {
-                var srpCost = MpsUtil.GetValue(ModelSrpElement.Text);
-                var costText = srpCost.ToString();
-                var optionText = costText.Substring(0, 3);
-                ClearAndType(ProductCostPriceElement, optionText);
-                SetProductCostPrice();
-            }
-            
+            if (IsAustriaSystem() || IsGermanSystem() || IsSwedenSystem()) return;
+            var srpCost = MpsUtil.GetValue(ModelSrpElement.Text);
+            var costText = srpCost.ToString();
+            var optionText = costText.Substring(0, 3);
+            ClearAndType(ProductCostPriceElement, optionText);
 
+
+            SetProductCostPrice();
         }
+
 
         public void SetProductCostPrice()
         {

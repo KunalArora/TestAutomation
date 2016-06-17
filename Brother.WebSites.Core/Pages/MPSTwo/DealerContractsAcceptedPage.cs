@@ -27,7 +27,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
 
 
-        public ManageDevicesPage NavigateToManageDevicesPage()
+        public DealerManageDevicesPage NavigateToManageDevicesPage()
         {
             if (ManageDevicesElement == null)
                 throw new Exception("Manage Device Element is not displayed");
@@ -37,10 +37,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ScrollTo(ManageDevicesElement);
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ManageDevicesElement);
             MPSJobRunnerPage.RunCreateCustomerAndPersonCommandJob();
-            return GetInstance<ManageDevicesPage>(Driver);
+            return GetInstance<DealerManageDevicesPage>(Driver);
         }
 
-        public ManageDevicesPage NavigateToManageDevicesPageToConfirmThatInstallationRequestAvailability()
+        public DealerManageDevicesPage NavigateToManageDevicesPageToConfirmThatInstallationRequestAvailability()
         {
             MPSJobRunnerPage.RunCompleteInstallationCommandJob();
             MPSJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob();
@@ -49,7 +49,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ScrollTo(ManageDevicesElement);
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ManageDevicesElement);
 
-            return GetInstance<ManageDevicesPage>();
+            return GetInstance<DealerManageDevicesPage>();
         }
     
     }

@@ -151,7 +151,7 @@
     <Compile Include="Pages\MPSTwo\DealerContractsAwaitingAcceptancePage.cs" />
     <Compile Include="Pages\MPSTwo\DealerProposalPdfPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeAdminProgramPage.cs" />
-    <Compile Include="Pages\MPSTwo\ManageDevicesPage.cs" />
+    <Compile Include="Pages\MPSTwo\DealerManageDevicesPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerProposalsCreateNavTabs.cs" />
     <Compile Include="Pages\MPSTwo\DealerContractsPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerProposalsCreateDescriptionPage.cs" />
@@ -194,7 +194,7 @@
     <Compile Include="Pages\MPSTwo\LocalOfficeAdminDealerDefaultsPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeAdminDashBoardPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeApproverDeviceManagementPage.cs" />
-    <Compile Include="Pages\MPSTwo\SendToBankPage.cs" />
+    <Compile Include="Pages\MPSTwo\DealerSendForApproverPage.cs" />
     <Compile Include="Pages\MPSTwo\ServiceDeskDashBoardPage.cs" />
     <Compile Include="Pages\MPSTwo\ServiceDeskReportingPage.cs" />
     <Compile Include="Pages\MPSTwo\ServiceDeskServiceRequestsPage.cs" />

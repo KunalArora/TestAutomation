@@ -84,13 +84,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             if (IsSpainSystem()) return;
             if (option.Equals("Pay upfront") || option.Equals("im Voraus bezahlen")
-                || option.Equals("Inclus dans le coût à la page") || option.Equals("Pagamento anticipato"))
+                || option.Equals("Inclus dans le coût à la page") || option.Equals("Pagamento anticipato") || option.Equals("Förskott"))
             {
                 PayUpfrontElement().Click();
                 WebDriver.Wait(DurationType.Second, 5);
             }
             else if (option.Equals("Included in Click Price") || option.Equals("über den Seitenpreis zahlen")
-                     || option.Equals("Paiement au démarrage du contrat") || option.Equals("Incluso nel click"))
+                     || option.Equals("Paiement au démarrage du contrat") || option.Equals("Incluso nel click") || option.Equals("Per utskrift"))
             {
                 InClickPriceElement().Click();
                 WebDriver.Wait(DurationType.Second, 5);
