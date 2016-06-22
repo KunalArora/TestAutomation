@@ -211,7 +211,9 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
             else
             {
                 TestController.CurrentDriver = (IWebDriver)ScenarioContext.Current["CurrentDriver"];
-            }    
+            }  
+  
+            TestController.InitialiseReport();
         }
 
         private static bool CheckForValidRunTimeEnv(string runTimeEnv)

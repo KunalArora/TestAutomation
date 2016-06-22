@@ -4,9 +4,11 @@ using System.Configuration;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using Brother.Tests.Selenium.Lib.ExtentReport;
 using Brother.Tests.Selenium.Lib.Properties;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.SpecFlow;
+using NUnit.Framework;
 using NUnit.Framework.Constraints;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -14,6 +16,7 @@ using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 using OpenQA.Selenium.PhantomJS;
 using OpenQA.Selenium.Remote;
+using RelevantCodes.ExtentReports;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Selenium.Lib.Support
@@ -22,6 +25,8 @@ namespace Brother.Tests.Selenium.Lib.Support
     public static class TestController
     {
         public static IWebDriver CurrentDriver { get; set; }
+        private static ExtentReports extent;
+        private static ExtentTest test;
         static int PhantomJsProcId { get; set; }
         static readonly string _driverPort = SeleniumGlobal.Default.DriverPortNumber;
         static readonly string _ipAddress = SeleniumGlobal.Default.DriverIPAddress;
@@ -139,8 +144,17 @@ namespace Brother.Tests.Selenium.Lib.Support
             Helper.MsgOutput("!!!We are up and running!!!");
         }
 
+        public static void InitialiseReport()
+        {
+            extent = ExtentManager.Instance;
+            test = extent.StartTest(TestContext.CurrentContext.Test.Name);
+            test.Log(LogStatus.Info, String.Format("{0} is up and running", TestContext.CurrentContext.Test.Name));
+        }
+
         public static void Test_Teardown()
         {
+            ExtentReportCaptureTearDown();
+
             try
             {
                 if (IsDriverRunning(CurrentDriver))
@@ -164,6 +178,35 @@ namespace Brother.Tests.Selenium.Lib.Support
             {
                 Helper.MsgOutput(nullReferenceException.ToString());
             }
+        }
+
+
+        public static void ExtentReportCaptureTearDown()
+        {
+            var status = TestContext.CurrentContext.Result.Status;
+            
+            LogStatus logstatus;
+
+            switch (status)
+            {
+                case TestStatus.Failed:
+                    logstatus = LogStatus.Fail;
+                    break;
+                case TestStatus.Inconclusive:
+                    logstatus = LogStatus.Warning;
+                    break;
+                case TestStatus.Skipped:
+                    logstatus = LogStatus.Skip;
+                    break;
+                default:
+                    logstatus = LogStatus.Pass;
+                    break;
+            }
+
+            test.Log(logstatus, "Test ended with " + logstatus);
+
+            extent.EndTest(test);
+            extent.Flush();
         }
 
         private static InternetExplorerOptions IeOptions()
