@@ -389,7 +389,8 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         private string ContractType(string type)
         {
             if (type == "Acquisto + Consumo con assistenza" || type == "Buy & Click"
-                || type == "Purchase & Click con Service" || type == "Kjøp og klikk med service" || type == "Purchase & click inklusive service")
+                || type == "Purchase & Click con Service" || type == "Kjøp og klikk med service" || 
+                type == "Purchase & click inklusive service" || type == "Purchase + Click met Service")
             {
                 type = "Purchase & Click with Service";
             }

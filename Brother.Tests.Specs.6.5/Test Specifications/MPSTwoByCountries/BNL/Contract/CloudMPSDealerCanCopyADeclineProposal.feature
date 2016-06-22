@@ -21,8 +21,8 @@ Scenario Outline: Dealer Can Copy A Declined Purchase and Click Proposal without
 	
 	Scenarios:
 
-	| Role             | Country     | Role2                           | ContractType | UsageType                                 | Length | Billing                |
-	| Cloud MPS Dealer | Netherlands | Cloud MPS Local Office Approver | Buy & Click  | Engagement sur un minimum volume de pages | 3 ans  | Trimestrale anticipata |
+	| Role             | Country     | Role2                           | ContractType                 | UsageType     | Length | Billing              |
+	| Cloud MPS Dealer | Netherlands | Cloud MPS Local Office Approver | Purchase + Click met Service | Minimumvolume | 3 jaar | Quarterly in Arrears |
 	
 
 
@@ -43,6 +43,6 @@ Scenario Outline: Dealer Can Copy A Declined Purchase and Click Proposal with cu
 	
 	Scenarios:
 
-	| Role             | Country     | Role2                           | ContractType | UsageType                                 | Length | Billing                |
-	| Cloud MPS Dealer | Netherlands | Cloud MPS Local Office Approver | Buy & Click  | Engagement sur un minimum volume de pages | 3 ans  | Trimestrale anticipata |
+	| Role             | Country     | Role2                           | ContractType                 | UsageType     | Length | Billing              |
+	| Cloud MPS Dealer | Netherlands | Cloud MPS Local Office Approver | Purchase + Click met Service | Minimumvolume | 4 jaar | Quarterly in Arrears |
 	

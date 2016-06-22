@@ -33,6 +33,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string SerialNumberBbe = @"F3Y112595";
         private const string SerialNumberBnl = @"F3Y112595";
         private const string SerialNumberBpl = @"F3Y112595";
+        private const string SerialNumberBsw = @"B8C742391";
         private const string SwapSerialNumberUk = @"F3Y112553";
         private const string SwapSerialNumberDe = @"F3Y112555";
         private const string SwapSerialNumberAt = @"F3Y112561";
@@ -336,6 +337,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             else if (IsNorwaySystem())
             {
                 serial = SerialNumberBnn;
+            }
+            else if (IsSwissSystem())
+            {
+                serial = SerialNumberBsw;
             }
             SpecFlow.SetContext("UsedSerialNumber", serial);
 
