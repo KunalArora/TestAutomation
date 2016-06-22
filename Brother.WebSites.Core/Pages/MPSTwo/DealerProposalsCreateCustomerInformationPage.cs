@@ -377,7 +377,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterPropertyNumber()
         {
-            if (IsFranceSystem()||IsSpainSystem()||IsItalySystem()) return;
+            if (IsFranceSystem()||IsSpainSystem()||IsItalySystem()|| IsDenmarkSystem()) return;
             PropertyNumberElement.SendKeys(MpsUtil.PropertyNumber());
         }
 
@@ -483,7 +483,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SelectTitleFromDropdown()
         {
-            if (IsSwedenSystem()) return;
+            if (IsSwedenSystem()||IsDenmarkSystem()) return;
                 SelectFromDropdownByValue(ContactTitleElement, "0002");
         }
 

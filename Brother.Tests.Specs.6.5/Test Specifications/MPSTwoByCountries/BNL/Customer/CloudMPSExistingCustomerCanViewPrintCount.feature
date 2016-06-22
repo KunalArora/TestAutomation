@@ -1,4 +1,4 @@
-﻿@MPS @UAT @TEST
+﻿@ignore @MPS @UAT @TEST
 Feature: CloudMPSCreateAContractWithExistingDutchCustomer
 	In order to work with customer run portion
 	As a dealer
@@ -21,6 +21,6 @@ Scenario Outline: Existing Customer can be used to create a new contract for Run
 	
 Scenarios:
 
-	| Role                            | Country     | ContractType                  | UsageType      | Role1            | Method | Type | ExistingCustomer                      | Length  | Billing              | Role2              |
-	| Cloud MPS Local Office Approver | Netherlands | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  | lashonda20160322123145@mailinator.com | 3 years | Quarterly in Arrears | Cloud MPS Customer |
+	| Role                            | Country     | ContractType                 | UsageType     | Role1            | Method | Type | ExistingCustomer                      | Length | Billing              | Role2              |
+	| Cloud MPS Local Office Approver | Netherlands | Purchase + Click met Service | Minimumvolume | Cloud MPS Dealer | Cloud  | Web  | lashonda20160322123145@mailinator.com | 3 jaar | Quarterly in Arrears | Cloud MPS Customer |
 	

@@ -906,11 +906,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\BNL\Installation\CloudMPSFullCloudInstallation.feature.cs">
-      <DependentUpon>CloudMPSFullCloudInstallation.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BNO\Installation\CloudMPSFullCloudInstallation.feature.cs">
       <DependentUpon>CloudMPSFullCloudInstallation.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -2487,10 +2482,6 @@
     <None Include="Test Specifications\MPSTwoByCountries\BNO\Installation\CloudMPSCancelInstallationRequest.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSCancelInstallationRequest.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPSTwoByCountries\BNL\Installation\CloudMPSFullCloudInstallation.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSFullCloudInstallation.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwoByCountries\BNO\Installation\CloudMPSFullCloudInstallation.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
