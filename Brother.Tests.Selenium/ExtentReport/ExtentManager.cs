@@ -8,16 +8,14 @@ using RelevantCodes.ExtentReports;
 
 namespace Brother.Tests.Selenium.Lib.ExtentReport
 {
-    internal class ExtentManager
+    internal static class ExtentManager
     {
-        private const string DefaultLogFolder = "C:\\TestAutomation\\AutomationReport\\{0}\\{1}.html";
+        private const string DefaultLogFolder = "C:\\TestAutomation\\AutomationReport\\{0}";
 
         private static readonly ExtentReports _Instance =
             new ExtentReports(SetReportLocation(), DisplayOrder.OldestFirst);
 
         static ExtentManager() { }
-
-        private ExtentManager() { }
 
         public static ExtentReports Instance
         {
@@ -30,13 +28,11 @@ namespace Brother.Tests.Selenium.Lib.ExtentReport
 
         private static string SetReportLocation()
         {
-            var dateNow = DateTime.Now.Date.ToString().Replace(@"/", "").Replace(@" ", "").Replace(@":", "");
-            var dateN = dateNow.Substring(0, 8);
+            var dateNow = DateTime.Now.ToString("yyyyMMd");
 
-            var timeNow = DateTime.Now.TimeOfDay.ToString().Replace(@"/", "").Replace(@" ","").Replace(@":","").Replace(@".","");
-            var timeN = timeNow.Substring(0, 6);
+            var timeNow = DateTime.Now.ToString("HHmmss");
 
-            var reportLocation = String.Format(DefaultLogFolder, dateN, timeN);
+            var reportLocation = String.Format(DefaultLogFolder, dateNow);
 
             var isOnBuildMachine = Environment.MachineName;
 
@@ -50,7 +46,9 @@ namespace Brother.Tests.Selenium.Lib.ExtentReport
                 Directory.CreateDirectory(reportLocation);
             }
 
-            return reportLocation;
+            var report = String.Format("\\TestReport_{0}.html", timeNow);
+
+            return reportLocation + report;
         }
     }
 }
