@@ -23,7 +23,7 @@ Scenario Outline: Installer can progress with installation for Email Communicati
 	
 Scenarios:
 
-	| Role                            | Country     | ContractType | UsageType                                 | Role1            | Method | Length | Billing                |
-	| Cloud MPS Local Office Approver | Netherlands | Buy & Click  | Engagement sur un minimum volume de pages | Cloud MPS Dealer | Email  | 3 ans  | Trimestrale anticipata |
+	| Role                            | Country     | ContractType                 | UsageType     | Role1            | Method | Length | Billing              |
+	| Cloud MPS Local Office Approver | Netherlands | Purchase + Click met Service | Minimumvolume | Cloud MPS Dealer | Email  | 3 jaar | Quarterly in Arrears |
 	
 

@@ -136,6 +136,7 @@
       <DependentUpon>BrotherDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ExtentReport\ExtentManager.cs" />
+    <Compile Include="Mail\Mailer.cs" />
     <Compile Include="Properties\MPSProd.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>

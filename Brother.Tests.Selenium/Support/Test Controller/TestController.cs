@@ -4,7 +4,9 @@ using System.Configuration;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Net.Mail;
 using Brother.Tests.Selenium.Lib.ExtentReport;
+using Brother.Tests.Selenium.Lib.Mail;
 using Brother.Tests.Selenium.Lib.Properties;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.SpecFlow;
@@ -30,6 +32,9 @@ namespace Brother.Tests.Selenium.Lib.Support
         static int PhantomJsProcId { get; set; }
         static readonly string _driverPort = SeleniumGlobal.Default.DriverPortNumber;
         static readonly string _ipAddress = SeleniumGlobal.Default.DriverIPAddress;
+        private const string Message = "Please find attached the latest Automation Test Report which was generated on {0}. You can open the attachment using any browser.";
+        private const string Subject = "Automation Test Report";
+        private const string To = "sayo.afolabi@brother.co.uk;takanobu.suzuki@brother.co.uk;Takatoshi.Ono@brother.co.uk;Tim.Peel@brother.co.uk;Mohammed.Laies@brother.co.uk";
 
         static TestController()
         {
@@ -153,7 +158,23 @@ namespace Brother.Tests.Selenium.Lib.Support
 
         public static void Test_Teardown()
         {
-            ExtentReportCaptureTearDown();
+            try
+            {
+                ExtentReportCaptureTearDown();
+
+                var dateNow = DateTime.Now.ToString("F");
+
+                if (Helper.IsMpsSwitchOn())
+                {
+                    Mailer.SendEmailToMultiple(To, Subject, String.Format(Message, dateNow));
+                }
+            }
+            catch (IOException ioException)
+            {
+                Helper.MsgOutput("Report could not be written to specified location", ioException.ToString());
+            }
+            
+            
 
             try
             {

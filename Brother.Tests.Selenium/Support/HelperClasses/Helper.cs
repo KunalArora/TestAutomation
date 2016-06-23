@@ -241,6 +241,12 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         {
             return GetSpecialEnvironmentVariable("MpsTagRunner");
         }
+
+        public static bool IsMpsSwitchOn()
+        {
+            var isMpsOn =  GetSpecialEnvironmentVariable("MpsTagRunner");
+            return isMpsOn != null && isMpsOn.Equals("ONLY");
+        }
         
         public static bool CheckFeatureEnv(string env)
         {
