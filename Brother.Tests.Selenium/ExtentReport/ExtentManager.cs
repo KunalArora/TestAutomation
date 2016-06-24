@@ -14,7 +14,7 @@ namespace Brother.Tests.Selenium.Lib.ExtentReport
         private const string DefaultLogFolder = "C:\\TestAutomation\\AutomationReport\\{0}";
 
         private static readonly ExtentReports _Instance =
-            new ExtentReports(SetReportLocation(), false);
+            new ExtentReports(SetReportLocation(), DisplayOrder.OldestFirst);
 
         static ExtentManager() { }
 
@@ -47,8 +47,9 @@ namespace Brother.Tests.Selenium.Lib.ExtentReport
                 Directory.CreateDirectory(reportLocation);
             }
 
-            var report = String.Format("\\TestReport_{0}.html", timeNow);
 
+            const string report = @"\\TestReport.html";
+           
             var fullPath = reportLocation + report;
 
             SpecFlow.SetContext("ReportPath", fullPath);

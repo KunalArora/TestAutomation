@@ -1111,6 +1111,10 @@ namespace Brother.Tests.Selenium.Lib.Support
             {
                 numberFormatInfo = new NumberFormatInfo { CurrencySymbol = "kr." };
             }
+            else if ((money.Contains("kr") && TestController.CurrentDriver.Url.Contains(".se.brother")))
+            {
+                numberFormatInfo = new NumberFormatInfo { CurrencySymbol = "kr", CurrencyGroupSeparator = " "};
+            }
             else if (money.Contains("kr"))
             {
                 numberFormatInfo = new NumberFormatInfo { CurrencySymbol = "kr" };
