@@ -5,7 +5,6 @@ using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.BrotherMainSite;
 using Brother.WebSites.Core.Pages.BrotherOnline.Account;
 using Brother.WebSites.Core.Pages.BrotherOnline.Checkout;
-using Brother.WebSites.Core.Pages.BrotherOnline.DataManager;
 using Brother.WebSites.Core.Pages.BrotherOnline.ThirdParty;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using Brother.WebSites.Core.Pages.OmniJoin;
@@ -52,13 +51,7 @@ namespace Brother.WebSites.Core.Pages.Base
             NavigateToPageSitecore(driver, baseUrl.TrimEnd(new char[] { '/' }));
             return GetInstance<LoginPage>(driver, baseUrl, "");
         }
-        public static DataManagerPage LoadDataManagerPage(IWebDriver driver, string baseUrl)
-        {
-            driver = SetDriver(driver);
-            NavigateToPage(driver, baseUrl.TrimEnd(new char[] { '/' }));
-            return GetInstance<DataManagerPage>(driver, baseUrl, "");
-        }
-        public static PublishedPage LoadPublishedPage(IWebDriver driver, string baseUrl)
+       public static PublishedPage LoadPublishedPage(IWebDriver driver, string baseUrl)
         {
             driver = SetDriver(driver);
             NavigateToPage(driver, baseUrl.TrimEnd(new char[] { '/' }));
