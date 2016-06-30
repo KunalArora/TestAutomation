@@ -218,7 +218,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                    ClickSkipCustomerButtonAndProceed();
                    break;
                default:
-                   throw new InvalidEnumArgumentException(String.Format("{0} is not a valid contract type", option));
+                   throw new InvalidEnumArgumentException(String.Format("{0} is not a valid customer create option", option));
            }
        }
 

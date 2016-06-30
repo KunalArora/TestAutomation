@@ -35,7 +35,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsCorrectDeviceSerialNumberDisplayed()
         {
-            var serialNumber = MPSUserLogins.UsedSerialNumber(Driver);
+            var serialNumber = MpsUserLogins.UsedSerialNumber(Driver);
             var displayedSerial = ConsumableDeviceSerialNumber.Text;
 
             TestCheck.AssertIsEqual(serialNumber, displayedSerial, "Displayed serial number is not the same as the one entered");
@@ -51,7 +51,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void RemoveExistingConsumableOrderBySerialNumber()
         {
-            var serialNumber = MPSUserLogins.UsedSerialNumber(Driver);
+            var serialNumber = MpsUserLogins.UsedSerialNumber(Driver);
             MPSJobRunnerPage.RunRemoveConsumableOrderByInstalledPrinterJob(serialNumber);
         }
 

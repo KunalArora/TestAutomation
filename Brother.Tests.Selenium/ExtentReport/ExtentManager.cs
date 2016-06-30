@@ -11,7 +11,7 @@ namespace Brother.Tests.Selenium.Lib.ExtentReport
 {
     internal static class ExtentManager
     {
-        private const string DefaultLogFolder = "C:\\TestAutomation\\AutomationReport\\{0}";
+        private const string DefaultLogFolder = "C:\\TestAutomation\\AutomationReport";
 
         private static readonly ExtentReports _Instance =
             new ExtentReports(SetReportLocation(), DisplayOrder.OldestFirst);
@@ -29,11 +29,7 @@ namespace Brother.Tests.Selenium.Lib.ExtentReport
 
         private static string SetReportLocation()
         {
-            var dateNow = DateTime.Now.ToString("yyyyMMd");
-
-            var timeNow = DateTime.Now.ToString("HHmmss");
-
-            var reportLocation = String.Format(DefaultLogFolder, dateNow);
+            var reportLocation = DefaultLogFolder;
 
             var isOnBuildMachine = Environment.MachineName;
 
@@ -56,5 +52,7 @@ namespace Brother.Tests.Selenium.Lib.ExtentReport
 
             return fullPath;
         }
+
+        
     }
 }

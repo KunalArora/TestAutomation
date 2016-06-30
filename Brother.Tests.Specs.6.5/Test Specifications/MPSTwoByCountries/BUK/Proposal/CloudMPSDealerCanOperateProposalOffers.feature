@@ -55,7 +55,7 @@ Scenario Outline: Dealer can edit products in an existing proposal offer
 	| Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | United Kingdom | Products | Remove |
 	
 
-#@ignore
+@ignore
 Scenario Outline: Dealer can delete an existing proposal offer
     Given Dealer have created a Open proposal of "<ContractType>" and "<UsageType>"
 	When I click the delete button against "<TargetItem>" on Existing Proposal table to be "<Confirm>"
@@ -67,7 +67,7 @@ Scenario Outline: Dealer can delete an existing proposal offer
 	| ContractType                  | UsageType      | Confirm | TargetItem       |
 	| Purchase & Click with Service | Minimum Volume | OK      | NewlyCreatedItem |
 	
-	
+@ignore	
 Scenario Outline: Dealer can cancel deleting proposal offer
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to existing proposal screen

@@ -75,6 +75,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 SelectFromDropdown(DeclineReasonElement, "Otro");
             }
+            else if (IsSwedenSystem())
+            {
+                SelectFromDropdown(DeclineReasonElement, "Annat");
+            }
+            else if (IsNetherlandSystem())
+            {
+                SelectFromDropdown(DeclineReasonElement, "Overig");
+            }
             
         }
 
