@@ -220,6 +220,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             return environmentVariable != null && environmentVariable.Equals(runTimeEnv);
         }
 
+        
         public static bool CheckScenarioEnv(string env)
         {
             return ScenarioContext.Current.ScenarioInfo.Tags.Contains(env);
@@ -240,6 +241,12 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         public static String MpsRunCondition()
         {
             return GetSpecialEnvironmentVariable("MpsTagRunner");
+        }
+
+        public static bool IsMpsSwitchOn()
+        {
+            var isMpsOn =  GetSpecialEnvironmentVariable("MpsTagRunner");
+            return isMpsOn != null && isMpsOn.Equals("ONLY");
         }
         
         public static bool CheckFeatureEnv(string env)
@@ -363,6 +370,33 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             }
             reader.Close();
             return itemValue;
+        }
+
+
+        public static void CopyFileToNewLocation(string sourcePath, string targetPath, string srcFileName, string targetFileName)
+        {
+            var sourceFile = Path.Combine(sourcePath, srcFileName);
+            var destFile = Path.Combine(targetPath, targetFileName);
+
+            if (!Directory.Exists(targetPath))
+            {
+                Directory.CreateDirectory(targetPath);
+            }
+
+            File.Copy(sourceFile, destFile, true);
+        }
+
+        public static void DeleteFileFromDirectory(string fileFullPath)
+        {
+            if (!File.Exists(fileFullPath)) return;
+            try
+            {
+                File.Delete(fileFullPath);
+            }
+            catch (IOException e)
+            {
+                MsgOutput(String.Format("File was not deleted because {0}", e.Message));
+            }
         }
 
         public static void UpdateSerialNumber(string serialNumber)
@@ -545,6 +579,29 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                         MsgOutput(string.Format("Unable to delete download {0} due to {1}", snapShot.Name, fileDeleteException.Message));
                     }
                 }
+            MsgOutput(string.Format("Successfully Deleted {0} contract(s)", snapShotCount));
+        }
+
+        public static void PurgeDirectoryForAnyExtension(string filePath, string extension)
+        {
+            var dirInfo = new DirectoryInfo(filePath);
+
+            var extensionString = String.Format("*.{0}", extension);
+
+            var snapShotCount = 0;
+            var snapShots = dirInfo.GetFiles(extensionString, SearchOption.TopDirectoryOnly);
+            foreach (var snapShot in snapShots)
+            {
+                try
+                {
+                    snapShot.Delete();
+                    snapShotCount++;
+                }
+                catch (IOException fileDeleteException)
+                {
+                    MsgOutput(string.Format("Unable to delete download {0} due to {1}", snapShot.Name, fileDeleteException.Message));
+                }
+            }
             MsgOutput(string.Format("Successfully Deleted {0} contract(s)", snapShotCount));
         }
 

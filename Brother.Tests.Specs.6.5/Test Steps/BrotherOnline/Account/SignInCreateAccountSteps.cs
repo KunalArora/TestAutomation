@@ -1266,8 +1266,8 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
 
         private void SignInAsARoleType(string role, string country)
         {
-            var username = MPSUserLogins.Username(country, role, CurrentDriver);
-            var password = MPSUserLogins.Password(role);
+            var username = MpsUserLogins.Username(country, role, CurrentDriver);
+            var password = MpsUserLogins.Password(role);
 
             if (!role.StartsWith("Cloud"))
             {

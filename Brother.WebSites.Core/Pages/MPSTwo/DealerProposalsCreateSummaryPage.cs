@@ -612,7 +612,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public string GetMonoClickValue()
         {
-            var monoClickRate = IsSwedenSystem() ? MonoClickRateElement.Text : MpsUtil.GetValue(MonoClickRateElement.Text).ToString();
+            //var monoClickRate = IsSwedenSystem() ? MonoClickRateElement.Text : MpsUtil.GetValue(MonoClickRateElement.Text).ToString();
+
+            var monoClickRate =MonoClickRateElement.Text;
 
             return monoClickRate;
         }
@@ -620,8 +622,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public string GetColourClickValue()
         {
-            var colourClickRate = IsSwedenSystem() ? ColourClickRateElement.Text : MpsUtil.GetValue(ColourClickRateElement.Text).ToString();
-
+            //var colourClickRate = IsSwedenSystem() ? ColourClickRateElement.Text : MpsUtil.GetValue(ColourClickRateElement.Text).ToString();
+            var colourClickRate = ColourClickRateElement.Text;
             return colourClickRate;
         }
 
@@ -629,13 +631,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void IsMonoClickPriceDisplayedCorrectly()
         {
             var monoValue = SpecFlow.GetContext("ClickPriceMonoValue");
-            TestCheck.AssertTextContains(monoValue, GetMonoClickValue(),
+            var value = GetMonoClickValue();
+
+            TestCheck.AssertTextContains(monoValue, value, 
                  "Mono Click Price displayed is different from the calculated on");
         }
 
         public void IsColourClickPriceDisplayedCorrectly()
         {
             var colourValue = SpecFlow.GetContext("ClickPriceColourValue");
+
             TestCheck.AssertTextContains(colourValue, GetColourClickValue(),
                  "Colour Click Price displayed is different from the calculated on");
         }

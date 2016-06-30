@@ -179,7 +179,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
         public bool WaitForElementToExistById(string element, int timeOut)
         {
-            var elementStatus = false;
+            bool elementStatus;
             try
             {
                 var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(timeOut));

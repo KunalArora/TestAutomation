@@ -18,7 +18,7 @@ Scenario Outline: Dealer can copy an existing proposal offer for all countries
 	
 	Scenarios:
 
-	| Role             | Country        | ContractType                      | UsageType                                 | Length  | Billing                 | Customer               | Status  |
-	| Cloud MPS Dealer | France         | Buy & Click                       | Engagement sur un minimum volume de pages | 3 ans   | Trimestrale anticipata  | Skip customer creation | Without |
-	| Cloud MPS Dealer | France         | Buy & Click                       | Engagement sur un minimum volume de pages | 4 ans   | Trimestrale anticipata  | Create new customer    | With    |
+	| Role             | Country | ContractType | UsageType                                 | Length | Billing                | Customer               | Status  |
+	| Cloud MPS Dealer | France  | Buy & Click  | Engagement sur un minimum volume de pages | 3 ans  | Trimestrale anticipata | Skip customer creation | Without |
+	| Cloud MPS Dealer | France  | Buy & Click  | Engagement sur un minimum volume de pages | 4 ans  | Trimestrale anticipata | Create new customer    | With    |
 	

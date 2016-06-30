@@ -4,7 +4,9 @@ using System.Configuration;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Net.Mail;
 using Brother.Tests.Selenium.Lib.ExtentReport;
+using Brother.Tests.Selenium.Lib.Mail;
 using Brother.Tests.Selenium.Lib.Properties;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.SpecFlow;
@@ -25,11 +27,16 @@ namespace Brother.Tests.Selenium.Lib.Support
     public static class TestController
     {
         public static IWebDriver CurrentDriver { get; set; }
-        private static ExtentReports extent;
-        private static ExtentTest test;
+        private static ExtentReports _extent;
+        private static ExtentTest _test;
         static int PhantomJsProcId { get; set; }
         static readonly string _driverPort = SeleniumGlobal.Default.DriverPortNumber;
         static readonly string _ipAddress = SeleniumGlobal.Default.DriverIPAddress;
+        private const string Message = "Please find attached the latest Automation Test Report which was generated on {0}. You can open the attachment using any browser.";
+        private const string Subject = "Automation Test Report";
+        private const string To = "sayo.afolabi@brother.co.uk;benjamin.bayfield@brother.co.uk;takanobu.suzuki@brother.co.uk;Takatoshi.Ono@brother.co.uk;Tim.Peel@brother.co.uk;Mohammed.Laies@brother.co.uk";
+        //private const string To = "sayo.afolabi@brother.co.uk;sayo_folabi@hotmail.com";
+
 
         static TestController()
         {
@@ -146,15 +153,39 @@ namespace Brother.Tests.Selenium.Lib.Support
 
         public static void InitialiseReport()
         {
-            extent = ExtentManager.Instance;
-            test = extent.StartTest(TestContext.CurrentContext.Test.Name);
-            test.Log(LogStatus.Info, String.Format("{0} is up and running", TestContext.CurrentContext.Test.Name));
+            _extent = ExtentManager.Instance;
+            _test = _extent.StartTest(TestContext.CurrentContext.Test.Name);
+            _test.Log(LogStatus.Info, String.Format("{0} is up and running", TestContext.CurrentContext.Test.Name));
+        }
+
+
+        public static void ExtentTearDown()
+        {
+            try
+            {
+                ExtentReportCaptureTearDown();
+
+            }
+            catch (IOException ioException)
+            {
+                Helper.MsgOutput("Report could not be written to specified location", ioException.ToString());
+            }
+        }
+
+        public static void SendEmail()
+        {
+            var dateNow = DateTime.Now.ToString("F");
+
+            if (Helper.IsMpsSwitchOn())
+            {
+                //Mailer.SendEmail(To, Subject, String.Format(Message, dateNow));
+                Mailer.SendEmailToMultipleRecipients(To, Subject, String.Format(Message, dateNow));
+            }
         }
 
         public static void Test_Teardown()
         {
-            ExtentReportCaptureTearDown();
-
+           ExtentTearDown();
             try
             {
                 if (IsDriverRunning(CurrentDriver))
@@ -203,10 +234,10 @@ namespace Brother.Tests.Selenium.Lib.Support
                     break;
             }
 
-            test.Log(logstatus, "Test ended with " + logstatus);
+            _test.Log(logstatus, "Test ended with " + logstatus);
 
-            extent.EndTest(test);
-            extent.Flush();
+            _extent.EndTest(_test);
+            _extent.Flush();
         }
 
         private static InternetExplorerOptions IeOptions()

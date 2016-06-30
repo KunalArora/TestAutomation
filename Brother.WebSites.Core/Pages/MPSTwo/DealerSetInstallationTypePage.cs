@@ -23,9 +23,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         [FindsBy(How = How.CssSelector, Using = ".active a[href*=\"/set-installation-type\"]")]
         public IWebElement InstallationTypeTabElement;
-        [FindsBy(How = How.CssSelector, Using = "#content_1_InputInstallationChoiceTool")]
+        [FindsBy(How = How.CssSelector, Using = "#content_1_InputInstallationChoiceTool_Input")]
         public IWebElement BORToolElement;
-        [FindsBy(How = How.CssSelector, Using = "#content_1_InputInstallationChoiceWeb")]
+        [FindsBy(How = How.CssSelector, Using = "#content_1_InputInstallationChoiceWeb_Input")]
         public IWebElement WebInstallElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_ButtonNext")]
         public IWebElement NextElement;

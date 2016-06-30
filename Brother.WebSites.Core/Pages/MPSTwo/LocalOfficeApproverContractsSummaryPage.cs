@@ -190,7 +190,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 reason = "Otro";
             }
-            
+            else if (IsSwedenSystem())
+            {
+                reason = "Annat";
+            }
+            else if (IsNetherlandSystem())
+            {
+                reason = "Overig";
+            }
             return reason;
         }
 
@@ -217,7 +224,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             VerifyCustomerBankNameAccountIsCorrect();
             VerifyCustomerBankAccountIsCorrect();
             VerifyCustomerIbanIsCorrect();
-            VerifyCustomerBICIsCorrect();
+            VerifyCustomerBicIsCorrect();
             VerifyCustomerSortCodeIsCorrect();
             VerifyCustomerAuthorisedSignatoryIsCorrect();
             VerifyCustomerVatNumberIsCorrect();
@@ -391,7 +398,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 SpecFlow.GetContext("DealerProposalSummaryCustomerSortCodeElement"), "CustomerSortCode is not correct");
         }
 
-        private void VerifyCustomerBICIsCorrect()
+        private void VerifyCustomerBicIsCorrect()
         {
             TestCheck.AssertIsEqual(CustomerBICElement.Text, SpecFlow.GetContext("DealerProposalSummaryCustomerBICElement"),
                 "CustomerBIC is not correct");

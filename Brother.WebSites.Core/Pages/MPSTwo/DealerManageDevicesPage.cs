@@ -126,7 +126,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 coy = "Blue Hollow_160322133924 Ltd";
             } else if (IsUKSystem())
             {
-                coy = "Middle Mall_160322123145 Ltd";
+                coy = "Meadow Mew Ltd";
             } else if (IsGermanSystem())
             {
                 coy = "Middle Mall_160322135029 Ltd";
@@ -146,9 +146,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             else if (IsIrelandSystem())
             {
                 coy = "Cotton Blossom_16061114137 Ltd";
+            }else if (IsSwedenSystem())
+            {
+                coy = "Fallen Pond_160616191239 Ltd";
+            }
+            else if (IsNetherlandSystem())
+            {
+                coy = "Rustic Parade_160524081137 Ltd";
             }
 
-            return coy;
+           return coy;
         }
 
         public void IsManagedDeviceScreenDisplayed()

@@ -115,7 +115,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SelectContractType(string contract)
         {
-            var selectable = "";
+            string selectable;
 
             switch (contract)
             {
@@ -141,6 +141,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     selectable = "3";
                     break;
                 case "Purchase & click inklusive service":
+                    selectable = "3";
+                    break;
+                case "Purchase + Click met Service":
                     selectable = "3";
                     break; 
 

@@ -4,13 +4,14 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using RelevantCodes.ExtentReports;
 
 namespace Brother.Tests.Selenium.Lib.ExtentReport
 {
     internal static class ExtentManager
     {
-        private const string DefaultLogFolder = "C:\\TestAutomation\\AutomationReport\\{0}";
+        private const string DefaultLogFolder = "C:\\TestAutomation\\AutomationReport";
 
         private static readonly ExtentReports _Instance =
             new ExtentReports(SetReportLocation(), DisplayOrder.OldestFirst);
@@ -28,11 +29,7 @@ namespace Brother.Tests.Selenium.Lib.ExtentReport
 
         private static string SetReportLocation()
         {
-            var dateNow = DateTime.Now.ToString("yyyyMMd");
-
-            var timeNow = DateTime.Now.ToString("HHmmss");
-
-            var reportLocation = String.Format(DefaultLogFolder, dateNow);
+            var reportLocation = DefaultLogFolder;
 
             var isOnBuildMachine = Environment.MachineName;
 
@@ -46,9 +43,16 @@ namespace Brother.Tests.Selenium.Lib.ExtentReport
                 Directory.CreateDirectory(reportLocation);
             }
 
-            var report = String.Format("\\TestReport_{0}.html", timeNow);
 
-            return reportLocation + report;
+            const string report = @"\\TestReport.html";
+           
+            var fullPath = reportLocation + report;
+
+            SpecFlow.SetContext("ReportPath", fullPath);
+
+            return fullPath;
         }
+
+        
     }
 }

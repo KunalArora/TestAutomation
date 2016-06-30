@@ -2,10 +2,12 @@
 using System.Diagnostics.Eventing.Reader;
 using System.Dynamic;
 using System.Linq;
+using Brother.Tests.Selenium.Lib.Mail;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using NUnit.Framework;
 using NUnit.Framework.Constraints;
 using OpenQA.Selenium;
+using RelevantCodes.ExtentReports.Model;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.UnitTestProvider;
 
@@ -30,6 +32,7 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
         [AfterTestRun]
         public static void AfterTestRun()
         {
+            TestController.SendEmail();
             Helper.MsgOutput("........Ending Test Run");
         }
 
@@ -79,6 +82,7 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
         {
             Helper.MsgOutput("Feature end - Tearing Down");
             TestController.Test_Teardown();
+            //TestController.SendEmail();
         }
 
         #endregion "Before And After Feature Tags"
@@ -137,7 +141,8 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
             }
 
             // Now check if this Scenario has Tagging present, and use this level in the first instance
-            if ((ScenarioContext.Current.ScenarioInfo.Tags.Length > 0) && (!ScenarioContext.Current.ScenarioInfo.Tags.Contains("SMOKE") && (!ScenarioContext.Current.ScenarioInfo.Tags.Contains("STAGING"))))
+            if ((ScenarioContext.Current.ScenarioInfo.Tags.Length > 0) && (!ScenarioContext.Current.ScenarioInfo.Tags.Contains("SMOKE")
+                && (!ScenarioContext.Current.ScenarioInfo.Tags.Contains("STAGING"))))
             {
                 Helper.MsgOutput("Scenario Tags present - using these to determine Runtime Environment");
 
@@ -213,7 +218,7 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
                 TestController.CurrentDriver = (IWebDriver)ScenarioContext.Current["CurrentDriver"];
             }  
   
-            TestController.InitialiseReport();
+           TestController.InitialiseReport();
         }
 
         private static bool CheckForValidRunTimeEnv(string runTimeEnv)

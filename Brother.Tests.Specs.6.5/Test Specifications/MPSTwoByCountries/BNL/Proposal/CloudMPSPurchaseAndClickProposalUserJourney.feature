@@ -32,10 +32,9 @@ Scenario Outline: Create different varieties of Purchase and Click proposal for 
 	
 
 	Scenarios: 
-	| Role             | Country     | ContractType                  | CreateOption        | UsageType      | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | Netherlands | Purchase & Click with Service | Create new customer | Minimum Volume | 3 years  | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Pay upfront   | 800         | 800          |
-	
- 
+	| Role             | Country     | ContractType                 | CreateOption        | UsageType     | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod  | ClickVolume | ColourVolume |
+	| Cloud MPS Dealer | Netherlands | Purchase + Click met Service | Create new customer | Minimumvolume | 3 jaar   | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Voorafbetaling | 800         | 800          |
+	 
 	
 Scenario Outline: Create different varieties of Purchase and Click proposal for new customer on Pay As You Go Term
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
@@ -63,8 +62,9 @@ Scenario Outline: Create different varieties of Purchase and Click proposal for 
 	
 
 	Scenarios: 
-	| Role             | Country     | ContractType                  | CreateOption        | UsageType     | Contract | Billing              | PriceHardware | Printer    | DeviceScreen | ClickVolume |
-	| Cloud MPS Dealer | Netherlands | Purchase & Click with Service | Create new customer | Pay As You Go | 4 years  | Quarterly in Arrears | Tick          | MFC-8510DN | Full         | 750         |
+	| Role             | Country     | ContractType                 | CreateOption        | UsageType             | Contract | Billing              | PriceHardware | Printer    | DeviceScreen | ClickVolume |
+	| Cloud MPS Dealer | Netherlands | Purchase + Click met Service | Create new customer | Betalen naar verbruik | 4 jaar   | Quarterly in Arrears | Tick          | HL-L6400DW | Full         | 750         |
+	
 	
 
 Scenario Outline: Create different varieties of Purchase and Click proposal for an existing customer
@@ -94,10 +94,10 @@ Scenario Outline: Create different varieties of Purchase and Click proposal for 
 	
 
 	Scenarios: 
-	| Role             | Country     | ContractType                  | UsageType      | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod           | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | Netherlands | Purchase & Click with Service | Minimum Volume | 3 years  | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Included in Click Price | 800         | 800          |
+	| Role             | Country     | ContractType                 | UsageType     | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod          | ClickVolume | ColourVolume |
+	| Cloud MPS Dealer | Netherlands | Purchase + Click met Service | Minimumvolume | 3 jaar   | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Opgenomen in klikprijs | 800         | 800          |
 	
-
+	
 Scenario Outline: Create different varieties of Purchase and Click proposal for an existing customer on Pay As You Go Term
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -124,6 +124,6 @@ Scenario Outline: Create different varieties of Purchase and Click proposal for 
 	
 
 	Scenarios: 
-	| Role             | Country     | ContractType                  | UsageType     | Contract | Billing              | PriceHardware | Printer    | DeviceScreen | ClickVolume |
-	| Cloud MPS Dealer | Netherlands | Purchase & Click with Service | Pay As You Go | 5 years  | Quarterly in Arrears | Tick          | MFC-8510DN | Full         | 750         |
+	| Role             | Country     | ContractType                 | UsageType             | Contract | Billing              | PriceHardware | Printer    | DeviceScreen | ClickVolume |
+	| Cloud MPS Dealer | Netherlands | Purchase + Click met Service | Betalen naar verbruik | 5 jaar   | Quarterly in Arrears | Tick          | HL-L6400DW | Full         | 750         |
 	
