@@ -59,11 +59,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Test Specification\CMS Sitecore\EnvAccess\EnvAccess.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EnvAccess.feature</DependentUpon>
-    </Compile>
     <Compile Include="Test Specification\CMS Sitecore\PublishedPages\PublishedPages.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -144,10 +139,6 @@
     <None Include="Test Specification\BrotherMainSite\Printer Search\Printers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Printers.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specification\CMS Sitecore\EnvAccess\EnvAccess.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>EnvAccess.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specification\CMS Sitecore\PublishedPages\PublishedPages.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
