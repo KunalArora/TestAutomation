@@ -66,7 +66,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Purchasing
             CurrentPage.As<DeliveryDetailsPage>().PopulateAddressLine1TextBox(form.AddressLine1);
             CurrentPage.As<DeliveryDetailsPage>().PopulateAddressLine2TextBox(form.AddressLine2);
             CurrentPage.As<DeliveryDetailsPage>().PopulateCityTownTextBox(form.CityTown);
-            CurrentPage.As<DeliveryDetailsPage>().PopulateCountyDropDown(form.County);
+            //CurrentPage.As<DeliveryDetailsPage>().PopulateCountyDropDown(form.County);
             CurrentPage.As<DeliveryDetailsPage>().PopulatePhoneTextBox(form.Phone.ToString());
         }
 

@@ -126,6 +126,49 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.And("I press create account button to continue checkout", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 26
  testRunner.And("I click Checkout", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 27
+ testRunner.Then("I should see the enter Delivery Address details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "field",
+                        "value"});
+            table2.AddRow(new string[] {
+                        "FirstName",
+                        "AutoTest"});
+            table2.AddRow(new string[] {
+                        "LastName",
+                        "AutoTest"});
+            table2.AddRow(new string[] {
+                        "HouseNumber",
+                        "10"});
+            table2.AddRow(new string[] {
+                        "HouseName",
+                        "AutoTestHouse"});
+            table2.AddRow(new string[] {
+                        "AddressLine1",
+                        "29,Selenium Street"});
+            table2.AddRow(new string[] {
+                        "AddressLine2",
+                        "PhantomJSVille"});
+            table2.AddRow(new string[] {
+                        "CityTown",
+                        "Manchester"});
+            table2.AddRow(new string[] {
+                        "County",
+                        "KILKENNY"});
+            table2.AddRow(new string[] {
+                        "Phone",
+                        "12345678910"});
+#line 28
+ testRunner.When("I enter the delivery details", ((string)(null)), table2, "When ");
+#line 39
+ testRunner.And("I Click Save & use address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 40
+ testRunner.Then("I should see the Saved payment details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 41
+ testRunner.When("I click on Add Payment Address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 42
+ testRunner.And("I click on Add New Address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

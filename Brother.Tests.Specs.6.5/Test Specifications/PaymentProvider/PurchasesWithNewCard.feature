@@ -24,6 +24,22 @@ Scenario: Verify the successful purchase of an order as an unsubscribed/newly re
 	And I declare that I do not use this account for business
 	And I press create account button to continue checkout
 	And I click Checkout
+	Then I should see the enter Delivery Address details page
+	When I enter the delivery details
+	| field        | value              |
+	| FirstName    | AutoTest           |
+	| LastName     | AutoTest           |
+	| HouseNumber  | 10			        |
+	| HouseName    | AutoTestHouse      |
+	| AddressLine1 | 29,Selenium Street |
+	| AddressLine2 | PhantomJSVille     |
+	| CityTown     | Manchester         |
+	| County	   | KILKENNY           |
+	| Phone        | 12345678910        |
+	And I Click Save & use address
+	Then I should see the Saved payment details page
+	When I click on Add Payment Address
+	And I click on Add New Address
 
 #Scenario: Verify the successful purchase of an order as a subscribed/existing user but No Cards added
 #Scenario: Verify the successful purchase of an order as a subscribed/existing user with an existing Card
