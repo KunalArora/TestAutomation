@@ -206,9 +206,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 SelectFromDropdown(LegalFormDropdown, "Aktiengesellschaft");
 
             }
-            else if (IsUKSystem() || IsItalySystem() || IsIrelandSystem())
+            else if (IsUKSystem() || IsItalySystem())
             {
                SelectFromDropdown(LegalFormDropdown, "Church");
+            }
+            else if (IsIrelandSystem())
+            {
+                SelectFromDropdown(LegalFormDropdown, "School");
             }
             else if (IsFranceSystem())
             {
