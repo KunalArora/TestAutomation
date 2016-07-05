@@ -184,6 +184,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 reason = "Scaduta";
             }
+            else if(IsDenmarkSystem())
+            {
+                reason = "Andet";
+            }
+            
 
             return reason;
         }

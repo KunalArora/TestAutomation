@@ -83,6 +83,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 SelectFromDropdown(DeclineReasonElement, "Overig");
             }
+            else if (IsDenmarkSystem())
+            {
+                SelectFromDropdown(DeclineReasonElement, "Udløbet");
+            }
             
         }
 

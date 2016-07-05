@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Brother.Tests.Specs.TestSpecifications.MPS2ByCountriesNotReady.BND.Contract
+namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BND.Contract
 {
     using TechTalk.SpecFlow;
     

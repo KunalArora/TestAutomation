@@ -34,8 +34,8 @@ namespace Brother.Tests.Selenium.Lib.Support
         static readonly string _ipAddress = SeleniumGlobal.Default.DriverIPAddress;
         private const string Message = "Please find attached the latest Automation Test Report which was generated on {0}. You can open the attachment using any browser.";
         private const string Subject = "Automation Test Report";
-        private const string To = "sayo.afolabi@brother.co.uk;benjamin.bayfield@brother.co.uk;takanobu.suzuki@brother.co.uk;Takatoshi.Ono@brother.co.uk;Tim.Peel@brother.co.uk;Mohammed.Laies@brother.co.uk";
-        //private const string To = "sayo.afolabi@brother.co.uk;sayo_folabi@hotmail.com";
+        //private const string To = "sayo.afolabi@brother.co.uk;benjamin.bayfield@brother.co.uk;takanobu.suzuki@brother.co.uk;Takatoshi.Ono@brother.co.uk;Tim.Peel@brother.co.uk;Mohammed.Laies@brother.co.uk";
+        private const string To = "sayo.afolabi@brother.co.uk;sayo_folabi@hotmail.com";
 
 
         static TestController()
@@ -62,6 +62,7 @@ namespace Brother.Tests.Selenium.Lib.Support
             if (CurrentDriver == null)
             {
                 TestCheck.AssertFailTest("FATAL: Unable to create a new Remote WebDriver instance");
+                ExtentLogFatalInformation();
             }
             SetWebDriverTimeouts(CurrentDriver);
             
@@ -211,6 +212,51 @@ namespace Brother.Tests.Selenium.Lib.Support
             }
         }
 
+
+        public static void ExtentLogScreenshotLocation(string path)
+        {
+            _test.Log(LogStatus.Info, "The screenshot of the failed page is attached below: " + _test.AddScreenCapture(path));
+        }
+
+        public static void ExtentLogPassInformation(string step)
+        {
+            var text = String.Format("{0} step has been successfully completed", step);
+            _test.Log(LogStatus.Pass, text);
+        }
+        public static void ExtentLogFailInformation(string step, string message)
+        {
+            var text = String.Format("{0} failed because of the following error message {1}", step, message);
+            _test.Log(LogStatus.Fail, text);
+        }
+
+        public static void ExtentLogFatalInformation()
+        {
+            const string text = "Unable to create a new Remote WebDriver instance";
+            _test.Log(LogStatus.Fatal, text);
+        }
+
+        public static void ExtentLogInformation(string value, string enteredOrRetrieved)
+        {
+            var text = String.Format("{0} has been successfully {1}", value, enteredOrRetrieved);
+            _test.Log(LogStatus.Info, text);
+        }
+
+        public static void ExtentLogFeatureInformation(string value)
+        {
+            var text = String.Format("{0} has finished running", value);
+            _test.Log(LogStatus.Info, text);
+        }
+
+        public static void ExtentLogInformation()
+        {
+            const string text = "Step successfully completed";
+            _test.Log(LogStatus.Info, text);
+        }
+
+        public static void ExtentIgnoreInformation(string message)
+        {
+            _test.Log(LogStatus.Info, message);
+        }
 
         public static void ExtentReportCaptureTearDown()
         {
