@@ -153,13 +153,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
             else if (IsSpainSystem())
             {
-                //path = "file:///C:/Users/afolabsa/Downloads/{0}-Contrato.pdf";
-                path = "file:///C:/Users/afolabsa/Downloads/{0}-Contract.pdf";
+                path = "file:///C:/Users/afolabsa/Downloads/{0}-Contrato.pdf";
+               
             }
             else if (IsSwedenSystem())
             {
                 //path = "file:///C:/Users/afolabsa/Downloads/{0}-Contrato.pdf";
                 path = "file:///C:/Users/afolabsa/Downloads/{0}-Avtal.pdf";
+            }
+            else if (IsNetherlandSystem())
+            {
+                //path = "file:///C:/Users/afolabsa/Downloads/{0}-Contrato.pdf";
+                path = "file:///C:/Users/afolabsa/Downloads/{0}-Contract.pdf";
             }
 
             return path;

@@ -95,13 +95,21 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
             else if (IsSpainSystem())
             {
-                //path = "file:///C:/Users/afolabsa/Downloads/{0}-Contrato.pdf";
-                path = "file:///C:/Users/afolabsa/Downloads/{0}-Contract.pdf";
+                path = "file:///C:/Users/afolabsa/Downloads/{0}-Contrato.pdf";
             }
             else if (IsSwedenSystem())
             {
                 path = "file:///C:/Users/afolabsa/Downloads/{0}-Avtal.pdf";
             }
+            else if (IsNetherlandSystem())
+            {
+                path = "file:///C:/Users/afolabsa/Downloads/{0}-Contract.pdf";
+            }else if (IsDenmarkSystem())
+            {
+                path = "file:///C:/Users/afolabsa/Downloads/{0}-Kontrakt.pdf";
+            }
+
+            
             return path;
         }
 
@@ -159,7 +167,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             if (IsSpainSystem()) return;
             var customerName = SpecFlow.GetContext("SummaryCustomerOrCompanyName");
-            TestCheck.AssertTextContains(customerName, ExtractTextFromPdf(DownloadedPdf()),
+            TestCheck.AssertTextContains(customerName.Substring(0, 9), ExtractTextFromPdf(DownloadedPdf()),
                 "Customer Name is not available in the PDF");
         }
 
@@ -206,8 +214,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void IsSummaryMonoClickRatePresentInPdf()
         {
             var monoClickRate = SpecFlow.GetContext("SummaryMonoClickRate");
-            monoClickRate = ConvertClickRatePrice(monoClickRate);
-            TestCheck.AssertTextContains(monoClickRate, ExtractTextFromPdf(DownloadedPdf()),
+           // monoClickRate = ConvertClickRatePrice(monoClickRate);
+            var colourClickRateFormat = IsBigAtSystem() ? AddCommaToColourClickPrice(monoClickRate) : ConvertClickRatePrice(monoClickRate);
+            TestCheck.AssertTextContains(colourClickRateFormat, ExtractTextFromPdf(DownloadedPdf()),
                 "Summary Mono Click Rate is not available in the PDF");
         }
 
@@ -227,10 +236,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private string AddCommaToColourClickPrice(string clickRate)
         {
-            var sectionOne = clickRate.Substring(0, 1);
-            var sectionTwo = clickRate.Substring(1);
+            decimal number;
+            string coJoin = null;
 
-            var coJoin = sectionOne + "," + sectionTwo;
+            var stringToUse = clickRate.Replace(",", ".").Replace("€", "");
+            if (Decimal.TryParse(stringToUse, out number))
+            {
+                number = number*100;
+                coJoin = number.ToString().Replace(".", ",").TrimEnd('0');
+            }
+              
 
             return coJoin;
 
@@ -239,12 +254,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void IsSummaryColourClickRatePresentInPdf()
         {
             var colourClickRate = SpecFlow.GetContext("SummaryColourClickRate");
-            colourClickRate = ConvertClickRatePrice(colourClickRate);
-            if (IsGermanSystem())
-            {
-                colourClickRate = AddCommaToColourClickPrice(colourClickRate);
-            }
-            TestCheck.AssertTextContains(colourClickRate, ExtractTextFromPdf(DownloadedPdf()),
+
+            var colourClickRateFormat = IsBigAtSystem() ? AddCommaToColourClickPrice(colourClickRate) : ConvertClickRatePrice(colourClickRate);
+
+            TestCheck.AssertTextContains(colourClickRateFormat, ExtractTextFromPdf(DownloadedPdf()),
                 "Summary Colour Click Rate is not available in the PDF");
         }
 

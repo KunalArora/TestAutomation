@@ -2,7 +2,7 @@
 Feature: CloudMPSDannishPurchaseAndClickProposalUserJourney
 	In order to create different variety of purchase and click proposal
 	As a dealer 
-	I want to be able to use different MPS parameters to derive different leasing proposal
+	I want to be able to use different MPS parameters to derive different proposal
 
 
 Scenario Outline: Create different varieties of Purchase and Click proposal for new customer on Minimum Volume Term
@@ -32,10 +32,10 @@ Scenario Outline: Create different varieties of Purchase and Click proposal for 
 	
 
 	Scenarios: 
-	| Role             | Country | ContractType                  | CreateOption        | UsageType      | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | Denmark | Purchase & Click with Service | Create new customer | Minimum Volume | 3 years  | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Pay upfront   | 800         | 800          |
+	| Role             | Country | ContractType           | CreateOption        | UsageType       | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod     | ClickVolume | ColourVolume |
+	| Cloud MPS Dealer | Denmark | Køb & Klik med service | Create new customer | Minimumsvolumen | 3 år     | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Betale på forskud | 800         | 800          |
 	
- 
+ 	
 	
 Scenario Outline: Create different varieties of Purchase and Click proposal for new customer on Pay As You Go Term
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
@@ -63,10 +63,10 @@ Scenario Outline: Create different varieties of Purchase and Click proposal for 
 	
 
 	Scenarios: 
-	| Role             | Country | ContractType                  | CreateOption        | UsageType     | Contract | Billing              | PriceHardware | Printer    | DeviceScreen | ClickVolume |
-	| Cloud MPS Dealer | Denmark | Purchase & Click with Service | Create new customer | Pay As You Go | 4 years  | Quarterly in Arrears | Tick          | MFC-8510DN | Full         | 750         |
+	| Role             | Country | ContractType           | CreateOption        | UsageType     | Contract | Billing              | PriceHardware | Printer    | DeviceScreen | ClickVolume |
+	| Cloud MPS Dealer | Denmark | Køb & Klik med service | Create new customer | Pay As You Go | 3 år     | Quarterly in Arrears | Tick          | HL-L5100DN | Full         | 750         |
 	
-
+	
 Scenario Outline: Create different varieties of Purchase and Click proposal for an existing customer
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -94,8 +94,9 @@ Scenario Outline: Create different varieties of Purchase and Click proposal for 
 	
 
 	Scenarios: 
-	| Role             | Country | ContractType                  | UsageType      | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod           | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | Denmark | Purchase & Click with Service | Minimum Volume | 3 years  | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Included in Click Price | 800         | 800          |
+	| Role             | Country | ContractType           | UsageType       | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod         | ClickVolume | ColourVolume |
+	| Cloud MPS Dealer | Denmark | Køb & Klik med service | Minimumsvolumen | 3 år     | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Inkluderet i klikpris | 800         | 800          |
+	
 	
 
 Scenario Outline: Create different varieties of Purchase and Click proposal for an existing customer on Pay As You Go Term
@@ -124,6 +125,8 @@ Scenario Outline: Create different varieties of Purchase and Click proposal for 
 	
 
 	Scenarios: 
-	| Role             | Country | ContractType                  | UsageType     | Contract | Billing              | PriceHardware | Printer    | DeviceScreen | ClickVolume |
-	| Cloud MPS Dealer | Denmark | Purchase & Click with Service | Pay As You Go | 5 years  | Quarterly in Arrears | Tick          | MFC-8510DN | Full         | 750         |
+	| Role             | Country | ContractType           | UsageType     | Contract | Billing              | PriceHardware | Printer    | DeviceScreen | ClickVolume |
+	| Cloud MPS Dealer | Denmark | Køb & Klik med service | Pay As You Go | 3 år     | Quarterly in Arrears | Tick          | HL-L5100DN | Full         | 750         |
+	
+
 	

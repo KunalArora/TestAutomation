@@ -73,7 +73,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BND.Proposal
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Approver Decline Proposal for other Countries")]
-        [NUnit.Framework.TestCaseAttribute("Denmark", "Cloud MPS Local Office Approver", "Buy & Click", "Engagement sur un minimum volume de pages", "3 ans", "Trimestrale anticipata", null)]
+        [NUnit.Framework.TestCaseAttribute("Denmark", "Cloud MPS Local Office Approver", "Køb & Klik med service", "Minimumsvolumen", "3 år", "Quarterly in Arrears", null)]
         public virtual void ApproverDeclineProposalForOtherCountries(string country, string role, string contractType, string usageType, string length, string billing, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Approver Decline Proposal for other Countries", exampleTags);
@@ -102,7 +102,7 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Approver can decide to reject or approve the contract for other Countries")]
-        [NUnit.Framework.TestCaseAttribute("Denmark", "Cloud MPS Local Office Approver", "Buy & Click", "Engagement sur un minimum volume de pages", "3 ans", "Trimestrale anticipata", null)]
+        [NUnit.Framework.TestCaseAttribute("Denmark", "Cloud MPS Local Office Approver", "Køb & Klik med service", "Minimumsvolumen", "3 år", "Quarterly in Arrears", null)]
         public virtual void ApproverCanDecideToRejectOrApproveTheContractForOtherCountries(string country, string role, string contractType, string usageType, string length, string billing, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Approver can decide to reject or approve the contract for other Countries", exampleTags);
@@ -126,7 +126,7 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Approver can approve the contract for other Countries")]
-        [NUnit.Framework.TestCaseAttribute("Denmark", "Cloud MPS Local Office Approver", "Buy & Click", "Engagement sur un minimum volume de pages", "3 ans", "Trimestrale anticipata", null)]
+        [NUnit.Framework.TestCaseAttribute("Denmark", "Cloud MPS Local Office Approver", "Køb & Klik med service", "Minimumsvolumen", "3 år", "Quarterly in Arrears", null)]
         public virtual void ApproverCanApproveTheContractForOtherCountries(string country, string role, string contractType, string usageType, string length, string billing, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Approver can approve the contract for other Countries", exampleTags);
@@ -152,7 +152,7 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Approver can reject the contract for other Countries")]
-        [NUnit.Framework.TestCaseAttribute("Denmark", "Cloud MPS Local Office Approver", "Buy & Click", "Engagement sur un minimum volume de pages", "3 ans", "Trimestrale anticipata", null)]
+        [NUnit.Framework.TestCaseAttribute("Denmark", "Cloud MPS Local Office Approver", "Køb & Klik med service", "Minimumsvolumen", "3 år", "Quarterly in Arrears", null)]
         public virtual void ApproverCanRejectTheContractForOtherCountries(string country, string role, string contractType, string usageType, string length, string billing, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Approver can reject the contract for other Countries", exampleTags);
@@ -221,9 +221,9 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Local Office Approver can view confirmed/rejected/signed contracts for other Coun" +
             "tries")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Italy", "Awating Acceptance", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Italy", "Rejected", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Italy", "Accepted", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Denmark", "Awating Acceptance", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Denmark", "Rejected", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Denmark", "Accepted", null)]
         public virtual void LocalOfficeApproverCanViewConfirmedRejectedSignedContractsForOtherCountries(string role, string country, string acceptance, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Local Office Approver can view confirmed/rejected/signed contracts for other Coun" +

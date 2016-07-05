@@ -95,8 +95,8 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Dealer can copy an existing proposal offer for all countries")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Denmark", "Buy & Click", "Engagement sur un minimum volume de pages", "3 ans", "Trimestrale anticipata", "Skip customer creation", "Without", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Denmark", "Buy & Click", "Engagement sur un minimum volume de pages", "4 ans", "Trimestrale anticipata", "Create new customer", "With", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Denmark", "Køb & Klik med service", "Minimumsvolumen", "3 år", "Quarterly in Arrears", "Skip customer creation", "Without", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Denmark", "Køb & Klik med service", "Minimumsvolumen", "4 år", "Quarterly in Arrears", "Create new customer", "With", null)]
         public virtual void DealerCanCopyAnExistingProposalOfferForAllCountries(string role, string country, string contractType, string usageType, string length, string billing, string customer, string status, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer can copy an existing proposal offer for all countries", exampleTags);

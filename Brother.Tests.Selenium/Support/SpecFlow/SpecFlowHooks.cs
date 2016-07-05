@@ -2,10 +2,12 @@
 using System.Diagnostics.Eventing.Reader;
 using System.Dynamic;
 using System.Linq;
+using Brother.Tests.Selenium.Lib.Mail;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using NUnit.Framework;
 using NUnit.Framework.Constraints;
 using OpenQA.Selenium;
+using RelevantCodes.ExtentReports.Model;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.UnitTestProvider;
 
@@ -30,6 +32,7 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
         [AfterTestRun]
         public static void AfterTestRun()
         {
+            TestController.SendEmail();
             Helper.MsgOutput("........Ending Test Run");
         }
 
@@ -50,6 +53,7 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
             if (ScenarioContext.Current.TestError == null)
             {
                 Helper.MsgOutput("Test Step completed");
+                TestController.ExtentLogInformation();
                 return;
             }
 
@@ -58,6 +62,7 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
             Helper.MsgOutput(string.Format("[AfterStep] SnapShot Taken : Location = [{0}]", Helper.CurrentSnapShot));
             Helper.MsgOutput(string.Format("[AfterStep] The current page is [{0}]", TestController.CurrentDriver.Title));
             WebDriver.DeleteAllCookies();
+            TestController.ExtentLogFailInformation(TestController.CurrentDriver.Title, ScenarioContext.Current.TestError.Message);
         }
 
 #endregion "Before And After Step Tags"
@@ -78,7 +83,9 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
         public static void AfterFeature()
         {
             Helper.MsgOutput("Feature end - Tearing Down");
+            TestController.ExtentLogFeatureInformation(FeatureContext.Current.FeatureInfo.Title);
             TestController.Test_Teardown();
+            //TestController.SendEmail();
         }
 
         #endregion "Before And After Feature Tags"
@@ -137,7 +144,8 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
             }
 
             // Now check if this Scenario has Tagging present, and use this level in the first instance
-            if ((ScenarioContext.Current.ScenarioInfo.Tags.Length > 0) && (!ScenarioContext.Current.ScenarioInfo.Tags.Contains("SMOKE") && (!ScenarioContext.Current.ScenarioInfo.Tags.Contains("STAGING"))))
+            if ((ScenarioContext.Current.ScenarioInfo.Tags.Length > 0) && (!ScenarioContext.Current.ScenarioInfo.Tags.Contains("SMOKE")
+                && (!ScenarioContext.Current.ScenarioInfo.Tags.Contains("STAGING"))))
             {
                 Helper.MsgOutput("Scenario Tags present - using these to determine Runtime Environment");
 
@@ -172,7 +180,6 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
             DoMpsTestEval(Helper.CheckFeatureEnv("MPS"));
             DoSmokeTestEval(Helper.IsSmokeTest());
             SetCurrentDriver();
-            //Helper.MsgOutput(String.Format("Test starts at {0}", DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss")));
         }
 
         [AfterScenario()]
@@ -187,6 +194,7 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
             {
                 // Clear the session
                 WebDriver.DeleteAllCookies();
+                TestController.ExtentLogPassInformation(ScenarioContext.Current.ScenarioInfo.Title);
                 return;
             }
 
@@ -195,7 +203,6 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
             TestController.Test_Teardown();
             WebDriver.Wait(Helper.DurationType.Second, 3);
             BeforeFeatureHeadless();
-            //Helper.MsgOutput(String.Format("Failed Test end at {0}", DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss")));
         }
 
         #endregion "Before and After Scenario Tags"
@@ -211,7 +218,9 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
             else
             {
                 TestController.CurrentDriver = (IWebDriver)ScenarioContext.Current["CurrentDriver"];
-            }    
+            }  
+  
+           TestController.InitialiseReport();
         }
 
         private static bool CheckForValidRunTimeEnv(string runTimeEnv)
@@ -225,6 +234,7 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
             var testRunTimeSetting = new NUnitRuntimeProvider();
 
             Helper.MsgOutput(why);
+            TestController.ExtentIgnoreInformation(why);
             testRunTimeSetting.TestIgnore(why);
         }
 

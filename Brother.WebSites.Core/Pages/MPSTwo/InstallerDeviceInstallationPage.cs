@@ -33,6 +33,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string SerialNumberBbe = @"F3Y112595";
         private const string SerialNumberBnl = @"F3Y112595";
         private const string SerialNumberBpl = @"F3Y112595";
+        private const string SerialNumberBsw = @"B8C742391";
         private const string SwapSerialNumberUk = @"F3Y112553";
         private const string SwapSerialNumberDe = @"F3Y112555";
         private const string SwapSerialNumberAt = @"F3Y112561";
@@ -104,7 +105,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         [FindsBy(How = How.CssSelector, Using = ".js-mps-pin-code")] 
         public IWebElement CloudInstallationWebInstallPinElements;
-        
+        [FindsBy(How = How.CssSelector, Using = "#WhereIsMySerialNumberModal .modal-header [type=\"button\"][data-dismiss=\"modal\"]")] 
+        public IWebElement WhereIsMyDevicePopUpElements;
 
         
         public void IsInstallerScreenDisplayed()
@@ -337,6 +339,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 serial = SerialNumberBnn;
             }
+            else if (IsSwissSystem())
+            {
+                serial = SerialNumberBsw;
+            }
             SpecFlow.SetContext("UsedSerialNumber", serial);
 
             return serial;
@@ -406,6 +412,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterSerialNumber()
         {
+            ClosePopUpModal();
+
             MPSJobRunnerPage.RunResetSerialNumberJob(SerialNumberUsed());
             
             ClearAndType(SerialNumberFieldElement, SerialNumberUsed());
@@ -415,6 +423,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterSwapSerialNumber()
         {
+            ClosePopUpModal();
+
             MPSJobRunnerPage.RunResetSerialNumberJob(SwapSerialNumberUsed());
 
             ClearAndType(SerialNumberFieldElement, SwapSerialNumberUsed());
@@ -424,6 +434,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterExistingSerialNumber()
         {
+            ClosePopUpModal();
+
             MPSJobRunnerPage.RunResetSerialNumberJob(UsedSerialNumber());
 
             ClearAndType(SerialNumberFieldElement, UsedSerialNumber());
@@ -437,8 +449,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return SpecFlow.GetContext("InstallationMethod");
         }
 
+        private void ClosePopUpModal()
+        {
+            SerialNumberFieldElement.Click();
+
+            WaitForElementToExistById("WhereIsMySerialNumberModal", 5);
+
+            if(WhereIsMyDevicePopUpElements != null)
+                WhereIsMyDevicePopUpElements.Click();
+        }
+
         public void EnterIpAddress()
         {
+
             WaitForElementToBeClickableByCssSelector(".js-mps-ip-d", 3, 10);
 
             if (Method() == "BOR") return;

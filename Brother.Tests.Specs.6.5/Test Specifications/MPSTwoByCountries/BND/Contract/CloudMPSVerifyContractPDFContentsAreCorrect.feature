@@ -14,5 +14,6 @@ Scenario Outline: Verify PDF Contents Are Correct
 
 Scenarios:
 
-	| ContractType | Country | UsageType                                 | Length | Billing                |
-	| Buy & Click  | Denmark | Engagement sur un minimum volume de pages | 3 ans  | Trimestrale anticipata |
+	| ContractType           | Country | UsageType       | Length | Billing              |
+	| Køb & Klik med service | Denmark | Minimumsvolumen | 3 år   | Quarterly in Arrears |
+	

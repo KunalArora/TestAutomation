@@ -4,9 +4,13 @@ using System.Configuration;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Net.Mail;
+using Brother.Tests.Selenium.Lib.ExtentReport;
+using Brother.Tests.Selenium.Lib.Mail;
 using Brother.Tests.Selenium.Lib.Properties;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.SpecFlow;
+using NUnit.Framework;
 using NUnit.Framework.Constraints;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -14,6 +18,7 @@ using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 using OpenQA.Selenium.PhantomJS;
 using OpenQA.Selenium.Remote;
+using RelevantCodes.ExtentReports;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Selenium.Lib.Support
@@ -22,9 +27,16 @@ namespace Brother.Tests.Selenium.Lib.Support
     public static class TestController
     {
         public static IWebDriver CurrentDriver { get; set; }
+        private static ExtentReports _extent;
+        private static ExtentTest _test;
         static int PhantomJsProcId { get; set; }
         static readonly string _driverPort = SeleniumGlobal.Default.DriverPortNumber;
         static readonly string _ipAddress = SeleniumGlobal.Default.DriverIPAddress;
+        private const string Message = "Please find attached the latest Automation Test Report which was generated on {0}. You can open the attachment using any browser.";
+        private const string Subject = "Automation Test Report";
+        //private const string To = "sayo.afolabi@brother.co.uk;benjamin.bayfield@brother.co.uk;takanobu.suzuki@brother.co.uk;Takatoshi.Ono@brother.co.uk;Tim.Peel@brother.co.uk;Mohammed.Laies@brother.co.uk";
+        private const string To = "sayo.afolabi@brother.co.uk;sayo_folabi@hotmail.com";
+
 
         static TestController()
         {
@@ -50,6 +62,7 @@ namespace Brother.Tests.Selenium.Lib.Support
             if (CurrentDriver == null)
             {
                 TestCheck.AssertFailTest("FATAL: Unable to create a new Remote WebDriver instance");
+                ExtentLogFatalInformation();
             }
             SetWebDriverTimeouts(CurrentDriver);
             
@@ -139,8 +152,41 @@ namespace Brother.Tests.Selenium.Lib.Support
             Helper.MsgOutput("!!!We are up and running!!!");
         }
 
+        public static void InitialiseReport()
+        {
+            _extent = ExtentManager.Instance;
+            _test = _extent.StartTest(TestContext.CurrentContext.Test.Name);
+            _test.Log(LogStatus.Info, String.Format("{0} is up and running", TestContext.CurrentContext.Test.Name));
+        }
+
+
+        public static void ExtentTearDown()
+        {
+            try
+            {
+                ExtentReportCaptureTearDown();
+
+            }
+            catch (IOException ioException)
+            {
+                Helper.MsgOutput("Report could not be written to specified location", ioException.ToString());
+            }
+        }
+
+        public static void SendEmail()
+        {
+            var dateNow = DateTime.Now.ToString("F");
+
+            if (Helper.IsMpsSwitchOn())
+            {
+                //Mailer.SendEmail(To, Subject, String.Format(Message, dateNow));
+                Mailer.SendEmailToMultipleRecipients(To, Subject, String.Format(Message, dateNow));
+            }
+        }
+
         public static void Test_Teardown()
         {
+           ExtentTearDown();
             try
             {
                 if (IsDriverRunning(CurrentDriver))
@@ -164,6 +210,80 @@ namespace Brother.Tests.Selenium.Lib.Support
             {
                 Helper.MsgOutput(nullReferenceException.ToString());
             }
+        }
+
+
+        public static void ExtentLogScreenshotLocation(string path)
+        {
+            _test.Log(LogStatus.Info, "The screenshot of the failed page is attached below: " + _test.AddScreenCapture(path));
+        }
+
+        public static void ExtentLogPassInformation(string step)
+        {
+            var text = String.Format("{0} step has been successfully completed", step);
+            _test.Log(LogStatus.Pass, text);
+        }
+        public static void ExtentLogFailInformation(string step, string message)
+        {
+            var text = String.Format("{0} failed because of the following error message {1}", step, message);
+            _test.Log(LogStatus.Fail, text);
+        }
+
+        public static void ExtentLogFatalInformation()
+        {
+            const string text = "Unable to create a new Remote WebDriver instance";
+            _test.Log(LogStatus.Fatal, text);
+        }
+
+        public static void ExtentLogInformation(string value, string enteredOrRetrieved)
+        {
+            var text = String.Format("{0} has been successfully {1}", value, enteredOrRetrieved);
+            _test.Log(LogStatus.Info, text);
+        }
+
+        public static void ExtentLogFeatureInformation(string value)
+        {
+            var text = String.Format("{0} has finished running", value);
+            _test.Log(LogStatus.Info, text);
+        }
+
+        public static void ExtentLogInformation()
+        {
+            const string text = "Step successfully completed";
+            _test.Log(LogStatus.Info, text);
+        }
+
+        public static void ExtentIgnoreInformation(string message)
+        {
+            _test.Log(LogStatus.Info, message);
+        }
+
+        public static void ExtentReportCaptureTearDown()
+        {
+            var status = TestContext.CurrentContext.Result.Status;
+            
+            LogStatus logstatus;
+
+            switch (status)
+            {
+                case TestStatus.Failed:
+                    logstatus = LogStatus.Fail;
+                    break;
+                case TestStatus.Inconclusive:
+                    logstatus = LogStatus.Warning;
+                    break;
+                case TestStatus.Skipped:
+                    logstatus = LogStatus.Skip;
+                    break;
+                default:
+                    logstatus = LogStatus.Pass;
+                    break;
+            }
+
+            _test.Log(logstatus, "Test ended with " + logstatus);
+
+            _extent.EndTest(_test);
+            _extent.Flush();
         }
 
         private static InternetExplorerOptions IeOptions()

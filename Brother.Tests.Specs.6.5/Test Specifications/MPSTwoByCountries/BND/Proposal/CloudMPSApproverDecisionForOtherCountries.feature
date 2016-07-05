@@ -18,8 +18,8 @@ Scenario Outline: Approver Decline Proposal for other Countries
 	And I sign out of Cloud MPS
 
 	Scenarios: 
-	| Country | Role                            | ContractType | UsageType                                 | Length | Billing                |
-	| Denmark | Cloud MPS Local Office Approver | Buy & Click  | Engagement sur un minimum volume de pages | 3 ans  | Trimestrale anticipata |
+	| Country | Role                            | ContractType           | UsageType       | Length | Billing              |
+	| Denmark | Cloud MPS Local Office Approver | Køb & Klik med service | Minimumsvolumen | 3 år   | Quarterly in Arrears |
 	
 
 # Approve Signed Contract
@@ -34,8 +34,8 @@ Scenario Outline: Approver can decide to reject or approve the contract for othe
 	And I sign out of Cloud MPS
 
 	Scenarios:
-	| Country | Role                            | ContractType | UsageType                                 | Length | Billing                |
-	| Denmark | Cloud MPS Local Office Approver | Buy & Click  | Engagement sur un minimum volume de pages | 3 ans  | Trimestrale anticipata |
+	| Country | Role                            | ContractType           | UsageType       | Length | Billing              |
+	| Denmark | Cloud MPS Local Office Approver | Køb & Klik med service | Minimumsvolumen | 3 år   | Quarterly in Arrears |
 	
 
 # Accept5, 6
@@ -51,8 +51,8 @@ Scenario Outline: Approver can approve the contract for other Countries
 
 	Scenarios:
 
-	| Country | Role                            | ContractType | UsageType                                 | Length | Billing                |
-	| Denmark | Cloud MPS Local Office Approver | Buy & Click  | Engagement sur un minimum volume de pages | 3 ans  | Trimestrale anticipata |
+	| Country | Role                            | ContractType           | UsageType       | Length | Billing              |
+	| Denmark | Cloud MPS Local Office Approver | Køb & Klik med service | Minimumsvolumen | 3 år   | Quarterly in Arrears |
 	
 
 # Reject1,2
@@ -67,8 +67,8 @@ Scenario Outline: Approver can reject the contract for other Countries
 
 	Scenarios:
 
-	| Country | Role                            | ContractType | UsageType                                 | Length | Billing                |
-	| Denmark | Cloud MPS Local Office Approver | Buy & Click  | Engagement sur un minimum volume de pages | 3 ans  | Trimestrale anticipata |
+	| Country | Role                            | ContractType           | UsageType       | Length | Billing              |
+	| Denmark | Cloud MPS Local Office Approver | Køb & Klik med service | Minimumsvolumen | 3 år   | Quarterly in Arrears |
 	
 
 # Reject3
@@ -104,7 +104,7 @@ Scenario Outline: Local Office Approver can view confirmed/rejected/signed contr
 
 	Scenarios: 
 	| Role                            | Country | Acceptance         |
-	| Cloud MPS Local Office Approver | Italy  | Awating Acceptance |
-	| Cloud MPS Local Office Approver | Italy  | Rejected           |
-	| Cloud MPS Local Office Approver | Italy  | Accepted           |
+	| Cloud MPS Local Office Approver | Denmark | Awating Acceptance |
+	| Cloud MPS Local Office Approver | Denmark | Rejected           |
+	| Cloud MPS Local Office Approver | Denmark | Accepted           |
 	

@@ -6,7 +6,6 @@ using Brother.WebSites.Core.Pages.BrotherMainSite;
 using Brother.WebSites.Core.Pages.BrotherMainSite.Basket;
 using Brother.WebSites.Core.Pages.BrotherOnline.Account;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
-using Brother.WebSites.Core.Pages.BrotherOnline.DataManager;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
@@ -875,40 +874,6 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<WelcomeBackPage>().IsSignOutButtonDisplayed();
         } 
-
-        [When(@"I find email address used in the registration ""(.*)""")]
-        public void WhenIFindEmailAddressUsedInTheRegistration(string country)
-        {
-            WhenIEnterAValidEmailAddressDataManager(Email.RegistrationEmailAddress);
-        }
-        [When(@"I click on Email Radio button ""(.*)""")]
-        public void WhenIClickOnEmailRadioButton(string country)
-        {
-            CurrentPage.As<DataManagerPage>().ClickRadioButtonEmail();
-        }
-        [When(@"I click on Search button to find the user email  ""(.*)""")]
-        public void WhenIClickOnSearchButtonToFindTheUserEmail(string country)
-        {
-            CurrentPage.As<DataManagerPage>().ClickSearchButton();
-        }
-
-        [When(@"I click on User Email ""(.*)""")]
-        public void WhenIClickOnUserEmail(string country)
-        {
-            CurrentPage.As<DataManagerPage>().ClickOnUserEmail();
-        }
-
-        [Then(@"I should click details to check BPID for registered user ""(.*)""")]
-        public void ThenIShouldClickDetailsToCheckBPIDForRegisteredUser(string country)
-        {
-            CurrentPage.As<DataManagerPage>().ClickDetailsPlusSignOnUserEmail();
-        }
-
-        [Then(@"I retrieve the BPID number generated for the user registration")]
-        public void ThenIRetrieveTheBPIDNumberGeneratedForTheUserRegistration()
-        {
-            CurrentPage.As<DataManagerPage>().CheckBPIDFromDataTable();
-        }
         [Then(@"I should be able to log into ""(.*)"" Brother Online using my creative center account details")]
         public void ThenIShouldBeAbleToLogIntoBrotherOnlineUsingMyCreativeCenterAccountDetails(string country)
         {
@@ -1192,12 +1157,6 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<RegistrationPage>().PopulateEmailAddressTextBox(validEmailAddress);
         }
-        [When(@"I enter a valid Email Address ""(.*)""")]
-        public void WhenIEnterAValidEmailAddressDataManager(string validEmailAddress)
-        {
-            CurrentPage.As<DataManagerPage>().PopulateSearchBox(validEmailAddress);
-        }
-       
         [When(@"I enter a valid creative center Email Address ""(.*)""")]
         public void WhenIEnterAValidCCAccountEmailAddress(string validEmailAddress)
         {
@@ -1258,49 +1217,6 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             CurrentPage.As<RegistrationPage>().PopulateMaxPassword();
         }
-        [Given(@"That I navigate to ""(.*)"" in order to validate the CMS site")]
-        public void GivenThatINavigateToInOrderToValidateTheCMSSite(string url)
-        {
-            CurrentPage = BasePage.LoadDataManagerPage(CurrentDriver, url);
-            CurrentPage.As<DataManagerPage>().GetDataManagerpage(url);
-        }
-        [When(@"That I navigate to ""(.*)"" in order to validate the CMS site")]
-        public void WhenThatINavigateToInOrderToValidateTheCMSSite(string url)
-        {
-            CurrentPage = BasePage.LoadDataManagerPage(CurrentDriver, url);
-            CurrentPage.As<DataManagerPage>().GetDataManagerpage(url);
-        }
-        [When(@"I enter a username containing ""(.*)""")]
-        public void WhenIEnterAUsernameContaining(string username)
-        {
-            CurrentPage.As<DataManagerPage>().PopulateUserNameTextBox(username);
-        }
-        [When(@"I enter password containing ""(.*)""")]
-        public void WhenIEnterPasswordContaining(string password)
-        {
-            CurrentPage.As<DataManagerPage>().PopulatePasswordTextBox(password);
-        }
-        [When(@"I press login button ""(.*)""")]
-        public void WhenIPressLoginButton(string country)
-        {
-            CurrentPage.As<DataManagerPage>().ClickOnLoginButton(country); 
-        }
-        [Given(@"I enter an username containing ""(.*)""")]
-        public void GivenIEnterAnUsernameContaining(string username)
-        {
-            CurrentPage.As<DataManagerPage>().PopulateUserNameTextBox(username); 
-        }
-        [Given(@"I enter password containing ""(.*)""")]
-        public void GivenIEnterPasswordContaining(string password)
-        {
-            CurrentPage.As<DataManagerPage>().PopulatePasswordTextBox(password);
-        }
-        [Given(@"I press login button ""(.*)""")]
-        public void GivenIPressLoginButton(string country)
-        {
-            CurrentPage.As<DataManagerPage>().ClickOnLoginButton(country);    
-        }
-
         [Then(@"When I Click Go Back")]
         public void ThenWhenIClickGoBack()
         {
@@ -1350,8 +1266,8 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
 
         private void SignInAsARoleType(string role, string country)
         {
-            var username = MPSUserLogins.Username(country, role, CurrentDriver);
-            var password = MPSUserLogins.Password(role);
+            var username = MpsUserLogins.Username(country, role, CurrentDriver);
+            var password = MpsUserLogins.Password(role);
 
             if (!role.StartsWith("Cloud"))
             {

@@ -133,13 +133,43 @@ namespace Brother.Tests.Selenium.Lib.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("lashonda20160322123145@mailinator.com")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Shane20160625013005@mailinator.com")]
         public string QASUKCustomer {
             get {
                 return ((string)(this["QASUKCustomer"]));
             }
             set {
                 this["QASUKCustomer"] = value;
+            }
+        }
+
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Aurelio20160630151142@mailinator.com")]
+        public string QASDKCustomer {
+            get {
+                return ((string)(this["QASDKCustomer"]));
+            }
+            set {
+                this["QASDKCustomer"] = value;
+            }
+        }
+
+        
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Vada20160524081137@mailinator.com")]
+        public string QASNLCustomer
+        {
+            get
+            {
+                return ((string)(this["QASNLCustomer"]));
+            }
+            set
+            {
+                this["QASNLCustomer"] = value;
             }
         }
         
@@ -152,6 +182,21 @@ namespace Brother.Tests.Selenium.Lib.Properties {
             }
             set {
                 this["QASDECustomer"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Mckenzie20160616191239@mailinator.com")]
+        public string QASSECustomer
+        {
+            get
+            {
+                return ((string)(this["QASSECustomer"]));
+            }
+            set
+            {
+                this["QASSECustomer"] = value;
             }
         }
         

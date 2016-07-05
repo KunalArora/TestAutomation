@@ -11,7 +11,7 @@ using OpenQA.Selenium;
 
 namespace Brother.Tests.Selenium.Lib.Support
 {
-    public class MPSUserLogins
+    public static class MpsUserLogins
     {
 
         private const string GermanUrl = @"online.de";
@@ -23,6 +23,9 @@ namespace Brother.Tests.Selenium.Lib.Support
         private const string IrelandUrl = @"online.ie";
         private const string BelgiumUrl = @"online.be";
         private const string PolandUrl = @"online.it";
+        private const string Denmark = @"online.dk";
+        private const string Sweden = @"online.se";
+        private const string Dutch = @"online.nl";
         private const string existingSerialNumber = @"A1T010001";
         private const string existingSerialNumberBIG = @"A1T010002";
         private const string existingSerialNumberAUT = @"A1T010003";
@@ -145,6 +148,18 @@ namespace Brother.Tests.Selenium.Lib.Support
             else if (currentUrl.Contains(IrelandUrl))
             {
                 username = MPSQAS.Default.QASIRCustomer;
+            }
+            else if (currentUrl.Contains(Sweden))
+            {
+                username = MPSQAS.Default.QASSECustomer;
+            }
+            else if (currentUrl.Contains(Dutch))
+            {
+                username = MPSQAS.Default.QASNLCustomer;
+            }
+            else if (currentUrl.Contains(Denmark))
+            {
+                username = MPSQAS.Default.QASDKCustomer;
             }
             return username;
         }

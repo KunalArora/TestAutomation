@@ -149,10 +149,17 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Dealer can delete a customer")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "NewlyCreatedItem", "OK", null)]
         public virtual void DealerCanDeleteACustomer(string role, string country, string targetItem, string confirm, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer can delete a customer", exampleTags);
+            string[] @__tags = new string[] {
+                    "ignore"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer can delete a customer", @__tags);
 #line 53
 this.ScenarioSetup(scenarioInfo);
 #line 54
@@ -177,10 +184,17 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Dealer can cancel deleting customer")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "NewlyCreatedItem", "Dismiss", null)]
         public virtual void DealerCanCancelDeletingCustomer(string role, string country, string targetItem, string confirm, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer can cancel deleting customer", exampleTags);
+            string[] @__tags = new string[] {
+                    "ignore"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer can cancel deleting customer", @__tags);
 #line 69
 this.ScenarioSetup(scenarioInfo);
 #line 70
@@ -205,10 +219,17 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Dealer cannot delete a customer who is bound to an existing proposal")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Purchase & Click with Service", "Minimum Volume", "OK", "NewlyCreatedProposalCustomer", null)]
         public virtual void DealerCannotDeleteACustomerWhoIsBoundToAnExistingProposal(string contractType, string usageType, string confirm, string targetItem, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer cannot delete a customer who is bound to an existing proposal", exampleTags);
+            string[] @__tags = new string[] {
+                    "ignore"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer cannot delete a customer who is bound to an existing proposal", @__tags);
 #line 86
 this.ScenarioSetup(scenarioInfo);
 #line 87
