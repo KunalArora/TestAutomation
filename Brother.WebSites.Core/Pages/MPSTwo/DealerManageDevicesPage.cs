@@ -154,6 +154,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 coy = "Rustic Parade_160524081137 Ltd";
             }
+            else if (IsDenmarkSystem())
+            {
+                coy = "Hidden Run_160630151142 Ltd";
+            }
 
            return coy;
         }

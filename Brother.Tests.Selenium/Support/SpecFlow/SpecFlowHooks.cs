@@ -53,6 +53,7 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
             if (ScenarioContext.Current.TestError == null)
             {
                 Helper.MsgOutput("Test Step completed");
+                TestController.ExtentLogInformation();
                 return;
             }
 
@@ -61,6 +62,7 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
             Helper.MsgOutput(string.Format("[AfterStep] SnapShot Taken : Location = [{0}]", Helper.CurrentSnapShot));
             Helper.MsgOutput(string.Format("[AfterStep] The current page is [{0}]", TestController.CurrentDriver.Title));
             WebDriver.DeleteAllCookies();
+            TestController.ExtentLogFailInformation(TestController.CurrentDriver.Title, ScenarioContext.Current.TestError.Message);
         }
 
 #endregion "Before And After Step Tags"
@@ -81,6 +83,7 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
         public static void AfterFeature()
         {
             Helper.MsgOutput("Feature end - Tearing Down");
+            TestController.ExtentLogFeatureInformation(FeatureContext.Current.FeatureInfo.Title);
             TestController.Test_Teardown();
             //TestController.SendEmail();
         }
@@ -177,7 +180,6 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
             DoMpsTestEval(Helper.CheckFeatureEnv("MPS"));
             DoSmokeTestEval(Helper.IsSmokeTest());
             SetCurrentDriver();
-            //Helper.MsgOutput(String.Format("Test starts at {0}", DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss")));
         }
 
         [AfterScenario()]
@@ -192,6 +194,7 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
             {
                 // Clear the session
                 WebDriver.DeleteAllCookies();
+                TestController.ExtentLogPassInformation(ScenarioContext.Current.ScenarioInfo.Title);
                 return;
             }
 
@@ -200,7 +203,6 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
             TestController.Test_Teardown();
             WebDriver.Wait(Helper.DurationType.Second, 3);
             BeforeFeatureHeadless();
-            //Helper.MsgOutput(String.Format("Failed Test end at {0}", DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss")));
         }
 
         #endregion "Before and After Scenario Tags"
@@ -232,6 +234,7 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
             var testRunTimeSetting = new NUnitRuntimeProvider();
 
             Helper.MsgOutput(why);
+            TestController.ExtentIgnoreInformation(why);
             testRunTimeSetting.TestIgnore(why);
         }
 

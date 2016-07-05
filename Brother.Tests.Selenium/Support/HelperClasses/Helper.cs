@@ -648,6 +648,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                 MsgOutput(string.Format("Taking Snapshot ->[{0}]<-", additionalInformation));
                 ((ITakesScreenshot)TestController.CurrentDriver).GetScreenshot().SaveAsFile(snapshotLocation, ImageFormat.Jpeg);
                 MsgOutput("Snapshot Location", snapshotLocation);
+                TestController.ExtentLogScreenshotLocation(snapshotLocation);
             }
             catch (PathTooLongException pathTooLong)
             {

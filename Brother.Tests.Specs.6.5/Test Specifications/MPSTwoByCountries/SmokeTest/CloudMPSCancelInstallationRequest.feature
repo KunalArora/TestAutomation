@@ -73,8 +73,8 @@ Scenarios:
 	| Cloud MPS Local Office Approver | Italy       | Acquisto + Consumo con assistenza  | Volume minimo                             | Cloud MPS Dealer | Cloud  | Web  | 48      | Trimestrale anticipata  |
 	| Cloud MPS Local Office Approver | Spain       | Purchase & Click con Service       | Volúmen mínimo                            | Cloud MPS Dealer | Cloud  | Web  | 3 años  | Por trimestres vencidos |
 	| Cloud MPS Local Office Approver | Spain       | Purchase & Click con Service       | Volúmen mínimo                            | Cloud MPS Dealer | Cloud  | BOR  | 4 años  | Por trimestres vencidos |
-	| Cloud MPS Local Office Approver | Denmark     | Purchase & Click with Service      | Minimum Volume                            | Cloud MPS Dealer | Cloud  | Web  | 3 years | Quarterly in Arrears    |
-	| Cloud MPS Local Office Approver | Denmark     | Purchase & Click with Service      | Minimum Volume                            | Cloud MPS Dealer | Cloud  | BOR  | 4 years | Quarterly in Arrears    |
+	| Cloud MPS Local Office Approver | Denmark     | Purchase & Click with Service      | Minimumsvolumen                           | Cloud MPS Dealer | Cloud  | Web  | 3 år    | Quarterly in Arrears    |
+	| Cloud MPS Local Office Approver | Denmark     | Purchase & Click with Service      | Minimumsvolumen                           | Cloud MPS Dealer | Cloud  | BOR  | 4 år    | Quarterly in Arrears    |
 	| Cloud MPS Local Office Approver | Sweden      | Purchase & click inklusive service | Minimum volym                             | Cloud MPS Dealer | Cloud  | Web  | 36      | Quarterly in Arrears    |
 	| Cloud MPS Local Office Approver | Sweden      | Purchase & click inklusive service | Minimum volym                             | Cloud MPS Dealer | Cloud  | BOR  | 48      | Quarterly in Arrears    |
 	| Cloud MPS Local Office Approver | Netherlands | Purchase + Click met Service       | Minimumvolume                             | Cloud MPS Dealer | Cloud  | Web  | 3 jaar  | Quarterly in Arrears    |
@@ -257,8 +257,8 @@ Scenarios:
 	| Cloud MPS Local Office Approver | Italy       | Acquisto + Consumo con assistenza  | Volume minimo                             | Cloud MPS Dealer | Cloud  | 36      | Trimestrale anticipata  | BOR  |
 	| Cloud MPS Local Office Approver | Spain       | Purchase & Click con Service       | Volúmen mínimo                            | Cloud MPS Dealer | Cloud  | 3 años  | Por trimestres vencidos | Web  |
 	| Cloud MPS Local Office Approver | Spain       | Purchase & Click con Service       | Volúmen mínimo                            | Cloud MPS Dealer | Cloud  | 4 años  | Por trimestres vencidos | BOR  |
-	| Cloud MPS Local Office Approver | Denmark     | Purchase & Click with Service      | Minimum Volume                            | Cloud MPS Dealer | Cloud  | 3 years | Quarterly in Arrears    | Web  |
-	| Cloud MPS Local Office Approver | Denmark     | Purchase & Click with Service      | Minimum Volume                            | Cloud MPS Dealer | Cloud  | 4 years | Quarterly in Arrears    | BOR  |
+	| Cloud MPS Local Office Approver | Denmark     | Purchase & Click with Service      | Minimumsvolumen                           | Cloud MPS Dealer | Cloud  | 3 år    | Quarterly in Arrears    | Web  |
+	| Cloud MPS Local Office Approver | Denmark     | Purchase & Click with Service      | Minimumsvolumen                           | Cloud MPS Dealer | Cloud  | 4 år    | Quarterly in Arrears    | BOR  |
 	| Cloud MPS Local Office Approver | Sweden      | Purchase & click inklusive service | Minimum volym                             | Cloud MPS Dealer | Cloud  | 36      | Quarterly in Arrears    | Web  |
 	| Cloud MPS Local Office Approver | Sweden      | Purchase & click inklusive service | Minimum volym                             | Cloud MPS Dealer | Cloud  | 48      | Quarterly in Arrears    | BOR  |
 	| Cloud MPS Local Office Approver | Netherlands | Purchase + Click met Service       | Minimumvolume                             | Cloud MPS Dealer | Cloud  | 3 jaar  | Quarterly in Arrears    | Web  |

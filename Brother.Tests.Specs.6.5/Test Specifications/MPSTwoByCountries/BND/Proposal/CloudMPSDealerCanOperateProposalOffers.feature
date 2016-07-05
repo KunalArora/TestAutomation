@@ -28,7 +28,7 @@ Scenario Outline: Dealer can copy an existing proposal offer for all countries
 	
 	Scenarios:
 
-	| Role             | Country | ContractType | UsageType                                 | Length | Billing                | Customer               | Status  |
-	| Cloud MPS Dealer | Denmark | Buy & Click  | Engagement sur un minimum volume de pages | 3 ans  | Trimestrale anticipata | Skip customer creation | Without |
-	| Cloud MPS Dealer | Denmark | Buy & Click  | Engagement sur un minimum volume de pages | 4 ans  | Trimestrale anticipata | Create new customer    | With    |
+	| Role             | Country | ContractType           | UsageType       | Length | Billing              | Customer               | Status  |
+	| Cloud MPS Dealer | Denmark | Køb & Klik med service | Minimumsvolumen | 3 år   | Quarterly in Arrears | Skip customer creation | Without |
+	| Cloud MPS Dealer | Denmark | Køb & Klik med service | Minimumsvolumen | 4 år   | Quarterly in Arrears | Create new customer    | With    |
 	

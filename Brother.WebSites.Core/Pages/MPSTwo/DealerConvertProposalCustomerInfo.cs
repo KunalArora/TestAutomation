@@ -382,7 +382,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
             else if (IsDenmarkSystem())
             {
-                trading = "Non-Regulated";
+                trading = "Ikke-reguleret";
             }
             else if (IsFinlandSystem())
             {
@@ -692,7 +692,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterAllBankInformation()
         {
-            if (IsDenmarkSystem()) return;
+            if (IsDenmarkSystem() || IsSwedenSystem()) return;
             SelectAPaymentType();
             EnterBankName();
             EnterBankAccountNumber();
