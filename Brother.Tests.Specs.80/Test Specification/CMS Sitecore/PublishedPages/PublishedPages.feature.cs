@@ -285,13 +285,13 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Omnijoin Free Trial Sign up")]
-        [NUnit.Framework.IgnoreAttribute()]
+        [NUnit.Framework.CategoryAttribute("SMOKE")]
         [NUnit.Framework.TestCaseAttribute("http://main.co.uk.brotherdv2.eu/business-solutions/web-conferencing/free-trial?sc" +
             "_lang=en", "01555522522", null)]
         public virtual void OmnijoinFreeTrialSignUp(string siteUrl, string phoneNumber, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "ignore"};
+                    "SMOKE"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -321,8 +321,6 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.And("I press submit button \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 130
  testRunner.Then("I should see download page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 131
- testRunner.And("I have Validated an Omnijoin Email was received and verified my account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

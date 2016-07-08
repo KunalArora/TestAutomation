@@ -77,11 +77,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Test Specification\OmniJoin\FreeTrial.feature.cs">
-      <DependentUpon>FreeTrial.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Test Specification\OmniJoin\ManagePlans.feature.cs">
       <DependentUpon>ManagePlans.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -143,10 +138,6 @@
     <None Include="Test Specification\CMS Sitecore\PublishedPages\PublishedPages.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>PublishedPages.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specification\OmniJoin\FreeTrial.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>FreeTrial.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specification\OmniJoin\ManagePlans.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
