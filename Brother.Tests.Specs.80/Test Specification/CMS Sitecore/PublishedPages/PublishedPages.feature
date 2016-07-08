@@ -114,7 +114,7 @@ Scenarios:
 	 | http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseDoNotTouch/All-Printers					 |
 
 
-@ignore
+@SMOKE
 ## This test shouldn't run on teamcity as currently email takes about 5 minutes to come through.
 Scenario Outline: Omnijoin Free Trial Sign up
 	Given That I navigate to "<Site Url>" in order to validate a published page
@@ -128,7 +128,7 @@ Scenario Outline: Omnijoin Free Trial Sign up
 	And I have Agreed to the Terms and Conditions
 	And I press submit button "<country>"
 	Then I should see download page
-	And I have Validated an Omnijoin Email was received and verified my account
+	#And I have Validated an Omnijoin Email was received and verified my account
 
 Scenarios: 
 	
