@@ -46,6 +46,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement LeasingApprovalDefaultsLinkElement;
         [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/local-office/programs/lease-and-click/leasing-banks']")]
         public IWebElement LeasingBanksLinkElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_InputAutomaticProposalApproval_Input")]
+        public IWebElement AutomaticProposalApprovalTickBoxElement;
+
+        
 
         public void TickProgramEnabled()
         {
@@ -87,7 +91,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
-        public void untickHideProposalCustomerCreationStep()
+        public void UntickHideProposalCustomerCreationStep()
         {
             if (HideProposalCustomerCreationStepElement.Selected)
             {
@@ -103,7 +107,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
-        public void untickMinimumVolume()
+        public void UntickMinimumVolume()
         {
             if (MinimumVolumeElement.Selected)
             {
@@ -117,10 +121,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             TickMinimumVolume();
         }
 
+        public void SetProposalByPassOption()
+        {
+            var byPass = AutomaticProposalApprovalTickBoxElement.Selected ? "Ticked" : "Unticked";
+
+            SpecFlow.SetContext("BypassOption", byPass);
+        }
+
         public void TryUntickMinimumVolume()
         {
             SpecFlow.SetContext("OriginalMinimumVolume", MinimumVolumeElement.Selected.ToString());
-            untickMinimumVolume();
+            UntickMinimumVolume();
         }
 
         public void IsMinimumVolumeTicked()
@@ -146,7 +157,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 }
                 else
                 {
-                    untickMinimumVolume();
+                    UntickMinimumVolume();
                 }
                 SaveButtonElement.Click();
             }
@@ -160,7 +171,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
-        public void untickPayAsYouGo()
+        public void UntickPayAsYouGo()
         {
             if (PayAsYouGoElement.Selected)
             {
@@ -177,7 +188,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void TryUntickPayAsYouGo()
         {
             SpecFlow.SetContext("OriginalPayAsYouGo", PayAsYouGoElement.Selected.ToString());
-            untickPayAsYouGo();
+            UntickPayAsYouGo();
         }
 
         public void IsPayAsYouGoTicked()
@@ -203,7 +214,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 }
                 else
                 {
-                    untickPayAsYouGo();
+                    UntickPayAsYouGo();
                 }
                 SaveButtonElement.Click();
             }

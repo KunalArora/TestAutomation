@@ -931,15 +931,19 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             }
             catch (NoSuchElementException elementNotFound)
             {
-                MsgOutput(String.Format("Element not found", elementNotFound.Message));
+                MsgOutput(String.Format("Element not found as a result of {0}", elementNotFound.Message));
             }
             catch (WebDriverTimeoutException timeoutException)
             {
-                MsgOutput(String.Format("Element not found", timeoutException.Message));
+                MsgOutput(String.Format("Element not found as a result of {0}", timeoutException.Message));
             }
             catch (WebDriverException webException)
             {
-                MsgOutput(String.Format("Element not found", webException.Message));
+                MsgOutput(String.Format("Element not found as a result of {0}", webException.Message));
+            }
+            catch (NullReferenceException nullException)
+            {
+                MsgOutput(String.Format("Element not found as a result of {0}", nullException.Message));
             }
             WebDriver.SetPageLoadTimeout(defaultTimeout);
             WebDriver.SetWebDriverImplicitTimeout(implicitTimeout);

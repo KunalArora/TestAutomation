@@ -19,7 +19,7 @@ Scenario Outline: Dealer cannot begin installation Request without selecting Loc
 	
 Scenarios:
 
-	| Role                            | Country        | ContractType                  | UsageType      | Role1            |
-	| Cloud MPS Bank                  | Germany        | Leasing & Service             | Mindestvolumen | Cloud MPS Dealer |
-	| Cloud MPS Bank                  | Austria        | Leasing & Service             | Mindestvolumen | Cloud MPS Dealer |
-
+	| Role           | Country | ContractType      | UsageType      | Role1            |
+	| Cloud MPS Bank | Germany | Leasing & Service | Mindestvolumen | Cloud MPS Dealer |
+	| Cloud MPS Bank | Austria | Leasing & Service | Mindestvolumen | Cloud MPS Dealer |
+	

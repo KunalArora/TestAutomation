@@ -351,23 +351,8 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\BIG_AT\Installation\CloudMPSCancelInstallationRequest.feature.cs">
-      <DependentUpon>CloudMPSCancelInstallationRequest.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\BIG_AT\Installation\CloudMPSFullCloudInstallation.feature.cs">
-      <DependentUpon>CloudMPSFullCloudInstallation.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BIG_AT\Installation\CloudMPSInstallationRequestWithoutSelectingLocation.feature.cs">
       <DependentUpon>CloudMPSInstallationRequestWithoutSelectingLocation.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\BIG_AT\Installation\CloudMPSInstallerCanNavigateThroughEmailInstallation.feature.cs">
-      <DependentUpon>CloudMPSInstallerCanNavigateThroughEmailInstallation.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -693,6 +678,11 @@
     </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BNL\Customer\CloudMPSCustomerCanPerformSomeRunActions.feature.cs">
       <DependentUpon>CloudMPSCustomerCanPerformSomeRunActions.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Test Specifications\MPSTwoByCountries\BNL\Customer\CloudMPSDealerCanOperateCustomers.feature.cs">
+      <DependentUpon>CloudMPSDealerCanOperateCustomers.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -1116,7 +1106,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\BUK\Proposal\CloudMPSDealerCanOperateCustomers.feature.cs">
+    <Compile Include="Test Specifications\MPSTwoByCountries\BUK\Customer\CloudMPSDealerCanOperateCustomers.feature.cs">
       <DependentUpon>CloudMPSDealerCanOperateCustomers.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1864,21 +1854,9 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSExistingCustomerCanViewPrintCount.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwoByCountries\BIG_AT\Installation\CloudMPSCancelInstallationRequest.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSCancelInstallationRequest.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPSTwoByCountries\BIG_AT\Installation\CloudMPSFullCloudInstallation.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSFullCloudInstallation.feature.cs</LastGenOutput>
-    </None>
     <None Include="Test Specifications\MPSTwoByCountries\BIG_AT\Installation\CloudMPSInstallationRequestWithoutSelectingLocation.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSInstallationRequestWithoutSelectingLocation.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPSTwoByCountries\BIG_AT\Installation\CloudMPSInstallerCanNavigateThroughEmailInstallation.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSInstallerCanNavigateThroughEmailInstallation.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwoByCountries\BIG_AT\Proposal\CloudMPS1834EnteringLargeEstimatedVolume.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
@@ -2139,6 +2117,10 @@
     <None Include="Test Specifications\MPSTwoByCountries\BNL\Customer\CloudMPSCustomerCanPerformSomeRunActions.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSCustomerCanPerformSomeRunActions.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwoByCountries\BNL\Customer\CloudMPSDealerCanOperateCustomers.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CloudMPSDealerCanOperateCustomers.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwoByCountries\BNL\Customer\CloudMPSExistingCustomerCanViewPrintCount.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
@@ -2476,7 +2458,7 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSDealerCanGeneratePDFAtRelevantStages.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwoByCountries\BUK\Proposal\CloudMPSDealerCanOperateCustomers.feature">
+    <None Include="Test Specifications\MPSTwoByCountries\BUK\Customer\CloudMPSDealerCanOperateCustomers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSDealerCanOperateCustomers.feature.cs</LastGenOutput>
     </None>

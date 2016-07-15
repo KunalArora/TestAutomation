@@ -369,6 +369,40 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
 
         }
 
+
+        [Given(@"I verify and store ""(.*)"" purchase and click proposal bypass status")]
+        public void GivenIVerifyAndStorePurchaseAndClickProposalBypassStatus(string country)
+        {
+            SetProposalByPassValue(country, "Easy Print Pro & Service");
+        }
+
+        [Given(@"I verify and store ""(.*)"" Lease and click proposal bypass status")]
+        public void GivenIVerifyAndStoreLeaseAndClickProposalBypassStatus(string country)
+        {
+            SetProposalByPassValue(country, "Leasing & Service");
+
+        }
+
+        
+        public void SetProposalByPassValue(string country, string contractType)
+        {
+            GivenILaunchBrotherOnlineFor(country);
+            WhenIClickOnSignInCreateAnAccount(country);
+            WhenISignInAsA("Cloud MPS Local Office", country);
+            NextPage = CurrentPage.As<LocalOfficeAdminDashBoardPage>().NavigateToLoProgramPage();
+            if (contractType.Equals("Lease & Click with Service") || contractType.Equals("Leasing & Service"))
+            {
+                NextPage = CurrentPage.As<LocalOfficeAdminProgramPage>().NavigateToLeaseAndClickPage();
+            }
+            else if (contractType.Equals("Purchase & Click with Service") || contractType.Equals("Easy Print Pro & Service"))
+            {
+                NextPage = CurrentPage.As<LocalOfficeAdminProgramPage>().NavigateToPurchaseAndClickPage();
+            }
+            
+            CurrentPage.As<LocalOfficeAdminProgramSettingPage>().SetProposalByPassOption();
+            GlobalNavigationModule.ClickSignOutLink(CurrentDriver);
+        }
+
         [When(@"I sign back into ""(.*)"" Cloud MPS as a ""(.*)"" from ""(.*)""")]
         [Given(@"I sign back into ""(.*)"" Cloud MPS as a ""(.*)"" from ""(.*)""")]
         [Then(@"I sign back into ""(.*)"" Cloud MPS as a ""(.*)"" from ""(.*)""")]

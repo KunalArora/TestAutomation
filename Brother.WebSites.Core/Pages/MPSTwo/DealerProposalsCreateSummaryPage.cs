@@ -735,7 +735,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 TestCheck.AssertTextContains(CalculationBasisElement.Text, "Druckvolumina");
             } else if (IsGermanSystem())
             {
-                TestCheck.AssertTextContains(CalculationBasisElement.Text, "Mindestdruckvolumina");
+                TestCheck.AssertTextContains(CalculationBasisElement.Text, "Druckvolumina");
             } else if (IsFranceSystem())
             {
                 TestCheck.AssertTextContains(CalculationBasisElement.Text, "Coût total par matériel sur la base de l'estimation de volume de pages");
