@@ -126,6 +126,7 @@ Scenario Outline: Omnijoin Free Trial Sign up
 
 	And I enter phone number as "<PhoneNumber>"
 	And I have Agreed to the Terms and Conditions
+	And I click Accept Cookie Button
 	And I press submit button "<country>"
 	Then I should see download page
 	#And I have Validated an Omnijoin Email was received and verified my account
