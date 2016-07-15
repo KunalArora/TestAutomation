@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Specs.BrotherOnline.Account;
 using Brother.Tests.Specs.MPSTwo.Approver;
@@ -677,13 +678,17 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
                 var instance4 = new CreateNewAccountSteps();
                 var instance2 = new SendProposalToApprover();
                 var instance3 = new AccountManagementSteps();
-                instance4.GivenISignIntoMpsasAFrom("Cloud MPS Local Office Approver", "United Kingdom");
-                instance2.ThenINavigateToLOApproverAwaitingApprovalScreenUnderProposalsPage();
-                instance2.ThenTheConvertedPurchaseAndClickAndServiceProposalAboveIsDisplayedOnTheScreen();
-                var instance5 = new ApproverSteps();
-                instance5.ThenApproverSelectTheProposalOnAwaitingProposal();
-                instance5.ThenIShouldBeAbleToApproveThatProposal();
-                instance3.ThenIfISignOutOfBrotherOnline();
+
+                if (MpsUtil.GetProposalByPassValue() != "Ticked")
+                {
+                    instance4.GivenISignIntoMpsasAFrom("Cloud MPS Local Office Approver", "United Kingdom");
+                    instance2.ThenINavigateToLOApproverAwaitingApprovalScreenUnderProposalsPage();
+                    instance2.ThenTheConvertedPurchaseAndClickAndServiceProposalAboveIsDisplayedOnTheScreen();
+                    var instance5 = new ApproverSteps();
+                    instance5.ThenApproverSelectTheProposalOnAwaitingProposal();
+                    instance5.ThenIShouldBeAbleToApproveThatProposal();
+                    instance3.ThenIfISignOutOfBrotherOnline();
+                }
                 instance4.GivenISignIntoMpsasAFrom("Cloud MPS Dealer", "United Kingdom");
                 WhenISignTheContractAsADealer();
                 instance3.ThenIfISignOutOfBrotherOnline();
@@ -834,6 +839,18 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [Then(@"I can copy the declined proposal as a ""(.*)"" from ""(.*)"" and approved by ""(.*)""")]
         public void ThenICanCopyTheDeclinedProposalAsAFromAndApprovedBy(string role, string country, string role2)
         {
+            CanCopyDeclinedPurchaseAndClickProposal(role, country, role2, "With");
+        }
+
+        [Then(@"I can copy the declined proposal without customer detail as a ""(.*)"" from ""(.*)"" and approved by ""(.*)""")]
+        public void ThenICanCopyTheDeclinedProposalWithoutCustomerDetailAsAFromAndApprovedBy(string role, string country, string role2)
+        {
+            CanCopyDeclinedPurchaseAndClickProposal(role, country, role2, "Without");
+        }
+
+
+        private void CanCopyDeclinedPurchaseAndClickProposal(string role, string country, string role2, string copyOption)
+        {
             if (MpsUtil.GetProposalByPassValue() == "Ticked") return;
             var instance1 = new CreateNewAccountSteps();
             var instance2 = new ProposalCreateAProposalThatWillBeUsedForContractSteps();
@@ -851,7 +868,15 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             instance4.ThenIfISignOutOfBrotherOnline();
             instance1.GivenISignIntoMpsasAFrom(role, country);
             instance3.WhenINavigateToDeclineProposalListPage();
-            instance3.ThenICanCopyTheDeclinedProposalWithCustomer();
+            switch (copyOption)
+            {
+                case "Without":
+                    instance3.ThenICanCopyTheDeclinedProposalWithoutCustomer();
+                    break;
+                case "With":
+                    instance3.ThenICanCopyTheDeclinedProposalWithCustomer();
+                    break;
+            }
             instance4.ThenIfISignOutOfBrotherOnline();
         }
 
@@ -859,12 +884,19 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [Then(@"I can copy the declined Lease and Click proposal as a ""(.*)"" from ""(.*)"" and approved by ""(.*)""")]
         public void ThenICanCopyTheDeclinedLeaseAndClickProposalAsAFromAndApprovedBy(string role, string country, string role2)
         {
-            CanCopyTheDeclinedLeaseAndClickProposalAsAFromAndApprovedBy(role, country, role2);
+            CanCopyTheDeclinedLeaseAndClickProposalAsAFromAndApprovedBy(role, country, role2, "With");
+        }
+
+        [Then(@"I can copy the declined Lease and Click proposal without customer detail as a ""(.*)"" from ""(.*)"" and approved by ""(.*)""")]
+        public void ThenICanCopyTheDeclinedLeaseAndClickProposalWithoutCustomerDetailAsAFromAndApprovedBy(string role, string country, string role2)
+        {
+            CanCopyTheDeclinedLeaseAndClickProposalAsAFromAndApprovedBy(role, country, role2, "Without");
         }
 
 
+
         private void CanCopyTheDeclinedLeaseAndClickProposalAsAFromAndApprovedBy(string role, string country,
-            string role2)
+            string role2, string copyOption )
         {
             if (MpsUtil.GetProposalByPassValue() == "Ticked") return;
             var instance1 = new CreateNewAccountSteps();
@@ -883,7 +915,17 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             instance4.ThenIfISignOutOfBrotherOnline();
             instance1.GivenISignIntoMpsasAFrom(role, country);
             instance3.WhenINavigateToDeclineProposalListPage();
-            instance3.ThenICanCopyTheDeclinedProposalWithCustomer();
+
+            switch (copyOption)
+            {
+                case "Without":
+                    instance3.ThenICanCopyTheDeclinedProposalWithoutCustomer();
+                    break;
+                case "With":
+                    instance3.ThenICanCopyTheDeclinedProposalWithCustomer();
+                    break;
+            }
+
             instance4.ThenIfISignOutOfBrotherOnline();
         }
 

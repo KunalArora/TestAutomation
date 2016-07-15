@@ -344,9 +344,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerSetCommunicationMethodPage CreateInstallationRequest()
         {
-            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, CreateRequestElement);
+            MpsUtil.ReClickButtonThenNavigateToSameUrl(Driver, CreateRequestElement);
             
-
             return GetTabInstance<DealerSetCommunicationMethodPage>(Driver);
         }
 

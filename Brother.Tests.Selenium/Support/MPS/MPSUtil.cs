@@ -1153,6 +1153,30 @@ namespace Brother.Tests.Selenium.Lib.Support
             wait.Until(ExpectedConditionsEx.UrlNotChangeFrom(previousUrl));
         }
 
+        public static void ReClickButtonThenNavigateToSameUrl(IWebDriver driver, IWebElement element)
+        {
+            var previousUrl = driver.Url;
+            element.Click();
+            var tryCount = 0;
+           // var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+            //wait.Until(ExpectedConditionsEx.UrlNotChangeFrom(previousUrl));
+
+            WebDriver.Wait(Helper.DurationType.Second, 5);
+            var newurl = driver.Url;
+            
+            while (previousUrl.Equals(newurl))
+            {
+                if (tryCount != 3)
+                {
+                    element.Click();
+                }
+
+                WebDriver.Wait(Helper.DurationType.Second, 1);
+                newurl = driver.Url;
+                tryCount++;
+            }
+        }
+
         public static string DefaultMargins()
         {
             String[] margins =
