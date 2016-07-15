@@ -71,16 +71,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Test Specifications\BrotherMainSite\Navigation\FooterNav\WebsiteInformation.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>WebsiteInformation.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Test Specifications\BrotherMainSite\Navigation\Products.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Products.feature</DependentUpon>
-    </Compile>
     <Compile Include="Test Specifications\BrotherOnline\Account\Business Account.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1571,14 +1561,6 @@
     </None>
     <None Include="packages.config">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Test Specifications\BrotherMainSite\Navigation\FooterNav\WebsiteInformation.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>WebsiteInformation.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\BrotherMainSite\Navigation\Products.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>Products.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\BrotherMainSite\Printer Search\Printers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

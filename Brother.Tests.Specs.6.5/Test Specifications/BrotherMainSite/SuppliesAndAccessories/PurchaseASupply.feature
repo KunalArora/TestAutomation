@@ -222,43 +222,6 @@ Scenarios:
 	| Ireland        | Supplies | LC1000BK   | Otto      | Tiest    | 10          | Testing House | 30, Its a Test Street | Village Of Automation | Manchester | KILKENNY | 012345678910 |
 	| United Kingdom | Supplies | LC1000BK   | Otto      | Tiest    | 10          | Testing House | 30, Its a Test Street | Village Of Automation | Manchester |          | 012345678910 |
 
-@ignore
-Scenario: Attempt to purchase an ink cartridge by product serial number using invalid credit card credentials
-	
-@ignore
-Scenario: Attempt to purchase an ink cartridge by model code using invalid credit card credentials
-
-@ignore
-Scenario: Attempt to purchase an ink cartridge by product serial number using invalid Billing Addresse details
-
-@ignore
-Scenario: Attempt to purchase an ink cartridge by product serial number using invalid Delivery Addresse details
-
-@ignore
-Scenario: Attempt to purchase an ink cartridge by product serial number which is out of stock
-
-@ignore
-Scenario: Attempt to purchase an ink cartridge by an invalid product serial number
-
-@ignore
-Scenario: Attempt to purchase an ink cartridge by an invalid Model code number
-
-@ignore
-Scenario: Cancel order transaction at Checkout
-
-@ignore
-Scenario: Cancel order transaction at Credit Card Details page
-
-@ignore
-Scenario: Remove item from Basket and add another item
-
-@ignore
-Scenario: Purchase numerous items by Product serial code
-
-@ignore
-Scenario: Purchase numerous items by Model code
-
-
 
 
 
