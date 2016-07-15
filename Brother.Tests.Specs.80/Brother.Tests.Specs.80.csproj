@@ -77,16 +77,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Test Specification\OmniJoin\ManagePlans.feature.cs">
-      <DependentUpon>ManagePlans.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Test Specification\OmniJoin\PurchasePlans.feature.cs">
-      <DependentUpon>PurchasePlans.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Test Steps\BrotherMainSite\BusinessSolutions\BusinessSolutions.cs" />
     <Compile Include="Test Steps\BrotherMainSite\FooterNavigation\ProductsFooterSteps.cs" />
     <Compile Include="Test Steps\BrotherMainSite\FooterNavigation\SupportMenuSteps.cs" />
@@ -138,14 +128,6 @@
     <None Include="Test Specification\CMS Sitecore\PublishedPages\PublishedPages.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>PublishedPages.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specification\OmniJoin\ManagePlans.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>ManagePlans.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specification\OmniJoin\PurchasePlans.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>PurchasePlans.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specification\CMS Sitecore\SiteAccess\SiteAccess.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

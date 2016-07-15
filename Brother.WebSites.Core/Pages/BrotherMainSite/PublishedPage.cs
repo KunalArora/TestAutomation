@@ -680,6 +680,6 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
             SubmitButton.Click();
             return GetInstance<DownloadPage>(Driver);
         }
-
+       
     }
 }

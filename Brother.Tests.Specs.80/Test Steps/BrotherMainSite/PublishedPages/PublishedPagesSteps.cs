@@ -323,7 +323,6 @@ namespace Brother.Tests.Specs._80.Test_Steps.BrotherMainSite.PublishedPages
         {
             CurrentPage.As<PublishedPage>().PopulatePhoneNumberTextBox(phoneNumber);
         }
-
         [Given(@"I have Agreed to the Terms and Conditions")]
         public void GivenIHaveAgreedToTheTermsAndConditions()
         {
