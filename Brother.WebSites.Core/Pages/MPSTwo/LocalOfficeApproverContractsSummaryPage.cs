@@ -1,4 +1,5 @@
 ﻿using System;
+using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
@@ -163,7 +164,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public LocalOfficeApproverContractsPage ClickFinalAcceptButton()
         {
             ScrollTo(FinalAcceptButtonElement);
-            FinalAcceptButtonElement.Click();
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, FinalAcceptButtonElement);
+            //FinalAcceptButtonElement.Click();
 
             return GetTabInstance<LocalOfficeApproverContractsPage>(Driver);
         }
@@ -200,7 +202,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void EnterCreditValue()
         {
-            ClearAndType(CreditValueElement, "10.000,00");
+            var credit = CreditValueElement.GetAttribute("value");
+            if (string.IsNullOrWhiteSpace(credit) || credit.Equals("0.00"))
+            {
+                ClearAndType(CreditValueElement, "10.000,00"); 
+            }
+            
         }
 
 

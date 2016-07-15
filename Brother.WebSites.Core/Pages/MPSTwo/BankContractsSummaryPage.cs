@@ -168,7 +168,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public BankContractsPage ClickFinalAcceptButton()
         {
             ScrollTo(FinalAcceptButtonElement);
-            FinalAcceptButtonElement.Click();
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, FinalAcceptButtonElement);
+            //FinalAcceptButtonElement.Click();
 
             return GetTabInstance<BankContractsPage>(Driver);
         }
@@ -249,7 +250,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void EnterCreditValue()
         {
-            ClearAndType(CreditValueElement, "10.000,00");
+            var credit = CreditValueElement.Text;
+            if (string.IsNullOrWhiteSpace(credit) || credit.Equals("0.00"))
+            {
+                ClearAndType(CreditValueElement, "10.000,00");
+            }
         }
 
         public void IsAcceptButtonAvailable()
