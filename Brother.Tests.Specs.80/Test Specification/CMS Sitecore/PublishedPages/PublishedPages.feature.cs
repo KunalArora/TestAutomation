@@ -318,10 +318,8 @@ this.ScenarioSetup(scenarioInfo);
 #line 128
  testRunner.And("I have Agreed to the Terms and Conditions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 129
- testRunner.And("I click Accept Cookie Button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 130
  testRunner.And("I press submit button \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 131
+#line 130
  testRunner.Then("I should see download page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

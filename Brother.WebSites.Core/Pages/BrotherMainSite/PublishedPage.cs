@@ -188,9 +188,6 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         [FindsBy(How = How.XPath, Using = ".//*[@for='chkTerms']")]
         public IWebElement AgreeToTermsAndConditions;
 
-        [FindsBy(How = How.CssSelector, Using = "#AcceptCookieLawHyperLink")]
-        public IWebElement AcceptCookiesButton;
-
         public void GetPublishedPage(string url)
         {
             WebDriver.SetPageLoadTimeout(TimeSpan.FromSeconds(120));
@@ -683,16 +680,6 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
             SubmitButton.Click();
             return GetInstance<DownloadPage>(Driver);
         }
-        public void ClickAcceptCookieButton()
-        {
-
-            WebDriver.DeleteAllCookies();
-            WebDriver.Wait(DurationType.Millisecond, 5000);
-            WaitForElementToExistByCssSelector("#AcceptCookieLawHyperLink");
-            ScrollTo(AcceptCookiesButton);
-            AcceptCookiesButton.Click();
-        }
-        
-
+       
     }
 }

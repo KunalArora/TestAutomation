@@ -323,11 +323,6 @@ namespace Brother.Tests.Specs._80.Test_Steps.BrotherMainSite.PublishedPages
         {
             CurrentPage.As<PublishedPage>().PopulatePhoneNumberTextBox(phoneNumber);
         }
-        [Given(@"I click Accept Cookie Button")]
-        public void GivenIClickAcceptCookieButton()
-        {
-            CurrentPage.As<PublishedPage>().ClickAcceptCookieButton();
-        }
         [Given(@"I have Agreed to the Terms and Conditions")]
         public void GivenIHaveAgreedToTheTermsAndConditions()
         {
