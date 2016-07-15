@@ -5,7 +5,11 @@ Feature: CloudMPSGermanDealerCanCopyADeclineProposal
 	I want to be to copy and submit a declined proposal
 
 
+#Background: Get the status of Proposal Bypass
+		
+
 Scenario Outline: Dealer Can Copy A Declined Leasing and Click Proposal without customer detail
+	Given I verify and store "<Country>" Lease and click proposal bypass status 
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created German Leasing and Click proposal 
 	And I am on Proposal List page
@@ -30,19 +34,22 @@ Scenario Outline: Dealer Can Copy A Declined Leasing and Click Proposal without 
 
 
 Scenario Outline: Dealer Can Copy A Declined Leasing and Click Proposal with customer detail
-	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
-	And I have created German Leasing and Click proposal 
-	And I am on Proposal List page
-	And I send the created German proposal for approval
-	And I sign out of Cloud MPS
-	When I sign back into Cloud MPS as a "<Role2>" from "<Country>"
-	And I decline the proposal created above
-	And I sign out of Cloud MPS
-	And I sign back into Cloud MPS as a "<Role>" from "<Country>"
-	And I navigate to decline proposal list page
-	Then I can copy the declined proposal with customer
-	##And I am redirected to Summary page when I start proposal conversion process
-	And I sign out of Cloud MPS
+	Given I verify and store "<Country>" Lease and click proposal bypass status 
+	Then I can copy the declined Lease and Click proposal as a "<Role>" from "<Country>" and approved by "<Role2>"
+	
+	#Given I sign into Cloud MPS as a "<Role>" from "<Country>"
+	#And I have created German Leasing and Click proposal 
+	#And I am on Proposal List page
+	#And I send the created German proposal for approval
+	#And I sign out of Cloud MPS
+	#When I sign back into Cloud MPS as a "<Role2>" from "<Country>"
+	#And I decline the proposal created above
+	#And I sign out of Cloud MPS
+	#And I sign back into Cloud MPS as a "<Role>" from "<Country>"
+	#And I navigate to decline proposal list page
+	#Then I can copy the declined proposal with customer
+	###And I am redirected to Summary page when I start proposal conversion process
+	#And I sign out of Cloud MPS
 
 	Scenarios:
 
@@ -52,19 +59,22 @@ Scenario Outline: Dealer Can Copy A Declined Leasing and Click Proposal with cus
 
 
 Scenario Outline: Dealer Can Copy A Declined Purchase and Click Proposal with customer detail
-	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
-	And I have created German Purchase and Click proposal 
-	And I am on Proposal List page
-	And I send the created German proposal for approval
-	And I sign out of Cloud MPS
-	When I sign back into Cloud MPS as a "<Role2>" from "<Country>"
-	And I decline the proposal created above
-	And I sign out of Cloud MPS
-	And I sign back into Cloud MPS as a "<Role>" from "<Country>"
-	And I navigate to decline proposal list page
-	Then I can copy the declined proposal with customer
-	##And I am redirected to Summary page when I start proposal conversion process
-	And I sign out of Cloud MPS
+	Given I verify and store "<Country>" purchase and click proposal bypass status
+	Then I can copy the declined proposal as a "<Role>" from "<Country>" and approved by "<Role2>"
+	
+	#Given I sign into Cloud MPS as a "<Role>" from "<Country>"
+	#And I have created German Purchase and Click proposal 
+	#And I am on Proposal List page
+	#And I send the created German proposal for approval
+	#And I sign out of Cloud MPS
+	#When I sign back into Cloud MPS as a "<Role2>" from "<Country>"
+	#And I decline the proposal created above as a Local Office Approver
+	#And I sign out of Cloud MPS
+	#And I sign back into Cloud MPS as a "<Role>" from "<Country>"
+	#And I navigate to decline proposal list page
+	#Then I can copy the declined proposal with customer
+	###And I am redirected to Summary page when I start proposal conversion process
+	#And I sign out of Cloud MPS
 
 	Scenarios:
 
@@ -74,13 +84,14 @@ Scenario Outline: Dealer Can Copy A Declined Purchase and Click Proposal with cu
 	
 
 Scenario Outline: Dealer Can Copy A Declined Purchase and Click Proposal without customer detail
+	Given I verify and store "<Country>" purchase and click proposal bypass status
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created German Purchase and Click proposal 
 	And I am on Proposal List page
 	And I send the created German proposal for approval
 	And I sign out of Cloud MPS
 	When I sign back into Cloud MPS as a "<Role2>" from "<Country>"
-	And I decline the proposal created above
+	And I decline the proposal created above as a Local Office Approver
 	And I sign out of Cloud MPS
 	And I sign back into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to decline proposal list page
@@ -93,5 +104,7 @@ Scenario Outline: Dealer Can Copy A Declined Purchase and Click Proposal without
 	| Role             | Country | Role2                           |
 	| Cloud MPS Dealer | Germany | Cloud MPS Local Office Approver |
 	| Cloud MPS Dealer | Austria | Cloud MPS Local Office Approver |
+
+
 	
 	

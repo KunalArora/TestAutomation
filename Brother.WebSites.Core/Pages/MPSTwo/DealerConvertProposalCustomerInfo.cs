@@ -363,7 +363,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
             else if (IsSpainSystem())
             {
-                trading = "No Regulado";
+                //trading = "No Regulado";
+                trading = "Persona Física";
             }
             else if (IsSwedenSystem())
             {

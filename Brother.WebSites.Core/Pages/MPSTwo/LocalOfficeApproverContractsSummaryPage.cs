@@ -9,6 +9,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
     public class LocalOfficeApproverContractsSummaryPage : BasePage
     {
         public static string Url = "/mps/local-office/contracts/summary";
+        private const string AcceptancePanel = @".js-mps-acceptance-panel";
 
         public override string DefaultTitle
         {
@@ -129,6 +130,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement FinanceTotalNetElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_FinanceTotalGross")]
         public IWebElement FinanceTotalGrossElement;
+        [FindsBy(How = How.Id, Using = "content_1_ComponentContractReviewedAcceptancePanel_InputApproveCustomerReference_Input")]
+        public IWebElement CustomerReferenceElement;
+        [FindsBy(How = How.Id, Using = "content_1_ComponentContractReviewedAcceptancePanel_InputApproveContractReference_Input")]
+        public IWebElement ContractReferenceElement;
+        [FindsBy(How = How.Id, Using = "content_1_ComponentContractReviewedAcceptancePanel_InputApproveCreditValue_Input")]
+        public IWebElement CreditValueElement;
+        
+        
 
         public void ClickRejectButton()
         {
@@ -157,6 +166,41 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             FinalAcceptButtonElement.Click();
 
             return GetTabInstance<LocalOfficeApproverContractsPage>(Driver);
+        }
+
+        public void EnterContractApprovalDetails()
+        {
+            try
+            {
+                if (!GetElementByCssSelector(AcceptancePanel, 5).Displayed) return;
+                EnterCustomerReference();
+                EnterContractReference();
+                EnterCreditValue();
+            }
+            catch (NullReferenceException wbe)
+            {
+                MsgOutput(String.Format("Element was not displayed as a result of [{0}]", wbe.Message));
+            }
+                                                           
+        }
+
+        private void EnterCustomerReference()
+        {
+            var customerReference = "CusRef" + DateTime.Now.ToString("MMdHHmmss");
+            
+            ClearAndType(CustomerReferenceElement, customerReference);
+        }
+
+        private void EnterContractReference()
+        {
+            var customerReference = "ContractRef" + DateTime.Now.ToString("MMdHHmmss");
+
+            ClearAndType(ContractReferenceElement, customerReference);
+        }
+
+        private void EnterCreditValue()
+        {
+            ClearAndType(CreditValueElement, "10.000,00");
         }
 
 

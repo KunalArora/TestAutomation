@@ -331,7 +331,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 coy.Click();
                 return;
             }
-          
+
+          WaitForElementToBeClickableByCssSelector("#content_1_ButtonCreateRequest", 5, 5);
+
         }
 
         public void ClickOnNextButtonToInvokeError()
@@ -342,7 +344,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerSetCommunicationMethodPage CreateInstallationRequest()
         {
-            MpsUtil.ReClickButtonThenNavigateToOtherUrl(Driver, CreateRequestElement);
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, CreateRequestElement);
             
 
             return GetTabInstance<DealerSetCommunicationMethodPage>(Driver);

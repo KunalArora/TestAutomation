@@ -30,6 +30,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string NthCustomerEmail = @"#content_1_PersonList_List_CustomerEmail_{0}";
         private const string CustomerSearchData = @"20151111";
         private const string NthChildRadioButtion = "[id*=\"content_1_PersonList_List_Choice\"]";
+        private const string AcceptancePanel = @".js-mps-acceptance-panel";
 
         [FindsBy(How = How.CssSelector, Using = "input[id*=\"content_1_PersonList_List_InputChoice\"]")]
         public IList<IWebElement> ExistingContactRadioButtonElement;
@@ -79,6 +80,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement CompanyRegistrationNumerElement;
         [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerVatRegistrationNumber_Input")]
         public IWebElement VatFieldElement;
+        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerCulture_Input")]
+        public IWebElement CustomerMultipleLanguageElement;
+        
         
         
         
@@ -228,7 +232,43 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
            NewOrganisationElement.Click();
        }
 
-       public void FillOrganisationDetails()
+        public void SelectCustomerLanguage(string lang)
+        {
+            string language = null;
+            
+            switch (lang)
+            {
+                case "French":
+                    language = "Français";
+                    break;
+                case "Dutch":
+                    language = "Nederlands";
+                    break;
+                default:
+                    language = lang;
+                    break;
+            }
+
+
+           SelectFromDropdown(CustomerMultipleLanguageElement, language);
+          
+        }
+
+        public void MultipleLanguageSelectorNotDisplayed()
+        {
+            if (IsBelgiumSystem() || IsSwissSystem() || IsFinlandSystem()) return;
+            try
+            {
+                TestCheck.AssertIsEqual(false, GetElementByCssSelector(AcceptancePanel, 5).Displayed,
+                    "Multiple Language Selector is displayed when it is not meant to");
+            }
+            catch (NullReferenceException wbe)
+            {
+                MsgOutput(String.Format("Element was not displayed as expected because the following error {0}", wbe.Message));
+            }
+        }
+
+        public void FillOrganisationDetails()
        {
            EnterCompanyName();
            EnterPropertyNumber();
@@ -238,7 +278,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
            EnterPropertyTown();
            EnterPropertyPostCode();
            EnterInitialVat();
+           MultipleLanguageSelectorNotDisplayed();
            //SelectRegionFromDropdown("Greater Manchester");
+            if (IsFinlandSystem() || IsBelgiumSystem() || IsSwissSystem())
+            {
+                SelectCustomerLanguage(SpecFlow.GetContext("BelgianLanguage"));
+            }
+
        }
 
         public void EnterRegistrationNumber()

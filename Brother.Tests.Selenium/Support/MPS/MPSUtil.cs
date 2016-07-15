@@ -35,6 +35,12 @@ namespace Brother.Tests.Selenium.Lib.Support
             return generatedEmailAddress;
         }
 
+        public static string GetProposalByPassValue()
+        {
+            return HelperClasses.SpecFlow.GetContext("BypassOption");
+
+        }
+
         public static string CreatedProposal()
         {
             var createdProposal = HelperClasses.SpecFlow.GetContext("GeneratedProposalName");
@@ -1138,23 +1144,7 @@ namespace Brother.Tests.Selenium.Lib.Support
             wait.Until(ExpectedConditionsEx.UrlChangeFrom(previousUrl));
         }
 
-        public static void ReClickButtonThenNavigateToOtherUrl(IWebDriver driver, IWebElement element)
-        {
-            var previousUrl = driver.Url;
-            element.Click();
-
-            WebDriver.Wait(Helper.DurationType.Second, 5);
-            var nowUrl = driver.Url;
-
-            if (previousUrl == nowUrl)
-            {
-                element.Click();
-            }
-
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            wait.Until(ExpectedConditionsEx.UrlChangeFrom(previousUrl));
-        }
-
+        
         public static void ClickButtonThenNavigateToSameUrl(IWebDriver driver, IWebElement element)
         {
             var previousUrl = driver.Url;

@@ -185,6 +185,7 @@ namespace Brother.Tests.Specs.MPSTwo.Approver
                 NextPage = CurrentPage.As<BankContractsPage>().NavigateToViewSummary();
 //                CurrentPage.As<BankContractsSummaryPage>().VerifyThatTheContractDataIsEqualToProposalCreatedByDealer();
                 CurrentPage.As<BankContractsSummaryPage>().ClickAcceptButton();
+                CurrentPage.As<BankContractsSummaryPage>().EnterContractApprovalDetails();
                 NextPage = CurrentPage.As<BankContractsSummaryPage>().ClickFinalAcceptButton();
             }
             else if (PurchaseAndClick)
@@ -192,6 +193,7 @@ namespace Brother.Tests.Specs.MPSTwo.Approver
                 NextPage = CurrentPage.As<LocalOfficeApproverContractsPage>().NavigateToViewSummary();
 //                CurrentPage.As<LocalOfficeApproverContractsSummaryPage>().VerifyThatTheContractDataIsEqualToProposalCreatedByDealer();
                 CurrentPage.As<LocalOfficeApproverContractsSummaryPage>().ClickAcceptButton();
+                CurrentPage.As<LocalOfficeApproverContractsSummaryPage>().EnterContractApprovalDetails();
                 NextPage = CurrentPage.As<LocalOfficeApproverContractsSummaryPage>().ClickFinalAcceptButton();
             }
         }
