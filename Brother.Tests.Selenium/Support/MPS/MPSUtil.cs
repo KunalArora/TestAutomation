@@ -1054,8 +1054,8 @@ namespace Brother.Tests.Selenium.Lib.Support
             return postCode;
         }
 
-     
-        public static string PostCodeGB()
+
+        public static string PostCodeGb()
         {
             String[] zip = {
                                     "M1 6FT",
@@ -1164,9 +1164,9 @@ namespace Brother.Tests.Selenium.Lib.Support
             WebDriver.Wait(Helper.DurationType.Second, 5);
             var newurl = driver.Url;
             
-            while (previousUrl.Equals(newurl))
+            while (previousUrl.Equals(newurl) && tryCount < 3)
             {
-                if (tryCount != 3)
+                if (tryCount == 3)
                 {
                     element.Click();
                 }

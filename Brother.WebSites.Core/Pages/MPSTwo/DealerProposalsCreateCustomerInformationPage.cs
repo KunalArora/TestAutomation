@@ -82,6 +82,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement VatFieldElement;
         [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerCulture_Input")]
         public IWebElement CustomerMultipleLanguageElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputCustomerLegalForm_Input")]
+        public IWebElement LegalFormDropdown;
         
         
         
@@ -176,7 +178,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             //WebDriver.Wait(Helper.DurationType.Second, 2);
             ScrollTo(NextButton);
-            NextButton.Click();
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, NextButton);
+            //NextButton.Click();
             return GetTabInstance<DealerProposalsCreateTermAndTypePage>(Driver);
         }
 
@@ -412,6 +415,106 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
            //EnterContactPosition();
            EnterContactTelephone();
            EnterContactEmailAdress();
+           SelectALegalForm();
+       }
+
+       private String SwissLegalForm()
+       {
+           string lang;
+           var language = SpecFlow.GetContext("BelgianLanguage");
+
+           switch (language)
+           {
+               case "Français":
+                   lang = "Church";
+                   break;
+               case "Deutsch":
+                   lang = "Church";
+                   break;
+
+               default:
+                   lang = "Church";
+                   break;
+           }
+
+           return lang;
+       }
+
+
+       public void SelectALegalForm()
+       {
+           if (IsGermanSystem() || IsAustriaSystem())
+           {
+               SelectFromDropdown(LegalFormDropdown, "Aktiengesellschaft");
+
+           }
+           else if (IsUKSystem() || IsItalySystem())
+           {
+               SelectFromDropdown(LegalFormDropdown, "Church");
+           }
+           else if (IsIrelandSystem())
+           {
+               SelectFromDropdown(LegalFormDropdown, "School");
+           }
+           else if (IsFranceSystem())
+           {
+               SelectFromDropdown(LegalFormDropdown, "Administration");
+           }
+           else if (IsSwedenSystem())
+           {
+               SelectFromDropdown(LegalFormDropdown, "Aktiebolag");
+           }
+           else if (IsPolandSystem())
+           {
+               SelectFromDropdown(LegalFormDropdown, "Church");
+           }
+           else if (IsFinlandSystem())
+           {
+               SelectFromDropdown(LegalFormDropdown, "Church");
+           }
+           else if (IsNorwaySystem())
+           {
+               SelectFromDropdown(LegalFormDropdown, "Church");
+           }
+           else if (IsDenmarkSystem())
+           {
+               SelectFromDropdown(LegalFormDropdown, "Enkeltmandsvirksomhed");
+           }
+           else if (IsSwissSystem())
+           {
+               var language = SwissLegalForm();
+               SelectFromDropdown(LegalFormDropdown, language);
+           }
+           else if (IsBelgiumSystem())
+           {
+               var language = BelgianLegalForm();
+               SelectFromDropdown(LegalFormDropdown, language);
+           }
+
+           WebDriver.Wait(DurationType.Second, 3);
+       }
+
+
+       private String BelgianLegalForm()
+       {
+           string lang;
+           var language = SpecFlow.GetContext("BelgianLanguage");
+
+           switch (language)
+           {
+               case "French":
+                   lang = "Gouvernement";
+                   break;
+               case "Dutch":
+                   lang = "Overheid";
+                   break;
+
+               default:
+                   lang = "Overheid";
+                   break;
+           }
+
+           return lang;
        }
 
       
@@ -432,6 +535,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if (PropertyStreetElement == null) return;
             PropertyStreetElement.SendKeys(MpsUtil.PropertyStreet());
         }
+
+        
 
         public void EnterPropertyArea()
         {
@@ -459,7 +564,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             }else if (IsUKSystem())
             {
-                code = MpsUtil.PostCodeGB();
+                code = MpsUtil.PostCodeGb();
 
             } else if (IsItalySystem())
             {

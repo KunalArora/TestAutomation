@@ -369,7 +369,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
 
         }
 
-
+        
         [Given(@"I verify and store ""(.*)"" purchase and click proposal bypass status")]
         public void GivenIVerifyAndStorePurchaseAndClickProposalBypassStatus(string country)
         {

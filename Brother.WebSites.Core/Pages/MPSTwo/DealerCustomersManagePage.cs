@@ -205,7 +205,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 PropertyStreet = MpsUtil.PropertyStreet(),
                 PropertyArea = MpsUtil.FirstName(),
                 PropertyTown = MpsUtil.PropertyTown(),
-                PropertyPostcode = MpsUtil.PostCodeGB() ,
+                PropertyPostcode = MpsUtil.PostCodeGb() ,
                 LegalForm = "1",
                 TradingStyle = "1",
                 AuthorisedSignatory = "abcdefg"
@@ -280,35 +280,36 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             textbox.Clear();
             textbox.SendKeys(text);
-            WebDriver.Wait(Helper.DurationType.Millisecond, 100);
+            WebDriver.Wait(DurationType.Millisecond, 100);
         }
 
         private void EnterCompanyName(string companyname)
         {
             CompanyNameElement.Clear();
             CompanyNameElement.SendKeys(companyname);
-            WebDriver.Wait(Helper.DurationType.Millisecond, 100);
+            WebDriver.Wait(DurationType.Millisecond, 100);
         }
 
         private void EnterPropertyNumber(string propertyNumber)
         {
             PropertyNumberElement.Clear();
             PropertyNumberElement.SendKeys(propertyNumber);
-            WebDriver.Wait(Helper.DurationType.Millisecond, 100);
+            WebDriver.Wait(DurationType.Millisecond, 100);
         }
 
         private void EnterPropertyStreet(string propertyStreet)
         {
             PropertyStreetElement.Clear();
             PropertyStreetElement.SendKeys(propertyStreet);
-            WebDriver.Wait(Helper.DurationType.Millisecond, 100);
+            WebDriver.Wait(DurationType.Millisecond, 100);
         }
 
         private void EnterPropertyArea(string propertyArea)
         {
+            if (IsNetherlandSystem()) return;
             PropertyAreaElement.Clear();
             PropertyAreaElement.SendKeys(propertyArea);
-            WebDriver.Wait(Helper.DurationType.Millisecond, 100);
+            WebDriver.Wait(DurationType.Millisecond, 100);
         }
 
         public void EnterRegistrationNumber()
@@ -345,14 +346,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             PropertyTownElement.Clear();
             PropertyTownElement.SendKeys(propertyTown);
-            WebDriver.Wait(Helper.DurationType.Millisecond, 100);
+            WebDriver.Wait(DurationType.Millisecond, 100);
         }
 
         private void EnterPropertyPostCode(string postcode)
         {
             PropertyPostcodeElement.Clear();
             PropertyPostcodeElement.SendKeys(postcode);
-            WebDriver.Wait(Helper.DurationType.Millisecond, 100);
+            WebDriver.Wait(DurationType.Millisecond, 100);
         }
 
         private void SelectRegionFromDropdown(string region)
@@ -363,7 +364,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private void EnterPropertyLegalForm(string value = "1")
         {
             SelectFromDropdownByValue(PropertyLegalFormElement, value);
-            WebDriver.Wait(Helper.DurationType.Millisecond, 3000);
+            WebDriver.Wait(DurationType.Millisecond, 3000);
         }
 
         private void EnterPropertyTradingStyle(string value = "1")
@@ -375,7 +376,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             PropertyyAuthorisedSignatoryElement.Clear();
             PropertyyAuthorisedSignatoryElement.SendKeys(authsig);
-            WebDriver.Wait(Helper.DurationType.Millisecond, 100);
+            WebDriver.Wait(DurationType.Millisecond, 100);
         }
 
         private void SelectTitleFromDropdown(string value = "0002")
@@ -388,28 +389,28 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             FirstNameElement.Clear();
             FirstNameElement.SendKeys(firstname);
-            WebDriver.Wait(Helper.DurationType.Millisecond, 100);
+            WebDriver.Wait(DurationType.Millisecond, 100);
         }
 
         private void EnterContactSurName(string surname)
         {
             LastNameElement.Clear();
             LastNameElement.SendKeys(surname);
-            WebDriver.Wait(Helper.DurationType.Millisecond, 100);
+            WebDriver.Wait(DurationType.Millisecond, 100);
         }
 
         private void EnterContactTelephone(string telephone)
         {
             TelephoneElement.Clear();
             TelephoneElement.SendKeys(telephone);
-            WebDriver.Wait(Helper.DurationType.Millisecond, 100);
+            WebDriver.Wait(DurationType.Millisecond, 100);
         }
 
         private void EnterContactEmailAdress(string email)
         {
             EmailElement.Clear();
             EmailElement.SendKeys(email);
-            WebDriver.Wait(Helper.DurationType.Millisecond, 100);
+            WebDriver.Wait(DurationType.Millisecond, 100);
         }
 
         private void SelectPaymentTypeFromDropdown(string value = "2")
@@ -417,12 +418,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if (PaymentTypeElement.Displayed)
                 SelectFromDropdownByValue(PaymentTypeElement, value);
 
-            WebDriver.Wait(Helper.DurationType.Millisecond, 3000);
+            WebDriver.Wait(DurationType.Millisecond, 3000);
         }
 
         public DealerCustomersExistingPage ClickSaveButton()
         {
-            saveButtonElement.Click();
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, saveButtonElement);
+            //saveButtonElement.Click();
             return GetInstance<DealerCustomersExistingPage>();
         }
 

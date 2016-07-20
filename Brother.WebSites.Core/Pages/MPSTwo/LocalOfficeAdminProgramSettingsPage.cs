@@ -126,6 +126,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var byPass = AutomaticProposalApprovalTickBoxElement.Selected ? "Ticked" : "Unticked";
 
             SpecFlow.SetContext("BypassOption", byPass);
+
+            MsgOutput(String.Format("Bypass has been set as {0}", byPass));
         }
 
         public void TryUntickMinimumVolume()
