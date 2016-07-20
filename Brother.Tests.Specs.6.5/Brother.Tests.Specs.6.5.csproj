@@ -1534,6 +1534,7 @@
     <Compile Include="Test Steps\MPSTwo\Proposal\CreateAProposalNeededForContractSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Proposal\CreateATemplateSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Proposal\DealerCanOperateExistingProposalSteps.cs" />
+    <Compile Include="Test Steps\MPSTwo\Proposal\ExtractedAndCombineSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Proposal\LocalOfficeAdminSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Proposal\LocalOfficeApproverSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Proposal\ProposalSummaryPageSteps.cs" />

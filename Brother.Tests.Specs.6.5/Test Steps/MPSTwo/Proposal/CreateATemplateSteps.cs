@@ -836,6 +836,59 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         }
 
 
+        [Then(@"I can copy the declined ""(.*)"" proposal with ""(.*)"" and ""(.*)"" and ""(.*)"" as a ""(.*)"" from ""(.*)"" and approved by ""(.*)""")]
+        public void ThenICanCopyTheDeclinedProposalWithAndAndAsAFromAndApprovedBy(string contractType, string usageType, string length, string billing, 
+            string role, string country, string role2)
+        {
+            CanCopyDeclinedProposal(contractType, usageType, length, billing, role, country, role2, "Without");
+        }
+
+        [Then(@"I can copy the customer detail with the declined ""(.*)"" proposal with ""(.*)"" and ""(.*)"" and ""(.*)"" as a ""(.*)"" from ""(.*)"" and approved by ""(.*)""")]
+        public void ThenICanCopyTheCustomerDetailWithTheDeclinedProposalWithAndAndAsAFromAndApprovedBy(string contractType, string usageType, string length, string billing,
+            string role, string country, string role2)
+        {
+            CanCopyDeclinedProposal(contractType, usageType, length, billing, role, country, role2, "With");
+        }
+
+
+
+        private void CanCopyDeclinedProposal(string contractType, string usageType, string length, string billing, 
+            string role, string country, string role2, string copyOption)
+        {
+            if (MpsUtil.GetProposalByPassValue() != "Ticked")
+            {
+                var instance1 = new CreateNewAccountSteps();
+                var instance2 = new ProposalCreateAProposalThatWillBeUsedForContractSteps();
+                var instance3 = new SendProposalToApprover();
+                var instance4 = new AccountManagementSteps();
+                var instance5 = new LocalOfficeApproverSteps();
+
+                instance1.GivenISignIntoMpsasAFrom(role, country);
+                GivenIHaveCreatedAProposalWithAndAnd(contractType, usageType, length, billing);
+                instance2.GivenIAmOnProposalListPage();
+                instance3.GivenISendTheCreatedGermanProposalForApproval();
+                instance4.ThenIfISignOutOfBrotherOnline();
+                instance1.GivenISignIntoMpsasAFrom(role2, country);
+                instance5.WhenIDeclineTheProposalCreatedAboveAsALocalOfficeApprover();
+                instance4.ThenIfISignOutOfBrotherOnline();
+                instance1.GivenISignIntoMpsasAFrom(role, country);
+                instance3.WhenINavigateToDeclineProposalListPage();
+                switch (copyOption)
+                {
+                    case "Without":
+                        instance3.ThenICanCopyTheDeclinedProposalWithoutCustomer();
+                        break;
+                    case "With":
+                        instance3.ThenICanCopyTheDeclinedProposalWithCustomer();
+                        break;
+                }
+                instance4.ThenIfISignOutOfBrotherOnline();
+            }
+            
+        }
+
+
+
         [Then(@"I can copy the declined proposal as a ""(.*)"" from ""(.*)"" and approved by ""(.*)""")]
         public void ThenICanCopyTheDeclinedProposalAsAFromAndApprovedBy(string role, string country, string role2)
         {
@@ -851,33 +904,36 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
 
         private void CanCopyDeclinedPurchaseAndClickProposal(string role, string country, string role2, string copyOption)
         {
-            if (MpsUtil.GetProposalByPassValue() == "Ticked") return;
-            var instance1 = new CreateNewAccountSteps();
-            var instance2 = new ProposalCreateAProposalThatWillBeUsedForContractSteps();
-            var instance3 = new SendProposalToApprover();
-            var instance4 = new AccountManagementSteps();
-            var instance5 = new LocalOfficeApproverSteps();
-
-            instance1.GivenISignIntoMpsasAFrom(role, country);
-            GivenIHaveCreatedGermanPurchaseAndClickProposal();
-            instance2.GivenIAmOnProposalListPage();
-            instance3.GivenISendTheCreatedGermanProposalForApproval();
-            instance4.ThenIfISignOutOfBrotherOnline();
-            instance1.GivenISignIntoMpsasAFrom(role2, country);
-            instance5.WhenIDeclineTheProposalCreatedAboveAsALocalOfficeApprover();
-            instance4.ThenIfISignOutOfBrotherOnline();
-            instance1.GivenISignIntoMpsasAFrom(role, country);
-            instance3.WhenINavigateToDeclineProposalListPage();
-            switch (copyOption)
+            if (MpsUtil.GetProposalByPassValue() != "Ticked")
             {
-                case "Without":
-                    instance3.ThenICanCopyTheDeclinedProposalWithoutCustomer();
-                    break;
-                case "With":
-                    instance3.ThenICanCopyTheDeclinedProposalWithCustomer();
-                    break;
+                var instance1 = new CreateNewAccountSteps();
+                var instance2 = new ProposalCreateAProposalThatWillBeUsedForContractSteps();
+                var instance3 = new SendProposalToApprover();
+                var instance4 = new AccountManagementSteps();
+                var instance5 = new LocalOfficeApproverSteps();
+
+                instance1.GivenISignIntoMpsasAFrom(role, country);
+                GivenIHaveCreatedGermanPurchaseAndClickProposal();
+                instance2.GivenIAmOnProposalListPage();
+                instance3.GivenISendTheCreatedGermanProposalForApproval();
+                instance4.ThenIfISignOutOfBrotherOnline();
+                instance1.GivenISignIntoMpsasAFrom(role2, country);
+                instance5.WhenIDeclineTheProposalCreatedAboveAsALocalOfficeApprover();
+                instance4.ThenIfISignOutOfBrotherOnline();
+                instance1.GivenISignIntoMpsasAFrom(role, country);
+                instance3.WhenINavigateToDeclineProposalListPage();
+                switch (copyOption)
+                {
+                    case "Without":
+                        instance3.ThenICanCopyTheDeclinedProposalWithoutCustomer();
+                        break;
+                    case "With":
+                        instance3.ThenICanCopyTheDeclinedProposalWithCustomer();
+                        break;
+                }
+                instance4.ThenIfISignOutOfBrotherOnline();
             }
-            instance4.ThenIfISignOutOfBrotherOnline();
+            
         }
 
 
@@ -898,35 +954,38 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         private void CanCopyTheDeclinedLeaseAndClickProposalAsAFromAndApprovedBy(string role, string country,
             string role2, string copyOption )
         {
-            if (MpsUtil.GetProposalByPassValue() == "Ticked") return;
-            var instance1 = new CreateNewAccountSteps();
-            var instance2 = new ProposalCreateAProposalThatWillBeUsedForContractSteps();
-            var instance3 = new SendProposalToApprover();
-            var instance4 = new AccountManagementSteps();
-            // var instance5 = new LocalOfficeApproverSteps();
-
-            instance1.GivenISignIntoMpsasAFrom(role, country);
-            GivenIHaveCreatedGermanPurchaseAndClickProposal();
-            instance2.GivenIAmOnProposalListPage();
-            instance3.GivenISendTheCreatedGermanProposalForApproval();
-            instance4.ThenIfISignOutOfBrotherOnline();
-            instance1.GivenISignIntoMpsasAFrom(role2, country);
-            instance3.WhenIDeclineTheProposalCreatedAbove();
-            instance4.ThenIfISignOutOfBrotherOnline();
-            instance1.GivenISignIntoMpsasAFrom(role, country);
-            instance3.WhenINavigateToDeclineProposalListPage();
-
-            switch (copyOption)
+            if (MpsUtil.GetProposalByPassValue() != "Ticked")
             {
-                case "Without":
-                    instance3.ThenICanCopyTheDeclinedProposalWithoutCustomer();
-                    break;
-                case "With":
-                    instance3.ThenICanCopyTheDeclinedProposalWithCustomer();
-                    break;
-            }
+                var instance1 = new CreateNewAccountSteps();
+                var instance2 = new ProposalCreateAProposalThatWillBeUsedForContractSteps();
+                var instance3 = new SendProposalToApprover();
+                var instance4 = new AccountManagementSteps();
+                // var instance5 = new LocalOfficeApproverSteps();
 
-            instance4.ThenIfISignOutOfBrotherOnline();
+                instance1.GivenISignIntoMpsasAFrom(role, country);
+                GivenIHaveCreatedGermanLeasingAndClickProposal();
+                instance2.GivenIAmOnProposalListPage();
+                instance3.GivenISendTheCreatedGermanProposalForApproval();
+                instance4.ThenIfISignOutOfBrotherOnline();
+                instance1.GivenISignIntoMpsasAFrom(role2, country);
+                instance3.WhenIDeclineTheProposalCreatedAbove();
+                instance4.ThenIfISignOutOfBrotherOnline();
+                instance1.GivenISignIntoMpsasAFrom(role, country);
+                instance3.WhenINavigateToDeclineProposalListPage();
+
+                switch (copyOption)
+                {
+                    case "Without":
+                        instance3.ThenICanCopyTheDeclinedProposalWithoutCustomer();
+                        break;
+                    case "With":
+                        instance3.ThenICanCopyTheDeclinedProposalWithCustomer();
+                        break;
+                }
+
+                instance4.ThenIfISignOutOfBrotherOnline();
+            }
+            
         }
 
 

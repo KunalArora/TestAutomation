@@ -8,15 +8,9 @@ Feature: CloudMPSApproverFromGermanyDecisionFeature
 # Decline
 #
 Scenario Outline: German And Austria Approver Decline Proposal
-	Given Dealer have created an Awaiting Approval proposal of "<ContractType>" and "<UsageType>" from "<Country>" 
-	And I sign into Cloud MPS as a "<Role>" from "<Country>"
-	And Approver navigate to ProposalsPage
-	And Approver navigate to Awaiting Approval screen under Proposals page
-	When Approver select the proposal on Awaiting Proposal
-	Then Approver should be able to decline that proposal with "<Reason>"
-	And the decline proposal should be displayed under Declined tab by Approver
-	And I sign out of Cloud MPS
-
+	Given I verify and store "<Country>" purchase and click proposal bypass status
+	Then "<Role>" can decline "<Country>" Awaiting Approval "<ContractType>" proposal of "<UsageType>" with "<Reason>"
+	
 	Scenarios: 
 	| Role                            | Country | ContractType             | UsageType      | Reason |
 	| Cloud MPS Local Office Approver | Austria | Easy Print Pro & Service | Mindestvolumen | Andere |
@@ -26,15 +20,9 @@ Scenario Outline: German And Austria Approver Decline Proposal
 # Approve
 #
 Scenario Outline: German And Austria Bank Approve Proposal
-	Given Dealer have created an Awaiting Approval proposal of "<ContractType>" and "<UsageType>" from "<Country>" 
-	And I sign into Cloud MPS as a "<Role>" from "<Country>"
-	And I navigate to OfferPage
-	And I navigate to Awaiting Approval screen under Offer page
-	When I select the proposal on Awaiting Proposal
-	Then I should be able to approve that proposal
-#	And the approved proposal should be displayed under Approved tab
-	And I sign out of Cloud MPS
-
+	Given I verify and store "<Country>" purchase and click proposal bypass status
+	Then "<Role>" can decline "<Country>" Leasing Awaiting Approval "<ContractType>" proposal of "<UsageType>"
+	
 	Scenarios: 
 	| Role           | Country | ContractType      | UsageType     |
 	| Cloud MPS Bank | Germany | Leasing & Service | Pay As You Go |

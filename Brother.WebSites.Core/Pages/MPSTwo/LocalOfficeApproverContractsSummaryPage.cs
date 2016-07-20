@@ -203,7 +203,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private void EnterCreditValue()
         {
             var credit = CreditValueElement.GetAttribute("value");
-            if (string.IsNullOrWhiteSpace(credit) || credit.Equals("0.00"))
+            if (string.IsNullOrWhiteSpace(credit) || credit.Equals("0,00"))
             {
                 ClearAndType(CreditValueElement, "10.000,00"); 
             }
