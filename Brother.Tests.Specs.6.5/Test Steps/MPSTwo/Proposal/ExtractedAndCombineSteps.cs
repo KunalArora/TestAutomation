@@ -57,6 +57,55 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             }
         }
 
+        [Then(@"""(.*)"" can cancel ""(.*)"" Awaiting Approval proposal")]
+        public void ThenCanCancelAwaitingApprovalProposal(string role, string country)
+        {
+            if (MpsUtil.GetProposalByPassValue() != "Ticked")
+            {
+
+                var instance1 = new CreateNewAccountSteps();
+                var instance2 = new ProposalCreateAProposalThatWillBeUsedForContractSteps();
+                var instance3 = new SendProposalToApprover();
+                var instance4 = new AccountManagementSteps();
+                var instance5 = new CreateATemplateSteps();
+                var instance6 = new ProposalSummaryPageSteps();
+
+                instance1.GivenISignIntoMpsasAFrom(role, country);
+                instance5.GivenIHaveCreatedPurchaseAndClickProposal();
+                instance2.GivenIAmOnProposalListPage();
+                instance3.GivenISendTheCreatedProposalForApproval();
+                instance3.WhenINavigateToTheSummaryPageOfTheProposalAwaitingApproval();
+                instance6.ThenICanCloseTheProposalOnTheSummaryPage();
+                instance6.ThenTheClosedProposalSummaryPageHasNoErrorMessage();
+                instance4.ThenIfISignOutOfBrotherOnline();
+            }
+
+        }
+
+
+        [Then(@"""(.*)"" can decline ""(.*)"" Awaiting Approval ""(.*)"" and ""(.*)""")]
+        public void ThenCanDeclineAwaitingApprovalAnd(string role, string country, string contractType, string usageType)
+        {
+            if (MpsUtil.GetProposalByPassValue() != "Ticked")
+            {
+                var instance1 = new CreateNewAccountSteps();
+                var instance3 = new ApproverSteps();
+                var instance4 = new AccountManagementSteps();
+                var instance5 = new CreateATemplateSteps();
+
+                instance5.GivenDealerHaveCreatedProposalOfAwaitingApproval(contractType, usageType);
+                instance1.GivenISignIntoMpsasAFrom(role, country);
+                instance3.WhenApproverNavigateToOfferPage();
+                instance3.GivenApproverNavigateToAwaitingApprovalScreenUnderProposalsPage();
+                instance3.ThenApproverSelectTheProposalOnAwaitingProposal();
+                instance3.ThenApproverShouldBeAbleToDeclineThatProposal();
+                instance3.ThenTheDeclineProposalShouldBeDisplayedUnderDeclinedTabByApprover();
+                instance4.ThenIfISignOutOfBrotherOnline();
+            }
+
+        }
+
+
 
         [Then(@"I can close a purchase and click awaiting proposal without error on summary page as ""(.*)"" ""(.*)""")]
         public void ThenICanCloseAPurchaseAndClickAwaitingProposalWithoutErrorOnSummaryPageAs(string country, string role)
@@ -115,6 +164,77 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         }
 
 
+        [Then(@"""(.*)"" can decline Awaiting Approval ""(.*)"" ""(.*)"" proposal with ""(.*)"" and ""(.*)"" and ""(.*)""")]
+        public void ThenCanDeclineAwaitingApprovalProposalWithAndAnd(string role, string country, string contractType, string usageType, string length, string billing)
+        {
+            if (MpsUtil.GetProposalByPassValue() != "Ticked")
+            {
+                var instance1 = new CreateATemplateSteps();
+                var instance4 = new AccountManagementSteps();
+                var instance2 = new CreateNewAccountSteps();
+                var instance3 = new ApproverSteps();
+
+                instance1.GivenDealerHasCreatedProposalOfAwaitingProposalWithAndAnd(country, contractType, usageType,
+                    length, billing);
+                instance2.GivenISignIntoMpsasAFrom(role, country);
+                instance3.WhenApproverNavigateToOfferPage();
+                instance3.GivenApproverNavigateToAwaitingApprovalScreenUnderProposalsPage();
+                instance3.ThenApproverSelectTheProposalOnAwaitingProposal();
+                instance3.ThenApproverShouldBeAbleToDeclineThatProposal();
+                instance3.ThenTheDeclineProposalShouldBeDisplayedUnderDeclinedTabByApprover();
+                instance4.ThenIfISignOutOfBrotherOnline();
+            }
+        }
+
+        [Then(@"I can copy the declined English proposal without customer detail as a ""(.*)"" from ""(.*)"" and approved by ""(.*)""")]
+        public void ThenICanCopyTheDeclinedEnglishProposalWithoutCustomerDetailAsAFromAndApprovedBy(string role, string country, string role2)
+        {
+            CanCopyDeclinedPurchaseAndClickProposal(role, country, role2, "Without");
+        }
+
+        [Then(@"I can copy the declined English proposal as a ""(.*)"" from ""(.*)"" and approved by ""(.*)""")]
+        public void ThenICanCopyTheDeclinedEnglishProposalAsAFromAndApprovedBy(string role, string country, string role2)
+        {
+            CanCopyDeclinedPurchaseAndClickProposal(role, country, role2, "With");
+        }
+
+
+        private void CanCopyDeclinedPurchaseAndClickProposal(string role, string country, string role2, string copyOption)
+        {
+            if (MpsUtil.GetProposalByPassValue() != "Ticked")
+            {
+                var instance1 = new CreateNewAccountSteps();
+                var instance2 = new ProposalCreateAProposalThatWillBeUsedForContractSteps();
+                var instance3 = new SendProposalToApprover();
+                var instance4 = new AccountManagementSteps();
+                var instance5 = new LocalOfficeApproverSteps();
+                var instance6 = new CreateATemplateSteps();
+
+                instance1.GivenISignIntoMpsasAFrom(role, country);
+                instance6.GivenIHaveCreatedPurchaseAndClickProposal();
+                instance2.GivenIAmOnProposalListPage();
+                instance3.GivenISendTheCreatedProposalToLocalOfficeApproverForApproval();
+                instance4.ThenIfISignOutOfBrotherOnline();
+                instance1.GivenISignIntoMpsasAFrom(role2, country);
+                instance5.WhenIDeclineTheProposalCreatedAboveAsALocalOfficeApprover();
+                instance4.ThenIfISignOutOfBrotherOnline();
+                instance1.GivenISignIntoMpsasAFrom(role, country);
+                instance3.WhenINavigateToDeclineProposalListPage();
+                switch (copyOption)
+                {
+                    case "Without":
+                        instance3.ThenICanCopyTheDeclinedProposalWithoutCustomer();
+                        break;
+                    case "With":
+                        instance3.ThenICanCopyTheDeclinedProposalWithCustomer();
+                        break;
+                }
+                instance4.ThenIfISignOutOfBrotherOnline();
+            }
+
+        }
+
+       
         private void CanDeclinedroposalAsAFromAndApprovedBy(string role, string country,
            string contractType, string usageType, string reason)
         {

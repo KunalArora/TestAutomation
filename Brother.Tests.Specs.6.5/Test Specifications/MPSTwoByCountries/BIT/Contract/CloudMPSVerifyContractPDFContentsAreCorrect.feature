@@ -15,6 +15,6 @@ Scenario Outline: Verify PDF Contents Are Correct
 
 Scenarios:
 
-	| ContractType | Country | UsageType      | Length  | Billing              |
-	| Buy & Click  | Ireland | Minimum Volume | 3 years | Quarterly in Arrears |
+	| ContractType                      | Country | UsageType     | Length | Billing              |
+	| Acquisto + Consumo con assistenza | Italy   | Volume minimo | 36     | Quarterly in Arrears |
 	

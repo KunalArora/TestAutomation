@@ -41,16 +41,6 @@ Scenarios:
 
 Scenario Outline: German And Austria Dealer can cancel a Lease and Click proposal in Awaiting Approval state
 	Given I verify and store "<Country>" Lease and click proposal bypass status
-
-	#Given I sign into Cloud MPS as a "<Role>" from "<Country>"
-	#And I have created German Leasing and Click proposal 
-	#And I am on Proposal List page
-	#And I send the created German proposal for approval
-	#When I navigate to the Summary page of the proposal awaiting approval
-	#Then I can close the proposal on the summary page
-	#And the closed proposal summary page has no error message
-	#And I can sign out of Brother Online
-
 	Then I can close an awaiting proposal without error on summary page as "<Country>" "<Role>"
 
 Scenarios:
@@ -64,15 +54,7 @@ Scenario Outline: German And Austria Dealer can cancel a Purchase and Click prop
 	Given I verify and store "<Country>" purchase and click proposal bypass status
 	Then I can close a purchase and click awaiting proposal without error on summary page as "<Country>" "<Role>"
 
-	#Given I sign into Cloud MPS as a "<Role>" from "<Country>"
-	#And I have created German Purchase and Click proposal 
-	#And I am on Proposal List page
-	#And I send the created German proposal for approval
-	#When I navigate to the Summary page of the proposal awaiting approval
-	#Then I can close the proposal on the summary page
-	#And the closed proposal summary page has no error message
-	#And I can sign out of Brother Online
-
+	
 Scenarios:
 
 	| Role             | Country |

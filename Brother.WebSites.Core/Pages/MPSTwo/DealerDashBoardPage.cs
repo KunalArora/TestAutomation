@@ -54,6 +54,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if (IsBelgiumSystem())
             {
                 SwitchBelgianLanguage(language);
+
             } else if (IsFinlandSystem())
             {
                 SwitchFinnishLanguage(language);
