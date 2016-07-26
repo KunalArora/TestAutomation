@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIT.Contract
+namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BBE.Contract
 {
     using TechTalk.SpecFlow;
     
@@ -19,11 +19,11 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIT.Contract
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.9.0.77")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("CloudMPSVerifyItalianPDFContentsAreCorrect")]
+    [NUnit.Framework.DescriptionAttribute("CloudMPSVerifyBelgianPDFContentsAreCorrect")]
     [NUnit.Framework.CategoryAttribute("MPS")]
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("TEST")]
-    public partial class CloudMPSVerifyItalianPDFContentsAreCorrectFeature
+    public partial class CloudMPSVerifyBelgianPDFContentsAreCorrectFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
@@ -35,7 +35,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIT.Contract
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CloudMPSVerifyItalianPDFContentsAreCorrect", "In order to ensure that PDF contents are correct when compared with Summary page\r" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CloudMPSVerifyBelgianPDFContentsAreCorrect", "In order to ensure that PDF contents are correct when compared with Summary page\r" +
                     "\nAs a MPS Dealer\r\nI want to be able to compare the values on summary page with P" +
                     "DF contents", ProgrammingLanguage.CSharp, new string[] {
                         "MPS",
@@ -74,8 +74,9 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIT.Contract
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verify PDF Contents Are Correct")]
-        [NUnit.Framework.TestCaseAttribute("Acquisto + Consumo con assistenza", "Italy", "Volume minimo", "36", "Quarterly in Arrears", null)]
-        public virtual void VerifyPDFContentsAreCorrect(string contractType, string country, string usageType, string length, string billing, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("Buy & Click", "Belgium", "Volume minimum", "3 ans", "Quarterly in Arrears", "French", null)]
+        [NUnit.Framework.TestCaseAttribute("Purchase & Click with Service", "Belgium", "Minimum Volume", "3 jaar", "Quarterly in Arrears", "Dutch", null)]
+        public virtual void VerifyPDFContentsAreCorrect(string contractType, string country, string usageType, string length, string billing, string language, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify PDF Contents Are Correct", exampleTags);
 #line 9

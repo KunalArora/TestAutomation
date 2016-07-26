@@ -835,7 +835,23 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             }
         }
 
+        [Then(@"I can copy ""(.*)"" declined ""(.*)"" proposal with ""(.*)"" and ""(.*)"" and ""(.*)"" as a ""(.*)"" from ""(.*)"" and approved by ""(.*)""")]
+        public void ThenICanCopyDeclinedProposalWithAndAndAsAFromAndApprovedBy(string language, string contractType, string usageType, string length, string billing,
+            string role, string country, string role2)
+        {
+            CanCopyDeclinedProposal(language, contractType, usageType, length, billing, role, country, role2, "Without");
+        }
 
+        [Then(@"I can copy ""(.*)"" customer detail with the declined ""(.*)"" proposal with ""(.*)"" and ""(.*)"" and ""(.*)"" as a ""(.*)"" from ""(.*)"" and approved by ""(.*)""")]
+        public void ThenICanCopyCustomerDetailWithTheDeclinedProposalWithAndAndAsAFromAndApprovedBy(string language, string contractType, string usageType, string length, string billing,
+            string role, string country, string role2)
+        {
+            CanCopyDeclinedProposal(language, contractType, usageType, length, billing, role, country, role2, "With");
+        }
+
+
+        
+        
         [Then(@"I can copy the declined ""(.*)"" proposal with ""(.*)"" and ""(.*)"" and ""(.*)"" as a ""(.*)"" from ""(.*)"" and approved by ""(.*)""")]
         public void ThenICanCopyTheDeclinedProposalWithAndAndAsAFromAndApprovedBy(string contractType, string usageType, string length, string billing, 
             string role, string country, string role2)
@@ -885,6 +901,41 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
                 instance4.ThenIfISignOutOfBrotherOnline();
             }
             
+        }
+
+        private void CanCopyDeclinedProposal(string language, string contractType, string usageType, string length, string billing,
+            string role, string country, string role2, string copyOption)
+        {
+            if (MpsUtil.GetProposalByPassValue() != "Ticked")
+            {
+                var instance1 = new CreateNewAccountSteps();
+                var instance2 = new ProposalCreateAProposalThatWillBeUsedForContractSteps();
+                var instance3 = new SendProposalToApprover();
+                var instance4 = new AccountManagementSteps();
+                var instance5 = new LocalOfficeApproverSteps();
+
+                instance1.GivenISignIntoMpsasAFrom(role, country);
+                GivenIHaveCreatedPurchaseAndClickProposalWithLanguage(contractType, language, usageType, length, billing);
+                instance2.GivenIAmOnProposalListPage();
+                instance3.GivenISendTheCreatedGermanProposalForApproval();
+                instance4.ThenIfISignOutOfBrotherOnline();
+                instance1.GivenISignIntoMpsasAFrom(role2, country);
+                instance5.WhenIDeclineTheProposalCreatedAboveAsALocalOfficeApprover();
+                instance4.ThenIfISignOutOfBrotherOnline();
+                instance1.GivenISignIntoMpsasAFrom(role, country);
+                instance3.WhenINavigateToDeclineProposalListPage();
+                switch (copyOption)
+                {
+                    case "Without":
+                        instance3.ThenICanCopyTheDeclinedProposalWithoutCustomer();
+                        break;
+                    case "With":
+                        instance3.ThenICanCopyTheDeclinedProposalWithCustomer();
+                        break;
+                }
+                instance4.ThenIfISignOutOfBrotherOnline();
+            }
+
         }
 
 
