@@ -15,6 +15,13 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             NextPage = page.NavigateToExistingProposalPage();
         }
 
+        [Given(@"I change the language to ""(.*)""")]
+        public void GivenIChangeTheLanguageTo(string language)
+        {
+            MultipleLanguageSwitcher.SwitchMultiplelanguages(CurrentDriver, language);
+        }
+
+
         [Then(@"I can see the Existing Proposal table")]
         public void ThenICanSeeTheExistingProposalTable()
         {

@@ -50,21 +50,26 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SwitchBetweenMultipleLanguages()
         {
-            
+            var language = SpecFlow.GetContext("BelgianLanguage");
+
             if (IsBelgiumSystem())
             {
-                var language = SpecFlow.GetContext("BelgianLanguage");
+                
                 SwitchBelgianLanguage(language);
             }
             else if (IsFinlandSystem())
             {
-                var language = SpecFlow.GetContext("BelgianLanguage");
+                
                 SwitchFinnishLanguage(language);
+            }
+            else if (IsSwissSystem())
+            {
+                SwitchSwissLanguage(language);
             }
 
          }
 
-        public void SwitchBelgianLanguage(string lang)
+        private void SwitchBelgianLanguage(string lang)
         {
             if (lang.Equals("French"))
             {
@@ -78,7 +83,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
-        public void SwitchFinnishLanguage(string lang)
+        private void SwitchFinnishLanguage(string lang)
         {
             if (lang.Equals("Suomi"))
             {
@@ -92,7 +97,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
-        public void SwitchSwissLanguage(string lang)
+        private void SwitchSwissLanguage(string lang)
         {
             if (lang.Equals("Deutsch"))
             {
@@ -106,7 +111,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
-        public void IsSwitchedLanguageSelected(string text)
+        private void IsSwitchedLanguageSelected(string text)
         {
             if (MultipleLanguagesElement == null)
                 throw new Exception("Unable to locate existing proposals link on dashboard page");

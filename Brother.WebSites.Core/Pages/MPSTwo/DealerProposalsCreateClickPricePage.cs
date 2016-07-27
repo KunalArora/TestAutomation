@@ -92,7 +92,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
             else if (option.Equals("Included in Click Price") || option.Equals("über den Seitenpreis zahlen") || option.Equals("Inkluderet i klikpris")
                      || option.Equals("Inclus dans le coût à la page") || option.Equals("Incluso nel click") || option.Equals("Per utskrift")
-                     || option.Equals("Inbegrepen in de clickprijs"))
+                     || option.Equals("Inbegrepen in de clickprijs") || option.Equals("Inclus dans le prix click")) 
             {
                 InClickPriceElement().Click();
                 WebDriver.Wait(DurationType.Second, 5);

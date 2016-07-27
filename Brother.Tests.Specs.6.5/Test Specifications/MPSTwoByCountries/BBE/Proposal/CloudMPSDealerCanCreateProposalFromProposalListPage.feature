@@ -6,6 +6,7 @@ Feature: CloudMPSBelgianDealerCanCreateProposalFromProposalListPage
 
 Scenario Outline: Dealer Can Create Proposal From Proposal List Page
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
+	And I change the language to "<Language>"
 	And I navigate to existing proposal screen
 	And I begin the process of proposal creation process
 	When I fill Proposal Description for "<ContractType>" Contract type
@@ -23,9 +24,9 @@ Scenario Outline: Dealer Can Create Proposal From Proposal List Page
 	And the billing basis for Installation is "<Basis2>"
 	And the billing basis for Service Pack is "<Basis1>"
 	And the installation type displayed is correct
-	And the installation cost displayed is correct
+	#And the installation cost displayed is correct
 	And the quantity displayed is the same as the one entered
-	And the service pack name and price displayed are correct
+	#And the service pack name and price displayed are correct
 	And the displayed volume value for mono click price is "<ClickVolume>"
 	And the displayed volume value for colour click price is "<ColourVolume>"
 	And the calculated consumable net totals are equal in all places

@@ -8,7 +8,7 @@ using OpenQA.Selenium;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class ActionsModule
+    public static class ActionsModule
     {
         private const string ConvertToContractButton = @".open .js-mps-convert";
         private const string ProposalEditButton = @".open .js-mps-edit";

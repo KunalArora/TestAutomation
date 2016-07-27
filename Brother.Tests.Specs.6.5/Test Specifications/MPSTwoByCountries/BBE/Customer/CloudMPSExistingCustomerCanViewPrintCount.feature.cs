@@ -73,15 +73,16 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BBE.Customer
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Existing Belgian Customer can be used to create a new contract for Run purpose")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Italy", "Buy & Click", "Volume minimum", "Cloud MPS Dealer", "Cloud", "Web", "Colonial Avenue_160322121421 Ltd", "3 ans", "Quarterly in Arrears", "Cloud MPS Customer", null)]
-        public virtual void ExistingBelgianCustomerCanBeUsedToCreateANewContractForRunPurpose(string role, string country, string contractType, string usageType, string role1, string method, string type, string existingCustomer, string length, string billing, string role2, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Belgium", "Buy & Click", "Volume minimum", "Cloud MPS Dealer", "Cloud", "BOR", "Colonial Avenue_160718082853 Ltd", "4 ans", "Quarterly in Arrears", "Cloud MPS Customer", "French", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Belgium", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Cloud", "WEB", "Colonial Avenue_160718082853 Ltd", "3 jaar", "Quarterly in Arrears", "Cloud MPS Customer", "Dutch", null)]
+        public virtual void ExistingBelgianCustomerCanBeUsedToCreateANewContractForRunPurpose(string role, string country, string contractType, string usageType, string role1, string method, string type, string existingCustomer, string length, string billing, string role2, string language, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Existing Belgian Customer can be used to create a new contract for Run purpose", exampleTags);
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line 9
- testRunner.Given(string.Format("\"{0}\" Dealer have created \"{1}\" contract choosing \"{2}\" with \"{3}\" and \"{4}\" and " +
-                        "\"{5}\"", country, contractType, existingCustomer, usageType, length, billing), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given(string.Format("\"{0}\" Dealer with \"<Langauge>\" have created \"{1}\" contract choosing \"{2}\" with \"{" +
+                        "3}\" and \"{4}\" and \"{5}\"", country, contractType, existingCustomer, usageType, length, billing), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 10
  testRunner.And(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
