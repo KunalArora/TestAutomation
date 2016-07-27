@@ -6,7 +6,7 @@ Feature: CloudMPSCreateAContractWithExistingBelgianCustomer
 
 
 Scenario Outline: Existing Belgian Customer can be used to create a new contract for Run purpose
-	Given "<Country>" Dealer have created "<ContractType>" contract choosing "<ExistingCustomer>" with "<UsageType>" and "<Length>" and "<Billing>"
+	Given "<Country>" Dealer with "<Langauge>" have created "<ContractType>" contract choosing "<ExistingCustomer>" with "<UsageType>" and "<Length>" and "<Billing>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And the contract created above is approved
 	And I sign back into Cloud MPS as a "<Role1>" from "<Country>"
@@ -21,6 +21,7 @@ Scenario Outline: Existing Belgian Customer can be used to create a new contract
 	
 Scenarios:
 
-	| Role                            | Country | ContractType | UsageType      | Role1            | Method | Type | ExistingCustomer                 | Length | Billing              | Role2              |
-	| Cloud MPS Local Office Approver | Italy   | Buy & Click  | Volume minimum | Cloud MPS Dealer | Cloud  | Web  | Colonial Avenue_160322121421 Ltd | 3 ans  | Quarterly in Arrears | Cloud MPS Customer |
+	| Role                            | Country | ContractType                  | UsageType      | Role1            | Method | Type | ExistingCustomer                 | Length | Billing              | Role2              | Language |
+	| Cloud MPS Local Office Approver | Belgium | Buy & Click                   | Volume minimum | Cloud MPS Dealer | Cloud  | BOR  | Colonial Avenue_160718082853 Ltd | 4 ans  | Quarterly in Arrears | Cloud MPS Customer | French   |
+	| Cloud MPS Local Office Approver | Belgium | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | WEB  | Colonial Avenue_160718082853 Ltd | 3 jaar | Quarterly in Arrears | Cloud MPS Customer | Dutch    |
 	

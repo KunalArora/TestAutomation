@@ -110,8 +110,31 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 reason = "Andet";
             }
+            else if (IsBelgiumSystem())
+            {
+                reason = BelgiumReason();
+            }
 
             return reason;
+        }
+
+        private string BelgiumReason()
+        {
+            var reason = "";
+            var language = SpecFlow.GetContext("BelgianLanguage");
+
+            switch (language)
+            {
+                case "French":
+                    reason = "Autre";
+                    break;
+                case "Dutch" :
+                    reason = "Andere";
+                    break;
+            }
+
+            return reason;
+
         }
 
 

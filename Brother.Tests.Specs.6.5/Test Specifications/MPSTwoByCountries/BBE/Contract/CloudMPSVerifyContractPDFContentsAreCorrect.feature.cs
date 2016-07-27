@@ -20,6 +20,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BBE.Contract
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("CloudMPSVerifyBelgianPDFContentsAreCorrect")]
+    [NUnit.Framework.IgnoreAttribute()]
     [NUnit.Framework.CategoryAttribute("MPS")]
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("TEST")]
@@ -38,6 +39,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BBE.Contract
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CloudMPSVerifyBelgianPDFContentsAreCorrect", "In order to ensure that PDF contents are correct when compared with Summary page\r" +
                     "\nAs a MPS Dealer\r\nI want to be able to compare the values on summary page with P" +
                     "DF contents", ProgrammingLanguage.CSharp, new string[] {
+                        "ignore",
                         "MPS",
                         "UAT",
                         "TEST"});
@@ -82,8 +84,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BBE.Contract
 #line 9
 this.ScenarioSetup(scenarioInfo);
 #line 10
- testRunner.Given(string.Format("\"{0}\" Dealer has created an awaiting acceptance \"{1}\" contract of \"{2}\" and \"{3}\"" +
-                        " and \"{4}\"", country, contractType, usageType, length, billing), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given(string.Format("\"{0}\" Dealer has created \"{1}\" awaiting acceptance \"{2}\" contract of \"{3}\" and \"{" +
+                        "4}\" and \"{5}\"", country, language, contractType, usageType, length, billing), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 11
  testRunner.When("the dealer downloads PDF for the created contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 12

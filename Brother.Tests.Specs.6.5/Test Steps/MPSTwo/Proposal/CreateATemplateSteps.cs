@@ -115,6 +115,30 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             }
         }
 
+        public void GivenDealerHaveCreatedProposalOfOpenWithLanguageWithExistingCustomer(string country, string language, string contractType, string customer,
+            string usageType, string length, string billing)
+        {
+            var instance4 = new CreateNewAccountSteps();
+            instance4.SetProposalByPassValue(country, contractType);
+
+            contractType = ContractType(contractType);
+
+            if (contractType.Equals("Lease & Click with Service"))
+            {
+                instance4.GivenISignIntoMpsasAFrom("Cloud MPS Dealer", country);
+                GivenIHaveCreatedLeasingAndClickProposalWithLanguage(contractType, language, usageType, length, billing);
+                var instance = new ProposalCreateAProposalThatWillBeUsedForContractSteps();
+                instance.GivenIAmOnProposalListPage();
+            }
+            else if (contractType.Equals("Purchase & Click with Service"))
+            {
+                instance4.GivenISignIntoMpsasAFrom("Cloud MPS Dealer", country);
+                GivenIHaveCreatedPurchaseAndClickProposalWithLanguage(contractType, language, usageType, length, billing);
+                var instance = new ProposalCreateAProposalThatWillBeUsedForContractSteps();
+                instance.GivenIAmOnProposalListPage();
+            }
+        }
+
         public void GivenDealerHaveCreatedProposalOfOpen(string country, string contractType, string customer, string usageType, string length, string billing)
         {
             var instance4 = new CreateNewAccountSteps();
@@ -432,7 +456,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             }
         }
 
-        private string ContractType(string type)
+        public string ContractType(string type)
         {
             if (type == "Acquisto + Consumo con assistenza" || type == "Buy & Click"
                 || type == "Purchase & Click con Service" || type == "Kjøp og klikk med service" ||
@@ -1189,14 +1213,14 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         }
 
 
-        private void WhenISignTheContractAsADealer()
+        public void WhenISignTheContractAsADealer()
         {
             NextPage = CurrentPage.As<DealerDashBoardPage>().NavigateToContractScreenFromDealerDashboard();
             NextPage = CurrentPage.As<DealerContractsPage>().NavigateToViewOfferOnApprovedProposalsTab();
             NextPage = CurrentPage.As<DealerContractsSummaryPage>().ClickSignButtonToNavigateToAwaitingAcceptance();
         }
 
-        private void WhenDealerSignAndNavigateToAwaitingAcceptance()
+        public void WhenDealerSignAndNavigateToAwaitingAcceptance()
         {
             NextPage = CurrentPage.As<DealerDashBoardPage>().NavigateToContractScreenFromDealerDashboard();
             NextPage = CurrentPage.As<DealerContractsPage>().NavigateToViewOfferOnApprovedProposalsTab();

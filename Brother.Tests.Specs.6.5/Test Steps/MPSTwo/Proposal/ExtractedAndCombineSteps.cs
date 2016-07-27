@@ -20,16 +20,73 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
 
 
         [Then(@"""(.*)"" can decline ""(.*)"" Awaiting Approval ""(.*)"" proposal of ""(.*)"" with ""(.*)""")]
-        public void ThenCanDeclineAwaitingApprovalProposalOfWith(string role, string country, string contractType, string usageType, string reason)
+        public void ThenCanDeclineAwaitingApprovalProposalOfWith(string role, string country, string contractType,
+            string usageType, string reason)
         {
-            CanDeclinedroposalAsAFromAndApprovedBy(role,country, contractType, usageType, reason);
+            CanDeclinedroposalAsAFromAndApprovedBy(role, country, contractType, usageType, reason);
         }
 
         [Then(@"""(.*)"" can decline ""(.*)"" Leasing Awaiting Approval ""(.*)"" proposal of ""(.*)""")]
-        public void ThenCanDeclineLeasingAwaitingApprovalProposalOf(string role, string country, string contractType, string usageType)
+        public void ThenCanDeclineLeasingAwaitingApprovalProposalOf(string role, string country, string contractType,
+            string usageType)
         {
             BankCanDeclineProposalAsAFromAndApprovedBy(role, country, contractType, usageType);
         }
+
+        [Given(
+            @"""(.*)"" Dealer has created ""(.*)"" awaiting acceptance ""(.*)"" contract of ""(.*)"" and ""(.*)"" and ""(.*)"""
+            )]
+        public void GivenDealerHasCreatedAwaitingAcceptanceContractOfAndAnd(string country, string language,
+            string contractType, string usageType, string length, string billing)
+        {
+            var instance = new CreateATemplateSteps();
+
+            contractType = instance.ContractType(contractType);
+
+            if (contractType.Equals("Lease & Click with Service"))
+            {
+                instance.GivenDealerHaveCreatedProposalOfOpen(country, language, contractType, usageType, length,
+                    billing);
+                var instance4 = new CreateNewAccountSteps();
+                var instance2 = new SendProposalToApprover();
+                var instance3 = new AccountManagementSteps();
+
+                if (MpsUtil.GetProposalByPassValue() != "Ticked")
+                {
+                    instance4.GivenISignIntoMpsasAFrom("Cloud MPS Bank", country);
+                    instance2.ThenINavigateToBankAwaitingApprovalScreenUnderOfferPage();
+                    instance2.ThenTheConvertedLeasingAndClickAndServiceProposalAboveIsDisplayedOnTheScreen();
+                    var instance5 = new ApproverSteps();
+                    instance5.ThenApproverSelectTheProposalOnAwaitingProposal();
+                    instance5.ThenIShouldBeAbleToApproveThatProposal();
+                    instance3.ThenIfISignOutOfBrotherOnline();
+                }
+                instance4.GivenISignIntoMpsasAFrom("Cloud MPS Dealer", country);
+                instance.WhenDealerSignAndNavigateToAwaitingAcceptance();
+            }
+            else if (contractType.Equals("Purchase & Click with Service"))
+            {
+                instance.GivenDealerHaveCreatedProposalWithLanguageOfAwaitingApproval(country, language, contractType,
+                    usageType, length, billing);
+                var instance4 = new CreateNewAccountSteps();
+                var instance2 = new SendProposalToApprover();
+                var instance3 = new AccountManagementSteps();
+
+                if (MpsUtil.GetProposalByPassValue() != "Ticked")
+                {
+                    instance4.GivenISignIntoMpsasAFrom("Cloud MPS Local Office Approver", country);
+                    instance2.ThenINavigateToLOApproverAwaitingApprovalScreenUnderProposalsPage();
+                    instance2.ThenTheConvertedPurchaseAndClickAndServiceProposalAboveIsDisplayedOnTheScreen();
+                    var instance5 = new ApproverSteps();
+                    instance5.ThenApproverSelectTheProposalOnAwaitingProposal();
+                    instance5.ThenIShouldBeAbleToApproveThatProposal();
+                    instance3.ThenIfISignOutOfBrotherOnline();
+                }
+                instance4.GivenISignIntoMpsasAFrom("Cloud MPS Dealer", country);
+                instance.WhenDealerSignAndNavigateToAwaitingAcceptance();
+            }
+        }
+
 
 
         [Then(@"I can close an awaiting proposal without error on summary page as ""(.*)"" ""(.*)""")]
@@ -108,7 +165,8 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
 
 
         [Then(@"I can close a purchase and click awaiting proposal without error on summary page as ""(.*)"" ""(.*)""")]
-        public void ThenICanCloseAPurchaseAndClickAwaitingProposalWithoutErrorOnSummaryPageAs(string country, string role)
+        public void ThenICanCloseAPurchaseAndClickAwaitingProposalWithoutErrorOnSummaryPageAs(string country,
+            string role)
         {
             if (MpsUtil.GetProposalByPassValue() != "Ticked")
             {
@@ -164,8 +222,11 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         }
 
 
-        [Then(@"""(.*)"" can decline Awaiting Approval ""(.*)"" ""(.*)"" proposal with ""(.*)"" and ""(.*)"" and ""(.*)""")]
-        public void ThenCanDeclineAwaitingApprovalProposalWithAndAnd(string role, string country, string contractType, string usageType, string length, string billing)
+        [Then(
+            @"""(.*)"" can decline Awaiting Approval ""(.*)"" ""(.*)"" proposal with ""(.*)"" and ""(.*)"" and ""(.*)"""
+            )]
+        public void ThenCanDeclineAwaitingApprovalProposalWithAndAnd(string role, string country, string contractType,
+            string usageType, string length, string billing)
         {
             if (MpsUtil.GetProposalByPassValue() != "Ticked")
             {
@@ -186,8 +247,11 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             }
         }
 
-        [Then(@"I can copy the declined English proposal without customer detail as a ""(.*)"" from ""(.*)"" and approved by ""(.*)""")]
-        public void ThenICanCopyTheDeclinedEnglishProposalWithoutCustomerDetailAsAFromAndApprovedBy(string role, string country, string role2)
+        [Then(
+            @"I can copy the declined English proposal without customer detail as a ""(.*)"" from ""(.*)"" and approved by ""(.*)"""
+            )]
+        public void ThenICanCopyTheDeclinedEnglishProposalWithoutCustomerDetailAsAFromAndApprovedBy(string role,
+            string country, string role2)
         {
             CanCopyDeclinedPurchaseAndClickProposal(role, country, role2, "Without");
         }
@@ -199,7 +263,8 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         }
 
 
-        private void CanCopyDeclinedPurchaseAndClickProposal(string role, string country, string role2, string copyOption)
+        private void CanCopyDeclinedPurchaseAndClickProposal(string role, string country, string role2,
+            string copyOption)
         {
             if (MpsUtil.GetProposalByPassValue() != "Ticked")
             {
@@ -234,9 +299,9 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
 
         }
 
-       
+
         private void CanDeclinedroposalAsAFromAndApprovedBy(string role, string country,
-           string contractType, string usageType, string reason)
+            string contractType, string usageType, string reason)
         {
             if (MpsUtil.GetProposalByPassValue() != "Ticked")
             {
@@ -259,7 +324,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         }
 
         private void BankCanDeclineProposalAsAFromAndApprovedBy(string role, string country,
-           string contractType, string usageType)
+            string contractType, string usageType)
         {
             if (MpsUtil.GetProposalByPassValue() != "Ticked")
             {
@@ -273,6 +338,122 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
                 instance1.GivenISignIntoMpsasAFrom(role, country);
                 instance2.GivenIApproveTheProposalCreatedAbove();
                 instance4.ThenIfISignOutOfBrotherOnline();
+            }
+
+        }
+
+        [Given(
+            @"""(.*)"" Dealer with ""(.*)"" have created ""(.*)"" contract choosing ""(.*)"" with ""(.*)"" and ""(.*)"" and ""(.*)"""
+            )]
+        public void GivenDealerWithHaveCreatedContractChoosingWithAndAnd(string country, string langauge,
+            string contractType, string existingCustomer,
+            string usageType, string length, string billing)
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+
+
+        public void GivenDealerWithLanguageHaveCreatedAContractWithAndAnd(string country, string language, string contractType, string usageType, string length, string billing)
+        {
+            var instance = new CreateATemplateSteps();
+            
+            contractType = instance.ContractType(contractType);
+
+            if (contractType.Equals("Lease & Click with Service"))
+            {
+                instance.GivenDealerHaveCreatedProposalWithLanguageOfAwaitingApproval(country, language, contractType, usageType, length, billing);
+                var instance4 = new CreateNewAccountSteps();
+                var instance2 = new SendProposalToApprover();
+                var instance3 = new AccountManagementSteps();
+
+                if (MpsUtil.GetProposalByPassValue() != "Ticked")
+                {
+                    instance4.GivenISignIntoMpsasAFrom("Cloud MPS Bank", country);
+                    instance2.ThenINavigateToBankAwaitingApprovalScreenUnderOfferPage();
+                    instance2.ThenTheConvertedLeasingAndClickAndServiceProposalAboveIsDisplayedOnTheScreen();
+                    var instance5 = new ApproverSteps();
+                    instance5.ThenApproverSelectTheProposalOnAwaitingProposal();
+                    instance5.ThenIShouldBeAbleToApproveThatProposal();
+                    instance3.ThenIfISignOutOfBrotherOnline();
+                }
+                instance4.GivenISignIntoMpsasAFrom("Cloud MPS Dealer", country);
+                instance.WhenISignTheContractAsADealer();
+                instance3.ThenIfISignOutOfBrotherOnline();
+            }
+            else if (contractType.Equals("Purchase & Click with Service"))
+            {
+                instance.GivenDealerHaveCreatedProposalWithLanguageOfAwaitingApproval(country, language, contractType, usageType, length, billing);
+                var instance4 = new CreateNewAccountSteps();
+                var instance2 = new SendProposalToApprover();
+                var instance3 = new AccountManagementSteps();
+
+                if (MpsUtil.GetProposalByPassValue() != "Ticked")
+                {
+                    instance4.GivenISignIntoMpsasAFrom("Cloud MPS Local Office Approver", country);
+                    instance2.ThenINavigateToLOApproverAwaitingApprovalScreenUnderProposalsPage();
+                    instance2.ThenTheConvertedPurchaseAndClickAndServiceProposalAboveIsDisplayedOnTheScreen();
+                    var instance5 = new ApproverSteps();
+                    instance5.ThenApproverSelectTheProposalOnAwaitingProposal();
+                    instance5.ThenIShouldBeAbleToApproveThatProposal();
+                    instance3.ThenIfISignOutOfBrotherOnline();
+                }
+                instance4.GivenISignIntoMpsasAFrom("Cloud MPS Dealer", country);
+                instance.WhenISignTheContractAsADealer();
+                instance3.ThenIfISignOutOfBrotherOnline();
+            }
+        }
+
+        public void GivenDealerHaveCreatedAContractWithAndAnd(string country, string contractType, string customer,
+            string usageType, string length, string billing)
+        {
+            var instance = new CreateATemplateSteps();
+
+            contractType = instance.ContractType(contractType);
+
+            if (contractType.Equals("Lease & Click with Service"))
+            {
+                instance.GivenDealerHaveCreatedProposalOfAwaitingApproval(country, contractType, customer, usageType,
+                    length, billing);
+                var instance4 = new CreateNewAccountSteps();
+                var instance2 = new SendProposalToApprover();
+                var instance3 = new AccountManagementSteps();
+
+                if (MpsUtil.GetProposalByPassValue() != "Ticked")
+                {
+                    instance4.GivenISignIntoMpsasAFrom("Cloud MPS Bank", country);
+                    instance2.ThenINavigateToBankAwaitingApprovalScreenUnderOfferPage();
+                    instance2.ThenTheConvertedLeasingAndClickAndServiceProposalAboveIsDisplayedOnTheScreen();
+                    var instance5 = new ApproverSteps();
+                    instance5.ThenApproverSelectTheProposalOnAwaitingProposal();
+                    instance5.ThenIShouldBeAbleToApproveThatProposal();
+                    instance3.ThenIfISignOutOfBrotherOnline();
+                }
+                instance4.GivenISignIntoMpsasAFrom("Cloud MPS Dealer", country);
+                instance.WhenISignTheContractAsADealer();
+                instance3.ThenIfISignOutOfBrotherOnline();
+            }
+            else if (contractType.Equals("Purchase & Click with Service"))
+            {
+                instance.GivenDealerHaveCreatedProposalOfAwaitingApproval(country, contractType, customer, usageType,
+                    length, billing);
+                var instance4 = new CreateNewAccountSteps();
+                var instance2 = new SendProposalToApprover();
+                var instance3 = new AccountManagementSteps();
+
+                if (MpsUtil.GetProposalByPassValue() != "Ticked")
+                {
+                    instance4.GivenISignIntoMpsasAFrom("Cloud MPS Local Office Approver", country);
+                    instance2.ThenINavigateToLOApproverAwaitingApprovalScreenUnderProposalsPage();
+                    instance2.ThenTheConvertedPurchaseAndClickAndServiceProposalAboveIsDisplayedOnTheScreen();
+                    var instance5 = new ApproverSteps();
+                    instance5.ThenApproverSelectTheProposalOnAwaitingProposal();
+                    instance5.ThenIShouldBeAbleToApproveThatProposal();
+                    instance3.ThenIfISignOutOfBrotherOnline();
+                }
+                instance4.GivenISignIntoMpsasAFrom("Cloud MPS Dealer", country);
+                instance.WhenISignTheContractAsADealer();
+                instance3.ThenIfISignOutOfBrotherOnline();
             }
 
         }
