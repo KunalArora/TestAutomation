@@ -50,20 +50,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SwitchBetweenMultipleLanguages()
         {
-            var language = SpecFlow.GetContext("BelgianLanguage");
-
             if (IsBelgiumSystem())
             {
-                
+                var language = SpecFlow.GetContext("BelgianLanguage");
                 SwitchBelgianLanguage(language);
             }
             else if (IsFinlandSystem())
             {
-                
+                var language = SpecFlow.GetContext("BelgianLanguage");
                 SwitchFinnishLanguage(language);
             }
             else if (IsSwissSystem())
             {
+                var language = SpecFlow.GetContext("BelgianLanguage");
                 SwitchSwissLanguage(language);
             }
 

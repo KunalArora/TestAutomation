@@ -7,6 +7,7 @@ Feature: CloudMPSBelgianPurchaseAndClickProposalUserJourney
 
 Scenario Outline: Create different varieties of Purchase and Click proposal for new customer on Minimum Volume Term
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
+	And I change the language to "<Language>"
 	And I am on MPS New Proposal Page
 	When I fill Proposal Description for "<ContractType>" Contract type
 	And I select "<CreateOption>" button for customer data capture 
@@ -32,13 +33,14 @@ Scenario Outline: Create different varieties of Purchase and Click proposal for 
 	
 
 	Scenarios: 
-	| Role             | Country | ContractType                  | UsageType      | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod                         | ClickVolume | ColourVolume | Language |
-	| Cloud MPS Dealer | Belgium | Purchase & Click with Service | Minimum Volume | 3 jaar   | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Betaling bij aanvang van het contract | 800         | 800          | Dutch    |
-	| Cloud MPS Dealer | Belgium | Buy & Click                   | Volume minimum | 3 ans    | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Paiement au démarrage du contrat      | 800         | 800          | French   |
+	| Role             | Country | ContractType                  | CreateOption        | UsageType      | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod                         | ClickVolume | ColourVolume | Language |
+	| Cloud MPS Dealer | Belgium | Purchase & Click with Service | Create new customer | Minimum Volume | 3 jaar   | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Betaling bij aanvang van het contract | 800         | 800          | Dutch    |
+	| Cloud MPS Dealer | Belgium | Buy & Click                   | Create new customer | Volume minimum | 3 ans    | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Paiement au démarrage du contrat      | 800         | 800          | French   |
 	
 
 Scenario Outline: Create different varieties of Purchase and Click proposal for an existing customer
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
+	And I change the language to "<Language>"
 	And I am on MPS New Proposal Page
 	When I fill Proposal Description for "<ContractType>" Contract type
 	And I choose an existing contact from the list of available contacts

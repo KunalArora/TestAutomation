@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -83,19 +83,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void PayServicePackMethod(string option)
         {
             if (IsSpainSystem()) return;
-            if (option.Equals("Pay upfront") || option.Equals("im Voraus bezahlen") || option.Equals("Betale p� forskud")
-                || option.Equals("Paiement au d�marrage du contrat") || option.Equals("Pagamento anticipato") || option.Equals("F�rskott")
-                || option.Equals("Betaling bij aanvang van het contract"))
+            if (option.Equals("Pay upfront") || option.Equals("im Voraus bezahlen") || option.Equals("Betale på forskud")
+                || option.Equals("Paiement au démarrage du contrat") || option.Equals("Pagamento anticipato") || option.Equals("Förskott")
+                || option.Equals("Betaling bij aanvang van het contract") || option.Equals("Płatność z góry"))
             {
                 PayUpfrontElement().Click();
-                WebDriver.Wait(DurationType.Second, 5);
+                WebDriver.Wait(DurationType.Second, 1);
             }
-            else if (option.Equals("Included in Click Price") || option.Equals("�ber den Seitenpreis zahlen") || option.Equals("Inkluderet i klikpris")
-                     || option.Equals("Inclus dans le co�t � la page") || option.Equals("Incluso nel click") || option.Equals("Per utskrift")
-                     || option.Equals("Inbegrepen in de clickprijs") || option.Equals("Inclus dans le prix click")) 
+            else if (option.Equals("Included in Click Price") || option.Equals("über den Seitenpreis zahlen") || option.Equals("Inkluderet i klikpris")
+                     || option.Equals("Inclus dans le coût à la page") || option.Equals("Incluso nel click") || option.Equals("Per utskrift")
+                     || option.Equals("Inbegrepen in de clickprijs") || option.Equals("Inclus dans le prix click") || option.Equals("Wliczyć w cenę za wydruk strony")) 
             {
                 InClickPriceElement().Click();
-                WebDriver.Wait(DurationType.Second, 5);
+                WebDriver.Wait(DurationType.Second, 1);
             }
         }
 

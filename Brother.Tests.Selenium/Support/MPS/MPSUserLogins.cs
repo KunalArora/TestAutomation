@@ -161,6 +161,10 @@ namespace Brother.Tests.Selenium.Lib.Support
             {
                 username = MPSQAS.Default.QASDKCustomer;
             }
+            else if (currentUrl.Contains(BelgiumUrl))
+            {
+                username = MPSQAS.Default.QASBECustomer;
+            }
             return username;
         }
 
@@ -245,23 +249,23 @@ namespace Brother.Tests.Selenium.Lib.Support
 
         public static string ApproverUsername()
         {
-            string ApproverUser = null;
+            string approverUser = null;
 
             switch (Helper.GetRunTimeEnv())
             {
                 case "UAT":
-                    ApproverUser = MPSQAS.Default.QASMPSLOApprover;
+                    approverUser = MPSQAS.Default.QASMPSLOApprover;
                     break;
                 case "TEST":
-                    ApproverUser = MPSDV2.Default.DV2MPSLOApprover;
+                    approverUser = MPSDV2.Default.DV2MPSLOApprover;
                     break;
                 case "PROD":
-                    ApproverUser = MPSProd.Default.ProdMPSLOApprover;
+                    approverUser = MPSProd.Default.ProdMPSLOApprover;
                     break;
 
             }
 
-            return ApproverUser;
+            return approverUser;
         }
 
         public static string ApproverPassword()
@@ -286,23 +290,23 @@ namespace Brother.Tests.Selenium.Lib.Support
 
         public static string AdminUsername()
         {
-            string AdminUser = null;
+            string adminUser = null;
 
             switch (Helper.GetRunTimeEnv())
             {
                 case "UAT":
-                    AdminUser = MPSQAS.Default.QASMPSLOAdmin;
+                    adminUser = MPSQAS.Default.QASMPSLOAdmin;
                     break;
                 case "TEST":
-                    AdminUser = MPSDV2.Default.DV2MPSLOAdmin;
+                    adminUser = MPSDV2.Default.DV2MPSLOAdmin;
                     break;
                 case "PROD":
-                    AdminUser = MPSProd.Default.ProdMPSLOAdmin;
+                    adminUser = MPSProd.Default.ProdMPSLOAdmin;
                     break;
 
             }
 
-            return AdminUser;
+            return adminUser;
         }
 
         public static string AdminPassword()

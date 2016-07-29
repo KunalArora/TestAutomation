@@ -1292,7 +1292,8 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             var clickPricestepInstance = new DealerProposalsCreateClickPriceStep();
             clickPricestepInstance.WhenIEnterClickPriceVolumeOf("2000", "2000");
         }
-        private void GivenIHaveCreatedLeasingAndClickProposalWithLanguage(string contractType, string language, string usageType, string length, string billing)
+
+        public void GivenIHaveCreatedLeasingAndClickProposalWithLanguage(string contractType, string language, string usageType, string length, string billing)
         {
             contractType = ContractType(contractType);
             GivenIChangeTheLanguageDisplayed(language);
@@ -1436,12 +1437,12 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
 
         }
 
-        private void GivenIChangeTheLanguageDisplayed(string language)
+        public void GivenIChangeTheLanguageDisplayed(string language)
         {
             CurrentPage.As<DealerDashBoardPage>().SwitchBetweenMultipleLanguages(language);
         }
 
-        private void GivenIHaveCreatedPurchaseAndClickProposalWithLanguage(string contractType, string language, string usageType, string length, string billing)
+        public void GivenIHaveCreatedPurchaseAndClickProposalWithLanguage(string contractType, string language, string usageType, string length, string billing)
         {
             contractType = ContractType(contractType);
             GivenIChangeTheLanguageDisplayed(language);
@@ -1506,6 +1507,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
 
         }
 
+       
         [When(@"I download the generated proposal PDF")]
         public void WhenIDownloadTheGeneratedProposalPdf()
         {
