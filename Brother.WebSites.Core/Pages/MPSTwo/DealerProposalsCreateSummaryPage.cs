@@ -260,11 +260,30 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             WebDriver.Wait(DurationType.Second, 5);
         }
 
+        private string OfferName()
+        {
+            var name = "";
+
+            var lang = SpecFlow.GetContext("BelgianLanguage");
+
+            switch (lang)
+            {
+                case "French":
+                    name = "Offre-";
+                    break;
+                case "Dutch":
+                    name = "Offerte-";
+                    break;
+            }
+            return name;
+        }
+        
+
         private string DownloadFolderPath()
         {
 
             var propRef = MpsUtil.GeneratedLeadCodeRef();
-            var propName = MpsUtil.CreatedProposal();
+            var propName = IsBelgiumSystem() ? OfferName() + MpsUtil.CreatedProposal() : MpsUtil.CreatedProposal();
 
             var partialPath = DownloadPath + propName + "-" + propRef + "-";
 

@@ -7,7 +7,7 @@ Feature: CloudMPSBelgianDealerCanGeneratePDFAtRelevantStages
 
 Scenario Outline: Dealer Can Generate PDF for Purchase and Click in Awaiting Approval Status for other countries
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
-	And I have created a "<ContractType>" proposal with "<UsageType>" and "<Length>" and "<Billing>"
+	And I have created a "<ContractType>" "<Language>"proposal with "<UsageType>" and "<Length>" and "<Billing>"
 	And I am on Proposal List page
 	When I send the created proposal for approval
 	And I navigate to the Summary page of the proposal awaiting approval

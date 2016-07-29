@@ -158,7 +158,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 coy = "Hidden Run_160630151142 Ltd";
             }
-
+            else if (IsBelgiumSystem())
+            {
+                coy = "Colonial Avenue_160718082853 Ltd";
+            }
            return coy;
         }
 

@@ -87,7 +87,29 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 SelectFromDropdown(DeclineReasonElement, "Udløbet");
             }
+            else if (IsBelgiumSystem())
+            {
+                SelectFromDropdown(DeclineReasonElement, RejectionReason());
+            }
             
+        }
+
+        private string RejectionReason()
+        {
+            var reason = "";
+            var language = SpecFlow.GetContext("BelgianLanguage");
+
+            switch (language)
+            {
+                case "French" :
+                    reason = "Autre";
+                    break;
+                case "Dutch" :
+                    reason = "Andere";
+                    break;
+            }
+
+            return reason;
         }
 
         public LocalOfficeApproverProposalsPage ClickRejectButton()

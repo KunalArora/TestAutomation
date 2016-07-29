@@ -23,5 +23,5 @@ Scenarios:
 
 	| Role                            | Country | ContractType                  | UsageType      | Role1            | Method | Type | ExistingCustomer                 | Length | Billing              | Role2              | Language |
 	| Cloud MPS Local Office Approver | Belgium | Buy & Click                   | Volume minimum | Cloud MPS Dealer | Cloud  | BOR  | Colonial Avenue_160718082853 Ltd | 4 ans  | Quarterly in Arrears | Cloud MPS Customer | French   |
-	| Cloud MPS Local Office Approver | Belgium | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | WEB  | Colonial Avenue_160718082853 Ltd | 3 jaar | Quarterly in Arrears | Cloud MPS Customer | Dutch    |
+	| Cloud MPS Local Office Approver | Belgium | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  | Colonial Avenue_160718082853 Ltd | 3 jaar | Quarterly in Arrears | Cloud MPS Customer | Dutch    |
 	

@@ -80,7 +80,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement CompanyRegistrationNumerElement;
         [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerVatRegistrationNumber_Input")]
         public IWebElement VatFieldElement;
-        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerCulture_Input")]
+        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputPersonCulture_Input")]
         public IWebElement CustomerMultipleLanguageElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputCustomerLegalForm_Input")]
         public IWebElement LegalFormDropdown;
@@ -237,7 +237,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SelectCustomerLanguage(string lang)
         {
-            string language = null;
+            string language;
             
             switch (lang)
             {
@@ -274,20 +274,21 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void FillOrganisationDetails()
        {
            EnterCompanyName();
-           EnterPropertyNumber();
-           EnterPropertyStreet();
-           EnterRegistrationNumber();
-           //EnterPropertyArea();
-           EnterPropertyTown();
-           EnterPropertyPostCode();
-           EnterInitialVat();
-           MultipleLanguageSelectorNotDisplayed();
-           //SelectRegionFromDropdown("Greater Manchester");
+
+            if (!IsPolandSystem()) return;
+            EnterPropertyNumber();
+            EnterPropertyStreet();
+            EnterRegistrationNumber();
+            //EnterPropertyArea();
+            EnterPropertyTown();
+            EnterPropertyPostCode();
+            EnterInitialVat();
+            MultipleLanguageSelectorNotDisplayed();
+            //SelectRegionFromDropdown("Greater Manchester");
             if (IsFinlandSystem() || IsBelgiumSystem() || IsSwissSystem())
             {
                 SelectCustomerLanguage(SpecFlow.GetContext("BelgianLanguage"));
             }
-
        }
 
         public void EnterRegistrationNumber()
@@ -409,6 +410,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
        public void FillOrganisationContactDetail()
        {
+           if (IsPolandSystem()) return;
            SelectTitleFromDropdown();
            EnterContactFirstName();
            EnterContactSurName();

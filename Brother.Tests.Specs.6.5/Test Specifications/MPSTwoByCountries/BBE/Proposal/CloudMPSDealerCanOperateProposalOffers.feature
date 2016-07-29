@@ -17,7 +17,7 @@ Scenario Outline: Dealer can copy an existing proposal offer
 	| Cloud MPS Dealer | Belgium | Without   | Without | French   |
 	#| Cloud MPS Dealer | Belgium   | Without   | Without |
 	
-
+	@ignore
 Scenario Outline: Dealer can copy an existing proposal offer for all countries
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created a "<ContractType>" proposal "<Customer>" Customer detail with "<UsageType>" and "<Length>" and "<Billing>"
