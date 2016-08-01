@@ -240,8 +240,12 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
                 instance2.ThenIAmDirectedToCustomerDetailPageForMoreDataCapture();
                 instance2.ThenIAmTakenToTheProposalSummaryWhereICanEnterEnvisageContractStartDate();
                 instance2.ThenICanSuccessfullyConvertTheProposalToContract();
-                instance2.ThenTheNewlyConvertedContractIsAvailableUnderAwaitingApprovalTab();
-                instance2.ThenINavigateToProposalSummaryPageUnderAwaitingApprovalTab();
+
+                if (MpsUtil.GetProposalByPassValue() != "Ticked")
+                {
+                    instance2.ThenTheNewlyConvertedContractIsAvailableUnderAwaitingApprovalTab();
+                    instance2.ThenINavigateToProposalSummaryPageUnderAwaitingApprovalTab();
+                }
                 var instance3 = new AccountManagementSteps();
                 instance3.ThenIfISignOutOfBrotherOnline();
             }
@@ -287,8 +291,12 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
                 instance2.ThenIAmDirectedToCustomerDetailPageForMoreDataCapture();
                 instance2.ThenIAmTakenToTheProposalSummaryWhereICanEnterEnvisageContractStartDate();
                 instance2.ThenICanSuccessfullyConvertTheProposalToContract();
-                instance2.ThenTheNewlyConvertedContractIsAvailableUnderAwaitingApprovalTab();
-                instance2.ThenINavigateToProposalSummaryPageUnderAwaitingApprovalTab();
+
+                if (MpsUtil.GetProposalByPassValue() != "Ticked")
+                {
+                    instance2.ThenTheNewlyConvertedContractIsAvailableUnderAwaitingApprovalTab();
+                    instance2.ThenINavigateToProposalSummaryPageUnderAwaitingApprovalTab();
+                }
                 var instance3 = new AccountManagementSteps();
                 instance3.ThenIfISignOutOfBrotherOnline();
             }
@@ -370,6 +378,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
                 //instance2.ThenIAmDirectedToCustomerDetailPageForMoreDataCapture();
                 instance2.ThenIAmTakenToTheProposalSummaryWhereICanEnterEnvisageContractStartDate();
                 instance2.ThenICanSuccessfullyConvertTheProposalToContract();
+
                 if (MpsUtil.GetProposalByPassValue() != "Ticked")
                 {
                     instance2.ThenTheNewlyConvertedContractIsAvailableUnderAwaitingApprovalTab();
@@ -460,7 +469,8 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         {
             if (type == "Acquisto + Consumo con assistenza" || type == "Buy & Click"
                 || type == "Purchase & Click con Service" || type == "Kjøp og klikk med service" ||
-                type == "Purchase & click inklusive service" || type == "Purchase + Click met Service" || type == "Køb & Klik med service")
+                type == "Purchase & click inklusive service" || type == "Purchase + Click met Service"
+                || type == "Køb & Klik med service" || type == "Buy + Click")
             {
                 type = "Purchase & Click with Service";
             }

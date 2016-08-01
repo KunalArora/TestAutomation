@@ -58,7 +58,7 @@ Scenario Outline: German And Austria Dealer can cancel a Purchase and Click prop
 Scenarios:
 
 	| Role             | Country |
-	| Cloud MPS Dealer | Germany |
+	#| Cloud MPS Dealer | Germany |
 	| Cloud MPS Dealer | Austria |
 
 

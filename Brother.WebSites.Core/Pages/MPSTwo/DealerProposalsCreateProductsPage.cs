@@ -1093,7 +1093,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterOptionCostPrice()
         {
-            if (IsSwedenSystem() || IsDenmarkSystem()) return;
+            if (IsSwedenSystem() || IsDenmarkSystem() || IsPolandSystem()) return;
             var srpOption = MpsUtil.GetValue(OptionSrpText());
             var OptionText = srpOption.ToString().Substring(0, 3);
             if (OptionCostPrice0Element() != null)
@@ -1102,7 +1102,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void EnterModelUnitCost()
         {
             //if (!ModelSrpElement.Text.Contains("£")) return;
-            if (IsAustriaSystem() || IsGermanSystem() || IsSwedenSystem() || IsDenmarkSystem()) return;
+            if (IsAustriaSystem() || IsGermanSystem() || IsSwedenSystem() 
+                || IsDenmarkSystem() || IsPolandSystem()) return;
             var srpCost = MpsUtil.GetValue(ModelSrpElement.Text);
             var costText = srpCost.ToString();
             var optionText = costText.Substring(0, 3);

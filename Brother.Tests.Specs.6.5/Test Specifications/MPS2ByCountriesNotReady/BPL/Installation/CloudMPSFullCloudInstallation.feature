@@ -28,5 +28,5 @@ Scenarios:
 
 	| Role                            | Country | ContractType | UsageType      | Role1            | Method | Type | Length  | Billing              |
 	| Cloud MPS Local Office Approver | Poland  | Buy + Click  | Pakiet wydruków | Cloud MPS Dealer | Cloud  | Web  | 3 lata | Quarterly in Arrears |
-	| Cloud MPS Local Office Approver | Poland  | Buy + Click  | Pakiet wydruków | Cloud MPS Dealer | Cloud  | BOR  | 4 lata | Quarterly in Arrears |
+	#| Cloud MPS Local Office Approver | Poland  | Buy + Click  | Pakiet wydruków | Cloud MPS Dealer | Cloud  | BOR  | 4 lata | Quarterly in Arrears |
 	

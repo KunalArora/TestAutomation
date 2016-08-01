@@ -8,14 +8,8 @@ Feature: CloudMPSSpanishApproverDecisionFeature
 # Decline
 #
 Scenario Outline: Spanish Approver Decline Proposal for other Countries
-	Given "<Country>" dealer has created "<ContractType>" proposal of awaiting proposal with "<UsageType>" and "<Length>" and "<Billing>"
-	And I sign into Cloud MPS as a "<Role>" from "<Country>"
-	And Approver navigate to ProposalsPage
-	And Approver navigate to Awaiting Approval screen under Proposals page
-	When Approver select the proposal on Awaiting Proposal
-	Then Approver should be able to decline that proposal
-	And the decline proposal should be displayed under Declined tab by Approver
-	And I sign out of Cloud MPS
+	Given I verify and store "<Country>" purchase and click proposal bypass status
+	Then "<Role>" can decline Awaiting Approval "<Country>" "<ContractType>" proposal with "<UsageType>" and "<Length>" and "<Billing>"
 
 	Scenarios: 
 	| Country | Role                            | ContractType                 | UsageType      | Length | Billing                 |
