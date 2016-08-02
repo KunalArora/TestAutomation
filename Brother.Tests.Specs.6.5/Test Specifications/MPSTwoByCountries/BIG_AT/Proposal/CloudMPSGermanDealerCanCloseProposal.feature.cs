@@ -151,6 +151,7 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("German And Austria Dealer can cancel a Purchase and Click proposal in Awaiting Ap" +
             "proval state")]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Germany", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Austria", null)]
         public virtual void GermanAndAustriaDealerCanCancelAPurchaseAndClickProposalInAwaitingApprovalState(string role, string country, string[] exampleTags)
         {

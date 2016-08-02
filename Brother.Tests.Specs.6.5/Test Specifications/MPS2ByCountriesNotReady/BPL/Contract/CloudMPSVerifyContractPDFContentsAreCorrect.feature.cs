@@ -74,7 +74,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2ByCountriesNotReady.BPL.Con
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verify PDF Contents Are Correct")]
-        [NUnit.Framework.TestCaseAttribute("Buy & Click", "Poland", "Engagement sur un minimum volume de pages", "3 ans", "Trimestrale anticipata", null)]
+        [NUnit.Framework.TestCaseAttribute("Buy + Click", "Poland", "Pakiet wydruków", "3 lata", "Quarterly in Arrears", null)]
         public virtual void VerifyPDFContentsAreCorrect(string contractType, string country, string usageType, string length, string billing, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify PDF Contents Are Correct", exampleTags);

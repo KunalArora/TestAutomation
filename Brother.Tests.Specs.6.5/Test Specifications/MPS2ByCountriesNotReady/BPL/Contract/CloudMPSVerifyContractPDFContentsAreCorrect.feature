@@ -14,6 +14,7 @@ Scenario Outline: Verify PDF Contents Are Correct
 
 Scenarios:
 
-	| ContractType | Country | UsageType                                 | Length | Billing                |
-	| Buy & Click  | Poland  | Engagement sur un minimum volume de pages | 3 ans  | Trimestrale anticipata |
+	| ContractType | Country | UsageType       | Length | Billing              |
+	| Buy + Click  | Poland  | Pakiet wydruków | 3 lata | Quarterly in Arrears |
+	
 	

@@ -114,6 +114,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 reason = BelgiumReason();
             }
+            else if (IsPolandSystem())
+            {
+                reason = "Inny";
+            }
 
             return reason;
         }

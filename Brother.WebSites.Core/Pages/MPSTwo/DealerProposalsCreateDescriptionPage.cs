@@ -140,6 +140,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 case "Buy & Click":
                     selectable = "3";
                     break;
+                case "Buy + Click":
+                    selectable = "3";
+                    break;
                 case "Purchase & click inklusive service":
                     selectable = "3";
                     break;
