@@ -253,6 +253,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 reason = "Andet";
             }
+            else if (IsPolandSystem())
+            {
+                reason = "Inny";
+            }
             return reason;
         }
 

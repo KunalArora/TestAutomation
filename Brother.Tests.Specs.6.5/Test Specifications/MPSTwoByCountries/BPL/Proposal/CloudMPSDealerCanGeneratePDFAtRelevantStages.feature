@@ -27,8 +27,10 @@ Scenario Outline: Dealer Can Generate PDF Purchase and Click Minimum Summary Pag
 	
 
 	Scenarios: 
-	| Role             | Country | ContractType                  | UsageType      | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod           | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | Poland  | Purchase & Click with Service | Minimum Volume | 3 years  | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Included in Click Price | 2000        | 2000         |
+	| Role             | Country | ContractType | UsageType       | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod                   | ClickVolume | ColourVolume |
+	| Cloud MPS Dealer | Poland  | Buy + Click  | Pakiet wydruków | 3 lata   | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Wliczyć w cenę za wydruk strony | 2000        | 2000         |
+	
+	
 	
 Scenario Outline: Dealer Can Generate PDF for Purchase and Click in Awaiting Approval Status for other countries
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
@@ -42,6 +44,7 @@ Scenario Outline: Dealer Can Generate PDF for Purchase and Click in Awaiting App
 	
 	
 	Scenarios: 
-	| Role             | Country | Role2                           | ContractType | UsageType                                 | Length | Billing                |
-	| Cloud MPS Dealer | Poland  | Cloud MPS Local Office Approver | Buy & Click  | Engagement sur un minimum volume de pages | 3 ans  | Trimestrale anticipata |
+	| Role             | Country | Role2                           | ContractType | UsageType       | Length | Billing              |
+	| Cloud MPS Dealer | Poland  | Cloud MPS Local Office Approver | Buy + Click  | Pakiet wydruków | 3 lata | Quarterly in Arrears |
+	
 	

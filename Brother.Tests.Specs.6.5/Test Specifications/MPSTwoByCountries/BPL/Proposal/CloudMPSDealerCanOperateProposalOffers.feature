@@ -12,11 +12,11 @@ Scenario Outline: Dealer can see proposal offers
 
 	Scenarios: 
 	| Role             | Country |
-	| Cloud MPS Dealer | Polands |
+	| Cloud MPS Dealer | Poland |
 	
 
 Scenario Outline: Dealer can edit an existing proposal offer
-	Given Dealer have created a Open proposal of "<ContractType>" and "<UsageType>"
+	Given "<Country>" Dealer has created an Open proposal of "<ContractType>", "<UsageType>", "<Length>" and "<Billing>"
 	And I navigate to Dealer Dashboard page from Dealer Proposal page
 	#Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to existing proposal screen
@@ -24,21 +24,16 @@ Scenario Outline: Dealer can edit an existing proposal offer
 	And I go to "<TabName>" Tab in Proposal
 	And I edit "<TabName>" Tab in Proposal of "<ContractType>"
 	And I go to "Summary" Tab in Proposal
-	Then I can confirm "<TabName>" on Summary Tab in Proposal of "Purchase + Click with Service"
+	Then I can confirm "<TabName>" on Summary Tab in Proposal of "Buy + Click"
 	And I can sign out of Brother Online
 
 	Scenarios:
-	| ContractType                  | UsageType      | Role             | Country        | TabName             |
-	#| Lease & Click with Service    | Minimum Volume | Cloud MPS Dealer | United Kingdom | Description         |
-	#| Lease & Click with Service    | Minimum Volume | Cloud MPS Dealer | United Kingdom | CustomerInformation |
-	#| Lease & Click with Service    | Minimum Volume | Cloud MPS Dealer | United Kingdom | TermAndType         |
-	#| Lease & Click with Service    | Minimum Volume | Cloud MPS Dealer | United Kingdom | Products            |
-	#| Lease & Click with Service    | Minimum Volume | Cloud MPS Dealer | United Kingdom | ClickPrice          |
-	| Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Poland | TermAndType         |
-
+	| ContractType | UsageType       | Role             | Country | TabName     | Length | Billing              |
+	| Buy + Click  | Pakiet wydruków | Cloud MPS Dealer | Poland  | TermAndType | 3 lata | Quarterly in Arrears |
+	
 ##@ignore
 Scenario Outline: Dealer can edit products in an existing proposal offer
-	Given Dealer have created a Open proposal of "<ContractType>" and "<UsageType>"
+	Given "<Country>" Dealer has created an Open proposal of "<ContractType>", "<UsageType>", "<Length>" and "<Billing>"
 	And I navigate to Dealer Dashboard page from Dealer Proposal page
 	#Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to existing proposal screen
@@ -50,12 +45,12 @@ Scenario Outline: Dealer can edit products in an existing proposal offer
 	And I can sign out of Brother Online
 
 	Scenarios:
-	| ContractType                  | UsageType      | Role             | Country | TabName  | Action |
-	| Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Poland  | Products | Add    |
-	| Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Poland  | Products | Remove |
+	| ContractType | UsageType       | Role             | Country | TabName  | Action | Length | Billing              |
+	| Buy + Click  | Pakiet wydruków | Cloud MPS Dealer | Poland  | Products | Add    | 3 lata | Quarterly in Arrears |
+	| Buy + Click  | Pakiet wydruków | Cloud MPS Dealer | Poland  | Products | Remove | 3 lata | Quarterly in Arrears |
 	
 
-	
+@ignore	
 Scenario Outline: Dealer can cancel deleting proposal offer
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to existing proposal screen
@@ -69,7 +64,7 @@ Scenario Outline: Dealer can cancel deleting proposal offer
 	| Cloud MPS Dealer | Poland  | Dismiss | AnyItem    |
 
 	
-
+@ignore
 Scenario Outline: Dealer can copy an existing proposal offer for all countries
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created a "<ContractType>" proposal "<Customer>" Customer detail with "<UsageType>" and "<Length>" and "<Billing>"
@@ -82,7 +77,7 @@ Scenario Outline: Dealer can copy an existing proposal offer for all countries
 	
 	Scenarios:
 
-	| Role             | Country | ContractType | UsageType                                 | Length | Billing                | Customer               | Status  |
-	| Cloud MPS Dealer | Poland  | Buy & Click  | Engagement sur un minimum volume de pages | 3 ans  | Trimestrale anticipata | Skip customer creation | Without |
-	| Cloud MPS Dealer | Poland  | Buy & Click  | Engagement sur un minimum volume de pages | 4 ans  | Trimestrale anticipata | Create new customer    | With    |
+	| Role             | Country | ContractType | UsageType       | Length | Billing              | Customer               | Status  |
+	| Cloud MPS Dealer | Poland  | Buy + Click  | Pakiet wydruków | 3 lata | Quarterly in Arrears | Skip customer creation | Without |
+	| Cloud MPS Dealer | Poland  | Buy + Click  | Pakiet wydruków | 4 lata | Quarterly in Arrears | Create new customer    | With    |
 	

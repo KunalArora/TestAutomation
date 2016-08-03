@@ -1,4 +1,4 @@
-﻿@MPS @TEST @UAT
+﻿@ignore @MPS @TEST @UAT
 Feature: CloudMPSDutchDealerCanOperateCustomers
 	In order to view/create/edit/delete customers
 	As an MPS Dealer or Sub-Dealer
@@ -77,7 +77,7 @@ Scenario Outline: Dealer can cancel deleting customer
 	And I can sign out of Brother Online
 
 	Scenarios: 
-	| Role             | Country        | TargetItem       | Confirm |
+	| Role             | Country     | TargetItem       | Confirm |
 	| Cloud MPS Dealer | Netherlands | NewlyCreatedItem | Dismiss |
 	
 
@@ -92,5 +92,6 @@ Scenario Outline: Dealer cannot delete a customer who is bound to an existing pr
 	And I can sign out of Brother Online
 
 	Scenarios: 
-	| ContractType               | UsageType      | Confirm | TargetItem                   |
+	| ContractType                  | UsageType      | Confirm | TargetItem                   |
 	| Purchase & Click with Service | Minimum Volume | OK      | NewlyCreatedProposalCustomer |
+	

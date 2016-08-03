@@ -67,6 +67,13 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             }
         }
 
+
+        [Given(@"""(.*)"" Dealer has created an Open proposal of ""(.*)"", ""(.*)"", ""(.*)"" and ""(.*)""")]
+        public void GivenDealerHasCreatedAnOpenProposalOfAnd(string country, string contractType, string usageType, string length, string billing)
+        {
+            GivenDealerHaveCreatedProposalOfOpen(country, contractType, usageType, length, billing);
+        }
+
         
 
         public void GivenDealerHaveCreatedProposalOfOpen(string country, string contractType, string usageType, string length, string billing)

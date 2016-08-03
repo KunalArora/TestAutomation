@@ -91,7 +91,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 SelectFromDropdown(DeclineReasonElement, RejectionReason());
             }
-            
+            else if (IsPolandSystem())
+            {
+                SelectFromDropdown(DeclineReasonElement, "Inny");
+            }
         }
 
         private string RejectionReason()

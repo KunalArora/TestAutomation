@@ -394,7 +394,8 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             {
                 NextPage = CurrentPage.As<LocalOfficeAdminProgramPage>().NavigateToLeaseAndClickPage();
             }
-            else if (contractType.Equals("Purchase & Click with Service") || contractType.Equals("Easy Print Pro & Service"))
+            else if (contractType.Equals("Purchase & Click with Service") || contractType.Equals("Easy Print Pro & Service") ||
+                contractType.Equals("Buy + Click"))
             {
                 NextPage = CurrentPage.As<LocalOfficeAdminProgramPage>().NavigateToPurchaseAndClickPage();
             }

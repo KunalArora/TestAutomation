@@ -831,87 +831,67 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Test Specifications\MPS2ByCountriesNotReady\BPL\Contract\CloudMPSDealerCanCopyADeclineProposal.feature.cs">
+    <Compile Include="Test Specifications\MPSTwoByCountries\BPL\Contract\CloudMPSDealerCanCopyADeclineProposal.feature.cs">
       <DependentUpon>CloudMPSDealerCanCopyADeclineProposal.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Test Specifications\MPS2ByCountriesNotReady\BPL\Contract\CloudMPSOutputContractPDFAllUsers.feature.cs">
+    <Compile Include="Test Specifications\MPSTwoByCountries\BPL\Contract\CloudMPSOutputContractPDFAllUsers.feature.cs">
       <DependentUpon>CloudMPSOutputContractPDFAllUsers.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Test Specifications\MPS2ByCountriesNotReady\BPL\Contract\CloudMPSVerifyContractPDFContentsAreCorrect.feature.cs">
+    <Compile Include="Test Specifications\MPSTwoByCountries\BPL\Contract\CloudMPSVerifyContractPDFContentsAreCorrect.feature.cs">
       <DependentUpon>CloudMPSVerifyContractPDFContentsAreCorrect.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Test Specifications\MPS2ByCountriesNotReady\BPL\Customer\CloudMPSCustomerCanPerformSomeRunActions.feature.cs">
+    <Compile Include="Test Specifications\MPSTwoByCountries\BPL\Customer\CloudMPSCustomerCanPerformSomeRunActions.feature.cs">
       <DependentUpon>CloudMPSCustomerCanPerformSomeRunActions.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Test Specifications\MPS2ByCountriesNotReady\BPL\Customer\CloudMPSExistingCustomerCanViewPrintCount.feature.cs">
+    <Compile Include="Test Specifications\MPSTwoByCountries\BPL\Customer\CloudMPSExistingCustomerCanViewPrintCount.feature.cs">
       <DependentUpon>CloudMPSExistingCustomerCanViewPrintCount.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Test Specifications\MPS2ByCountriesNotReady\BPL\Installation\CloudMPSCancelInstallationRequest.feature.cs">
-      <DependentUpon>CloudMPSCancelInstallationRequest.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Test Specifications\MPS2ByCountriesNotReady\BPL\Installation\CloudMPSFullCloudInstallation.feature.cs">
-      <DependentUpon>CloudMPSFullCloudInstallation.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Test Specifications\MPS2ByCountriesNotReady\BPL\Installation\CloudMPSInstallerCanNavigateThroughEmailInstallation.feature.cs">
-      <DependentUpon>CloudMPSInstallerCanNavigateThroughEmailInstallation.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Test Specifications\MPS2ByCountriesNotReady\BPL\Proposal\CloudMPSApproverDecisionForOtherCountries.feature.cs">
+    <Compile Include="Test Specifications\MPSTwoByCountries\BPL\Proposal\CloudMPSApproverDecisionForOtherCountries.feature.cs">
       <DependentUpon>CloudMPSApproverDecisionForOtherCountries.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Test Specifications\MPS2ByCountriesNotReady\BPL\Proposal\CloudMPSClickPriceDeepDive.feature.cs">
-      <DependentUpon>CloudMPSClickPriceDeepDive.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Test Specifications\MPS2ByCountriesNotReady\BPL\Proposal\CloudMPSDealerCanCreateProposalFromProposalListPage.feature.cs">
+    <Compile Include="Test Specifications\MPSTwoByCountries\BPL\Proposal\CloudMPSDealerCanCreateProposalFromProposalListPage.feature.cs">
       <DependentUpon>CloudMPSDealerCanCreateProposalFromProposalListPage.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Test Specifications\MPS2ByCountriesNotReady\BPL\Proposal\CloudMPSDealerCanDeleteProposal.feature.cs">
+    <Compile Include="Test Specifications\MPSTwoByCountries\BPL\Proposal\CloudMPSDealerCanDeleteProposal.feature.cs">
       <DependentUpon>CloudMPSDealerCanDeleteProposal.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Test Specifications\MPS2ByCountriesNotReady\BPL\Proposal\CloudMPSDealerCanGeneratePDFAtRelevantStages.feature.cs">
+    <Compile Include="Test Specifications\MPSTwoByCountries\BPL\Proposal\CloudMPSDealerCanGeneratePDFAtRelevantStages.feature.cs">
       <DependentUpon>CloudMPSDealerCanGeneratePDFAtRelevantStages.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Test Specifications\MPS2ByCountriesNotReady\BPL\Proposal\CloudMPSDealerCanOperateProposalOffers.feature.cs">
+    <Compile Include="Test Specifications\MPSTwoByCountries\BPL\Proposal\CloudMPSDealerCanOperateProposalOffers.feature.cs">
       <DependentUpon>CloudMPSDealerCanOperateProposalOffers.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Test Specifications\MPS2ByCountriesNotReady\BPL\Proposal\CloudMPSPurchaseAndClickProposalUserJourney.feature.cs">
+    <Compile Include="Test Specifications\MPSTwoByCountries\BPL\Proposal\CloudMPSPurchaseAndClickProposalUserJourney.feature.cs">
       <DependentUpon>CloudMPSPurchaseAndClickProposalUserJourney.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Test Specifications\MPS2ByCountriesNotReady\BPL\Proposal\CloudMPSSummaryPageValidationForAllProposalTypes.feature.cs">
+    <Compile Include="Test Specifications\MPSTwoByCountries\BPL\Proposal\CloudMPSSummaryPageValidationForAllProposalTypes.feature.cs">
       <DependentUpon>CloudMPSSummaryPageValidationForAllProposalTypes.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Test Specifications\MPS2ByCountriesNotReady\BPL\SendForApproval\CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature.cs">
+    <Compile Include="Test Specifications\MPSTwoByCountries\BPL\SendForApproval\CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature.cs">
       <DependentUpon>CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -2194,71 +2174,55 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSSummaryPageValidationForAllProposalTypes.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPS2ByCountriesNotReady\BPL\Contract\CloudMPSDealerCanCopyADeclineProposal.feature">
+    <None Include="Test Specifications\MPSTwoByCountries\BPL\Contract\CloudMPSDealerCanCopyADeclineProposal.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSDealerCanCopyADeclineProposal.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPS2ByCountriesNotReady\BPL\Contract\CloudMPSOutputContractPDFAllUsers.feature">
+    <None Include="Test Specifications\MPSTwoByCountries\BPL\Contract\CloudMPSOutputContractPDFAllUsers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSOutputContractPDFAllUsers.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPS2ByCountriesNotReady\BPL\Contract\CloudMPSVerifyContractPDFContentsAreCorrect.feature">
+    <None Include="Test Specifications\MPSTwoByCountries\BPL\Contract\CloudMPSVerifyContractPDFContentsAreCorrect.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSVerifyContractPDFContentsAreCorrect.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPS2ByCountriesNotReady\BPL\Customer\CloudMPSCustomerCanPerformSomeRunActions.feature">
+    <None Include="Test Specifications\MPSTwoByCountries\BPL\Customer\CloudMPSCustomerCanPerformSomeRunActions.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSCustomerCanPerformSomeRunActions.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPS2ByCountriesNotReady\BPL\Customer\CloudMPSExistingCustomerCanViewPrintCount.feature">
+    <None Include="Test Specifications\MPSTwoByCountries\BPL\Customer\CloudMPSExistingCustomerCanViewPrintCount.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSExistingCustomerCanViewPrintCount.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPS2ByCountriesNotReady\BPL\Installation\CloudMPSCancelInstallationRequest.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSCancelInstallationRequest.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPS2ByCountriesNotReady\BPL\Installation\CloudMPSFullCloudInstallation.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSFullCloudInstallation.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPS2ByCountriesNotReady\BPL\Installation\CloudMPSInstallerCanNavigateThroughEmailInstallation.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSInstallerCanNavigateThroughEmailInstallation.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPS2ByCountriesNotReady\BPL\Proposal\CloudMPSApproverDecisionForOtherCountries.feature">
+    <None Include="Test Specifications\MPSTwoByCountries\BPL\Proposal\CloudMPSApproverDecisionForOtherCountries.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSApproverDecisionForOtherCountries.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPS2ByCountriesNotReady\BPL\Proposal\CloudMPSClickPriceDeepDive.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSClickPriceDeepDive.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPS2ByCountriesNotReady\BPL\Proposal\CloudMPSDealerCanCreateProposalFromProposalListPage.feature">
+    <None Include="Test Specifications\MPSTwoByCountries\BPL\Proposal\CloudMPSDealerCanCreateProposalFromProposalListPage.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSDealerCanCreateProposalFromProposalListPage.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPS2ByCountriesNotReady\BPL\Proposal\CloudMPSDealerCanDeleteProposal.feature">
+    <None Include="Test Specifications\MPSTwoByCountries\BPL\Proposal\CloudMPSDealerCanDeleteProposal.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSDealerCanDeleteProposal.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPS2ByCountriesNotReady\BPL\Proposal\CloudMPSDealerCanGeneratePDFAtRelevantStages.feature">
+    <None Include="Test Specifications\MPSTwoByCountries\BPL\Proposal\CloudMPSDealerCanGeneratePDFAtRelevantStages.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSDealerCanGeneratePDFAtRelevantStages.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPS2ByCountriesNotReady\BPL\Proposal\CloudMPSDealerCanOperateProposalOffers.feature">
+    <None Include="Test Specifications\MPSTwoByCountries\BPL\Proposal\CloudMPSDealerCanOperateProposalOffers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSDealerCanOperateProposalOffers.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPS2ByCountriesNotReady\BPL\Proposal\CloudMPSPurchaseAndClickProposalUserJourney.feature">
+    <None Include="Test Specifications\MPSTwoByCountries\BPL\Proposal\CloudMPSPurchaseAndClickProposalUserJourney.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSPurchaseAndClickProposalUserJourney.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPS2ByCountriesNotReady\BPL\Proposal\CloudMPSSummaryPageValidationForAllProposalTypes.feature">
+    <None Include="Test Specifications\MPSTwoByCountries\BPL\Proposal\CloudMPSSummaryPageValidationForAllProposalTypes.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSSummaryPageValidationForAllProposalTypes.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPS2ByCountriesNotReady\BPL\SendForApproval\CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature">
+    <None Include="Test Specifications\MPSTwoByCountries\BPL\SendForApproval\CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature.cs</LastGenOutput>
     </None>

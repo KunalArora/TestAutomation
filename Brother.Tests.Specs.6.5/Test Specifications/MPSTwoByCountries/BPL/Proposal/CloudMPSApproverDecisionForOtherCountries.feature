@@ -8,18 +8,14 @@ Feature: CloudMPSPolishApproverDecisionFeature
 # Decline
 #
 Scenario Outline: Approver Decline Proposal for other Countries
-	Given "<Country>" dealer has created "<ContractType>" proposal of awaiting proposal with "<UsageType>" and "<Length>" and "<Billing>"
-	And I sign into Cloud MPS as a "<Role>" from "<Country>"
-	And Approver navigate to ProposalsPage
-	And Approver navigate to Awaiting Approval screen under Proposals page
-	When Approver select the proposal on Awaiting Proposal
-	Then Approver should be able to decline that proposal
-	And the decline proposal should be displayed under Declined tab by Approver
-	And I sign out of Cloud MPS
+	Given I verify and store "<Country>" purchase and click proposal bypass status
+	Then "<Role>" can decline Awaiting Approval "<Country>" "<ContractType>" proposal with "<UsageType>" and "<Length>" and "<Billing>"
 
 	Scenarios: 
-	| Country | Role                            | ContractType | UsageType                                 | Length | Billing                |
-	| Poland  | Cloud MPS Local Office Approver | Buy & Click  | Engagement sur un minimum volume de pages | 3 ans  | Trimestrale anticipata |
+	| Country | Role                            | ContractType | UsageType       | Length | Billing              |
+	| Poland  | Cloud MPS Local Office Approver | Buy + Click  | Pakiet wydruków | 3 lata | Quarterly in Arrears |
+	
+
 
 #
 # Approve Signed Contract
@@ -34,9 +30,9 @@ Scenario Outline: Approver can decide to reject or approve the contract for othe
 	And I sign out of Cloud MPS
 
 	Scenarios:
-	| Country | Role                            | ContractType | UsageType                                 | Length | Billing                |
-	| Poland  | Cloud MPS Local Office Approver | Buy & Click  | Engagement sur un minimum volume de pages | 3 ans  | Trimestrale anticipata |
-
+	| Country | Role                            | ContractType | UsageType       | Length | Billing              |
+	| Poland  | Cloud MPS Local Office Approver | Buy + Click  | Pakiet wydruków | 3 lata | Quarterly in Arrears |
+	
 
 # Accept5, 6
 Scenario Outline: Approver can approve the contract for other Countries
@@ -51,8 +47,8 @@ Scenario Outline: Approver can approve the contract for other Countries
 
 	Scenarios:
 
-	| Country | Role                            | ContractType | UsageType                                 | Length | Billing                |
-	| Poland  | Cloud MPS Local Office Approver | Buy & Click  | Engagement sur un minimum volume de pages | 3 ans  | Trimestrale anticipata |
+	| Country | Role                            | ContractType | UsageType       | Length | Billing              |
+	| Poland  | Cloud MPS Local Office Approver | Buy + Click  | Pakiet wydruków | 3 lata | Quarterly in Arrears |
 	
 # Reject1,2
 Scenario Outline: Approver can reject the contract for other Countries
@@ -66,8 +62,8 @@ Scenario Outline: Approver can reject the contract for other Countries
 
 	Scenarios:
 
-	| Country | Role                            | ContractType | UsageType                                 | Length | Billing                |
-	| Poland  | Cloud MPS Local Office Approver | Buy & Click  | Engagement sur un minimum volume de pages | 3 ans  | Trimestrale anticipata |
+	| Country | Role                            | ContractType | UsageType       | Length | Billing              |
+	| Poland  | Cloud MPS Local Office Approver | Buy + Click  | Pakiet wydruków | 3 lata | Quarterly in Arrears |
 	
 
 # Reject3
