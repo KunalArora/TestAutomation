@@ -1245,6 +1245,12 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             return null;
         }
 
+        public static void ClickOnElementByJavaScript(IWebDriver driver, IWebElement element)
+        {
+            var executor = (IJavaScriptExecutor)driver;
+            executor.ExecuteScript("arguments[0].click();", element);
+        }
+
         public string GetTextBoxValue(string field)
         {
             var control = GetFieldControl(field);

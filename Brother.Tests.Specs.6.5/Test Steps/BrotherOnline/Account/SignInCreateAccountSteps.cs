@@ -401,6 +401,8 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             }
             
             CurrentPage.As<LocalOfficeAdminProgramSettingPage>().SetProposalByPassOption();
+            CurrentPage.As<LocalOfficeAdminProgramSettingPage>().SetInstallationPointOption();
+            CurrentPage.As<LocalOfficeAdminProgramSettingPage>().SetCustomerCreationPointOption();
             GlobalNavigationModule.ClickSignOutLink(CurrentDriver);
         }
 

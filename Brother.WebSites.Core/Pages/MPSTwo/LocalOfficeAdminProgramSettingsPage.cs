@@ -48,8 +48,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement LeasingBanksLinkElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_InputAutomaticProposalApproval_Input")]
         public IWebElement AutomaticProposalApprovalTickBoxElement;
-
-        
+        [FindsBy(How = How.CssSelector, Using = "#content_1_MpsInstallationEnableAtPoint_Input_0")]
+        public IWebElement InstallationPointAfterContractAcceptedTickBoxElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_MpsInstallationEnableAtPoint_Input_1")]
+        public IWebElement InstallationPointAfterContractSignedTickBoxElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_MpsCustomerCreationPoint_Input_0")]
+        public IWebElement CustomerPointAfterContractAcceptedTickBoxElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_MpsCustomerCreationPoint_Input_1")]
+        public IWebElement CustomerPointAfterContractSignedTickBoxElement;
 
         public void TickProgramEnabled()
         {
@@ -126,6 +132,42 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var byPass = AutomaticProposalApprovalTickBoxElement.Selected ? "Ticked" : "Unticked";
 
             SpecFlow.SetContext("BypassOption", byPass);
+
+            MsgOutput(String.Format("Bypass has been set as {0}", byPass));
+        }
+
+        public void SetInstallationPointOption()
+        {
+            var byPass = "";
+
+            if (InstallationPointAfterContractAcceptedTickBoxElement.Selected)
+            {
+                byPass = "Contract Accepted";
+            }
+            else if(InstallationPointAfterContractSignedTickBoxElement.Selected)
+            {
+                byPass = "Contract Signed";
+            }
+
+            SpecFlow.SetContext("InstallationPointOption", byPass);
+
+            MsgOutput(String.Format("Bypass has been set as {0}", byPass));
+        }
+
+        public void SetCustomerCreationPointOption()
+        {
+            var byPass = "";
+
+            if (CustomerPointAfterContractAcceptedTickBoxElement.Selected)
+            {
+                byPass = "Contract Accepted";
+            }
+            else if (CustomerPointAfterContractSignedTickBoxElement.Selected)
+            {
+                byPass = "Contract Signed";
+            }
+
+            SpecFlow.SetContext("CustomerCreationPointOption", byPass);
 
             MsgOutput(String.Format("Bypass has been set as {0}", byPass));
         }
