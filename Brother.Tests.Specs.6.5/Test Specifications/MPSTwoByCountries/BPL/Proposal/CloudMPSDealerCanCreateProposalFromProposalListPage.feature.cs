@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BFR.Proposal
+namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BPL.Proposal
 {
     using TechTalk.SpecFlow;
     
@@ -19,11 +19,11 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BFR.Proposal
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.9.0.77")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("CloudMPSFrenchDealerCanCreateProposalFromProposalListPage")]
+    [NUnit.Framework.DescriptionAttribute("CloudMPSPolishDealerCanCreateProposalFromProposalListPage")]
     [NUnit.Framework.CategoryAttribute("MPS")]
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("TEST")]
-    public partial class CloudMPSFrenchDealerCanCreateProposalFromProposalListPageFeature
+    public partial class CloudMPSPolishDealerCanCreateProposalFromProposalListPageFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
@@ -35,7 +35,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BFR.Proposal
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CloudMPSFrenchDealerCanCreateProposalFromProposalListPage", "In order to create a proposal from proposal list page\r\nAs a dealer\r\nI want create" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CloudMPSPolishDealerCanCreateProposalFromProposalListPage", "In order to create a proposal from proposal list page\r\nAs a dealer\r\nI want create" +
                     " new porposal button on proposal list page", ProgrammingLanguage.CSharp, new string[] {
                         "MPS",
                         "UAT",
@@ -73,7 +73,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BFR.Proposal
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Dealer Can Create Proposal From Proposal List Page")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "France", "Buy & Click", "Engagement sur un minimum volume de pages", "3 ans", "Trimestrale anticipata", "Tick", "MFC-L8650CDW", "Full", "Paiement au démarrage du contrat", "800", "800", "Inclus dans le coût à la page", "Paiement au démarrage du contrat", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Poland", "Buy + Click", "Pakiet wydruków", "3 lata", "Quarterly in Arrears", "Tick", "MFC-L8650CDW", "Full", "Wliczyć w cenę za wydruk strony", "800", "800", "Wliczyć w cenę za wydruk strony", "Płatność z góry", null)]
         public virtual void DealerCanCreateProposalFromProposalListPage(string role, string country, string contractType, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string basis1, string basis2, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer Can Create Proposal From Proposal List Page", exampleTags);
@@ -113,7 +113,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 23
  testRunner.And(string.Format("the billing basis for Installation is \"{0}\"", basis2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 24
- testRunner.And(string.Format("the billing basis for Service Pack is \"{0}\"", basis2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("the billing basis for Service Pack is \"{0}\"", basis1), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 25
  testRunner.And("the installation type displayed is correct", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 26

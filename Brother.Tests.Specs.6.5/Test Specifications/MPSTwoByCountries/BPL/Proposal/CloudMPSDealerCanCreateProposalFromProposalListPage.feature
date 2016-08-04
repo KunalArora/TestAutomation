@@ -1,5 +1,5 @@
 ﻿@MPS @UAT @TEST
-Feature: CloudMPSFrenchDealerCanCreateProposalFromProposalListPage
+Feature: CloudMPSPolishDealerCanCreateProposalFromProposalListPage
 	In order to create a proposal from proposal list page
 	As a dealer
 	I want create new porposal button on proposal list page
@@ -21,7 +21,7 @@ Scenario Outline: Dealer Can Create Proposal From Proposal List Page
 	Then the billing basis for product is "<Basis2>"
 	And the billing basis for Accessory is "<Basis2>"
 	And the billing basis for Installation is "<Basis2>"
-	And the billing basis for Service Pack is "<Basis2>"
+	And the billing basis for Service Pack is "<Basis1>"
 	And the installation type displayed is correct
 	And the installation cost displayed is correct
 	And the quantity displayed is the same as the one entered
@@ -40,6 +40,6 @@ Scenario Outline: Dealer Can Create Proposal From Proposal List Page
 
 
 Scenarios: 
-	| Role             | Country        | ContractType                  | UsageType                                 | Contract | Billing                 | PriceHardware | Printer      | DeviceScreen | PaymentMethod                    | ClickVolume | ColourVolume | Basis1                        | Basis2                           |
-	| Cloud MPS Dealer | France         | Buy & Click                   | Engagement sur un minimum volume de pages | 3 ans    | Trimestrale anticipata  | Tick          | MFC-L8650CDW | Full         | Paiement au démarrage du contrat | 800         | 800          | Inclus dans le coût à la page | Paiement au démarrage du contrat |
+	| Role             | Country | ContractType | UsageType       | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod                   | ClickVolume | ColourVolume | Basis1                          | Basis2          |
+	| Cloud MPS Dealer | Poland  | Buy + Click  | Pakiet wydruków | 3 lata   | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Wliczyć w cenę za wydruk strony | 800         | 800          | Wliczyć w cenę za wydruk strony | Płatność z góry |
 	

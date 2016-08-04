@@ -275,7 +275,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
        {
            EnterCompanyName();
 
-            if (!IsPolandSystem()) return;
+            if (IsPolandSystem()) return;
             EnterPropertyNumber();
             EnterPropertyStreet();
             EnterRegistrationNumber();

@@ -20,7 +20,7 @@ Scenario Outline: Summary Page Validation For Minimum Volume Purchase and Click 
 	Then the billing basis for product is "<Basis2>"
 	And the billing basis for Accessory is "<Basis2>"
 	And the billing basis for Installation is "<Basis2>"
-	And the billing basis for Service Pack is "<Basis1>"
+	And the billing basis for Service Pack is "<Basis2>"
 	And the installation type displayed is correct
 	And the installation cost displayed is correct
 	And the quantity displayed is the same as the one entered
@@ -57,7 +57,7 @@ Scenario Outline: Summary Page Validation For Minimum Volume Purchase and Click 
 	Then the billing basis for product is "<Basis1>"
 	And the billing basis for Accessory is "<Basis1>"
 	And the billing basis for Installation is "<Basis1>"
-	And the billing basis for Service Pack is "<Basis1>"
+	And the billing basis for Service Pack is "<PaymentMethod>"
 	And the installation type displayed is correct
 	And the installation cost displayed is correct
 	And the quantity displayed is the same as the one entered
@@ -74,8 +74,8 @@ Scenario Outline: Summary Page Validation For Minimum Volume Purchase and Click 
 	
 
 	Scenarios: 
-	| Role             | Country        | ContractType                  | UsageType                                 | Contract | Billing                | PriceHardware | Printer      | DeviceScreen | PaymentMethod                 | ClickVolume | ColourVolume | Basis1                           |
-	| Cloud MPS Dealer | France         | Buy & Click                   | Engagement sur un minimum volume de pages | 3 ans    | Trimestrale anticipata | Tick          | MFC-L8650CDW | Full         | Inclus dans le coût à la page | 800         | 800          | Paiement au démarrage du contrat |
+	| Role             | Country | ContractType | UsageType                                 | Contract | Billing                | PriceHardware | Printer      | DeviceScreen | PaymentMethod                 | ClickVolume | ColourVolume | Basis1                           |
+	| Cloud MPS Dealer | France  | Buy & Click  | Engagement sur un minimum volume de pages | 3 ans    | Trimestrale anticipata | Tick          | MFC-L8650CDW | Full         | Inclus dans le coût à la page | 800         | 800          | Paiement au démarrage du contrat |
 	
 
 Scenario Outline: Summary Page Validation For Pay As you Go Purchase and Click proposal

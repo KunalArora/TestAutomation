@@ -1,5 +1,5 @@
 ﻿@MPS @TEST @UAT
-Feature: CloudMPSSpanishApproverDecisionFeature
+Feature: CloudMPSPolishApproverDecisionFeature
 	In order to approve/decline Proposal/Contract
 	As a Approver
 	I want to decide about Proposal/Contract
@@ -7,13 +7,13 @@ Feature: CloudMPSSpanishApproverDecisionFeature
 #
 # Decline
 #
-Scenario Outline: Spanish Approver Decline Proposal for other Countries
+Scenario Outline: Approver Decline Proposal for other Countries
 	Given I verify and store "<Country>" purchase and click proposal bypass status
 	Then "<Role>" can decline Awaiting Approval "<Country>" "<ContractType>" proposal with "<UsageType>" and "<Length>" and "<Billing>"
 
 	Scenarios: 
-	| Country | Role                            | ContractType                 | UsageType      | Length | Billing                 |
-	| Spain   | Cloud MPS Local Office Approver | Purchase & Click con Service | Volúmen mínimo | 3 años | Por trimestres vencidos |
+	| Country | Role                            | ContractType | UsageType       | Length | Billing              |
+	| Poland  | Cloud MPS Local Office Approver | Buy + Click  | Pakiet wydruków | 3 lata | Quarterly in Arrears |
 	
 
 
@@ -21,7 +21,7 @@ Scenario Outline: Spanish Approver Decline Proposal for other Countries
 # Approve Signed Contract
 #
 # Accept1, 2
-Scenario Outline: Spanish Approver can decide to reject or approve the contract for other Countries
+Scenario Outline: Approver can decide to reject or approve the contract for other Countries
 	Given "<Country>" Dealer have created a "<ContractType>" contract with "<UsageType>" and "<Length>" and "<Billing>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When Approver navigate to Contract Awaiting Acceptance page from Dashboard
@@ -30,13 +30,12 @@ Scenario Outline: Spanish Approver can decide to reject or approve the contract 
 	And I sign out of Cloud MPS
 
 	Scenarios:
-	| Country | Role                            | ContractType                 | UsageType      | Length | Billing                 |
-	| Spain   | Cloud MPS Local Office Approver | Purchase & Click con Service | Volúmen mínimo | 3 años | Por trimestres vencidos |
+	| Country | Role                            | ContractType | UsageType       | Length | Billing              |
+	| Poland  | Cloud MPS Local Office Approver | Buy + Click  | Pakiet wydruków | 3 lata | Quarterly in Arrears |
 	
 
-
 # Accept5, 6
-Scenario Outline: Spanish Approver can approve the contract for other Countries
+Scenario Outline: Approver can approve the contract for other Countries
 	Given "<Country>" Dealer have created a "<ContractType>" contract with "<UsageType>" and "<Length>" and "<Billing>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When Approver navigate to Contract Awaiting Acceptance page from Dashboard
@@ -48,11 +47,11 @@ Scenario Outline: Spanish Approver can approve the contract for other Countries
 
 	Scenarios:
 
-	| Country | Role                            | ContractType                      | UsageType                                 | Length | Billing                 |
-	| Spain   | Cloud MPS Local Office Approver | Purchase & Click con Service      | Volúmen mínimo                            | 3 años | Por trimestres vencidos |
+	| Country | Role                            | ContractType | UsageType       | Length | Billing              |
+	| Poland  | Cloud MPS Local Office Approver | Buy + Click  | Pakiet wydruków | 3 lata | Quarterly in Arrears |
 	
 # Reject1,2
-Scenario Outline: Spanish Approver can reject the contract for other Countries
+Scenario Outline: Approver can reject the contract for other Countries
 	Given "<Country>" Dealer have created a "<ContractType>" contract with "<UsageType>" and "<Length>" and "<Billing>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When Approver navigate to Contract Awaiting Acceptance page from Dashboard
@@ -63,11 +62,12 @@ Scenario Outline: Spanish Approver can reject the contract for other Countries
 
 	Scenarios:
 
-	| Country | Role                            | ContractType                      | UsageType                                 | Length | Billing                 |
-	| Spain   | Cloud MPS Local Office Approver | Purchase & Click con Service      | Volúmen mínimo                            | 3 años | Por trimestres vencidos |
+	| Country | Role                            | ContractType | UsageType       | Length | Billing              |
+	| Poland  | Cloud MPS Local Office Approver | Buy + Click  | Pakiet wydruków | 3 lata | Quarterly in Arrears |
 	
+
 # Reject3
-Scenario Outline: Spanish Dealer can resign rejected contract for other Countries
+Scenario Outline: Dealer can resign rejected contract for other Countries
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When I navigate to Rejected screen
 	Then I can successfully re-sign the rejected contract
@@ -75,11 +75,11 @@ Scenario Outline: Spanish Dealer can resign rejected contract for other Countrie
 
 	Scenarios: 
 	| Role             | Country |
-	| Cloud MPS Dealer | Spain   |
+	| Cloud MPS Dealer | Poland  |
 	
-
+	
 # LO Approver can view open offers
-Scenario Outline: Spanish Local Office Approver can view opened offers for other Countries
+Scenario Outline: Local Office Approver can view opened offers for other Countries
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When I navigate to ProposalPage
 	And I navigate to Awaiting Approval screen under Proposals page
@@ -88,10 +88,10 @@ Scenario Outline: Spanish Local Office Approver can view opened offers for other
 
 	Scenarios: 
 	| Role                            | Country |
-	| Cloud MPS Local Office Approver | Spain	|
+	| Cloud MPS Local Office Approver | Poland  |
 	
 # LO Approver can view confirmed/rejected/signed contracts
-Scenario Outline: Spanish Local Office Approver can view confirmed/rejected/signed contracts for other Countries
+Scenario Outline: Local Office Approver can view confirmed/rejected/signed contracts for other Countries
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When I navigate to Local Office Approver Contracts screen on "<Acceptance>" Tab
 	Then I should see a list of Proposals
@@ -99,7 +99,7 @@ Scenario Outline: Spanish Local Office Approver can view confirmed/rejected/sign
 
 	Scenarios: 
 	| Role                            | Country | Acceptance         |
-	| Cloud MPS Local Office Approver | Spain  | Awating Acceptance |
-	| Cloud MPS Local Office Approver | Spain  | Rejected           |
-	| Cloud MPS Local Office Approver | Spain  | Accepted           |
+	| Cloud MPS Local Office Approver | Poland  | Awating Acceptance |
+	| Cloud MPS Local Office Approver | Poland  | Rejected           |
+	| Cloud MPS Local Office Approver | Poland  | Accepted           |
 	

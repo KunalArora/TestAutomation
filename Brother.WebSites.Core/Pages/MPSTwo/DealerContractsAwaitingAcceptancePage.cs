@@ -113,6 +113,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 path = "file:///C:/Users/afolabsa/Downloads/{0}-Contrat.pdf";
 
             }
+            else if (IsPolandSystem())
+            {
+                path = "file:///C:/Users/afolabsa/Downloads/{0}-Contract.pdf";
+
+            }
 
             
             return path;
