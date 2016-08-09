@@ -311,6 +311,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 ClearAndType(CompanyRegistrationNumberField, "453983245");
             }
+            else if (IsSpainSystem())
+            {
+                ClearAndType(CompanyRegistrationNumberField, "N0032484H");
+            }
             //else if (IsSwedenSystem())
             //{
             //    ClearAndType(CompanyRegistrationNumberField, "556026-6883");
@@ -545,13 +549,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterBankAccountNumber()
         {
-            if (IsNetherlandSystem()) return;
+            if (IsNetherlandSystem() || IsSpainSystem()) return;
             ClearAndType(BankAccountNumberElement, "45789635");
         }
 
         public void EnterBankSortCode()
         {
-            if (IsNetherlandSystem() || IsBelgiumSystem() || IsPolandSystem()) return;
+            if (IsNetherlandSystem() || IsBelgiumSystem() || IsPolandSystem() || IsSpainSystem()) return;
             ClearAndType(BankSortCodeElement, "014215");
         }
 
@@ -577,7 +581,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if (IsBelgiumSystem())
             {
                 ClearAndType(BICElement, "ACCOBEB3");
-            } else if (!(IsItalySystem() || IsNetherlandSystem()))
+            } else if (!(IsItalySystem() || IsNetherlandSystem() || IsSpainSystem()))
             {
                 ClearAndType(BICElement, "MIDLGB22"); 
             }
@@ -595,13 +599,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterBankPropertyStreet()
         {
-            if (IsBigAtSystem() || IsNetherlandSystem() || IsBelgiumSystem()) return;
+            if (IsBigAtSystem() || IsNetherlandSystem() || IsBelgiumSystem() || IsSpainSystem()) return;
             ClearAndType(BankPropertyStreetElement, "Lloyds House");
         }
 
         public void EnterBankPropertyTown()
         {
-            if (IsBigAtSystem() || IsNetherlandSystem() || IsBelgiumSystem()) return;
+            if (IsBigAtSystem() || IsNetherlandSystem() || IsBelgiumSystem() || IsSpainSystem()) return;
             ClearAndType(BankPropertyTownElement, "Cockney");
         }
 
@@ -618,10 +622,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             else if (IsItalySystem())
             {
                 ClearAndType(BankPropertyPostcodeElement, "01100");
-            }
-            else if (IsSpainSystem())
-            {
-                ClearAndType(BankPropertyPostcodeElement, MpsUtil.PostCodeSp());
             }
             else if (IsIrelandSystem())
             {
@@ -651,6 +651,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 ClearAndType(BankPropertyPostcodeElement, MpsUtil.PostCodeSw());
             }
+            //else if (IsSpainSystem())
+            //{
+            //    ClearAndType(BankPropertyPostcodeElement, MpsUtil.PostCodeSp());
+            //}
         }
 
         private void EnterCostCentre()
