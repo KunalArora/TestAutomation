@@ -49,7 +49,7 @@ Scenario Outline: Dealer can cancel a proposal in Approved state
 	And I am on Proposal List page
 	And I send the created proposal for approval
 	And I sign out of Cloud MPS
-	And I approve purchase and click proposal as a "<role>" from "<country>"
+	And I approve purchase and click proposal as a "<Role2>" from "<Country>"
 	#And I sign back into Cloud MPS as a "<Role2>" from "<Country>"
 	#And I approve the purchase and click proposal created above
 	#And I sign out of Cloud MPS
@@ -63,6 +63,6 @@ Scenario Outline: Dealer can cancel a proposal in Approved state
 
 Scenarios:
 
-	| Role             | Country        | Role2          |
+	| Role             | Country        | Role2                           |
 	| Cloud MPS Dealer | United Kingdom | Cloud MPS Local Office Approver |
-
+	

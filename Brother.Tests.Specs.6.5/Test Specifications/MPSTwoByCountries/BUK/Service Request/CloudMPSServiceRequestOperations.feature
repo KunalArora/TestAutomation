@@ -15,7 +15,7 @@ Scenario Outline: Customer raise service Request and Service Desk view and close
 	And I can sign out of Brother Online
 	And I sign back into Cloud MPS as a "<Role2>" from "<Country>"
 	Then the created service request is displayed for Service Desk 
-	And Service Desk can close the service request
+	##And Service Desk can close the service request
 	And I can sign out of Brother Online
 
 	
@@ -42,7 +42,7 @@ Scenario Outline: Customer raise service Request and Service Desk replied and cl
 	And I can sign out of Brother Online
 	And I sign back into Cloud MPS as a "<Role2>" from "<Country>"
 	And the created service request is displayed for Service Desk 
-	And Service Desk can close the service request
+##	And Service Desk can close the service request
 	And I can sign out of Brother Online
 
 	

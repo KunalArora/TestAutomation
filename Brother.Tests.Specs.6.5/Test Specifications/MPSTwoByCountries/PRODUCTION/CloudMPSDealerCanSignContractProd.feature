@@ -1,4 +1,4 @@
-﻿@ignore @MPS @PROD
+﻿@MPS @PROD
 Feature: CloudMPSDealerCanSignContractInProduction
 	In order to progress an approved proposal to contract
 	As a dealer
