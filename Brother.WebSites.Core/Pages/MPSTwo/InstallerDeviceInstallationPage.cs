@@ -68,7 +68,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [FindsBy(How = How.CssSelector, Using = "[id*=\"content_0_DeviceInstallList_List_InputSerialNumber\"].js-mps-device-serial-number-input")] 
         public IWebElement SerialNumberFieldElement;
 
-        [FindsBy(How = How.CssSelector, Using = "[class*=\"js-mps-ip-\"]")] 
+        [FindsBy(How = How.CssSelector, Using = ".js-mps-ip-input[class*='js-mps-ip-']")] 
         public IList<IWebElement> IpAddressElements;
 
         [FindsBy(How = How.CssSelector, Using = "p.form-control-static")] 
@@ -463,6 +463,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
 
             WaitForElementToBeClickableByCssSelector(".js-mps-ip-d", 3, 10);
+
+            WebDriver.Wait(DurationType.Second, 3);
 
             if (Method() == "BOR") return;
             foreach (var ipAddressElement in IpAddressElements)

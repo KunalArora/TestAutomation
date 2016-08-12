@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Brother.Tests.Selenium.Lib.Support;
+using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -126,7 +127,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 coy = "Blue Hollow_160322133924 Ltd";
             } else if (IsUKSystem())
             {
-                coy = "Meadow Mew Ltd";
+                coy = "Honey Pines_160514201608 Ltd";
             } else if (IsGermanSystem())
             {
                 coy = "Middle Mall_160322135029 Ltd";
@@ -300,8 +301,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsInstallationRequestScreenDisplayed()
         {
+            WebDriver.Wait(DurationType.Second, 3);
             TestCheck.AssertIsEqual(true, ModalPopUpElement.Displayed, "Installation request pop up is opened");
-           // WebDriver.Wait(DurationType.Second, 3);
+           
         }
 
         public string GetInstallationLink()

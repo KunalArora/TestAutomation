@@ -44,6 +44,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ClickOnClosedProposal()
         {
+            
             ActionsModule.ClickOnSpecificActionsElement(Driver);
         }
 

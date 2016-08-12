@@ -151,7 +151,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             SpecFlow.SetContext("InstallationPointOption", byPass);
 
-            MsgOutput(String.Format("Bypass has been set as {0}", byPass));
+            MsgOutput(String.Format("Installation Point Option has been set as {0}", byPass));
         }
 
         public void SetCustomerCreationPointOption()
@@ -169,7 +169,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             SpecFlow.SetContext("CustomerCreationPointOption", byPass);
 
-            MsgOutput(String.Format("Bypass has been set as {0}", byPass));
+            MsgOutput(String.Format("Customer Creation Point has been set as {0}", byPass));
         }
 
         public void TryUntickMinimumVolume()

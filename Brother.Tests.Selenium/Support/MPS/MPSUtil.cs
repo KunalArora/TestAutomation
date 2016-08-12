@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Configuration;
 using System.Globalization;
-using System.Xml.Schema;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using TechTalk.SpecFlow;
 
-namespace Brother.Tests.Selenium.Lib.Support
+namespace Brother.Tests.Selenium.Lib.Support.MPS
 {
-    public class MpsUtil
+    public static class MpsUtil
     {
         /// <summary>
         /// Generates a unique Proposal Name

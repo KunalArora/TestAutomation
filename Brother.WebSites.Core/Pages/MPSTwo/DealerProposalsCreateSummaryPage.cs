@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -546,9 +547,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerClosedProposalPage CloseProposal()
         {
+            HeadlessDismissAlertOk();
             ScrollTo(SummaryCloseProposalElement);
             HeadlessDismissAlertOk();
-            SummaryCloseProposalElement.Click();
+
+            try
+            {
+                SummaryCloseProposalElement.Click();
+            }
+            catch (Exception ex)
+            {
+                
+                MsgOutput(String.Format("The exception thrown was {0}", ex));
+            }
+           
             ClickAcceptOnConfrimation(Driver);
             return GetInstance<DealerClosedProposalPage>(Driver);
         }
