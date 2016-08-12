@@ -182,7 +182,6 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
                 instance5.GivenIHaveCreatedGermanPurchaseAndClickProposal();
                 instance2.GivenIAmOnProposalListPage();
                 instance3.GivenISendTheCreatedGermanProposalForApproval();
-                instance3.GivenISendTheCreatedGermanProposalForApproval();
                 instance3.WhenINavigateToTheSummaryPageOfTheProposalAwaitingApproval();
                 instance6.ThenICanCloseTheProposalOnTheSummaryPage();
                 instance6.ThenTheClosedProposalSummaryPageHasNoErrorMessage();
