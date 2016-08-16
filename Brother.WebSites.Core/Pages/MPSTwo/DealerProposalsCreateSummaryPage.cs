@@ -547,20 +547,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerClosedProposalPage CloseProposal()
         {
-            HeadlessDismissAlertOk();
             ScrollTo(SummaryCloseProposalElement);
             HeadlessDismissAlertOk();
 
-            try
-            {
-                SummaryCloseProposalElement.Click();
-            }
-            catch (Exception ex)
-            {
-                
-                MsgOutput(String.Format("The exception thrown was {0}", ex));
-            }
-           
+            SummaryCloseProposalElement.Click();
+            
             ClickAcceptOnConfrimation(Driver);
             return GetInstance<DealerClosedProposalPage>(Driver);
         }

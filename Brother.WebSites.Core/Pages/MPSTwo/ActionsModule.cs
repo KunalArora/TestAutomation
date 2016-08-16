@@ -6,6 +6,8 @@ using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Remote;
+using OpenQA.Selenium.Support.UI;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
@@ -355,15 +357,52 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public static void StartTheProposalEditProcess(IWebDriver driver)
         {
+            
             ProposalEditButtonElement(driver).Click();
+            
         }
         public static void DeleteAProposal(IWebDriver driver)
         {
             ProposalDeleteButtonElement(driver).Click();
+           
         }
         public static void SendProposalToBankButton(IWebDriver driver)
         {
             SendToBankButtonElement(driver).Last().Click();
+        }
+
+        public static bool IsPhantomJsBrowser(IWebDriver driver)
+        {
+            var capabilities = ((RemoteWebDriver)driver).Capabilities;
+
+            return capabilities.BrowserName.Equals("phantomjs");
+        }
+
+
+        public static void ClickAcceptOnJsAlert(IWebDriver driver)
+        {
+            if (!IsPhantomJsBrowser(driver))
+            {
+
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
+
+                try
+                {
+                    var alert = wait.Until(drv =>
+                    {
+                        try
+                        {
+                            return drv.SwitchTo().Alert();
+                        }
+                        catch (NoAlertPresentException)
+                        {
+                            return null;
+                        }
+                    });
+                    alert.Accept();
+                }
+                catch (WebDriverTimeoutException) { /* Ignore */ }
+            }
         }
     }
 }

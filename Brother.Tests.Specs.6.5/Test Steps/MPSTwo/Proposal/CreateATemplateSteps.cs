@@ -75,7 +75,19 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             GivenDealerHaveCreatedProposalOfOpen(country, contractType, usageType, length, billing);
         }
 
-        
+        [Given(@"I changed the ""(.*)"" for ""(.*)""")]
+        public void GivenIChangedTheFor(string language, string p1)
+        {
+            
+        }
+
+        [Given(@"I changed the language to ""(.*)""")]
+        public void GivenIChangedTheLanguageTo(string language)
+        {
+            GivenIChangeTheLanguageDisplayed(language);
+        }
+
+
 
         public void GivenDealerHaveCreatedProposalOfOpen(string country, string contractType, string usageType, string length, string billing)
         {
