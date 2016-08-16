@@ -312,12 +312,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             
         
 
-        public void DissmissTheJsAlert(IWebDriver driver)
-        {
-
-            ClickAcceptOnJsAlert(driver);
-
-        }
 
         public void NagivetdToCreativeCenterLoginPage()
         {
@@ -331,7 +325,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public void ClickDismissOnConfrimation(IWebDriver driver)
         {
-            WebDriver.Wait(DurationType.Millisecond, 100);
+            
             ClickDismissOnJsAlert(driver);
         }
 

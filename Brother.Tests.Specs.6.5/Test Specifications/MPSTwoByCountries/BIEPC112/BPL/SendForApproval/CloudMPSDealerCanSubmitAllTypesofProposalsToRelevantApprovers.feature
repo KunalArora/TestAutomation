@@ -25,10 +25,10 @@ Scenario Outline: Send certain proposals for approval
 	
 	Scenarios:
 
-	| Role             | Country | Role2                           | ContractType | UsageType                                 | Length | Billing                |
-	| Cloud MPS Dealer | Poland  | Cloud MPS Local Office Approver | Buy & Click  | Engagement sur un minimum volume de pages | 3 ans  | Trimestrale anticipata |
+	| Role             | Country | Role2                           | ContractType | UsageType       | Length | Billing              |
+	| Cloud MPS Dealer | Poland  | Cloud MPS Local Office Approver | Buy + Click  | Pakiet wydruków | 3 lata | Quarterly in Arrears |
 	
-
+@ignore
 Scenario Outline: Send certain approval for Privately Liable Customer
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created a "<ContractType>" proposal with "<UsageType>" and "<Length>" and "<Billing>"
@@ -48,8 +48,8 @@ Scenario Outline: Send certain approval for Privately Liable Customer
 	
 	Scenarios:
 
-	| Role             | Country | Role2                           | ContractType | UsageType                                 | Length | Billing                | Private |
-	| Cloud MPS Dealer | Poland  | Cloud MPS Local Office Approver | Buy & Click  | Engagement sur un minimum volume de pages | 3 ans  | Trimestrale anticipata | Autre   |
+	| Role             | Country | Role2                           | ContractType | UsageType       | Length | Billing              | Private |
+	| Cloud MPS Dealer | Poland  | Cloud MPS Local Office Approver | Buy + Click  | Pakiet wydruków | 3 lata | Quarterly in Arrears | Inny    |
 	
 Scenario Outline: Send certain proposal for Approval for Customer who can order consumables
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
@@ -70,9 +70,10 @@ Scenario Outline: Send certain proposal for Approval for Customer who can order 
 
 	Scenarios:
 
-	| Role             | Country | Role2                           | ContractType | UsageType                                 | Length | Billing                |
-	| Cloud MPS Dealer | Poland  | Cloud MPS Local Office Approver | Buy & Click  | Engagement sur un minimum volume de pages | 3 ans  | Trimestrale anticipata |
+	| Role             | Country | Role2                           | ContractType | UsageType       | Length | Billing              |
+	| Cloud MPS Dealer | Poland  | Cloud MPS Local Office Approver | Buy + Click  | Pakiet wydruków | 3 lata | Quarterly in Arrears | 
 
+@ignore	
 Scenario Outline: Send certain proposal for Approval for Privately Liable Customer who can order consumables
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created a "<ContractType>" proposal with "<UsageType>" and "<Length>" and "<Billing>"
@@ -92,6 +93,6 @@ Scenario Outline: Send certain proposal for Approval for Privately Liable Custom
 	
 	Scenarios:
 
-	| Role             | Country | Role2                           | ContractType | UsageType                                 | Length | Billing                | Private |
-	| Cloud MPS Dealer | Poland  | Cloud MPS Local Office Approver | Buy & Click  | Engagement sur un minimum volume de pages | 3 ans  | Trimestrale anticipata | Autre   |
+	| Role             | Country | Role2                           | ContractType | UsageType       | Length | Billing              | Private |
+	| Cloud MPS Dealer | Poland  | Cloud MPS Local Office Approver | Buy + Click  | Pakiet wydruków | 3 lata | Quarterly in Arrears | Inny    |
 	

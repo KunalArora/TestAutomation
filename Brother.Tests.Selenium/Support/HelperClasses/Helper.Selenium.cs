@@ -1159,21 +1159,51 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             }
         }
 
+        //public void ClickAcceptOnJsAlert(IWebDriver driver)
+        //{
+        //    if (!IsPhantomJsBrowser())
+        //    {
+        //        WebDriver.Wait(DurationType.Millisecond, 3000);
+        //        try
+        //        {
+        //            var alert = driver.SwitchTo().Alert();
+        //            alert.Accept();
+        //        }
+        //        catch (NoAlertPresentException nape)
+        //        {
+        //            MsgOutput("No Alert found so proceed");
+        //        }
+
+        //    }
+        //}
+
         public void ClickAcceptOnJsAlert(IWebDriver driver)
         {
             if (!IsPhantomJsBrowser())
             {
-                WebDriver.Wait(DurationType.Millisecond, 3000);
+
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
+
                 try
                 {
-                    var alert = driver.SwitchTo().Alert();
+                    var alert = wait.Until(drv =>
+                    {
+                        try
+                        {
+                            return drv.SwitchTo().Alert();
+                        }
+                        catch (NoAlertPresentException)
+                        {
+                            return null;
+                        }
+                        catch (WebDriverException)
+                        {
+                            return null;
+                        }
+                    });
                     alert.Accept();
                 }
-                catch (NoAlertPresentException nape)
-                {
-                    MsgOutput("No Alert found so proceed");
-                }
-               
+                catch (WebDriverTimeoutException) { /* Ignore */ }
             }
         }
 
@@ -1200,10 +1230,28 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         {
             if (!IsPhantomJsBrowser())
             {
-                var alert = driver.SwitchTo().Alert();
-                alert.Dismiss();
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
+                
+                try
+                {
+                    var alert = wait.Until(drv =>
+                    {
+                        try
+                        {
+                            return drv.SwitchTo().Alert();
+                        }
+                        catch (UnhandledAlertException)
+                        {
+                            return null;
+                        }
+                    });
+                    alert.Accept();
+                }
+                catch (WebDriverTimeoutException) { /* Ignore */ }
             }
         }
+
+
 
         public void SyncEscapeAction(IWebDriver driver)
         {
