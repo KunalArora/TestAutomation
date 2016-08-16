@@ -371,38 +371,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             SendToBankButtonElement(driver).Last().Click();
         }
 
-        public static bool IsPhantomJsBrowser(IWebDriver driver)
-        {
-            var capabilities = ((RemoteWebDriver)driver).Capabilities;
-
-            return capabilities.BrowserName.Equals("phantomjs");
-        }
-
-
-        public static void ClickAcceptOnJsAlert(IWebDriver driver)
-        {
-            if (!IsPhantomJsBrowser(driver))
-            {
-
-                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
-
-                try
-                {
-                    var alert = wait.Until(drv =>
-                    {
-                        try
-                        {
-                            return drv.SwitchTo().Alert();
-                        }
-                        catch (NoAlertPresentException)
-                        {
-                            return null;
-                        }
-                    });
-                    alert.Accept();
-                }
-                catch (WebDriverTimeoutException) { /* Ignore */ }
-            }
-        }
+       
     }
 }

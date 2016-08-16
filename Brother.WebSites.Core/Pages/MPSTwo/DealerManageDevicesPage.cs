@@ -176,6 +176,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             AssertElementContainsText(CompanyConfirmationElement, genCompany, "Generated Company is empty");
             
             HeadlessDismissAlertOk();
+            ClickAcceptOnJsAlert(Driver);
         }
 
         public void ClickOnActionButtonOnDisplay()
@@ -359,6 +360,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             AssertElementPresent(InstallationRequestContainerElement, "Installation not finished");
             HeadlessDismissAlertOk();
+            ClickAcceptOnJsAlert(Driver);
         }
 
         private string Method()

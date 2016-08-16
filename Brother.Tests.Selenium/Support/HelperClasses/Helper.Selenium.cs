@@ -1182,29 +1182,38 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             if (!IsPhantomJsBrowser())
             {
 
-                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
+                //var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
 
-                try
+                //try
+                //{
+                //    var alert = wait.Until(drv =>
+                //    {
+                //        try
+                //        {
+                //            return drv.SwitchTo().Alert();
+                //        }
+                //        catch (NoAlertPresentException)
+                //        {
+                //            return null;
+                //        }
+                //        catch (WebDriverException)
+                //        {
+                //            return null;
+                //        }
+                //    });
+                //    alert.Accept();
+                //}
+                //catch (WebDriverTimeoutException) { /* Ignore */ }
+
+                var js = TestController.CurrentDriver as IJavaScriptExecutor;
+                if (js != null)
                 {
-                    var alert = wait.Until(drv =>
-                    {
-                        try
-                        {
-                            return drv.SwitchTo().Alert();
-                        }
-                        catch (NoAlertPresentException)
-                        {
-                            return null;
-                        }
-                        catch (WebDriverException)
-                        {
-                            return null;
-                        }
-                    });
-                    alert.Accept();
+                    js.ExecuteScript("window.alert = function(){}");
+                    js.ExecuteScript("window.confirm = function(){return true;}");
                 }
-                catch (WebDriverTimeoutException) { /* Ignore */ }
             }
+
+            
         }
 
         public void AcceptAlert()
@@ -1230,24 +1239,32 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         {
             if (!IsPhantomJsBrowser())
             {
-                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
+                //var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
                 
-                try
+                //try
+                //{
+                //    var alert = wait.Until(drv =>
+                //    {
+                //        try
+                //        {
+                //            return drv.SwitchTo().Alert();
+                //        }
+                //        catch (UnhandledAlertException)
+                //        {
+                //            return null;
+                //        }
+                //    });
+                //    alert.Accept();
+                //}
+                //catch (WebDriverTimeoutException) { /* Ignore */ }
+
+
+                var js = TestController.CurrentDriver as IJavaScriptExecutor;
+                if (js != null)
                 {
-                    var alert = wait.Until(drv =>
-                    {
-                        try
-                        {
-                            return drv.SwitchTo().Alert();
-                        }
-                        catch (UnhandledAlertException)
-                        {
-                            return null;
-                        }
-                    });
-                    alert.Accept();
+                    js.ExecuteScript("window.alert = function(){}");
+                    js.ExecuteScript("window.confirm = function(){return false;}");
                 }
-                catch (WebDriverTimeoutException) { /* Ignore */ }
             }
         }
 

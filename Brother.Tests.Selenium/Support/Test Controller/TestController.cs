@@ -123,7 +123,10 @@ namespace Brother.Tests.Selenium.Lib.Support
                     break;
 
                 case "CH":
-                    CurrentDriver = new ChromeDriver();
+                    var options = new ChromeOptions();
+                    options.AddArguments("--disable-extensions");
+                    options.AddArguments("no-sandbox");
+                    CurrentDriver = new ChromeDriver(options);
                     Helper.MsgOutput("Using Chrome Driver");
                     break;
 
