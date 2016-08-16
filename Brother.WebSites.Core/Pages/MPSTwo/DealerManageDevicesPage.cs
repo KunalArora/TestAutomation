@@ -248,6 +248,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             if(CancelInstallationRequestElement == null)
                 throw new Exception("Cancel installation button not displayed");
+            ClickAcceptOnJsAlert(Driver);
             CancelInstallationRequestElement.Click();
             ClickAcceptOnConfirmation(Driver);
             WebDriver.Wait(DurationType.Second, 3);
