@@ -135,6 +135,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             const string deleteButton = @".open .js-mps-delete";
             
             HeadlessDismissAlertOk();
+            ClickAcceptOnJsAlert(Driver);
            // var customerelem = FindExistingCustomerByEmail();
             ClickActionButtonOnOffer();
             WaitForElementToExistByCssSelector(deleteButton);
@@ -142,15 +143,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var id = deleteElem.GetAttribute("data-person-id");
             SpecFlow.SetContext(DealerLatestOperatingCustomerItemId, id);
 
-            try
-            {
-                deleteElem.Click();
-                WebDriver.Wait(DurationType.Second, 3);
-            }
-            catch (UnhandledAlertException uae)
-            {
-                // do nothing;
-            }
+            deleteElem.Click();
+            WebDriver.Wait(DurationType.Second, 3);
+            
             
         }
 
@@ -159,6 +154,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             HeadlessDismissAlertOk();
            // var customerelem = FindNthProposalOfferElement(driver);
             //ClickActionButtonOnOffer();
+            ClickAcceptOnJsAlert(Driver);
             ActionsModule.OpenTheFirstActionButton(driver);
             WaitForElementToExistByCssSelector(".open .js-mps-delete");
             var deleteElem = Driver.FindElement(By.CssSelector(".open .js-mps-delete"));

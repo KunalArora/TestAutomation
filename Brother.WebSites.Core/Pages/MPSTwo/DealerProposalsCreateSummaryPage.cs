@@ -549,6 +549,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             ScrollTo(SummaryCloseProposalElement);
             HeadlessDismissAlertOk();
+            ClickAcceptOnJsAlert(Driver);
 
             SummaryCloseProposalElement.Click();
             

@@ -257,6 +257,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ActionsModule.ClickOnSpecificActionsElement(Driver);
 
             HeadlessDismissAlertOk();
+            ClickAcceptOnJsAlert(Driver);
             ActionsModule.DeleteAProposal(Driver);
             WebDriver.Wait(DurationType.Second, 2);
         }
@@ -524,10 +525,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if (confirm != "OK")
             {
                 HeadlessDismissAlertCancel();
+                ClickDismissOnJsAlert(Driver);
             }
             else
             {
                 HeadlessDismissAlertOk();
+                ClickAcceptOnJsAlert(Driver);
             }
         }
 

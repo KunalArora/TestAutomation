@@ -1534,9 +1534,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             links.First().Click();
 
             HeadlessDismissAlertOk();
+            ClickAcceptOnJsAlert(Driver);
 
             WebDriver.Wait(DurationType.Second, 3);
-            var removebuttonselector = @"button.btn.js-mps-product-configuration-remove";
+            const string removebuttonselector = @"button.btn.js-mps-product-configuration-remove";
             var removebutton = driver.FindElement(By.CssSelector(removebuttonselector));
             removebutton.Click();
 

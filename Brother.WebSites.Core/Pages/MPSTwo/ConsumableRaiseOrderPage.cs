@@ -67,6 +67,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void SubmitConsumableForOrder()
         {
             HeadlessDismissAlertOk();
+            ClickAcceptOnJsAlert(Driver);
             SubmitButton.Click();
             ClickAcceptOnJsAlert(Driver);
             WaitForElementToExistByCssSelector(".alert.alert-success.fade.in.mps-alert.js-mps-alert");

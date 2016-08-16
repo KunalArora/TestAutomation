@@ -176,6 +176,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             AssertElementContainsText(CompanyConfirmationElement, genCompany, "Generated Company is empty");
             
             HeadlessDismissAlertOk();
+            ClickAcceptOnJsAlert(Driver);
         }
 
         public void ClickOnActionButtonOnDisplay()
@@ -247,6 +248,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             if(CancelInstallationRequestElement == null)
                 throw new Exception("Cancel installation button not displayed");
+            ClickAcceptOnJsAlert(Driver);
             CancelInstallationRequestElement.Click();
             ClickAcceptOnConfirmation(Driver);
             WebDriver.Wait(DurationType.Second, 3);
@@ -359,6 +361,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             AssertElementPresent(InstallationRequestContainerElement, "Installation not finished");
             HeadlessDismissAlertOk();
+            ClickAcceptOnJsAlert(Driver);
         }
 
         private string Method()
