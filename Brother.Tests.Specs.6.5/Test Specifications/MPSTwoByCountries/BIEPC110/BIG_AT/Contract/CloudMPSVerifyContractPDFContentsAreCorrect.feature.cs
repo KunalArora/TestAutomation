@@ -73,14 +73,14 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BIG_
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS GermanyAustria Verify German PDF Contents Are Correct")]
+        [NUnit.Framework.DescriptionAttribute("MPS Verify PDF Correctness")]
         [NUnit.Framework.TestCaseAttribute("Germany", "Easy Print Pro & Service", "Mindestvolumen", null)]
         [NUnit.Framework.TestCaseAttribute("Germany", "Leasing & Service", "Mindestvolumen", null)]
         [NUnit.Framework.TestCaseAttribute("Austria", "Easy Print Pro & Service", "Mindestvolumen", null)]
         [NUnit.Framework.TestCaseAttribute("Austria", "Leasing & Service", "Mindestvolumen", null)]
-        public virtual void MPSGermanyAustriaVerifyGermanPDFContentsAreCorrect(string country, string contractType, string usageType, string[] exampleTags)
+        public virtual void MPSVerifyPDFCorrectness(string country, string contractType, string usageType, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS GermanyAustria Verify German PDF Contents Are Correct", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Verify PDF Correctness", exampleTags);
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line 9

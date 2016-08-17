@@ -5,7 +5,7 @@ Feature: CloudMPSDannishPurchaseAndClickProposalUserJourney
 	I want to be able to use different MPS parameters to derive different proposal
 
 
-Scenario Outline: MPS Danish Create different varieties of Purchase and Click proposal for new customer on Minimum Volume Term
+Scenario Outline: MPS Create MV Proposal
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	When I fill Proposal Description for "<ContractType>" Contract type
@@ -37,7 +37,7 @@ Scenario Outline: MPS Danish Create different varieties of Purchase and Click pr
 	
  	
 	
-Scenario Outline: MPS Danish Create different varieties of Purchase and Click proposal for new customer on Pay As You Go Term
+Scenario Outline: MPS Create Proposal PAYG
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	When I fill Proposal Description for "<ContractType>" Contract type
@@ -67,7 +67,7 @@ Scenario Outline: MPS Danish Create different varieties of Purchase and Click pr
 	| Cloud MPS Dealer | Denmark | Køb & Klik med service | Create new customer | Pay As You Go | 3 år     | Quarterly in Arrears | Tick          | HL-L5100DN | Full         | 750         |
 	
 	
-Scenario Outline: MPS Danish Create different varieties of Purchase and Click proposal for an existing customer
+Scenario Outline: MPS Create Proposal With Existing Customer
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	When I fill Proposal Description for "<ContractType>" Contract type
@@ -99,7 +99,7 @@ Scenario Outline: MPS Danish Create different varieties of Purchase and Click pr
 	
 	
 
-Scenario Outline: MPS Danish Create different varieties of Purchase and Click proposal for an existing customer on Pay As You Go Term
+Scenario Outline: MPS Create Proposal Existing PAYG Customer
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	When I fill Proposal Description for "<ContractType>" Contract type

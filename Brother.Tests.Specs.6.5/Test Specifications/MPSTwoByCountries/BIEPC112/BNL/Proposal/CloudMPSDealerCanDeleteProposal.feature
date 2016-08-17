@@ -6,7 +6,7 @@ Feature: CloudMPSDutchDealerCanDeleteProposal
 
 
 
-Scenario Outline: MPS Dutch Dealers can delete an open Purchase and Click proposal
+Scenario Outline: MPS Delete Open Proposal
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created a "<ContractType>" proposal with "<UsageType>" and "<Length>" and "<Billing>"
 	And I am on Proposal List page

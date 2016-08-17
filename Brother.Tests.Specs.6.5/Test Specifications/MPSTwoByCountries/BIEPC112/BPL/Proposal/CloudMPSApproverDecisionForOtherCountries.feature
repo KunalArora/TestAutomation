@@ -7,7 +7,7 @@ Feature: CloudMPSPolishApproverDecisionFeature
 #
 # Decline
 #
-Scenario Outline: MPS Polish Approver Decline Proposal for other Countries
+Scenario Outline: MPS LO Decline Proposal
 	Given I verify and store "<Country>" purchase and click proposal bypass status
 	Then "<Role>" can decline Awaiting Approval "<Country>" "<ContractType>" proposal with "<UsageType>" and "<Length>" and "<Billing>"
 
@@ -16,12 +16,11 @@ Scenario Outline: MPS Polish Approver Decline Proposal for other Countries
 	| Poland  | Cloud MPS Local Office Approver | Buy + Click  | Pakiet wydruków | 3 lata | Quarterly in Arrears |
 	
 
-
 #
 # Approve Signed Contract
 #
 # Accept1, 2
-Scenario Outline: MPS Polish Approver can decide to reject or approve the contract for other Countries
+Scenario Outline: MPS LO Can Reject Or Accept
 	Given "<Country>" Dealer have created a "<ContractType>" contract with "<UsageType>" and "<Length>" and "<Billing>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When Approver navigate to Contract Awaiting Acceptance page from Dashboard
@@ -35,7 +34,7 @@ Scenario Outline: MPS Polish Approver can decide to reject or approve the contra
 	
 
 # Accept5, 6
-Scenario Outline: MPS Polish Approver can approve the contract for other Countries
+Scenario Outline: MPS LO Approve Contract
 	Given "<Country>" Dealer have created a "<ContractType>" contract with "<UsageType>" and "<Length>" and "<Billing>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When Approver navigate to Contract Awaiting Acceptance page from Dashboard
@@ -51,7 +50,7 @@ Scenario Outline: MPS Polish Approver can approve the contract for other Countri
 	| Poland  | Cloud MPS Local Office Approver | Buy + Click  | Pakiet wydruków | 3 lata | Quarterly in Arrears |
 	
 # Reject1,2
-Scenario Outline: MPS Polish Approver can reject the contract for other Countries
+Scenario Outline: MPS LO Reject Contract
 	Given "<Country>" Dealer have created a "<ContractType>" contract with "<UsageType>" and "<Length>" and "<Billing>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When Approver navigate to Contract Awaiting Acceptance page from Dashboard
@@ -67,7 +66,7 @@ Scenario Outline: MPS Polish Approver can reject the contract for other Countrie
 	
 
 # Reject3
-Scenario Outline: MPS Polish Dealer can resign rejected contract for other Countries
+Scenario Outline: MPS Dealer Resign Rejected Contract
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When I navigate to Rejected screen
 	Then I can successfully re-sign the rejected contract
@@ -79,7 +78,7 @@ Scenario Outline: MPS Polish Dealer can resign rejected contract for other Count
 	
 	
 # LO Approver can view open offers
-Scenario Outline: MPS Polish Local Office Approver can view opened offers for other Countries
+Scenario Outline: MPS LO View Opened Offers
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When I navigate to ProposalPage
 	And I navigate to Awaiting Approval screen under Proposals page
@@ -91,7 +90,7 @@ Scenario Outline: MPS Polish Local Office Approver can view opened offers for ot
 	| Cloud MPS Local Office Approver | Poland  |
 	
 # LO Approver can view confirmed/rejected/signed contracts
-Scenario Outline: MPS Polish Local Office Approver can view confirmed/rejected/signed contracts for other Countries
+Scenario Outline: MPS LO View Contracts
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When I navigate to Local Office Approver Contracts screen on "<Acceptance>" Tab
 	Then I should see a list of Proposals

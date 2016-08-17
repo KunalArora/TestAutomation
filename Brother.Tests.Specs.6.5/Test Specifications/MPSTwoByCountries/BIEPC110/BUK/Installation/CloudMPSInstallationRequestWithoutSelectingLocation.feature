@@ -5,7 +5,7 @@ Feature: UKInstallationRequestCannotBeCreatedWithoutSelectingLocation
 	I must select the location of the device 
 	
 
-Scenario Outline: MPS English Dealer cannot begin installation Request without selecting Location
+Scenario Outline: MPS Installation Without Location
 	Given Dealer have created a contract of "<ContractType>" and "<UsageType>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And the contract created above is approved

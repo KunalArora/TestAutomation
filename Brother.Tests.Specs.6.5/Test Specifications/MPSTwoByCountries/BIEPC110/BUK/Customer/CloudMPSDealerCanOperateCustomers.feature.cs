@@ -72,11 +72,11 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BUK.
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS English Dealer can see customers")]
+        [NUnit.Framework.DescriptionAttribute("MPS View Customers")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", null)]
-        public virtual void MPSEnglishDealerCanSeeCustomers(string role, string country, string[] exampleTags)
+        public virtual void MPSViewCustomers(string role, string country, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS English Dealer can see customers", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS View Customers", exampleTags);
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line 9
@@ -92,11 +92,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS English Dealer can create a new customer")]
+        [NUnit.Framework.DescriptionAttribute("MPS Create Customer")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", null)]
-        public virtual void MPSEnglishDealerCanCreateANewCustomer(string role, string country, string[] exampleTags)
+        public virtual void MPSCreateCustomer(string role, string country, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS English Dealer can create a new customer", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Create Customer", exampleTags);
 #line 20
 this.ScenarioSetup(scenarioInfo);
 #line 21
@@ -116,11 +116,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS English Dealer can edit a new customer")]
+        [NUnit.Framework.DescriptionAttribute("MPS Edit New Customer")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "NewlyCreatedItem", null)]
-        public virtual void MPSEnglishDealerCanEditANewCustomer(string role, string country, string targetItem, string[] exampleTags)
+        public virtual void MPSEditNewCustomer(string role, string country, string targetItem, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS English Dealer can edit a new customer", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Edit New Customer", exampleTags);
 #line 35
 this.ScenarioSetup(scenarioInfo);
 #line 36
@@ -148,11 +148,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS English Dealer can delete a customer")]
+        [NUnit.Framework.DescriptionAttribute("MPS Delete Customer")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "NewlyCreatedItem", "OK", null)]
-        public virtual void MPSEnglishDealerCanDeleteACustomer(string role, string country, string targetItem, string confirm, string[] exampleTags)
+        public virtual void MPSDeleteCustomer(string role, string country, string targetItem, string confirm, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS English Dealer can delete a customer", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Delete Customer", exampleTags);
 #line 53
 this.ScenarioSetup(scenarioInfo);
 #line 54
@@ -176,11 +176,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS English Dealer can cancel deleting customer")]
+        [NUnit.Framework.DescriptionAttribute("MPS Cancel Deleting Customer")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "NewlyCreatedItem", "Dismiss", null)]
-        public virtual void MPSEnglishDealerCanCancelDeletingCustomer(string role, string country, string targetItem, string confirm, string[] exampleTags)
+        public virtual void MPSCancelDeletingCustomer(string role, string country, string targetItem, string confirm, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS English Dealer can cancel deleting customer", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Cancel Deleting Customer", exampleTags);
 #line 69
 this.ScenarioSetup(scenarioInfo);
 #line 70
@@ -204,11 +204,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS English Dealer cannot delete a customer who is bound to an existing proposal")]
+        [NUnit.Framework.DescriptionAttribute("MPS Delete Bounded Customer")]
         [NUnit.Framework.TestCaseAttribute("Purchase & Click with Service", "Minimum Volume", "OK", "NewlyCreatedProposalCustomer", null)]
-        public virtual void MPSEnglishDealerCannotDeleteACustomerWhoIsBoundToAnExistingProposal(string contractType, string usageType, string confirm, string targetItem, string[] exampleTags)
+        public virtual void MPSDeleteBoundedCustomer(string contractType, string usageType, string confirm, string targetItem, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS English Dealer cannot delete a customer who is bound to an existing proposal", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Delete Bounded Customer", exampleTags);
 #line 86
 this.ScenarioSetup(scenarioInfo);
 #line 87

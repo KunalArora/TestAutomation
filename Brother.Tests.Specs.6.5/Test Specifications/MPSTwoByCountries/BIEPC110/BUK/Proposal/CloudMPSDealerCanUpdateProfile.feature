@@ -5,7 +5,7 @@ Feature: CloudMPSUKDealerCanUpdateProfile
 	I want to be able to add dealer profile
 
 
-Scenario Outline: MPS English Dealer can successfully add profile
+Scenario Outline: MPS Add Profile
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to Admin page using tab
 	And I navigate to Dealership Profile page

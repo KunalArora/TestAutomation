@@ -72,11 +72,11 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BUK.
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS English Should be able to display full detail screen")]
+        [NUnit.Framework.DescriptionAttribute("MPS Display Full Detail")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "MFC-L8850CDW", null)]
-        public virtual void MPSEnglishShouldBeAbleToDisplayFullDetailScreen(string role, string country, string printer, string[] exampleTags)
+        public virtual void MPSDisplayFullDetail(string role, string country, string printer, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS English Should be able to display full detail screen", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Display Full Detail", exampleTags);
 #line 10
 this.ScenarioSetup(scenarioInfo);
 #line 11
@@ -102,11 +102,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS English Default value of full detail screen are verified")]
+        [NUnit.Framework.DescriptionAttribute("MPS Verify Full Detail")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Purchase & Click with Service", "3 years", "Quarterly in Arrears", "MFC-L8850CDW", null)]
-        public virtual void MPSEnglishDefaultValueOfFullDetailScreenAreVerified(string role, string country, string contractType, string contract, string billing, string printer, string[] exampleTags)
+        public virtual void MPSVerifyFullDetail(string role, string country, string contractType, string contract, string billing, string printer, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS English Default value of full detail screen are verified", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Verify Full Detail", exampleTags);
 #line 27
 this.ScenarioSetup(scenarioInfo);
 #line 28
@@ -130,11 +130,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS English Total Price calulation is verified")]
+        [NUnit.Framework.DescriptionAttribute("MPS Verify Total Price")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Purchase & Click with Service", "3 years", "Quarterly in Arrears", "MFC-L8850CDW", null)]
-        public virtual void MPSEnglishTotalPriceCalulationIsVerified(string role, string country, string contractType, string contract, string billing, string printer, string[] exampleTags)
+        public virtual void MPSVerifyTotalPrice(string role, string country, string contractType, string contract, string billing, string printer, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS English Total Price calulation is verified", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Verify Total Price", exampleTags);
 #line 43
 this.ScenarioSetup(scenarioInfo);
 #line 44
@@ -158,11 +158,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS English The sum of Total Price is equal to the Grand Total Price")]
+        [NUnit.Framework.DescriptionAttribute("MPS Verify Grand Total Price")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Purchase & Click with Service", "3 years", "Quarterly in Arrears", "MFC-L8850CDW", null)]
-        public virtual void MPSEnglishTheSumOfTotalPriceIsEqualToTheGrandTotalPrice(string role, string country, string contractType, string contract, string billing, string printer, string[] exampleTags)
+        public virtual void MPSVerifyGrandTotalPrice(string role, string country, string contractType, string contract, string billing, string printer, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS English The sum of Total Price is equal to the Grand Total Price", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Verify Grand Total Price", exampleTags);
 #line 59
 this.ScenarioSetup(scenarioInfo);
 #line 60
@@ -189,11 +189,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS English All Zero QTY fields are not displayed on summary page")]
+        [NUnit.Framework.DescriptionAttribute("MPS Zero QTY Not displayed On Summary")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Purchase & Click with Service", "3 years", "Quarterly in Arrears", "MFC-L8850CDW", null)]
-        public virtual void MPSEnglishAllZeroQTYFieldsAreNotDisplayedOnSummaryPage(string role, string country, string contractType, string contract, string billing, string printer, string[] exampleTags)
+        public virtual void MPSZeroQTYNotDisplayedOnSummary(string role, string country, string contractType, string contract, string billing, string printer, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS English All Zero QTY fields are not displayed on summary page", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Zero QTY Not displayed On Summary", exampleTags);
 #line 76
 this.ScenarioSetup(scenarioInfo);
 #line 77
@@ -221,13 +221,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS English Enable Printer of Purchase + Click as a Local Office Admin, then can " +
-            "display in Purchase + Click Service")]
+        [NUnit.Framework.DescriptionAttribute("MPS Enable Device")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office", "United Kingdom", "Cloud MPS Dealer", "MFC-J4420DW", null)]
-        public virtual void MPSEnglishEnablePrinterOfPurchaseClickAsALocalOfficeAdminThenCanDisplayInPurchaseClickService(string role1, string country, string role2, string printer, string[] exampleTags)
+        public virtual void MPSEnableDevice(string role1, string country, string role2, string printer, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS English Enable Printer of Purchase + Click as a Local Office Admin, then can " +
-                    "display in Purchase + Click Service", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Enable Device", exampleTags);
 #line 95
 this.ScenarioSetup(scenarioInfo);
 #line 96
@@ -261,13 +259,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS English Disable Printer as a Local Office Admin, then can display in Purchase" +
-            " + Click Service")]
+        [NUnit.Framework.DescriptionAttribute("MPS Disable Device")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office", "United Kingdom", "Cloud MPS Dealer", "MFC-J4420DW", null)]
-        public virtual void MPSEnglishDisablePrinterAsALocalOfficeAdminThenCanDisplayInPurchaseClickService(string role1, string country, string role2, string printer, string[] exampleTags)
+        public virtual void MPSDisableDevice(string role1, string country, string role2, string printer, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS English Disable Printer as a Local Office Admin, then can display in Purchase" +
-                    " + Click Service", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Disable Device", exampleTags);
 #line 116
 this.ScenarioSetup(scenarioInfo);
 #line 117
@@ -300,11 +296,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS English Cannot input Installation Pack Unit Cost less than default")]
+        [NUnit.Framework.DescriptionAttribute("MPS Installation Pack Unit Cost Input Error")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "MFC-L8850CDW", null)]
-        public virtual void MPSEnglishCannotInputInstallationPackUnitCostLessThanDefault(string role, string country, string printer, string[] exampleTags)
+        public virtual void MPSInstallationPackUnitCostInputError(string role, string country, string printer, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS English Cannot input Installation Pack Unit Cost less than default", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Installation Pack Unit Cost Input Error", exampleTags);
 #line 139
 this.ScenarioSetup(scenarioInfo);
 #line 140
@@ -333,13 +329,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS English When input 100% into Margin field, \"Add to proposal\" button become gr" +
-            "ayout")]
+        [NUnit.Framework.DescriptionAttribute("Input 100% Margin")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "MFC-L8850CDW", null)]
-        public virtual void MPSEnglishWhenInput100IntoMarginFieldAddToProposalButtonBecomeGrayout(string role, string country, string printer, string[] exampleTags)
+        public virtual void Input100Margin(string role, string country, string printer, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS English When input 100% into Margin field, \"Add to proposal\" button become gr" +
-                    "ayout", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Input 100% Margin", exampleTags);
 #line 157
 this.ScenarioSetup(scenarioInfo);
 #line 158
@@ -363,13 +357,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS English When change Unit Price so that Margin is 100, \"Add to proposal\" butto" +
-            "n become grayout")]
+        [NUnit.Framework.DescriptionAttribute("Unit Price With 100% Margin")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "MFC-L8850CDW", null)]
-        public virtual void MPSEnglishWhenChangeUnitPriceSoThatMarginIs100AddToProposalButtonBecomeGrayout(string role, string country, string printer, string[] exampleTags)
+        public virtual void UnitPriceWith100Margin(string role, string country, string printer, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS English When change Unit Price so that Margin is 100, \"Add to proposal\" butto" +
-                    "n become grayout", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Unit Price With 100% Margin", exampleTags);
 #line 173
 this.ScenarioSetup(scenarioInfo);
 #line 174
@@ -393,11 +385,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS English Can be set-up as often as possible but used as a one-off margin")]
+        [NUnit.Framework.DescriptionAttribute("MPS One-Off Margin")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "MFC-L8850CDW", null)]
-        public virtual void MPSEnglishCanBeSet_UpAsOftenAsPossibleButUsedAsAOne_OffMargin(string role, string country, string printer, string[] exampleTags)
+        public virtual void MPSOne_OffMargin(string role, string country, string printer, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS English Can be set-up as often as possible but used as a one-off margin", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS One-Off Margin", exampleTags);
 #line 189
 this.ScenarioSetup(scenarioInfo);
 #line 190
@@ -433,11 +425,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS English One-off set-up by a dealer and used by just the dealer")]
+        [NUnit.Framework.DescriptionAttribute("MPS Dealer Set-up Margin")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "MFC-L8850CDW", null)]
-        public virtual void MPSEnglishOne_OffSet_UpByADealerAndUsedByJustTheDealer(string role, string country, string printer, string[] exampleTags)
+        public virtual void MPSDealerSet_UpMargin(string role, string country, string printer, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS English One-off set-up by a dealer and used by just the dealer", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Dealer Set-up Margin", exampleTags);
 #line 211
 this.ScenarioSetup(scenarioInfo);
 #line 212
@@ -469,11 +461,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS English Change in Unit Cost impacts Unit Price")]
+        [NUnit.Framework.DescriptionAttribute("MPS Unit Cost Impacts Unit Price")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "MFC-L8850CDW", null)]
-        public virtual void MPSEnglishChangeInUnitCostImpactsUnitPrice(string role, string country, string printer, string[] exampleTags)
+        public virtual void MPSUnitCostImpactsUnitPrice(string role, string country, string printer, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS English Change in Unit Cost impacts Unit Price", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Unit Cost Impacts Unit Price", exampleTags);
 #line 233
 this.ScenarioSetup(scenarioInfo);
 #line 234
@@ -499,11 +491,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS English Change in Unit Price impacts Margin")]
+        [NUnit.Framework.DescriptionAttribute("MPS Unit Price Impacts Margin")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "MFC-L8850CDW", null)]
-        public virtual void MPSEnglishChangeInUnitPriceImpactsMargin(string role, string country, string printer, string[] exampleTags)
+        public virtual void MPSUnitPriceImpactsMargin(string role, string country, string printer, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS English Change in Unit Price impacts Margin", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Unit Price Impacts Margin", exampleTags);
 #line 250
 this.ScenarioSetup(scenarioInfo);
 #line 251
@@ -529,11 +521,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS English Change in Margin impacts Unit Price (1)")]
+        [NUnit.Framework.DescriptionAttribute("MPS Margin Impacts Unit Price")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "MFC-L8850CDW", null)]
-        public virtual void MPSEnglishChangeInMarginImpactsUnitPrice1(string role, string country, string printer, string[] exampleTags)
+        public virtual void MPSMarginImpactsUnitPrice(string role, string country, string printer, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS English Change in Margin impacts Unit Price (1)", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Margin Impacts Unit Price", exampleTags);
 #line 267
 this.ScenarioSetup(scenarioInfo);
 #line 268
@@ -559,11 +551,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS English Change in Margin impacts Unit Price (2)")]
+        [NUnit.Framework.DescriptionAttribute("MPS Zero Margin impacts Unit Price")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "MFC-L8850CDW", null)]
-        public virtual void MPSEnglishChangeInMarginImpactsUnitPrice2(string role, string country, string printer, string[] exampleTags)
+        public virtual void MPSZeroMarginImpactsUnitPrice(string role, string country, string printer, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS English Change in Margin impacts Unit Price (2)", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Zero Margin impacts Unit Price", exampleTags);
 #line 284
 this.ScenarioSetup(scenarioInfo);
 #line 285
@@ -587,11 +579,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS English Free Text Filter")]
+        [NUnit.Framework.DescriptionAttribute("MPS Free Text Filter")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "MFC-L8850CDW", null)]
-        public virtual void MPSEnglishFreeTextFilter(string role, string country, string printer, string[] exampleTags)
+        public virtual void MPSFreeTextFilter(string role, string country, string printer, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS English Free Text Filter", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Free Text Filter", exampleTags);
 #line 302
 this.ScenarioSetup(scenarioInfo);
 #line 303
@@ -613,11 +605,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS English Fax filter checkbox")]
+        [NUnit.Framework.DescriptionAttribute("MPS Fax filter checkbox")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", null)]
-        public virtual void MPSEnglishFaxFilterCheckbox(string role, string country, string[] exampleTags)
+        public virtual void MPSFaxFilterCheckbox(string role, string country, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS English Fax filter checkbox", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Fax filter checkbox", exampleTags);
 #line 317
 this.ScenarioSetup(scenarioInfo);
 #line 318
@@ -639,11 +631,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS English Scanner filter checkbox")]
+        [NUnit.Framework.DescriptionAttribute("MPS Scanner filter checkbox")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", null)]
-        public virtual void MPSEnglishScannerFilterCheckbox(string role, string country, string[] exampleTags)
+        public virtual void MPSScannerFilterCheckbox(string role, string country, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS English Scanner filter checkbox", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Scanner filter checkbox", exampleTags);
 #line 332
 this.ScenarioSetup(scenarioInfo);
 #line 333
@@ -665,11 +657,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS English Duplex filter checkbox")]
+        [NUnit.Framework.DescriptionAttribute("MPS Duplex filter checkbox")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", null)]
-        public virtual void MPSEnglishDuplexFilterCheckbox(string role, string country, string[] exampleTags)
+        public virtual void MPSDuplexFilterCheckbox(string role, string country, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS English Duplex filter checkbox", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Duplex filter checkbox", exampleTags);
 #line 347
 this.ScenarioSetup(scenarioInfo);
 #line 348
@@ -691,11 +683,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS English Additional Tray filter checkbox")]
+        [NUnit.Framework.DescriptionAttribute("MPS Additional Tray filter checkbox")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", null)]
-        public virtual void MPSEnglishAdditionalTrayFilterCheckbox(string role, string country, string[] exampleTags)
+        public virtual void MPSAdditionalTrayFilterCheckbox(string role, string country, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS English Additional Tray filter checkbox", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Additional Tray filter checkbox", exampleTags);
 #line 362
 this.ScenarioSetup(scenarioInfo);
 #line 363
@@ -717,11 +709,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS English A4 filter checkbox")]
+        [NUnit.Framework.DescriptionAttribute("MPS A4 filter checkbox")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", null)]
-        public virtual void MPSEnglishA4FilterCheckbox(string role, string country, string[] exampleTags)
+        public virtual void MPSA4FilterCheckbox(string role, string country, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS English A4 filter checkbox", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS A4 filter checkbox", exampleTags);
 #line 377
 this.ScenarioSetup(scenarioInfo);
 #line 378
@@ -743,11 +735,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS English A3 filter checkbox")]
+        [NUnit.Framework.DescriptionAttribute("MPS A3 filter checkbox")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", null)]
-        public virtual void MPSEnglishA3FilterCheckbox(string role, string country, string[] exampleTags)
+        public virtual void MPSA3FilterCheckbox(string role, string country, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS English A3 filter checkbox", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS A3 filter checkbox", exampleTags);
 #line 393
 this.ScenarioSetup(scenarioInfo);
 #line 394
@@ -769,11 +761,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS English Mono filter checkbox")]
+        [NUnit.Framework.DescriptionAttribute("MPS Mono filter checkbox")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", null)]
-        public virtual void MPSEnglishMonoFilterCheckbox(string role, string country, string[] exampleTags)
+        public virtual void MPSMonoFilterCheckbox(string role, string country, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS English Mono filter checkbox", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Mono filter checkbox", exampleTags);
 #line 408
 this.ScenarioSetup(scenarioInfo);
 #line 409
@@ -795,11 +787,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS English Colour filter checkbox")]
+        [NUnit.Framework.DescriptionAttribute("MPS Colour filter checkbox")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", null)]
-        public virtual void MPSEnglishColourFilterCheckbox(string role, string country, string[] exampleTags)
+        public virtual void MPSColourFilterCheckbox(string role, string country, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS English Colour filter checkbox", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Colour filter checkbox", exampleTags);
 #line 423
 this.ScenarioSetup(scenarioInfo);
 #line 424
@@ -821,11 +813,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS English Fax and Scanner filter checkbox")]
+        [NUnit.Framework.DescriptionAttribute("MPS Fax And Scanner filter checkbox")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", null)]
-        public virtual void MPSEnglishFaxAndScannerFilterCheckbox(string role, string country, string[] exampleTags)
+        public virtual void MPSFaxAndScannerFilterCheckbox(string role, string country, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS English Fax and Scanner filter checkbox", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Fax And Scanner filter checkbox", exampleTags);
 #line 438
 this.ScenarioSetup(scenarioInfo);
 #line 439
@@ -847,11 +839,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS English Duplex and Colour filter checkbox")]
+        [NUnit.Framework.DescriptionAttribute("MPS Duplex and Colour filter checkbox")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", null)]
-        public virtual void MPSEnglishDuplexAndColourFilterCheckbox(string role, string country, string[] exampleTags)
+        public virtual void MPSDuplexAndColourFilterCheckbox(string role, string country, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS English Duplex and Colour filter checkbox", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Duplex and Colour filter checkbox", exampleTags);
 #line 453
 this.ScenarioSetup(scenarioInfo);
 #line 454
@@ -873,13 +865,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS English verify that Products are displayed according to LO selection (flat li" +
-            "st)")]
+        [NUnit.Framework.DescriptionAttribute("MPS Product Flat List")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office", "United Kingdom", "Cloud MPS Dealer", null)]
-        public virtual void MPSEnglishVerifyThatProductsAreDisplayedAccordingToLOSelectionFlatList(string role1, string country, string role2, string[] exampleTags)
+        public virtual void MPSProductFlatList(string role1, string country, string role2, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS English verify that Products are displayed according to LO selection (flat li" +
-                    "st)", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Product Flat List", exampleTags);
 #line 471
 this.ScenarioSetup(scenarioInfo);
 #line 472
@@ -905,13 +895,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS English verify that Products are displayed according to LO selection (with im" +
-            "ages)")]
+        [NUnit.Framework.DescriptionAttribute("MPS Products Display With Images")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Cloud MPS Local Office", null)]
-        public virtual void MPSEnglishVerifyThatProductsAreDisplayedAccordingToLOSelectionWithImages(string role1, string country, string role2, string[] exampleTags)
+        public virtual void MPSProductsDisplayWithImages(string role1, string country, string role2, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS English verify that Products are displayed according to LO selection (with im" +
-                    "ages)", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Products Display With Images", exampleTags);
 #line 488
 this.ScenarioSetup(scenarioInfo);
 #line 489

@@ -5,7 +5,7 @@ Feature: CloudMPSPolishDealerCanGeneratePDFAtRelevantStages
 	I want to create a proposal for which a PDF for which a proposal can be downloaded
 
 
-Scenario Outline: MPS Polish Dealer Can Generate PDF Purchase and Click Minimum Summary Page
+Scenario Outline: MPS Generate Summary PDF
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	When I fill Proposal Description for "<ContractType>" Contract type
@@ -32,7 +32,7 @@ Scenario Outline: MPS Polish Dealer Can Generate PDF Purchase and Click Minimum 
 	
 	
 	
-Scenario Outline: MPS Polish Dealer Can Generate PDF for Purchase and Click in Awaiting Approval Status for other countries
+Scenario Outline: MPS Generate Awaiting Approval PDF
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created a "<ContractType>" proposal with "<UsageType>" and "<Length>" and "<Billing>"
 	And I am on Proposal List page
@@ -45,6 +45,6 @@ Scenario Outline: MPS Polish Dealer Can Generate PDF for Purchase and Click in A
 	
 	Scenarios: 
 	| Role             | Country | Role2                           | ContractType | UsageType       | Length | Billing              |
-	| Cloud MPS Dealer | Poland  | Cloud MPS Local Office Approver | Buy + Click  | Pakiet wydruków | 3 lata | Quarterly in Arrears |
+	| Cloud MPS Dealer | Poland  | Cloud MPS Local Office Approver | Buy + Click  | Pakiet wydruków | 4 lata | Quarterly in Arrears |
 	
 	

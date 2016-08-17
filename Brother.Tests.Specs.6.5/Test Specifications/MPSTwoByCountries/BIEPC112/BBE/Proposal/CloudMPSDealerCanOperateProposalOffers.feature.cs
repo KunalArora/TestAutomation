@@ -72,12 +72,12 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BBE.
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS Belgian Dealer can copy an existing proposal offer")]
+        [NUnit.Framework.DescriptionAttribute("MPS Copy Existing Proposal Offer")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Belgium", "Without", "Without", "Dutch", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Belgium", "Without", "Without", "French", null)]
-        public virtual void MPSBelgianDealerCanCopyAnExistingProposalOffer(string role, string country, string operation, string target, string language, string[] exampleTags)
+        public virtual void MPSCopyExistingProposalOffer(string role, string country, string operation, string target, string language, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Belgian Dealer can copy an existing proposal offer", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Copy Existing Proposal Offer", exampleTags);
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8

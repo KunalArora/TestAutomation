@@ -7,15 +7,9 @@ Feature: CloudMPSFrenchApproverDecisionFeature
 #
 # Decline
 #
-Scenario Outline: MPS French Approver Decline Proposal for other Countries
-	Given "<Country>" dealer has created "<ContractType>" proposal of awaiting proposal with "<UsageType>" and "<Length>" and "<Billing>"
-	And I sign into Cloud MPS as a "<Role>" from "<Country>"
-	And Approver navigate to ProposalsPage
-	And Approver navigate to Awaiting Approval screen under Proposals page
-	When Approver select the proposal on Awaiting Proposal
-	Then Approver should be able to decline that proposal
-	And the decline proposal should be displayed under Declined tab by Approver
-	And I sign out of Cloud MPS
+Scenario Outline: MPS LO Decline Proposal
+	Given I verify and store "<Country>" purchase and click proposal bypass status
+	Then "<Role>" can decline Awaiting Approval "<Country>" "<ContractType>" proposal with "<UsageType>" and "<Length>" and "<Billing>"
 
 	Scenarios: 
 	| Country | Role                            | ContractType | UsageType                                 | Length | Billing                |
@@ -25,7 +19,7 @@ Scenario Outline: MPS French Approver Decline Proposal for other Countries
 # Approve Signed Contract
 #
 # Accept1, 2
-Scenario Outline: MPS French Approver can decide to reject or approve the contract for other Countries
+Scenario Outline: MPS LO Can Reject Or Accept
 	Given "<Country>" Dealer have created a "<ContractType>" contract with "<UsageType>" and "<Length>" and "<Billing>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When Approver navigate to Contract Awaiting Acceptance page from Dashboard
@@ -39,7 +33,7 @@ Scenario Outline: MPS French Approver can decide to reject or approve the contra
 	
 
 # Accept5, 6
-Scenario Outline: MPS French Approver can approve the contract for other Countries
+Scenario Outline: MPS LO Approve Contract
 	Given "<Country>" Dealer have created a "<ContractType>" contract with "<UsageType>" and "<Length>" and "<Billing>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When Approver navigate to Contract Awaiting Acceptance page from Dashboard
@@ -55,7 +49,7 @@ Scenario Outline: MPS French Approver can approve the contract for other Countri
 	| France  | Cloud MPS Local Office Approver | Buy & Click  | Engagement sur un minimum volume de pages | 3 ans  | Trimestrale anticipata |
 	
 # Reject1,2
-Scenario Outline: MPS French Approver can reject the contract for other Countries
+Scenario Outline: MPS LO Reject Contract
 	Given "<Country>" Dealer have created a "<ContractType>" contract with "<UsageType>" and "<Length>" and "<Billing>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When Approver navigate to Contract Awaiting Acceptance page from Dashboard
@@ -70,7 +64,7 @@ Scenario Outline: MPS French Approver can reject the contract for other Countrie
 	| France  | Cloud MPS Local Office Approver | Buy & Click  | Engagement sur un minimum volume de pages | 3 ans  | Trimestrale anticipata |
 	
 # Reject3
-Scenario Outline: MPS French Dealer can resign rejected contract for other Countries
+Scenario Outline: MPS Resign Rejected Contract
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When I navigate to Rejected screen
 	Then I can successfully re-sign the rejected contract
@@ -81,7 +75,7 @@ Scenario Outline: MPS French Dealer can resign rejected contract for other Count
 	| Cloud MPS Dealer | France  |
 	
 # LO Approver can view open offers
-Scenario Outline: MPS French Local Office Approver can view opened offers for other Countries
+Scenario Outline: MPS LO View Opened Offers
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When I navigate to ProposalPage
 	And I navigate to Awaiting Approval screen under Proposals page
@@ -93,7 +87,7 @@ Scenario Outline: MPS French Local Office Approver can view opened offers for ot
 	| Cloud MPS Local Office Approver | France  |
 	
 # LO Approver can view confirmed/rejected/signed contracts
-Scenario Outline: MPS French Local Office Approver can view confirmed/rejected/signed contracts for other Countries
+Scenario Outline: MPS LO View Contracts
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When I navigate to Local Office Approver Contracts screen on "<Acceptance>" Tab
 	Then I should see a list of Proposals

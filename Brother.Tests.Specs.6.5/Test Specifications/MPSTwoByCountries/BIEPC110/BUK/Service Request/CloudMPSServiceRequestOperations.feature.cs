@@ -72,13 +72,11 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BUK.
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS English Customer raise service Request and Service Desk view and close servic" +
-            "e request")]
+        [NUnit.Framework.DescriptionAttribute("MPS Close Service Request")]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "Cloud MPS Service Desk", "Email", "Cloud MPS Service Desk Customer", null)]
-        public virtual void MPSEnglishCustomerRaiseServiceRequestAndServiceDeskViewAndCloseServiceRequest(string country, string role2, string method, string role1, string[] exampleTags)
+        public virtual void MPSCloseServiceRequest(string country, string role2, string method, string role1, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS English Customer raise service Request and Service Desk view and close servic" +
-                    "e request", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Close Service Request", exampleTags);
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line 9
@@ -106,13 +104,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS English Customer raise service Request and Service Desk replied and close ser" +
-            "vice request")]
+        [NUnit.Framework.DescriptionAttribute("MPS Service Desk Response")]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "Cloud MPS Service Desk", "Email", "Cloud MPS Service Desk Customer", null)]
-        public virtual void MPSEnglishCustomerRaiseServiceRequestAndServiceDeskRepliedAndCloseServiceRequest(string country, string role2, string method, string role1, string[] exampleTags)
+        public virtual void MPSServiceDeskResponse(string country, string role2, string method, string role1, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS English Customer raise service Request and Service Desk replied and close ser" +
-                    "vice request", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Service Desk Response", exampleTags);
 #line 28
 this.ScenarioSetup(scenarioInfo);
 #line 29

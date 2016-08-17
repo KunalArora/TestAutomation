@@ -6,7 +6,7 @@ Feature: CloudMPSVerifyItalianPDFContentsAreCorrect
 
 
 
-Scenario Outline: MPS Italian Verify PDF Contents Are Correct
+Scenario Outline: MPS Verify PDF Correctness
 	Given "<Country>" Dealer has created an awaiting acceptance "<ContractType>" contract of "<UsageType>" and "<Length>" and "<Billing>"
 	When the dealer downloads PDF for the created contract
 	Then the noted values above are available in the PDF content

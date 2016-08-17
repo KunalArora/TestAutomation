@@ -5,7 +5,7 @@ Feature: CloudMPSBelgianPurchaseAndClickProposalUserJourney
 	I want to be able to use different MPS parameters to derive different leasing proposal
 
 
-Scenario Outline: MPS Belgian Create different varieties of Purchase and Click proposal for new customer on Minimum Volume Term
+Scenario Outline: MPS Create MV Proposal
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I change the language to "<Language>"
 	And I am on MPS New Proposal Page
@@ -38,7 +38,7 @@ Scenario Outline: MPS Belgian Create different varieties of Purchase and Click p
 	| Cloud MPS Dealer | Belgium | Buy & Click                   | Create new customer | Volume minimum | 3 ans    | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Paiement au démarrage du contrat      | 800         | 800          | French   |
 	
 
-Scenario Outline: MPS Belgian Create different varieties of Purchase and Click proposal for an existing customer
+Scenario Outline: MPS Create Proposal With Existing Customer
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I change the language to "<Language>"
 	And I am on MPS New Proposal Page

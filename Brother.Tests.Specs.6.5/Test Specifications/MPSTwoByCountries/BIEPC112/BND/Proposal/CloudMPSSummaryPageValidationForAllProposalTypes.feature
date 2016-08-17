@@ -4,7 +4,7 @@ Feature: CloudMPSSummaryPageValidationForAllDannishProposalTypes
 	As a dealer
 	I want to be verify that proposal summary page is correct for all types of proposal
 
-Scenario Outline: MPS Danish Summary Page Validation For Minimum Volume Purchase and Click proposal In Click Payment
+Scenario Outline: MPS Summary Validation MV In Click
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	When I fill Proposal Description for "<ContractType>" Contract type
@@ -41,7 +41,7 @@ Scenario Outline: MPS Danish Summary Page Validation For Minimum Volume Purchase
 	| Cloud MPS Dealer | Denmark | Køb & Klik med service | Minimumsvolumen | 3 år     | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Inkluderet i klikpris | 800         | 800          | Inkluderet i klikpris | Betale på forskud |
 	
 
-Scenario Outline: MPS Danish Summary Page Validation For Minimum Volume Purchase and Click proposal Upfront Payment
+Scenario Outline: MPS Summary Validation MV Upfront
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	When I fill Proposal Description for "<ContractType>" Contract type
@@ -78,7 +78,7 @@ Scenario Outline: MPS Danish Summary Page Validation For Minimum Volume Purchase
 	| Cloud MPS Dealer | Denmark | Køb & Klik med service | Minimumsvolumen | 5 år     | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Betale på forskud | 800         | 800          | Betale på forskud |
 	
 	
-Scenario Outline: MPS Danish Summary Page Validation For Pay As you Go Purchase and Click proposal
+Scenario Outline: MPS Summary Validation PAYG
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	When I fill Proposal Description for "<ContractType>" Contract type

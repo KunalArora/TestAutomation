@@ -5,7 +5,7 @@ Feature: CloudMPSUKDealerCanOperateCustomers
 	I want to operate customers
 
 
-Scenario Outline: MPS English Dealer can see customers 
+Scenario Outline: MPS View Customers 
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to existing customer screen
 	Then I can see the Existing Customers table
@@ -17,7 +17,7 @@ Scenario Outline: MPS English Dealer can see customers
 #	| Sub Dealer | United Kingdom |
 
 
-Scenario Outline: MPS English Dealer can create a new customer 
+Scenario Outline: MPS Create Customer 
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to existing customer screen
 	And I click Create Customer Button
@@ -32,7 +32,7 @@ Scenario Outline: MPS English Dealer can create a new customer
 
 
 #@ignore
-Scenario Outline: MPS English Dealer can edit a new customer 
+Scenario Outline: MPS Edit New Customer 
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to existing customer screen
 	And I click Create Customer Button
@@ -50,7 +50,7 @@ Scenario Outline: MPS English Dealer can edit a new customer
 #	| Sub Dealer | United Kingdom |
 
 ##@ignore
-Scenario Outline: MPS English Dealer can delete a customer 
+Scenario Outline: MPS Delete Customer 
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to existing customer screen
 	And I click Create Customer Button
@@ -66,7 +66,7 @@ Scenario Outline: MPS English Dealer can delete a customer
 #	| Sub Dealer | United Kingdom |NewlyCreatedItem | OK      |
 
 ##@ignore
-Scenario Outline: MPS English Dealer can cancel deleting customer 
+Scenario Outline: MPS Cancel Deleting Customer 
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	##And I navigate to existing customer screen
 	And I navigate to existing customer screen
@@ -83,7 +83,7 @@ Scenario Outline: MPS English Dealer can cancel deleting customer
 #	| Sub Dealer | United Kingdom | AnyItem    | Dismiss |
 
 ##@ignore
-Scenario Outline: MPS English Dealer cannot delete a customer who is bound to an existing proposal
+Scenario Outline: MPS Delete Bounded Customer 
     Given Dealer have created a Open proposal of "<ContractType>" and "<UsageType>"
 	And I navigate to Dealer Dashboard page from Dealer Proposal page
 	And I navigate to existing customer screen

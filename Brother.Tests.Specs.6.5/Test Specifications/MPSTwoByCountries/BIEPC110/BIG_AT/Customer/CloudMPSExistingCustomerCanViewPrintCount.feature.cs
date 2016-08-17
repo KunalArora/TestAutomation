@@ -72,14 +72,12 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BIG_
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS GermanyAustria Existing German Customer can be used to create a new contract " +
-            "for Run purpose")]
+        [NUnit.Framework.DescriptionAttribute("MPS Existing Customer For Run Action")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Germany", "Easy Print Pro & Service", "Mindestvolumen", "Cloud MPS Dealer", "Cloud", "Web", "Middle Mall_160322135029 Ltd", "Cloud MPS Customer", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Austria", "Easy Print Pro & Service", "Mindestvolumen", "Cloud MPS Dealer", "Cloud", "Web", "Blue Hollow_160322133924 Ltd", "Cloud MPS Customer", null)]
-        public virtual void MPSGermanyAustriaExistingGermanCustomerCanBeUsedToCreateANewContractForRunPurpose(string role, string country, string contractType, string usageType, string role1, string method, string type, string existingCustomer, string role2, string[] exampleTags)
+        public virtual void MPSExistingCustomerForRunAction(string role, string country, string contractType, string usageType, string role1, string method, string type, string existingCustomer, string role2, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS GermanyAustria Existing German Customer can be used to create a new contract " +
-                    "for Run purpose", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Existing Customer For Run Action", exampleTags);
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8

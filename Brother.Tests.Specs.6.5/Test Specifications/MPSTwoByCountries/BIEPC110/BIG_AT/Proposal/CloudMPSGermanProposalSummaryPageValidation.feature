@@ -5,7 +5,7 @@ Feature: CloudMPSProposalSummaryPageValidationForGerman
 	I want to be verify that proposal summary page is correct for all types of proposal
 
 
-Scenario Outline: MPS GermanAustria Summary Page Validation For German And Austria Leasing and Click proposal
+Scenario Outline: MPS Leasing Summary Validation MV In Click
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	And Customer Information tab is not displayed
@@ -41,7 +41,7 @@ Scenario Outline: MPS GermanAustria Summary Page Validation For German And Austr
 	| Cloud MPS Dealer | Austria | Leasing & Service | Mindestvolumen | 3 Jahre  | Vierteljährlich | Halbjährlich | HL-L8350CDW | 750         | 750          | zur Leasingrate addieren | BNP PARIBAS LEASE GROUP S.A. |
 	
 
-Scenario Outline: MPS GermanAustria Summary Page Validation For Minimum Volume German And Austria Purchase and Click proposal In Click Payment
+Scenario Outline: MPS Purchase Summary Validation MV In Click
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	And Customer Information tab is not displayed
@@ -80,7 +80,7 @@ Scenario Outline: MPS GermanAustria Summary Page Validation For Minimum Volume G
 	
 	
 
-Scenario Outline: MPS GermanAustria Summary Page Validation For Minimum Volume German And Austria Purchase and Click proposal Upfront Payment
+Scenario Outline: MPS Summary Validation MV Upfront
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	And Customer Information tab is not displayed
