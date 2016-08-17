@@ -73,13 +73,11 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BPL.
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS Polish Create different varieties of Purchase and Click proposal for new cust" +
-            "omer on Minimum Volume Term")]
+        [NUnit.Framework.DescriptionAttribute("MPS Create MV Proposal")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Poland", "Buy + Click", "Create new customer", "Pakiet wydruków", "3 lata", "Quarterly in Arrears", "Tick", "MFC-L8650CDW", "Full", "Płatność z góry", "800", "800", null)]
-        public virtual void MPSPolishCreateDifferentVarietiesOfPurchaseAndClickProposalForNewCustomerOnMinimumVolumeTerm(string role, string country, string contractType, string createOption, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string[] exampleTags)
+        public virtual void MPSCreateMVProposal(string role, string country, string contractType, string createOption, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Polish Create different varieties of Purchase and Click proposal for new cust" +
-                    "omer on Minimum Volume Term", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Create MV Proposal", exampleTags);
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line 9
@@ -134,13 +132,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS Polish Create different varieties of Purchase and Click proposal for new cust" +
-            "omer on Pay As You Go Term")]
+        [NUnit.Framework.DescriptionAttribute("MPS Create Proposal PAYG")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Poland", "Buy + Click", "Create new customer", "Bez limitu", "4 lata", "Quarterly in Arrears", "Tick", "MFC-8510DN", "Full", "750", null)]
-        public virtual void MPSPolishCreateDifferentVarietiesOfPurchaseAndClickProposalForNewCustomerOnPayAsYouGoTerm(string role, string country, string contractType, string createOption, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string clickVolume, string[] exampleTags)
+        public virtual void MPSCreateProposalPAYG(string role, string country, string contractType, string createOption, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string clickVolume, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Polish Create different varieties of Purchase and Click proposal for new cust" +
-                    "omer on Pay As You Go Term", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Create Proposal PAYG", exampleTags);
 #line 40
 this.ScenarioSetup(scenarioInfo);
 #line 41
@@ -194,13 +190,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS Polish Create different varieties of Purchase and Click proposal for an exist" +
-            "ing customer")]
+        [NUnit.Framework.DescriptionAttribute("MPS Create Proposal With Existing Customer")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Poland", "Buy + Click", "Pakiet wydruków", "3 lata", "Quarterly in Arrears", "Tick", "MFC-L8650CDW", "Full", "Wliczyć w cenę za wydruk strony", "800", "800", null)]
-        public virtual void MPSPolishCreateDifferentVarietiesOfPurchaseAndClickProposalForAnExistingCustomer(string role, string country, string contractType, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string[] exampleTags)
+        public virtual void MPSCreateProposalWithExistingCustomer(string role, string country, string contractType, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Polish Create different varieties of Purchase and Click proposal for an exist" +
-                    "ing customer", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Create Proposal With Existing Customer", exampleTags);
 #line 70
 this.ScenarioSetup(scenarioInfo);
 #line 71
@@ -255,13 +249,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS Polish Create different varieties of Purchase and Click proposal for an exist" +
-            "ing customer on Pay As You Go Term")]
+        [NUnit.Framework.DescriptionAttribute("MPS Create Proposal Existing PAYG Customer")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Poland", "Buy + Click", "Bez limitu", "3 lata", "Quarterly in Arrears", "Tick", "MFC-8510DN", "Full", "750", null)]
-        public virtual void MPSPolishCreateDifferentVarietiesOfPurchaseAndClickProposalForAnExistingCustomerOnPayAsYouGoTerm(string role, string country, string contractType, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string clickVolume, string[] exampleTags)
+        public virtual void MPSCreateProposalExistingPAYGCustomer(string role, string country, string contractType, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string clickVolume, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Polish Create different varieties of Purchase and Click proposal for an exist" +
-                    "ing customer on Pay As You Go Term", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Create Proposal Existing PAYG Customer", exampleTags);
 #line 101
 this.ScenarioSetup(scenarioInfo);
 #line 102

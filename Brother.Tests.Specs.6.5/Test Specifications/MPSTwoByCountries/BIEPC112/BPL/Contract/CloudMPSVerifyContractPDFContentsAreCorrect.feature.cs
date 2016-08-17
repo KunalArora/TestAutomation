@@ -73,11 +73,11 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BPL.
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS Polish Verify PDF Contents Are Correct")]
+        [NUnit.Framework.DescriptionAttribute("MPS Verify PDF Correctness")]
         [NUnit.Framework.TestCaseAttribute("Buy + Click", "Poland", "Pakiet wydruków", "3 lata", "Quarterly in Arrears", null)]
-        public virtual void MPSPolishVerifyPDFContentsAreCorrect(string contractType, string country, string usageType, string length, string billing, string[] exampleTags)
+        public virtual void MPSVerifyPDFCorrectness(string contractType, string country, string usageType, string length, string billing, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Polish Verify PDF Contents Are Correct", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Verify PDF Correctness", exampleTags);
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line 9

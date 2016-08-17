@@ -5,7 +5,7 @@ Feature: CloudMPSSummaryPageValidationForAllPolishProposalTypes
 	I want to be verify that proposal summary page is correct for all types of proposal
 
 
-Scenario Outline: MPS Polish Summary Page Validation For Minimum Volume Purchase and Click proposal In Click Payment
+Scenario Outline: MPS Summary Validation MV In Click
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	When I fill Proposal Description for "<ContractType>" Contract type
@@ -42,7 +42,7 @@ Scenario Outline: MPS Polish Summary Page Validation For Minimum Volume Purchase
 	| Cloud MPS Dealer | Poland  | Purchase & Click with Service | Pakiet wydruków | 3 lata   | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Wliczyć w cenę za wydruk strony | 800         | 800          | Wliczyć w cenę za wydruk strony | Płatność z góry |
 	
 
-Scenario Outline: MPS Polish Summary Page Validation For Minimum Volume Purchase and Click proposal Upfront Payment
+Scenario Outline:  MPS Summary Validation MV Upfront
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	When I fill Proposal Description for "<ContractType>" Contract type
@@ -76,11 +76,11 @@ Scenario Outline: MPS Polish Summary Page Validation For Minimum Volume Purchase
 
 	Scenarios: 
 	| Role             | Country | ContractType                  | UsageType       | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod   | ClickVolume | ColourVolume | Basis1          |
-	| Cloud MPS Dealer | Poland  | Purchase & Click with Service | Pakiet wydruków | 3 lata   | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Płatność z góry | 800         | 800          | Płatność z góry |
+	| Cloud MPS Dealer | Poland  | Purchase & Click with Service | Pakiet wydruków | 5 lata   | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Płatność z góry | 800         | 800          | Płatność z góry |
 	
 
 
-Scenario Outline: MPS Polish Summary Page Validation For Pay As you Go Purchase and Click proposal
+Scenario Outline:  MPS Summary Validation PAYG
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	When I fill Proposal Description for "<ContractType>" Contract type
