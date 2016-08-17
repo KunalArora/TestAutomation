@@ -72,12 +72,12 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BIG_
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("German Dealer can delete an open Leasing and Click proposal")]
+        [NUnit.Framework.DescriptionAttribute("MPS GermanAustria Dealer can delete an open Leasing and Click proposal")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Germany", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Austria", null)]
-        public virtual void GermanDealerCanDeleteAnOpenLeasingAndClickProposal(string role, string country, string[] exampleTags)
+        public virtual void MPSGermanAustriaDealerCanDeleteAnOpenLeasingAndClickProposal(string role, string country, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("German Dealer can delete an open Leasing and Click proposal", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS GermanAustria Dealer can delete an open Leasing and Click proposal", exampleTags);
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
@@ -97,12 +97,12 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("German Dealer can delete an open Purchase and Click proposal")]
+        [NUnit.Framework.DescriptionAttribute("MPS GermanAustria Dealer can delete an open Purchase and Click proposal")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Germany", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Austria", null)]
-        public virtual void GermanDealerCanDeleteAnOpenPurchaseAndClickProposal(string role, string country, string[] exampleTags)
+        public virtual void MPSGermanAustriaDealerCanDeleteAnOpenPurchaseAndClickProposal(string role, string country, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("German Dealer can delete an open Purchase and Click proposal", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS GermanAustria Dealer can delete an open Purchase and Click proposal", exampleTags);
 #line 21
 this.ScenarioSetup(scenarioInfo);
 #line 22

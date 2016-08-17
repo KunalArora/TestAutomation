@@ -5,7 +5,7 @@ Feature: CloudMPSVerifyUKPDFContentsAreCorrect
 	I want to be able to compare the values on summary page with PDF contents
 
 
-Scenario Outline: Verify PDF Contents Are Correct
+Scenario Outline: MPS English Verify PDF Contents Are Correct
 	Given Dealer has created an awaiting acceptance contract of "<ContractType>" and "<UsageType>"
 	When the dealer downloads PDF for the created contract
 	Then the noted values above are available in the PDF content

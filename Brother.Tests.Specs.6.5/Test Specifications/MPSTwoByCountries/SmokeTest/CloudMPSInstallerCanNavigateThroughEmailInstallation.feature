@@ -5,7 +5,7 @@ Feature: CloudMPSInstallerCanNavigateThroughInstallationForSmokeTest
 	I want to be able to complete installation
 
 #@ignore
-Scenario Outline: Installer can progress with installation for Email Communication
+Scenario Outline: MPS Installer can progress with installation for Email Communication
 	Given Dealer have created a contract of "<ContractType>" and "<UsageType>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And the contract created above is approved
@@ -28,7 +28,7 @@ Scenarios:
 
 
 
-Scenario Outline: Installer can progress with installation for Email Communication for other countries
+Scenario Outline: MPS Installer can progress with installation for Email Communication for other countries
 	Given "<Country>" Dealer have created a "<ContractType>" contract with "<UsageType>" and "<Length>" and "<Billing>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And the contract created above is approved
@@ -54,7 +54,7 @@ Scenarios:
 	
 	
 
-Scenario Outline: German And Austria Installer can progress with installation for Email Communication
+Scenario Outline: MPS German And Austria Installer can progress with installation for Email Communication
 	Given German Dealer have created a "<Country>" contract of "<ContractType>" and "<UsageType>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And the contract created above is approved

@@ -72,11 +72,11 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BNS.
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Purchase + Click, PAYG, Service Pack not displayed")]
+        [NUnit.Framework.DescriptionAttribute("MPS Swedish Purchase + Click, PAYG, Service Pack not displayed")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Sweden", "Purchase & click inklusive service", "Create new customer", "Betala per utskrift", "36", "Quarterly in Arrears", "Tick", "MFC-8510DN", "Full", "Förskott", null)]
-        public virtual void PurchaseClickPAYGServicePackNotDisplayed(string role, string country, string contractType, string createOption, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string[] exampleTags)
+        public virtual void MPSSwedishPurchaseClickPAYGServicePackNotDisplayed(string role, string country, string contractType, string createOption, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Purchase + Click, PAYG, Service Pack not displayed", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Swedish Purchase + Click, PAYG, Service Pack not displayed", exampleTags);
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line 9
@@ -107,11 +107,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Purchase + Click, Minimum Volume, Service Pack not displayed")]
+        [NUnit.Framework.DescriptionAttribute("MPS Swedish Purchase + Click, Minimum Volume, Service Pack not displayed")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Sweden", "Purchase & click inklusive service", "Create new customer", "Minimum volym", "36", "Quarterly in Arrears", "Tick", "MFC-8510DN", "Full", "Förskott", null)]
-        public virtual void PurchaseClickMinimumVolumeServicePackNotDisplayed(string role, string country, string contractType, string createOption, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string[] exampleTags)
+        public virtual void MPSSwedishPurchaseClickMinimumVolumeServicePackNotDisplayed(string role, string country, string contractType, string createOption, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Purchase + Click, Minimum Volume, Service Pack not displayed", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Swedish Purchase + Click, Minimum Volume, Service Pack not displayed", exampleTags);
 #line 27
 this.ScenarioSetup(scenarioInfo);
 #line 28
@@ -142,11 +142,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Variation of \"In Click\" and \"Upfront Payment\" click price(3)")]
+        [NUnit.Framework.DescriptionAttribute("MPS Swedish Variation of \"In Click\" and \"Upfront Payment\" click price(3)")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Sweden", "Purchase & click inklusive service", "Create new customer", "Minimum volym", "36", "Quarterly in Arrears", "Tick", "MFC-L8650CDW", "Full", "Förskott", null)]
-        public virtual void VariationOfInClickAndUpfrontPaymentClickPrice3(string role, string country, string contractType, string createOption, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string[] exampleTags)
+        public virtual void MPSSwedishVariationOfInClickAndUpfrontPaymentClickPrice3(string role, string country, string contractType, string createOption, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Variation of \"In Click\" and \"Upfront Payment\" click price(3)", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Swedish Variation of \"In Click\" and \"Upfront Payment\" click price(3)", exampleTags);
 #line 46
 this.ScenarioSetup(scenarioInfo);
 #line 47
@@ -177,11 +177,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Variation of \"In Click\" and \"Upfront Payment\" click price(4)")]
+        [NUnit.Framework.DescriptionAttribute("MPS Swedish Variation of \"In Click\" and \"Upfront Payment\" click price(4)")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Sweden", "Purchase & click inklusive service", "Create new customer", "Minimum volym", "36", "Quarterly in Arrears", "Tick", "MFC-L8650CDW", "Full", "Per utskrift", "6", "2000", "2000", null)]
-        public virtual void VariationOfInClickAndUpfrontPaymentClickPrice4(string role, string country, string contractType, string createOption, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string monoCoverage, string clickVolume, string colourVolume, string[] exampleTags)
+        public virtual void MPSSwedishVariationOfInClickAndUpfrontPaymentClickPrice4(string role, string country, string contractType, string createOption, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string monoCoverage, string clickVolume, string colourVolume, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Variation of \"In Click\" and \"Upfront Payment\" click price(4)", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Swedish Variation of \"In Click\" and \"Upfront Payment\" click price(4)", exampleTags);
 #line 66
 this.ScenarioSetup(scenarioInfo);
 #line 67
@@ -224,11 +224,13 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("No Variation of \"In Click\" and \"Upfront Payment\" click price(Purchase & Click)")]
+        [NUnit.Framework.DescriptionAttribute("MPS Swedish No Variation of \"In Click\" and \"Upfront Payment\" click price(Purchase" +
+            " & Click)")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Sweden", "Purchase & click inklusive service", "Create new customer", "Betala per utskrift", "36", "Quarterly in Arrears", "Tick", "MFC-8510DN", "Full", "Per utskrift", "2000", "2000", null)]
-        public virtual void NoVariationOfInClickAndUpfrontPaymentClickPricePurchaseClick(string role, string country, string contractType, string createOption, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string[] exampleTags)
+        public virtual void MPSSwedishNoVariationOfInClickAndUpfrontPaymentClickPricePurchaseClick(string role, string country, string contractType, string createOption, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("No Variation of \"In Click\" and \"Upfront Payment\" click price(Purchase & Click)", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Swedish No Variation of \"In Click\" and \"Upfront Payment\" click price(Purchase" +
+                    " & Click)", exampleTags);
 #line 92
 this.ScenarioSetup(scenarioInfo);
 #line 93

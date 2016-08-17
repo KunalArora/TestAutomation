@@ -4,7 +4,7 @@ Feature: CloudMPSSpanishDealerCanDeleteProposal
 	As a math dealer
 	I want to be able to delete an open proposal
 
-Scenario Outline: Other Dealers can delete an open Purchase and Click proposal
+Scenario Outline: MPS Spanish Other Dealers can delete an open Purchase and Click proposal
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created a "<ContractType>" proposal with "<UsageType>" and "<Length>" and "<Billing>"
 	And I am on Proposal List page
@@ -14,7 +14,7 @@ Scenario Outline: Other Dealers can delete an open Purchase and Click proposal
 
 Scenarios:
 
-	| Role             | Country | Role2                           | ContractType                      | UsageType                                 | Length | Billing                 |
-	| Cloud MPS Dealer | Spain   | Cloud MPS Local Office Approver | Purchase & Click con Service      | Volúmen mínimo                            | 3 años | Por trimestres vencidos |
+	| Role             | Country | Role2                           | ContractType                 | UsageType      | Length | Billing                 |
+	| Cloud MPS Dealer | Spain   | Cloud MPS Local Office Approver | Purchase & Click con Service | Volúmen mínimo | 3 años | Por trimestres vencidos |
 	
 	

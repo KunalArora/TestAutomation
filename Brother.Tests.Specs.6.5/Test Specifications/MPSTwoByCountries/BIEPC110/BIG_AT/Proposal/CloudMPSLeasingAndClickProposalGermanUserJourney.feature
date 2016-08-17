@@ -5,7 +5,7 @@ Feature: CloudMPSGermanLeasingAndClickProposalUserJourney
 	I want to be able to use different MPS parameters to derive different leasing proposal
 
 
-Scenario Outline: Create different varieties of German And Austria Leasing and Click proposal for new customer
+Scenario Outline: MPS GermanAustria Create different varieties of German And Austria Leasing and Click proposal for new customer
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	And Customer Information tab is not displayed
@@ -39,7 +39,7 @@ Scenario Outline: Create different varieties of German And Austria Leasing and C
 	
 
 
-Scenario Outline: Create different varieties of German And Austria Leasing and Click proposal for new customer on Pay As You Go Term
+Scenario Outline: MPS GermanAustria Create different varieties of German And Austria Leasing and Click proposal for new customer on Pay As You Go Term
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	And Customer Information tab is not displayed
@@ -70,7 +70,7 @@ Scenario Outline: Create different varieties of German And Austria Leasing and C
 	
 	
 
-Scenario Outline: Create different varieties of German And Austria Leasing and Click proposal for an existing customer
+Scenario Outline: MPS GermanAustria Create different varieties of German And Austria Leasing and Click proposal for an existing customer
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	And Customer Information tab is not displayed
@@ -100,7 +100,7 @@ Scenario Outline: Create different varieties of German And Austria Leasing and C
 	| Cloud MPS Dealer | Austria | Leasing & Service | Pay As You Go | 3 Jahre  | Vierteljährlich | Halbjährlich | HL-L8350CDW | Full         | 750         | 750          |
 	
 	
-Scenario Outline: Create different varieties of German And Austria Leasing and Click proposal for an existing customer on Pay As You Go
+Scenario Outline: MPS GermanAustria Create different varieties of German And Austria Leasing and Click proposal for an existing customer on Pay As You Go
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	And Customer Information tab is not displayed

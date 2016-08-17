@@ -1177,34 +1177,10 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         //    }
         //}
 
-        public void ClickAcceptOnJsAlert(IWebDriver driver)
+        public void ClickAcceptOnJsAlert()
         {
             if (!IsPhantomJsBrowser())
             {
-
-                //var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
-
-                //try
-                //{
-                //    var alert = wait.Until(drv =>
-                //    {
-                //        try
-                //        {
-                //            return drv.SwitchTo().Alert();
-                //        }
-                //        catch (NoAlertPresentException)
-                //        {
-                //            return null;
-                //        }
-                //        catch (WebDriverException)
-                //        {
-                //            return null;
-                //        }
-                //    });
-                //    alert.Accept();
-                //}
-                //catch (WebDriverTimeoutException) { /* Ignore */ }
-
                 var js = TestController.CurrentDriver as IJavaScriptExecutor;
                 if (js != null)
                 {
@@ -1235,30 +1211,10 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
         }
         
-        public void ClickDismissOnJsAlert(IWebDriver driver)
+        public void ClickDismissOnJsAlert()
         {
             if (!IsPhantomJsBrowser())
             {
-                //var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
-                
-                //try
-                //{
-                //    var alert = wait.Until(drv =>
-                //    {
-                //        try
-                //        {
-                //            return drv.SwitchTo().Alert();
-                //        }
-                //        catch (UnhandledAlertException)
-                //        {
-                //            return null;
-                //        }
-                //    });
-                //    alert.Accept();
-                //}
-                //catch (WebDriverTimeoutException) { /* Ignore */ }
-
-
                 var js = TestController.CurrentDriver as IJavaScriptExecutor;
                 if (js != null)
                 {

@@ -5,7 +5,7 @@ Feature: CloudMPSSummaryPageValidationForAllSpanishProposalTypes
 	I want to be verify that proposal summary page is correct for all types of proposal
 
 
-Scenario Outline: Summary Page Validation For Minimum Volume Purchase and Click proposal In Click Payment
+Scenario Outline: MPS Spanish Summary Page Validation For Minimum Volume Purchase and Click proposal In Click Payment
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	When I fill Proposal Description for "<ContractType>" Contract type
@@ -43,7 +43,7 @@ Scenario Outline: Summary Page Validation For Minimum Volume Purchase and Click 
 	
 
 
-Scenario Outline: Summary Page Validation For Pay As you Go Purchase and Click proposal
+Scenario Outline: MPS Spanish Summary Page Validation For Pay As you Go Purchase and Click proposal
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	When I fill Proposal Description for "<ContractType>" Contract type
@@ -73,5 +73,5 @@ Scenario Outline: Summary Page Validation For Pay As you Go Purchase and Click p
 
 	Scenarios: 
 	| Role             | Country | ContractType                 | CreateOption        | UsageType    | Contract | Billing                 | PriceHardware | Printer    | DeviceScreen | ClickVolume | Basis1              |
-	| Cloud MPS Dealer | Spain   | Purchase & Click con Service | Create new customer | Pago por Uso | 3 años   | Por trimestres vencidos | Tick          | MFC-8510DN | Full         | 800         | Pago por adelantado |
+	| Cloud MPS Dealer | Spain   | Purchase & Click con Service | Create new customer | Pago por Uso | 4 años   | Por trimestres vencidos | Tick          | MFC-8510DN | Full         | 800         | Pago por adelantado |
 	

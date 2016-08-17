@@ -5,7 +5,7 @@ Feature: CloudMPSSwedishClickPriceDeepDive
 	I want to be able to use different MPS parameters to derive different leasing proposal
 
 # 3
-Scenario Outline: Purchase + Click, PAYG, Service Pack not displayed
+Scenario Outline: MPS Swedish Purchase + Click, PAYG, Service Pack not displayed
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	When I fill Proposal Description for "<ContractType>" Contract type
@@ -24,7 +24,7 @@ Scenario Outline: Purchase + Click, PAYG, Service Pack not displayed
 	| Cloud MPS Dealer | Sweden  | Purchase & click inklusive service | Create new customer | Betala per utskrift | 36       | Quarterly in Arrears | Tick          | MFC-8510DN | Full         | Förskott   |
 	
 # 4
-Scenario Outline: Purchase + Click, Minimum Volume, Service Pack not displayed
+Scenario Outline: MPS Swedish Purchase + Click, Minimum Volume, Service Pack not displayed
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	When I fill Proposal Description for "<ContractType>" Contract type
@@ -43,7 +43,7 @@ Scenario Outline: Purchase + Click, Minimum Volume, Service Pack not displayed
 	| Cloud MPS Dealer | Sweden  | Purchase & click inklusive service | Create new customer | Minimum volym | 36       | Quarterly in Arrears | Tick          | MFC-8510DN | Full         | Förskott   |
 	
 # 7
-Scenario Outline: Variation of "In Click" and "Upfront Payment" click price(3)
+Scenario Outline: MPS Swedish Variation of "In Click" and "Upfront Payment" click price(3)
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	When I fill Proposal Description for "<ContractType>" Contract type
@@ -63,7 +63,7 @@ Scenario Outline: Variation of "In Click" and "Upfront Payment" click price(3)
 	
 
 # 8
-Scenario Outline: Variation of "In Click" and "Upfront Payment" click price(4)
+Scenario Outline: MPS Swedish Variation of "In Click" and "Upfront Payment" click price(4)
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	When I fill Proposal Description for "<ContractType>" Contract type
@@ -89,7 +89,7 @@ Scenario Outline: Variation of "In Click" and "Upfront Payment" click price(4)
 	
 
 # 9-10
-Scenario Outline: No Variation of "In Click" and "Upfront Payment" click price(Purchase & Click)
+Scenario Outline: MPS Swedish No Variation of "In Click" and "Upfront Payment" click price(Purchase & Click)
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	When I fill Proposal Description for "<ContractType>" Contract type

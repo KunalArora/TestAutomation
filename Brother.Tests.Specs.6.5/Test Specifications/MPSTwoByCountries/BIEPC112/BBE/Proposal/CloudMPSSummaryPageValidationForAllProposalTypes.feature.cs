@@ -72,11 +72,11 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BBE.
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Summary Page Validation For Minimum Volume Purchase and Click proposal In Click P" +
-            "ayment")]
+        [NUnit.Framework.DescriptionAttribute("MPS Belgian Summary Page Validation For Minimum Volume Purchase and Click proposa" +
+            "l In Click Payment")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Belgium", "Purchase & Click with Service", "Minimum Volume", "3 jaar", "Quarterly in Arrears", "Tick", "MFC-L8650CDW", "Full", "Inbegrepen in de clickprijs", "800", "800", "Inbegrepen in de clickprijs", "Betaling bij aanvang van het contract", "Dutch", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Belgium", "Buy & Click", "Volume minimum", "3 ans", "Quarterly in Arrears", "Tick", "MFC-L8650CDW", "Full", "Inclus dans le prix click", "800", "800", "Inclus dans le prix click", "Paiement au démarrage du contrat", "French", null)]
-        public virtual void SummaryPageValidationForMinimumVolumePurchaseAndClickProposalInClickPayment(
+        public virtual void MPSBelgianSummaryPageValidationForMinimumVolumePurchaseAndClickProposalInClickPayment(
                     string role, 
                     string country, 
                     string contractType, 
@@ -94,8 +94,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BBE.
                     string language, 
                     string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Summary Page Validation For Minimum Volume Purchase and Click proposal In Click P" +
-                    "ayment", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Belgian Summary Page Validation For Minimum Volume Purchase and Click proposa" +
+                    "l In Click Payment", exampleTags);
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
@@ -164,14 +164,14 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Summary Page Validation For Minimum Volume Purchase and Click proposal Upfront Pa" +
-            "yment")]
+        [NUnit.Framework.DescriptionAttribute("MPS Belgian Summary Page Validation For Minimum Volume Purchase and Click proposa" +
+            "l Upfront Payment")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Belgium", "Purchase & Click with Service", "Minimum Volume", "3 jaar", "Quarterly in Arrears", "Tick", "MFC-L8650CDW", "Full", "Betaling bij aanvang van het contract", "800", "800", "Betaling bij aanvang van het contract", "Dutch", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Belgium", "Buy & Click", "Volume minimum", "3 ans", "Quarterly in Arrears", "Tick", "MFC-L8650CDW", "Full", "Paiement au démarrage du contrat", "800", "800", "Paiement au démarrage du contrat", "French", null)]
-        public virtual void SummaryPageValidationForMinimumVolumePurchaseAndClickProposalUpfrontPayment(string role, string country, string contractType, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string basis1, string language, string[] exampleTags)
+        public virtual void MPSBelgianSummaryPageValidationForMinimumVolumePurchaseAndClickProposalUpfrontPayment(string role, string country, string contractType, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string basis1, string language, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Summary Page Validation For Minimum Volume Purchase and Click proposal Upfront Pa" +
-                    "yment", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Belgian Summary Page Validation For Minimum Volume Purchase and Click proposa" +
+                    "l Upfront Payment", exampleTags);
 #line 46
 this.ScenarioSetup(scenarioInfo);
 #line 47

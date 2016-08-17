@@ -5,7 +5,7 @@ Feature: CloudMPSSwedishDealerCanGeneratePDFAtRelevantStages
 	I want to create a proposal for which a PDF for which a proposal can be downloaded
 
 
-Scenario Outline: Dealer Can Generate PDF for Purchase and Click in Awaiting Approval Status for other countries
+Scenario Outline: MPS Swedish Dealer Can Generate PDF for Purchase and Click in Awaiting Approval Status for other countries
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created a "<ContractType>" proposal with "<UsageType>" and "<Length>" and "<Billing>"
 	And I am on Proposal List page

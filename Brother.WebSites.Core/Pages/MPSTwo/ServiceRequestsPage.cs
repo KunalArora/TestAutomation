@@ -58,16 +58,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             CreatedServiceRequestElement().Click();
             WaitForElementToExistByCssSelector(CloseService, 5, 10);
             HeadlessDismissAlertOk();
-            ClickAcceptOnJsAlert(Driver);
+            ClickAcceptOnJsAlert();
         }
 
         public void CloseServiceRequest()
         {
             ScrollTo(CloseServiceRequestElement);
             HeadlessDismissAlertOk();
-            ClickAcceptOnJsAlert(Driver);
+            ClickAcceptOnJsAlert();
             CloseServiceRequestElement.Click();
-            ClickAcceptOnJsAlert(Driver);
+            ClickAcceptOnJsAlert();
         }
 
         public void ServiceDeskEnterServiceRequestMessage()

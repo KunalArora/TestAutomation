@@ -73,11 +73,11 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BNL.
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify PDF Contents Are Correct")]
+        [NUnit.Framework.DescriptionAttribute("MPS Ducth Verify PDF Contents Are Correct")]
         [NUnit.Framework.TestCaseAttribute("Purchase + Click met Service", "Netherlands", "Minimumvolume", "3 jaar", "Quarterly in Arrears", null)]
-        public virtual void VerifyPDFContentsAreCorrect(string contractType, string country, string usageType, string length, string billing, string[] exampleTags)
+        public virtual void MPSDucthVerifyPDFContentsAreCorrect(string contractType, string country, string usageType, string length, string billing, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify PDF Contents Are Correct", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Ducth Verify PDF Contents Are Correct", exampleTags);
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8

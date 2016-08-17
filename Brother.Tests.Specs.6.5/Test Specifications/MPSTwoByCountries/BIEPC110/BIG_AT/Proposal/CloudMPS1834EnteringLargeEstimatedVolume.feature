@@ -5,7 +5,7 @@ Feature: CloudMPSEnteringLargeEstimatedVolumeForGermany
 	I want a friendly error to be displayed when a very large estimated click volume enter through PAYG
 
 
-Scenario Outline: Force Error Message By Entering Large Estimated Volume
+Scenario Outline: MPS GermanyAustria Force Error Message By Entering Large Estimated Volume
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	And Customer Information tab is not displayed

@@ -66,11 +66,11 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BUK.
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Add Multiple Locations to customer")]
+        [NUnit.Framework.DescriptionAttribute("MPS English Add Multiple Locations to customer")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "NewlyCreatedItem", "OK", null)]
-        public virtual void AddMultipleLocationsToCustomer(string role, string country, string targetItem, string confirm, string[] exampleTags)
+        public virtual void MPSEnglishAddMultipleLocationsToCustomer(string role, string country, string targetItem, string confirm, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add Multiple Locations to customer", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS English Add Multiple Locations to customer", exampleTags);
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8

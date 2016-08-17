@@ -67,10 +67,10 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BIR.
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify that Irish currency is in front of all values")]
-        public virtual void VerifyThatIrishCurrencyIsInFrontOfAllValues()
+        [NUnit.Framework.DescriptionAttribute("MPS Irish Verify that Irish currency is in front of all values")]
+        public virtual void MPSIrishVerifyThatIrishCurrencyIsInFrontOfAllValues()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify that Irish currency is in front of all values", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Irish Verify that Irish currency is in front of all values", ((string[])(null)));
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8

@@ -7,7 +7,7 @@ Feature: CloudMPSDutchApproverDecisionFeature
 #
 # Decline
 #
-Scenario Outline: Approver Decline Proposal for other Countries
+Scenario Outline: MPS Dutch Approver Decline Proposal for other Countries
 	Given "<Country>" dealer has created "<ContractType>" proposal of awaiting proposal with "<UsageType>" and "<Length>" and "<Billing>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And Approver navigate to ProposalsPage
@@ -27,7 +27,7 @@ Scenario Outline: Approver Decline Proposal for other Countries
 # Approve Signed Contract
 #
 # Accept1, 2
-Scenario Outline: Approver can decide to reject or approve the contract for other Countries
+Scenario Outline: MPS Dutch Approver can decide to reject or approve the contract for other Countries
 	Given "<Country>" Dealer have created a "<ContractType>" contract with "<UsageType>" and "<Length>" and "<Billing>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When Approver navigate to Contract Awaiting Acceptance page from Dashboard
@@ -41,7 +41,7 @@ Scenario Outline: Approver can decide to reject or approve the contract for othe
 	
 
 # Accept5, 6
-Scenario Outline: Approver can approve the contract for other Countries
+Scenario Outline: MPS Dutch Approver can approve the contract for other Countries
 	Given "<Country>" Dealer have created a "<ContractType>" contract with "<UsageType>" and "<Length>" and "<Billing>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When Approver navigate to Contract Awaiting Acceptance page from Dashboard
@@ -57,7 +57,7 @@ Scenario Outline: Approver can approve the contract for other Countries
 	| Netherlands | Cloud MPS Local Office Approver | Purchase + Click met Service | Minimumvolume | 3 jaar | Quarterly in Arrears |
 	
 # Reject1,2
-Scenario Outline: Approver can reject the contract for other Countries
+Scenario Outline: MPS Dutch Approver can reject the contract for other Countries
 	Given "<Country>" Dealer have created a "<ContractType>" contract with "<UsageType>" and "<Length>" and "<Billing>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When Approver navigate to Contract Awaiting Acceptance page from Dashboard
@@ -72,7 +72,7 @@ Scenario Outline: Approver can reject the contract for other Countries
 	| Netherlands | Cloud MPS Local Office Approver | Purchase + Click met Service | Minimumvolume | 3 jaar | Quarterly in Arrears |
 	
 # Reject3
-Scenario Outline: Dealer can resign rejected contract for other Countries
+Scenario Outline: MPS Dutch Dealer can resign rejected contract for other Countries
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When I navigate to Rejected screen
 	Then I can successfully re-sign the rejected contract
@@ -84,7 +84,7 @@ Scenario Outline: Dealer can resign rejected contract for other Countries
 	
 	
 # LO Approver can view open offers
-Scenario Outline: Belgian Local Office Approver can view opened offers for other Countries
+Scenario Outline: MPS Dutch Local Office Approver can view opened offers for other Countries
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When I navigate to ProposalPage
 	And I navigate to Awaiting Approval screen under Proposals page
@@ -97,7 +97,7 @@ Scenario Outline: Belgian Local Office Approver can view opened offers for other
 	
 	
 # LO Approver can view confirmed/rejected/signed contracts
-Scenario Outline: Belgian Local Office Approver can view confirmed/rejected/signed contracts for other Countries
+Scenario Outline: MPS Dutch Local Office Approver can view confirmed/rejected/signed contracts for other Countries
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When I navigate to Local Office Approver Contracts screen on "<Acceptance>" Tab
 	Then I should see a list of Proposals

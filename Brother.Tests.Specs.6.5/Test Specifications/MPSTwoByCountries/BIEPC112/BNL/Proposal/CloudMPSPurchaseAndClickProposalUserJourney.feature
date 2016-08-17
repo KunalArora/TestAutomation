@@ -5,7 +5,7 @@ Feature: CloudMPSDutchPurchaseAndClickProposalUserJourney
 	I want to be able to use different MPS parameters to derive different leasing proposal
 
 
-Scenario Outline: Create different varieties of Purchase and Click proposal for new customer on Minimum Volume Term
+Scenario Outline: MPS Dutch Create different varieties of Purchase and Click proposal for new customer on Minimum Volume Term
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	When I fill Proposal Description for "<ContractType>" Contract type
@@ -36,7 +36,7 @@ Scenario Outline: Create different varieties of Purchase and Click proposal for 
 	| Cloud MPS Dealer | Netherlands | Purchase + Click met Service | Create new customer | Minimumvolume | 3 jaar   | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Voorafbetaling | 800         | 800          |
 	 
 	
-Scenario Outline: Create different varieties of Purchase and Click proposal for new customer on Pay As You Go Term
+Scenario Outline: MPS Dutch Create different varieties of Purchase and Click proposal for new customer on Pay As You Go Term
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	When I fill Proposal Description for "<ContractType>" Contract type
@@ -67,7 +67,7 @@ Scenario Outline: Create different varieties of Purchase and Click proposal for 
 	
 	
 
-Scenario Outline: Create different varieties of Purchase and Click proposal for an existing customer
+Scenario Outline: MPS Dutch Create different varieties of Purchase and Click proposal for an existing customer
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	When I fill Proposal Description for "<ContractType>" Contract type
@@ -98,7 +98,7 @@ Scenario Outline: Create different varieties of Purchase and Click proposal for 
 	| Cloud MPS Dealer | Netherlands | Purchase + Click met Service | Minimumvolume | 3 jaar   | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Opgenomen in klikprijs | 800         | 800          |
 	
 	
-Scenario Outline: Create different varieties of Purchase and Click proposal for an existing customer on Pay As You Go Term
+Scenario Outline: MPS Dutch Create different varieties of Purchase and Click proposal for an existing customer on Pay As You Go Term
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	When I fill Proposal Description for "<ContractType>" Contract type

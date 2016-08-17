@@ -7,7 +7,7 @@ Feature: CloudMPSUKApproverDecisionFeature
 #
 # Decline
 #
-Scenario Outline: Approver Decline Proposal
+Scenario Outline: MPS English Approver Decline Proposal
 	Given I verify and store "<Country>" purchase and click proposal bypass status
 	Then "<Role>" can decline "<Country>" Awaiting Approval "<ContractType>" and "<UsageType>"
 	#Given Dealer have created a Awaiting Approval proposal of "<ContractType>" and "<UsageType>"
@@ -25,7 +25,7 @@ Scenario Outline: Approver Decline Proposal
 	#| Cloud MPS Bank                  | United Kingdom | Lease & Click with Service    | Pay As You Go  |
 
 @ignore
-Scenario Outline: Declined proposal is displayed on Declined Page
+Scenario Outline: MPS English Declined proposal is displayed on Declined Page
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to OfferPage
 	When I navigate to Declined screen under Offer page
@@ -43,7 +43,7 @@ Scenario Outline: Declined proposal is displayed on Declined Page
 # Approve
 #
 @ignore
-Scenario Outline: Bank Approve Proposal
+Scenario Outline: MPS English Bank Approve Proposal
 	Given Dealer have created a Awaiting Approval proposal of "<ContractType>" and "<UsageType>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to OfferPage
@@ -61,7 +61,7 @@ Scenario Outline: Bank Approve Proposal
 # Approve Signed Contract
 #
 # Accept1, 2
-Scenario Outline: Approver can decide to reject or approve the contract
+Scenario Outline: MPS English Approver can decide to reject or approve the contract
 	Given Dealer have created a contract of "<ContractType>" and "<UsageType>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When Approver navigate to Contract Awaiting Acceptance page from Dashboard
@@ -79,7 +79,7 @@ Scenario Outline: Approver can decide to reject or approve the contract
 # Accept4
 
 @ignore
-Scenario Outline: Bank can approve the contract
+Scenario Outline: MPS English Bank can approve the contract
 	Given Dealer have created a contract of "<ContractType>" and "<UsageType>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When Approver navigate to Contract Awaiting Acceptance page from Dashboard
@@ -95,7 +95,7 @@ Scenario Outline: Bank can approve the contract
 	| Cloud MPS Bank   | United Kingdom | Lease & Click with Service    | Pay As You Go  |
 
 # Accept5, 6
-Scenario Outline: Approver can approve the contract
+Scenario Outline: MPS English Approver can approve the contract
 	Given Dealer have created a contract of "<ContractType>" and "<UsageType>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When Approver navigate to Contract Awaiting Acceptance page from Dashboard
@@ -112,7 +112,7 @@ Scenario Outline: Approver can approve the contract
 	#| Cloud MPS Bank                  | United Kingdom | Lease & Click with Service    | Pay As You Go  |
 
 # Reject1,2
-Scenario Outline: Approver can reject the contract
+Scenario Outline: MPS English Approver can reject the contract
 	Given Dealer have created a contract of "<ContractType>" and "<UsageType>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When Approver navigate to Contract Awaiting Acceptance page from Dashboard
@@ -128,7 +128,7 @@ Scenario Outline: Approver can reject the contract
 	#| Cloud MPS Bank                  | United Kingdom | Lease & Click with Service    | Minimum Volume  |
 
 # Reject3
-Scenario Outline: Dealer can resign rejected contract
+Scenario Outline: MPS English Dealer can resign rejected contract
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When I navigate to Rejected screen
 	Then I can successfully re-sign the rejected contract
@@ -139,7 +139,7 @@ Scenario Outline: Dealer can resign rejected contract
 	| Cloud MPS Dealer   | United Kingdom |
 
 # View open offers
-Scenario Outline: Bank can view opened offers
+Scenario Outline: MPS English Bank can view opened offers
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When I navigate to OfferPage
 	And I navigate to Awaiting Approval screen under Offer page
@@ -153,7 +153,7 @@ Scenario Outline: Bank can view opened offers
 
 # View confirmed/rejected/signed offers
 @ignore
-Scenario Outline: Bank can view confirmed/rejected/signed offers
+Scenario Outline: MPS English Bank can view confirmed/rejected/signed offers
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When I navigate to Bank Contracts screen on "<Acceptance>" Tab
 	Then I should see a list of Offers
@@ -166,7 +166,7 @@ Scenario Outline: Bank can view confirmed/rejected/signed offers
 	| Cloud MPS Bank                  | United Kingdom | Accepted           |
 
 # LO Approver can view open offers
-Scenario Outline: Local Office Approver can view opened offers
+Scenario Outline: MPS English Local Office Approver can view opened offers
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When I navigate to ProposalPage
 	And I navigate to Awaiting Approval screen under Proposals page
@@ -178,7 +178,7 @@ Scenario Outline: Local Office Approver can view opened offers
 	| Cloud MPS Local Office Approver | United Kingdom |
 
 # LO Approver can view confirmed/rejected/signed contracts
-Scenario Outline: Local Office Approver can view confirmed/rejected/signed contracts
+Scenario Outline: MPS English Local Office Approver can view confirmed/rejected/signed contracts
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When I navigate to Local Office Approver Contracts screen on "<Acceptance>" Tab
 	Then I should see a list of Proposals

@@ -72,12 +72,14 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BIG_
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Dealer cannot begin installation Request without selecting Location")]
+        [NUnit.Framework.DescriptionAttribute("MPS GermanyAustria Dealer cannot begin installation Request without selecting Loc" +
+            "ation")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Bank", "Germany", "Leasing & Service", "Mindestvolumen", "Cloud MPS Dealer", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Bank", "Austria", "Leasing & Service", "Mindestvolumen", "Cloud MPS Dealer", null)]
-        public virtual void DealerCannotBeginInstallationRequestWithoutSelectingLocation(string role, string country, string contractType, string usageType, string role1, string[] exampleTags)
+        public virtual void MPSGermanyAustriaDealerCannotBeginInstallationRequestWithoutSelectingLocation(string role, string country, string contractType, string usageType, string role1, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer cannot begin installation Request without selecting Location", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS GermanyAustria Dealer cannot begin installation Request without selecting Loc" +
+                    "ation", exampleTags);
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line 9

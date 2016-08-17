@@ -4,7 +4,7 @@ Feature: CloudMPSDealerCanDeleteProposal
 	As a math dealer
 	I want to be able to delete an open proposal
 
-Scenario Outline: German Dealer can delete an open Leasing and Click proposal
+Scenario Outline: MPS GermanAustria Dealer can delete an open Leasing and Click proposal
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created German Leasing and Click proposal 
 	And I am on Proposal List page
@@ -18,7 +18,7 @@ Scenarios:
 	| Cloud MPS Dealer | Germany |
 	| Cloud MPS Dealer | Austria |
 
-Scenario Outline: German Dealer can delete an open Purchase and Click proposal
+Scenario Outline: MPS GermanAustria Dealer can delete an open Purchase and Click proposal
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created German Purchase and Click proposal 
 	And I am on Proposal List page

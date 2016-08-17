@@ -5,7 +5,7 @@ Feature: CloudMPSCancelInstallationRequestForSmokeTest
 	I want to be able to cancel installation request
 
 
-Scenario Outline: Dealer can cancel installation request for Email Communication
+Scenario Outline: MPS Dealer can cancel installation request for Email Communication
 	Given Dealer have created a contract of "<ContractType>" and "<UsageType>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And the contract created above is approved
@@ -25,7 +25,7 @@ Scenarios:
 	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Email  |
 
 
-Scenario Outline: Dealer can cancel installation request for Cloud Communication
+Scenario Outline: MPS Dealer can cancel installation request for Cloud Communication
 	Given Dealer have created a contract of "<ContractType>" and "<UsageType>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And the contract created above is approved
@@ -49,7 +49,7 @@ Scenarios:
 
 
 
-Scenario Outline: Dealer can cancel installation request for Cloud Communication for other countries
+Scenario Outline: MPS Dealer can cancel installation request for Cloud Communication for other countries
 	Given "<Country>" Dealer have created a "<ContractType>" contract with "<UsageType>" and "<Length>" and "<Billing>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And the contract created above is approved
@@ -89,7 +89,7 @@ Scenarios:
 
 
 
-Scenario Outline: German and Austria Dealer can cancel installation request for Cloud Communication
+Scenario Outline: MPS German and Austria Dealer can cancel installation request for Cloud Communication
 	Given German Dealer have created a "<Country>" contract of "<ContractType>" and "<UsageType>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And the contract created above is approved
@@ -115,7 +115,7 @@ Scenarios:
 	
 
 
-Scenario Outline: German and Austria Dealer can cancel installation request for Email Communication
+Scenario Outline: MPS German and Austria Dealer can cancel installation request for Email Communication
 	Given German Dealer have created a "<Country>" contract of "<ContractType>" and "<UsageType>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And the contract created above is approved
@@ -136,7 +136,7 @@ Scenarios:
 	
 
 
-Scenario Outline: German and Austria Dealer can cancel installation request for Email Communication after the contract has been signed
+Scenario Outline: MPS German and Austria Dealer can cancel installation request for Email Communication after the contract has been signed
 	Given German Dealer have created a signed "<Country>" contract of "<ContractType>" and "<UsageType>"
 	When I navigate to the signed contract Manage Device Screen
 	And I select Location in order to create installation request
@@ -155,7 +155,7 @@ Scenarios:
 	
 
 
-Scenario Outline: German and Austria Local Office Approver can cancel installation request for Email Communication
+Scenario Outline: MPS German and Austria Local Office Approver can cancel installation request for Email Communication
 	Given German Dealer have created a "<Country>" contract of "<ContractType>" and "<UsageType>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And the contract created above is approved without signing out
@@ -175,7 +175,7 @@ Scenarios:
 	
 
 
-Scenario Outline: Local Office can cancel installation request for Cloud Communication
+Scenario Outline: MPS Local Office can cancel installation request for Cloud Communication
 	Given Dealer have created a contract of "<ContractType>" and "<UsageType>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And the contract created above is approved without signing out
@@ -196,7 +196,7 @@ Scenarios:
 	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR  |
 
 
-Scenario Outline: Local Office Approver can cancel installation request for Email Communication
+Scenario Outline: MPS Local Office Approver can cancel installation request for Email Communication
 	Given Dealer have created a contract of "<ContractType>" and "<UsageType>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And the contract created above is approved without signing out
@@ -215,7 +215,7 @@ Scenarios:
 
 
 
-Scenario Outline: Local Office Approver can cancel installation request for Email Communication for other countries
+Scenario Outline: MPS Local Office Approver can cancel installation request for Email Communication for other countries
 	Given "<Country>" Dealer have created a "<ContractType>" contract with "<UsageType>" and "<Length>" and "<Billing>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And the contract created above is approved without signing out
@@ -236,7 +236,7 @@ Scenarios:
 	| Cloud MPS Local Office Approver | Ireland | Purchase & Click with Service     | Minimum Volume                            | Cloud MPS Dealer | Email  | 3 years | Quarterly in Arrears    |
 	
 
-Scenario Outline: Local Office can cancel installation request for Cloud Communication for other countries
+Scenario Outline: MPS Local Office can cancel installation request for Cloud Communication for other countries
 	Given "<Country>" Dealer have created a "<ContractType>" contract with "<UsageType>" and "<Length>" and "<Billing>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And the contract created above is approved without signing out
@@ -276,7 +276,7 @@ Scenarios:
 
 
 
-Scenario Outline: Installer can cancel installation request for Cloud Communication for Multiple Languages
+Scenario Outline: MPS Installer can cancel installation request for Cloud Communication for Multiple Languages
 	Given "<Country>" Dealer with "<Language>" language have created a "<ContractType>" contract with "<UsageType>" and "<Length>" and "<Billing>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And the contract created above is approved
@@ -309,7 +309,7 @@ Scenarios:
 	
 	
 
-Scenario Outline: Dealer can cancel installation request for Email Communication for other countries
+Scenario Outline: MPS Dealer can cancel installation request for Email Communication for other countries
 	Given "<Country>" Dealer have created a "<ContractType>" contract with "<UsageType>" and "<Length>" and "<Billing>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And the contract created above is approved

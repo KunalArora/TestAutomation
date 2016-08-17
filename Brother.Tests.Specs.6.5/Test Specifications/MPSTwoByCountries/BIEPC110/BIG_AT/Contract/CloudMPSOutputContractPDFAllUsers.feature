@@ -5,7 +5,7 @@ Feature: CloudMPSOutputContractPDFAllGermanUsers
 	I want to be able to download contract PDFs
 
 #@ignore
-Scenario Outline: Bank can download Contract PDFs on Awaiting Acceptance page
+Scenario Outline: MPS GermanyAustria Bank can download Contract PDFs on Awaiting Acceptance page
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When I navigate to Contract Awaiting Acceptance page from Bank DashBoard
 	Then I can successfully download a Contract PDF On Bank Contract Page
@@ -18,7 +18,7 @@ Scenario Outline: Bank can download Contract PDFs on Awaiting Acceptance page
 	| Cloud MPS Bank | Austria        |
 
 #@ignore
-Scenario Outline: Bank can download Contract PDFs on Rejected page
+Scenario Outline: MPS GermanyAustria Bank can download Contract PDFs on Rejected page
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When I navigate to bank contract Rejected page
 	Then I can successfully download a Contract PDF On Bank Contract Page
@@ -33,7 +33,7 @@ Scenario Outline: Bank can download Contract PDFs on Rejected page
 	
 
 
-Scenario Outline: Local Office Approver can download Contract PDFs on Awaiting Acceptance page
+Scenario Outline: MPS GermanyAustria Local Office Approver can download Contract PDFs on Awaiting Acceptance page
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When I navigate to Local Office Approver contract Awaiting Acceptance page
 	Then I can successfully download a Local Approver Contract PDF
@@ -47,7 +47,7 @@ Scenario Outline: Local Office Approver can download Contract PDFs on Awaiting A
 	
 
 
-Scenario Outline: Local Office Approver can download Contract PDFs on Rejected page
+Scenario Outline: MPS GermanyAustria Local Office Approver can download Contract PDFs on Rejected page
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When I navigate to Local Office Approver contract Rejected page
 	Then I can successfully download a Local Approver Contract PDF
@@ -61,7 +61,7 @@ Scenario Outline: Local Office Approver can download Contract PDFs on Rejected p
 	
 
 
-Scenario Outline: Dealer can download Contract PDFs on Approved proposal page
+Scenario Outline: MPS GermanyAustria Dealer can download Contract PDFs on Approved proposal page
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When I navigate to dealer contract Approved Acceptance page
 	Then I can successfully download a dealer Contract PDF
@@ -72,7 +72,7 @@ Scenario Outline: Dealer can download Contract PDFs on Approved proposal page
 	| Cloud MPS Dealer | Austria |
 	| Cloud MPS Dealer | Germany |
 	
-Scenario Outline: Dealer can download Contract PDFs on Awaiting Acceptance page
+Scenario Outline: MPS GermanyAustria Dealer can download Contract PDFs on Awaiting Acceptance page
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When I navigate to dealer contract Awaiting Acceptance page
 	Then I can successfully download a dealer Contract PDF
@@ -85,7 +85,7 @@ Scenario Outline: Dealer can download Contract PDFs on Awaiting Acceptance page
 	| Cloud MPS Dealer | Germany |
 	
 
-Scenario Outline: Dealer can download Contract PDFs on Rejected page
+Scenario Outline: MPS GermanyAustria Dealer can download Contract PDFs on Rejected page
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When I navigate to dealer contract Rejected page
 	Then I can successfully download a dealer Contract PDF

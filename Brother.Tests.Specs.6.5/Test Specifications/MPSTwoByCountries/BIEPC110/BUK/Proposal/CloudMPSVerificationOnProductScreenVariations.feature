@@ -7,7 +7,7 @@ Feature: CloudMPSUKProposalAddADevicesToAProposalDuringCreation
 #
 # 1 Screen Variations
 #
-Scenario Outline: Should be able to display full detail screen
+Scenario Outline: MPS English Should be able to display full detail screen
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
     When I begin the proposal creation process for Purchase + Click Service
@@ -24,7 +24,7 @@ Scenario Outline: Should be able to display full detail screen
 	| Cloud MPS Dealer | United Kingdom | MFC-L8850CDW |
 
 
-Scenario Outline: Default value of full detail screen are verified
+Scenario Outline: MPS English Default value of full detail screen are verified
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
     When I begin the proposal creation process for Purchase + Click Service
@@ -40,7 +40,7 @@ Scenario Outline: Default value of full detail screen are verified
 	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | 3 years  |  Quarterly in Arrears | MFC-L8850CDW |
 
 
-Scenario Outline: Total Price calulation is verified
+Scenario Outline: MPS English Total Price calulation is verified
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
     When I begin the proposal creation process for Purchase + Click Service
@@ -56,7 +56,7 @@ Scenario Outline: Total Price calulation is verified
 	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | 3 years  |  Quarterly in Arrears | MFC-L8850CDW |
 
 
-Scenario Outline: The sum of Total Price is equal to the Grand Total Price
+Scenario Outline: MPS English The sum of Total Price is equal to the Grand Total Price
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	When I fill Proposal Description for "<ContractType>" Contract type
@@ -73,7 +73,7 @@ Scenario Outline: The sum of Total Price is equal to the Grand Total Price
 	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | 3 years  |  Quarterly in Arrears | MFC-L8850CDW |
 
 
-Scenario Outline: All Zero QTY fields are not displayed on summary page
+Scenario Outline: MPS English All Zero QTY fields are not displayed on summary page
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
     When I begin the proposal creation process for Purchase + Click Service
@@ -92,7 +92,7 @@ Scenario Outline: All Zero QTY fields are not displayed on summary page
 	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | 3 years  | Quarterly in Arrears | MFC-L8850CDW |
 
 
-Scenario Outline: Enable Printer of Purchase + Click as a Local Office Admin, then can display in Purchase + Click Service
+Scenario Outline: MPS English Enable Printer of Purchase + Click as a Local Office Admin, then can display in Purchase + Click Service
 	Given I sign into Cloud MPS as a "<Role1>" from "<Country>"
 	And I navigate to Purchase And Click page
 	And I navigate to Printers page on Purchase And Click as a Local Office Admin
@@ -113,7 +113,7 @@ Scenario Outline: Enable Printer of Purchase + Click as a Local Office Admin, th
 	| Cloud MPS Local Office | United Kingdom | Cloud MPS Dealer | MFC-J4420DW  |
 
 
-Scenario Outline: Disable Printer as a Local Office Admin, then can display in Purchase + Click Service
+Scenario Outline: MPS English Disable Printer as a Local Office Admin, then can display in Purchase + Click Service
 	Given I sign into Cloud MPS as a "<Role1>" from "<Country>"
 	And I navigate to Purchase And Click page
 	And I navigate to Printers page on Purchase And Click as a Local Office Admin
@@ -136,7 +136,7 @@ Scenario Outline: Disable Printer as a Local Office Admin, then can display in P
 #
 # 6 Service Pack
 #
-Scenario Outline: Cannot input Installation Pack Unit Cost less than default
+Scenario Outline: MPS English Cannot input Installation Pack Unit Cost less than default
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
     When I begin the proposal creation process for Purchase + Click Service
@@ -154,7 +154,7 @@ Scenario Outline: Cannot input Installation Pack Unit Cost less than default
 	| Cloud MPS Dealer | United Kingdom | MFC-L8850CDW |
 
 
-Scenario Outline: When input 100% into Margin field, "Add to proposal" button become grayout
+Scenario Outline: MPS English When input 100% into Margin field, "Add to proposal" button become grayout
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
     When I begin the proposal creation process for Purchase + Click Service
@@ -170,7 +170,7 @@ Scenario Outline: When input 100% into Margin field, "Add to proposal" button be
 	| Cloud MPS Dealer | United Kingdom | MFC-L8850CDW |
 
 
-Scenario Outline: When change Unit Price so that Margin is 100, "Add to proposal" button become grayout
+Scenario Outline: MPS English When change Unit Price so that Margin is 100, "Add to proposal" button become grayout
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
     When I begin the proposal creation process for Purchase + Click Service
@@ -186,7 +186,7 @@ Scenario Outline: When change Unit Price so that Margin is 100, "Add to proposal
 	| Cloud MPS Dealer | United Kingdom | MFC-L8850CDW |
 
 
-Scenario Outline: Can be set-up as often as possible but used as a one-off margin
+Scenario Outline: MPS English Can be set-up as often as possible but used as a one-off margin
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	When I begin the proposal creation process for Purchase + Click Service
@@ -208,7 +208,7 @@ Scenario Outline: Can be set-up as often as possible but used as a one-off margi
 	| Cloud MPS Dealer | United Kingdom | MFC-L8850CDW |
 
 
-Scenario Outline: One-off set-up by a dealer and used by just the dealer
+Scenario Outline: MPS English One-off set-up by a dealer and used by just the dealer
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When I navigate to Admin page
 	And I navigate to Dealer Admin Default Margin page
@@ -230,7 +230,7 @@ Scenario Outline: One-off set-up by a dealer and used by just the dealer
 #
 # 8 Unit Cost vs Margin% vs Unit Price
 #
-Scenario Outline: Change in Unit Cost impacts Unit Price
+Scenario Outline: MPS English Change in Unit Cost impacts Unit Price
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
     When I begin the proposal creation process for Purchase + Click Service
@@ -247,7 +247,7 @@ Scenario Outline: Change in Unit Cost impacts Unit Price
 	| Cloud MPS Dealer | United Kingdom | MFC-L8850CDW |
 
 
-Scenario Outline: Change in Unit Price impacts Margin
+Scenario Outline: MPS English Change in Unit Price impacts Margin
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
     When I begin the proposal creation process for Purchase + Click Service
@@ -264,7 +264,7 @@ Scenario Outline: Change in Unit Price impacts Margin
 	| Cloud MPS Dealer | United Kingdom | MFC-L8850CDW |
 
 
-Scenario Outline: Change in Margin impacts Unit Price (1)
+Scenario Outline: MPS English Change in Margin impacts Unit Price (1)
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
     When I begin the proposal creation process for Purchase + Click Service
@@ -281,7 +281,7 @@ Scenario Outline: Change in Margin impacts Unit Price (1)
 	| Cloud MPS Dealer | United Kingdom | MFC-L8850CDW |
 
 
-Scenario Outline: Change in Margin impacts Unit Price (2)
+Scenario Outline: MPS English Change in Margin impacts Unit Price (2)
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
     When I begin the proposal creation process for Purchase + Click Service
@@ -299,7 +299,7 @@ Scenario Outline: Change in Margin impacts Unit Price (2)
 # 9 Filters
 #
 # TODO: Should implement Enabling correct printers as a local office admin.
-Scenario Outline: Free Text Filter
+Scenario Outline: MPS English Free Text Filter
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
     When I begin the proposal creation process for Purchase + Click Service
@@ -314,7 +314,7 @@ Scenario Outline: Free Text Filter
 	| Cloud MPS Dealer | United Kingdom | MFC-L8850CDW |
 
 
-Scenario Outline: Fax filter checkbox 
+Scenario Outline: MPS English Fax filter checkbox 
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
     When I begin the proposal creation process for Purchase + Click Service
@@ -329,7 +329,7 @@ Scenario Outline: Fax filter checkbox
 	| Cloud MPS Dealer | United Kingdom |
 
 
-Scenario Outline: Scanner filter checkbox 
+Scenario Outline: MPS English Scanner filter checkbox 
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
     When I begin the proposal creation process for Purchase + Click Service
@@ -344,7 +344,7 @@ Scenario Outline: Scanner filter checkbox
 	| Cloud MPS Dealer | United Kingdom |
 
 
-Scenario Outline: Duplex filter checkbox 
+Scenario Outline: MPS English Duplex filter checkbox 
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
     When I begin the proposal creation process for Purchase + Click Service
@@ -359,7 +359,7 @@ Scenario Outline: Duplex filter checkbox
 	| Cloud MPS Dealer | United Kingdom |
 
 
-Scenario Outline: Additional Tray filter checkbox 
+Scenario Outline: MPS English Additional Tray filter checkbox 
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
     When I begin the proposal creation process for Purchase + Click Service
@@ -374,7 +374,7 @@ Scenario Outline: Additional Tray filter checkbox
 	| Cloud MPS Dealer | United Kingdom |
 
 
-Scenario Outline: A4 filter checkbox 
+Scenario Outline: MPS English A4 filter checkbox 
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
     When I begin the proposal creation process for Purchase + Click Service
@@ -390,7 +390,7 @@ Scenario Outline: A4 filter checkbox
 
 
 # Which is A3 model?
-Scenario Outline: A3 filter checkbox 
+Scenario Outline: MPS English A3 filter checkbox 
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
     When I begin the proposal creation process for Purchase + Click Service
@@ -405,7 +405,7 @@ Scenario Outline: A3 filter checkbox
 	| Cloud MPS Dealer | United Kingdom |
 
 #@ignore
-Scenario Outline: Mono filter checkbox 
+Scenario Outline: MPS English Mono filter checkbox 
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
     When I begin the proposal creation process for Purchase + Click Service
@@ -420,7 +420,7 @@ Scenario Outline: Mono filter checkbox
 	| Cloud MPS Dealer | United Kingdom |
 
 #@ignore
-Scenario Outline: Colour filter checkbox 
+Scenario Outline: MPS English Colour filter checkbox 
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
     When I begin the proposal creation process for Purchase + Click Service
@@ -435,7 +435,7 @@ Scenario Outline: Colour filter checkbox
 	| Cloud MPS Dealer | United Kingdom |
 
 
-Scenario Outline: Fax and Scanner filter checkbox 
+Scenario Outline: MPS English Fax and Scanner filter checkbox 
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
     When I begin the proposal creation process for Purchase + Click Service
@@ -450,7 +450,7 @@ Scenario Outline: Fax and Scanner filter checkbox
 	| Cloud MPS Dealer | United Kingdom |
 
 
-Scenario Outline: Duplex and Colour filter checkbox 
+Scenario Outline: MPS English Duplex and Colour filter checkbox 
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
     When I begin the proposal creation process for Purchase + Click Service
@@ -468,7 +468,7 @@ Scenario Outline: Duplex and Colour filter checkbox
 # 10 Change Display
 #
 
-Scenario Outline: verify that Products are displayed according to LO selection (flat list)
+Scenario Outline: MPS English verify that Products are displayed according to LO selection (flat list)
 	Given I sign into Cloud MPS as a "<Role1>" from "<Country>"
 	And I enable product to be displayed as a flat list for a paticular contract type
 	When I sign out of Cloud MPS
@@ -485,7 +485,7 @@ Scenario Outline: verify that Products are displayed according to LO selection (
 	| Cloud MPS Local Office | United Kingdom | Cloud MPS Dealer |
 
 
-Scenario Outline: verify that Products are displayed according to LO selection (with images)
+Scenario Outline: MPS English verify that Products are displayed according to LO selection (with images)
 	Given I sign into Cloud MPS as a "<Role1>" from "<Country>"
 	And I am on MPS New Proposal Page
     When I begin the proposal creation process for Purchase + Click Service

@@ -4,7 +4,7 @@ Feature: CloudMPSUKDealerCanOperateProposalOffers
 	As an MPS Dealer
 	I want to operate existing proposals
 
-Scenario Outline: Dealer can see proposal offers 
+Scenario Outline: MPS English Dealer can see proposal offers 
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to existing proposal screen
 	Then I can see the Existing Proposal table
@@ -15,7 +15,7 @@ Scenario Outline: Dealer can see proposal offers
 	| Cloud MPS Dealer | United Kingdom |
 
 
-Scenario Outline: Dealer can edit an existing proposal offer
+Scenario Outline: MPS English Dealer can edit an existing proposal offer
 	Given Dealer have created a Open proposal of "<ContractType>" and "<UsageType>"
 	And I navigate to Dealer Dashboard page from Dealer Proposal page
 	#Given I sign into Cloud MPS as a "<Role>" from "<Country>"
@@ -37,7 +37,7 @@ Scenario Outline: Dealer can edit an existing proposal offer
 	| Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | United Kingdom | TermAndType         |
 
 ##@ignore
-Scenario Outline: Dealer can edit products in an existing proposal offer
+Scenario Outline: MPS English Dealer can edit products in an existing proposal offer
 	Given Dealer have created a Open proposal of "<ContractType>" and "<UsageType>"
 	And I navigate to Dealer Dashboard page from Dealer Proposal page
 	#Given I sign into Cloud MPS as a "<Role>" from "<Country>"
@@ -56,7 +56,7 @@ Scenario Outline: Dealer can edit products in an existing proposal offer
 	
 
 @ignore
-Scenario Outline: Dealer can delete an existing proposal offer
+Scenario Outline: MPS English Dealer can delete an existing proposal offer
     Given Dealer have created a Open proposal of "<ContractType>" and "<UsageType>"
 	When I click the delete button against "<TargetItem>" on Existing Proposal table to be "<Confirm>"
 	And I click the "<Confirm>" button on Confirmation Dialog
@@ -68,7 +68,7 @@ Scenario Outline: Dealer can delete an existing proposal offer
 	| Purchase & Click with Service | Minimum Volume | OK      | NewlyCreatedItem |
 	
 @ignore	
-Scenario Outline: Dealer can cancel deleting proposal offer
+Scenario Outline: MPS English Dealer can cancel deleting proposal offer
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to existing proposal screen
 	When I click the delete button against "<TargetItem>" on Existing Proposal table to be "<Confirm>"
@@ -80,7 +80,7 @@ Scenario Outline: Dealer can cancel deleting proposal offer
 	| Role             | Country        | Confirm | TargetItem |
 	| Cloud MPS Dealer | United Kingdom | Dismiss | AnyItem    |
 
-Scenario Outline: Dealer can copy an existing proposal offer
+Scenario Outline: MPS English Dealer can copy an existing proposal offer
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to existing proposal screen
 	When I can Copy "<Operation>" Customer an item of Exisiting Proposal table "<Target>" Customer
@@ -93,7 +93,7 @@ Scenario Outline: Dealer can copy an existing proposal offer
 	| Cloud MPS Dealer | Austria | Without   | Without |
 	
 @ignore
-Scenario Outline: Dealer can copy an existing proposal offer for all countries
+Scenario Outline: MPS English Dealer can copy an existing proposal offer for all countries
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created a "<ContractType>" proposal "<Customer>" Customer detail with "<UsageType>" and "<Length>" and "<Billing>"
 	And I am on Proposal List page

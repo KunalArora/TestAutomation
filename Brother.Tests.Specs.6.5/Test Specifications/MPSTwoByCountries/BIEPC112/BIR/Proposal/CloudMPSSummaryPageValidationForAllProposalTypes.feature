@@ -4,7 +4,7 @@ Feature: CloudMPSSummaryPageValidationForAllIrishProposalTypes
 	As a dealer
 	I want to be verify that proposal summary page is correct for all types of proposal
 
-Scenario Outline: Summary Page Validation For Minimum Volume Purchase and Click proposal In Click Payment
+Scenario Outline: MPS Irish Summary Page Validation For Minimum Volume Purchase and Click proposal In Click Payment
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	When I fill Proposal Description for "<ContractType>" Contract type
@@ -41,7 +41,7 @@ Scenario Outline: Summary Page Validation For Minimum Volume Purchase and Click 
 	| Cloud MPS Dealer | Ireland | Purchase & Click with Service | Minimum Volume | 3 years  | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Included in Click Price | 800         | 800          | Included in Click Price | Pay upfront |
 	
 
-Scenario Outline: Summary Page Validation For Minimum Volume Purchase and Click proposal Upfront Payment
+Scenario Outline: MPS Irish Summary Page Validation For Minimum Volume Purchase and Click proposal Upfront Payment
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	When I fill Proposal Description for "<ContractType>" Contract type
@@ -78,7 +78,7 @@ Scenario Outline: Summary Page Validation For Minimum Volume Purchase and Click 
 	| Cloud MPS Dealer | Ireland | Purchase & Click with Service | Minimum Volume | 3 years  | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Pay upfront   | 800         | 800          | Pay upfront |
 	
 
-Scenario Outline: Summary Page Validation For Pay As you Go Purchase and Click proposal
+Scenario Outline: MPS Irish Summary Page Validation For Pay As you Go Purchase and Click proposal
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	When I fill Proposal Description for "<ContractType>" Contract type

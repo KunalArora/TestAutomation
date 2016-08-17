@@ -4,7 +4,7 @@ Feature: CloudMPSCreateAContractWithExistingGermanCustomer
 	As a dealer
 	I want to be able to create a contract with an existing customer
 
-Scenario Outline: Existing German Customer can be used to create a new contract for Run purpose
+Scenario Outline: MPS GermanyAustria Existing German Customer can be used to create a new contract for Run purpose
 	Given "<Country>" Dealer have created a "<ContractType>" contract choosing "<UsageType>" with "<ExistingCustomer>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And the contract created above is approved

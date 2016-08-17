@@ -257,7 +257,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ActionsModule.ClickOnSpecificActionsElement(Driver);
 
             HeadlessDismissAlertOk();
-            ClickAcceptOnJsAlert(Driver);
+            ClickAcceptOnJsAlert();
             ActionsModule.DeleteAProposal(Driver);
             WebDriver.Wait(DurationType.Second, 2);
         }
@@ -525,26 +525,26 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if (confirm != "OK")
             {
                 HeadlessDismissAlertCancel();
-                ClickDismissOnJsAlert(Driver);
+                ClickDismissOnJsAlert();
             }
             else
             {
                 HeadlessDismissAlertOk();
-                ClickAcceptOnJsAlert(Driver);
+                ClickAcceptOnJsAlert();
             }
         }
 
         public void ClickAcceptOnConfrimation(IWebDriver driver)
         {
             HeadlessDismissAlertOk();
-            ClickAcceptOnJsAlert(driver);
+            ClickAcceptOnJsAlert();
         }
 
         public void ClickDismissOnConfrimation(IWebDriver driver)
         {
             WebDriver.Wait(DurationType.Millisecond, 1000);
             HeadlessDismissAlertCancel();
-            ClickDismissOnJsAlert(driver);
+            ClickDismissOnJsAlert();
         }
 
         public void NotExistTheDeletedItem(IWebDriver driver)

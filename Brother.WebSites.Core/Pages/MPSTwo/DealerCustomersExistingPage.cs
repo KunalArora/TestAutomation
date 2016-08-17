@@ -85,11 +85,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
 
-        public void ClickAcceptOnConfrimation(IWebDriver driver)
+        public void ClickAcceptOnConfrimation()
         {
             WebDriver.Wait(DurationType.Millisecond, 3000);
             //AcceptAlert();
-            ClickAcceptOnJsAlert(driver);
+            ClickAcceptOnJsAlert();
             HeadlessDismissAlertOk();
             
         }
@@ -97,7 +97,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void ClickDismissOnConfrimation(IWebDriver driver)
         {
             WebDriver.Wait(DurationType.Millisecond, 100);
-            ClickDismissOnJsAlert(driver);
+            ClickDismissOnJsAlert();
             HeadlessDismissAlertCancel();
             
         }
@@ -135,7 +135,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             const string deleteButton = @".open .js-mps-delete";
             
             HeadlessDismissAlertOk();
-            ClickAcceptOnJsAlert(Driver);
+            ClickAcceptOnJsAlert();
            // var customerelem = FindExistingCustomerByEmail();
             ClickActionButtonOnOffer();
             WaitForElementToExistByCssSelector(deleteButton);
@@ -154,7 +154,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             HeadlessDismissAlertOk();
            // var customerelem = FindNthProposalOfferElement(driver);
             //ClickActionButtonOnOffer();
-            ClickAcceptOnJsAlert(Driver);
+            ClickAcceptOnJsAlert();
             ActionsModule.OpenTheFirstActionButton(driver);
             WaitForElementToExistByCssSelector(".open .js-mps-delete");
             var deleteElem = Driver.FindElement(By.CssSelector(".open .js-mps-delete"));
