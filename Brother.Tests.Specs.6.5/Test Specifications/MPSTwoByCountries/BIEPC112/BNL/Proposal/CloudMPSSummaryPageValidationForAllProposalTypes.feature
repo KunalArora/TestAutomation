@@ -6,7 +6,7 @@ Feature: CloudMPSSummaryPageValidationForAllDutchProposalTypes
 
 
 
-Scenario Outline: MPS Dutch Summary Page Validation For Minimum Volume Purchase and Click proposal In Click Payment
+Scenario Outline: MPS Summary Validation MV In Click
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	When I fill Proposal Description for "<ContractType>" Contract type
@@ -44,7 +44,7 @@ Scenario Outline: MPS Dutch Summary Page Validation For Minimum Volume Purchase 
 	
 
 
-Scenario Outline: MPS Dutch Summary Page Validation For Minimum Volume Purchase and Click proposal Upfront Payment
+Scenario Outline: MPS Summary Validation MV Upfront
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	When I fill Proposal Description for "<ContractType>" Contract type
@@ -82,7 +82,7 @@ Scenario Outline: MPS Dutch Summary Page Validation For Minimum Volume Purchase 
 	
 	
 
-Scenario Outline: MPS Dutch Summary Page Validation For Pay As you Go Purchase and Click proposal
+Scenario Outline: MPS Summary Validation PAYG
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	When I fill Proposal Description for "<ContractType>" Contract type

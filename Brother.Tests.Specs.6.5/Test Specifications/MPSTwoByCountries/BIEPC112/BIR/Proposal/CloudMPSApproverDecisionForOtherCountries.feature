@@ -7,7 +7,7 @@ Feature: CloudMPSIrishApproverDecisionFeature
 #
 # Decline
 #
-Scenario Outline: MPS Irish Approver Decline Proposal for other Countries
+Scenario Outline: MPS LO Decline Proposal
 	Given "<Country>" dealer has created "<ContractType>" proposal of awaiting proposal with "<UsageType>" and "<Length>" and "<Billing>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And Approver navigate to ProposalsPage
@@ -25,7 +25,7 @@ Scenario Outline: MPS Irish Approver Decline Proposal for other Countries
 # Approve Signed Contract
 #
 # Accept1, 2
-Scenario Outline: MPS Irish Approver can decide to reject or approve the contract for other Countries
+Scenario Outline: MPS LO Can Reject Or Accept
 	Given "<Country>" Dealer have created a "<ContractType>" contract with "<UsageType>" and "<Length>" and "<Billing>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When Approver navigate to Contract Awaiting Acceptance page from Dashboard
@@ -39,7 +39,7 @@ Scenario Outline: MPS Irish Approver can decide to reject or approve the contrac
 	
 
 # Accept5, 6
-Scenario Outline: MPS Irish Approver can approve the contract for other Countries
+Scenario Outline: MPS LO Approve Contract
 	Given "<Country>" Dealer have created a "<ContractType>" contract with "<UsageType>" and "<Length>" and "<Billing>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When Approver navigate to Contract Awaiting Acceptance page from Dashboard
@@ -55,7 +55,7 @@ Scenario Outline: MPS Irish Approver can approve the contract for other Countrie
 	| Ireland | Cloud MPS Local Office Approver | Purchase & Click with Service | Minimum Volume | 3 years | Quarterly in Arrears |
 	
 # Reject1,2
-Scenario Outline: MPS Irish Approver can reject the contract for other Countries
+Scenario Outline: MPS LO Reject Contract
 	Given "<Country>" Dealer have created a "<ContractType>" contract with "<UsageType>" and "<Length>" and "<Billing>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When Approver navigate to Contract Awaiting Acceptance page from Dashboard
@@ -70,7 +70,7 @@ Scenario Outline: MPS Irish Approver can reject the contract for other Countries
 	| Ireland | Cloud MPS Local Office Approver | Purchase & Click with Service | Minimum Volume | 3 years | Quarterly in Arrears |
 	
 # Reject3
-Scenario Outline: MPS Irish Dealer can resign rejected contract for other Countries
+Scenario Outline: MPS Dealer Resign Rejected Contract
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When I navigate to Rejected screen
 	Then I can successfully re-sign the rejected contract
@@ -82,7 +82,7 @@ Scenario Outline: MPS Irish Dealer can resign rejected contract for other Countr
 	
 
 # LO Approver can view open offers
-Scenario Outline: MPS Irish Local Office Approver can view opened offers for other Countries
+Scenario Outline: MPS LO View Opened Offers
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When I navigate to ProposalPage
 	And I navigate to Awaiting Approval screen under Proposals page
@@ -95,7 +95,7 @@ Scenario Outline: MPS Irish Local Office Approver can view opened offers for oth
 
 	
 # LO Approver can view confirmed/rejected/signed contracts
-Scenario Outline: MPS Irish Local Office Approver can view confirmed/rejected/signed contracts for other Countries
+Scenario Outline: MPS LO View Contracts
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When I navigate to Local Office Approver Contracts screen on "<Acceptance>" Tab
 	Then I should see a list of Proposals

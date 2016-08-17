@@ -74,14 +74,12 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BBE.
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS Belgian Local Office Approver can download Contract PDFs on Awaiting Acceptan" +
-            "ce page")]
+        [NUnit.Framework.DescriptionAttribute("MPS LO Download Awaiting Acceptance Contract PDF")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Belgium", "Dutch", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Belgium", "French", null)]
-        public virtual void MPSBelgianLocalOfficeApproverCanDownloadContractPDFsOnAwaitingAcceptancePage(string role, string country, string language, string[] exampleTags)
+        public virtual void MPSLODownloadAwaitingAcceptanceContractPDF(string role, string country, string language, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Belgian Local Office Approver can download Contract PDFs on Awaiting Acceptan" +
-                    "ce page", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS LO Download Awaiting Acceptance Contract PDF", exampleTags);
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
@@ -101,12 +99,12 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS Belgian Local Office Approver can download Contract PDFs on Rejected page")]
+        [NUnit.Framework.DescriptionAttribute("MPS LO Download Rejected Contract PDF")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Belgium", "Dutch", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Belgium", "French", null)]
-        public virtual void MPSBelgianLocalOfficeApproverCanDownloadContractPDFsOnRejectedPage(string role, string country, string language, string[] exampleTags)
+        public virtual void MPSLODownloadRejectedContractPDF(string role, string country, string language, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Belgian Local Office Approver can download Contract PDFs on Rejected page", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS LO Download Rejected Contract PDF", exampleTags);
 #line 21
 this.ScenarioSetup(scenarioInfo);
 #line 22
@@ -124,12 +122,12 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS Belgian Dealer can download Contract PDFs on Approved proposal page")]
+        [NUnit.Framework.DescriptionAttribute("MPS Contract PDF on Approved Proposal")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Belgium", "Dutch", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Belgium", "French", null)]
-        public virtual void MPSBelgianDealerCanDownloadContractPDFsOnApprovedProposalPage(string role, string country, string language, string[] exampleTags)
+        public virtual void MPSContractPDFOnApprovedProposal(string role, string country, string language, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Belgian Dealer can download Contract PDFs on Approved proposal page", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Contract PDF on Approved Proposal", exampleTags);
 #line 34
 this.ScenarioSetup(scenarioInfo);
 #line 35
@@ -147,12 +145,12 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS Belgian Dealer can download Contract PDFs on Awaiting Acceptance page")]
+        [NUnit.Framework.DescriptionAttribute("MPS Download Contract PDF on Awaiting Acceptance")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Belgium", "Dutch", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Belgium", "French", null)]
-        public virtual void MPSBelgianDealerCanDownloadContractPDFsOnAwaitingAcceptancePage(string role, string country, string language, string[] exampleTags)
+        public virtual void MPSDownloadContractPDFOnAwaitingAcceptance(string role, string country, string language, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Belgian Dealer can download Contract PDFs on Awaiting Acceptance page", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Download Contract PDF on Awaiting Acceptance", exampleTags);
 #line 46
 this.ScenarioSetup(scenarioInfo);
 #line 47
@@ -170,12 +168,12 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS Belgian Dealer can download Contract PDFs on Rejected page")]
+        [NUnit.Framework.DescriptionAttribute("MPS Download Rejected Contract PDF")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Belgium", "Dutch", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Belgium", "French", null)]
-        public virtual void MPSBelgianDealerCanDownloadContractPDFsOnRejectedPage(string role, string country, string language, string[] exampleTags)
+        public virtual void MPSDownloadRejectedContractPDF(string role, string country, string language, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Belgian Dealer can download Contract PDFs on Rejected page", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Download Rejected Contract PDF", exampleTags);
 #line 59
 this.ScenarioSetup(scenarioInfo);
 #line 60

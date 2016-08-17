@@ -4,8 +4,8 @@ Feature: CloudMPSIrishDealerCanOperateProposalOffers
 	As an MPS Dealer
 	I want to operate existing proposals
 
-@ignore
-Scenario Outline: MPS Irish Dealer can see proposal offers 
+
+Scenario Outline: MPS View proposal
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to existing proposal screen
 	Then I can see the Existing Proposal table
@@ -16,7 +16,7 @@ Scenario Outline: MPS Irish Dealer can see proposal offers
 	| Cloud MPS Dealer | Ireland |
 	
 
-Scenario Outline: MPS Irish Dealer can edit an existing proposal offer
+Scenario Outline: MPS Edit Existing Proposal
 	Given Dealer have created a Open proposal of "<ContractType>" and "<UsageType>"
 	And I navigate to Dealer Dashboard page from Dealer Proposal page
 	#Given I sign into Cloud MPS as a "<Role>" from "<Country>"
@@ -38,7 +38,7 @@ Scenario Outline: MPS Irish Dealer can edit an existing proposal offer
 	| Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Ireland | TermAndType         |
 
 ##@ignore
-Scenario Outline: MPS Irish Dealer can edit products in an existing proposal offer
+Scenario Outline: MPS Edit Products Existing Proposal
 	Given Dealer have created a Open proposal of "<ContractType>" and "<UsageType>"
 	And I navigate to Dealer Dashboard page from Dealer Proposal page
 	#Given I sign into Cloud MPS as a "<Role>" from "<Country>"
@@ -55,8 +55,8 @@ Scenario Outline: MPS Irish Dealer can edit products in an existing proposal off
 	| Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Ireland | Products | Add    |
 	| Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Ireland | Products | Remove |
 	
-@ignore
-Scenario Outline: MPS Irish Dealer can cancel deleting proposal offer
+##@ignore
+Scenario Outline: MPS Cancel Deleting Proposal Offer
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to existing proposal screen
 	When I click the delete button against "<TargetItem>" on Existing Proposal table to be "<Confirm>"

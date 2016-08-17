@@ -73,11 +73,11 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BIR.
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS Irish Verify Awaiting Acceptance Contract PDF Contents Are Correct")]
+        [NUnit.Framework.DescriptionAttribute("MPS Verify PDF Correctness")]
         [NUnit.Framework.TestCaseAttribute("Purchase & Click with Service", "Ireland", "Minimum Volume", "3 years", "Quarterly in Arrears", null)]
-        public virtual void MPSIrishVerifyAwaitingAcceptanceContractPDFContentsAreCorrect(string contractType, string country, string usageType, string length, string billing, string[] exampleTags)
+        public virtual void MPSVerifyPDFCorrectness(string contractType, string country, string usageType, string length, string billing, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Irish Verify Awaiting Acceptance Contract PDF Contents Are Correct", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Verify PDF Correctness", exampleTags);
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line 9
