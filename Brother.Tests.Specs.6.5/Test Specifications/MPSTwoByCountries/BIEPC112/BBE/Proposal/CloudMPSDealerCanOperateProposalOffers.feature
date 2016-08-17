@@ -4,7 +4,7 @@ Feature: CloudMPSBelgianDealerCanOperateProposalOffers
 	As an MPS Dealer
 	I want to operate existing proposals
 
-Scenario Outline: MPS Belgian Dealer can copy an existing proposal offer
+Scenario Outline: MPS Copy Existing Proposal Offer
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to existing proposal screen
 	When I can Copy "<Operation>" Customer an item of Exisiting Proposal table "<Target>" Customer

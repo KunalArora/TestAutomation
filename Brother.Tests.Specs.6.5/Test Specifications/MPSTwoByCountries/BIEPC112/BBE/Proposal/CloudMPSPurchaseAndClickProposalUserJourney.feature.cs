@@ -73,14 +73,12 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BBE.
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS Belgian Create different varieties of Purchase and Click proposal for new cus" +
-            "tomer on Minimum Volume Term")]
+        [NUnit.Framework.DescriptionAttribute("MPS Create MV Proposal")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Belgium", "Purchase & Click with Service", "Create new customer", "Minimum Volume", "3 jaar", "Quarterly in Arrears", "Tick", "MFC-L8650CDW", "Full", "Betaling bij aanvang van het contract", "800", "800", "Dutch", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Belgium", "Buy & Click", "Create new customer", "Volume minimum", "3 ans", "Quarterly in Arrears", "Tick", "MFC-L8650CDW", "Full", "Paiement au démarrage du contrat", "800", "800", "French", null)]
-        public virtual void MPSBelgianCreateDifferentVarietiesOfPurchaseAndClickProposalForNewCustomerOnMinimumVolumeTerm(string role, string country, string contractType, string createOption, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string language, string[] exampleTags)
+        public virtual void MPSCreateMVProposal(string role, string country, string contractType, string createOption, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string language, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Belgian Create different varieties of Purchase and Click proposal for new cus" +
-                    "tomer on Minimum Volume Term", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Create MV Proposal", exampleTags);
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line 9
@@ -137,14 +135,12 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS Belgian Create different varieties of Purchase and Click proposal for an exis" +
-            "ting customer")]
+        [NUnit.Framework.DescriptionAttribute("MPS Create Proposal With Existing Customer")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Belgium", "Purchase & Click with Service", "Minimum Volume", "3 jaar", "Quarterly in Arrears", "Tick", "MFC-L8650CDW", "Full", "Inbegrepen in de clickprijs", "800", "800", "Dutch", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Belgium", "Buy & Click", "Volume minimum", "3 ans", "Quarterly in Arrears", "Tick", "MFC-L8650CDW", "Full", "Inclus dans le prix click", "800", "800", "French", null)]
-        public virtual void MPSBelgianCreateDifferentVarietiesOfPurchaseAndClickProposalForAnExistingCustomer(string role, string country, string contractType, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string language, string[] exampleTags)
+        public virtual void MPSCreateProposalWithExistingCustomer(string role, string country, string contractType, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string language, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Belgian Create different varieties of Purchase and Click proposal for an exis" +
-                    "ting customer", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Create Proposal With Existing Customer", exampleTags);
 #line 41
 this.ScenarioSetup(scenarioInfo);
 #line 42
