@@ -4,7 +4,7 @@ Feature: CloudMPSItalianDealerCanCreateProposalFromProposalListPage
 	As a dealer
 	I want create new porposal button on proposal list page
 
-Scenario Outline: Dealer Can Create Proposal From Proposal List Page
+Scenario Outline: MPS Italian Dealer Can Create Proposal From Proposal List Page
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to existing proposal screen
 	And I begin the process of proposal creation process

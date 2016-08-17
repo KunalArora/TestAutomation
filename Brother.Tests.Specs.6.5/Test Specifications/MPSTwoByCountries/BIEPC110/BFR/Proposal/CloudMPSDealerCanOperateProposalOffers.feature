@@ -6,7 +6,7 @@ Feature: CloudMPSFrenchDealerCanOperateProposalOffers
 
 
 @ignore
-Scenario Outline: Dealer can copy an existing proposal offer for all countries
+Scenario Outline: MPS French Dealer can copy an existing proposal offer for all countries
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created a "<ContractType>" proposal "<Customer>" Customer detail with "<UsageType>" and "<Length>" and "<Billing>"
 	And I am on Proposal List page

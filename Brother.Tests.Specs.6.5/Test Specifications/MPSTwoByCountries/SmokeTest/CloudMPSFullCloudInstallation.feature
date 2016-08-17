@@ -8,7 +8,7 @@ Feature: CloudMPSFullCloudInstallationForSmokeTest
 ## The device simulator will be used to simulate connection to BOC/Medio
 
 
-Scenario Outline: Installer can complete installation for Cloud Communication
+Scenario Outline: MPS Installer can complete installation for Cloud Communication
 	Given Dealer have created a contract of "<ContractType>" and "<UsageType>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And the contract created above is approved
@@ -30,7 +30,7 @@ Scenarios:
 	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  |
 	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR  |
 
-Scenario Outline: German Installer can complete installation for Cloud Communication
+Scenario Outline: MPS German Installer can complete installation for Cloud Communication
 	Given German Dealer have created a "<Country>" contract of "<ContractType>" and "<UsageType>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And the contract created above is approved
@@ -54,7 +54,7 @@ Scenarios:
 	| Cloud MPS Bank                  | Austria | Leasing & Service        | Mindestvolumen | Cloud MPS Dealer | Cloud  | Web  |
 
 
-Scenario Outline: Installer can complete installation for Cloud Communication for other countries
+Scenario Outline: MPS Installer can complete installation for Cloud Communication for other countries
 	Given "<Country>" Dealer have created a "<ContractType>" contract with "<UsageType>" and "<Length>" and "<Billing>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And the contract created above is approved
@@ -94,7 +94,7 @@ Scenarios:
 	
 	
 
-Scenario Outline: Installer can complete installation for Cloud Communication for Multiple Languages
+Scenario Outline: MPS Installer can complete installation for Cloud Communication for Multiple Languages
 	Given "<Country>" Dealer with "<Language>" language have created a "<ContractType>" contract with "<UsageType>" and "<Length>" and "<Billing>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And the contract created above is approved

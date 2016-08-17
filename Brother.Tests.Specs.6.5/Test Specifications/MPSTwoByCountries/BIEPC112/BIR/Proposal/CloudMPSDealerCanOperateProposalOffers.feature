@@ -5,7 +5,7 @@ Feature: CloudMPSIrishDealerCanOperateProposalOffers
 	I want to operate existing proposals
 
 @ignore
-Scenario Outline: Dealer can see proposal offers 
+Scenario Outline: MPS Irish Dealer can see proposal offers 
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to existing proposal screen
 	Then I can see the Existing Proposal table
@@ -16,7 +16,7 @@ Scenario Outline: Dealer can see proposal offers
 	| Cloud MPS Dealer | Ireland |
 	
 
-Scenario Outline: Dealer can edit an existing proposal offer
+Scenario Outline: MPS Irish Dealer can edit an existing proposal offer
 	Given Dealer have created a Open proposal of "<ContractType>" and "<UsageType>"
 	And I navigate to Dealer Dashboard page from Dealer Proposal page
 	#Given I sign into Cloud MPS as a "<Role>" from "<Country>"
@@ -38,7 +38,7 @@ Scenario Outline: Dealer can edit an existing proposal offer
 	| Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Ireland | TermAndType         |
 
 ##@ignore
-Scenario Outline: Dealer can edit products in an existing proposal offer
+Scenario Outline: MPS Irish Dealer can edit products in an existing proposal offer
 	Given Dealer have created a Open proposal of "<ContractType>" and "<UsageType>"
 	And I navigate to Dealer Dashboard page from Dealer Proposal page
 	#Given I sign into Cloud MPS as a "<Role>" from "<Country>"
@@ -56,7 +56,7 @@ Scenario Outline: Dealer can edit products in an existing proposal offer
 	| Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Ireland | Products | Remove |
 	
 @ignore
-Scenario Outline: Dealer can cancel deleting proposal offer
+Scenario Outline: MPS Irish Dealer can cancel deleting proposal offer
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to existing proposal screen
 	When I click the delete button against "<TargetItem>" on Existing Proposal table to be "<Confirm>"
@@ -70,7 +70,7 @@ Scenario Outline: Dealer can cancel deleting proposal offer
 	
 	
 @ignore
-Scenario Outline: Dealer can copy an existing proposal offer for all countries
+Scenario Outline: MPS Irish Dealer can copy an existing proposal offer for all countries
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created a "<ContractType>" proposal "<Customer>" Customer detail with "<UsageType>" and "<Length>" and "<Billing>"
 	And I am on Proposal List page

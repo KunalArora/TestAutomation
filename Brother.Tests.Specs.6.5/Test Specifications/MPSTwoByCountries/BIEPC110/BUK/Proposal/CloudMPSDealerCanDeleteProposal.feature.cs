@@ -72,11 +72,11 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BUK.
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Dealer can delete an open proposal")]
+        [NUnit.Framework.DescriptionAttribute("MPS English Dealer can delete an open proposal")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", null)]
-        public virtual void DealerCanDeleteAnOpenProposal(string role, string country, string[] exampleTags)
+        public virtual void MPSEnglishDealerCanDeleteAnOpenProposal(string role, string country, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer can delete an open proposal", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS English Dealer can delete an open proposal", exampleTags);
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line 9

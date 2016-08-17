@@ -72,12 +72,12 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BBE.
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Other Dealers can delete an open Purchase and Click proposal")]
+        [NUnit.Framework.DescriptionAttribute("MPS Belgian Dealers can delete an open Purchase and Click proposal")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Belgium", "Cloud MPS Local Office Approver", "Purchase & Click with Service", "Minimum Volume", "3 jaar", "Quarterly in Arrears", "Dutch", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Belgium", "Cloud MPS Local Office Approver", "Buy & Click", "Volume minimum", "3 ans", "Quarterly in Arrears", "French", null)]
-        public virtual void OtherDealersCanDeleteAnOpenPurchaseAndClickProposal(string role, string country, string role2, string contractType, string usageType, string length, string billing, string language, string[] exampleTags)
+        public virtual void MPSBelgianDealersCanDeleteAnOpenPurchaseAndClickProposal(string role, string country, string role2, string contractType, string usageType, string length, string billing, string language, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Other Dealers can delete an open Purchase and Click proposal", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Belgian Dealers can delete an open Purchase and Click proposal", exampleTags);
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line 9

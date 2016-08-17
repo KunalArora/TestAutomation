@@ -72,12 +72,12 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BIT.
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Dealer can copy an existing proposal offer")]
+        [NUnit.Framework.DescriptionAttribute("MPS Italian Dealer can copy an existing proposal offer")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Italy", "Without", "Without", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Italy", "Without", "Without", null)]
-        public virtual void DealerCanCopyAnExistingProposalOffer(string role, string country, string operation, string target, string[] exampleTags)
+        public virtual void MPSItalianDealerCanCopyAnExistingProposalOffer(string role, string country, string operation, string target, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer can copy an existing proposal offer", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Italian Dealer can copy an existing proposal offer", exampleTags);
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
@@ -95,12 +95,12 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Dealer can copy an existing proposal offer for all countries")]
+        [NUnit.Framework.DescriptionAttribute("MPS Italian Dealer can copy an existing proposal offer for all countries")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Italy", "Acquisto + Consumo con assistenza", "Volume minimo", "36", "Trimestrale anticipata", "Skip customer creation", "Without", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Italy", "Acquisto + Consumo con assistenza", "Volume minimo", "48", "Trimestrale anticipata", "Create new customer", "With", null)]
-        public virtual void DealerCanCopyAnExistingProposalOfferForAllCountries(string role, string country, string contractType, string usageType, string length, string billing, string customer, string status, string[] exampleTags)
+        public virtual void MPSItalianDealerCanCopyAnExistingProposalOfferForAllCountries(string role, string country, string contractType, string usageType, string length, string billing, string customer, string status, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer can copy an existing proposal offer for all countries", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Italian Dealer can copy an existing proposal offer for all countries", exampleTags);
 #line 20
 this.ScenarioSetup(scenarioInfo);
 #line 21

@@ -74,11 +74,13 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BNL.
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Customer cannot order consumable before initial communication with device")]
+        [NUnit.Framework.DescriptionAttribute("MPS Dutch Customer cannot order consumable before initial communication with devi" +
+            "ce")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Netherlands", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Email", "Cloud MPS Customer", null)]
-        public virtual void CustomerCannotOrderConsumableBeforeInitialCommunicationWithDevice(string role, string country, string contractType, string usageType, string role1, string method, string role2, string[] exampleTags)
+        public virtual void MPSDutchCustomerCannotOrderConsumableBeforeInitialCommunicationWithDevice(string role, string country, string contractType, string usageType, string role1, string method, string role2, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer cannot order consumable before initial communication with device", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Dutch Customer cannot order consumable before initial communication with devi" +
+                    "ce", exampleTags);
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line 15
@@ -96,11 +98,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Customer can order consumable after initial communication with device")]
+        [NUnit.Framework.DescriptionAttribute("MPS Dutch Customer can order consumable after initial communication with device")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Customer", "Netherlands", null)]
-        public virtual void CustomerCanOrderConsumableAfterInitialCommunicationWithDevice(string role, string country, string[] exampleTags)
+        public virtual void MPSDutchCustomerCanOrderConsumableAfterInitialCommunicationWithDevice(string role, string country, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer can order consumable after initial communication with device", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Dutch Customer can order consumable after initial communication with device", exampleTags);
 #line 28
 this.ScenarioSetup(scenarioInfo);
 #line 29

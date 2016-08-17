@@ -131,13 +131,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             ScrollTo(SummaryCloseProposalElement);
             SummaryCloseProposalElement.Click();
-            ClickAcceptOnConfrimation(Driver);
+            ClickAcceptOnConfrimation();
             return GetInstance<DealerClosedProposalPage>(Driver);
         }
 
-        public void ClickAcceptOnConfrimation(IWebDriver driver)
+        public void ClickAcceptOnConfrimation()
         {
-            ClickAcceptOnJsAlert(driver);
+            ClickAcceptOnJsAlert();
         }
 
         

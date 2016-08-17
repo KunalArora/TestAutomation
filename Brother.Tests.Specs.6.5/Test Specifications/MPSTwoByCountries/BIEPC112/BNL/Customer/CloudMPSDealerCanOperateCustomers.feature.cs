@@ -74,11 +74,11 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BNL.
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Dealer can see customers")]
+        [NUnit.Framework.DescriptionAttribute("MPS Dutch Dealer can see customers")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Netherlands", null)]
-        public virtual void DealerCanSeeCustomers(string role, string country, string[] exampleTags)
+        public virtual void MPSDutchDealerCanSeeCustomers(string role, string country, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer can see customers", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Dutch Dealer can see customers", exampleTags);
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line 9
@@ -94,11 +94,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Dealer can create a new customer")]
+        [NUnit.Framework.DescriptionAttribute("MPS Dutch Dealer can create a new customer")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Netherlands", null)]
-        public virtual void DealerCanCreateANewCustomer(string role, string country, string[] exampleTags)
+        public virtual void MPSDutchDealerCanCreateANewCustomer(string role, string country, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer can create a new customer", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Dutch Dealer can create a new customer", exampleTags);
 #line 20
 this.ScenarioSetup(scenarioInfo);
 #line 21
@@ -118,11 +118,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Dealer can edit a new customer")]
+        [NUnit.Framework.DescriptionAttribute("MPS Dutch Dealer can edit a new customer")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Netherlands", "NewlyCreatedItem", null)]
-        public virtual void DealerCanEditANewCustomer(string role, string country, string targetItem, string[] exampleTags)
+        public virtual void MPSDutchDealerCanEditANewCustomer(string role, string country, string targetItem, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer can edit a new customer", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Dutch Dealer can edit a new customer", exampleTags);
 #line 35
 this.ScenarioSetup(scenarioInfo);
 #line 36
@@ -150,10 +150,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Dealer can delete a customer")]
+        [NUnit.Framework.DescriptionAttribute("MPS Dutch Dealer can delete a customer")]
         [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Netherlands", "NewlyCreatedItem", "OK", null)]
-        public virtual void DealerCanDeleteACustomer(string role, string country, string targetItem, string confirm, string[] exampleTags)
+        public virtual void MPSDutchDealerCanDeleteACustomer(string role, string country, string targetItem, string confirm, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "ignore"};
@@ -161,7 +161,7 @@ this.ScenarioSetup(scenarioInfo);
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer can delete a customer", @__tags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Dutch Dealer can delete a customer", @__tags);
 #line 53
 this.ScenarioSetup(scenarioInfo);
 #line 54
@@ -185,10 +185,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Dealer can cancel deleting customer")]
+        [NUnit.Framework.DescriptionAttribute("MPS Dutch Dealer can cancel deleting customer")]
         [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Netherlands", "NewlyCreatedItem", "Dismiss", null)]
-        public virtual void DealerCanCancelDeletingCustomer(string role, string country, string targetItem, string confirm, string[] exampleTags)
+        public virtual void MPSDutchDealerCanCancelDeletingCustomer(string role, string country, string targetItem, string confirm, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "ignore"};
@@ -196,7 +196,7 @@ this.ScenarioSetup(scenarioInfo);
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer can cancel deleting customer", @__tags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Dutch Dealer can cancel deleting customer", @__tags);
 #line 68
 this.ScenarioSetup(scenarioInfo);
 #line 69
@@ -220,10 +220,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Dealer cannot delete a customer who is bound to an existing proposal")]
+        [NUnit.Framework.DescriptionAttribute("MPS Dutch Dealer cannot delete a customer who is bound to an existing proposal")]
         [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Purchase & Click with Service", "Minimum Volume", "OK", "NewlyCreatedProposalCustomer", null)]
-        public virtual void DealerCannotDeleteACustomerWhoIsBoundToAnExistingProposal(string contractType, string usageType, string confirm, string targetItem, string[] exampleTags)
+        public virtual void MPSDutchDealerCannotDeleteACustomerWhoIsBoundToAnExistingProposal(string contractType, string usageType, string confirm, string targetItem, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "ignore"};
@@ -231,7 +231,7 @@ this.ScenarioSetup(scenarioInfo);
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer cannot delete a customer who is bound to an existing proposal", @__tags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Dutch Dealer cannot delete a customer who is bound to an existing proposal", @__tags);
 #line 85
 this.ScenarioSetup(scenarioInfo);
 #line 86

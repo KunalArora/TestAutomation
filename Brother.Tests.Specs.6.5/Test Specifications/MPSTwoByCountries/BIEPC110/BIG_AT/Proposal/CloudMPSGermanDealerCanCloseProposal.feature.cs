@@ -72,12 +72,12 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BIG_
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("German And Austria Dealer can cancel a Lease and Click proposal in Open state")]
+        [NUnit.Framework.DescriptionAttribute("MPS GermanAustria Dealer can cancel a Lease and Click proposal in Open state")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Austria", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Germany", null)]
-        public virtual void GermanAndAustriaDealerCanCancelALeaseAndClickProposalInOpenState(string role, string country, string[] exampleTags)
+        public virtual void MPSGermanAustriaDealerCanCancelALeaseAndClickProposalInOpenState(string role, string country, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("German And Austria Dealer can cancel a Lease and Click proposal in Open state", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS GermanAustria Dealer can cancel a Lease and Click proposal in Open state", exampleTags);
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line 9
@@ -101,12 +101,12 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("German And Austria Dealer can cancel a Purchase and Click proposal in Open state")]
+        [NUnit.Framework.DescriptionAttribute("MPS GermanAustria Dealer can cancel a Purchase and Click proposal in Open state")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Germany", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Austria", null)]
-        public virtual void GermanAndAustriaDealerCanCancelAPurchaseAndClickProposalInOpenState(string role, string country, string[] exampleTags)
+        public virtual void MPSGermanAustriaDealerCanCancelAPurchaseAndClickProposalInOpenState(string role, string country, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("German And Austria Dealer can cancel a Purchase and Click proposal in Open state", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS GermanAustria Dealer can cancel a Purchase and Click proposal in Open state", exampleTags);
 #line 26
 this.ScenarioSetup(scenarioInfo);
 #line 27
@@ -130,14 +130,14 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("German And Austria Dealer can cancel a Lease and Click proposal in Awaiting Appro" +
-            "val state")]
+        [NUnit.Framework.DescriptionAttribute("MPS GermanAustria Dealer can cancel a Lease and Click proposal in Awaiting Approv" +
+            "al state")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Germany", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Austria", null)]
-        public virtual void GermanAndAustriaDealerCanCancelALeaseAndClickProposalInAwaitingApprovalState(string role, string country, string[] exampleTags)
+        public virtual void MPSGermanAustriaDealerCanCancelALeaseAndClickProposalInAwaitingApprovalState(string role, string country, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("German And Austria Dealer can cancel a Lease and Click proposal in Awaiting Appro" +
-                    "val state", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS GermanAustria Dealer can cancel a Lease and Click proposal in Awaiting Approv" +
+                    "al state", exampleTags);
 #line 42
 this.ScenarioSetup(scenarioInfo);
 #line 43
@@ -149,14 +149,14 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("German And Austria Dealer can cancel a Purchase and Click proposal in Awaiting Ap" +
-            "proval state")]
+        [NUnit.Framework.DescriptionAttribute("MPS GermanAustria Dealer can cancel a Purchase and Click proposal in Awaiting App" +
+            "roval state")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Germany", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Austria", null)]
-        public virtual void GermanAndAustriaDealerCanCancelAPurchaseAndClickProposalInAwaitingApprovalState(string role, string country, string[] exampleTags)
+        public virtual void MPSGermanAustriaDealerCanCancelAPurchaseAndClickProposalInAwaitingApprovalState(string role, string country, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("German And Austria Dealer can cancel a Purchase and Click proposal in Awaiting Ap" +
-                    "proval state", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS GermanAustria Dealer can cancel a Purchase and Click proposal in Awaiting App" +
+                    "roval state", exampleTags);
 #line 53
 this.ScenarioSetup(scenarioInfo);
 #line 54
@@ -169,14 +169,12 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("German And Austria Dealer can cancel a Lease and Click proposal in Approved state" +
-            "")]
+        [NUnit.Framework.DescriptionAttribute("MPS GermanAustria Dealer can cancel a Lease and Click proposal in Approved state")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Germany", "Cloud MPS Bank", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Austria", "Cloud MPS Bank", null)]
-        public virtual void GermanAndAustriaDealerCanCancelALeaseAndClickProposalInApprovedState(string role, string country, string role2, string[] exampleTags)
+        public virtual void MPSGermanAustriaDealerCanCancelALeaseAndClickProposalInApprovedState(string role, string country, string role2, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("German And Austria Dealer can cancel a Lease and Click proposal in Approved state" +
-                    "", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS GermanAustria Dealer can cancel a Lease and Click proposal in Approved state", exampleTags);
 #line 65
 this.ScenarioSetup(scenarioInfo);
 #line 66
@@ -210,14 +208,14 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("German And Austria Dealer can cancel a Purchase and Click proposal in Approved st" +
-            "ate")]
+        [NUnit.Framework.DescriptionAttribute("MPS GermanAustria Dealer can cancel a Purchase and Click proposal in Approved sta" +
+            "te")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Germany", "Cloud MPS Local Office Approver", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Austria", "Cloud MPS Local Office Approver", null)]
-        public virtual void GermanAndAustriaDealerCanCancelAPurchaseAndClickProposalInApprovedState(string role, string country, string role2, string[] exampleTags)
+        public virtual void MPSGermanAustriaDealerCanCancelAPurchaseAndClickProposalInApprovedState(string role, string country, string role2, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("German And Austria Dealer can cancel a Purchase and Click proposal in Approved st" +
-                    "ate", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS GermanAustria Dealer can cancel a Purchase and Click proposal in Approved sta" +
+                    "te", exampleTags);
 #line 89
 this.ScenarioSetup(scenarioInfo);
 #line 90

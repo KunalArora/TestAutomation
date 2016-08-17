@@ -4,7 +4,7 @@ Feature: CloudMPSOutputContractPDFAllBelgianUsers
 	As an MPS User
 	I want to be able to download contract PDFs
 
-Scenario Outline: Local Office Approver can download Contract PDFs on Awaiting Acceptance page
+Scenario Outline: MPS Belgian Local Office Approver can download Contract PDFs on Awaiting Acceptance page
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I change the language to "<Language>"
 	When I navigate to Local Office Approver contract Awaiting Acceptance page
@@ -18,7 +18,7 @@ Scenario Outline: Local Office Approver can download Contract PDFs on Awaiting A
 	| Cloud MPS Local Office Approver | Belgium | French   |
 	
 
-Scenario Outline: Local Office Approver can download Contract PDFs on Rejected page
+Scenario Outline: MPS Belgian Local Office Approver can download Contract PDFs on Rejected page
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I change the language to "<Language>"
 	When I navigate to Local Office Approver contract Rejected page
@@ -31,7 +31,7 @@ Scenario Outline: Local Office Approver can download Contract PDFs on Rejected p
 	| Cloud MPS Local Office Approver | Belgium | Dutch    |
 	| Cloud MPS Local Office Approver | Belgium | French   |
 	
-Scenario Outline: Dealer can download Contract PDFs on Approved proposal page
+Scenario Outline: MPS Belgian Dealer can download Contract PDFs on Approved proposal page
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I change the language to "<Language>"
 	When I navigate to dealer contract Approved Acceptance page
@@ -43,7 +43,7 @@ Scenario Outline: Dealer can download Contract PDFs on Approved proposal page
 	| Cloud MPS Dealer | Belgium | Dutch    |
 	| Cloud MPS Dealer | Belgium | French   |
 	
-Scenario Outline: Dealer can download Contract PDFs on Awaiting Acceptance page
+Scenario Outline: MPS Belgian Dealer can download Contract PDFs on Awaiting Acceptance page
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I change the language to "<Language>"
 	When I navigate to dealer contract Awaiting Acceptance page
@@ -56,7 +56,7 @@ Scenario Outline: Dealer can download Contract PDFs on Awaiting Acceptance page
 	| Cloud MPS Dealer | Belgium | Dutch    |
 	| Cloud MPS Dealer | Belgium | French   |
 	
-Scenario Outline: Dealer can download Contract PDFs on Rejected page
+Scenario Outline: MPS Belgian Dealer can download Contract PDFs on Rejected page
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I change the language to "<Language>"
 	When I navigate to dealer contract Rejected page

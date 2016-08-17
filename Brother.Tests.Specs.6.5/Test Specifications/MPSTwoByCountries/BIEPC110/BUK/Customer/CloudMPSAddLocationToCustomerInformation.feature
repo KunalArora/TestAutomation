@@ -4,7 +4,7 @@
 	I want to be able to add several location to a customer
 
 
-Scenario Outline: Add Multiple Locations to customer 
+Scenario Outline: MPS English Add Multiple Locations to customer 
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to existing customer screen
 	And I click Create Customer Button

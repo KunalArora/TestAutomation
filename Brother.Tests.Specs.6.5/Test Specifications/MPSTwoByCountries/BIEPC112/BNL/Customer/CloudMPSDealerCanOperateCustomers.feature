@@ -5,7 +5,7 @@ Feature: CloudMPSDutchDealerCanOperateCustomers
 	I want to operate customers
 
 
-Scenario Outline: Dealer can see customers 
+Scenario Outline: MPS Dutch Dealer can see customers 
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to existing customer screen
 	Then I can see the Existing Customers table
@@ -17,7 +17,7 @@ Scenario Outline: Dealer can see customers
 #	| Sub Dealer | United Kingdom |
 
 
-Scenario Outline: Dealer can create a new customer 
+Scenario Outline: MPS Dutch Dealer can create a new customer 
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to existing customer screen
 	And I click Create Customer Button
@@ -32,7 +32,7 @@ Scenario Outline: Dealer can create a new customer
 
 
 #@ignore
-Scenario Outline: Dealer can edit a new customer 
+Scenario Outline: MPS Dutch Dealer can edit a new customer 
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to existing customer screen
 	And I click Create Customer Button
@@ -50,7 +50,7 @@ Scenario Outline: Dealer can edit a new customer
 	
 
 @ignore
-Scenario Outline: Dealer can delete a customer 
+Scenario Outline: MPS Dutch Dealer can delete a customer 
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to existing customer screen
 	And I click Create Customer Button
@@ -65,7 +65,7 @@ Scenario Outline: Dealer can delete a customer
 	| Cloud MPS Dealer | Netherlands | NewlyCreatedItem | OK      |
 
 @ignore
-Scenario Outline: Dealer can cancel deleting customer 
+Scenario Outline: MPS Dutch Dealer can cancel deleting customer 
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	##And I navigate to existing customer screen
 	And I navigate to existing customer screen
@@ -82,7 +82,7 @@ Scenario Outline: Dealer can cancel deleting customer
 	
 
 @ignore
-Scenario Outline: Dealer cannot delete a customer who is bound to an existing proposal
+Scenario Outline: MPS Dutch Dealer cannot delete a customer who is bound to an existing proposal
     Given Dealer have created a Open proposal of "<ContractType>" and "<UsageType>"
 	And I navigate to Dealer Dashboard page from Dealer Proposal page
 	And I navigate to existing customer screen

@@ -6,7 +6,7 @@ Feature: CloudMPSPolishDealerSubmitAllTypesofProposalsToRelevantApprovers
 
 
 
-Scenario Outline: Send certain proposals for approval
+Scenario Outline: MPS Polish Send certain proposals for approval
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created a "<ContractType>" proposal with "<UsageType>" and "<Length>" and "<Billing>"
 	And I am on Proposal List page
@@ -29,7 +29,7 @@ Scenario Outline: Send certain proposals for approval
 	| Cloud MPS Dealer | Poland  | Cloud MPS Local Office Approver | Buy + Click  | Pakiet wydruków | 3 lata | Quarterly in Arrears |
 	
 @ignore
-Scenario Outline: Send certain approval for Privately Liable Customer
+Scenario Outline: MPS Polish Send certain approval for Privately Liable Customer
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created a "<ContractType>" proposal with "<UsageType>" and "<Length>" and "<Billing>"
 	And I am on Proposal List page
@@ -51,7 +51,7 @@ Scenario Outline: Send certain approval for Privately Liable Customer
 	| Role             | Country | Role2                           | ContractType | UsageType       | Length | Billing              | Private |
 	| Cloud MPS Dealer | Poland  | Cloud MPS Local Office Approver | Buy + Click  | Pakiet wydruków | 3 lata | Quarterly in Arrears | Inny    |
 	
-Scenario Outline: Send certain proposal for Approval for Customer who can order consumables
+Scenario Outline: MPS Polish Send certain proposal for Approval for Customer who can order consumables
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created a "<ContractType>" proposal with "<UsageType>" and "<Length>" and "<Billing>"
 	And I am on Proposal List page
@@ -74,7 +74,7 @@ Scenario Outline: Send certain proposal for Approval for Customer who can order 
 	| Cloud MPS Dealer | Poland  | Cloud MPS Local Office Approver | Buy + Click  | Pakiet wydruków | 3 lata | Quarterly in Arrears | 
 
 @ignore	
-Scenario Outline: Send certain proposal for Approval for Privately Liable Customer who can order consumables
+Scenario Outline: MPS Polish Send certain proposal for Approval for Privately Liable Customer who can order consumables
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created a "<ContractType>" proposal with "<UsageType>" and "<Length>" and "<Billing>"
 	And I am on Proposal List page

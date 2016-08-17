@@ -72,11 +72,11 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BUK.
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Dealer can cancel a proposal in Open state")]
+        [NUnit.Framework.DescriptionAttribute("MPS English Dealer can cancel a proposal in Open state")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", null)]
-        public virtual void DealerCanCancelAProposalInOpenState(string role, string country, string[] exampleTags)
+        public virtual void MPSEnglishDealerCanCancelAProposalInOpenState(string role, string country, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer can cancel a proposal in Open state", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS English Dealer can cancel a proposal in Open state", exampleTags);
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line 9
@@ -100,11 +100,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Dealer can cancel a proposal in Awaiting Approval state")]
+        [NUnit.Framework.DescriptionAttribute("MPS English Dealer can cancel a proposal in Awaiting Approval state")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", null)]
-        public virtual void DealerCanCancelAProposalInAwaitingApprovalState(string role, string country, string[] exampleTags)
+        public virtual void MPSEnglishDealerCanCancelAProposalInAwaitingApprovalState(string role, string country, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer can cancel a proposal in Awaiting Approval state", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS English Dealer can cancel a proposal in Awaiting Approval state", exampleTags);
 #line 26
 this.ScenarioSetup(scenarioInfo);
 #line 27
@@ -116,11 +116,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Dealer can cancel a proposal in Approved state")]
+        [NUnit.Framework.DescriptionAttribute("MPS English Dealer can cancel a proposal in Approved state")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Cloud MPS Local Office Approver", null)]
-        public virtual void DealerCanCancelAProposalInApprovedState(string role, string country, string role2, string[] exampleTags)
+        public virtual void MPSEnglishDealerCanCancelAProposalInApprovedState(string role, string country, string role2, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer can cancel a proposal in Approved state", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS English Dealer can cancel a proposal in Approved state", exampleTags);
 #line 45
 this.ScenarioSetup(scenarioInfo);
 #line 46

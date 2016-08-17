@@ -197,7 +197,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [Then(@"I click to remove browser confirmation dialogue")]
         public void WhenIClickToRemoveBrowserConfirmationDialog()
         {
-            CurrentPage.As<HomePage>().ClickDismissOnConfrimation(CurrentDriver);
+            CurrentPage.As<HomePage>().ClickDismissOnConfrimation();
         }
 
         [Then(@"I have checked no to having a creative center account")]

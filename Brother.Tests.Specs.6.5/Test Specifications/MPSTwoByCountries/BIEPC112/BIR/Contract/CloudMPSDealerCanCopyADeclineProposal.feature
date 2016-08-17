@@ -5,7 +5,7 @@ Feature: CloudMPSIrishDealerCanCopyADeclineProposal
 	I want to be to copy and submit a declined proposal
 
 
-Scenario Outline: Dealer Can Copy A Declined Purchase and Click Proposal without customer detail for other countries
+Scenario Outline: MPS Irish Dealer Can Copy A Declined Purchase and Click Proposal without customer detail for other countries
 	Given I verify and store "<Country>" purchase and click proposal bypass status
 	Then I can copy the declined "<ContractType>" proposal with "<UsageType>" and "<Length>" and "<Billing>" as a "<Role>" from "<Country>" and approved by "<Role2>"
 
@@ -15,7 +15,7 @@ Scenario Outline: Dealer Can Copy A Declined Purchase and Click Proposal without
 	| Cloud MPS Dealer | Ireland | Cloud MPS Local Office Approver | Purchase & Click with Service | Minimum Volume | 3 years | Quarterly in Arrears |
 	
 
-Scenario Outline: Dealer Can Copy A Declined Purchase and Click Proposal with customer detail for other countries
+Scenario Outline: MPS Irish Dealer Can Copy A Declined Purchase and Click Proposal with customer detail for other countries
 	Given I verify and store "<Country>" purchase and click proposal bypass status
 	Then I can copy the customer detail with the declined "<ContractType>" proposal with "<UsageType>" and "<Length>" and "<Billing>" as a "<Role>" from "<Country>" and approved by "<Role2>"
 

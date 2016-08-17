@@ -72,11 +72,11 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BPL.
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Dealer Can Generate PDF Purchase and Click Minimum Summary Page")]
+        [NUnit.Framework.DescriptionAttribute("MPS Polish Dealer Can Generate PDF Purchase and Click Minimum Summary Page")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Poland", "Buy + Click", "Pakiet wydruków", "3 lata", "Quarterly in Arrears", "Tick", "MFC-L8650CDW", "Full", "Wliczyć w cenę za wydruk strony", "2000", "2000", null)]
-        public virtual void DealerCanGeneratePDFPurchaseAndClickMinimumSummaryPage(string role, string country, string contractType, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string[] exampleTags)
+        public virtual void MPSPolishDealerCanGeneratePDFPurchaseAndClickMinimumSummaryPage(string role, string country, string contractType, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer Can Generate PDF Purchase and Click Minimum Summary Page", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Polish Dealer Can Generate PDF Purchase and Click Minimum Summary Page", exampleTags);
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line 9
@@ -119,13 +119,13 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Dealer Can Generate PDF for Purchase and Click in Awaiting Approval Status for ot" +
-            "her countries")]
+        [NUnit.Framework.DescriptionAttribute("MPS Polish Dealer Can Generate PDF for Purchase and Click in Awaiting Approval St" +
+            "atus for other countries")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Poland", "Cloud MPS Local Office Approver", "Buy + Click", "Pakiet wydruków", "3 lata", "Quarterly in Arrears", null)]
-        public virtual void DealerCanGeneratePDFForPurchaseAndClickInAwaitingApprovalStatusForOtherCountries(string role, string country, string role2, string contractType, string usageType, string length, string billing, string[] exampleTags)
+        public virtual void MPSPolishDealerCanGeneratePDFForPurchaseAndClickInAwaitingApprovalStatusForOtherCountries(string role, string country, string role2, string contractType, string usageType, string length, string billing, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer Can Generate PDF for Purchase and Click in Awaiting Approval Status for ot" +
-                    "her countries", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Polish Dealer Can Generate PDF for Purchase and Click in Awaiting Approval St" +
+                    "atus for other countries", exampleTags);
 #line 35
 this.ScenarioSetup(scenarioInfo);
 #line 36

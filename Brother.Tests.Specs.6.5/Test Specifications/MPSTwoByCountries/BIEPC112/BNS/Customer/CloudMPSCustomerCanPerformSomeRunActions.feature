@@ -5,7 +5,7 @@ Feature: SwedishCustomerCanPerformSomeRunActions
 	I want to be to sign in using my newly generated credentials
 
 
-Scenario Outline: Customer cannot order consumable before initial communication with device
+Scenario Outline: MPS Swedish Customer cannot order consumable before initial communication with device
 	#Given Dealer have created a contract of "<ContractType>" and "<UsageType>"
 	#And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	#And the contract created above is approved
@@ -25,7 +25,7 @@ Scenarios:
 	
 
 
-Scenario Outline: Customer can order consumable after initial communication with device
+Scenario Outline: MPS Swedish Customer can order consumable after initial communication with device
 	Given I sign back into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to customer dashboard page
 	And I navigate to consumable ordering page

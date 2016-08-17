@@ -72,13 +72,13 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BIT.
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Summary Page Validation For Minimum Volume Purchase and Click proposal In Click P" +
-            "ayment")]
+        [NUnit.Framework.DescriptionAttribute("MPS Italian Summary Page Validation For Minimum Volume Purchase and Click proposa" +
+            "l In Click Payment")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Italy", "Acquisto & Consumo", "Volume minimo", "36", "Trimestrale anticipata", "Tick", "MFC-L8650CDW", "Full", "Incluso nel click", "800", "800", "Incluso nel click", "Pagamento anticipato", null)]
-        public virtual void SummaryPageValidationForMinimumVolumePurchaseAndClickProposalInClickPayment(string role, string country, string contractType, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string basis1, string basis2, string[] exampleTags)
+        public virtual void MPSItalianSummaryPageValidationForMinimumVolumePurchaseAndClickProposalInClickPayment(string role, string country, string contractType, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string basis1, string basis2, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Summary Page Validation For Minimum Volume Purchase and Click proposal In Click P" +
-                    "ayment", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Italian Summary Page Validation For Minimum Volume Purchase and Click proposa" +
+                    "l In Click Payment", exampleTags);
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
@@ -145,13 +145,13 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Summary Page Validation For Minimum Volume Purchase and Click proposal Upfront Pa" +
-            "yment")]
+        [NUnit.Framework.DescriptionAttribute("MPS Italian Summary Page Validation For Minimum Volume Purchase and Click proposa" +
+            "l Upfront Payment")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Italy", "Acquisto & Consumo", "Volume minimo", "36", "Trimestrale anticipata", "Tick", "MFC-L8650CDW", "Full", "Pagamento anticipato", "800", "800", "Pagamento anticipato", null)]
-        public virtual void SummaryPageValidationForMinimumVolumePurchaseAndClickProposalUpfrontPayment(string role, string country, string contractType, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string basis1, string[] exampleTags)
+        public virtual void MPSItalianSummaryPageValidationForMinimumVolumePurchaseAndClickProposalUpfrontPayment(string role, string country, string contractType, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string basis1, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Summary Page Validation For Minimum Volume Purchase and Click proposal Upfront Pa" +
-                    "yment", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Italian Summary Page Validation For Minimum Volume Purchase and Click proposa" +
+                    "l Upfront Payment", exampleTags);
 #line 44
 this.ScenarioSetup(scenarioInfo);
 #line 45

@@ -323,10 +323,10 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         }
 
 
-        public void ClickDismissOnConfrimation(IWebDriver driver)
+        public void ClickDismissOnConfrimation()
         {
             
-            ClickDismissOnJsAlert(driver);
+            ClickDismissOnJsAlert();
         }
 
         public void DoNotHaveCreativeCenterAccount()

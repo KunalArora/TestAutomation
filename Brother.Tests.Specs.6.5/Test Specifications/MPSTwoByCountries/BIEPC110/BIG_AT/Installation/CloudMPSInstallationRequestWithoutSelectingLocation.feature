@@ -5,7 +5,7 @@ Feature: GermanInstallationRequestCannotBeCreatedWithoutSelectingLocation
 	I must select the location of the device 
 	
 
-Scenario Outline: Dealer cannot begin installation Request without selecting Location
+Scenario Outline: MPS GermanyAustria Dealer cannot begin installation Request without selecting Location
 	Given German Dealer have created a "<Country>" contract of "<ContractType>" and "<UsageType>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And the contract created above is approved

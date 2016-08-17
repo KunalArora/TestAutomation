@@ -73,13 +73,13 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BIR.
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Create different varieties of Purchase and Click proposal for new customer on Min" +
-            "imum Volume Term")]
+        [NUnit.Framework.DescriptionAttribute("MPS Irish Create different varieties of Purchase and Click proposal for new custo" +
+            "mer on Minimum Volume Term")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Ireland", "Purchase & Click with Service", "Create new customer", "Minimum Volume", "3 years", "Quarterly in Arrears", "Tick", "MFC-L8650CDW", "Full", "Pay upfront", "800", "800", null)]
-        public virtual void CreateDifferentVarietiesOfPurchaseAndClickProposalForNewCustomerOnMinimumVolumeTerm(string role, string country, string contractType, string createOption, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string[] exampleTags)
+        public virtual void MPSIrishCreateDifferentVarietiesOfPurchaseAndClickProposalForNewCustomerOnMinimumVolumeTerm(string role, string country, string contractType, string createOption, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create different varieties of Purchase and Click proposal for new customer on Min" +
-                    "imum Volume Term", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Irish Create different varieties of Purchase and Click proposal for new custo" +
+                    "mer on Minimum Volume Term", exampleTags);
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line 9
@@ -130,13 +130,13 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Create different varieties of Purchase and Click proposal for new customer on Pay" +
-            " As You Go Term")]
+        [NUnit.Framework.DescriptionAttribute("MPS Irish Create different varieties of Purchase and Click proposal for new custo" +
+            "mer on Pay As You Go Term")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Ireland", "Purchase & Click with Service", "Create new customer", "Pay As You Go", "4 years", "Quarterly in Arrears", "Tick", "DCP-L5500DN", "Full", "750", null)]
-        public virtual void CreateDifferentVarietiesOfPurchaseAndClickProposalForNewCustomerOnPayAsYouGoTerm(string role, string country, string contractType, string createOption, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string clickVolume, string[] exampleTags)
+        public virtual void MPSIrishCreateDifferentVarietiesOfPurchaseAndClickProposalForNewCustomerOnPayAsYouGoTerm(string role, string country, string contractType, string createOption, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string clickVolume, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create different varieties of Purchase and Click proposal for new customer on Pay" +
-                    " As You Go Term", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Irish Create different varieties of Purchase and Click proposal for new custo" +
+                    "mer on Pay As You Go Term", exampleTags);
 #line 41
 this.ScenarioSetup(scenarioInfo);
 #line 42
@@ -190,13 +190,13 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Create different varieties of Purchase and Click proposal for an existing custome" +
-            "r")]
+        [NUnit.Framework.DescriptionAttribute("MPS Irish Create different varieties of Purchase and Click proposal for an existi" +
+            "ng customer")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Ireland", "Purchase & Click with Service", "Minimum Volume", "3 years", "Quarterly in Arrears", "Tick", "MFC-L8650CDW", "Full", "Included in Click Price", "800", "800", null)]
-        public virtual void CreateDifferentVarietiesOfPurchaseAndClickProposalForAnExistingCustomer(string role, string country, string contractType, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string[] exampleTags)
+        public virtual void MPSIrishCreateDifferentVarietiesOfPurchaseAndClickProposalForAnExistingCustomer(string role, string country, string contractType, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create different varieties of Purchase and Click proposal for an existing custome" +
-                    "r", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Irish Create different varieties of Purchase and Click proposal for an existi" +
+                    "ng customer", exampleTags);
 #line 71
 this.ScenarioSetup(scenarioInfo);
 #line 72
@@ -247,13 +247,13 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Create different varieties of Purchase and Click proposal for an existing custome" +
-            "r on Pay As You Go Term")]
+        [NUnit.Framework.DescriptionAttribute("MPS Irish Create different varieties of Purchase and Click proposal for an existi" +
+            "ng customer on Pay As You Go Term")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Ireland", "Purchase & Click with Service", "Pay As You Go", "5 years", "Quarterly in Arrears", "Tick", "DCP-L5500DN", "Full", "750", null)]
-        public virtual void CreateDifferentVarietiesOfPurchaseAndClickProposalForAnExistingCustomerOnPayAsYouGoTerm(string role, string country, string contractType, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string clickVolume, string[] exampleTags)
+        public virtual void MPSIrishCreateDifferentVarietiesOfPurchaseAndClickProposalForAnExistingCustomerOnPayAsYouGoTerm(string role, string country, string contractType, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string clickVolume, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create different varieties of Purchase and Click proposal for an existing custome" +
-                    "r on Pay As You Go Term", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Irish Create different varieties of Purchase and Click proposal for an existi" +
+                    "ng customer on Pay As You Go Term", exampleTags);
 #line 101
 this.ScenarioSetup(scenarioInfo);
 #line 102

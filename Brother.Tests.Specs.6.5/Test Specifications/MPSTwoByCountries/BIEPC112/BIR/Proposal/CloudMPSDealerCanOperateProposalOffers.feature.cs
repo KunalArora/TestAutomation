@@ -72,10 +72,10 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BIR.
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Dealer can see proposal offers")]
+        [NUnit.Framework.DescriptionAttribute("MPS Irish Dealer can see proposal offers")]
         [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Ireland", null)]
-        public virtual void DealerCanSeeProposalOffers(string role, string country, string[] exampleTags)
+        public virtual void MPSIrishDealerCanSeeProposalOffers(string role, string country, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "ignore"};
@@ -83,7 +83,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BIR.
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer can see proposal offers", @__tags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Irish Dealer can see proposal offers", @__tags);
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line 9
@@ -99,11 +99,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Dealer can edit an existing proposal offer")]
+        [NUnit.Framework.DescriptionAttribute("MPS Irish Dealer can edit an existing proposal offer")]
         [NUnit.Framework.TestCaseAttribute("Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Ireland", "TermAndType", null)]
-        public virtual void DealerCanEditAnExistingProposalOffer(string contractType, string usageType, string role, string country, string tabName, string[] exampleTags)
+        public virtual void MPSIrishDealerCanEditAnExistingProposalOffer(string contractType, string usageType, string role, string country, string tabName, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer can edit an existing proposal offer", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Irish Dealer can edit an existing proposal offer", exampleTags);
 #line 19
 this.ScenarioSetup(scenarioInfo);
 #line 20
@@ -130,12 +130,12 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Dealer can edit products in an existing proposal offer")]
+        [NUnit.Framework.DescriptionAttribute("MPS Irish Dealer can edit products in an existing proposal offer")]
         [NUnit.Framework.TestCaseAttribute("Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Ireland", "Products", "Add", null)]
         [NUnit.Framework.TestCaseAttribute("Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Ireland", "Products", "Remove", null)]
-        public virtual void DealerCanEditProductsInAnExistingProposalOffer(string contractType, string usageType, string role, string country, string tabName, string action, string[] exampleTags)
+        public virtual void MPSIrishDealerCanEditProductsInAnExistingProposalOffer(string contractType, string usageType, string role, string country, string tabName, string action, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer can edit products in an existing proposal offer", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Irish Dealer can edit products in an existing proposal offer", exampleTags);
 #line 41
 this.ScenarioSetup(scenarioInfo);
 #line 42
@@ -161,10 +161,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Dealer can cancel deleting proposal offer")]
+        [NUnit.Framework.DescriptionAttribute("MPS Irish Dealer can cancel deleting proposal offer")]
         [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Ireland", "Dismiss", "AnyItem", null)]
-        public virtual void DealerCanCancelDeletingProposalOffer(string role, string country, string confirm, string targetItem, string[] exampleTags)
+        public virtual void MPSIrishDealerCanCancelDeletingProposalOffer(string role, string country, string confirm, string targetItem, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "ignore"};
@@ -172,7 +172,7 @@ this.ScenarioSetup(scenarioInfo);
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer can cancel deleting proposal offer", @__tags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Irish Dealer can cancel deleting proposal offer", @__tags);
 #line 59
 this.ScenarioSetup(scenarioInfo);
 #line 60
@@ -192,11 +192,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Dealer can copy an existing proposal offer for all countries")]
+        [NUnit.Framework.DescriptionAttribute("MPS Irish Dealer can copy an existing proposal offer for all countries")]
         [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Ireland", "Purchase & Click with Service", "Minimum Volume", "3 years", "Quarterly in Arrears", "Skip customer creation", "Without", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Ireland", "Purchase & Click with Service", "Minimum Volume", "4 years", "Quarterly in Arrears", "Create new customer", "With", null)]
-        public virtual void DealerCanCopyAnExistingProposalOfferForAllCountries(string role, string country, string contractType, string usageType, string length, string billing, string customer, string status, string[] exampleTags)
+        public virtual void MPSIrishDealerCanCopyAnExistingProposalOfferForAllCountries(string role, string country, string contractType, string usageType, string length, string billing, string customer, string status, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "ignore"};
@@ -204,7 +204,7 @@ this.ScenarioSetup(scenarioInfo);
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer can copy an existing proposal offer for all countries", @__tags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Irish Dealer can copy an existing proposal offer for all countries", @__tags);
 #line 73
 this.ScenarioSetup(scenarioInfo);
 #line 74

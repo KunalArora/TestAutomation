@@ -4,7 +4,7 @@ Feature: CloudMPSUKDealerCanGeneratePDFAtRelevantStages
 	As a dealer
 	I want to create a proposal for which a PDF for which a proposal can be downloaded
 
-Scenario Outline: Dealer Can Generate PDF Purchase and Click Minimum Summary Page
+Scenario Outline: MPS English Dealer Can Generate PDF Purchase and Click Minimum Summary Page
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	When I fill Proposal Description for "<ContractType>" Contract type

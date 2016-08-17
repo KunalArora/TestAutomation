@@ -74,11 +74,13 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BIG_
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Customer raise service Request and Service Desk view and close service request")]
+        [NUnit.Framework.DescriptionAttribute("MPS GermanAustria Customer raise service Request and Service Desk view and close " +
+            "service request")]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "Cloud MPS Service Desk", "Email", "Cloud MPS Service Desk Customer", null)]
-        public virtual void CustomerRaiseServiceRequestAndServiceDeskViewAndCloseServiceRequest(string country, string role2, string method, string role1, string[] exampleTags)
+        public virtual void MPSGermanAustriaCustomerRaiseServiceRequestAndServiceDeskViewAndCloseServiceRequest(string country, string role2, string method, string role1, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer raise service Request and Service Desk view and close service request", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS GermanAustria Customer raise service Request and Service Desk view and close " +
+                    "service request", exampleTags);
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line 9
@@ -108,13 +110,13 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Customer raise service Request and Service Desk replied and close service request" +
-            "")]
+        [NUnit.Framework.DescriptionAttribute("MPS GermanAustria Customer raise service Request and Service Desk replied and clo" +
+            "se service request")]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "Cloud MPS Service Desk", "Email", "Cloud MPS Service Desk Customer", null)]
-        public virtual void CustomerRaiseServiceRequestAndServiceDeskRepliedAndCloseServiceRequest(string country, string role2, string method, string role1, string[] exampleTags)
+        public virtual void MPSGermanAustriaCustomerRaiseServiceRequestAndServiceDeskRepliedAndCloseServiceRequest(string country, string role2, string method, string role1, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer raise service Request and Service Desk replied and close service request" +
-                    "", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS GermanAustria Customer raise service Request and Service Desk replied and clo" +
+                    "se service request", exampleTags);
 #line 28
 this.ScenarioSetup(scenarioInfo);
 #line 29

@@ -72,11 +72,13 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BPL.
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Local Office Approver can download Contract PDFs on Awaiting Acceptance page")]
+        [NUnit.Framework.DescriptionAttribute("MPS Polish Local Office Approver can download Contract PDFs on Awaiting Acceptanc" +
+            "e page")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Poland", null)]
-        public virtual void LocalOfficeApproverCanDownloadContractPDFsOnAwaitingAcceptancePage(string role, string country, string[] exampleTags)
+        public virtual void MPSPolishLocalOfficeApproverCanDownloadContractPDFsOnAwaitingAcceptancePage(string role, string country, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Local Office Approver can download Contract PDFs on Awaiting Acceptance page", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Polish Local Office Approver can download Contract PDFs on Awaiting Acceptanc" +
+                    "e page", exampleTags);
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
@@ -94,11 +96,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Local Office Approver can download Contract PDFs on Rejected page")]
+        [NUnit.Framework.DescriptionAttribute("MPS Polish Local Office Approver can download Contract PDFs on Rejected page")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Poland", null)]
-        public virtual void LocalOfficeApproverCanDownloadContractPDFsOnRejectedPage(string role, string country, string[] exampleTags)
+        public virtual void MPSPolishLocalOfficeApproverCanDownloadContractPDFsOnRejectedPage(string role, string country, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Local Office Approver can download Contract PDFs on Rejected page", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Polish Local Office Approver can download Contract PDFs on Rejected page", exampleTags);
 #line 19
 this.ScenarioSetup(scenarioInfo);
 #line 20
@@ -114,11 +116,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Dealer can download Contract PDFs on Approved proposal page")]
+        [NUnit.Framework.DescriptionAttribute("MPS Polish Dealer can download Contract PDFs on Approved proposal page")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Poland", null)]
-        public virtual void DealerCanDownloadContractPDFsOnApprovedProposalPage(string role, string country, string[] exampleTags)
+        public virtual void MPSPolishDealerCanDownloadContractPDFsOnApprovedProposalPage(string role, string country, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer can download Contract PDFs on Approved proposal page", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Polish Dealer can download Contract PDFs on Approved proposal page", exampleTags);
 #line 30
 this.ScenarioSetup(scenarioInfo);
 #line 31
@@ -134,11 +136,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Dealer can download Contract PDFs on Awaiting Acceptance page")]
+        [NUnit.Framework.DescriptionAttribute("MPS Polish Dealer can download Contract PDFs on Awaiting Acceptance page")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Poland", null)]
-        public virtual void DealerCanDownloadContractPDFsOnAwaitingAcceptancePage(string role, string country, string[] exampleTags)
+        public virtual void MPSPolishDealerCanDownloadContractPDFsOnAwaitingAcceptancePage(string role, string country, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer can download Contract PDFs on Awaiting Acceptance page", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Polish Dealer can download Contract PDFs on Awaiting Acceptance page", exampleTags);
 #line 41
 this.ScenarioSetup(scenarioInfo);
 #line 42
@@ -154,11 +156,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Dealer can download Contract PDFs on Rejected page")]
+        [NUnit.Framework.DescriptionAttribute("MPS Polish Dealer can download Contract PDFs on Rejected page")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Poland", null)]
-        public virtual void DealerCanDownloadContractPDFsOnRejectedPage(string role, string country, string[] exampleTags)
+        public virtual void MPSPolishDealerCanDownloadContractPDFsOnRejectedPage(string role, string country, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer can download Contract PDFs on Rejected page", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Polish Dealer can download Contract PDFs on Rejected page", exampleTags);
 #line 54
 this.ScenarioSetup(scenarioInfo);
 #line 55

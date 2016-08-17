@@ -549,7 +549,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             ScrollTo(SummaryCloseProposalElement);
             HeadlessDismissAlertOk();
-            ClickAcceptOnJsAlert(Driver);
+            ClickAcceptOnJsAlert();
 
             SummaryCloseProposalElement.Click();
             
@@ -560,7 +560,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void ClickAcceptOnConfrimation(IWebDriver driver)
         {
             WebDriver.Wait(DurationType.Millisecond, 3000);
-            ClickAcceptOnJsAlert(driver);
+            ClickAcceptOnJsAlert();
         }
 
 

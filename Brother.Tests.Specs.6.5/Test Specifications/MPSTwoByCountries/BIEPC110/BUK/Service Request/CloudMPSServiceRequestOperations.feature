@@ -5,7 +5,7 @@ Feature: CloudMPSUKServiceRequestOperations
 	I want to be able to raise service request which can be worked on
 
 
-Scenario Outline: Customer raise service Request and Service Desk view and close service request
+Scenario Outline: MPS English Customer raise service Request and Service Desk view and close service request
 	Given I sign into Cloud MPS as a "<Role1>" from "<Country>"
 	And I navigate to customer dashboard page
 	And I navigate to customer request page
@@ -25,7 +25,7 @@ Scenarios:
 	| United Kingdom | Cloud MPS Service Desk | Email  | Cloud MPS Service Desk Customer |
 
 
-Scenario Outline: Customer raise service Request and Service Desk replied and close service request
+Scenario Outline: MPS English Customer raise service Request and Service Desk replied and close service request
 	Given I sign into Cloud MPS as a "<Role1>" from "<Country>"
 	And I navigate to customer dashboard page
 	And I navigate to customer request page

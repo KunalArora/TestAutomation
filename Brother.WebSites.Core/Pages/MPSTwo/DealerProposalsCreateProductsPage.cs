@@ -1534,7 +1534,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             links.First().Click();
 
             HeadlessDismissAlertOk();
-            ClickAcceptOnJsAlert(Driver);
+            ClickAcceptOnJsAlert();
 
             WebDriver.Wait(DurationType.Second, 3);
             const string removebuttonselector = @"button.btn.js-mps-product-configuration-remove";
@@ -1543,7 +1543,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             //alert
             
-            ClickAcceptOnJsAlert(driver);
+            ClickAcceptOnJsAlert();
         }
     }
 }

@@ -74,13 +74,13 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BES.
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Spanish Customer cannot order consumable before initial communication with device" +
-            "")]
+        [NUnit.Framework.DescriptionAttribute("MPS Spanish Customer cannot order consumable before initial communication with de" +
+            "vice")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Email", "Cloud MPS Customer", null)]
-        public virtual void SpanishCustomerCannotOrderConsumableBeforeInitialCommunicationWithDevice(string role, string country, string contractType, string usageType, string role1, string method, string role2, string[] exampleTags)
+        public virtual void MPSSpanishCustomerCannotOrderConsumableBeforeInitialCommunicationWithDevice(string role, string country, string contractType, string usageType, string role1, string method, string role2, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Spanish Customer cannot order consumable before initial communication with device" +
-                    "", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Spanish Customer cannot order consumable before initial communication with de" +
+                    "vice", exampleTags);
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line 15
@@ -98,11 +98,13 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Spanish Customer can order consumable after initial communication with device")]
+        [NUnit.Framework.DescriptionAttribute("MPS Spanish Customer can order consumable after initial communication with device" +
+            "")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Customer", "United Kingdom", null)]
-        public virtual void SpanishCustomerCanOrderConsumableAfterInitialCommunicationWithDevice(string role, string country, string[] exampleTags)
+        public virtual void MPSSpanishCustomerCanOrderConsumableAfterInitialCommunicationWithDevice(string role, string country, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Spanish Customer can order consumable after initial communication with device", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Spanish Customer can order consumable after initial communication with device" +
+                    "", exampleTags);
 #line 28
 this.ScenarioSetup(scenarioInfo);
 #line 29

@@ -5,7 +5,7 @@ Feature: CloudMPSUKDealerCanDeleteProposal
 	I want to be able to delete an open proposal
 
 
-Scenario Outline: Dealer can delete an open proposal
+Scenario Outline: MPS English Dealer can delete an open proposal
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created Purchase and Click proposal
 	And I am on Proposal List page

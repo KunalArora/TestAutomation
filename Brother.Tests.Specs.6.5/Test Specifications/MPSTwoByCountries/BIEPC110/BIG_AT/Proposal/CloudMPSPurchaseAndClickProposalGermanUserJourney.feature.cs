@@ -73,14 +73,14 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BIG_
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Create different varieties of German And Austria Purchase and Click proposal for " +
-            "new customer on Minimum Volume Term")]
+        [NUnit.Framework.DescriptionAttribute("MPS GermanAustria Create different varieties of German And Austria Purchase and C" +
+            "lick proposal for new customer on Minimum Volume Term")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Austria", "Easy Print Pro & Service", "Create new customer", "Mindestvolumen", "5 Jahre", "Vierteljährlich", "Tick", "MFC-L8650CDW", "Full", "Pay upfront", "800", "800", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Germany", "Easy Print Pro & Service", "Create new customer", "Mindestvolumen", "5 Jahre", "Vierteljährlich", "Tick", "MFC-L8650CDW", "Full", "Pay upfront", "800", "800", null)]
-        public virtual void CreateDifferentVarietiesOfGermanAndAustriaPurchaseAndClickProposalForNewCustomerOnMinimumVolumeTerm(string role, string country, string contractType, string createOption, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string[] exampleTags)
+        public virtual void MPSGermanAustriaCreateDifferentVarietiesOfGermanAndAustriaPurchaseAndClickProposalForNewCustomerOnMinimumVolumeTerm(string role, string country, string contractType, string createOption, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create different varieties of German And Austria Purchase and Click proposal for " +
-                    "new customer on Minimum Volume Term", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS GermanAustria Create different varieties of German And Austria Purchase and C" +
+                    "lick proposal for new customer on Minimum Volume Term", exampleTags);
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line 9
@@ -137,11 +137,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Create different varieties of German And Austria Purchase and Click proposal for " +
-            "new customer on Pay As You Go Term")]
+        [NUnit.Framework.DescriptionAttribute("MPS GermanAustria Create different varieties of German And Austria Purchase and C" +
+            "lick proposal for new customer on Pay As You Go Term")]
         [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Germany", "Easy Print Pro & Service", "Create new customer", "Pay As You Go", "3 Jahre", "Halbjährlich", "Tick", "MFC-8510DN", "Full", "750", null)]
-        public virtual void CreateDifferentVarietiesOfGermanAndAustriaPurchaseAndClickProposalForNewCustomerOnPayAsYouGoTerm(string role, string country, string contractType, string createOption, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string clickVolume, string[] exampleTags)
+        public virtual void MPSGermanAustriaCreateDifferentVarietiesOfGermanAndAustriaPurchaseAndClickProposalForNewCustomerOnPayAsYouGoTerm(string role, string country, string contractType, string createOption, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string clickVolume, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "Ignore"};
@@ -149,8 +149,8 @@ this.ScenarioSetup(scenarioInfo);
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create different varieties of German And Austria Purchase and Click proposal for " +
-                    "new customer on Pay As You Go Term", @__tags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS GermanAustria Create different varieties of German And Austria Purchase and C" +
+                    "lick proposal for new customer on Pay As You Go Term", @__tags);
 #line 41
 this.ScenarioSetup(scenarioInfo);
 #line 42
@@ -204,14 +204,14 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Create different varieties of German And Austria Purchase and Click proposal for " +
-            "an existing customer")]
+        [NUnit.Framework.DescriptionAttribute("MPS GermanAustria Create different varieties of German And Austria Purchase and C" +
+            "lick proposal for an existing customer")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Germany", "Easy Print Pro & Service", "Create new customer", "Mindestvolumen", "5 Jahre", "Vierteljährlich", "Tick", "MFC-L8650CDW", "Full", "Included in Click Price", "800", "800", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Austria", "Easy Print Pro & Service", "Create new customer", "Mindestvolumen", "5 Jahre", "Vierteljährlich", "Tick", "MFC-L8650CDW", "Full", "Included in Click Price", "800", "800", null)]
-        public virtual void CreateDifferentVarietiesOfGermanAndAustriaPurchaseAndClickProposalForAnExistingCustomer(string role, string country, string contractType, string createOption, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string[] exampleTags)
+        public virtual void MPSGermanAustriaCreateDifferentVarietiesOfGermanAndAustriaPurchaseAndClickProposalForAnExistingCustomer(string role, string country, string contractType, string createOption, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create different varieties of German And Austria Purchase and Click proposal for " +
-                    "an existing customer", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS GermanAustria Create different varieties of German And Austria Purchase and C" +
+                    "lick proposal for an existing customer", exampleTags);
 #line 72
 this.ScenarioSetup(scenarioInfo);
 #line 73
@@ -268,11 +268,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Create different varieties of German And Austria Purchase and Click proposal for " +
-            "an existing customer on Pay As You Go Term")]
+        [NUnit.Framework.DescriptionAttribute("MPS GermanAustria Create different varieties of German And Austria Purchase and C" +
+            "lick proposal for an existing customer on Pay As You Go Term")]
         [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Germany", "Easy Print Pro & Service", "Pay As You Go", "5 years", "Quarterly", "Quarterly", "Tick", "MFC-8510DN", "Full", "3000", null)]
-        public virtual void CreateDifferentVarietiesOfGermanAndAustriaPurchaseAndClickProposalForAnExistingCustomerOnPayAsYouGoTerm(string role, string country, string contractType, string usageType, string contract, string leasing, string billing, string priceHardware, string printer, string deviceScreen, string clickVolume, string[] exampleTags)
+        public virtual void MPSGermanAustriaCreateDifferentVarietiesOfGermanAndAustriaPurchaseAndClickProposalForAnExistingCustomerOnPayAsYouGoTerm(string role, string country, string contractType, string usageType, string contract, string leasing, string billing, string priceHardware, string printer, string deviceScreen, string clickVolume, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "Ignore"};
@@ -280,8 +280,8 @@ this.ScenarioSetup(scenarioInfo);
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create different varieties of German And Austria Purchase and Click proposal for " +
-                    "an existing customer on Pay As You Go Term", @__tags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS GermanAustria Create different varieties of German And Austria Purchase and C" +
+                    "lick proposal for an existing customer on Pay As You Go Term", @__tags);
 #line 105
 this.ScenarioSetup(scenarioInfo);
 #line 106

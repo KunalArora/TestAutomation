@@ -77,7 +77,7 @@ namespace Brother.Tests.Specs.MPSTwo.Customer
             var page = CurrentPage.As<DealerCustomersExistingPage>();
             if (confirm == "OK")
             {
-                page.ClickAcceptOnConfrimation(CurrentDriver);
+                page.ClickAcceptOnConfrimation();
             }
             else
             {
