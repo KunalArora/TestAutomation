@@ -72,14 +72,12 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BIG_
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS GermanyAustria Dealer Can Copy A Declined Leasing and Click Proposal without " +
-            "customer detail")]
+        [NUnit.Framework.DescriptionAttribute("MPS Copy Leasing Declined Proposal No Customer")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Germany", "Cloud MPS Bank", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Austria", "Cloud MPS Bank", null)]
-        public virtual void MPSGermanyAustriaDealerCanCopyADeclinedLeasingAndClickProposalWithoutCustomerDetail(string role, string country, string role2, string[] exampleTags)
+        public virtual void MPSCopyLeasingDeclinedProposalNoCustomer(string role, string country, string role2, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS GermanyAustria Dealer Can Copy A Declined Leasing and Click Proposal without " +
-                    "customer detail", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Copy Leasing Declined Proposal No Customer", exampleTags);
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line 9
@@ -92,14 +90,12 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS GermanyAustria Dealer Can Copy A Declined Leasing and Click Proposal with cus" +
-            "tomer detail")]
+        [NUnit.Framework.DescriptionAttribute("MPS Copy Leasing Declined Proposal Customer")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Germany", "Cloud MPS Bank", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Austria", "Cloud MPS Bank", null)]
-        public virtual void MPSGermanyAustriaDealerCanCopyADeclinedLeasingAndClickProposalWithCustomerDetail(string role, string country, string role2, string[] exampleTags)
+        public virtual void MPSCopyLeasingDeclinedProposalCustomer(string role, string country, string role2, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS GermanyAustria Dealer Can Copy A Declined Leasing and Click Proposal with cus" +
-                    "tomer detail", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Copy Leasing Declined Proposal Customer", exampleTags);
 #line 22
 this.ScenarioSetup(scenarioInfo);
 #line 23
@@ -112,14 +108,12 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS GermanyAustria Dealer Can Copy A Declined Purchase and Click Proposal with cu" +
-            "stomer detail")]
+        [NUnit.Framework.DescriptionAttribute("MPS Copy Declined Proposal No Customer")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Germany", "Cloud MPS Local Office Approver", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Austria", "Cloud MPS Local Office Approver", null)]
-        public virtual void MPSGermanyAustriaDealerCanCopyADeclinedPurchaseAndClickProposalWithCustomerDetail(string role, string country, string role2, string[] exampleTags)
+        public virtual void MPSCopyDeclinedProposalNoCustomer(string role, string country, string role2, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS GermanyAustria Dealer Can Copy A Declined Purchase and Click Proposal with cu" +
-                    "stomer detail", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Copy Declined Proposal No Customer", exampleTags);
 #line 33
 this.ScenarioSetup(scenarioInfo);
 #line 34
@@ -131,14 +125,12 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS GermanyAustria Dealer Can Copy A Declined Purchase and Click Proposal without" +
-            " customer detail")]
+        [NUnit.Framework.DescriptionAttribute("MPS Copy Declined Proposal Customer")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Germany", "Cloud MPS Local Office Approver", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Austria", "Cloud MPS Local Office Approver", null)]
-        public virtual void MPSGermanyAustriaDealerCanCopyADeclinedPurchaseAndClickProposalWithoutCustomerDetail(string role, string country, string role2, string[] exampleTags)
+        public virtual void MPSCopyDeclinedProposalCustomer(string role, string country, string role2, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS GermanyAustria Dealer Can Copy A Declined Purchase and Click Proposal without" +
-                    " customer detail", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Copy Declined Proposal Customer", exampleTags);
 #line 45
 this.ScenarioSetup(scenarioInfo);
 #line 46

@@ -72,13 +72,11 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BIT.
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS Italian Dealer Can Generate PDF for Purchase and Click in Awaiting Approval S" +
-            "tatus for other countries")]
+        [NUnit.Framework.DescriptionAttribute("MPS Generate Summary PDF")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Italy", "Cloud MPS Local Office Approver", "Acquisto + Consumo con assistenza", "Volume minimo", "36", "Trimestrale anticipata", null)]
-        public virtual void MPSItalianDealerCanGeneratePDFForPurchaseAndClickInAwaitingApprovalStatusForOtherCountries(string role, string country, string role2, string contractType, string usageType, string length, string billing, string[] exampleTags)
+        public virtual void MPSGenerateSummaryPDF(string role, string country, string role2, string contractType, string usageType, string length, string billing, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Italian Dealer Can Generate PDF for Purchase and Click in Awaiting Approval S" +
-                    "tatus for other countries", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Generate Summary PDF", exampleTags);
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line 9

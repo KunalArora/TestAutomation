@@ -72,14 +72,12 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BIG_
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS GermanAustria Summary Page Validation For German And Austria Leasing and Clic" +
-            "k proposal")]
+        [NUnit.Framework.DescriptionAttribute("MPS Leasing Summary Validation MV In Click")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Germany", "Leasing & Service", "Mindestvolumen", "3 Jahre", "Vierteljährlich", "Halbjährlich", "HL-L8350CDW", "750", "750", "zur Leasingrate addieren", "BNP PARIBAS LEASE GROUP S.A.", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Austria", "Leasing & Service", "Mindestvolumen", "3 Jahre", "Vierteljährlich", "Halbjährlich", "HL-L8350CDW", "750", "750", "zur Leasingrate addieren", "BNP PARIBAS LEASE GROUP S.A.", null)]
-        public virtual void MPSGermanAustriaSummaryPageValidationForGermanAndAustriaLeasingAndClickProposal(string role, string country, string contractType, string usageType, string contract, string leasing, string billing, string printer, string clickVolume, string colourVolume, string basis, string bank, string[] exampleTags)
+        public virtual void MPSLeasingSummaryValidationMVInClick(string role, string country, string contractType, string usageType, string contract, string leasing, string billing, string printer, string clickVolume, string colourVolume, string basis, string bank, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS GermanAustria Summary Page Validation For German And Austria Leasing and Clic" +
-                    "k proposal", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Leasing Summary Validation MV In Click", exampleTags);
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line 9
@@ -142,14 +140,12 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS GermanAustria Summary Page Validation For Minimum Volume German And Austria P" +
-            "urchase and Click proposal In Click Payment")]
+        [NUnit.Framework.DescriptionAttribute("MPS Purchase Summary Validation MV In Click")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Germany", "Easy Print Pro & Service", "Mindestvolumen", "5 Jahre", "Halbjährlich", "Tick", "MFC-L8650CDW", "im Voraus bezahlen", "800", "800", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Austria", "Easy Print Pro & Service", "Mindestvolumen", "5 Jahre", "Halbjährlich", "Tick", "MFC-L8650CDW", "im Voraus bezahlen", "800", "800", null)]
-        public virtual void MPSGermanAustriaSummaryPageValidationForMinimumVolumeGermanAndAustriaPurchaseAndClickProposalInClickPayment(string role, string country, string contractType, string usageType, string contract, string billing, string priceHardware, string printer, string paymentMethod, string clickVolume, string colourVolume, string[] exampleTags)
+        public virtual void MPSPurchaseSummaryValidationMVInClick(string role, string country, string contractType, string usageType, string contract, string billing, string priceHardware, string printer, string paymentMethod, string clickVolume, string colourVolume, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS GermanAustria Summary Page Validation For Minimum Volume German And Austria P" +
-                    "urchase and Click proposal In Click Payment", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Purchase Summary Validation MV In Click", exampleTags);
 #line 44
 this.ScenarioSetup(scenarioInfo);
 #line 45
@@ -214,14 +210,12 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS GermanAustria Summary Page Validation For Minimum Volume German And Austria P" +
-            "urchase and Click proposal Upfront Payment")]
+        [NUnit.Framework.DescriptionAttribute("MPS Summary Validation MV Upfront")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Germany", "Easy Print Pro & Service", "Mindestvolumen", "4 Jahre", "Vierteljährlich", "Tick", "MFC-L8650CDW", "im Voraus bezahlen", "800", "800", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Austria", "Easy Print Pro & Service", "Mindestvolumen", "4 Jahre", "Vierteljährlich", "Tick", "MFC-L8650CDW", "im Voraus bezahlen", "800", "800", null)]
-        public virtual void MPSGermanAustriaSummaryPageValidationForMinimumVolumeGermanAndAustriaPurchaseAndClickProposalUpfrontPayment(string role, string country, string contractType, string usageType, string contract, string billing, string priceHardware, string printer, string paymentMethod, string clickVolume, string colourVolume, string[] exampleTags)
+        public virtual void MPSSummaryValidationMVUpfront(string role, string country, string contractType, string usageType, string contract, string billing, string priceHardware, string printer, string paymentMethod, string clickVolume, string colourVolume, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS GermanAustria Summary Page Validation For Minimum Volume German And Austria P" +
-                    "urchase and Click proposal Upfront Payment", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Summary Validation MV Upfront", exampleTags);
 #line 83
 this.ScenarioSetup(scenarioInfo);
 #line 84

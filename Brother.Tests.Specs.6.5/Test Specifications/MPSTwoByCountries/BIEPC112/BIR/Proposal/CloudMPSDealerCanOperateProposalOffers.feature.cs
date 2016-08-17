@@ -154,11 +154,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS Cancel Deleting Proposal Offer")]
+        [NUnit.Framework.DescriptionAttribute("MPS Cancel Deleting Proposal")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Ireland", "Dismiss", "AnyItem", null)]
-        public virtual void MPSCancelDeletingProposalOffer(string role, string country, string confirm, string targetItem, string[] exampleTags)
+        public virtual void MPSCancelDeletingProposal(string role, string country, string confirm, string targetItem, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Cancel Deleting Proposal Offer", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Cancel Deleting Proposal", exampleTags);
 #line 59
 this.ScenarioSetup(scenarioInfo);
 #line 60

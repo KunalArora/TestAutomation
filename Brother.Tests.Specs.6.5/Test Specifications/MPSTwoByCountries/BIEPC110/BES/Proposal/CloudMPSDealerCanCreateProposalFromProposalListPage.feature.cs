@@ -72,11 +72,11 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BES.
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS Spanish Dealer Can Create Proposal From Proposal List Page")]
+        [NUnit.Framework.DescriptionAttribute("MPS Create Proposal From List Page")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Spain", "Purchase & Click con Service", "Volúmen mínimo", "3 años", "Por trimestres vencidos", "Tick", "MFC-L8650CDW", "Full", "Pago por adelantado", "800", "800", "Pago por adelantado", "Pago por adelantado", null)]
-        public virtual void MPSSpanishDealerCanCreateProposalFromProposalListPage(string role, string country, string contractType, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string basis1, string basis2, string[] exampleTags)
+        public virtual void MPSCreateProposalFromListPage(string role, string country, string contractType, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string basis1, string basis2, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Spanish Dealer Can Create Proposal From Proposal List Page", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Create Proposal From List Page", exampleTags);
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8

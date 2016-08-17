@@ -5,7 +5,7 @@ Feature: CloudMPSUKDealerCanCloseProposal
 	I want to be able to cancel proposal before it gets to contract stage
 
 
-Scenario Outline: MPS English Dealer can cancel a proposal in Open state
+Scenario Outline: MPS Cancel Open Proposal
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created Purchase and Click proposal
 	And I am on Proposal List page
@@ -23,7 +23,7 @@ Scenarios:
 
 
 
-Scenario Outline: MPS English Dealer can cancel a proposal in Awaiting Approval state
+Scenario Outline: MPS Cancel Awaiting Approval Proposal
 	Given I verify and store "<Country>" purchase and click proposal bypass status
 	Then "<Role>" can cancel "<Country>" Awaiting Approval proposal
 	#Given I sign into Cloud MPS as a "<Role>" from "<Country>"
@@ -42,7 +42,7 @@ Scenarios:
 	| Cloud MPS Dealer | United Kingdom |
 
 
-Scenario Outline: MPS English Dealer can cancel a proposal in Approved state
+Scenario Outline: MPS Cancel Approved Proposal
 	Given I verify and store "<Country>" purchase and click proposal bypass status
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created Purchase and Click proposal 

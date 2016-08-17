@@ -4,7 +4,7 @@ Feature: CloudMPSVerifyFrenchPDFContentsAreCorrect
 	As a MPS Dealer
 	I want to be able to compare the values on summary page with PDF contents
 
-Scenario Outline: MPS French Verify PDF Contents Are Correct
+Scenario Outline: MPS Verify PDF Correctness
 	Given "<Country>" Dealer has created an awaiting acceptance "<ContractType>" contract of "<UsageType>" and "<Length>" and "<Billing>"
 	When the dealer downloads PDF for the created contract
 	Then the noted values above are available in the PDF content

@@ -5,7 +5,7 @@ Feature: CloudMPSUKPurchaseAndClickProposalUserJourney
 	I want to be able to use different MPS parameters to derive different leasing proposal
 
 
-Scenario Outline: MPS English Create different varieties of Purchase and Click proposal for new customer on Minimum Volume Term
+Scenario Outline: MPS Create MV Proposal
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	When I fill Proposal Description for "<ContractType>" Contract type
@@ -36,7 +36,7 @@ Scenario Outline: MPS English Create different varieties of Purchase and Click p
 	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Create new customer | Minimum Volume | 3 years  | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Pay upfront   | 800         | 800          |
 	
 	
-Scenario Outline: MPS English Create different varieties of Purchase and Click proposal for new customer on Pay As You Go Term
+Scenario Outline: MPS Create Proposal PAYG
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	When I fill Proposal Description for "<ContractType>" Contract type
@@ -65,7 +65,7 @@ Scenario Outline: MPS English Create different varieties of Purchase and Click p
 	| Role             | Country        | ContractType                  | CreateOption        | UsageType     | Contract | Billing              | PriceHardware | Printer    | DeviceScreen | ClickVolume |
 	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Create new customer | Pay As You Go | 4 years  | Quarterly in Arrears | Tick          | MFC-8510DN | Full         | 750         |
 	
-Scenario Outline: MPS English Create different varieties of Purchase and Click proposal for an existing customer
+Scenario Outline: MPS Create Proposal With Existing Customer
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	When I fill Proposal Description for "<ContractType>" Contract type
@@ -95,7 +95,8 @@ Scenario Outline: MPS English Create different varieties of Purchase and Click p
 	| Role             | Country        | ContractType                  | UsageType      | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod           | ClickVolume | ColourVolume |
 	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Minimum Volume | 3 years  | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Included in Click Price | 800         | 800          |
 	
-Scenario Outline: MPS English Create different varieties of Purchase and Click proposal for an existing customer on Pay As You Go Term
+
+Scenario Outline: MPS Create Proposal Existing PAYG Customer
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	When I fill Proposal Description for "<ContractType>" Contract type

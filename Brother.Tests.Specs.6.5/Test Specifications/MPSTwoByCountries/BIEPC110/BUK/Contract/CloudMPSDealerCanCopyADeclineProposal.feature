@@ -5,7 +5,7 @@ Feature: CloudMPSUKDealerCanCopyADeclineProposal
 	I want to be to copy and submit a declined proposal
 
 
-Scenario Outline: MPS English Dealer Can Copy A Declined Purchase and Click Proposal without customer detail
+Scenario Outline: MPS Copy Declined Proposal No Customer
 	Given I verify and store "<Country>" purchase and click proposal bypass status
 	Then I can copy the declined English proposal without customer detail as a "<Role>" from "<Country>" and approved by "<Role2>"
 	
@@ -30,7 +30,7 @@ Scenario Outline: MPS English Dealer Can Copy A Declined Purchase and Click Prop
 	
 
 
-Scenario Outline: MPS English Dealer Can Copy A Declined Purchase and Click Proposal with customer detail
+Scenario Outline: MPS Copy Declined Proposal Customer
 	Given I verify and store "<Country>" purchase and click proposal bypass status
 	Then I can copy the declined English proposal as a "<Role>" from "<Country>" and approved by "<Role2>"
 	

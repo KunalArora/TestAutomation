@@ -73,14 +73,12 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BIG_
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS GermanAustria Create different varieties of German And Austria Purchase and C" +
-            "lick proposal for new customer on Minimum Volume Term")]
+        [NUnit.Framework.DescriptionAttribute("MPS Create MV Proposal")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Austria", "Easy Print Pro & Service", "Create new customer", "Mindestvolumen", "5 Jahre", "Vierteljährlich", "Tick", "MFC-L8650CDW", "Full", "Pay upfront", "800", "800", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Germany", "Easy Print Pro & Service", "Create new customer", "Mindestvolumen", "5 Jahre", "Vierteljährlich", "Tick", "MFC-L8650CDW", "Full", "Pay upfront", "800", "800", null)]
-        public virtual void MPSGermanAustriaCreateDifferentVarietiesOfGermanAndAustriaPurchaseAndClickProposalForNewCustomerOnMinimumVolumeTerm(string role, string country, string contractType, string createOption, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string[] exampleTags)
+        public virtual void MPSCreateMVProposal(string role, string country, string contractType, string createOption, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS GermanAustria Create different varieties of German And Austria Purchase and C" +
-                    "lick proposal for new customer on Minimum Volume Term", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Create MV Proposal", exampleTags);
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line 9
@@ -204,14 +202,12 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS GermanAustria Create different varieties of German And Austria Purchase and C" +
-            "lick proposal for an existing customer")]
+        [NUnit.Framework.DescriptionAttribute("MPS Create Proposal With Existing Customer")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Germany", "Easy Print Pro & Service", "Create new customer", "Mindestvolumen", "5 Jahre", "Vierteljährlich", "Tick", "MFC-L8650CDW", "Full", "Included in Click Price", "800", "800", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Austria", "Easy Print Pro & Service", "Create new customer", "Mindestvolumen", "5 Jahre", "Vierteljährlich", "Tick", "MFC-L8650CDW", "Full", "Included in Click Price", "800", "800", null)]
-        public virtual void MPSGermanAustriaCreateDifferentVarietiesOfGermanAndAustriaPurchaseAndClickProposalForAnExistingCustomer(string role, string country, string contractType, string createOption, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string[] exampleTags)
+        public virtual void MPSCreateProposalWithExistingCustomer(string role, string country, string contractType, string createOption, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS GermanAustria Create different varieties of German And Austria Purchase and C" +
-                    "lick proposal for an existing customer", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Create Proposal With Existing Customer", exampleTags);
 #line 72
 this.ScenarioSetup(scenarioInfo);
 #line 73

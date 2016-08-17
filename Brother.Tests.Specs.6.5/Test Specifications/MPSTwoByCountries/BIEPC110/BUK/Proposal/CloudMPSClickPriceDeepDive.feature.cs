@@ -72,11 +72,11 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BUK.
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS English Purchase + Click, PAYG, Service Pack not displayed")]
+        [NUnit.Framework.DescriptionAttribute("MPS PAYG SP Not Displayed")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Purchase & Click with Service", "Create new customer", "Pay As You Go", "3 years", "Quarterly in Arrears", "Quarterly in Arrears", "Tick", "MFC-8510DN", "Full", "Pay upfront", "0", "2000", null)]
-        public virtual void MPSEnglishPurchaseClickPAYGServicePackNotDisplayed(string role, string country, string contractType, string createOption, string usageType, string contract, string leasing, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string[] exampleTags)
+        public virtual void MPSPAYGSPNotDisplayed(string role, string country, string contractType, string createOption, string usageType, string contract, string leasing, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS English Purchase + Click, PAYG, Service Pack not displayed", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS PAYG SP Not Displayed", exampleTags);
 #line 12
 this.ScenarioSetup(scenarioInfo);
 #line 13
@@ -107,11 +107,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS English Purchase + Click, Minimum Volume, Service Pack not displayed")]
+        [NUnit.Framework.DescriptionAttribute("MPS Minimum Volume SP Not Displayed")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Purchase & Click with Service", "Create new customer", "Minimum Volume", "3 years", "Quarterly in Arrears", "Quarterly in Arrears", "Tick", "MFC-8510DN", "Full", "Pay upfront", "0", "2000", null)]
-        public virtual void MPSEnglishPurchaseClickMinimumVolumeServicePackNotDisplayed(string role, string country, string contractType, string createOption, string usageType, string contract, string leasing, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string[] exampleTags)
+        public virtual void MPSMinimumVolumeSPNotDisplayed(string role, string country, string contractType, string createOption, string usageType, string contract, string leasing, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS English Purchase + Click, Minimum Volume, Service Pack not displayed", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Minimum Volume SP Not Displayed", exampleTags);
 #line 31
 this.ScenarioSetup(scenarioInfo);
 #line 32
@@ -142,11 +142,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS English Variation of \"In Click\" and \"Upfront Payment\" click price(3)")]
+        [NUnit.Framework.DescriptionAttribute("MPS In Click And Upfront CP Displayed")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Purchase & Click with Service", "Create new customer", "Minimum Volume", "3 years", "Quarterly in Arrears", "Quarterly in Arrears", "Tick", "MFC-L8650CDW", "Full", "Pay upfront", "0", "2000", null)]
-        public virtual void MPSEnglishVariationOfInClickAndUpfrontPaymentClickPrice3(string role, string country, string contractType, string createOption, string usageType, string contract, string leasing, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string[] exampleTags)
+        public virtual void MPSInClickAndUpfrontCPDisplayed(string role, string country, string contractType, string createOption, string usageType, string contract, string leasing, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS English Variation of \"In Click\" and \"Upfront Payment\" click price(3)", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS In Click And Upfront CP Displayed", exampleTags);
 #line 52
 this.ScenarioSetup(scenarioInfo);
 #line 53
@@ -177,9 +177,9 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS English Variation of \"In Click\" and \"Upfront Payment\" click price(4)")]
+        [NUnit.Framework.DescriptionAttribute("MPS In Click And Upfront Mono Changes")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Purchase & Click with Service", "Create new customer", "Minimum Volume", "3 years", "Quarterly in Arrears", "Quarterly in Arrears", "Tick", "MFC-L8650CDW", "Full", "Included in Click Price", "6", "2000", "2000", null)]
-        public virtual void MPSEnglishVariationOfInClickAndUpfrontPaymentClickPrice4(
+        public virtual void MPSInClickAndUpfrontMonoChanges(
                     string role, 
                     string country, 
                     string contractType, 
@@ -197,7 +197,7 @@ this.ScenarioSetup(scenarioInfo);
                     string colourVolume, 
                     string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS English Variation of \"In Click\" and \"Upfront Payment\" click price(4)", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS In Click And Upfront Mono Changes", exampleTags);
 #line 72
 this.ScenarioSetup(scenarioInfo);
 #line 73
@@ -240,14 +240,12 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS English No Variation of \"In Click\" and \"Upfront Payment\" click price(Purchase" +
-            " & Click)")]
+        [NUnit.Framework.DescriptionAttribute("MPS CP Variation")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Purchase & Click with Service", "Create new customer", "Pay As You Go", "3 years", "Quarterly in Arrears", "Quarterly in Arrears", "Tick", "MFC-8510DN", "Full", "Included in Click Price", "2000", "2000", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Purchase & Click with Service", "Create new customer", "Pay As You Go", "3 years", "Quarterly in Arrears", "Quarterly in Arrears", "Tick", "MFC-L8650CDW", "Full", "Included in Click Price", "2000", "2000", null)]
-        public virtual void MPSEnglishNoVariationOfInClickAndUpfrontPaymentClickPricePurchaseClick(string role, string country, string contractType, string createOption, string usageType, string contract, string leasing, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string[] exampleTags)
+        public virtual void MPSCPVariation(string role, string country, string contractType, string createOption, string usageType, string contract, string leasing, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS English No Variation of \"In Click\" and \"Upfront Payment\" click price(Purchase" +
-                    " & Click)", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS CP Variation", exampleTags);
 #line 98
 this.ScenarioSetup(scenarioInfo);
 #line 99

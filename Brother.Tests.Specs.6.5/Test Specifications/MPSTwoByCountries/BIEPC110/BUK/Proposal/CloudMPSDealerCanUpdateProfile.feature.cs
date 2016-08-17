@@ -72,11 +72,11 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BUK.
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS English Dealer can successfully add profile")]
+        [NUnit.Framework.DescriptionAttribute("MPS Add Profile")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", null)]
-        public virtual void MPSEnglishDealerCanSuccessfullyAddProfile(string role, string country, string[] exampleTags)
+        public virtual void MPSAddProfile(string role, string country, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS English Dealer can successfully add profile", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Add Profile", exampleTags);
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line 9

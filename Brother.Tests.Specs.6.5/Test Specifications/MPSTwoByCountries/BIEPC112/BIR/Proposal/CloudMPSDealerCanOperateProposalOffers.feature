@@ -56,7 +56,7 @@ Scenario Outline: MPS Edit Products Existing Proposal
 	| Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Ireland | Products | Remove |
 	
 ##@ignore
-Scenario Outline: MPS Cancel Deleting Proposal Offer
+Scenario Outline: MPS Cancel Deleting Proposal
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to existing proposal screen
 	When I click the delete button against "<TargetItem>" on Existing Proposal table to be "<Confirm>"

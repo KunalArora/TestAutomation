@@ -5,7 +5,7 @@ Feature: CloudMPSGermanPurchaseAndClickProposalUserJourney
 	I want to be able to use different MPS parameters to derive different leasing proposal
 
 
-Scenario Outline: MPS GermanAustria Create different varieties of German And Austria Purchase and Click proposal for new customer on Minimum Volume Term
+Scenario Outline: MPS Create MV Proposal
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	And Customer Information tab is not displayed
@@ -69,7 +69,7 @@ Scenario Outline: MPS GermanAustria Create different varieties of German And Aus
 	| Cloud MPS Dealer | Germany | Easy Print Pro & Service | Create new customer | Pay As You Go | 3 Jahre  | Halbjährlich | Tick          | MFC-8510DN | Full         | 750         |
 
 
-Scenario Outline: MPS GermanAustria Create different varieties of German And Austria Purchase and Click proposal for an existing customer
+Scenario Outline: MPS Create Proposal With Existing Customer
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	And Customer Information tab is not displayed

@@ -5,7 +5,7 @@ Feature: CloudMPSDealerFromGermanyCanCloseProposal
 	I want to be able to cancel proposal before it gets to contract stage
 
 
-Scenario Outline: MPS GermanAustria Dealer can cancel a Lease and Click proposal in Open state
+Scenario Outline: MPS Cancel Leasing Open Proposal
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created German Leasing and Click proposal 
 	And I am on Proposal List page
@@ -23,7 +23,7 @@ Scenarios:
 	| Cloud MPS Dealer | Austria |
 	| Cloud MPS Dealer | Germany |
 
-Scenario Outline: MPS GermanAustria Dealer can cancel a Purchase and Click proposal in Open state
+Scenario Outline: MPS Cancel Purchase Open Proposal
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created German Purchase and Click proposal 
 	And I am on Proposal List page
@@ -39,7 +39,7 @@ Scenarios:
 	| Cloud MPS Dealer | Germany |
 	| Cloud MPS Dealer | Austria |
 
-Scenario Outline: MPS GermanAustria Dealer can cancel a Lease and Click proposal in Awaiting Approval state
+Scenario Outline: MPS Cancel Leasing Awaiting Approval Proposal
 	Given I verify and store "<Country>" Lease and click proposal bypass status
 	Then I can close an awaiting proposal without error on summary page as "<Country>" "<Role>"
 
@@ -50,7 +50,7 @@ Scenarios:
 	| Cloud MPS Dealer | Austria |
 
 
-Scenario Outline: MPS GermanAustria Dealer can cancel a Purchase and Click proposal in Awaiting Approval state
+Scenario Outline: MPS Cancel Purchase Awaiting Approval Proposal
 	Given I verify and store "<Country>" purchase and click proposal bypass status
 	Then I can close a purchase and click awaiting proposal without error on summary page as "<Country>" "<Role>"
 
@@ -62,7 +62,7 @@ Scenarios:
 	| Cloud MPS Dealer | Austria |
 
 
-Scenario Outline: MPS GermanAustria Dealer can cancel a Lease and Click proposal in Approved state
+Scenario Outline: MPS Cancel Leasing Approved Proposal
 	Given I verify and store "<Country>" Lease and click proposal bypass status
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created German Leasing and Click proposal 
@@ -86,7 +86,7 @@ Scenario Outline: MPS GermanAustria Dealer can cancel a Lease and Click proposal
 	| Cloud MPS Dealer | Austria  | Cloud MPS Bank |
 
 
-Scenario Outline: MPS GermanAustria Dealer can cancel a Purchase and Click proposal in Approved state
+Scenario Outline: MPS Cancel Purchase Approved Proposal
 	Given I verify and store "<Country>" purchase and click proposal bypass status
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created German Purchase and Click proposal 

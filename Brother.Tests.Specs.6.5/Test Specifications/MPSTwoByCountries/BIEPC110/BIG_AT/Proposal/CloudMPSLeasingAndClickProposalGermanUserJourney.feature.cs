@@ -72,14 +72,12 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BIG_
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS GermanAustria Create different varieties of German And Austria Leasing and Cl" +
-            "ick proposal for new customer")]
+        [NUnit.Framework.DescriptionAttribute("MPS Create Leasing Proposal 5Years")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Germany", "Leasing & Service", "Create new customer", "Pay As You Go", "5 Jahre", "Vierteljährlich", "Halbjährlich", "HL-L8350CDW", "Full", "750", "750", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Austria", "Leasing & Service", "Create new customer", "Pay As You Go", "5 Jahre", "Vierteljährlich", "Halbjährlich", "HL-L8350CDW", "Full", "750", "750", null)]
-        public virtual void MPSGermanAustriaCreateDifferentVarietiesOfGermanAndAustriaLeasingAndClickProposalForNewCustomer(string role, string country, string contractType, string createOption, string usageType, string contract, string leasing, string billing, string printer, string deviceScreen, string clickVolume, string colourVolume, string[] exampleTags)
+        public virtual void MPSCreateLeasingProposal5Years(string role, string country, string contractType, string createOption, string usageType, string contract, string leasing, string billing, string printer, string deviceScreen, string clickVolume, string colourVolume, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS GermanAustria Create different varieties of German And Austria Leasing and Cl" +
-                    "ick proposal for new customer", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Create Leasing Proposal 5Years", exampleTags);
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line 9
@@ -130,14 +128,12 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS GermanAustria Create different varieties of German And Austria Leasing and Cl" +
-            "ick proposal for new customer on Pay As You Go Term")]
+        [NUnit.Framework.DescriptionAttribute("MPS Create Leasing Proposal 4Years")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Germany", "Leasing & Service", "Create new customer", "Pay As You Go", "4 Jahre", "Monatlich", "Halbjährlich", "DCP-8110DN", "Full", "750", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Austria", "Leasing & Service", "Create new customer", "Pay As You Go", "4 Jahre", "Monatlich", "Halbjährlich", "DCP-8110DN", "Full", "750", null)]
-        public virtual void MPSGermanAustriaCreateDifferentVarietiesOfGermanAndAustriaLeasingAndClickProposalForNewCustomerOnPayAsYouGoTerm(string role, string country, string contractType, string createOption, string usageType, string contract, string leasing, string billing, string printer, string deviceScreen, string clickVolume, string[] exampleTags)
+        public virtual void MPSCreateLeasingProposal4Years(string role, string country, string contractType, string createOption, string usageType, string contract, string leasing, string billing, string printer, string deviceScreen, string clickVolume, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS GermanAustria Create different varieties of German And Austria Leasing and Cl" +
-                    "ick proposal for new customer on Pay As You Go Term", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Create Leasing Proposal 4Years", exampleTags);
 #line 42
 this.ScenarioSetup(scenarioInfo);
 #line 43
@@ -189,14 +185,12 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS GermanAustria Create different varieties of German And Austria Leasing and Cl" +
-            "ick proposal for an existing customer")]
+        [NUnit.Framework.DescriptionAttribute("MPS Create Leasing Proposal 3Years")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Germany", "Leasing & Service", "Pay As You Go", "3 Jahre", "Vierteljährlich", "Halbjährlich", "HL-L8350CDW", "Full", "750", "750", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Austria", "Leasing & Service", "Pay As You Go", "3 Jahre", "Vierteljährlich", "Halbjährlich", "HL-L8350CDW", "Full", "750", "750", null)]
-        public virtual void MPSGermanAustriaCreateDifferentVarietiesOfGermanAndAustriaLeasingAndClickProposalForAnExistingCustomer(string role, string country, string contractType, string usageType, string contract, string leasing, string billing, string printer, string deviceScreen, string clickVolume, string colourVolume, string[] exampleTags)
+        public virtual void MPSCreateLeasingProposal3Years(string role, string country, string contractType, string usageType, string contract, string leasing, string billing, string printer, string deviceScreen, string clickVolume, string colourVolume, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS GermanAustria Create different varieties of German And Austria Leasing and Cl" +
-                    "ick proposal for an existing customer", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Create Leasing Proposal 3Years", exampleTags);
 #line 73
 this.ScenarioSetup(scenarioInfo);
 #line 74
@@ -241,65 +235,6 @@ this.ScenarioSetup(scenarioInfo);
 #line 93
  testRunner.And("the newly created proposal is displayed on the list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 94
- testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS GermanAustria Create different varieties of German And Austria Leasing and Cl" +
-            "ick proposal for an existing customer on Pay As You Go")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Germany", "Leasing & Service", "Pay As You Go", "3 Jahre", "Monatlich", "Halbjährlich", "DCP-8110DN", "Full", "750", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Austria", "Leasing & Service", "Pay As You Go", "3 Jahre", "Monatlich", "Halbjährlich", "DCP-8110DN", "Full", "750", null)]
-        public virtual void MPSGermanAustriaCreateDifferentVarietiesOfGermanAndAustriaLeasingAndClickProposalForAnExistingCustomerOnPayAsYouGo(string role, string country, string contractType, string usageType, string contract, string leasing, string billing, string printer, string deviceScreen, string clickVolume, string[] exampleTags)
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS GermanAustria Create different varieties of German And Austria Leasing and Cl" +
-                    "ick proposal for an existing customer on Pay As You Go", exampleTags);
-#line 103
-this.ScenarioSetup(scenarioInfo);
-#line 104
- testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 105
- testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 106
- testRunner.And("Customer Information tab is not displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 107
- testRunner.When(string.Format("I fill Proposal Description for \"{0}\" Contract type", contractType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 108
- testRunner.And(string.Format("I Enter usage type of \"{0}\" and \"{1}\" contract terms \"{2}\" leasing and \"{3}\" bill" +
-                        "ing on Term and Type details", usageType, contract, leasing, billing), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 109
- testRunner.And(string.Format("I display \"{0}\" device screen", printer), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 110
- testRunner.And(string.Format("\"{0}\" device screen is displayed", deviceScreen), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 111
- testRunner.And("I accept the default values of the device", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 112
- testRunner.And(string.Format("I type in click price volume of \"{0}\"", clickVolume), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 113
- testRunner.Then(string.Format("\"{0}\" displayed on proposal Summary Page corresponds to \"{0}\"", contractType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 114
- testRunner.And(string.Format("\"{0}\" displayed on proposal Summary Page corresponds to \"{0}\"", usageType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 115
- testRunner.And(string.Format("\"{0}\" displayed on proposal Summary Page corresponds to \"{0}\"", contract), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 116
- testRunner.And(string.Format("\"{0}\" displayed on proposal Summary Page corresponds to \"{0}\"", leasing), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 117
- testRunner.And(string.Format("\"{0}\" displayed on proposal Summary Page corresponds to \"{0}\"", billing), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 118
- testRunner.And(string.Format("\"{0}\" displayed on proposal Summary Page corresponds to \"{0}\"", printer), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 119
- testRunner.And(string.Format("\"{0}\" displayed on proposal Summary Page corresponds to \"{0}\"", clickVolume), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 120
- testRunner.And("\"<ColourVolume>\" displayed on proposal Summary Page corresponds to \"<ColourVolume" +
-                    ">\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 121
- testRunner.And("I click Save Proposal button on Summary screen", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 122
- testRunner.And("I am directed to Proposals screen of Proposal List page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 123
- testRunner.And("the newly created proposal is displayed on the list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 124
  testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();

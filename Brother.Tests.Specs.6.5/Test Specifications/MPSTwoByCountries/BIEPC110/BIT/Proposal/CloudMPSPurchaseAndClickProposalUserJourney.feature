@@ -5,7 +5,7 @@ Feature: CloudMPSItalianPurchaseAndClickProposalUserJourney
 	I want to be able to use different MPS parameters to derive different leasing proposal
 
 
-Scenario Outline: MPS Italian Create different varieties of Purchase and Click proposal for new customer on Minimum Volume Term
+Scenario Outline: MPS Create MV Proposal
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	When I fill Proposal Description for "<ContractType>" Contract type
@@ -37,7 +37,7 @@ Scenario Outline: MPS Italian Create different varieties of Purchase and Click p
 	
 	
 
-Scenario Outline: MPS Italian Create different varieties of Purchase and Click proposal for an existing customer
+Scenario Outline: MPS Create Proposal With Existing Customer
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	When I fill Proposal Description for "<ContractType>" Contract type
