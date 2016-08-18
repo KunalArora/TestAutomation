@@ -22,9 +22,9 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public void GetLoginpage(string url)
         {
-            TestCheck.AssertIsEqual(HttpStatusCode.OK, GetWebPageResponse(url), "Incorrect Http Status Code returned");
-
-            WebDriver.SetPageLoadTimeout(TimeSpan.FromSeconds(120));
+            //***********Commented by Pavan as this assertion here is not required****/
+            //TestCheck.AssertIsEqual(HttpStatusCode.OK, GetWebPageResponse(url), "Incorrect Http Status Code returned");
+            //WebDriver.SetPageLoadTimeout(TimeSpan.FromSeconds(120));
 
             WebSites.Core.Pages.General.SiteAccess.ValidateSiteUrl(url);
             WebDriver.SetPageLoadTimeout(WebDriver.DefaultTimeout);
