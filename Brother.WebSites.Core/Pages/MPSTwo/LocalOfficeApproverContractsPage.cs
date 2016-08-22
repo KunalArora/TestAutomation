@@ -218,7 +218,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public LocalOfficeApproverDeviceManagementPage NavigateTOfficeDeviceManagementPage()
         {
-            MPSJobRunnerPage.RunCreateCustomerAndPersonCommandJob();
+            MpsJobRunnerPage.RunCreateCustomerAndPersonCommandJob();
             LOApproverDeviceManagementElement.Click();
             return GetInstance<LocalOfficeApproverDeviceManagementPage>(Driver);
 

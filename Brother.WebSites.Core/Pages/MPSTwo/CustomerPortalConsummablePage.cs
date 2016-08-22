@@ -53,15 +53,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void RemoveExistingConsumableOrderBySerialNumber()
         {
             var serialNumber = MpsUserLogins.UsedSerialNumber(Driver);
-            MPSJobRunnerPage.RunRemoveConsumableOrderByInstalledPrinterJob(serialNumber);
+            MpsJobRunnerPage.RunRemoveConsumableOrderByInstalledPrinterJob(serialNumber);
         }
 
         public void IsConsumableScreenDisplayed()
         {
             if(ConsumableDeviceScreenTab == null)
                 throw new Exception("Consumable screen not displayed");
-            MPSJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob();
-            MPSJobRunnerPage.RunConsumableOrderRequestsCommandJob();
+            MpsJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob();
+            MpsJobRunnerPage.RunConsumableOrderRequestsCommandJob();
 
             AssertElementPresent(ConsumableDeviceScreenTab, "Consumable screen");
         }

@@ -581,10 +581,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
+        public void EnterDeliveryCost(string delivery)
+        {
+            if (delivery.Equals("Yes"))
+            {
+                ClearAndType(DeliveryCostPriceElement, "100");
+            }
+        }
+
         public void SetInstallationDetails()
         {
             if (IsElementPresent(InstallationSRPElement))
-                SpecFlow.SetContext("InstallationSRP", GetValueInstallationSRPElement());
+                SpecFlow.SetContext("InstallationSRP", GetValueInstallationSrpElement());
             if (IsElementPresent(InstallationPackCostPriceElement))
                 SpecFlow.SetContext("InstallationPackCostPrice", InstallationPackCostPriceElement.GetAttribute("value"));
             if (IsElementPresent(InstallationPackMarginElement))
@@ -628,9 +636,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             SpecFlow.SetContext("InitialProductPageText", ProductsScreenAlertElement.Text);
 
-            var element = "";
-
-            element = IsElementPresent(ProductFlatListAddElement()) ? "#pc-{0} .js-mps-product-open" : "#pc-{0} .js-mps-product-open-add";
+            var element = IsElementPresent(ProductFlatListAddElement()) ? "#pc-{0} .js-mps-product-open" : "#pc-{0} .js-mps-product-open-add";
 
             element = string.Format(element, printer.Equals(string.Empty) ? MpsUtil.PrinterUnderTest() : printer);
 
@@ -641,16 +647,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         }
 
-        private IList<IWebElement> QTYForAccessoriesElement()
+        private IEnumerable<IWebElement> QtyForAccessoriesElement()
         {
             const string element = ".mps-qa-option .mps-txt-r [name=\"OptionQuantity\"][data-mps-val-numeric-min]";
 
             return GetElementsByCssSelector(element);
         }
 
-        public void IsQTYForAccessoriesAreDefaultToZero()
+        public void IsQtyForAccessoriesAreDefaultToZero()
         {
-            foreach (IWebElement element in QTYForAccessoriesElement())
+            foreach (IWebElement element in QtyForAccessoriesElement())
             {
                 TestCheck.AssertIsEqual("0", element.GetAttribute("data-mps-val-numeric-min"), "Quantity For Accessory is not defaulted zero");
             }
@@ -966,15 +972,32 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             SetInstallationDetails();
         }
 
-        private string GetValueInstallationSRPElement()
+        public void SelectDeviceInstallationType(string type)
+        {
+            var install = "";
+
+            switch (type)
+            {
+                case "Brother":
+                    install = "1";
+                    break;
+                case "Dealer":
+                    install = "2";
+                    break;
+            }
+
+            SelectFromDropdownByValue(GetElementByCssSelector("#InstallationPackId"), install);
+        }
+
+        private string GetValueInstallationSrpElement()
         {
             return InstallationSRPElement.Text;
         }
-        public void VerifyThatInstallationSRPValueChange()
+        public void VerifyThatInstallationSrpValueChange()
         {
-            string hoge = GetValueInstallationSRPElement();
+            string hoge = GetValueInstallationSrpElement();
             TestCheck.AssertIsNotEqual(SpecFlow.GetContext("InstallationSRP"), 
-                GetValueInstallationSRPElement(), "Installation SRP not changed");
+                GetValueInstallationSrpElement(), "Installation SRP not changed");
             TestCheck.AssertIsNotEqual(SpecFlow.GetContext("InstallationPackCostPrice"), 
                 InstallationPackCostPrice().ToString(), "Installation Unit Cost not changed");
             TestCheck.AssertIsNotEqual(SpecFlow.GetContext("InstallationPackSellPrice"), 

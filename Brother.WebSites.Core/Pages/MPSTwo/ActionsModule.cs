@@ -213,6 +213,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ClickOnTheActionsDropdown(0, driver);
         }
 
+        public static void ClickOnSpecificActionsElement(IWebDriver driver, string proposal)
+        {
+            SearchForNewlyProposalItem(driver, proposal);
+
+            ClickOnTheActionsDropdown(0, driver);
+        }
+
         public static void ClickOnSpecificCustomerActions(IWebDriver driver)
         {
             SearchForNewCustomer(driver);

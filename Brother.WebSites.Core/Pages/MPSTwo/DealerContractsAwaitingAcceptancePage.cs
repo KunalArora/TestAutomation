@@ -61,7 +61,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             ScrollTo(ManageDevicesElement);
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ManageDevicesElement);
-            MPSJobRunnerPage.RunCreateCustomerAndPersonCommandJob();
+            MpsJobRunnerPage.RunCreateCustomerAndPersonCommandJob();
             return GetInstance<DealerManageDevicesPage>(Driver);
         }
 

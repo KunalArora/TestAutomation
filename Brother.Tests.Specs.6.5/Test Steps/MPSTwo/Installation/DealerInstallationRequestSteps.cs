@@ -37,7 +37,7 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             GivenINavigateToTheInstallerPage();
             WhenIEnterTheContractReferenceNumber();
             WhenIEnterDeviceSerialNumberForCommunication(type);
-            WhenIEnterTheDeviceIPAddress();
+            WhenIEnterTheDeviceIpAddress();
             ThenICanConnectTheDeviceToBrotherEnvironment();
             ThenICanCompleteDeviceInstallation();
 
@@ -53,7 +53,7 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             GivenINavigateToTheInstallerPage();
             WhenIEnterTheContractReferenceNumber();
             WhenIEnterDeviceSerialNumberForCommunication(method);
-            WhenIEnterTheDeviceIPAddress();
+            WhenIEnterTheDeviceIpAddress();
             ThenICanConnectTheDeviceToBrotherEnvironment();
             ThenICanCompleteDeviceInstallation();
         }
@@ -66,7 +66,7 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             GivenINavigateToTheInstallerPage();
             WhenIEnterTheContractReferenceNumber();
             WhenIEnterDeviceSerialNumberForCommunication(method);
-            WhenIEnterTheDeviceIPAddress();
+            WhenIEnterTheDeviceIpAddress();
             ThenICanConnectTheDeviceToBrotherEnvironment();
             ThenICanCompleteDeviceInstallation();
         }
@@ -98,6 +98,16 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
           CurrentPage.As<InstallerDeviceInstallationPage>().EnterContractReference();
             CurrentPage.As<InstallerDeviceInstallationPage>().ProceedOnInstaller();
         }
+
+
+        [When(@"I enter serial numbers ""(.*)"" and ""(.*)"" and ""(.*)"" and ""(.*)""")]
+        public void WhenIEnterSerialNumbersAndAndAnd(string serial, string serial1, string serial2, string serial3)
+        {
+            CurrentPage.As<InstallerDeviceInstallationPage>().VerifyTimeZoneIsDisplayed("BOR");
+            CurrentPage.As<InstallerDeviceInstallationPage>().EnterSerialNumber(serial, serial1, serial2, serial3);
+        }
+
+
 
         [When(@"I enter device serial number for ""(.*)"" communication")]
         public void WhenIEnterDeviceSerialNumberForCommunication(string method)
@@ -132,7 +142,7 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
 
 
         [When(@"I enter the device IP address")]
-        public void WhenIEnterTheDeviceIPAddress()
+        public void WhenIEnterTheDeviceIpAddress()
         {
 
             CurrentPage.As<InstallerDeviceInstallationPage>().EnterIpAddress();
@@ -144,6 +154,21 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             CurrentPage.As<InstallerDeviceInstallationPage>().ConnectDevice();
 
         }
+
+       
+        [Then(@"I can connect device ""(.*)"" with serials ""(.*)"" ""(.*)"" and ""(.*)"" with serials ""(.*)"" and ""(.*)"" to Brother environment")]
+        public void ThenICanConnectDeviceWithSerialsAndWithSerialsAndToBrotherEnvironment(string device1, string serial1, string serial2, 
+            string device2, string serial3, string serial4)
+        {
+            CurrentPage.As<InstallerDeviceInstallationPage>().ConnectDeviceWithBor(device1, serial1);
+            CurrentPage.As<InstallerDeviceInstallationPage>().ConnectDeviceWithBor(device1, serial2);
+            CurrentPage.As<InstallerDeviceInstallationPage>().ConnectDeviceWithBor(device2, serial3);
+            CurrentPage.As<InstallerDeviceInstallationPage>().ConnectDeviceWithBor(device2, serial4);
+            CurrentPage.As<InstallerDeviceInstallationPage>().RefreshCloudInstallation();
+        }
+
+
+        
 
         public void ThenICanConnectSwapDeviceToBrotherEnvironment()
         {
@@ -169,7 +194,7 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             GivenINavigateToTheInstallerPage();
             WhenIEnterTheContractReferenceNumber();
             WhenIEnterDeviceSerialNumberForCommunication(type);
-            WhenIEnterTheDeviceIPAddress();
+            WhenIEnterTheDeviceIpAddress();
             ThenICanConnectTheDeviceToBrotherEnvironment();
             ThenICanCompleteDeviceInstallation();
         }
@@ -212,7 +237,7 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             CurrentPage.As<InstallerDeviceInstallationPage>().ProceedOnInstaller();
 
             WhenIEnterSwapDeviceSerialNumberForCommunication(type);
-            WhenIEnterTheDeviceIPAddress();
+            WhenIEnterTheDeviceIpAddress();
             ThenICanConnectSwapDeviceToBrotherEnvironment();
            // ThenICanCompleteDeviceInstallation();
         }

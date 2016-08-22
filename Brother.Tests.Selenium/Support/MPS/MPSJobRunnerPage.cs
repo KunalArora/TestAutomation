@@ -1,18 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
-using NUnit.Framework.Constraints;
 
-namespace Brother.WebSites.Core.Pages.MPSTwo
+namespace Brother.Tests.Selenium.Lib.Support.MPS
 {
-    public class MPSJobRunnerPage
+    public static class MpsJobRunnerPage
     {
-        private const string Uaturl = @"http://online.{0}.cms.brotherqas.eu/sitecore/admin/integration/mps2/";
+        private const string Uaturl = @"http://online.{0}.cms.brotherqas.eu/sitecore/admin/integration/mps2/"; //@"http://online.brother.{0}.local/sitecore/admin/integration/mps2/"; 
         private const string Testurl = @"http://online.{0}.brotherdv2.eu/sitecore/admin/integration/mps2/";
         private const string customerAndPersonCommand = @"runcommand.aspx?command=MPS:SystemJobCreateCustomerAndPersonCommand";
         private const string clickRateInvoiceCommand = @"runcommand.aspx?command=MPS:RaiseClickRateInvoicesCommand";
@@ -36,9 +31,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
        
         private const string setConsumableStatusJob = @"setconsumableorderstatus.aspx?orderid={0}&statusid={1}";
 
-        private static readonly Dictionary<string, string> authHeader = new Dictionary<string, string>
+        public static readonly Dictionary<string, string> AuthHeader = new Dictionary<string, string>
         {
             { @"X-BROTHER-Auth", @".Kol%CV#<X$6o4C4/0WKxK36yYaH10" }
+            //{ @"X-BROTHER-Auth", @"OX6Z{mO~nQ87rE!32j6Sjo!21@+`by" }
+            
         };
         
         //Device Simulator variables
@@ -48,6 +45,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string RegisterDeviceUrl = @"register?id={0}&pin={1}";
         private const string NotifyBocUrl = @"notify?id={0}&all=true";
         private const string CreateNewDevice = @"create?model=MFC-L8650CDW&serial={0}&id={1}";
+        private const string CreateNewDeviceForSpecific = @"create?model={0}&serial={1}&id={2}";
     
         
         public static void RunCreateCustomerAndPersonCommandJob()
@@ -56,21 +54,23 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             Helper.MsgOutput(String.Format("The url formed for Create Customer and Person Command is {0}", webSite));
 
-            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: authHeader);
+            var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
             
             WebDriver.Wait(Helper.DurationType.Second, 1);
 
-            Helper.MsgOutput("CreateCustomerAndPersonCommand job ran successfully");
+            Helper.MsgOutput(response.ToString().Equals("OK")
+                ? "CreateCustomerAndPersonCommand job ran successfully"
+                : "CreateCustomerAndPersonCommand probably did not run properly");
         }
 
         private static string GetSavedNewDeviceSerial()
         {
-            return SpecFlow.GetContext("JoinedSerialNumber");
+            return HelperClasses.SpecFlow.GetContext("JoinedSerialNumber");
         }
 
         private static string GetInstallationPin()
         {
-            return SpecFlow.GetContext("InstallationPin");
+            return HelperClasses.SpecFlow.GetContext("InstallationPin");
         }
 
         public static void CreateNewVirtualDevice()
@@ -80,9 +80,29 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             Helper.MsgOutput(String.Format("The url formed for Create New Virtual Device is {0}", webSite));
 
-            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: authHeader);
+            var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
 
-            Helper.MsgOutput("CreateNewVirtualDevice job ran successfully");
+            WebDriver.Wait(Helper.DurationType.Second, 1);
+
+            Helper.MsgOutput(response.ToString().Equals("OK")
+                ? "CreateNewVirtualDevice job ran successfully"
+                : "CreateNewVirtualDevice probably did not run properly");
+        }
+
+        public static void CreateNewVirtualDevice(string device)
+        {
+            var newDevice = String.Format(CreateNewDeviceForSpecific, device, GetSavedNewDeviceSerial(), SetGuidForNewDevice());
+            var webSite = DevSimUrl + newDevice;
+
+            Helper.MsgOutput(String.Format("The url formed for Create New Virtual Device is {0}", webSite));
+
+            var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
+
+            WebDriver.Wait(Helper.DurationType.Second, 1);
+
+            Helper.MsgOutput(response.ToString().Equals("OK")
+                ? "CreateNewVirtualDevice job ran successfully"
+                : "CreateNewVirtualDevice probably did not run properly");
         }
 
         public static void RegisterNewDevice()
@@ -92,8 +112,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             Helper.MsgOutput(String.Format("The url formed for Register New Device is {0}", webSite));
 
-            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: authHeader);
-            Helper.MsgOutput("RegisterNewDevice job ran successfully");
+            var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
+
+            WebDriver.Wait(Helper.DurationType.Second, 1);
+
+            Helper.MsgOutput(response.ToString().Equals("OK")
+                ? "RegisterNewDevice job ran successfully"
+                : "RegisterNewDevice probably did not run properly");
         }
 
         public static void ChangeDeviceStatus()
@@ -103,8 +128,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             Helper.MsgOutput(String.Format("The url formed for Change Device Status is {0}", webSite));
 
-            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: authHeader);
-            Helper.MsgOutput("ChangeDeviceStatus job ran successfully");
+            var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
+
+            WebDriver.Wait(Helper.DurationType.Second, 1);
+
+            Helper.MsgOutput(response.ToString().Equals("OK")
+                ? "ChangeDeviceStatus job ran successfully"
+                : "ChangeDeviceStatus probably did not run properly");
         }
 
         public static void SetSupplyStatusForNewPrinter()
@@ -123,7 +153,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             //var json = "{\"id\": \"{0}\",\"items\": [{1}]}";
             //json = String.Format(json, GetSavedDeviceId(), deviceWithDefaultPrintCount);
 
-            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Post, "application/json", json, authHeader);
+            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Post, "application/json", json, AuthHeader);
 
             WebDriver.Wait(Helper.DurationType.Second, 5);
             Helper.MsgOutput("SetSupplyStatusForNewPrinter job ran successfully");
@@ -137,9 +167,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             Helper.MsgOutput(String.Format("The url formed for Notify BOC of New Changes is {0}", webSite));
 
-            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: authHeader);
+            var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
 
-            Helper.MsgOutput("NotifyBocOfNewChanges job ran successfully");
+            WebDriver.Wait(Helper.DurationType.Second, 1);
+
+            Helper.MsgOutput(response.ToString().Equals("OK")
+                ? "NotifyBocOfNewChanges job ran successfully"
+                : "NotifyBocOfNewChanges probably did not run properly");
         }
 
        private static string SetGuidForNewDevice()
@@ -147,7 +181,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var guid = Guid.NewGuid();
 
             var deviceId = "babeface" + guid.ToString().Substring(8);
-            SpecFlow.SetContext("DeviceId", deviceId);
+            HelperClasses.SpecFlow.SetContext("DeviceId", deviceId);
 
             Helper.MsgOutput(String.Format("Device Simulators Guid set as {0}", deviceId));
 
@@ -156,18 +190,25 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private static string GetSavedDeviceId()
         {
-            return SpecFlow.GetContext("DeviceId");
+            return HelperClasses.SpecFlow.GetContext("DeviceId");
         }
 
 
         private static string CoinedUrl()
         {
             string url = null;
+            var country = Helper.Locale;
+
+            //if (country.Equals("uk"))
+            //{
+            //    country = "co.uk";
+            //}
 
             switch (Helper.GetRunTimeEnv())
             {
                 case "UAT" :
-                    url = String.Format(Uaturl, Helper.Locale);
+                    //url = String.Format(Uaturl, Helper.Locale);
+                    url = String.Format(Uaturl, country);
                     break;
 
                 case "TEST" :
@@ -192,9 +233,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
                 webSite = String.Format(webSite, orderid, status);
 
-                response = Utils.GetSuccessStringFromUrl(webSite, 5, authHeader);  
+                response = Utils.GetSuccessStringFromUrl(webSite, 5, AuthHeader);  
             }
-            
+
             return response;
         }
 
@@ -203,8 +244,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             if (String.IsNullOrWhiteSpace(serial)) return;
             var reset = CoinedUrl() + resetSerialNumberJob + serial;
-            var response = Utils.GetPageResponse(reset, WebRequestMethods.Http.Get, additionalHeaders: authHeader);
-            // TestCheck.AssertIsEqual(true, response.Equals(HttpStatusCode.OK), "");
+            var response = Utils.GetPageResponse(reset, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
+
+            WebDriver.Wait(Helper.DurationType.Second, 1);
+
+            Helper.MsgOutput(response.ToString().Equals("OK")
+                ? "RunResetSerialNumberJob job ran successfully"
+                : "RunResetSerialNumberJob probably did not run properly");
         }
 
 
@@ -212,21 +258,33 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             var webSite = CoinedUrl() + clickRateInvoiceCommand;
 
-            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: authHeader);
+            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
         }
 
         public static void RunRemoveConsumableOrderByIdJob(string id)
         {
             if (String.IsNullOrWhiteSpace(id)) return;
             var webSite = CoinedUrl() + removeConsumableOrderById + id;
-            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: authHeader);
+            var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
+
+            WebDriver.Wait(Helper.DurationType.Second, 1);
+
+            Helper.MsgOutput(response.ToString().Equals("OK")
+                ? "RunRemoveConsumableOrderByIdJob job ran successfully"
+                : "RunRemoveConsumableOrderByIdJob probably did not run properly");
         }
 
         public static void RunRemoveConsumableOrderByInstalledPrinterJob(string serial)
         {
             if (String.IsNullOrWhiteSpace(serial)) return;
             var webSite = CoinedUrl() + removeConsumableOrderByInstalledPrinter + serial;
-            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: authHeader);
+            var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
+
+            WebDriver.Wait(Helper.DurationType.Second, 1);
+
+            Helper.MsgOutput(response.ToString().Equals("OK")
+                ? "RunRemoveConsumableOrderByInstalledPrinterJob job ran successfully"
+                : "RunRemoveConsumableOrderByInstalledPrinterJob probably did not run properly");
         }
 
 
@@ -234,49 +292,91 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             var webSite = CoinedUrl() + completeInstallationCommand;
 
-            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: authHeader);
+            var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
+
+            WebDriver.Wait(Helper.DurationType.Second, 1);
+
+            Helper.MsgOutput(response.ToString().Equals("OK")
+                ? "RunCompleteInstallationCommandJob job ran successfully"
+                : "RunCompleteInstallationCommandJob probably did not run properly");
         }
 
         public static void RunSendClickRateInvoicesToSapCommandJob()
         {
             var webSite = CoinedUrl() + sendClickRateInvoicesToSapCommand;
 
-            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: authHeader);
+            var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
+
+            WebDriver.Wait(Helper.DurationType.Second, 1);
+
+            Helper.MsgOutput(response.ToString().Equals("OK")
+                ? "RunSendClickRateInvoicesToSapCommandJob job ran successfully"
+                : "RunSendClickRateInvoicesToSapCommandJob probably did not run properly");
         }
 
         public static void RunRefreshPrintCountsCommandJob()
         {
             var webSite = CoinedUrl() + refreshPrintCountsCommand;
 
-            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: authHeader);
+            var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
+
+            WebDriver.Wait(Helper.DurationType.Second, 1);
+
+            Helper.MsgOutput(response.ToString().Equals("OK")
+                ? "RunRefreshPrintCountsCommandJob job ran successfully"
+                : "RunRefreshPrintCountsCommandJob probably did not run properly");
         }
 
         public static void RunRefreshPrintCountsFromMedioCommandJob()
         {
             var webSite = CoinedUrl() + refreshPrintCountsFromMedioCommand;
 
-            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: authHeader);
+            var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
+
+            WebDriver.Wait(Helper.DurationType.Second, 1);
+
+            Helper.MsgOutput(response.ToString().Equals("OK")
+                ? "RunRefreshPrintCountsFromMedioCommandJob job ran successfully"
+                : "RunRefreshPrintCountsFromMedioCommandJob probably did not run properly");
         }
 
         public static void RunStaffAccountCreationCommandJob()
         {
             var webSite = CoinedUrl() + staffAccountCreationCommand;
 
-            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: authHeader);
+            var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
+
+            WebDriver.Wait(Helper.DurationType.Second, 1);
+
+            Helper.MsgOutput(response.ToString().Equals("OK")
+                ? "RunStaffAccountCreationCommandJob job ran successfully"
+                : "RunStaffAccountCreationCommandJob probably did not run properly");
         }
 
         public static void RunConsumableOrderRequestsCommandJob()
         {
                 var webSite = CoinedUrl() + consumableOrderRequestsCommand;
 
-                Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: authHeader);
+                var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
+
+                WebDriver.Wait(Helper.DurationType.Second, 1);
+
+                Helper.MsgOutput(response.ToString().Equals("OK")
+                    ? "RunConsumableOrderRequestsCommandJob job ran successfully"
+                    : "RunConsumableOrderRequestsCommandJob probably did not run properly");
         }
 
         public static void RunCreateOrderAndServiceRequestsCommandJob()
         {
             var webSite = CoinedUrl() + createOrderAndServiceRequestsCommand;
 
-            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: authHeader);
+            var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
+
+            WebDriver.Wait(Helper.DurationType.Second, 1);
+
+            Helper.MsgOutput(response.ToString().Equals("OK")
+                ? "RunCreateOrderAndServiceRequestsCommandJob job ran successfully"
+                : "RunCreateOrderAndServiceRequestsCommandJob probably did not run properly");
         }
 
         public static void RunSystemJobCreateCustomerTaxCommandJob()
@@ -284,7 +384,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             
             var webSite = CoinedUrl() + systemJobCreateCustomerTaxCommand;
 
-            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: authHeader);
+            var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
+
+            WebDriver.Wait(Helper.DurationType.Second, 1);
+
+            Helper.MsgOutput(response.ToString().Equals("OK")
+                ? "RunSystemJobCreateCustomerTaxCommandJob job ran successfully"
+                : "RunSystemJobCreateCustomerTaxCommandJob probably did not run properly");
                 
         }
 
@@ -292,28 +398,51 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             var webSite = CoinedUrl() + systemJobCreateCustomerAndPersonCommand;
 
-            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: authHeader);
+            var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
+
+            WebDriver.Wait(Helper.DurationType.Second, 1);
+
+            Helper.MsgOutput(response.ToString().Equals("OK")
+                ? "RunSystemJobCreateCustomerAndPersonCommandJob job ran successfully"
+                : "RunSystemJobCreateCustomerAndPersonCommandJob probably did not run properly");
         }
 
         public static void RunCloseConsumableOrdersCommandJob()
         {
             var webSite = CoinedUrl() + closeConsumableOrdersCommand;
 
-            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: authHeader);
+            var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
+
+            WebDriver.Wait(Helper.DurationType.Second, 1);
+
+            Helper.MsgOutput(response.ToString().Equals("OK")
+                ? "RunCloseConsumableOrdersCommandJob job ran successfully"
+                : "RunCloseConsumableOrdersCommandJob probably did not run properly");
         }
 
         public static void RunPollConsumableOrderStatusCommandJob()
         {
             var webSite = CoinedUrl() + pollConsumableOrderStatusCommand;
+            var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
 
-            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: authHeader);
+            WebDriver.Wait(Helper.DurationType.Second, 1);
+
+            Helper.MsgOutput(response.ToString().Equals("OK")
+                ? "RunPollConsumableOrderStatusCommandJob job ran successfully"
+                : "RunPollConsumableOrderStatusCommandJob probably did not run properly");
         }
 
         public static void RunCheckForSilentDevicesCommandJob()
         {
             var webSite = CoinedUrl() + checkForSilentDevicesCommand;
 
-            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: authHeader);
+            var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
+
+            WebDriver.Wait(Helper.DurationType.Second, 1);
+
+            Helper.MsgOutput(response.ToString().Equals("OK")
+                ? "RunCheckForSilentDevicesCommandJob job ran successfully"
+                : "RunCheckForSilentDevicesCommandJob probably did not run properly");
                     
         }
     }
