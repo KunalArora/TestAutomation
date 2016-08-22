@@ -96,6 +96,21 @@ namespace Brother.Tests.Specs.MPSTwo.SendToBank
             ThenTheNewlyConvertedContractIsAvailableUnderAwaitingApprovalTab();
         }
 
+        public void GivenISendTheCreatedGermanProposalForApprovalWithDownload()
+        {
+            WhenIClickOnActionButtonAgainstTheProposalCreatedAbove();
+            ThenICanClickOnConvertToContractButtonUnderTheActionButton();
+            CurrentPage.As<DealerConvertProposalCustomerInfo>().FillAllCustomerDetailsOnConvert();
+            CurrentPage.As<DealerConvertProposalCustomerInfo>().EnterRemainingCustomerInfo();
+            CurrentPage.As<DealerConvertProposalCustomerInfo>().EnterAllBankInformation();
+            NextPage = CurrentPage.As<DealerConvertProposalCustomerInfo>().ProceedToConvertProposalTermAndType();
+            NextPage = CurrentPage.As<DealerConvertProposalTermAndType>().NavigateToSummaryPageUsingTab();
+
+            ThenIAmTakenToTheProposalSummaryWhereICanEnterEnvisageContractStartDate();
+            NextPage = CurrentPage.As<DealerConvertProposalSummaryPage>().DownloadAndSaveProposalAsAContract();
+            ThenTheNewlyConvertedContractIsAvailableUnderAwaitingApprovalTab();
+        }
+
         public void GivenISendTheCreatedGermanProposalForApproval(string customer)
         {
             WhenIClickOnActionButtonAgainstTheProposalCreatedAbove();

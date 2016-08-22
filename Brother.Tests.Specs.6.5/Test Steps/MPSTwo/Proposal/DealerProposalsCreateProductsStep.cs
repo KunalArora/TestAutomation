@@ -189,7 +189,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [Then(@"installation SRP value should change")]
         public void ThenInstallationSRPValueShouldChange()
         {
-            CurrentPage.As<DealerProposalsCreateProductsPage>().VerifyThatInstallationSRPValueChange();
+            CurrentPage.As<DealerProposalsCreateProductsPage>().VerifyThatInstallationSrpValueChange();
         }
 
         [Then(@"the printers ""(.*)"" enabled in Local Office Admin are displayed on product screen")]
@@ -242,7 +242,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [When(@"on product page all the accessories all left with zero QTY")]
         public void ThenOnProductPageQTYForAccessoriesAreDefaultToZero()
         {
-            CurrentPage.As<DealerProposalsCreateProductsPage>().IsQTYForAccessoriesAreDefaultToZero();
+            CurrentPage.As<DealerProposalsCreateProductsPage>().IsQtyForAccessoriesAreDefaultToZero();
         }
 
         [Then(@"the default total for all accessories are defaulted to zero")]

@@ -123,10 +123,7 @@ namespace Brother.Tests.Selenium.Lib.Support
                     break;
 
                 case "CH":
-                    var options = new ChromeOptions();
-                    options.AddArguments("--disable-extensions");
-                    options.AddArguments("no-sandbox");
-                    CurrentDriver = new ChromeDriver(options);
+                    CurrentDriver = new ChromeDriver(Options());
                     Helper.MsgOutput("Using Chrome Driver");
                     break;
 
@@ -300,6 +297,16 @@ namespace Brother.Tests.Selenium.Lib.Support
                 BrowserCommandLineArguments = port,
                 IgnoreZoomLevel = true
             };
+        }
+
+        private static ChromeOptions Options()
+        {
+            var options = new ChromeOptions();
+            options.AddArguments("--disable-extensions");
+            options.AddUserProfilePreference("download.default_directory", @"C:\DataTest");
+            options.AddArguments("no-sandbox");
+
+            return options;
         }
 
         private static bool IsDriverRunning(IWebDriver driver)

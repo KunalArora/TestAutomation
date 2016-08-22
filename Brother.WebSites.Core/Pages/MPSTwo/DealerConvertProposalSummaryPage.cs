@@ -85,5 +85,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetInstance<DealerProposalsAwaitingApproval>(Driver);
         }
 
+        public DealerProposalsAwaitingApproval DownloadAndSaveProposalAsAContract()
+        {
+            if (SaveAsContractButton == null)
+                throw new NullReferenceException("Save Contract button not available");
+            CalculationEngineModule.DownloadProposalPdfOnSendToBankSummaryPage(Driver);
+            CalculationEngineModule.DownloadPageHtml(Driver);
+            SaveAsContractButton.Click();
+            WebDriver.Wait(DurationType.Second, 5);
+
+            return GetInstance<DealerProposalsAwaitingApproval>(Driver);
+        }
+
+
+        
+
     }
 }

@@ -37,14 +37,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             
             ScrollTo(ManageDevicesElement);
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ManageDevicesElement);
-            MPSJobRunnerPage.RunCreateCustomerAndPersonCommandJob();
+            MpsJobRunnerPage.RunCreateCustomerAndPersonCommandJob();
             return GetInstance<DealerManageDevicesPage>(Driver);
         }
 
         public DealerManageDevicesPage NavigateToManageDevicesPageToConfirmThatInstallationRequestAvailability()
         {
-            MPSJobRunnerPage.RunCompleteInstallationCommandJob();
-            MPSJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob();
+            MpsJobRunnerPage.RunCompleteInstallationCommandJob();
+            MpsJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob();
             WebDriver.Wait(DurationType.Second,  10);
             ActionsModule.ClickOnSpecificActionsElement(Driver);
             ScrollTo(ManageDevicesElement);

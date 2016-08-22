@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -68,6 +69,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [FindsBy(How = How.CssSelector, Using = "[id*=\"content_0_DeviceInstallList_List_InputSerialNumber\"].js-mps-device-serial-number-input")] 
         public IWebElement SerialNumberFieldElement;
 
+        [FindsBy(How = How.CssSelector, Using = "[id*=\"content_0_DeviceInstallList_List_InputSerialNumber\"].js-mps-device-serial-number-input")]
+        public IList<IWebElement> SerialNumbersElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-ip-input[class*='js-mps-ip-']")] 
         public IList<IWebElement> IpAddressElements;
 
@@ -115,7 +118,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 throw new Exception("Installer page is not displayed");
             AssertElementPresent(ContractReferencePageAlertElement, "Installer pager alert");
 
-            MPSJobRunnerPage.RunResetSerialNumberJob(SerialNumberUsed());
+            MpsJobRunnerPage.RunResetSerialNumberJob(SerialNumberUsed());
         }
 
         public void EnterContractReference()
@@ -358,6 +361,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             MsgOutput(String.Format("New serial number is created as {0}", serial));
         }
 
+        private void CreateNewSerialNumber(string serialNumber)
+        {
+            var serial = "U63783" + serialNumber;
+
+            SpecFlow.SetContext("JoinedSerialNumber", serial);
+            MsgOutput(String.Format("New serial number is created as {0}", serial));
+        }
+
         private void CreateNewSwapSerialNumber()
         {
             var serial = GetSavedSwapSerialNumber();
@@ -382,30 +393,47 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             if (Method() == "Email") return;
             CreateNewSerialNumber();
-            MPSJobRunnerPage.CreateNewVirtualDevice();
+            MpsJobRunnerPage.CreateNewVirtualDevice();
             WebDriver.Wait(DurationType.Second, 2);
-            MPSJobRunnerPage.RegisterNewDevice();
+            MpsJobRunnerPage.RegisterNewDevice();
             WebDriver.Wait(DurationType.Second, 2);
-            MPSJobRunnerPage.ChangeDeviceStatus();
+            MpsJobRunnerPage.ChangeDeviceStatus();
             WebDriver.Wait(DurationType.Second, 2);
-            MPSJobRunnerPage.SetSupplyStatusForNewPrinter();
+            MpsJobRunnerPage.SetSupplyStatusForNewPrinter();
             WebDriver.Wait(DurationType.Second, 2);
-            MPSJobRunnerPage.NotifyBocOfNewChanges();
+            MpsJobRunnerPage.NotifyBocOfNewChanges();
             WebDriver.Wait(DurationType.Second, 2);
         }
+
+        public void CloudInstallationProcess(string serial, string device)
+        {
+            if (Method() == "Email") return;
+            CreateNewSerialNumber(serial);
+            MpsJobRunnerPage.CreateNewVirtualDevice(device);
+            WebDriver.Wait(DurationType.Second, 2);
+            MpsJobRunnerPage.RegisterNewDevice();
+            WebDriver.Wait(DurationType.Second, 2);
+            MpsJobRunnerPage.ChangeDeviceStatus();
+            WebDriver.Wait(DurationType.Second, 2);
+            MpsJobRunnerPage.SetSupplyStatusForNewPrinter();
+            WebDriver.Wait(DurationType.Second, 2);
+            MpsJobRunnerPage.NotifyBocOfNewChanges();
+            WebDriver.Wait(DurationType.Second, 2);
+        }
+
         public void SwapCloudInstallationProcess()
         {
             if (Method() == "Email") return;
             CreateNewSwapSerialNumber();
-            MPSJobRunnerPage.CreateNewVirtualDevice();
+            MpsJobRunnerPage.CreateNewVirtualDevice();
             WebDriver.Wait(DurationType.Second, 2);
-            MPSJobRunnerPage.RegisterNewDevice();
+            MpsJobRunnerPage.RegisterNewDevice();
             WebDriver.Wait(DurationType.Second, 2);
-            MPSJobRunnerPage.ChangeDeviceStatus();
+            MpsJobRunnerPage.ChangeDeviceStatus();
             WebDriver.Wait(DurationType.Second, 2);
-            MPSJobRunnerPage.SetSupplyStatusForNewPrinter();
+            MpsJobRunnerPage.SetSupplyStatusForNewPrinter();
             WebDriver.Wait(DurationType.Second, 2);
-            MPSJobRunnerPage.NotifyBocOfNewChanges();
+            MpsJobRunnerPage.NotifyBocOfNewChanges();
             WebDriver.Wait(DurationType.Second, 2);
         }
         
@@ -414,18 +442,42 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             ClosePopUpModal();
 
-            MPSJobRunnerPage.RunResetSerialNumberJob(SerialNumberUsed());
+            MpsJobRunnerPage.RunResetSerialNumberJob(SerialNumberUsed());
             
             ClearAndType(SerialNumberFieldElement, SerialNumberUsed());
            
             SerialNumberFieldElement.SendKeys(Keys.Tab);
         }
 
+        public void EnterSerialNumber(string serialNumber, string serialNumber1, string serialNumber2, string serialNumber3)
+        {
+            ClosePopUpModal();
+
+            String[] serialNumberContainer = 
+                                        {
+                                            serialNumber, 
+                                            serialNumber1, 
+                                            serialNumber2, 
+                                            serialNumber3
+                                        };
+
+            for(var i = 0; i < SerialNumbersElement.Count; i++)
+            {
+                MpsJobRunnerPage.RunResetSerialNumberJob(serialNumberContainer[i]);
+
+                ClearAndType(SerialNumbersElement.ElementAt(i), serialNumberContainer[i]);
+
+                SerialNumbersElement.ElementAt(i).SendKeys(Keys.Tab); 
+            }
+
+            
+        }
+
         public void EnterSwapSerialNumber()
         {
             ClosePopUpModal();
 
-            MPSJobRunnerPage.RunResetSerialNumberJob(SwapSerialNumberUsed());
+            MpsJobRunnerPage.RunResetSerialNumberJob(SwapSerialNumberUsed());
 
             ClearAndType(SerialNumberFieldElement, SwapSerialNumberUsed());
 
@@ -436,7 +488,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             ClosePopUpModal();
 
-            MPSJobRunnerPage.RunResetSerialNumberJob(UsedSerialNumber());
+            MpsJobRunnerPage.RunResetSerialNumberJob(UsedSerialNumber());
 
             ClearAndType(SerialNumberFieldElement, UsedSerialNumber());
 
@@ -512,6 +564,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             
         }
 
+        public void ConnectDeviceWithBor(string serial, string device)
+        {
+            try
+            {
+                CloudInstallationProcess(serial, device);
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(String.Format("Connect or Refresh button is not displayed because {0}", exception));
+            }
+        }
+
+       
         public void ConnectSwapDevice()
         {
             try
@@ -549,9 +614,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         }
 
-        private void RefreshCloudInstallation()
+        public void RefreshCloudInstallation()
         {
-            RetryClickingAction("#content_0_ButtonRefresh", "#content_0_DeviceInstallList_List_CellConnectionStatus_0 .glyphicon-ok", 5, 5);
+            RetryClickingAction("#content_0_ButtonRefresh", "#content_0_DeviceInstallList_List_CellConnectionStatus_0 .glyphicon-ok", 10, 5);
         }
 
         private void GetWebInstallationPin()
@@ -591,10 +656,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 TestCheck.AssertIsEqual(true, CloudInstallationConnectionStatusIconElements.Displayed, "Device is not connect");
                 //WaitForElementToBeClickableById("content_0_InstallationSuccessfullyFinished", 10);
                 CompleteCloudInstallationComfirmationElement.Click();
-                MPSJobRunnerPage.NotifyBocOfNewChanges();
+                MpsJobRunnerPage.NotifyBocOfNewChanges();
             }
 
-            MPSJobRunnerPage.RunCompleteInstallationCommandJob();
+            MpsJobRunnerPage.RunCompleteInstallationCommandJob();
            
         }
 

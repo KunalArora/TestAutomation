@@ -319,7 +319,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public InstallerDeviceInstallationPage LaunchInstallerPage()
         {
-            MPSJobRunnerPage.RunCompleteInstallationCommandJob();
+            MpsJobRunnerPage.RunCompleteInstallationCommandJob();
             Driver.Navigate().GoToUrl(GetInstallationLink());
             return GetInstance<InstallerDeviceInstallationPage>(Driver);
         }
@@ -376,12 +376,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             //  String.Format("{0} Actions buttons were returned meaning installation request is not removed", buttonCount));
             if (Method() != "Email")
             {
-                MPSJobRunnerPage.NotifyBocOfNewChanges();
+                MpsJobRunnerPage.NotifyBocOfNewChanges();
             }
            
-            MPSJobRunnerPage.RunCreateOrderAndServiceRequestsCommandJob();
-            MPSJobRunnerPage.RunConsumableOrderRequestsCommandJob();
-            MPSJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob();
+            MpsJobRunnerPage.RunCreateOrderAndServiceRequestsCommandJob();
+            MpsJobRunnerPage.RunConsumableOrderRequestsCommandJob();
+            MpsJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob();
         }
 
         public void SelectLocationErrorIsDisplayed()

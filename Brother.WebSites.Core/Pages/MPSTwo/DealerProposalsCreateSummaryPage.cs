@@ -864,7 +864,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             WebDriver.Wait(Helper.DurationType.Second, 3);
             ScrollTo(SaveProposalElement);
-            //SaveProposalElement.Click();
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, SaveProposalElement);
+            return GetTabInstance<CloudExistingProposalPage>(Driver);
+        }
+
+        public CloudExistingProposalPage DownloadPdfAndSaveProposal()
+        {
+            WebDriver.Wait(DurationType.Second, 3);
+            CalculationEngineModule.DownloadProposalPdfOnSummaryPage(Driver);
+            CalculationEngineModule.DownloadPageHtml(Driver);
+            ScrollTo(SaveProposalElement);
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, SaveProposalElement);
             return GetTabInstance<CloudExistingProposalPage>(Driver);
         }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherOnline;
 using OpenQA.Selenium;
@@ -36,7 +37,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             ScrollTo(CustomerDashboardConsummableLink);
             CustomerDashboardConsummableLink.Click();
-            MPSJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob();
+            MpsJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob();
             return GetInstance<CustomerPortalConsummablePage>(Driver);
         }
 
@@ -51,7 +52,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             ScrollTo(CustomerDashboardPrintCountsLink);
             CustomerDashboardPrintCountsLink.Click();
-            MPSJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob();
+            MpsJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob();
             return GetInstance<CustomerPortalPrintCountPage>(Driver);
         }
 
