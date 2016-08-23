@@ -81,7 +81,7 @@ namespace Brother.Tests.Specs.MPSTwo.CalculationEngine
                     CalculationEngineModule.DownloadContractPdf(CurrentDriver);
                     var instance5 = new ApproverSteps();
                     instance5.ThenApproverSelectTheProposalOnAwaitingProposal();
-                    CalculationEngineModule.DownloadPageHtml(CurrentDriver);
+                    CalculationEngineModule.DownloadPageHtml(CurrentDriver, "Bank_AwaitingApprovalSummary");
                     instance5.ThenIShouldBeAbleToApproveThatProposal();
                     instance3.ThenIfISignOutOfBrotherOnline();
                 }
@@ -105,7 +105,7 @@ namespace Brother.Tests.Specs.MPSTwo.CalculationEngine
                     CalculationEngineModule.DownloadContractPdf(CurrentDriver);
                     var instance5 = new ApproverSteps();
                     instance5.ThenApproverSelectTheProposalOnAwaitingProposal();
-                    CalculationEngineModule.DownloadPageHtml(CurrentDriver);
+                    CalculationEngineModule.DownloadPageHtml(CurrentDriver, "LO_AwaitingApprovalSummary");
                     instance5.ThenIShouldBeAbleToApproveThatProposal();
                     instance3.ThenIfISignOutOfBrotherOnline();
                 }
@@ -138,7 +138,7 @@ namespace Brother.Tests.Specs.MPSTwo.CalculationEngine
                     instance2.ThenTheNewlyConvertedContractIsAvailableUnderAwaitingApprovalTab();
                     CalculationEngineModule.DownloadContractPdf(CurrentDriver);
                     instance2.ThenINavigateToProposalSummaryPageUnderAwaitingApprovalTab();
-                    CalculationEngineModule.DownloadPageHtml(CurrentDriver);
+                    CalculationEngineModule.DownloadPageHtml(CurrentDriver, "Dealer_AwaitingApprovalSummary");
                     CalculationEngineModule.DownloadProposalPdfOnSummaryPage(CurrentDriver);
                 }
 
@@ -161,7 +161,7 @@ namespace Brother.Tests.Specs.MPSTwo.CalculationEngine
                     instance2.ThenTheNewlyConvertedContractIsAvailableUnderAwaitingApprovalTab();
                     CalculationEngineModule.DownloadContractPdf(CurrentDriver);
                     instance2.ThenINavigateToProposalSummaryPageUnderAwaitingApprovalTab();
-                    CalculationEngineModule.DownloadPageHtml(CurrentDriver);
+                    CalculationEngineModule.DownloadPageHtml(CurrentDriver, "Dealer_AwaitingApprovalSummary");
                     CalculationEngineModule.DownloadProposalPdfOnSummaryPage(CurrentDriver);
                 }
                 var instance3 = new AccountManagementSteps();
@@ -342,7 +342,7 @@ namespace Brother.Tests.Specs.MPSTwo.CalculationEngine
                 CalculationEngineModule.DownloadContractPdf(CurrentDriver);
                 var instance5 = new ApproverSteps();
                 instance5.ThenApproverSelectTheProposalOnAwaitingProposal();
-                CalculationEngineModule.DownloadPageHtml(CurrentDriver);
+                CalculationEngineModule.DownloadPageHtml(CurrentDriver, "Bank_AwaitingApprovalSummary");
                 instance5.ThenIShouldBeAbleToApproveThatProposal();
                 instance3.ThenIfISignOutOfBrotherOnline();
             }
@@ -373,7 +373,7 @@ namespace Brother.Tests.Specs.MPSTwo.CalculationEngine
                 CalculationEngineModule.DownloadContractPdf(CurrentDriver);
                 var instance5 = new ApproverSteps();
                 instance5.ThenApproverSelectTheProposalOnAwaitingProposal();
-                CalculationEngineModule.DownloadPageHtml(CurrentDriver);
+                CalculationEngineModule.DownloadPageHtml(CurrentDriver, "LO_AwaitingApprovalSummary");
                 instance5.ThenIShouldBeAbleToApproveThatProposal();
                 instance3.ThenIfISignOutOfBrotherOnline();
             }
@@ -389,7 +389,7 @@ namespace Brother.Tests.Specs.MPSTwo.CalculationEngine
             NextPage = CurrentPage.As<DealerDashBoardPage>().NavigateToContractScreenFromDealerDashboard();
             CalculationEngineModule.DownloadContractPdf(CurrentDriver);
             NextPage = CurrentPage.As<DealerContractsPage>().NavigateToViewOfferOnApprovedProposalsTab();
-            CalculationEngineModule.DownloadPageHtml(CurrentDriver);
+            CalculationEngineModule.DownloadPageHtml(CurrentDriver, "Dealer_ApprovedSummary");
             NextPage = CurrentPage.As<DealerContractsSummaryPage>().ClickSignButtonToNavigateToAwaitingAcceptance();
         }
 

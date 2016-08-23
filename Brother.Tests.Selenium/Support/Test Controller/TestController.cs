@@ -301,9 +301,25 @@ namespace Brother.Tests.Selenium.Lib.Support
 
         private static ChromeOptions Options()
         {
+            //var scenarioName = ScenarioContext.Current.ScenarioInfo.Title;
             var options = new ChromeOptions();
+            const string path = @"C:\DataTest";
+
+            //if (!string.IsNullOrWhiteSpace(scenarioName))
+            //{
+            //    scenarioName = scenarioName.Replace(" ", "");
+
+            //    if (scenarioName.Length > 50)
+            //    {
+            //        scenarioName = scenarioName.Substring(0, 50);
+            //    }
+            //    path = Path.Combine(path, scenarioName);
+            //    //path += scenarioName; //String.Format(@"C:\DataTest\{0}", scenarioName);
+            //}
+            
+            
             options.AddArguments("--disable-extensions");
-            options.AddUserProfilePreference("download.default_directory", @"C:\DataTest");
+            options.AddUserProfilePreference("download.default_directory", path);
             options.AddArguments("no-sandbox");
 
             return options;

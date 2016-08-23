@@ -862,7 +862,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public CloudExistingProposalPage SaveProposal()
         {
-            WebDriver.Wait(Helper.DurationType.Second, 3);
+            WebDriver.Wait(DurationType.Second, 3);
             ScrollTo(SaveProposalElement);
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, SaveProposalElement);
             return GetTabInstance<CloudExistingProposalPage>(Driver);
@@ -872,7 +872,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             WebDriver.Wait(DurationType.Second, 3);
             CalculationEngineModule.DownloadProposalPdfOnSummaryPage(Driver);
-            CalculationEngineModule.DownloadPageHtml(Driver);
+            if (Driver.Url.ToLower().Contains("convert"))
+            {
+                CalculationEngineModule.DownloadPageHtml(Driver, "Dealer_Convert");
+            }
+            else if (Driver.Url.ToLower().Contains("create"))
+            {
+                CalculationEngineModule.DownloadPageHtml(Driver, "Dealer_Create");
+            }   
+            
             ScrollTo(SaveProposalElement);
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, SaveProposalElement);
             return GetTabInstance<CloudExistingProposalPage>(Driver);
