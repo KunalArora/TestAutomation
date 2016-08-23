@@ -36,7 +36,9 @@ Scenarios:
 	#| Cloud MPS Local Office Approver | Finland        | Purchase & Click with Service      | Minimum Volume                            | Cloud MPS Dealer | Cloud  | BOR  | 3 years | Quarterly in Arrears    | Pay upfront | Brother      | Yes      | MFC-L8650CDW | MFC-L5750DW | A1T010020    | A1T010021     | A1T010022     | A1T010023     |
 	#| Cloud MPS Local Office Approver | Belgium        | Purchase & Click with Service      | Minimum Volume                            | Cloud MPS Dealer | Cloud  | BOR  | 3 jaar  | Quarterly in Arrears    | Pay upfront | Brother      | Yes      | MFC-L8650CDW | MFC-L5750DW | A1T010020    | A1T010021     | A1T010022     | A1T010023     |
 	#| Cloud MPS Local Office Approver | Switzerland    | Purchase & Click with Service      | Mindestvolumen                            | Cloud MPS Dealer | Cloud  | BOR  | 3 Jahre | Quarterly in Arrears    | Pay upfront | Brother      | Yes      | MFC-L8650CDW | MFC-L5750DW | A1T010020    | A1T010021     | A1T010022     | A1T010023     |
-	#
+	#| Cloud MPS Local Office Approver | Germany        | Easy Print Pro & Service           | Mindestvolumen | Cloud MPS Dealer | Cloud  | BOR  | 3 Jahre | Quarterly in Arrears    | Pay upfront | Brother      | Yes      | MFC-L8650CDW | MFC-L5750DW | A1T010020    | A1T010021     | A1T010022     | A1T010023     |
+	#| Cloud MPS Local Office Approver | Austria        | Easy Print Pro & Service           | Mindestvolumen | Cloud MPS Dealer | Cloud  | BOR  | 3 Jahre | Quarterly in Arrears    | Pay upfront | Brother      | Yes      | MFC-L8650CDW | MFC-L5750DW | A1T010020    | A1T010021     | A1T010022     | A1T010023     |
+	
 
 
 Scenario Outline: Scenario Two
@@ -70,6 +72,8 @@ Scenarios:
 	| Cloud MPS Local Office Approver | Finland        | Purchase & Click with Service      | Minimum Volume                            | Cloud MPS Dealer | Cloud  | BOR  | 4 years | Half Yearly | Included in Click Price | Brother      | No       | MFC-L8650CDW | MFC-L5750DW | A1T010020    | A1T010021     | A1T010022     | A1T010023     |
 	| Cloud MPS Local Office Approver | Belgium        | Purchase & Click with Service      | Minimum Volume                            | Cloud MPS Dealer | Cloud  | BOR  | 4 jaar  | Half Yearly | Included in Click Price | Brother      | No       | MFC-L8650CDW | MFC-L5750DW | A1T010020    | A1T010021     | A1T010022     | A1T010023     |
 	| Cloud MPS Local Office Approver | Switzerland    | Purchase & Click with Service      | Mindestvolumen                            | Cloud MPS Dealer | Cloud  | BOR  | 4 Jahre | Half Yearly | Included in Click Price | Brother      | No       | MFC-L8650CDW | MFC-L5750DW | A1T010020    | A1T010021     | A1T010022     | A1T010023     |
+	| Cloud MPS Local Office Approver | Germany        | Easy Print Pro & Service           | Mindestvolumen | Cloud MPS Dealer | Cloud  | BOR  | 3 Jahre | Quarterly in Arrears    | Pay upfront | Brother      | Yes      | MFC-L8650CDW | MFC-L5750DW | A1T010020    | A1T010021     | A1T010022     | A1T010023     |
+	| Cloud MPS Local Office Approver | Austria        | Easy Print Pro & Service           | Mindestvolumen | Cloud MPS Dealer | Cloud  | BOR  | 3 Jahre | Quarterly in Arrears    | Pay upfront | Brother      | Yes      | MFC-L8650CDW | MFC-L5750DW | A1T010020    | A1T010021     | A1T010022     | A1T010023     |
 	
 
 Scenario Outline: Scenario Three
@@ -103,7 +107,9 @@ Scenarios:
 	| Cloud MPS Local Office Approver | Finland        | Purchase & Click with Service      | Minimum Volume                            | Cloud MPS Dealer | Cloud  | BOR  | 5 years | Monthly | Included in Click Price | Brother      | Yes      | MFC-L8650CDW | MFC-L5750DW | A1T010020    | A1T010021     | A1T010022     | A1T010023     |
 	| Cloud MPS Local Office Approver | Belgium        | Purchase & Click with Service      | Minimum Volume                            | Cloud MPS Dealer | Cloud  | BOR  | 5 jaar  | Monthly | Included in Click Price | Brother      | Yes      | MFC-L8650CDW | MFC-L5750DW | A1T010020    | A1T010021     | A1T010022     | A1T010023     |
 	| Cloud MPS Local Office Approver | Switzerland    | Purchase & Click with Service      | Mindestvolumen                            | Cloud MPS Dealer | Cloud  | BOR  | 5 Jahre | Monthly | Included in Click Price | Brother      | Yes      | MFC-L8650CDW | MFC-L5750DW | A1T010020    | A1T010021     | A1T010022     | A1T010023     |
-
+	| Cloud MPS Local Office Approver | Germany        | Easy Print Pro & Service           | Mindestvolumen | Cloud MPS Dealer | Cloud  | BOR  | 3 Jahre | Quarterly in Arrears    | Pay upfront | Brother      | Yes      | MFC-L8650CDW | MFC-L5750DW | A1T010020    | A1T010021     | A1T010022     | A1T010023     |
+	| Cloud MPS Local Office Approver | Austria        | Easy Print Pro & Service           | Mindestvolumen | Cloud MPS Dealer | Cloud  | BOR  | 3 Jahre | Quarterly in Arrears    | Pay upfront | Brother      | Yes      | MFC-L8650CDW | MFC-L5750DW | A1T010020    | A1T010021     | A1T010022     | A1T010023     |
+	
 
 Scenario Outline: Scenario Four
 	Given "<Country>" Dealer have created "<ContractType>" contract with "<UsageType>" and "<Length>" and "<Billing>" and "<ServicePack>" and "<Installation>" and "<Delivery>" and "<Device1>" and "<Device2>"

@@ -564,7 +564,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             
         }
 
-        public void ConnectDeviceWithBor(string serial, string device)
+        public void ConnectDeviceWithBor(string device, string serial)
         {
             try
             {
@@ -616,7 +616,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void RefreshCloudInstallation()
         {
-            RetryClickingAction("#content_0_ButtonRefresh", "#content_0_DeviceInstallList_List_CellConnectionStatus_0 .glyphicon-ok", 10, 5);
+            RetryClickingAction("#content_0_ButtonRefresh", "#content_0_DeviceInstallList_List_CellConnectionStatus_0 .glyphicon-ok", 15, 5);
         }
 
         private void GetWebInstallationPin()

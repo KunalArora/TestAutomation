@@ -43,22 +43,26 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         }
 
-        public static void DownloadPageHtml(IWebDriver driver)
+        public static void DownloadPageHtml(IWebDriver driver, string rolePage)
         {
-            var url = driver.Url;
+            var url = driver.PageSource;
 
             var name = "";
 
+            var proposalName = SpecFlow.GetContext("GeneratedProposalName");
+
             if (url.Contains("contracts/summary"))
             {
-                 name = SpecFlow.GetContext("GeneratedProposalName") + "_ContractSummary";
+                name = proposalName + String.Format("_{0}_ContractSummary", rolePage);
             } 
             else if (url.Contains("summary"))
             {
-                name = SpecFlow.GetContext("GeneratedProposalName") + "_ProposalSummary";
+                name = proposalName + String.Format("_{0}_ProposalSummary", rolePage);
             }
-            
-            Utils.DownloadAndSaveWebpage(url, name, MpsJobRunnerPage.AuthHeader);
+
+            var proposal = SpecFlow.GetContext("GeneratedProposalName");
+
+            Utils.DownloadAndSaveWebPage(url, proposal, name);
         }
         private static IWebElement DownloadProposalFromSendToApproverPdfElement(ISearchContext driver)
         {

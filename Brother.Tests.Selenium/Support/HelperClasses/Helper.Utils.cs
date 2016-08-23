@@ -200,7 +200,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             return PageResponse(webRequest, out xmlData);
         }
 
-        public static void DownloadAndSaveWebpage(string url, string name, Dictionary<string, string> additionalHeaders = null)
+        public static void DownloadAndSavePageHtml(string url, string name, Dictionary<string, string> additionalHeaders = null)
         {
 
             var webClient = new WebClient();
@@ -224,6 +224,20 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
             webClient.DownloadFile(url, path);
 
+        }
+
+        public static void DownloadAndSaveWebPage(string source, string scenarioName, string name)
+        {
+            var path = String.Format(@"C:\DataTest\{0}\html\", scenarioName);
+
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+
+            path = Path.Combine(path, string.Format("{0}.html", name));
+
+            File.WriteAllText(path, source);
             
         }
 
