@@ -387,7 +387,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             else if (IsPolandSystem())
             {
                 trading = "Non-Regulated";
-            }else if (IsNorwaySystem())
+            }
+            else if (IsNorwaySystem())
             {
                 trading = "Ikke regulert";
             }
@@ -397,7 +398,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
             else if (IsFinlandSystem())
             {
-                trading = "Non-Regulated";
+                trading = "Ei-säännelty";
             }
             else if (IsSwissSystem())
             {
@@ -506,7 +507,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             switch (language)
             {
                 case "Suomi":
-                    lang = "Direct Debit";
+                    lang = "Suoraveloitus";
                     break;
                 case "Svenska":
                     lang = "Direct Debit";

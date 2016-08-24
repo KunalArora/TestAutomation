@@ -112,17 +112,17 @@ Scenario Outline: MPS MLang Cloud Installation
 	
 Scenarios:
 
-	| Role                            | Country     | ContractType                  | UsageType                                 | Role1            | Method | Type | Length  | Billing              | Language |
-	| Cloud MPS Local Office Approver | Finland     | Purchase & Click with Service | Minimum Volume                            | Cloud MPS Dealer | Cloud  | Web  | 3 years | Quarterly in Arrears | Suomi    |
-	| Cloud MPS Local Office Approver | Finland     | Purchase & Click with Service | Minimum Volume                            | Cloud MPS Dealer | Cloud  | BOR  | 4 years | Quarterly in Arrears | Suomi    |
-	| Cloud MPS Local Office Approver | Finland     | Purchase & Click with Service | Minimum Volume                            | Cloud MPS Dealer | Cloud  | Web  | 3 years | Quarterly in Arrears | Svenska  |
-	| Cloud MPS Local Office Approver | Finland     | Purchase & Click with Service | Minimum Volume                            | Cloud MPS Dealer | Cloud  | BOR  | 4 years | Quarterly in Arrears | Svenska  |
-	| Cloud MPS Local Office Approver | Belgium     | Buy & Click                   | Volume minimum                            | Cloud MPS Dealer | Cloud  | Web  | 3 ans   | Quarterly in Arrears | French   |
-	| Cloud MPS Local Office Approver | Belgium     | Buy & Click                   | Volume minimum                            | Cloud MPS Dealer | Cloud  | BOR  | 4 ans   | Quarterly in Arrears | French   |
-	| Cloud MPS Local Office Approver | Belgium     | Purchase & Click with Service | Minimum Volume                            | Cloud MPS Dealer | Cloud  | BOR  | 3 jaar  | Quarterly in Arrears | Dutch    |
-	| Cloud MPS Local Office Approver | Belgium     | Purchase & Click with Service | Minimum Volume                            | Cloud MPS Dealer | Cloud  | Web  | 4 jaar  | Quarterly in Arrears | Dutch    |
-	| Cloud MPS Local Office Approver | Switzerland | Purchase & Click with Service | Mindestvolumen                            | Cloud MPS Dealer | Cloud  | Web  | 3 Jahre | Quarterly in Arrears | Deutsch  |
-	| Cloud MPS Local Office Approver | Switzerland | Purchase & Click with Service | Engagement sur un minimum volume de pages | Cloud MPS Dealer | Cloud  | BOR  | 4 ans   | Quarterly in Arrears | Français |
-	| Cloud MPS Local Office Approver | Switzerland | Purchase & Click with Service | Mindestvolumen                            | Cloud MPS Dealer | Cloud  | BOR  | 3 Jahre | Quarterly in Arrears | Deutsch  |
-	| Cloud MPS Local Office Approver | Switzerland | Purchase & Click with Service | Engagement sur un minimum volume de pages | Cloud MPS Dealer | Cloud  | Web  | 4 ans   | Quarterly in Arrears | Français |
+	| Role                            | Country     | ContractType                  | UsageType                                 | Role1            | Method | Type | Length   | Billing              | Language |
+	| Cloud MPS Local Office Approver | Finland     | Purchase & Click with Service | Minimitulostusmäärä                       | Cloud MPS Dealer | Cloud  | Web  | 3 vuotta | Quarterly in Arrears | Suomi    |
+	| Cloud MPS Local Office Approver | Finland     | Purchase & Click with Service | Minimitulostusmäärä                       | Cloud MPS Dealer | Cloud  | BOR  | 4 vuotta | Quarterly in Arrears | Suomi    |
+	| Cloud MPS Local Office Approver | Finland     | Purchase & Click with Service | Minimum Volume                            | Cloud MPS Dealer | Cloud  | Web  | 3 years  | Quarterly in Arrears | Svenska  |
+	| Cloud MPS Local Office Approver | Finland     | Purchase & Click with Service | Minimum Volume                            | Cloud MPS Dealer | Cloud  | BOR  | 4 years  | Quarterly in Arrears | Svenska  |
+	| Cloud MPS Local Office Approver | Belgium     | Buy & Click                   | Volume minimum                            | Cloud MPS Dealer | Cloud  | Web  | 3 ans    | Quarterly in Arrears | French   |
+	| Cloud MPS Local Office Approver | Belgium     | Buy & Click                   | Volume minimum                            | Cloud MPS Dealer | Cloud  | BOR  | 4 ans    | Quarterly in Arrears | French   |
+	| Cloud MPS Local Office Approver | Belgium     | Purchase & Click with Service | Minimum Volume                            | Cloud MPS Dealer | Cloud  | BOR  | 3 jaar   | Quarterly in Arrears | Dutch    |
+	| Cloud MPS Local Office Approver | Belgium     | Purchase & Click with Service | Minimum Volume                            | Cloud MPS Dealer | Cloud  | Web  | 4 jaar   | Quarterly in Arrears | Dutch    |
+	| Cloud MPS Local Office Approver | Switzerland | Purchase & Click with Service | Mindestvolumen                            | Cloud MPS Dealer | Cloud  | Web  | 3 Jahre  | Quarterly in Arrears | Deutsch  |
+	| Cloud MPS Local Office Approver | Switzerland | Purchase & Click with Service | Engagement sur un minimum volume de pages | Cloud MPS Dealer | Cloud  | BOR  | 4 ans    | Quarterly in Arrears | Français |
+	| Cloud MPS Local Office Approver | Switzerland | Purchase & Click with Service | Mindestvolumen                            | Cloud MPS Dealer | Cloud  | BOR  | 3 Jahre  | Quarterly in Arrears | Deutsch  |
+	| Cloud MPS Local Office Approver | Switzerland | Purchase & Click with Service | Engagement sur un minimum volume de pages | Cloud MPS Dealer | Cloud  | Web  | 4 ans    | Quarterly in Arrears | Français |
 	

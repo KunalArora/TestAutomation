@@ -1115,7 +1115,8 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             {
                 numberFormatInfo = new NumberFormatInfo { CurrencySymbol = "kr." };
             }
-            else if ((money.Contains("kr") && TestController.CurrentDriver.Url.Contains(".se.brother")))
+            else if ((money.Contains("kr") && TestController.CurrentDriver.Url.Contains(".se.brother"))
+                || (money.Contains("kr") && TestController.CurrentDriver.Url.Contains(".no.brother")))
             {
                 numberFormatInfo = new NumberFormatInfo { CurrencySymbol = "kr", CurrencyGroupSeparator = " "};
             }
