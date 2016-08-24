@@ -230,9 +230,12 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         {
             var path = String.Format(@"C:\DataTest\{0}\html\", scenarioName);
 
+            SpecFlow.SetContext("DownloadPath", String.Format(@"C:\DataTest\{0}", scenarioName));
+
             if (!Directory.Exists(path))
             {
                 Directory.CreateDirectory(path);
+
             }
 
             path = Path.Combine(path, string.Format("{0}.html", name));

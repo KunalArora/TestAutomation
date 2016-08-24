@@ -1117,24 +1117,56 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterOptionCostPrice()
         {
-            if (IsSwedenSystem() || IsDenmarkSystem() || IsPolandSystem()) return;
-            var srpOption = MpsUtil.GetValue(OptionSrpText());
-            var OptionText = srpOption.ToString().Substring(0, 3);
-            if (OptionCostPrice0Element() != null)
-                ClearAndType(OptionCostPrice0Element(), OptionText);
+            if (IsSwedenSystem() || IsDenmarkSystem() || IsPolandSystem())
+            {
+                // do nothing
+            }
+            else if (IsNorwaySystem())
+            {
+                var optionText = GetNorwayValue(ModelSrpElement.Text);
+                ClearAndType(OptionCostPrice0Element(), optionText);
+            }
+            else
+            {
+                var srpOption = MpsUtil.GetValue(OptionSrpText());
+                var optionText = srpOption.ToString().Substring(0, 3);
+                if (OptionCostPrice0Element() != null)
+                    ClearAndType(OptionCostPrice0Element(), optionText);
+            }
         }
         public void EnterModelUnitCost()
         {
             //if (!ModelSrpElement.Text.Contains("£")) return;
-            if (IsAustriaSystem() || IsGermanSystem() || IsSwedenSystem() 
-                || IsDenmarkSystem() || IsPolandSystem()) return;
-            var srpCost = MpsUtil.GetValue(ModelSrpElement.Text);
-            var costText = srpCost.ToString();
-            var optionText = costText.Substring(0, 3);
-            ClearAndType(ProductCostPriceElement, optionText);
+            if (IsAustriaSystem() || IsGermanSystem() || IsSwedenSystem()
+                || IsDenmarkSystem() || IsPolandSystem())
+            {
+                //do nothing
+            } 
+            else if (IsNorwaySystem())
+            {
+                var optionText = GetNorwayValue(ModelSrpElement.Text);
+                ClearAndType(ProductCostPriceElement, optionText);
+            }
+            else
+            {
+                var srpCost = MpsUtil.GetValue(ModelSrpElement.Text);
+                var costText = srpCost.ToString();
+                var optionText = costText.Substring(0, 3);
+                ClearAndType(ProductCostPriceElement, optionText);  
+            }
+
+            
 
 
             SetProductCostPrice();
+        }
+
+        private string GetNorwayValue(string text)
+        {
+            var value = text.Replace(" ", "");
+            value = value.Replace("kr", "");
+
+            return value;
         }
 
 

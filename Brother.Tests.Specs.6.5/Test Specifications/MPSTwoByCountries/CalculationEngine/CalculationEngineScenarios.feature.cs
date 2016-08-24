@@ -73,7 +73,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.CalculationEn
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Scenario One")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Cloud", "BOR", "3 years", "Quarterly in Arrears", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010048", "A1T010049", "A1T010050", "A1T010047", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Cloud", "BOR", "3 years", "Quarterly in Arrears", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010053", "A1T010054", "A1T010055", "A1T010056", null)]
         public virtual void ScenarioOne(
                     string role, 
                     string country, 
@@ -131,21 +131,21 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Scenario Two")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "France", "Buy & Click", "Engagement sur un minimum volume de pages", "Cloud MPS Dealer", "Cloud", "BOR", "4 ans", "Half Yearly", "Included in Click Price", "Brother", "No", "MFC-L8650CDW", "MFC-L5750DW", "A1T010020", "A1T010021", "A1T010022", "A1T010023", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Italy", "Acquisto + Consumo con assistenza", "Volume minimo", "Cloud MPS Dealer", "Cloud", "BOR", "48", "Half Yearly", "Included in Click Price", "Brother", "No", "MFC-L8650CDW", "MFC-L5750DW", "A1T010020", "A1T010021", "A1T010022", "A1T010023", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Spain", "Purchase & Click con Service", "Volúmen mínimo", "Cloud MPS Dealer", "Cloud", "BOR", "4 años", "Half Yearly", "Included in Click Price", "Brother", "No", "MFC-L8650CDW", "MFC-L5750DW", "A1T010027", "A1T010024", "A1T010025", "A1T010026", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Denmark", "Purchase & Click with Service", "Minimumsvolumen", "Cloud MPS Dealer", "Cloud", "BOR", "4 år", "Half Yearly", "Included in Click Price", "Brother", "No", "MFC-L8650CDW", "MFC-L5750DW", "A1T010028", "A1T010029", "A1T010030", "A1T010031", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Sweden", "Purchase & click inklusive service", "Minimum volym", "Cloud MPS Dealer", "Cloud", "BOR", "48", "Half Yearly", "Included in Click Price", "Brother", "No", "MFC-L8650CDW", "MFC-L5750DW", "A1T010032", "A1T010033", "A1T010034", "A1T010035", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Netherlands", "Purchase + Click met Service", "Minimumvolume", "Cloud MPS Dealer", "Cloud", "BOR", "4 jaar", "Half Yearly", "Included in Click Price", "Brother", "No", "MFC-L8650CDW", "MFC-L5750DW", "A1T010036", "A1T010037", "A1T010038", "A1T010039", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Norway", "Kjøp og klikk med service", "Minimum volum", "Cloud MPS Dealer", "Cloud", "BOR", "48", "Half Yearly", "Included in Click Price", "Brother", "No", "MFC-L8650CDW", "MFC-L5750DW", "A1T010040", "A1T010041", "A1T010042", "A1T010043", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Ireland", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Cloud", "BOR", "4 years", "Half Yearly", "Included in Click Price", "Brother", "No", "MFC-L8650CDW", "MFC-L5750DW", "A1T010044", "A1T010045", "A1T010046", "A1T010047", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Poland", "Buy + Click", "Pakiet wydruków", "Cloud MPS Dealer", "Cloud", "BOR", "4 lata", "Half Yearly", "Included in Click Price", "Brother", "No", "MFC-L8650CDW", "MFC-L5750DW", "A1T010020", "A1T010021", "A1T010022", "A1T010023", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Cloud", "BOR", "4 years", "Half Yearly", "Included in Click Price", "Brother", "No", "MFC-L8650CDW", "MFC-L5750DW", "A1T010048", "A1T010049", "A1T010050", "A1T010047", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Finland", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Cloud", "BOR", "4 years", "Half Yearly", "Included in Click Price", "Brother", "No", "MFC-L8650CDW", "MFC-L5750DW", "A1T010020", "A1T010021", "A1T010022", "A1T010023", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Belgium", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Cloud", "BOR", "4 jaar", "Half Yearly", "Included in Click Price", "Brother", "No", "MFC-L8650CDW", "MFC-L5750DW", "A1T010020", "A1T010021", "A1T010022", "A1T010023", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Switzerland", "Purchase & Click with Service", "Mindestvolumen", "Cloud MPS Dealer", "Cloud", "BOR", "4 Jahre", "Half Yearly", "Included in Click Price", "Brother", "No", "MFC-L8650CDW", "MFC-L5750DW", "A1T010020", "A1T010021", "A1T010022", "A1T010023", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Germany", "Easy Print Pro & Service", "Mindestvolumen", "Cloud MPS Dealer", "Cloud", "BOR", "3 Jahre", "Quarterly in Arrears", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010020", "A1T010021", "A1T010022", "A1T010023", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Austria", "Easy Print Pro & Service", "Mindestvolumen", "Cloud MPS Dealer", "Cloud", "BOR", "3 Jahre", "Quarterly in Arrears", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010020", "A1T010021", "A1T010022", "A1T010023", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "France", "Buy & Click", "Engagement sur un minimum volume de pages", "Cloud MPS Dealer", "Cloud", "BOR", "4 ans", "Half Yearly", "Included in Click Price", "Brother", "No", "MFC-L8650CDW", "MFC-L5750DW", "A1T010077", "A1T010078", "A1T010079", "A1T010080", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Italy", "Acquisto + Consumo con assistenza", "Volume minimo", "Cloud MPS Dealer", "Cloud", "BOR", "48", "Half Yearly", "Included in Click Price", "Brother", "No", "MFC-L8650CDW", "MFC-L5750DW", "A1T010081", "A1T010082", "A1T010083", "A1T010084", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Spain", "Purchase & Click con Service", "Volúmen mínimo", "Cloud MPS Dealer", "Cloud", "BOR", "4 años", "Half Yearly", "Included in Click Price", "Brother", "No", "MFC-L8650CDW", "MFC-L5750DW", "A1T010085", "A1T010086", "A1T010087", "A1T010088", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Denmark", "Purchase & Click with Service", "Minimumsvolumen", "Cloud MPS Dealer", "Cloud", "BOR", "4 år", "Half Yearly", "Included in Click Price", "Brother", "No", "MFC-L8650CDW", "MFC-L5750DW", "A1T010089", "A1T010090", "A1T010091", "A1T010092", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Sweden", "Purchase & click inklusive service", "Minimum volym", "Cloud MPS Dealer", "Cloud", "BOR", "48", "Half Yearly", "Included in Click Price", "Brother", "No", "MFC-L8650CDW", "MFC-L5750DW", "A1T010093", "A1T010094", "A1T010095", "A1T010096", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Netherlands", "Purchase + Click met Service", "Minimumvolume", "Cloud MPS Dealer", "Cloud", "BOR", "4 jaar", "Half Yearly", "Included in Click Price", "Brother", "No", "MFC-L8650CDW", "MFC-L5750DW", "A1T010097", "A1T010098", "A1T010099", "A1T010100", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Ireland", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Cloud", "BOR", "4 years", "Half Yearly", "Included in Click Price", "Brother", "No", "MFC-L8650CDW", "MFC-L5750DW", "A1T010105", "A1T010106", "A1T010107", "A1T010108", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Poland", "Buy + Click", "Pakiet wydruków", "Cloud MPS Dealer", "Cloud", "BOR", "4 lata", "Half Yearly", "Included in Click Price", "Brother", "No", "MFC-L8650CDW", "MFC-L5750DW", "A1T010109", "A1T010110", "A1T010111", "A1T010112", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Cloud", "BOR", "4 years", "Half Yearly", "Included in Click Price", "Brother", "No", "MFC-L8650CDW", "MFC-L5750DW", "A1T010113", "A1T010114", "A1T010115", "A1T010116", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Belgium", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Cloud", "BOR", "4 jaar", "Half Yearly", "Included in Click Price", "Brother", "No", "MFC-L8650CDW", "MFC-L5750DW", "A1T010121", "A1T010122", "A1T010123", "A1T010124", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Germany", "Easy Print Pro & Service", "Mindestvolumen", "Cloud MPS Dealer", "Cloud", "BOR", "3 Jahre", "Halbjährlich", "Included in Click Price", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010129", "A1T010130", "A1T010131", "A1T010132", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Austria", "Easy Print Pro & Service", "Mindestvolumen", "Cloud MPS Dealer", "Cloud", "BOR", "3 Jahre", "Halbjährlich", "Included in Click Price", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010133", "A1T010134", "A1T010135", "A1T010136", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Norway", "Kjøp og klikk med service", "Minimum volum", "Cloud MPS Dealer", "Cloud", "BOR", "48", "Half Yearly", "Included in Click Price", "Brother", "No", "MFC-L8650CDW", "MFC-L5750DW", "A1T010101", "A1T010102", "A1T010103", "A1T010104", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Switzerland", "Purchase & Click with Service", "Mindestvolumen", "Cloud MPS Dealer", "Cloud", "BOR", "4 Jahre", "Half Yearly", "Included in Click Price", "Brother", "No", "MFC-L8650CDW", "MFC-L5750DW", "A1T010125", "A1T010126", "A1T010127", "A1T010128", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Finland", "Purchase & Click with Service", "Minimitulostusmäärä", "Cloud MPS Dealer", "Cloud", "BOR", "4 vuotta", "Half Yearly", "Included in Click Price", "Brother", "No", "MFC-L8650CDW", "MFC-L5750DW", "A1T010117", "A1T010118", "A1T010119", "A1T010120", null)]
         public virtual void ScenarioTwo(
                     string role, 
                     string country, 
@@ -203,21 +203,21 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Scenario Three")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "France", "Buy & Click", "Engagement sur un minimum volume de pages", "Cloud MPS Dealer", "Cloud", "BOR", "5 ans", "Monthly", "Included in Click Price", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010020", "A1T010021", "A1T010022", "A1T010023", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Italy", "Acquisto + Consumo con assistenza", "Volume minimo", "Cloud MPS Dealer", "Cloud", "BOR", "60", "Monthly", "Included in Click Price", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010020", "A1T010021", "A1T010022", "A1T010023", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Spain", "Purchase & Click con Service", "Volúmen mínimo", "Cloud MPS Dealer", "Cloud", "BOR", "5 años", "Monthly", "Included in Click Price", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010027", "A1T010024", "A1T010025", "A1T010026", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Denmark", "Purchase & Click with Service", "Minimumsvolumen", "Cloud MPS Dealer", "Cloud", "BOR", "5 år", "Monthly", "Included in Click Price", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010028", "A1T010029", "A1T010030", "A1T010031", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Sweden", "Purchase & click inklusive service", "Minimum volym", "Cloud MPS Dealer", "Cloud", "BOR", "60", "Monthly", "Included in Click Price", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010032", "A1T010033", "A1T010034", "A1T010035", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Netherlands", "Purchase + Click met Service", "Minimumvolume", "Cloud MPS Dealer", "Cloud", "BOR", "5 jaar", "Monthly", "Included in Click Price", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010036", "A1T010037", "A1T010038", "A1T010039", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Norway", "Kjøp og klikk med service", "Minimum volum", "Cloud MPS Dealer", "Cloud", "BOR", "60", "Monthly", "Included in Click Price", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010040", "A1T010041", "A1T010042", "A1T010043", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Ireland", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Cloud", "BOR", "5 years", "Monthly", "Included in Click Price", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010044", "A1T010045", "A1T010046", "A1T010047", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Poland", "Buy + Click", "Pakiet wydruków", "Cloud MPS Dealer", "Cloud", "BOR", "5 lata", "Monthly", "Included in Click Price", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010020", "A1T010021", "A1T010022", "A1T010023", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Cloud", "BOR", "5 years", "Monthly", "Included in Click Price", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010048", "A1T010049", "A1T010050", "A1T010047", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Finland", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Cloud", "BOR", "5 years", "Monthly", "Included in Click Price", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010020", "A1T010021", "A1T010022", "A1T010023", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Belgium", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Cloud", "BOR", "5 jaar", "Monthly", "Included in Click Price", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010020", "A1T010021", "A1T010022", "A1T010023", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Switzerland", "Purchase & Click with Service", "Mindestvolumen", "Cloud MPS Dealer", "Cloud", "BOR", "5 Jahre", "Monthly", "Included in Click Price", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010020", "A1T010021", "A1T010022", "A1T010023", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Germany", "Easy Print Pro & Service", "Mindestvolumen", "Cloud MPS Dealer", "Cloud", "BOR", "3 Jahre", "Quarterly in Arrears", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010020", "A1T010021", "A1T010022", "A1T010023", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Austria", "Easy Print Pro & Service", "Mindestvolumen", "Cloud MPS Dealer", "Cloud", "BOR", "3 Jahre", "Quarterly in Arrears", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010020", "A1T010021", "A1T010022", "A1T010023", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "France", "Buy & Click", "Engagement sur un minimum volume de pages", "Cloud MPS Dealer", "Cloud", "BOR", "5 ans", "Monthly", "Included in Click Price", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010137", "A1T010138", "A1T010139", "A1T010140", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Italy", "Acquisto + Consumo con assistenza", "Volume minimo", "Cloud MPS Dealer", "Cloud", "BOR", "60", "Monthly", "Included in Click Price", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010141", "A1T010142", "A1T010143", "A1T010144", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Spain", "Purchase & Click con Service", "Volúmen mínimo", "Cloud MPS Dealer", "Cloud", "BOR", "5 años", "Monthly", "Included in Click Price", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010145", "A1T010146", "A1T010147", "A1T010148", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Denmark", "Purchase & Click with Service", "Minimumsvolumen", "Cloud MPS Dealer", "Cloud", "BOR", "5 år", "Monthly", "Included in Click Price", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010149", "A1T010150", "A1T010151", "A1T010152", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Sweden", "Purchase & click inklusive service", "Minimum volym", "Cloud MPS Dealer", "Cloud", "BOR", "60", "Monthly", "Included in Click Price", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010153", "A1T010154", "A1T010155", "A1T010156", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Netherlands", "Purchase + Click met Service", "Minimumvolume", "Cloud MPS Dealer", "Cloud", "BOR", "5 jaar", "Monthly", "Included in Click Price", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010157", "A1T010158", "A1T010159", "A1T010160", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Ireland", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Cloud", "BOR", "5 years", "Monthly", "Included in Click Price", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010165", "A1T010166", "A1T010167", "A1T010168", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Poland", "Buy + Click", "Pakiet wydruków", "Cloud MPS Dealer", "Cloud", "BOR", "5 lata", "Monthly", "Included in Click Price", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010169", "A1T010170", "A1T010171", "A1T010172", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Cloud", "BOR", "5 years", "Monthly", "Included in Click Price", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010173", "A1T010174", "A1T010175", "A1T010176", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Belgium", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Cloud", "BOR", "5 jaar", "Monthly", "Included in Click Price", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010181", "A1T010182", "A1T010183", "A1T010184", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Germany", "Easy Print Pro & Service", "Mindestvolumen", "Cloud MPS Dealer", "Cloud", "BOR", "3 Jahre", "Halbjährlich", "Included in Click Price", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010189", "A1T010190", "A1T010191", "A1T010192", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Austria", "Easy Print Pro & Service", "Mindestvolumen", "Cloud MPS Dealer", "Cloud", "BOR", "3 Jahre", "Halbjährlich", "Included in Click Price", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010193", "A1T010194", "A1T010195", "A1T010196", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Norway", "Kjøp og klikk med service", "Minimum volum", "Cloud MPS Dealer", "Cloud", "BOR", "60", "Monthly", "Included in Click Price", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010161", "A1T010162", "A1T010163", "A1T010164", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Finland", "Purchase & Click with Service", "Minimitulostusmäärä", "Cloud MPS Dealer", "Cloud", "BOR", "5 vuotta", "Monthly", "Included in Click Price", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010177", "A1T010178", "A1T010179", "A1T010180", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Switzerland", "Purchase & Click with Service", "Mindestvolumen", "Cloud MPS Dealer", "Cloud", "BOR", "5 Jahre", "Monthly", "Included in Click Price", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010185", "A1T010186", "A1T010187", "A1T010188", null)]
         public virtual void ScenarioThree(
                     string role, 
                     string country, 
@@ -275,21 +275,21 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Scenario Four")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "France", "Buy & Click", "Pay As You Go", "Cloud MPS Dealer", "Cloud", "BOR", "3 ans", "Trimestrale anticipata", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010020", "A1T010021", "A1T010022", "A1T010023", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Italy", "Acquisto + Consumo con assistenza", "Pay As You Go", "Cloud MPS Dealer", "Cloud", "BOR", "36", "Trimestrale anticipata", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010020", "A1T010021", "A1T010022", "A1T010023", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Spain", "Purchase & Click con Service", "Pay As You Go", "Cloud MPS Dealer", "Cloud", "BOR", "3 años", "Por trimestres vencidos", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010027", "A1T010024", "A1T010025", "A1T010026", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Denmark", "Purchase & Click with Service", "Pay As You Go", "Cloud MPS Dealer", "Cloud", "BOR", "3 år", "Quarterly in Arrears", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010028", "A1T010029", "A1T010030", "A1T010031", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Sweden", "Purchase & click inklusive service", "Pay As You Go", "Cloud MPS Dealer", "Cloud", "BOR", "36", "Quarterly in Arrears", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010032", "A1T010033", "A1T010034", "A1T010035", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Netherlands", "Purchase + Click met Service", "Pay As You Go", "Cloud MPS Dealer", "Cloud", "BOR", "3 jaar", "Quarterly in Arrears", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010036", "A1T010037", "A1T010038", "A1T010039", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Norway", "Kjøp og klikk med service", "Pay As You Go", "Cloud MPS Dealer", "Cloud", "BOR", "36", "Quarterly in Arrears", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010040", "A1T010041", "A1T010042", "A1T010043", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Ireland", "Purchase & Click with Service", "Pay As You Go", "Cloud MPS Dealer", "Cloud", "BOR", "3 years", "Quarterly in Arrears", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010044", "A1T010045", "A1T010046", "A1T010047", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Poland", "Buy + Click", "Pay As You Go", "Cloud MPS Dealer", "Cloud", "BOR", "3 lata", "Quarterly in Arrears", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010020", "A1T010021", "A1T010022", "A1T010023", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Pay As You Go", "Cloud MPS Dealer", "Cloud", "BOR", "3 years", "Quarterly in Arrears", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010048", "A1T010049", "A1T010050", "A1T010047", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Finland", "Purchase & Click with Service", "Pay As You Go", "Cloud MPS Dealer", "Cloud", "BOR", "3 years", "Quarterly in Arrears", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010020", "A1T010021", "A1T010022", "A1T010023", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Belgium", "Purchase & Click with Service", "Pay As You Go", "Cloud MPS Dealer", "Cloud", "BOR", "3 jaar", "Quarterly in Arrears", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010020", "A1T010021", "A1T010022", "A1T010023", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Switzerland", "Purchase & Click with Service", "Pay As You Go", "Cloud MPS Dealer", "Cloud", "BOR", "3 Jahre", "Quarterly in Arrears", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010020", "A1T010021", "A1T010022", "A1T010023", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Germany", "Easy Print Pro & Service", "Mindestvolumen", "Cloud MPS Dealer", "Cloud", "BOR", "3 Jahre", "Quarterly in Arrears", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010020", "A1T010021", "A1T010022", "A1T010023", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Austria", "Easy Print Pro & Service", "Mindestvolumen", "Cloud MPS Dealer", "Cloud", "BOR", "3 Jahre", "Quarterly in Arrears", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010020", "A1T010021", "A1T010022", "A1T010023", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "France", "Buy & Click", "Pay As You Go", "Cloud MPS Dealer", "Cloud", "BOR", "3 ans", "Trimestrale anticipata", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010197", "A1T010198", "A1T010199", "A1T010200", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Italy", "Acquisto + Consumo con assistenza", "Pay As You Go", "Cloud MPS Dealer", "Cloud", "BOR", "36", "Trimestrale anticipata", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010201", "A1T010202", "A1T010203", "A1T010204", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Spain", "Purchase & Click con Service", "Pay As You Go", "Cloud MPS Dealer", "Cloud", "BOR", "3 años", "Por trimestres vencidos", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010205", "A1T010206", "A1T010207", "A1T010208", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Denmark", "Purchase & Click with Service", "Pay As You Go", "Cloud MPS Dealer", "Cloud", "BOR", "3 år", "Quarterly in Arrears", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010209", "A1T010210", "A1T010211", "A1T010212", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Sweden", "Purchase & click inklusive service", "Pay As You Go", "Cloud MPS Dealer", "Cloud", "BOR", "36", "Quarterly in Arrears", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010213", "A1T010214", "A1T010215", "A1T010216", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Netherlands", "Purchase + Click met Service", "Pay As You Go", "Cloud MPS Dealer", "Cloud", "BOR", "3 jaar", "Quarterly in Arrears", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010217", "A1T010218", "A1T010219", "A1T010220", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Ireland", "Purchase & Click with Service", "Pay As You Go", "Cloud MPS Dealer", "Cloud", "BOR", "3 years", "Quarterly in Arrears", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010225", "A1T010226", "A1T010227", "A1T010228", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Poland", "Buy + Click", "Pay As You Go", "Cloud MPS Dealer", "Cloud", "BOR", "3 lata", "Quarterly in Arrears", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010229", "A1T010230", "A1T010231", "A1T010232", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Pay As You Go", "Cloud MPS Dealer", "Cloud", "BOR", "3 years", "Quarterly in Arrears", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010233", "A1T010234", "A1T010235", "A1T010236", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Belgium", "Purchase & Click with Service", "Pay As You Go", "Cloud MPS Dealer", "Cloud", "BOR", "3 jaar", "Quarterly in Arrears", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010241", "A1T010242", "A1T010243", "A1T010244", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Germany", "Easy Print Pro & Service", "Pay As You Go", "Cloud MPS Dealer", "Cloud", "BOR", "3 Jahre", "Halbjährlich", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010249", "A1T010250", "A1T010251", "A1T010252", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Austria", "Easy Print Pro & Service", "Pay As You Go", "Cloud MPS Dealer", "Cloud", "BOR", "3 Jahre", "Halbjährlich", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010253", "A1T010254", "A1T010255", "A1T010256", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Switzerland", "Purchase & Click with Service", "Pay As You Go", "Cloud MPS Dealer", "Cloud", "BOR", "3 Jahre", "Quarterly in Arrears", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010245", "A1T010246", "A1T010247", "A1T010248", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Finland", "Purchase & Click with Service", "Maksu tulosteiden mukaan", "Cloud MPS Dealer", "Cloud", "BOR", "3 vuotta", "Quarterly in Arrears", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010237", "A1T010238", "A1T010239", "A1T010240", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Norway", "Kjøp og klikk med service", "Pay As You Go", "Cloud MPS Dealer", "Cloud", "BOR", "36", "Quarterly in Arrears", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010221", "A1T010222", "A1T010223", "A1T010224", null)]
         public virtual void ScenarioFour(
                     string role, 
                     string country, 
@@ -347,8 +347,8 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Scenario Five")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Bank", "Germany", "Leasing & Service", "Mindestvolumen", "Cloud MPS Dealer", "Cloud", "BOR", "3 Jahre", "Trimestrale anticipata", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010020", "A1T010021", "A1T010022", "A1T010023", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Bank", "Austria", "Leasing & Service", "Mindestvolumen", "Cloud MPS Dealer", "Cloud", "BOR", "3 Jahre", "Trimestrale anticipata", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010020", "A1T010021", "A1T010022", "A1T010023", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Bank", "Germany", "Leasing & Service", "Mindestvolumen", "Cloud MPS Dealer", "Cloud", "BOR", "3 Jahre", "Monatlich", "Halbjährlich", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010257", "A1T010258", "A1T010259", "A1T010260", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Bank", "Austria", "Leasing & Service", "Mindestvolumen", "Cloud MPS Dealer", "Cloud", "BOR", "3 Jahre", "Monatlich", "Halbjährlich", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010261", "A1T010262", "A1T010263", "A1T010264", null)]
         public virtual void ScenarioFive(
                     string role, 
                     string country, 
@@ -358,6 +358,7 @@ this.ScenarioSetup(scenarioInfo);
                     string method, 
                     string type, 
                     string length, 
+                    string leasing, 
                     string billing, 
                     string servicePack, 
                     string installation, 
@@ -374,8 +375,8 @@ this.ScenarioSetup(scenarioInfo);
 #line 150
 this.ScenarioSetup(scenarioInfo);
 #line 151
- testRunner.Given(string.Format("\"{0}\" Dealer have created \"{1}\" with contract \"{2}\" \"{3}\" and \"<Leasing>\" and \"{4" +
-                        "}\" and \"{5}\" and \"{6}\" and \"{7}\" and \"{8}\" and \"{9}\"", country, contractType, usageType, length, billing, servicePack, installation, delivery, device1, device2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given(string.Format("\"{0}\" Dealer have created \"{1}\" with contract \"{2}\" \"{3}\" and \"{4}\" and \"{5}\" and" +
+                        " \"{6}\" and \"{7}\" and \"{8}\" and \"{9}\" and \"{10}\"", country, contractType, usageType, length, leasing, billing, servicePack, installation, delivery, device1, device2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 152
  testRunner.And(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 153
@@ -406,8 +407,8 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Scenario Six")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Bank", "Germany", "Leasing & Service", "Mindestvolumen", "Cloud MPS Dealer", "Cloud", "BOR", "5 Jahre", "Trimestrale anticipata", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010020", "A1T010021", "A1T010022", "A1T010023", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Bank", "Austria", "Leasing & Service", "Mindestvolumen", "Cloud MPS Dealer", "Cloud", "BOR", "5 Jahre", "Trimestrale anticipata", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010020", "A1T010021", "A1T010022", "A1T010023", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Bank", "Germany", "Leasing & Service", "Mindestvolumen", "Cloud MPS Dealer", "Cloud", "BOR", "5 Jahre", "Vierteljährlich", "Halbjährlich", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010265", "A1T010266", "A1T010267", "A1T010268", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Bank", "Austria", "Leasing & Service", "Mindestvolumen", "Cloud MPS Dealer", "Cloud", "BOR", "5 Jahre", "Vierteljährlich", "Halbjährlich", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010269", "A1T010270", "A1T010271", "A1T010272", null)]
         public virtual void ScenarioSix(
                     string role, 
                     string country, 
@@ -417,6 +418,7 @@ this.ScenarioSetup(scenarioInfo);
                     string method, 
                     string type, 
                     string length, 
+                    string leasing, 
                     string billing, 
                     string servicePack, 
                     string installation, 
@@ -433,8 +435,8 @@ this.ScenarioSetup(scenarioInfo);
 #line 171
 this.ScenarioSetup(scenarioInfo);
 #line 172
- testRunner.Given(string.Format("\"{0}\" Dealer have created \"{1}\" with contract \"{2}\" \"{3}\" and \"<Leasing>\" and \"{4" +
-                        "}\" and \"{5}\" and \"{6}\" and \"{7}\" and \"{8}\" and \"{9}\"", country, contractType, usageType, length, billing, servicePack, installation, delivery, device1, device2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given(string.Format("\"{0}\" Dealer have created \"{1}\" with contract \"{2}\" \"{3}\" and \"{4}\" and \"{5}\" and" +
+                        " \"{6}\" and \"{7}\" and \"{8}\" and \"{9}\" and \"{10}\"", country, contractType, usageType, length, leasing, billing, servicePack, installation, delivery, device1, device2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 173
  testRunner.And(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 174
@@ -465,8 +467,8 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Scenario Seven")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Bank", "Germany", "Leasing & Service", "Mindestvolumen", "Cloud MPS Dealer", "Cloud", "BOR", "5 Jahre", "Trimestrale anticipata", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010020", "A1T010021", "A1T010022", "A1T010023", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Bank", "Austria", "Leasing & Service", "Mindestvolumen", "Cloud MPS Dealer", "Cloud", "BOR", "5 Jahre", "Trimestrale anticipata", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010020", "A1T010021", "A1T010022", "A1T010023", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Bank", "Germany", "Leasing & Service", "Mindestvolumen", "Cloud MPS Dealer", "Cloud", "BOR", "5 Jahre", "Monatlich", "Halbjährlich", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010273", "A1T010274", "A1T010275", "A1T010276", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Bank", "Austria", "Leasing & Service", "Mindestvolumen", "Cloud MPS Dealer", "Cloud", "BOR", "5 Jahre", "Monatlich", "Halbjährlich", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010277", "A1T010278", "A1T010279", "A1T010280", null)]
         public virtual void ScenarioSeven(
                     string role, 
                     string country, 
@@ -476,6 +478,7 @@ this.ScenarioSetup(scenarioInfo);
                     string method, 
                     string type, 
                     string length, 
+                    string leasing, 
                     string billing, 
                     string servicePack, 
                     string installation, 
@@ -492,8 +495,8 @@ this.ScenarioSetup(scenarioInfo);
 #line 192
 this.ScenarioSetup(scenarioInfo);
 #line 193
- testRunner.Given(string.Format("\"{0}\" Dealer have created \"{1}\" with contract \"{2}\" \"{3}\" and \"<Leasing>\" and \"{4" +
-                        "}\" and \"{5}\" and \"{6}\" and \"{7}\" and \"{8}\" and \"{9}\"", country, contractType, usageType, length, billing, servicePack, installation, delivery, device1, device2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given(string.Format("\"{0}\" Dealer have created \"{1}\" with contract \"{2}\" \"{3}\" and \"{4}\" and \"{5}\" and" +
+                        " \"{6}\" and \"{7}\" and \"{8}\" and \"{9}\" and \"{10}\"", country, contractType, usageType, length, leasing, billing, servicePack, installation, delivery, device1, device2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 194
  testRunner.And(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 195
@@ -524,8 +527,8 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Scenario Eight")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Bank", "Germany", "Leasing & Service", "Mindestvolumen", "Cloud MPS Dealer", "Cloud", "BOR", "5 Jahre", "Trimestrale anticipata", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010020", "A1T010021", "A1T010022", "A1T010023", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Bank", "Austria", "Leasing & Service", "Mindestvolumen", "Cloud MPS Dealer", "Cloud", "BOR", "5 Jahre", "Trimestrale anticipata", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010020", "A1T010021", "A1T010022", "A1T010023", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Bank", "Germany", "Leasing & Service", "Mindestvolumen", "Cloud MPS Dealer", "Cloud", "BOR", "5 Jahre", "Vierteljährlich", "Halbjährlich", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010281", "A1T010282", "A1T010283", "A1T010284", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Bank", "Austria", "Leasing & Service", "Mindestvolumen", "Cloud MPS Dealer", "Cloud", "BOR", "5 Jahre", "Vierteljährlich", "Halbjährlich", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010285", "A1T010286", "A1T010287", "A1T010288", null)]
         public virtual void ScenarioEight(
                     string role, 
                     string country, 
@@ -535,6 +538,7 @@ this.ScenarioSetup(scenarioInfo);
                     string method, 
                     string type, 
                     string length, 
+                    string leasing, 
                     string billing, 
                     string servicePack, 
                     string installation, 
@@ -551,8 +555,8 @@ this.ScenarioSetup(scenarioInfo);
 #line 213
 this.ScenarioSetup(scenarioInfo);
 #line 214
- testRunner.Given(string.Format("\"{0}\" Dealer have created \"{1}\" with contract \"{2}\" \"{3}\" and \"<Leasing>\" and \"{4" +
-                        "}\" and \"{5}\" and \"{6}\" and \"{7}\" and \"{8}\" and \"{9}\"", country, contractType, usageType, length, billing, servicePack, installation, delivery, device1, device2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given(string.Format("\"{0}\" Dealer have created \"{1}\" with contract \"{2}\" \"{3}\" and \"{4}\" and \"{5}\" and" +
+                        " \"{6}\" and \"{7}\" and \"{8}\" and \"{9}\" and \"{10}\"", country, contractType, usageType, length, leasing, billing, servicePack, installation, delivery, device1, device2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 215
  testRunner.And(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 216
