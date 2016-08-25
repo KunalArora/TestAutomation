@@ -514,7 +514,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     break;
 
                 default:
-                    lang = "Direct Debit";
+                    lang = "Suoraveloitus";
                     break;
             }
 

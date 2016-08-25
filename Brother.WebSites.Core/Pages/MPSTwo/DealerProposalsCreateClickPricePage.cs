@@ -58,6 +58,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement DisabledCalculateButtonElement;
         [FindsBy(How = How.CssSelector, Using = ".alert-danger.mps-alert.js-mps-alert strong")]
         public IWebElement WarningAlertElement;
+        [FindsBy(How = How.CssSelector, Using = "[id*=\"content_1_LineItems_InputMonoMargin_\"]")]
+        public IList<IWebElement> MonoClickPriceMarginElements;
+        [FindsBy(How = How.CssSelector, Using = "[id*=\"content_1_LineItems_InputColourMargin_\"]")]
+        public IList<IWebElement> ColourClickPriceMarginElements;
+        
+        
         
 
 
@@ -201,6 +207,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 SelectFromDropdown(MultiColourVolumeDropdownElement.ElementAt(i), colour);
             }
 
+            EnterClickPriceMargin("16");
+
+            WebDriver.Wait(DurationType.Second, 2);
+
             CalculateClickPriceElement.Click();
 
             WebDriver.Wait(DurationType.Second, 5);
@@ -225,12 +235,39 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 ClearAndType(MultiColourVolumeInputFieldElement.ElementAt(i), colour);
             }
 
+            EnterClickPriceMargin("16");
+
+            WebDriver.Wait(DurationType.Second, 2);
+
             CalculateClickPriceElement.Click();
 
             WebDriver.Wait(DurationType.Second, 5);
             ClickPriceNextButton().Click();
 
             return GetTabInstance<DealerProposalsCreateSummaryPage>(Driver);
+        }
+
+
+        public void EnterClickPriceMargin(string value)
+        {
+            if (MonoClickPriceMarginElements != null && (MonoClickPriceMarginElements != null || MonoClickPriceMarginElements.Any()))
+            {
+                foreach (var monoClickPriceMarginElement in MonoClickPriceMarginElements)
+                {
+                    ClearAndType(monoClickPriceMarginElement, value);
+                }
+                
+            }
+
+            if (ColourClickPriceMarginElements != null && (ColourClickPriceMarginElements != null || ColourClickPriceMarginElements.Any()))
+            {
+                foreach (var colourClickPriceMarginElement in ColourClickPriceMarginElements)
+                {
+                    ClearAndType(colourClickPriceMarginElement, value);
+                }
+
+            }
+            
         }
 
         private void EnterMultipleClickPriceValueAndCalculate(string volume, string colour, string row)
