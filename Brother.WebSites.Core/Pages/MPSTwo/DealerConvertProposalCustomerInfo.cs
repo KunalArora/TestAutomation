@@ -140,6 +140,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement CustomerPositionElement;
         [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerCostCentre_Input")]
         public IWebElement CostCentreElement;
+        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputPersonMobile_Input")]
+        public IWebElement MobileElement;
+        
 
         
 
@@ -225,10 +228,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 SelectFromDropdown(LegalFormDropdown, "Aktiebolag");
             }
-            else if (IsFinlandSystem())
-            {
-                SelectFromDropdown(LegalFormDropdown, "Church");
-            }
             else if (IsNorwaySystem())
             {
                 SelectFromDropdown(LegalFormDropdown, "Church");
@@ -254,7 +253,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private String SwissLegalForm()
         {
             string lang;
-            var language = SpecFlow.GetContext("BelgianLanguage");
+            string language;
+
+            try
+            {
+                language = SpecFlow.GetContext("BelgianLanguage");
+            }
+            catch (KeyNotFoundException)
+            {
+
+                language = "Français";
+            }
 
             switch (language)
             {
@@ -276,7 +285,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private String BelgianLegalForm()
         {
             string lang;
-            var language = SpecFlow.GetContext("BelgianLanguage");
+
+            string language;
+
+            try
+            {
+                language = SpecFlow.GetContext("BelgianLanguage");
+            }
+            catch (KeyNotFoundException)
+            {
+
+                language = "French";
+            }
 
             switch (language)
             {
@@ -412,7 +432,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void SelectATradingStyle()
         {
             if (IsUKSystem()||IsSpainSystem()|| IsIrelandSystem() || IsSwedenSystem() || IsDenmarkSystem() 
-                || IsNorwaySystem() || IsFinlandSystem()|| IsSwissSystem() || IsSwedenSystem())
+                || IsNorwaySystem() || IsSwissSystem() || IsSwedenSystem())
                 SelectFromDropdown(TradingStyleElement, TradingStyle());
                 WebDriver.Wait(DurationType.Second, 3);
         }
@@ -480,7 +500,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private String BelgianLanguage()
         {
             string lang;
-            var language = SpecFlow.GetContext("BelgianLanguage");
+            string language;
+
+            try
+            {
+                language = SpecFlow.GetContext("BelgianLanguage");
+            }
+            catch (KeyNotFoundException)
+            {
+
+                language = "French";
+            }
 
             switch (language)
             {
@@ -502,7 +532,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private String FinnishLanguage()
         {
             string lang;
-            var language = SpecFlow.GetContext("BelgianLanguage");
+
+            string language;
+            try
+            {
+                language = SpecFlow.GetContext("BelgianLanguage");
+            }
+            catch (KeyNotFoundException)
+            {
+
+                language = "Suomi";
+            }
 
             switch (language)
             {
@@ -524,19 +564,31 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private String SwissLanguage()
         {
             string lang;
-            var language = SpecFlow.GetContext("BelgianLanguage");
+
+            string language;
+            try
+            {
+                language = SpecFlow.GetContext("BelgianLanguage");
+            }
+            catch (KeyNotFoundException)
+            {
+
+                language = "Français";
+            }
 
             switch (language)
             {
                 case "Français":
-                    lang = "Débit direct";
+                    //lang = "Débit direct";
+                    lang = "LSV";
                     break;
                 case "Deutsch":
                     lang = "Bankeinzug";
+                    //lang = "LSV";
                     break;
 
                 default:
-                    lang = "Bankeinzug";
+                    lang = "LSV";
                     break;
             }
 
@@ -545,19 +597,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterBankName()
         {
-            if (IsNetherlandSystem()) return;
+            if (IsNetherlandSystem()|| IsNorwaySystem()) return;
             ClearAndType(BankNameElement, "BNP Paribus");
         }
 
         public void EnterBankAccountNumber()
         {
-            if (IsNetherlandSystem() || IsSpainSystem()) return;
+            if (IsNetherlandSystem() || IsSpainSystem() || IsNorwaySystem()) return;
             ClearAndType(BankAccountNumberElement, "45789635");
         }
 
         public void EnterBankSortCode()
         {
-            if (IsNetherlandSystem() || IsBelgiumSystem() || IsPolandSystem() || IsSpainSystem()) return;
+            if (IsNetherlandSystem() || IsBelgiumSystem() || IsPolandSystem() || IsSpainSystem() || IsNorwaySystem()) return;
             ClearAndType(BankSortCodeElement, "014215");
         }
 
@@ -661,7 +713,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void EnterCostCentre()
         {
-            if (IsSwedenSystem() || IsDenmarkSystem()|| IsNetherlandSystem())
+            if (IsSwedenSystem() || IsDenmarkSystem() || IsNetherlandSystem() || IsNorwaySystem())
             {
                 ClearAndType(CostCentreElement, "Marketing");
             }
@@ -694,6 +746,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 FillPolandOrgDetail();
             }
 
+            if (IsBelgiumSystem()||IsFranceSystem())
+            {
+                MobileElement.SendKeys("01234567890");
+            }
+
             if(IsNetherlandSystem())
                 CustomerCanOrderConsumables();
         }
@@ -711,8 +768,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterAllBankInformation()
         {
-            if (IsDenmarkSystem() || IsSwedenSystem()) return;
+            if (IsDenmarkSystem() || IsSwedenSystem()||IsFinlandSystem()) return;
             SelectAPaymentType();
+            if (IsNorwaySystem()) return;
             EnterBankName();
             EnterBankAccountNumber();
             EnterBankSortCode();

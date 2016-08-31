@@ -106,6 +106,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [FindsBy(How = How.CssSelector, Using = "#content_0_DeviceInstallList_List_CellConnectionStatus_0 .glyphicon-ok")] 
         public IWebElement CloudInstallationConnectionStatusIconElements;
 
+        [FindsBy(How = How.CssSelector, Using = "[id*=\"content_0_DeviceInstallList_List_CellConnectionStatus_\"] .glyphicon-ok")]
+        public IList<IWebElement> CloudInstallationMultipleConnectionStatusIconElements;
+        
+
         [FindsBy(How = How.CssSelector, Using = ".js-mps-pin-code")] 
         public IWebElement CloudInstallationWebInstallPinElements;
         [FindsBy(How = How.CssSelector, Using = "#WhereIsMySerialNumberModal .modal-header [type=\"button\"][data-dismiss=\"modal\"]")] 
@@ -619,6 +623,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             RetryClickingAction("#content_0_ButtonRefresh", "#content_0_DeviceInstallList_List_CellConnectionStatus_0 .glyphicon-ok", 15, 5);
         }
 
+        public void RefreshCloudMultipleInstallation()
+        {
+            RetryMulyipleClodAssertion("#content_0_ButtonRefresh", "[id*=\"content_0_DeviceInstallList_List_CellConnectionStatus_\"] .glyphicon-ok", 15, 5);
+        }
+
+       
+
         private void GetWebInstallationPin()
         {
             var webInstalPin = CloudInstallationWebInstallPinElements.GetAttribute("value");
@@ -661,6 +672,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             MpsJobRunnerPage.RunCompleteInstallationCommandJob();
            
+        }
+
+        public void ConfirmMultipleInstallationSucceed()
+        {
+                TestCheck.AssertIsEqual(true, CompleteCloudInstallationComfirmationElement.Displayed,
+                "Installation not successful");
+                TestCheck.AssertIsEqual(true, CloudInstallationConnectionStatusIconElements.Displayed, "Device is not connect");
+                //WaitForElementToBeClickableById("content_0_InstallationSuccessfullyFinished", 10);
+                CompleteCloudInstallationComfirmationElement.Click();
+                MpsJobRunnerPage.NotifyBocOfNewChanges();
+                MpsJobRunnerPage.RunCompleteInstallationCommandJob();
+
         }
 
         public void ConfirmCompleteMessageIsDisplayed()
