@@ -52,18 +52,40 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             if (IsBelgiumSystem())
             {
-                var language = SpecFlow.GetContext("BelgianLanguage");
-                SwitchBelgianLanguage(language);
+                try
+                {
+                    var language = SpecFlow.GetContext("BelgianLanguage");
+                    SwitchBelgianLanguage(language);
+                }
+                catch (KeyNotFoundException keyNotFound)
+                {
+                    //Do nothing
+                }
+                
             }
             else if (IsFinlandSystem())
             {
-                var language = SpecFlow.GetContext("BelgianLanguage");
-                SwitchFinnishLanguage(language);
+                try
+                {
+                    var language = SpecFlow.GetContext("BelgianLanguage");
+                    SwitchFinnishLanguage(language);
+                }
+                catch (KeyNotFoundException keyNotFound)
+                {
+                   //Do nothing
+                }
             }
             else if (IsSwissSystem())
             {
-                var language = SpecFlow.GetContext("BelgianLanguage");
-                SwitchSwissLanguage(language);
+                try
+                {
+                    var language = SpecFlow.GetContext("BelgianLanguage");
+                    SwitchSwissLanguage(language);
+                }
+                catch (KeyNotFoundException keyNotFound)
+                {
+                   //Do nothing
+                }
             }
 
          }

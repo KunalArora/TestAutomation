@@ -246,26 +246,37 @@ namespace Brother.Tests.Specs.MPSTwo.CalculationEngine
             {
                 NextPage = CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateEnteredMultipleClickPrice("1000", "1000");
             }
-
+            
         }
 
 
         private string UsageType(string usageType)
         {
             var type = "";
-            if (usageType.Equals("Minimum Volume") || usageType.Equals("Engagement sur un minimum volume de pages") ||
-                usageType.Equals("Volume minimo") || usageType.Equals("Volúmen mínimo") ||
-                usageType.Equals("Minimumvolume")
-                || usageType.Equals("Minimum volum") || usageType.Equals("Minimum volym") ||
-                usageType.Equals("Minimumsvolumen")
-                || usageType.Equals("Minimumsvolumen") || usageType.Equals("Pakiet wydruków"))
+            if (usageType.Equals("Minimum Volume") 
+                || usageType.Equals("Engagement sur un minimum volume de pages") 
+                || usageType.Equals("Volume minimo") 
+                || usageType.Equals("Volúmen mínimo") 
+                || usageType.Equals("Minimumvolume") 
+                || usageType.Equals("Minimum volum") 
+                || usageType.Equals("Minimum volym") 
+                || usageType.Equals("Minimumsvolumen")
+                || usageType.Equals("Minimumsvolumen") 
+                || usageType.Equals("Pakiet wydruków")
+                || usageType.Equals("Mindestvolumen"))
+                
             {
                 type = "Minimum Volume";
             }
-            else if (usageType.Equals("Pay As You Go") || usageType.Equals("Pago por Uso") ||
-                     usageType.Equals("Betale ved forbruk")
-                     || usageType.Equals("Betala per utskrift") || usageType.Equals("Betalen naar verbruik") ||
-                     usageType.Equals("Bez limitu"))
+            else if (usageType.Equals("Pay As You Go") 
+                || usageType.Equals("Pago por Uso") 
+                || usageType.Equals("Betale ved forbruk") 
+                || usageType.Equals("Betala per utskrift") 
+                || usageType.Equals("Betalen naar verbruik") 
+                || usageType.Equals("Bez limitu")
+                || usageType.Equals("Consommation réelle")
+                || usageType.Equals("Maksu tulosteiden mukaan")
+                || usageType.Equals("Paiement selon la consommation réelle de pages"))
             {
                 type = "Pay As You Go";
             }
@@ -462,12 +473,14 @@ namespace Brother.Tests.Specs.MPSTwo.CalculationEngine
             WhenIMoveToClickPricePage();
             if (UsageType(usageType).Equals("Minimum Volume"))
             {
-                CurrentPage.As<DealerProposalsCreateClickPricePage>().PayServicePackMethod(servicePack);
-                NextPage = CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateSelectedMultipleClickPrice("1000", "1000");
+                //CurrentPage.As<DealerProposalsCreateClickPricePage>().PayServicePackMethod(servicePack);
+                //NextPage = CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateSelectedMultipleClickPrice("1000", "1000");
+                NextPage = CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateEnteredMultipleClickPrice("1000", "1000");
             }
             else if (UsageType(usageType).Equals("Pay As You Go"))
             {
                 NextPage = CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateEnteredMultipleClickPrice("1000", "1000");
+               // NextPage = CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateSelectedMultipleClickPrice("1000", "1000");
             }
         }
 
@@ -497,8 +510,10 @@ namespace Brother.Tests.Specs.MPSTwo.CalculationEngine
             }
             else if (UsageType(usageType).Equals("Pay As You Go"))
             {
-                NextPage = CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateEnteredMultipleClickPrice("1000", "1000");
+                //NextPage = CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateEnteredMultipleClickPrice("1000", "1000");
+                NextPage = CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateSelectedMultipleClickPrice("1000", "1000");
             }
+            
         }
 
         public void GivenIamOnMpsNewProposalPage()

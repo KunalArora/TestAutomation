@@ -164,6 +164,7 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             CurrentPage.As<InstallerDeviceInstallationPage>().ConnectDeviceWithBor(device1, serial2);
             CurrentPage.As<InstallerDeviceInstallationPage>().ConnectDeviceWithBor(device2, serial3);
             CurrentPage.As<InstallerDeviceInstallationPage>().ConnectDeviceWithBor(device2, serial4);
+            //CurrentPage.As<InstallerDeviceInstallationPage>().RefreshCloudMultipleInstallation();
             CurrentPage.As<InstallerDeviceInstallationPage>().RefreshCloudInstallation();
         }
 

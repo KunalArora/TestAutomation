@@ -986,7 +986,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     break;
             }
 
-            SelectFromDropdownByValue(GetElementByCssSelector("#InstallationPackId"), install);
+            if(!IsBigAtSystem())
+            {
+                SelectFromDropdownByValue(GetElementByCssSelector("#InstallationPackId"), install);
+            }
+           
         }
 
         private string GetValueInstallationSrpElement()

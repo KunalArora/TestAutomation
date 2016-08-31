@@ -30,6 +30,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             var prefix = MpsUserLogins.PasswordPrefix();
 
+            if (prefix.ToLower() == "de")
+            {
+                prefix = "IG";
+            }
+
             var country = String.Format("B{0}", prefix);
 
             var env = Environment.GetEnvironmentVariable("AutoTestComplimentEnv", EnvironmentVariableTarget.Machine);
