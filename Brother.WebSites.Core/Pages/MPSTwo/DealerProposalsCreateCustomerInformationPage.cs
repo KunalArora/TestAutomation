@@ -509,7 +509,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
            }
            else if (IsNorwaySystem())
            {
-               SelectFromDropdown(LegalFormDropdown, "Church");
+               SelectFromDropdown(LegalFormDropdown, "Enkeltpersonforetak");
            }
            else if (IsDenmarkSystem())
            {
