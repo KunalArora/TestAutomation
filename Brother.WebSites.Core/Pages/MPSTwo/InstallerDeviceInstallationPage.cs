@@ -82,6 +82,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         [FindsBy(How = How.CssSelector, Using = "[class*=\"js-mps-connect-device-to-\"]")] 
         public IWebElement ConnectButtonElement;
+        [FindsBy(How = How.CssSelector, Using = "[class*=\"js-mps-connect-device-to-\"]")]
+        public IList<IWebElement> ConnectButtonsElement;
 
         [FindsBy(How = How.CssSelector, Using = "[type=\"submit\"][id*=\"content_0_Button\"]")] 
         public IWebElement CompleteInstallationElement;
@@ -538,9 +540,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 switch (Method())
                 {
                     case "Email":
-                        ConnectButtonElement.Click();
-                        WebDriver.Wait(DurationType.Second, 5);
-                        ReturnToOriginWindow();
+                        ConnectByEmail();
                         break;
                     case "BOR":
                         CloudInstallationProcess();
@@ -566,6 +566,26 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 throw new Exception(String.Format("Connect or Refresh button is not displayed because {0}", exception));
             }
             
+        }
+
+        public void ConnectByEmail()
+        {
+            if (ConnectButtonsElement.Count > 1)
+            {
+                foreach (var connectButton in ConnectButtonsElement)
+                {
+                    connectButton.Click();
+                    WebDriver.Wait(DurationType.Second, 3);
+                    ReturnToOriginWindow();
+                    WebDriver.Wait(DurationType.Second, 2);
+                }
+            }
+            else if (ConnectButtonsElement.Count == 1)
+            {
+                ConnectButtonElement.Click();
+                WebDriver.Wait(DurationType.Second, 5);
+                ReturnToOriginWindow();
+            }
         }
 
         public void ConnectDeviceWithBor(string device, string serial)

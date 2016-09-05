@@ -7,6 +7,7 @@ using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherMainSite.SuppliesAndAccessories.Printers;
 using Brother.WebSites.Core.Pages.BrotherOnline.Account;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement.PaymentMethods;
+using Brother.WebSites.Core.Pages.MPSTwo;
 using Brother.WebSites.Core.Pages.OmniJoin.PartnerPortal;
 using Brother.WebSites.Core.Pages.OmniJoin.Plans;
 using OpenQA.Selenium;
@@ -332,7 +333,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             GetSignOutLink(driver).Click();
             return GetInstance<HomePage>(driver, "", "");
         }
-        
+
         // New method after addition of GUIDs for my acc menu item
         public static WelcomeBackPage BrotherOnlineGoHome(IWebDriver driver)
         {
