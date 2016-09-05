@@ -313,16 +313,16 @@ namespace Brother.Tests.Specs.MPSTwo.CalculationEngine
                 && CurrentPage.As<DealerProposalsCreateProductsPage>().GetContractType() == "Easy Print Pro & Service"))
             {
                 CurrentPage.As<DealerProposalsCreateProductsPage>().EnterProductQuantity("2");
-                CurrentPage.As<DealerProposalsCreateProductsPage>().EnterProductMargin("15");
+                CurrentPage.As<DealerProposalsCreateProductsPage>().EnterProductMargin("12");
                 CurrentPage.As<DealerProposalsCreateProductsPage>().EnterModelUnitCost();
                 CurrentPage.As<DealerProposalsCreateProductsPage>().EnterOptionsQuantity0("2");
                 CurrentPage.As<DealerProposalsCreateProductsPage>().EnterOptionCostPrice();
-                CurrentPage.As<DealerProposalsCreateProductsPage>().EnterOptionMargin("15", "0");
+                CurrentPage.As<DealerProposalsCreateProductsPage>().EnterOptionMargin("12", "0");
                 CurrentPage.As<DealerProposalsCreateProductsPage>().EnterDeliveryCost(delivery);
-                CurrentPage.As<DealerProposalsCreateProductsPage>().EnterDeliveryMargin("15");
+                CurrentPage.As<DealerProposalsCreateProductsPage>().EnterDeliveryMargin("12");
                 CurrentPage.As<DealerProposalsCreateProductsPage>().SelectDeviceInstallationType(installation);
-                CurrentPage.As<DealerProposalsCreateProductsPage>().EnterInstallationPackMargin("15");
-                CurrentPage.As<DealerProposalsCreateProductsPage>().EnterServicePackMargin("15");
+                CurrentPage.As<DealerProposalsCreateProductsPage>().EnterInstallationPackMargin("12");
+                CurrentPage.As<DealerProposalsCreateProductsPage>().EnterServicePackMargin("12");
             }
 
             CurrentPage.As<DealerProposalsCreateProductsPage>().AddAllDetailsToProposal();

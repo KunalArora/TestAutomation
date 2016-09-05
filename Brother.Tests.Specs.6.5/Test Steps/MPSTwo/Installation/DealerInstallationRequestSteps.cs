@@ -103,7 +103,7 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
         [When(@"I enter serial numbers ""(.*)"" and ""(.*)"" and ""(.*)"" and ""(.*)""")]
         public void WhenIEnterSerialNumbersAndAndAnd(string serial, string serial1, string serial2, string serial3)
         {
-            CurrentPage.As<InstallerDeviceInstallationPage>().VerifyTimeZoneIsDisplayed("BOR");
+            CurrentPage.As<InstallerDeviceInstallationPage>().VerifyTimeZoneIsDisplayed("Email");
             CurrentPage.As<InstallerDeviceInstallationPage>().EnterSerialNumber(serial, serial1, serial2, serial3);
         }
 

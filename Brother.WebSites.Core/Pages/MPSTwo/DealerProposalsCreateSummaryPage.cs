@@ -301,6 +301,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         }
 
+        public void SetContractIdValue()
+        {
+            var contractid = SummaryPageContractIdElement.GetAttribute("data-mps-qa-id");
+            SpecFlow.SetContext("SummaryPageContractId", contractid);
+        }
+
         public DealerProposalPdfPage DisplayDownloadedPdf()
         {
             var downloadedPdf = DownloadedPdf();
@@ -868,6 +874,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetTabInstance<CloudExistingProposalPage>(Driver);
         }
 
+
         public CloudExistingProposalPage DownloadPdfAndSaveProposal()
         {
             WebDriver.Wait(DurationType.Second, 3);
@@ -879,12 +886,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             else if (Driver.Url.ToLower().Contains("create"))
             {
                 CalculationEngineModule.DownloadPageHtml(Driver, "Dealer_Create");
-            }   
-            
+            }
+
+            SetContractIdValue();
+           
             ScrollTo(SaveProposalElement);
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, SaveProposalElement);
             return GetTabInstance<CloudExistingProposalPage>(Driver);
         }
+
+
 
         public void VerifySelectedDeviceIsDisplayed(string model)
         {

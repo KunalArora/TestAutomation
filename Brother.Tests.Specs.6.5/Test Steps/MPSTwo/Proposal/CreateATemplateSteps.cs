@@ -1702,6 +1702,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             //It is assumed that if pdf downloads normally then one is able to save the proposal
             CurrentPage.As<DealerProposalsCreateSummaryPage>().DownloadCustomersProposalDocument();
             CurrentPage.As<DealerProposalsCreateSummaryPage>().GetDownloadedPdfPath();
+            
         }
         
         [Then(@"I am directed to Templates screen of Proposal List page")]

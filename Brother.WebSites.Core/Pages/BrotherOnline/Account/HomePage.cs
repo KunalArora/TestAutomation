@@ -5,6 +5,7 @@ using System.Drawing;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherMainSite;
+using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.PageObjects;
@@ -320,6 +321,12 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
                 throw new NullReferenceException("Not on creative center login page");
             }
             AssertElementPresent(EmailAddressCCTextBox, "Problem loading login page for creative center", 80);
+        }
+
+        public InvoiceToolsPage NavigateToInvoiceToolsPage()
+        {
+            Driver.Navigate().GoToUrl("http://online.uk.brotherqas.eu/test/mps2/invoicetools/default.aspx");
+            return GetInstance<InvoiceToolsPage>();
         }
 
 
