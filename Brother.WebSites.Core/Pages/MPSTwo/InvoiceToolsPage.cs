@@ -183,6 +183,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
 
+       
+
        public void EnterColourDevicePrintCounts(int mono, int colour, string row, int day)
         {
             var todayDate = DateTime.Now;
@@ -209,6 +211,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             dateTimeElement.SendKeys(dateString + timeString);
 
             addButtonElement.Click();
+
+           WebDriver.Wait(DurationType.Second, 3);
 
             //AssertElementPresent(printGridElement, "Print count not added");
 
@@ -238,7 +242,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             //ClearAndType(dateTimeElement, dateString);
             dateTimeElement.SendKeys(dateString + timeString);
             addButtonElement.Click();
-
+            WebDriver.Wait(DurationType.Second, 3);
 
         }
 
