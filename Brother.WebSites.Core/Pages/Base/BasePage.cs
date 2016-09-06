@@ -4,6 +4,7 @@ using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.BrotherMainSite;
 using Brother.WebSites.Core.Pages.BrotherOnline.Account;
+using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
 using Brother.WebSites.Core.Pages.BrotherOnline.Checkout;
 using Brother.WebSites.Core.Pages.BrotherOnline.ThirdParty;
 using Brother.WebSites.Core.Pages.MPSTwo;
@@ -97,6 +98,15 @@ namespace Brother.WebSites.Core.Pages.Base
             NavigateToPage(driver, baseUrl.TrimEnd(new char[] { '/' }));
             return GetInstance<HeaderNavigationPage>(driver, baseUrl, "");
         }
+
+
+        public static ProductRegistrationPage LoadProductRegistrationPage(IWebDriver driver, string baseUrl)
+        {
+            driver = SetDriver(driver);
+            NavigateToPage(driver, baseUrl.TrimEnd(new char[] { '/' }));
+            return GetInstance<ProductRegistrationPage>(driver, baseUrl, "");
+        }
+
 
         #region ThirdParty Pages 
         public static BrotherEmailConfirmationPage LoadEmailConfirmationPage(IWebDriver driver, string baseUrl)
