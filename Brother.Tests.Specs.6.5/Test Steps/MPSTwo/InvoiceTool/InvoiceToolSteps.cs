@@ -34,6 +34,22 @@ namespace Brother.Tests.Specs.MPSTwo.InvoiceTool
 
         }
 
+        [Then(@"I generate invoices for the contract above")]
+        public void ThenIGenerateInvoicesForTheContractAbove()
+        {
+            CurrentPage.As<InvoiceToolsPage>().NavigateToInvoiceToolRaiseInvoicePage();
+            CurrentPage.As<InvoiceToolsPage>().EnterDateForInvoicing();
+            CurrentPage.As<InvoiceToolsPage>().GenerateInvoices();
+            CurrentPage.As<InvoiceToolsPage>().IsInvoiceGenerated();
+        }
+
+        [Then(@"I download customer invoices pdf")]
+        public void ThenIDownloadCustomerInvoicesPdf()
+        {
+            CurrentPage.As<InvoiceToolsPage>().DownloadCustomerInvoices();
+        }
+
+
 
     }
 }

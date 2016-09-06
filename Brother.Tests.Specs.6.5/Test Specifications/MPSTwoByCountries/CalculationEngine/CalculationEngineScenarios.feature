@@ -24,6 +24,8 @@ Scenario Outline: Scenario One
 	And I navigate to the Invoice tool homepage
 	And I select "<Country>" of interest
 	And I enter mono and colour print count
+	And I generate invoices for the contract above
+	And I download customer invoices pdf
 
 
 	
