@@ -1,4 +1,5 @@
 ﻿using Brother.Tests.Selenium.Lib.Support;
+using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.Tests.Specs.BrotherOnline.Account;
 using Brother.Tests.Specs.MPSTwo.Approver;
 using Brother.Tests.Specs.MPSTwo.SendToBank;
@@ -180,7 +181,6 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
                 instance1.GivenISignIntoMpsasAFrom(role, country);
                 instance5.GivenIHaveCreatedGermanPurchaseAndClickProposal();
                 instance2.GivenIAmOnProposalListPage();
-                instance3.GivenISendTheCreatedGermanProposalForApproval();
                 instance3.GivenISendTheCreatedGermanProposalForApproval();
                 instance3.WhenINavigateToTheSummaryPageOfTheProposalAwaitingApproval();
                 instance6.ThenICanCloseTheProposalOnTheSummaryPage();

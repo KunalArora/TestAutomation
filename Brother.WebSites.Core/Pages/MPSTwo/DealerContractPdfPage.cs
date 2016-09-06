@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -20,7 +21,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string ItText = @"Volume minimo";
         private const string FrText = @"CONTRAT DE SERVICE PRINTSMART";
         private const string SpText = @"CONTRATO DE PAGO";
-        private const string DownloadDirectory = @"C:/Users/afolabsa/Downloads";
+        private const string DownloadDirectory = @"C:/DataTest";
 
         [FindsBy(How = How.CssSelector, Using = ".open .js-mps-download-contract-pdf")]
         public IWebElement DownloadContractPdfElement;
@@ -31,29 +32,29 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             if (IsAustriaSystem() || IsGermanSystem())
             {
-                path = "file:///C:/Users/afolabsa/Downloads/{0}-Vertrag.pdf";
+                path = "file:///C:/DataTest/{0}-Vertrag.pdf";
 
             }
             else if (IsUKSystem())
             {
-                path = "file:///C:/Users/afolabsa/Downloads/{0}-Contract.pdf";
+                path = "file:///C:/DataTest/{0}-Contract.pdf";
 
             }
             else if (IsFranceSystem())
             {
-                //path = "file:///C:/Users/afolabsa/Downloads/{0}-Contrat.pdf";
-                path = "file:///C:/Users/afolabsa/Downloads/{0}-Contract.pdf";
+                //path = "file:///C:/DataTest/{0}-Contrat.pdf";
+                path = "file:///C:/DataTest/{0}-Contract.pdf";
 
             }
             else if (IsItalySystem())
             {
-                //path = "file:///C:/Users/afolabsa/Downloads/{0}-Contratto.pdf";
-                path = "file:///C:/Users/afolabsa/Downloads/{0}-Contract.pdf";
+                //path = "file:///C:/DataTest/{0}-Contratto.pdf";
+                path = "file:///C:/DataTest/{0}-Contract.pdf";
             }
             else if (IsSpainSystem())
             {
-                //path = "file:///C:/Users/afolabsa/Downloads/{0}-Contrato.pdf";
-                path = "file:///C:/Users/afolabsa/Downloads/{0}-Contract.pdf";
+                //path = "file:///C:/DataTest/{0}-Contrato.pdf";
+                path = "file:///C:/DataTest/{0}-Contract.pdf";
             }
 
             return path;

@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Configuration;
 using System.Globalization;
-using System.Xml.Schema;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using TechTalk.SpecFlow;
 
-namespace Brother.Tests.Selenium.Lib.Support
+namespace Brother.Tests.Selenium.Lib.Support.MPS
 {
-    public class MpsUtil
+    public static class MpsUtil
     {
         /// <summary>
         /// Generates a unique Proposal Name
@@ -1117,7 +1115,8 @@ namespace Brother.Tests.Selenium.Lib.Support
             {
                 numberFormatInfo = new NumberFormatInfo { CurrencySymbol = "kr." };
             }
-            else if ((money.Contains("kr") && TestController.CurrentDriver.Url.Contains(".se.brother")))
+            else if ((money.Contains("kr") && TestController.CurrentDriver.Url.Contains(".se.brother"))
+                || (money.Contains("kr") && TestController.CurrentDriver.Url.Contains(".no.brother")))
             {
                 numberFormatInfo = new NumberFormatInfo { CurrencySymbol = "kr", CurrencyGroupSeparator = " "};
             }
@@ -1153,28 +1152,28 @@ namespace Brother.Tests.Selenium.Lib.Support
             wait.Until(ExpectedConditionsEx.UrlNotChangeFrom(previousUrl));
         }
 
-        public static void ReClickButtonThenNavigateToSameUrl(IWebDriver driver, IWebElement element)
+        public static void JsClickButtonThenNavigateToDifferentUrl(IWebDriver driver, IWebElement element)
         {
             var previousUrl = driver.Url;
-            element.Click();
-            var tryCount = 0;
-           // var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
-            //wait.Until(ExpectedConditionsEx.UrlNotChangeFrom(previousUrl));
+            SeleniumHelper.ClickOnElementByJavaScript(driver, element);
+            //var tryCount = 0;
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+            wait.Until(ExpectedConditionsEx.UrlChangeFrom(previousUrl));
 
-            WebDriver.Wait(Helper.DurationType.Second, 5);
-            var newurl = driver.Url;
+            //WebDriver.Wait(Helper.DurationType.Second, 5);
+            //var newurl = driver.Url;
             
-            while (previousUrl.Equals(newurl) && tryCount < 3)
-            {
-                if (tryCount == 3)
-                {
-                    element.Click();
-                }
+            //while (previousUrl.Equals(newurl) && tryCount < 3)
+            //{
+            //    if (tryCount == 3)
+            //    {
+            //        element.Click();
+            //    }
 
-                WebDriver.Wait(Helper.DurationType.Second, 1);
-                newurl = driver.Url;
-                tryCount++;
-            }
+            //    WebDriver.Wait(Helper.DurationType.Second, 1);
+            //    newurl = driver.Url;
+            //    tryCount++;
+            //}
         }
 
         public static string DefaultMargins()

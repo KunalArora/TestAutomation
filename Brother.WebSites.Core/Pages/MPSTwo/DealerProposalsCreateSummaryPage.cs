@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -300,6 +301,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         }
 
+        public void SetContractIdValue()
+        {
+            var contractid = SummaryPageContractIdElement.GetAttribute("data-mps-qa-id");
+            SpecFlow.SetContext("SummaryPageContractId", contractid);
+        }
+
         public DealerProposalPdfPage DisplayDownloadedPdf()
         {
             var downloadedPdf = DownloadedPdf();
@@ -548,7 +555,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             ScrollTo(SummaryCloseProposalElement);
             HeadlessDismissAlertOk();
+            ClickAcceptOnJsAlert();
+
             SummaryCloseProposalElement.Click();
+            
             ClickAcceptOnConfrimation(Driver);
             return GetInstance<DealerClosedProposalPage>(Driver);
         }
@@ -556,7 +566,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void ClickAcceptOnConfrimation(IWebDriver driver)
         {
             WebDriver.Wait(DurationType.Millisecond, 3000);
-            ClickAcceptOnJsAlert(driver);
+            ClickAcceptOnJsAlert();
         }
 
 
@@ -858,12 +868,34 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public CloudExistingProposalPage SaveProposal()
         {
-            WebDriver.Wait(Helper.DurationType.Second, 3);
+            WebDriver.Wait(DurationType.Second, 3);
             ScrollTo(SaveProposalElement);
-            //SaveProposalElement.Click();
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, SaveProposalElement);
             return GetTabInstance<CloudExistingProposalPage>(Driver);
         }
+
+
+        public CloudExistingProposalPage DownloadPdfAndSaveProposal()
+        {
+            WebDriver.Wait(DurationType.Second, 3);
+            CalculationEngineModule.DownloadProposalPdfOnSummaryPage(Driver);
+            if (Driver.Url.ToLower().Contains("convert"))
+            {
+                CalculationEngineModule.DownloadPageHtml(Driver, "Dealer_Convert");
+            }
+            else if (Driver.Url.ToLower().Contains("create"))
+            {
+                CalculationEngineModule.DownloadPageHtml(Driver, "Dealer_Create");
+            }
+
+            SetContractIdValue();
+           
+            ScrollTo(SaveProposalElement);
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, SaveProposalElement);
+            return GetTabInstance<CloudExistingProposalPage>(Driver);
+        }
+
+
 
         public void VerifySelectedDeviceIsDisplayed(string model)
         {

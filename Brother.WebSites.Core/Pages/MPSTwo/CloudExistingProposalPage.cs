@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -256,6 +257,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ActionsModule.ClickOnSpecificActionsElement(Driver);
 
             HeadlessDismissAlertOk();
+            ClickAcceptOnJsAlert();
             ActionsModule.DeleteAProposal(Driver);
             WebDriver.Wait(DurationType.Second, 2);
         }
@@ -523,25 +525,26 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if (confirm != "OK")
             {
                 HeadlessDismissAlertCancel();
+                ClickDismissOnJsAlert();
             }
             else
             {
                 HeadlessDismissAlertOk();
+                ClickAcceptOnJsAlert();
             }
         }
 
         public void ClickAcceptOnConfrimation(IWebDriver driver)
         {
-            WebDriver.Wait(DurationType.Millisecond, 1000);
             HeadlessDismissAlertOk();
-            ClickAcceptOnJsAlert(driver);
+            ClickAcceptOnJsAlert();
         }
 
         public void ClickDismissOnConfrimation(IWebDriver driver)
         {
             WebDriver.Wait(DurationType.Millisecond, 1000);
             HeadlessDismissAlertCancel();
-            ClickDismissOnJsAlert(driver);
+            ClickDismissOnJsAlert();
         }
 
         public void NotExistTheDeletedItem(IWebDriver driver)

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -43,7 +44,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerManageDevicesPage NavigateToManageDevicesPage()
         {
-            MPSJobRunnerPage.RunCompleteInstallationCommandJob();
+            MpsJobRunnerPage.RunCompleteInstallationCommandJob();
 
             ActionsModule.ClickOnSpecificActionsElement(Driver);
 

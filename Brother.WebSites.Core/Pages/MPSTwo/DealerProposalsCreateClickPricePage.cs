@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -31,12 +32,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement SummaryConfirmationTextElement;
         [FindsBy(How = How.Id, Using = "content_1_LineItems_InputMonoVolumeBreaks_0")]
         public IWebElement monoVolumeDropdownElement;
+        [FindsBy(How = How.CssSelector, Using = "[id*=content_1_LineItems_InputMonoVolumeBreaks_]")]
+        public IList<IWebElement> MultiMonoVolumeDropdownElement;
         [FindsBy(How = How.Id, Using = "content_1_LineItems_InputColourVolumeBreaks_0")]
         public IWebElement colourVolumeDropdownElement;
+        [FindsBy(How = How.CssSelector, Using = "[id*=content_1_LineItems_InputColourVolumeBreaks_]")]
+        public IList<IWebElement> MultiColourVolumeDropdownElement;
         [FindsBy(How = How.CssSelector, Using = "[id='content_1_LineItems_InputMonoVolume_0']")]
         public IWebElement MonoVolumeInputFieldElement;
+        [FindsBy(How = How.CssSelector, Using = "[id*='content_1_LineItems_InputMonoVolume_']")]
+        public IList<IWebElement> MultiMonoVolumeInputFieldElement;
         [FindsBy(How = How.CssSelector, Using = "[id='content_1_LineItems_InputColourVolume_0']")]
         public IWebElement ColourVolumeInputFieldElement;
+        [FindsBy(How = How.CssSelector, Using = "[id*='content_1_LineItems_InputColourVolume_']")]
+        public IList<IWebElement> MultiColourVolumeInputFieldElement;
         [FindsBy(How = How.CssSelector, Using = "[id='content_1_LineItems_InputMonoCoverage_0']")]
         public IWebElement MonoCoverageInputFieldElement;
         [FindsBy(How = How.CssSelector, Using = "[id='content_1_LineItems_InputColourCoverage_0']")]
@@ -49,6 +58,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement DisabledCalculateButtonElement;
         [FindsBy(How = How.CssSelector, Using = ".alert-danger.mps-alert.js-mps-alert strong")]
         public IWebElement WarningAlertElement;
+        [FindsBy(How = How.CssSelector, Using = "[id*=\"content_1_LineItems_InputMonoMargin_\"]")]
+        public IList<IWebElement> MonoClickPriceMarginElements;
+        [FindsBy(How = How.CssSelector, Using = "[id*=\"content_1_LineItems_InputColourMargin_\"]")]
+        public IList<IWebElement> ColourClickPriceMarginElements;
+        
+        
         
 
 
@@ -106,7 +121,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetElementByCssSelector(element);
         }
 
-        private IWebElement MonoVolumeElementClickPrice(string row)
+        public IWebElement MonoVolumeElementClickPrice(string row)
         {
             string element = String.Format("#content_1_LineItems_InputMonoVolumeBreaks_{0}",row);
 
@@ -129,6 +144,138 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var colourvalue = ClickPriceColourValue().Skip(r).First().Text;
             SpecFlow.SetContext("ClickPriceMonoValue#" + row, monovalue);
             SpecFlow.SetContext("ClickPriceColourValue#" + row, colourvalue);
+        }
+
+       
+        public DealerProposalsCreateSummaryPage CalculateMultipleClickPriceAndProceed(string volume, string colour)
+        {
+            
+            CalculateMultipleClickPrice(volume, colour, "0");
+            CalculateMultipleClickPrice(volume, colour, "1");
+
+
+            CalculateClickPriceElement.Click();
+            WebDriver.Wait(DurationType.Second, 5);
+            return ProceedToProposalSummaryFromClickPrice();
+        }
+
+
+
+        private void SelectMultipleClickPriceAndCalculate(string volume, string colour, string row)
+        {
+            
+
+            if (CalculateClickPriceElement == null)
+                throw new NullReferenceException("CalculateClickPriceElement can not be found");
+
+            SelectMonoVolume(volume, row);
+            SelectColorVolume(colour, row);
+            WebDriver.Wait(DurationType.Second, 1);
+            
+
+        }
+
+        public void CalculateMultipleClickPrice(string volume, string colour, string row, bool resetBeforeInput = false)
+        {
+            var instance = new DealerProposalsCreateClickPricePage();
+
+            if (instance.MonoVolumeElement(row) != null)
+                EnterMultipleClickPriceValueAndCalculate(volume, colour, row);
+            if (instance.MonoVolumeElementClickPrice(row) != null)
+            {
+                if (resetBeforeInput)
+                    ResetClickPrice(row);
+
+                SelectMultipleClickPriceAndCalculate(volume, colour, row);
+            }
+            //VerifyClickPriceValueIsDisplayed();
+        }
+
+
+        public DealerProposalsCreateSummaryPage CalculateSelectedMultipleClickPrice(string mono, string colour)
+        {
+            var monoCount = MultiMonoVolumeDropdownElement.Count;
+            var colourCount = MultiColourVolumeDropdownElement.Count;
+
+            for (var i = 0; i < monoCount; i++)
+            {
+                SelectFromDropdown(MultiMonoVolumeDropdownElement.ElementAt(i), mono);
+            }
+
+            for (var i = 0; i < colourCount; i++)
+            {
+                SelectFromDropdown(MultiColourVolumeDropdownElement.ElementAt(i), colour);
+            }
+
+            EnterClickPriceMargin("16");
+
+            WebDriver.Wait(DurationType.Second, 2);
+
+            CalculateClickPriceElement.Click();
+
+            WebDriver.Wait(DurationType.Second, 5);
+            ClickPriceNextButton().Click();
+
+            return GetTabInstance<DealerProposalsCreateSummaryPage>(Driver);
+        }
+
+
+        public DealerProposalsCreateSummaryPage CalculateEnteredMultipleClickPrice(string mono, string colour)
+        {
+            var monoCount = MultiMonoVolumeInputFieldElement.Count;
+            var colourCount = MultiColourVolumeInputFieldElement.Count;
+
+            for (var i = 0; i < monoCount; i++)
+            {
+                ClearAndType(MultiMonoVolumeInputFieldElement.ElementAt(i), mono);
+            }
+
+            for (var i = 0; i < colourCount; i++)
+            {
+                ClearAndType(MultiColourVolumeInputFieldElement.ElementAt(i), colour);
+            }
+
+            EnterClickPriceMargin("16");
+
+            WebDriver.Wait(DurationType.Second, 2);
+
+            CalculateClickPriceElement.Click();
+
+            WebDriver.Wait(DurationType.Second, 5);
+            ClickPriceNextButton().Click();
+
+            return GetTabInstance<DealerProposalsCreateSummaryPage>(Driver);
+        }
+
+
+        public void EnterClickPriceMargin(string value)
+        {
+            if (MonoClickPriceMarginElements != null && (MonoClickPriceMarginElements != null || MonoClickPriceMarginElements.Any()))
+            {
+                foreach (var monoClickPriceMarginElement in MonoClickPriceMarginElements)
+                {
+                    ClearAndType(monoClickPriceMarginElement, value);
+                }
+                
+            }
+
+            if (ColourClickPriceMarginElements != null && (ColourClickPriceMarginElements != null || ColourClickPriceMarginElements.Any()))
+            {
+                foreach (var colourClickPriceMarginElement in ColourClickPriceMarginElements)
+                {
+                    ClearAndType(colourClickPriceMarginElement, value);
+                }
+
+            }
+            
+        }
+
+        private void EnterMultipleClickPriceValueAndCalculate(string volume, string colour, string row)
+        {
+            EnterMonoVolume(volume, row);
+            EnterColourVolume(colour, row);
+            WebDriver.Wait(DurationType.Second, 5);
+            CalculateClickPriceElement.Click();
         }
 
         public void SelectMonoVolume(string volume, string row)
@@ -208,7 +355,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             SpecFlow.SetContext("ClickPriceMonoValue", ClickPriceValue().First().Text);
             SpecFlow.SetContext("ClickPriceColourValue", ClickPriceColourValue().First().Text);
 			//VerifyClickPriceValueIsDisplayed();
-            WebDriver.Wait(Helper.DurationType.Second, 2);
+            WebDriver.Wait(DurationType.Second, 2);
             return ProceedToProposalSummaryFromClickPrice();
         }
 
@@ -308,7 +455,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             WebDriver.Wait(DurationType.Second, 2);
         }
 
-        private IWebElement MonoVolumeElement(string row)
+        public IWebElement MonoVolumeElement(string row)
         {
             string str = String.Format("#content_1_LineItems_InputMonoVolume_{0}", row);
 

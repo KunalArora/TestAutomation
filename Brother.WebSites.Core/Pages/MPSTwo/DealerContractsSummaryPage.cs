@@ -1,6 +1,7 @@
 ﻿using System;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -130,14 +131,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             ScrollTo(SummaryCloseProposalElement);
             SummaryCloseProposalElement.Click();
-            ClickAcceptOnConfrimation(Driver);
+            ClickAcceptOnConfrimation();
             return GetInstance<DealerClosedProposalPage>(Driver);
         }
 
-        public void ClickAcceptOnConfrimation(IWebDriver driver)
+        public void ClickAcceptOnConfrimation()
         {
-            WebDriver.Wait(DurationType.Millisecond, 3000);
-            ClickAcceptOnJsAlert(driver);
+            ClickAcceptOnJsAlert();
         }
 
         

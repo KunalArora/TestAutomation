@@ -435,6 +435,52 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             
         }
 
+        public static void RetryMulyipleClodAssertion(string element, string elementToVerify, int retryCount, int timeOut)
+        {
+            WebDriver.SetWebDriverImplicitTimeout(new TimeSpan(0, 0, 0, timeOut));
+            var wait = new DefaultWait<IWebDriver>(TestController.CurrentDriver)
+            {
+                Timeout = new TimeSpan(0, 0, 0, timeOut)
+            };
+            var methodName = MethodBase.GetCurrentMethod();
+            wait.Message = String.Format("{0}:: Timeout of [{1}] seconds trying to locate element {2}", methodName, wait.Timeout, element);
+            var retries = 0;
+            var elementStatus = false;
+
+            while ((!elementStatus) && (retries != retryCount))
+            {
+                try
+                {
+                    MsgOutput(String.Format("Retry count = [{0}]", retries));
+                    var searchElement = wait.Until(dr => dr.FindElement(By.CssSelector(element)));
+                    searchElement.Click();
+
+                    elementStatus = wait.Until(dr => dr.FindElements(By.CssSelector(elementToVerify))).Count == 4;
+                    MsgOutput(String.Format("Element Status = [{0}]", elementStatus));
+                    MsgOutput(String.Format("Timeout waited = [{0}]", wait.Timeout.TotalSeconds));
+                    retries++;
+
+                }
+                catch (StaleElementReferenceException staleElement)
+                {
+                    MsgOutput(String.Format("Element [{0}] Not Found. Retrying [{1}] times", element, staleElement));
+                    elementStatus = wait.Until(dr => dr.FindElements(By.CssSelector(elementToVerify))).Count == 4;
+                    retries++;
+                    WebDriver.Wait(DurationType.Second, timeOut);
+                }
+                catch (WebDriverException timeOutException)
+                {
+                    MsgOutput(String.Format("Element [{0}] is probabaly gone after [{1}] seconds. Retrying [{2}] times", element, wait.Timeout.Seconds, retries));
+                    MsgOutput(String.Format("Exception was [{0}]", timeOutException));
+                    retries++;
+                    //elementStatus = true;
+                }
+            }
+            WebDriver.SetWebDriverDefaultTimeOuts(WebDriver.DefaultTimeOut.Implicit);
+
+        }
+
+
         public static bool WaitForElementToExistByXPath(string element, int retryCount, int timeOut)
         {
             WebDriver.SetWebDriverImplicitTimeout(new TimeSpan(0, 0, 0, timeOut));
@@ -1159,22 +1205,37 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             }
         }
 
-        public void ClickAcceptOnJsAlert(IWebDriver driver)
+        //public void ClickAcceptOnJsAlert(IWebDriver driver)
+        //{
+        //    if (!IsPhantomJsBrowser())
+        //    {
+        //        WebDriver.Wait(DurationType.Millisecond, 3000);
+        //        try
+        //        {
+        //            var alert = driver.SwitchTo().Alert();
+        //            alert.Accept();
+        //        }
+        //        catch (NoAlertPresentException nape)
+        //        {
+        //            MsgOutput("No Alert found so proceed");
+        //        }
+
+        //    }
+        //}
+
+        public void ClickAcceptOnJsAlert()
         {
             if (!IsPhantomJsBrowser())
             {
-                WebDriver.Wait(DurationType.Millisecond, 3000);
-                try
+                var js = TestController.CurrentDriver as IJavaScriptExecutor;
+                if (js != null)
                 {
-                    var alert = driver.SwitchTo().Alert();
-                    alert.Accept();
+                    js.ExecuteScript("window.alert = function(){}");
+                    js.ExecuteScript("window.confirm = function(){return true;}");
                 }
-                catch (NoAlertPresentException nape)
-                {
-                    MsgOutput("No Alert found so proceed");
-                }
-               
             }
+
+            
         }
 
         public void AcceptAlert()
@@ -1196,14 +1257,20 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
         }
         
-        public void ClickDismissOnJsAlert(IWebDriver driver)
+        public void ClickDismissOnJsAlert()
         {
             if (!IsPhantomJsBrowser())
             {
-                var alert = driver.SwitchTo().Alert();
-                alert.Dismiss();
+                var js = TestController.CurrentDriver as IJavaScriptExecutor;
+                if (js != null)
+                {
+                    js.ExecuteScript("window.alert = function(){}");
+                    js.ExecuteScript("window.confirm = function(){return false;}");
+                }
             }
         }
+
+
 
         public void SyncEscapeAction(IWebDriver driver)
         {
@@ -1243,6 +1310,12 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                 MsgOutput(notFoundException.Message);
             }
             return null;
+        }
+
+        public static void ClickOnElementByJavaScript(IWebDriver driver, IWebElement element)
+        {
+            var executor = (IJavaScriptExecutor)driver;
+            executor.ExecuteScript("arguments[0].click();", element);
         }
 
         public string GetTextBoxValue(string field)

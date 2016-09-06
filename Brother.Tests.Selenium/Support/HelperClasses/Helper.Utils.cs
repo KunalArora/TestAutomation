@@ -200,6 +200,50 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             return PageResponse(webRequest, out xmlData);
         }
 
+        public static void DownloadAndSavePageHtml(string url, string name, Dictionary<string, string> additionalHeaders = null)
+        {
+
+            var webClient = new WebClient();
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls;
+            HttpWebRequest webRequest = null;
+
+            if (url.Contains("https:"))
+            {
+                ServicePointManager.CertificatePolicy = new TrustAllCertificatePolicy();
+                //ServicePointManager.ServerCertificateValidationCallback = new RemoteCertificateValidationCallback();
+            }
+
+
+            if (additionalHeaders != null && additionalHeaders.Any())
+            {
+                foreach (var header in additionalHeaders)
+                    webClient.Headers.Add(header.Key, header.Value);
+            }
+
+            var path = String.Format("C:/DataTest/html/{0}.html", name);
+
+            webClient.DownloadFile(url, path);
+
+        }
+
+        public static void DownloadAndSaveWebPage(string source, string scenarioName, string name)
+        {
+            var path = String.Format(@"C:\DataTest\{0}\html\", scenarioName);
+
+            SpecFlow.SetContext("DownloadPath", String.Format(@"C:\DataTest\{0}", scenarioName));
+
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+
+            }
+
+            path = Path.Combine(path, string.Format("{0}.html", name));
+
+            File.WriteAllText(path, source);
+            
+        }
+
         public static bool ConfirmSapOrder(string orderNumber, int numRetries)
         {
             var maxRetryCount = 0;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -12,7 +13,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
     public class LocalOfficeApproverContractsPage : BasePage
     {
         public static string Url = "/";
-        private const string DownloadDirectory = @"C:/Users/afolabsa/Downloads";
+        private const string DownloadDirectory = @"C:/DataTest";
 
         public override string DefaultTitle
         {
@@ -134,38 +135,38 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             if (IsAustriaSystem() || IsGermanSystem())
             {
-                path = "file:///C:/Users/afolabsa/Downloads/{0}-Vertrag.pdf";
+                path = "file:///C:/DataTest/{0}-Vertrag.pdf";
 
             }
             else if (IsUKSystem() || IsIrelandSystem())
             {
-                path = "file:///C:/Users/afolabsa/Downloads/{0}-Contract.pdf";
+                path = "file:///C:/DataTest/{0}-Contract.pdf";
 
             }
             else if (IsFranceSystem())
             {
-                path = "file:///C:/Users/afolabsa/Downloads/{0}-Contrat.pdf";
+                path = "file:///C:/DataTest/{0}-Contrat.pdf";
 
             }
             else if (IsItalySystem())
             {
-                path = "file:///C:/Users/afolabsa/Downloads/{0}-Contratto.pdf";
+                path = "file:///C:/DataTest/{0}-Contratto.pdf";
             }
             else if (IsSpainSystem())
             {
-                path = "file:///C:/Users/afolabsa/Downloads/{0}-Contrato.pdf";
+                path = "file:///C:/DataTest/{0}-Contrato.pdf";
                
             }
             else if (IsSwedenSystem())
             {
-                path = "file:///C:/Users/afolabsa/Downloads/{0}-Avtal.pdf";
+                path = "file:///C:/DataTest/{0}-Avtal.pdf";
             }
             else if (IsNetherlandSystem())
             {
-                path = "file:///C:/Users/afolabsa/Downloads/{0}-Contract.pdf";
+                path = "file:///C:/DataTest/{0}-Contract.pdf";
             }else if (IsDenmarkSystem())
             {
-                path = "file:///C:/Users/afolabsa/Downloads/{0}-Kontrakt.pdf";
+                path = "file:///C:/DataTest/{0}-Kontrakt.pdf";
             }
 
             
@@ -217,7 +218,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public LocalOfficeApproverDeviceManagementPage NavigateTOfficeDeviceManagementPage()
         {
-            MPSJobRunnerPage.RunCreateCustomerAndPersonCommandJob();
+            MpsJobRunnerPage.RunCreateCustomerAndPersonCommandJob();
             LOApproverDeviceManagementElement.Click();
             return GetInstance<LocalOfficeApproverDeviceManagementPage>(Driver);
 

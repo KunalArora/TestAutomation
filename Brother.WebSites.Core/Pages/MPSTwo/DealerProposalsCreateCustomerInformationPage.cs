@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -84,6 +85,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement CustomerMultipleLanguageElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputCustomerLegalForm_Input")]
         public IWebElement LegalFormDropdown;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputPersonMobile_Input")]
+        public IWebElement MobileElement;
         
         
         
@@ -287,9 +290,28 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             //SelectRegionFromDropdown("Greater Manchester");
             if (IsFinlandSystem() || IsBelgiumSystem() || IsSwissSystem())
             {
-                SelectCustomerLanguage(SpecFlow.GetContext("BelgianLanguage"));
+                try
+                {
+                    var language = SpecFlow.GetContext("BelgianLanguage");
+                    SelectCustomerLanguage(language);
+                }
+                catch (KeyNotFoundException keyNotFound)
+                {
+                   //Do nothing
+                }
+
+                
             }
        }
+
+        private void EnterMobileNumber()
+        {
+            if (IsDenmarkSystem() || IsFinlandSystem() || IsNorwaySystem() || IsSwedenSystem())
+            {
+                MobileElement.SendKeys("01234567890");
+            }
+            
+        }
 
         public void EnterRegistrationNumber()
         {
@@ -329,14 +351,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 ClearAndType(CompanyRegistrationNumerElement, "35679626");
             }
-            else if (IsFinlandSystem())
-            {
-                ClearAndType(CompanyRegistrationNumerElement, "0572355-8");
-            }
             else if (IsNorwaySystem())
             {
                 ClearAndType(CompanyRegistrationNumerElement, "913992415");
             }
+            //else if (IsFinlandSystem())
+            //{
+            //    ClearAndType(CompanyRegistrationNumerElement, "0572355-8");
+            //}
         }
 
         public void EnterInitialVat()
@@ -372,10 +394,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 ClearAndType(VatFieldElement, "CHE-106.568.179 MWST");
             }
-            else if (IsNorwaySystem())
-            {
-                ClearAndType(VatFieldElement, "NO980395898");
-            }
             else if (IsFinlandSystem())
             {
                 ClearAndType(VatFieldElement, "FI20774740");
@@ -384,6 +402,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 ClearAndType(VatFieldElement, "DK13585628");
             }
+            //else if (IsNorwaySystem())
+            //{
+            //    ClearAndType(VatFieldElement, "NO980395898");
+            //}
         }
 
        public void EnterContactFirstName()
@@ -418,12 +440,23 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
            EnterContactTelephone();
            EnterContactEmailAdress();
            SelectALegalForm();
+           EnterMobileNumber();
        }
 
        private String SwissLegalForm()
        {
            string lang;
-           var language = SpecFlow.GetContext("BelgianLanguage");
+           string language;
+
+           try
+           {
+               language = SpecFlow.GetContext("BelgianLanguage");
+           }
+           catch (KeyNotFoundException keyNotFound)
+           {
+               language = "Français";
+           }
+           
 
            switch (language)
            {
@@ -472,11 +505,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
            }
            else if (IsFinlandSystem())
            {
-               SelectFromDropdown(LegalFormDropdown, "Church");
+               SelectFromDropdown(LegalFormDropdown, "Oyj");
            }
            else if (IsNorwaySystem())
            {
-               SelectFromDropdown(LegalFormDropdown, "Church");
+               SelectFromDropdown(LegalFormDropdown, "Enkeltpersonforetak");
            }
            else if (IsDenmarkSystem())
            {
@@ -500,7 +533,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
        private String BelgianLegalForm()
        {
            string lang;
-           var language = SpecFlow.GetContext("BelgianLanguage");
+           string language;
+
+           try
+           {
+               language = SpecFlow.GetContext("BelgianLanguage");
+           }
+           catch (KeyNotFoundException keyNotFound)
+           {
+               language = "French";
+           }
+           
 
            switch (language)
            {
@@ -528,7 +571,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterPropertyNumber()
         {
-            if (IsFranceSystem()||IsSpainSystem()||IsItalySystem()|| IsDenmarkSystem()) return;
+            if (IsFranceSystem()||IsSpainSystem()||IsItalySystem()|| IsDenmarkSystem()||IsFinlandSystem()) return;
             PropertyNumberElement.SendKeys(MpsUtil.PropertyNumber());
         }
 
@@ -636,7 +679,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SelectTitleFromDropdown()
         {
-            if (IsSwedenSystem()||IsDenmarkSystem()) return;
+            if (IsSwedenSystem()||IsDenmarkSystem() || IsFinlandSystem() || IsNorwaySystem()) return;
                 SelectFromDropdownByValue(ContactTitleElement, "0002");
         }
 

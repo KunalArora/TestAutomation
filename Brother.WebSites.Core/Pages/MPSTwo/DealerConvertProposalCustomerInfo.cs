@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -139,6 +140,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement CustomerPositionElement;
         [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerCostCentre_Input")]
         public IWebElement CostCentreElement;
+        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputPersonMobile_Input")]
+        public IWebElement MobileElement;
+        
 
         
 
@@ -224,13 +228,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 SelectFromDropdown(LegalFormDropdown, "Aktiebolag");
             }
-            else if (IsFinlandSystem())
-            {
-                SelectFromDropdown(LegalFormDropdown, "Church");
-            }
             else if (IsNorwaySystem())
             {
-                SelectFromDropdown(LegalFormDropdown, "Church");
+                SelectFromDropdown(LegalFormDropdown, "Enkeltpersonforetak");
             }
             else if (IsDenmarkSystem())
             {
@@ -253,7 +253,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private String SwissLegalForm()
         {
             string lang;
-            var language = SpecFlow.GetContext("BelgianLanguage");
+            string language;
+
+            try
+            {
+                language = SpecFlow.GetContext("BelgianLanguage");
+            }
+            catch (KeyNotFoundException)
+            {
+
+                language = "Français";
+            }
 
             switch (language)
             {
@@ -275,7 +285,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private String BelgianLegalForm()
         {
             string lang;
-            var language = SpecFlow.GetContext("BelgianLanguage");
+
+            string language;
+
+            try
+            {
+                language = SpecFlow.GetContext("BelgianLanguage");
+            }
+            catch (KeyNotFoundException)
+            {
+
+                language = "French";
+            }
 
             switch (language)
             {
@@ -310,6 +331,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             else if (IsFranceSystem())
             {
                 ClearAndType(CompanyRegistrationNumberField, "453983245");
+            }
+            else if (IsSpainSystem())
+            {
+                ClearAndType(CompanyRegistrationNumberField, "N0032484H");
             }
             //else if (IsSwedenSystem())
             //{
@@ -382,7 +407,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             else if (IsPolandSystem())
             {
                 trading = "Non-Regulated";
-            }else if (IsNorwaySystem())
+            }
+            else if (IsNorwaySystem())
             {
                 trading = "Ikke regulert";
             }
@@ -392,7 +418,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
             else if (IsFinlandSystem())
             {
-                trading = "Non-Regulated";
+                trading = "Ei-säännelty";
             }
             else if (IsSwissSystem())
             {
@@ -406,7 +432,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void SelectATradingStyle()
         {
             if (IsUKSystem()||IsSpainSystem()|| IsIrelandSystem() || IsSwedenSystem() || IsDenmarkSystem() 
-                || IsNorwaySystem() || IsFinlandSystem()|| IsSwissSystem() || IsSwedenSystem())
+                || IsNorwaySystem() || IsSwissSystem() || IsSwedenSystem())
                 SelectFromDropdown(TradingStyleElement, TradingStyle());
                 WebDriver.Wait(DurationType.Second, 3);
         }
@@ -474,7 +500,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private String BelgianLanguage()
         {
             string lang;
-            var language = SpecFlow.GetContext("BelgianLanguage");
+            string language;
+
+            try
+            {
+                language = SpecFlow.GetContext("BelgianLanguage");
+            }
+            catch (KeyNotFoundException)
+            {
+
+                language = "French";
+            }
 
             switch (language)
             {
@@ -496,19 +532,29 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private String FinnishLanguage()
         {
             string lang;
-            var language = SpecFlow.GetContext("BelgianLanguage");
+
+            string language;
+            try
+            {
+                language = SpecFlow.GetContext("BelgianLanguage");
+            }
+            catch (KeyNotFoundException)
+            {
+
+                language = "Suomi";
+            }
 
             switch (language)
             {
                 case "Suomi":
-                    lang = "Direct Debit";
+                    lang = "Suoraveloitus";
                     break;
                 case "Svenska":
                     lang = "Direct Debit";
                     break;
 
                 default:
-                    lang = "Direct Debit";
+                    lang = "Suoraveloitus";
                     break;
             }
 
@@ -518,19 +564,31 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private String SwissLanguage()
         {
             string lang;
-            var language = SpecFlow.GetContext("BelgianLanguage");
+
+            string language;
+            try
+            {
+                language = SpecFlow.GetContext("BelgianLanguage");
+            }
+            catch (KeyNotFoundException)
+            {
+
+                language = "Français";
+            }
 
             switch (language)
             {
                 case "Français":
-                    lang = "Débit direct";
+                    //lang = "Débit direct";
+                    lang = "LSV";
                     break;
                 case "Deutsch":
                     lang = "Bankeinzug";
+                    //lang = "LSV";
                     break;
 
                 default:
-                    lang = "Bankeinzug";
+                    lang = "LSV";
                     break;
             }
 
@@ -539,19 +597,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterBankName()
         {
-            if (IsNetherlandSystem()) return;
+            if (IsNetherlandSystem()|| IsNorwaySystem()) return;
             ClearAndType(BankNameElement, "BNP Paribus");
         }
 
         public void EnterBankAccountNumber()
         {
-            if (IsNetherlandSystem()) return;
+            if (IsNetherlandSystem() || IsSpainSystem() || IsNorwaySystem()) return;
             ClearAndType(BankAccountNumberElement, "45789635");
         }
 
         public void EnterBankSortCode()
         {
-            if (IsNetherlandSystem() || IsBelgiumSystem() || IsPolandSystem()) return;
+            if (IsNetherlandSystem() || IsBelgiumSystem() || IsPolandSystem() || IsSpainSystem() || IsNorwaySystem()) return;
             ClearAndType(BankSortCodeElement, "014215");
         }
 
@@ -577,7 +635,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if (IsBelgiumSystem())
             {
                 ClearAndType(BICElement, "ACCOBEB3");
-            } else if (!(IsItalySystem() || IsNetherlandSystem()))
+            } else if (!(IsItalySystem() || IsNetherlandSystem() || IsSpainSystem()))
             {
                 ClearAndType(BICElement, "MIDLGB22"); 
             }
@@ -595,13 +653,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterBankPropertyStreet()
         {
-            if (IsBigAtSystem() || IsNetherlandSystem() || IsBelgiumSystem()) return;
+            if (IsBigAtSystem() || IsNetherlandSystem() || IsBelgiumSystem() || IsSpainSystem()) return;
             ClearAndType(BankPropertyStreetElement, "Lloyds House");
         }
 
         public void EnterBankPropertyTown()
         {
-            if (IsBigAtSystem() || IsNetherlandSystem() || IsBelgiumSystem()) return;
+            if (IsBigAtSystem() || IsNetherlandSystem() || IsBelgiumSystem() || IsSpainSystem()) return;
             ClearAndType(BankPropertyTownElement, "Cockney");
         }
 
@@ -618,10 +676,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             else if (IsItalySystem())
             {
                 ClearAndType(BankPropertyPostcodeElement, "01100");
-            }
-            else if (IsSpainSystem())
-            {
-                ClearAndType(BankPropertyPostcodeElement, MpsUtil.PostCodeSp());
             }
             else if (IsIrelandSystem())
             {
@@ -651,11 +705,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 ClearAndType(BankPropertyPostcodeElement, MpsUtil.PostCodeSw());
             }
+            //else if (IsSpainSystem())
+            //{
+            //    ClearAndType(BankPropertyPostcodeElement, MpsUtil.PostCodeSp());
+            //}
         }
 
         private void EnterCostCentre()
         {
-            if (IsSwedenSystem() || IsDenmarkSystem()|| IsNetherlandSystem())
+            if (IsSwedenSystem() || IsDenmarkSystem() || IsNetherlandSystem() || IsNorwaySystem())
             {
                 ClearAndType(CostCentreElement, "Marketing");
             }
@@ -688,6 +746,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 FillPolandOrgDetail();
             }
 
+            if (IsBelgiumSystem()||IsFranceSystem())
+            {
+                MobileElement.SendKeys("01234567890");
+            }
+
             if(IsNetherlandSystem())
                 CustomerCanOrderConsumables();
         }
@@ -705,8 +768,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterAllBankInformation()
         {
-            if (IsDenmarkSystem() || IsSwedenSystem()) return;
+            if (IsDenmarkSystem() || IsSwedenSystem()||IsFinlandSystem()) return;
             SelectAPaymentType();
+            if (IsNorwaySystem()) return;
             EnterBankName();
             EnterBankAccountNumber();
             EnterBankSortCode();

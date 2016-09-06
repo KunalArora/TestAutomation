@@ -13,6 +13,11 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             NextPage = CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateClickPriceAndProceed(clickprice, colour);
         }
 
+        public void WhenIEnterMultipleClickPriceVolumeOf(string clickprice, string colour)
+        {
+            NextPage = CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateMultipleClickPriceAndProceed(clickprice, colour);
+        }
+
         [When(@"I type in click price volume of ""(.*)""")]
         public void WhenITypeInClickPriceVolumeOf(string monoVol)
         {

@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Remote;
+using OpenQA.Selenium.Support.UI;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
@@ -210,6 +213,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ClickOnTheActionsDropdown(0, driver);
         }
 
+        public static void ClickOnSpecificActionsElement(IWebDriver driver, string proposal)
+        {
+            SearchForNewlyProposalItem(driver, proposal);
+
+            ClickOnTheActionsDropdown(0, driver);
+        }
+
         public static void ClickOnSpecificCustomerActions(IWebDriver driver)
         {
             SearchForNewCustomer(driver);
@@ -354,15 +364,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public static void StartTheProposalEditProcess(IWebDriver driver)
         {
+            
             ProposalEditButtonElement(driver).Click();
+            
         }
         public static void DeleteAProposal(IWebDriver driver)
         {
             ProposalDeleteButtonElement(driver).Click();
+           
         }
         public static void SendProposalToBankButton(IWebDriver driver)
         {
             SendToBankButtonElement(driver).Last().Click();
         }
+
+       
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Brother.Tests.Selenium.Lib.Support;
+using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -126,7 +127,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 coy = "Blue Hollow_160322133924 Ltd";
             } else if (IsUKSystem())
             {
-                coy = "Meadow Mew Ltd";
+                coy = "Honey Pines_160514201608 Ltd";
             } else if (IsGermanSystem())
             {
                 coy = "Middle Mall_160322135029 Ltd";
@@ -175,6 +176,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             AssertElementContainsText(CompanyConfirmationElement, genCompany, "Generated Company is empty");
             
             HeadlessDismissAlertOk();
+            ClickAcceptOnJsAlert();
         }
 
         public void ClickOnActionButtonOnDisplay()
@@ -246,16 +248,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             if(CancelInstallationRequestElement == null)
                 throw new Exception("Cancel installation button not displayed");
+            ClickAcceptOnJsAlert();
             CancelInstallationRequestElement.Click();
-            ClickAcceptOnConfirmation(Driver);
+            ClickAcceptOnConfirmation();
             WebDriver.Wait(DurationType.Second, 3);
         }
 
-        public void ClickAcceptOnConfirmation(IWebDriver driver)
+        public void ClickAcceptOnConfirmation()
         {
             WebDriver.Wait(DurationType.Millisecond, 1000);
             HeadlessDismissAlertOk();
-            ClickAcceptOnJsAlert(driver);
+            ClickAcceptOnJsAlert();
         }
 
         public void IsSwapProgressTextDisplayed()
@@ -300,8 +303,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsInstallationRequestScreenDisplayed()
         {
+            WebDriver.Wait(DurationType.Second, 3);
             TestCheck.AssertIsEqual(true, ModalPopUpElement.Displayed, "Installation request pop up is opened");
-           // WebDriver.Wait(DurationType.Second, 3);
+           
         }
 
         public string GetInstallationLink()
@@ -315,7 +319,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public InstallerDeviceInstallationPage LaunchInstallerPage()
         {
-            MPSJobRunnerPage.RunCompleteInstallationCommandJob();
+            MpsJobRunnerPage.RunCompleteInstallationCommandJob();
             Driver.Navigate().GoToUrl(GetInstallationLink());
             return GetInstance<InstallerDeviceInstallationPage>(Driver);
         }
@@ -347,7 +351,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerSetCommunicationMethodPage CreateInstallationRequest()
         {
-            MpsUtil.ReClickButtonThenNavigateToSameUrl(Driver, CreateRequestElement);
+            WebDriver.Wait(DurationType.Second, 2);
+            MpsUtil.JsClickButtonThenNavigateToDifferentUrl(Driver, CreateRequestElement);
             
             return GetTabInstance<DealerSetCommunicationMethodPage>(Driver);
         }
@@ -356,6 +361,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             AssertElementPresent(InstallationRequestContainerElement, "Installation not finished");
             HeadlessDismissAlertOk();
+            ClickAcceptOnJsAlert();
         }
 
         private string Method()
@@ -370,12 +376,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             //  String.Format("{0} Actions buttons were returned meaning installation request is not removed", buttonCount));
             if (Method() != "Email")
             {
-                MPSJobRunnerPage.NotifyBocOfNewChanges();
+                MpsJobRunnerPage.NotifyBocOfNewChanges();
             }
            
-            MPSJobRunnerPage.RunCreateOrderAndServiceRequestsCommandJob();
-            MPSJobRunnerPage.RunConsumableOrderRequestsCommandJob();
-            MPSJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob();
+            MpsJobRunnerPage.RunCreateOrderAndServiceRequestsCommandJob();
+            MpsJobRunnerPage.RunConsumableOrderRequestsCommandJob();
+            MpsJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob();
         }
 
         public void SelectLocationErrorIsDisplayed()

@@ -136,6 +136,7 @@
     <Compile Include="Pages\MPSTwo\BankContractsPage.cs" />
     <Compile Include="Pages\MPSTwo\BankDashBoardPage.cs" />
     <Compile Include="Pages\MPSTwo\BankOffersPage.cs" />
+    <Compile Include="Pages\MPSTwo\CalculationEngineModule.cs" />
     <Compile Include="Pages\MPSTwo\CompleteSwapProcessPage.cs" />
     <Compile Include="Pages\MPSTwo\ConsumableExistingOrderListPage.cs" />
     <Compile Include="Pages\MPSTwo\ConsumableRaiseOrderPage.cs" />
@@ -150,6 +151,7 @@
     <Compile Include="Pages\MPSTwo\DealerContractsAcceptedPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerContractsAwaitingAcceptancePage.cs" />
     <Compile Include="Pages\MPSTwo\DealerProposalPdfPage.cs" />
+    <Compile Include="Pages\MPSTwo\InvoiceToolsPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeAdminProgramPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerManageDevicesPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerProposalsCreateNavTabs.cs" />

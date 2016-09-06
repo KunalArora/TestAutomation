@@ -1,5 +1,6 @@
 using System.Runtime.CompilerServices;
 using Brother.Tests.Selenium.Lib.Support;
+using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.Tests.Specs.BrotherOnline.Account;
 using Brother.Tests.Specs.MPSTwo.Approver;
 using Brother.Tests.Specs.MPSTwo.SendToBank;
@@ -74,7 +75,19 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             GivenDealerHaveCreatedProposalOfOpen(country, contractType, usageType, length, billing);
         }
 
-        
+        [Given(@"I changed the ""(.*)"" for ""(.*)""")]
+        public void GivenIChangedTheFor(string language, string p1)
+        {
+            
+        }
+
+        [Given(@"I changed the language to ""(.*)""")]
+        public void GivenIChangedTheLanguageTo(string language)
+        {
+            GivenIChangeTheLanguageDisplayed(language);
+        }
+
+
 
         public void GivenDealerHaveCreatedProposalOfOpen(string country, string contractType, string usageType, string length, string billing)
         {
@@ -1689,6 +1702,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             //It is assumed that if pdf downloads normally then one is able to save the proposal
             CurrentPage.As<DealerProposalsCreateSummaryPage>().DownloadCustomersProposalDocument();
             CurrentPage.As<DealerProposalsCreateSummaryPage>().GetDownloadedPdfPath();
+            
         }
         
         [Then(@"I am directed to Templates screen of Proposal List page")]

@@ -7,6 +7,7 @@ using System.Net.Mime;
 using System.Runtime.Serialization;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -580,10 +581,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
+        public void EnterDeliveryCost(string delivery)
+        {
+            if (delivery.Equals("Yes"))
+            {
+                ClearAndType(DeliveryCostPriceElement, "100");
+            }
+        }
+
         public void SetInstallationDetails()
         {
             if (IsElementPresent(InstallationSRPElement))
-                SpecFlow.SetContext("InstallationSRP", GetValueInstallationSRPElement());
+                SpecFlow.SetContext("InstallationSRP", GetValueInstallationSrpElement());
             if (IsElementPresent(InstallationPackCostPriceElement))
                 SpecFlow.SetContext("InstallationPackCostPrice", InstallationPackCostPriceElement.GetAttribute("value"));
             if (IsElementPresent(InstallationPackMarginElement))
@@ -627,9 +636,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             SpecFlow.SetContext("InitialProductPageText", ProductsScreenAlertElement.Text);
 
-            var element = "";
-
-            element = IsElementPresent(ProductFlatListAddElement()) ? "#pc-{0} .js-mps-product-open" : "#pc-{0} .js-mps-product-open-add";
+            var element = IsElementPresent(ProductFlatListAddElement()) ? "#pc-{0} .js-mps-product-open" : "#pc-{0} .js-mps-product-open-add";
 
             element = string.Format(element, printer.Equals(string.Empty) ? MpsUtil.PrinterUnderTest() : printer);
 
@@ -640,16 +647,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         }
 
-        private IList<IWebElement> QTYForAccessoriesElement()
+        private IEnumerable<IWebElement> QtyForAccessoriesElement()
         {
             const string element = ".mps-qa-option .mps-txt-r [name=\"OptionQuantity\"][data-mps-val-numeric-min]";
 
             return GetElementsByCssSelector(element);
         }
 
-        public void IsQTYForAccessoriesAreDefaultToZero()
+        public void IsQtyForAccessoriesAreDefaultToZero()
         {
-            foreach (IWebElement element in QTYForAccessoriesElement())
+            foreach (IWebElement element in QtyForAccessoriesElement())
             {
                 TestCheck.AssertIsEqual("0", element.GetAttribute("data-mps-val-numeric-min"), "Quantity For Accessory is not defaulted zero");
             }
@@ -965,15 +972,36 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             SetInstallationDetails();
         }
 
-        private string GetValueInstallationSRPElement()
+        public void SelectDeviceInstallationType(string type)
+        {
+            var install = "";
+
+            switch (type)
+            {
+                case "Brother":
+                    install = "1";
+                    break;
+                case "Dealer":
+                    install = "2";
+                    break;
+            }
+
+            if(!IsBigAtSystem())
+            {
+                SelectFromDropdownByValue(GetElementByCssSelector("#InstallationPackId"), install);
+            }
+           
+        }
+
+        private string GetValueInstallationSrpElement()
         {
             return InstallationSRPElement.Text;
         }
-        public void VerifyThatInstallationSRPValueChange()
+        public void VerifyThatInstallationSrpValueChange()
         {
-            string hoge = GetValueInstallationSRPElement();
+            string hoge = GetValueInstallationSrpElement();
             TestCheck.AssertIsNotEqual(SpecFlow.GetContext("InstallationSRP"), 
-                GetValueInstallationSRPElement(), "Installation SRP not changed");
+                GetValueInstallationSrpElement(), "Installation SRP not changed");
             TestCheck.AssertIsNotEqual(SpecFlow.GetContext("InstallationPackCostPrice"), 
                 InstallationPackCostPrice().ToString(), "Installation Unit Cost not changed");
             TestCheck.AssertIsNotEqual(SpecFlow.GetContext("InstallationPackSellPrice"), 
@@ -1093,24 +1121,56 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterOptionCostPrice()
         {
-            if (IsSwedenSystem() || IsDenmarkSystem() || IsPolandSystem()) return;
-            var srpOption = MpsUtil.GetValue(OptionSrpText());
-            var OptionText = srpOption.ToString().Substring(0, 3);
-            if (OptionCostPrice0Element() != null)
-                ClearAndType(OptionCostPrice0Element(), OptionText);
+            if (IsSwedenSystem() || IsDenmarkSystem() || IsPolandSystem())
+            {
+                // do nothing
+            }
+            else if (IsNorwaySystem())
+            {
+                var optionText = GetNorwayValue(ModelSrpElement.Text);
+                ClearAndType(OptionCostPrice0Element(), optionText);
+            }
+            else
+            {
+                var srpOption = MpsUtil.GetValue(OptionSrpText());
+                var optionText = srpOption.ToString().Substring(0, 3);
+                if (OptionCostPrice0Element() != null)
+                    ClearAndType(OptionCostPrice0Element(), optionText);
+            }
         }
         public void EnterModelUnitCost()
         {
             //if (!ModelSrpElement.Text.Contains("£")) return;
-            if (IsAustriaSystem() || IsGermanSystem() || IsSwedenSystem() 
-                || IsDenmarkSystem() || IsPolandSystem()) return;
-            var srpCost = MpsUtil.GetValue(ModelSrpElement.Text);
-            var costText = srpCost.ToString();
-            var optionText = costText.Substring(0, 3);
-            ClearAndType(ProductCostPriceElement, optionText);
+            if (IsAustriaSystem() || IsGermanSystem() || IsSwedenSystem()
+                || IsDenmarkSystem() || IsPolandSystem())
+            {
+                //do nothing
+            } 
+            else if (IsNorwaySystem())
+            {
+                var optionText = GetNorwayValue(ModelSrpElement.Text);
+                ClearAndType(ProductCostPriceElement, optionText);
+            }
+            else
+            {
+                var srpCost = MpsUtil.GetValue(ModelSrpElement.Text);
+                var costText = srpCost.ToString();
+                var optionText = costText.Substring(0, 3);
+                ClearAndType(ProductCostPriceElement, optionText);  
+            }
+
+            
 
 
             SetProductCostPrice();
+        }
+
+        private string GetNorwayValue(string text)
+        {
+            var value = text.Replace(" ", "");
+            value = value.Replace("kr", "");
+
+            return value;
         }
 
 
@@ -1533,15 +1593,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             links.First().Click();
 
             HeadlessDismissAlertOk();
+            ClickAcceptOnJsAlert();
 
             WebDriver.Wait(DurationType.Second, 3);
-            var removebuttonselector = @"button.btn.js-mps-product-configuration-remove";
+            const string removebuttonselector = @"button.btn.js-mps-product-configuration-remove";
             var removebutton = driver.FindElement(By.CssSelector(removebuttonselector));
             removebutton.Click();
 
             //alert
             
-            ClickAcceptOnJsAlert(driver);
+            ClickAcceptOnJsAlert();
         }
     }
 }

@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using System.Xml.Schema;
 using Brother.Tests.Selenium.Lib.Properties;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
-using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
 
 namespace Brother.Tests.Selenium.Lib.Support
