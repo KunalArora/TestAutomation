@@ -1251,7 +1251,7 @@
     <Compile Include="Test Steps\MPSTwo\Customer\DealerCanOperateCustomersSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\DealerAdmin\DealerAdminProfileSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Installation\DealerInstallationRequestSteps.cs" />
-    <Compile Include="Test Steps\MPSTwo\InvoiceTool\InvoiceToolSpteps.cs" />
+    <Compile Include="Test Steps\MPSTwo\InvoiceTool\InvoiceToolSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Proposal\CustomerRunPortionSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Proposal\DealerProposalRejectedSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Proposal\DealerProposalsCreateCustomerInformationStep.cs" />
