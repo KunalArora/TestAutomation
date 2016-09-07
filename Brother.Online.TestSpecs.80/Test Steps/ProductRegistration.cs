@@ -16,6 +16,7 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
     [Binding]
     public class ProductRegistrationSteps : BaseSteps
     {
+        [Given(@"I navigate to ""(.*)"" in order to validate the landing page")]
         [Given(@"I navigate to ""(.*)"" in order to validate a Product Registration page when I want to create a new account or existing account with Brother Online")]
         public void GivenINavigateToInOrderToValidateAProductRegistrationPageWhenIWantToCreateANewAccountOrExistingAccountWithBrotherOnline(string url)
         {
@@ -23,6 +24,11 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
             CurrentPage.As<ProductRegistrationPage>().GetProductRegistrationPage(url);
         }
 
+        [Then(@"I should see the Header and the Footer appearing on the landing Page")]
+        public void ThenIShouldSeeTheHeaderAndTheFooterAppearingOnTheLandingPage()
+        {
+            CurrentPage.As<ProductRegistrationPage>().CheckForHeaderAndFooter();
+        }
     }
 
 }

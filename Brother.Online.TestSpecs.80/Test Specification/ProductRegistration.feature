@@ -15,6 +15,14 @@ Scenarios:
 |Country|			Site Url                                                                                    |
 | United Kingdom |  http://atyourside.co.uk.brotherdv2.eu/														|
 
+@TEST @SMOKE
+Scenario Outline: Verify the Header and Footer of the landing page
+Given I navigate to "<Site Url>" in order to validate the landing page
+Then I should see the Header and the Footer appearing on the landing Page
+Scenarios:
+| Country        | Site Url                               |
+| United Kingdom | http://atyourside.co.uk.brotherdv2.eu/ |
+
 @ignore
 #Validate that an existing user has the option to change their sign in preferences to social login 
 Scenario Outline: Customer has the option to change their sign in preferences to social login	

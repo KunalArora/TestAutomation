@@ -21,12 +21,24 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             get { return string.Empty; }
         }
 
+        [FindsBy(How = How.CssSelector, Using = @"div.common-global-header--title > a > img")]
+        public IWebElement BrotherLogo;
+
+        [FindsBy(How = How.CssSelector, Using = @"footer .row.common-global-footer--row .col-sm-9.col-lg-9 > ul > li")]
+        public IWebElement FooterLinks;
 
         public void GetProductRegistrationPage(string url)
         {
             WebDriver.SetPageLoadTimeout(TimeSpan.FromSeconds(60));
             WebSites.Core.Pages.General.SiteAccess.ValidateSiteUrl(url);
             WebDriver.SetPageLoadTimeout(WebDriver.DefaultTimeout);
+        }
+
+        public void CheckForHeaderAndFooter()
+        {
+            //Checks for the existance of elements on Header and Footer
+            AssertElementPresent(BrotherLogo, "Brother Logo missing in the Header");
+            AssertElementPresent(FooterLinks, "Fotter Links missing on the landing page");
         }
 
         private HttpStatusCode GetWebPageResponse(string webSite)
@@ -41,7 +53,5 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
 
             return responseCode;
         }
-
-
     }
 }
