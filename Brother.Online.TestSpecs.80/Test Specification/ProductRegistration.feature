@@ -4,7 +4,7 @@ Feature: ProductRegistration
 	End user will login to existing account or create a new account
 
 
-@ignore
+@TEST @SMOKE
 Scenario Outline: Existing Customer/New Customer redirected to the product details
 Given I navigate to "<Site Url>" in order to validate a Product Registration page when I want to create a new account or existing account with Brother Online 
 #When I click on Create Account for "<Country>"
