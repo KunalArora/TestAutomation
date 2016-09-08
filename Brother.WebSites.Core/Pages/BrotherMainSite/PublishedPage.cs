@@ -32,7 +32,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
             get { return string.Empty; }
         }
 
-        [FindsBy(How = How.CssSelector, Using = "body > header > div > h1")]
+        [FindsBy(How = How.CssSelector, Using = ".common-global-header")]
         public IWebElement PageHeader;
 
         [FindsBy(How = How.CssSelector, Using = ".col-xs-12.col-md-6.product-detail--container-title")]
@@ -210,7 +210,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public void IsPageHeaderDisplayed()
         {
-           WaitForElementToExistByCssSelector("body > header > div > h1");
+            WaitForElementToExistByCssSelector(".common-global-header");
            //WaitForElementToExistByCssSelector(".common-global-header--title");
               if (PageHeader == null)
                  {
