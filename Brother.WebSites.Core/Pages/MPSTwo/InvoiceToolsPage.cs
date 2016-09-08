@@ -35,9 +35,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement RaiseInvoiceButtonElement;
         [FindsBy(How = How.CssSelector, Using = "#InvoiceGridView")]
         public IWebElement InvoiceGridElement;
-         [FindsBy(How = How.CssSelector, Using = "a[href*=\"&type=customer\"]")]
-        public IList<IWebElement> DownloadInvoiceElements;
+        [FindsBy(How = How.CssSelector, Using = "a[href*=\"&type=customer\"]")]
+        public IList<IWebElement> DownloadCustomerInvoiceElements;
+        [FindsBy(How = How.CssSelector, Using = "a[href*=\"&type=dealer\"]")]
+        public IList<IWebElement> DownloadDealerInvoiceElements;
+        [FindsBy(How = How.CssSelector, Using = "a[href*=\"&type=bank\"]")]
+        public IList<IWebElement> DownloadBankInvoiceElements;
+        [FindsBy(How = How.CssSelector, Using = "th[scope=\"col\"]")]
+        public IList<IWebElement> NumberOfColumnElements;
         
+
         
         
 
@@ -75,9 +82,22 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void DownloadCustomerInvoices()
         {
-            foreach (var downloadInvoiceElement in DownloadInvoiceElements)
+            foreach (var downloadInvoiceElement in DownloadCustomerInvoiceElements)
             {
                 downloadInvoiceElement.Click();
+                WebDriver.Wait(DurationType.Second, 3);
+            }
+
+            foreach (var downloadDealerInvoiceElement in DownloadDealerInvoiceElements)
+            {
+                downloadDealerInvoiceElement.Click();
+                WebDriver.Wait(DurationType.Second, 3);
+            }
+
+            if (NumberOfColumnElements.Count != 9) return;
+            foreach (var downloadBankInvoiceElement in DownloadBankInvoiceElements)
+            {
+                downloadBankInvoiceElement.Click();
                 WebDriver.Wait(DurationType.Second, 3);
             }
         }

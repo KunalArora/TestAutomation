@@ -97,7 +97,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void PayServicePackMethod(string option)
         {
-            if (IsSpainSystem()) return;
+            if (IsSpainSystem()|| IsBelgiumSystem()) return;
             if (option.Equals("Pay upfront") || option.Equals("im Voraus bezahlen") || option.Equals("Betale på forskud")
                 || option.Equals("Paiement au démarrage du contrat") || option.Equals("Pagamento anticipato") || option.Equals("Förskott")
                 || option.Equals("Betaling bij aanvang van het contract") || option.Equals("Płatność z góry"))

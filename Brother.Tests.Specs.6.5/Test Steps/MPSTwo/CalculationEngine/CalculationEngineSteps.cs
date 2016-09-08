@@ -237,7 +237,7 @@ namespace Brother.Tests.Specs.MPSTwo.CalculationEngine
             WhenIAcceptTheDefaultValuesOfTheDevice(delivery, installation);
 
             WhenIMoveToClickPricePage();
-            if (UsageType(usageType).Equals("Minimum Volume"))
+            if (UsageType(usageType).Equals("Minimum Volume") && !IsBelgiumSystem())
             {
                 CurrentPage.As<DealerProposalsCreateClickPricePage>().PayServicePackMethod(servicePack);
                 NextPage = CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateSelectedMultipleClickPrice("1000", "1000");
@@ -246,7 +246,16 @@ namespace Brother.Tests.Specs.MPSTwo.CalculationEngine
             {
                 NextPage = CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateEnteredMultipleClickPrice("1000", "1000");
             }
-            
+            else if (UsageType(usageType).Equals("Minimum Volume") && IsBelgiumSystem())
+            {
+                NextPage = CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateEnteredMultipleClickPrice("1000", "1000");
+            }
+        }
+
+
+        private bool IsBelgiumSystem()
+        {
+            return CurrentPage.As<DealerProposalsCreateClickPricePage>().IsBelgiumSystem();
         }
 
 

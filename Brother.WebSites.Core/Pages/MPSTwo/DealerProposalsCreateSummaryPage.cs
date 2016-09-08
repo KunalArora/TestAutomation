@@ -868,6 +868,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public CloudExistingProposalPage SaveProposal()
         {
+            SetContractIdValue();
             WebDriver.Wait(DurationType.Second, 3);
             ScrollTo(SaveProposalElement);
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, SaveProposalElement);

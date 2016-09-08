@@ -544,8 +544,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                         break;
                     case "BOR":
                         CloudInstallationProcess();
-                       // WebDriver.Wait(DurationType.Second, 5);
-                        //RefreshCloudInstallationElement.Click();
                         RefreshCloudInstallation();
                         break;
                     case "Web":
