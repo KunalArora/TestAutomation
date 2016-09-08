@@ -964,7 +964,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
             else if (IsBelgiumSystem())
             {
-                regionName = "";
+                regionName = "Région de Bruxelles";
             }
 
             if (String.IsNullOrWhiteSpace(regionName)) return;

@@ -34,6 +34,18 @@ namespace Brother.Tests.Specs.MPSTwo.InvoiceTool
 
         }
 
+        [Then(@"I enter mono and colour print count for a single device")]
+        public void ThenIEnterMonoAndColourPrintCountForASingleDevice()
+        {
+            CurrentPage.As<InvoiceToolsPage>().NavigateToInvoiceToolPrinterPage();
+            CurrentPage.As<InvoiceToolsPage>().EnterColourDevicePrintCounts(1000, 1000, "0", 0);
+            CurrentPage.As<InvoiceToolsPage>().EnterColourDevicePrintCounts(2000, 2000, "0", 95);
+            CurrentPage.As<InvoiceToolsPage>().EnterColourDevicePrintCounts(2500, 2500, "0", 190);
+            CurrentPage.As<InvoiceToolsPage>().EnterColourDevicePrintCounts(3500, 3500, "0", 363);
+            CurrentPage.As<InvoiceToolsPage>().CompleteInstallation();
+
+        }
+
         [Then(@"I enter ""(.*)"" mono and ""(.*)"" colour print count")]
         public void ThenIEnterMonoAndColourPrintCount(int mono, int colour)
         {

@@ -1451,8 +1451,11 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             contractType = ContractType(contractType);
             GivenIamOnMpsNewProposalPage();
             WhenIFillProposalDescriptionForContractType(contractType);
-            var customerInformationStepInstance = new DealerProposalsCreateCustomerInformationStep();
-            customerInformationStepInstance.WhenISelectButtonForCustomerDataCapture("Create new customer");
+            if (!CurrentPage.As<DealerProposalsCreateTermAndTypePage>().IsSwissSystem())
+            {
+                var customerInformationStepInstance = new DealerProposalsCreateCustomerInformationStep();
+                customerInformationStepInstance.WhenISelectButtonForCustomerDataCapture("Create new customer"); 
+            }
             var stepInstance = new DealerProposalsCreateTermAndTypeStep();
             stepInstance.WhenIEnterUsageTypeContractLengthAndBillingOnTermAndTypeDetails
                 (usageType, length, billing);
@@ -1605,7 +1608,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<DealerProposalsCreateDescriptionPage>().SelectingContractType(contract);
             CurrentPage.As<DealerProposalsCreateDescriptionPage>().EnterProposalName("");
             CurrentPage.As<DealerProposalsCreateDescriptionPage>().EnterLeadCodeRef("");
-            if (CurrentPage.As<DealerProposalsCreateDescriptionPage>().IsBigAtSystem())
+            if (CurrentPage.As<DealerProposalsCreateDescriptionPage>().IsBigAtSystem() || CurrentPage.As<DealerProposalsCreateDescriptionPage>().IsSwissSystem())
             {
                 NextPage = CurrentPage.As<DealerProposalsCreateDescriptionPage>().ClickNextButtonGermany();
             }

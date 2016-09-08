@@ -69,10 +69,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void GiveSchufaAuthorization()
         {
-            const string schufa = @"#content_1_InputSendToSchufa_Input";
-            var schufaElement = GetElementByCssSelector(schufa, 10);
-            if (IsElementPresent(schufaElement))
-                schufaElement.Click();
+            if (IsBigAtSystem())
+            {
+                const string schufa = @"#content_1_InputSendToSchufa_Input";
+                var schufaElement = GetElementByCssSelector(schufa, 10);
+                if (IsElementPresent(schufaElement))
+                    schufaElement.Click();
+            }
+
+            
         }
 
         public DealerProposalsAwaitingApproval SaveProposalAsAContract()
@@ -80,8 +85,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if (SaveAsContractButton == null)
                 throw new NullReferenceException("Save Contract button not available");
             SaveAsContractButton.Click();
-            WebDriver.Wait(DurationType.Second, 5);
-
+           
             return GetInstance<DealerProposalsAwaitingApproval>(Driver);
         }
 
