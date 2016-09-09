@@ -1451,7 +1451,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             contractType = ContractType(contractType);
             GivenIamOnMpsNewProposalPage();
             WhenIFillProposalDescriptionForContractType(contractType);
-            if (!CurrentPage.As<DealerProposalsCreateTermAndTypePage>().IsSwissSystem())
+            if (!(CurrentDriver.Url.Contains("online.ch") || CurrentDriver.Url.Contains("online.brother.ch.local")))
             {
                 var customerInformationStepInstance = new DealerProposalsCreateCustomerInformationStep();
                 customerInformationStepInstance.WhenISelectButtonForCustomerDataCapture("Create new customer"); 
