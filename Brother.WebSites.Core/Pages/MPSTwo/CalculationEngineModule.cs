@@ -69,6 +69,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             Utils.DownloadAndSaveWebPage(url, proposal, name);
         }
+
+        public static string CountryToSelect()
+        {
+            return SpecFlow.GetContext("CountrySelect");
+        }
         private static IWebElement DownloadProposalFromSendToApproverPdfElement(ISearchContext driver)
         {
             return driver.FindElement(By.CssSelector(DownloadSendToApproverPdf));
