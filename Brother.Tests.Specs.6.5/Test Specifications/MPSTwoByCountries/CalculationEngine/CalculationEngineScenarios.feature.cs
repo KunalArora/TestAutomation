@@ -73,7 +73,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.CalculationEn
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Scenario One")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Email", "3 years", "Quarterly in Arrears", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010053", "A1T010054", "A1T010055", "A1T010056", "1000", "1000", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Germany", "Easy Print Pro & Service", "Mindestvolumen", "Cloud MPS Dealer", "Email", "3 Jahre", "Halbjährlich", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010069", "A1T010070", "A1T010071", "A1T010072", "1000", "1000", null)]
         public virtual void ScenarioOne(
                     string role, 
                     string country, 
@@ -142,7 +142,7 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Scenario Two")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Email", "4 years", "Half Yearly", "Included in Click Price", "Brother", "No", "MFC-L8650CDW", "MFC-L5750DW", "A1T010113", "A1T010114", "A1T010115", "A1T010116", "10000", "10000", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Germany", "Easy Print Pro & Service", "Mindestvolumen", "Cloud MPS Dealer", "Email", "3 Jahre", "Halbjährlich", "Included in Click Price", "Brother", "No", "MFC-L8650CDW", "MFC-L5750DW", "A1T010129", "A1T010130", "A1T010131", "A1T010132", "10000", "10000", null)]
         public virtual void ScenarioTwo(
                     string role, 
                     string country, 
@@ -211,7 +211,7 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Scenario Three")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Email", "5 years", "Monthly", "Included in Click Price", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010173", "A1T010174", "A1T010175", "A1T010176", "5000", "5000", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Germany", "Easy Print Pro & Service", "Mindestvolumen", "Cloud MPS Dealer", "Email", "3 Jahre", "Halbjährlich", "Included in Click Price", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010189", "A1T010190", "A1T010191", "A1T010192", "5000", "5000", null)]
         public virtual void ScenarioThree(
                     string role, 
                     string country, 
@@ -280,7 +280,7 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Scenario Four")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Pay As You Go", "Cloud MPS Dealer", "Email", "3 years", "Quarterly in Arrears", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010233", "A1T010234", "A1T010235", "A1T010236", "5000", "5000", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Germany", "Easy Print Pro & Service", "Pay As You Go", "Cloud MPS Dealer", "Email", "3 Jahre", "Halbjährlich", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010249", "A1T010250", "A1T010251", "A1T010252", "5000", "5000", null)]
         public virtual void ScenarioFour(
                     string role, 
                     string country, 
@@ -350,7 +350,6 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Scenario Five")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Bank", "Germany", "Leasing & Service", "Mindestvolumen", "Cloud MPS Dealer", "Email", "3 Jahre", "Monatlich", "Halbjährlich", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010257", "A1T010258", "A1T010259", "A1T010260", "1000", "1000", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Bank", "Austria", "Leasing & Service", "Mindestvolumen", "Cloud MPS Dealer", "Email", "3 Jahre", "Monatlich", "Halbjährlich", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010261", "A1T010262", "A1T010263", "A1T010264", "1000", "1000", null)]
         public virtual void ScenarioFive(
                     string role, 
                     string country, 
@@ -421,7 +420,6 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Scenario Six")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Bank", "Germany", "Leasing & Service", "Mindestvolumen", "Cloud MPS Dealer", "Email", "5 Jahre", "Vierteljährlich", "Halbjährlich", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010265", "A1T010266", "A1T010267", "A1T010268", "1000", "1000", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Bank", "Austria", "Leasing & Service", "Mindestvolumen", "Cloud MPS Dealer", "Email", "5 Jahre", "Vierteljährlich", "Halbjährlich", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010269", "A1T010270", "A1T010271", "A1T010272", "1000", "1000", null)]
         public virtual void ScenarioSix(
                     string role, 
                     string country, 
@@ -492,7 +490,6 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Scenario Seven")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Bank", "Germany", "Leasing & Service", "Mindestvolumen", "Cloud MPS Dealer", "Email", "5 Jahre", "Monatlich", "Halbjährlich", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010273", "A1T010274", "A1T010275", "A1T010276", "5000", "5000", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Bank", "Austria", "Leasing & Service", "Mindestvolumen", "Cloud MPS Dealer", "Email", "5 Jahre", "Monatlich", "Halbjährlich", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010277", "A1T010278", "A1T010279", "A1T010280", "5000", "5000", null)]
         public virtual void ScenarioSeven(
                     string role, 
                     string country, 
@@ -563,7 +560,6 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Scenario Eight")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Bank", "Germany", "Leasing & Service", "Mindestvolumen", "Cloud MPS Dealer", "Email", "5 Jahre", "Vierteljährlich", "Halbjährlich", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010281", "A1T010282", "A1T010283", "A1T010284", "5000", "5000", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Bank", "Austria", "Leasing & Service", "Mindestvolumen", "Cloud MPS Dealer", "Email", "5 Jahre", "Vierteljährlich", "Halbjährlich", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010285", "A1T010286", "A1T010287", "A1T010288", "5000", "5000", null)]
         public virtual void ScenarioEight(
                     string role, 
                     string country, 
