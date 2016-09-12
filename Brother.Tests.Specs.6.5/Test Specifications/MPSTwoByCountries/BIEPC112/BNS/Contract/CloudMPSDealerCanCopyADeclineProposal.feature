@@ -12,8 +12,8 @@ Scenario Outline: MPS Copy Declined Proposal No Customer
 	
 	Scenarios:
 
-	| Role             | Country | Role2                           | ContractType                       | UsageType     | Length | Billing              |
-	| Cloud MPS Dealer | Sweden  | Cloud MPS Local Office Approver | Purchase & click inklusive service | Minimum volym | 36     | Quarterly in Arrears |
+	| Role             | Country | Role2                           | ContractType                       | UsageType     | Length     | Billing              |
+	| Cloud MPS Dealer | Sweden  | Cloud MPS Local Office Approver | Purchase & click inklusive service | Minimum volym | 36 månader | Quarterly in Arrears |
 	
 
 Scenario Outline: MPS Copy Declined Proposal Customer
@@ -24,6 +24,6 @@ Scenario Outline: MPS Copy Declined Proposal Customer
 	
 	Scenarios:
 
-	| Role             | Country | Role2                           | ContractType                       | UsageType     | Length | Billing              |
-	| Cloud MPS Dealer | Sweden  | Cloud MPS Local Office Approver | Purchase & click inklusive service | Minimum volym | 36     | Quarterly in Arrears |
+	| Role             | Country | Role2                           | ContractType                       | UsageType     | Length     | Billing              |
+	| Cloud MPS Dealer | Sweden  | Cloud MPS Local Office Approver | Purchase & click inklusive service | Minimum volym | 36 månader | Quarterly in Arrears |
 	

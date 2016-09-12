@@ -18,7 +18,7 @@ Scenario Outline: MPS Swedish Dealer can copy an existing proposal offer for all
 	
 	Scenarios:
 
-	| Role             | Country | ContractType                       | UsageType     | Length | Billing              | Customer               | Status  |
-	| Cloud MPS Dealer | Sweden  | Purchase & click inklusive service | Minimum volym | 36     | Quarterly in Arrears | Skip customer creation | Without |
-	| Cloud MPS Dealer | Sweden  | Purchase & click inklusive service | Minimum volym | 48     | Quarterly in Arrears | Create new customer    | With    |
+	| Role             | Country | ContractType                       | UsageType     | Length     | Billing              | Customer               | Status  |
+	| Cloud MPS Dealer | Sweden  | Purchase & click inklusive service | Minimum volym | 36 månader | Quarterly in Arrears | Skip customer creation | Without |
+	| Cloud MPS Dealer | Sweden  | Purchase & click inklusive service | Minimum volym | 48 månader | Quarterly in Arrears | Create new customer    | With    |
 	

@@ -15,6 +15,6 @@ Scenario Outline: MPS Delete Open Proposal
 
 Scenarios:
 
-	| Role             | Country | Role2                           | ContractType                       | UsageType     | Length | Billing              |
-	| Cloud MPS Dealer | Sweden  | Cloud MPS Local Office Approver | Purchase & click inklusive service | Minimum volym | 36     | Quarterly in Arrears |
+	| Role             | Country | Role2                           | ContractType                       | UsageType     | Length     | Billing              |
+	| Cloud MPS Dealer | Sweden  | Cloud MPS Local Office Approver | Purchase & click inklusive service | Minimum volym | 36 månader | Quarterly in Arrears |
 	
