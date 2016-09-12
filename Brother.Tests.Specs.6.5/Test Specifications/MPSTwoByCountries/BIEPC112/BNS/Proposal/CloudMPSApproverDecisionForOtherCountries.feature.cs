@@ -73,7 +73,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BNS.
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("MPS LO Decline Proposal")]
-        [NUnit.Framework.TestCaseAttribute("Sweden", "Cloud MPS Local Office Approver", "Purchase & click inklusive service", "Minimum volym", "36", "Quarterly in Arrears", null)]
+        [NUnit.Framework.TestCaseAttribute("Sweden", "Cloud MPS Local Office Approver", "Purchase & click inklusive service", "Minimum volym", "36 månader", "Quarterly in Arrears", null)]
         public virtual void MPSLODeclineProposal(string country, string role, string contractType, string usageType, string length, string billing, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS LO Decline Proposal", exampleTags);
@@ -90,7 +90,7 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("MPS LO Can Reject Or Accept")]
-        [NUnit.Framework.TestCaseAttribute("Sweden", "Cloud MPS Local Office Approver", "Purchase & click inklusive service", "Minimum volym", "36", "Quarterly in Arrears", null)]
+        [NUnit.Framework.TestCaseAttribute("Sweden", "Cloud MPS Local Office Approver", "Purchase & click inklusive service", "Minimum volym", "36 månader", "Quarterly in Arrears", null)]
         public virtual void MPSLOCanRejectOrAccept(string country, string role, string contractType, string usageType, string length, string billing, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS LO Can Reject Or Accept", exampleTags);
@@ -114,7 +114,7 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("MPS LO Approve Contract")]
-        [NUnit.Framework.TestCaseAttribute("Sweden", "Cloud MPS Local Office Approver", "Purchase & click inklusive service", "Minimum volym", "36", "Quarterly in Arrears", null)]
+        [NUnit.Framework.TestCaseAttribute("Sweden", "Cloud MPS Local Office Approver", "Purchase & click inklusive service", "Minimum volym", "36 månader", "Quarterly in Arrears", null)]
         public virtual void MPSLOApproveContract(string country, string role, string contractType, string usageType, string length, string billing, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS LO Approve Contract", exampleTags);
@@ -140,7 +140,7 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("MPS LO Reject Contract")]
-        [NUnit.Framework.TestCaseAttribute("Sweden", "Cloud MPS Local Office Approver", "Purchase & click inklusive service", "Minimum volym", "36", "Quarterly in Arrears", null)]
+        [NUnit.Framework.TestCaseAttribute("Sweden", "Cloud MPS Local Office Approver", "Purchase & click inklusive service", "Minimum volym", "36 månader", "Quarterly in Arrears", null)]
         public virtual void MPSLORejectContract(string country, string role, string contractType, string usageType, string length, string billing, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS LO Reject Contract", exampleTags);
