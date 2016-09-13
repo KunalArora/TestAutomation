@@ -74,7 +74,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyPaymentMethodIsDisplayed()
         {
-            if (IsSpainSystem()) return;
+            if (IsSpainSystem() || IsBelgiumSystem()) return;
             TestCheck.AssertIsEqual(true, PaymentMethodElement().Displayed, "Payment method is not displayed");
         }
 
