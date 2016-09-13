@@ -15,14 +15,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
     public class DealerProposalPdfPage : BasePage
     {
 
-        private const string DownloadPath = @"file:///C:/Users/afolabsa/Downloads/";
+        private const string DownloadPath = @"file:///C:/DataTest/";
         private const string UkText = @"Total Quarterly In Arrears";
         private const string DeText = @"Brother EasyPrint Pro";
         private const string AtText = @"Bedingung";
         private const string ItText = @"Pacchetto assistenza MPS per inkjet";
         private const string FrText = @"COUT D’ACQUISITION";
         private const string SpText = @"Propuesta";
-        private const string DownloadDirectory = @"C:/Users/afolabsa/Downloads";
+        private const string DownloadDirectory = @"C:/DataTest";
 
 
         [FindsBy(How = How.CssSelector, Using = "#content_1_SummaryTable_ProposalDetailsContainer")]
