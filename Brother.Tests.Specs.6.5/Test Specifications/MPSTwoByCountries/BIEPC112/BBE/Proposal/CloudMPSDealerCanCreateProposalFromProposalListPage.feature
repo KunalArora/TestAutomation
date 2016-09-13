@@ -22,7 +22,7 @@ Scenario Outline: MPS Create Proposal From List Page
 	Then the billing basis for product is "<Basis2>"
 	And the billing basis for Accessory is "<Basis2>"
 	And the billing basis for Installation is "<Basis2>"
-	And the billing basis for Service Pack is "<Basis1>"
+	#And the billing basis for Service Pack is "<Basis1>"
 	And the installation type displayed is correct
 	#And the installation cost displayed is correct
 	And the quantity displayed is the same as the one entered
