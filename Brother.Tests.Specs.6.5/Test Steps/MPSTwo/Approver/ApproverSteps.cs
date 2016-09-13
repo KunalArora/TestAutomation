@@ -241,9 +241,19 @@ namespace Brother.Tests.Specs.MPSTwo.Approver
 
         [Given(@"the contract created above is approved")]
         [Then(@"the contract created above is approved")]
-        public void ThenTheContractCreatedAboveIsApproved()
+        public void ThenTheContractCreatedAboveIsApprovedWithCreditCheck()
         {
              var instance3 = new AccountManagementSteps();
+            WhenApproverNavigateToContractAwaitingAcceptancePage();
+            ThenApproverCanViewAllTheContractsThatHaveBeenSignedByDealer();
+            ThenApproverCanSuccessfullyApproveTheContract();
+            ThenTheAcceptedContractByApproverIsDisplayedOnContractAcceptedScreen();
+            instance3.ThenIfISignOutOfBrotherOnline();
+        }
+
+        public void ThenTheContractCreatedAboveIsApproved()
+        {
+            var instance3 = new AccountManagementSteps();
             WhenApproverNavigateToContractAwaitingAcceptancePage();
             ThenApproverCanViewAllTheContractsThatHaveBeenSignedByDealer();
             ThenApproverCanSuccessfullyApproveTheContract();
