@@ -1003,12 +1003,45 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
             else if (IsBelgiumSystem())
             {
-                regionName = "Région de Bruxelles";
+                regionName = BelgianRegionaLanguage();
             }
 
             if (String.IsNullOrWhiteSpace(regionName)) return;
                 SelectFromDropdown(GermanBundeslandElement, regionName);
              
+        }
+
+
+        private String BelgianRegionaLanguage()
+        {
+            string lang;
+            string language;
+
+            try
+            {
+                language = SpecFlow.GetContext("BelgianLanguage");
+            }
+            catch (KeyNotFoundException)
+            {
+
+                language = "French";
+            }
+
+            switch (language)
+            {
+                case "French":
+                    lang = "Région wallonne";
+                    break;
+                case "Dutch":
+                    lang = "Brussels Gewest";
+                    break;
+
+                default:
+                    lang = "Région wallonne";
+                    break;
+            }
+
+            return lang;
         }
 
         public void EnterGermanKostenstelleName()
