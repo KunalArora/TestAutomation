@@ -168,6 +168,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if (!CreditCheckNotNeededElement.Selected)
                 CreditCheckNotNeededElement.Click();
         }
+
         public void EnterApprovalInformation()
         {
             EnterCustomerReference("");
