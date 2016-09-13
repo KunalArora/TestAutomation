@@ -76,7 +76,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             if (IsSpainSystem() 
                 || IsBelgiumSystem() 
-                || IsNetherlandSystem()) return;
+                || IsNetherlandSystem()
+                || IsPolandSystem()) return;
             TestCheck.AssertIsEqual(true, PaymentMethodElement().Displayed, "Payment method is not displayed");
         }
 
