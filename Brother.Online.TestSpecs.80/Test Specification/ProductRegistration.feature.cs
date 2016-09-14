@@ -68,30 +68,6 @@ namespace Brother.Online.TestSpecs._80.TestSpecification
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Existing Customer/New Customer redirected to the product details")]
-        [NUnit.Framework.CategoryAttribute("TEST")]
-        [NUnit.Framework.CategoryAttribute("SMOKE")]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "http://atyourside.co.uk.brotherdv2.eu/", null)]
-        public virtual void ExistingCustomerNewCustomerRedirectedToTheProductDetails(string country, string siteUrl, string[] exampleTags)
-        {
-            string[] @__tags = new string[] {
-                    "TEST",
-                    "SMOKE"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Existing Customer/New Customer redirected to the product details", @__tags);
-#line 8
-this.ScenarioSetup(scenarioInfo);
-#line 9
-testRunner.Given(string.Format("I navigate to \"{0}\" in order to validate a Product Registration page when I want " +
-                        "to create a new account or existing account with Brother Online", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verify the Header and Footer of the landing page")]
         [NUnit.Framework.CategoryAttribute("TEST")]
         [NUnit.Framework.CategoryAttribute("SMOKE")]
@@ -106,81 +82,39 @@ testRunner.Given(string.Format("I navigate to \"{0}\" in order to validate a Pro
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify the Header and Footer of the landing page", @__tags);
-#line 19
+#line 7
 this.ScenarioSetup(scenarioInfo);
-#line 20
+#line 8
 testRunner.Given(string.Format("I navigate to \"{0}\" in order to validate the landing page", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 21
+#line 9
 testRunner.Then("I should see the Header and the Footer appearing on the landing Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Customer has the option to change their sign in preferences to social login")]
-        [NUnit.Framework.IgnoreAttribute()]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", null)]
-        public virtual void CustomerHasTheOptionToChangeTheirSignInPreferencesToSocialLogin(string country, string[] exampleTags)
+        [NUnit.Framework.DescriptionAttribute("Customer wants to register product with their serial numbers and promo code")]
+        [NUnit.Framework.CategoryAttribute("TEST")]
+        [NUnit.Framework.CategoryAttribute("SMOKE")]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "http://atyourside.co.uk.brotherdv2.eu/QA/AutomationPleaseDoNotTouch/Step-one", "U1T004747", null)]
+        public virtual void CustomerWantsToRegisterProductWithTheirSerialNumbersAndPromoCode(string country, string siteUrl, string serialNumber, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "ignore"};
+                    "TEST",
+                    "SMOKE"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer has the option to change their sign in preferences to social login", @__tags);
-#line 28
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer wants to register product with their serial numbers and promo code", @__tags);
+#line 15
 this.ScenarioSetup(scenarioInfo);
-#line 29
-testRunner.Given(string.Format("I want to create a new account with Brother Online \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 30
-testRunner.When(string.Format("I click on Create Account for \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 31
-testRunner.And(string.Format("I am redirected to the Brother Login/Register page \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 32
-testRunner.And(string.Format("I have Checked No I Do Not Have An Account Checkbox \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
-                        "field",
-                        "value"});
-            table1.AddRow(new string[] {
-                        "FirstName",
-                        "AutoTest"});
-            table1.AddRow(new string[] {
-                        "LastName",
-                        "AutoTest"});
-            table1.AddRow(new string[] {
-                        "Password",
-                        "@@@@@"});
-            table1.AddRow(new string[] {
-                        "ConfirmPassword",
-                        "@@@@@"});
-#line 33
-testRunner.And(string.Format("I fill in the registration information using a valid email address \"{0}\"", country), ((string)(null)), table1, "And ");
-#line 41
-testRunner.And(string.Format("I have Agreed to the Terms and Conditions \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 42
-testRunner.And(string.Format("I declare that I do not use this account for business \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 43
-testRunner.When(string.Format("I press Create Your Account \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 44
-testRunner.Then(string.Format("I should see my account confirmation page \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 45
-testRunner.And(string.Format("When I Click Go Back \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 46
-testRunner.Then(string.Format("I should be able to log into \"{0}\" Brother Online using my account details", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 47
-testRunner.When(string.Format("I navigate to my account for \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 48
-testRunner.And(string.Format("I click on Sign In Details \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 49
-testRunner.When(string.Format("I click on Social Login Radio button \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 50
-testRunner.Then(string.Format("I should be able to see social login buttons \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 51
-testRunner.And(string.Format("I can navigate back to Brother Online home page \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 52
-testRunner.And(string.Format("I can sign out of Brother Online \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 16
+ testRunner.Given(string.Format("I navigate to \"{0}\" in order to validate the landing page", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 17
+ testRunner.And(string.Format("I have entered my product \"{0}\"", serialNumber), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 18
+ testRunner.And("clicked on Find Product Butoon", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
