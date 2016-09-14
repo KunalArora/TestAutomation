@@ -28,6 +28,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var scenarioName = ScenarioContext.Current.ScenarioInfo.Title;
             scenarioName = scenarioName.Replace(" ", "");
 
+            var generatedProposalName = "";
+
             var prefix = MpsUserLogins.PasswordPrefix();
 
             if (prefix.ToLower() == "de")
@@ -39,10 +41,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             var env = Environment.GetEnvironmentVariable("AutoTestComplimentEnv", EnvironmentVariableTarget.Machine);
 
-            var generatedProposalName = String.Format("{0}-{1}-{2}_{3}", country, scenarioName, env, DateTime.Now.ToString("MMdHHmmss"));
+            generatedProposalName = String.Format("{0}-{1}-{2}_{3}", country, scenarioName, env, DateTime.Now.ToString("MMdHHmmss"));
 
             SpecFlow.SetContext("GeneratedProposalName", generatedProposalName);
-            Helper.MsgOutput(String.Format("The proposal generated is {0}", generatedProposalName));
 
             return generatedProposalName;
 
@@ -64,10 +65,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 name = proposalName + String.Format("_{0}_ProposalSummary", rolePage);
             }
-
-            var proposal = SpecFlow.GetContext("GeneratedProposalName");
-
-            Utils.DownloadAndSaveWebPage(url, proposal, name);
+            
+            Utils.DownloadAndSaveWebPage(url, proposalName, name);
         }
 
         public static string CountryToSelect()
