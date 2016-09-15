@@ -37,8 +37,9 @@ namespace Brother.Tests.Specs.MPSTwo.Approver
                 LeaseAndClick = true;
             if (UsageType.Equals("Minimum Volume") || UsageType.Equals("Engagement sur un minimum volume de pages") ||
                 UsageType.Equals("Volume minimo") || UsageType.Equals("Volúmen mínimo") || UsageType.Equals("Minimumvolume")
-                || UsageType.Equals("Minimum volum") || UsageType.Equals("Minimum volym") || UsageType.Equals("Minimumsvolumen") 
-                || UsageType.Equals("Minimumsvolumen") || UsageType.Equals("Pakiet wydruków"))
+                || UsageType.Equals("Minimum volum") || UsageType.Equals("Minimum volym") || UsageType.Equals("Minimumsvolumen")
+                || UsageType.Equals("Minimumsvolumen") || UsageType.Equals("Pakiet wydruków") || UsageType.Equals("Per kwartaal achteraf")
+                || UsageType.Equals("Volume minimum"))
                 MinimumVolume = true;
             if (UsageType.Equals("Pay As You Go") || UsageType.Equals("Pago por Uso") || UsageType.Equals("Betale ved forbruk")
                 || UsageType.Equals("Betala per utskrift") || UsageType.Equals("Betalen naar verbruik") || UsageType.Equals("Bez limitu")
