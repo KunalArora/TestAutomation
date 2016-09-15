@@ -222,8 +222,13 @@ namespace Brother.Tests.Specs.MPSTwo.CalculationEngine
 
             instance1.GivenIamOnMpsNewProposalPage();
             WhenIFillProposalDescriptionForContractType(contractType);
-            var customerInformationStepInstance = new DealerProposalsCreateCustomerInformationStep();
-            customerInformationStepInstance.WhenISelectButtonForCustomerDataCapture("Create new customer");
+
+            if (!(CurrentDriver.Url.Contains("online.ch") || CurrentDriver.Url.Contains("online.brother.ch.local")))
+            {
+                var customerInformationStepInstance = new DealerProposalsCreateCustomerInformationStep();
+                customerInformationStepInstance.WhenISelectButtonForCustomerDataCapture("Create new customer");
+            }
+
             var stepInstance = new DealerProposalsCreateTermAndTypeStep();
             stepInstance.WhenIEnterUsageTypeContractLengthAndBillingOnTermAndTypeDetails
                 (usageType, length, billing);
@@ -272,7 +277,10 @@ namespace Brother.Tests.Specs.MPSTwo.CalculationEngine
                 || usageType.Equals("Minimumsvolumen")
                 || usageType.Equals("Minimumsvolumen") 
                 || usageType.Equals("Pakiet wydruków")
-                || usageType.Equals("Mindestvolumen"))
+                || usageType.Equals("Mindestvolumen")
+                || usageType.Equals("Volume minimum")
+                || usageType.Equals("Minimitulostusmäärä")
+                || usageType.Equals("Per kwartaal achteraf"))
                 
             {
                 type = "Minimum Volume";
@@ -299,7 +307,7 @@ namespace Brother.Tests.Specs.MPSTwo.CalculationEngine
             CurrentPage.As<DealerProposalsCreateDescriptionPage>().SelectingContractType(contract);
             CurrentPage.As<DealerProposalsCreateDescriptionPage>().EnterProposalName(CalculationEngineModule.ProposalName());
             CurrentPage.As<DealerProposalsCreateDescriptionPage>().EnterLeadCodeRef("");
-            if (CurrentPage.As<DealerProposalsCreateDescriptionPage>().IsBigAtSystem())
+            if (CurrentPage.As<DealerProposalsCreateDescriptionPage>().IsBigAtSystem() || CurrentPage.As<DealerProposalsCreateDescriptionPage>().IsSwissSystem())
             {
                 NextPage = CurrentPage.As<DealerProposalsCreateDescriptionPage>().ClickNextButtonGermany();
             }
