@@ -1,10 +1,13 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
+using Brother.WebSites.Core.Pages.BrotherMainSite;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
 using TechTalk.SpecFlow;
 using Brother.Online.TestSpecs._80.Test_Steps;
@@ -29,6 +32,18 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
         {
             CurrentPage.As<ProductRegistrationPage>().CheckForHeaderAndFooter();
         }
+        
+        [Given(@"I have entered my product ""(.*)""")]
+        public void GivenIHaveEnteredMyProduct(string serialnumber)
+        {
+            CurrentPage.As<ProductRegistrationPage>().PopulateSerialNumberTextBox(serialnumber);
+        }
+        [Given(@"clicked on Find Product Butoon")]
+        public void GivenClickedOnFindProductButoon()
+        {
+            CurrentPage.As<ProductRegistrationPage>().ClickFindProductButton();
+        }
+
     }
 
 }
