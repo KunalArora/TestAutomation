@@ -347,9 +347,9 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [When(@"I add the device that changed the default values")]
         public void WhenIChangeTheDefaultValuesOfTheDevice()
         {
-            if (!(CurrentPage.As<DealerProposalsCreateProductsPage>().IsGermanSystem()
+            if (!((CurrentPage.As<DealerProposalsCreateProductsPage>().IsGermanSystem()
                 && CurrentPage.As<DealerProposalsCreateProductsPage>().GetContractType() == "Easy Print Pro & Service")
-                || CurrentPage.As<DealerProposalsCreateProductsPage>().IsPolandSystem())
+                || CurrentPage.As<DealerProposalsCreateProductsPage>().IsPolandSystem()))
             {
                 CurrentPage.As<DealerProposalsCreateProductsPage>().EnterProductQuantity("1");
                 CurrentPage.As<DealerProposalsCreateProductsPage>().EnterModelUnitCost();
@@ -446,9 +446,9 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [When(@"I confirm the values entered for the device")]
         public void WhenIconfirmTheValuesEntereForTheDevice()
         {
-            if (!(CurrentPage.As<DealerProposalsCreateProductsPage>().IsGermanSystem()
+            if (!((CurrentPage.As<DealerProposalsCreateProductsPage>().IsGermanSystem()
                 && CurrentPage.As<DealerProposalsCreateProductsPage>().GetContractType() == "Easy Print Pro & Service")
-                || CurrentPage.As<DealerProposalsCreateProductsPage>().IsPolandSystem())
+                || CurrentPage.As<DealerProposalsCreateProductsPage>().IsPolandSystem()))
             {
                 CurrentPage.As<DealerProposalsCreateProductsPage>().EnterModelUnitCost();
             }
@@ -460,9 +460,9 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [When(@"I move to Click Price page")]
         public void WhenIMoveToClickPricePage()
         {
-            if (!(CurrentPage.As<DealerProposalsCreateProductsPage>().IsGermanSystem()
+            if (!((CurrentPage.As<DealerProposalsCreateProductsPage>().IsGermanSystem()
                 && CurrentPage.As<DealerProposalsCreateProductsPage>().GetContractType() == "Easy Print Pro & Service")
-                || CurrentPage.As<DealerProposalsCreateProductsPage>().IsPolandSystem())
+                || CurrentPage.As<DealerProposalsCreateProductsPage>().IsPolandSystem()))
             {
                 CurrentPage.As<DealerProposalsCreateProductsPage>().EnterModelUnitCost();
             }
@@ -484,9 +484,9 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         {
             CurrentPage.As<DealerProposalsCreateProductsPage>().ClickOnAPrinter(printer);
 
-            if (!(CurrentPage.As<DealerProposalsCreateProductsPage>().IsGermanSystem()
-                && CurrentPage.As<DealerProposalsCreateProductsPage>().GetContractType() == "Easy Print Pro & Service") 
-                || CurrentPage.As<DealerProposalsCreateProductsPage>().IsPolandSystem())
+            if (!((CurrentPage.As<DealerProposalsCreateProductsPage>().IsGermanSystem()
+                && CurrentPage.As<DealerProposalsCreateProductsPage>().GetContractType() == "Easy Print Pro & Service")
+                || CurrentPage.As<DealerProposalsCreateProductsPage>().IsPolandSystem()))
             {
                 
                 CurrentPage.As<DealerProposalsCreateProductsPage>().EnterModelUnitCost();
