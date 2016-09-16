@@ -73,7 +73,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BNL.
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("MPS Summary Validation MV In Click")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Netherlands", "Purchase + Click met Service", "Minimumvolume", "3 jaar", "Quarterly in Arrears", "Tick", "MFC-L8650CDW", "Full", "Opgenomen in klikprijs", "800", "800", "Opgenomen in klikprijs", "Voorafbetaling", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Netherlands", "Purchase + Click met Service", "Minimumvolume", "3 jaar", "Per kwartaal achteraf", "Tick", "MFC-L8650CDW", "Full", "Opgenomen in klikprijs", "800", "800", "Opgenomen in klikprijs", "Voorafbetaling", null)]
         public virtual void MPSSummaryValidationMVInClick(string role, string country, string contractType, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string basis1, string basis2, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Summary Validation MV In Click", exampleTags);
@@ -144,7 +144,7 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("MPS Summary Validation MV Upfront")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Netherlands", "Purchase + Click met Service", "Minimumvolume", "3 jaar", "Quarterly in Arrears", "Tick", "MFC-L8650CDW", "Full", "Voorafbetaling", "800", "800", "Voorafbetaling", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Netherlands", "Purchase + Click met Service", "Minimumvolume", "3 jaar", "Per kwartaal achteraf", "Tick", "MFC-L8650CDW", "Full", "Voorafbetaling", "800", "800", "Voorafbetaling", null)]
         public virtual void MPSSummaryValidationMVUpfront(string role, string country, string contractType, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string basis1, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Summary Validation MV Upfront", exampleTags);
@@ -215,7 +215,7 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("MPS Summary Validation PAYG")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Netherlands", "Purchase + Click met Service", "Create new customer", "Betalen naar verbruik", "4 jaar", "Quarterly in Arrears", "Tick", "HL-L6400DW", "Full", "800", "Voorafbetaling", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Netherlands", "Purchase + Click met Service", "Create new customer", "Betalen naar verbruik", "4 jaar", "Per kwartaal achteraf", "Tick", "HL-L6400DW", "Full", "800", "Voorafbetaling", null)]
         public virtual void MPSSummaryValidationPAYG(string role, string country, string contractType, string createOption, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string clickVolume, string basis1, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Summary Validation PAYG", exampleTags);

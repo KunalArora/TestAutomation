@@ -41,7 +41,7 @@ Scenario Outline: MPS Create Proposal From List Page
 
 Scenarios: 
 	| Role             | Country     | ContractType                 | UsageType     | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod          | ClickVolume | ColourVolume | Basis1                 | Basis2         |
-	| Cloud MPS Dealer | Netherlands | Purchase + Click met Service | Minimumvolume | 3 jaar   | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Opgenomen in klikprijs | 800         | 800          | Opgenomen in klikprijs | Voorafbetaling |
+	| Cloud MPS Dealer | Netherlands | Purchase + Click met Service | Minimumvolume | 3 jaar   | Per kwartaal achteraf | Tick          | MFC-L8650CDW | Full         | Opgenomen in klikprijs | 800         | 800          | Opgenomen in klikprijs | Voorafbetaling |
 	
 
 	

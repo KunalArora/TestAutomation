@@ -19,7 +19,7 @@ Scenario Outline: MPS LO Decline Proposal
 
 	Scenarios: 
 	| Country     | Role                            | ContractType                 | UsageType     | Length | Billing              |
-	| Netherlands | Cloud MPS Local Office Approver | Purchase + Click met Service | Minimumvolume | 3 jaar | Quarterly in Arrears |
+	| Netherlands | Cloud MPS Local Office Approver | Purchase + Click met Service | Minimumvolume | 3 jaar | Per kwartaal achteraf |
 	
 
 	
@@ -37,7 +37,7 @@ Scenario Outline: MPS LO Can Reject Or Accept
 
 	Scenarios:
 	| Country     | Role                            | ContractType                 | UsageType     | Length | Billing              |
-	| Netherlands | Cloud MPS Local Office Approver | Purchase + Click met Service | Minimumvolume | 3 jaar | Quarterly in Arrears |
+	| Netherlands | Cloud MPS Local Office Approver | Purchase + Click met Service | Minimumvolume | 3 jaar | Per kwartaal achteraf |
 	
 
 # Accept5, 6
@@ -54,7 +54,7 @@ Scenario Outline: MPS LO Approve Contract
 	Scenarios:
 
 	| Country     | Role                            | ContractType                 | UsageType     | Length | Billing              |
-	| Netherlands | Cloud MPS Local Office Approver | Purchase + Click met Service | Minimumvolume | 3 jaar | Quarterly in Arrears |
+	| Netherlands | Cloud MPS Local Office Approver | Purchase + Click met Service | Minimumvolume | 3 jaar | Per kwartaal achteraf |
 	
 # Reject1,2
 Scenario Outline: MPS LO Reject Contract
@@ -69,7 +69,7 @@ Scenario Outline: MPS LO Reject Contract
 	Scenarios:
 
 	| Country     | Role                            | ContractType                 | UsageType     | Length | Billing              |
-	| Netherlands | Cloud MPS Local Office Approver | Purchase + Click met Service | Minimumvolume | 3 jaar | Quarterly in Arrears |
+	| Netherlands | Cloud MPS Local Office Approver | Purchase + Click met Service | Minimumvolume | 3 jaar | Per kwartaal achteraf |
 	
 # Reject3
 Scenario Outline: MPS Dealer Resign Rejected Contract
