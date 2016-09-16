@@ -735,7 +735,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void EnterCostCentre()
         {
-            if (IsSwedenSystem() || IsDenmarkSystem() || IsNetherlandSystem() || IsNorwaySystem())
+            if (IsSwedenSystem() || IsDenmarkSystem() || IsNorwaySystem())
             {
                 ClearAndType(CostCentreElement, "Marketing");
             }
