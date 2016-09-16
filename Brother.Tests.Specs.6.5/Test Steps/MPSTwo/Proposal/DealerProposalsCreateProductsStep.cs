@@ -362,8 +362,9 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [When(@"I accept the default values of the device")]
         public void WhenIAcceptTheDefaultValuesOfTheDevice()
         {
-            if (!(CurrentPage.As<DealerProposalsCreateProductsPage>().IsGermanSystem()
-                && CurrentPage.As<DealerProposalsCreateProductsPage>().GetContractType() == "Easy Print Pro & Service"))
+            if (!((CurrentPage.As<DealerProposalsCreateProductsPage>().IsGermanSystem()
+                && CurrentPage.As<DealerProposalsCreateProductsPage>().GetContractType() == "Easy Print Pro & Service")
+                || CurrentPage.As<DealerProposalsCreateProductsPage>().IsPolandSystem()))
             {
                 CurrentPage.As<DealerProposalsCreateProductsPage>().EnterProductQuantity("1");
                 CurrentPage.As<DealerProposalsCreateProductsPage>().EnterModelUnitCost();

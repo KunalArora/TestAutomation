@@ -326,10 +326,14 @@ namespace Brother.Tests.Specs.MPSTwo.CalculationEngine
 
         private void WhenIAcceptTheDefaultValuesOfTheDevice(string delivery, string installation)
         {
-            if (!(CurrentPage.As<DealerProposalsCreateProductsPage>().IsGermanSystem()
-                && CurrentPage.As<DealerProposalsCreateProductsPage>().GetContractType() == "Easy Print Pro & Service"))
+
+            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterProductQuantity("2");
+
+            if (!((CurrentPage.As<DealerProposalsCreateProductsPage>().IsGermanSystem()
+                && CurrentPage.As<DealerProposalsCreateProductsPage>().GetContractType() == "Easy Print Pro & Service")
+                || CurrentPage.As<DealerProposalsCreateProductsPage>().IsPolandSystem()))
             {
-                CurrentPage.As<DealerProposalsCreateProductsPage>().EnterProductQuantity("2");
+                //CurrentPage.As<DealerProposalsCreateProductsPage>().EnterProductQuantity("2");
                 CurrentPage.As<DealerProposalsCreateProductsPage>().EnterProductMargin("12");
                 CurrentPage.As<DealerProposalsCreateProductsPage>().EnterModelUnitCost();
                 CurrentPage.As<DealerProposalsCreateProductsPage>().EnterOptionsQuantity0("2");

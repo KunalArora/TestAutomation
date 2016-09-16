@@ -169,7 +169,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 || IsSwedenSystem()
                 || IsSwissSystem()
                 || IsBelgiumSystem()
-                || IsNetherlandSystem())
+                || IsNetherlandSystem()
+                || IsPolandSystem())
                 ClearAndType(CreditLimitElement, "30000");
         }
 
