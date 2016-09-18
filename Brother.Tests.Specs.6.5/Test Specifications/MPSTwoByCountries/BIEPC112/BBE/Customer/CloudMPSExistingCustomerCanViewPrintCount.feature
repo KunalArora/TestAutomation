@@ -6,7 +6,7 @@ Feature: CloudMPSCreateAContractWithExistingBelgianCustomer
 
 
 Scenario Outline: MPS Existing Customer For Run Action
-	Given "<Country>" Dealer with "<Langauge>" have created "<ContractType>" contract choosing "<ExistingCustomer>" with "<UsageType>" and "<Length>" and "<Billing>"
+	Given "<Country>" Dealer with "<Language>" have created "<ContractType>" contract choosing "<ExistingCustomer>" with "<UsageType>" and "<Length>" and "<Billing>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And the contract created above is approved
 	And I sign back into Cloud MPS as a "<Role1>" from "<Country>"
