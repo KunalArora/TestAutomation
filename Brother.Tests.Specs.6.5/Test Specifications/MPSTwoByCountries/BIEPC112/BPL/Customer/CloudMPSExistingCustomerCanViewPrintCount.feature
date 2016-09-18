@@ -21,6 +21,6 @@ Scenario Outline: MPS Existing Customer For Run purpose
 	
 Scenarios:
 
-	| Role                            | Country | ContractType                  | UsageType      | Role1            | Method | Type | ExistingCustomer                      | Length | Billing              | Role2              |
-	| Cloud MPS Local Office Approver | Poland  | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  | Lashonda20160819112538@mailinator.com | 3 lata | Quarterly in Arrears | Cloud MPS Customer |
+	| Role                            | Country | ContractType | UsageType       | Role1            | Method | Type | ExistingCustomer                      | Length | Billing              | Role2              |
+	| Cloud MPS Local Office Approver | Poland  | Buy + Click  | Pakiet wydruków | Cloud MPS Dealer | Cloud  | Web  | Lashonda20160819112538@mailinator.com | 3 lata | Quarterly in Arrears | Cloud MPS Customer |
 	
