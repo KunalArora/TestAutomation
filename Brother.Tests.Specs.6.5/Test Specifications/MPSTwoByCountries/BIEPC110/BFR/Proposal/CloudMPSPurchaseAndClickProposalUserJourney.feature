@@ -63,7 +63,7 @@ Scenario Outline: MPS Create PAYG Proposal
 
 	Scenarios: 
 	| Role             | Country | ContractType | CreateOption        | UsageType                                      | Contract | Billing                        | PriceHardware | Printer    | DeviceScreen | ClickVolume |
-	| Cloud MPS Dealer | France  | Buy & Click  | Create new customer | Paiement selon la consommation réelle de pages | 4 ans    | Trimestriellement à terme échu | Tick          | MFC-8510DN | Full         | 750         |
+	| Cloud MPS Dealer | France  | Buy & Click  | Create new customer | Paiement selon la consommation réelle de pages | 4 ans    | Trimestriellement à terme échu | Tick          | DCP-8250DN | Full         | 750         |
 	
 Scenario Outline: MPS Create Proposal With Existing Customer
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
@@ -123,5 +123,5 @@ Scenario Outline: MPS Create PAYG Proposal With Existing Customer
 
 	Scenarios: 
 	| Role             | Country | ContractType | UsageType                                      | Contract | Billing                        | PriceHardware | Printer    | DeviceScreen | ClickVolume |
-	| Cloud MPS Dealer | France  | Buy & Click  | Paiement selon la consommation réelle de pages | 5 ans    | Trimestriellement à terme échu | Tick          | MFC-8510DN | Full         | 750         |
+	| Cloud MPS Dealer | France  | Buy & Click  | Paiement selon la consommation réelle de pages | 5 ans    | Trimestriellement à terme échu | Tick          | DCP-8250DN | Full         | 750         |
 	
