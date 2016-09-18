@@ -1161,7 +1161,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             
 
-
+            if(IsPolandSystem()) return;
             SetProductCostPrice();
         }
 
@@ -1561,11 +1561,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ClickOnAPrinter(printer);
 
             EnterProductQuantity("1");
+
+            if(IsPolandSystem()) return;
             EnterModelUnitCost();
             EnterOptionsQuantity0("1");
             EnterOptionCostPrice();
 
-            string buttonselector = @"button.btn.js-mps-product-configuration-submit";
+            const string buttonselector = @"button.btn.js-mps-product-configuration-submit";
             var button = driver.FindElement(By.CssSelector(buttonselector));
             button.Click();
 
