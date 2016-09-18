@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
@@ -262,7 +263,44 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 reason = "Inny";
             }
+            else if (IsBelgiumSystem())
+            {
+                reason = BelgianLanguage();
+            }
             return reason;
+        }
+
+
+        private String BelgianLanguage()
+        {
+            string lang;
+            string language;
+
+            try
+            {
+                language = SpecFlow.GetContext("BelgianLanguage");
+            }
+            catch (KeyNotFoundException)
+            {
+
+                language = "French";
+            }
+
+            switch (language)
+            {
+                case "French":
+                    lang = "Expiré";
+                    break;
+                case "Dutch":
+                    lang = "Verlopen";
+                    break;
+
+                default:
+                    lang = "Expiré";
+                    break;
+            }
+
+            return lang;
         }
 
         public void SelectRejectionReason()
