@@ -1161,7 +1161,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             
 
-
+            if(IsPolandSystem()) return;
             SetProductCostPrice();
         }
 
