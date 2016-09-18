@@ -208,6 +208,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 ClearAndType(CreditValueElement, "10.000,00"); 
             }
+            else if (string.IsNullOrWhiteSpace(credit) || credit.Equals("0.00"))
+            {
+                ClearAndType(CreditValueElement, "10,000.00"); 
+            }
             
         }
 
