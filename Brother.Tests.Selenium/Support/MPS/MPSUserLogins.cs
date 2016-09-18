@@ -21,7 +21,7 @@ namespace Brother.Tests.Selenium.Lib.Support
         private const string ItalyUrl = @"online.it";
         private const string IrelandUrl = @"online.ie";
         private const string BelgiumUrl = @"online.be";
-        private const string PolandUrl = @"online.it";
+        private const string PolandUrl = @"online.pl";
         private const string Denmark = @"online.dk";
         private const string Sweden = @"online.se";
         private const string Dutch = @"online.nl";
@@ -163,6 +163,10 @@ namespace Brother.Tests.Selenium.Lib.Support
             else if (currentUrl.Contains(BelgiumUrl))
             {
                 username = MPSQAS.Default.QASBECustomer;
+            }
+            else if (currentUrl.Contains(PolandUrl))
+            {
+                username = MPSQAS.Default.QASPLCustomer;
             }
             return username;
         }
