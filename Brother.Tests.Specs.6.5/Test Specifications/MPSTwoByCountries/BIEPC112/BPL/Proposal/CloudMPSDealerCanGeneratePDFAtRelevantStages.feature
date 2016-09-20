@@ -28,7 +28,7 @@ Scenario Outline: MPS Generate Summary PDF
 
 	Scenarios: 
 	| Role             | Country | ContractType | UsageType       | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod                   | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | Poland  | Buy + Click  | Pakiet wydruków | 3 lata   | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Wliczyć w cenę za wydruk strony | 2000        | 2000         |
+	| Cloud MPS Dealer | Poland  | Buy + Click  | Pakiet wydruków | 3 lata   | Miesięczny / Monthly | Tick          | MFC-L8650CDW | Full         | Wliczyć w cenę za wydruk strony | 2000        | 2000         |
 	
 	
 	
@@ -45,6 +45,6 @@ Scenario Outline: MPS Generate Awaiting Approval PDF
 	
 	Scenarios: 
 	| Role             | Country | Role2                           | ContractType | UsageType       | Length | Billing              |
-	| Cloud MPS Dealer | Poland  | Cloud MPS Local Office Approver | Buy + Click  | Pakiet wydruków | 4 lata | Quarterly in Arrears |
+	| Cloud MPS Dealer | Poland  | Cloud MPS Local Office Approver | Buy + Click  | Pakiet wydruków | 4 lata | Miesięczny / Monthly |
 	
 	

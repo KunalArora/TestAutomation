@@ -93,7 +93,7 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("MPS Edit Existing Proposal")]
-        [NUnit.Framework.TestCaseAttribute("Buy + Click", "Pakiet wydruków", "Cloud MPS Dealer", "Poland", "TermAndType", "3 lata", "Quarterly in Arrears", null)]
+        [NUnit.Framework.TestCaseAttribute("Buy + Click", "Pakiet wydruków", "Cloud MPS Dealer", "Poland", "TermAndType", "3 lata", "Miesięczny / Monthly", null)]
         public virtual void MPSEditExistingProposal(string contractType, string usageType, string role, string country, string tabName, string length, string billing, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Edit Existing Proposal", exampleTags);
@@ -123,8 +123,8 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("MPS Edit Products On Existing Proposal")]
-        [NUnit.Framework.TestCaseAttribute("Buy + Click", "Pakiet wydruków", "Cloud MPS Dealer", "Poland", "Products", "Add", "3 lata", "Quarterly in Arrears", null)]
-        [NUnit.Framework.TestCaseAttribute("Buy + Click", "Pakiet wydruków", "Cloud MPS Dealer", "Poland", "Products", "Remove", "3 lata", "Quarterly in Arrears", null)]
+        [NUnit.Framework.TestCaseAttribute("Buy + Click", "Pakiet wydruków", "Cloud MPS Dealer", "Poland", "Products", "Add", "3 lata", "Miesięczny / Monthly", null)]
+        [NUnit.Framework.TestCaseAttribute("Buy + Click", "Pakiet wydruków", "Cloud MPS Dealer", "Poland", "Products", "Remove", "3 lata", "Miesięczny / Monthly", null)]
         public virtual void MPSEditProductsOnExistingProposal(string contractType, string usageType, string role, string country, string tabName, string action, string length, string billing, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Edit Products On Existing Proposal", exampleTags);
@@ -179,8 +179,8 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("MPS Copy Existing Proposal")]
         [NUnit.Framework.IgnoreAttribute()]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Poland", "Buy + Click", "Pakiet wydruków", "3 lata", "Quarterly in Arrears", "Skip customer creation", "Without", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Poland", "Buy + Click", "Pakiet wydruków", "4 lata", "Quarterly in Arrears", "Create new customer", "With", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Poland", "Buy + Click", "Pakiet wydruków", "3 lata", "Miesięczny / Monthly", "Skip customer creation", "Without", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Poland", "Buy + Click", "Pakiet wydruków", "4 lata", "Miesięczny / Monthly", "Create new customer", "With", null)]
         public virtual void MPSCopyExistingProposal(string role, string country, string contractType, string usageType, string length, string billing, string customer, string status, string[] exampleTags)
         {
             string[] @__tags = new string[] {

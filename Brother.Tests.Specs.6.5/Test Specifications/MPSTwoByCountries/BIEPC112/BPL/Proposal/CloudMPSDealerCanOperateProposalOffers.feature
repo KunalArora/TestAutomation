@@ -29,7 +29,7 @@ Scenario Outline: MPS Edit Existing Proposal
 
 	Scenarios:
 	| ContractType | UsageType       | Role             | Country | TabName     | Length | Billing              |
-	| Buy + Click  | Pakiet wydruków | Cloud MPS Dealer | Poland  | TermAndType | 3 lata | Quarterly in Arrears |
+	| Buy + Click  | Pakiet wydruków | Cloud MPS Dealer | Poland  | TermAndType | 3 lata | Miesięczny / Monthly |
 	
 ##@ignore
 Scenario Outline: MPS Edit Products On Existing Proposal
@@ -46,8 +46,8 @@ Scenario Outline: MPS Edit Products On Existing Proposal
 
 	Scenarios:
 	| ContractType | UsageType       | Role             | Country | TabName  | Action | Length | Billing              |
-	| Buy + Click  | Pakiet wydruków | Cloud MPS Dealer | Poland  | Products | Add    | 3 lata | Quarterly in Arrears |
-	| Buy + Click  | Pakiet wydruków | Cloud MPS Dealer | Poland  | Products | Remove | 3 lata | Quarterly in Arrears |
+	| Buy + Click  | Pakiet wydruków | Cloud MPS Dealer | Poland  | Products | Add    | 3 lata | Miesięczny / Monthly |
+	| Buy + Click  | Pakiet wydruków | Cloud MPS Dealer | Poland  | Products | Remove | 3 lata | Miesięczny / Monthly |
 	
 
 	
@@ -78,6 +78,6 @@ Scenario Outline: MPS Copy Existing Proposal
 	Scenarios:
 
 	| Role             | Country | ContractType | UsageType       | Length | Billing              | Customer               | Status  |
-	| Cloud MPS Dealer | Poland  | Buy + Click  | Pakiet wydruków | 3 lata | Quarterly in Arrears | Skip customer creation | Without |
-	| Cloud MPS Dealer | Poland  | Buy + Click  | Pakiet wydruków | 4 lata | Quarterly in Arrears | Create new customer    | With    |
+	| Cloud MPS Dealer | Poland  | Buy + Click  | Pakiet wydruków | 3 lata | Miesięczny / Monthly | Skip customer creation | Without |
+	| Cloud MPS Dealer | Poland  | Buy + Click  | Pakiet wydruków | 4 lata | Miesięczny / Monthly | Create new customer    | With    |
 	

@@ -74,7 +74,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BPL.
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("MPS Verify PDF Correctness")]
-        [NUnit.Framework.TestCaseAttribute("Buy + Click", "Poland", "Pakiet wydruków", "3 lata", "Quarterly in Arrears", null)]
+        [NUnit.Framework.TestCaseAttribute("Buy + Click", "Poland", "Pakiet wydruków", "3 lata", "Miesięczny / Monthly", null)]
         public virtual void MPSVerifyPDFCorrectness(string contractType, string country, string usageType, string length, string billing, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Verify PDF Correctness", exampleTags);
