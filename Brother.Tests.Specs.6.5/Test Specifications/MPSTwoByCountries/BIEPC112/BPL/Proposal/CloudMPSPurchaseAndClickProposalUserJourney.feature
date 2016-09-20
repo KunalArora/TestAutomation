@@ -33,7 +33,7 @@ Scenario Outline: MPS Create MV Proposal
 
 	Scenarios: 
 	| Role             | Country | ContractType | CreateOption        | UsageType       | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod   | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | Poland  | Buy + Click  | Create new customer | Pakiet wydruków | 3 lata   | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Płatność z góry | 800         | 800          |
+	| Cloud MPS Dealer | Poland  | Buy + Click  | Create new customer | Pakiet wydruków | 3 lata   | Miesięczny / Monthly | Tick          | MFC-L8650CDW | Full         | Płatność z góry | 800         | 800          |
 	
 	 
 	
@@ -64,7 +64,7 @@ Scenario Outline: MPS Create Proposal PAYG
 
 	Scenarios: 
 	| Role             | Country | ContractType | CreateOption        | UsageType  | Contract | Billing              | PriceHardware | Printer    | DeviceScreen | ClickVolume |
-	| Cloud MPS Dealer | Poland  | Buy + Click  | Create new customer | Bez limitu | 4 lata   | Quarterly in Arrears | Tick          | MFC-8510DN | Full         | 750         |
+	| Cloud MPS Dealer | Poland  | Buy + Click  | Create new customer | Bez limitu | 4 lata   | Miesięczny / Monthly | Tick          | MFC-8510DN | Full         | 750         |
 	
 	
 Scenario Outline: MPS Create Proposal With Existing Customer
@@ -95,7 +95,7 @@ Scenario Outline: MPS Create Proposal With Existing Customer
 
 	Scenarios: 
 	| Role             | Country | ContractType | UsageType       | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod                   | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | Poland  | Buy + Click  | Pakiet wydruków | 3 lata   | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Wliczyć w cenę za wydruk strony | 800         | 800          |
+	| Cloud MPS Dealer | Poland  | Buy + Click  | Pakiet wydruków | 3 lata   | Miesięczny / Monthly | Tick          | MFC-L8650CDW | Full         | Wliczyć w cenę za wydruk strony | 800         | 800          |
 	
 	
 Scenario Outline: MPS Create Proposal Existing PAYG Customer
@@ -125,5 +125,5 @@ Scenario Outline: MPS Create Proposal Existing PAYG Customer
 
 	Scenarios: 
 	| Role             | Country | ContractType | UsageType  | Contract | Billing              | PriceHardware | Printer    | DeviceScreen | ClickVolume |
-	| Cloud MPS Dealer | Poland  | Buy + Click  | Bez limitu | 3 lata   | Quarterly in Arrears | Tick          | MFC-8510DN | Full         | 750         |
+	| Cloud MPS Dealer | Poland  | Buy + Click  | Bez limitu | 3 lata   | Miesięczny / Monthly | Tick          | MFC-8510DN | Full         | 750         |
 	

@@ -13,7 +13,7 @@ Scenario Outline: MPS LO Decline Proposal
 
 	Scenarios: 
 	| Country | Role                            | ContractType | UsageType       | Length | Billing              |
-	| Poland  | Cloud MPS Local Office Approver | Buy + Click  | Pakiet wydruków | 3 lata | Quarterly in Arrears |
+	| Poland  | Cloud MPS Local Office Approver | Buy + Click  | Pakiet wydruków | 3 lata | Miesięczny / Monthly |
 	
 
 #
@@ -30,7 +30,7 @@ Scenario Outline: MPS LO Can Reject Or Accept
 
 	Scenarios:
 	| Country | Role                            | ContractType | UsageType       | Length | Billing              |
-	| Poland  | Cloud MPS Local Office Approver | Buy + Click  | Pakiet wydruków | 3 lata | Quarterly in Arrears |
+	| Poland  | Cloud MPS Local Office Approver | Buy + Click  | Pakiet wydruków | 3 lata | Miesięczny / Monthly |
 	
 
 # Accept5, 6
@@ -47,7 +47,7 @@ Scenario Outline: MPS LO Approve Contract
 	Scenarios:
 
 	| Country | Role                            | ContractType | UsageType       | Length | Billing              |
-	| Poland  | Cloud MPS Local Office Approver | Buy + Click  | Pakiet wydruków | 3 lata | Quarterly in Arrears |
+	| Poland  | Cloud MPS Local Office Approver | Buy + Click  | Pakiet wydruków | 3 lata | Miesięczny / Monthly |
 	
 # Reject1,2
 Scenario Outline: MPS LO Reject Contract
@@ -62,7 +62,7 @@ Scenario Outline: MPS LO Reject Contract
 	Scenarios:
 
 	| Country | Role                            | ContractType | UsageType       | Length | Billing              |
-	| Poland  | Cloud MPS Local Office Approver | Buy + Click  | Pakiet wydruków | 3 lata | Quarterly in Arrears |
+	| Poland  | Cloud MPS Local Office Approver | Buy + Click  | Pakiet wydruków | 3 lata | Miesięczny / Monthly |
 	
 
 # Reject3

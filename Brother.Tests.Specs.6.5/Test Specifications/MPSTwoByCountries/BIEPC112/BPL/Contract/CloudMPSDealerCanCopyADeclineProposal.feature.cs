@@ -73,7 +73,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BPL.
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("MPS Copy Declined Proposal No Customer")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Poland", "Cloud MPS Local Office Approver", "Buy + Click", "Pakiet wydruków", "3 lata", "Quarterly in Arrears", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Poland", "Cloud MPS Local Office Approver", "Buy + Click", "Pakiet wydruków", "3 lata", "Miesięczny / Monthly", null)]
         public virtual void MPSCopyDeclinedProposalNoCustomer(string role, string country, string role2, string contractType, string usageType, string length, string billing, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Copy Declined Proposal No Customer", exampleTags);
@@ -90,7 +90,7 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("MPS Copy Declined Proposal Customer")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Poland", "Cloud MPS Local Office Approver", "Buy + Click", "Pakiet wydruków", "3 lata", "Quarterly in Arrears", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Poland", "Cloud MPS Local Office Approver", "Buy + Click", "Pakiet wydruków", "3 lata", "Miesięczny / Monthly", null)]
         public virtual void MPSCopyDeclinedProposalCustomer(string role, string country, string role2, string contractType, string usageType, string length, string billing, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Copy Declined Proposal Customer", exampleTags);
