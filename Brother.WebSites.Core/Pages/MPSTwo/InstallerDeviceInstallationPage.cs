@@ -528,8 +528,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             foreach (var ipAddressElement in IpAddressElements)
             {
                 ipAddressElement.Click();
-                ClearAndType(ipAddressElement, "1");
-                ipAddressElement.SendKeys(Keys.Tab);
+                try
+                {
+                    ClearAndType(ipAddressElement, "1");
+                    ipAddressElement.SendKeys(Keys.Tab);
+                }
+                catch (InvalidElementStateException iese)
+                {
+                    MsgOutput(String.Format(".....retrying ip address input due error {0}", iese));
+                    WebDriver.Wait(DurationType.Second, 3);
+                    ClearAndType(ipAddressElement, "1");
+                    ipAddressElement.SendKeys(Keys.Tab);
+                }
+                
             }
         }
 
