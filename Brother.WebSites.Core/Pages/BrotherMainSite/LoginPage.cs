@@ -69,6 +69,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
     
         public void PopulateUserNameTextBox(string userName)
         {
+            UserNameTextBox.Clear();
             UserNameTextBox.SendKeys(userName);
         }
          public void PopulatePasswordTextBox(string password)
