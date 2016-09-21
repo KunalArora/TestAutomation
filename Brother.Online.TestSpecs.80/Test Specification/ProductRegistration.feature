@@ -18,7 +18,6 @@ Scenario Outline: Customer wants to register product with their serial numbers a
 	And clicked on Find Product Butoon
 
 
-
 	#| Purchase Date    | 01/01/2015      |
 	#| PromoCode        |                 |
 	#| Supplier         | PrintersRUs.Com |
