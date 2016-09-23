@@ -677,6 +677,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         }
         public DownloadPage ClickSubmitButton(string country)
         {
+            Thread.Sleep(TimeSpan.FromSeconds(10));
             ScrollTo(SubmitButton);
             SubmitButton.Click();
             Thread.Sleep(TimeSpan.FromSeconds(10));
