@@ -159,7 +159,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterCreditLimit()
         {
-            if (IsGermanSystem()|| IsAustriaSystem())
+            if (IsGermanSystem()
+                || IsAustriaSystem() 
+                || IsDenmarkSystem()
+                || IsFinlandSystem() 
+                || IsFranceSystem()
+                ||IsIrelandSystem()
+                || IsNorwaySystem()
+                || IsSwedenSystem()
+                || IsSwissSystem()
+                || IsBelgiumSystem()
+                || IsNetherlandSystem()
+                || IsPolandSystem())
                 ClearAndType(CreditLimitElement, "30000");
         }
 
@@ -168,13 +179,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if (!CreditCheckNotNeededElement.Selected)
                 CreditCheckNotNeededElement.Click();
         }
+
         public void EnterApprovalInformation()
         {
             EnterCustomerReference("");
             EnterReference("");
             EnterValidUntil();
             EnterCreditLimit();
-            TickCreditCheckNotNeeded();
+            //TickCreditCheckNotNeeded();
             WebDriver.Wait(Helper.DurationType.Second, 3);
         }
 

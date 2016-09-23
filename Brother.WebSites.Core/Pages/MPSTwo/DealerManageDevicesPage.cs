@@ -163,6 +163,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 coy = "Colonial Avenue_160718082853 Ltd";
             }
+            else if (IsPolandSystem())
+            {
+                coy = "Coleen Salazar Ltd";
+            }
+            
            return coy;
         }
 

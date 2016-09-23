@@ -268,14 +268,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             switch (language)
             {
                 case "Français":
-                    lang = "Church";
+                    lang = "Verein";
                     break;
                 case "Deutsch":
-                    lang = "Church";
+                    lang = "Verein";
                     break;
 
                 default:
-                    lang = "Church";
+                    lang = "Verein";
                     break;
             }
 
@@ -336,6 +336,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 ClearAndType(CompanyRegistrationNumberField, "N0032484H");
             }
+            //else if (IsSwissSystem())
+            //{
+            //    ClearAndType(CompanyRegistrationNumberField, "CHE-106.568.179");
+            //}
             //else if (IsSwedenSystem())
             //{
             //    ClearAndType(CompanyRegistrationNumberField, "556026-6883");
@@ -368,6 +372,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 ClearAndType(VATNumberField, "PL8567346215");
             }
+            else if (IsSwissSystem())
+            {
+                ClearAndType(VATNumberField, "CHE-106.568.179 MWST");
+            }
         }
 
         public void EnterAuthoriisedSignatoryNumber()
@@ -391,10 +399,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 //trading = "No Regulado";
                 trading = "Persona Física";
-            }
-            else if (IsSwedenSystem())
-            {
-                trading = "Icke reglerad";
             }
             else if (IsNetherlandSystem())
             {
@@ -424,6 +428,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 trading = "Non-Regulated";
             }
+            //else if (IsSwedenSystem())
+            //{
+            //    trading = "Icke reglerad";
+            //}
 
             
             return trading;
@@ -431,8 +439,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SelectATradingStyle()
         {
-            if (IsUKSystem()||IsSpainSystem()|| IsIrelandSystem() || IsSwedenSystem() || IsDenmarkSystem() 
-                || IsNorwaySystem() || IsSwissSystem() || IsSwedenSystem())
+            if (IsUKSystem()||IsSpainSystem()|| IsIrelandSystem() || IsDenmarkSystem() 
+                || IsNorwaySystem() || IsSwissSystem())
                 SelectFromDropdown(TradingStyleElement, TradingStyle());
                 WebDriver.Wait(DurationType.Second, 3);
         }
@@ -644,7 +652,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterBankPropertyNumber()
         {
-            if (!(IsBigAtSystem() || IsFranceSystem() || IsSpainSystem() || IsItalySystem() || IsNetherlandSystem() || IsBelgiumSystem()))
+            if (!(IsBigAtSystem() 
+                || IsFranceSystem() 
+                || IsSpainSystem() 
+                || IsItalySystem() 
+                || IsNetherlandSystem() 
+                || IsBelgiumSystem() 
+                || IsSwissSystem()))
             {
                 ClearAndType(BankPropertyNumberElement, "12345");
             }
@@ -653,13 +667,21 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterBankPropertyStreet()
         {
-            if (IsBigAtSystem() || IsNetherlandSystem() || IsBelgiumSystem() || IsSpainSystem()) return;
+            if (IsBigAtSystem() 
+                || IsNetherlandSystem() 
+                || IsBelgiumSystem() 
+                || IsSpainSystem()
+                || IsSwissSystem()) return;
             ClearAndType(BankPropertyStreetElement, "Lloyds House");
         }
 
         public void EnterBankPropertyTown()
         {
-            if (IsBigAtSystem() || IsNetherlandSystem() || IsBelgiumSystem() || IsSpainSystem()) return;
+            if (IsBigAtSystem() 
+                || IsNetherlandSystem() 
+                || IsBelgiumSystem() 
+                || IsSpainSystem()
+                || IsSwissSystem()) return;
             ClearAndType(BankPropertyTownElement, "Cockney");
         }
 
@@ -701,10 +723,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 ClearAndType(BankPropertyPostcodeElement, MpsUtil.PostCodeNo());
             }
-            else if (IsSwissSystem())
-            {
-                ClearAndType(BankPropertyPostcodeElement, MpsUtil.PostCodeSw());
-            }
+            //else if (IsSwissSystem())
+            //{
+            //    ClearAndType(BankPropertyPostcodeElement, MpsUtil.PostCodeSw());
+            //}
             //else if (IsSpainSystem())
             //{
             //    ClearAndType(BankPropertyPostcodeElement, MpsUtil.PostCodeSp());
@@ -713,7 +735,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void EnterCostCentre()
         {
-            if (IsSwedenSystem() || IsDenmarkSystem() || IsNetherlandSystem() || IsNorwaySystem())
+            if (IsSwedenSystem() || IsDenmarkSystem() || IsNorwaySystem())
             {
                 ClearAndType(CostCentreElement, "Marketing");
             }
@@ -730,6 +752,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterRemainingCustomerInfo()
         {
+            if (IsSwissSystem())
+            {
+                CreateANewCustomerInConvertProcess();
+            }
             SelectALegalForm();
             EnterCompanyRegistration();
             EnterVatNumber();
@@ -750,6 +776,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 MobileElement.SendKeys("01234567890");
             }
+
+            FillSwissOrgDetail();
 
             if(IsNetherlandSystem())
                 CustomerCanOrderConsumables();
@@ -890,6 +918,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         }
 
+        public void FillSwissOrgDetail()
+        {
+            if (!IsSwissSystem()) return;
+            EnterCompanyName();
+            FillOrganisationContactDetail();
+            ClearAndType(StraßeElement, "Geneve");
+            ClearAndType(HausnummberElement, "23");
+            ClearAndType(GermanPostCodeElement, MpsUtil.PostCodeSw());
+            ClearAndType(GermanStadtElement, "Town");
+        }
+
         public void EnterGermanStreetName()
         {
             StraßeElement.SendKeys("Friedrichstraße");
@@ -964,12 +1003,45 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
             else if (IsBelgiumSystem())
             {
-                regionName = "Région de Bruxelles";
+                regionName = BelgianRegionaLanguage();
             }
 
             if (String.IsNullOrWhiteSpace(regionName)) return;
                 SelectFromDropdown(GermanBundeslandElement, regionName);
              
+        }
+
+
+        private String BelgianRegionaLanguage()
+        {
+            string lang;
+            string language;
+
+            try
+            {
+                language = SpecFlow.GetContext("BelgianLanguage");
+            }
+            catch (KeyNotFoundException)
+            {
+
+                language = "French";
+            }
+
+            switch (language)
+            {
+                case "French":
+                    lang = "Région wallonne";
+                    break;
+                case "Dutch":
+                    lang = "Brussels Gewest";
+                    break;
+
+                default:
+                    lang = "Région wallonne";
+                    break;
+            }
+
+            return lang;
         }
 
         public void EnterGermanKostenstelleName()

@@ -62,8 +62,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IList<IWebElement> MonoClickPriceMarginElements;
         [FindsBy(How = How.CssSelector, Using = "[id*=\"content_1_LineItems_InputColourMargin_\"]")]
         public IList<IWebElement> ColourClickPriceMarginElements;
-        
-        
+        [FindsBy(How = How.CssSelector, Using = ".col-sm-12.mps-paymentoptions")]
+        public IWebElement ServicePackContainerElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_InputServicePaymentOption")]
+        public IWebElement ServicePackHiddenValueElement;
         
 
 
@@ -74,7 +76,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyPaymentMethodIsDisplayed()
         {
-            if (IsSpainSystem()) return;
+            if (IsSpainSystem() 
+                || IsBelgiumSystem() 
+                || IsNetherlandSystem()
+                || IsPolandSystem()) return;
             TestCheck.AssertIsEqual(true, PaymentMethodElement().Displayed, "Payment method is not displayed");
         }
 
@@ -97,21 +102,60 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void PayServicePackMethod(string option)
         {
-            if (IsSpainSystem()|| IsBelgiumSystem()) return;
-            if (option.Equals("Pay upfront") || option.Equals("im Voraus bezahlen") || option.Equals("Betale på forskud")
-                || option.Equals("Paiement au démarrage du contrat") || option.Equals("Pagamento anticipato") || option.Equals("Förskott")
-                || option.Equals("Betaling bij aanvang van het contract") || option.Equals("Płatność z góry"))
+            //if (GetElementByCssSelector(".col-sm-12.mps-paymentoptions").Displayed)
+
+            try
             {
-                PayUpfrontElement().Click();
-                WebDriver.Wait(DurationType.Second, 1);
+                if (IsSpainSystem() || IsBelgiumSystem() || IsPolandSystem() || IsIrelandSystem() || IsNetherlandSystem()) return;
+                if (option.Equals("Pay upfront") || option.Equals("im Voraus bezahlen") || option.Equals("Betale på forskud")
+                    || option.Equals("Paiement au démarrage du contrat") || option.Equals("Pagamento anticipato") || option.Equals("Förskott")
+                    || option.Equals("Betaling bij aanvang van het contract") || option.Equals("Płatność z góry"))
+                {
+                    PayUpfrontElement().Click();
+                    WebDriver.Wait(DurationType.Second, 1);
+                }
+                else if (option.Equals("Included in Click Price") || option.Equals("über den Seitenpreis zahlen") || option.Equals("Inkluderet i klikpris")
+                         || option.Equals("Inclus dans le coût à la page") || option.Equals("Incluso nel click") || option.Equals("Per utskrift")
+                         || option.Equals("Inbegrepen in de clickprijs") || option.Equals("Inclus dans le prix click") || option.Equals("Wliczyć w cenę za wydruk strony"))
+                {
+                    InClickPriceElement().Click();
+                    WebDriver.Wait(DurationType.Second, 1);
+                }
             }
-            else if (option.Equals("Included in Click Price") || option.Equals("über den Seitenpreis zahlen") || option.Equals("Inkluderet i klikpris")
-                     || option.Equals("Inclus dans le coût à la page") || option.Equals("Incluso nel click") || option.Equals("Per utskrift")
-                     || option.Equals("Inbegrepen in de clickprijs") || option.Equals("Inclus dans le prix click") || option.Equals("Wliczyć w cenę za wydruk strony")) 
+            catch (NullReferenceException nre)
             {
-                InClickPriceElement().Click();
-                WebDriver.Wait(DurationType.Second, 1);
+                var servicePackType = ServicePackHiddenValueElement.GetAttribute("value");
+                servicePackType = PreSelectedServicePack(servicePackType);
+                MsgOutput(String.Format("The service pack pre-selected is {0}", servicePackType));
+
             }
+            
+
+           
+        }
+
+        private string PreSelectedServicePack(string pre)
+        {
+            switch (pre)
+            {
+                case "1"     :
+                    pre = "Upfront";
+                    break;
+
+                case "2":
+                    pre = "LeaseRental";
+                    break;
+
+                case "3":
+                    pre = "Monthly";
+                    break;
+
+                case "4":
+                    pre = "InClick";
+                    break;
+            }
+
+            return pre;
         }
 
         private IWebElement ColourVolumeElementClickPrice(string row)

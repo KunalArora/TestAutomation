@@ -33,7 +33,7 @@ Scenario Outline: MPS Create MV Proposal
 
 	Scenarios: 
 	| Role             | Country     | ContractType                 | CreateOption        | UsageType     | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod  | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | Netherlands | Purchase + Click met Service | Create new customer | Minimumvolume | 3 jaar   | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Voorafbetaling | 800         | 800          |
+	| Cloud MPS Dealer | Netherlands | Purchase + Click met Service | Create new customer | Minimumvolume | 3 jaar   | Per kwartaal achteraf | Tick          | MFC-L8650CDW | Full         | Voorafbetaling | 800         | 800          |
 	 
 	
 Scenario Outline: MPS Create Proposal PAYG
@@ -63,7 +63,7 @@ Scenario Outline: MPS Create Proposal PAYG
 
 	Scenarios: 
 	| Role             | Country     | ContractType                 | CreateOption        | UsageType             | Contract | Billing              | PriceHardware | Printer    | DeviceScreen | ClickVolume |
-	| Cloud MPS Dealer | Netherlands | Purchase + Click met Service | Create new customer | Betalen naar verbruik | 4 jaar   | Quarterly in Arrears | Tick          | HL-L6400DW | Full         | 750         |
+	| Cloud MPS Dealer | Netherlands | Purchase + Click met Service | Create new customer | Betalen naar verbruik | 4 jaar   | Per kwartaal achteraf | Tick          | HL-L6400DW | Full         | 750         |
 	
 	
 
@@ -95,7 +95,7 @@ Scenario Outline: MPS Create Proposal With Existing Customer
 
 	Scenarios: 
 	| Role             | Country     | ContractType                 | UsageType     | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod          | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | Netherlands | Purchase + Click met Service | Minimumvolume | 3 jaar   | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Opgenomen in klikprijs | 800         | 800          |
+	| Cloud MPS Dealer | Netherlands | Purchase + Click met Service | Minimumvolume | 3 jaar   | Per kwartaal achteraf | Tick          | MFC-L8650CDW | Full         | Opgenomen in klikprijs | 800         | 800          |
 	
 	
 Scenario Outline: MPS Create Proposal Existing PAYG Customer
@@ -125,5 +125,5 @@ Scenario Outline: MPS Create Proposal Existing PAYG Customer
 
 	Scenarios: 
 	| Role             | Country     | ContractType                 | UsageType             | Contract | Billing              | PriceHardware | Printer    | DeviceScreen | ClickVolume |
-	| Cloud MPS Dealer | Netherlands | Purchase + Click met Service | Betalen naar verbruik | 5 jaar   | Quarterly in Arrears | Tick          | HL-L6400DW | Full         | 750         |
+	| Cloud MPS Dealer | Netherlands | Purchase + Click met Service | Betalen naar verbruik | 5 jaar   | Per kwartaal achteraf | Tick          | HL-L6400DW | Full         | 750         |
 	

@@ -12,8 +12,8 @@ Scenario Outline: MPS LO Decline Proposal
 	Then "<Role>" can decline Awaiting Approval "<Country>" "<ContractType>" proposal with "<UsageType>" and "<Length>" and "<Billing>"
 
 	Scenarios: 
-	| Country | Role                            | ContractType                       | UsageType     | Length | Billing              |
-	| Sweden  | Cloud MPS Local Office Approver | Purchase & click inklusive service | Minimum volym | 36     | Quarterly in Arrears |
+	| Country | Role                            | ContractType                       | UsageType     | Length     | Billing              |
+	| Sweden  | Cloud MPS Local Office Approver | Purchase & click inklusive service | Minimum volym | 36 månader | Quarterly in Arrears |
 	
 
 
@@ -29,8 +29,8 @@ Scenario Outline: MPS LO Can Reject Or Accept
 	And I sign out of Cloud MPS
 
 	Scenarios:
-	| Country | Role                            | ContractType                       | UsageType     | Length | Billing              |
-	| Sweden  | Cloud MPS Local Office Approver | Purchase & click inklusive service | Minimum volym | 36     | Quarterly in Arrears |
+	| Country | Role                            | ContractType                       | UsageType     | Length     | Billing              |
+	| Sweden  | Cloud MPS Local Office Approver | Purchase & click inklusive service | Minimum volym | 36 månader | Quarterly in Arrears |
 	
 
 # Accept5, 6
@@ -46,8 +46,8 @@ Scenario Outline: MPS LO Approve Contract
 
 	Scenarios:
 
-	| Country | Role                            | ContractType                       | UsageType     | Length | Billing              |
-	| Sweden  | Cloud MPS Local Office Approver | Purchase & click inklusive service | Minimum volym | 36     | Quarterly in Arrears |
+	| Country | Role                            | ContractType                       | UsageType     | Length     | Billing              |
+	| Sweden  | Cloud MPS Local Office Approver | Purchase & click inklusive service | Minimum volym | 36 månader | Quarterly in Arrears |
 	
 # Reject1,2
 Scenario Outline: MPS LO Reject Contract
@@ -61,8 +61,8 @@ Scenario Outline: MPS LO Reject Contract
 
 	Scenarios:
 
-	| Country | Role                            | ContractType                       | UsageType     | Length | Billing              |
-	| Sweden  | Cloud MPS Local Office Approver | Purchase & click inklusive service | Minimum volym | 36     | Quarterly in Arrears |
+	| Country | Role                            | ContractType                       | UsageType     | Length     | Billing              |
+	| Sweden  | Cloud MPS Local Office Approver | Purchase & click inklusive service | Minimum volym | 36 månader | Quarterly in Arrears |
 	
 	
 # Reject3

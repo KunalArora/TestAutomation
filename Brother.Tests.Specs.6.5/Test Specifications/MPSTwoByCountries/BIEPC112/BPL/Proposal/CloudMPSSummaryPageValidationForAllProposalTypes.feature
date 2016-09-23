@@ -18,8 +18,8 @@ Scenario Outline: MPS Summary Validation MV In Click
 	And Service Pack payment method is displayed
 	And I choose to pay Service Packs "<PaymentMethod>"
 	And I enter click price volume of "<ClickVolume>" and "<ColourVolume>"
-	Then the billing basis for product is "<Basis2>"
-	And the billing basis for Accessory is "<Basis2>"
+	Then the billing basis for Accessory is "<Basis2>"
+	##Then the billing basis for product is "<Basis2>"
 	And the billing basis for Installation is "<Basis2>"
 	And the billing basis for Service Pack is "<Basis1>"
 	And the installation type displayed is correct
@@ -39,7 +39,7 @@ Scenario Outline: MPS Summary Validation MV In Click
 
 	Scenarios: 
 	| Role             | Country | ContractType                  | UsageType       | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod                   | ClickVolume | ColourVolume | Basis1                          | Basis2          |
-	| Cloud MPS Dealer | Poland  | Purchase & Click with Service | Pakiet wydruków | 3 lata   | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Wliczyć w cenę za wydruk strony | 800         | 800          | Wliczyć w cenę za wydruk strony | Płatność z góry |
+	| Cloud MPS Dealer | Poland  | Purchase & Click with Service | Pakiet wydruków | 3 lata   | Miesięczny / Monthly | Tick          | MFC-L8650CDW | Full         | Wliczyć w cenę za wydruk strony | 800         | 800          | Wliczyć w cenę za wydruk strony | Płatność z góry |
 	
 
 Scenario Outline:  MPS Summary Validation MV Upfront
@@ -55,8 +55,8 @@ Scenario Outline:  MPS Summary Validation MV Upfront
 	And Service Pack payment method is displayed
 	And I choose to pay Service Packs "<PaymentMethod>"
 	And I enter click price volume of "<ClickVolume>" and "<ColourVolume>"
-	Then the billing basis for product is "<Basis1>"
-	And the billing basis for Accessory is "<Basis1>"
+	##Then the billing basis for product is "<Basis1>"
+	Then the billing basis for Accessory is "<Basis1>"
 	And the billing basis for Installation is "<Basis1>"
 	And the billing basis for Service Pack is "<Basis1>"
 	And the installation type displayed is correct
@@ -76,7 +76,7 @@ Scenario Outline:  MPS Summary Validation MV Upfront
 
 	Scenarios: 
 	| Role             | Country | ContractType                  | UsageType       | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod   | ClickVolume | ColourVolume | Basis1          |
-	| Cloud MPS Dealer | Poland  | Purchase & Click with Service | Pakiet wydruków | 5 lata   | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Płatność z góry | 800         | 800          | Płatność z góry |
+	| Cloud MPS Dealer | Poland  | Purchase & Click with Service | Pakiet wydruków | 5 lata   | Miesięczny / Monthly | Tick          | MFC-L8650CDW | Full         | Płatność z góry | 800         | 800          | Płatność z góry |
 	
 
 
@@ -91,8 +91,8 @@ Scenario Outline:  MPS Summary Validation PAYG
 	And I redisplay "<Printer>" device screen
 	And I confirm the values entered for the device
 	And I type in click price volume of "<ClickVolume>"
-	Then the billing basis for product is "<Basis1>"
-	And the billing basis for Accessory is "<Basis1>"
+	##Then the billing basis for product is "<Basis1>"
+	Then the billing basis for Accessory is "<Basis1>"
 	And the billing basis for Installation is "<Basis1>"
 	And the billing basis for Service Pack is "<Basis1>"
 	And the installation type displayed is correct
@@ -110,5 +110,5 @@ Scenario Outline:  MPS Summary Validation PAYG
 
 	Scenarios: 
 	| Role             | Country | ContractType                  | CreateOption        | UsageType  | Contract | Billing              | PriceHardware | Printer    | DeviceScreen | ClickVolume | Basis1          |
-	| Cloud MPS Dealer | Poland  | Purchase & Click with Service | Create new customer | Bez limitu | 4 lata   | Quarterly in Arrears | Tick          | MFC-8510DN | Full         | 800         | Płatność z góry |
+	| Cloud MPS Dealer | Poland  | Purchase & Click with Service | Create new customer | Bez limitu | 4 lata   | Miesięczny / Monthly | Tick          | MFC-8510DN | Full         | 800         | Płatność z góry |
 	

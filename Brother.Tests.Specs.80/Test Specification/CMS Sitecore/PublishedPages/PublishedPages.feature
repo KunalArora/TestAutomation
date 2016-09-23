@@ -47,47 +47,40 @@ Scenario Outline: Navigate to published page to verify all page components
 	# Components above are for the 12 placeholder. Components for 8 and 4 placholders to be still added to this smoke test.
 	# Once copy back of page and modules has been done in all environmemnts, this smoke test can be extended. 
 	# Ideally this needs to go into Dev to verify the automated builds are stable.
-
 Scenarios: 
 	
-	 | Site Url                                                                                    |
-	 | http://main.co.uk.brotherdv2.eu/qa/testautomationpleaseleave                                |
+	 | Site Url                      |
+	 | /qa/testautomationpleaseleave |
 	#| http://main.co.uk.brotherqas.eu/qa/testautomationpleasedonottouch/testautomationpleaseleave |
-
 
 @SMOKE
 Scenario Outline: Navigate to published page to verify product page - UK
 	Given That I navigate to "<Site Url>" in order to validate a published page
 	Then I can validate the product page title is displayed
-	
 Scenarios: 
 	
-	 |Site Url																	    |
-	 |http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseDoNotTouch/DCPL8400CDN |
-	 |http://main.co.uk.brotherqas.eu/QA/TestAutomationPleaseDoNotTouch/DCP9020CDW |
-
+	 | Site Url                                       |
+	 | /QA/TestAutomationPleaseDoNotTouch/DCPL8400CDN |
+	 #|http://main.co.uk.brotherqas.eu/QA/TestAutomationPleaseDoNotTouch/DCP9020CDW |
 
 @SMOKE
 Scenario Outline: Navigate to published page to verify supplies product page - UK
 	Given That I navigate to "<Site Url>" in order to validate a published page
 	Then I can validate supply description is displayed
-	
 Scenarios: 
 	
-	 | Site Url                                                                                           |
-	 | http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseDoNotTouch/HGe131V5-SuppliesPage            |                                                               
+	 | Site Url                                                 |
+	 | /QA/TestAutomationPleaseDoNotTouch/HGe131V5-SuppliesPage |
 	 #| http://main.co.uk.brotherqas.eu/QA/TestAutomationPleaseDoNotTouch/AD18ESUK						  |
-
 
 @SMOKE
 Scenario Outline: Navigate to published page to verify News landing page - UK
 	Given That I navigate to "<Site Url>" in order to validate a published page
 	Then I can validate article is displayed on the page
-
 Scenarios: 
 	
-	 | Site Url																							|
-	 | http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseDoNotTouch/NewsLandingPage				|
+	 | Site Url                                           |
+	 | /QA/TestAutomationPleaseDoNotTouch/NewsLandingPage |
 	# | http://main.co.uk.brotherqas.eu/QA/TestAutomationPleaseDoNotTouch/News-Landing-Page				|
 
 		
@@ -95,42 +88,36 @@ Scenarios:
 Scenario Outline: Navigate to published page to verify Glossary page - UK
 	Given That I navigate to "<Site Url>" in order to validate a published page
 	Then I can validate glossary section is displayed
-
 Scenarios: 
 	
-	 | Site Url																							 |
-	 | http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseDoNotTouch/glossary						 |
-	 | http://main.co.uk.brotherqas.eu/QA/TestAutomationPleaseDoNotTouch/glossary						 |
+	 | Site Url                                    |
+	 | /QA/TestAutomationPleaseDoNotTouch/glossary |
+	 #| http://main.co.uk.brotherqas.eu/QA/TestAutomationPleaseDoNotTouch/glossary						 |
 
 
 @SMOKE
 Scenario Outline: Navigate to published page to verify Printer Listing page - UK
 	Given That I navigate to "<Site Url>" in order to validate a published page
 	Then I can validate printers filter section is displayed
-
 Scenarios: 
 	
-	 | Site Url																							 |
-	 | http://main.co.uk.brotherdv2.eu/QA/TestAutomationPleaseDoNotTouch/All-Printers					 |
-
+	 | Site Url                                        |
+	 | /QA/TestAutomationPleaseDoNotTouch/All-Printers |
 
 @SMOKE
 ## This test shouldn't run on teamcity as currently email takes about 5 minutes to come through.
 Scenario Outline: Omnijoin Free Trial Sign up
 	Given That I navigate to "<Site Url>" in order to validate a published page
 	And I fill in the registration information using a valid email address 
-	
 	| field           | value          |
 	| FirstName       | AutoTest       |
 	| LastName        | AutoTest       |
 
 	And I enter phone number as "<PhoneNumber>"
 	And I have Agreed to the Terms and Conditions
-	And I press submit button "<country>"
+	And I press submit button "United Kingdom"
 	Then I should see download page
 	#And I have Validated an Omnijoin Email was received and verified my account
-
 Scenarios: 
-	
-	 | Site Url																							 |PhoneNumber     | 
-	 | http://main.co.uk.brotherdv2.eu/business-solutions/web-conferencing/free-trial?sc_lang=en		 |01555522522		|
+	 | Site Url                                                   | PhoneNumber |
+	 | /business-solutions/web-conferencing/free-trial?sc_lang=en | 01555522522 |

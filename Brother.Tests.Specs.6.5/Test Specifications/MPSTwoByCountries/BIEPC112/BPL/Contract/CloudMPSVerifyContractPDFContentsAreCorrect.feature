@@ -15,6 +15,6 @@ Scenario Outline: MPS Verify PDF Correctness
 Scenarios:
 
 	| ContractType | Country | UsageType       | Length | Billing              |
-	| Buy + Click  | Poland  | Pakiet wydruków | 3 lata | Quarterly in Arrears |
+	| Buy + Click  | Poland  | Pakiet wydruków | 3 lata | Miesięczny / Monthly |
 	
 	

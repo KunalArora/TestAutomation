@@ -25,14 +25,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string QuantityFormat = "#content_1_SummaryTable_RepeaterModels_{0}Quantity_{1}";
         private const string MarginFormat = "#content_1_SummaryTable_RepeaterModels_{0}MarginPercentage_{1}";
         private const string ClickRateFormat = "#content_1_SummaryTable_RepeaterModels_{0}ClickRate_{1}";
-        private const string DownloadPath = @"file:///C:/Users/afolabsa/Downloads/";
+        private const string DownloadPath = @"file:///C:/DataTest/";
         private const string UkText = @"Total Quarterly In Arrears";
         private const string DeText = @"Brother EasyPrint Pro";
         private const string AtText = @"Bedingung";
         private const string ItText = @"Pagine + Cloud";
         private const string FrText = @"COUT D’ACQUISITION";
         private const string SpText = @"Propuesta";
-        private const string DownloadDirectory = @"C:/Users/afolabsa/Downloads";
+        private const string DownloadDirectory = @"C:/DataTest";
 
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_ContractType")]
         public IWebElement ContractTypeElement;
@@ -738,7 +738,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 TestCheck.AssertIsEqual(SpecFlow.GetContext("SelectedServicePackPrice"),
                     ServiceCostNameElement.Text,
-                    "Service Pack cost are the same");
+                    "Service Pack cost on Product page is not the same as the Service Pack on Summary page");
             }
         }
 

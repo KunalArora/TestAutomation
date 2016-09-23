@@ -2250,7 +2250,7 @@
       <Name>Brother.Tests.Selenium.Lib</Name>
     </ProjectReference>
     <ProjectReference Include="..\Brother.WebSites.Core\Brother.WebSites.Core.csproj">
-      <Project>{85D64580-8536-410E-ABED-F0F28A6F2467}</Project>
+      <Project>{85d64580-8536-410e-abed-f0f28a6f2467}</Project>
       <Name>Brother.WebSites.Core</Name>
     </ProjectReference>
   </ItemGroup>

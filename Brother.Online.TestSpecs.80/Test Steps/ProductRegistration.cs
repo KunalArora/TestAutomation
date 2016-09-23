@@ -23,7 +23,7 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
         [Given(@"I navigate to ""(.*)"" in order to validate a Product Registration page when I want to create a new account or existing account with Brother Online")]
         public void GivenINavigateToInOrderToValidateAProductRegistrationPageWhenIWantToCreateANewAccountOrExistingAccountWithBrotherOnline(string url)
         {
-            CurrentPage = BasePage.LoadProductRegistrationPage(CurrentDriver, url);
+            CurrentPage = BasePage.LoadProductRegistrationPage(CurrentDriver, null);
             CurrentPage.As<ProductRegistrationPage>().GetProductRegistrationPage(url);
         }
 

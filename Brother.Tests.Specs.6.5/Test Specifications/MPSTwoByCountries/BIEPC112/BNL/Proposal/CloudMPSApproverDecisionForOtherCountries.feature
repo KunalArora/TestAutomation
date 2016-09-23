@@ -8,18 +8,12 @@ Feature: CloudMPSDutchApproverDecisionFeature
 # Decline
 #
 Scenario Outline: MPS LO Decline Proposal
-	Given "<Country>" dealer has created "<ContractType>" proposal of awaiting proposal with "<UsageType>" and "<Length>" and "<Billing>"
-	And I sign into Cloud MPS as a "<Role>" from "<Country>"
-	And Approver navigate to ProposalsPage
-	And Approver navigate to Awaiting Approval screen under Proposals page
-	When Approver select the proposal on Awaiting Proposal
-	Then Approver should be able to decline that proposal
-	And the decline proposal should be displayed under Declined tab by Approver
-	And I sign out of Cloud MPS
+	Given I verify and store "<Country>" purchase and click proposal bypass status
+	Then "<Role>" can decline Awaiting Approval "<Country>" "<ContractType>" proposal with "<UsageType>" and "<Length>" and "<Billing>"
 
 	Scenarios: 
 	| Country     | Role                            | ContractType                 | UsageType     | Length | Billing              |
-	| Netherlands | Cloud MPS Local Office Approver | Purchase + Click met Service | Minimumvolume | 3 jaar | Quarterly in Arrears |
+	| Netherlands | Cloud MPS Local Office Approver | Purchase + Click met Service | Minimumvolume | 3 jaar | Per kwartaal achteraf |
 	
 
 	
@@ -37,7 +31,7 @@ Scenario Outline: MPS LO Can Reject Or Accept
 
 	Scenarios:
 	| Country     | Role                            | ContractType                 | UsageType     | Length | Billing              |
-	| Netherlands | Cloud MPS Local Office Approver | Purchase + Click met Service | Minimumvolume | 3 jaar | Quarterly in Arrears |
+	| Netherlands | Cloud MPS Local Office Approver | Purchase + Click met Service | Minimumvolume | 3 jaar | Per kwartaal achteraf |
 	
 
 # Accept5, 6
@@ -54,7 +48,7 @@ Scenario Outline: MPS LO Approve Contract
 	Scenarios:
 
 	| Country     | Role                            | ContractType                 | UsageType     | Length | Billing              |
-	| Netherlands | Cloud MPS Local Office Approver | Purchase + Click met Service | Minimumvolume | 3 jaar | Quarterly in Arrears |
+	| Netherlands | Cloud MPS Local Office Approver | Purchase + Click met Service | Minimumvolume | 3 jaar | Per kwartaal achteraf |
 	
 # Reject1,2
 Scenario Outline: MPS LO Reject Contract
@@ -69,7 +63,7 @@ Scenario Outline: MPS LO Reject Contract
 	Scenarios:
 
 	| Country     | Role                            | ContractType                 | UsageType     | Length | Billing              |
-	| Netherlands | Cloud MPS Local Office Approver | Purchase + Click met Service | Minimumvolume | 3 jaar | Quarterly in Arrears |
+	| Netherlands | Cloud MPS Local Office Approver | Purchase + Click met Service | Minimumvolume | 3 jaar | Per kwartaal achteraf |
 	
 # Reject3
 Scenario Outline: MPS Dealer Resign Rejected Contract

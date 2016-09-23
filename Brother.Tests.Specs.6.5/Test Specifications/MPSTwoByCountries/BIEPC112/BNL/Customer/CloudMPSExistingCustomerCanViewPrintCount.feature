@@ -22,5 +22,5 @@ Scenario Outline: MPS Existing Customer For Run Action
 Scenarios:
 
 	| Role                            | Country     | ContractType                 | UsageType     | Role1            | Method | Type | ExistingCustomer                  | Length | Billing              | Role2              |
-	| Cloud MPS Local Office Approver | Netherlands | Purchase + Click met Service | Minimumvolume | Cloud MPS Dealer | Cloud  | Web  | Vada20160524081137@mailinator.com | 3 jaar | Quarterly in Arrears | Cloud MPS Customer |
+	| Cloud MPS Local Office Approver | Netherlands | Purchase + Click met Service | Minimumvolume | Cloud MPS Dealer | Cloud  | Web  | Vada20160524081137@mailinator.com | 3 jaar | Per kwartaal achteraf | Cloud MPS Customer |
 	

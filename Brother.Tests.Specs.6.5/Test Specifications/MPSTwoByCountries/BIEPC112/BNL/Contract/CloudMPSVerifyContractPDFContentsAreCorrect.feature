@@ -14,7 +14,7 @@ Scenario Outline: MPS Verify PDF Correctness
 Scenarios:
 
 	| ContractType                 | Country     | UsageType     | Length | Billing              |
-	| Purchase + Click met Service | Netherlands | Minimumvolume | 3 jaar | Quarterly in Arrears |
+	| Purchase + Click met Service | Netherlands | Minimumvolume | 3 jaar | Per kwartaal achteraf |
 	
 	 
 	

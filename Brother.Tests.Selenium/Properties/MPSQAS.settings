@@ -59,5 +59,20 @@
     <Setting Name="QASIRCustomer" Type="System.String" Scope="User">
       <Value Profile="(Default)">Ariana2016061114137@mailinator.com</Value>
     </Setting>
+    <Setting Name="QASBECustomer" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Belkis20160718082850@mailinator.com</Value>
+    </Setting>
+    <Setting Name="QASSECustomer" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Mckenzie20160616191239@mailinator.com</Value>
+    </Setting>
+    <Setting Name="QASNLCustomer" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Vada20160524081137@mailinator.com</Value>
+    </Setting>
+    <Setting Name="QASDKCustomer" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Aurelio20160630151142@mailinator.com</Value>
+    </Setting>
+    <Setting Name="QASPLCustomer" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Lashonda20160819112538@mailinator.com</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

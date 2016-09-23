@@ -68,6 +68,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     country = "Deutschland";
                     break;
             }
+            SpecFlow.SetContext("CountrySelect", country);
             SelectFromDropdown(CountryDropdownElement, country);
         }
 
@@ -202,18 +203,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         }
 
-
-       
+        
 
        public void EnterColourDevicePrintCounts(int mono, int colour, string row, int day)
         {
-            var todayDate = DateTime.Now;
-            var dayString = todayDate.AddDays(day).ToString("dd");
-            var monthString = todayDate.AddDays(day).ToString("MM");
-            var yearString = todayDate.AddDays(day).ToString("yyyy");
-            var dateString = String.Format("{0}{1}00{2}", dayString, monthString, yearString);
-            var timeString = todayDate.ToString("HH:mm");
-            var monoField = String.Format(Mono, row);
+            var todayDate = TodayDate();
+            var dateString = DateString(day, todayDate);
+            var timeString = TimeString(todayDate);
+            
+           
+           var monoField = String.Format(Mono, row);
             var colourField = String.Format(Colour, row);
             var dateTimeField = String.Format(DateTimeString, row);
             var addButtonString = String.Format(AddButton, row);
@@ -241,12 +240,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterMonoDevicePrintCounts(int mono, string row, int day)
         {
-            var todayDate = DateTime.Now;
-            var dayString = todayDate.AddDays(day).ToString("dd");
-            var monthString = todayDate.AddDays(day).ToString("MM");
-            var yearString = todayDate.AddDays(day).ToString("yyyy");
-            var dateString = String.Format("{0}{1}00{2}", dayString, monthString, yearString);
-            var timeString = todayDate.ToString("HH:mm");
+            var todayDate = TodayDate();
+            var dateString = DateString(day, todayDate);
+            var timeString = TimeString(todayDate);
 
             var monoField = String.Format(Mono, row);
             var dateTimeField = String.Format(DateTimeString, row);
@@ -264,6 +260,27 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             addButtonElement.Click();
             WebDriver.Wait(DurationType.Second, 3);
 
+        }
+
+        private static string TimeString(DateTime todayDate)
+        {
+            var timeString = todayDate.ToString("HH:mm");
+            return timeString;
+        }
+
+        private static string DateString(int day, DateTime todayDate)
+        {
+            var dayString = todayDate.AddDays(day).ToString("dd");
+            var monthString = todayDate.AddDays(day).ToString("MM");
+            var yearString = todayDate.AddDays(day).ToString("yyyy");
+            var dateString = String.Format("{0}{1}00{2}", dayString, monthString, yearString);
+            return dateString;
+        }
+
+        private static DateTime TodayDate()
+        {
+            var todayDate = DateTime.Now;
+            return todayDate;
         }
 
         public void CompleteInstallation()

@@ -133,55 +133,13 @@ namespace Brother.Tests.Selenium.Lib.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Lonna20160514201608@mailinator.com")]
+        [global::System.Configuration.DefaultSettingValueAttribute("lashonda20160322123145@mailinator.com")]
         public string QASUKCustomer {
             get {
                 return ((string)(this["QASUKCustomer"]));
             }
             set {
                 this["QASUKCustomer"] = value;
-            }
-        }
-
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Belkis20160718082850@mailinator.com")]
-        public string QASBECustomer {
-            get {
-                return ((string)(this["QASBECustomer"]));
-            }
-            set {
-                this["QASBECustomer"] = value;
-            }
-        }
-
-
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Aurelio20160630151142@mailinator.com")]
-        public string QASDKCustomer {
-            get {
-                return ((string)(this["QASDKCustomer"]));
-            }
-            set {
-                this["QASDKCustomer"] = value;
-            }
-        }
-
-        
-
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Vada20160524081137@mailinator.com")]
-        public string QASNLCustomer
-        {
-            get
-            {
-                return ((string)(this["QASNLCustomer"]));
-            }
-            set
-            {
-                this["QASNLCustomer"] = value;
             }
         }
         
@@ -194,21 +152,6 @@ namespace Brother.Tests.Selenium.Lib.Properties {
             }
             set {
                 this["QASDECustomer"] = value;
-            }
-        }
-
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Mckenzie20160616191239@mailinator.com")]
-        public string QASSECustomer
-        {
-            get
-            {
-                return ((string)(this["QASSECustomer"]));
-            }
-            set
-            {
-                this["QASSECustomer"] = value;
             }
         }
         
@@ -305,6 +248,66 @@ namespace Brother.Tests.Selenium.Lib.Properties {
             }
             set {
                 this["QASIRCustomer"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Belkis20160718082850@mailinator.com")]
+        public string QASBECustomer {
+            get {
+                return ((string)(this["QASBECustomer"]));
+            }
+            set {
+                this["QASBECustomer"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Mckenzie20160616191239@mailinator.com")]
+        public string QASSECustomer {
+            get {
+                return ((string)(this["QASSECustomer"]));
+            }
+            set {
+                this["QASSECustomer"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Vada20160524081137@mailinator.com")]
+        public string QASNLCustomer {
+            get {
+                return ((string)(this["QASNLCustomer"]));
+            }
+            set {
+                this["QASNLCustomer"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Aurelio20160630151142@mailinator.com")]
+        public string QASDKCustomer {
+            get {
+                return ((string)(this["QASDKCustomer"]));
+            }
+            set {
+                this["QASDKCustomer"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Lashonda20160819112538@mailinator.com")]
+        public string QASPLCustomer {
+            get {
+                return ((string)(this["QASPLCustomer"]));
+            }
+            set {
+                this["QASPLCustomer"] = value;
             }
         }
     }

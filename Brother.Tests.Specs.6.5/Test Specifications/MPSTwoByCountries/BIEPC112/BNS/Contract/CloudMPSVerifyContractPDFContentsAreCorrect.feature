@@ -14,7 +14,7 @@ Scenario Outline: MPS Verify PDF Correctness
 
 Scenarios:
 
-	| ContractType                       | Country | UsageType     | Length | Billing              |
-	| Purchase & click inklusive service | Sweden  | Minimum volym | 36     | Quarterly in Arrears |
+	| ContractType                       | Country | UsageType     | Length     | Billing              |
+	| Purchase & click inklusive service | Sweden  | Minimum volym | 36 månader | Quarterly in Arrears |
 	
 	

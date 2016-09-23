@@ -12,7 +12,7 @@ Scenario Outline: MPS Copy Declined Proposal No Customer
 	Scenarios:
 
 	| Role             | Country | Role2                           | ContractType | UsageType       | Length | Billing              |
-	| Cloud MPS Dealer | Poland  | Cloud MPS Local Office Approver | Buy + Click  | Pakiet wydruków | 3 lata | Quarterly in Arrears |
+	| Cloud MPS Dealer | Poland  | Cloud MPS Local Office Approver | Buy + Click  | Pakiet wydruków | 3 lata | Miesięczny / Monthly |
 	
 
 Scenario Outline: MPS Copy Declined Proposal Customer
@@ -23,5 +23,5 @@ Scenario Outline: MPS Copy Declined Proposal Customer
 	Scenarios:
 
 	| Role             | Country | Role2                           | ContractType | UsageType       | Length | Billing              |
-	| Cloud MPS Dealer | Poland  | Cloud MPS Local Office Approver | Buy + Click  | Pakiet wydruków | 3 lata | Quarterly in Arrears |
+	| Cloud MPS Dealer | Poland  | Cloud MPS Local Office Approver | Buy + Click  | Pakiet wydruków | 3 lata | Miesięczny / Monthly |
 	

@@ -50,7 +50,7 @@ Scenarios:
 	| Cloud MPS Local Office Approver | France  | Buy & Click                       | Engagement sur un minimum volume de pages | Cloud MPS Dealer | Email  | 3 ans  | Trimestrale anticipata  |
 	| Cloud MPS Local Office Approver | Italy   | Acquisto + Consumo con assistenza | Volume minimo                             | Cloud MPS Dealer | Email  | 36     | Trimestrale anticipata  |
 	| Cloud MPS Local Office Approver | Spain   | Purchase & Click con Service      | Volúmen mínimo                            | Cloud MPS Dealer | Email  | 3 años | Por trimestres vencidos |
-	| Cloud MPS Local Office Approver | Poland  | Buy + Click                       | Pakiet wydruków                           | Cloud MPS Dealer | Email  | 3 lata | Quarterly in Arrears    |
+	| Cloud MPS Local Office Approver | Poland  | Buy + Click                       | Pakiet wydruków                           | Cloud MPS Dealer | Email  | 3 lata | Kwartalnie z dołu    |
 	
 	
 

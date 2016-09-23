@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.Tests.Specs.BrotherOnline.Account;
@@ -7,6 +8,7 @@ using Brother.Tests.Specs.MPSTwo.Proposal;
 using Brother.Tests.Specs.MPSTwo.SendToBank;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.MPSTwo;
+using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.MPSTwo.CalculationEngine
@@ -222,8 +224,13 @@ namespace Brother.Tests.Specs.MPSTwo.CalculationEngine
 
             instance1.GivenIamOnMpsNewProposalPage();
             WhenIFillProposalDescriptionForContractType(contractType);
-            var customerInformationStepInstance = new DealerProposalsCreateCustomerInformationStep();
-            customerInformationStepInstance.WhenISelectButtonForCustomerDataCapture("Create new customer");
+
+            if (!(CurrentDriver.Url.Contains("online.ch") || CurrentDriver.Url.Contains("online.brother.ch.local")))
+            {
+                var customerInformationStepInstance = new DealerProposalsCreateCustomerInformationStep();
+                customerInformationStepInstance.WhenISelectButtonForCustomerDataCapture("Create new customer");
+            }
+
             var stepInstance = new DealerProposalsCreateTermAndTypeStep();
             stepInstance.WhenIEnterUsageTypeContractLengthAndBillingOnTermAndTypeDetails
                 (usageType, length, billing);
@@ -272,7 +279,10 @@ namespace Brother.Tests.Specs.MPSTwo.CalculationEngine
                 || usageType.Equals("Minimumsvolumen")
                 || usageType.Equals("Minimumsvolumen") 
                 || usageType.Equals("Pakiet wydruków")
-                || usageType.Equals("Mindestvolumen"))
+                || usageType.Equals("Mindestvolumen")
+                || usageType.Equals("Volume minimum")
+                || usageType.Equals("Minimitulostusmäärä")
+                || usageType.Equals("Per kwartaal achteraf"))
                 
             {
                 type = "Minimum Volume";
@@ -299,7 +309,7 @@ namespace Brother.Tests.Specs.MPSTwo.CalculationEngine
             CurrentPage.As<DealerProposalsCreateDescriptionPage>().SelectingContractType(contract);
             CurrentPage.As<DealerProposalsCreateDescriptionPage>().EnterProposalName(CalculationEngineModule.ProposalName());
             CurrentPage.As<DealerProposalsCreateDescriptionPage>().EnterLeadCodeRef("");
-            if (CurrentPage.As<DealerProposalsCreateDescriptionPage>().IsBigAtSystem())
+            if (CurrentPage.As<DealerProposalsCreateDescriptionPage>().IsBigAtSystem() || CurrentPage.As<DealerProposalsCreateDescriptionPage>().IsSwissSystem())
             {
                 NextPage = CurrentPage.As<DealerProposalsCreateDescriptionPage>().ClickNextButtonGermany();
             }
@@ -318,10 +328,14 @@ namespace Brother.Tests.Specs.MPSTwo.CalculationEngine
 
         private void WhenIAcceptTheDefaultValuesOfTheDevice(string delivery, string installation)
         {
-            if (!(CurrentPage.As<DealerProposalsCreateProductsPage>().IsGermanSystem()
-                && CurrentPage.As<DealerProposalsCreateProductsPage>().GetContractType() == "Easy Print Pro & Service"))
+
+            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterProductQuantity("2");
+
+            if (!((CurrentPage.As<DealerProposalsCreateProductsPage>().IsGermanSystem()
+                && CurrentPage.As<DealerProposalsCreateProductsPage>().GetContractType() == "Easy Print Pro & Service")
+                || CurrentPage.As<DealerProposalsCreateProductsPage>().IsPolandSystem()))
             {
-                CurrentPage.As<DealerProposalsCreateProductsPage>().EnterProductQuantity("2");
+                //CurrentPage.As<DealerProposalsCreateProductsPage>().EnterProductQuantity("2");
                 CurrentPage.As<DealerProposalsCreateProductsPage>().EnterProductMargin("12");
                 CurrentPage.As<DealerProposalsCreateProductsPage>().EnterModelUnitCost();
                 CurrentPage.As<DealerProposalsCreateProductsPage>().EnterOptionsQuantity0("2");
@@ -482,14 +496,41 @@ namespace Brother.Tests.Specs.MPSTwo.CalculationEngine
             WhenIMoveToClickPricePage();
             if (UsageType(usageType).Equals("Minimum Volume"))
             {
-                //CurrentPage.As<DealerProposalsCreateClickPricePage>().PayServicePackMethod(servicePack);
+                try
+                {
+                    CurrentPage.As<DealerProposalsCreateClickPricePage>().PayServicePackMethod(servicePack);
+                }
+                catch (NullReferenceException nre)
+                {
+
+                    Helper.MsgOutput(String.Format("Click price was selected due to {0}", nre));
+                }
+                
                 //NextPage = CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateSelectedMultipleClickPrice("1000", "1000");
-                NextPage = CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateEnteredMultipleClickPrice("1000", "1000");
+                try
+                {
+                    NextPage = CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateEnteredMultipleClickPrice("1000", "1000");
+                }
+                catch (WebDriverException wex)
+                {
+                    NextPage = CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateSelectedMultipleClickPrice("1000", "1000");
+                    Helper.MsgOutput(String.Format("Click price was selected due to {0}", wex));
+                }
             }
             else if (UsageType(usageType).Equals("Pay As You Go"))
             {
-                NextPage = CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateEnteredMultipleClickPrice("1000", "1000");
+                //NextPage = CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateEnteredMultipleClickPrice("1000", "1000");
                // NextPage = CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateSelectedMultipleClickPrice("1000", "1000");
+
+                try
+                {
+                    NextPage = CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateEnteredMultipleClickPrice("1000", "1000");
+                }
+                catch (WebDriverException wex)
+                {
+                    NextPage = CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateSelectedMultipleClickPrice("1000", "1000");
+                    Helper.MsgOutput(String.Format("Click price was selected due to {0}", wex));
+                }
             }
         }
 
@@ -515,12 +556,31 @@ namespace Brother.Tests.Specs.MPSTwo.CalculationEngine
             if (UsageType(usageType).Equals("Minimum Volume"))
             {
                 //CurrentPage.As<DealerProposalsCreateClickPricePage>().PayServicePackMethod(servicePack);
-                NextPage = CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateSelectedMultipleClickPrice("1000", "1000");
+                try
+                {
+                    NextPage = CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateSelectedMultipleClickPrice("1000", "1000");
+                }
+                catch (WebDriverException wex)
+                {
+                    Helper.MsgOutput(String.Format("Click price was entered due to {0}", wex));
+                    NextPage = CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateEnteredMultipleClickPrice("1000", "1000");
+                }
+               
             }
             else if (UsageType(usageType).Equals("Pay As You Go"))
             {
                 //NextPage = CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateEnteredMultipleClickPrice("1000", "1000");
-                NextPage = CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateSelectedMultipleClickPrice("1000", "1000");
+                //NextPage = CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateSelectedMultipleClickPrice("1000", "1000");
+
+                try
+                {
+                    NextPage = CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateSelectedMultipleClickPrice("1000", "1000");
+                }
+                catch (WebDriverException wex)
+                {
+                    Helper.MsgOutput(String.Format("Click price was entered due to {0}", wex));
+                    NextPage = CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateEnteredMultipleClickPrice("1000", "1000");
+                }
             }
             
         }
