@@ -738,7 +738,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 TestCheck.AssertIsEqual(SpecFlow.GetContext("SelectedServicePackPrice"),
                     ServiceCostNameElement.Text,
-                    "Service Pack cost are the same");
+                    "Service Pack cost on Product page is not the same as the Service Pack on Summary page");
             }
         }
 

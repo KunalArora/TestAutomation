@@ -121,7 +121,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if (!IsElementPresent(GetElementByCssSelector("#content_1_InputUsageType_Input", 10))) return;
             SpecFlow.SetContext("DealerLatestEditedUsageType", usage);
             SelectFromDropdown(UsageTypeElement, usage);
-            WebDriver.Wait(DurationType.Second, 5);
+            //WebDriver.Wait(DurationType.Second, 5);
         }
 
         public DealerProposalsCreateProductsPage ClickNextButton()
