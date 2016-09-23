@@ -678,7 +678,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         public DownloadPage ClickSubmitButton(string country)
         {
             MsgOutput(string.Format("Before identifying the button waiting for 20 Secconds."));
-            Thread.Sleep(TimeSpan.FromSeconds(20));
+            Thread.Sleep(TimeSpan.FromSeconds(120));
             ScrollTo(SubmitButton);
             MsgOutput(string.Format("After identifying the button."));
             AssertElementPresent(SubmitButton,"Submit Button On Free Trial OJ Page.");
