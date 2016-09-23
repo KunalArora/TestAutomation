@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
@@ -676,8 +677,9 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         }
         public DownloadPage ClickSubmitButton(string country)
         {
-            //ScrollTo(SubmitButton);
+            ScrollTo(SubmitButton);
             SubmitButton.Click();
+            Thread.Sleep(TimeSpan.FromSeconds(10));
             return GetInstance<DownloadPage>(Driver);
         }
        
