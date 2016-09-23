@@ -1,8 +1,10 @@
-﻿Feature: Correct printer product listings
+﻿@TEST @UAT
+Feature: Correct printer product listings
 	In order to purchase a new Printer
 	As a customer
 	I want to be able to view the list of available printers
 
+@SMOKE @TEST
 Scenario Outline: View the list of available Laser Printers on Brother Main sites for languages except Spain and Portugal sites
 	Given I have navigated to the Brother Main Site "<country>" products pages
 	Given I have navigated to the "<site>" MainSite URL for country "<country>"
@@ -10,10 +12,10 @@ Scenario Outline: View the list of available Laser Printers on Brother Main site
 	And I can validate that each printer is a valid printer
 
 Scenarios:
-	| country | site                                        |
-	| Italy   | /Printers-and-All-in-one/LaserMono-Printers |
+	| country		 | site														   |
+	| Italy			 | Printers/All-Printers									   |
 #	| Belgium        | brother-printers/laser-printers?sc_lang=nl-BE               | - language switching problem
-#  | Belgium        | imprimantes/imprimantes-laser?sc_lang=fr-BE                 | - language switching problem
+#   | Belgium        | imprimantes/imprimantes-laser?sc_lang=fr-BE                 | - language switching problem
 #	| Czech          | printers/laser-printers                                     |
 #	| Denmark        | printers/all-colour-lasers                                  |
 #	| Finland        | printers/laser-printers                                     |
