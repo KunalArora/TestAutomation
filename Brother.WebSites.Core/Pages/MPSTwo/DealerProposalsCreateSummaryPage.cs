@@ -732,12 +732,21 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 ServicePackNameElement.Text, "Service Pack names are not the same");
         }
 
-        public void VerifyServicePackCostIsConssistent()
+        public void VerifyServicePackCostIsConsistent()
         {
             if (!(IsGermanSystem() && GetContractType() == "Easy Print Pro & Service"))
             {
                 TestCheck.AssertIsEqual(SpecFlow.GetContext("SelectedServicePackPrice"),
                     ServiceCostNameElement.Text,
+                    "Service Pack cost on Product page is not the same as the Service Pack on Summary page");
+            }
+        }
+
+        public void VerifyServicePackCostIsInclusiveInClick(string value)
+        {
+            if (!(IsGermanSystem() && GetContractType() == "Easy Print Pro & Service"))
+            {
+                TestCheck.AssertIsEqual(ServiceCostNameElement.Text, value,
                     "Service Pack cost on Product page is not the same as the Service Pack on Summary page");
             }
         }
@@ -761,11 +770,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
             else if (IsAustriaSystem())
             {
-                TestCheck.AssertTextContains(CalculationBasisElement.Text, "Druckvolumina");
-            } else if (IsGermanSystem())
+                TestCheck.AssertTextContains(CalculationBasisElement.Text, "Mindestdruckvolumina");
+            } 
+            else if (IsGermanSystem())
             {
                 TestCheck.AssertTextContains(CalculationBasisElement.Text, "Druckvolumina");
-            } else if (IsFranceSystem())
+            } 
+            else if (IsFranceSystem())
             {
                 TestCheck.AssertTextContains(CalculationBasisElement.Text, "Coût total par matériel sur la base de l'estimation de volume de pages");
             }

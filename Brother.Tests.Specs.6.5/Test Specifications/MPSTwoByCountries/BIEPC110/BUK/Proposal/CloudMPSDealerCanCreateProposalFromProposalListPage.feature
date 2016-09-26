@@ -25,7 +25,8 @@ Scenario Outline: MPS Create Proposal From List Page
 	And the installation type displayed is correct
 	And the installation cost displayed is correct
 	And the quantity displayed is the same as the one entered
-	And the service pack name and price displayed are correct
+	##And the service pack name and price displayed are correct
+	And service pack cost is included click as "£0.00"
 	And the displayed volume value for mono click price is "<ClickVolume>"
 	And the displayed volume value for colour click price is "<ColourVolume>"
 	And the calculated consumable net totals are equal in all places
@@ -40,6 +41,6 @@ Scenario Outline: MPS Create Proposal From List Page
 
 
 Scenarios: 
-	| Role             | Country        | ContractType                  | UsageType                                 | Contract | Billing                 | PriceHardware | Printer      | DeviceScreen | PaymentMethod                    | ClickVolume | ColourVolume | Basis1                        | Basis2                           |
-	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Minimum Volume                            | 3 years  | Quarterly in Arrears    | Tick          | MFC-L8650CDW | Full         | Included in Click Price          | 800         | 800          | Included in Click Price       | Pay upfront                      |
+	| Role             | Country        | ContractType                  | UsageType      | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod           | ClickVolume | ColourVolume | Basis1                  | Basis2      |
+	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Minimum Volume | 3 years  | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Included in Click Price | 800         | 800          | Included in Click Price | Pay upfront |
 	
