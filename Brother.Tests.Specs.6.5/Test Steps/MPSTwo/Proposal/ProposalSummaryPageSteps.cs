@@ -53,8 +53,15 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         public void ThenTheServicePackNameAndPriceDisplayedAreCorrect()
         {
             //CurrentPage.As<DealerProposalsCreateSummaryPage>().VerifyServicePackNameIsConsistent();
-            CurrentPage.As<DealerProposalsCreateSummaryPage>().VerifyServicePackCostIsConssistent();
+            CurrentPage.As<DealerProposalsCreateSummaryPage>().VerifyServicePackCostIsConsistent();
         }
+
+        [Then(@"service pack cost is included click as ""(.*)""")]
+        public void ThenServicePackCostIsIncludedClickAs(string value)
+        {
+            CurrentPage.As<DealerProposalsCreateSummaryPage>().VerifyServicePackCostIsInclusiveInClick(value);
+        }
+
 
         [Then(@"the displayed volume value for mono click price is ""(.*)""")]
         public void ThenTheDisplayedVolumeValueForMonoClickPriceIs(string mono)
