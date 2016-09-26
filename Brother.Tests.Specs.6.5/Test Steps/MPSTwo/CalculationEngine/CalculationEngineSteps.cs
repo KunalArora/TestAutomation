@@ -244,16 +244,12 @@ namespace Brother.Tests.Specs.MPSTwo.CalculationEngine
             WhenIAcceptTheDefaultValuesOfTheDevice(delivery, installation);
 
             WhenIMoveToClickPricePage();
-            if (UsageType(usageType).Equals("Minimum Volume") && !IsBelgiumSystem())
+            if (UsageType(usageType).Equals("Minimum Volume"))
             {
                 CurrentPage.As<DealerProposalsCreateClickPricePage>().PayServicePackMethod(servicePack);
                 NextPage = CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateSelectedMultipleClickPrice("1000", "1000");
             }
             else if (UsageType(usageType).Equals("Pay As You Go"))
-            {
-                NextPage = CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateEnteredMultipleClickPrice("1000", "1000");
-            }
-            else if (UsageType(usageType).Equals("Minimum Volume") && IsBelgiumSystem())
             {
                 NextPage = CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateEnteredMultipleClickPrice("1000", "1000");
             }

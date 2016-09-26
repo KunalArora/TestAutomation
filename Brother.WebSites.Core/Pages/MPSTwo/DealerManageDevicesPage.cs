@@ -334,15 +334,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var company = new SelectElement(CompanyLocationElement);
 
             var selectableList = company.Options;
+            selectableList.ElementAt(1).Click();
 
-          var genCoy = GetGeneratedCompany();
+          //var genCoy = GetGeneratedCompany();
 
-            foreach (var coy in selectableList)
-            {
-                if (!coy.Text.Contains(genCoy)) continue;
-                coy.Click();
-                return;
-            }
+          //  foreach (var coy in selectableList)
+          //  {
+          //      if (!coy.Text.Contains(genCoy)) continue;
+          //      coy.Click();
+          //      return;
+          //  }
 
           WaitForElementToBeClickableByCssSelector("#content_1_ButtonCreateRequest", 5, 5);
 
