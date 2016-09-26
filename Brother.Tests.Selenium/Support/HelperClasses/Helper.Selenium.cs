@@ -693,6 +693,30 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         }
 
 
+        public static void SelectElementOptionsByIndex(IWebElement element, int index)
+        {
+            try
+            {
+                var selectElement = new SelectElement(element);
+                var selectElementOption = selectElement.Options;
+
+                selectElementOption.ElementAt(index).Click();
+            }
+            catch (ElementNotVisibleException elementNotVisibleException)
+            {
+                TestCheck.AssertFailTest(String.Format("Element is not accessible [{0}]", elementNotVisibleException.Message));
+            }
+            catch (StaleElementReferenceException ex)
+            {
+                TestCheck.AssertFailTest(String.Format("Element is not accessible [{0}]", ex.Message));
+            }
+            catch (WebDriverException ex)
+            {
+                TestCheck.AssertFailTest(String.Format("Timeout scrolling to element [{0}]", ex.Message));
+            }
+        }
+
+
         /// <summary>
         /// Get the number of items in a Drop Down List
         /// </summary>
