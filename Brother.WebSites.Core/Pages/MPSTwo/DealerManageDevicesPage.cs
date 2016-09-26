@@ -331,10 +331,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
       public void SelectCompanyLocation()
         {
-            var company = new SelectElement(CompanyLocationElement);
+            //var company = new SelectElement(CompanyLocationElement);
 
-            var selectableList = company.Options;
-            selectableList.ElementAt(1).Click();
+            //var selectableList = company.Options;
+            //selectableList.ElementAt(1).Click();
+
+            SelectElementOptionsByIndex(CompanyLocationElement, 1);
 
           //var genCoy = GetGeneratedCompany();
 

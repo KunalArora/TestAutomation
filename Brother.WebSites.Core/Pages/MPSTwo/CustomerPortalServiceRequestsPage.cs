@@ -79,6 +79,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IList<IWebElement> DeviceLocationModalContentElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-print-counts-list .table-striped")]
         public IWebElement PrintCountModalContentElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_InputDevice_Input")]
+        public IWebElement DeviceDropdownMenuElement;
+        
         
         
 
@@ -120,7 +123,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void SelectDeviceFromDropdown()
         {
             //SelectFromDropdown(CustomerDeviceDropdownElement, "MFC-L8650CDW");
-            SelectFromDropdownWithPartialText(Driver, SelectorId, "DCP-8110DN");
+            //SelectFromDropdownWithPartialText(Driver, SelectorId, "DCP-8110DN");
+            SelectElementOptionsByIndex(DeviceDropdownMenuElement, 1);
         }
 
         public void EnterRequestSubject()
