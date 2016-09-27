@@ -582,7 +582,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyThatCorrectAccessoryBillingBasisIsDisplayed(string basis)
         {
-            if (!((IsGermanSystem() && GetContractType() == "Easy Print Pro & Service") && IsPolandSystem()))
+            if (!((IsGermanSystem() && GetContractType() == "Easy Print Pro & Service") || IsPolandSystem()))
             {
                 TestCheck.AssertIsEqual(basis,
                     AccessoryBillingBasisElement.Text,
