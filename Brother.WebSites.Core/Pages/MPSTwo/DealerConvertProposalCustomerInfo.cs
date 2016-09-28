@@ -224,10 +224,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 SelectFromDropdown(LegalFormDropdown, "Administration");
             }
-            else if (IsSwedenSystem())
-            {
-                SelectFromDropdown(LegalFormDropdown, "Aktiebolag");
-            }
             else if (IsNorwaySystem())
             {
                 SelectFromDropdown(LegalFormDropdown, "Enkeltpersonforetak");
@@ -246,6 +242,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 var language = BelgianLegalForm();
                 SelectFromDropdown(LegalFormDropdown, language);
             }
+            //else if (IsSwedenSystem())
+            //{
+            //    SelectFromDropdown(LegalFormDropdown, "Aktiebolag");
+            //}
                 
             WebDriver.Wait(DurationType.Second, 3);
         }
