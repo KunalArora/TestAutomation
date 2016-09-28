@@ -46,6 +46,16 @@ namespace Brother.WebSites.Core.Pages.Base
             return GetInstance<MainSiteHomePage>(driver, baseUrl, "");
         }
 
+        public static HomePage LoadBrotherOnlineHomePage(IWebDriver driver, string country)
+        {
+            driver = SetDriver(driver);
+            //baseUrl = ProcessUrlLocale(baseUrl);
+            //baseUrl = ProcessMainSiteLiveUrl(baseUrl);
+            //baseUrl = CheckForCdServer(baseUrl);
+            NavigateToPage(driver, BaseUrl.TrimEnd(new char[] { '/' }));
+            return GetInstance<HomePage>(driver, BaseUrl, "");
+        }
+
         public static LoginPage LoadBrotherMainSiteLoginPage(IWebDriver driver, string baseUrl)
         {
             driver = SetDriver(driver);

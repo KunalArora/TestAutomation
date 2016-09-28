@@ -5,15 +5,17 @@ Feature: ProductRegistration
 
 @TEST @SMOKE
 Scenario Outline: Verify the Header and Footer of the landing page
-Given I navigate to "<Country>" in order to validate the landing page
+#Given I navigate to "<Country>" in order to validate the landing page
+Given I navigate to "<Country>" Brother Online landing page
 Then I should see the Header and the Footer appearing on the landing Page
 Scenarios:
-| Country        | Site Url                               |
-| United Kingdom | http://atyourside.co.uk.brotherdv2.eu/ |
+| Country        |
+| United Kingdom |
 
 @TEST @SMOKE
 Scenario Outline: Customer wants to register product with their serial numbers and promo code
-	Given I navigate to "<Country>" in order to validate the landing page
+	Given I navigate to "<Country>" Brother Online landing page
+	And I browse to the "<Site Url>" product registration page
 	And I have entered my product "<SerialNumber>"
 	And clicked on Find Product Butoon
 	#| Purchase Date    | 01/01/2015      |
@@ -28,8 +30,8 @@ Scenario Outline: Customer wants to register product with their serial numbers a
 	#Then I am redirected to the Brother Home Page  
 
 Scenarios: 
-| Country        | Site Url                                | SerialNumber |
-| United Kingdom | /QA/AutomationPleaseDoNotTouch/Step-one | U1T004747    |
+| Country        | Site Url                                          | SerialNumber |
+| United Kingdom | /QA/AutomationPleaseDoNotTouch/ProductRegStep-one | U1T004747    |
 
 @ignore
 #Validate that an existing user has the option to change their sign in preferences to social login 
