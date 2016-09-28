@@ -215,7 +215,6 @@ Scenarios:
 	| Role           | Country | ContractType      | UsageType      | Role1            | Method | Length  | Leasing   | Billing      | ServicePack | Installation | Delivery | Device1      | Device2     | SerialNumber | SerialNumber1 | SerialNumber2 | SerialNumber3 | Mono | Colour |
 	| Cloud MPS Bank | Germany | Leasing & Service | Pay As You Go  | Cloud MPS Dealer | Email  | 3 Jahre | Monatlich | Halbjährlich | Pay upfront | Brother      | Yes      | MFC-L8650CDW | MFC-L5750DW | A1T010257    | A1T010258     | A1T010259     | A1T010260     | 1000 | 1000   |
 	| Cloud MPS Bank | Austria | Leasing & Service | Pay As You Go  | Cloud MPS Dealer | Email  | 3 Jahre | Monatlich | Halbjährlich | Pay upfront | Brother      | Yes      | MFC-L8650CDW | MFC-L5750DW | A1T010261    | A1T010262     | A1T010263     | A1T010264     | 1000 | 1000   |
-	| Cloud MPS Bank | Austria | Leasing & Service | Mindestvolumen | Cloud MPS Dealer | Email  | 3 Jahre | Monatlich | Halbjährlich | Pay upfront | Brother      | Yes      | MFC-L8650CDW | MFC-L5750DW | A1T010261    | A1T010262     | A1T010263     | A1T010264     | 1000 | 1000   |
 	
 
 Scenario Outline: Scenario Six
@@ -246,7 +245,6 @@ Scenarios:
 	| Role           | Country | ContractType      | UsageType      | Role1            | Method | Length  | Leasing         | Billing      | ServicePack | Installation | Delivery | Device1      | Device2     | SerialNumber | SerialNumber1 | SerialNumber2 | SerialNumber3 | Mono | Colour |
 	| Cloud MPS Bank | Germany | Leasing & Service | Pay As You Go  | Cloud MPS Dealer | Email  | 5 Jahre | Vierteljährlich | Halbjährlich | Pay upfront | Brother      | Yes      | MFC-L8650CDW | MFC-L5750DW | A1T010265    | A1T010266     | A1T010267     | A1T010268     | 1000 | 1000   |
 	| Cloud MPS Bank | Austria | Leasing & Service | Pay As You Go  | Cloud MPS Dealer | Email  | 5 Jahre | Vierteljährlich | Halbjährlich | Pay upfront | Brother      | Yes      | MFC-L8650CDW | MFC-L5750DW | A1T010269    | A1T010270     | A1T010271     | A1T010272     | 1000 | 1000   |
-	| Cloud MPS Bank | Austria | Leasing & Service | Mindestvolumen | Cloud MPS Dealer | Email  | 5 Jahre | Vierteljährlich | Halbjährlich | Pay upfront | Brother      | Yes      | MFC-L8650CDW | MFC-L5750DW | A1T010261    | A1T010262     | A1T010263     | A1T010264     | 1000 | 1000   |
 	
 
 Scenario Outline: Scenario Seven
@@ -276,8 +274,8 @@ Scenarios:
 
 	| Role           | Country | ContractType      | UsageType      | Role1            | Method | Length  | Leasing   | Billing      | ServicePack | Installation | Delivery | Device1      | Device2     | SerialNumber | SerialNumber1 | SerialNumber2 | SerialNumber3 | Mono | Colour |
 	#| Cloud MPS Bank | Germany | Leasing & Service | Mindestvolumen | Cloud MPS Dealer | Email  | 5 Jahre | Monatlich | Halbjährlich | Pay upfront | Brother      | Yes      | MFC-L8650CDW | MFC-L5750DW | A1T010273    | A1T010274     | A1T010275     | A1T010276     | 5000 | 5000   |
-	#| Cloud MPS Bank | Austria | Leasing & Service | Mindestvolumen | Cloud MPS Dealer | Email  | 5 Jahre | Monatlich | Halbjährlich | Pay upfront | Brother      | Yes      | MFC-L8650CDW | MFC-L5750DW | A1T010277    | A1T010278     | A1T010279     | A1T010280     | 5000 | 5000   |
-	#
+	| Cloud MPS Bank | Austria | Leasing & Service | Mindestvolumen | Cloud MPS Dealer | Email  | 5 Jahre | Monatlich | Halbjährlich | Pay upfront | Brother      | Yes      | MFC-L8650CDW | MFC-L5750DW | A1T010277    | A1T010278     | A1T010279     | A1T010280     | 5000 | 5000   |
+	
 
 Scenario Outline: Scenario Eight
 	Given "<Country>" Dealer have created "<ContractType>" with contract "<UsageType>" "<Length>" and "<Leasing>" and "<Billing>" and "<ServicePack>" and "<Installation>" and "<Delivery>" and "<Device1>" and "<Device2>"
@@ -305,7 +303,6 @@ Scenario Outline: Scenario Eight
 Scenarios:
 
 	| Role           | Country | ContractType      | UsageType      | Role1            | Method | Length  | Leasing         | Billing      | ServicePack | Installation | Delivery | Device1      | Device2     | SerialNumber | SerialNumber1 | SerialNumber2 | SerialNumber3 | Mono | Colour |
-	| Cloud MPS Bank | Germany | Leasing & Service | Pay As You Go  | Cloud MPS Dealer | Email  | 5 Jahre | Vierteljährlich | Halbjährlich | Pay upfront | Brother      | Yes      | MFC-L8650CDW | MFC-L5750DW | A1T010281    | A1T010282     | A1T010283     | A1T010284     | 5000 | 5000   |
-	| Cloud MPS Bank | Austria | Leasing & Service | Pay As You Go  | Cloud MPS Dealer | Email  | 5 Jahre | Vierteljährlich | Halbjährlich | Pay upfront | Brother      | Yes      | MFC-L8650CDW | MFC-L5750DW | A1T010285    | A1T010286     | A1T010287     | A1T010288     | 5000 | 5000   |
+	#| Cloud MPS Bank | Germany | Leasing & Service | Mindestvolumen | Cloud MPS Dealer | Email  | 5 Jahre | Vierteljährlich | Halbjährlich | Pay upfront | Brother      | Yes      | MFC-L8650CDW | MFC-L5750DW | A1T010281    | A1T010282     | A1T010283     | A1T010284     | 5000 | 5000   |
 	| Cloud MPS Bank | Austria | Leasing & Service | Mindestvolumen | Cloud MPS Dealer | Email  | 5 Jahre | Vierteljährlich | Halbjährlich | Pay upfront | Brother      | Yes      | MFC-L8650CDW | MFC-L5750DW | A1T010261    | A1T010262     | A1T010263     | A1T010264     | 5000 | 5000   |
 	

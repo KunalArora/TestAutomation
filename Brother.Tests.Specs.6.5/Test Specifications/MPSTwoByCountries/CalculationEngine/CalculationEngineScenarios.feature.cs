@@ -398,7 +398,6 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("Scenario Five")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Bank", "Germany", "Leasing & Service", "Pay As You Go", "Cloud MPS Dealer", "Email", "3 Jahre", "Monatlich", "Halbjährlich", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010257", "A1T010258", "A1T010259", "A1T010260", "1000", "1000", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Bank", "Austria", "Leasing & Service", "Pay As You Go", "Cloud MPS Dealer", "Email", "3 Jahre", "Monatlich", "Halbjährlich", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010261", "A1T010262", "A1T010263", "A1T010264", "1000", "1000", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Bank", "Austria", "Leasing & Service", "Mindestvolumen", "Cloud MPS Dealer", "Email", "3 Jahre", "Monatlich", "Halbjährlich", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010261", "A1T010262", "A1T010263", "A1T010264", "1000", "1000", null)]
         public virtual void ScenarioFive(
                     string role, 
                     string country, 
@@ -470,7 +469,6 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("Scenario Six")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Bank", "Germany", "Leasing & Service", "Pay As You Go", "Cloud MPS Dealer", "Email", "5 Jahre", "Vierteljährlich", "Halbjährlich", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010265", "A1T010266", "A1T010267", "A1T010268", "1000", "1000", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Bank", "Austria", "Leasing & Service", "Pay As You Go", "Cloud MPS Dealer", "Email", "5 Jahre", "Vierteljährlich", "Halbjährlich", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010269", "A1T010270", "A1T010271", "A1T010272", "1000", "1000", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Bank", "Austria", "Leasing & Service", "Mindestvolumen", "Cloud MPS Dealer", "Email", "5 Jahre", "Vierteljährlich", "Halbjährlich", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010261", "A1T010262", "A1T010263", "A1T010264", "1000", "1000", null)]
         public virtual void ScenarioSix(
                     string role, 
                     string country, 
@@ -495,44 +493,44 @@ this.ScenarioSetup(scenarioInfo);
                     string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Scenario Six", exampleTags);
-#line 221
+#line 220
 this.ScenarioSetup(scenarioInfo);
-#line 222
+#line 221
  testRunner.Given(string.Format("\"{0}\" Dealer have created \"{1}\" with contract \"{2}\" \"{3}\" and \"{4}\" and \"{5}\" and" +
                         " \"{6}\" and \"{7}\" and \"{8}\" and \"{9}\" and \"{10}\"", country, contractType, usageType, length, leasing, billing, servicePack, installation, delivery, device1, device2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 223
+#line 222
  testRunner.And(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 224
+#line 223
  testRunner.And("the contract created above is approved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 225
+#line 224
  testRunner.And(string.Format("I sign back into Cloud MPS as a \"{0}\" from \"{1}\"", role1, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 227
+#line 226
  testRunner.And(string.Format("I generate installation request for the contract with \"{0}\" communication", method), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 228
+#line 227
  testRunner.And("I extract the installer url from Installation Request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 229
+#line 228
  testRunner.When("I navigate to the installer page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 230
+#line 229
  testRunner.And("I enter the contract reference number", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 231
+#line 230
  testRunner.And(string.Format("I enter serial numbers \"{0}\" and \"{1}\" and \"{2}\" and \"{3}\"", serialNumber, serialNumber1, serialNumber2, serialNumber3), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 232
+#line 231
  testRunner.And("I enter the device IP address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 234
+#line 233
  testRunner.Then("I can connect the device to Brother environment", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 235
+#line 234
  testRunner.And("I can complete device installation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 236
+#line 235
  testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 237
+#line 236
  testRunner.And("I navigate to the Invoice tool homepage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 238
+#line 237
  testRunner.And(string.Format("I select \"{0}\" of interest", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 240
+#line 239
  testRunner.And(string.Format("I enter \"{0}\" mono and \"{1}\" colour print count", mono, colour), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 241
+#line 240
  testRunner.And("I generate invoices for the contract above", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 242
+#line 241
  testRunner.And("I download customer invoices pdf", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -540,6 +538,7 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Scenario Seven")]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Bank", "Austria", "Leasing & Service", "Mindestvolumen", "Cloud MPS Dealer", "Email", "5 Jahre", "Monatlich", "Halbjährlich", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010277", "A1T010278", "A1T010279", "A1T010280", "5000", "5000", null)]
         public virtual void ScenarioSeven(
                     string role, 
                     string country, 
@@ -564,44 +563,44 @@ this.ScenarioSetup(scenarioInfo);
                     string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Scenario Seven", exampleTags);
-#line 252
+#line 250
 this.ScenarioSetup(scenarioInfo);
-#line 253
+#line 251
  testRunner.Given(string.Format("\"{0}\" Dealer have created \"{1}\" with contract \"{2}\" \"{3}\" and \"{4}\" and \"{5}\" and" +
                         " \"{6}\" and \"{7}\" and \"{8}\" and \"{9}\" and \"{10}\"", country, contractType, usageType, length, leasing, billing, servicePack, installation, delivery, device1, device2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 254
+#line 252
  testRunner.And(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 255
+#line 253
  testRunner.And("the contract created above is approved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 256
+#line 254
  testRunner.And(string.Format("I sign back into Cloud MPS as a \"{0}\" from \"{1}\"", role1, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 258
+#line 256
  testRunner.And(string.Format("I generate installation request for the contract with \"{0}\" communication", method), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 259
+#line 257
  testRunner.And("I extract the installer url from Installation Request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 260
+#line 258
  testRunner.When("I navigate to the installer page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 261
+#line 259
  testRunner.And("I enter the contract reference number", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 262
+#line 260
  testRunner.And(string.Format("I enter serial numbers \"{0}\" and \"{1}\" and \"{2}\" and \"{3}\"", serialNumber, serialNumber1, serialNumber2, serialNumber3), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 263
+#line 261
  testRunner.And("I enter the device IP address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 265
+#line 263
  testRunner.Then("I can connect the device to Brother environment", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 266
+#line 264
  testRunner.And("I can complete device installation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 267
+#line 265
  testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 268
+#line 266
  testRunner.And("I navigate to the Invoice tool homepage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 269
+#line 267
  testRunner.And(string.Format("I select \"{0}\" of interest", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 271
+#line 269
  testRunner.And(string.Format("I enter \"{0}\" mono and \"{1}\" colour print count", mono, colour), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 272
+#line 270
  testRunner.And("I generate invoices for the contract above", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 273
+#line 271
  testRunner.And("I download customer invoices pdf", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -609,8 +608,6 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Scenario Eight")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Bank", "Germany", "Leasing & Service", "Pay As You Go", "Cloud MPS Dealer", "Email", "5 Jahre", "Vierteljährlich", "Halbjährlich", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010281", "A1T010282", "A1T010283", "A1T010284", "5000", "5000", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Bank", "Austria", "Leasing & Service", "Pay As You Go", "Cloud MPS Dealer", "Email", "5 Jahre", "Vierteljährlich", "Halbjährlich", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010285", "A1T010286", "A1T010287", "A1T010288", "5000", "5000", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Bank", "Austria", "Leasing & Service", "Mindestvolumen", "Cloud MPS Dealer", "Email", "5 Jahre", "Vierteljährlich", "Halbjährlich", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010261", "A1T010262", "A1T010263", "A1T010264", "5000", "5000", null)]
         public virtual void ScenarioEight(
                     string role, 
@@ -636,44 +633,44 @@ this.ScenarioSetup(scenarioInfo);
                     string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Scenario Eight", exampleTags);
-#line 282
+#line 280
 this.ScenarioSetup(scenarioInfo);
-#line 283
+#line 281
  testRunner.Given(string.Format("\"{0}\" Dealer have created \"{1}\" with contract \"{2}\" \"{3}\" and \"{4}\" and \"{5}\" and" +
                         " \"{6}\" and \"{7}\" and \"{8}\" and \"{9}\" and \"{10}\"", country, contractType, usageType, length, leasing, billing, servicePack, installation, delivery, device1, device2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 284
+#line 282
  testRunner.And(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 285
+#line 283
  testRunner.And("the contract created above is approved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 286
+#line 284
  testRunner.And(string.Format("I sign back into Cloud MPS as a \"{0}\" from \"{1}\"", role1, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 288
+#line 286
  testRunner.And(string.Format("I generate installation request for the contract with \"{0}\" communication", method), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 289
+#line 287
  testRunner.And("I extract the installer url from Installation Request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 290
+#line 288
  testRunner.When("I navigate to the installer page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 291
+#line 289
  testRunner.And("I enter the contract reference number", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 292
+#line 290
  testRunner.And(string.Format("I enter serial numbers \"{0}\" and \"{1}\" and \"{2}\" and \"{3}\"", serialNumber, serialNumber1, serialNumber2, serialNumber3), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 293
+#line 291
  testRunner.And("I enter the device IP address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 295
+#line 293
  testRunner.Then("I can connect the device to Brother environment", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 296
+#line 294
  testRunner.And("I can complete device installation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 297
+#line 295
  testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 298
+#line 296
  testRunner.And("I navigate to the Invoice tool homepage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 299
+#line 297
  testRunner.And(string.Format("I select \"{0}\" of interest", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 301
+#line 299
  testRunner.And(string.Format("I enter \"{0}\" mono and \"{1}\" colour print count", mono, colour), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 302
+#line 300
  testRunner.And("I generate invoices for the contract above", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 303
+#line 301
  testRunner.And("I download customer invoices pdf", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
