@@ -76,7 +76,7 @@ Scenario Outline:  MPS Summary Validation MV Upfront
 
 	Scenarios: 
 	| Role             | Country | ContractType                  | UsageType       | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod   | ClickVolume | ColourVolume | Basis1          |
-	| Cloud MPS Dealer | Poland  | Purchase & Click with Service | Pakiet wydruków | 5 lata   | Miesięczny / Monthly | Tick          | MFC-L8650CDW | Full         | Płatność z góry | 800         | 800          | Płatność z góry |
+	| Cloud MPS Dealer | Poland  | Purchase & Click with Service | Pakiet wydruków | 3 lata   | Miesięczny / Monthly | Tick          | MFC-L8650CDW | Full         | Płatność z góry | 800         | 800          | Płatność z góry |
 	
 
 
