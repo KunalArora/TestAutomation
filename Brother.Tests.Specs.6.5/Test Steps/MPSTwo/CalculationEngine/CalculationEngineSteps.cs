@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
@@ -35,6 +36,18 @@ namespace Brother.Tests.Specs.MPSTwo.CalculationEngine
             }
             
         }
+
+
+        [Given(@"""(.*)"" Dealer ""(.*)"" have created ""(.*)"" contract with ""(.*)"" and ""(.*)"" and ""(.*)"" and ""(.*)"" and ""(.*)"" and ""(.*)"" and ""(.*)"" and ""(.*)""")]
+        public void GivenDealerHaveCreatedContractWithAndAndAndAndAndAndAnd(string country, string language, string contractType, string usageType, string length, string billing,
+            string servicePack, string installation, string delivery, string device1, string device2)
+        {
+            Selenium.Lib.Support.HelperClasses.SpecFlow.SetContext("BelgianLanguage", language);
+
+            GivenDealerHaveCreatedAContractWithMultipleVariables(country, contractType, usageType, length, billing,
+                 servicePack, installation, delivery, device1, device2); 
+        }
+
 
         public void GivenDealerHaveCreatedPurchaseAndClickGermanContractWithAndAndAndAndAndAndAnd(string country, string contractType, string usageType, string length, string billing,
             string servicePack, string installation, string delivery, string device1, string device2)
@@ -222,6 +235,17 @@ namespace Brother.Tests.Specs.MPSTwo.CalculationEngine
             var instance1 = new CreateATemplateSteps();
             contractType = instance1.ContractType(contractType);
 
+            try
+            {
+                var language = Selenium.Lib.Support.HelperClasses.SpecFlow.GetContext("BelgianLanguage");
+                instance1.GivenIChangeTheLanguageDisplayed(language);
+            }
+            catch (KeyNotFoundException)
+            {
+                //Language switch is not needed
+            }
+            
+
             instance1.GivenIamOnMpsNewProposalPage();
             WhenIFillProposalDescriptionForContractType(contractType);
 
@@ -287,11 +311,12 @@ namespace Brother.Tests.Specs.MPSTwo.CalculationEngine
                 || usageType.Equals("Pago por Uso") 
                 || usageType.Equals("Betale ved forbruk") 
                 || usageType.Equals("Betala per utskrift") 
-                || usageType.Equals("Betalen naar verbruik") 
-                || usageType.Equals("Bez limitu")
+                || usageType.Equals("Betalen naar verbruik")
+                || usageType.Equals("Bez pakietu wydruków")
                 || usageType.Equals("Consommation réelle")
                 || usageType.Equals("Maksu tulosteiden mukaan")
-                || usageType.Equals("Paiement selon la consommation réelle de pages"))
+                || usageType.Equals("Paiement selon la consommation réelle de pages")
+                || usageType.Equals("Werkelijk verbruik"))
             {
                 type = "Pay As You Go";
             }

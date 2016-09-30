@@ -186,7 +186,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             EnterReference("");
             EnterValidUntil();
             EnterCreditLimit();
-            //TickCreditCheckNotNeeded();
+            TickCreditCheckNotNeeded();
             WebDriver.Wait(Helper.DurationType.Second, 3);
         }
 

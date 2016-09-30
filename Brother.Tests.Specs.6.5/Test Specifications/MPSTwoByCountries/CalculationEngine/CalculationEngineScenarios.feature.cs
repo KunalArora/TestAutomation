@@ -77,8 +77,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.CalculationEn
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Italy", "Acquisto + Consumo con assistenza", "Volume minimo", "Cloud MPS Dealer", "Email", "36", "Trimestrale anticipata", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010025", "A1T010026", "A1T010027", "A1T010028", "1000", "1000", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Spain", "Purchase & Click con Service", "Volúmen mínimo", "Cloud MPS Dealer", "Email", "3 años", "Por trimestres vencidos", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010029", "A1T010030", "A1T010031", "A1T010032", "1000", "1000", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Denmark", "Purchase & Click with Service", "Minimumsvolumen", "Cloud MPS Dealer", "Email", "3 år", "Quarterly in Arrears", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "HL-L5200DW", "A1T010033", "A1T010034", "A1T010035", "A1T010036", "1000", "1000", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Sweden", "Purchase & click inklusive service", "Minimum volym", "Cloud MPS Dealer", "Email", "36 månader", "Quarterly in Arrears", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "HL-L5100DN", "A1T010037", "A1T010038", "A1T010039", "A1T010040", "1000", "1000", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Poland", "Buy + Click", "Pakiet wydruków", "Cloud MPS Dealer", "Email", "3 lata", "Kwartalnie z dołu", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010020", "A1T010021", "A1T010022", "A1T010023", "1000", "1000", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Sweden", "Purchase & click inklusive service", "Minimum volym", "Cloud MPS Dealer", "Email", "36 månader", "Kvartalsvis i efterskott", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "HL-L5100DN", "A1T010037", "A1T010038", "A1T010039", "A1T010040", "1000", "1000", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Poland", "Buy + Click", "Pakiet wydruków", "Cloud MPS Dealer", "Email", "3 lata", "Quarterly in Arrears", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010020", "A1T010021", "A1T010022", "A1T010023", "1000", "1000", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Email", "3 years", "Quarterly in Arrears", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010053", "A1T010054", "A1T010055", "A1T010056", "1000", "1000", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Belgium", "Purchase & Click with Service", "Volume minimum", "Cloud MPS Dealer", "Email", "3 ans", "Quarterly in Arrears", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010061", "A1T010062", "A1T010063", "A1T010064", "1000", "1000", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Germany", "Easy Print Pro & Service", "Mindestvolumen", "Cloud MPS Dealer", "Email", "3 Jahre", "Halbjährlich", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010069", "A1T010070", "A1T010071", "A1T010072", "1000", "1000", null)]
@@ -153,21 +153,9 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Scenario Two")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "France", "Buy & Click", "Engagement sur un minimum volume de pages", "Cloud MPS Dealer", "Email", "4 ans", "Semestriel", "Included in Click Price", "Brother", "No", "MFC-L8650CDW", "MFC-L5750DW", "A1T010077", "A1T010078", "A1T010079", "A1T010080", "10000", "10000", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Italy", "Acquisto + Consumo con assistenza", "Volume minimo", "Cloud MPS Dealer", "Email", "48", "Semestrale", "Included in Click Price", "Brother", "No", "MFC-L8650CDW", "MFC-L5750DW", "A1T010081", "A1T010082", "A1T010083", "A1T010084", "10000", "10000", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Spain", "Purchase & Click con Service", "Volúmen mínimo", "Cloud MPS Dealer", "Email", "4 años", "Half Yearly", "Included in Click Price", "Brother", "No", "MFC-L8650CDW", "MFC-L5750DW", "A1T010085", "A1T010086", "A1T010087", "A1T010280", "10000", "10000", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Denmark", "Purchase & Click with Service", "Minimumsvolumen", "Cloud MPS Dealer", "Email", "4 år", "Half Yearly", "Included in Click Price", "Brother", "No", "MFC-L8650CDW", "HL-L5200DW", "A1T010089", "A1T010090", "A1T010091", "A1T010092", "10000", "10000", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Sweden", "Purchase & click inklusive service", "Minimum volym", "Cloud MPS Dealer", "Email", "48 månader", "Half Yearly", "Included in Click Price", "Brother", "No", "MFC-L8650CDW", "HL-L5100DN", "A1T010093", "A1T010094", "A1T010095", "A1T010096", "10000", "10000", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Poland", "Buy + Click", "Pakiet wydruków", "Cloud MPS Dealer", "Email", "4 lata", "pół roku", "Included in Click Price", "Brother", "No", "MFC-L8650CDW", "MFC-L5750DW", "A1T010109", "A1T010110", "A1T010111", "A1T010112", "10000", "10000", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Email", "4 years", "Half Yearly", "Included in Click Price", "Brother", "No", "MFC-L8650CDW", "MFC-L5750DW", "A1T010113", "A1T010114", "A1T010115", "A1T010116", "10000", "10000", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Belgium", "Purchase & Click with Service", "Volume minimum", "Cloud MPS Dealer", "Email", "4 ans", "Half Yearly", "Included in Click Price", "Brother", "No", "MFC-L8650CDW", "MFC-L5750DW", "A1T010121", "A1T010122", "A1T010123", "A1T010124", "10000", "10000", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Germany", "Easy Print Pro & Service", "Mindestvolumen", "Cloud MPS Dealer", "Email", "3 Jahre", "Halbjährlich", "Included in Click Price", "Brother", "No", "MFC-L8650CDW", "MFC-L5750DW", "A1T010129", "A1T010130", "A1T010131", "A1T010132", "10000", "10000", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Austria", "Easy Print Pro & Service", "Mindestvolumen", "Cloud MPS Dealer", "Email", "3 Jahre", "Halbjährlich", "Included in Click Price", "Brother", "No", "MFC-L8650CDW", "MFC-L5750DW", "A1T010133", "A1T010134", "A1T010135", "A1T010136", "10000", "10000", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Norway", "Kjøp og klikk med service", "Minimum volum", "Cloud MPS Dealer", "Email", "48", "Half Yearly", "Included in Click Price", "Brother", "No", "MFC-L8650CDW", "DCP-L5500DN", "A1T010101", "A1T010102", "A1T010103", "A1T010104", "10000", "10000", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Switzerland", "Purchase & Click with Service", "Mindestvolumen", "Cloud MPS Dealer", "Email", "48", "Half Yearly", "Included in Click Price", "Brother", "No", "MFC-L8650CDW", "HL-L5200DW", "A1T010125", "A1T010126", "A1T010127", "A1T010128", "10000", "10000", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Finland", "Purchase & Click with Service", "Minimitulostusmäärä", "Cloud MPS Dealer", "Email", "4 vuotta", "Half Yearly", "Included in Click Price", "Brother", "No", "MFC-L8650CDW", "MFC-8950DW", "A1T010117", "A1T010118", "A1T010119", "A1T010120", "10000", "10000", null)]
-        public virtual void ScenarioTwo(
+        [NUnit.Framework.DescriptionAttribute("Scenario One Dutch")]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Belgium", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Email", "3 jaar", "Quarterly in Arrears", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010061", "A1T010062", "A1T010063", "A1T010064", "1000", "1000", "Dutch", null)]
+        public virtual void ScenarioOneDutch(
                     string role, 
                     string country, 
                     string contractType, 
@@ -187,14 +175,15 @@ this.ScenarioSetup(scenarioInfo);
                     string serialNumber3, 
                     string mono, 
                     string colour, 
+                    string language, 
                     string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Scenario Two", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Scenario One Dutch", exampleTags);
 #line 55
 this.ScenarioSetup(scenarioInfo);
 #line 56
- testRunner.Given(string.Format("\"{0}\" Dealer have created \"{1}\" contract with \"{2}\" and \"{3}\" and \"{4}\" and \"{5}\"" +
-                        " and \"{6}\" and \"{7}\" and \"{8}\" and \"{9}\"", country, contractType, usageType, length, billing, servicePack, installation, delivery, device1, device2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given(string.Format("\"{0}\" Dealer \"{1}\" have created \"{2}\" contract with \"{3}\" and \"{4}\" and \"{5}\" and" +
+                        " \"{6}\" and \"{7}\" and \"{8}\" and \"{9}\" and \"{10}\"", country, language, contractType, usageType, length, billing, servicePack, installation, delivery, device1, device2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 57
  testRunner.And(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 58
@@ -234,12 +223,163 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Scenario Two")]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "France", "Buy & Click", "Engagement sur un minimum volume de pages", "Cloud MPS Dealer", "Email", "4 ans", "Semestriel", "Included in Click Price", "Brother", "No", "MFC-L8650CDW", "MFC-L5750DW", "A1T010077", "A1T010078", "A1T010079", "A1T010080", "10000", "10000", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Italy", "Acquisto + Consumo con assistenza", "Volume minimo", "Cloud MPS Dealer", "Email", "48", "Semestrale", "Included in Click Price", "Brother", "No", "MFC-L8650CDW", "MFC-L5750DW", "A1T010081", "A1T010082", "A1T010083", "A1T010084", "10000", "10000", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Spain", "Purchase & Click con Service", "Volúmen mínimo", "Cloud MPS Dealer", "Email", "4 años", "Half Yearly", "Included in Click Price", "Brother", "No", "MFC-L8650CDW", "MFC-L5750DW", "A1T010085", "A1T010086", "A1T010087", "A1T010280", "10000", "10000", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Denmark", "Purchase & Click with Service", "Minimumsvolumen", "Cloud MPS Dealer", "Email", "4 år", "Half Yearly", "Included in Click Price", "Brother", "No", "MFC-L8650CDW", "HL-L5200DW", "A1T010089", "A1T010090", "A1T010091", "A1T010092", "10000", "10000", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Sweden", "Purchase & click inklusive service", "Minimum volym", "Cloud MPS Dealer", "Email", "48 månader", "Halvårsvis", "Included in Click Price", "Brother", "No", "MFC-L8650CDW", "HL-L5100DN", "A1T010093", "A1T010094", "A1T010095", "A1T010096", "10000", "10000", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Poland", "Buy + Click", "Pakiet wydruków", "Cloud MPS Dealer", "Email", "4 lata", "Half Yearly", "Included in Click Price", "Brother", "No", "MFC-L8650CDW", "MFC-L5750DW", "A1T010109", "A1T010110", "A1T010111", "A1T010112", "10000", "10000", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Email", "4 years", "Half Yearly", "Included in Click Price", "Brother", "No", "MFC-L8650CDW", "MFC-L5750DW", "A1T010113", "A1T010114", "A1T010115", "A1T010116", "10000", "10000", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Belgium", "Purchase & Click with Service", "Volume minimum", "Cloud MPS Dealer", "Email", "4 ans", "Half Yearly", "Included in Click Price", "Brother", "No", "MFC-L8650CDW", "MFC-L5750DW", "A1T010121", "A1T010122", "A1T010123", "A1T010124", "10000", "10000", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Germany", "Easy Print Pro & Service", "Mindestvolumen", "Cloud MPS Dealer", "Email", "3 Jahre", "Halbjährlich", "Included in Click Price", "Brother", "No", "MFC-L8650CDW", "MFC-L5750DW", "A1T010129", "A1T010130", "A1T010131", "A1T010132", "10000", "10000", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Austria", "Easy Print Pro & Service", "Mindestvolumen", "Cloud MPS Dealer", "Email", "3 Jahre", "Halbjährlich", "Included in Click Price", "Brother", "No", "MFC-L8650CDW", "MFC-L5750DW", "A1T010133", "A1T010134", "A1T010135", "A1T010136", "10000", "10000", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Norway", "Kjøp og klikk med service", "Minimum volum", "Cloud MPS Dealer", "Email", "48", "Half Yearly", "Included in Click Price", "Brother", "No", "MFC-L8650CDW", "DCP-L5500DN", "A1T010101", "A1T010102", "A1T010103", "A1T010104", "10000", "10000", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Switzerland", "Purchase & Click with Service", "Mindestvolumen", "Cloud MPS Dealer", "Email", "48", "Half Yearly", "Included in Click Price", "Brother", "No", "MFC-L8650CDW", "HL-L5200DW", "A1T010125", "A1T010126", "A1T010127", "A1T010128", "10000", "10000", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Finland", "Purchase & Click with Service", "Minimitulostusmäärä", "Cloud MPS Dealer", "Email", "4 vuotta", "Half Yearly", "Included in Click Price", "Brother", "No", "MFC-L8650CDW", "MFC-8950DW", "A1T010117", "A1T010118", "A1T010119", "A1T010120", "10000", "10000", null)]
+        public virtual void ScenarioTwo(
+                    string role, 
+                    string country, 
+                    string contractType, 
+                    string usageType, 
+                    string role1, 
+                    string method, 
+                    string length, 
+                    string billing, 
+                    string servicePack, 
+                    string installation, 
+                    string delivery, 
+                    string device1, 
+                    string device2, 
+                    string serialNumber, 
+                    string serialNumber1, 
+                    string serialNumber2, 
+                    string serialNumber3, 
+                    string mono, 
+                    string colour, 
+                    string[] exampleTags)
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Scenario Two", exampleTags);
+#line 88
+this.ScenarioSetup(scenarioInfo);
+#line 89
+ testRunner.Given(string.Format("\"{0}\" Dealer have created \"{1}\" contract with \"{2}\" and \"{3}\" and \"{4}\" and \"{5}\"" +
+                        " and \"{6}\" and \"{7}\" and \"{8}\" and \"{9}\"", country, contractType, usageType, length, billing, servicePack, installation, delivery, device1, device2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 90
+ testRunner.And(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 91
+ testRunner.And("the contract created above is approved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 92
+ testRunner.And(string.Format("I sign back into Cloud MPS as a \"{0}\" from \"{1}\"", role1, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 94
+ testRunner.And(string.Format("I generate installation request for the contract with \"{0}\" communication", method), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 95
+ testRunner.And("I extract the installer url from Installation Request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 96
+ testRunner.When("I navigate to the installer page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 97
+ testRunner.And("I enter the contract reference number", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 98
+ testRunner.And(string.Format("I enter serial numbers \"{0}\" and \"{1}\" and \"{2}\" and \"{3}\"", serialNumber, serialNumber1, serialNumber2, serialNumber3), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 99
+ testRunner.And("I enter the device IP address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 101
+ testRunner.Then("I can connect the device to Brother environment", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 102
+ testRunner.And("I can complete device installation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 103
+ testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 104
+ testRunner.And("I navigate to the Invoice tool homepage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 105
+ testRunner.And(string.Format("I select \"{0}\" of interest", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 107
+ testRunner.And(string.Format("I enter \"{0}\" mono and \"{1}\" colour print count", mono, colour), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 108
+ testRunner.And("I generate invoices for the contract above", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 109
+ testRunner.And("I download customer invoices pdf", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Scenario Two Dutch")]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Belgium", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Email", "4 jaar", "Half Yearly", "Included in Click Price", "Brother", "No", "MFC-L8650CDW", "MFC-L5750DW", "A1T010121", "A1T010122", "A1T010123", "A1T010124", "10000", "10000", "Dutch", null)]
+        public virtual void ScenarioTwoDutch(
+                    string role, 
+                    string country, 
+                    string contractType, 
+                    string usageType, 
+                    string role1, 
+                    string method, 
+                    string length, 
+                    string billing, 
+                    string servicePack, 
+                    string installation, 
+                    string delivery, 
+                    string device1, 
+                    string device2, 
+                    string serialNumber, 
+                    string serialNumber1, 
+                    string serialNumber2, 
+                    string serialNumber3, 
+                    string mono, 
+                    string colour, 
+                    string language, 
+                    string[] exampleTags)
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Scenario Two Dutch", exampleTags);
+#line 133
+this.ScenarioSetup(scenarioInfo);
+#line 134
+ testRunner.Given(string.Format("\"{0}\" Dealer \"{1}\" have created \"{2}\" contract with \"{3}\" and \"{4}\" and \"{5}\" and" +
+                        " \"{6}\" and \"{7}\" and \"{8}\" and \"{9}\" and \"{10}\"", country, language, contractType, usageType, length, billing, servicePack, installation, delivery, device1, device2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 135
+ testRunner.And(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 136
+ testRunner.And("the contract created above is approved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 137
+ testRunner.And(string.Format("I sign back into Cloud MPS as a \"{0}\" from \"{1}\"", role1, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 139
+ testRunner.And(string.Format("I generate installation request for the contract with \"{0}\" communication", method), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 140
+ testRunner.And("I extract the installer url from Installation Request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 141
+ testRunner.When("I navigate to the installer page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 142
+ testRunner.And("I enter the contract reference number", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 143
+ testRunner.And(string.Format("I enter serial numbers \"{0}\" and \"{1}\" and \"{2}\" and \"{3}\"", serialNumber, serialNumber1, serialNumber2, serialNumber3), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 144
+ testRunner.And("I enter the device IP address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 146
+ testRunner.Then("I can connect the device to Brother environment", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 147
+ testRunner.And("I can complete device installation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 148
+ testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 149
+ testRunner.And("I navigate to the Invoice tool homepage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 150
+ testRunner.And(string.Format("I select \"{0}\" of interest", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 152
+ testRunner.And(string.Format("I enter \"{0}\" mono and \"{1}\" colour print count", mono, colour), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 153
+ testRunner.And("I generate invoices for the contract above", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 154
+ testRunner.And("I download customer invoices pdf", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Scenario Three")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "France", "Buy & Click", "Engagement sur un minimum volume de pages", "Cloud MPS Dealer", "Email", "5 ans", "Mensuel", "Included in Click Price", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010137", "A1T010138", "A1T010139", "A1T010140", "5000", "5000", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Italy", "Acquisto + Consumo con assistenza", "Volume minimo", "Cloud MPS Dealer", "Email", "60", "Mensile", "Included in Click Price", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010141", "A1T010142", "A1T010143", "A1T010144", "5000", "5000", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Spain", "Purchase & Click con Service", "Volúmen mínimo", "Cloud MPS Dealer", "Email", "5 años", "Mensual", "Included in Click Price", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010145", "A1T010146", "A1T010147", "A1T010148", "5000", "5000", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Denmark", "Purchase & Click with Service", "Minimumsvolumen", "Cloud MPS Dealer", "Email", "5 år", "Monthly", "Included in Click Price", "Brother", "Yes", "MFC-L8650CDW", "HL-L5200DW", "A1T010149", "A1T010150", "A1T010151", "A1T010152", "5000", "5000", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Sweden", "Purchase & click inklusive service", "Minimum volym", "Cloud MPS Dealer", "Email", "60 månader", "Monthly", "Included in Click Price", "Brother", "Yes", "MFC-L8650CDW", "HL-L5100DN", "A1T010153", "A1T010154", "A1T010155", "A1T010156", "5000", "5000", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Sweden", "Purchase & click inklusive service", "Minimum volym", "Cloud MPS Dealer", "Email", "60 månader", "Månadsvis", "Included in Click Price", "Brother", "Yes", "MFC-L8650CDW", "HL-L5100DN", "A1T010153", "A1T010154", "A1T010155", "A1T010156", "5000", "5000", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Poland", "Buy + Click", "Pakiet wydruków", "Cloud MPS Dealer", "Email", "5 lat", "Miesięczny / Monthly", "Included in Click Price", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010169", "A1T010170", "A1T010171", "A1T010172", "5000", "5000", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Email", "5 years", "Monthly", "Included in Click Price", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010173", "A1T010174", "A1T010175", "A1T010176", "5000", "5000", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Belgium", "Purchase & Click with Service", "Volume minimum", "Cloud MPS Dealer", "Email", "5 ans", "Monthly", "Included in Click Price", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010181", "A1T010182", "A1T010183", "A1T010184", "5000", "5000", null)]
@@ -271,44 +411,114 @@ this.ScenarioSetup(scenarioInfo);
                     string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Scenario Three", exampleTags);
-#line 99
+#line 163
 this.ScenarioSetup(scenarioInfo);
-#line 100
+#line 164
  testRunner.Given(string.Format("\"{0}\" Dealer have created \"{1}\" contract with \"{2}\" and \"{3}\" and \"{4}\" and \"{5}\"" +
                         " and \"{6}\" and \"{7}\" and \"{8}\" and \"{9}\"", country, contractType, usageType, length, billing, servicePack, installation, delivery, device1, device2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 101
+#line 165
  testRunner.And(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 102
+#line 166
  testRunner.And("the contract created above is approved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 103
+#line 167
  testRunner.And(string.Format("I sign back into Cloud MPS as a \"{0}\" from \"{1}\"", role1, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 105
+#line 169
  testRunner.And(string.Format("I generate installation request for the contract with \"{0}\" communication", method), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 106
+#line 170
  testRunner.And("I extract the installer url from Installation Request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 107
+#line 171
  testRunner.When("I navigate to the installer page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 108
+#line 172
  testRunner.And("I enter the contract reference number", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 109
+#line 173
  testRunner.And(string.Format("I enter serial numbers \"{0}\" and \"{1}\" and \"{2}\" and \"{3}\"", serialNumber, serialNumber1, serialNumber2, serialNumber3), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 110
+#line 174
  testRunner.And("I enter the device IP address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 112
+#line 176
  testRunner.Then("I can connect the device to Brother environment", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 113
+#line 177
  testRunner.And("I can complete device installation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 114
+#line 178
  testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 115
+#line 179
  testRunner.And("I navigate to the Invoice tool homepage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 116
+#line 180
  testRunner.And(string.Format("I select \"{0}\" of interest", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 118
+#line 182
  testRunner.And(string.Format("I enter \"{0}\" mono and \"{1}\" colour print count", mono, colour), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 119
+#line 183
  testRunner.And("I generate invoices for the contract above", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 120
+#line 184
+ testRunner.And("I download customer invoices pdf", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Scenario Three Dutch")]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Belgium", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Email", "5 jaar", "Monthly", "Included in Click Price", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010181", "A1T010182", "A1T010183", "A1T010184", "5000", "5000", "Dutch", null)]
+        public virtual void ScenarioThreeDutch(
+                    string role, 
+                    string country, 
+                    string contractType, 
+                    string usageType, 
+                    string role1, 
+                    string method, 
+                    string length, 
+                    string billing, 
+                    string servicePack, 
+                    string installation, 
+                    string delivery, 
+                    string device1, 
+                    string device2, 
+                    string serialNumber, 
+                    string serialNumber1, 
+                    string serialNumber2, 
+                    string serialNumber3, 
+                    string mono, 
+                    string colour, 
+                    string language, 
+                    string[] exampleTags)
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Scenario Three Dutch", exampleTags);
+#line 209
+this.ScenarioSetup(scenarioInfo);
+#line 210
+ testRunner.Given(string.Format("\"{0}\" Dealer \"{1}\" have created \"{2}\" contract with \"{3}\" and \"{4}\" and \"{5}\" and" +
+                        " \"{6}\" and \"{7}\" and \"{8}\" and \"{9}\" and \"{10}\"", country, language, contractType, usageType, length, billing, servicePack, installation, delivery, device1, device2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 211
+ testRunner.And(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 212
+ testRunner.And("the contract created above is approved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 213
+ testRunner.And(string.Format("I sign back into Cloud MPS as a \"{0}\" from \"{1}\"", role1, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 215
+ testRunner.And(string.Format("I generate installation request for the contract with \"{0}\" communication", method), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 216
+ testRunner.And("I extract the installer url from Installation Request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 217
+ testRunner.When("I navigate to the installer page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 218
+ testRunner.And("I enter the contract reference number", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 219
+ testRunner.And(string.Format("I enter serial numbers \"{0}\" and \"{1}\" and \"{2}\" and \"{3}\"", serialNumber, serialNumber1, serialNumber2, serialNumber3), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 220
+ testRunner.And("I enter the device IP address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 222
+ testRunner.Then("I can connect the device to Brother environment", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 223
+ testRunner.And("I can complete device installation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 224
+ testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 225
+ testRunner.And("I navigate to the Invoice tool homepage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 226
+ testRunner.And(string.Format("I select \"{0}\" of interest", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 228
+ testRunner.And(string.Format("I enter \"{0}\" mono and \"{1}\" colour print count", mono, colour), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 229
+ testRunner.And("I generate invoices for the contract above", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 230
  testRunner.And("I download customer invoices pdf", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -319,9 +529,10 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "France", "Buy & Click", "Paiement selon la consommation réelle de pages", "Cloud MPS Dealer", "Email", "3 ans", "Trimestriellement à terme échu", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010197", "A1T010198", "A1T010199", "A1T010200", "5000", "5000", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Spain", "Purchase & Click con Service", "Pago por Uso", "Cloud MPS Dealer", "Email", "3 años", "Por trimestres vencidos", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010205", "A1T010206", "A1T010207", "A1T010208", "5000", "5000", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Denmark", "Purchase & Click with Service", "Pay As You Go", "Cloud MPS Dealer", "Email", "3 år", "Quarterly in Arrears", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "HL-L5200DW", "A1T010209", "A1T010210", "A1T010211", "A1T010212", "5000", "5000", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Sweden", "Purchase & click inklusive service", "Betala per utskrift", "Cloud MPS Dealer", "Email", "36 månader", "Kvartalsvis i efterskott", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "HL-L5100DN", "A1T010213", "A1T010214", "A1T010215", "A1T010216", "5000", "5000", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Netherlands", "Purchase + Click met Service", "Betalen naar verbruik", "Cloud MPS Dealer", "Email", "3 jaar", "Per kwartaal achteraf", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010217", "A1T010218", "A1T010219", "A1T010220", "5000", "5000", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Ireland", "Purchase & Click with Service", "Pay As You Go", "Cloud MPS Dealer", "Email", "3 years", "Quarterly in Arrears", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010225", "A1T010226", "A1T010227", "A1T010228", "5000", "5000", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Poland", "Buy + Click", "Bez limitu", "Cloud MPS Dealer", "Email", "3 lata", "Kwartalnie z dołu", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010229", "A1T010230", "A1T010231", "A1T010232", "5000", "5000", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Poland", "Buy + Click", "Bez pakietu wydruków", "Cloud MPS Dealer", "Email", "3 lata", "Kwartalny/Quarterly in Arrears", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010229", "A1T010230", "A1T010231", "A1T010232", "5000", "5000", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Pay As You Go", "Cloud MPS Dealer", "Email", "3 years", "Quarterly in Arrears", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010233", "A1T010234", "A1T010235", "A1T010236", "5000", "5000", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Belgium", "Purchase & Click with Service", "Consommation réelle", "Cloud MPS Dealer", "Email", "3 ans", "Quarterly in Arrears", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010241", "A1T010242", "A1T010243", "A1T010244", "5000", "5000", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Austria", "Easy Print Pro & Service", "Pay As You Go", "Cloud MPS Dealer", "Email", "3 Jahre", "Halbjährlich", "Pay upfront", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010253", "A1T010254", "A1T010255", "A1T010256", "5000", "5000", null)]
@@ -351,44 +562,114 @@ this.ScenarioSetup(scenarioInfo);
                     string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Scenario Four", exampleTags);
-#line 144
+#line 240
 this.ScenarioSetup(scenarioInfo);
-#line 145
+#line 241
  testRunner.Given(string.Format("\"{0}\" Dealer have created \"{1}\" contract with \"{2}\" and \"{3}\" and \"{4}\" and \"{5}\"" +
                         " and \"{6}\" and \"{7}\" and \"{8}\" and \"{9}\"", country, contractType, usageType, length, billing, servicePack, installation, delivery, device1, device2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 146
+#line 242
  testRunner.And(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 147
+#line 243
  testRunner.And("the contract created above is approved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 148
+#line 244
  testRunner.And(string.Format("I sign back into Cloud MPS as a \"{0}\" from \"{1}\"", role1, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 150
+#line 246
  testRunner.And(string.Format("I generate installation request for the contract with \"{0}\" communication", method), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 151
+#line 247
  testRunner.And("I extract the installer url from Installation Request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 152
+#line 248
  testRunner.When("I navigate to the installer page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 153
+#line 249
  testRunner.And("I enter the contract reference number", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 154
+#line 250
  testRunner.And(string.Format("I enter serial numbers \"{0}\" and \"{1}\" and \"{2}\" and \"{3}\"", serialNumber, serialNumber1, serialNumber2, serialNumber3), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 155
+#line 251
  testRunner.And("I enter the device IP address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 157
+#line 253
  testRunner.Then("I can connect the device to Brother environment", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 158
+#line 254
  testRunner.And("I can complete device installation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 159
+#line 255
  testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 160
+#line 256
  testRunner.And("I navigate to the Invoice tool homepage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 161
+#line 257
  testRunner.And(string.Format("I select \"{0}\" of interest", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 163
+#line 259
  testRunner.And(string.Format("I enter \"{0}\" mono and \"{1}\" colour print count", mono, colour), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 164
+#line 260
  testRunner.And("I generate invoices for the contract above", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 165
+#line 261
+ testRunner.And("I download customer invoices pdf", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Scenario Four Dutch")]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Belgium", "Purchase & Click with Service", "Werkelijk verbruik", "Cloud MPS Dealer", "Email", "3 jaar", "Quarterly in Arrears", "Included in Click Price", "Brother", "Yes", "MFC-L8650CDW", "MFC-L5750DW", "A1T010241", "A1T010242", "A1T010243", "A1T010244", "5000", "5000", "Dutch", null)]
+        public virtual void ScenarioFourDutch(
+                    string role, 
+                    string country, 
+                    string contractType, 
+                    string usageType, 
+                    string role1, 
+                    string method, 
+                    string length, 
+                    string billing, 
+                    string servicePack, 
+                    string installation, 
+                    string delivery, 
+                    string device1, 
+                    string device2, 
+                    string serialNumber, 
+                    string serialNumber1, 
+                    string serialNumber2, 
+                    string serialNumber3, 
+                    string mono, 
+                    string colour, 
+                    string language, 
+                    string[] exampleTags)
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Scenario Four Dutch", exampleTags);
+#line 287
+this.ScenarioSetup(scenarioInfo);
+#line 288
+ testRunner.Given(string.Format("\"{0}\" Dealer \"{1}\" have created \"{2}\" contract with \"{3}\" and \"{4}\" and \"{5}\" and" +
+                        " \"{6}\" and \"{7}\" and \"{8}\" and \"{9}\" and \"{10}\"", country, language, contractType, usageType, length, billing, servicePack, installation, delivery, device1, device2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 289
+ testRunner.And(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 290
+ testRunner.And("the contract created above is approved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 291
+ testRunner.And(string.Format("I sign back into Cloud MPS as a \"{0}\" from \"{1}\"", role1, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 293
+ testRunner.And(string.Format("I generate installation request for the contract with \"{0}\" communication", method), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 294
+ testRunner.And("I extract the installer url from Installation Request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 295
+ testRunner.When("I navigate to the installer page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 296
+ testRunner.And("I enter the contract reference number", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 297
+ testRunner.And(string.Format("I enter serial numbers \"{0}\" and \"{1}\" and \"{2}\" and \"{3}\"", serialNumber, serialNumber1, serialNumber2, serialNumber3), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 298
+ testRunner.And("I enter the device IP address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 300
+ testRunner.Then("I can connect the device to Brother environment", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 301
+ testRunner.And("I can complete device installation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 302
+ testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 303
+ testRunner.And("I navigate to the Invoice tool homepage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 304
+ testRunner.And(string.Format("I select \"{0}\" of interest", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 306
+ testRunner.And(string.Format("I enter \"{0}\" mono and \"{1}\" colour print count", mono, colour), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 307
+ testRunner.And("I generate invoices for the contract above", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 308
  testRunner.And("I download customer invoices pdf", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -422,44 +703,44 @@ this.ScenarioSetup(scenarioInfo);
                     string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Scenario Five", exampleTags);
-#line 190
+#line 317
 this.ScenarioSetup(scenarioInfo);
-#line 191
+#line 318
  testRunner.Given(string.Format("\"{0}\" Dealer have created \"{1}\" with contract \"{2}\" \"{3}\" and \"{4}\" and \"{5}\" and" +
                         " \"{6}\" and \"{7}\" and \"{8}\" and \"{9}\" and \"{10}\"", country, contractType, usageType, length, leasing, billing, servicePack, installation, delivery, device1, device2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 192
+#line 319
  testRunner.And(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 193
+#line 320
  testRunner.And("the contract created above is approved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 194
+#line 321
  testRunner.And(string.Format("I sign back into Cloud MPS as a \"{0}\" from \"{1}\"", role1, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 196
+#line 323
  testRunner.And(string.Format("I generate installation request for the contract with \"{0}\" communication", method), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 197
+#line 324
  testRunner.And("I extract the installer url from Installation Request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 198
+#line 325
  testRunner.When("I navigate to the installer page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 199
+#line 326
  testRunner.And("I enter the contract reference number", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 200
+#line 327
  testRunner.And(string.Format("I enter serial numbers \"{0}\" and \"{1}\" and \"{2}\" and \"{3}\"", serialNumber, serialNumber1, serialNumber2, serialNumber3), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 201
+#line 328
  testRunner.And("I enter the device IP address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 203
+#line 330
  testRunner.Then("I can connect the device to Brother environment", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 204
+#line 331
  testRunner.And("I can complete device installation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 205
+#line 332
  testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 206
+#line 333
  testRunner.And("I navigate to the Invoice tool homepage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 207
+#line 334
  testRunner.And(string.Format("I select \"{0}\" of interest", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 209
+#line 336
  testRunner.And(string.Format("I enter \"{0}\" mono and \"{1}\" colour print count", mono, colour), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 210
+#line 337
  testRunner.And("I generate invoices for the contract above", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 211
+#line 338
  testRunner.And("I download customer invoices pdf", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -493,44 +774,44 @@ this.ScenarioSetup(scenarioInfo);
                     string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Scenario Six", exampleTags);
-#line 220
+#line 347
 this.ScenarioSetup(scenarioInfo);
-#line 221
+#line 348
  testRunner.Given(string.Format("\"{0}\" Dealer have created \"{1}\" with contract \"{2}\" \"{3}\" and \"{4}\" and \"{5}\" and" +
                         " \"{6}\" and \"{7}\" and \"{8}\" and \"{9}\" and \"{10}\"", country, contractType, usageType, length, leasing, billing, servicePack, installation, delivery, device1, device2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 222
+#line 349
  testRunner.And(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 223
+#line 350
  testRunner.And("the contract created above is approved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 224
+#line 351
  testRunner.And(string.Format("I sign back into Cloud MPS as a \"{0}\" from \"{1}\"", role1, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 226
+#line 353
  testRunner.And(string.Format("I generate installation request for the contract with \"{0}\" communication", method), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 227
+#line 354
  testRunner.And("I extract the installer url from Installation Request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 228
+#line 355
  testRunner.When("I navigate to the installer page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 229
+#line 356
  testRunner.And("I enter the contract reference number", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 230
+#line 357
  testRunner.And(string.Format("I enter serial numbers \"{0}\" and \"{1}\" and \"{2}\" and \"{3}\"", serialNumber, serialNumber1, serialNumber2, serialNumber3), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 231
+#line 358
  testRunner.And("I enter the device IP address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 233
+#line 360
  testRunner.Then("I can connect the device to Brother environment", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 234
+#line 361
  testRunner.And("I can complete device installation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 235
+#line 362
  testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 236
+#line 363
  testRunner.And("I navigate to the Invoice tool homepage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 237
+#line 364
  testRunner.And(string.Format("I select \"{0}\" of interest", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 239
+#line 366
  testRunner.And(string.Format("I enter \"{0}\" mono and \"{1}\" colour print count", mono, colour), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 240
+#line 367
  testRunner.And("I generate invoices for the contract above", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 241
+#line 368
  testRunner.And("I download customer invoices pdf", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -563,44 +844,44 @@ this.ScenarioSetup(scenarioInfo);
                     string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Scenario Seven", exampleTags);
-#line 250
+#line 377
 this.ScenarioSetup(scenarioInfo);
-#line 251
+#line 378
  testRunner.Given(string.Format("\"{0}\" Dealer have created \"{1}\" with contract \"{2}\" \"{3}\" and \"{4}\" and \"{5}\" and" +
                         " \"{6}\" and \"{7}\" and \"{8}\" and \"{9}\" and \"{10}\"", country, contractType, usageType, length, leasing, billing, servicePack, installation, delivery, device1, device2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 252
+#line 379
  testRunner.And(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 253
+#line 380
  testRunner.And("the contract created above is approved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 254
+#line 381
  testRunner.And(string.Format("I sign back into Cloud MPS as a \"{0}\" from \"{1}\"", role1, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 256
+#line 383
  testRunner.And(string.Format("I generate installation request for the contract with \"{0}\" communication", method), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 257
+#line 384
  testRunner.And("I extract the installer url from Installation Request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 258
+#line 385
  testRunner.When("I navigate to the installer page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 259
+#line 386
  testRunner.And("I enter the contract reference number", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 260
+#line 387
  testRunner.And(string.Format("I enter serial numbers \"{0}\" and \"{1}\" and \"{2}\" and \"{3}\"", serialNumber, serialNumber1, serialNumber2, serialNumber3), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 261
+#line 388
  testRunner.And("I enter the device IP address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 263
+#line 390
  testRunner.Then("I can connect the device to Brother environment", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 264
+#line 391
  testRunner.And("I can complete device installation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 265
+#line 392
  testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 266
+#line 393
  testRunner.And("I navigate to the Invoice tool homepage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 267
+#line 394
  testRunner.And(string.Format("I select \"{0}\" of interest", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 269
+#line 396
  testRunner.And(string.Format("I enter \"{0}\" mono and \"{1}\" colour print count", mono, colour), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 270
+#line 397
  testRunner.And("I generate invoices for the contract above", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 271
+#line 398
  testRunner.And("I download customer invoices pdf", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -633,44 +914,44 @@ this.ScenarioSetup(scenarioInfo);
                     string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Scenario Eight", exampleTags);
-#line 280
+#line 407
 this.ScenarioSetup(scenarioInfo);
-#line 281
+#line 408
  testRunner.Given(string.Format("\"{0}\" Dealer have created \"{1}\" with contract \"{2}\" \"{3}\" and \"{4}\" and \"{5}\" and" +
                         " \"{6}\" and \"{7}\" and \"{8}\" and \"{9}\" and \"{10}\"", country, contractType, usageType, length, leasing, billing, servicePack, installation, delivery, device1, device2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 282
+#line 409
  testRunner.And(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 283
+#line 410
  testRunner.And("the contract created above is approved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 284
+#line 411
  testRunner.And(string.Format("I sign back into Cloud MPS as a \"{0}\" from \"{1}\"", role1, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 286
+#line 413
  testRunner.And(string.Format("I generate installation request for the contract with \"{0}\" communication", method), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 287
+#line 414
  testRunner.And("I extract the installer url from Installation Request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 288
+#line 415
  testRunner.When("I navigate to the installer page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 289
+#line 416
  testRunner.And("I enter the contract reference number", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 290
+#line 417
  testRunner.And(string.Format("I enter serial numbers \"{0}\" and \"{1}\" and \"{2}\" and \"{3}\"", serialNumber, serialNumber1, serialNumber2, serialNumber3), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 291
+#line 418
  testRunner.And("I enter the device IP address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 293
+#line 420
  testRunner.Then("I can connect the device to Brother environment", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 294
+#line 421
  testRunner.And("I can complete device installation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 295
+#line 422
  testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 296
+#line 423
  testRunner.And("I navigate to the Invoice tool homepage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 297
+#line 424
  testRunner.And(string.Format("I select \"{0}\" of interest", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 299
+#line 426
  testRunner.And(string.Format("I enter \"{0}\" mono and \"{1}\" colour print count", mono, colour), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 300
+#line 427
  testRunner.And("I generate invoices for the contract above", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 301
+#line 428
  testRunner.And("I download customer invoices pdf", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();

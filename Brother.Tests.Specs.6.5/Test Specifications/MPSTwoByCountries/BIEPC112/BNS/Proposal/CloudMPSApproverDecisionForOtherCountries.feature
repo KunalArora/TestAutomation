@@ -13,7 +13,7 @@ Scenario Outline: MPS LO Decline Proposal
 
 	Scenarios: 
 	| Country | Role                            | ContractType                       | UsageType     | Length     | Billing              |
-	| Sweden  | Cloud MPS Local Office Approver | Purchase & click inklusive service | Minimum volym | 36 månader | Quarterly in Arrears |
+	| Sweden  | Cloud MPS Local Office Approver | Purchase & click inklusive service | Minimum volym | 36 månader | Kvartalsvis i efterskott |
 	
 
 
@@ -30,7 +30,7 @@ Scenario Outline: MPS LO Can Reject Or Accept
 
 	Scenarios:
 	| Country | Role                            | ContractType                       | UsageType     | Length     | Billing              |
-	| Sweden  | Cloud MPS Local Office Approver | Purchase & click inklusive service | Minimum volym | 36 månader | Quarterly in Arrears |
+	| Sweden  | Cloud MPS Local Office Approver | Purchase & click inklusive service | Minimum volym | 36 månader | Kvartalsvis i efterskott |
 	
 
 # Accept5, 6
@@ -47,7 +47,7 @@ Scenario Outline: MPS LO Approve Contract
 	Scenarios:
 
 	| Country | Role                            | ContractType                       | UsageType     | Length     | Billing              |
-	| Sweden  | Cloud MPS Local Office Approver | Purchase & click inklusive service | Minimum volym | 36 månader | Quarterly in Arrears |
+	| Sweden  | Cloud MPS Local Office Approver | Purchase & click inklusive service | Minimum volym | 36 månader | Kvartalsvis i efterskott |
 	
 # Reject1,2
 Scenario Outline: MPS LO Reject Contract
@@ -62,7 +62,7 @@ Scenario Outline: MPS LO Reject Contract
 	Scenarios:
 
 	| Country | Role                            | ContractType                       | UsageType     | Length     | Billing              |
-	| Sweden  | Cloud MPS Local Office Approver | Purchase & click inklusive service | Minimum volym | 36 månader | Quarterly in Arrears |
+	| Sweden  | Cloud MPS Local Office Approver | Purchase & click inklusive service | Minimum volym | 36 månader | Kvartalsvis i efterskott |
 	
 	
 # Reject3
