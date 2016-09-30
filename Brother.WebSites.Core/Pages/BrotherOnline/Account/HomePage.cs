@@ -188,7 +188,11 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         [FindsBy(How = How.CssSelector, Using = "#TopNavigationControl_rptPrimaryLevelNav_aSectionLink_0")]
         public IWebElement TopMenuTab;
 
+        [FindsBy(How = How.CssSelector, Using = @"div.common-global-header--title > a > img")]
+        public IWebElement BrotherLogo;
 
+        [FindsBy(How = How.CssSelector, Using = @"footer .row.common-global-footer--row .col-sm-9.col-lg-9 > ul > li")]
+        public IWebElement FooterLinks;
 
         public MainSiteHomePage ClickTopMenuTab()
         {
@@ -853,6 +857,12 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             TestCheck.AssertIsEqual(true, DuplicateCcEmailErrorMessage.Displayed, "Is Error Message Displayed");
         }
 
+        public void CheckForHeaderAndFooter()
+        {
+            //Checks for the existance of elements on Header and Footer
+            AssertElementPresent(BrotherLogo, "Brother Logo missing in the Header");
+            AssertElementPresent(FooterLinks, "Fotter Links missing on the landing page");
+        }
     }
 
 }

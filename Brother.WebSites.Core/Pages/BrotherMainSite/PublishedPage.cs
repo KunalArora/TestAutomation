@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
@@ -676,8 +677,14 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         }
         public DownloadPage ClickSubmitButton(string country)
         {
-            //ScrollTo(SubmitButton);
+            MsgOutput(string.Format("Before identifying the button waiting for 20 Secconds."));
+            Thread.Sleep(TimeSpan.FromSeconds(120));
+            ScrollTo(SubmitButton);
+            MsgOutput(string.Format("After identifying the button."));
+            AssertElementPresent(SubmitButton,"Submit Button On Free Trial OJ Page.");
             SubmitButton.Click();
+            Thread.Sleep(TimeSpan.FromSeconds(20));
+            MsgOutput(string.Format("After clicking the button waiting for 20 Secconds."));
             return GetInstance<DownloadPage>(Driver);
         }
        

@@ -46,17 +46,27 @@ namespace Brother.WebSites.Core.Pages.Base
             return GetInstance<MainSiteHomePage>(driver, baseUrl, "");
         }
 
+        public static HomePage LoadBrotherOnlineHomePage(IWebDriver driver, string country)
+        {
+            driver = SetDriver(driver);
+            //baseUrl = ProcessUrlLocale(baseUrl);
+            //baseUrl = ProcessMainSiteLiveUrl(baseUrl);
+            //baseUrl = CheckForCdServer(baseUrl);
+            NavigateToPage(driver, BaseUrl.TrimEnd(new char[] { '/' }));
+            return GetInstance<HomePage>(driver, BaseUrl, "");
+        }
+
         public static LoginPage LoadBrotherMainSiteLoginPage(IWebDriver driver, string baseUrl)
         {
             driver = SetDriver(driver);
-            NavigateToPageSitecore(driver, baseUrl.TrimEnd(new char[] { '/' }));
+            NavigateToPageSitecore(driver, BaseUrl+baseUrl.TrimEnd(new char[] { '/' }));
             return GetInstance<LoginPage>(driver, baseUrl, "");
         }
        public static PublishedPage LoadPublishedPage(IWebDriver driver, string baseUrl)
-        {
-            driver = SetDriver(driver);
-            NavigateToPage(driver, baseUrl.TrimEnd(new char[] { '/' }));
-            return GetInstance<PublishedPage>(driver, baseUrl, "");
+       {
+           driver = SetDriver(driver);
+           NavigateToPage(driver, BaseUrl+baseUrl.TrimEnd(new char[] { '/' }));
+           return GetInstance<PublishedPage>(driver, baseUrl, "");
         }
 
         public static DownloadPage LoadDownloadPage(IWebDriver driver, string baseUrl)
@@ -100,10 +110,19 @@ namespace Brother.WebSites.Core.Pages.Base
         }
 
 
-        public static ProductRegistrationPage LoadProductRegistrationPage(IWebDriver driver, string baseUrl)
+        public static ProductRegistrationPage LoadProductRegistrationPage(IWebDriver driver, string baseUrl = null)
         {
             driver = SetDriver(driver);
-            NavigateToPage(driver, baseUrl.TrimEnd(new char[] { '/' }));
+            //NavigateToPage(driver, BaseUrl + baseUrl.TrimEnd(new char[] { '/' }));
+            if (baseUrl == null)
+            {
+                NavigateToPage(driver, BaseUrl.TrimEnd(new char[] { '/' }));
+            }
+            else
+            {
+                NavigateToPage(driver, BaseUrl + baseUrl.TrimEnd(new char[] { '/' }));
+            }
+
             return GetInstance<ProductRegistrationPage>(driver, baseUrl, "");
         }
 
@@ -163,7 +182,7 @@ namespace Brother.WebSites.Core.Pages.Base
         {
             driver = SetDriver(driver);
             driver.Navigate().GoToUrl(baseUrl);
-            return GetInstance<HomePage>(driver, baseUrl, defaultTitleOverride);
+            return GetInstance<HomePage>(driver, BaseUrl + baseUrl, defaultTitleOverride);
         }
 
         // Specific to Email Token validation. Need to Switch to separate tab due to Email Validation page
