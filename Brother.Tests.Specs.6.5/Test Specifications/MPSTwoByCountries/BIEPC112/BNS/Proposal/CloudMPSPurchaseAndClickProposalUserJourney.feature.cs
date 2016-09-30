@@ -74,7 +74,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BNS.
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("MPS Create MV Proposal")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Sweden", "Purchase & click inklusive service", "Create new customer", "Minimum volym", "36 månader", "Quarterly in Arrears", "Tick", "MFC-L8650CDW", "Full", "Förskott", "800", "800", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Sweden", "Purchase & click inklusive service", "Create new customer", "Minimum volym", "36 månader", "Kvartalsvis i efterskott", "Tick", "MFC-L8650CDW", "Full", "Förskott", "800", "800", null)]
         public virtual void MPSCreateMVProposal(string role, string country, string contractType, string createOption, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Create MV Proposal", exampleTags);
@@ -133,7 +133,7 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("MPS Create Proposal PAYG")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Sweden", "Purchase & click inklusive service", "Create new customer", "Betala per utskrift", "48 månader", "Quarterly in Arrears", "Tick", "MFC-8510DN", "Full", "750", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Sweden", "Purchase & click inklusive service", "Create new customer", "Betala per utskrift", "48 månader", "Kvartalsvis i efterskott", "Tick", "MFC-8510DN", "Full", "750", null)]
         public virtual void MPSCreateProposalPAYG(string role, string country, string contractType, string createOption, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string clickVolume, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Create Proposal PAYG", exampleTags);
@@ -191,7 +191,7 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("MPS Create Proposal With Existing Customer")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Sweden", "Purchase & click inklusive service", "Minimum volym", "36 månader", "Quarterly in Arrears", "Tick", "MFC-L8650CDW", "Full", "Per utskrift", "800", "800", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Sweden", "Purchase & click inklusive service", "Minimum volym", "36 månader", "Kvartalsvis i efterskott", "Tick", "MFC-L8650CDW", "Full", "Per utskrift", "800", "800", null)]
         public virtual void MPSCreateProposalWithExistingCustomer(string role, string country, string contractType, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Create Proposal With Existing Customer", exampleTags);
@@ -250,7 +250,7 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("MPS Create Proposal Existing PAYG Customer")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Sweden", "Purchase & click inklusive service", "Betala per utskrift", "60 månader", "Quarterly in Arrears", "Tick", "MFC-8510DN", "Full", "750", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Sweden", "Purchase & click inklusive service", "Betala per utskrift", "60 månader", "Kvartalsvis i efterskott", "Tick", "MFC-8510DN", "Full", "750", null)]
         public virtual void MPSCreateProposalExistingPAYGCustomer(string role, string country, string contractType, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string clickVolume, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Create Proposal Existing PAYG Customer", exampleTags);

@@ -18,7 +18,7 @@ Scenario Outline: MPS Generate Summary PDF
 	
 	Scenarios: 
 	| Role             | Country | Role2                           | ContractType                       | UsageType     | Length     | Billing              |
-	| Cloud MPS Dealer | Sweden  | Cloud MPS Local Office Approver | Purchase & click inklusive service | Minimum volym | 36 månader | Quarterly in Arrears |
+	| Cloud MPS Dealer | Sweden  | Cloud MPS Local Office Approver | Purchase & click inklusive service | Minimum volym | 36 månader | Kvartalsvis i efterskott |
 	
 
 Scenario Outline: MPS Generate Awaiting Approval PDF
@@ -34,6 +34,6 @@ Scenario Outline: MPS Generate Awaiting Approval PDF
 	
 	Scenarios: 
 	| Role             | Country | Role2                           | ContractType                       | UsageType     | Length     | Billing              |
-	| Cloud MPS Dealer | Sweden  | Cloud MPS Local Office Approver | Purchase & click inklusive service | Minimum volym | 48 månader | Quarterly in Arrears |
+	| Cloud MPS Dealer | Sweden  | Cloud MPS Local Office Approver | Purchase & click inklusive service | Minimum volym | 48 månader | Kvartalsvis i efterskott |
 	
 	

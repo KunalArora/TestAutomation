@@ -40,7 +40,7 @@ Scenario Outline: MPS Summary Validation MV In Click
 
 	Scenarios: 
 	| Role             | Country | ContractType                       | UsageType     | Contract   | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod | ClickVolume | ColourVolume | Basis1       | Basis2   |
-	| Cloud MPS Dealer | Sweden  | Purchase & click inklusive service | Minimum volym | 60 månader | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Per utskrift  | 800         | 800          | Per utskrift | Förskott |
+	| Cloud MPS Dealer | Sweden  | Purchase & click inklusive service | Minimum volym | 60 månader | Kvartalsvis i efterskott | Tick          | MFC-L8650CDW | Full         | Per utskrift  | 800         | 800          | Per utskrift | Förskott |
 	
 Scenario Outline: MPS Summary Validation MV Upfront
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
@@ -76,7 +76,7 @@ Scenario Outline: MPS Summary Validation MV Upfront
 
 	Scenarios: 
 	| Role             | Country | ContractType                       | UsageType     | Contract   | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod | ClickVolume | ColourVolume | Basis1   |
-	| Cloud MPS Dealer | Sweden  | Purchase & click inklusive service | Minimum volym | 36 månader | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Förskott      | 800         | 800          | Förskott |
+	| Cloud MPS Dealer | Sweden  | Purchase & click inklusive service | Minimum volym | 36 månader | Kvartalsvis i efterskott | Tick          | MFC-L8650CDW | Full         | Förskott      | 800         | 800          | Förskott |
 	
 Scenario Outline: MPS Summary Validation PAYG
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
@@ -108,6 +108,6 @@ Scenario Outline: MPS Summary Validation PAYG
 
 	Scenarios: 
 	| Role             | Country | ContractType                       | CreateOption        | UsageType           | Contract   | Billing              | PriceHardware | Printer    | DeviceScreen | ClickVolume | Basis1   |
-	| Cloud MPS Dealer | Sweden  | Purchase & click inklusive service | Create new customer | Betala per utskrift | 48 månader | Quarterly in Arrears | Tick          | MFC-8510DN | Full         | 800         | Förskott |
+	| Cloud MPS Dealer | Sweden  | Purchase & click inklusive service | Create new customer | Betala per utskrift | 48 månader | Kvartalsvis i efterskott | Tick          | MFC-8510DN | Full         | 800         | Förskott |
 	
 		

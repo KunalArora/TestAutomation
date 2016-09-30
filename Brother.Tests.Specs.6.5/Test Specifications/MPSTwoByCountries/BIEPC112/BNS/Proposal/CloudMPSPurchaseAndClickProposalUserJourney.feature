@@ -33,7 +33,7 @@ Scenario Outline: MPS Create MV Proposal
 
 	Scenarios: 
 	| Role             | Country | ContractType                       | CreateOption        | UsageType     | Contract   | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | Sweden  | Purchase & click inklusive service | Create new customer | Minimum volym | 36 månader | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Förskott      | 800         | 800          |
+	| Cloud MPS Dealer | Sweden  | Purchase & click inklusive service | Create new customer | Minimum volym | 36 månader | Kvartalsvis i efterskott | Tick          | MFC-L8650CDW | Full         | Förskott      | 800         | 800          |
 	
 	
  
@@ -65,7 +65,7 @@ Scenario Outline: MPS Create Proposal PAYG
 
 	Scenarios: 
 	| Role             | Country | ContractType                       | CreateOption        | UsageType           | Contract   | Billing              | PriceHardware | Printer    | DeviceScreen | ClickVolume |
-	| Cloud MPS Dealer | Sweden  | Purchase & click inklusive service | Create new customer | Betala per utskrift | 48 månader | Quarterly in Arrears | Tick          | MFC-8510DN | Full         | 750         |
+	| Cloud MPS Dealer | Sweden  | Purchase & click inklusive service | Create new customer | Betala per utskrift | 48 månader | Kvartalsvis i efterskott | Tick          | MFC-8510DN | Full         | 750         |
 	
 
 Scenario Outline: MPS Create Proposal With Existing Customer
@@ -96,7 +96,7 @@ Scenario Outline: MPS Create Proposal With Existing Customer
 
 	Scenarios: 
 	| Role             | Country | ContractType                       | UsageType     | Contract   | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | Sweden  | Purchase & click inklusive service | Minimum volym | 36 månader | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Per utskrift  | 800         | 800          |
+	| Cloud MPS Dealer | Sweden  | Purchase & click inklusive service | Minimum volym | 36 månader | Kvartalsvis i efterskott | Tick          | MFC-L8650CDW | Full         | Per utskrift  | 800         | 800          |
 	
 
 Scenario Outline: MPS Create Proposal Existing PAYG Customer
@@ -126,5 +126,5 @@ Scenario Outline: MPS Create Proposal Existing PAYG Customer
 
 	Scenarios: 
 	| Role             | Country | ContractType                       | UsageType           | Contract   | Billing              | PriceHardware | Printer    | DeviceScreen | ClickVolume |
-	| Cloud MPS Dealer | Sweden  | Purchase & click inklusive service | Betala per utskrift | 60 månader | Quarterly in Arrears | Tick          | MFC-8510DN | Full         | 750         |
+	| Cloud MPS Dealer | Sweden  | Purchase & click inklusive service | Betala per utskrift | 60 månader | Kvartalsvis i efterskott | Tick          | MFC-8510DN | Full         | 750         |
 	
