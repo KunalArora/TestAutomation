@@ -104,8 +104,8 @@ Scenarios:
 	| Cloud MPS Local Office Approver | Norway      | Kjøp og klikk med service          | Minimum volum                             | Cloud MPS Dealer | Cloud  | BOR  | 48         | Quarterly in Arrears    |
 	| Cloud MPS Local Office Approver | Ireland     | Purchase & Click with Service      | Minimum Volume                            | Cloud MPS Dealer | Cloud  | Web  | 3 years    | Quarterly in Arrears    |
 	| Cloud MPS Local Office Approver | Ireland     | Purchase & Click with Service      | Minimum Volume                            | Cloud MPS Dealer | Cloud  | BOR  | 4 years    | Quarterly in Arrears    |
-	| Cloud MPS Local Office Approver | Poland      | Buy + Click                        | Pakiet wydruków                           | Cloud MPS Dealer | Cloud  | Web  | 3 lata     | Kwartalnie z dołu    |
-	| Cloud MPS Local Office Approver | Poland      | Buy + Click                        | Pakiet wydruków                           | Cloud MPS Dealer | Cloud  | BOR  | 4 lata     | Kwartalnie z dołu    |
+	| Cloud MPS Local Office Approver | Poland      | Buy + Click                        | Pakiet wydruków                           | Cloud MPS Dealer | Cloud  | Web  | 3 lata     | Miesięczny / Monthly    |
+	| Cloud MPS Local Office Approver | Poland      | Buy + Click                        | Pakiet wydruków                           | Cloud MPS Dealer | Cloud  | BOR  | 4 lata     | Miesięczny / Monthly    |
 	| Cloud MPS Local Office Approver | Finland     | Purchase & Click with Service      | Minimitulostusmäärä                       | Cloud MPS Dealer | Cloud  | Web  | 3 vuotta   | Quarterly in Arrears    |
 	| Cloud MPS Local Office Approver | Finland     | Purchase & Click with Service      | Minimitulostusmäärä                       | Cloud MPS Dealer | Cloud  | BOR  | 4 vuotta   | Quarterly in Arrears    |
 	| Cloud MPS Local Office Approver | Switzerland | Purchase & Click with Service      | Mindestvolumen                            | Cloud MPS Dealer | Cloud  | BOR  | 36         | Quarterly in Arrears    |
