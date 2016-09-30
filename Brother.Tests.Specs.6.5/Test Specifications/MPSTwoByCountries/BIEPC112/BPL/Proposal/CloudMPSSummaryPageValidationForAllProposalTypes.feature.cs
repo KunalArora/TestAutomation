@@ -142,7 +142,7 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("MPS Summary Validation MV Upfront")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Poland", "Purchase & Click with Service", "Pakiet wydruków", "5 lata", "Miesięczny / Monthly", "Tick", "MFC-L8650CDW", "Full", "Płatność z góry", "800", "800", "Płatność z góry", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Poland", "Purchase & Click with Service", "Pakiet wydruków", "3 lata", "Miesięczny / Monthly", "Tick", "MFC-L8650CDW", "Full", "Płatność z góry", "800", "800", "Płatność z góry", null)]
         public virtual void MPSSummaryValidationMVUpfront(string role, string country, string contractType, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string basis1, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Summary Validation MV Upfront", exampleTags);
