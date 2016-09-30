@@ -42,7 +42,7 @@ namespace Brother.Tests.Specs.MPSTwo.Approver
                 || UsageType.Equals("Volume minimum"))
                 MinimumVolume = true;
             if (UsageType.Equals("Pay As You Go") || UsageType.Equals("Pago por Uso") || UsageType.Equals("Betale ved forbruk")
-                || UsageType.Equals("Betala per utskrift") || UsageType.Equals("Betalen naar verbruik") || UsageType.Equals("Bez limitu")
+                || UsageType.Equals("Betala per utskrift") || UsageType.Equals("Betalen naar verbruik") || UsageType.Equals("Bez pakietu wydruków")
                 || UsageType.Equals("Maksu tulosteiden mukaan") || UsageType.Equals("Paiement selon la consommation réelle de pages")
                 || UsageType.Equals("Consommation réelle"))
                 PayAsYouGo = true;

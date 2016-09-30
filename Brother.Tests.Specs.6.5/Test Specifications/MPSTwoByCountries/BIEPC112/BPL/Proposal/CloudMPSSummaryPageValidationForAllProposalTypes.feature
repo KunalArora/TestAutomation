@@ -109,6 +109,6 @@ Scenario Outline:  MPS Summary Validation PAYG
 	
 
 	Scenarios: 
-	| Role             | Country | ContractType                  | CreateOption        | UsageType  | Contract | Billing              | PriceHardware | Printer    | DeviceScreen | ClickVolume | Basis1          |
-	| Cloud MPS Dealer | Poland  | Purchase & Click with Service | Create new customer | Bez limitu | 4 lata   | Miesięczny / Monthly | Tick          | MFC-8510DN | Full         | 800         | Płatność z góry |
+	| Role             | Country | ContractType                  | CreateOption        | UsageType            | Contract | Billing              | PriceHardware | Printer    | DeviceScreen | ClickVolume | Basis1          |
+	| Cloud MPS Dealer | Poland  | Purchase & Click with Service | Create new customer | Bez pakietu wydruków | 4 lata   | Miesięczny / Monthly | Tick          | MFC-8510DN | Full         | 800         | Płatność z góry |
 	
