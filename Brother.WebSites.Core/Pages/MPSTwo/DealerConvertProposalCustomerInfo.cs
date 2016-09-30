@@ -332,10 +332,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 ClearAndType(CompanyRegistrationNumberField, "453983245");
             }
-            else if (IsSpainSystem())
-            {
-                ClearAndType(CompanyRegistrationNumberField, "N0032484H");
-            }
+            //else if (IsSpainSystem())
+            //{
+            //    ClearAndType(CompanyRegistrationNumberField, "N0032484H");
+            //}
             //else if (IsSwissSystem())
             //{
             //    ClearAndType(CompanyRegistrationNumberField, "CHE-106.568.179");
@@ -397,8 +397,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
             else if (IsSpainSystem())
             {
-                //trading = "No Regulado";
-                trading = "Persona Física";
+                trading = "No regulado";
+                //trading = "Persona Física";
             }
             else if (IsNetherlandSystem())
             {
