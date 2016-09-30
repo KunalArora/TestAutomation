@@ -330,6 +330,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         // Clicks the Sign Out link and returns back to the Registration Page
         public static HomePage ClickSignOutLink(IWebDriver driver)
         {
+            ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(true);", GetSignOutLink(driver));
+
             GetSignOutLink(driver).Click();
             return GetInstance<HomePage>(driver, "", "");
         }
