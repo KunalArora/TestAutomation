@@ -370,9 +370,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             else if (IsFranceSystem())
             {
                 ClearAndType(VatFieldElement, "FR40303265045");
-            } else if (IsUKSystem())
+            } 
+            else if (IsUKSystem())
             {
                 ClearAndType(VatFieldElement, "GB980780684");
+            }
+            else if (IsSpainSystem())
+            {
+                ClearAndType(VatFieldElement, "ES54362315K");
             }
             else if (IsIrelandSystem())
             {
