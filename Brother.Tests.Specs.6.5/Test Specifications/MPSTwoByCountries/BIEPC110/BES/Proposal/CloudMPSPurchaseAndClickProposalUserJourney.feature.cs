@@ -133,7 +133,7 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("MPS Create PAYG Proposal")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Spain", "Purchase & Click con Service", "Create new customer", "Pago por Uso", "4 años", "Por trimestres vencidos", "Tick", "MFC-8510DN", "Full", "750", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Spain", "Purchase & Click con Service", "Create new customer", "Pago por Uso", "4 años", "Por trimestres vencidos", "Tick", "HL-6180DW", "Full", "750", null)]
         public virtual void MPSCreatePAYGProposal(string role, string country, string contractType, string createOption, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string clickVolume, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Create PAYG Proposal", exampleTags);
@@ -250,7 +250,7 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("MPS Create PAYG Proposal With Existing Customer")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Spain", "Purchase & Click con Service", "Pago por Uso", "5 años", "Por trimestres vencidos", "Tick", "MFC-8510DN", "Full", "750", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Spain", "Purchase & Click con Service", "Pago por Uso", "5 años", "Por trimestres vencidos", "Tick", "HL-6180DW", "Full", "750", null)]
         public virtual void MPSCreatePAYGProposalWithExistingCustomer(string role, string country, string contractType, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string clickVolume, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Create PAYG Proposal With Existing Customer", exampleTags);

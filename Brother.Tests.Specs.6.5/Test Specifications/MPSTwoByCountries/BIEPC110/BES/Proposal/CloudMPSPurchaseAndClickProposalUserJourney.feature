@@ -64,8 +64,8 @@ Scenario Outline: MPS Create PAYG Proposal
 	
 
 	Scenarios: 
-	| Role             | Country | ContractType                 | CreateOption        | UsageType    | Contract | Billing                 | PriceHardware | Printer    | DeviceScreen | ClickVolume |
-	| Cloud MPS Dealer | Spain   | Purchase & Click con Service | Create new customer | Pago por Uso | 4 años   | Por trimestres vencidos | Tick          | MFC-8510DN | Full         | 750         |
+	| Role             | Country | ContractType                 | CreateOption        | UsageType    | Contract | Billing                 | PriceHardware | Printer   | DeviceScreen | ClickVolume |
+	| Cloud MPS Dealer | Spain   | Purchase & Click con Service | Create new customer | Pago por Uso | 4 años   | Por trimestres vencidos | Tick          | HL-6180DW | Full         | 750         |
 	
 	
 Scenario Outline: MPS Create Proposal With Existing Customer
@@ -125,6 +125,6 @@ Scenario Outline: MPS Create PAYG Proposal With Existing Customer
 	
 
 	Scenarios: 
-	| Role             | Country | ContractType                 | UsageType    | Contract | Billing                 | PriceHardware | Printer    | DeviceScreen | ClickVolume |
-	| Cloud MPS Dealer | Spain   | Purchase & Click con Service | Pago por Uso | 5 años   | Por trimestres vencidos | Tick          | MFC-8510DN | Full         | 750         |
+	| Role             | Country | ContractType                 | UsageType    | Contract | Billing                 | PriceHardware | Printer   | DeviceScreen | ClickVolume |
+	| Cloud MPS Dealer | Spain   | Purchase & Click con Service | Pago por Uso | 5 años   | Por trimestres vencidos | Tick          | HL-6180DW | Full         | 750         |
 	

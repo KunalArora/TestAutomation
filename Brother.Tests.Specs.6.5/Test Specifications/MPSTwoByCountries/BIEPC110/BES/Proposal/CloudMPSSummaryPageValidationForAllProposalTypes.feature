@@ -72,6 +72,6 @@ Scenario Outline: MPS Summary Validation MV Upfront
 	
 
 	Scenarios: 
-	| Role             | Country | ContractType                 | CreateOption        | UsageType    | Contract | Billing                 | PriceHardware | Printer    | DeviceScreen | ClickVolume | Basis1              |
-	| Cloud MPS Dealer | Spain   | Purchase & Click con Service | Create new customer | Pago por Uso | 4 años   | Por trimestres vencidos | Tick          | MFC-8510DN | Full         | 800         | Pago por adelantado |
+	| Role             | Country | ContractType                 | CreateOption        | UsageType    | Contract | Billing                 | PriceHardware | Printer   | DeviceScreen | ClickVolume | Basis1              |
+	| Cloud MPS Dealer | Spain   | Purchase & Click con Service | Create new customer | Pago por Uso | 4 años   | Por trimestres vencidos | Tick          | HL-6180DW | Full         | 800         | Pago por adelantado |
 	
