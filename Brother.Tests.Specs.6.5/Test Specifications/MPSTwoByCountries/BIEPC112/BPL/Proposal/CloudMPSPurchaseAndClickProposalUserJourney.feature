@@ -33,7 +33,7 @@ Scenario Outline: MPS Create MV Proposal
 
 	Scenarios: 
 	| Role             | Country | ContractType | CreateOption        | UsageType       | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod   | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | Poland  | Buy + Click  | Create new customer | Pakiet wydruków | 3 lata   | Miesięczny / Monthly | Tick          | MFC-L8650CDW | Full         | Płatność z góry | 800         | 800          |
+	| Cloud MPS Dealer | Poland  | Buy + Click  | Create new customer | Pakiet wydruków | 3 lata   | Miesięczny / Monthly | Tick          | MFC-L8650CDW | Full         | Service Pack płatny w całości | 800         | 800          |
 	
 	 
 	

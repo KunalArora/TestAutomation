@@ -38,8 +38,8 @@ Scenario Outline: MPS Summary Validation MV In Click
 	
 
 	Scenarios: 
-	| Role             | Country | ContractType                  | UsageType       | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod                   | ClickVolume | ColourVolume | Basis1                          | Basis2          |
-	| Cloud MPS Dealer | Poland  | Purchase & Click with Service | Pakiet wydruków | 3 lata   | Miesięczny / Monthly | Tick          | MFC-L8650CDW | Full         | Wliczyć w cenę za wydruk strony | 800         | 800          | Wliczyć w cenę za wydruk strony | Płatność z góry |
+	| Role             | Country | ContractType                  | UsageType       | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod                   | ClickVolume | ColourVolume | Basis1                          | Basis2                        |
+	| Cloud MPS Dealer | Poland  | Purchase & Click with Service | Pakiet wydruków | 3 lata   | Miesięczny / Monthly | Tick          | MFC-L8650CDW | Full         | Wliczyć w cenę za wydruk strony | 800         | 800          | Wliczyć w cenę za wydruk strony | Service Pack płatny w całości |
 	
 
 Scenario Outline:  MPS Summary Validation MV Upfront
@@ -75,8 +75,8 @@ Scenario Outline:  MPS Summary Validation MV Upfront
 	
 
 	Scenarios: 
-	| Role             | Country | ContractType                  | UsageType       | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod   | ClickVolume | ColourVolume | Basis1          |
-	| Cloud MPS Dealer | Poland  | Purchase & Click with Service | Pakiet wydruków | 3 lata   | Miesięczny / Monthly | Tick          | MFC-L8650CDW | Full         | Płatność z góry | 800         | 800          | Płatność z góry |
+	| Role             | Country | ContractType                  | UsageType       | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod   | ClickVolume | ColourVolume | Basis1                        |
+	| Cloud MPS Dealer | Poland  | Purchase & Click with Service | Pakiet wydruków | 3 lata   | Miesięczny / Monthly | Tick          | MFC-L8650CDW | Full         | Płatność z góry | 800         | 800          | Service Pack płatny w całości |
 	
 
 
@@ -109,6 +109,6 @@ Scenario Outline:  MPS Summary Validation PAYG
 	
 
 	Scenarios: 
-	| Role             | Country | ContractType                  | CreateOption        | UsageType            | Contract | Billing              | PriceHardware | Printer    | DeviceScreen | ClickVolume | Basis1          |
-	| Cloud MPS Dealer | Poland  | Purchase & Click with Service | Create new customer | Bez pakietu wydruków | 4 lata   | Miesięczny / Monthly | Tick          | MFC-8510DN | Full         | 800         | Płatność z góry |
+	| Role             | Country | ContractType                  | CreateOption        | UsageType            | Contract | Billing              | PriceHardware | Printer    | DeviceScreen | ClickVolume | Basis1                        |
+	| Cloud MPS Dealer | Poland  | Purchase & Click with Service | Create new customer | Bez pakietu wydruków | 4 lata   | Miesięczny / Monthly | Tick          | MFC-8510DN | Full         | 800         | Service Pack płatny w całości |
 	
