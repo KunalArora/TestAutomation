@@ -1,4 +1,4 @@
-﻿@ignore @MPS @TEST @UAT
+﻿@MPS @TEST @UAT
 Feature: CloudMPSOutputContractPDFAllBelgianUsers
 	In order to view paper version of contract summary
 	As an MPS User
