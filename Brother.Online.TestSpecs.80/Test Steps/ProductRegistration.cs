@@ -70,6 +70,12 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
        public void GivenIClickOnContinueButton()
        {
            NextPage = CurrentPage.As<ProductRegistrationPage>().ClickContinueButton();
+           
+       }
+       [Then(@"I can register my ""(.*)"" on  user details page")]
+       public void ThenICanRegisterMyOnUserDetailsPage(string emailid)
+       {
+           CurrentPage.As<UserDetailsPage>().EnterEmailId(emailid);
        }
 
 
