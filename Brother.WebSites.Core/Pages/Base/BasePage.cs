@@ -37,6 +37,8 @@ namespace Brother.WebSites.Core.Pages.Base
 
         #endregion
 
+        #region BrotherMainSite Home Page
+
         public static MainSiteHomePage LoadBrotherMainSiteHomePage(IWebDriver driver, string baseUrl)
         {
             driver = SetDriver(driver);
@@ -47,15 +49,20 @@ namespace Brother.WebSites.Core.Pages.Base
             return GetInstance<MainSiteHomePage>(driver, baseUrl, "");
         }
 
+        #endregion
+
+        #region BrotherOnline Home Page
+
         public static HomePage LoadBrotherOnlineHomePage(IWebDriver driver, string country)
         {
             driver = SetDriver(driver);
-            //baseUrl = ProcessUrlLocale(baseUrl);
-            //baseUrl = ProcessMainSiteLiveUrl(baseUrl);
-            //baseUrl = CheckForCdServer(baseUrl);
             NavigateToPage(driver, BaseUrl.TrimEnd(new char[] { '/' }));
             return GetInstance<HomePage>(driver, BaseUrl, "");
         }
+
+        #endregion
+
+        #region BrotherMainSite Login Page
 
         public static LoginPage LoadBrotherMainSiteLoginPage(IWebDriver driver, string baseUrl)
         {
@@ -63,8 +70,11 @@ namespace Brother.WebSites.Core.Pages.Base
             NavigateToPageSitecore(driver, BaseUrl+baseUrl.TrimEnd(new char[] { '/' }));
             return GetInstance<LoginPage>(driver, baseUrl, "");
         }
-       public static PublishedPage LoadPublishedPage(IWebDriver driver, string baseUrl)
-       {
+
+        #endregion
+
+        public static PublishedPage LoadPublishedPage(IWebDriver driver, string baseUrl)
+        {
            driver = SetDriver(driver);
            NavigateToPage(driver, BaseUrl+baseUrl.TrimEnd(new char[] { '/' }));
            return GetInstance<PublishedPage>(driver, baseUrl, "");

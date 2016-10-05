@@ -171,7 +171,7 @@ namespace Brother.WebSites.Core.Pages.Base
 
            var urlParts = url.ToLower().Split('.');
 
-            if (url.ToLower().Contains(".local")) return url;
+           if (url.ToLower().Contains(local)) return url;
             if (urlParts.Length == 0) return url;
             if (urlParts[0].ToLower().Contains(mainUrl)) return url;
             // generally for specific brother online sites, there is a locale between Online and Brother<server>.co.uk
