@@ -17,11 +17,10 @@ Scenario Outline: Customer wants to register product with their serial numbers a
 	Given I navigate to "<Country>" Brother Online landing page
 	And I browse to the "<Site Url>" product registration page
 	And I have entered my product "<SerialNumber>"
-	And clicked on Find Product Butoon
-	#| Purchase Date    | 01/01/2015      |
-	#| PromoCode        |                 |
-	#| Supplier         | PrintersRUs.Com |
-	#| ExtendedWarranty | False           |
+	And clicked on Find Product Button
+	And I have entered "<PurchaseDate>" 
+	And I entered apply button
+	And I click on continue button
 	#And I have Agreed to Brothers Warranty Conditions
 	#When I click Continue
 	#Then my device should be successfully registered	
@@ -30,8 +29,8 @@ Scenario Outline: Customer wants to register product with their serial numbers a
 	#Then I am redirected to the Brother Home Page  
 
 Scenarios: 
-| Country        | Site Url                                          | SerialNumber |
-| United Kingdom | /QA/AutomationPleaseDoNotTouch/ProductRegStep-one | U1T004747    |
+| Country        | Site Url                                          | SerialNumber | PurchaseDate  |
+| United Kingdom | /QA/AutomationPleaseDoNotTouch/ProductRegStep-one | U1T004750    | 12/12/2013    |
 
 @ignore
 #Validate that an existing user has the option to change their sign in preferences to social login 
