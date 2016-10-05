@@ -74,5 +74,8 @@
     <Setting Name="QASPLCustomer" Type="System.String" Scope="User">
       <Value Profile="(Default)">Lashonda20160819112538@mailinator.com</Value>
     </Setting>
+    <Setting Name="QASCHCustomer" Type="System.String" Scope="User">
+      <Value Profile="(Default)">roxanna20160929030238@mailinator.com</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
