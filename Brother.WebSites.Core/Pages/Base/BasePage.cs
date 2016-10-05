@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Brother.Online.TestSpecs._80.Test_Steps;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.BrotherMainSite;
@@ -126,6 +127,12 @@ namespace Brother.WebSites.Core.Pages.Base
             return GetInstance<ProductRegistrationPage>(driver, baseUrl, "");
         }
 
+        public static UserDetailsPage LoadUserDetailsPage(IWebDriver driver, string baseUrl)
+        {
+            driver = SetDriver(driver);
+            NavigateToPageSitecore(driver, BaseUrl + baseUrl.TrimEnd(new char[] { '/' }));
+            return GetInstance<UserDetailsPage>(driver, baseUrl, "");
+        }
 
         #region ThirdParty Pages 
         public static BrotherEmailConfirmationPage LoadEmailConfirmationPage(IWebDriver driver, string baseUrl)

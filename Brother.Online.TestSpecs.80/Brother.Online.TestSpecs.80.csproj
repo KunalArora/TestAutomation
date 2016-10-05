@@ -65,6 +65,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ProductRegistration.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specification\SocialLogin.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SocialLogin.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Steps\ProductRegistration.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -89,6 +94,10 @@
     <None Include="Test Specification\ProductRegistration.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ProductRegistration.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specification\SocialLogin.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>SocialLogin.feature.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup />
