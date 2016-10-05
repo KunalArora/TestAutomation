@@ -21,16 +21,11 @@ Scenario Outline: Customer wants to register product with their serial numbers a
 	And I have entered "<PurchaseDate>" 
 	And I entered apply button
 	And I click on continue button
-	#And I have Agreed to Brothers Warranty Conditions
-	#When I click Continue
-	#Then my device should be successfully registered	
-	#And If I click Back To Brother online
-	#And I can sign out of Brother Online
-	#Then I am redirected to the Brother Home Page  
+	Then I can register my "<Email>" on  user details page  
 
 Scenarios: 
-| Country        | Site Url                                          | SerialNumber | PurchaseDate  |
-| United Kingdom | /QA/AutomationPleaseDoNotTouch/ProductRegStep-one | U1T004750    | 12/12/2013    |
+| Country        | Site Url                                          | SerialNumber | PurchaseDate | Email									|
+| United Kingdom | /QA/AutomationPleaseDoNotTouch/ProductRegStep-one | U1T004750    | 12/12/2013   | testemailidinputfield@mailinator.com   |
 
 @ignore
 #Validate that an existing user has the option to change their sign in preferences to social login 

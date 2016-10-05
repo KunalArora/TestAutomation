@@ -5,6 +5,8 @@ using System.Net;
 using System.Text;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Support.PageObjects;
 using TechTalk.SpecFlow;
 
 namespace Brother.Online.TestSpecs._80.Test_Steps
@@ -38,7 +40,18 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
 
             return responseCode;
         }
-       
+
+        [FindsBy(How = How.Id, Using = "btn-continue-to-next-step")]
+        public IWebElement EmailIdInputField;
+
+
+        public void EnterEmailId(string emailid)
+        {
+            EmailIdInputField.SendKeys(emailid);
+        }
+
+
+
 
         
     }
