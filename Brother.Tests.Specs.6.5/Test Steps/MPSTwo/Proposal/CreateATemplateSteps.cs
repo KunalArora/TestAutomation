@@ -394,8 +394,21 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
                 GivenDealerHaveCreatedProposalOfOpen(country, contractType, customer, usageType, length, billing);
                 var instance2 = new SendProposalToApprover();
                 instance2.WhenIClickOnActionButtonAgainstTheProposalCreatedAbove();
-                instance2.ThenICanClickOnConvertToContractButtonToNavigateToConvertSummaryPage();
-                //instance2.ThenIAmDirectedToCustomerDetailPageForMoreDataCapture();
+
+                if (CurrentDriver.Url.Contains("online.ch."))
+                {
+                    instance2.ThenICanClickOnConvertToContractButtonUnderTheActionButton();
+                    CurrentPage.As<DealerConvertProposalCustomerInfo>().ChooseExistingCustomerInConvertProcess();
+                    CurrentPage.As<DealerConvertProposalCustomerInfo>().SelectASpecificExistingContact(customer);
+                    NextPage = CurrentPage.As<DealerConvertProposalCustomerInfo>().ProceedToConvertProposalTermAndType();
+                    NextPage = CurrentPage.As<DealerConvertProposalTermAndType>().NavigateToSummaryPageUsingTab();
+                }
+                else
+                {
+                    instance2.ThenICanClickOnConvertToContractButtonToNavigateToConvertSummaryPage();
+                    //instance2.ThenIAmDirectedToCustomerDetailPageForMoreDataCapture();
+                }
+                
                 instance2.ThenIAmTakenToTheProposalSummaryWhereICanEnterEnvisageContractStartDate();
                 instance2.ThenICanSuccessfullyConvertTheProposalToContract();
 
@@ -487,10 +500,16 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
 
         public string ContractType(string type)
         {
-            if (type == "Acquisto + Consumo con assistenza" || type == "Buy & Click"
-                || type == "Purchase & Click con Service" || type == "Kjøp og klikk med service" ||
-                type == "Purchase & click inklusive service" || type == "Purchase + Click met Service"
-                || type == "Køb & Klik med service" || type == "Buy + Click" || type == "Purchase & Click mit Service")
+            if (
+                type == "Acquisto + Consumo con assistenza" 
+                || type == "Buy & Click"
+                || type == "Purchase & Click con Service" 
+                || type == "Kjøp og klikk med service" 
+                || type == "Purchase & click inklusive service" 
+                || type == "Purchase + Click met Service"
+                || type == "Køb & Klik med service" 
+                || type == "Buy + Click" 
+                || type == "Purchase & Click mit Service")
             {
                 type = "Purchase & Click with Service";
             }
@@ -1508,7 +1527,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             if (!(CurrentDriver.Url.Contains("online.ch") || CurrentDriver.Url.Contains("online.brother.ch.local")))
             {
                 var customerInformationStepInstance = new DealerProposalsCreateCustomerInformationStep();
-                customerInformationStepInstance.WhenISelectButtonForCustomerDataCapture("Create new customer");
+                customerInformationStepInstance.SelectASpecificExistingCustomer(customer); ;
             }
             var stepInstance = new DealerProposalsCreateTermAndTypeStep();
             stepInstance.WhenIEnterUsageTypeContractLengthAndBillingOnTermAndTypeDetails
