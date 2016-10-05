@@ -41,18 +41,15 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
             return responseCode;
         }
 
-        [FindsBy(How = How.Id, Using = "btn-continue-to-next-step")]
+        [FindsBy(How = How.Name, Using = "EmailAddress")]
         public IWebElement EmailIdInputField;
-
 
         public void EnterEmailId(string emailid)
         {
             EmailIdInputField.SendKeys(emailid);
         }
 
-
-
-
+        
         
     }
 }

@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherMainSite;
@@ -69,8 +70,8 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
        [Given(@"I click on continue button")]
        public void GivenIClickOnContinueButton()
        {
+           Thread.Sleep(TimeSpan.FromSeconds(3));
            NextPage = CurrentPage.As<ProductRegistrationPage>().ClickContinueButton();
-           
        }
        [Then(@"I can register my ""(.*)"" on  user details page")]
        public void ThenICanRegisterMyOnUserDetailsPage(string emailid)
