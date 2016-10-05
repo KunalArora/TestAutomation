@@ -91,7 +91,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 reason = "Scaduta";
             }
-            else if (IsGermanSystem() || IsAustriaSystem())
+            else if (IsGermanSystem() || IsAustriaSystem() || IsSwissSystem())
             {
                 reason = "Andere";
             }
@@ -119,7 +119,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 reason = "Inny";
             }
-
+            
             return reason;
         }
 

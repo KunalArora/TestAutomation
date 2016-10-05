@@ -490,7 +490,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             if (type == "Acquisto + Consumo con assistenza" || type == "Buy & Click"
                 || type == "Purchase & Click con Service" || type == "Kjøp og klikk med service" ||
                 type == "Purchase & click inklusive service" || type == "Purchase + Click met Service"
-                || type == "Køb & Klik med service" || type == "Buy + Click")
+                || type == "Køb & Klik med service" || type == "Buy + Click" || type == "Purchase & Click mit Service")
             {
                 type = "Purchase & Click with Service";
             }
@@ -1481,8 +1481,11 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             GivenIChangeTheLanguageDisplayed(language);
             GivenIamOnMpsNewProposalPage();
             WhenIFillProposalDescriptionForContractType(contractType);
-            var customerInformationStepInstance = new DealerProposalsCreateCustomerInformationStep();
-            customerInformationStepInstance.WhenISelectButtonForCustomerDataCapture("Create new customer");
+            if (!(CurrentDriver.Url.Contains("online.ch") || CurrentDriver.Url.Contains("online.brother.ch.local")))
+            {
+                var customerInformationStepInstance = new DealerProposalsCreateCustomerInformationStep();
+                customerInformationStepInstance.WhenISelectButtonForCustomerDataCapture("Create new customer");
+            }
             var stepInstance = new DealerProposalsCreateTermAndTypeStep();
             stepInstance.WhenIEnterUsageTypeContractLengthAndBillingOnTermAndTypeDetails
                 (usageType, length, billing);
@@ -1502,8 +1505,11 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             contractType = ContractType(contractType);
             GivenIamOnMpsNewProposalPage();
             WhenIFillProposalDescriptionForContractType(contractType);
-            var customerInformationStepInstance = new DealerProposalsCreateCustomerInformationStep();
-            customerInformationStepInstance.SelectASpecificExistingCustomer(customer);
+            if (!(CurrentDriver.Url.Contains("online.ch") || CurrentDriver.Url.Contains("online.brother.ch.local")))
+            {
+                var customerInformationStepInstance = new DealerProposalsCreateCustomerInformationStep();
+                customerInformationStepInstance.WhenISelectButtonForCustomerDataCapture("Create new customer");
+            }
             var stepInstance = new DealerProposalsCreateTermAndTypeStep();
             stepInstance.WhenIEnterUsageTypeContractLengthAndBillingOnTermAndTypeDetails
                 (usageType, length, billing);
@@ -1524,8 +1530,11 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         {
             GivenIamOnMpsNewProposalPage();
             WhenIFillProposalDescriptionForContractType(contractType);
-            var customerInformationStepInstance = new DealerProposalsCreateCustomerInformationStep();
-            customerInformationStepInstance.WhenISelectButtonForCustomerDataCapture("Create new customer");
+            if (!(CurrentDriver.Url.Contains("online.ch") || CurrentDriver.Url.Contains("online.brother.ch.local")))
+            {
+                var customerInformationStepInstance = new DealerProposalsCreateCustomerInformationStep();
+                customerInformationStepInstance.WhenISelectButtonForCustomerDataCapture("Create new customer");
+            }
             var stepInstance = new DealerProposalsCreateTermAndTypeStep();
             stepInstance.WhenIEnterUsageTypeContractLengthAndBillingOnTermAndTypeDetails
                 (usageType, length, billing);

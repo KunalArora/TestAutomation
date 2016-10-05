@@ -133,7 +133,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             var path = "";
 
-            if (IsAustriaSystem() || IsGermanSystem())
+            if (IsAustriaSystem() || IsGermanSystem() || IsSwissSystem())
             {
                 path = "file:///C:/DataTest/{0}-Vertrag.pdf";
 
