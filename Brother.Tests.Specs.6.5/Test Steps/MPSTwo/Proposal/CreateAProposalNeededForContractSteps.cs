@@ -66,6 +66,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         public void ThenICanSuccessfullyResignTheRejectedContract()
         {
             NextPage = CurrentPage.As<DealerContractsPage>().NavigateToViewSummaryOnRejectedTab();
+            //NextPage = CurrentPage.As<LocalOfficeApproverContractsSummaryPage>().NavigateToViewSummaryOnRejectedTab();
             CurrentPage.As<DealerContractsSummaryPage>().ClickReSignButton();
             CurrentPage.As<DealerContractsSummaryPage>().TickResignInformationCheckbox();
             NextPage = CurrentPage.As<DealerContractsSummaryPage>().ClickFinalReSignButton();

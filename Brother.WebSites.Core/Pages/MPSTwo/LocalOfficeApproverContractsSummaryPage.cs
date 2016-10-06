@@ -188,6 +188,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                                                            
         }
 
+        
+
         private void EnterCustomerReference()
         {
             var customerReference = "CusRef" + DateTime.Now.ToString("MMdHHmmss");
@@ -221,7 +223,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             var reason = "";
 
-            if (IsAustriaSystem() || IsGermanSystem())
+            if (IsAustriaSystem() || IsGermanSystem() || IsSwissSystem())
             {
                 reason = "Andere";
 

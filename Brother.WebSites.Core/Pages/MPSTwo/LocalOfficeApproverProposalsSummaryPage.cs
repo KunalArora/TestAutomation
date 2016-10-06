@@ -56,7 +56,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SelectDeclineReason()
         {
-            if (IsAustriaSystem() || IsGermanSystem())
+            if (IsAustriaSystem() || IsGermanSystem() || IsSwissSystem())
             {
                 SelectFromDropdown(DeclineReasonElement, "Andere");
             }
