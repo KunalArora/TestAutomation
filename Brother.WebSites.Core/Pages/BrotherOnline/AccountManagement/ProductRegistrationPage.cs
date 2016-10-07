@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using Brother.Online.TestSpecs._80.Test_Steps;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
@@ -30,8 +31,17 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         [FindsBy(How = How.CssSelector, Using = "#serial-number")]
         public IWebElement SerialNumberTextBox;
 
-        [FindsBy(How = How.CssSelector, Using = ".btn-primary")]
+        [FindsBy(How = How.CssSelector, Using = "#btn-find-product-by-serial")]
         public IWebElement FindProductButton;
+
+        [FindsBy(How = How.CssSelector, Using = "#input-purchase-date")]
+        public IWebElement PurchaseDateTextBox;
+
+        [FindsBy(How = How.CssSelector, Using = "#btn-apply-purchase-date")]
+        public IWebElement ApplyPurchaseDateButton;
+
+        [FindsBy(How = How.Id, Using = "btn-continue-to-next-step")]
+        public IWebElement ContinueButton;
 
         public void GetProductRegistrationPage(string url)
         {
@@ -71,7 +81,24 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             FindProductButton.Click();
         }
 
+        public void EnterProductDate(string purchasedate)
+        {
+            PurchaseDateTextBox.SendKeys(purchasedate);
+        }
 
+        public void ClickApplyButton()
+        {
+            ApplyPurchaseDateButton.Click();
+
+        }
+
+        public UserDetailsPage ClickContinueButton()
+        {
+            ContinueButton.Click();
+            return GetInstance<UserDetailsPage>(Driver); 
+        }
 
     }
+
+    
 }

@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherMainSite;
@@ -51,11 +52,33 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
         {
             CurrentPage.As<ProductRegistrationPage>().PopulateSerialNumberTextBox(serialnumber);
         }
-        [Given(@"clicked on Find Product Butoon")]
-        public void GivenClickedOnFindProductButoon()
+       [Given(@"clicked on Find Product Button")]
+        public void GivenClickedOnFindProductButton()
         {
             CurrentPage.As<ProductRegistrationPage>().ClickFindProductButton();
         }
+       [Given(@"I have entered ""(.*)""")]
+       public void GivenIHaveEntered(string date)
+       {
+           CurrentPage.As<ProductRegistrationPage>().EnterProductDate(date);
+       }
+       [Given(@"I entered apply button")]
+       public void GivenIEnteredApplyButton()
+       {
+           CurrentPage.As<ProductRegistrationPage>().ClickApplyButton();
+       }
+       [Given(@"I click on continue button")]
+       public void GivenIClickOnContinueButton()
+       {
+           Thread.Sleep(TimeSpan.FromSeconds(3));
+           NextPage = CurrentPage.As<ProductRegistrationPage>().ClickContinueButton();
+       }
+       [Then(@"I can register my ""(.*)"" on  user details page")]
+       public void ThenICanRegisterMyOnUserDetailsPage(string emailid)
+       {
+           CurrentPage.As<UserDetailsPage>().EnterEmailId(emailid);
+       }
+
 
     }
 
