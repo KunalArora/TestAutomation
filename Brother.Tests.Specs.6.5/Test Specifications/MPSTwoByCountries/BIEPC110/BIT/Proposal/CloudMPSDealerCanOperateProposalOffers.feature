@@ -14,7 +14,7 @@ Scenario Outline: MPS Copy Existing Proposal
 	Scenarios: 
 	| Role             | Country | Operation | Target  |
 	| Cloud MPS Dealer | Italy   | Without   | Without |
-	| Cloud MPS Dealer | Italy   | Without   | Without |
+	| Cloud MPS Dealer | Italy   | Without   | With |
 	
 @ignore
 Scenario Outline: MPS Italian Dealer can copy an existing proposal offer for all countries

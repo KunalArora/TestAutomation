@@ -9,7 +9,7 @@ Scenario Outline: MPS Create MV Proposal
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	When I fill Proposal Description for "<ContractType>" Contract type
-	And I select "<CreateOption>" button for customer data capture 
+	#And I select "<CreateOption>" button for customer data capture 
 	And I Enter "<UsageType>" usage type "<Contract>" contract length and "<Billing>" billing on Term and Type details 
 	And I "<PriceHardware>" Price Hardware radio button
 	And I display "<Printer>" device screen
@@ -41,7 +41,7 @@ Scenario Outline: MPS Create Proposal With Existing Customer
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	When I fill Proposal Description for "<ContractType>" Contract type
-	And I choose an existing contact from the list of available contacts
+	#And I choose an existing contact from the list of available contacts
 	And I Enter "<UsageType>" usage type "<Contract>" contract length and "<Billing>" billing on Term and Type details  
 	And I "<PriceHardware>" Price Hardware radio button
 	And I display "<Printer>" device screen

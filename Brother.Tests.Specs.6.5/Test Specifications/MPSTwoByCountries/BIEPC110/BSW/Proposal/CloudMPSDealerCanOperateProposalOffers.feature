@@ -4,35 +4,6 @@ Feature: CloudMPSSwissDealerCanOperateProposalOffers
 	As an MPS Dealer
 	I want to operate existing proposals
 
-Scenario Outline: Dealer can see proposal offers 
-	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
-	And I navigate to existing proposal screen
-	Then I can see the Existing Proposal table
-	And I can sign out of Brother Online
-
-	Scenarios: 
-	| Role             | Country     |
-	| Cloud MPS Dealer | Switzerland |
-	
-
-##@ignore
-Scenario Outline: Dealer can edit products in an existing proposal offer
-	Given Dealer have created a Open proposal of "<ContractType>" and "<UsageType>"
-	And I navigate to Dealer Dashboard page from Dealer Proposal page
-	#Given I sign into Cloud MPS as a "<Role>" from "<Country>"
-	And I navigate to existing proposal screen
-	When I can click edit button on proposal item of Exisiting Proposal table
-	And I go to "Products" Tab in Proposal
-	And I edit Products Tab and "<Action>" in Proposal
-	And I go to "Summary" Tab in Proposal
-	Then I can confirm Products and "<Action>" on Summary Tab in Proposal
-	And I can sign out of Brother Online
-
-	Scenarios:
-	| ContractType                 | UsageType      | Role             | Country     | TabName  | Action |
-	| Purchase & Click mit Service | Mindestvolumen | Cloud MPS Dealer | Switzerland | Products | Add    |
-	| Purchase & Click mit Service | Mindestvolumen | Cloud MPS Dealer | Switzerland | Products | Remove |
-	
 
 	
 Scenario Outline: Dealer can cancel deleting proposal offer
