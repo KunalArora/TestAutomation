@@ -123,10 +123,7 @@ Scenario Outline: MPS Resign Rejected Contract
 	When I navigate to Rejected screen
 	Then I can successfully re-sign the rejected contract
 	And I sign out of Cloud MPS
-	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
-	When I navigate to Rejected screen
-	Then I can successfully re-sign the rejected contract
-	And I sign out of Cloud MPS
+	
 
 	Scenarios: 
 	| Role                            | Country | ContractType             | UsageType      | Option | Role2             |

@@ -67,14 +67,22 @@ Scenario Outline: MPS LO Reject Contract
 
 # Reject3
 Scenario Outline: MPS Dealer Resign Rejected Contract
-	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
+	Given "<Country>" Dealer have created a "<ContractType>" contract with "<UsageType>" and "<Length>" and "<Billing>"
+	And I sign into Cloud MPS as a "<Role>" from "<Country>"
+	When Approver navigate to Contract Awaiting Acceptance page from Dashboard
+	Then Approver can view all the contracts that have been signed by dealer
+	And Approver can successfully reject the contract
+	And the rejected contract by Approver is displayed on contract Rejected screen
+	And I sign out of Cloud MPS
+	Given I sign into Cloud MPS as a "<Role2>" from "<Country>"
 	When I navigate to Rejected screen
 	Then I can successfully re-sign the rejected contract
 	And I sign out of Cloud MPS
 
 	Scenarios: 
-	| Role             | Country |
-	| Cloud MPS Dealer | Poland  |
+	| Country | Role                            | ContractType | UsageType       | Length | Billing              | Role2             |
+	| Poland  | Cloud MPS Local Office Approver | Buy + Click  | Pakiet wydruków | 3 lata | Miesięczny / Monthly | Cloud MPS Dealer |
+	
 	
 	
 # LO Approver can view open offers
