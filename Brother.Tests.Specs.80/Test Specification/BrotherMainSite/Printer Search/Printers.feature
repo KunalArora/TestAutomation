@@ -13,7 +13,7 @@ Scenario Outline: View the list of available Laser Printers on Brother Main site
 
 Scenarios:
 	| country		 | site														   |
-	| Italy			 | Printers/All-Printers									   |
+	| Italy			 | printers/all-Printers									   |
 #	| Belgium        | brother-printers/laser-printers?sc_lang=nl-BE               | - language switching problem
 #   | Belgium        | imprimantes/imprimantes-laser?sc_lang=fr-BE                 | - language switching problem
 #	| Czech          | printers/laser-printers                                     |
@@ -34,7 +34,7 @@ Scenarios:
 #	| Switzerland    | imprimantes/imprimantes-laser?sc_lang=fr-CH                 | - language switching problem
 #	| United Kingdom | printers/all-mono-lasers                                    |
 
-@TEST @UAT
+@TEST @SMOKE
 Scenario Outline: View the list of available Laser Printers on Brother Main sites for Spain and Portugal
 	Given I have navigated to the Brother Main Site "<country>" products pages
 	Given I have navigated to the "<site>" MainSite URL for country "<country>"
@@ -42,7 +42,7 @@ Scenario Outline: View the list of available Laser Printers on Brother Main site
 	And I can validate that each printer for Spain and Portugal is a valid printer
 
 Scenarios:
-	| country        | site                     |
-	| United Kingdom | /printers/laser-printers |
+	| country        | site                  |
+	| United Kingdom | printers/all-Printers |
 	#| Portugal                 | printers/laser-printers   |
 	#| Spain                    | impresoras/laser-printers |

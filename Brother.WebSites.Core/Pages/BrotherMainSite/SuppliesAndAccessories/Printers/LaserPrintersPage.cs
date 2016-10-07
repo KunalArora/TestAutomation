@@ -40,6 +40,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.SuppliesAndAccessories.Pri
             WebDriver.Wait(DurationType.Second, 2);
             TestCheck.AssertIsEqual(true, PrinterListingsInformation.Displayed, " is priceListingsInformation displayed");
         }
+
         private bool CheckPrinterDesc(ISearchContext element, string printerName, string featureListSearch)
         {
             try
@@ -146,11 +147,11 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.SuppliesAndAccessories.Pri
         public int WaitForPrinterSearchResults()
         {
             MsgOutput("Looking for Laser Printer search results");
-
-            var element = GetElementByCssSelector(".copyright");
+            /*WebDriver.Wait(DurationType.Second, 2);
+            var elements = GetElementsByCssSelector(".product-results--item");
             MsgOutput("Scrolling page to trigger product listing full load");
             ScrollToLocation(TestController.CurrentDriver, 0, element.Location.Y);
-            WebDriver.Wait(DurationType.Second, 2);
+            
             while (!IsElementClickable(element))
             {
                 MsgOutput("Scrolling page further to trigger product listing load");
@@ -171,33 +172,39 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.SuppliesAndAccessories.Pri
             {
                 MsgOutput(string.Format("Unable to locate [{0}] any printers in the results list", printerList));
                 return 0;
-            }
+            }*/
 
             MsgOutput("Validating Product Listings");
             try
             {
+                MsgOutput("Looking for Laser Printer search results");
+                WebDriver.Wait(DurationType.Second, 2);
+                const string printerList = ".product-results--item";
+                //var elements = GetElementsByCssSelector(printerList);
+            
                 // get the last printer in the list and move to that last element
 
                 var printerCount = 0;
                 var printerCountReCheck = 0;
 
-                var dynamicLoadIndex = GetElementByCssSelector("#dynamic-load-index");
+                /*var dynamicLoadIndex = GetElementByCssSelector("#dynamic-load-index");
                 for (var pageDown = 0; pageDown < 5; pageDown++)
                 {
                     ScrollTo(TestController.CurrentDriver, GetElementByCssSelector("#site-footer"));
                     dynamicLoadIndex = GetElementByCssSelector("#dynamic-load-index");
-                }
+                }*/
 
                 while (printerCountReCheck < 10)
                 {
-                    ScrollTo(TestController.CurrentDriver, GetElementByCssSelector("#site-footer"));
+                    ScrollTo(TestController.CurrentDriver, GetElementByCssSelector(".common-global-footer--row"));
                     var printers = GetElementsByCssSelector(printerList);
-                    var indexCount = Convert.ToInt32(dynamicLoadIndex.GetAttribute("value"));
-                    if (indexCount == printers.Count)
+                    //var indexCount = Convert.ToInt32(dynamicLoadIndex.GetAttribute("value"));
+                    if (printerCount == printers.Count)
                     {
-                        MsgOutput(string.Format("Found {0} {1} laser printers in list", printers.Count, indexCount));
+                        MsgOutput(string.Format("Found {0} printers in list", printers.Count));
                         return printers.Count;
                     }
+                    printerCount = printers.Count;
                     printerCountReCheck++;
                 }
                 MsgOutput(string.Format("Printer count = {0}. Re-checked for printers {1} times", printerCount, printerCountReCheck));
