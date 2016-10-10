@@ -73,7 +73,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BNS.
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("MPS PAYG SP Not Displayed")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Sweden", "Purchase & click inklusive service", "Create new customer", "Betala per utskrift", "36 månader", "Kvartalsvis i efterskott", "Tick", "MFC-8510DN", "Full", "Förskott", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Sweden", "Purchase & click inklusive service", "Create new customer", "Betala per utskrift", "60 månader", "Kvartalsvis i efterskott", "Tick", "HL-L5100DN", "Full", "Förskott", null)]
         public virtual void MPSPAYGSPNotDisplayed(string role, string country, string contractType, string createOption, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS PAYG SP Not Displayed", exampleTags);
@@ -108,7 +108,7 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("MPS Minimum Volume SP Not Displayed")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Sweden", "Purchase & click inklusive service", "Create new customer", "Minimum volym", "36 månader", "Kvartalsvis i efterskott", "Tick", "MFC-8510DN", "Full", "Förskott", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Sweden", "Purchase & click inklusive service", "Create new customer", "Minimum volym", "60 månader", "Kvartalsvis i efterskott", "Tick", "HL-L5100DN", "Full", "Förskott", null)]
         public virtual void MPSMinimumVolumeSPNotDisplayed(string role, string country, string contractType, string createOption, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Minimum Volume SP Not Displayed", exampleTags);
@@ -143,7 +143,7 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("MPS In Click And Upfront CP Displayed")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Sweden", "Purchase & click inklusive service", "Create new customer", "Minimum volym", "36 månader", "Kvartalsvis i efterskott", "Tick", "MFC-L8650CDW", "Full", "Förskott", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Sweden", "Purchase & click inklusive service", "Create new customer", "Minimum volym", "60 månader", "Kvartalsvis i efterskott", "Tick", "MFC-L8650CDW", "Full", "Förskott", null)]
         public virtual void MPSInClickAndUpfrontCPDisplayed(string role, string country, string contractType, string createOption, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS In Click And Upfront CP Displayed", exampleTags);
@@ -178,7 +178,7 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("MPS In Click And Upfront Mono Changes")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Sweden", "Purchase & click inklusive service", "Create new customer", "Minimum volym", "36 månader", "Kvartalsvis i efterskott", "Tick", "MFC-L8650CDW", "Full", "Per utskrift", "6", "2000", "2000", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Sweden", "Purchase & click inklusive service", "Create new customer", "Minimum volym", "60 månader", "Kvartalsvis i efterskott", "Tick", "MFC-L8650CDW", "Full", "Per utskrift", "6", "2000", "2000", null)]
         public virtual void MPSInClickAndUpfrontMonoChanges(string role, string country, string contractType, string createOption, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string monoCoverage, string clickVolume, string colourVolume, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS In Click And Upfront Mono Changes", exampleTags);
@@ -225,7 +225,7 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("MPS CP Variation")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Sweden", "Purchase & click inklusive service", "Create new customer", "Betala per utskrift", "36 månader", "Kvartalsvis i efterskott", "Tick", "MFC-8510DN", "Full", "Per utskrift", "2000", "2000", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Sweden", "Purchase & click inklusive service", "Create new customer", "Betala per utskrift", "60 månader", "Kvartalsvis i efterskott", "Tick", "HL-L5100DN", "Full", "Per utskrift", "2000", "2000", null)]
         public virtual void MPSCPVariation(string role, string country, string contractType, string createOption, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS CP Variation", exampleTags);

@@ -25,7 +25,7 @@ Scenario Outline: MPS Summary Validation MV In Click
 	And the installation type displayed is correct
 	And the installation cost displayed is correct
 	And the quantity displayed is the same as the one entered
-	##And the service pack name and price displayed are correct
+	And the service pack name and price displayed are correct
 	And service pack cost is included click as "0,00 kr"
 	And the displayed volume value for mono click price is "<ClickVolume>"
 	And the displayed volume value for colour click price is "<ColourVolume>"
@@ -76,7 +76,7 @@ Scenario Outline: MPS Summary Validation MV Upfront
 
 	Scenarios: 
 	| Role             | Country | ContractType                       | UsageType     | Contract   | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod | ClickVolume | ColourVolume | Basis1   |
-	| Cloud MPS Dealer | Sweden  | Purchase & click inklusive service | Minimum volym | 36 månader | Kvartalsvis i efterskott | Tick          | MFC-L8650CDW | Full         | Förskott      | 800         | 800          | Förskott |
+	| Cloud MPS Dealer | Sweden  | Purchase & click inklusive service | Minimum volym | 60 månader | Kvartalsvis i efterskott | Tick          | MFC-L8650CDW | Full         | Förskott      | 800         | 800          | Förskott |
 	
 Scenario Outline: MPS Summary Validation PAYG
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
