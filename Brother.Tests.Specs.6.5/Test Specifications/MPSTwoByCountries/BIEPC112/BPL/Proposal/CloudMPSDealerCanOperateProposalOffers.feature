@@ -47,7 +47,7 @@ Scenario Outline: MPS Edit Products On Existing Proposal
 	Scenarios:
 	| ContractType | UsageType       | Role             | Country | TabName  | Action | Length | Billing              |
 	| Buy + Click  | Pakiet wydruków | Cloud MPS Dealer | Poland  | Products | Add    | 3 lata | Miesięczny / Monthly |
-	| Buy + Click  | Pakiet wydruków | Cloud MPS Dealer | Poland  | Products | Remove | 3 lata | Miesięczny / Monthly |
+	#| Buy + Click  | Pakiet wydruków | Cloud MPS Dealer | Poland  | Products | Remove | 3 lata | Miesięczny / Monthly |
 	
 
 	
