@@ -108,6 +108,6 @@ Scenario Outline: MPS Summary Validation PAYG
 
 	Scenarios: 
 	| Role             | Country | ContractType                       | CreateOption        | UsageType           | Contract   | Billing              | PriceHardware | Printer    | DeviceScreen | ClickVolume | Basis1   |
-	| Cloud MPS Dealer | Sweden  | Purchase & click inklusive service | Create new customer | Betala per utskrift | 48 månader | Kvartalsvis i efterskott | Tick          | MFC-8510DN | Full         | 800         | Förskott |
+	| Cloud MPS Dealer | Sweden  | Purchase & click inklusive service | Create new customer | Betala per utskrift | 48 månader | Kvartalsvis i efterskott | Tick          | HL-L5100DN | Full         | 800         | Förskott |
 	
 		
