@@ -214,7 +214,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             var contractType = "";
 
-            if (IsBigAtSystem()) return;
+            if (IsBigAtSystem() || IsPolandSystem()) return;
             contractType = IsItalySystem() ? "Programma \"Pagine+ Cloud\"" : SpecFlow.GetContext("SummaryContractType");
             TestCheck.AssertTextContains(contractType, ExtractTextFromPdf(DownloadedPdf()),
                 "Summary Contract Type is not available in the PDF");
