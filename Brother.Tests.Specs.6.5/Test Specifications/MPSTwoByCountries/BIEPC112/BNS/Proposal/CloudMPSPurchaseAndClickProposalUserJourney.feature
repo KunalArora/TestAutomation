@@ -65,7 +65,7 @@ Scenario Outline: MPS Create Proposal PAYG
 
 	Scenarios: 
 	| Role             | Country | ContractType                       | CreateOption        | UsageType           | Contract   | Billing              | PriceHardware | Printer    | DeviceScreen | ClickVolume |
-	| Cloud MPS Dealer | Sweden  | Purchase & click inklusive service | Create new customer | Betala per utskrift | 48 månader | Kvartalsvis i efterskott | Tick          | MFC-8510DN | Full         | 750         |
+	| Cloud MPS Dealer | Sweden  | Purchase & click inklusive service | Create new customer | Betala per utskrift | 48 månader | Kvartalsvis i efterskott | Tick          | HL-L5100DN | Full         | 750         |
 	
 
 Scenario Outline: MPS Create Proposal With Existing Customer
@@ -126,5 +126,5 @@ Scenario Outline: MPS Create Proposal Existing PAYG Customer
 
 	Scenarios: 
 	| Role             | Country | ContractType                       | UsageType           | Contract   | Billing              | PriceHardware | Printer    | DeviceScreen | ClickVolume |
-	| Cloud MPS Dealer | Sweden  | Purchase & click inklusive service | Betala per utskrift | 60 månader | Kvartalsvis i efterskott | Tick          | MFC-8510DN | Full         | 750         |
+	| Cloud MPS Dealer | Sweden  | Purchase & click inklusive service | Betala per utskrift | 60 månader | Kvartalsvis i efterskott | Tick          | HL-L5100DN | Full         | 750         |
 	

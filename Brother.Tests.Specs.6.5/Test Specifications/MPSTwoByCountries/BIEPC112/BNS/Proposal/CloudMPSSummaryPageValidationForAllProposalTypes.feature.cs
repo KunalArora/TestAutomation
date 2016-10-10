@@ -217,7 +217,7 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("MPS Summary Validation PAYG")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Sweden", "Purchase & click inklusive service", "Create new customer", "Betala per utskrift", "48 månader", "Kvartalsvis i efterskott", "Tick", "MFC-8510DN", "Full", "800", "Förskott", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Sweden", "Purchase & click inklusive service", "Create new customer", "Betala per utskrift", "48 månader", "Kvartalsvis i efterskott", "Tick", "HL-L5100DN", "Full", "800", "Förskott", null)]
         public virtual void MPSSummaryValidationPAYG(string role, string country, string contractType, string createOption, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string clickVolume, string basis1, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Summary Validation PAYG", exampleTags);
