@@ -464,7 +464,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             WebDriver.Wait(DurationType.Millisecond, 4000);
             var name = SpecFlow.GetContext(DealerLatestOperatingItemName);
-            var copiedOffer = FindCopiedPoposalOfferByName(driver, name);
+            IWebElement copiedOffer;
+            try
+            {
+                copiedOffer = FindCopiedPoposalOfferByName(driver, name);
+            }
+            catch (StaleElementReferenceException stale)
+            {
+                WebDriver.Wait(DurationType.Millisecond, 4000);
+                copiedOffer = FindCopiedPoposalOfferByName(driver, name);
+            }
             var copiedname = copiedOffer.FindElement(By.CssSelector("td:nth-child(1)")).Text;
 
             TestCheck.AssertIsNotNull(copiedname,
