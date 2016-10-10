@@ -245,16 +245,22 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private string AddCommaToColourClickPrice(string clickRate)
         {
-            decimal number;
             string coJoin = null;
 
-            var stringToUse = clickRate.Replace(",", ".").Replace("€", "");
-            if (Decimal.TryParse(stringToUse, out number))
+            if ((IsAustriaSystem() && GetContractType() == "Easy Print Pro & Service"))
             {
-                number = number*100;
-                coJoin = number.ToString().Replace(".", ",").TrimEnd('0');
+                coJoin = clickRate.Replace("€", ""); 
             }
-              
+            else
+            {
+                var stringToUse = clickRate.Replace(",", ".").Replace("€", "");
+                decimal number;
+                if (Decimal.TryParse(stringToUse, out number))
+                {
+                    number = number * 100;
+                    coJoin = number.ToString().Replace(".", ",").TrimEnd('0');
+                }
+            }
 
             return coJoin;
 
