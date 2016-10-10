@@ -166,7 +166,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsCustomerEmailPresentInPdf()
         {
-            if(IsBigAtSystem() || IsSpainSystem()) return;
+            if(IsBigAtSystem() || IsSpainSystem() || IsPolandSystem()) return;
             var customerEmail = SpecFlow.GetContext("SummaryCustomerEmail");
             TestCheck.AssertTextContains(customerEmail, ExtractTextFromPdf(DownloadedPdf()),
                 "Customer Email is not available in the PDF");
