@@ -1577,11 +1577,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             WebDriver.Wait(DurationType.Second, 5);
 
-            var linkselector = @"a.alert-link.js-mps-product-link";
+            if (!IsPolandSystem())
+            {
+                const string linkselector = @"a.alert-link.js-mps-product-link";
 
-            var count = GetElementsByCssSelector(linkselector).Count();
+                var count = GetElementsByCssSelector(linkselector).Count();
 
-            SpecFlow.SetContext("DealerEditProductCount", count.ToString());
+                SpecFlow.SetContext("DealerEditProductCount", count.ToString());
+            }
+           
 
             ProceedToProposalSummaryFromClickPrice();
             return GetInstance<DealerProposalsCreateClickPricePage>();

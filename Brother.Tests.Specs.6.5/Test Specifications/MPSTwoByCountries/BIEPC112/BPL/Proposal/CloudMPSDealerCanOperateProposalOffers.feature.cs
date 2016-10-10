@@ -124,7 +124,6 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("MPS Edit Products On Existing Proposal")]
         [NUnit.Framework.TestCaseAttribute("Buy + Click", "Pakiet wydruków", "Cloud MPS Dealer", "Poland", "Products", "Add", "3 lata", "Miesięczny / Monthly", null)]
-        [NUnit.Framework.TestCaseAttribute("Buy + Click", "Pakiet wydruków", "Cloud MPS Dealer", "Poland", "Products", "Remove", "3 lata", "Miesięczny / Monthly", null)]
         public virtual void MPSEditProductsOnExistingProposal(string contractType, string usageType, string role, string country, string tabName, string action, string length, string billing, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Edit Products On Existing Proposal", exampleTags);

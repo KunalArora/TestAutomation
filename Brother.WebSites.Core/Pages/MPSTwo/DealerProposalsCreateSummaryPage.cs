@@ -1131,14 +1131,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyProductsCount(IWebDriver driver, string action)
         {
-            var count = SpecFlow.GetContext("DealerEditProductCount");
+            if (!IsPolandSystem())
+            {
+                var count = SpecFlow.GetContext("DealerEditProductCount");
 
-            VerifyProductCount(driver, count);
+                VerifyProductCount(driver, count);
+            }
         }
 
         private void VerifyProductCount(IWebDriver driver, string count)
         {
-            var printerselector = @".mps-qa-printer";
+            const string printerselector = @".mps-qa-printer";
 
             var actual = driver.FindElements(By.CssSelector(printerselector)).Count().ToString();
 
@@ -1151,7 +1154,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             var modeldiv = driver.FindElement(By.CssSelector(modelselector));
 
-            var pricetalbleselector = "table.mps-table-model-pricing";
+            const string pricetalbleselector = "table.mps-table-model-pricing";
 
             var pricetable = modeldiv.FindElement(By.CssSelector(pricetalbleselector));
 
@@ -1193,7 +1196,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyClickPriceTabInput(IWebDriver driver)
         {
-            var count = 1;
+            const int count = 1;
             for (var i = 0; i < count; i++)
             {
                 foreach (var type in new[] { "Mono", "Colour" })
