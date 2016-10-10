@@ -21,7 +21,7 @@ Scenario Outline: MPS PAYG SP Not Displayed
 
 	Scenarios: 
 	| Role             | Country | ContractType                       | CreateOption        | UsageType           | Contract   | Billing              | PriceHardware | Printer    | DeviceScreen | PaymentMethod |
-	| Cloud MPS Dealer | Sweden  | Purchase & click inklusive service | Create new customer | Betala per utskrift | 36 månader | Kvartalsvis i efterskott | Tick          | MFC-8510DN | Full         | Förskott      |
+	| Cloud MPS Dealer | Sweden  | Purchase & click inklusive service | Create new customer | Betala per utskrift | 60 månader | Kvartalsvis i efterskott | Tick          | HL-L5100DN | Full         | Förskott      |
 	
 # 4
 Scenario Outline: MPS Minimum Volume SP Not Displayed
@@ -40,7 +40,7 @@ Scenario Outline: MPS Minimum Volume SP Not Displayed
 
 	Scenarios: 
 	| Role             | Country | ContractType                       | CreateOption        | UsageType     | Contract   | Billing              | PriceHardware | Printer    | DeviceScreen | PaymentMethod |
-	| Cloud MPS Dealer | Sweden  | Purchase & click inklusive service | Create new customer | Minimum volym | 36 månader | Kvartalsvis i efterskott | Tick          | MFC-8510DN | Full         | Förskott      |
+	| Cloud MPS Dealer | Sweden  | Purchase & click inklusive service | Create new customer | Minimum volym | 60 månader | Kvartalsvis i efterskott | Tick          | HL-L5100DN | Full         | Förskott      |
 	
 # 7
 Scenario Outline: MPS In Click And Upfront CP Displayed
@@ -59,7 +59,7 @@ Scenario Outline: MPS In Click And Upfront CP Displayed
 
 	Scenarios: 
 	| Role             | Country | ContractType                       | CreateOption        | UsageType     | Contract   | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod |
-	| Cloud MPS Dealer | Sweden  | Purchase & click inklusive service | Create new customer | Minimum volym | 36 månader | Kvartalsvis i efterskott | Tick          | MFC-L8650CDW | Full         | Förskott      |
+	| Cloud MPS Dealer | Sweden  | Purchase & click inklusive service | Create new customer | Minimum volym | 60 månader | Kvartalsvis i efterskott | Tick          | MFC-L8650CDW | Full         | Förskott      |
 	
 
 # 8
@@ -85,7 +85,7 @@ Scenario Outline: MPS In Click And Upfront Mono Changes
 
 	Scenarios: 
 	| Role             | Country | ContractType                       | CreateOption        | UsageType     | Contract   | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod | MonoCoverage | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | Sweden  | Purchase & click inklusive service | Create new customer | Minimum volym | 36 månader | Kvartalsvis i efterskott | Tick          | MFC-L8650CDW | Full         | Per utskrift  | 6            | 2000        | 2000         |
+	| Cloud MPS Dealer | Sweden  | Purchase & click inklusive service | Create new customer | Minimum volym | 60 månader | Kvartalsvis i efterskott | Tick          | MFC-L8650CDW | Full         | Per utskrift  | 6            | 2000        | 2000         |
 	
 
 # 9-10
@@ -104,6 +104,6 @@ Scenario Outline: MPS CP Variation
 	
 
 	Scenarios: 
-	| Role             | Country | ContractType                       | CreateOption        | UsageType           | Contract   | Billing              | PriceHardware | Printer    | DeviceScreen | PaymentMethod | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | Sweden  | Purchase & click inklusive service | Create new customer | Betala per utskrift | 36 månader | Kvartalsvis i efterskott | Tick          | MFC-8510DN | Full         | Per utskrift  | 2000        | 2000         |
+	| Role             | Country | ContractType                       | CreateOption        | UsageType           | Contract   | Billing                  | PriceHardware | Printer    | DeviceScreen | PaymentMethod | ClickVolume | ColourVolume |
+	| Cloud MPS Dealer | Sweden  | Purchase & click inklusive service | Create new customer | Betala per utskrift | 60 månader | Kvartalsvis i efterskott | Tick          | HL-L5100DN | Full         | Per utskrift  | 2000        | 2000         |
 	
