@@ -247,7 +247,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             string coJoin = null;
 
-            if ((IsAustriaSystem() && GetContractType() == "Easy Print Pro & Service"))
+            if ((IsAustriaSystem() && GetContractType() == "Leasing & Service"))
             {
                 coJoin = clickRate.Replace("€", ""); 
             }
