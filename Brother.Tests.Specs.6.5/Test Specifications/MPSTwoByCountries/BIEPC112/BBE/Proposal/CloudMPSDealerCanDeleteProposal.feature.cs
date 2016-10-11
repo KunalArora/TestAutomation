@@ -73,8 +73,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BBE.
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("MPS Delete Open Proposal")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Belgium", "Cloud MPS Local Office Approver", "Purchase & Click with Service", "Minimum Volume", "3 jaar", "Quarterly in Arrears", "Dutch", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Belgium", "Cloud MPS Local Office Approver", "Buy & Click", "Volume minimum", "3 ans", "Quarterly in Arrears", "French", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Belgium", "Cloud MPS Local Office Approver", "Purchase & Click with Service", "Minimum Volume", "3 jaar", "Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance", "Dutch", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Belgium", "Cloud MPS Local Office Approver", "Buy & Click", "Volume minimum", "3 ans", "Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance", "French", null)]
         public virtual void MPSDeleteOpenProposal(string role, string country, string role2, string contractType, string usageType, string length, string billing, string language, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Delete Open Proposal", exampleTags);

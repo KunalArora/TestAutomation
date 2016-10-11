@@ -33,9 +33,9 @@ Scenario Outline: MPS Create MV Proposal
 	
 
 	Scenarios: 
-	| Role             | Country | ContractType                  | CreateOption        | UsageType      | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod                         | ClickVolume | ColourVolume | Language |
-	| Cloud MPS Dealer | Belgium | Purchase & Click with Service | Create new customer | Minimum Volume | 3 jaar   | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Betaling bij aanvang van het contract | 800         | 800          | Dutch    |
-	| Cloud MPS Dealer | Belgium | Buy & Click                   | Create new customer | Volume minimum | 3 ans    | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Paiement au démarrage du contrat      | 800         | 800          | French   |
+	| Role             | Country | ContractType                  | CreateOption        | UsageType      | Contract | Billing                                                                | PriceHardware | Printer      | DeviceScreen | PaymentMethod                         | ClickVolume | ColourVolume | Language |
+	| Cloud MPS Dealer | Belgium | Purchase & Click with Service | Create new customer | Minimum Volume | 3 jaar   | Jaarlijke afrekening / Décompte annuel                                 | Tick          | MFC-L8650CDW | Full         | Betaling bij aanvang van het contract | 800         | 800          | Dutch    |
+	| Cloud MPS Dealer | Belgium | Buy & Click                   | Create new customer | Volume minimum | 3 ans    | Driemaandelijks, betaling achteraf / Paiement trimestriel à terme échu | Tick          | MFC-L8650CDW | Full         | Paiement au démarrage du contrat      | 800         | 800          | French   |
 	
 
 Scenario Outline: MPS Create Proposal With Existing Customer
@@ -66,7 +66,7 @@ Scenario Outline: MPS Create Proposal With Existing Customer
 	
 
 	Scenarios: 
-	| Role             | Country | ContractType                  | UsageType      | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod               | ClickVolume | ColourVolume | Language |
-	| Cloud MPS Dealer | Belgium | Purchase & Click with Service | Minimum Volume | 3 jaar   | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Inbegrepen in de clickprijs | 800         | 800          | Dutch    |
-	| Cloud MPS Dealer | Belgium | Buy & Click                   | Volume minimum | 3 ans    | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Inclus dans le prix click   | 800         | 800          | French   |
+	| Role             | Country | ContractType                  | UsageType      | Contract | Billing                                                                | PriceHardware | Printer      | DeviceScreen | PaymentMethod               | ClickVolume | ColourVolume | Language |
+	| Cloud MPS Dealer | Belgium | Purchase & Click with Service | Minimum Volume | 3 jaar   | Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance     | Tick          | MFC-L8650CDW | Full         | Inbegrepen in de clickprijs | 800         | 800          | Dutch    |
+	| Cloud MPS Dealer | Belgium | Buy & Click                   | Volume minimum | 3 ans    | Driemaandelijks, betaling achteraf / Paiement trimestriel à terme échu | Tick          | MFC-L8650CDW | Full         | Inclus dans le prix click   | 800         | 800          | French   |
 	

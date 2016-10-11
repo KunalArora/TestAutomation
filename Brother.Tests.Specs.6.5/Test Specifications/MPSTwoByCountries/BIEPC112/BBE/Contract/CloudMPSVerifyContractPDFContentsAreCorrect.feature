@@ -15,8 +15,8 @@ Scenario Outline: MPS Verify PDF Correctness
 
 Scenarios:
 
-	| ContractType                  | Country | UsageType      | Length | Billing              | Language |
-	| Buy & Click                   | Belgium | Volume minimum | 3 ans  | Quarterly in Arrears | French   |
-	| Purchase & Click with Service | Belgium | Minimum Volume | 3 jaar | Quarterly in Arrears | Dutch    |
+	| ContractType                  | Country | UsageType      | Length | Billing                                                            | Language |
+	| Buy & Click                   | Belgium | Volume minimum | 3 ans  | Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance | French   |
+	| Purchase & Click with Service | Belgium | Minimum Volume | 3 jaar | Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance | Dutch    |
 	
 	

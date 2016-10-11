@@ -30,9 +30,9 @@ Scenario Outline: MPS Belgian Dealer can copy an existing proposal offer for all
 	
 	Scenarios:
 
-	| Role             | Country | ContractType                  | UsageType      | Length | Billing              | Customer               | Status  | Language |
-	| Cloud MPS Dealer | Belgium | Purchase & Click with Service | Minimum Volume | 3 jaar | Quarterly in Arrears | Skip customer creation | Without | Dutch    |
-	| Cloud MPS Dealer | Belgium | Purchase & Click with Service | Minimum Volume | 3 jaar | Quarterly in Arrears | Create new customer    | With    | Dutch    |
-	| Cloud MPS Dealer | Belgium | Buy & Click                   | Volume minimum | 3 ans  | Quarterly in Arrears | Create new customer    | With    | French   |
-	| Cloud MPS Dealer | Belgium | Buy & Click                   | Volume minimum | 3 ans  | Quarterly in Arrears | Skip customer creation | Without | French   |
+	| Role             | Country | ContractType                  | UsageType      | Length | Billing                                                                | Customer               | Status  | Language |
+	| Cloud MPS Dealer | Belgium | Purchase & Click with Service | Minimum Volume | 3 jaar | Jaarlijke afrekening / Décompte annuel                                 | Skip customer creation | Without | Dutch    |
+	| Cloud MPS Dealer | Belgium | Purchase & Click with Service | Minimum Volume | 3 jaar | Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance     | Create new customer    | With    | Dutch    |
+	| Cloud MPS Dealer | Belgium | Buy & Click                   | Volume minimum | 3 ans  | Driemaandelijks, betaling achteraf / Paiement trimestriel à terme échu | Create new customer    | With    | French   |
+	| Cloud MPS Dealer | Belgium | Buy & Click                   | Volume minimum | 3 ans  | Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance     | Skip customer creation | Without | French   |
 	

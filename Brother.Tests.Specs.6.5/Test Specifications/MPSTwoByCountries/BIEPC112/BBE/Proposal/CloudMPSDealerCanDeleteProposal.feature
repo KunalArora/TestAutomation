@@ -16,7 +16,7 @@ Scenario Outline: MPS Delete Open Proposal
 
 Scenarios:
 
-	| Role             | Country | Role2                           | ContractType                  | UsageType      | Length | Billing              | Language |
-	| Cloud MPS Dealer | Belgium | Cloud MPS Local Office Approver | Purchase & Click with Service | Minimum Volume | 3 jaar | Quarterly in Arrears | Dutch    |
-	| Cloud MPS Dealer | Belgium | Cloud MPS Local Office Approver | Buy & Click                   | Volume minimum | 3 ans  | Quarterly in Arrears | French   |
+	| Role             | Country | Role2                           | ContractType                  | UsageType      | Length | Billing                                                            | Language |
+	| Cloud MPS Dealer | Belgium | Cloud MPS Local Office Approver | Purchase & Click with Service | Minimum Volume | 3 jaar | Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance | Dutch    |
+	| Cloud MPS Dealer | Belgium | Cloud MPS Local Office Approver | Buy & Click                   | Volume minimum | 3 ans  | Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance | French   |
 	
