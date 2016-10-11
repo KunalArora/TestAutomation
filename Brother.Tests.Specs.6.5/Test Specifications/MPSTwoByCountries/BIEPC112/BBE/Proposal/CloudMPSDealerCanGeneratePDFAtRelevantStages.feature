@@ -17,7 +17,7 @@ Scenario Outline: MPS Generate Summary PDF
 	
 	
 	Scenarios: 
-	| Role             | Country | Role2                           | ContractType                  | UsageType      | Length | Billing              | Language |
-	| Cloud MPS Dealer | Belgium | Cloud MPS Local Office Approver | Purchase & Click with Service | Minimum Volume | 3 jaar | Quarterly in Arrears | Dutch    |
-	| Cloud MPS Dealer | Belgium | Cloud MPS Local Office Approver | Buy & Click                   | Volume minimum | 3 ans  | Quarterly in Arrears | French   |
+	| Role             | Country | Role2                           | ContractType                  | UsageType      | Length | Billing                                                                | Language |
+	| Cloud MPS Dealer | Belgium | Cloud MPS Local Office Approver | Purchase & Click with Service | Minimum Volume | 3 jaar | Jaarlijke afrekening / Décompte annuel                                 | Dutch    |
+	| Cloud MPS Dealer | Belgium | Cloud MPS Local Office Approver | Buy & Click                   | Volume minimum | 3 ans  | Driemaandelijks, betaling achteraf / Paiement trimestriel à terme échu | French   |
 	

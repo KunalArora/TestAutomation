@@ -73,8 +73,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BBE.
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("MPS Summary Validation MV In Click")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Belgium", "Purchase & Click with Service", "Minimum Volume", "3 jaar", "Quarterly in Arrears", "Tick", "MFC-L8650CDW", "Full", "Inbegrepen in de clickprijs", "800", "800", "Inbegrepen in de clickprijs", "Betaling bij aanvang van het contract", "Dutch", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Belgium", "Buy & Click", "Volume minimum", "3 ans", "Quarterly in Arrears", "Tick", "MFC-L8650CDW", "Full", "Inclus dans le prix click", "800", "800", "Inclus dans le prix click", "Paiement au démarrage du contrat", "French", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Belgium", "Purchase & Click with Service", "Minimum Volume", "3 jaar", "Jaarlijke afrekening / Décompte annuel", "Tick", "MFC-L8650CDW", "Full", "Inbegrepen in de clickprijs", "800", "800", "Inbegrepen in de clickprijs", "Betaling bij aanvang van het contract", "Dutch", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Belgium", "Buy & Click", "Volume minimum", "3 ans", "Driemaandelijks, betaling achteraf / Paiement trimestriel à terme échu", "Tick", "MFC-L8650CDW", "Full", "Inclus dans le prix click", "800", "800", "Inclus dans le prix click", "Paiement au démarrage du contrat", "French", null)]
         public virtual void MPSSummaryValidationMVInClick(
                     string role, 
                     string country, 
@@ -161,8 +161,8 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("MPS Summary Validation MV Upfront")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Belgium", "Purchase & Click with Service", "Minimum Volume", "3 jaar", "Quarterly in Arrears", "Tick", "MFC-L8650CDW", "Full", "Betaling bij aanvang van het contract", "800", "800", "Betaling bij aanvang van het contract", "Dutch", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Belgium", "Buy & Click", "Volume minimum", "3 ans", "Quarterly in Arrears", "Tick", "MFC-L8650CDW", "Full", "Paiement au démarrage du contrat", "800", "800", "Paiement au démarrage du contrat", "French", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Belgium", "Purchase & Click with Service", "Minimum Volume", "3 jaar", "Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance", "Tick", "MFC-L8650CDW", "Full", "Betaling bij aanvang van het contract", "800", "800", "Betaling bij aanvang van het contract", "Dutch", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Belgium", "Buy & Click", "Volume minimum", "3 ans", "Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance", "Tick", "MFC-L8650CDW", "Full", "Paiement au démarrage du contrat", "800", "800", "Paiement au démarrage du contrat", "French", null)]
         public virtual void MPSSummaryValidationMVUpfront(string role, string country, string contractType, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string basis1, string language, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Summary Validation MV Upfront", exampleTags);

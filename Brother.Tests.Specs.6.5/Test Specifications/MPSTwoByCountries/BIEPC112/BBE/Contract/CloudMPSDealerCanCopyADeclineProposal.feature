@@ -10,9 +10,9 @@ Scenario Outline: MPS Copy Declined Proposal No Customer
 	
 	Scenarios:
 
-	| Role             | Country | Role2                           | ContractType                  | UsageType      | Length | Billing              | Language |
-	| Cloud MPS Dealer | Belgium | Cloud MPS Local Office Approver | Buy & Click                   | Volume minimum | 3 ans  | Quarterly in Arrears | French   |
-	| Cloud MPS Dealer | Belgium | Cloud MPS Local Office Approver | Purchase & Click with Service | Minimum Volume | 3 jaar | Quarterly in Arrears | Dutch    |
+	| Role             | Country | Role2                           | ContractType                  | UsageType      | Length | Billing                                                            | Language |
+	| Cloud MPS Dealer | Belgium | Cloud MPS Local Office Approver | Buy & Click                   | Volume minimum | 3 ans  | Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance | French   |
+	| Cloud MPS Dealer | Belgium | Cloud MPS Local Office Approver | Purchase & Click with Service | Minimum Volume | 3 jaar | Jaarlijke afrekening / Décompte annuel                             | Dutch    |
 	
 
 Scenario Outline: MPS Copy Declined Proposal Customer
@@ -21,7 +21,7 @@ Scenario Outline: MPS Copy Declined Proposal Customer
 	
 	Scenarios:
 
-	| Role             | Country | Role2                           | ContractType                  | UsageType      | Length | Billing              | Language |
-	| Cloud MPS Dealer | Belgium | Cloud MPS Local Office Approver | Buy & Click                   | Volume minimum | 3 ans  | Quarterly in Arrears | French   |
-	| Cloud MPS Dealer | Belgium | Cloud MPS Local Office Approver | Purchase & Click with Service | Minimum Volume | 3 jaar | Quarterly in Arrears | Dutch    |
+	| Role             | Country | Role2                           | ContractType                  | UsageType      | Length | Billing                                                                | Language |
+	| Cloud MPS Dealer | Belgium | Cloud MPS Local Office Approver | Buy & Click                   | Volume minimum | 3 ans  | Driemaandelijks, betaling achteraf / Paiement trimestriel à terme échu | French   |
+	| Cloud MPS Dealer | Belgium | Cloud MPS Local Office Approver | Purchase & Click with Service | Minimum Volume | 3 jaar | Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance     | Dutch    |
 	

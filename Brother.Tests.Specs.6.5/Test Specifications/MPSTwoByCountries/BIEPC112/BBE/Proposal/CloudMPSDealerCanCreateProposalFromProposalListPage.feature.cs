@@ -73,8 +73,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BBE.
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("MPS Create Proposal From List Page")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Belgium", "Purchase & Click with Service", "Minimum Volume", "3 jaar", "Quarterly in Arrears", "Tick", "MFC-L8650CDW", "Full", "Inbegrepen in de clickprijs", "800", "800", "Inbegrepen in de clickprijs", "Betaling bij aanvang van het contract", "Dutch", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Belgium", "Buy & Click", "Volume minimum", "3 ans", "Quarterly in Arrears", "Tick", "MFC-L8650CDW", "Full", "Inclus dans le prix click", "800", "800", "Inclus dans le prix click", "Paiement au démarrage du contrat", "French", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Belgium", "Purchase & Click with Service", "Minimum Volume", "3 jaar", "Jaarlijke afrekening / Décompte annuel", "Tick", "MFC-L8650CDW", "Full", "Inbegrepen in de clickprijs", "800", "800", "Inbegrepen in de clickprijs", "Betaling bij aanvang van het contract", "Dutch", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Belgium", "Buy & Click", "Volume minimum", "3 ans", "Driemaandelijks, betaling achteraf / Paiement trimestriel à terme échu", "Tick", "MFC-L8650CDW", "Full", "Inclus dans le prix click", "800", "800", "Inclus dans le prix click", "Paiement au démarrage du contrat", "French", null)]
         public virtual void MPSCreateProposalFromListPage(
                     string role, 
                     string country, 

@@ -12,9 +12,9 @@ Scenario Outline: MPS LO Decline Proposal
 	Then "<Role>" can decline Awaiting "<Language>" Approval "<Country>" "<ContractType>" proposal with "<UsageType>" and "<Length>" and "<Billing>"
 	
 	Scenarios: 
-	| Country | Role                            | ContractType                  | UsageType      | Length | Billing              | Language |
-	| Belgium | Cloud MPS Local Office Approver | Buy & Click                   | Volume minimum | 3 ans  | Quarterly in Arrears | French   |
-	| Belgium | Cloud MPS Local Office Approver | Purchase & Click with Service | Minimum Volume | 3 jaar | Quarterly in Arrears | Dutch    |
+	| Country | Role                            | ContractType                  | UsageType      | Length | Billing                                                            | Language |
+	| Belgium | Cloud MPS Local Office Approver | Buy & Click                   | Volume minimum | 3 ans  | Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance | French   |
+	| Belgium | Cloud MPS Local Office Approver | Purchase & Click with Service | Minimum Volume | 3 jaar | Jaarlijke afrekening / Décompte annuel                             | Dutch    |
 	
 #
 # Accept1, 2
@@ -27,9 +27,9 @@ Scenario Outline: MPS LO Can Reject Or Accept
 	And I sign out of Cloud MPS
 
 	Scenarios:
-	| Country | Role                            | ContractType                  | UsageType      | Length | Billing              | Language |
-	| Belgium | Cloud MPS Local Office Approver | Buy & Click                   | Volume minimum | 3 ans  | Quarterly in Arrears | French   |
-	| Belgium | Cloud MPS Local Office Approver | Purchase & Click with Service | Minimum Volume | 3 jaar | Quarterly in Arrears | Dutch    |
+	| Country | Role                            | ContractType                  | UsageType      | Length | Billing                                                            | Language |
+	| Belgium | Cloud MPS Local Office Approver | Buy & Click                   | Volume minimum | 3 ans  | Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance | French   |
+	| Belgium | Cloud MPS Local Office Approver | Purchase & Click with Service | Minimum Volume | 3 jaar | Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance | Dutch    |
 	
 # Accept5, 6
 Scenario Outline: MPS LO Approve Contract
@@ -44,9 +44,9 @@ Scenario Outline: MPS LO Approve Contract
 
 	Scenarios:
 
-	| Country | Role                            | ContractType                  | UsageType      | Length | Billing              | Language |
-	| Belgium | Cloud MPS Local Office Approver | Buy & Click                   | Volume minimum | 3 ans  | Quarterly in Arrears | French   |
-	| Belgium | Cloud MPS Local Office Approver | Purchase & Click with Service | Minimum Volume | 3 jaar | Quarterly in Arrears | Dutch    |
+	| Country | Role                            | ContractType                  | UsageType      | Length | Billing                                                            | Language |
+	| Belgium | Cloud MPS Local Office Approver | Buy & Click                   | Volume minimum | 3 ans  | Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance | French   |
+	| Belgium | Cloud MPS Local Office Approver | Purchase & Click with Service | Minimum Volume | 3 jaar | Jaarlijke afrekening / Décompte annuel                             | Dutch    |
 	
 # Reject1,2
 Scenario Outline: MPS LO Reject Contract
@@ -60,9 +60,9 @@ Scenario Outline: MPS LO Reject Contract
 
 	Scenarios:
 
-	| Country | Role                            | ContractType                  | UsageType      | Length | Billing              | Language |
-	| Belgium | Cloud MPS Local Office Approver | Buy & Click                   | Volume minimum | 3 ans  | Quarterly in Arrears | French   |
-	| Belgium | Cloud MPS Local Office Approver | Purchase & Click with Service | Minimum Volume | 3 jaar | Quarterly in Arrears | Dutch    |
+	| Country | Role                            | ContractType                  | UsageType      | Length | Billing                                                                | Language |
+	| Belgium | Cloud MPS Local Office Approver | Buy & Click                   | Volume minimum | 3 ans  | Driemaandelijks, betaling achteraf / Paiement trimestriel à terme échu | French   |
+	| Belgium | Cloud MPS Local Office Approver | Purchase & Click with Service | Minimum Volume | 3 jaar | Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance     | Dutch    |
 	
 
 # Reject3
@@ -80,9 +80,9 @@ Scenario Outline: MPS Dealer Resign Rejected Contract
 	And I sign out of Cloud MPS
 
 	Scenarios: 
-	| Country | Role                            | ContractType                  | UsageType      | Length | Billing              | Language | Role2            |
-	| Belgium | Cloud MPS Local Office Approver | Buy & Click                   | Volume minimum | 3 ans  | Quarterly in Arrears | French   | Cloud MPS Dealer |
-	| Belgium | Cloud MPS Local Office Approver | Purchase & Click with Service | Minimum Volume | 3 jaar | Quarterly in Arrears | Dutch    | Cloud MPS Dealer |
+	| Country | Role                            | ContractType                  | UsageType      | Length | Billing                                                            | Language | Role2            |
+	| Belgium | Cloud MPS Local Office Approver | Buy & Click                   | Volume minimum | 3 ans  | Jaarlijke afrekening / Décompte annuel                             | French   | Cloud MPS Dealer |
+	| Belgium | Cloud MPS Local Office Approver | Purchase & Click with Service | Minimum Volume | 3 jaar | Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance | Dutch    | Cloud MPS Dealer |
 	
 # LO Approver can view open offers
 Scenario Outline: MPS LO View Opened Offers
