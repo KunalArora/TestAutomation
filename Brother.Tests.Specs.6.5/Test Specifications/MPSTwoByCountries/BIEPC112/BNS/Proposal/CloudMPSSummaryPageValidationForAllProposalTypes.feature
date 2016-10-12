@@ -25,7 +25,8 @@ Scenario Outline: MPS Summary Validation MV In Click
 	And the installation type displayed is correct
 	And the installation cost displayed is correct
 	And the quantity displayed is the same as the one entered
-	And the service pack name and price displayed are correct
+	##And the service pack name and price displayed are correct
+	And service pack cost is included click as "0,00 kr"
 	And the displayed volume value for mono click price is "<ClickVolume>"
 	And the displayed volume value for colour click price is "<ColourVolume>"
 	And the calculated consumable net totals are equal in all places
