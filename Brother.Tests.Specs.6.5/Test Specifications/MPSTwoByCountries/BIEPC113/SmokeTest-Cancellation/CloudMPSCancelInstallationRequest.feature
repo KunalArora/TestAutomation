@@ -298,11 +298,11 @@ Scenario Outline: MPS Cancel MLang Cloud Installation
 	
 Scenarios:
 
-	| Role                            | Country | ContractType                  | UsageType      | Role1            | Method | Type | Length | Billing                                                                | Language |
-	| Cloud MPS Local Office Approver | Belgium | Buy & Click                   | Volume minimum | Cloud MPS Dealer | Cloud  | Web  | 3 ans  | Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance     | French   |
-	| Cloud MPS Local Office Approver | Belgium | Buy & Click                   | Volume minimum | Cloud MPS Dealer | Cloud  | BOR  | 4 ans  | Driemaandelijks, betaling achteraf / Paiement trimestriel à terme échu | French   |
-	| Cloud MPS Local Office Approver | Belgium | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR  | 3 jaar | Jaarlijke afrekening / Décompte annuel                                 | Dutch    |
-	| Cloud MPS Local Office Approver | Belgium | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  | 4 jaar | Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance     | Dutch    |
+	| Role                            | Country | ContractType                  | UsageType      | Role1            | Method | Type | Length | Billing                                                            | Language |
+	| Cloud MPS Local Office Approver | Belgium | Buy & Click                   | Volume minimum | Cloud MPS Dealer | Cloud  | Web  | 3 ans  | Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance | French   |
+	| Cloud MPS Local Office Approver | Belgium | Buy & Click                   | Volume minimum | Cloud MPS Dealer | Cloud  | BOR  | 4 ans  | Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance | French   |
+	| Cloud MPS Local Office Approver | Belgium | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR  | 3 jaar | Jaarlijke afrekening / Décompte annuel                             | Dutch    |
+	| Cloud MPS Local Office Approver | Belgium | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  | 4 jaar | Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance | Dutch    |
 	#| Cloud MPS Local Office Approver | Switzerland | Purchase & Click with Service | Mindestvolumen                            | Cloud MPS Dealer | Cloud  | Web  | 3 Jahre | Quarterly in Arrears | Deutsch  |
 	#| Cloud MPS Local Office Approver | Switzerland | Purchase & Click with Service | Engagement sur un minimum volume de pages | Cloud MPS Dealer | Cloud  | BOR  | 4 ans   | Quarterly in Arrears | Français |
 	#| Cloud MPS Local Office Approver | Switzerland | Purchase & Click with Service | Mindestvolumen                            | Cloud MPS Dealer | Cloud  | BOR  | 3 Jahre | Quarterly in Arrears | Deutsch  |
