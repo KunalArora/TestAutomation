@@ -21,7 +21,7 @@ Scenario Outline: MPS Copy Declined Proposal Customer
 	
 	Scenarios:
 
-	| Role             | Country | Role2                           | ContractType                  | UsageType      | Length | Billing                                                                | Language |
-	| Cloud MPS Dealer | Belgium | Cloud MPS Local Office Approver | Buy & Click                   | Volume minimum | 3 ans  | Driemaandelijks, betaling achteraf / Paiement trimestriel à terme échu | French   |
-	| Cloud MPS Dealer | Belgium | Cloud MPS Local Office Approver | Purchase & Click with Service | Minimum Volume | 3 jaar | Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance     | Dutch    |
+	| Role             | Country | Role2                           | ContractType                  | UsageType      | Length | Billing                                                            | Language |
+	| Cloud MPS Dealer | Belgium | Cloud MPS Local Office Approver | Buy & Click                   | Volume minimum | 3 ans  | Jaarlijke afrekening / Décompte annuel                             | French   |
+	| Cloud MPS Dealer | Belgium | Cloud MPS Local Office Approver | Purchase & Click with Service | Minimum Volume | 3 jaar | Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance | Dutch    |
 	

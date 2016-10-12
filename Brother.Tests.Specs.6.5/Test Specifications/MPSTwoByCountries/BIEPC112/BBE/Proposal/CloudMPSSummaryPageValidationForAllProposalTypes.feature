@@ -38,9 +38,9 @@ Scenario Outline: MPS Summary Validation MV In Click
 	
 
 	Scenarios: 
-	| Role             | Country | ContractType                  | UsageType      | Contract | Billing                                                                | PriceHardware | Printer      | DeviceScreen | PaymentMethod               | ClickVolume | ColourVolume | Basis1                      | Basis2                                | Language |
-	| Cloud MPS Dealer | Belgium | Purchase & Click with Service | Minimum Volume | 3 jaar   | Jaarlijke afrekening / Décompte annuel                                 | Tick          | MFC-L8650CDW | Full         | Inbegrepen in de clickprijs | 800         | 800          | Inbegrepen in de clickprijs | Betaling bij aanvang van het contract | Dutch    |
-	| Cloud MPS Dealer | Belgium | Buy & Click                   | Volume minimum | 3 ans    | Driemaandelijks, betaling achteraf / Paiement trimestriel à terme échu | Tick          | MFC-L8650CDW | Full         | Inclus dans le prix click   | 800         | 800          | Inclus dans le prix click   | Paiement au démarrage du contrat      | French   |
+	| Role             | Country | ContractType                  | UsageType      | Contract | Billing                                | PriceHardware | Printer      | DeviceScreen | PaymentMethod               | ClickVolume | ColourVolume | Basis1                      | Basis2                                | Language |
+	| Cloud MPS Dealer | Belgium | Purchase & Click with Service | Minimum Volume | 3 jaar   | Jaarlijke afrekening / Décompte annuel | Tick          | MFC-L8650CDW | Full         | Inbegrepen in de clickprijs | 800         | 800          | Inbegrepen in de clickprijs | Betaling bij aanvang van het contract | Dutch    |
+	| Cloud MPS Dealer | Belgium | Buy & Click                   | Volume minimum | 3 ans    | Jaarlijke afrekening / Décompte annuel | Tick          | MFC-L8650CDW | Full         | Inclus dans le prix click   | 800         | 800          | Inclus dans le prix click   | Paiement au démarrage du contrat      | French   |
 	
 
 Scenario Outline: MPS Summary Validation MV Upfront

@@ -60,9 +60,9 @@ Scenario Outline: MPS LO Reject Contract
 
 	Scenarios:
 
-	| Country | Role                            | ContractType                  | UsageType      | Length | Billing                                                                | Language |
-	| Belgium | Cloud MPS Local Office Approver | Buy & Click                   | Volume minimum | 3 ans  | Driemaandelijks, betaling achteraf / Paiement trimestriel à terme échu | French   |
-	| Belgium | Cloud MPS Local Office Approver | Purchase & Click with Service | Minimum Volume | 3 jaar | Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance     | Dutch    |
+	| Country | Role                            | ContractType                  | UsageType      | Length | Billing                                                            | Language |
+	| Belgium | Cloud MPS Local Office Approver | Buy & Click                   | Volume minimum | 3 ans  | Jaarlijke afrekening / Décompte annuel                             | French   |
+	| Belgium | Cloud MPS Local Office Approver | Purchase & Click with Service | Minimum Volume | 3 jaar | Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance | Dutch    |
 	
 
 # Reject3
