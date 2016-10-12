@@ -173,9 +173,48 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 path = "file:///C:/DataTest/{0}-Contract.pdf";
 
             }
+            else if (IsBelgiumSystem())
+            {
+                path = BelgianPath();
+
+            }
+            
             
 
             return path;
+        }
+
+
+        private String BelgianPath()
+        {
+            string lang;
+            string language;
+
+            try
+            {
+                language = SpecFlow.GetContext("BelgianLanguage");
+            }
+            catch (KeyNotFoundException)
+            {
+
+                language = "French";
+            }
+
+            switch (language)
+            {
+                case "French":
+                    lang = "file:///C:/DataTest/{0}-Contract.pdf";
+                    break;
+                case "Dutch":
+                    lang = "file:///C:/DataTest/Contract-{0}.pdf";
+                    break;
+
+                default:
+                    lang = "file:///C:/DataTest/{0}-Contract.pdf";
+                    break;
+            }
+
+            return lang;
         }
 
 
