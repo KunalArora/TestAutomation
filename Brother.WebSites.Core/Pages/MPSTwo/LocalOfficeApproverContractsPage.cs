@@ -203,14 +203,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             switch (language)
             {
                 case "French":
-                    lang = "file:///C:/DataTest/{0}-Contract.pdf";
+                    lang = "file:///C:/DataTest/{0}-Contrat.pdf";
                     break;
                 case "Dutch":
                     lang = "file:///C:/DataTest/Contract-{0}.pdf";
                     break;
 
                 default:
-                    lang = "file:///C:/DataTest/{0}-Contract.pdf";
+                    lang = "file:///C:/DataTest/{0}-Contrat.pdf";
                     break;
             }
 
