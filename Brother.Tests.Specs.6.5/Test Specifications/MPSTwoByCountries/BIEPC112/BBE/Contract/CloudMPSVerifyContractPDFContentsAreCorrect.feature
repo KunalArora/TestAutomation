@@ -17,6 +17,6 @@ Scenarios:
 
 	| ContractType                  | Country | UsageType      | Length | Billing                                                            | Language |
 	| Buy & Click                   | Belgium | Volume minimum | 3 ans  | Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance | French   |
-	| Purchase & Click with Service | Belgium | Minimum Volume | 3 jaar | Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance | Dutch    |
+	| Purchase & Click with Service | Belgium | Minimum Volume | 3 jaar | Jaarlijke afrekening / Décompte annuel                             | Dutch    |
 	
 	

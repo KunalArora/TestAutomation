@@ -145,7 +145,7 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("MPS LO Reject Contract")]
-        [NUnit.Framework.TestCaseAttribute("Belgium", "Cloud MPS Local Office Approver", "Buy & Click", "Volume minimum", "3 ans", "Driemaandelijks, betaling achteraf / Paiement trimestriel à terme échu", "French", null)]
+        [NUnit.Framework.TestCaseAttribute("Belgium", "Cloud MPS Local Office Approver", "Buy & Click", "Volume minimum", "3 ans", "Jaarlijke afrekening / Décompte annuel", "French", null)]
         [NUnit.Framework.TestCaseAttribute("Belgium", "Cloud MPS Local Office Approver", "Purchase & Click with Service", "Minimum Volume", "3 jaar", "Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance", "Dutch", null)]
         public virtual void MPSLORejectContract(string country, string role, string contractType, string usageType, string length, string billing, string language, string[] exampleTags)
         {
