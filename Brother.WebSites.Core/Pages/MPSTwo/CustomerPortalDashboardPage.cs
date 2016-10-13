@@ -20,7 +20,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement CustomerDashboardInvoiceLink;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/customer/consumables\"] .media-heading")]
         public IWebElement CustomerDashboardConsummableLink;
-        [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/customer/print-counts\"] .media-heading")]
+        [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/customer/manage-devices\"] .media-heading")]
         public IWebElement CustomerDashboardPrintCountsLink;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/customer/service-requests\"] .media-heading")]
         public IWebElement CustomerDashboardServiceRequestsLink;
