@@ -1560,8 +1560,10 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             stepInstance.WhenIPriceHardwareRadioButton("Tick");
 
             var instance = new DealerProposalsCreateProductsStep();
-            instance.WhenIDisplayDeviceScreen("MFC-L8650CDW");
-            instance.WhenIAcceptTheDefaultValuesOfTheDevice();
+
+           instance.WhenIDisplayDeviceScreen("MFC-L8650CDW");
+           
+           instance.WhenIAcceptTheDefaultValuesOfTheDevice();
 
             var clickPriceStepInstance = new DealerProposalsCreateClickPriceStep();
             clickPriceStepInstance.WhenIEnterClickPriceVolumeOf("800", "800");
