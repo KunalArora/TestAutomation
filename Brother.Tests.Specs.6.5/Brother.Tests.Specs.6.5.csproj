@@ -1061,12 +1061,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\SmokeTest\CloudMPSFullCloudInstallation.feature.cs">
+    <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC111\SmokeTest - Cloud_Email\CloudMPSFullCloudInstallation.feature.cs">
       <DependentUpon>CloudMPSFullCloudInstallation.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\SmokeTest\CloudMPSInstallerCanNavigateThroughEmailInstallation.feature.cs">
+    <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC111\SmokeTest - Cloud_Email\CloudMPSInstallerCanNavigateThroughEmailInstallation.feature.cs">
       <DependentUpon>CloudMPSInstallerCanNavigateThroughEmailInstallation.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -2140,11 +2140,11 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSCancelInstallationRequest.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwoByCountries\SmokeTest\CloudMPSFullCloudInstallation.feature">
+    <None Include="Test Specifications\MPSTwoByCountries\BIEPC111\SmokeTest - Cloud_Email\CloudMPSFullCloudInstallation.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSFullCloudInstallation.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwoByCountries\SmokeTest\CloudMPSInstallerCanNavigateThroughEmailInstallation.feature">
+    <None Include="Test Specifications\MPSTwoByCountries\BIEPC111\SmokeTest - Cloud_Email\CloudMPSInstallerCanNavigateThroughEmailInstallation.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSInstallerCanNavigateThroughEmailInstallation.feature.cs</LastGenOutput>
     </None>
