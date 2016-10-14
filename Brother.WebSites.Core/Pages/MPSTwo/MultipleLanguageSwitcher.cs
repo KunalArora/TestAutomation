@@ -64,6 +64,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 SwitchBetweenLoApproverMultipleLanguages(driver, language);
             }
+
+            SpecFlow.SetContext("BelgianLanguage", language);
         }
 
         private static void SwitchBetweenDealerMultipleLanguages(IWebDriver driver, string language)
@@ -81,7 +83,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 SwitchSwissLanguage(driver, language);
             }
 
-            SpecFlow.SetContext("BelgianLanguage", language);
         }
 
         private static void SwitchBetweenLoApproverMultipleLanguages(IWebDriver driver, string language)

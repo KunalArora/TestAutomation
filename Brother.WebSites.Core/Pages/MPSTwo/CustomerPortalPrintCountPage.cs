@@ -25,11 +25,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement PrintCountTab;
         [FindsBy(How = How.CssSelector, Using = "#content_1_PrintCountList_Contracts_List_0_CellTotalCount_0")]
         public IWebElement FirstPrintCountTotal;
-        [FindsBy(How = How.CssSelector, Using = "[id*=\"CellTotalCount\"]")]
+        [FindsBy(How = How.CssSelector, Using = "td[id*=\"content_1_PrintCountList_Contracts_List_0_CellTotalCount_]")]
         public IList<IWebElement> PrintCountTotal;
-        [FindsBy(How = How.CssSelector, Using = "[id*=\"CellColourCount\"]")]
+        [FindsBy(How = How.CssSelector, Using = "td[id*=\"content_1_PrintCountList_Contracts_List_0_CellColourCount_\"]")]
         public IList<IWebElement> PrintCountColour;
-        [FindsBy(How = How.CssSelector, Using = "[id*=\"CellMonoCount\"]")]
+        [FindsBy(How = How.CssSelector, Using = "td[id*=\"content_1_PrintCountList_Contracts_List_0_CellMonoCount_\"]")]
         public IList<IWebElement> PrintCountMono;
         
 
