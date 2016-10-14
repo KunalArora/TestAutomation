@@ -116,7 +116,9 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.SuppliesAndAccessories.Pri
 
         public bool ValidatePrinters()
         {
-            const string printerList = "#results article";
+            //const string printerList = "#results article";
+            const string printerList = ".product-results .product-results--item";
+            
             ReadOnlyCollection<IWebElement> printers = null;
             printers = FindPrinters(printerList);
             if (printers == null)

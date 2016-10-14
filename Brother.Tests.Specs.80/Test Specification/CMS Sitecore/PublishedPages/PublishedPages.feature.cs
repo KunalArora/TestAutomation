@@ -281,20 +281,13 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Omnijoin Free Trial Sign up")]
-        [NUnit.Framework.CategoryAttribute("SMOKE")]
         [NUnit.Framework.TestCaseAttribute("/business-solutions/web-conferencing/free-trial?sc_lang=en", "01555522522", null)]
         public virtual void OmnijoinFreeTrialSignUp(string siteUrl, string phoneNumber, string[] exampleTags)
         {
-            string[] @__tags = new string[] {
-                    "SMOKE"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Omnijoin Free Trial Sign up", @__tags);
-#line 109
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Omnijoin Free Trial Sign up", exampleTags);
+#line 108
 this.ScenarioSetup(scenarioInfo);
-#line 110
+#line 109
  testRunner.Given(string.Format("That I navigate to \"{0}\" in order to validate a published page", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
@@ -306,15 +299,15 @@ this.ScenarioSetup(scenarioInfo);
             table1.AddRow(new string[] {
                         "LastName",
                         "AutoTest"});
-#line 111
+#line 110
  testRunner.And("I fill in the registration information using a valid email address", ((string)(null)), table1, "And ");
-#line 116
+#line 115
  testRunner.And(string.Format("I enter phone number as \"{0}\"", phoneNumber), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 117
+#line 116
  testRunner.And("I have Agreed to the Terms and Conditions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 118
+#line 117
  testRunner.And("I press submit button \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 119
+#line 118
  testRunner.Then("I should see download page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

@@ -72,13 +72,11 @@ namespace Brother.Tests.Specs._80.TestSpecification.BrotherMainSite.PrinterSearc
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("View the list of available Laser Printers on Brother Main sites for languages exc" +
             "ept Spain and Portugal sites")]
-        [NUnit.Framework.CategoryAttribute("SMOKE")]
         [NUnit.Framework.CategoryAttribute("TEST")]
-        [NUnit.Framework.TestCaseAttribute("Italy", "printers/all-Printers", null)]
+        [NUnit.Framework.TestCaseAttribute("Italy", "labelling-machines/home-small-office", null)]
         public virtual void ViewTheListOfAvailableLaserPrintersOnBrotherMainSitesForLanguagesExceptSpainAndPortugalSites(string country, string site, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "SMOKE",
                     "TEST"};
             if ((exampleTags != null))
             {
@@ -101,12 +99,12 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("View the list of available Laser Printers on Brother Main sites for Spain and Por" +
-            "tugal")]
+        [NUnit.Framework.DescriptionAttribute("View the list of available Printers on the Brother Main site Printer Linsting Pag" +
+            "e")]
         [NUnit.Framework.CategoryAttribute("TEST")]
         [NUnit.Framework.CategoryAttribute("SMOKE")]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "printers/all-Printers", null)]
-        public virtual void ViewTheListOfAvailableLaserPrintersOnBrotherMainSitesForSpainAndPortugal(string country, string site, string[] exampleTags)
+        public virtual void ViewTheListOfAvailablePrintersOnTheBrotherMainSitePrinterLinstingPage(string country, string site, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "TEST",
@@ -115,8 +113,8 @@ this.ScenarioSetup(scenarioInfo);
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("View the list of available Laser Printers on Brother Main sites for Spain and Por" +
-                    "tugal", @__tags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("View the list of available Printers on the Brother Main site Printer Linsting Pag" +
+                    "e", @__tags);
 #line 38
 this.ScenarioSetup(scenarioInfo);
 #line 39
@@ -125,8 +123,6 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.Given(string.Format("I have navigated to the \"{0}\" MainSite URL for country \"{1}\"", site, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 41
  testRunner.Then("I should see a list of Laser printers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 42
- testRunner.And("I can validate that each printer for Spain and Portugal is a valid printer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

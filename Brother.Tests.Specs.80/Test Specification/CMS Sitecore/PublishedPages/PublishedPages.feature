@@ -104,7 +104,6 @@ Scenarios:
 	 | Site Url                                        |
 	 | /QA/TestAutomationPleaseDoNotTouch/All-Printers |
 
-@SMOKE
 ## This test shouldn't run on teamcity as currently email takes about 5 minutes to come through.
 Scenario Outline: Omnijoin Free Trial Sign up
 	Given That I navigate to "<Site Url>" in order to validate a published page
