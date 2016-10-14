@@ -24,9 +24,9 @@ Scenario Outline: MPS PAYG SP Not Displayed
 	
 
 	Scenarios: 
-	| Role             | Country        | ContractType                  | CreateOption        | UsageType     | Contract | Leasing   | Billing   | PriceHardware | Printer     | DeviceScreen | PaymentMethod | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Create new customer | Pay As You Go | 3 years  | Quarterly in Arrears | Quarterly in Arrears | Tick          | MFC-8510DN   | Full         |  Pay upfront  | 0           | 2000         |
-
+	| Role             | Country        | ContractType                  | CreateOption        | UsageType     | Contract | Leasing              | Billing              | PriceHardware | Printer    | DeviceScreen | PaymentMethod | ClickVolume | ColourVolume |
+	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Create new customer | Pay As You Go | 3 years  | Quarterly in Arrears | Quarterly in Arrears | Tick          | MFC-8510DN | Full         | Pay upfront   | 0           | 2000         |
+	
 # 4
 Scenario Outline: MPS Minimum Volume SP Not Displayed
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
