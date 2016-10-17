@@ -23,7 +23,6 @@ namespace Brother.Tests.Specs._80.TestSpecification.CMSSitecore.PublishedPages
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("PROD")]
     [NUnit.Framework.CategoryAttribute("TEST")]
-    [NUnit.Framework.CategoryAttribute("SMOKE")]
     public partial class PublishedPagesFeature
     {
         
@@ -40,8 +39,7 @@ namespace Brother.Tests.Specs._80.TestSpecification.CMSSitecore.PublishedPages
                     " verified to ensure \r\na CMS code change has not had an adverse effect", ProgrammingLanguage.CSharp, new string[] {
                         "UAT",
                         "PROD",
-                        "TEST",
-                        "SMOKE"});
+                        "TEST"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
