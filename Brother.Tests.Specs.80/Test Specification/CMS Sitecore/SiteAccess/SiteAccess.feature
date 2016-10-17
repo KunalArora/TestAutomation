@@ -1,4 +1,4 @@
-﻿@SMOKE @UAT @PROD @TEST 
+﻿@UAT @PROD @TEST 
 Feature: CMS website access
 	In order to validate that the CMS site is accessible a number of content editor actions are conducted
 
@@ -11,7 +11,6 @@ Scenario Outline: Verify that a user is able to login to the CMS system
 	Then I should be able to see the experience editor page "<country>"
 	And I click on the Content Editor option "<country>"
 	Then I should be able to see the content editor page "<country>"
-	
 	
 Scenarios: 
 	
@@ -28,7 +27,6 @@ Scenario Outline: Verify that a user is able to login to the CMS system	- France
 	Then I should be able to see the experience editor page "<country>"
 	And I click on the Content Editor option "<country>"
 	Then I should be able to see the content editor page "<country>"
-	
 
 Scenarios: 
 	
@@ -45,7 +43,6 @@ Scenario Outline: Verify that a user is able to login to the CMS system	- Italy
 	Then I should be able to see the experience editor page "<country>"
 	And I click on the Content Editor option "<country>"
 	Then I should be able to see the content editor page "<country>"
-	
 
 Scenarios: 
 	
