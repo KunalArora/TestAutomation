@@ -15,6 +15,6 @@ Scenario Outline: Verify PDF Contents Are Correct
 
 Scenarios:
 
-	| ContractType                  | Country | UsageType      | Length  | Billing              |
-	| Purchase & Click with Service | Finnish | Minimum Volume | 3 years | Quarterly in Arrears |
-	
+	| ContractType         | Country | UsageType           | Length   | Billing              |
+	| Click tarvikesopimus | Finland | Minimitulostusmäärä | 3 vuotta | Quarterly in Arrears |
+	 

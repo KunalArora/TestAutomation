@@ -20,10 +20,9 @@ Scenario Outline: Customer cannot order consumable before initial communication 
 	
 Scenarios:
 
-	| Role                            | Country | ContractType                  | UsageType      | Role1            | Method | Role2              |
-	| Cloud MPS Local Office Approver | Finland | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Email  | Cloud MPS Customer |
+	| Role                            | Country | ContractType         | UsageType           | Role1            | Method | Role2              |
+	| Cloud MPS Local Office Approver | Finland | Click tarvikesopimus | Minimitulostusmäärä | Cloud MPS Dealer | Email  | Cloud MPS Customer |
 	
-
 
 Scenario Outline: Customer can order consumable after initial communication with device
 	Given I sign back into Cloud MPS as a "<Role>" from "<Country>"

@@ -18,8 +18,8 @@ Scenario Outline: Approver Decline Proposal for other Countries
 	And I sign out of Cloud MPS
 
 	Scenarios: 
-	| Country | Role                            | ContractType                  | UsageType      | Length  | Billing              |
-	| Finland | Cloud MPS Local Office Approver | Purchase & Click with Service | Minimum Volume | 3 years | Quarterly in Arrears |
+	| Country | Role                            | ContractType         | UsageType           | Length   | Billing              |
+	| Finland | Cloud MPS Local Office Approver | Click tarvikesopimus | Minimitulostusmäärä | 3 vuotta | Quarterly in Arrears |
 	
 #
 # Approve Signed Contract
@@ -34,8 +34,8 @@ Scenario Outline: Approver can decide to reject or approve the contract for othe
 	And I sign out of Cloud MPS
 
 	Scenarios:
-	| Country | Role                            | ContractType                  | UsageType      | Length  | Billing              |
-	| Finland | Cloud MPS Local Office Approver | Purchase & Click with Service | Minimum Volume | 3 years | Quarterly in Arrears |
+	| Country | Role                            | ContractType         | UsageType           | Length   | Billing              |
+	| Finland | Cloud MPS Local Office Approver | Click tarvikesopimus | Minimitulostusmäärä | 3 vuotta | Quarterly in Arrears |
 	
 
 # Accept5, 6
@@ -51,8 +51,8 @@ Scenario Outline: Approver can approve the contract for other Countries
 
 	Scenarios:
 
-	| Country | Role                            | ContractType                  | UsageType      | Length  | Billing              |
-	| Finland | Cloud MPS Local Office Approver | Purchase & Click with Service | Minimum Volume | 3 years | Quarterly in Arrears |
+	| Country | Role                            | ContractType         | UsageType           | Length   | Billing              |
+	| Finland | Cloud MPS Local Office Approver | Click tarvikesopimus | Minimitulostusmäärä | 3 vuotta | Quarterly in Arrears |
 	
 # Reject1,2
 Scenario Outline: Approver can reject the contract for other Countries
@@ -66,20 +66,27 @@ Scenario Outline: Approver can reject the contract for other Countries
 
 	Scenarios:
 
-	| Country | Role                            | ContractType                  | UsageType      | Length  | Billing              |
-	| Finland | Cloud MPS Local Office Approver | Purchase & Click with Service | Minimum Volume | 3 years | Quarterly in Arrears |
+	| Country | Role                            | ContractType         | UsageType           | Length   | Billing              |
+	| Finland | Cloud MPS Local Office Approver | Click tarvikesopimus | Minimitulostusmäärä | 3 vuotta | Quarterly in Arrears |
 	
 
 # Reject3
 Scenario Outline: Belgian Dealer can resign rejected contract for other Countries
-	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
+	Given "<Country>" Dealer have created a "<ContractType>" contract with "<UsageType>" and "<Length>" and "<Billing>"
+	And I sign into Cloud MPS as a "<Role>" from "<Country>"
+	When Approver navigate to Contract Awaiting Acceptance page from Dashboard
+	Then Approver can view all the contracts that have been signed by dealer
+	And Approver can successfully reject the contract
+	And the rejected contract by Approver is displayed on contract Rejected screen
+	And I sign out of Cloud MPS
+	Given I sign into Cloud MPS as a "<Role2>" from "<Country>"
 	When I navigate to Rejected screen
 	Then I can successfully re-sign the rejected contract
 	And I sign out of Cloud MPS
 
 	Scenarios: 
-	| Role             | Country |
-	| Cloud MPS Dealer | Finland |
+	| Country | Role                            | ContractType         | UsageType           | Length   | Billing              | Role2            |
+	| Finland | Cloud MPS Local Office Approver | Click tarvikesopimus | Minimitulostusmäärä | 3 vuotta | Quarterly in Arrears | Cloud MPS Dealer |
 	
 		
 # LO Approver can view open offers
