@@ -92,6 +92,7 @@
     <Compile Include="Pages\BrotherMainSite\SuppliesPage.cs" />
     <Compile Include="Pages\BrotherOnline\AccountManagement\BusinessDetailsPage.cs" />
     <Compile Include="Pages\BrotherOnline\AccountManagement\CloseAccountPage.cs" />
+    <Compile Include="Pages\BrotherOnline\AccountManagement\ConfirmationPage.cs" />
     <Compile Include="Pages\BrotherOnline\AccountManagement\LinkedinPage.cs" />
     <Compile Include="Pages\BrotherOnline\AccountManagement\MyAddressPage.cs" />
     <Compile Include="Pages\BrotherOnline\AccountManagement\ExtendedWarrantyPage.cs" />
