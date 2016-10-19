@@ -1127,7 +1127,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
             else if (IsNorwaySystem())
             {
-                var optionText = GetNorwayValue(ModelSrpElement.Text);
+                var optionText = GetValueFromCurrencyText(ModelSrpElement.Text);
                 ClearAndType(OptionCostPrice0Element(), optionText);
             }
             else
@@ -1142,13 +1142,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             //if (!ModelSrpElement.Text.Contains("£")) return;
             if (IsAustriaSystem() || IsGermanSystem() || IsSwedenSystem()
-                || IsDenmarkSystem() || IsPolandSystem())
+                || IsDenmarkSystem())
             {
                 //do nothing
             } 
-            else if (IsNorwaySystem())
+            else if (IsNorwaySystem() || IsPolandSystem())
             {
-                var optionText = GetNorwayValue(ModelSrpElement.Text);
+                var optionText = GetValueFromCurrencyText(ModelSrpElement.Text);
                 ClearAndType(ProductCostPriceElement, optionText);
             }
             else
@@ -1165,10 +1165,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             SetProductCostPrice();
         }
 
-        private string GetNorwayValue(string text)
+        private string GetValueFromCurrencyText(string text)
         {
             var value = text.Replace(" ", "");
-            value = value.Replace("kr", "");
+
+            if (IsNorwaySystem())
+            {
+                value = value.Replace("kr", "");
+            }
+            else if (IsPolandSystem())
+            {
+                value = value.Replace("zł", "").TrimEnd();
+            }
+            
+            
 
             return value;
         }
