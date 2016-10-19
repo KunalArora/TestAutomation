@@ -222,6 +222,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 serial = SerialNumberBnn;
             }
+            else if (IsSwissSystem())
+            {
+                serial = SerialNumberBsw;
+            }
 
             SpecFlow.SetContext("SerialNumber", serial);
 

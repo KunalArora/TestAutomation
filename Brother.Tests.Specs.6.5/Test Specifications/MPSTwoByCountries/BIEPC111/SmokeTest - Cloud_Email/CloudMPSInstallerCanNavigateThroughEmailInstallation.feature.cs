@@ -119,7 +119,7 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Sweden", "Purchase & click inklusive service", "Betala per utskrift", "Cloud MPS Dealer", "Email", "36 månader", "Kvartalsvis i efterskott", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Netherlands", "Purchase + Click met Service", "Betalen naar verbruik", "Cloud MPS Dealer", "Email", "3 jaar", "Per kwartaal achteraf", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Ireland", "Purchase & Click with Service", "Pay As You Go", "Cloud MPS Dealer", "Email", "3 years", "Quarterly in Arrears", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Belgium", "Purchase & Click with Service", "Consommation réelle", "Cloud MPS Dealer", "Email", "3 ans", "Quarterly in Arrears", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Belgium", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Email", "3 jaar", "Quarterly in Arrears", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Austria", "Easy Print Pro & Service", "Pay As You Go", "Cloud MPS Dealer", "Email", "3 Jahre", "Halbjährlich", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Switzerland", "Purchase & Click with Service", "Pay As You Go", "Cloud MPS Dealer", "Email", "36", "Quarterly in Arrears", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Finland", "Purchase & Click with Service", "Maksu tulosteiden mukaan", "Cloud MPS Dealer", "Email", "3 vuotta", "Quarterly in Arrears", null)]
