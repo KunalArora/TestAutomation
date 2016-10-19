@@ -4,7 +4,7 @@ Feature: CMS website access
 
 @SMOKE
 Scenario Outline: Verify that a user is able to login to the CMS system	
-	Given That I navigate to "<Site Url>" in order to validate the CMS site
+	Given That I navigate to "<SiteUrl>" Brother SiteCore CMS site URL for "<Country>" to validate
 	And I enter an username containing "<UserName>"
 	And I enter password containing "<Password>"
 	And I press login button "<country>"
@@ -14,13 +14,13 @@ Scenario Outline: Verify that a user is able to login to the CMS system
 	
 Scenarios: 
 	
-	| country        | Site Url        | UserName   | Password  |
+	| Country        | SiteUrl         | UserName   | Password  |
 	| United Kingdom | /sitecore/login | Automation | Password1 |
 	#| United Kingdom | http://main.co.uk.cms.brotherqas.eu/sitecore/login | Automation | Password1 | 
 	
 @SMOKE
 Scenario Outline: Verify that a user is able to login to the CMS system	- France
-	Given That I navigate to "<Site Url>" in order to validate the CMS site
+	Given That I navigate to "<SiteUrl>" Brother SiteCore CMS site URL for "<Country>" to validate
 	And I enter an username containing "<UserName>"
 	And I enter password containing "<Password>"
 	And I press login button "<country>"
@@ -30,13 +30,13 @@ Scenario Outline: Verify that a user is able to login to the CMS system	- France
 
 Scenarios: 
 	
-	| country | Site Url        | UserName   | Password  |
+	| Country | SiteUrl         | UserName   | Password  |
 	| France  | /sitecore/login | Automation | Password1 |
 	#| France | http://main.fr.cms.brotherqas.eu/sitecore/login | Automation | Password1 |
 
 @SMOKE
 Scenario Outline: Verify that a user is able to login to the CMS system	- Italy
-	Given That I navigate to "<Site Url>" in order to validate the CMS site
+	Given That I navigate to "<SiteUrl>" Brother SiteCore CMS site URL for "<Country>" to validate
 	And I enter an username containing "<UserName>"
 	And I enter password containing "<Password>"
 	And I press login button "<country>"
@@ -46,7 +46,7 @@ Scenario Outline: Verify that a user is able to login to the CMS system	- Italy
 
 Scenarios: 
 	
-	| country | Site Url        | UserName   | Password  |
+	| Country | SiteUrl         | UserName   | Password  |
 	| Italy   | /sitecore/login | Automation | Password1 |
 	#| Italy | http://main.it.cms.brotherqas.eu/sitecore/login | Automation | Password1 |
 	

@@ -80,12 +80,14 @@ namespace Brother.Tests.Specs._80.BrotherMainSite.HomePageNavigation
             CurrentPage.As<LoginPage>().PopulateUserNameTextBox(username);
         }
 
-        [Given(@"That I navigate to ""(.*)"" in order to validate the CMS site")]
-        public void GivenThatINavigateToInOrderToValidateTheCmsSite(string url)
+        [Given(@"That I navigate to ""(.*)"" Brother SiteCore CMS site URL for ""(.*)"" to validate")]
+        public void GivenThatINavigateToBrotherSiteCoreCMSSiteURLForToValidate(string url, string country)
         {
+            Helper.SetCountry(country);
             CurrentPage = BasePage.LoadBrotherMainSiteLoginPage(CurrentDriver, url);
             CurrentPage.As<LoginPage>().GetLoginpage(url);
         }
+
         [Given(@"I navigate to ""(.*)"" and check page")]
         public void GivenINavigateToAndCheckPage(string website)
         {

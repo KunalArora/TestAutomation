@@ -67,7 +67,8 @@ namespace Brother.WebSites.Core.Pages.Base
         public static LoginPage LoadBrotherMainSiteLoginPage(IWebDriver driver, string baseUrl)
         {
             driver = SetDriver(driver);
-            NavigateToPageSitecore(driver, BaseUrl+baseUrl.TrimEnd(new char[] { '/' }));
+            var url = ProcessUrlLocale(BaseUrl);
+            NavigateToPageSitecore(driver, url + baseUrl.TrimEnd(new char[] { '/' }));
             return GetInstance<LoginPage>(driver, baseUrl, "");
         }
 
