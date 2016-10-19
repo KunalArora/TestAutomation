@@ -4,16 +4,6 @@ Feature: CloudMPSFinnishDealerCanOperateProposalOffers
 	As an MPS Dealer
 	I want to operate existing proposals
 
-Scenario Outline: Dealer can see proposal offers 
-	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
-	And I navigate to existing proposal screen
-	Then I can see the Existing Proposal table
-	And I can sign out of Brother Online
-
-	Scenarios: 
-	| Role             | Country |
-	| Cloud MPS Dealer | Finland  |
-	
 
 Scenario Outline: Dealer can edit an existing proposal offer
 	Given Dealer have created a Open proposal of "<ContractType>" and "<UsageType>"
@@ -24,17 +14,13 @@ Scenario Outline: Dealer can edit an existing proposal offer
 	And I go to "<TabName>" Tab in Proposal
 	And I edit "<TabName>" Tab in Proposal of "<ContractType>"
 	And I go to "Summary" Tab in Proposal
-	Then I can confirm "<TabName>" on Summary Tab in Proposal of "Purchase + Click with Service"
+	Then I can confirm "<TabName>" on Summary Tab in Proposal of "<ContractType>"
 	And I can sign out of Brother Online
 
 	Scenarios:
-	| ContractType                  | UsageType      | Role             | Country        | TabName             |
-	#| Lease & Click with Service    | Minimum Volume | Cloud MPS Dealer | United Kingdom | Description         |
-	#| Lease & Click with Service    | Minimum Volume | Cloud MPS Dealer | United Kingdom | CustomerInformation |
-	#| Lease & Click with Service    | Minimum Volume | Cloud MPS Dealer | United Kingdom | TermAndType         |
-	#| Lease & Click with Service    | Minimum Volume | Cloud MPS Dealer | United Kingdom | Products            |
-	#| Lease & Click with Service    | Minimum Volume | Cloud MPS Dealer | United Kingdom | ClickPrice          |
-	| Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Finland | TermAndType         |
+	| ContractType         | UsageType           | Role             | Country | TabName     |
+	| Click tarvikesopimus | Minimitulostusmäärä | Cloud MPS Dealer | Finland | TermAndType |
+	
 
 ##@ignore
 Scenario Outline: Dealer can edit products in an existing proposal offer
@@ -50,9 +36,9 @@ Scenario Outline: Dealer can edit products in an existing proposal offer
 	And I can sign out of Brother Online
 
 	Scenarios:
-	| ContractType                  | UsageType      | Role             | Country | TabName  | Action |
-	| Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Finland  | Products | Add    |
-	| Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Finland  | Products | Remove |
+	| ContractType         | UsageType           | Role             | Country | TabName  | Action |
+	| Click tarvikesopimus | Minimitulostusmäärä | Cloud MPS Dealer | Finland | Products | Add    |
+	| Click tarvikesopimus | Minimitulostusmäärä | Cloud MPS Dealer | Finland | Products | Remove |
 	
 
 Scenario Outline: Dealer can cancel deleting proposal offer
@@ -68,7 +54,7 @@ Scenario Outline: Dealer can cancel deleting proposal offer
 	| Cloud MPS Dealer | Finland  | Dismiss | AnyItem    |
 
 	
-
+@ignore
 Scenario Outline: Dealer can copy an existing proposal offer for all countries
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I have created a "<ContractType>" proposal "<Customer>" Customer detail with "<UsageType>" and "<Length>" and "<Billing>"
