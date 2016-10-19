@@ -1121,11 +1121,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterOptionCostPrice()
         {
-            if (IsSwedenSystem() || IsDenmarkSystem() || IsPolandSystem())
+            if (IsSwedenSystem() || IsDenmarkSystem())
             {
                 // do nothing
             }
-            else if (IsNorwaySystem())
+            else if (IsNorwaySystem() || IsPolandSystem())
             {
                 var optionText = GetValueFromCurrencyText(ModelSrpElement.Text);
                 ClearAndType(OptionCostPrice0Element(), optionText);
@@ -1177,8 +1177,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 value = value.Replace("zł", "").TrimEnd();
             }
-            
-            
 
             return value;
         }
