@@ -98,6 +98,29 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             return GetInstance<UserDetailsPage>(Driver); 
         }
 
+        public void EnterProductSerialCode(string serialCode)
+        {
+            IsProductSerialCodeTextBoxAvailable();
+            SerialNumberTextBox.SendKeys(serialCode);
+            TestCheck.AssertIsEqual(serialCode, SerialNumberTextBox.GetAttribute("value"), "Serial Code Text Box");
+            // store for validation later
+            Helper.CurrentDeviceSerialNumber = serialCode;
+            SerialNumberTextBox.SendKeys(Keys.Tab);
+            // As it takes a few seconds for the serial number to be recognised which populates
+            // the model number text field, we have to wait for this to occur otherwise
+            // the model number will show incorrectly.
+            //StoreModelNumber();
+        }
+
+        public void IsProductSerialCodeTextBoxAvailable()
+        {
+            if (SerialNumberTextBox == null)
+            {
+                throw new Exception("Unable to locate TextBox on page");
+            }
+            AssertElementPresent(SerialNumberTextBox, "Serial Code Text Box");
+        }
+
     }
 
     
