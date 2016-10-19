@@ -78,6 +78,23 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
        {
            CurrentPage.As<UserDetailsPage>().EnterEmailId(emailid);
        }
+       [Then(@"I enter ""(.*)""  and ""(.*)"" on  user details page")]
+       public void ThenIEnterAndOnUserDetailsPage(string firstname, string lastname)
+       {
+           CurrentPage.As<UserDetailsPage>().EnterNames(firstname, lastname);
+       }
+       [Then(@"I tick on terms and conditions checkbox")]
+       public void ThenITickOnTermsAndConditionsCheckbox()
+       {
+           //Thread.Sleep(TimeSpan.FromSeconds(3));
+           //var temp = CurrentPage.As<UserDetailsPage>().GetElementByCssSelector("#Terms");
+           CurrentPage.As<UserDetailsPage>().ClickAcceptCheckbox();
+       }
+       [Then(@"I can complete my product registration by clicking on complete registration button")]
+       public void ThenICanCompleteMyProductRegistrationByClickingOnCompleteRegistrationButton()
+       {
+           NextPage = CurrentPage.As<UserDetailsPage>().ClickCompleteRegistrationButton();
+       }
 
 
     }

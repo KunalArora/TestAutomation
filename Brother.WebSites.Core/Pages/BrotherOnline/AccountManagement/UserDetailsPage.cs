@@ -44,12 +44,39 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
         [FindsBy(How = How.Name, Using = "EmailAddress")]
         public IWebElement EmailIdInputField;
 
+        [FindsBy(How = How.Name, Using = "FirstName")]
+        public IWebElement FirstNameInputField;
+
+
+        [FindsBy(How = How.Name, Using = "Surname")]
+        public IWebElement LastNameInputField;
+
+        [FindsBy(How = How.XPath, Using = "html/body/div[2]/div/div[1]/section/form/div/div/div[2]/div/div")] 
+        public IWebElement AcceptCheckbox;
+
+        [FindsBy(How = How.Name, Using = "submit")]
+        public IWebElement CompleteRegistrationButton;
+        
         public void EnterEmailId(string emailid)
         {
             EmailIdInputField.SendKeys(emailid);
         }
 
-        
-        
+        public void EnterNames(string firstname, string lastname)
+        {
+            FirstNameInputField.SendKeys(firstname);
+            LastNameInputField.SendKeys(lastname);
+        }
+
+        public void ClickAcceptCheckbox()
+        {
+            AcceptCheckbox.Click();
+        }
+
+        public ConfirmationPage ClickCompleteRegistrationButton()
+        {
+            CompleteRegistrationButton.Click();
+            return GetInstance<ConfirmationPage>(Driver);
+        }
     }
 }
