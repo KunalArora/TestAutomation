@@ -40,8 +40,21 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
             CurrentPage = BasePage.LoadProductRegistrationPage(CurrentDriver, url);
         }
 
+        [Given(@"I have entered my product information")]
+        public void GivenIHaveEnteredMyProductInformation(Table table)
+        {
+            //dynamic form = table.CreateInstance<Table>();
+            var productCode = Helper.GetDeviceCodeSeed();
+            GivenIHaveEnteredMyProductSerialCode(productCode);
+        }
 
-        [Then(@"I should see the Header and the Footer appearing on the landing Page")]
+        [Given(@"I have entered my Product Serial Code ""(.*)""")]
+        public void GivenIHaveEnteredMyProductSerialCode(string productSerialCode)
+        {
+            CurrentPage.As<ProductRegistrationPage>().EnterProductSerialCode(productSerialCode);
+        }
+
+       [Then(@"I should see the Header and the Footer appearing on the landing Page")]
         public void ThenIShouldSeeTheHeaderAndTheFooterAppearingOnTheLandingPage()
         {
             CurrentPage.As<HomePage>().CheckForHeaderAndFooter();
