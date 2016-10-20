@@ -119,6 +119,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 reason = "Inny";
             }
+            else if (IsFinlandSystem())
+            {
+                reason = "Muu";
+            }
             
             return reason;
         }

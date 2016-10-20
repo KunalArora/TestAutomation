@@ -178,8 +178,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 path = BelgianPath();
 
             }
-            
-            
+            else if (IsFinlandSystem())
+            {
+                path = "file:///C:/DataTest/{0}-Sopimus.pdf";
+
+            }
 
             return path;
         }

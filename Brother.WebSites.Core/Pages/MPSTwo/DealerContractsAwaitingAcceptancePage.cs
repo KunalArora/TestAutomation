@@ -119,6 +119,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 path = "file:///C:/DataTest/{0}-Contract.pdf";
 
             }
+            else if (IsFinlandSystem())
+            {
+                path = "file:///C:/DataTest/{0}-Sopimus.pdf";
+
+            }
 
             
             return path;
@@ -212,10 +217,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsSummaryContractTypePresentInPdf()
         {
-            var contractType = "";
-
             if (IsBigAtSystem() || IsPolandSystem() || IsDenmarkSystem()) return;
-            contractType = IsItalySystem() ? "Programma \"Pagine+ Cloud\"" : SpecFlow.GetContext("SummaryContractType");
+            var contractType = IsItalySystem() ? "Programma \"Pagine+ Cloud\"" : SpecFlow.GetContext("SummaryContractType");
+
+            if (IsFinlandSystem())
+            {
+                contractType = contractType.Replace(" ", "-");
+            }
             TestCheck.AssertTextContains(contractType, ExtractTextFromPdf(DownloadedPdf()),
                 "Summary Contract Type is not available in the PDF");
         }
