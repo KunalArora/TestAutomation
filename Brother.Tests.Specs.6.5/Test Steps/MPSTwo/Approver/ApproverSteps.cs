@@ -31,7 +31,8 @@ namespace Brother.Tests.Specs.MPSTwo.Approver
                 || ContractType.Equals("Easy Print Pro & Service") || ContractType.Equals("Buy & Click")
                 || ContractType.Equals("Acquisto + Consumo con assistenza") || ContractType.Equals("Purchase & Click con Service")
                 || ContractType.Equals("Kjøp og klikk med service") || ContractType.Equals("Purchase & click inklusive service")
-                || ContractType.Equals("Purchase + Click met Service") || ContractType.Equals("Køb & Klik med service") || ContractType.Equals("Buy + Click")) 
+                || ContractType.Equals("Purchase + Click met Service") || ContractType.Equals("Køb & Klik med service") || ContractType.Equals("Buy + Click")
+                || ContractType.Equals("Click tarvikesopimus")) 
                 PurchaseAndClick = true;
             if (ContractType.Equals("Lease & Click with Service") || ContractType.Equals("Leasing & Service"))
                 LeaseAndClick = true;
@@ -39,7 +40,7 @@ namespace Brother.Tests.Specs.MPSTwo.Approver
                 UsageType.Equals("Volume minimo") || UsageType.Equals("Volúmen mínimo") || UsageType.Equals("Minimumvolume")
                 || UsageType.Equals("Minimum volum") || UsageType.Equals("Minimum volym") || UsageType.Equals("Minimumsvolumen")
                 || UsageType.Equals("Minimumsvolumen") || UsageType.Equals("Pakiet wydruków") || UsageType.Equals("Per kwartaal achteraf")
-                || UsageType.Equals("Volume minimum"))
+                || UsageType.Equals("Volume minimum") || UsageType.Equals("Minimitulostusmäärä"))
                 MinimumVolume = true;
             if (UsageType.Equals("Pay As You Go") || UsageType.Equals("Pago por Uso") || UsageType.Equals("Betale ved forbruk")
                 || UsageType.Equals("Betala per utskrift") || UsageType.Equals("Betalen naar verbruik") || UsageType.Equals("Bez pakietu wydruków")

@@ -509,7 +509,8 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
                 || type == "Purchase + Click met Service"
                 || type == "Køb & Klik med service" 
                 || type == "Buy + Click" 
-                || type == "Purchase & Click mit Service")
+                || type == "Purchase & Click mit Service"
+                || type == "Click tarvikesopimus")
             {
                 type = "Purchase & Click with Service";
             }

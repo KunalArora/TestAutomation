@@ -177,11 +177,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Belgian Dealer can resign rejected contract for other Countries")]
+        [NUnit.Framework.DescriptionAttribute("Dealer can resign rejected contract for other Countries")]
         [NUnit.Framework.TestCaseAttribute("Finland", "Cloud MPS Local Office Approver", "Click tarvikesopimus", "Minimitulostusmäärä", "3 vuotta", "Quarterly in Arrears", "Cloud MPS Dealer", null)]
-        public virtual void BelgianDealerCanResignRejectedContractForOtherCountries(string country, string role, string contractType, string usageType, string length, string billing, string role2, string[] exampleTags)
+        public virtual void DealerCanResignRejectedContractForOtherCountries(string country, string role, string contractType, string usageType, string length, string billing, string role2, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Belgian Dealer can resign rejected contract for other Countries", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer can resign rejected contract for other Countries", exampleTags);
 #line 74
 this.ScenarioSetup(scenarioInfo);
 #line 75
@@ -211,11 +211,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Belgian Local Office Approver can view opened offers for other Countries")]
+        [NUnit.Framework.DescriptionAttribute("Local Office Approver can view opened offers for other Countries")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Finland", null)]
-        public virtual void BelgianLocalOfficeApproverCanViewOpenedOffersForOtherCountries(string role, string country, string[] exampleTags)
+        public virtual void LocalOfficeApproverCanViewOpenedOffersForOtherCountries(string role, string country, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Belgian Local Office Approver can view opened offers for other Countries", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Local Office Approver can view opened offers for other Countries", exampleTags);
 #line 93
 this.ScenarioSetup(scenarioInfo);
 #line 94
@@ -233,15 +233,15 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Belgian Local Office Approver can view confirmed/rejected/signed contracts for ot" +
-            "her Countries")]
+        [NUnit.Framework.DescriptionAttribute("Local Office Approver can view confirmed/rejected/signed contracts for other Coun" +
+            "tries")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Finland", "Awating Acceptance", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Finland", "Rejected", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Finland", "Accepted", null)]
-        public virtual void BelgianLocalOfficeApproverCanViewConfirmedRejectedSignedContractsForOtherCountries(string role, string country, string acceptance, string[] exampleTags)
+        public virtual void LocalOfficeApproverCanViewConfirmedRejectedSignedContractsForOtherCountries(string role, string country, string acceptance, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Belgian Local Office Approver can view confirmed/rejected/signed contracts for ot" +
-                    "her Countries", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Local Office Approver can view confirmed/rejected/signed contracts for other Coun" +
+                    "tries", exampleTags);
 #line 105
 this.ScenarioSetup(scenarioInfo);
 #line 106

@@ -96,6 +96,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 SelectFromDropdown(DeclineReasonElement, "Inny");
             }
+            else if (IsFinlandSystem())
+            {
+               SelectFromDropdown(DeclineReasonElement, "Muu");
+            }
         }
 
         private string RejectionReason()

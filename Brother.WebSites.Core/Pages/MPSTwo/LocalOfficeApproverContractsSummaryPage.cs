@@ -269,6 +269,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 reason = BelgianLanguage();
             }
+            else if (IsFinlandSystem())
+            {
+                reason = "Muu";
+            }
             return reason;
         }
 

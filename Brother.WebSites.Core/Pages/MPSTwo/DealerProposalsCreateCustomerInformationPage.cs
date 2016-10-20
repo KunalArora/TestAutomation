@@ -262,7 +262,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void MultipleLanguageSelectorNotDisplayed()
         {
-            if (IsBelgiumSystem() || IsSwissSystem() || IsFinlandSystem()) return;
+            if (IsBelgiumSystem()) return;
             try
             {
                 TestCheck.AssertIsEqual(false, GetElementByCssSelector(AcceptancePanel, 5).Displayed,
@@ -288,7 +288,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             EnterInitialVat();
             MultipleLanguageSelectorNotDisplayed();
             //SelectRegionFromDropdown("Greater Manchester");
-            if (IsFinlandSystem() || IsBelgiumSystem() || IsSwissSystem())
+            if (IsBelgiumSystem())
             {
                 try
                 {
