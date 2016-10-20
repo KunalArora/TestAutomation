@@ -457,9 +457,8 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [When(@"I move to Click Price page")]
         public void WhenIMoveToClickPricePage()
         {
-            if (!((CurrentPage.As<DealerProposalsCreateProductsPage>().IsGermanSystem()
-                && CurrentPage.As<DealerProposalsCreateProductsPage>().GetContractType() == "Easy Print Pro & Service")
-                || CurrentPage.As<DealerProposalsCreateProductsPage>().IsPolandSystem()))
+            if (!(CurrentPage.As<DealerProposalsCreateProductsPage>().IsGermanSystem()
+                && CurrentPage.As<DealerProposalsCreateProductsPage>().GetContractType() == "Easy Print Pro & Service"))
             {
                 CurrentPage.As<DealerProposalsCreateProductsPage>().EnterModelUnitCost();
             }
@@ -481,9 +480,8 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         {
             CurrentPage.As<DealerProposalsCreateProductsPage>().ClickOnAPrinter(printer);
 
-            if (!((CurrentPage.As<DealerProposalsCreateProductsPage>().IsGermanSystem()
-                && CurrentPage.As<DealerProposalsCreateProductsPage>().GetContractType() == "Easy Print Pro & Service")
-                || CurrentPage.As<DealerProposalsCreateProductsPage>().IsPolandSystem()))
+            if (!(CurrentPage.As<DealerProposalsCreateProductsPage>().IsGermanSystem()
+                && CurrentPage.As<DealerProposalsCreateProductsPage>().GetContractType() == "Easy Print Pro & Service"))
             {
                 
                 CurrentPage.As<DealerProposalsCreateProductsPage>().EnterModelUnitCost();
