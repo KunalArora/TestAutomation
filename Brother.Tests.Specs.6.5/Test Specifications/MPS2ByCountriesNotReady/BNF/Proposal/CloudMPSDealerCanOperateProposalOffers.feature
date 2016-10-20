@@ -5,55 +5,7 @@ Feature: CloudMPSFinnishDealerCanOperateProposalOffers
 	I want to operate existing proposals
 
 
-Scenario Outline: Dealer can edit an existing proposal offer
-	Given Dealer have created a Open proposal of "<ContractType>" and "<UsageType>"
-	And I navigate to Dealer Dashboard page from Dealer Proposal page
-	#Given I sign into Cloud MPS as a "<Role>" from "<Country>"
-	And I navigate to existing proposal screen
-	When I can click edit button on proposal item of Exisiting Proposal table
-	And I go to "<TabName>" Tab in Proposal
-	And I edit "<TabName>" Tab in Proposal of "<ContractType>"
-	And I go to "Summary" Tab in Proposal
-	Then I can confirm "<TabName>" on Summary Tab in Proposal of "<ContractType>"
-	And I can sign out of Brother Online
 
-	Scenarios:
-	| ContractType         | UsageType           | Role             | Country | TabName     |
-	| Click tarvikesopimus | Minimitulostusmäärä | Cloud MPS Dealer | Finland | TermAndType |
-	
-
-##@ignore
-Scenario Outline: Dealer can edit products in an existing proposal offer
-	Given Dealer have created a Open proposal of "<ContractType>" and "<UsageType>"
-	And I navigate to Dealer Dashboard page from Dealer Proposal page
-	#Given I sign into Cloud MPS as a "<Role>" from "<Country>"
-	And I navigate to existing proposal screen
-	When I can click edit button on proposal item of Exisiting Proposal table
-	And I go to "Products" Tab in Proposal
-	And I edit Products Tab and "<Action>" in Proposal
-	And I go to "Summary" Tab in Proposal
-	Then I can confirm Products and "<Action>" on Summary Tab in Proposal
-	And I can sign out of Brother Online
-
-	Scenarios:
-	| ContractType         | UsageType           | Role             | Country | TabName  | Action |
-	| Click tarvikesopimus | Minimitulostusmäärä | Cloud MPS Dealer | Finland | Products | Add    |
-	| Click tarvikesopimus | Minimitulostusmäärä | Cloud MPS Dealer | Finland | Products | Remove |
-	
-
-Scenario Outline: Dealer can cancel deleting proposal offer
-	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
-	And I navigate to existing proposal screen
-	When I click the delete button against "<TargetItem>" on Existing Proposal table to be "<Confirm>"
-	And I click the "<Confirm>" button on Confirmation Dialog
-	Then I can see the deleted item still exists on the table
-	And I can sign out of Brother Online
-
-	Scenarios: 
-	| Role             | Country | Confirm | TargetItem |
-	| Cloud MPS Dealer | Finland  | Dismiss | AnyItem    |
-
-	
 @ignore
 Scenario Outline: Dealer can copy an existing proposal offer for all countries
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"

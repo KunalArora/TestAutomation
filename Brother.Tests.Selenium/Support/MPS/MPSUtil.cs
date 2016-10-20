@@ -1084,6 +1084,10 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 
         public static decimal GetValue(string money)
         {
+            if (money.Contains(" "))
+            {
+                money = money.Replace(" ", "");
+            }
             var currencyNumberFormatInfo = GetNumberFormatInfo(money);
 
             return decimal.Parse(money, NumberStyles.Currency, currencyNumberFormatInfo);
