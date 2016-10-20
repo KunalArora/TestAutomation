@@ -75,6 +75,8 @@ namespace Brother.Tests.Specs._80.TestSpecification.CMSSitecore.SiteAccess
         [NUnit.Framework.DescriptionAttribute("Verify that a user is able to login to the CMS system")]
         [NUnit.Framework.CategoryAttribute("SMOKE")]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "/sitecore/login", "Automation", "Password1", null)]
+        [NUnit.Framework.TestCaseAttribute("France", "/sitecore/login", "Automation", "Password1", null)]
+        [NUnit.Framework.TestCaseAttribute("Italy", "/sitecore/login", "Automation", "Password1", null)]
         public virtual void VerifyThatAUserIsAbleToLoginToTheCMSSystem(string country, string siteUrl, string userName, string password, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -99,72 +101,6 @@ this.ScenarioSetup(scenarioInfo);
 #line 12
  testRunner.And("I click on the Content Editor option \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 13
- testRunner.Then("I should be able to see the content editor page \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify that a user is able to login to the CMS system\t- France")]
-        [NUnit.Framework.CategoryAttribute("SMOKE")]
-        [NUnit.Framework.TestCaseAttribute("France", "/sitecore/login", "Automation", "Password1", null)]
-        public virtual void VerifyThatAUserIsAbleToLoginToTheCMSSystem_France(string country, string siteUrl, string userName, string password, string[] exampleTags)
-        {
-            string[] @__tags = new string[] {
-                    "SMOKE"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify that a user is able to login to the CMS system\t- France", @__tags);
-#line 22
-this.ScenarioSetup(scenarioInfo);
-#line 23
- testRunner.Given(string.Format("That I navigate to \"{0}\" Brother SiteCore CMS site URL for \"{1}\" to validate", siteUrl, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 24
- testRunner.And(string.Format("I enter an username containing \"{0}\"", userName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 25
- testRunner.And(string.Format("I enter password containing \"{0}\"", password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 26
- testRunner.And("I press login button \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 27
- testRunner.Then("I should be able to see the experience editor page \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 28
- testRunner.And("I click on the Content Editor option \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 29
- testRunner.Then("I should be able to see the content editor page \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify that a user is able to login to the CMS system\t- Italy")]
-        [NUnit.Framework.CategoryAttribute("SMOKE")]
-        [NUnit.Framework.TestCaseAttribute("Italy", "/sitecore/login", "Automation", "Password1", null)]
-        public virtual void VerifyThatAUserIsAbleToLoginToTheCMSSystem_Italy(string country, string siteUrl, string userName, string password, string[] exampleTags)
-        {
-            string[] @__tags = new string[] {
-                    "SMOKE"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify that a user is able to login to the CMS system\t- Italy", @__tags);
-#line 38
-this.ScenarioSetup(scenarioInfo);
-#line 39
- testRunner.Given(string.Format("That I navigate to \"{0}\" Brother SiteCore CMS site URL for \"{1}\" to validate", siteUrl, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 40
- testRunner.And(string.Format("I enter an username containing \"{0}\"", userName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 41
- testRunner.And(string.Format("I enter password containing \"{0}\"", password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 42
- testRunner.And("I press login button \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 43
- testRunner.Then("I should be able to see the experience editor page \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 44
- testRunner.And("I click on the Content Editor option \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 45
  testRunner.Then("I should be able to see the content editor page \"<country>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
