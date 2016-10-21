@@ -147,7 +147,7 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Summary Page Validation For Minimum Volume Purchase and Click proposal Upfront Pa" +
             "yment")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Norway", "Purchase & Click with Service", "Minimum Volume", "3 years", "Quarterly in Arrears", "Tick", "MFC-L8650CDW", "Full", "Pay upfront", "800", "800", "Pay upfront", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Norway", "Kjøp og klikk med service", "Minimum volum", "36", "Quarterly in Arrears", "Tick", "MFC-L8650CDW", "Full", "På forskudd", "800", "800", "På forskudd", null)]
         public virtual void SummaryPageValidationForMinimumVolumePurchaseAndClickProposalUpfrontPayment(string role, string country, string contractType, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string basis1, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Summary Page Validation For Minimum Volume Purchase and Click proposal Upfront Pa" +
@@ -219,7 +219,7 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Summary Page Validation For Pay As you Go Purchase and Click proposal")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Norway", "Purchase & Click with Service", "Create new customer", "Pay As You Go", "4 years", "Quarterly in Arrears", "Tick", "MFC-8510DN", "Full", "800", "Pay upfront", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Norway", "Kjøp og klikk med service", "Create new customer", "Betale ved forbruk", "48", "Quarterly in Arrears", "Tick", "MFC-8510DN", "Full", "800", "På forskudd", null)]
         public virtual void SummaryPageValidationForPayAsYouGoPurchaseAndClickProposal(string role, string country, string contractType, string createOption, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string clickVolume, string basis1, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Summary Page Validation For Pay As you Go Purchase and Click proposal", exampleTags);

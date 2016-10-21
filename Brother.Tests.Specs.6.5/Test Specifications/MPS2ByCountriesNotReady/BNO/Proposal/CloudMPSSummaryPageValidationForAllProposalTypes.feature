@@ -39,8 +39,8 @@ Scenario Outline: Summary Page Validation For Minimum Volume Purchase and Click 
 	
 
 	Scenarios: 
-	| Role             | Country | ContractType                  | UsageType      | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod           | ClickVolume | ColourVolume | Basis1                  | Basis2      |
-	| Cloud MPS Dealer | Norway  | Kjøp og klikk med service | Minimum volum | 36  | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | I klikk | 800         | 800          | I klikk | På forskudd|
+	| Role             | Country | ContractType              | UsageType     | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod | ClickVolume | ColourVolume | Basis1  | Basis2      |
+	| Cloud MPS Dealer | Norway  | Kjøp og klikk med service | Minimum volum | 36       | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | I klikk       | 800         | 800          | I klikk | På forskudd |
 	
 
 Scenario Outline: Summary Page Validation For Minimum Volume Purchase and Click proposal Upfront Payment
@@ -76,8 +76,8 @@ Scenario Outline: Summary Page Validation For Minimum Volume Purchase and Click 
 	
 
 	Scenarios: 
-	| Role             | Country | ContractType                  | UsageType      | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod | ClickVolume | ColourVolume | Basis1      |
-	| Cloud MPS Dealer | Norway  | Purchase & Click with Service | Minimum Volume | 3 years  | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Pay upfront   | 800         | 800          | Pay upfront |
+	| Role             | Country | ContractType              | UsageType     | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod | ClickVolume | ColourVolume | Basis1      |
+	| Cloud MPS Dealer | Norway  | Kjøp og klikk med service | Minimum volum | 36       | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | På forskudd   | 800         | 800          | På forskudd |
 	
 
 
@@ -110,6 +110,6 @@ Scenario Outline: Summary Page Validation For Pay As you Go Purchase and Click p
 	
 
 	Scenarios: 
-	| Role             | Country | ContractType                  | CreateOption        | UsageType     | Contract | Billing              | PriceHardware | Printer    | DeviceScreen | ClickVolume | Basis1      |
-	| Cloud MPS Dealer | Norway  | Purchase & Click with Service | Create new customer | Pay As You Go | 4 years  | Quarterly in Arrears | Tick          | MFC-8510DN | Full         | 800         | Pay upfront |
+	| Role             | Country | ContractType              | CreateOption        | UsageType          | Contract | Billing              | PriceHardware | Printer    | DeviceScreen | ClickVolume | Basis1      |
+	| Cloud MPS Dealer | Norway  | Kjøp og klikk med service | Create new customer | Betale ved forbruk | 48       | Quarterly in Arrears | Tick          | MFC-8510DN | Full         | 800         | På forskudd |
 	
