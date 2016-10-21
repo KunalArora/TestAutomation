@@ -756,11 +756,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Test Specifications\MPS2ByCountriesNotReady\BNO\Proposal\CloudMPSClickPriceDeepDive.feature.cs">
-      <DependentUpon>CloudMPSClickPriceDeepDive.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Test Specifications\MPS2ByCountriesNotReady\BNO\Proposal\CloudMPSDealerCanCreateProposalFromProposalListPage.feature.cs">
       <DependentUpon>CloudMPSDealerCanCreateProposalFromProposalListPage.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -1855,10 +1850,6 @@
     <None Include="Test Specifications\MPS2ByCountriesNotReady\BNO\Proposal\CloudMPSApproverDecisionForOtherCountries.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSApproverDecisionForOtherCountries.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPS2ByCountriesNotReady\BNO\Proposal\CloudMPSClickPriceDeepDive.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSClickPriceDeepDive.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPS2ByCountriesNotReady\BNO\Proposal\CloudMPSDealerCanCreateProposalFromProposalListPage.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

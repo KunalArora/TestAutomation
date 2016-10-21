@@ -21,6 +21,6 @@ Scenario Outline: Existing Belgian Customer can be used to create a new contract
 	
 Scenarios:
 
-	| Role                            | Country | ContractType                  | UsageType      | Role1            | Method | Type | ExistingCustomer                      | Length  | Billing              | Role2              |
-	| Cloud MPS Local Office Approver | Norway  | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  | lashonda20160322123145@mailinator.com | 3 years | Quarterly in Arrears | Cloud MPS Customer |
+	| Role                            | Country | ContractType              | UsageType     | Role1            | Method | Type | ExistingCustomer                    | Length | Billing              | Role2              |
+	| Cloud MPS Local Office Approver | Norway  | Kjøp og klikk med service | Minimum volum | Cloud MPS Dealer | Cloud  | Web  | Belkis20161011002004@mailinator.com | 36     | Quarterly in Arrears | Cloud MPS Customer |
 	
