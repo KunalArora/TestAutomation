@@ -751,21 +751,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Test Specifications\MPS2ByCountriesNotReady\BNO\Installation\CloudMPSCancelInstallationRequest.feature.cs">
-      <DependentUpon>CloudMPSCancelInstallationRequest.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Test Specifications\MPS2ByCountriesNotReady\BNO\Installation\CloudMPSFullCloudInstallation.feature.cs">
-      <DependentUpon>CloudMPSFullCloudInstallation.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Test Specifications\MPS2ByCountriesNotReady\BNO\Installation\CloudMPSInstallerCanNavigateThroughEmailInstallation.feature.cs">
-      <DependentUpon>CloudMPSInstallerCanNavigateThroughEmailInstallation.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Test Specifications\MPS2ByCountriesNotReady\BNO\Proposal\CloudMPSApproverDecisionForOtherCountries.feature.cs">
       <DependentUpon>CloudMPSApproverDecisionForOtherCountries.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -803,11 +788,6 @@
     </Compile>
     <Compile Include="Test Specifications\MPS2ByCountriesNotReady\BNO\Proposal\CloudMPSSummaryPageValidationForAllProposalTypes.feature.cs">
       <DependentUpon>CloudMPSSummaryPageValidationForAllProposalTypes.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Test Specifications\MPS2ByCountriesNotReady\BNO\SendForApproval\CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature.cs">
-      <DependentUpon>CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -1872,18 +1852,6 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSExistingCustomerCanViewPrintCount.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPS2ByCountriesNotReady\BNO\Installation\CloudMPSCancelInstallationRequest.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSCancelInstallationRequest.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPS2ByCountriesNotReady\BNO\Installation\CloudMPSFullCloudInstallation.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSFullCloudInstallation.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPS2ByCountriesNotReady\BNO\Installation\CloudMPSInstallerCanNavigateThroughEmailInstallation.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSInstallerCanNavigateThroughEmailInstallation.feature.cs</LastGenOutput>
-    </None>
     <None Include="Test Specifications\MPS2ByCountriesNotReady\BNO\Proposal\CloudMPSApproverDecisionForOtherCountries.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSApproverDecisionForOtherCountries.feature.cs</LastGenOutput>
@@ -1915,10 +1883,6 @@
     <None Include="Test Specifications\MPS2ByCountriesNotReady\BNO\Proposal\CloudMPSSummaryPageValidationForAllProposalTypes.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSSummaryPageValidationForAllProposalTypes.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPS2ByCountriesNotReady\BNO\SendForApproval\CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSDealerCanSubmitAllTypesofProposalsToRelevantApprovers.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwoByCountries\BIEPC112\BNS\Contract\CloudMPSDealerCanCopyADeclineProposal.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
