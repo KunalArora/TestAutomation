@@ -69,13 +69,11 @@ namespace Brother.Online.TestSpecs._80.TestSpecification
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verify the Header and Footer of the landing page")]
-        [NUnit.Framework.CategoryAttribute("TEST")]
         [NUnit.Framework.CategoryAttribute("SMOKE")]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", null)]
         public virtual void VerifyTheHeaderAndFooterOfTheLandingPage(string country, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "TEST",
                     "SMOKE"};
             if ((exampleTags != null))
             {
@@ -95,13 +93,11 @@ testRunner.Then("I should see the Header and the Footer appearing on the landing
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("New Customer wants to register product with their serial numbers and purchase dat" +
             "e")]
-        [NUnit.Framework.CategoryAttribute("TEST")]
         [NUnit.Framework.CategoryAttribute("SMOKE")]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/eubol78/serial-number", "U1T004759", "12/12/2013", "testemailidinputfield@mailinator.com", "Test", "Test", null)]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/eubol78/serial-number", "U1T004758", "12/12/2013", "testemailidinputfield@mailinator.com", "Test", "Test", null)]
         public virtual void NewCustomerWantsToRegisterProductWithTheirSerialNumbersAndPurchaseDate(string country, string siteUrl, string serialNumber, string purchaseDate, string email, string firstName, string lastName, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "TEST",
                     "SMOKE"};
             if ((exampleTags != null))
             {
@@ -141,13 +137,11 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("New Customer wants to register product with their serial numbers and purchase dat" +
             "e in the file")]
-        [NUnit.Framework.CategoryAttribute("TEST")]
         [NUnit.Framework.CategoryAttribute("SMOKE")]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/eubol78/serial-number", "U1T004759", "12/12/2013", "testemailidinputfield@mailinator.com", "Test", "Test", null)]
-        public virtual void NewCustomerWantsToRegisterProductWithTheirSerialNumbersAndPurchaseDateInTheFile(string country, string siteUrl, string serialNumber, string purchaseDate, string email, string firstName, string lastName, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/eubol78/serial-number", "12/12/2013", "testemailidinputfield@mailinator.com", "Test", "Test", null)]
+        public virtual void NewCustomerWantsToRegisterProductWithTheirSerialNumbersAndPurchaseDateInTheFile(string country, string siteUrl, string purchaseDate, string email, string firstName, string lastName, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "TEST",
                     "SMOKE"};
             if ((exampleTags != null))
             {
@@ -155,36 +149,29 @@ this.ScenarioSetup(scenarioInfo);
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("New Customer wants to register product with their serial numbers and purchase dat" +
                     "e in the file", @__tags);
-#line 36
+#line 35
 this.ScenarioSetup(scenarioInfo);
-#line 37
+#line 36
  testRunner.Given(string.Format("I navigate to \"{0}\" Brother Online landing page", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 38
+#line 37
  testRunner.And(string.Format("I browse to the \"{0}\" product registration page", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
-                        "field",
-                        "value"});
-            table1.AddRow(new string[] {
-                        "SerialNumber",
-                        "- FromFile"});
+#line 38
+ testRunner.And("I have entered my product SerialNumber reading from the environmental variable", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 39
- testRunner.And("I have entered my product information", ((string)(null)), table1, "And ");
-#line 43
  testRunner.And("clicked on Find Product Button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 44
+#line 40
  testRunner.And(string.Format("I have entered \"{0}\"", purchaseDate), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 45
+#line 41
  testRunner.And("I entered apply button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 46
+#line 42
  testRunner.And("I click on continue button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 47
+#line 43
  testRunner.Then(string.Format("I can register my \"{0}\" on  user details page", email), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 48
+#line 44
  testRunner.And(string.Format("I enter \"{0}\"  and \"{1}\" on  user details page", firstName, lastName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 49
+#line 45
  testRunner.And("I tick on terms and conditions checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 50
+#line 46
  testRunner.Then("I can complete my product registration by clicking on complete registration butto" +
                     "n", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
