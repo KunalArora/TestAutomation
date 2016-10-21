@@ -100,6 +100,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                SelectFromDropdown(DeclineReasonElement, "Muu");
             }
+            else if (IsNorwaySystem())
+            {
+                SelectFromDropdown(DeclineReasonElement, "Annet");
+            }
         }
 
         private string RejectionReason()

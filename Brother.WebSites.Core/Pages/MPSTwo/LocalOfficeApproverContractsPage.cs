@@ -183,7 +183,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 path = "file:///C:/DataTest/{0}-Sopimus.pdf";
 
             }
+            else if (IsNorwaySystem())
+            {
+                path = "file:///C:/DataTest/{0}-Avtale.pdf";
 
+            }
             return path;
         }
 

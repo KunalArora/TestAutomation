@@ -273,6 +273,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 reason = "Muu";
             }
+            else if (IsNorwaySystem())
+            {
+                reason = "Annet";
+            }
+
+            
             return reason;
         }
 
