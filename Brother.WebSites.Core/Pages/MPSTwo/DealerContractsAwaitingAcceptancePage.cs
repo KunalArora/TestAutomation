@@ -124,7 +124,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 path = "file:///C:/DataTest/{0}-Sopimus.pdf";
 
             }
+            else if (IsNorwaySystem())
+            {
+                path = "file:///C:/DataTest/{0}-Avtale.pdf";
 
+            }
             
             return path;
         }
@@ -223,6 +227,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if (IsFinlandSystem())
             {
                 contractType = contractType.Replace(" ", "-");
+            }
+
+            if (IsNorwaySystem())
+            {
+                contractType = contractType.Substring(0, 13).TrimEnd();
             }
             TestCheck.AssertTextContains(contractType, ExtractTextFromPdf(DownloadedPdf()),
                 "Summary Contract Type is not available in the PDF");

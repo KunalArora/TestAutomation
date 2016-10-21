@@ -158,7 +158,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     break;
                 case "Click tarvikesopimus":
                     selectable = "3";
-                    break;   
+                    break;
+                case "Kjøp og klikk med service":
+                    selectable = "3";
+                    break;  
+                    
 
                     
                     
