@@ -117,6 +117,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                         || option.Equals("Betaling bij aanvang van het contract") 
                         || option.Equals("Płatność z góry")
                         || option.Equals("Maksu etukäteen")
+                        || option.Equals("På forskudd")
                     
                     )
                 {
@@ -135,6 +136,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                             || option.Equals("Wliczyć w cenę za wydruk strony")
                             || option.Equals("Über den Seitenpreis zahlen")
                             || option.Equals("Sisältyy klikkihintaan")
+                            || option.Equals("I klikk")
                     )
                 {
                     InClickPriceElement().Click();
