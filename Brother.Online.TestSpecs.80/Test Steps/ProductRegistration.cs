@@ -40,10 +40,9 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
             CurrentPage = BasePage.LoadProductRegistrationPage(CurrentDriver, url);
         }
 
-        [Given(@"I have entered my product information")]
-        public void GivenIHaveEnteredMyProductInformation(Table table)
+        [Given(@"I have entered my product SerialNumber reading from the environmental variable")]
+        public void GivenIHaveEnteredMyProductSerialNumberReadingFromTheEnvironmentalVariable()
         {
-            //dynamic form = table.CreateInstance<Table>();
             var productCode = Helper.GetDeviceCodeSeed();
             GivenIHaveEnteredMyProductSerialCode(productCode);
         }

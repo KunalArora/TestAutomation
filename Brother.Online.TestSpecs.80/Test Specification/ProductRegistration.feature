@@ -3,7 +3,7 @@ Feature: ProductRegistration
 	In order to register a product
 	End user will login to existing account or create a new account
 
-@TEST @SMOKE
+@SMOKE
 Scenario Outline: Verify the Header and Footer of the landing page
 #Given I navigate to "<Country>" in order to validate the landing page
 Given I navigate to "<Country>" Brother Online landing page
@@ -12,7 +12,7 @@ Scenarios:
 | Country        |
 | United Kingdom |
 
-@TEST @SMOKE
+@SMOKE
 Scenario Outline: New Customer wants to register product with their serial numbers and purchase date
 	Given I navigate to "<Country>" Brother Online landing page
 	And I browse to the "<Site Url>" product registration page
@@ -26,20 +26,16 @@ Scenario Outline: New Customer wants to register product with their serial numbe
 	And I tick on terms and conditions checkbox
 	Then I can complete my product registration by clicking on complete registration button
 
-
 Scenarios: 
 | Country        | Site Url                  | SerialNumber | PurchaseDate | Email                                | FirstName | LastName |
-| United Kingdom | /qa/eubol78/serial-number | U1T004759    | 12/12/2013   | testemailidinputfield@mailinator.com | Test      | Test     |
+| United Kingdom | /qa/eubol78/serial-number | U1T004758    | 12/12/2013   | testemailidinputfield@mailinator.com | Test      | Test     |
 
 
-@TEST @SMOKE
+@SMOKE
 Scenario Outline: New Customer wants to register product with their serial numbers and purchase date in the file
 	Given I navigate to "<Country>" Brother Online landing page
 	And I browse to the "<Site Url>" product registration page
-	And I have entered my product information
-	| field            | value           |
-	| SerialNumber     | - FromFile      |
-
+	And I have entered my product SerialNumber reading from the environmental variable
 	And clicked on Find Product Button
 	And I have entered "<PurchaseDate>" 
 	And I entered apply button
@@ -49,9 +45,6 @@ Scenario Outline: New Customer wants to register product with their serial numbe
 	And I tick on terms and conditions checkbox
 	Then I can complete my product registration by clicking on complete registration button
 
-
 Scenarios: 
-| Country        | Site Url                  | SerialNumber | PurchaseDate | Email                                | FirstName | LastName |
-| United Kingdom | /qa/eubol78/serial-number | U1T004759    | 12/12/2013   | testemailidinputfield@mailinator.com | Test      | Test     |
-
-
+| Country        | Site Url                  | PurchaseDate | Email                                | FirstName | LastName |
+| United Kingdom | /qa/eubol78/serial-number | 12/12/2013   | testemailidinputfield@mailinator.com | Test      | Test     |

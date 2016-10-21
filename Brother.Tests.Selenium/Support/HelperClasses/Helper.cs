@@ -352,7 +352,8 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             var deviceSeed = Environment.GetEnvironmentVariable(GetRunTimeEnv().Equals(RunTimeUat) ? "AutoTest_DeviceSeed_QAS" : "AutoTest_DeviceSeed_DV2", EnvironmentVariableTarget.Machine);
             TestCheck.AssertIsNotNull(deviceSeed, "Device Code Seed");
             UpdateSerialNumber(IncrementValue(deviceSeed));
-            return deviceSeed;
+            //return deviceSeed;
+            return Environment.GetEnvironmentVariable(GetRunTimeEnv().Equals(RunTimeUat) ? "AutoTest_DeviceSeed_QAS" : "AutoTest_DeviceSeed_DV2", EnvironmentVariableTarget.Machine);
         }
 
         private static string ReadItemFromFile(string tagName, string attribute)
