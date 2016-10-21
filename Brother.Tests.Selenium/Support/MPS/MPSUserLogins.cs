@@ -27,6 +27,7 @@ namespace Brother.Tests.Selenium.Lib.Support
         private const string Dutch = @"online.nl";
         private const string Switzerland = @"online.ch";
         private const string Finland = @"online.fi";
+        private const string Norway = @"online.no";
         private const string existingSerialNumber = @"A1T010001";
         private const string existingSerialNumberBIG = @"A1T010002";
         private const string existingSerialNumberAUT = @"A1T010003";
@@ -177,6 +178,10 @@ namespace Brother.Tests.Selenium.Lib.Support
             else if (currentUrl.Contains(Finland))
             {
                 username = MPSQAS.Default.QASFICustomer;
+            }
+            else if (currentUrl.Contains(Norway))
+            {
+                username = MPSQAS.Default.QASNOCustomer;
             }
             return username;
         }

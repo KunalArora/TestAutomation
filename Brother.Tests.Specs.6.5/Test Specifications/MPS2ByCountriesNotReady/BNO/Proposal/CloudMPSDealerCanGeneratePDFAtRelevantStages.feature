@@ -27,9 +27,9 @@ Scenario Outline: Dealer Can Generate PDF Purchase and Click Minimum Summary Pag
 	
 
 	Scenarios: 
-	| Role             | Country | ContractType                  | UsageType      | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod           | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | Norway  | Purchase & Click with Service | Minimum Volume | 3 years  | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Included in Click Price | 2000        | 2000         |
-
+	| Role             | Country | ContractType              | UsageType     | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod | ClickVolume | ColourVolume |
+	| Cloud MPS Dealer | Norway  | Kjøp og klikk med service | Minimum volum | 36       | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | I klikk       | 2000        | 2000         |
+	
 
 Scenario Outline: Dealer Can Generate PDF for Purchase and Click in Awaiting Approval Status for other countries
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
@@ -43,6 +43,6 @@ Scenario Outline: Dealer Can Generate PDF for Purchase and Click in Awaiting App
 	
 	
 	Scenarios: 
-	| Role             | Country | Role2                           | ContractType | UsageType                                 | Length | Billing                |
-	| Cloud MPS Dealer | Norway  | Cloud MPS Local Office Approver | Buy & Click  | Engagement sur un minimum volume de pages | 3 ans  | Trimestrale anticipata |
+	| Role             | Country | Role2                           | ContractType              | UsageType     | Length | Billing              |
+	| Cloud MPS Dealer | Norway  | Cloud MPS Local Office Approver | Kjøp og klikk med service | Minimum volum | 36     | Quarterly in Arrears |
 	

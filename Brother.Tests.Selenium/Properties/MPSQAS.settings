@@ -80,5 +80,8 @@
     <Setting Name="QASFICustomer" Type="System.String" Scope="User">
       <Value Profile="(Default)">Brady20161010005323@mailinator.com</Value>
     </Setting>
+    <Setting Name="QASNOCustomer" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Belkis20161011002004@mailinator.com</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

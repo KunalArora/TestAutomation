@@ -334,5 +334,17 @@ namespace Brother.Tests.Selenium.Lib.Properties {
                 this["QASFICustomer"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Belkis20161011002004@mailinator.com")]
+        public string QASNOCustomer {
+            get {
+                return ((string)(this["QASNOCustomer"]));
+            }
+            set {
+                this["QASNOCustomer"] = value;
+            }
+        }
     }
 }

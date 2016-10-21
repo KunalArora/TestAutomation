@@ -13,8 +13,8 @@ Scenario Outline: Local Office Approver can download Contract PDFs on Awaiting A
 	And I sign out of Cloud MPS
 
 	Scenarios: 
-	| Role                            | Country     |
-	| Cloud MPS Local Office Approver | Norway |
+	| Role                            | Country |
+	| Cloud MPS Local Office Approver | Norway  |
 	
 
 Scenario Outline: Local Office Approver can download Contract PDFs on Rejected page
@@ -25,8 +25,8 @@ Scenario Outline: Local Office Approver can download Contract PDFs on Rejected p
 
 
 	Scenarios: 
-	| Role                            | Country     |
-	| Cloud MPS Local Office Approver | Norway |
+	| Role                            | Country |
+	| Cloud MPS Local Office Approver | Norway  |
 	
 
 Scenario Outline: Dealer can download Contract PDFs on Approved proposal page
@@ -36,8 +36,8 @@ Scenario Outline: Dealer can download Contract PDFs on Approved proposal page
 	And I sign out of Cloud MPS
 
 	Scenarios: 
-	| Role             | Country     |
-	| Cloud MPS Dealer | Norway |
+	| Role             | Country |
+	| Cloud MPS Dealer | Norway  |
 	
 	
 Scenario Outline: Dealer can download Contract PDFs on Awaiting Acceptance page
@@ -48,8 +48,8 @@ Scenario Outline: Dealer can download Contract PDFs on Awaiting Acceptance page
 	And I sign out of Cloud MPS
 
 	Scenarios: 
-	| Role             | Country     |
-	| Cloud MPS Dealer | Norway |
+	| Role             | Country |
+	| Cloud MPS Dealer | Norway  |
 	
 	
 
@@ -61,5 +61,6 @@ Scenario Outline: Dealer can download Contract PDFs on Rejected page
 
 
 	Scenarios: 
-	| Role             | Country     |
-	| Cloud MPS Dealer | Norway |
+	| Role             | Country |
+	| Cloud MPS Dealer | Norway  |
+	

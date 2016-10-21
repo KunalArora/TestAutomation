@@ -15,6 +15,6 @@ Scenario Outline: Other Dealers can delete an open Purchase and Click proposal
 
 Scenarios:
 
-	| Role             | Country | Role2                           | ContractType | UsageType                                 | Length | Billing                |
-	| Cloud MPS Dealer | Norway  | Cloud MPS Local Office Approver | Buy & Click  | Engagement sur un minimum volume de pages | 3 ans  | Trimestrale anticipata |
+	| Role             | Country | Role2                           | ContractType                    | UsageType                 | Length        | Billing |
+	| Cloud MPS Dealer | Norway  | Cloud MPS Local Office Approver | Cloud MPS Local Office Approver | Kjøp og klikk med service | Minimum volum | 36      |
 	
