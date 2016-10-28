@@ -93,6 +93,7 @@
     <Compile Include="Pages\BrotherOnline\AccountManagement\BusinessDetailsPage.cs" />
     <Compile Include="Pages\BrotherOnline\AccountManagement\CloseAccountPage.cs" />
     <Compile Include="Pages\BrotherOnline\AccountManagement\ConfirmationPage.cs" />
+    <Compile Include="Pages\BrotherOnline\AccountManagement\ExistingUser.cs" />
     <Compile Include="Pages\BrotherOnline\AccountManagement\LinkedinPage.cs" />
     <Compile Include="Pages\BrotherOnline\AccountManagement\MyAddressPage.cs" />
     <Compile Include="Pages\BrotherOnline\AccountManagement\ExtendedWarrantyPage.cs" />
@@ -107,6 +108,7 @@
     <Compile Include="Pages\BrotherOnline\AccountManagement\PaymentMethods\MyPaymentMethodsPage.cs" />
     <Compile Include="Pages\BrotherOnline\AccountManagement\ProductRegistrationPage.cs" />
     <Compile Include="Pages\BrotherOnline\AccountManagement\RegisterDevicePage.cs" />
+    <Compile Include="Pages\BrotherOnline\AccountManagement\SignInPage.cs" />
     <Compile Include="Pages\BrotherOnline\AccountManagement\UserDetailsPage.cs" />
     <Compile Include="Pages\BrotherOnline\AccountManagement\WelcomeBackPage.cs" />
     <Compile Include="Pages\BrotherOnline\Account\HomePage.cs" />

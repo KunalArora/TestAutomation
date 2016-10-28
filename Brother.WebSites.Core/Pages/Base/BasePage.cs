@@ -134,8 +134,25 @@ namespace Brother.WebSites.Core.Pages.Base
             {
                 NavigateToPage(driver, BaseUrl + baseUrl.TrimEnd(new char[] { '/' }));
             }
-
             return GetInstance<ProductRegistrationPage>(driver, baseUrl, "");
+        }
+
+
+        public static SignInPage LoadSignPage(IWebDriver driver, string baseUrl = null)
+        {
+            driver = SetDriver(driver);
+            //NavigateToPage(driver, BaseUrl + baseUrl.TrimEnd(new char[] { '/' }));
+            if (baseUrl == null)
+            {
+                NavigateToPage(driver, BaseUrl.TrimEnd(new char[] { '/' }));
+            }
+            else
+            {
+                NavigateToPage(driver, BaseUrl + baseUrl.TrimEnd(new char[] { '/' }));
+            }
+            
+
+            return GetInstance<SignInPage>(driver, baseUrl, "");
         }
 
         public static UserDetailsPage LoadUserDetailsPage(IWebDriver driver, string baseUrl)
