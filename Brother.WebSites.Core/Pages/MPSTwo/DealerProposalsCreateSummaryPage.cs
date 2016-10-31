@@ -234,16 +234,78 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement SummaryContractTermElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_ContractType")]
         public IWebElement SummaryContractTypeElement;
-        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_MonoClickRate_0")]
-        public IWebElement SummaryMonoClickRateElement;
-        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_ColourClickRate_0")]
-        public IWebElement SummaryColourClickRateElement;
+        
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_ConsumablesTotalPriceNet_0")]
         public IWebElement SummaryProposalConsumableTotalNetElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_DeviceTotalPriceGross_0")]
         public IWebElement SummaryCustomerDeviceTotalGrossElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_HardwareUnitCost_0")]
+        public IWebElement SummaryModelUnitCostElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_HardwareMarginPercentage_0")]
+        public IWebElement SummaryMarginElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_HardwareUnitPrice_0")]
+        public IWebElement SummaryUnitPriceElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_HardwareLineCost_0")]
+        public IWebElement SummaryTotalCostElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_HardwareLinePrice_0")]
+        public IWebElement SummaryTotalPriceElement;
+
+        //Accessories
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_RepeaterAccessories_0_AccessoryUnitCost_0")]
+        public IWebElement SummaryAccessoryUnitCostElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_RepeaterAccessories_0_AccessoryMarginPercentage_0")]
+        public IWebElement SummaryAccessoryMarginElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_RepeaterAccessories_0_AccessoryUnitPrice_0")]
+        public IWebElement SummaryAccessoryUnitPriceElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_RepeaterAccessories_0_AccessoryLineCost_0")]
+        public IWebElement SummaryAccessoryTotalCostElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_RepeaterAccessories_0_AccessoryLinePrice_0")]
+        public IWebElement SummaryAccessoryTotalPriceElement;
+
+        //Delivery
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_DeliveryLinePrice_0")]
+        public IWebElement SummaryDeliveryTotalPriceElement;
+        
+        //Installation
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_RepeaterInstallationPacks_0_InstallationPackLinePrice_0")]
+        public IWebElement SummaryInstallationTotalPriceElement;
+        
+        //Service Pack
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_RepeaterServicePacks_0_ServicePackLinePrice_0")]
+        public IWebElement SummaryServicePackTotalPriceElement;
+        
+        //Device Total
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_DeviceTotalPriceNet_0")]
+        public IWebElement SummaryDeviceTotalPriceElement;
+        
+        //Volume
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_MonoVolume_0")]
+        public IWebElement SummaryMonthlyMonoVolumeElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_MonoLineVolume_0")]
+        public IWebElement SummaryLineMonoVolumeElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_MonoLinePrice_0")]
+        public IWebElement SummaryMonoLinePriceElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_ColourVolume_0")]
+        public IWebElement SummaryMonthlyColourVolumeElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_ColourLineVolume_0")]
+        public IWebElement SummaryLineColourVolumeElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_ColourLinePrice_0")]
+        public IWebElement SummaryColourLinePriceElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_ConsumablesTotalVolumeNet_0")]
+        public IWebElement SummaryTotalVolumeElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_ConsumablesTotalPriceNet_0")]
+        public IWebElement SummaryConsumablesTotalPriceNetElement;
         
         
+        
+
+        
+        
+        //Click rate
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_MonoClickRate_0")]
+        public IWebElement SummaryMonoClickRateElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_ColourClickRate_0")]
+        public IWebElement SummaryColourClickRateElement;
         
 
         public void DownloadDealersProposalDocument()
@@ -578,6 +640,257 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     ModelBillingBasisElement.Text,
                     "Model Billing Basis is not matching");
             }
+        }
+
+
+        public void IsHardwareUnitPriceCorrectlyCalculated()
+        {
+            var displayedPrice = SummaryUnitPriceElement.Text;
+            var cost = SummaryModelUnitCostElement.Text;
+            var margin = MarginDecimal(SummaryMarginElement.Text);
+
+            var calculatedPrice = CalculatePriceFromCostUsingMargin(cost, margin);
+
+            TestCheck.AssertTextContains(displayedPrice, calculatedPrice);
+        }
+
+        public void IsAccessoryUnitPriceCorrectlyCalculated()
+        {
+            var displayedPrice = SummaryAccessoryUnitPriceElement.Text;
+            var cost = SummaryAccessoryUnitCostElement.Text;
+            var margin = MarginDecimal(SummaryAccessoryMarginElement.Text);
+
+            var calculatedPrice = CalculatePriceFromCostUsingMargin(cost, margin);
+
+            TestCheck.AssertTextContains(displayedPrice, calculatedPrice);
+        }
+
+        private decimal MarginDecimal(string element)
+        {
+            var splitElement = new string[] {};
+
+            if (element.Contains(","))
+            {
+                splitElement = element.Split(',');
+            }
+            else if (element.Contains("."))
+            {
+                splitElement = element.Split('.');
+            }
+
+            var margDecimal = decimal.Parse(splitElement[0]);
+
+            return margDecimal/100;
+        }
+
+        private string CalculatePriceFromCostUsingMargin(string cost, decimal margin)
+        {
+            var number = MpsUtil.GetValue(cost);
+            var costDecimal = (number/(1 - margin));
+            costDecimal = RoundUpValue(costDecimal, 2);
+
+            return costDecimal.ToString();
+        }
+
+        public void IsTotalVolumeCorrectlyAddedUp()
+        {
+            var totalVolume = RemoveCommaFromCurrency(SummaryTotalVolumeElement.Text);
+            var monoVolume = RemoveCommaFromCurrency(SummaryLineMonoVolumeElement.Text);
+            var colourVolume = RemoveCommaFromCurrency(SummaryLineColourVolumeElement.Text);
+
+            var mDecimal = decimal.Parse(monoVolume);
+            var cDecimal = decimal.Parse(colourVolume);
+
+            var totalVol = (mDecimal + cDecimal).ToString();
+
+            TestCheck.AssertTextContains(totalVolume, totalVol);
+        }
+
+        public void IsTotalLinePriceCorrectlyCalculated()
+        {
+            var displayedTotal = RemoveCommaFromCurrency(SummaryConsumablesTotalPriceNetElement.Text);
+
+            var monoTotalPrice = MpsUtil.GetValue(SummaryMonoLinePriceElement.Text);
+            var colourTotalPrice = MpsUtil.GetValue(SummaryColourLinePriceElement.Text);
+
+            var calcTotal = monoTotalPrice + colourTotalPrice;
+
+            calcTotal = RoundUpValue(calcTotal, 2);
+
+            TestCheck.AssertTextContains(displayedTotal, calcTotal.ToString());
+
+        }
+
+        public void IsTotalMonoPriceCorrectlyCalculated(string qty)
+        {
+            var displayedPrice = RemoveCommaFromCurrency(SummaryMonoLinePriceElement.Text);
+            var monoClick = MpsUtil.GetValue(SummaryMonoClickRateElement.Text);
+            var totalVol = CalculateTotalMonoVolume(qty);
+
+            var calcTotal = monoClick*totalVol;
+            calcTotal = RoundUpValue(calcTotal, 2);
+
+
+            TestCheck.AssertTextContains(displayedPrice, calcTotal.ToString());
+        }
+
+        public void IsTotalColourPriceCorrectlyCalculated(string qty)
+        {
+            var displayedPrice = RemoveCommaFromCurrency(SummaryColourLinePriceElement.Text);
+            var monoClick = MpsUtil.GetValue(SummaryColourClickRateElement.Text);
+            var totalVol = CalculateTotalMonoVolume(qty);
+
+            var calcTotal = monoClick * totalVol;
+            calcTotal = RoundUpValue(calcTotal, 2);
+
+
+            TestCheck.AssertTextContains(displayedPrice, calcTotal.ToString());
+        }
+
+        public void IsMonoVolumeTotalCorrect(string qty)
+        {
+            var calcVol = CalculateTotalMonoVolume(qty).ToString();
+            var displayedTotalVolume = RemoveCommaFromCurrency(SummaryLineMonoVolumeElement.Text);
+
+            TestCheck.AssertTextContains(displayedTotalVolume, calcVol);
+        }
+
+        public void IsColourVolumeTotalCorrect(string qty)
+        {
+            var calcVol = CalculateTotalColourVolume(qty).ToString();
+            var displayedTotalVolume = RemoveCommaFromCurrency(SummaryLineColourVolumeElement.Text);
+
+            TestCheck.AssertTextContains(displayedTotalVolume, calcVol);
+        }
+
+        public decimal CalculateTotalMonoVolume(string qty)
+        {
+            var mono = decimal.Parse(SummaryMonthlyMonoVolumeElement.Text);
+           
+           var qtyDec = decimal.Parse(qty);
+
+            var monoTotal = mono * qtyDec * 12 * 3;
+
+            return monoTotal;
+
+        }
+
+        public decimal CalculateTotalColourVolume(string qty)
+        {
+            var colour = decimal.Parse(SummaryMonthlyColourVolumeElement.Text);
+            
+            var qtyDec = decimal.Parse(qty);
+
+            var colourTotal = colour * qtyDec * 12 * 3;
+           
+            return colourTotal;
+
+        }
+
+        private decimal RoundUpValue(decimal value, int places)
+        {
+            return Math.Round(value, places); 
+        }
+
+        private string CalculateTotalAmount(string qty, string unitCost)
+        {
+            var number = MpsUtil.GetValue(unitCost);
+            var quantity = decimal.Parse(qty);
+
+            var totalCost = number*quantity;
+            totalCost = RoundUpValue(totalCost, 2);
+
+
+            return totalCost.ToString();
+
+        }
+
+        private string RemoveCommaFromCurrency(string displayed)
+        {
+            var displayedValue = displayed;
+            if (displayedValue.Contains(","))
+            {
+                displayedValue = displayedValue.Replace(",", "");
+            }
+
+            return displayedValue;
+        }
+
+        private decimal DeviceTotalOnSummaryPage()
+        {
+            var hardwareTotal = MpsUtil.GetValue(SummaryTotalPriceElement.Text);
+            var trayTotal = MpsUtil.GetValue(SummaryAccessoryTotalPriceElement.Text);
+            var deliveryTotal = MpsUtil.GetValue(SummaryDeliveryTotalPriceElement.Text);
+            var installTotal = MpsUtil.GetValue(SummaryInstallationTotalPriceElement.Text);
+            var servicePackTotal = MpsUtil.GetValue(SummaryServicePackTotalPriceElement.Text);
+
+            var grandTotal = hardwareTotal + trayTotal + deliveryTotal + installTotal + servicePackTotal;
+
+            return RoundUpValue(grandTotal, 2);
+
+        }
+
+        public void IsDeviceNetTotalAddedUpCorrectly()
+        {
+            var displayedTotal = RemoveCommaFromCurrency(SummaryDeviceTotalPriceElement.Text);
+            var calculatedTotal = DeviceTotalOnSummaryPage().ToString();
+
+            TestCheck.AssertTextContains(displayedTotal, calculatedTotal);
+        }
+
+        public void IsSummaryTotalPriceCorrectlyCalculate(string qty)
+        {
+            var displayedPrice = RemoveCommaFromCurrency(SummaryTotalPriceElement.Text);
+            
+            var cost = SummaryUnitPriceElement.Text;
+            var calculatedPrice = CalculateTotalAmount(qty, cost);
+
+            TestCheck.AssertTextContains(displayedPrice, calculatedPrice);
+
+        }
+
+        public void IsSummaryTotalCostCorrectlyCalculate(string qty)
+        {
+            var displayedCost = RemoveCommaFromCurrency(SummaryTotalCostElement.Text);
+
+            var cost = SummaryModelUnitCostElement.Text;
+            var calculatedPrice = CalculateTotalAmount(qty, cost);
+
+            TestCheck.AssertTextContains(displayedCost, calculatedPrice);
+
+        }
+
+        public void IsSummaryAccessoryTotalPriceCorrectlyCalculate(string qty)
+        {
+            var displayedPrice = RemoveCommaFromCurrency(SummaryAccessoryTotalPriceElement.Text);
+
+            var cost = SummaryAccessoryUnitPriceElement.Text;
+            var calculatedPrice = CalculateTotalAmount(qty, cost);
+
+            TestCheck.AssertTextContains(displayedPrice, calculatedPrice);
+
+        }
+
+        public void IsSummaryAccessoryTotalCostCorrectlyCalculate(string qty)
+        {
+            var displayedCost = RemoveCommaFromCurrency(SummaryAccessoryTotalCostElement.Text);
+
+            var cost = SummaryAccessoryUnitCostElement.Text;
+            var calculatedPrice = CalculateTotalAmount(qty, cost);
+
+            TestCheck.AssertTextContains(displayedCost, calculatedPrice);
+
+        }
+
+
+        public string CalculateCostFromPriceUsingMargin(string price, decimal margin)
+        {
+            decimal number = MpsUtil.GetValue(price); ;
+            var priceDecimal = ((1 - margin)*number);
+            priceDecimal = Math.Round(priceDecimal, 2);
+
+            return priceDecimal.ToString();
+           
         }
 
         public void VerifyThatCorrectAccessoryBillingBasisIsDisplayed(string basis)

@@ -479,7 +479,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         public void WhenEnterAQuantityOfForAccessoryFor(string quantity, string printer)
         {
             CurrentPage.As<DealerProposalsCreateProductsPage>().ClickOnAPrinter(printer);
-
+            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterProductQuantity(quantity);
             if (!(CurrentPage.As<DealerProposalsCreateProductsPage>().IsGermanSystem()
                 && CurrentPage.As<DealerProposalsCreateProductsPage>().GetContractType() == "Easy Print Pro & Service"))
             {
