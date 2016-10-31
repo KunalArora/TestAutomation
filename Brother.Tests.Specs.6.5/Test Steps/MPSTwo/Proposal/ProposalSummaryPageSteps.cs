@@ -19,11 +19,91 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<DealerProposalsCreateSummaryPage>().VerifyThatCorrectAccessoryBillingBasisIsDisplayed(billing);
         }
 
+        [Then(@"hardware unit price is correctly calculated")]
+        public void ThenHardwareUnitPriceIsCorrectlyCalculated()
+        {
+            CurrentPage.As<DealerProposalsCreateSummaryPage>().IsHardwareUnitPriceCorrectlyCalculated();
+        }
+
+        [Then(@"hardware total cost is correctly calculated for ""(.*)""")]
+        public void ThenHardwareTotalCostIsCorrectlyCalculatedFor(string qty)
+        {
+            CurrentPage.As<DealerProposalsCreateSummaryPage>().IsSummaryTotalCostCorrectlyCalculate(qty);
+        }
+
+        [Then(@"hardware total price is correctly calculated for ""(.*)""")]
+        public void ThenHardwareTotalPriceIsCorrectlyCalculatedFor(string qty)
+        {
+            CurrentPage.As<DealerProposalsCreateSummaryPage>().IsSummaryTotalPriceCorrectlyCalculate(qty);
+        }
+
+        [Then(@"accessory unit price is correctly calculated")]
+        public void ThenAccessoryUnitPriceIsCorrectlyCalculated()
+        {
+            CurrentPage.As<DealerProposalsCreateSummaryPage>().IsAccessoryUnitPriceCorrectlyCalculated();
+        }
+
+        [Then(@"accessory total cost is correctly calculated for ""(.*)""")]
+        public void ThenAccessoryTotalCostIsCorrectlyCalculatedFor(string qty)
+        {
+            CurrentPage.As<DealerProposalsCreateSummaryPage>().IsSummaryAccessoryTotalCostCorrectlyCalculate(qty);
+        }
+
+        [Then(@"device total prices are correctly added up")]
+        public void ThenDeviceTotalPricesAreCorrectlyAddedUp()
+        {
+            CurrentPage.As<DealerProposalsCreateSummaryPage>().IsDeviceNetTotalAddedUpCorrectly();
+        }
+
+        [Then(@"total mono volume is correctly displayed for ""(.*)""")]
+        public void ThenTotalMonoVolumeIsCorrectlyDisplayedFor(string qty)
+        {
+            CurrentPage.As<DealerProposalsCreateSummaryPage>().IsMonoVolumeTotalCorrect(qty);
+        }
+
+        [Then(@"total colour volume is correctly displayed for ""(.*)""")]
+        public void ThenTotalColourVolumeIsCorrectlyDisplayedFor(string qty)
+        {
+            CurrentPage.As<DealerProposalsCreateSummaryPage>().IsColourVolumeTotalCorrect(qty);
+        }
+
+        [Then(@"total mono line price is correctly calculated for ""(.*)""")]
+        public void ThenTotalMonoLinePriceIsCorrectlyCalculatedFor(string qty)
+        {
+            CurrentPage.As<DealerProposalsCreateSummaryPage>().IsTotalMonoPriceCorrectlyCalculated(qty);
+        }
+
+        [Then(@"total colour line price is correctly calculated for ""(.*)""")]
+        public void ThenTotalColourLinePriceIsCorrectlyCalculatedFor(string qty)
+        {
+            CurrentPage.As<DealerProposalsCreateSummaryPage>().IsTotalColourPriceCorrectlyCalculated(qty);
+        }
+        
+        [Then(@"total volume correctly added up")]
+        public void ThenTotalVolumeCorrectlyAddedUp()
+        {
+            CurrentPage.As<DealerProposalsCreateSummaryPage>().IsTotalVolumeCorrectlyAddedUp();
+        }
+
+        [Then(@"total price correctly added up")]
+        public void ThenTotalPriceCorrectlyAddedUp()
+        {
+            CurrentPage.As<DealerProposalsCreateSummaryPage>().IsTotalLinePriceCorrectlyCalculated();
+        }
+        
+        [Then(@"accessory total price is correctly calculated for ""(.*)""")]
+        public void ThenAccessoryTotalPriceIsCorrectlyCalculatedFor(string qty)
+        {
+            CurrentPage.As<DealerProposalsCreateSummaryPage>().IsSummaryAccessoryTotalPriceCorrectlyCalculate(qty); 
+        }
+
+
         [Then(@"the billing basis for Installation is ""(.*)""")]
         public void ThenTheBillingBasisForInstallationIs(string billing)
         {
             CurrentPage.As<DealerProposalsCreateSummaryPage>().VerifyThatCorrectInstallationBillingBasisIsDisplayed(billing);
         }
+
 
         [Then(@"the billing basis for Service Pack is ""(.*)""")]
         public void ThenTheBillingBasisForServicePackIs(string billing)
