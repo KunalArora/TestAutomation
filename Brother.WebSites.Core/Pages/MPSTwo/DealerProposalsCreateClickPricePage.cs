@@ -579,8 +579,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public DealerProposalsCreateSummaryPage CalculateEnteredClickPriceForMonoAndColourAndProceed(string volume, string colour)
         {
             //            MoveToClickPriceScreen();
-            EnterMonoVolumeQuantity(volume);
             EnterColourVolume(colour, "0");
+            EnterMonoVolumeQuantity(volume);
             //WebDriver.Wait(DurationType.Second, 5);
             VerifyClickPriceValueIsDisplayed();
             SpecFlow.SetContext("ClickPriceMonoValue", ClickPriceValue().First().Text);
