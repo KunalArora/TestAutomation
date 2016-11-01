@@ -15,8 +15,8 @@ Scenario Outline: Dealer Can Generate PDF Purchase and Click Minimum Summary Pag
 	And I display "<Printer>" device screen
 	And "<DeviceScreen>" device screen is displayed
 	And I accept the default values of the device
-	And Service Pack payment method is displayed
-	And I choose to pay Service Packs "<PaymentMethod>"
+	##And Service Pack payment method is displayed
+	##And I choose to pay Service Packs "<PaymentMethod>"
 	#And I enter click price volume of "<ClickVolume>" and "<ColourVolume>"
 	And I type click price volume of "<ClickVolume>" and "<ColourVolume>"
 	Then I can generate customer PDF for the proposal
@@ -30,6 +30,6 @@ Scenario Outline: Dealer Can Generate PDF Purchase and Click Minimum Summary Pag
 	Scenarios: 
 	| Role             | Country     | ContractType                 | UsageType      | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod               | ClickVolume | ColourVolume |
 	| Cloud MPS Dealer | Switzerland | Purchase & Click mit Service | Pay As You Go  | 36       | Quartalsweise        | Tick          | MFC-L8650CDW | Full         | Über den Seitenpreis zahlen | 2000        | 2000         |
-	| Cloud MPS Dealer | Switzerland | Purchase & Click mit Service | Mindestvolumen | 36       | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Über den Seitenpreis zahlen | 2000        | 2000         |
+	##| Cloud MPS Dealer | Switzerland | Purchase & Click mit Service | Mindestvolumen | 36       | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Über den Seitenpreis zahlen | 2000        | 2000         |
 	
 	

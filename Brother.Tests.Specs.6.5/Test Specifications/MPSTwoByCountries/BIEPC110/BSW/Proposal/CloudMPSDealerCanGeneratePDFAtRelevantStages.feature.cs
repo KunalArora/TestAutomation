@@ -74,7 +74,6 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BSW.
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Dealer Can Generate PDF Purchase and Click Minimum Summary Page")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Switzerland", "Purchase & Click mit Service", "Pay As You Go", "36", "Quartalsweise", "Tick", "MFC-L8650CDW", "Full", "Über den Seitenpreis zahlen", "2000", "2000", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Switzerland", "Purchase & Click mit Service", "Mindestvolumen", "36", "Quarterly in Arrears", "Tick", "MFC-L8650CDW", "Full", "Über den Seitenpreis zahlen", "2000", "2000", null)]
         public virtual void DealerCanGeneratePDFPurchaseAndClickMinimumSummaryPage(string role, string country, string contractType, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer Can Generate PDF Purchase and Click Minimum Summary Page", exampleTags);
@@ -97,10 +96,6 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.And(string.Format("\"{0}\" device screen is displayed", deviceScreen), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 17
  testRunner.And("I accept the default values of the device", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 18
- testRunner.And("Service Pack payment method is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 19
- testRunner.And(string.Format("I choose to pay Service Packs \"{0}\"", paymentMethod), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 21
  testRunner.And(string.Format("I type click price volume of \"{0}\" and \"{1}\"", clickVolume, colourVolume), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 22
