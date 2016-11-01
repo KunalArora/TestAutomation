@@ -34,8 +34,8 @@ namespace Brother.Tests.Selenium.Lib.Support
         static readonly string _ipAddress = SeleniumGlobal.Default.DriverIPAddress;
         private const string Message = "Please find attached the latest Automation Test Report which was generated on {0}. You can open the attachment using any browser.";
         private const string Subject = "Automation Test Report";
-        //private const string To = "sayo.afolabi@brother.co.uk;benjamin.bayfield@brother.co.uk;takanobu.suzuki@brother.co.uk;Takatoshi.Ono@brother.co.uk;Tim.Peel@brother.co.uk;Mohammed.Laies@brother.co.uk";
-        private const string To = "sayo.afolabi@brother.co.uk;sayo_folabi@hotmail.com";
+        private const string To = "sayo.afolabi@brother.co.uk;Takatoshi.Ono@brother.co.uk";
+        //private const string To = "sayo.afolabi@brother.co.uk";
 
 
         static TestController()

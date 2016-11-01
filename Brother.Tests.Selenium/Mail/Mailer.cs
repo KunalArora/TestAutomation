@@ -18,8 +18,11 @@ namespace Brother.Tests.Selenium.Lib.Mail
         private const string NewReportName = @"TestReport_{0}.html";
 
         const string ReportPath = DefaultLogFolder + "\\" + ReportName;
-        const string Email = "bieautomation@gmail.com";
-        const string Password = "P@$$w0rd123";
+        //const string Email = "bieautomation@gmail.com";
+        //const string Password = "P@$$w0rd123";
+
+        const string Email = "sayo.afolabi@brother.co.uk";
+        
 
         static Attachment _attachment;
         static readonly MailMessage Mail = new MailMessage();
@@ -27,7 +30,7 @@ namespace Brother.Tests.Selenium.Lib.Mail
 
         public static void SendEmail(string address, string subject, string message)
         {
-            var loginInfo = new NetworkCredential(Email, Password);
+           // var loginInfo = new NetworkCredential(Email, Password);
             var smtpClient = new SmtpClient("smtp.gmail.com", 587);
             var reportPath = SpecFlow.GetContext("ReportPath");
 
@@ -46,7 +49,7 @@ namespace Brother.Tests.Selenium.Lib.Mail
 
             smtpClient.EnableSsl = true;
             smtpClient.UseDefaultCredentials = false;
-            smtpClient.Credentials = loginInfo;
+           // smtpClient.Credentials = loginInfo;
             smtpClient.Timeout = 10000;
             smtpClient.Send(Mail);
         }
@@ -59,8 +62,9 @@ namespace Brother.Tests.Selenium.Lib.Mail
 
             try
             {
-                var loginInfo = new NetworkCredential(Email, Password);
-                var smtpClient = new SmtpClient("smtp.gmail.com", 587);
+                //var loginInfo = new NetworkCredential(Email, Password);
+                //var smtpClient = new SmtpClient("smtp.gmail.com", 587);
+                var smtpClient = new SmtpClient("eusmtp.eu.brothergroup.net", 25);
                 //var reportPath = SpecFlow.GetContext("ReportPath");
                 _attachment = new Attachment(ReportPath);
 
@@ -70,9 +74,9 @@ namespace Brother.Tests.Selenium.Lib.Mail
                 Mail.IsBodyHtml = true;
                 Mail.Attachments.Add(_attachment);
 
-                smtpClient.EnableSsl = true;
+                smtpClient.EnableSsl = false;
                 smtpClient.UseDefaultCredentials = false;
-                smtpClient.Credentials = loginInfo;
+                //smtpClient.Credentials = loginInfo;
                 smtpClient.Timeout = 10000;
 
            
