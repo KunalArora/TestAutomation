@@ -149,3 +149,50 @@ Scenarios:
 	#| Cloud MPS Local Office Approver | Switzerland | Purchase & Click with Service | Mindestvolumen                            | Cloud MPS Dealer | Cloud  | BOR  | 3 Jahre  | Quarterly in Arrears | Deutsch  |
 	#| Cloud MPS Local Office Approver | Switzerland | Purchase & Click with Service | Engagement sur un minimum volume de pages | Cloud MPS Dealer | Cloud  | Web  | 4 ans    | Quarterly in Arrears | Français |
 	#
+
+
+
+Scenario Outline: Multiple Installation
+	Given "<Country>" Dealer have created "<ContractType>" contract with "<UsageType>" and "<Length>" and "<Billing>" and "<ServicePack>" and "<Installation>" and "<Delivery>" and "<Device1>" and "<Device2>"
+	And I sign into Cloud MPS as a "<Role>" from "<Country>"
+	And the contract created above is approved
+	And I sign back into Cloud MPS as a "<Role1>" from "<Country>"
+	#And I generate installation request for the contract with "<Method>" communication and "<Type>" installation
+	And I generate installation request for the contract with "<Method>" communication
+	And I extract the installer url from Installation Request
+	When I navigate to the installer page
+	And I enter the contract reference number 
+	And I enter serial numbers "<SerialNumber>" and "<SerialNumber1>" and "<SerialNumber2>" and "<SerialNumber3>"
+	And I enter the device IP address
+	##Then I can connect device "<Device1>" with serials "<SerialNumber>" "<SerialNumber1>" and "<Device2>" with serials "<SerialNumber2>" and "<SerialNumber3>" to Brother environment
+	Then I can connect the device to Brother environment
+	And I can complete device installation
+	And I can sign out of Brother Online
+	And I navigate to the Invoice tool homepage
+	And I select "<Country>" of interest
+	##And I enter mono and colour print count
+	And I enter "<Mono>" mono and "<Colour>" colour print count
+	And I generate invoices for the contract above
+	And I download customer invoices pdf
+
+	
+Scenarios:
+
+	| Role                            | Country        | ContractType                       | UsageType                                      | Role1            | Method | Length     | Billing                        | ServicePack | Installation | Delivery | Device1      | Device2     | SerialNumber | SerialNumber1 | SerialNumber2 | SerialNumber3 | Mono | Colour |
+	| Cloud MPS Local Office Approver | France         | Buy & Click                        | Paiement selon la consommation réelle de pages | Cloud MPS Dealer | Email  | 3 ans      | Trimestriellement à terme échu | Pay upfront | Brother      | Yes      | MFC-L8650CDW | MFC-L5750DW | A1T010197    | A1T010198     | A1T010199     | A1T010200     | 5000 | 5000   |
+	| Cloud MPS Local Office Approver | Spain          | Purchase & Click con Service       | Pago por Uso                                   | Cloud MPS Dealer | Email  | 3 años     | Por trimestres vencidos        | Pay upfront | Brother      | Yes      | MFC-L8650CDW | MFC-L5750DW | A1T010205    | A1T010206     | A1T010207     | A1T010208     | 5000 | 5000   |
+	| Cloud MPS Local Office Approver | Denmark        | Purchase & Click with Service      | Pay As You Go                                  | Cloud MPS Dealer | Email  | 3 år       | Quarterly in Arrears           | Pay upfront | Brother      | Yes      | MFC-L8650CDW | HL-L5200DW  | A1T010209    | A1T010210     | A1T010211     | A1T010212     | 5000 | 5000   |
+	| Cloud MPS Local Office Approver | Sweden         | Purchase & click inklusive service | Betala per utskrift                            | Cloud MPS Dealer | Email  | 36 månader | Kvartalsvis i efterskott       | Pay upfront | Brother      | Yes      | MFC-L8650CDW | HL-L5100DN  | A1T010213    | A1T010214     | A1T010215     | A1T010216     | 5000 | 5000   |
+	| Cloud MPS Local Office Approver | Netherlands    | Purchase + Click met Service       | Betalen naar verbruik                          | Cloud MPS Dealer | Email  | 3 jaar     | Per kwartaal achteraf          | Pay upfront | Brother      | Yes      | MFC-L8650CDW | MFC-L5750DW | A1T010217    | A1T010218     | A1T010219     | A1T010220     | 5000 | 5000   |
+	| Cloud MPS Local Office Approver | Ireland        | Purchase & Click with Service      | Pay As You Go                                  | Cloud MPS Dealer | Email  | 3 years    | Quarterly in Arrears           | Pay upfront | Brother      | Yes      | MFC-L8650CDW | MFC-L5750DW | A1T010225    | A1T010226     | A1T010227     | A1T010228     | 5000 | 5000   |
+	| Cloud MPS Local Office Approver | Poland         | Buy + Click                        | Bez pakietu wydruków                           | Cloud MPS Dealer | Email  | 3 lata     | Quarterly in Arrears           | Pay upfront | Brother      | Yes      | MFC-L8650CDW | MFC-L5750DW | A1T010229    | A1T010230     | A1T010231     | A1T010232     | 5000 | 5000   |
+	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service      | Pay As You Go                                  | Cloud MPS Dealer | Email  | 3 years    | Quarterly in Arrears           | Pay upfront | Brother      | Yes      | MFC-L8650CDW | MFC-L5750DW | A1T010233    | A1T010234     | A1T010235     | A1T010236     | 5000 | 5000   |
+	| Cloud MPS Local Office Approver | Belgium        | Purchase & Click with Service      | Consommation réelle                            | Cloud MPS Dealer | Email  | 3 ans      | Quarterly in Arrears           | Pay upfront | Brother      | Yes      | MFC-L8650CDW | MFC-L5750DW | A1T010241    | A1T010242     | A1T010243     | A1T010244     | 5000 | 5000   |
+	| Cloud MPS Local Office Approver | Germany        | Easy Print Pro & Service           | Mindestvolumen                                 | Cloud MPS Dealer | Email  | 3 Jahre    | Halbjährlich                   | Pay upfront | Brother      | Yes      | MFC-L8650CDW | MFC-L5750DW | A1T010249    | A1T010250     | A1T010251     | A1T010252     | 5000 | 5000   |
+	| Cloud MPS Local Office Approver | Austria        | Easy Print Pro & Service           | Pay As You Go                                  | Cloud MPS Dealer | Email  | 3 Jahre    | Halbjährlich                   | Pay upfront | Brother      | Yes      | MFC-L8650CDW | MFC-L5750DW | A1T010253    | A1T010254     | A1T010255     | A1T010256     | 5000 | 5000   |
+	| Cloud MPS Local Office Approver | Switzerland    | Purchase & Click with Service      | Pay As You Go                                  | Cloud MPS Dealer | Email  | 36         | Quartalsweise	               | Pay upfront | Brother      | Yes      | MFC-L8650CDW | HL-L5200DW  | A1T010245    | A1T010246     | A1T010247     | A1T010248     | 5000 | 5000   |
+	| Cloud MPS Local Office Approver | Finland        | Purchase & Click with Service      | Maksu tulosteiden mukaan                       | Cloud MPS Dealer | Email  | 3 vuotta   | Quarterly in Arrears           | Pay upfront | Brother      | Yes      | MFC-L8650CDW | MFC-8950DW  | A1T010237    | A1T010238     | A1T010239     | A1T010240     | 5000 | 5000   |
+	| Cloud MPS Local Office Approver | Norway         | Kjøp og klikk med service          | Betale ved forbruk                             | Cloud MPS Dealer | Email  | 36         | Quarterly in Arrears           | Pay upfront | Brother      | Yes      | MFC-L8650CDW | DCP-L5500DN | A1T010221    | A1T010222     | A1T010223     | A1T010224     | 5000 | 5000   |
+	| Cloud MPS Local Office Approver | Italy          | Acquisto + Consumo con assistenza  | Volume minimo                                  | Cloud MPS Dealer | Email  | 36         | Trimestrale anticipata         | Pay upfront | Brother      | Yes      | MFC-L8650CDW | MFC-L5750DW | A1T010201    | A1T010202     | A1T010203     | A1T010204     | 5000 | 5000   |
+	
+
