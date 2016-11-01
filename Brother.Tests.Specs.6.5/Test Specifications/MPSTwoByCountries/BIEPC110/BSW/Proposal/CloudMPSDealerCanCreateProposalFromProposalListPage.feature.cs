@@ -100,8 +100,6 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.And("I move to Click Price page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 18
  testRunner.And("Service Pack payment method is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 19
- testRunner.And(string.Format("I choose to pay Service Packs \"{0}\"", paymentMethod), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 20
  testRunner.And(string.Format("I enter click price volume of \"{0}\" and \"{1}\"", clickVolume, colourVolume), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 21
@@ -111,7 +109,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 23
  testRunner.And(string.Format("the billing basis for Installation is \"{0}\"", basis2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 24
- testRunner.And(string.Format("the billing basis for Service Pack is \"{0}\"", basis1), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("the billing basis for Service Pack is \"{0}\"", basis2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 25
  testRunner.And("the installation type displayed is correct", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 26
