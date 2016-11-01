@@ -15,7 +15,7 @@ Scenario Outline: Dealer Can Create Proposal From Proposal List Page
 	And enter a quantity of "1" for accessory for "<Printer>"
 	And I redisplay "<Printer>" device screen
 	And I move to Click Price page
-	And Service Pack payment method is displayed
+	##And Service Pack payment method is displayed
 	##And I choose to pay Service Packs "<PaymentMethod>"
 	And I type click price volume of "<ClickVolume>" and "<ColourVolume>"
 	Then the billing basis for product is "<Basis2>"
