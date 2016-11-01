@@ -41,6 +41,6 @@ Scenario Outline: Dealer Can Create Proposal From Proposal List Page
 
 
 Scenarios: 
-	| Role             | Country     | ContractType                 | UsageType      | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod               | ClickVolume | ColourVolume | Basis1                      | Basis2             |
-	| Cloud MPS Dealer | Switzerland | Purchase & Click mit Service | Mindestvolumen | 36       | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Über den Seitenpreis zahlen | 800         | 800          | Über den Seitenpreis zahlen | Im Voraus bezahlen |
+	| Role             | Country     | ContractType                 | UsageType     | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod               | ClickVolume | ColourVolume | Basis1                      | Basis2             |
+	| Cloud MPS Dealer | Switzerland | Purchase & Click mit Service | Quartalsweise | 36       | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Über den Seitenpreis zahlen | 800         | 800          | Über den Seitenpreis zahlen | Im Voraus bezahlen |
 	

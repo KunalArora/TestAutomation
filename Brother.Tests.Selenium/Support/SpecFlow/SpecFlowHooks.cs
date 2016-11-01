@@ -32,7 +32,7 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
         [AfterTestRun]
         public static void AfterTestRun()
         {
-            TestController.SendEmail();
+            //TestController.SendEmail();
             Helper.MsgOutput("........Ending Test Run");
         }
 
