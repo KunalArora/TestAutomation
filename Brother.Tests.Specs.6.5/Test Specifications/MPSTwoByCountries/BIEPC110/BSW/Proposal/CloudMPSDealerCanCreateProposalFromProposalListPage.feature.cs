@@ -73,7 +73,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BSW.
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Dealer Can Create Proposal From Proposal List Page")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Switzerland", "Purchase & Click mit Service", "Quartalsweise", "36", "Quarterly in Arrears", "Tick", "MFC-L8650CDW", "Full", "Über den Seitenpreis zahlen", "800", "800", "Über den Seitenpreis zahlen", "Im Voraus bezahlen", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Switzerland", "Purchase & Click mit Service", "Pay As You Go", "36", "Quartalsweise", "Tick", "MFC-L8650CDW", "Full", "Über den Seitenpreis zahlen", "800", "800", "Über den Seitenpreis zahlen", "Im Voraus bezahlen", null)]
         public virtual void DealerCanCreateProposalFromProposalListPage(string role, string country, string contractType, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string basis1, string basis2, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer Can Create Proposal From Proposal List Page", exampleTags);
