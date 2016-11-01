@@ -47,7 +47,7 @@ namespace Brother.Tests.Selenium.Lib.Mail
             
             Mail.Attachments.Add(_attachment);
 
-            smtpClient.EnableSsl = true;
+            smtpClient.EnableSsl = false;
             smtpClient.UseDefaultCredentials = false;
            // smtpClient.Credentials = loginInfo;
             smtpClient.Timeout = 10000;

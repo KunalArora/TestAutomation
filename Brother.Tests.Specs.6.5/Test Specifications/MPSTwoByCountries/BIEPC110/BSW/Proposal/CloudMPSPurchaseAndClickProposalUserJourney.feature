@@ -4,7 +4,7 @@ Feature: CloudMPSSwissPurchaseAndClickProposalUserJourney
 	As a dealer 
 	I want to be able to use different MPS parameters to derive different leasing proposal
 
-
+@ignore
 Scenario Outline: Create different varieties of Purchase and Click proposal for new customer on Mindestvolumen Term
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -64,7 +64,7 @@ Scenario Outline: Create different varieties of Purchase and Click proposal for 
 	
 
 	Scenarios: 
-	| Role             | Country     | ContractType                 | CreateOption        | UsageType     | Contract | Billing              | PriceHardware | Printer    | DeviceScreen | ClickVolume |
-	| Cloud MPS Dealer | Switzerland | Purchase & Click mit Service | Create new customer | Pay As You Go | 48       | Quarterly in Arrears | Tick          | HL-L5100DN | Full         | 750         |
+	| Role             | Country     | ContractType                 | CreateOption        | UsageType     | Contract | Billing       | PriceHardware | Printer    | DeviceScreen | ClickVolume |
+	| Cloud MPS Dealer | Switzerland | Purchase & Click mit Service | Create new customer | Pay As You Go | 48       | Quartalsweise | Tick          | HL-L5100DN | Full         | 750         |
 	
 
