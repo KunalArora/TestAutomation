@@ -575,6 +575,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             CalculateClickPriceElement.Click();
         }
 
+
+        public DealerProposalsCreateSummaryPage CalculateEnteredClickPriceForMonoAndColourAndProceed(string volume, string colour)
+        {
+            //            MoveToClickPriceScreen();
+            EnterMonoVolumeQuantity(volume);
+            EnterColourVolume(colour, "0");
+            //WebDriver.Wait(DurationType.Second, 5);
+            VerifyClickPriceValueIsDisplayed();
+            SpecFlow.SetContext("ClickPriceMonoValue", ClickPriceValue().First().Text);
+            SpecFlow.SetContext("ClickPriceColourValue", ClickPriceColourValue().First().Text);
+
+            return ProceedToProposalSummaryFromClickPrice();
+        }
+
         public DealerProposalsCreateSummaryPage CalculateEnteredClickPriceAndProceed(string volume)
         {
 //            MoveToClickPriceScreen();

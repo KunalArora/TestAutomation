@@ -17,7 +17,7 @@ Scenario Outline: Dealer Can Create Proposal From Proposal List Page
 	And I move to Click Price page
 	And Service Pack payment method is displayed
 	##And I choose to pay Service Packs "<PaymentMethod>"
-	And I enter click price volume of "<ClickVolume>" and "<ColourVolume>"
+	And I type click price volume of "<ClickVolume>" and "<ColourVolume>"
 	Then the billing basis for product is "<Basis2>"
 	And the billing basis for Accessory is "<Basis2>"
 	And the billing basis for Installation is "<Basis2>"
