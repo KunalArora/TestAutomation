@@ -21,6 +21,6 @@ Scenario Outline: Existing Customer can be used to create a new contract for Run
 	
 Scenarios:
 
-	| Role                            | Country     | ContractType                 | UsageType      | Role1            | Method | Type | ExistingCustomer                      | Length | Billing              | Role2              |
-	| Cloud MPS Local Office Approver | Switzerland | Purchase & Click mit Service | Mindestvolumen | Cloud MPS Dealer | Cloud  | Web  | Roxanna20160929030238@mailinator.com  | 36     | Quarterly in Arrears | Cloud MPS Customer |
+	| Role                            | Country     | ContractType                 | UsageType     | Role1            | Method | Type | ExistingCustomer                     | Length | Billing       | Role2              |
+	| Cloud MPS Local Office Approver | Switzerland | Purchase & Click mit Service | Pay As You Go | Cloud MPS Dealer | Cloud  | Web  | Roxanna20160929030238@mailinator.com | 36     | Quartalsweise | Cloud MPS Customer |
 	

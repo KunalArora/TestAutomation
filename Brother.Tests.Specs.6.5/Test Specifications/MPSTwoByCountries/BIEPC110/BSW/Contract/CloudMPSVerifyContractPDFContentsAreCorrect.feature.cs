@@ -74,7 +74,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BSW.
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verify PDF Contents Are Correct")]
-        [NUnit.Framework.TestCaseAttribute("Purchase & Click mit Service", "Switzerland", "Mindestvolumen", "36", "Quarterly in Arrears", null)]
+        [NUnit.Framework.TestCaseAttribute("Purchase & Click mit Service", "Switzerland", "Pay As You Go", "36", "Quartalsweise", null)]
         public virtual void VerifyPDFContentsAreCorrect(string contractType, string country, string usageType, string length, string billing, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify PDF Contents Are Correct", exampleTags);
