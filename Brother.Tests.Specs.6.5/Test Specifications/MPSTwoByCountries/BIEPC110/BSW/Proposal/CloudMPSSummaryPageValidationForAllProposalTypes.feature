@@ -4,7 +4,7 @@ Feature: CloudMPSSummaryPageValidationForAllSwissProposalTypes
 	As a dealer
 	I want to be verify that proposal summary page is correct for all types of proposal
 
-
+@ignore
 Scenario Outline: Summary Page Validation For Mindestvolumen Purchase and Click proposal In Click Payment
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -42,7 +42,7 @@ Scenario Outline: Summary Page Validation For Mindestvolumen Purchase and Click 
 	| Role             | Country     | ContractType                 | UsageType      | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod               | ClickVolume | ColourVolume | Basis1                      | Basis2             |
 	| Cloud MPS Dealer | Switzerland | Purchase & Click mit Service | Mindestvolumen | 36       | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Über den Seitenpreis zahlen | 800         | 800          | Über den Seitenpreis zahlen | Im Voraus bezahlen |
 	
-
+@ignore
 Scenario Outline: Summary Page Validation For Mindestvolumen Purchase and Click proposal Upfront Payment
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -90,7 +90,7 @@ Scenario Outline: Summary Page Validation For Pay As you Go Purchase and Click p
 	And enter a quantity of "1" for accessory for "<Printer>"
 	And I redisplay "<Printer>" device screen
 	And I confirm the values entered for the device
-	And I type in click price volume of "<ClickVolume>"
+	And I type click price volume of "<ClickVolume>" and "<ColourVolume>"
 	Then the billing basis for product is "<Basis1>"
 	And the billing basis for Accessory is "<Basis1>"
 	And the billing basis for Installation is "<Basis1>"
@@ -109,6 +109,6 @@ Scenario Outline: Summary Page Validation For Pay As you Go Purchase and Click p
 	
 
 	Scenarios: 
-	| Role             | Country     | ContractType                 | CreateOption        | UsageType     | Contract | Billing              | PriceHardware | Printer    | DeviceScreen | ClickVolume | Basis1             |
-	| Cloud MPS Dealer | Switzerland | Purchase & Click mit Service | Create new customer | Pay As You Go | 48       | Quarterly in Arrears | Tick          | HL-L5100DN | Full         | 800         | Im Voraus bezahlen |
+	| Role             | Country     | ContractType                 | CreateOption        | UsageType     | Contract | Billing       | PriceHardware | Printer    | DeviceScreen | ClickVolume | Basis1             |
+	| Cloud MPS Dealer | Switzerland | Purchase & Click mit Service | Create new customer | Pay As You Go | 48       | Quartalsweise | Tick          | HL-L5100DN | Full         | 800         | Im Voraus bezahlen |
 	

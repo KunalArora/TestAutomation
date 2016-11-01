@@ -15,6 +15,6 @@ Scenario Outline: Verify PDF Contents Are Correct
 
 Scenarios:
 
-	| ContractType                 | Country     | UsageType      | Length | Billing              |
-	| Purchase & Click mit Service | Switzerland | Mindestvolumen | 36     | Quarterly in Arrears |
+	| ContractType                 | Country     | UsageType     | Length | Billing       |
+	| Purchase & Click mit Service | Switzerland | Pay As You Go | 36     | Quartalsweise |
 	

@@ -74,7 +74,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BSW.
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Dealer Can Copy A Declined Purchase and Click Proposal without customer detail fo" +
             "r other countries")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Switzerland", "Cloud MPS Local Office Approver", "Purchase & Click mit Service", "Mindestvolumen", "36", "Quarterly in Arrears", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Switzerland", "Cloud MPS Local Office Approver", "Purchase & Click mit Service", "Pay As You Go", "36", "Quartalsweise", null)]
         public virtual void DealerCanCopyADeclinedPurchaseAndClickProposalWithoutCustomerDetailForOtherCountries(string role, string country, string role2, string contractType, string usageType, string length, string billing, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer Can Copy A Declined Purchase and Click Proposal without customer detail fo" +
@@ -112,7 +112,7 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Dealer Can Copy A Declined Purchase and Click Proposal with customer detail for o" +
             "ther countries")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Switzerland", "Cloud MPS Local Office Approver", "Purchase & Click mit Service", "Mindestvolumen", "36", "Quarterly in Arrears", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Switzerland", "Cloud MPS Local Office Approver", "Purchase & Click mit Service", "Pay As You Go", "36", "Quartalsweise", null)]
         public virtual void DealerCanCopyADeclinedPurchaseAndClickProposalWithCustomerDetailForOtherCountries(string role, string country, string role2, string contractType, string usageType, string length, string billing, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer Can Copy A Declined Purchase and Click Proposal with customer detail for o" +

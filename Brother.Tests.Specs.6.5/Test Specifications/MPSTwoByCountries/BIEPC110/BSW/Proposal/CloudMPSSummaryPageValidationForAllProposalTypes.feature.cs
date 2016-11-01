@@ -74,11 +74,18 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BSW.
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Summary Page Validation For Mindestvolumen Purchase and Click proposal In Click P" +
             "ayment")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Switzerland", "Purchase & Click mit Service", "Mindestvolumen", "36", "Quarterly in Arrears", "Tick", "MFC-L8650CDW", "Full", "Über den Seitenpreis zahlen", "800", "800", "Über den Seitenpreis zahlen", "Im Voraus bezahlen", null)]
         public virtual void SummaryPageValidationForMindestvolumenPurchaseAndClickProposalInClickPayment(string role, string country, string contractType, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string basis1, string basis2, string[] exampleTags)
         {
+            string[] @__tags = new string[] {
+                    "ignore"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Summary Page Validation For Mindestvolumen Purchase and Click proposal In Click P" +
-                    "ayment", exampleTags);
+                    "ayment", @__tags);
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line 9
@@ -145,11 +152,18 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Summary Page Validation For Mindestvolumen Purchase and Click proposal Upfront Pa" +
             "yment")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Switzerland", "Purchase & Click mit Service", "Mindestvolumen", "36", "Quarterly in Arrears", "Tick", "MFC-L8650CDW", "Full", "Im Voraus bezahlen", "800", "800", "Im Voraus bezahlen", null)]
         public virtual void SummaryPageValidationForMindestvolumenPurchaseAndClickProposalUpfrontPayment(string role, string country, string contractType, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string basis1, string[] exampleTags)
         {
+            string[] @__tags = new string[] {
+                    "ignore"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Summary Page Validation For Mindestvolumen Purchase and Click proposal Upfront Pa" +
-                    "yment", exampleTags);
+                    "yment", @__tags);
 #line 46
 this.ScenarioSetup(scenarioInfo);
 #line 47
@@ -215,7 +229,7 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Summary Page Validation For Pay As you Go Purchase and Click proposal")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Switzerland", "Purchase & Click mit Service", "Create new customer", "Pay As You Go", "48", "Quarterly in Arrears", "Tick", "HL-L5100DN", "Full", "800", "Im Voraus bezahlen", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Switzerland", "Purchase & Click mit Service", "Create new customer", "Pay As You Go", "48", "Quartalsweise", "Tick", "HL-L5100DN", "Full", "800", "Im Voraus bezahlen", null)]
         public virtual void SummaryPageValidationForPayAsYouGoPurchaseAndClickProposal(string role, string country, string contractType, string createOption, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string clickVolume, string basis1, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Summary Page Validation For Pay As you Go Purchase and Click proposal", exampleTags);
@@ -239,7 +253,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 92
  testRunner.And("I confirm the values entered for the device", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 93
- testRunner.And(string.Format("I type in click price volume of \"{0}\"", clickVolume), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("I type click price volume of \"{0}\" and \"<ColourVolume>\"", clickVolume), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 94
  testRunner.Then(string.Format("the billing basis for product is \"{0}\"", basis1), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 95

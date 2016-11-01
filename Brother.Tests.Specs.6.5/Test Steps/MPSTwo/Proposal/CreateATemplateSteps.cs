@@ -1416,7 +1416,14 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             instance.WhenIAcceptTheDefaultValuesOfTheDevice();
 
             var clickPricestepInstance = new DealerProposalsCreateClickPriceStep();
-            clickPricestepInstance.WhenIEnterClickPriceVolumeOf("2000", "2000");
+            if (CurrentDriver.Url.Contains("online.ch") || CurrentDriver.Url.Contains("online.brother.ch.local"))
+            {
+                clickPricestepInstance.WhenITypeClickPriceVolumeOfAnd("2000", "2000");
+            }
+            else
+            {
+                clickPricestepInstance.WhenIEnterClickPriceVolumeOf("2000", "2000");
+            }
         }
 
         [Given(@"I have created Purchase and Click proposal for ""(.*)""")]
@@ -1439,7 +1446,14 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             instance.WhenIAcceptTheDefaultValuesOfTheDevice();
 
             var clickPriceStepInstance = new DealerProposalsCreateClickPriceStep();
-            clickPriceStepInstance.WhenIEnterClickPriceVolumeOf("800", "800"); 
+            if (CurrentDriver.Url.Contains("online.ch") || CurrentDriver.Url.Contains("online.brother.ch.local"))
+            {
+                clickPriceStepInstance.WhenITypeClickPriceVolumeOfAnd("800", "800");
+            }
+            else
+            {
+                clickPriceStepInstance.WhenIEnterClickPriceVolumeOf("800", "800");
+            } 
         }
 
 
@@ -1461,7 +1475,14 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             instance.WhenIAcceptTheDefaultValuesOfTheDevice();
 
             var clickPriceStepInstance = new DealerProposalsCreateClickPriceStep();
-            clickPriceStepInstance.WhenIEnterClickPriceVolumeOf("800", "800"); 
+            if (CurrentDriver.Url.Contains("online.ch") || CurrentDriver.Url.Contains("online.brother.ch.local"))
+            {
+                clickPriceStepInstance.WhenITypeClickPriceVolumeOfAnd("800", "800");
+            }
+            else
+            {
+                clickPriceStepInstance.WhenIEnterClickPriceVolumeOf("800", "800");
+            }
             
         }
 
@@ -1486,7 +1507,14 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             instance.WhenIAcceptTheDefaultValuesOfTheDevice();
 
             var clickPriceStepInstance = new DealerProposalsCreateClickPriceStep();
-            clickPriceStepInstance.WhenIEnterClickPriceVolumeOf("800", "800");
+            if (CurrentDriver.Url.Contains("online.ch") || CurrentDriver.Url.Contains("online.brother.ch.local"))
+            {
+                clickPriceStepInstance.WhenITypeClickPriceVolumeOfAnd("800", "800");
+            }
+            else
+            {
+                clickPriceStepInstance.WhenIEnterClickPriceVolumeOf("800", "800");
+            }
 
         }
 
@@ -1516,7 +1544,15 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             instance.WhenIAcceptTheDefaultValuesOfTheDevice();
 
             var clickPriceStepInstance = new DealerProposalsCreateClickPriceStep();
-            clickPriceStepInstance.WhenIEnterClickPriceVolumeOf("800", "800");
+            if (CurrentDriver.Url.Contains("online.ch") || CurrentDriver.Url.Contains("online.brother.ch.local"))
+            {
+                clickPriceStepInstance.WhenITypeClickPriceVolumeOfAnd("800", "800");
+            }
+            else
+            {
+                clickPriceStepInstance.WhenIEnterClickPriceVolumeOf("800", "800");
+            }
+            
 
         }
 
@@ -1540,7 +1576,14 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             instance.WhenIAcceptTheDefaultValuesOfTheDevice();
 
             var clickPriceStepInstance = new DealerProposalsCreateClickPriceStep();
-            clickPriceStepInstance.WhenIEnterClickPriceVolumeOf("800", "800");
+            if (CurrentDriver.Url.Contains("online.ch") || CurrentDriver.Url.Contains("online.brother.ch.local"))
+            {
+                clickPriceStepInstance.WhenITypeClickPriceVolumeOfAnd("800", "800");
+            }
+            else
+            {
+                clickPriceStepInstance.WhenIEnterClickPriceVolumeOf("800", "800");
+            }
 
         }
 
@@ -1567,7 +1610,14 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
            instance.WhenIAcceptTheDefaultValuesOfTheDevice();
 
             var clickPriceStepInstance = new DealerProposalsCreateClickPriceStep();
-            clickPriceStepInstance.WhenIEnterClickPriceVolumeOf("800", "800");
+            if (CurrentDriver.Url.Contains("online.ch") || CurrentDriver.Url.Contains("online.brother.ch.local"))
+            {
+                clickPriceStepInstance.WhenITypeClickPriceVolumeOfAnd("800", "800");
+            }
+            else
+            {
+                clickPriceStepInstance.WhenIEnterClickPriceVolumeOf("800", "800");
+            }
 
         }
 

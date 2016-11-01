@@ -56,7 +56,7 @@ Scenarios:
 	| Cloud MPS Local Office Approver | Netherlands | Purchase + Click met Service       | Betalen naar verbruik                     | Cloud MPS Dealer | Email  | 3 jaar     | Per kwartaal achteraf                  |
 	| Cloud MPS Local Office Approver | Ireland     | Purchase & Click with Service      | Pay As You Go                             | Cloud MPS Dealer | Email  | 3 years    | Quarterly in Arrears                   |
 	| Cloud MPS Local Office Approver | Belgium     | Buy & Click                        | Volume minimum                            | Cloud MPS Dealer | Email  | 3 ans      | Jaarlijke afrekening / Décompte annuel |
-	| Cloud MPS Local Office Approver | Switzerland | Purchase & Click with Service      | Mindestvolumen                            | Cloud MPS Dealer | Email  | 36         | Quarterly in Arrears                   |
+	| Cloud MPS Local Office Approver | Switzerland | Purchase & Click with Service      | Pay As You Go                             | Cloud MPS Dealer | Email  | 36         | Quartalsweise                          |
 	| Cloud MPS Local Office Approver | Finland     | Purchase & Click with Service      | Maksu tulosteiden mukaan                  | Cloud MPS Dealer | Email  | 3 vuotta   | Quarterly in Arrears                   |
 	| Cloud MPS Local Office Approver | Norway      | Kjøp og klikk med service          | Betale ved forbruk                        | Cloud MPS Dealer | Email  | 36         | Quarterly in Arrears                   |
 	

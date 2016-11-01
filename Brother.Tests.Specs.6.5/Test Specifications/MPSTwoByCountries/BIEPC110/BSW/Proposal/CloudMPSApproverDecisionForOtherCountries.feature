@@ -12,8 +12,8 @@ Scenario Outline: Approver Decline Proposal for other Countries
 	Then "<Role>" can decline Awaiting "<Language>" Approval "<Country>" "<ContractType>" proposal with "<UsageType>" and "<Length>" and "<Billing>"
 
 	Scenarios: 
-	| Country     | Role                            | ContractType                 | UsageType      | Length | Billing              |
-	| Switzerland | Cloud MPS Local Office Approver | Purchase & Click mit Service | Mindestvolumen | 36     | Quarterly in Arrears |
+	| Country     | Role                            | ContractType                 | UsageType     | Length | Billing       |
+	| Switzerland | Cloud MPS Local Office Approver | Purchase & Click mit Service | Pay As You Go | 36     | Quartalsweise |
 	
 #
 # Approve Signed Contract
@@ -28,8 +28,8 @@ Scenario Outline: Approver can decide to reject or approve the contract for othe
 	And I sign out of Cloud MPS
 
 	Scenarios:
-	| Country     | Role                            | ContractType                 | UsageType      | Length | Billing              |
-	| Switzerland | Cloud MPS Local Office Approver | Purchase & Click mit Service | Mindestvolumen | 36     | Quarterly in Arrears |
+	| Country     | Role                            | ContractType                 | UsageType     | Length | Billing       |
+	| Switzerland | Cloud MPS Local Office Approver | Purchase & Click mit Service | Pay As You Go | 36     | Quartalsweise |
 	
 # Accept5, 6
 Scenario Outline: Approver can approve the contract for other Countries
@@ -44,8 +44,8 @@ Scenario Outline: Approver can approve the contract for other Countries
 
 	Scenarios:
 
-	| Country     | Role                            | ContractType                 | UsageType      | Length | Billing              |
-	| Switzerland | Cloud MPS Local Office Approver | Purchase & Click mit Service | Mindestvolumen | 36     | Quarterly in Arrears |
+	| Country     | Role                            | ContractType                 | UsageType     | Length | Billing       |
+	| Switzerland | Cloud MPS Local Office Approver | Purchase & Click mit Service | Pay As You Go | 36     | Quartalsweise |
 	
 # Reject1,2
 Scenario Outline: Approver can reject the contract for other Countries
@@ -59,8 +59,8 @@ Scenario Outline: Approver can reject the contract for other Countries
 
 	Scenarios:
 
-	| Country     | Role                            | ContractType                 | UsageType      | Length | Billing              |
-	| Switzerland | Cloud MPS Local Office Approver | Purchase & Click mit Service | Mindestvolumen | 36     | Quarterly in Arrears |
+	| Country     | Role                            | ContractType                 | UsageType     | Length | Billing       |
+	| Switzerland | Cloud MPS Local Office Approver | Purchase & Click mit Service | Pay As You Go | 36     | Quartalsweise |
 	
 # Reject3
 Scenario Outline: Dealer can resign rejected contract for other Countries
@@ -77,8 +77,8 @@ Scenario Outline: Dealer can resign rejected contract for other Countries
 	And I sign out of Cloud MPS
 
 	Scenarios: 
-	| Country     | Role                            | ContractType                 | UsageType      | Length | Billing              | Role2            |
-	| Switzerland | Cloud MPS Local Office Approver | Purchase & Click mit Service | Mindestvolumen | 36     | Quarterly in Arrears | Cloud MPS Dealer |
+	| Country     | Role                            | ContractType                 | UsageType     | Length | Billing       | Role2            |
+	| Switzerland | Cloud MPS Local Office Approver | Purchase & Click mit Service | Pay As You Go | 36     | Quartalsweise | Cloud MPS Dealer |
 	
 		
 # LO Approver can view open offers

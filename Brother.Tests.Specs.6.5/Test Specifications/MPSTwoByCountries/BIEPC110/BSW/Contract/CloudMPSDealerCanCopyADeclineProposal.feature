@@ -23,8 +23,8 @@ Scenario Outline: Dealer Can Copy A Declined Purchase and Click Proposal without
 	
 	Scenarios:
 
-	| Role             | Country     | Role2                           | ContractType                 | UsageType      | Length | Billing              |
-	| Cloud MPS Dealer | Switzerland | Cloud MPS Local Office Approver | Purchase & Click mit Service | Mindestvolumen | 36     | Quarterly in Arrears |
+	| Role             | Country     | Role2                           | ContractType                 | UsageType     | Length | Billing       |
+	| Cloud MPS Dealer | Switzerland | Cloud MPS Local Office Approver | Purchase & Click mit Service | Pay As You Go | 36     | Quartalsweise |
 	
 
 Scenario Outline: Dealer Can Copy A Declined Purchase and Click Proposal with customer detail for other countries
@@ -44,6 +44,6 @@ Scenario Outline: Dealer Can Copy A Declined Purchase and Click Proposal with cu
 	
 	Scenarios:
 
-	| Role             | Country     | Role2                           | ContractType                 | UsageType      | Length | Billing              |
-	| Cloud MPS Dealer | Switzerland | Cloud MPS Local Office Approver | Purchase & Click mit Service | Mindestvolumen | 36     | Quarterly in Arrears |
+	| Role             | Country     | Role2                           | ContractType                 | UsageType     | Length | Billing       |
+	| Cloud MPS Dealer | Switzerland | Cloud MPS Local Office Approver | Purchase & Click mit Service | Pay As You Go | 36     | Quartalsweise |
 	

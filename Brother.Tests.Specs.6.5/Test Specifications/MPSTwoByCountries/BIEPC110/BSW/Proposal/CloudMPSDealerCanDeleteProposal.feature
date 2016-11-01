@@ -15,6 +15,6 @@ Scenario Outline: Other Dealers can delete an open Purchase and Click proposal
 
 Scenarios:
 
-	| Role             | Country     | Role2                           | ContractType                 | UsageType      | Length | Billing              |
-	| Cloud MPS Dealer | Switzerland | Cloud MPS Local Office Approver | Purchase & Click mit Service | Mindestvolumen | 36     | Quarterly in Arrears |
+	| Role             | Country     | Role2                           | ContractType                 | UsageType     | Length | Billing       |
+	| Cloud MPS Dealer | Switzerland | Cloud MPS Local Office Approver | Purchase & Click mit Service | Pay As You Go | 36     | Quartalsweise |
 	

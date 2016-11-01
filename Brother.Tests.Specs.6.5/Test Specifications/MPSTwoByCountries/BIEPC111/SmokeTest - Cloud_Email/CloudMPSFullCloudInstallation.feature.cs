@@ -191,8 +191,8 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Poland", "Buy + Click", "Pakiet wydruków", "Cloud MPS Dealer", "Cloud", "BOR", "4 lata", "Miesięczny / Monthly", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Finland", "Purchase & Click with Service", "Minimitulostusmäärä", "Cloud MPS Dealer", "Cloud", "Web", "3 vuotta", "Quarterly in Arrears", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Finland", "Purchase & Click with Service", "Minimitulostusmäärä", "Cloud MPS Dealer", "Cloud", "BOR", "4 vuotta", "Quarterly in Arrears", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Switzerland", "Purchase & Click with Service", "Mindestvolumen", "Cloud MPS Dealer", "Cloud", "BOR", "36", "Quarterly in Arrears", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Switzerland", "Purchase & Click with Service", "Mindestvolumen", "Cloud MPS Dealer", "Cloud", "Web", "36", "Quarterly in Arrears", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Switzerland", "Purchase & Click with Service", "Pay As You Go", "Cloud MPS Dealer", "Cloud", "BOR", "36", "Quartalsweise", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Switzerland", "Purchase & Click with Service", "Pay As You Go", "Cloud MPS Dealer", "Cloud", "Web", "36", "Quartalsweise", null)]
         public virtual void MPSCloudInstallation(string role, string country, string contractType, string usageType, string role1, string method, string type, string length, string billing, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Cloud Installation", exampleTags);
