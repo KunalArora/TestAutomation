@@ -581,7 +581,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             //            MoveToClickPriceScreen();
             EnterColourVolume(colour, "0");
             EnterMonoVolumeQuantity(volume);
-            //WebDriver.Wait(DurationType.Second, 5);
+            WebDriver.Wait(DurationType.Second, 5);
             VerifyClickPriceValueIsDisplayed();
             SpecFlow.SetContext("ClickPriceMonoValue", ClickPriceValue().First().Text);
             SpecFlow.SetContext("ClickPriceColourValue", ClickPriceColourValue().First().Text);
