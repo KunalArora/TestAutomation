@@ -90,7 +90,7 @@ Scenario Outline: Summary Page Validation For Pay As you Go Purchase and Click p
 	And enter a quantity of "1" for accessory for "<Printer>"
 	And I redisplay "<Printer>" device screen
 	And I confirm the values entered for the device
-	And I type click price volume of "<ClickVolume>" and "<ColourVolume>"
+	And I type in click price volume of "<ClickVolume>"
 	Then the billing basis for product is "<Basis1>"
 	And the billing basis for Accessory is "<Basis1>"
 	And the billing basis for Installation is "<Basis1>"
