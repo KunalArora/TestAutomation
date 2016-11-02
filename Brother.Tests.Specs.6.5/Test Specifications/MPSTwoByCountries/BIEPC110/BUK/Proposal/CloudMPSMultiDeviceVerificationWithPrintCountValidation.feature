@@ -32,7 +32,7 @@ Scenario Outline: Dealer can create a proposal with multiple devices
 	And total colour line price is correctly calculated for "<PrinterQty>"
 	And total volume correctly added up
 	And total price correctly added up
-
+	And contract net grand total is correctly added up
 	And I sign out of Cloud MPS
 	
 
@@ -65,7 +65,7 @@ Scenario Outline: Dealer can create a proposal with multiple devices with upfron
 	And total colour line price is correctly calculated for "<PrinterQty>"
 	And total volume correctly added up
 	And total price correctly added up
-
+	And contract net grand total is correctly added up
 	And I sign out of Cloud MPS
 	
 

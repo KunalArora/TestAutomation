@@ -277,6 +277,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         //Device Total
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_DeviceTotalPriceNet_0")]
         public IWebElement SummaryDeviceTotalPriceElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_DeviceTotalsTotalPriceNet")]
+        public IWebElement SummaryGrandDeviceTotalPriceElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_ConsumableTotalsTotalPriceNet")]
+        public IWebElement SummaryGrandConsumableTotalPriceElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_GrandTotalPriceNet")]
+        public IWebElement SummaryContractGrandTotalPriceElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_ChargesTotalPriceNet")]
+        public IWebElement SummaryGrandChargesTotalPriceElement;
+        
+        
         
         //Volume
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_MonoVolume_0")]
@@ -295,10 +305,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement SummaryTotalVolumeElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_ConsumablesTotalPriceNet_0")]
         public IWebElement SummaryConsumablesTotalPriceNetElement;
-        
-        
-        
-
         
         
         //Click rate
@@ -714,6 +720,25 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var colourTotalPrice = MpsUtil.GetValue(SummaryColourLinePriceElement.Text);
 
             var calcTotal = monoTotalPrice + colourTotalPrice;
+
+            calcTotal = RoundUpValue(calcTotal, 2);
+
+            TestCheck.AssertTextContains(displayedTotal, calcTotal.ToString());
+
+        }
+
+
+        public void IsContractTotalCorrectlyAddedUp()
+        {
+            var displayedTotal = RemoveCommaFromCurrency(SummaryContractGrandTotalPriceElement.Text);
+
+            var deviceTotalPrice = MpsUtil.GetValue(SummaryGrandDeviceTotalPriceElement.Text);
+            var consumableTotalPrice = MpsUtil.GetValue(SummaryGrandConsumableTotalPriceElement.Text);
+            var charges = IsElementPresent(GetElementByCssSelector("content_1_SummaryTable_ChargesTotalPriceNet"))
+                ? MpsUtil.GetValue(SummaryGrandChargesTotalPriceElement.Text)
+                : 0;
+
+            var calcTotal = deviceTotalPrice + consumableTotalPrice + charges;
 
             calcTotal = RoundUpValue(calcTotal, 2);
 

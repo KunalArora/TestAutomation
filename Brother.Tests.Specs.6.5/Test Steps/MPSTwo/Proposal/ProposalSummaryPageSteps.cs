@@ -78,6 +78,13 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         {
             CurrentPage.As<DealerProposalsCreateSummaryPage>().IsTotalColourPriceCorrectlyCalculated(qty);
         }
+
+        [Then(@"contract net grand total is correctly added up")]
+        public void ThenContractNetGrandTotalIsCorrectlyAddedUp()
+        {
+            CurrentPage.As<DealerProposalsCreateSummaryPage>().IsContractTotalCorrectlyAddedUp();
+        }
+
         
         [Then(@"total volume correctly added up")]
         public void ThenTotalVolumeCorrectlyAddedUp()
