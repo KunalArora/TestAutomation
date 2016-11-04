@@ -1,4 +1,4 @@
-﻿@MPS @UAT @TEST
+﻿@MPS @UAT @TEST @BIEPC113
 Feature: CloudMPSCancelInstallationRequestForSmokeTest
 	In order to stop an installer from beginning installation
 	As a Dealer 
