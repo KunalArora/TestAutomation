@@ -23,6 +23,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BNS.
     [NUnit.Framework.CategoryAttribute("MPS")]
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("TEST")]
+    [NUnit.Framework.CategoryAttribute("BIEPC112")]
     public partial class CloudMPSSwedishDealerCanCreateProposalFromProposalListPageFeature
     {
         
@@ -39,7 +40,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BNS.
                     " new porposal button on proposal list page", ProgrammingLanguage.CSharp, new string[] {
                         "MPS",
                         "UAT",
-                        "TEST"});
+                        "TEST",
+                        "BIEPC112"});
             testRunner.OnFeatureStart(featureInfo);
         }
         

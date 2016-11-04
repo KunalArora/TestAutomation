@@ -23,6 +23,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BPL.
     [NUnit.Framework.CategoryAttribute("MPS")]
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("TEST")]
+    [NUnit.Framework.CategoryAttribute("BIEPC112")]
     public partial class CloudMPSVerifyPolishPDFContentsAreCorrectFeature
     {
         
@@ -40,7 +41,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BPL.
                     "DF contents", ProgrammingLanguage.CSharp, new string[] {
                         "MPS",
                         "UAT",
-                        "TEST"});
+                        "TEST",
+                        "BIEPC112"});
             testRunner.OnFeatureStart(featureInfo);
         }
         

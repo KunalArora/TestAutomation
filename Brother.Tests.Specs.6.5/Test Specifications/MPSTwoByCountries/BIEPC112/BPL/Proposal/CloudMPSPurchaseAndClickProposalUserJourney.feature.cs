@@ -23,6 +23,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BPL.
     [NUnit.Framework.CategoryAttribute("TEST")]
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("MPS")]
+    [NUnit.Framework.CategoryAttribute("BIEPC112")]
     public partial class CloudMPSPolishPurchaseAndClickProposalUserJourneyFeature
     {
         
@@ -40,7 +41,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BPL.
                     "proposal", ProgrammingLanguage.CSharp, new string[] {
                         "TEST",
                         "UAT",
-                        "MPS"});
+                        "MPS",
+                        "BIEPC112"});
             testRunner.OnFeatureStart(featureInfo);
         }
         

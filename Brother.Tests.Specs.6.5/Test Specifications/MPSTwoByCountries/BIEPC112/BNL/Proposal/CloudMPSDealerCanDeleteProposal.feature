@@ -1,4 +1,4 @@
-﻿@MPS @TEST @UAT
+﻿@MPS @TEST @UAT @BIEPC112
 Feature: CloudMPSDutchDealerCanDeleteProposal
 	In order to stop the progress of a proposal
 	As a math dealer
