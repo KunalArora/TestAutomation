@@ -24,6 +24,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BNS.
     [NUnit.Framework.CategoryAttribute("TEST")]
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("MPS")]
+    [NUnit.Framework.CategoryAttribute("BIEPC112")]
     public partial class SwedishCustomerCanPerformSomeRunActionsFeature
     {
         
@@ -41,7 +42,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BNS.
                         "ignore",
                         "TEST",
                         "UAT",
-                        "MPS"});
+                        "MPS",
+                        "BIEPC112"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
