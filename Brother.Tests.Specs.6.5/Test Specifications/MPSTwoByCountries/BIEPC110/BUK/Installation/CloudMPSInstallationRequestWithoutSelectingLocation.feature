@@ -1,4 +1,4 @@
-﻿@MPS @UAT @TEST
+﻿@MPS @UAT @TEST @BIEPC110
 Feature: UKInstallationRequestCannotBeCreatedWithoutSelectingLocation
 	In order to begin installation request creation
 	As a Dealer 
