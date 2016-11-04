@@ -1,4 +1,4 @@
-﻿@MPS @UAT @TEST
+﻿@MPS @UAT @TEST @BIEPC112
 Feature: CloudMPSIrishDealerCanCreateProposalFromProposalListPage
 	In order to create a proposal from proposal list page
 	As a dealer
