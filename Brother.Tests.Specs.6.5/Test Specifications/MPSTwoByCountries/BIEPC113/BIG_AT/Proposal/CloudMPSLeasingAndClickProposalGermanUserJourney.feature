@@ -1,4 +1,4 @@
-﻿@TEST @UAT @MPS
+﻿@TEST @UAT @MPS @BIEPC113
 Feature: CloudMPSGermanLeasingAndClickProposalUserJourney
 	In order to create different variety of leasing proposal
 	As a dealer 
