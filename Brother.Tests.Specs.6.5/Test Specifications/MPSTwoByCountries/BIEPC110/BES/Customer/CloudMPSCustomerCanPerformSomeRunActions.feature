@@ -1,4 +1,4 @@
-﻿@ignore @TEST @UAT @MPS
+﻿@ignore @TEST @UAT @MPS @BIEPC110
 Feature: SpanishCustomerCanPerformSomeRunActions
 	In order for customer to perform some run portion actions
 	As a customer
