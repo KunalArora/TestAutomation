@@ -1,4 +1,4 @@
-﻿@MPS @UAT @TEST
+﻿@MPS @UAT @TEST @BIEPC111
 Feature: CloudMPSFinnishDealerCanCreateProposalFromProposalListPage
 	In order to create a proposal from proposal list page
 	As a dealer

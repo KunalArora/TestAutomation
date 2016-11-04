@@ -1,4 +1,4 @@
-﻿@MPS @UAT @TEST
+﻿@MPS @UAT @TEST @BIEPC111
 Feature: CloudMPSCreateAContractWithExistingFinnishCustomer
 	In order to work with customer run portion
 	As a dealer
