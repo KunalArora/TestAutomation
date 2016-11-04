@@ -1,4 +1,4 @@
-﻿@MPS @TEST @UAT 
+﻿@MPS @TEST @UAT @BIEPC112 
 Feature: CloudMPSSummaryPageValidationForAllIrishProposalTypes
 	In order to avoid ambiguity on proposal summary page
 	As a dealer
