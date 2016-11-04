@@ -23,7 +23,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BBE.
     [NUnit.Framework.CategoryAttribute("MPS")]
     [NUnit.Framework.CategoryAttribute("TEST")]
     [NUnit.Framework.CategoryAttribute("UAT")]
-    [NUnit.Framework.CategoryAttribute("BIEPC113")]
+    [NUnit.Framework.CategoryAttribute("BIEPC112")]
     public partial class CloudMPSBelgianDealerCanCopyADeclineProposalFeature
     {
         
@@ -41,7 +41,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BBE.
                         "MPS",
                         "TEST",
                         "UAT",
-                        "BIEPC113"});
+                        "BIEPC112"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
