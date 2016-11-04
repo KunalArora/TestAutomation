@@ -1,4 +1,4 @@
-﻿@MPS @UAT @TEST
+﻿@MPS @UAT @TEST @BIEPC110
 Feature: CloudMPSCreateAContractWithExistingFrenchCustomer
 	In order to work with customer run portion
 	As a dealer
