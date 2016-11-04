@@ -1,4 +1,4 @@
-﻿@MPS @UAT @TEST
+﻿@MPS @UAT @TEST @BIEPC111
 Feature: CloudMPSFullCloudInstallationForSmokeTest
 	In order to get an installer to begin cloud installation
 	As a Dealer 
