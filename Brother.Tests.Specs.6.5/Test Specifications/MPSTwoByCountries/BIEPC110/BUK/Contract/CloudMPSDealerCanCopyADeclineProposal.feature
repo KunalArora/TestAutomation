@@ -1,4 +1,4 @@
-﻿@MPS @TEST @UAT
+﻿@MPS @TEST @UAT @BIEPC110
 Feature: CloudMPSUKDealerCanCopyADeclineProposal
 	In order to resubmit a declined proposal
 	As a dealer 
