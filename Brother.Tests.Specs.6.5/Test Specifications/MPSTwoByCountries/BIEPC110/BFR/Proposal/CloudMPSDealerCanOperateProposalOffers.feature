@@ -1,4 +1,4 @@
-﻿@MPS @TEST @UAT
+﻿@MPS @TEST @UAT @BIEPC110
 Feature: CloudMPSFrenchDealerCanOperateProposalOffers
 	In order to view/edit/delete/copy existing proposals
 	As an MPS Dealer
