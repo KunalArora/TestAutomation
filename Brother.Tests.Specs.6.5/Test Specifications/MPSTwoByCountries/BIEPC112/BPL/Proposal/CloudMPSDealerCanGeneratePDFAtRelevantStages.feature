@@ -1,4 +1,4 @@
-﻿@MPS @TEST @UAT
+﻿@MPS @TEST @UAT @BIEPC112
 Feature: CloudMPSPolishDealerCanGeneratePDFAtRelevantStages
 	In order to generate Proposal PDF
 	As a dealer
