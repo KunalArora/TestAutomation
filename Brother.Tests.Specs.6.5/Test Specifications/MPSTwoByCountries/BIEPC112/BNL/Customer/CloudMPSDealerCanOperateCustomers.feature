@@ -1,4 +1,4 @@
-﻿@ignore @MPS @TEST @UAT
+﻿@ignore @MPS @TEST @UAT @BIEPC112
 Feature: CloudMPSDutchDealerCanOperateCustomers
 	In order to view/create/edit/delete customers
 	As an MPS Dealer or Sub-Dealer

@@ -1,4 +1,4 @@
-﻿@MPS @UAT @TEST
+﻿@MPS @UAT @TEST @BIEPC112
 Feature: CloudMPSCreateAContractWithExistingDutchCustomer
 	In order to work with customer run portion
 	As a dealer
