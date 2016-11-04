@@ -1,4 +1,4 @@
-﻿@MPS @UAT @TEST
+﻿@MPS @UAT @TEST @BIEPC113
 Feature: GermanInstallationRequestCannotBeCreatedWithoutSelectingLocation
 	In order to begin installation request creation
 	As a Dealer 
