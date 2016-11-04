@@ -56,6 +56,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             MpsJobRunnerPage.RunRemoveConsumableOrderByInstalledPrinterJob(serialNumber);
         }
 
+
+
         public void IsConsumableScreenDisplayed()
         {
             if(ConsumableDeviceScreenTab == null)

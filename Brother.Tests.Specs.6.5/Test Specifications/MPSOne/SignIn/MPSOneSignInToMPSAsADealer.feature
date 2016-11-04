@@ -7,5 +7,5 @@ Scenario: Sign in to MPS one as a Dealer
 
 	Given I launch Brother Online for "Spain"
 	When I click on Sign In / Create An Account for "Spain"
-	When I sign in as a "Dealer" from "Spain"
-	Then I am signed in with "Dealer" priviledges
+	When I sign in as a "MPS One Dealer" from "Spain"
+	Then I am signed in with "MPS One Dealer" priviledges

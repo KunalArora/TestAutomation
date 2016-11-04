@@ -44,6 +44,20 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
 
         }
 
+        [When(@"I install the device with ""(.*)"" on the contract with ""(.*)"" communication and ""(.*)"" installation")]
+        public void WhenIInstallTheDeviceWithOnTheContractWithCommunicationAndInstallation(string serialNumber, string method, string type)
+        {
+            GivenIGenerateInstallationRequestForTheContractWithCommunicationAndInstallation(method, type);
+            GivenIExtractTheInstallerUrlFromInstallationRequest();
+            GivenINavigateToTheInstallerPage();
+            WhenIEnterTheContractReferenceNumber();
+            WhenIEnterDeviceSerialNumberForCommunication(serialNumber, type);
+            WhenIEnterTheDeviceIpAddress();
+            ThenICanConnectDeviceWithSerialsAndWithSerialsAndToBrotherEnvironment("MFC-L8650CDW", serialNumber);
+            ThenICanCompleteDeviceInstallation();
+        }
+
+
 
         [Given(@"I installed the device in the contract through ""(.*)""")]
         public void GivenIInstalledTheDeviceInTheContractThrough(string method)
@@ -124,6 +138,13 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             
         }
 
+        public void WhenIEnterDeviceSerialNumberForCommunication(string serial, string type)
+        {
+            CurrentPage.As<InstallerDeviceInstallationPage>().VerifyTimeZoneIsDisplayed(type);
+            CurrentPage.As<InstallerDeviceInstallationPage>().EnterSingleSerialNumber(serial);
+
+        }
+
         public void WhenIEnterSwapDeviceSerialNumberForCommunication(string method)
         {
             CurrentPage.As<InstallerDeviceInstallationPage>().VerifyTimeZoneIsDisplayed(method);
@@ -168,6 +189,12 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             CurrentPage.As<InstallerDeviceInstallationPage>().RefreshCloudInstallation();
         }
 
+        public void ThenICanConnectDeviceWithSerialsAndWithSerialsAndToBrotherEnvironment(string device1, string serial1)
+        {
+            CurrentPage.As<InstallerDeviceInstallationPage>().ConnectDeviceWithBor(device1, serial1);
+            //CurrentPage.As<InstallerDeviceInstallationPage>().RefreshCloudMultipleInstallation();
+            CurrentPage.As<InstallerDeviceInstallationPage>().RefreshCloudInstallation();
+        }
 
         
 
