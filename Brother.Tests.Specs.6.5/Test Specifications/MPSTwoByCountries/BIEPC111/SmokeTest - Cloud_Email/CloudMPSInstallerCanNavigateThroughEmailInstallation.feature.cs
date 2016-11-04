@@ -23,6 +23,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC111.Smok
     [NUnit.Framework.CategoryAttribute("MPS")]
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("TEST")]
+    [NUnit.Framework.CategoryAttribute("BIEPC111")]
     public partial class CloudMPSInstallerCanNavigateThroughInstallationForSmokeTestFeature
     {
         
@@ -39,7 +40,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC111.Smok
                     "le to complete installation", ProgrammingLanguage.CSharp, new string[] {
                         "MPS",
                         "UAT",
-                        "TEST"});
+                        "TEST",
+                        "BIEPC111"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
