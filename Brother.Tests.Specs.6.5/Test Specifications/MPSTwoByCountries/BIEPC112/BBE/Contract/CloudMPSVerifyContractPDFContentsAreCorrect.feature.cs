@@ -24,6 +24,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BBE.
     [NUnit.Framework.CategoryAttribute("MPS")]
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("TEST")]
+    [NUnit.Framework.CategoryAttribute("BIEPC112")]
     public partial class CloudMPSVerifyBelgianPDFContentsAreCorrectFeature
     {
         
@@ -42,7 +43,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BBE.
                         "ignore",
                         "MPS",
                         "UAT",
-                        "TEST"});
+                        "TEST",
+                        "BIEPC112"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
