@@ -1,4 +1,4 @@
-﻿@ignore @TEST @UAT @MPS
+﻿@ignore @TEST @UAT @MPS @BIEPC111
 Feature: FinnishCustomerCanPerformSomeRunActions
 	In order for customer to perform some run portion actions
 	As a customer

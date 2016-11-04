@@ -23,6 +23,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC113.BIG_
     [NUnit.Framework.CategoryAttribute("MPS")]
     [NUnit.Framework.CategoryAttribute("TEST")]
     [NUnit.Framework.CategoryAttribute("UAT")]
+    [NUnit.Framework.CategoryAttribute("BIEPC113")]
     public partial class CloudMPSOutputContractPDFAllGermanUsersFeature
     {
         
@@ -39,7 +40,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC113.BIG_
                     "able to download contract PDFs", ProgrammingLanguage.CSharp, new string[] {
                         "MPS",
                         "TEST",
-                        "UAT"});
+                        "UAT",
+                        "BIEPC113"});
             testRunner.OnFeatureStart(featureInfo);
         }
         

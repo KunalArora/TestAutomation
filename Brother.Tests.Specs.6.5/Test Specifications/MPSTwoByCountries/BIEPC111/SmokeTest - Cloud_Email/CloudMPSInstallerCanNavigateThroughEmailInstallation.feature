@@ -1,4 +1,4 @@
-﻿@MPS @UAT @TEST
+﻿@MPS @UAT @TEST @BIEPC111
 Feature: CloudMPSInstallerCanNavigateThroughInstallationForSmokeTest
 	In order to get an installer to begin installation
 	As a Dealer 

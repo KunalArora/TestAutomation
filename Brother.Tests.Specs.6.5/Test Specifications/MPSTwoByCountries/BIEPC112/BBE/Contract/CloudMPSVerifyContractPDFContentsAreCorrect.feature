@@ -1,4 +1,4 @@
-﻿@ignore @MPS @UAT @TEST
+﻿@ignore @MPS @UAT @TEST @BIEPC112
 Feature: CloudMPSVerifyBelgianPDFContentsAreCorrect
 	In order to ensure that PDF contents are correct when compared with Summary page
 	As a MPS Dealer

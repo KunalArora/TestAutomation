@@ -1,4 +1,4 @@
-﻿@MPS @TEST @UAT
+﻿@MPS @TEST @UAT @BIEPC111
 Feature: CloudMPSNorwegianDealerCanGeneratePDFAtRelevantStages
 	In order to generate Proposal PDF
 	As a dealer

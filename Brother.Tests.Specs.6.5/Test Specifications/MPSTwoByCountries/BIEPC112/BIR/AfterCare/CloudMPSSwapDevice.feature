@@ -1,4 +1,4 @@
-﻿@MPS @UAT @TEST
+﻿@MPS @UAT @TEST @BIEPC112
 Feature: CloudMPSSwapDeviceForIrishDealer
 	In order to remove a broken device from a contract
 	As an installer

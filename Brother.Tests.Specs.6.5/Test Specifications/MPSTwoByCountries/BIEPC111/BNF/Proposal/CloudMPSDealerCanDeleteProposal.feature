@@ -1,4 +1,4 @@
-﻿@MPS @TEST @UAT
+﻿@MPS @TEST @UAT @BIEPC111
 Feature: CloudMPSFinnishDealerCanDeleteProposal
 	In order to stop the progress of a proposal
 	As a math dealer

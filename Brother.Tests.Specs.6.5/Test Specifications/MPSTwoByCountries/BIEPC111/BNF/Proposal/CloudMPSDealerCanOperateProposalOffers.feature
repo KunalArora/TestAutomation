@@ -1,4 +1,4 @@
-﻿@MPS @TEST @UAT
+﻿@MPS @TEST @UAT @BIEPC111
 Feature: CloudMPSFinnishDealerCanOperateProposalOffers
 	In order to view/edit/delete/copy existing proposals
 	As an MPS Dealer

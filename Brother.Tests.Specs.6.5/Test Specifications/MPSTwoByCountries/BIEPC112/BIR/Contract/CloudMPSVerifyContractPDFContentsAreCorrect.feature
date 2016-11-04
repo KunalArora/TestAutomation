@@ -1,4 +1,4 @@
-﻿@MPS @UAT @TEST
+﻿@MPS @UAT @TEST @BIEPC112
 Feature: CloudMPSVerifyIrishPDFContentsAreCorrect
 	In order to ensure that PDF contents are correct when compared with Summary page
 	As a MPS Dealer

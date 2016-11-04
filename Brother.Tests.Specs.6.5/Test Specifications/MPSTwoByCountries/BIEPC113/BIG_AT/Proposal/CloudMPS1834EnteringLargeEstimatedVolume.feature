@@ -1,4 +1,4 @@
-﻿@TEST @UAT @MPS
+﻿@TEST @UAT @MPS @BIEPC113
 Feature: CloudMPSEnteringLargeEstimatedVolumeForGermany
 	In order to ensure that Click Price page is not broken
 	As a dealer 

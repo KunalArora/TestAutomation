@@ -1,4 +1,4 @@
-﻿@MPS @TEST @UAT
+﻿@MPS @TEST @UAT @BIEPC111
 Feature: CloudMPSFinnishDealerCanGeneratePDFAtRelevantStages
 	In order to generate Proposal PDF
 	As a dealer
