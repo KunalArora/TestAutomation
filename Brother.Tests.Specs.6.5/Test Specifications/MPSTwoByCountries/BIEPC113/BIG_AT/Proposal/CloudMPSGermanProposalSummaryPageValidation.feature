@@ -1,4 +1,4 @@
-﻿@TEST @UAT @MPS
+﻿@TEST @UAT @MPS @BIEPC113
 Feature: CloudMPSProposalSummaryPageValidationForGerman
 	In order to avoid ambiguity on proposal summary page
 	As a dealer
