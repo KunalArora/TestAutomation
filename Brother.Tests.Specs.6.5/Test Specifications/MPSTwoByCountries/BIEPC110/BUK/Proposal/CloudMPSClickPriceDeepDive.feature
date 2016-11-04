@@ -1,4 +1,4 @@
-﻿@MPS @TEST @UAT
+﻿@MPS @TEST @UAT @BIEPC110
 Feature: CloudMPSUKClickPriceDeepDive
 	In order to create different variety of click price
 	As a dealer 

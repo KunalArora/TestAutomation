@@ -483,6 +483,21 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             
         }
 
+        public void EnterSingleSerialNumber(string serialNumber)
+        {
+            ClosePopUpModal();
+
+
+            MpsJobRunnerPage.RunResetSerialNumberJob(serialNumber);
+
+            ClearAndType(SerialNumberFieldElement, serialNumber);
+
+            SerialNumberFieldElement.SendKeys(Keys.Tab);
+           
+
+
+        }
+
         public void EnterSwapSerialNumber()
         {
             ClosePopUpModal();

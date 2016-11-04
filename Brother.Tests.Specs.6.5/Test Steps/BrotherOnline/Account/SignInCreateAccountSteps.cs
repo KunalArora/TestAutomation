@@ -1269,46 +1269,54 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
 
         private void SignInButtonToAsARoleType(string role)
         {
-            switch (role)
+            if (!role.StartsWith("Cloud MPS"))
             {
-                case "Cloud MPS Dealer":
-                    NextPage = CurrentPage.As<RegistrationPage>().SignInButtonToDealerDashboard();
-                    break;
-              
-                case "Cloud MPS Local Office":
-                    NextPage = CurrentPage.As<RegistrationPage>().SignInButtonToLocalOfficeDashboard();
-                    break;
-             
-                case "Cloud MPS Bank":
-                    NextPage = CurrentPage.As<RegistrationPage>().SignInButtonToBankUser();
-                    break;
-               
-                case "Cloud MPS Local Office Approver":
-                    NextPage = CurrentPage.As<RegistrationPage>().SignInButtonToLocalOfficeApproverDashboard();
-                    break;
-              
-                case "Cloud MPS Customer":
-                    NextPage = CurrentPage.As<RegistrationPage>().ClickSignInButton();
-                    break;
-               
-                case "Cloud MPS Service Desk Customer":
-                    NextPage = CurrentPage.As<RegistrationPage>().ClickSignInButton();
-                    break;
-                case "Cloud MPS Service Desk":
-                    NextPage = CurrentPage.As<RegistrationPage>().SignInButtonToServiceDeskDashBoardPage();
-                    break;
-               
+                NextPage = CurrentPage.As<RegistrationPage>().ClickSignInButton();
             }
+            else
+            {
+                switch (role)
+                {
+                    case "Cloud MPS Dealer":
+                        NextPage = CurrentPage.As<RegistrationPage>().SignInButtonToDealerDashboard();
+                        break;
+
+                    case "Cloud MPS Local Office":
+                        NextPage = CurrentPage.As<RegistrationPage>().SignInButtonToLocalOfficeDashboard();
+                        break;
+
+                    case "Cloud MPS Bank":
+                        NextPage = CurrentPage.As<RegistrationPage>().SignInButtonToBankUser();
+                        break;
+
+                    case "Cloud MPS Local Office Approver":
+                        NextPage = CurrentPage.As<RegistrationPage>().SignInButtonToLocalOfficeApproverDashboard();
+                        break;
+
+                    case "Cloud MPS Customer":
+                        NextPage = CurrentPage.As<RegistrationPage>().ClickSignInButton();
+                        break;
+
+                    case "Cloud MPS Service Desk Customer":
+                        NextPage = CurrentPage.As<RegistrationPage>().ClickSignInButton();
+                        break;
+                    case "Cloud MPS Service Desk":
+                        NextPage = CurrentPage.As<RegistrationPage>().SignInButtonToServiceDeskDashBoardPage();
+                        break;
+
+                }
+            }
+            
         }
 
         private void SignInAsARoleType(string role, string country)
         {
-            var username = MpsUserLogins.Username(country, role, CurrentDriver);
-            var password = MpsUserLogins.Password(role);
+            var username = role.Contains("Cloud") ? MpsUserLogins.Username(country, role, CurrentDriver) : role;
+            var password =  role.Contains("Cloud") ? MpsUserLogins.Password(role) : "P@$$w0rd";
 
-            if (!role.StartsWith("Cloud"))
+            if (role.StartsWith("MPS One"))
             {
-                SignInAsMPSOneUser(role);
+                SignInAsMpsOneUser(role);
             }
             else
             {
@@ -1318,24 +1326,24 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         }
 
 
-        private void SignInAsMPSOneUser(string role)
+        private void SignInAsMpsOneUser(string role)
         {
             switch (role)
             {
-                case "Dealer":
+                case "MPS One Dealer":
                 {
                     WhenIEnterAValidEmailAddress("laies_es_qas@mailinator.com");
                     WhenIEnterAValidPassword("Welcome1");
                     break;
 
                 }
-                case "Customer":
+                case "MPS One Customer":
                 {
                     WhenIEnterAValidEmailAddress("esqacustomer2nd0604@mailinator.com");
                     WhenIEnterAValidPassword("Lucasis3");
                     break;
                 }
-                case "Sales Dealer":
+                case "MPS One Sales Dealer":
                 {
                     WhenIEnterAValidEmailAddress("es.sales.dealer@mailinator.com");
                     WhenIEnterAValidPassword("Rishav13");

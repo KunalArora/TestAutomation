@@ -7,5 +7,5 @@ Scenario: Sign in to MPS one as a Customer
 
 	Given I launch Brother Online for "Spain"
 	When I click on Sign In / Create An Account for "Spain"
-	When I sign in as a "Customer" from "Spain"
-	Then I am signed in with "Customer" priviledges
+	When I sign in as a "MPS One Customer" from "Spain"
+	Then I am signed in with "MPS One Customer" priviledges
