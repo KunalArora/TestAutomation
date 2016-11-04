@@ -1,4 +1,4 @@
-﻿@MPS @TEST @UAT
+﻿@MPS @TEST @UAT @BIEPC111
 Feature: CloudMPSOutputContractPDFAllNorwegianUsers
 	In order to view paper version of contract summary
 	As an MPS User
