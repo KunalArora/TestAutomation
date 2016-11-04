@@ -24,7 +24,7 @@ Scenarios:
 	| Role                            | Country        | ContractType                  | UsageType      | Role1            | Method | Type | ExistingCustomer                      | Length  | Billing              | Role2              |
 	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  | lashonda20160322123145@mailinator.com | 3 years | Quarterly in Arrears | Cloud MPS Customer |
 
-	
+@ignore	
 Scenario Outline: MPS Existing Customer Consumable Actions
 	Given "<Country>" Dealer have created "<ContractType>" contract choosing "<ExistingCustomer>" with "<UsageType>" and "<Length>" and "<Billing>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
