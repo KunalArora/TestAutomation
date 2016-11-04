@@ -23,6 +23,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BBE.
     [NUnit.Framework.CategoryAttribute("MPS")]
     [NUnit.Framework.CategoryAttribute("TEST")]
     [NUnit.Framework.CategoryAttribute("UAT")]
+    [NUnit.Framework.CategoryAttribute("BIEPC112")]
     public partial class CloudMPSBelgianDealerCanOperateProposalOffersFeature
     {
         
@@ -39,7 +40,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BBE.
                     " operate existing proposals", ProgrammingLanguage.CSharp, new string[] {
                         "MPS",
                         "TEST",
-                        "UAT"});
+                        "UAT",
+                        "BIEPC112"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
