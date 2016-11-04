@@ -1,4 +1,4 @@
-﻿@MPS @UAT @TEST
+﻿@MPS @UAT @TEST @BIEPC113
 Feature: CloudMPSVerifyGermanPDFContentsAreCorrect
 	In order to ensure that PDF contents are correct when compared with Summary page
 	As a MPS Dealer
