@@ -1,4 +1,4 @@
-﻿@MPS @TEST @UAT
+﻿@MPS @TEST @UAT @BIEPC111
 Feature: CloudMPSFinnishDealerCanCopyADeclineProposal
 	In order to resubmit a declined proposal
 	As a dealer 
