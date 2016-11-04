@@ -1,4 +1,4 @@
-﻿@TEST @UAT @MPS
+﻿@TEST @UAT @MPS @BIEPC110
 Feature: CloudMPSMultiDeviceVerificationWithPrintCountValidationUK
 	In order to validate that number of devices influences the display of print counts on summary pages
 	As a dealer 

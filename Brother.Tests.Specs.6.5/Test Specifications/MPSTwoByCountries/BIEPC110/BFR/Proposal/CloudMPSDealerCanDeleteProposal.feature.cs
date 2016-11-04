@@ -23,6 +23,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BFR.
     [NUnit.Framework.CategoryAttribute("MPS")]
     [NUnit.Framework.CategoryAttribute("TEST")]
     [NUnit.Framework.CategoryAttribute("UAT")]
+    [NUnit.Framework.CategoryAttribute("BIEPC110")]
     public partial class CloudMPSFrenchDealerCanDeleteProposalFeature
     {
         
@@ -39,7 +40,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BFR.
                     "to delete an open proposal", ProgrammingLanguage.CSharp, new string[] {
                         "MPS",
                         "TEST",
-                        "UAT"});
+                        "UAT",
+                        "BIEPC110"});
             testRunner.OnFeatureStart(featureInfo);
         }
         

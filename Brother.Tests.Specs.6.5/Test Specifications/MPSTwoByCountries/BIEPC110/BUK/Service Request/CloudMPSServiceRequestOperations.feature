@@ -1,4 +1,4 @@
-﻿@TEST @UAT @MPS
+﻿@TEST @UAT @MPS @BIEPC110
 Feature: CloudMPSUKServiceRequestOperations
 	In order to get my devices issues fix by Brother
 	As an MPS user

@@ -1,4 +1,4 @@
-﻿@MPS @TEST @UAT
+﻿@MPS @TEST @UAT @BIEPC110
 Feature: CloudMPSFrenchApproverDecisionFeature
 	In order to approve/decline Proposal/Contract
 	As a Approver

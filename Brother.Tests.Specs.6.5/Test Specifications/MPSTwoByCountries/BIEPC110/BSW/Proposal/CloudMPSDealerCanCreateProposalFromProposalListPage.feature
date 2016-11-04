@@ -1,4 +1,4 @@
-﻿@MPS @UAT @TEST
+﻿@MPS @UAT @TEST @BIEPC110
 Feature: CloudMPSSwissDealerCanCreateProposalFromProposalListPage
 	In order to create a proposal from proposal list page
 	As a dealer

@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Brother.Tests.Specs.TestSpecifications.MPS2ByCountriesNotReady.BSW.Contract
+namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BSW.Contract
 {
     using TechTalk.SpecFlow;
     
@@ -23,6 +23,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2ByCountriesNotReady.BSW.Con
     [NUnit.Framework.CategoryAttribute("MPS")]
     [NUnit.Framework.CategoryAttribute("TEST")]
     [NUnit.Framework.CategoryAttribute("UAT")]
+    [NUnit.Framework.CategoryAttribute("BIEPC110")]
     public partial class CloudMPSOutputContractPDFAllSwissUsersFeature
     {
         
@@ -39,7 +40,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2ByCountriesNotReady.BSW.Con
                     "able to download contract PDFs", ProgrammingLanguage.CSharp, new string[] {
                         "MPS",
                         "TEST",
-                        "UAT"});
+                        "UAT",
+                        "BIEPC110"});
             testRunner.OnFeatureStart(featureInfo);
         }
         

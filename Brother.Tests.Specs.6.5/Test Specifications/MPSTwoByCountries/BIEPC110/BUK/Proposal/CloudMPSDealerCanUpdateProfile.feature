@@ -1,4 +1,4 @@
-﻿@MPS @TEST @UAT
+﻿@MPS @TEST @UAT @BIEPC110
 Feature: CloudMPSUKDealerCanUpdateProfile
 	In order to personalise detail
 	As a dealer
