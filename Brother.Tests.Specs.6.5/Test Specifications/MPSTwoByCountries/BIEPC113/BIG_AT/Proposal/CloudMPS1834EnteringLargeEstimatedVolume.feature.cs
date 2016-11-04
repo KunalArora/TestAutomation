@@ -23,6 +23,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC113.BIG_
     [NUnit.Framework.CategoryAttribute("TEST")]
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("MPS")]
+    [NUnit.Framework.CategoryAttribute("BIEPC113")]
     public partial class CloudMPSEnteringLargeEstimatedVolumeForGermanyFeature
     {
         
@@ -40,7 +41,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC113.BIG_
                     "ugh PAYG", ProgrammingLanguage.CSharp, new string[] {
                         "TEST",
                         "UAT",
-                        "MPS"});
+                        "MPS",
+                        "BIEPC113"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
