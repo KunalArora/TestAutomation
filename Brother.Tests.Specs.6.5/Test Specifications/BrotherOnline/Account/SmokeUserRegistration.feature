@@ -24,7 +24,7 @@ Scenario Outline: Customer creates a new account with Brother Online using valid
 	When I press Create Your Account
 	Then I should see my account confirmation page
 	And When I Click Go Back
-	#And Once I have Validated an Email was received and verified my account
+	And Once I have Validated an Email was received and verified my account
 	Then I should be able to log into "<Country>" Brother Online using my account details
 	And I can sign out of Brother Online
 	Then I am redirected to the Brother Home Page

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -21,11 +22,17 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         [FindsBy(How = How.XPath, Using = "//a[contains(@href, '#Existing')]")]
         public IWebElement ExistingUserTab;
 
-        [FindsBy(How = How.Id, Using = "#lnkForgottenPassword")]
+        [FindsBy(How = How.CssSelector, Using = "#lnkForgottenPassword")]
         public IWebElement ForgottenPasswordLink;
 
-        [FindsBy(How = How.Id, Using = "#txtEmail")]
+        [FindsBy(How = How.CssSelector, Using = "#txtEmail")]
         public IWebElement EnterEmailId;
+        
+        [FindsBy(How = How.XPath, Using = ".//*[@id='spanEmailNotValidError']/*/*")] 
+        public IWebElement EmailAddressErrorMessage;
+
+        [FindsBy(How = How.CssSelector, Using = ".btn.btn-primary.btn--forgotpassword")]
+        public IWebElement SendEmailButton;
 
 
         public void ClickExistingUserTab()
@@ -36,17 +43,22 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         {
             ForgottenPasswordLink.Click();
         }
-
         public void PopulateInvalidEmailAddress(string emailid)
         {
             EnterEmailId.SendKeys(emailid);
         }
-
         public void VerifyErrorMessageExist()
         {
+            TestCheck.AssertIsEqual(true, EmailAddressErrorMessage.Displayed, "Is Email Error message displayed");
         }
-
-
+        public void PopulateValidEmailAddress(string emailid)
+        {
+            EnterEmailId.SendKeys(emailid);
+        }
+        public void ClickSendButton()
+        {
+            SendEmailButton.Click();
+        }
 
     }
 }
