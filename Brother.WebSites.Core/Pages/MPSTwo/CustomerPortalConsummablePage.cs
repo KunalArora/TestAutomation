@@ -42,6 +42,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             TestCheck.AssertIsEqual(serialNumber, displayedSerial, "Displayed serial number is not the same as the one entered");
         }
 
+        public void IsCorrectDeviceSerialNumberDisplayed(string serialNumber)
+        {
+            var displayedSerial = ConsumableDeviceSerialNumber.Text;
+
+            TestCheck.AssertIsEqual(serialNumber, displayedSerial, "Displayed serial number is not the same as the one entered");
+        }
+
         public void IsCorrectContractIdDisplayed()
         {
             var contractRef = SpecFlow.GetContext("ProposalId");
