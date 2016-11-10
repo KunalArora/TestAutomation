@@ -23,6 +23,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement ConsumableDeviceScreenTab;
         [FindsBy(How = How.CssSelector, Using = "#content_1_ContractDevicesList_Contracts_List_1_CellSerialNo_0")]
         public IWebElement ConsumableDeviceSerialNumber;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_ContractDevicesList_Contracts_List_0_CellSerialNo_0")]
+        public IWebElement ConsumableDeviceFirstSerialNumber;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-filter-ignore")]
         public IWebElement ConsumableDeviceActionButton;
         [FindsBy(How = How.CssSelector, Using = ".open #content_1_ContractDevicesList_Contracts_List_0_ListActions_0_List_0_Link_0")]
@@ -31,6 +33,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement ConsumableOrderTab;
         [FindsBy(How = How.CssSelector, Using = "#content_1_ContractDevicesList_Contracts_List_0_Cell_BW_0")]
         public IWebElement BlackTonerCounter;
+        [FindsBy(How = How.CssSelector, Using = ".open .js-mps-change-ordermode-to-automatic")]
+        public IWebElement ConsumableDeviceChangeToAutomatic;
+
         
 
 
@@ -40,6 +45,21 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var displayedSerial = ConsumableDeviceSerialNumber.Text;
 
             TestCheck.AssertIsEqual(serialNumber, displayedSerial, "Displayed serial number is not the same as the one entered");
+        }
+
+        public void IsCorrectDeviceSerialNumberDisplayed(string serialNumber)
+        {
+            var displayedSerial = ConsumableDeviceFirstSerialNumber.Text;
+
+            TestCheck.AssertIsEqual(serialNumber, displayedSerial, "Displayed serial number is not the same as the one entered");
+        }
+
+        public void ChangeConsumableOrderToAutomaticOrdering()
+        {
+            ConsumableDeviceActionButton.Click();
+            WaitForElementToExistByCssSelector(".open .js-mps-change-ordermode-to-automatic");
+
+            ConsumableDeviceChangeToAutomatic.Click();
         }
 
         public void IsCorrectContractIdDisplayed()

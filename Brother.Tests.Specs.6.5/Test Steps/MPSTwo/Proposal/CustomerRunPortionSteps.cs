@@ -28,6 +28,21 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             NextPage = CurrentPage.As<CustomerPortalConsummablePage>().NavigateToConsumableRaiseOrderPage();
         }
 
+        [When(@"I navigate to consumable ordering page for ""(.*)""")]
+        public void WhenINavigateToConsumableOrderingPageFor(string serialNumber)
+        {
+            WhenINavigateToConsumableOrderingPage(serialNumber);
+        }
+
+
+        public void WhenINavigateToConsumableOrderingPage(string serialNumber)
+        {
+            NextPage = CurrentPage.As<CustomerPortalDashboardPage>().NavigateToCustomerConsummablePage();
+            CurrentPage.As<CustomerPortalConsummablePage>().IsConsumableScreenDisplayed();
+            CurrentPage.As<CustomerPortalConsummablePage>().IsCorrectDeviceSerialNumberDisplayed(serialNumber);
+            NextPage = CurrentPage.As<CustomerPortalConsummablePage>().NavigateToConsumableRaiseOrderPage();
+        }
+
         [When(@"I navigate to Print Count page")]
         public void WhenINavigateToPrintCountPage()
         {
