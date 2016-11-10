@@ -27,7 +27,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
         private const string CheckForSilentMedioDevicesCommand = @"runcommand.aspx?command=MPS:CheckForSilentEmailDevicesCommand";
         private const string resetSerialNumberJob = @"recycleserial.aspx?serial=";
         private const string setCustomerSAPIdJob = @"setcustomersapid.aspx?name={0}&sapid={1}";
-        private const string setPersonSAPIdJob = @"setpersonsapid.aspx?email={0}&sapid={1}";
+        private const string SetPersonSapIdJob = @"setpersonsapid.aspx?email={0}&sapid={1}";
         private const string RemoveConsumableOrderById = @"removeconsumableorderbyid.aspx?orderid=";
         private const string RemoveConsumableOrderByInstalledPrinter = @"removeconsumableorderbyinstalledprinter.aspx?serial=";
        
