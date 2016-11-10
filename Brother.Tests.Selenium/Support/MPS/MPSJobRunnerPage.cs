@@ -161,23 +161,23 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             Helper.MsgOutput("SetSupplyStatusForNewPrinter job ran successfully");
         }
 
-        public static void SetTonerInkStatusForNewPrinter()
+        public static void SetTonerInkStatusForNewPrinter(string tonerType)
         {
             const string webSite = DevSimUrl + SetSupplyUrl;
 
             Helper.MsgOutput(String.Format("The url formed for Set Supply Status is {0}", webSite));
 
-            const string deviceWithDefaultPrintCount = "{\"name\": \"TonerInk_Black\",\"value\": \"Empty\"}";
+            var toner = string.Format("TonerInk_{0}", tonerType);
+
+            var deviceWithDefaultPrintCount = "{\"name\": \"" + toner + "\",\"value\": \"Empty\"}";
 
             var json = "{\"id\": \"" + GetSavedDeviceId() + "\",\"items\": [" + deviceWithDefaultPrintCount + "]}";
 
-            //var json = "{\"id\": \"{0}\",\"items\": [{1}]}";
-            //json = String.Format(json, GetSavedDeviceId(), deviceWithDefaultPrintCount);
-
+            
             Utils.GetPageResponse(webSite, WebRequestMethods.Http.Post, "application/json", json, AuthHeader);
 
             WebDriver.Wait(Helper.DurationType.Second, 5);
-            Helper.MsgOutput("SetSupplyStatusForNewPrinter job ran successfully");
+            Helper.MsgOutput(String.Format("SetTonerInkStatus job for {0} ran successfully", tonerType));
         }
 
         public static void NotifyBocOfNewChanges()

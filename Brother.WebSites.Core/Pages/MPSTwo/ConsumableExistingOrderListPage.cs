@@ -28,12 +28,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IList<IWebElement> consumableOrderDetail;
         [FindsBy(How = How.CssSelector, Using = "#content_1_ConsumablesOrderList_OrderList_CellOrderId_0")]
         public IWebElement sapConsumableOrderId;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_ConsumablesOrderList_OrderList_CellOrderId_1")]
+        public IWebElement SecondLineSapConsumableOrderId;
         [FindsBy(How = How.CssSelector, Using = "#content_1_ConsumablesOrderList_OrderList_CellStatus_0")]
         public IWebElement ConsumableOrderProgress;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_ConsumablesOrderList_OrderList_CellStatus_1")]
+        public IWebElement SecondLineConsumableOrderProgress;
         [FindsBy(How = How.CssSelector, Using = "#content_1_ConsumablesOrderList_OrderList_CellSerialNo_0")]
         public IWebElement ConsumableOrderSerialNumber;
         [FindsBy(How = How.CssSelector, Using = "#content_1_ConsumablesOrderList_OrderList_CellItemName_0")]
         public IWebElement ConsumableTonerType;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_ConsumablesOrderList_OrderList_CellItemName_1")]
+        public IWebElement SecondLineConsumableTonerType;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/customer/consumables/orders\"]")]
         public IWebElement ConsumableOrderTab;
         [FindsBy(How = How.CssSelector, Using = ".modal-header .close")]
