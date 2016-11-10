@@ -25,7 +25,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
         private const string checkForSilentEmailDevicesCommand = @"runcommand.aspx?command=MPS:CheckForSilentEmailDevicesCommand";
         private const string SystemJobCreateConsumableOrderCommand = @"runcommand.aspx?command=MPS:SystemJobCreateConsumableOrderCommand";
         private const string CheckForSilentMedioDevicesCommand = @"runcommand.aspx?command=MPS:CheckForSilentEmailDevicesCommand";
-        private const string resetSerialNumberJob = @"recycleserial.aspx?serial=";
+        private const string ResetSerialNumberJob = @"recycleserial.aspx?serial=";
         private const string setCustomerSAPIdJob = @"setcustomersapid.aspx?name={0}&sapid={1}";
         private const string SetPersonSapIdJob = @"setpersonsapid.aspx?email={0}&sapid={1}";
         private const string RemoveConsumableOrderById = @"removeconsumableorderbyid.aspx?orderid=";
@@ -245,7 +245,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
         public static void RunResetSerialNumberJob(string serial)
         {
             if (String.IsNullOrWhiteSpace(serial)) return;
-            var reset = CoinedUrl() + resetSerialNumberJob + serial;
+            var reset = CoinedUrl() + ResetSerialNumberJob + serial;
             var response = Utils.GetPageResponse(reset, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
 
             WebDriver.Wait(Helper.DurationType.Second, 1);
