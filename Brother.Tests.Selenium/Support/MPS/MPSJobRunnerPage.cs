@@ -22,14 +22,16 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
         private const string systemJobCreateCustomerTaxCommand = @"runcommand.aspx?command=MPS:SystemJobCreateCustomerTaxCommand";
         private const string closeConsumableOrdersCommand = @"runcommand.aspx?command=MPS:CloseConsumableOrdersCommand";
         private const string pollConsumableOrderStatusCommand = @"runcommand.aspx?command=MPS:PollConsumableOrderStatusCommand";
-        private const string checkForSilentDevicesCommand = @"runcommand.aspx?command=MPS:CheckForSilentDevicesCommand";
+        private const string checkForSilentEmailDevicesCommand = @"runcommand.aspx?command=MPS:CheckForSilentEmailDevicesCommand";
+        private const string SystemJobCreateConsumableOrderCommand = @"runcommand.aspx?command=MPS:SystemJobCreateConsumableOrderCommand";
+        private const string CheckForSilentMedioDevicesCommand = @"runcommand.aspx?command=MPS:CheckForSilentEmailDevicesCommand";
         private const string resetSerialNumberJob = @"recycleserial.aspx?serial=";
         private const string setCustomerSAPIdJob = @"setcustomersapid.aspx?name={0}&sapid={1}";
         private const string setPersonSAPIdJob = @"setpersonsapid.aspx?email={0}&sapid={1}";
-        private const string removeConsumableOrderById = @"removeconsumableorderbyid.aspx?orderid=";
-        private const string removeConsumableOrderByInstalledPrinter = @"removeconsumableorderbyinstalledprinter.aspx?serial=";
+        private const string RemoveConsumableOrderById = @"removeconsumableorderbyid.aspx?orderid=";
+        private const string RemoveConsumableOrderByInstalledPrinter = @"removeconsumableorderbyinstalledprinter.aspx?serial=";
        
-        private const string setConsumableStatusJob = @"setconsumableorderstatus.aspx?orderid={0}&statusid={1}";
+        private const string SetConsumableStatusJob = @"setconsumableorderstatus.aspx?orderid={0}&statusid={1}";
 
         public static readonly Dictionary<string, string> AuthHeader = new Dictionary<string, string>
         {
@@ -229,7 +231,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 
             if (String.IsNullOrWhiteSpace(orderid))
             {
-                var webSite = CoinedUrl() + setConsumableStatusJob;
+                var webSite = CoinedUrl() + SetConsumableStatusJob;
 
                 webSite = String.Format(webSite, orderid, status);
 
@@ -264,7 +266,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
         public static void RunRemoveConsumableOrderByIdJob(string id)
         {
             if (String.IsNullOrWhiteSpace(id)) return;
-            var webSite = CoinedUrl() + removeConsumableOrderById + id;
+            var webSite = CoinedUrl() + RemoveConsumableOrderById + id;
             var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
 
             WebDriver.Wait(Helper.DurationType.Second, 1);
@@ -277,7 +279,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
         public static void RunRemoveConsumableOrderByInstalledPrinterJob(string serial)
         {
             if (String.IsNullOrWhiteSpace(serial)) return;
-            var webSite = CoinedUrl() + removeConsumableOrderByInstalledPrinter + serial;
+            var webSite = CoinedUrl() + RemoveConsumableOrderByInstalledPrinter + serial;
             var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
 
             WebDriver.Wait(Helper.DurationType.Second, 1);
@@ -434,7 +436,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 
         public static void RunCheckForSilentDevicesCommandJob()
         {
-            var webSite = CoinedUrl() + checkForSilentDevicesCommand;
+            var webSite = CoinedUrl() + checkForSilentEmailDevicesCommand;
 
             var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
 
