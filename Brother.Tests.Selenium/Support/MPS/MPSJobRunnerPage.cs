@@ -9,7 +9,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
     {
         private const string Uaturl = @"http://online.{0}.cms.brotherqas.eu/sitecore/admin/integration/mps2/"; //@"http://online.brother.{0}.local/sitecore/admin/integration/mps2/"; 
         private const string Testurl = @"http://online.{0}.brotherdv2.eu/sitecore/admin/integration/mps2/";
-        private const string customerAndPersonCommand = @"runcommand.aspx?command=MPS:SystemJobCreateCustomerAndPersonCommand";
+        private const string CustomerAndPersonCommand = @"runcommand.aspx?command=MPS:SystemJobCreateCustomerAndPersonCommand";
         private const string ClickRateInvoiceCommand = @"runcommand.aspx?command=MPS:RaiseClickRateInvoicesCommand";
         private const string CompleteInstallationCommand = @"runcommand.aspx?command=MPS:CompleteInstallationCommand";
         private const string SendClickRateInvoicesToSapCommand = @"runcommand.aspx?command=MPS:SendClickRateInvoicesToSapCommand";
@@ -52,7 +52,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
         
         public static void RunCreateCustomerAndPersonCommandJob()
         {
-            var webSite = CoinedUrl() + customerAndPersonCommand;
+            var webSite = CoinedUrl() + CustomerAndPersonCommand;
 
             Helper.MsgOutput(String.Format("The url formed for Create Customer and Person Command is {0}", webSite));
 
