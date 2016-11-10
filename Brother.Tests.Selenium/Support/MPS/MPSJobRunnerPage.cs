@@ -20,7 +20,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
         private const string createOrderAndServiceRequestsCommand = @"runcommand.aspx?command=MPS:CreateOrderAndServiceRequestsCommand";
         private const string systemJobCreateCustomerAndPersonCommand = @"runcommand.aspx?command=MPS:SystemJobCreateCustomerAndPersonCommand";
         private const string systemJobCreateCustomerTaxCommand = @"runcommand.aspx?command=MPS:SystemJobCreateCustomerTaxCommand";
-        private const string closeConsumableOrdersCommand = @"runcommand.aspx?command=MPS:CloseConsumableOrdersCommand";
+        private const string CloseConsumableOrdersCommand = @"runcommand.aspx?command=MPS:CloseConsumableOrdersCommand";
         private const string PollConsumableOrderStatusCommand = @"runcommand.aspx?command=MPS:PollConsumableOrderStatusCommand";
         private const string CheckForSilentEmailDevicesCommand = @"runcommand.aspx?command=MPS:CheckForSilentEmailDevicesCommand";
         private const string SystemJobCreateConsumableOrderCommand = @"runcommand.aspx?command=MPS:SystemJobCreateConsumableOrderCommand";
@@ -411,7 +411,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 
         public static void RunCloseConsumableOrdersCommandJob()
         {
-            var webSite = CoinedUrl() + closeConsumableOrdersCommand;
+            var webSite = CoinedUrl() + CloseConsumableOrdersCommand;
 
             var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
 
