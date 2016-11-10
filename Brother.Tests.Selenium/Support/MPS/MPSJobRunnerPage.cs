@@ -22,11 +22,11 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
         private const string systemJobCreateCustomerTaxCommand = @"runcommand.aspx?command=MPS:SystemJobCreateCustomerTaxCommand";
         private const string closeConsumableOrdersCommand = @"runcommand.aspx?command=MPS:CloseConsumableOrdersCommand";
         private const string pollConsumableOrderStatusCommand = @"runcommand.aspx?command=MPS:PollConsumableOrderStatusCommand";
-        private const string checkForSilentEmailDevicesCommand = @"runcommand.aspx?command=MPS:CheckForSilentEmailDevicesCommand";
+        private const string CheckForSilentEmailDevicesCommand = @"runcommand.aspx?command=MPS:CheckForSilentEmailDevicesCommand";
         private const string SystemJobCreateConsumableOrderCommand = @"runcommand.aspx?command=MPS:SystemJobCreateConsumableOrderCommand";
         private const string CheckForSilentMedioDevicesCommand = @"runcommand.aspx?command=MPS:CheckForSilentEmailDevicesCommand";
         private const string ResetSerialNumberJob = @"recycleserial.aspx?serial=";
-        private const string setCustomerSAPIdJob = @"setcustomersapid.aspx?name={0}&sapid={1}";
+        private const string SetCustomerSapIdJob = @"setcustomersapid.aspx?name={0}&sapid={1}";
         private const string SetPersonSapIdJob = @"setpersonsapid.aspx?email={0}&sapid={1}";
         private const string RemoveConsumableOrderById = @"removeconsumableorderbyid.aspx?orderid=";
         private const string RemoveConsumableOrderByInstalledPrinter = @"removeconsumableorderbyinstalledprinter.aspx?serial=";
@@ -436,7 +436,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 
         public static void RunCheckForSilentDevicesCommandJob()
         {
-            var webSite = CoinedUrl() + checkForSilentEmailDevicesCommand;
+            var webSite = CoinedUrl() + CheckForSilentEmailDevicesCommand;
 
             var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
 
