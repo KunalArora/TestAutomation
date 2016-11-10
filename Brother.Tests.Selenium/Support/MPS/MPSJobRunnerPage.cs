@@ -16,7 +16,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
         private const string refreshPrintCountsCommand = @"runcommand.aspx?command=MPS:RefreshPrintCountsCommand";
         private const string refreshPrintCountsFromMedioCommand = @"runcommand.aspx?command=MPS:RefreshPrintCountsFromMedioCommand";
         private const string staffAccountCreationCommand = @"runcommand.aspx?command=MPS:StaffAccountCreationCommand";
-        private const string consumableOrderRequestsCommand = @"runcommand.aspx?command=MPS:ConsumableOrderRequestsCommand";
+        private const string ConsumableOrderRequestsCommand = @"runcommand.aspx?command=MPS:ConsumableOrderRequestsCommand";
         private const string CreateOrderAndServiceRequestsCommand = @"runcommand.aspx?command=MPS:CreateOrderAndServiceRequestsCommand";
         private const string SystemJobCreateCustomerAndPersonCommand = @"runcommand.aspx?command=MPS:SystemJobCreateCustomerAndPersonCommand";
         private const string SystemJobCreateCustomerTaxCommand = @"runcommand.aspx?command=MPS:SystemJobCreateCustomerTaxCommand";
@@ -357,7 +357,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 
         public static void RunConsumableOrderRequestsCommandJob()
         {
-                var webSite = CoinedUrl() + consumableOrderRequestsCommand;
+                var webSite = CoinedUrl() + ConsumableOrderRequestsCommand;
 
                 var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
 
