@@ -102,6 +102,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             TestCheck.AssertIsEqual(true, consumableText.Equals("Black Toner"), "Consumable ");
         }
 
+        public void IsCyanTonerDisplayed()
+        {
+            if (ConsumableTonerType == null)
+                throw new Exception("Consumable toner type is not displayed");
+            var consumableText = SecondLineConsumableTonerType.Text;
+
+            StoreOrderDetails();
+            TestCheck.AssertIsEqual(true, consumableText.Equals("Cyan Toner"), "Consumable ");
+        }
+
         private List<string> OrderPopUpDetails()
         {
             var detailsContainer = new List<String>();
@@ -164,6 +174,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void InitialOrderProgress()
         {
             var initial = ConsumableOrderProgress.Text;
+            var message = String.Format("The expected progress text was \"In Progress\" but got {0}", initial);
+
+            TestCheck.AssertIsEqual(true, initial.Contains("In Progress"), message);
+        }
+
+        public void CyanOrderProgress()
+        {
+            var initial = SecondLineConsumableOrderProgress.Text;
             var message = String.Format("The expected progress text was \"In Progress\" but got {0}", initial);
 
             TestCheck.AssertIsEqual(true, initial.Contains("In Progress"), message);

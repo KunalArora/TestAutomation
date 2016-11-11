@@ -138,6 +138,18 @@ this.ScenarioSetup(scenarioInfo);
 #line 37
  testRunner.And(string.Format("I navigate to consumable ordering page for \"{0}\"", serialNumber), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 38
+ testRunner.And("I change the ordering procedure to automatic", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 39
+ testRunner.And("I create a consumable order for \"Cyan\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 40
+ testRunner.Then("the newly created order is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 41
+ testRunner.And("initial SAP order number is not created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 42
+ testRunner.And("SAP order number is created only after relevanet job is ran", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 43
+ testRunner.And("order progress status is correct", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 44
  testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();

@@ -31,16 +31,16 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [When(@"I navigate to consumable ordering page for ""(.*)""")]
         public void WhenINavigateToConsumableOrderingPageFor(string serialNumber)
         {
-            WhenINavigateToConsumableOrderingPage(serialNumber);
+            WhenINavigateToConsumableDevicePage(serialNumber);
         }
 
 
-        public void WhenINavigateToConsumableOrderingPage(string serialNumber)
+        public void WhenINavigateToConsumableDevicePage(string serialNumber)
         {
             NextPage = CurrentPage.As<CustomerPortalDashboardPage>().NavigateToCustomerConsummablePage();
             CurrentPage.As<CustomerPortalConsummablePage>().IsConsumableScreenDisplayed();
             CurrentPage.As<CustomerPortalConsummablePage>().IsCorrectDeviceSerialNumberDisplayed(serialNumber);
-            NextPage = CurrentPage.As<CustomerPortalConsummablePage>().NavigateToConsumableRaiseOrderPage();
+           // NextPage = CurrentPage.As<CustomerPortalConsummablePage>().NavigateToConsumableRaiseOrderPage();
         }
 
         [When(@"I navigate to Print Count page")]
@@ -118,6 +118,41 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         }
 
 
+        [When(@"I change the ordering procedure to automatic")]
+        public void WhenIChangeTheOrderingProcedureToAutomatic()
+        {
+            
+        }
+
+        [When(@"I create a consumable order for ""(.*)""")]
+        public void WhenICreateAConsumableOrderFor(string toner)
+        {
+            
+        }
+
+        [Then(@"the newly created order is displayed")]
+        public void ThenTheNewlyCreatedOrderIsDisplayed()
+        {
+            
+        }
+
+        [Then(@"initial SAP order number is not created")]
+        public void ThenInitialSapOrderNumberIsNotCreated()
+        {
+            
+        }
+
+        [Then(@"SAP order number is created only after relevanet job is ran")]
+        public void ThenSapOrderNumberIsCreatedOnlyAfterRelevanetJobIsRan()
+        {
+            
+        }
+
+        [Then(@"order progress status is correct")]
+        public void ThenOrderProgressStatusIsCorrect()
+        {
+            
+        }
 
 
     }
