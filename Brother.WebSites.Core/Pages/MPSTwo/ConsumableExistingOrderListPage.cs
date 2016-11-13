@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
@@ -102,13 +103,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             TestCheck.AssertIsEqual(true, consumableText.Equals("Black Toner"), "Consumable ");
         }
 
+        public void RunSapOrderCreationJob()
+        {
+            MpsJobRunnerPage.RunSystemJobCreateConsumableOrderCommandJob();
+        }
+
         public void IsCyanTonerDisplayed()
         {
             if (ConsumableTonerType == null)
                 throw new Exception("Consumable toner type is not displayed");
             var consumableText = SecondLineConsumableTonerType.Text;
 
-            StoreOrderDetails();
             TestCheck.AssertIsEqual(true, consumableText.Equals("Cyan Toner"), "Consumable ");
         }
 
@@ -130,6 +135,28 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             var sapOrderId = sapConsumableOrderId.Text;
             SpecFlow.SetContext("SAPOrderId", sapOrderId);
+        }
+
+
+        public void VerifyInitialSapOrderNumber()
+        {
+            var sapOrderId = SecondLineSapConsumableOrderId.Text;
+            TestCheck.AssertTextContains(sapOrderId, "-");
+        }
+
+        public void VerifySapOrderNumberStartWithZero()
+        {
+            var sapOrderId = SecondLineSapConsumableOrderId.Text;
+            TestCheck.AssertIsEqual(true, sapOrderId.StartsWith("0"), String.Format("SAP order id displayed is {0}", sapOrderId));
+        }
+
+        public void VerifySapOrderValueIsANumber()
+        {
+            var sapOrderId = SecondLineSapConsumableOrderId.Text;
+
+            var isNumber = Regex.IsMatch(sapOrderId, @"^\d+$");
+
+            TestCheck.AssertIsEqual(true, isNumber, String.Format("SAP order id displayed, {0}, is not number", sapOrderId));
         }
 
         public void IsSapOrderIdInPopUpModal()

@@ -38,8 +38,8 @@ Scenario Outline: MPS Existing Customer Consumable Actions
 	And I change the ordering procedure to automatic
 	And I create a consumable order for "Cyan"
 	Then the newly created order is displayed
-	And initial SAP order number is not created
-	And SAP order number is created only after relevanet job is ran
+	##And initial SAP order number is not created
+	And SAP order number is created only after relevant job is ran
 	And order progress status is correct
 	And I sign out of Cloud MPS
 

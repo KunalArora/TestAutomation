@@ -33,8 +33,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement ConsumableOrderTab;
         [FindsBy(How = How.CssSelector, Using = "#content_1_ContractDevicesList_Contracts_List_0_Cell_BW_0")]
         public IWebElement BlackTonerCounter;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_ContractDevicesList_Contracts_List_0_Cell_C_0")]
+        public IWebElement CyanTonerCounter;
         [FindsBy(How = How.CssSelector, Using = ".open .js-mps-change-ordermode-to-automatic")]
         public IWebElement ConsumableDeviceChangeToAutomatic;
+        [FindsBy(How = How.CssSelector, Using = "[data-original-title=\"Replenish mode: Auto\"]")]
+        public IWebElement ConsumableDeviceAutomaticConfirmation;
+        
 
         
 
@@ -60,6 +65,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             WaitForElementToExistByCssSelector(".open .js-mps-change-ordermode-to-automatic");
 
             ConsumableDeviceChangeToAutomatic.Click();
+            WebDriver.Wait(DurationType.Second, 5);
         }
 
         public void IsCorrectContractIdDisplayed()
@@ -76,7 +82,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             MpsJobRunnerPage.RunRemoveConsumableOrderByInstalledPrinterJob(serialNumber);
         }
 
+        public void IsReplenishModeAutomation()
+        {
+            if(ConsumableDeviceAutomaticConfirmation==null)
+                throw new Exception("Replenish mode is unknown");
 
+            TestCheck.AssertIsEqual(true, ConsumableDeviceAutomaticConfirmation.Displayed, "Replenish mode is not changed to Automatic");
+        }
 
         public void IsConsumableScreenDisplayed()
         {
@@ -88,6 +100,26 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             AssertElementPresent(ConsumableDeviceScreenTab, "Consumable screen");
         }
 
+        private void RefreshDeviceScreen()
+        {
+            ConsumableDeviceScreenTab.Click();
+        }
+
+        public void ChangeTonerInkStatus(string toner)
+        {
+            MpsJobRunnerPage.SetTonerInkStatusForNewPrinter(toner);
+            MpsJobRunnerPage.NotifyBocOfNewChanges();
+        }
+
+        public void RunConsumableOrderCreationJobs()
+        {
+            MpsJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob();
+            MpsJobRunnerPage.RunCreateOrderAndServiceRequestsCommandJob();
+            MpsJobRunnerPage.RunConsumableOrderRequestsCommandJob();
+            RefreshDeviceScreen();
+        }
+
+        
 
         public ConsumableRaiseOrderPage NavigateToConsumableRaiseOrderPage()
         {
@@ -114,5 +146,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             TestCheck.AssertIsEqual("1", BlackTonerCounter.Text, "Black toner counter is not equal 1");
         }
 
+
+        public void IsCyanTonerCountDisplayed()
+        {
+            if (CyanTonerCounter == null)
+                throw new Exception("Black toner element is not displayed");
+
+            TestCheck.AssertIsEqual("1", CyanTonerCounter.Text, "Black toner counter is not equal 1");
+        }
     }
 }
