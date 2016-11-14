@@ -67,7 +67,7 @@ Scenario Outline: Dealer Can Sign A Purchase And Click Contract in Prod
 
 
 
-@ignore
+#@ignore
 Scenario Outline: Other Dealers Can Sign A Purchase And Click Contract in Prod
 	Given I sign as "<Role>" into "<Web>" for "<Country>"
 	And I have created a "<ContractType>" proposal for "<ServerName>" with "<UsageType>" and "<Length>" and "<Billing>"
@@ -90,7 +90,11 @@ Scenario Outline: Other Dealers Can Sign A Purchase And Click Contract in Prod
 	
 	Scenarios: 
 	| Role             | Country        | Role2                           | Web                               | ServerName |ContractType                 | UsageType     | Length | Billing               |
-    #| Cloud MPS Dealer | Netherland | Cloud MPS Local Office Approver | https://web1.online.brother.co.uk | Web_1      |Purchase + Click met Service | Minimumvolume | 3 jaar | Per kwartaal achteraf |
-	#| Cloud MPS Dealer | Netherland | Cloud MPS Local Office Approver | https://web2.online.brother.co.uk | Web_2      |Purchase + Click met Service | Minimumvolume | 3 jaar | Per kwartaal achteraf |
-	| Cloud MPS Dealer | Netherland | Cloud MPS Local Office Approver | https://web5.online.brother.co.uk | Web_5      |Purchase + Click met Service | Minimumvolume | 3 jaar | Per kwartaal achteraf |
-	| Cloud MPS Dealer | Netherland | Cloud MPS Local Office Approver | https://web6.online.brother.co.uk | Web_6      |Purchase + Click met Service | Minimumvolume | 3 jaar | Per kwartaal achteraf |
+    | Cloud MPS Dealer | Netherlands | Cloud MPS Local Office Approver | https://web1.online.brother.nl | Web_1      |Purchase + Click met Service | Minimumvolume | 3 jaar | Per kwartaal achteraf |
+	| Cloud MPS Dealer | Netherlands | Cloud MPS Local Office Approver | https://web2.online.brother.nl | Web_2      |Purchase + Click met Service | Minimumvolume | 3 jaar | Per kwartaal achteraf |
+	#| Cloud MPS Dealer | Netherlands | Cloud MPS Local Office Approver | https://web5.online.brother.nl | Web_5      |Purchase + Click met Service | Minimumvolume | 3 jaar | Per kwartaal achteraf |
+	#| Cloud MPS Dealer | Netherlands | Cloud MPS Local Office Approver | https://web6.online.brother.nl | Web_6      |Purchase + Click met Service | Minimumvolume | 3 jaar | Per kwartaal achteraf |
+	| Cloud MPS Dealer | Netherlands | Cloud MPS Local Office Approver | https://web1.online.brother.be | Web_1      |Purchase & Click with Service | Volume minimum | 3 ans | Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance |
+	| Cloud MPS Dealer | Netherlands | Cloud MPS Local Office Approver | https://web2.online.brother.be | Web_2      |Purchase & Click with Service | Volume minimum | 3 ans | Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance |
+	#| Cloud MPS Dealer | Netherlands | Cloud MPS Local Office Approver | https://web5.online.brother.be | Web_5      |Purchase & Click with Service | Volume minimum | 3 ans | Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance |
+	#| Cloud MPS Dealer | Netherlands | Cloud MPS Local Office Approver | https://web6.online.brother.be | Web_6      |Purchase & Click with Service | Volume minimum | 3 ans | Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance |

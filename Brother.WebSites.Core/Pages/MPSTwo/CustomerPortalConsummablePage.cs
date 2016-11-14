@@ -127,6 +127,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             WebDriver.Wait(DurationType.Second, 2);
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ConsumableDeviceRaiseConsummableButton);
             //ConsumableDeviceRaiseConsummableButton.Click();
+           
             
             return GetInstance<ConsumableRaiseOrderPage>(Driver);
         }

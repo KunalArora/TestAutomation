@@ -40,6 +40,8 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         private const string DenmarkUrl = @"online.dk";
         private const string NorwayUrl = @"online.no";
         private const string EnglandProdUrl = @".co.uk";
+        private const string NetherlandsProdUrl = @".nl";
+        private const string BelgiumProdUrl = @".be";
 
         public static void AcceptCookieLaw(IWebDriver driver)
         {
@@ -126,12 +128,12 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
         public bool IsNetherlandSystem()
         {
-            return GetUrl().Contains(NetherlandUrl);
+            return GetUrl().Contains(NetherlandUrl) || GetUrl().Contains(NetherlandsProdUrl);
         }
 
         public bool IsBelgiumSystem()
         {
-            return GetUrl().Contains(BelgiumUrl);
+            return GetUrl().Contains(BelgiumUrl) || GetUrl().Contains(BelgiumProdUrl);
         }
 
         public bool IsSwedenSystem()

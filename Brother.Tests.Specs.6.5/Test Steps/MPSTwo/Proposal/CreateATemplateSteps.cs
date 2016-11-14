@@ -1434,6 +1434,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<DealerProposalsCreateDescriptionPage>().SetServerName(serverName);
 
             WhenIFillProposalDescriptionForContractType(contractType);
+
             if (!(CurrentDriver.Url.Contains("online.ch") || CurrentDriver.Url.Contains("online.brother.ch.local")))
             {
                 var customerInformationStepInstance = new DealerProposalsCreateCustomerInformationStep();
