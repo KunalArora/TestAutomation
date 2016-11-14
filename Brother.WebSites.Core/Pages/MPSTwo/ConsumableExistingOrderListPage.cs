@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
@@ -28,12 +29,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IList<IWebElement> consumableOrderDetail;
         [FindsBy(How = How.CssSelector, Using = "#content_1_ConsumablesOrderList_OrderList_CellOrderId_0")]
         public IWebElement sapConsumableOrderId;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_ConsumablesOrderList_OrderList_CellOrderId_1")]
+        public IWebElement SecondLineSapConsumableOrderId;
         [FindsBy(How = How.CssSelector, Using = "#content_1_ConsumablesOrderList_OrderList_CellStatus_0")]
         public IWebElement ConsumableOrderProgress;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_ConsumablesOrderList_OrderList_CellStatus_1")]
+        public IWebElement SecondLineConsumableOrderProgress;
         [FindsBy(How = How.CssSelector, Using = "#content_1_ConsumablesOrderList_OrderList_CellSerialNo_0")]
         public IWebElement ConsumableOrderSerialNumber;
         [FindsBy(How = How.CssSelector, Using = "#content_1_ConsumablesOrderList_OrderList_CellItemName_0")]
         public IWebElement ConsumableTonerType;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_ConsumablesOrderList_OrderList_CellItemName_1")]
+        public IWebElement SecondLineConsumableTonerType;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/customer/consumables/orders\"]")]
         public IWebElement ConsumableOrderTab;
         [FindsBy(How = How.CssSelector, Using = ".modal-header .close")]
@@ -96,6 +103,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             TestCheck.AssertIsEqual(true, consumableText.Equals("Black Toner"), "Consumable ");
         }
 
+        public void RunSapOrderCreationJob()
+        {
+            MpsJobRunnerPage.RunSystemJobCreateConsumableOrderCommandJob();
+        }
+
+        public void IsCyanTonerDisplayed()
+        {
+            if (ConsumableTonerType == null)
+                throw new Exception("Consumable toner type is not displayed");
+            var consumableText = SecondLineConsumableTonerType.Text;
+
+            TestCheck.AssertIsEqual(true, consumableText.Equals("Cyan Toner"), "Consumable ");
+        }
+
         private List<string> OrderPopUpDetails()
         {
             var detailsContainer = new List<String>();
@@ -114,6 +135,28 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             var sapOrderId = sapConsumableOrderId.Text;
             SpecFlow.SetContext("SAPOrderId", sapOrderId);
+        }
+
+
+        public void VerifyInitialSapOrderNumber()
+        {
+            var sapOrderId = SecondLineSapConsumableOrderId.Text;
+            TestCheck.AssertTextContains(sapOrderId, "-");
+        }
+
+        public void VerifySapOrderNumberStartWithZero()
+        {
+            var sapOrderId = SecondLineSapConsumableOrderId.Text;
+            TestCheck.AssertIsEqual(true, sapOrderId.StartsWith("0"), String.Format("SAP order id displayed is {0}", sapOrderId));
+        }
+
+        public void VerifySapOrderValueIsANumber()
+        {
+            var sapOrderId = SecondLineSapConsumableOrderId.Text;
+
+            var isNumber = Regex.IsMatch(sapOrderId, @"^\d+$");
+
+            TestCheck.AssertIsEqual(true, isNumber, String.Format("SAP order id displayed, {0}, is not number", sapOrderId));
         }
 
         public void IsSapOrderIdInPopUpModal()
@@ -158,6 +201,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void InitialOrderProgress()
         {
             var initial = ConsumableOrderProgress.Text;
+            var message = String.Format("The expected progress text was \"In Progress\" but got {0}", initial);
+
+            TestCheck.AssertIsEqual(true, initial.Contains("In Progress"), message);
+        }
+
+        public void CyanOrderProgress()
+        {
+            var initial = SecondLineConsumableOrderProgress.Text;
             var message = String.Format("The expected progress text was \"In Progress\" but got {0}", initial);
 
             TestCheck.AssertIsEqual(true, initial.Contains("In Progress"), message);

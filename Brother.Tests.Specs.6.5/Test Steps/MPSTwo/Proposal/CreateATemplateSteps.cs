@@ -1426,6 +1426,44 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             }
         }
 
+
+        [Given(@"I have created a ""(.*)"" proposal for ""(.*)"" with ""(.*)"" and ""(.*)"" and ""(.*)""")]
+        public void GivenIHaveCreatedAProposalWithAndAnd(string contractType, string serverName, string usageType, string length, string billing)
+        {
+            GivenIamOnMpsNewProposalPage();
+            CurrentPage.As<DealerProposalsCreateDescriptionPage>().SetServerName(serverName);
+
+            WhenIFillProposalDescriptionForContractType(contractType);
+
+            if (!(CurrentDriver.Url.Contains("online.ch") || CurrentDriver.Url.Contains("online.brother.ch.local")))
+            {
+                var customerInformationStepInstance = new DealerProposalsCreateCustomerInformationStep();
+                customerInformationStepInstance.WhenISelectButtonForCustomerDataCapture("Create new customer");
+            }
+            var stepInstance = new DealerProposalsCreateTermAndTypeStep();
+            stepInstance.WhenIEnterUsageTypeContractLengthAndBillingOnTermAndTypeDetails
+                (usageType, length, billing);
+            stepInstance.WhenIPriceHardwareRadioButton("Tick");
+
+            var instance = new DealerProposalsCreateProductsStep();
+
+            instance.WhenIDisplayDeviceScreen("MFC-L8650CDW");
+
+            instance.WhenIAcceptTheDefaultValuesOfTheDevice();
+
+            var clickPriceStepInstance = new DealerProposalsCreateClickPriceStep();
+            if (CurrentDriver.Url.Contains("online.ch") || CurrentDriver.Url.Contains("online.brother.ch.local"))
+            {
+                clickPriceStepInstance.WhenITypeClickPriceVolumeOfAnd("800", "800");
+            }
+            else
+            {
+                clickPriceStepInstance.WhenIEnterClickPriceVolumeOf("800", "800");
+            }
+
+        }
+
+
         [Given(@"I have created Purchase and Click proposal for ""(.*)""")]
         public void GivenIHaveCreatedPurchaseAndClickProposalFor(string refs)
         {

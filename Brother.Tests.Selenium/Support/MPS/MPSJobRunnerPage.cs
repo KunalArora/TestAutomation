@@ -161,6 +161,25 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             Helper.MsgOutput("SetSupplyStatusForNewPrinter job ran successfully");
         }
 
+        public static void SetTonerInkStatusForNewPrinter(string tonerType)
+        {
+            const string webSite = DevSimUrl + SetSupplyUrl;
+
+            Helper.MsgOutput(String.Format("The url formed for Set Supply Status is {0}", webSite));
+
+            var toner = string.Format("TonerInk_{0}", tonerType);
+
+            var deviceWithDefaultPrintCount = "{\"name\": \"" + toner + "\",\"value\": \"Empty\"}";
+
+            var json = "{\"id\": \"" + GetSavedDeviceId() + "\",\"items\": [" + deviceWithDefaultPrintCount + "]}";
+
+            
+            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Post, "application/json", json, AuthHeader);
+
+            WebDriver.Wait(Helper.DurationType.Second, 5);
+            Helper.MsgOutput(String.Format("SetTonerInkStatus job for {0} ran successfully", tonerType));
+        }
+
         public static void NotifyBocOfNewChanges()
         {
            
@@ -434,7 +453,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
                 : "RunPollConsumableOrderStatusCommandJob probably did not run properly");
         }
 
-        public static void RunCheckForSilentDevicesCommandJob()
+        public static void RunCheckForSilentEmailDevicesCommandJob()
         {
             var webSite = CoinedUrl() + CheckForSilentEmailDevicesCommand;
 
@@ -446,6 +465,35 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
                 ? "RunCheckForSilentDevicesCommandJob job ran successfully"
                 : "RunCheckForSilentDevicesCommandJob probably did not run properly");
                     
+        }
+
+
+        public static void RunCheckForSilentMedioDevicesCommandJob()
+        {
+            var webSite = CoinedUrl() + CheckForSilentMedioDevicesCommand;
+
+            var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
+
+            WebDriver.Wait(Helper.DurationType.Second, 1);
+
+            Helper.MsgOutput(response.ToString().Equals("OK")
+                ? "CheckForSilentMedioDevicesCommand job ran successfully"
+                : "CheckForSilentMedioDevicesCommand probably did not run properly");
+
+        }
+
+        public static void RunSystemJobCreateConsumableOrderCommandJob()
+        {
+            var webSite = CoinedUrl() + SystemJobCreateConsumableOrderCommand;
+
+            var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
+
+            WebDriver.Wait(Helper.DurationType.Second, 1);
+
+            Helper.MsgOutput(response.ToString().Equals("OK")
+                ? "SystemJobCreateConsumableOrderCommand job ran successfully"
+                : "SystemJobCreateConsumableOrderCommand probably did not run properly");
+
         }
     }
 }

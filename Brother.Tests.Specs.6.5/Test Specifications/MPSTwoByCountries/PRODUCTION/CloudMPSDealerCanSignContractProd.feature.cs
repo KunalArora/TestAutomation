@@ -165,6 +165,47 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Other Dealers Can Sign A Purchase And Click Contract in Prod")]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Netherlands", "Cloud MPS Local Office Approver", "https://web1.online.brother.nl", "Web_1", "Purchase + Click met Service", "Minimumvolume", "3 jaar", "Per kwartaal achteraf", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Netherlands", "Cloud MPS Local Office Approver", "https://web2.online.brother.nl", "Web_2", "Purchase + Click met Service", "Minimumvolume", "3 jaar", "Per kwartaal achteraf", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Netherlands", "Cloud MPS Local Office Approver", "https://web1.online.brother.be", "Web_1", "Purchase & Click with Service", "Volume minimum", "3 ans", "Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Netherlands", "Cloud MPS Local Office Approver", "https://web2.online.brother.be", "Web_2", "Purchase & Click with Service", "Volume minimum", "3 ans", "Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance", null)]
+        public virtual void OtherDealersCanSignAPurchaseAndClickContractInProd(string role, string country, string role2, string web, string serverName, string contractType, string usageType, string length, string billing, string[] exampleTags)
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Other Dealers Can Sign A Purchase And Click Contract in Prod", exampleTags);
+#line 71
+this.ScenarioSetup(scenarioInfo);
+#line 72
+ testRunner.Given(string.Format("I sign as \"{0}\" into \"{1}\" for \"{2}\"", role, web, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 73
+ testRunner.And(string.Format("I have created a \"{0}\" proposal for \"{1}\" with \"{2}\" and \"{3}\" and \"{4}\"", contractType, serverName, usageType, length, billing), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 74
+ testRunner.And("I am on Proposal List page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 75
+ testRunner.And("I send the created proposal for approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 76
+ testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 77
+ testRunner.And(string.Format("I sign back into \"{0}\" Cloud MPS as a \"{1}\" from \"{2}\"", role2, web, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 78
+ testRunner.And("I approve the purchase and click proposal created above", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 79
+ testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 80
+ testRunner.And(string.Format("I sign back into \"{0}\" Cloud MPS as a \"{1}\" from \"{2}\"", role, web, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 81
+ testRunner.When("I navigate to dealer contract approved proposal page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 82
+ testRunner.Then("I can start the process of signing the contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 83
+ testRunner.And("I can successfully sign the contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 84
+ testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore
