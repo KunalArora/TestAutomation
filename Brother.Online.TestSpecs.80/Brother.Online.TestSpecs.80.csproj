@@ -65,6 +65,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ExistingUser.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specification\OrderDetails.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OrderDetails.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specification\ProductRegistration.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -76,6 +81,7 @@
       <DependentUpon>SocialLogin.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Steps\ExistingUser.cs" />
+    <Compile Include="Test Steps\OrderDetails.cs" />
     <Compile Include="Test Steps\ProductRegistration.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -90,6 +96,7 @@
   <ItemGroup>
     <None Include="App.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
     <None Include="packages.config">
       <SubType>Designer</SubType>
@@ -98,6 +105,10 @@
     <None Include="Test Specification\ExistingUser.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ExistingUser.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specification\OrderDetails.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>OrderDetails.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specification\ProductRegistration.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

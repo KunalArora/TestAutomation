@@ -56,10 +56,19 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
 
         [FindsBy(How = How.Name, Using = "submit")]
         public IWebElement CompleteRegistrationButton;
-        
-        public void EnterEmailId(string emailid)
+
+        public void EnterEmailId(string emailAddress)
         {
-            EmailIdInputField.SendKeys(emailid);
+            
+            if (emailAddress.Equals(string.Empty))
+            {
+                emailAddress = Email.GenerateUniqueEmailAddress();
+            }
+
+            EmailIdInputField.Clear();
+            EmailIdInputField.SendKeys(emailAddress);
+//EmailIdInputField.SendKeys(Keys.Tab);
+            //TestCheck.AssertIsEqual(emailAddress, GetTextBoxValue("Email"), "Email Text Box");
         }
 
         public void EnterNames(string firstname, string lastname)

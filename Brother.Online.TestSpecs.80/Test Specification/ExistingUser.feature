@@ -13,7 +13,6 @@ Scenario Outline: Check Forget Password with various invalid scenarios options t
 	Then I enter an invalid email address as "<Invalid Email Address>"
 	Then I should see the Error Message activated and displaying an Error message
 
-
 Scenarios:
 	| Country        | Site Url       | Invalid Email Address                          |
 	| United Kingdom | /qa/signintest | InvalidEmailContaining aspace@mailinator.com   |
@@ -28,8 +27,7 @@ Scenario Outline: Check Forgotten Password email recieved to the user
 	And I press send email button
 	And Once I have Validated an Email was received and verified my account
 	
-
-
 Scenarios:
 	| Country        | Site Url       | Valid Email Address                           |
 	| United Kingdom | /qa/signintest | testforgottenpasswordemails@guerrillamail.com |
+

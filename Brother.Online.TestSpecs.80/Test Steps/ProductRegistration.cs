@@ -85,10 +85,10 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
            Thread.Sleep(TimeSpan.FromSeconds(3));
            NextPage = CurrentPage.As<ProductRegistrationPage>().ClickContinueButton();
        }
-       [Then(@"I can register my ""(.*)"" on  user details page")]
-       public void ThenICanRegisterMyOnUserDetailsPage(string emailid)
+       [Then(@"I can register my Email on user details page")]
+       public void ThenICanRegisterMyEmailOnUserDetailsPage()
        {
-           CurrentPage.As<UserDetailsPage>().EnterEmailId(emailid);
+           CurrentPage.As<UserDetailsPage>().EnterEmailId(string.Empty);
        }
        [Then(@"I enter ""(.*)""  and ""(.*)"" on  user details page")]
        public void ThenIEnterAndOnUserDetailsPage(string firstname, string lastname)
