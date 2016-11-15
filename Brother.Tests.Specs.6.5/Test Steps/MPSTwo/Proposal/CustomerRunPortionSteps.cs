@@ -28,6 +28,8 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             NextPage = CurrentPage.As<CustomerPortalConsummablePage>().NavigateToConsumableRaiseOrderPage();
         }
 
+
+        [Given(@"I navigate to consumable ordering page for ""(.*)""")]
         [When(@"I navigate to consumable ordering page for ""(.*)""")]
         public void WhenINavigateToConsumableOrderingPageFor(string serialNumber)
         {
@@ -117,7 +119,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<ConsumableExistingOrderListPage>().ClosedOrderProgress();
         }
 
-
+        [Given(@"I change the ordering procedure to automatic")]
         [When(@"I change the ordering procedure to automatic")]
         public void WhenIChangeTheOrderingProcedureToAutomatic()
         {
@@ -125,6 +127,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<CustomerPortalConsummablePage>().IsReplenishModeAutomation();
         }
 
+        [Given(@"I create a consumable order for ""(.*)""")]
         [When(@"I create a consumable order for ""(.*)""")]
         public void WhenICreateAConsumableOrderFor(string toner)
         {
@@ -132,6 +135,9 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<CustomerPortalConsummablePage>().RunConsumableOrderCreationJobs();
         }
 
+
+        [Given(@"the newly created order is displayed")]
+        [When(@"the newly created order is displayed")]
         [Then(@"the newly created order is displayed")]
         public void ThenTheNewlyCreatedOrderIsDisplayed()
         {
@@ -139,6 +145,8 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             NextPage = CurrentPage.As<CustomerPortalConsummablePage>().NavigateToConsumableExistingOrderListPage();
         }
 
+        [Given(@"initial SAP order number is not created")]
+        [When(@"initial SAP order number is not created")]
         [Then(@"initial SAP order number is not created")]
         public void ThenInitialSapOrderNumberIsNotCreated()
         {
@@ -146,6 +154,8 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<ConsumableExistingOrderListPage>().VerifyInitialSapOrderNumber();
         }
 
+        [Given(@"SAP order number is created only after relevant job is ran")]
+        [When(@"SAP order number is created only after relevant job is ran")]
         [Then(@"SAP order number is created only after relevant job is ran")]
         public void ThenSapOrderNumberIsCreatedOnlyAfterRelevantJobIsRan()
         {
@@ -154,6 +164,8 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<ConsumableExistingOrderListPage>().VerifySapOrderValueIsANumber();
         }
 
+        [Given(@"order progress status is correct")]
+        [When(@"order progress status is correct")]
         [Then(@"order progress status is correct")]
         public void ThenOrderProgressStatusIsCorrect()
         {
