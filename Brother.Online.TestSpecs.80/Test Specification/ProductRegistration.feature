@@ -14,7 +14,6 @@ Scenarios:
 
 @SMOKE
 Scenario Outline: New Customer wants to register product with their serial numbers and purchase date
-	
 	Given I navigate to "<Country>" Brother Online landing page
 	And I browse to the "<Site Url>" product registration page
 	And I have entered my product "<SerialNumber>"
@@ -22,17 +21,18 @@ Scenario Outline: New Customer wants to register product with their serial numbe
 	And I have entered "<PurchaseDate>" 
 	And I entered apply button
 	And I click on continue button
-	Then I can register my "<Email>" on  user details page  
+	Then I can register my Email on user details page  
 	And I enter "<FirstName>"  and "<LastName>" on  user details page
 	And I tick on terms and conditions checkbox
 	Then I can complete my product registration by clicking on complete registration button
 
 Scenarios: 
 | Country        | Site Url                  | SerialNumber | PurchaseDate | Email                                | FirstName | LastName |
-| United Kingdom | /qa/eubol78/serial-number | U1T004758    | 12/12/2013   | testemailidinputfield@mailinator.com | Test      | Test     |
+| United Kingdom | /qa/eubol78/serial-number | U1T004786    | 12/12/2013   | 1234testemailidinputfield@mailinator.com | Test      | Test     |
 
 
 @SMOKE
+#run visual studio as admin to get this test working
 Scenario Outline: New Customer wants to register product with their serial numbers and purchase date in the file
 	Given I navigate to "<Country>" Brother Online landing page
 	And I browse to the "<Site Url>" product registration page
@@ -41,7 +41,7 @@ Scenario Outline: New Customer wants to register product with their serial numbe
 	And I have entered "<PurchaseDate>" 
 	And I entered apply button
 	And I click on continue button
-	Then I can register my "<Email>" on  user details page  
+	Then I can register my Email on user details page  
 	And I enter "<FirstName>"  and "<LastName>" on  user details page
 	And I tick on terms and conditions checkbox
 	Then I can complete my product registration by clicking on complete registration button
@@ -49,3 +49,5 @@ Scenario Outline: New Customer wants to register product with their serial numbe
 Scenarios: 
 | Country        | Site Url                  | PurchaseDate | Email                                | FirstName | LastName |
 | United Kingdom | /qa/eubol78/serial-number | 12/12/2013   | testemailidinputfield@mailinator.com | Test      | Test     |
+
+
