@@ -106,7 +106,7 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("Check Forgotten Password email recieved to the user")]
         [NUnit.Framework.CategoryAttribute("SMOKE")]
         [NUnit.Framework.CategoryAttribute("TEST")]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/signintest", "testforgottenpasswordemails@guerrillamail.com", null)]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/signintest", "123orderplacedukaccount@mailinator.com", null)]
         public virtual void CheckForgottenPasswordEmailRecievedToTheUser(string country, string siteUrl, string validEmailAddress, string[] exampleTags)
         {
             string[] @__tags = new string[] {

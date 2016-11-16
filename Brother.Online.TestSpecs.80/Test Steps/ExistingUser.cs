@@ -66,10 +66,9 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
            if (Email.CheckEmailPackage("GuerrillaEmail"))
            {
                LaunchGuerrillaEmail(string.Empty);
-               CurrentPage.As<GuerillaEmailConfirmationPage>().SelectEmail("registration");
+               CurrentPage.As<GuerillaEmailConfirmationPage>().SelectEmail("ForgottenPassword");
                //  CurrentPage.As<GuerillaEmailConfirmationPage>().CheckAllEmailLinks();
-               NextPage = CurrentPage.As<GuerillaEmailConfirmationPage>().ValidateRegistrationEmail();
-               TestCheck.AssertIsNotEqual(true, CurrentPage.As<RegistrationPage>().IsWarningBarPresent(2, 5), "Warning Bar detected - Account could not be validated");
+               NextPage = CurrentPage.As<GuerillaEmailConfirmationPage>().ValidateForgottenPasswordEmail();
            }
        }
        private void LaunchGuerrillaEmail(string inBox)
@@ -80,7 +79,7 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
                CurrentPage.As<GuerillaEmailConfirmationPage>().ForgetMeButtonClick();
                CurrentPage.As<GuerillaEmailConfirmationPage>()
                    .SelectEmailDomain(Email.RegistrationEmailDomain.ToLower().Replace("@", string.Empty));
-               CurrentPage.As<GuerillaEmailConfirmationPage>().SetEmailText(Email.RegistrationEmailAddress);
+               CurrentPage.As<GuerillaEmailConfirmationPage>().SetEmailText(Email.ForgottenPasswordEmailAddress);
                TestCheck.AssertIsEqual(true, CurrentPage.As<GuerillaEmailConfirmationPage>().DeleteGuerrillaWelcomeMail(),
                    "Unable to delete the Guerrilla Mail Welcome Message");
            }

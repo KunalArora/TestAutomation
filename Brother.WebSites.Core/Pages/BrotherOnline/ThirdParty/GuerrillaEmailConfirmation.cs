@@ -619,6 +619,12 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.ThirdParty
             return GetInstance<RegistrationPage>(Driver, "", "");
         }
 
+        public SignInPage ValidateForgottenPasswordEmail()
+        {
+            ValidateEmailUrl("ForgottenPassword Validation", true, true);
+            return GetInstance<SignInPage>(Driver, "", "");
+        }
+
         public DownloadPage ValidateOmnijoinFreeTrialEmail()
         {
             ValidateEmailUrl("Omnijoin Free Trial", true, true);
