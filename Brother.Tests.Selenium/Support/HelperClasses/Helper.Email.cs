@@ -10,6 +10,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         public static string RegistrationEmailAddress { get; set; }
         private static string _emailDomain = "guerrillamail.com";
         private static string _AutoTestMaxEmailLengthPrefix = @"Maaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaax";
+        public static string ForgottenPasswordEmailAddress { get; set; }
 
         public static string RegistrationEmailDomain
         {
