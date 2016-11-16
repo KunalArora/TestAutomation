@@ -106,7 +106,7 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("Check Forgotten Password email recieved to the user")]
         [NUnit.Framework.CategoryAttribute("SMOKE")]
         [NUnit.Framework.CategoryAttribute("TEST")]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/signintest", "123orderplacedukaccount@mailinator.com", null)]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/signintest", "123orderplacedukaccount@guerrillamail.com", null)]
         public virtual void CheckForgottenPasswordEmailRecievedToTheUser(string country, string siteUrl, string validEmailAddress, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -132,7 +132,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 27
  testRunner.And("I press send email button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 28
- testRunner.And("Once I have Validated an Email was received and verified my account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("Once I have Validated \"{0}\" was received and verified my account", validEmailAddress), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
