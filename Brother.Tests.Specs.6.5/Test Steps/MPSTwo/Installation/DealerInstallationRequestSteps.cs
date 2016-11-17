@@ -57,6 +57,8 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             ThenICanCompleteDeviceInstallation();
         }
 
+       
+
 
 
         [Given(@"I installed the device in the contract through ""(.*)""")]
@@ -138,6 +140,7 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             
         }
 
+        [When(@"I enter device serial number ""(.*)"" for ""(.*)"" communication")]
         public void WhenIEnterDeviceSerialNumberForCommunication(string serial, string type)
         {
             CurrentPage.As<InstallerDeviceInstallationPage>().VerifyTimeZoneIsDisplayed(type);
