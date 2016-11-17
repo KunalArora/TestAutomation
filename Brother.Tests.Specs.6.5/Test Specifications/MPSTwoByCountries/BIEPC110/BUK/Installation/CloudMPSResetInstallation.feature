@@ -17,7 +17,8 @@ Scenario Outline: MPS BUK Reset Installation Before Completing Installation
 	And I extract the installer url from Installation Request
 	When I navigate to the installer page
 	And I enter the contract reference number
-	And I enter device serial number for "<Type>" communication 
+	##And I enter device serial number for "<Type>" communication 
+	And I enter device serial number "<SerialNumber>" for "<Type>" communication
 	And I enter the device IP address
 	Then I can connect the device to Brother environment
 	And I can complete device installation
@@ -27,9 +28,8 @@ Scenario Outline: MPS BUK Reset Installation Before Completing Installation
 	
 Scenarios:
 
-	| Role                            | Country        | ContractType                  | UsageType      | Role1            | Method | Type |
-	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  |
-	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR  |
+	| Role                            | Country        | ContractType                  | UsageType      | Role1            | Method | Type | SerialNumber |
+	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR  | A1T010559    |
 
 
 
@@ -42,7 +42,8 @@ Scenario Outline: MPS BUK Reset Installation After Completing Installation
 	And I extract the installer url from Installation Request
 	When I navigate to the installer page
 	And I enter the contract reference number
-	And I enter device serial number for "<Type>" communication 
+	##And I enter device serial number for "<Type>" communication 
+	And I enter device serial number "<SerialNumber>" for "<Type>" communication 
 	And I enter the device IP address
 	Then I can connect the device to Brother environment
 	And I can complete device installation
@@ -52,6 +53,5 @@ Scenario Outline: MPS BUK Reset Installation After Completing Installation
 	
 Scenarios:
 
-	| Role                            | Country        | ContractType                  | UsageType      | Role1            | Method | Type |
-	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  |
-	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR  |
+	| Role                            | Country        | ContractType                  | UsageType      | Role1            | Method | Type | SerialNumber |
+	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  | A1T010560    |

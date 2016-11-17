@@ -53,7 +53,7 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             WhenIEnterTheContractReferenceNumber();
             WhenIEnterDeviceSerialNumberForCommunication(serialNumber, type);
             WhenIEnterTheDeviceIpAddress();
-            ThenICanConnectDeviceWithSerialsAndWithSerialsAndToBrotherEnvironment("MFC-L8650CDW", serialNumber);
+            ThenICanConnectDeviceWithSerialsAndToBrotherEnvironment("MFC-L8650CDW", serialNumber);
             ThenICanCompleteDeviceInstallation();
         }
 
@@ -189,7 +189,7 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             CurrentPage.As<InstallerDeviceInstallationPage>().RefreshCloudInstallation();
         }
 
-        public void ThenICanConnectDeviceWithSerialsAndWithSerialsAndToBrotherEnvironment(string device1, string serial1)
+        public void ThenICanConnectDeviceWithSerialsAndToBrotherEnvironment(string device1, string serial1)
         {
             CurrentPage.As<InstallerDeviceInstallationPage>().ConnectDeviceWithBor(device1, serial1);
             //CurrentPage.As<InstallerDeviceInstallationPage>().RefreshCloudMultipleInstallation();
