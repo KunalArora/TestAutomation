@@ -100,8 +100,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement CloudInstallationWebInstallPinElements;
         [FindsBy(How = How.CssSelector, Using = "#WhereIsMySerialNumberModal .modal-header [type=\"button\"][data-dismiss=\"modal\"]")] 
         public IWebElement WhereIsMyDevicePopUpElements;
-
-
+        [FindsBy(How = How.CssSelector, Using = "#content_0_DeviceInstallList_List_CellConnectionStatusIcon_0[data-original-title=\"Not connected\"]")]
+        public IWebElement CloudInstallationNoConnectionStatusIconElements;
+        
 
         
         public void IsInstallerScreenDisplayed()
@@ -727,9 +728,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsInstallationReset()
         {
-            var serial = SerialNumberFieldElement.GetAttribute("value");
+            //var serial = SerialNumberFieldElement.GetAttribute("value");
+            //var emptySerial = String.IsNullOrWhiteSpace(serial);
 
-            TestCheck.AssertIsEqual(true, String.IsNullOrWhiteSpace(serial), "Installation is not reset");
+            var connection = CloudInstallationNoConnectionStatusIconElements.Displayed;
+
+            TestCheck.AssertIsEqual(true, connection, "Installation is not reset");
         }
 
         public void ConfirmCompleteMessageIsDisplayed()

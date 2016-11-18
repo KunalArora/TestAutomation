@@ -797,9 +797,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterAllBankInformation()
         {
-            if (IsDenmarkSystem() || IsSwedenSystem()||IsFinlandSystem()) return;
+            if (IsDenmarkSystem() || IsSwedenSystem()) return;
             SelectAPaymentType();
-            if (IsNorwaySystem()) return;
+            if (IsNorwaySystem() || IsFinlandSystem()) return;
             EnterBankName();
             EnterBankAccountNumber();
             EnterBankSortCode();

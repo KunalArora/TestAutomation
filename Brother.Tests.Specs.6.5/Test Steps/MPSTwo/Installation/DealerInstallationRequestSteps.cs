@@ -236,7 +236,10 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
         [Then(@"reinstall the device with serial number ""(.*)"" for communication ""(.*)""")]
         public void ThenReinstallTheDeviceWithSerialNumberForCommunication(string serial, string type)
         {
-            ScenarioContext.Current.Pending();
+            WhenIEnterDeviceSerialNumberForCommunication(serial, type);
+            WhenIEnterTheDeviceIpAddress();
+            ThenICanConnectDeviceWithSerialsToBrotherEnvironment("MFC-L8650CDW", serial);
+            ThenICanCompleteDeviceInstallation();
         }
 
 

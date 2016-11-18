@@ -380,8 +380,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void IsInstallationCompleted()
         {
             var buttonCount = ActionsModule.NumberOfActionButtonDisplayed(Driver);
-            //TestCheck.AssertIsEqual(1, buttonCount,
-            //  String.Format("{0} Actions buttons were returned meaning installation request is not removed", buttonCount));
+            TestCheck.AssertIsEqual(1, buttonCount,
+                                            String.Format("{0} Actions buttons were returned meaning installation request is not removed", 
+                                                        buttonCount)
+                                     );
             if (Method() != "Email")
             {
                 MpsJobRunnerPage.NotifyBocOfNewChanges();
