@@ -166,6 +166,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC110\BUK\Installation\CloudMPSResetInstallation.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CloudMPSResetInstallation.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC110\BUK\Proposal\CloudMPSMultiDeviceVerificationWithPrintCountValidation.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1356,6 +1361,10 @@
     <None Include="Test Specifications\MPSTwoByCountries\BIEPC110\BSW\Proposal\CloudMPSSummaryPageValidationForAllProposalTypes.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSSummaryPageValidationForAllProposalTypes.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwoByCountries\BIEPC110\BUK\Installation\CloudMPSResetInstallation.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CloudMPSResetInstallation.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwoByCountries\BIEPC110\BUK\Proposal\CloudMPSMultiDeviceVerificationWithPrintCountValidation.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
