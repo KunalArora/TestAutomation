@@ -501,6 +501,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     var language = SwissLanguage();
                     SelectFromDropdown(PaymentTypeDropdown, language);
                 }
+                else if (IsDenmarkSystem())
+                {
+                    SelectFromDropdown(PaymentTypeDropdown, "Betalingsservice");
+                }
             }
             
             WebDriver.Wait(DurationType.Second, 3);
@@ -797,9 +801,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterAllBankInformation()
         {
-            if (IsDenmarkSystem() || IsSwedenSystem()) return;
+            if (IsSwedenSystem()) return;
             SelectAPaymentType();
-            if (IsNorwaySystem() || IsFinlandSystem()) return;
+            if (IsNorwaySystem() || IsFinlandSystem() || IsDenmarkSystem()) return;
             EnterBankName();
             EnterBankAccountNumber();
             EnterBankSortCode();
