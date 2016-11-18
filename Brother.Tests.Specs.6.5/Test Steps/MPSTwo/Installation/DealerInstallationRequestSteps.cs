@@ -53,7 +53,7 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             WhenIEnterTheContractReferenceNumber();
             WhenIEnterDeviceSerialNumberForCommunication(serialNumber, type);
             WhenIEnterTheDeviceIpAddress();
-            ThenICanConnectDeviceWithSerialsAndToBrotherEnvironment("MFC-L8650CDW", serialNumber);
+            ThenICanConnectDeviceWithSerialsToBrotherEnvironment("MFC-L8650CDW", serialNumber);
             ThenICanCompleteDeviceInstallation();
         }
 
@@ -192,7 +192,15 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             CurrentPage.As<InstallerDeviceInstallationPage>().RefreshCloudInstallation();
         }
 
-        public void ThenICanConnectDeviceWithSerialsAndToBrotherEnvironment(string device1, string serial1)
+        [When(@"I can connect device with serials ""(.*)"" to Brother environment")]
+        [Then(@"I can connect device with serials ""(.*)"" to Brother environment")]
+        public void ThenICanConnectDeviceWithSerialsToBrotherEnvironment(string serial)
+        {
+            ThenICanConnectDeviceWithSerialsToBrotherEnvironment("MFC-L8650CDW", serial);
+        }
+
+
+        public void ThenICanConnectDeviceWithSerialsToBrotherEnvironment(string device1, string serial1)
         {
             CurrentPage.As<InstallerDeviceInstallationPage>().ConnectDeviceWithBor(device1, serial1);
             //CurrentPage.As<InstallerDeviceInstallationPage>().RefreshCloudMultipleInstallation();
@@ -217,6 +225,20 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             NextPage = CurrentPage.As<DealerContractsAcceptedPage>().NavigateToManageDevicesPageToConfirmThatInstallationRequestAvailability();
             CurrentPage.As<DealerManageDevicesPage>().IsInstallationCompleted();
         }
+
+        [Then(@"I can reset the installation done above")]
+        public void ThenICanResetTheInstallationDoneAbove()
+        {
+            CurrentPage.As<InstallerDeviceInstallationPage>().ResetInstallation();
+            CurrentPage.As<InstallerDeviceInstallationPage>().IsInstallationReset();
+        }
+
+        [Then(@"reinstall the device with serial number ""(.*)"" for communication ""(.*)""")]
+        public void ThenReinstallTheDeviceWithSerialNumberForCommunication(string serial, string type)
+        {
+            ScenarioContext.Current.Pending();
+        }
+
 
 
         [When(@"I have completed installation for ""(.*)"" communication")]
