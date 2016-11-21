@@ -176,6 +176,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CloudMPSMultiDeviceVerificationWithPrintCountValidation.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC110\BUK\Service Request\CloudMPSServiceRequestAutomatic.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CloudMPSServiceRequestAutomatic.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC110\BUK\Validate_CustomerRun\ValidateConsumableOrderCreation.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1369,6 +1374,10 @@
     <None Include="Test Specifications\MPSTwoByCountries\BIEPC110\BUK\Proposal\CloudMPSMultiDeviceVerificationWithPrintCountValidation.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSMultiDeviceVerificationWithPrintCountValidation.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwoByCountries\BIEPC110\BUK\Service Request\CloudMPSServiceRequestAutomatic.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CloudMPSServiceRequestAutomatic.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwoByCountries\BIEPC110\BUK\Validate_CustomerRun\ValidateConsumableOrderCreation.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
