@@ -107,7 +107,7 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             CurrentPage.As<InstallerDeviceInstallationPage>().IsInstallerScreenDisplayed();
         }
 
-
+        [Then(@"I enter the contract reference number")]
         [When(@"I enter the contract reference number")]
         public void WhenIEnterTheContractReferenceNumber()
         {
@@ -232,6 +232,14 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             CurrentPage.As<InstallerDeviceInstallationPage>().ResetInstallation();
             CurrentPage.As<InstallerDeviceInstallationPage>().IsInstallationReset();
         }
+
+        [Then(@"I can reset the installation done above and begin installation again")]
+        public void ThenICanResetTheInstallationDoneAboveAndBeginInstallationAgain()
+        {
+           NextPage = CurrentPage.As<InstallerDeviceInstallationPage>().ResetInstallationAndStartAgain();
+            CurrentPage.As<InstallerDeviceInstallationPage>().IsInstallerScreenDisplayed();
+        }
+
 
         [Then(@"reinstall the device with serial number ""(.*)"" for communication ""(.*)""")]
         public void ThenReinstallTheDeviceWithSerialNumberForCommunication(string serial, string type)
