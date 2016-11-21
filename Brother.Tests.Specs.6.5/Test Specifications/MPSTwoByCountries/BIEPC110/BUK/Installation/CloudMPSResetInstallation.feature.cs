@@ -153,8 +153,12 @@ this.ScenarioSetup(scenarioInfo);
 #line 50
  testRunner.Then(string.Format("I can connect device with serials \"{0}\" to Brother environment", serialNumber), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 51
- testRunner.And("I can complete device installation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("I can reset the installation done above and begin installation again", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 52
+ testRunner.And("I enter the contract reference number", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 53
+ testRunner.And(string.Format("reinstall the device with serial number \"{0}\" for communication \"{1}\"", serialNumber, type), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 54
  testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();

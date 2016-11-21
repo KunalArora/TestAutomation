@@ -130,6 +130,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ResetInstallationButtonElement.Click();
         }
 
+        public InstallerDeviceInstallationPage ResetInstallationAndStartAgain()
+        {
+            ResetInstallationButtonElement.Click();
+            return GetInstance<InstallerDeviceInstallationPage>();
+        }
+
         public void IsInstallationPinCloudInstallationDisplayed()
         {
             if (Method() == "Email") return;

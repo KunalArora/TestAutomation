@@ -48,7 +48,9 @@ Scenario Outline: MPS BUK Reset Installation After Completing Installation
 	And I enter device serial number "<SerialNumber>" for "<Type>" communication 
 	And I enter the device IP address
 	Then I can connect device with serials "<SerialNumber>" to Brother environment
-	And I can complete device installation
+	Then I can reset the installation done above and begin installation again
+	And I enter the contract reference number
+	And reinstall the device with serial number "<SerialNumber>" for communication "<Type>"
 	And I can sign out of Brother Online
 	
 
