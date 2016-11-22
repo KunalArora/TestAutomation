@@ -343,10 +343,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 ClearAndType(CompanyRegistrationNumerElement, "47706706");
             }
-            else if (IsSwissSystem())
-            {
-                ClearAndType(CompanyRegistrationNumerElement, "CHE-106.568.179");
-            }
             else if (IsDenmarkSystem())
             {
                 ClearAndType(CompanyRegistrationNumerElement, "35679626");
@@ -355,6 +351,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 ClearAndType(CompanyRegistrationNumerElement, "913992415");
             }
+            //else if (IsSwissSystem())
+            //{
+            //    ClearAndType(CompanyRegistrationNumerElement, "CHE-106.568.179");
+            //}
             //else if (IsFinlandSystem())
             //{
             //    ClearAndType(CompanyRegistrationNumerElement, "0572355-8");
@@ -437,11 +437,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
        public void FillOrganisationContactDetail()
        {
-           if (IsPolandSystem()) return;
+           if (IsPolandSystem() || IsSwissSystem()) return;
            SelectTitleFromDropdown();
            EnterContactFirstName();
            EnterContactSurName();
-           //EnterContactPosition();
            EnterContactTelephone();
            EnterContactEmailAdress();
            SelectALegalForm();
@@ -691,7 +690,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SelectTitleFromDropdown()
         {
-            if (IsSwedenSystem()||IsDenmarkSystem() || IsFinlandSystem() || IsNorwaySystem()) return;
+            if (IsSwedenSystem()||IsDenmarkSystem() || IsFinlandSystem() || IsNorwaySystem() || IsSwissSystem()) return;
                 SelectFromDropdownByValue(ContactTitleElement, "0002");
         }
 
