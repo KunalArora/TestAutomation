@@ -437,11 +437,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
        public void FillOrganisationContactDetail()
        {
-           if (IsPolandSystem()) return;
+           if (IsPolandSystem() || IsSwissSystem()) return;
            SelectTitleFromDropdown();
            EnterContactFirstName();
            EnterContactSurName();
-           //EnterContactPosition();
            EnterContactTelephone();
            EnterContactEmailAdress();
            SelectALegalForm();
