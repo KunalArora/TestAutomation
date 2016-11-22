@@ -1,4 +1,5 @@
-﻿Feature: CloudMPSServiceRequestAutomatic
+﻿@ignore
+Feature: CloudMPSServiceRequestAutomatic
 	In order to get my devices issues fix by Brother
 	As an MPS user
 	I want to be able to raise service request which can be worked on
