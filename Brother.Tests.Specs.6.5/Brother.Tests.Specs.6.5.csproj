@@ -156,6 +156,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC110\BSW\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CloudMPSErrorMessageShowsCorrectCurrency.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC110\BSW\Proposal\CloudMPSPurchaseAndClickProposalUserJourney.feature.cs">
       <DependentUpon>CloudMPSPurchaseAndClickProposalUserJourney.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -1358,6 +1363,10 @@
     <None Include="Test Specifications\MPSTwoByCountries\BIEPC110\BSW\Proposal\CloudMPSDealerCanOperateProposalOffers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSDealerCanOperateProposalOffers.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwoByCountries\BIEPC110\BSW\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CloudMPSErrorMessageShowsCorrectCurrency.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwoByCountries\BIEPC110\BSW\Proposal\CloudMPSPurchaseAndClickProposalUserJourney.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
