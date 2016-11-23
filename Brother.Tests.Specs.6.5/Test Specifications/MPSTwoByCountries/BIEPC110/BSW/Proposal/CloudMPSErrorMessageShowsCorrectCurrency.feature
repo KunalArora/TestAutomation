@@ -17,10 +17,6 @@ Scenario Outline: Currency in product screen error message
 	And I enter some values for the device
 	And I enter incorrect installation cost of "0.00"
 	Then error message displayed contains the "<Currency>" of the specified country
-	#And I type in click price volume of "<ClickVolume>"
-	#Then I click Save Proposal button on Summary screen
-	#And I am directed to Proposals screen of Proposal List page
-	#And the newly created proposal is displayed on the list
 	And I sign out of Cloud MPS
 	
 

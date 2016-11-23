@@ -104,7 +104,7 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.And("I enter incorrect installation cost of \"0.00\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 19
  testRunner.Then(string.Format("error message displayed contains the \"{0}\" of the specified country", currency), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 24
+#line 20
  testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
