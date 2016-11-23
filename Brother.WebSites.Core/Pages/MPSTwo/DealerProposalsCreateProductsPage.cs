@@ -188,6 +188,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement FlatMonoProperty;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-alert .js-mps-trigger-next")]
         public IWebElement MoveToClickPriceButton;
+        [FindsBy(How = How.CssSelector, Using = ".js-mps-product-configuration-container .js-mps-alert li")]
+        public IWebElement ErrorMessageForInstallationCost;
+        
         
         
 
@@ -805,6 +808,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void EnterInstallationPackCostPrice(string value)
         {
             ClearAndType(InstallationPackCostPriceElement, value);
+        }
+
+
+        public void IsErrorMessageDisplayed()
+        {
+            TestCheck.AssertIsEqual(true, ErrorMessageForInstallationCost.Displayed, "Installation Error was not displayed");
+        }
+
+        public void IsCurrencyInErrorMessageCorrect(string currency)
+        {
+            TestCheck.AssertTextContains(ErrorMessageForInstallationCost.Text, currency);    
         }
 
         public decimal InstallationPackCostPrice()

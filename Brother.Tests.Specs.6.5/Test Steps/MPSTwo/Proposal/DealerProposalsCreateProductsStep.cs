@@ -376,6 +376,37 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             NextPage = CurrentPage.As<DealerProposalsCreateProductsPage>().MoveToClickPriceScreen();
         }
 
+        [When(@"I enter some values for the device")]
+        public void WhenIEnterSomeValuesOfTheDevice()
+        {
+            if (!(CurrentPage.As<DealerProposalsCreateProductsPage>().IsGermanSystem()
+                && CurrentPage.As<DealerProposalsCreateProductsPage>().GetContractType() == "Easy Print Pro & Service"))
+            {
+                CurrentPage.As<DealerProposalsCreateProductsPage>().EnterProductQuantity("1");
+                CurrentPage.As<DealerProposalsCreateProductsPage>().EnterModelUnitCost();
+                CurrentPage.As<DealerProposalsCreateProductsPage>().EnterOptionsQuantity0("1");
+                CurrentPage.As<DealerProposalsCreateProductsPage>().EnterOptionCostPrice();
+            }
+
+            
+            //CurrentPage.As<DealerProposalsCreateProductsPage>().VerifyProductAdditionConfirmationMessage();
+            //NextPage = CurrentPage.As<DealerProposalsCreateProductsPage>().MoveToClickPriceScreen();
+        }
+
+        [When(@"I enter incorrect installation cost of ""(.*)""")]
+        public void WhenIEnterIncorrectInstallationCost(string value)
+        {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterInstallationPackCostPrice(value);
+            CurrentPage.As<DealerProposalsCreateProductsPage>().AddAllDetailsToProposal();
+        }
+
+        [Then(@"error message displayed contains the ""(.*)"" of the specified country")]
+        public void ThenErrorMessageDisplayedContainsTheCurrencyOfTheSpecifiedCountry(string currency)
+        {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().IsErrorMessageDisplayed();
+            CurrentPage.As<DealerProposalsCreateProductsPage>().IsCurrencyInErrorMessageCorrect(currency);
+        }
+        
         [When(@"I display ""(.*)"" device screen")]
         [Then(@"I display ""(.*)"" device screen")]
         public void WhenIDisplayDeviceScreen(string printer)
