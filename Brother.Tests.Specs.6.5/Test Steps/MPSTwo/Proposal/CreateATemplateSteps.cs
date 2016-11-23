@@ -395,19 +395,21 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
                 var instance2 = new SendProposalToApprover();
                 instance2.WhenIClickOnActionButtonAgainstTheProposalCreatedAbove();
 
-                if (CurrentDriver.Url.Contains("online.ch."))
-                {
-                    instance2.ThenICanClickOnConvertToContractButtonUnderTheActionButton();
-                    CurrentPage.As<DealerConvertProposalCustomerInfo>().ChooseExistingCustomerInConvertProcess();
-                    CurrentPage.As<DealerConvertProposalCustomerInfo>().SelectASpecificExistingContact(customer);
-                    NextPage = CurrentPage.As<DealerConvertProposalCustomerInfo>().ProceedToConvertProposalTermAndType();
-                    NextPage = CurrentPage.As<DealerConvertProposalTermAndType>().NavigateToSummaryPageUsingTab();
-                }
-                else
-                {
-                    instance2.ThenICanClickOnConvertToContractButtonToNavigateToConvertSummaryPage();
-                    //instance2.ThenIAmDirectedToCustomerDetailPageForMoreDataCapture();
-                }
+                //if (CurrentDriver.Url.Contains("online.ch."))
+                //{
+                //    instance2.ThenICanClickOnConvertToContractButtonUnderTheActionButton();
+                //    CurrentPage.As<DealerConvertProposalCustomerInfo>().ChooseExistingCustomerInConvertProcess();
+                //    CurrentPage.As<DealerConvertProposalCustomerInfo>().SelectASpecificExistingContact(customer);
+                //    NextPage = CurrentPage.As<DealerConvertProposalCustomerInfo>().ProceedToConvertProposalTermAndType();
+                //    NextPage = CurrentPage.As<DealerConvertProposalTermAndType>().NavigateToSummaryPageUsingTab();
+                //}
+                //else
+                //{
+                //    instance2.ThenICanClickOnConvertToContractButtonToNavigateToConvertSummaryPage();
+                //    //instance2.ThenIAmDirectedToCustomerDetailPageForMoreDataCapture();
+                //}
+
+                instance2.ThenICanClickOnConvertToContractButtonToNavigateToConvertSummaryPage();
                 
                 instance2.ThenIAmTakenToTheProposalSummaryWhereICanEnterEnvisageContractStartDate();
                 instance2.ThenICanSuccessfullyConvertTheProposalToContract();
