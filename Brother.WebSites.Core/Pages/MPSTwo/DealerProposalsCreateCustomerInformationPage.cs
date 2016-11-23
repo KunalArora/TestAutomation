@@ -437,7 +437,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
        public void FillOrganisationContactDetail()
        {
-           if (IsPolandSystem() || IsSwissSystem()) return;
+           if (IsPolandSystem()) return;
            SelectTitleFromDropdown();
            EnterContactFirstName();
            EnterContactSurName();
@@ -458,7 +458,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
            }
            catch (KeyNotFoundException keyNotFound)
            {
-               language = "Français";
+               language = "Deutsch";
            }
            
 
@@ -468,11 +468,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                    lang = "Church";
                    break;
                case "Deutsch":
-                   lang = "Church";
+                   lang = "Einzelfirma";
                    break;
 
                default:
-                   lang = "Church";
+                   lang = "Einzelfirma";
                    break;
            }
 
@@ -690,7 +690,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SelectTitleFromDropdown()
         {
-            if (IsSwedenSystem()||IsDenmarkSystem() || IsFinlandSystem() || IsNorwaySystem() || IsSwissSystem()) return;
+            if (IsSwedenSystem()||IsDenmarkSystem() || IsFinlandSystem() || IsNorwaySystem()) return;
                 SelectFromDropdownByValue(ContactTitleElement, "0002");
         }
 

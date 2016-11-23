@@ -757,10 +757,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterRemainingCustomerInfo()
         {
-            if (IsSwissSystem())
-            {
-                CreateANewCustomerInConvertProcess();
-            }
+            //if (IsSwissSystem())
+            //{
+            //    CreateANewCustomerInConvertProcess();
+            //}
             SelectALegalForm();
             EnterCompanyRegistration();
             EnterVatNumber();
@@ -782,7 +782,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 MobileElement.SendKeys("01234567890");
             }
 
-            FillSwissOrgDetail();
+            //FillSwissOrgDetail();
 
             if(IsNetherlandSystem())
                 CustomerCanOrderConsumables();
