@@ -1,5 +1,5 @@
-﻿@MPS @TEST @UAT @BIEPC110
-Feature: CloudMPSErrorMessageShowsCorrectUKCurrency
+﻿@MPS @TEST @UAT @BIEPC111
+Feature: CloudMPSErrorMessageShowsCorrectNorwegianCurrency
 	In order to ensure that error message correctly displayed currency
 	As a dealer
 	I want to see the currency in error match specified currency
@@ -15,13 +15,13 @@ Scenario Outline: Currency in product screen error message
 	And I display "<Printer>" device screen
 	And enter a quantity of "2" for model
 	And I enter some values for the device
-	And I enter incorrect installation cost of "0.00"
+	And I enter incorrect installation cost of "0,00"
 	Then error message displayed contains the "<Currency>" of the specified country
 	And I sign out of Cloud MPS
 	
 
 	Scenarios: 
-	| Role             | Country        | ContractType                  | CreateOption           | UsageType     | Contract | Billing              | PriceHardware | Printer     | ClickVolume | Currency |
-	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Skip customer creation | Pay As You Go | 3 years  | Quarterly in Arrears | Tick          | MFC-L5750DW | 750         | £        |
+	| Role             | Country | ContractType              | CreateOption           | UsageType          | Contract | Billing              | PriceHardware | Printer     | ClickVolume | Currency |
+	| Cloud MPS Dealer | Norway  | Kjøp og klikk med service | Skip customer creation | Betale ved forbruk | 36       | Quarterly in Arrears | Tick          | DCP-L5500DN | 750         | kr       |
 	
 	                    

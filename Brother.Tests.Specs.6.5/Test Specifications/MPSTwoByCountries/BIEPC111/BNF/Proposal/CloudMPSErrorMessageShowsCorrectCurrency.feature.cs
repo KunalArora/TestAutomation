@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BUK.Proposal
+namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC111.BNF.Proposal
 {
     using TechTalk.SpecFlow;
     
@@ -19,12 +19,12 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BUK.
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.9.0.77")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("CloudMPSErrorMessageShowsCorrectUKCurrency")]
+    [NUnit.Framework.DescriptionAttribute("CloudMPSErrorMessageShowsCorrectFinnishCurrency")]
     [NUnit.Framework.CategoryAttribute("MPS")]
     [NUnit.Framework.CategoryAttribute("TEST")]
     [NUnit.Framework.CategoryAttribute("UAT")]
-    [NUnit.Framework.CategoryAttribute("BIEPC110")]
-    public partial class CloudMPSErrorMessageShowsCorrectUKCurrencyFeature
+    [NUnit.Framework.CategoryAttribute("BIEPC111")]
+    public partial class CloudMPSErrorMessageShowsCorrectFinnishCurrencyFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
@@ -36,12 +36,12 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BUK.
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CloudMPSErrorMessageShowsCorrectUKCurrency", "In order to ensure that error message correctly displayed currency\r\nAs a dealer\r\n" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CloudMPSErrorMessageShowsCorrectFinnishCurrency", "In order to ensure that error message correctly displayed currency\r\nAs a dealer\r\n" +
                     "I want to see the currency in error match specified currency", ProgrammingLanguage.CSharp, new string[] {
                         "MPS",
                         "TEST",
                         "UAT",
-                        "BIEPC110"});
+                        "BIEPC111"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -75,7 +75,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BUK.
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Currency in product screen error message")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Purchase & Click with Service", "Skip customer creation", "Pay As You Go", "3 years", "Quarterly in Arrears", "Tick", "MFC-L5750DW", "750", "£", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Finland", "Purchase & Click with Service", "Skip customer creation", "Maksu tulosteiden mukaan", "3 vuotta", "Quarterly in Arrears", "Tick", "MFC-8950DW", "750", "€", null)]
         public virtual void CurrencyInProductScreenErrorMessage(string role, string country, string contractType, string createOption, string usageType, string contract, string billing, string priceHardware, string printer, string clickVolume, string currency, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Currency in product screen error message", exampleTags);
@@ -101,7 +101,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 17
  testRunner.And("I enter some values for the device", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 18
- testRunner.And("I enter incorrect installation cost of \"0.00\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I enter incorrect installation cost of \"0,00\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 19
  testRunner.Then(string.Format("error message displayed contains the \"{0}\" of the specified country", currency), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 20
