@@ -173,7 +173,7 @@ Scenario Outline: Multiple Installation
 	##And I enter mono and colour print count
 	And I enter "<Mono>" mono and "<Colour>" colour print count
 	And I generate invoices for the contract above
-	And I download customer invoices pdf
+	##And I download customer invoices pdf
 
 	
 Scenarios:
