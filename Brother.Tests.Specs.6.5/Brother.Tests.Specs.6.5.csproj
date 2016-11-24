@@ -106,6 +106,21 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Customer Account.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC110\BES\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature.cs">
+      <DependentUpon>CloudMPSErrorMessageShowsCorrectCurrency.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC110\BFR\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature.cs">
+      <DependentUpon>CloudMPSErrorMessageShowsCorrectCurrency.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC110\BIT\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature.cs">
+      <DependentUpon>CloudMPSErrorMessageShowsCorrectCurrency.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC110\BSW\Contract\CloudMPSDealerCanCopyADeclineProposal.feature.cs">
       <DependentUpon>CloudMPSDealerCanCopyADeclineProposal.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -176,6 +191,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CloudMPSResetInstallation.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC110\BUK\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature.cs">
+      <DependentUpon>CloudMPSErrorMessageShowsCorrectCurrency.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC110\BUK\Proposal\CloudMPSMultiDeviceVerificationWithPrintCountValidation.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -190,6 +210,31 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ValidateConsumableOrderCreation.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC111\BNF\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature.cs">
+      <DependentUpon>CloudMPSErrorMessageShowsCorrectCurrency.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC111\BNO\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature.cs">
+      <DependentUpon>CloudMPSErrorMessageShowsCorrectCurrency.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC112\BBE\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature.cs">
+      <DependentUpon>CloudMPSErrorMessageShowsCorrectCurrency.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC112\BIR\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature.cs">
+      <DependentUpon>CloudMPSErrorMessageShowsCorrectCurrency.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC112\BND\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature.cs">
+      <DependentUpon>CloudMPSErrorMessageShowsCorrectCurrency.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\CalculationEngine\CalculationEngineScenarios.feature.cs">
       <AutoGen>True</AutoGen>
@@ -1324,6 +1369,18 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>SitesAccess_TestEnvironment.feature.cs</LastGenOutput>
     </None>
+    <None Include="Test Specifications\MPSTwoByCountries\BIEPC110\BES\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CloudMPSErrorMessageShowsCorrectCurrency.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwoByCountries\BIEPC110\BFR\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CloudMPSErrorMessageShowsCorrectCurrency.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwoByCountries\BIEPC110\BIT\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CloudMPSErrorMessageShowsCorrectCurrency.feature.cs</LastGenOutput>
+    </None>
     <None Include="Test Specifications\MPSTwoByCountries\BIEPC110\BSW\Contract\CloudMPSDealerCanCopyADeclineProposal.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSDealerCanCopyADeclineProposal.feature.cs</LastGenOutput>
@@ -1380,6 +1437,10 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSResetInstallation.feature.cs</LastGenOutput>
     </None>
+    <None Include="Test Specifications\MPSTwoByCountries\BIEPC110\BUK\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CloudMPSErrorMessageShowsCorrectCurrency.feature.cs</LastGenOutput>
+    </None>
     <None Include="Test Specifications\MPSTwoByCountries\BIEPC110\BUK\Proposal\CloudMPSMultiDeviceVerificationWithPrintCountValidation.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSMultiDeviceVerificationWithPrintCountValidation.feature.cs</LastGenOutput>
@@ -1391,6 +1452,26 @@
     <None Include="Test Specifications\MPSTwoByCountries\BIEPC110\BUK\Validate_CustomerRun\ValidateConsumableOrderCreation.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ValidateConsumableOrderCreation.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwoByCountries\BIEPC111\BNF\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CloudMPSErrorMessageShowsCorrectCurrency.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwoByCountries\BIEPC111\BNO\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CloudMPSErrorMessageShowsCorrectCurrency.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwoByCountries\BIEPC112\BBE\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CloudMPSErrorMessageShowsCorrectCurrency.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwoByCountries\BIEPC112\BIR\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CloudMPSErrorMessageShowsCorrectCurrency.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwoByCountries\BIEPC112\BND\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CloudMPSErrorMessageShowsCorrectCurrency.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwoByCountries\CalculationEngine\CalculationEngineScenarios.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
