@@ -85,12 +85,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public static void DownloadProposalPdfOnSummaryPage(IWebDriver driver)
         {
-            DownloadProposalPdfElement(driver).Click();
+            //DownloadProposalPdfElement(driver).Click();
         }
 
         public static void DownloadProposalPdfOnSendToBankSummaryPage(IWebDriver driver)
         {
-            DownloadProposalFromSendToApproverPdfElement(driver).Click();
+            //DownloadProposalFromSendToApproverPdfElement(driver).Click();
         }
 
         public static void DownloadContractPdf(IWebDriver driver)
