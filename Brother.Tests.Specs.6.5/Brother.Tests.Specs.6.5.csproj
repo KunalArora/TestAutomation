@@ -106,6 +106,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Customer Account.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC110\BES\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature.cs">
+      <DependentUpon>CloudMPSErrorMessageShowsCorrectCurrency.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC110\BSW\Contract\CloudMPSDealerCanCopyADeclineProposal.feature.cs">
       <DependentUpon>CloudMPSDealerCanCopyADeclineProposal.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -1323,6 +1328,10 @@
     <None Include="Test Specifications\BrotherOnline\SiteAccess\SitesAccess_TestEnvironment.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>SitesAccess_TestEnvironment.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwoByCountries\BIEPC110\BES\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CloudMPSErrorMessageShowsCorrectCurrency.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwoByCountries\BIEPC110\BSW\Contract\CloudMPSDealerCanCopyADeclineProposal.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
