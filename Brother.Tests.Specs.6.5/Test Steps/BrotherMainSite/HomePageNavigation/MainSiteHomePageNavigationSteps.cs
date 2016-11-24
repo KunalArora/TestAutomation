@@ -21,7 +21,7 @@ namespace Brother.Tests.Specs.BrotherMainSite.HomePageNavigation
         public void GivenIHaveNavigatedToTheMainSiteUrlForCountry(string url, string country)
         {
             Helper.SetCountry(country);
-            CurrentPage = GlobalNavigationModule.NavigateToLaserPrintersSite(CurrentDriver, url);
+            CurrentPage = GlobalNavigationModule.NavigateToAllPrintersPage(CurrentDriver, url);
         }
         [When(@"I have navigated to the ""(.*)"" MainSite URL for country ""(.*)""")]
         public void WhenIHaveNavigatedToTheMainSiteUrlForCountry(string url, string country)

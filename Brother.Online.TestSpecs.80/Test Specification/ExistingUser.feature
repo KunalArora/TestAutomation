@@ -25,7 +25,7 @@ Scenario Outline: Check Forgotten Password email recieved to the user
 	When I click on Forgot Password
 	Then I enter an email address as "<Valid Email Address>"
 	And I press send email button
-	And Once I have Validated an Email was received and verified my account
+	And Once I have Validated "<Valid Email Address>" was received and verified my account
 	
 Scenarios:
 	| Country        | Site Url       | Valid Email Address                           |

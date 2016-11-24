@@ -55,17 +55,19 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
         {
             CurrentPage.As<SignInPage>().ClickSendButton();
         }
-       [Then(@"Once I have Validated an Email was received and verified my account")]
-       public void ThenOnceIHaveValidatedAnEmailWasReceivedAndVerifiedMyAccount()
+
+       [Then(@"Once I have Validated ""(.*)"" was received and verified my account")]
+       public void ThenOnceIHaveValidatedWasReceivedAndVerifiedMyAccount(string emailAddress)
        {
            Thread.Sleep(new TimeSpan(0, 0, 0, 10)); //  deliberate wait for account to finalise before validation
-           ValidateAccountEmail();
+           ValidateAccountEmail(emailAddress);
        }
-       private void ValidateAccountEmail()
+
+       private void ValidateAccountEmail(string emailID)
        {
            if (Email.CheckEmailPackage("GuerrillaEmail"))
            {
-               LaunchGuerrillaEmail(string.Empty);
+               LaunchGuerrillaEmail(emailID);
                CurrentPage.As<GuerillaEmailConfirmationPage>().SelectEmail("ForgottenPassword");
                //  CurrentPage.As<GuerillaEmailConfirmationPage>().CheckAllEmailLinks();
                NextPage = CurrentPage.As<GuerillaEmailConfirmationPage>().ValidateForgottenPasswordEmail();
@@ -73,6 +75,7 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
        }
        private void LaunchGuerrillaEmail(string inBox)
        {
+           inBox = @"123orderplacedukaccount@guerrillamail.com";
            if (inBox == string.Empty)
            {
                CurrentPage = BasePage.LoadGuerrillaEmailInboxPage(CurrentDriver, "");

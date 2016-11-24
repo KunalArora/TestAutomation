@@ -21,7 +21,6 @@ namespace Brother.Tests.Specs._80.TestSpecification.CMSSitecore.PublishedPages
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("PublishedPages")]
     [NUnit.Framework.CategoryAttribute("UAT")]
-    [NUnit.Framework.CategoryAttribute("PROD")]
     [NUnit.Framework.CategoryAttribute("TEST")]
     public partial class PublishedPagesFeature
     {
@@ -38,7 +37,6 @@ namespace Brother.Tests.Specs._80.TestSpecification.CMSSitecore.PublishedPages
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "PublishedPages", "In order to validate the success of a new build, \r\npreviously published pages are" +
                     " verified to ensure \r\na CMS code change has not had an adverse effect", ProgrammingLanguage.CSharp, new string[] {
                         "UAT",
-                        "PROD",
                         "TEST"});
             testRunner.OnFeatureStart(featureInfo);
         }
