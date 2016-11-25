@@ -37,7 +37,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.SuppliesAndAccessories
             get { return MainSitePageTitles.Default["InkJetSuppliesPage"].ToString() + _defaultExtraPageTitle; }
         }
 
-        [FindsBy(How = How.CssSelector, Using = ".button-blue.add-to-basket-button")]
+        [FindsBy(How = How.CssSelector, Using = ".product-detail--cta .btn-primary")]
         public IWebElement AddToBasketButton;
 
 
