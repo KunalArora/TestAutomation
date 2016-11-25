@@ -59,6 +59,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Test Specification\BrotherMainSite\LiveSmokeTests.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LiveSmokeTests.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specification\BrotherMainSite\ProductPurchase\ProductPurchaseValidation.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProductPurchaseValidation.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specification\CMS Sitecore\PublishedPages\PublishedPages.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -121,9 +131,17 @@
     </None>
     <None Include="specflow.exe.config" />
     <None Include="TeamCity.SpecFlow.Reporting.psm1" />
+    <None Include="Test Specification\BrotherMainSite\LiveSmokeTests.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>LiveSmokeTests.feature.cs</LastGenOutput>
+    </None>
     <None Include="Test Specification\BrotherMainSite\Printer Search\Printers.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Printers.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specification\BrotherMainSite\ProductPurchase\ProductPurchaseValidation.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ProductPurchaseValidation.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specification\CMS Sitecore\PublishedPages\PublishedPages.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

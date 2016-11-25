@@ -75,6 +75,7 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
        }
        private void LaunchGuerrillaEmail(string inBox)
        {
+           inBox = @"123orderplacedukaccount@guerrillamail.com";
            if (inBox == string.Empty)
            {
                CurrentPage = BasePage.LoadGuerrillaEmailInboxPage(CurrentDriver, "");

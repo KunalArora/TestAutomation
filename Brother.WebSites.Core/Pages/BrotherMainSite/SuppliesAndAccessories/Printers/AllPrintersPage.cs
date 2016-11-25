@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Threading;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
@@ -23,6 +25,9 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.SuppliesAndAccessories.Pri
 
         [FindsBy(How = How.CssSelector, Using = ".content-box.cf .box-out #total-results-heading")]
         public IWebElement PrinterSearchResultsBar;
+
+        [FindsBy(How = How.CssSelector, Using = @".product-results--item")]
+        public IList<IWebElement> AllPrintersList;
 
         public void IsViewOurPrinterRangeButtonAvailable()
         {
@@ -66,6 +71,23 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.SuppliesAndAccessories.Pri
                 TestCheck.AssertFailTest(string.Format("Unable to locate Printer Search Results bar - [{0}]", notFound));
             }
             return printerSearchBar.Text;
+        }
+
+        public int GetListOfPrintersLoaded()
+        {
+            IJavaScriptExecutor js = (IJavaScriptExecutor)Driver;
+            //To scroll down web page by document body size In x(vertical) direction.  
+            //You can the y parameter to scroll page In horizontal direction.
+            js.ExecuteScript("window.scrollTo(0, document.body.scrollHeight);");
+            Thread.Sleep(TimeSpan.FromSeconds(3));
+            if (AllPrintersList != null && AllPrintersList.Count > 6)
+            {
+                return AllPrintersList.Count;
+            }
+            else
+            {
+                return 0;
+            }
         }
     }
 }

@@ -1,11 +1,12 @@
-﻿using System.Security.Policy;
+﻿using System;
+using System.Linq;
+using System.Security.Policy;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherMainSite;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
 using TechTalk.SpecFlow;
-using MainSiteHomePage = Brother.WebSites.Core.Pages8._0.BrotherMainSite.MainSiteHomePage;
 
 
 namespace Brother.Tests.Specs._80.BrotherMainSite.HomePageNavigation
@@ -19,6 +20,32 @@ namespace Brother.Tests.Specs._80.BrotherMainSite.HomePageNavigation
             Helper.SetCountry(country);
             CurrentPage = BasePage.LoadBrotherMainSiteHomePage(CurrentDriver, BasePage.BaseUrl);
         }
+
+        [Given(@"I have navigated to the ""(.*)"" Brother Main Site")]
+        public void GivenIHaveNavigatedToTheBrotherMainSite(string country)
+        {
+            Helper.SetCountry(country);
+            CurrentPage = BasePage.LoadBrotherMainSiteHomePage(CurrentDriver, BasePage.BaseUrl);
+        }
+
+        [Then(@"I shold see the tilte of the page is displayed")]
+        public void ThenISholdSeeTheTilteOfThePageIsDisplayed()
+        {
+            CurrentPage.As<MainSiteHomePage>().DoPageTileExist();
+        }
+
+        [Then(@"the slides on the home page are displayed properly")]
+        public void ThenTheSlidesOnTheHomePageAreDisplayedProperly()
+        {
+            CurrentPage.As<MainSiteHomePage>().AreSlidesDisplayed();
+        }
+
+        [Then(@"the footer of the home page is displayed properly")]
+        public void ThenTheFooterOfTheHomePageIsDisplayedProperly()
+        {
+            CurrentPage.As<MainSiteHomePage>().DoFooterExistsOnHomePage();
+        }
+
         [Given(@"I have navigated to the Brother Main Site ""(.*)"" footer pages")]
         public void GivenIHaveNavigatedToTheBrotherMainSiteFooterPages(string country)
         {
@@ -30,8 +57,16 @@ namespace Brother.Tests.Specs._80.BrotherMainSite.HomePageNavigation
         public void GivenIHaveNavigatedToTheMainSiteUrlForCountry(string url, string country)
         {
             Helper.SetCountry(country);
-            CurrentPage = GlobalNavigationModule.NavigateToLaserPrintersSite(CurrentDriver, url);
+            CurrentPage = GlobalNavigationModule.NavigateToLaserPrintersonBrotherSite(CurrentDriver, url);
         }
+
+        [Given(@"I navigated to the ""(.*)"" all printers page ""(.*)""")]
+        public void GivenINavigatedToTheAllPrintersPage(string country, string pageUrl)
+        {
+            Helper.SetCountry(country);
+            CurrentPage = GlobalNavigationModule.NavigateToAllPrintersPage(CurrentDriver, pageUrl);
+        }
+
         [Given(@"I have navigated to the Brother Main Site ""(.*)"" products header pages")]
         public void GivenIHaveNavigatedToTheBrotherMainSiteProductsHeaderPages(string country)
         {
@@ -48,7 +83,6 @@ namespace Brother.Tests.Specs._80.BrotherMainSite.HomePageNavigation
         public void GivenINavigateFromMainsitePageToLoginPage()
         {
             CurrentPage.As<MainSiteHomePage>();
-            
         }
 
         [Then(@"I am navigated to the products page")]
@@ -168,10 +202,11 @@ namespace Brother.Tests.Specs._80.BrotherMainSite.HomePageNavigation
            CurrentPage.As<LoginPage>().ClickOnGrid(country);
        }
 
-
-
-
-
-
+       [Given(@"I have clicked on Supplies option")]
+       public void GivenIHaveClickedOnSuppliesOption()
+       {
+           CurrentPage.As<MainSiteHomePage>().IsSuppliesLinkAvailable();
+           NextPage = CurrentPage.As<MainSiteHomePage>().ClickSuppliesLink();
+       }
     }
 }

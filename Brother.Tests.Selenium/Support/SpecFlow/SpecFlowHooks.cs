@@ -123,9 +123,7 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
             WebDriver.ShowAllCookies();
             Helper.MsgOutput("*************END COOKIE INFORMATION*******************************");
 
-
-            // First check the Runtime environment for a valid value. If the Environment variable contains an invalid Test Environment
-            // then END TEST RUN
+            // First check the Runtime environment for a valid value. If the Environment variable contains an invalid Test Environment then END TEST RUN
             if (!CheckForValidRunTimeEnv(Helper.GetRunTimeEnv()))
             {
                 Helper.MsgOutput("********************************************************************");
@@ -145,12 +143,11 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
 
             // Now check if this Scenario has Tagging present, and use this level in the first instance
             if ((ScenarioContext.Current.ScenarioInfo.Tags.Length > 0) && (!ScenarioContext.Current.ScenarioInfo.Tags.Contains("SMOKE")
-                && (!ScenarioContext.Current.ScenarioInfo.Tags.Contains("STAGING"))))
+                && (!ScenarioContext.Current.ScenarioInfo.Tags.Contains("STAGING")) && (!ScenarioContext.Current.ScenarioInfo.Tags.Contains("ACCESSIBILITY"))))
             {
                 Helper.MsgOutput("Scenario Tags present - using these to determine Runtime Environment");
 
-                // Use ScenarioContext override tag
-                // if the run time environment does not match, do not run test
+                // Use ScenarioContext override tag if the run time environment does not match, do not run test
                 if (!Helper.CheckScenarioEnv(Helper.GetRunTimeEnv()))
                 {
                     IgnoreThisTest(string.Format("Test skipped - Test Environment Mismatch for this test - Target [{0}]", Helper.GetRunTimeEnv()));
@@ -177,8 +174,11 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
                 }
             }
 
-            DoMpsTestEval(Helper.CheckFeatureEnv("MPS"));
-            DoSmokeTestEval(Helper.IsSmokeTest());
+            if (!ScenarioContext.Current.ScenarioInfo.Tags.Contains("ACCESSIBILITY"))
+            {
+                DoMpsTestEval(Helper.CheckFeatureEnv("MPS"));
+                DoSmokeTestEval(Helper.IsSmokeTest());
+            }
             SetCurrentDriver();
         }
 

@@ -59,6 +59,12 @@ namespace Brother.Tests.Specs._80.BrotherMainSite.PrinterSearch
             TestCheck.AssertIsGreater(CurrentPage.As<LaserPrintersPage>().WaitForPrinterSearchResults(), 0, "Printer search returned zero");
         }
 
+        [Then(@"I should see a list of all printers loaded")]
+        public void ThenIShouldSeeAListOfAllPrintersLoaded()
+        {
+            TestCheck.AssertIsGreater(CurrentPage.As<AllPrintersPage>().GetListOfPrintersLoaded(), 6, "Printer search returned less than 6 Printers");
+        }
+
         [Then(@"I can validate that each printer is a valid printer")]
         public void ThenICanValidateThatEachPrinterIsAValidPrinter()
         {
@@ -71,6 +77,12 @@ namespace Brother.Tests.Specs._80.BrotherMainSite.PrinterSearch
         {
             //TestCheck.AssertIsEqual(false, CurrentPage.As<LaserPrintersPage>().ValidatePrintersSpainPortugal(), "Validating Printers (Spain and Portugal Languages)");
             TestCheck.AssertIsEqual(true, true, "Validating Printers (Spain and Portugal Languages)");
+        }
+
+        [Given(@"I have entered my valid supplies code for an InkJet cartridge ""(.*)""")]
+        public void GivenIHaveEnteredMyValidSuppliesCodeForAnInkJetCartridge(string supplyCode)
+        {
+            CurrentPage.As<SuppliesPage>().AddSupplyCode(supplyCode);
         }
     }
 }
