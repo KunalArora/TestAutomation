@@ -12,13 +12,7 @@ Scenario Outline: MPS Actions For Customers
 	And I sign back into Cloud MPS as a "<Role1>" from "<Country>"
 	When I install the device with "<SerialNumber>" on the contract with "<Method>" communication and "<Type>" installation 
 	And I can sign out of Brother Online
-	#And I sign into Cloud MPS as a "<ExistingCustomer>" from "<Country>"
-	#And I navigate to customer dashboard page
-	#And I navigate to consumable ordering page for "<SerialNumber>"
-	#And I change the ordering procedure to automatic
-	#And I create a consumable order for "Cyan"
-	#And I sign out of Cloud MPS
-
+	
 	
 Scenarios:
 

@@ -1,4 +1,4 @@
-﻿@ignore @MPS @TEST @UAT @BIEPC112
+﻿@ignore @MPS @TEST @UAT @BIEPC113
 Feature: CloudMPSErrorMessageShowsCorrectGermanAustriaCurrency
 	In order to ensure that error message correctly displayed currency
 	As a dealer
