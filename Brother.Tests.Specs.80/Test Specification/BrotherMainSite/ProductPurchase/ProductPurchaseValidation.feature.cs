@@ -68,13 +68,13 @@ namespace Brother.Tests.Specs._80.TestSpecification.BrotherMainSite.ProductPurch
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify that a user can successful purchase of an item through brother online usin" +
-            "g a credit card")]
+        [NUnit.Framework.DescriptionAttribute("Verify that a user can successfully purchase an item through brother online using" +
+            " a credit card")]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "LC1000BK", null)]
-        public virtual void VerifyThatAUserCanSuccessfulPurchaseOfAnItemThroughBrotherOnlineUsingACreditCard(string country, string product, string[] exampleTags)
+        public virtual void VerifyThatAUserCanSuccessfullyPurchaseAnItemThroughBrotherOnlineUsingACreditCard(string country, string itemCode, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify that a user can successful purchase of an item through brother online usin" +
-                    "g a credit card", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify that a user can successfully purchase an item through brother online using" +
+                    " a credit card", exampleTags);
 #line 9
 this.ScenarioSetup(scenarioInfo);
 #line 10
@@ -82,17 +82,9 @@ this.ScenarioSetup(scenarioInfo);
 #line 11
  testRunner.And("I have clicked on Supplies option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 12
- testRunner.And(string.Format("I have entered my valid supplies code for an InkJet cartridge \"{0}\"", product), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("I select an InkJet cartridge by searching with a valid supplies code \"{0}\"", itemCode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 13
- testRunner.When("I click on search for supply \"LC1000BK\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 14
- testRunner.And("I click on Add To Basket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 15
- testRunner.And("I click on Go to Basket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 16
- testRunner.And("I click Checkout before loging", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 17
- testRunner.And("I am redirected to the Brother Login/Register page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I click on Add To Basket button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
