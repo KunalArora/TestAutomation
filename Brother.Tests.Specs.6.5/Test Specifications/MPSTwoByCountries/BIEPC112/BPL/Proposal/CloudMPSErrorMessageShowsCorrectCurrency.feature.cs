@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BNS.Proposal
+namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BPL.Proposal
 {
     using TechTalk.SpecFlow;
     
@@ -19,12 +19,12 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BNS.
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.9.0.77")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("CloudMPSErrorMessageShowsCorrectSwedishCurrency")]
+    [NUnit.Framework.DescriptionAttribute("CloudMPSErrorMessageShowsCorrectPolishCurrency")]
     [NUnit.Framework.CategoryAttribute("MPS")]
     [NUnit.Framework.CategoryAttribute("TEST")]
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("BIEPC112")]
-    public partial class CloudMPSErrorMessageShowsCorrectSwedishCurrencyFeature
+    public partial class CloudMPSErrorMessageShowsCorrectPolishCurrencyFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
@@ -36,7 +36,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BNS.
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CloudMPSErrorMessageShowsCorrectSwedishCurrency", "In order to ensure that error message correctly displayed currency\r\nAs a dealer\r\n" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CloudMPSErrorMessageShowsCorrectPolishCurrency", "In order to ensure that error message correctly displayed currency\r\nAs a dealer\r\n" +
                     "I want to see the currency in error match specified currency", ProgrammingLanguage.CSharp, new string[] {
                         "MPS",
                         "TEST",
@@ -75,7 +75,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BNS.
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Currency in product screen error message")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Sweden", "Purchase & click inklusive service", "Skip customer creation", "Betala per utskrift", "36 månader", "Kvartalsvis i efterskott", "Tick", "HL-L5100DN", "750", "kr", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Poland", "Buy + Click", "Skip customer creation", "Pakiet wydruków", "3 lata", "Miesięczny / Monthly", "Tick", "MFC-L5750DW", "750", "zł", null)]
         public virtual void CurrencyInProductScreenErrorMessage(string role, string country, string contractType, string createOption, string usageType, string contract, string billing, string priceHardware, string printer, string clickVolume, string currency, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Currency in product screen error message", exampleTags);

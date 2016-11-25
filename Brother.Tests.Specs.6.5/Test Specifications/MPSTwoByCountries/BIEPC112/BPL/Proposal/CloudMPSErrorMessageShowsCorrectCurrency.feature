@@ -1,5 +1,5 @@
 ﻿@MPS @TEST @UAT @BIEPC112
-Feature: CloudMPSErrorMessageShowsCorrectSwedishCurrency
+Feature: CloudMPSErrorMessageShowsCorrectPolishCurrency
 	In order to ensure that error message correctly displayed currency
 	As a dealer
 	I want to see the currency in error match specified currency
@@ -21,7 +21,7 @@ Scenario Outline: Currency in product screen error message
 	
 
 	Scenarios: 
-	| Role             | Country | ContractType                       | CreateOption           | UsageType           | Contract   | Billing                  | PriceHardware | Printer    | ClickVolume | Currency |
-	| Cloud MPS Dealer | Sweden  | Purchase & click inklusive service | Skip customer creation | Betala per utskrift | 36 månader | Kvartalsvis i efterskott | Tick          | HL-L5100DN | 750         | kr       |
+	| Role             | Country | ContractType | CreateOption           | UsageType       | Contract | Billing              | PriceHardware | Printer     | ClickVolume | Currency |
+	| Cloud MPS Dealer | Poland  | Buy + Click  | Skip customer creation | Pakiet wydruków | 3 lata   | Miesięczny / Monthly | Tick          | MFC-L5750DW | 750         | zł       |
 	
 	                    
