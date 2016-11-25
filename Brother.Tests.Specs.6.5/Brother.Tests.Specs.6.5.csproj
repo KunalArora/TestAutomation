@@ -236,6 +236,26 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC112\BNL\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature.cs">
+      <DependentUpon>CloudMPSErrorMessageShowsCorrectCurrency.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC112\BNS\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature.cs">
+      <DependentUpon>CloudMPSErrorMessageShowsCorrectCurrency.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC112\BPL\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature.cs">
+      <DependentUpon>CloudMPSErrorMessageShowsCorrectCurrency.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC113\BIG_AT\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature.cs">
+      <DependentUpon>CloudMPSErrorMessageShowsCorrectCurrency.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\CalculationEngine\CalculationEngineScenarios.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1470,6 +1490,22 @@
       <LastGenOutput>CloudMPSErrorMessageShowsCorrectCurrency.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwoByCountries\BIEPC112\BND\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CloudMPSErrorMessageShowsCorrectCurrency.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwoByCountries\BIEPC112\BNL\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CloudMPSErrorMessageShowsCorrectCurrency.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwoByCountries\BIEPC112\BNS\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CloudMPSErrorMessageShowsCorrectCurrency.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwoByCountries\BIEPC112\BPL\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CloudMPSErrorMessageShowsCorrectCurrency.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwoByCountries\BIEPC113\BIG_AT\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSErrorMessageShowsCorrectCurrency.feature.cs</LastGenOutput>
     </None>
