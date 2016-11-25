@@ -21,7 +21,6 @@ namespace Brother.Tests.Specs._80.TestSpecification.CMSSitecore.SiteAccess
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("CMS website access")]
     [NUnit.Framework.CategoryAttribute("UAT")]
-    [NUnit.Framework.CategoryAttribute("PROD")]
     [NUnit.Framework.CategoryAttribute("TEST")]
     public partial class CMSWebsiteAccessFeature
     {
@@ -38,7 +37,6 @@ namespace Brother.Tests.Specs._80.TestSpecification.CMSSitecore.SiteAccess
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CMS website access", "In order to validate that the CMS site is accessible a number of content editor a" +
                     "ctions are conducted", ProgrammingLanguage.CSharp, new string[] {
                         "UAT",
-                        "PROD",
                         "TEST"});
             testRunner.OnFeatureStart(featureInfo);
         }

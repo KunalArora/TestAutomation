@@ -16,7 +16,8 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
             get { return string.Empty; }
         }
 
-        [FindsBy(How = How.CssSelector, Using = "#by-supply-number > input")]
+        //[FindsBy(How = How.CssSelector, Using = "#by-supply-number > input")]
+        [FindsBy(How = How.CssSelector, Using = "#supplies-code")]
         public IWebElement SuppliesCodeExitBox;
 
         [FindsBy(How = How.CssSelector, Using = "#by-supply-number > a")]

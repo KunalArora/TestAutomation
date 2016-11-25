@@ -123,7 +123,9 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             {"Italy", "it"},
             {"Bulgaria", "bg"},
             {"Austria", "at"},
-
+            {"Estonia", "ee"},
+            {"Iceland", "is"},
+            {"Latvia", "lv"},
         };
 
       
@@ -251,7 +253,16 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         
         public static bool CheckFeatureEnv(string env)
         {
-            return FeatureContext.Current.FeatureInfo.Tags.Contains(env);
+            if (FeatureContext.Current.FeatureInfo.Tags.Contains("PROD"))
+            {
+                SetRunTimeEnv("PROD");
+                return true;
+            }
+            else
+            {
+                SetRunTimeEnv("TEST");
+                return FeatureContext.Current.FeatureInfo.Tags.Contains(env);
+            }
         }
 
         //public static string CurrentBaseUrlAsHttps()
@@ -316,7 +327,8 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             {
                 if (baseUrl.Contains("online"))
                 {
-                    return baseUrl.Replace("online", string.Format("{0}.online", UseCdServerDomain()));
+                    //return baseUrl.Replace("online", string.Format("{0}.online", UseCdServerDomain()));
+                    return baseUrl.Replace("online", string.Format("www.{0}", UseCdServerDomain()));
                 }
 
                 if (baseUrl.Contains("www."))
