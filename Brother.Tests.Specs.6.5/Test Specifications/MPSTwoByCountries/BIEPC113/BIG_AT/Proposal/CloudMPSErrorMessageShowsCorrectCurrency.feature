@@ -1,15 +1,15 @@
 ﻿@ignore @MPS @TEST @UAT @BIEPC112
-Feature: CloudMPSErrorMessageShowsCorrectPolishCurrency
+Feature: CloudMPSErrorMessageShowsCorrectGermanAustriaCurrency
 	In order to ensure that error message correctly displayed currency
 	As a dealer
 	I want to see the currency in error match specified currency
 
-	## No installation cost at the moment
+	## No installation cost in BIG/BAT
 Scenario Outline: Currency in product screen error message
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	When I fill Proposal Description for "<ContractType>" Contract type
-	And I select "<CreateOption>" button for customer data capture
+	##And I select "<CreateOption>" button for customer data capture
 	And I Enter "<UsageType>" usage type "<Contract>" contract length and "<Billing>" billing on Term and Type details  
 	And I "<PriceHardware>" Price Hardware radio button
 	And I display "<Printer>" device screen
@@ -21,7 +21,7 @@ Scenario Outline: Currency in product screen error message
 	
 
 	Scenarios: 
-	| Role             | Country | ContractType | CreateOption           | UsageType       | Contract | Billing              | PriceHardware | Printer     | ClickVolume | Currency |
-	| Cloud MPS Dealer | Poland  | Buy + Click  | Skip customer creation | Pakiet wydruków | 3 lata   | Miesięczny / Monthly | Tick          | MFC-L5750DW | 750         | zł       |
+	| Role             | Country | ContractType             | CreateOption           | UsageType      | Contract | Billing      | PriceHardware | Printer     | ClickVolume | Currency |
+	| Cloud MPS Dealer | Austria | Easy Print Pro & Service | Skip customer creation | Mindestvolumen | 3 Jahre  | Halbjährlich | Tick          | MFC-L5750DW | 750         | €        |
 	
 	                    

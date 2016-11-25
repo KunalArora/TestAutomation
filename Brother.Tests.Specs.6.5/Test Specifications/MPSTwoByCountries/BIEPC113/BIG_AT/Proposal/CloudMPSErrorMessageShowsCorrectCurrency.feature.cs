@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BPL.Proposal
+namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC113.BIG_AT.Proposal
 {
     using TechTalk.SpecFlow;
     
@@ -19,13 +19,13 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BPL.
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.9.0.77")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("CloudMPSErrorMessageShowsCorrectPolishCurrency")]
+    [NUnit.Framework.DescriptionAttribute("CloudMPSErrorMessageShowsCorrectGermanAustriaCurrency")]
     [NUnit.Framework.IgnoreAttribute()]
     [NUnit.Framework.CategoryAttribute("MPS")]
     [NUnit.Framework.CategoryAttribute("TEST")]
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("BIEPC112")]
-    public partial class CloudMPSErrorMessageShowsCorrectPolishCurrencyFeature
+    public partial class CloudMPSErrorMessageShowsCorrectGermanAustriaCurrencyFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
@@ -37,7 +37,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BPL.
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CloudMPSErrorMessageShowsCorrectPolishCurrency", "In order to ensure that error message correctly displayed currency\r\nAs a dealer\r\n" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CloudMPSErrorMessageShowsCorrectGermanAustriaCurrency", "In order to ensure that error message correctly displayed currency\r\nAs a dealer\r\n" +
                     "I want to see the currency in error match specified currency", ProgrammingLanguage.CSharp, new string[] {
                         "ignore",
                         "MPS",
@@ -77,7 +77,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BPL.
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Currency in product screen error message")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Poland", "Buy + Click", "Skip customer creation", "Pakiet wydruków", "3 lata", "Miesięczny / Monthly", "Tick", "MFC-L5750DW", "750", "zł", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Austria", "Easy Print Pro & Service", "Skip customer creation", "Mindestvolumen", "3 Jahre", "Halbjährlich", "Tick", "MFC-L5750DW", "750", "€", null)]
         public virtual void CurrencyInProductScreenErrorMessage(string role, string country, string contractType, string createOption, string usageType, string contract, string billing, string priceHardware, string printer, string clickVolume, string currency, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Currency in product screen error message", exampleTags);
@@ -89,8 +89,6 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.And("I am on MPS New Proposal Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
  testRunner.When(string.Format("I fill Proposal Description for \"{0}\" Contract type", contractType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 12
- testRunner.And(string.Format("I select \"{0}\" button for customer data capture", createOption), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 13
  testRunner.And(string.Format("I Enter \"{0}\" usage type \"{1}\" contract length and \"{2}\" billing on Term and Type" +
                         " details", usageType, contract, billing), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
