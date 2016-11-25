@@ -253,7 +253,8 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         
         public static bool CheckFeatureEnv(string env)
         {
-            if (FeatureContext.Current.FeatureInfo.Tags.Contains("PROD"))
+            return FeatureContext.Current.FeatureInfo.Tags.Contains(env);
+            /*if (FeatureContext.Current.FeatureInfo.Tags.Contains("PROD"))
             {
                 SetRunTimeEnv("PROD");
                 return true;
@@ -262,7 +263,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             {
                 SetRunTimeEnv("TEST");
                 return FeatureContext.Current.FeatureInfo.Tags.Contains(env);
-            }
+            }*/
         }
 
         //public static string CurrentBaseUrlAsHttps()
