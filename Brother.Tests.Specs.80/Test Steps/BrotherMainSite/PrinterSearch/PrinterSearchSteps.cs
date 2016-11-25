@@ -1,6 +1,8 @@
 ﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherMainSite;
+using Brother.WebSites.Core.Pages.BrotherMainSite.Basket;
+using Brother.WebSites.Core.Pages.BrotherMainSite.SuppliesAndAccessories;
 using Brother.WebSites.Core.Pages.BrotherMainSite.SuppliesAndAccessories.Printers;
 using TechTalk.SpecFlow;
 
@@ -83,6 +85,20 @@ namespace Brother.Tests.Specs._80.BrotherMainSite.PrinterSearch
         public void GivenIHaveEnteredMyValidSuppliesCodeForAnInkJetCartridge(string supplyCode)
         {
             CurrentPage.As<SuppliesPage>().AddSupplyCode(supplyCode);
+        }
+
+        [Given(@"I select an InkJet cartridge by searching with a valid supplies code ""(.*)""")]
+        public void GivenISelectAnInkJetCartridgeBySearchingWithAValidSuppliesCode(string itemCode)
+        {
+            NextPage = CurrentPage.As<SuppliesPage>().SearchForSuppliesItem(itemCode);
+            InkJetCartridgePage.SetExtraPageTitle = itemCode;
+        }
+
+        [Given(@"I click on Add To Basket button")]
+        public void GivenIClickOnAddToBasketButton()
+        {
+            //TestCheck.AssertIsEqual(0, BasketModule.GetBasketItemsCount(CurrentDriver), "Invalid Basket item count");
+            CurrentPage.As<InkJetCartridgePage>().AddToBasketButtonClick();
         }
     }
 }
