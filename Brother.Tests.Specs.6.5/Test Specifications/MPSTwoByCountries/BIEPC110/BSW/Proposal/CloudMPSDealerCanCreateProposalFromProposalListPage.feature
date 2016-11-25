@@ -9,7 +9,7 @@ Scenario Outline: Dealer Can Create Proposal From Proposal List Page
 	And I navigate to existing proposal screen
 	And I begin the process of proposal creation process
 	When I fill Proposal Description for "<ContractType>" Contract type
-	#And I skip contact creation process
+	And I skip contact creation process
 	And I Enter "<UsageType>" usage type "<Contract>" contract length and "<Billing>" billing on Term and Type details  
 	And I "<PriceHardware>" Price Hardware radio button
 	And enter a quantity of "1" for accessory for "<Printer>"

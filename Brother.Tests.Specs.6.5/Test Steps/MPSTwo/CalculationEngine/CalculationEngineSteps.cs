@@ -93,10 +93,10 @@ namespace Brother.Tests.Specs.MPSTwo.CalculationEngine
                     instance4.GivenISignIntoMpsasAFrom("Cloud MPS Bank", country);
                     instance2.ThenINavigateToBankAwaitingApprovalScreenUnderOfferPage();
                     instance2.ThenTheConvertedLeasingAndClickAndServiceProposalAboveIsDisplayedOnTheScreen();
-                    CalculationEngineModule.DownloadContractPdf(CurrentDriver);
+                   // CalculationEngineModule.DownloadContractPdf(CurrentDriver);
                     var instance5 = new ApproverSteps();
                     instance5.ThenApproverSelectTheProposalOnAwaitingProposal();
-                    CalculationEngineModule.DownloadPageHtml(CurrentDriver, "Bank_AwaitingApprovalSummary");
+                    //CalculationEngineModule.DownloadPageHtml(CurrentDriver, "Bank_AwaitingApprovalSummary");
                     instance5.ThenIShouldBeAbleToApproveThatProposal();
                     instance3.ThenIfISignOutOfBrotherOnline();
                 }
@@ -117,10 +117,10 @@ namespace Brother.Tests.Specs.MPSTwo.CalculationEngine
                     instance4.GivenISignIntoMpsasAFrom("Cloud MPS Local Office Approver", country);
                     instance2.ThenINavigateToLOApproverAwaitingApprovalScreenUnderProposalsPage();
                     instance2.ThenTheConvertedPurchaseAndClickAndServiceProposalAboveIsDisplayedOnTheScreen();
-                    CalculationEngineModule.DownloadContractPdf(CurrentDriver);
+                    //CalculationEngineModule.DownloadContractPdf(CurrentDriver);
                     var instance5 = new ApproverSteps();
                     instance5.ThenApproverSelectTheProposalOnAwaitingProposal();
-                    CalculationEngineModule.DownloadPageHtml(CurrentDriver, "LO_AwaitingApprovalSummary");
+                    //CalculationEngineModule.DownloadPageHtml(CurrentDriver, "LO_AwaitingApprovalSummary");
                     instance5.ThenIShouldBeAbleToApproveThatProposal();
                     instance3.ThenIfISignOutOfBrotherOnline();
                 }
@@ -151,9 +151,9 @@ namespace Brother.Tests.Specs.MPSTwo.CalculationEngine
                 if (MpsUtil.GetProposalByPassValue() != "Ticked")
                 {
                     instance2.ThenTheNewlyConvertedContractIsAvailableUnderAwaitingApprovalTab();
-                    CalculationEngineModule.DownloadContractPdf(CurrentDriver);
+                    //CalculationEngineModule.DownloadContractPdf(CurrentDriver);
                     instance2.ThenINavigateToProposalSummaryPageUnderAwaitingApprovalTab();
-                    CalculationEngineModule.DownloadPageHtml(CurrentDriver, "Dealer_AwaitingApprovalSummary");
+                    //CalculationEngineModule.DownloadPageHtml(CurrentDriver, "Dealer_AwaitingApprovalSummary");
                     CalculationEngineModule.DownloadProposalPdfOnSummaryPage(CurrentDriver);
                 }
 
@@ -174,9 +174,9 @@ namespace Brother.Tests.Specs.MPSTwo.CalculationEngine
                 if (MpsUtil.GetProposalByPassValue() != "Ticked")
                 {
                     instance2.ThenTheNewlyConvertedContractIsAvailableUnderAwaitingApprovalTab();
-                    CalculationEngineModule.DownloadContractPdf(CurrentDriver);
+                    //CalculationEngineModule.DownloadContractPdf(CurrentDriver);
                     instance2.ThenINavigateToProposalSummaryPageUnderAwaitingApprovalTab();
-                    CalculationEngineModule.DownloadPageHtml(CurrentDriver, "Dealer_AwaitingApprovalSummary");
+                    //CalculationEngineModule.DownloadPageHtml(CurrentDriver, "Dealer_AwaitingApprovalSummary");
                     CalculationEngineModule.DownloadProposalPdfOnSummaryPage(CurrentDriver);
                 }
                 var instance3 = new AccountManagementSteps();
@@ -249,12 +249,9 @@ namespace Brother.Tests.Specs.MPSTwo.CalculationEngine
             instance1.GivenIamOnMpsNewProposalPage();
             WhenIFillProposalDescriptionForContractType(contractType);
 
-            if (!(CurrentDriver.Url.Contains("online.ch") || CurrentDriver.Url.Contains("online.brother.ch.local")))
-            {
-                var customerInformationStepInstance = new DealerProposalsCreateCustomerInformationStep();
-                customerInformationStepInstance.WhenISelectButtonForCustomerDataCapture("Create new customer");
-            }
-
+            var customerInformationStepInstance = new DealerProposalsCreateCustomerInformationStep();
+            customerInformationStepInstance.WhenISelectButtonForCustomerDataCapture("Create new customer");
+            
             var stepInstance = new DealerProposalsCreateTermAndTypeStep();
             stepInstance.WhenIEnterUsageTypeContractLengthAndBillingOnTermAndTypeDetails
                 (usageType, length, billing);
@@ -330,7 +327,7 @@ namespace Brother.Tests.Specs.MPSTwo.CalculationEngine
             CurrentPage.As<DealerProposalsCreateDescriptionPage>().SelectingContractType(contract);
             CurrentPage.As<DealerProposalsCreateDescriptionPage>().EnterProposalName(CalculationEngineModule.ProposalName());
             CurrentPage.As<DealerProposalsCreateDescriptionPage>().EnterLeadCodeRef("");
-            if (CurrentPage.As<DealerProposalsCreateDescriptionPage>().IsBigAtSystem() || CurrentPage.As<DealerProposalsCreateDescriptionPage>().IsSwissSystem())
+            if (CurrentPage.As<DealerProposalsCreateDescriptionPage>().IsBigAtSystem())
             {
                 NextPage = CurrentPage.As<DealerProposalsCreateDescriptionPage>().ClickNextButtonGermany();
             }
@@ -398,10 +395,10 @@ namespace Brother.Tests.Specs.MPSTwo.CalculationEngine
                 instance4.GivenISignIntoMpsasAFrom("Cloud MPS Bank", country);
                 instance2.ThenINavigateToBankAwaitingApprovalScreenUnderOfferPage();
                 instance2.ThenTheConvertedLeasingAndClickAndServiceProposalAboveIsDisplayedOnTheScreen();
-                CalculationEngineModule.DownloadContractPdf(CurrentDriver);
+                //CalculationEngineModule.DownloadContractPdf(CurrentDriver);
                 var instance5 = new ApproverSteps();
                 instance5.ThenApproverSelectTheProposalOnAwaitingProposal();
-                CalculationEngineModule.DownloadPageHtml(CurrentDriver, "Bank_AwaitingApprovalSummary");
+                //CalculationEngineModule.DownloadPageHtml(CurrentDriver, "Bank_AwaitingApprovalSummary");
                 instance5.ThenIShouldBeAbleToApproveThatProposal();
                 instance3.ThenIfISignOutOfBrotherOnline();
             }
@@ -429,10 +426,10 @@ namespace Brother.Tests.Specs.MPSTwo.CalculationEngine
                 instance4.GivenISignIntoMpsasAFrom("Cloud MPS Local Office Approver", country);
                 instance2.ThenINavigateToLOApproverAwaitingApprovalScreenUnderProposalsPage();
                 instance2.ThenTheConvertedPurchaseAndClickAndServiceProposalAboveIsDisplayedOnTheScreen();
-                CalculationEngineModule.DownloadContractPdf(CurrentDriver);
+                //CalculationEngineModule.DownloadContractPdf(CurrentDriver);
                 var instance5 = new ApproverSteps();
                 instance5.ThenApproverSelectTheProposalOnAwaitingProposal();
-                CalculationEngineModule.DownloadPageHtml(CurrentDriver, "LO_AwaitingApprovalSummary");
+                //CalculationEngineModule.DownloadPageHtml(CurrentDriver, "LO_AwaitingApprovalSummary");
                 instance5.ThenIShouldBeAbleToApproveThatProposal();
                 instance3.ThenIfISignOutOfBrotherOnline();
             }
@@ -446,9 +443,9 @@ namespace Brother.Tests.Specs.MPSTwo.CalculationEngine
         public void WhenISignTheContractAsADealer()
         {
             NextPage = CurrentPage.As<DealerDashBoardPage>().NavigateToContractScreenFromDealerDashboard();
-            CalculationEngineModule.DownloadContractPdf(CurrentDriver);
+            //CalculationEngineModule.DownloadContractPdf(CurrentDriver);
             NextPage = CurrentPage.As<DealerContractsPage>().NavigateToViewOfferOnApprovedProposalsTab();
-            CalculationEngineModule.DownloadPageHtml(CurrentDriver, "Dealer_ApprovedSummary");
+            //CalculationEngineModule.DownloadPageHtml(CurrentDriver, "Dealer_ApprovedSummary");
             NextPage = CurrentPage.As<DealerContractsSummaryPage>().ClickSignButtonToNavigateToAwaitingAcceptance();
         }
 

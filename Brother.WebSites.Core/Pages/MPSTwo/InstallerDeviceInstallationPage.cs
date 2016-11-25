@@ -56,66 +56,53 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         [FindsBy(How = How.CssSelector, Using = "#content_0_InputContractReference_Input")] 
         public IWebElement ContractReferenceFieldElement;
-
         [FindsBy(How = How.CssSelector, Using = "#content_0_ComponentIntroductionAlert")] 
         public IWebElement ContractReferencePageAlertElement;
-
         [FindsBy(How = How.CssSelector, Using = "#content_0_ButtonNext")] 
         public IWebElement NextButtonElement;
-
         [FindsBy(How = How.CssSelector, Using = ".col-sm-8 .form-control-static")] 
         public IList<IWebElement> PinAndAddressElement;
-
         [FindsBy(How = How.CssSelector, Using = "[id*=\"content_0_DeviceInstallList_List_InputSerialNumber\"].js-mps-device-serial-number-input")] 
         public IWebElement SerialNumberFieldElement;
-
         [FindsBy(How = How.CssSelector, Using = "[id*=\"content_0_DeviceInstallList_List_InputSerialNumber\"].js-mps-device-serial-number-input")]
         public IList<IWebElement> SerialNumbersElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-ip-input[class*='js-mps-ip-']")] 
         public IList<IWebElement> IpAddressElements;
-
         [FindsBy(How = How.CssSelector, Using = "p.form-control-static")] 
         public IList<IWebElement> InstalledPinElements;
-
         [FindsBy(How = How.CssSelector, Using = "#content_0_DeviceInstallList_List_ButtonConnectDevice_0")] 
         public IWebElement WebInstallConnect;
-
         [FindsBy(How = How.CssSelector, Using = "[class*=\"js-mps-connect-device-to-\"]")] 
         public IWebElement ConnectButtonElement;
         [FindsBy(How = How.CssSelector, Using = "[class*=\"js-mps-connect-device-to-\"]")]
         public IList<IWebElement> ConnectButtonsElement;
-
         [FindsBy(How = How.CssSelector, Using = "[type=\"submit\"][id*=\"content_0_Button\"]")] 
         public IWebElement CompleteInstallationElement;
-
         [FindsBy(How = How.CssSelector, Using = "#content_0_InstallationSuccessfullyFinished")] 
         public IWebElement CompleteInstallationComfirmationElement;
-
         [FindsBy(How = How.CssSelector, Using = "#content_0_ButtonCompleteCloudInstallation")] 
         public IWebElement CompleteCloudInstallationComfirmationElement;
         [FindsBy(How = How.CssSelector, Using = "#content_0_InstallationSuccessfullyFinished")] 
         public IWebElement InstallationConfirmationMessageElement;
-
         [FindsBy(How = How.CssSelector, Using = "#content_0_InputTimeZone_Input")] 
         public IWebElement TimeZoneOptionsElements;
-
         [FindsBy(How = How.CssSelector, Using = "#content_0_ButtonRefresh")] 
         public IWebElement RefreshCloudInstallationElement;
-
         [FindsBy(How = How.CssSelector, Using = "#content_0_DeviceInstallList_List_CellConnectionStatusIcon_0")] 
         public IWebElement CloudInstallationConnectionStatusElements;
-
         [FindsBy(How = How.CssSelector, Using = "#content_0_DeviceInstallList_List_CellConnectionStatus_0 .glyphicon-ok")] 
         public IWebElement CloudInstallationConnectionStatusIconElements;
-
         [FindsBy(How = How.CssSelector, Using = "[id*=\"content_0_DeviceInstallList_List_CellConnectionStatus_\"] .glyphicon-ok")]
         public IList<IWebElement> CloudInstallationMultipleConnectionStatusIconElements;
-        
-
+        [FindsBy(How = How.CssSelector, Using = "#content_0_DeviceInstallList_List_ButtonResetDevice_0")]
+        public IWebElement ResetInstallationButtonElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-pin-code")] 
         public IWebElement CloudInstallationWebInstallPinElements;
         [FindsBy(How = How.CssSelector, Using = "#WhereIsMySerialNumberModal .modal-header [type=\"button\"][data-dismiss=\"modal\"]")] 
         public IWebElement WhereIsMyDevicePopUpElements;
+        [FindsBy(How = How.CssSelector, Using = "#content_0_DeviceInstallList_List_CellConnectionStatusIcon_0[data-original-title=\"Not connected\"]")]
+        public IWebElement CloudInstallationNoConnectionStatusIconElements;
+        
 
         
         public void IsInstallerScreenDisplayed()
@@ -136,6 +123,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void ProceedOnInstaller()
         {
             NextButtonElement.Click();
+        }
+
+        public void ResetInstallation()
+        {
+            ResetInstallationButtonElement.Click();
+        }
+
+        public InstallerDeviceInstallationPage ResetInstallationAndStartAgain()
+        {
+            ResetInstallationButtonElement.Click();
+            return GetInstance<InstallerDeviceInstallationPage>();
         }
 
         public void IsInstallationPinCloudInstallationDisplayed()
@@ -732,6 +730,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 MpsJobRunnerPage.NotifyBocOfNewChanges();
                 MpsJobRunnerPage.RunCompleteInstallationCommandJob();
 
+        }
+
+        public void IsInstallationReset()
+        {
+            //var serial = SerialNumberFieldElement.GetAttribute("value");
+            //var emptySerial = String.IsNullOrWhiteSpace(serial);
+
+            var connection = CloudInstallationNoConnectionStatusIconElements.Displayed;
+
+            TestCheck.AssertIsEqual(true, connection, "Installation is not reset");
         }
 
         public void ConfirmCompleteMessageIsDisplayed()

@@ -395,19 +395,21 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
                 var instance2 = new SendProposalToApprover();
                 instance2.WhenIClickOnActionButtonAgainstTheProposalCreatedAbove();
 
-                if (CurrentDriver.Url.Contains("online.ch."))
-                {
-                    instance2.ThenICanClickOnConvertToContractButtonUnderTheActionButton();
-                    CurrentPage.As<DealerConvertProposalCustomerInfo>().ChooseExistingCustomerInConvertProcess();
-                    CurrentPage.As<DealerConvertProposalCustomerInfo>().SelectASpecificExistingContact(customer);
-                    NextPage = CurrentPage.As<DealerConvertProposalCustomerInfo>().ProceedToConvertProposalTermAndType();
-                    NextPage = CurrentPage.As<DealerConvertProposalTermAndType>().NavigateToSummaryPageUsingTab();
-                }
-                else
-                {
-                    instance2.ThenICanClickOnConvertToContractButtonToNavigateToConvertSummaryPage();
-                    //instance2.ThenIAmDirectedToCustomerDetailPageForMoreDataCapture();
-                }
+                //if (CurrentDriver.Url.Contains("online.ch."))
+                //{
+                //    instance2.ThenICanClickOnConvertToContractButtonUnderTheActionButton();
+                //    CurrentPage.As<DealerConvertProposalCustomerInfo>().ChooseExistingCustomerInConvertProcess();
+                //    CurrentPage.As<DealerConvertProposalCustomerInfo>().SelectASpecificExistingContact(customer);
+                //    NextPage = CurrentPage.As<DealerConvertProposalCustomerInfo>().ProceedToConvertProposalTermAndType();
+                //    NextPage = CurrentPage.As<DealerConvertProposalTermAndType>().NavigateToSummaryPageUsingTab();
+                //}
+                //else
+                //{
+                //    instance2.ThenICanClickOnConvertToContractButtonToNavigateToConvertSummaryPage();
+                //    //instance2.ThenIAmDirectedToCustomerDetailPageForMoreDataCapture();
+                //}
+
+                instance2.ThenICanClickOnConvertToContractButtonToNavigateToConvertSummaryPage();
                 
                 instance2.ThenIAmTakenToTheProposalSummaryWhereICanEnterEnvisageContractStartDate();
                 instance2.ThenICanSuccessfullyConvertTheProposalToContract();
@@ -1435,11 +1437,9 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
 
             WhenIFillProposalDescriptionForContractType(contractType);
 
-            if (!(CurrentDriver.Url.Contains("online.ch") || CurrentDriver.Url.Contains("online.brother.ch.local")))
-            {
-                var customerInformationStepInstance = new DealerProposalsCreateCustomerInformationStep();
-                customerInformationStepInstance.WhenISelectButtonForCustomerDataCapture("Create new customer");
-            }
+            var customerInformationStepInstance = new DealerProposalsCreateCustomerInformationStep();
+            customerInformationStepInstance.WhenISelectButtonForCustomerDataCapture("Create new customer");
+            
             var stepInstance = new DealerProposalsCreateTermAndTypeStep();
             stepInstance.WhenIEnterUsageTypeContractLengthAndBillingOnTermAndTypeDetails
                 (usageType, length, billing);
@@ -1530,11 +1530,9 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             contractType = ContractType(contractType);
             GivenIamOnMpsNewProposalPage();
             WhenIFillProposalDescriptionForContractType(contractType);
-            if (!(CurrentDriver.Url.Contains("online.ch") || CurrentDriver.Url.Contains("online.brother.ch.local")))
-            {
-                var customerInformationStepInstance = new DealerProposalsCreateCustomerInformationStep();
-                customerInformationStepInstance.WhenISelectButtonForCustomerDataCapture("Create new customer"); 
-            }
+             var customerInformationStepInstance = new DealerProposalsCreateCustomerInformationStep();
+             customerInformationStepInstance.WhenISelectButtonForCustomerDataCapture("Create new customer"); 
+            
             var stepInstance = new DealerProposalsCreateTermAndTypeStep();
             stepInstance.WhenIEnterUsageTypeContractLengthAndBillingOnTermAndTypeDetails
                 (usageType, length, billing);
@@ -1567,11 +1565,10 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             GivenIChangeTheLanguageDisplayed(language);
             GivenIamOnMpsNewProposalPage();
             WhenIFillProposalDescriptionForContractType(contractType);
-            if (!(CurrentDriver.Url.Contains("online.ch") || CurrentDriver.Url.Contains("online.brother.ch.local")))
-            {
-                var customerInformationStepInstance = new DealerProposalsCreateCustomerInformationStep();
-                customerInformationStepInstance.WhenISelectButtonForCustomerDataCapture("Create new customer");
-            }
+           
+            var customerInformationStepInstance = new DealerProposalsCreateCustomerInformationStep();
+            customerInformationStepInstance.WhenISelectButtonForCustomerDataCapture("Create new customer");
+          
             var stepInstance = new DealerProposalsCreateTermAndTypeStep();
             stepInstance.WhenIEnterUsageTypeContractLengthAndBillingOnTermAndTypeDetails
                 (usageType, length, billing);
@@ -1599,11 +1596,9 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             contractType = ContractType(contractType);
             GivenIamOnMpsNewProposalPage();
             WhenIFillProposalDescriptionForContractType(contractType);
-            if (!(CurrentDriver.Url.Contains("online.ch") || CurrentDriver.Url.Contains("online.brother.ch.local")))
-            {
-                var customerInformationStepInstance = new DealerProposalsCreateCustomerInformationStep();
-                customerInformationStepInstance.SelectASpecificExistingCustomer(customer); ;
-            }
+            var customerInformationStepInstance = new DealerProposalsCreateCustomerInformationStep();
+            customerInformationStepInstance.SelectASpecificExistingCustomer(customer); ;
+            
             var stepInstance = new DealerProposalsCreateTermAndTypeStep();
             stepInstance.WhenIEnterUsageTypeContractLengthAndBillingOnTermAndTypeDetails
                 (usageType, length, billing);
@@ -1631,11 +1626,9 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         {
             GivenIamOnMpsNewProposalPage();
             WhenIFillProposalDescriptionForContractType(contractType);
-            if (!(CurrentDriver.Url.Contains("online.ch") || CurrentDriver.Url.Contains("online.brother.ch.local")))
-            {
-                var customerInformationStepInstance = new DealerProposalsCreateCustomerInformationStep();
-                customerInformationStepInstance.WhenISelectButtonForCustomerDataCapture("Create new customer");
-            }
+            var customerInformationStepInstance = new DealerProposalsCreateCustomerInformationStep();
+            customerInformationStepInstance.WhenISelectButtonForCustomerDataCapture("Create new customer");
+            
             var stepInstance = new DealerProposalsCreateTermAndTypeStep();
             stepInstance.WhenIEnterUsageTypeContractLengthAndBillingOnTermAndTypeDetails
                 (usageType, length, billing);
@@ -1727,7 +1720,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<DealerProposalsCreateDescriptionPage>().SelectingContractType(contract);
             CurrentPage.As<DealerProposalsCreateDescriptionPage>().EnterProposalName("");
             CurrentPage.As<DealerProposalsCreateDescriptionPage>().EnterLeadCodeRef("");
-            if (CurrentPage.As<DealerProposalsCreateDescriptionPage>().IsBigAtSystem() || CurrentPage.As<DealerProposalsCreateDescriptionPage>().IsSwissSystem())
+            if (CurrentPage.As<DealerProposalsCreateDescriptionPage>().IsBigAtSystem())
             {
                 NextPage = CurrentPage.As<DealerProposalsCreateDescriptionPage>().ClickNextButtonGermany();
             }

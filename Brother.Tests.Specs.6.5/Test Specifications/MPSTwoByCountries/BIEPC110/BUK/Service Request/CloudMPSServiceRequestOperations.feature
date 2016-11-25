@@ -5,6 +5,27 @@ Feature: CloudMPSUKServiceRequestOperations
 	I want to be able to raise service request which can be worked on
 
 
+Scenario Outline: MPS Actions For Customers
+	Given "<Country>" Dealer have created "<ContractType>" contract choosing "<ExistingCustomer>" with "<UsageType>" and "<Length>" and "<Billing>"
+	And I sign into Cloud MPS as a "<Role>" from "<Country>"
+	And the contract created above is approved
+	And I sign back into Cloud MPS as a "<Role1>" from "<Country>"
+	When I install the device with "<SerialNumber>" on the contract with "<Method>" communication and "<Type>" installation 
+	And I can sign out of Brother Online
+	#And I sign into Cloud MPS as a "<ExistingCustomer>" from "<Country>"
+	#And I navigate to customer dashboard page
+	#And I navigate to consumable ordering page for "<SerialNumber>"
+	#And I change the ordering procedure to automatic
+	#And I create a consumable order for "Cyan"
+	#And I sign out of Cloud MPS
+
+	
+Scenarios:
+
+	| Role                            | Country        | ContractType                  | UsageType      | Role1            | Method | Type | ExistingCustomer                    | Length  | Billing              | SerialNumber |
+	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR  | Coleen20161123042204@mailinator.com | 3 years | Quarterly in Arrears | A1T010237    |
+	
+
 Scenario Outline: MPS Close Service Request
 	Given I sign into Cloud MPS as a "<Role1>" from "<Country>"
 	And I navigate to customer dashboard page
@@ -21,9 +42,9 @@ Scenario Outline: MPS Close Service Request
 	
 Scenarios:
 
-	| Country        | Role2                  | Method | Role1                           |
-	| United Kingdom | Cloud MPS Service Desk | Email  | Cloud MPS Service Desk Customer |
-
+	| Country        | Role2                  | Method | Role1                               |
+	| United Kingdom | Cloud MPS Service Desk | Email  | Coleen20161123042204@mailinator.com |
+	
 
 Scenario Outline: MPS Service Desk Response
 	Given I sign into Cloud MPS as a "<Role1>" from "<Country>"
@@ -48,6 +69,6 @@ Scenario Outline: MPS Service Desk Response
 	
 Scenarios:
 
-	| Country        | Role2                  | Method | Role1                           |
-	| United Kingdom | Cloud MPS Service Desk | Email  | Cloud MPS Service Desk Customer |
+	| Country        | Role2                  | Method | Role1                               |
+	| United Kingdom | Cloud MPS Service Desk | Email  | Coleen20161123042204@mailinator.com |
 	

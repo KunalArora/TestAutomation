@@ -43,7 +43,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public IWebElement CreatedServiceRequestElement()
         {
-            const string newlyCreated = @"//td[text()='Middle Mall_160322123145 Ltd']";
+            const string newlyCreated = @"//td[text()='Colonial Avenue_161123042207 Ltd']";
 
             return Driver.FindElement(By.XPath(newlyCreated));
         }

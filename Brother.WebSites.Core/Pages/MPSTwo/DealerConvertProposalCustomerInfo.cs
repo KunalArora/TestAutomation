@@ -441,7 +441,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void SelectATradingStyle()
         {
             if (IsUKSystem()||IsSpainSystem()|| IsIrelandSystem() || IsDenmarkSystem() 
-                || IsNorwaySystem() || IsSwissSystem())
+                || IsNorwaySystem())
                 SelectFromDropdown(TradingStyleElement, TradingStyle());
                 WebDriver.Wait(DurationType.Second, 3);
         }
@@ -500,6 +500,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 {
                     var language = SwissLanguage();
                     SelectFromDropdown(PaymentTypeDropdown, language);
+                }
+                else if (IsDenmarkSystem())
+                {
+                    SelectFromDropdown(PaymentTypeDropdown, "Betalingsservice");
                 }
             }
             
@@ -753,10 +757,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterRemainingCustomerInfo()
         {
-            if (IsSwissSystem())
-            {
-                CreateANewCustomerInConvertProcess();
-            }
+            //if (IsSwissSystem())
+            //{
+            //    CreateANewCustomerInConvertProcess();
+            //}
             SelectALegalForm();
             EnterCompanyRegistration();
             EnterVatNumber();
@@ -778,7 +782,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 MobileElement.SendKeys("01234567890");
             }
 
-            FillSwissOrgDetail();
+            //FillSwissOrgDetail();
 
             if(IsNetherlandSystem())
                 CustomerCanOrderConsumables();
@@ -797,9 +801,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterAllBankInformation()
         {
-            if (IsDenmarkSystem() || IsSwedenSystem()||IsFinlandSystem()) return;
+            if (IsSwedenSystem()) return;
             SelectAPaymentType();
-            if (IsNorwaySystem()) return;
+            if (IsNorwaySystem() || IsFinlandSystem() || IsDenmarkSystem()) return;
             EnterBankName();
             EnterBankAccountNumber();
             EnterBankSortCode();

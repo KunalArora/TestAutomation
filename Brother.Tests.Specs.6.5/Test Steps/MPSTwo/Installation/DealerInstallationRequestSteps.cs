@@ -53,9 +53,11 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             WhenIEnterTheContractReferenceNumber();
             WhenIEnterDeviceSerialNumberForCommunication(serialNumber, type);
             WhenIEnterTheDeviceIpAddress();
-            ThenICanConnectDeviceWithSerialsAndWithSerialsAndToBrotherEnvironment("MFC-L8650CDW", serialNumber);
+            ThenICanConnectDeviceWithSerialsToBrotherEnvironment("MFC-L8650CDW", serialNumber);
             ThenICanCompleteDeviceInstallation();
         }
+
+       
 
 
 
@@ -105,7 +107,7 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             CurrentPage.As<InstallerDeviceInstallationPage>().IsInstallerScreenDisplayed();
         }
 
-
+        [Then(@"I enter the contract reference number")]
         [When(@"I enter the contract reference number")]
         public void WhenIEnterTheContractReferenceNumber()
         {
@@ -138,6 +140,7 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             
         }
 
+        [When(@"I enter device serial number ""(.*)"" for ""(.*)"" communication")]
         public void WhenIEnterDeviceSerialNumberForCommunication(string serial, string type)
         {
             CurrentPage.As<InstallerDeviceInstallationPage>().VerifyTimeZoneIsDisplayed(type);
@@ -189,7 +192,15 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             CurrentPage.As<InstallerDeviceInstallationPage>().RefreshCloudInstallation();
         }
 
-        public void ThenICanConnectDeviceWithSerialsAndWithSerialsAndToBrotherEnvironment(string device1, string serial1)
+        [When(@"I can connect device with serials ""(.*)"" to Brother environment")]
+        [Then(@"I can connect device with serials ""(.*)"" to Brother environment")]
+        public void ThenICanConnectDeviceWithSerialsToBrotherEnvironment(string serial)
+        {
+            ThenICanConnectDeviceWithSerialsToBrotherEnvironment("MFC-L8650CDW", serial);
+        }
+
+
+        public void ThenICanConnectDeviceWithSerialsToBrotherEnvironment(string device1, string serial1)
         {
             CurrentPage.As<InstallerDeviceInstallationPage>().ConnectDeviceWithBor(device1, serial1);
             //CurrentPage.As<InstallerDeviceInstallationPage>().RefreshCloudMultipleInstallation();
@@ -214,6 +225,31 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             NextPage = CurrentPage.As<DealerContractsAcceptedPage>().NavigateToManageDevicesPageToConfirmThatInstallationRequestAvailability();
             CurrentPage.As<DealerManageDevicesPage>().IsInstallationCompleted();
         }
+
+        [Then(@"I can reset the installation done above")]
+        public void ThenICanResetTheInstallationDoneAbove()
+        {
+            CurrentPage.As<InstallerDeviceInstallationPage>().ResetInstallation();
+            CurrentPage.As<InstallerDeviceInstallationPage>().IsInstallationReset();
+        }
+
+        [Then(@"I can reset the installation done above and begin installation again")]
+        public void ThenICanResetTheInstallationDoneAboveAndBeginInstallationAgain()
+        {
+           NextPage = CurrentPage.As<InstallerDeviceInstallationPage>().ResetInstallationAndStartAgain();
+            CurrentPage.As<InstallerDeviceInstallationPage>().IsInstallerScreenDisplayed();
+        }
+
+
+        [Then(@"reinstall the device with serial number ""(.*)"" for communication ""(.*)""")]
+        public void ThenReinstallTheDeviceWithSerialNumberForCommunication(string serial, string type)
+        {
+            WhenIEnterDeviceSerialNumberForCommunication(serial, type);
+            WhenIEnterTheDeviceIpAddress();
+            ThenICanConnectDeviceWithSerialsToBrotherEnvironment("MFC-L8650CDW", serial);
+            ThenICanCompleteDeviceInstallation();
+        }
+
 
 
         [When(@"I have completed installation for ""(.*)"" communication")]

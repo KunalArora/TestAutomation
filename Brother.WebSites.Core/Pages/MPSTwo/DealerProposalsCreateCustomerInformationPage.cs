@@ -343,10 +343,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 ClearAndType(CompanyRegistrationNumerElement, "47706706");
             }
-            else if (IsSwissSystem())
-            {
-                ClearAndType(CompanyRegistrationNumerElement, "CHE-106.568.179");
-            }
             else if (IsDenmarkSystem())
             {
                 ClearAndType(CompanyRegistrationNumerElement, "35679626");
@@ -355,6 +351,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 ClearAndType(CompanyRegistrationNumerElement, "913992415");
             }
+            //else if (IsSwissSystem())
+            //{
+            //    ClearAndType(CompanyRegistrationNumerElement, "CHE-106.568.179");
+            //}
             //else if (IsFinlandSystem())
             //{
             //    ClearAndType(CompanyRegistrationNumerElement, "0572355-8");
@@ -441,7 +441,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
            SelectTitleFromDropdown();
            EnterContactFirstName();
            EnterContactSurName();
-           //EnterContactPosition();
            EnterContactTelephone();
            EnterContactEmailAdress();
            SelectALegalForm();
@@ -459,7 +458,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
            }
            catch (KeyNotFoundException keyNotFound)
            {
-               language = "Français";
+               language = "Deutsch";
            }
            
 
@@ -469,11 +468,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                    lang = "Church";
                    break;
                case "Deutsch":
-                   lang = "Church";
+                   lang = "Einzelfirma";
                    break;
 
                default:
-                   lang = "Church";
+                   lang = "Einzelfirma";
                    break;
            }
 
