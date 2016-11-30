@@ -34,6 +34,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         [FindsBy(How = How.CssSelector, Using = ".btn.btn-primary.btn--forgotpassword")]
         public IWebElement SendEmailButton;
 
+        [FindsBy(How = How.CssSelector, Using = "#password")] 
+        public IWebElement EnterPassword;
+
 
         public void ClickExistingUserTab()
         {
@@ -58,6 +61,11 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         public void ClickSendButton()
         {
             SendEmailButton.Click();
+        }
+
+        public void PopulatePassword(string password)
+        {
+            EnterPassword.SendKeys(password);
         }
 
     }

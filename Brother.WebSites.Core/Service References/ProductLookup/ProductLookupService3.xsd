@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/BIE.CRM.Core.Data.Product" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/BIE.CRM.Core.Data.Product" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://crmsvc.brotherdv2.eu/Product/ProductLookupService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ArrayOfModelData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ModelData" nillable="true" type="tns:ModelData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfModelData" nillable="true" type="tns:ArrayOfModelData" />
+  <xs:complexType name="ModelData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IsPromoAvailable" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ModelNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProductId" type="ser:guid" />
+      <xs:element minOccurs="0" name="SerialNumber" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ModelData" nillable="true" type="tns:ModelData" />
+  <xs:simpleType name="PromotionType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="WarrantyUpgrade" />
+      <xs:enumeration value="Cashback" />
+      <xs:enumeration value="FreeProduct" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="PromotionType" nillable="true" type="tns:PromotionType" />
+  <xs:complexType name="ArrayOfWarrantyPack">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WarrantyPack" nillable="true" type="tns:WarrantyPack" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWarrantyPack" nillable="true" type="tns:ArrayOfWarrantyPack" />
+  <xs:complexType name="WarrantyPack">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Country" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Language" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PackType" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WarrantyPack" nillable="true" type="tns:WarrantyPack" />
+  <xs:complexType name="ArrayOfDevice">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Device" nillable="true" type="tns:Device" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDevice" nillable="true" type="tns:ArrayOfDevice" />
+  <xs:complexType name="Device">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ExtWarrantyPossible" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Language" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ModelNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProductId" type="ser:guid" />
+      <xs:element minOccurs="0" name="ProductText" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PromoCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PromoMaterial" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PromoType" type="tns:PromotionType" />
+      <xs:element minOccurs="0" name="PurchaseDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="PurchaseLocation" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SalesOrg" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SerialNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WarrantyEnd" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="WarrantyStart" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="WarrantyText" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WarrantyType" type="tns:WarrantyTypes" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Device" nillable="true" type="tns:Device" />
+  <xs:simpleType name="WarrantyTypes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Standard">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Extended">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Expired">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Unassigned">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="WarrantyTypes" nillable="true" type="tns:WarrantyTypes" />
+</xs:schema>

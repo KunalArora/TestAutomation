@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
+using Brother.Online.TestSpecs._80.Test_Steps;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
-using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
 using Brother.WebSites.Core.ProductLookup;
 using Brother.WebSites.Core.ProductRegistration;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using TechTalk.SpecFlow;
 
-namespace Brother.Online.TestSpecs._80.Test_Steps
+namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
 {
     [Binding]
-    public class UserDetailsPage : BasePage
+    public class AddressDetailsPage : BasePage
     {
         public static string Url = "/";
 
@@ -24,7 +24,7 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
             get { return string.Empty; }
         }
 
-        public void GetUserDetailsPage(string url)
+        public void GetAddressDetailsPage(string url)
         {
             WebDriver.SetPageLoadTimeout(TimeSpan.FromSeconds(60));
             WebSites.Core.Pages.General.SiteAccess.ValidateSiteUrl(url);
@@ -39,48 +39,32 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
             var responseCode = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get);
             responseTimer.Stop();
             var responseTime = responseTimer.Elapsed;
-            Helper.MsgOutput(string.Format("Response time from website [{0}] was [{1}ms]", webSite, responseTime.Milliseconds));
+            Helper.MsgOutput(string.Format("Response time from website [{0}] was [{1}ms]", webSite,
+                responseTime.Milliseconds));
 
             return responseCode;
         }
 
-        [FindsBy(How = How.Id, Using = "EmailAddress")]
-        public IWebElement EmailIdInputField;
+        [FindsBy(How = How.CssSelector, Using = "#txtPostcode")] public IWebElement PostcodeField;
 
-        [FindsBy(How = How.Name, Using = "FirstName")]
-        public IWebElement FirstNameInputField;
+        [FindsBy(How = How.CssSelector, Using = "#btnFindAddress")] public IWebElement FindAddressButton;
+
+        [FindsBy(How = How.XPath, Using = "html/body/div[2]/div/div[1]/section/form/div/div/div[2]/div/label")] public
+            IWebElement AcceptCheckbox;
+
+        [FindsBy(How = How.Name, Using = "submit")] public IWebElement CompleteRegistrationButton;
+
+        [FindsBy(How = How.CssSelector, Using = " #btnDeliveryContnue")] public IWebElement ContinueButton;
 
 
-        [FindsBy(How = How.Name, Using = "Surname")]
-        public IWebElement LastNameInputField;
-
-        [FindsBy(How = How.XPath, Using = "html/body/div[2]/div/div[1]/section/form/div/div/div[2]/div/div")] 
-        public IWebElement AcceptCheckbox;
-
-        [FindsBy(How = How.Name, Using = "submit")]
-        public IWebElement CompleteRegistrationButton;
-
-        [FindsBy(How = How.CssSelector, Using = "#btnUserContinue")]
-        public IWebElement ContinueButtonUdPage;
-
-        public void EnterEmailId(string emailAddress)
+        public void EnterPostcode(string postcode)
         {
-            
-            if (emailAddress.Equals(string.Empty))
-            {
-                emailAddress = Email.GenerateUniqueEmailAddress();
-            }
-
-            EmailIdInputField.Clear();
-            EmailIdInputField.SendKeys(emailAddress);
-//EmailIdInputField.SendKeys(Keys.Tab);
-            //TestCheck.AssertIsEqual(emailAddress, GetTextBoxValue("Email"), "Email Text Box");
+            PostcodeField.SendKeys(postcode);
         }
 
-        public void EnterNames(string firstname, string lastname)
+        public void ClickOnFindAddressButton()
         {
-            FirstNameInputField.SendKeys(firstname);
-            LastNameInputField.SendKeys(lastname);
+            FindAddressButton.Click();
         }
 
         public void ClickAcceptCheckbox()
@@ -91,18 +75,20 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
         public ConfirmationPage ClickCompleteRegistrationButton()
         {
             CompleteRegistrationButton.Click();
-            RecycleSerialNumber("9100147391", "U1T004786");
+            
+            RecycleSerialNumber("BPId", "SerialNumber");
+
             return GetInstance<ConfirmationPage>(Driver);
         }
-        public AddressDetailsPage ClickContinueButtonOnUdPage()
+
+        public void ClickContinueButtonOnAdPage()
         {
-            ContinueButtonUdPage.Click();
-            return GetInstance<AddressDetailsPage>(Driver);
+            ContinueButton.Click();
         }
 
         private static void RecycleSerialNumber(string bpId, string serialNumber)
         {
-            System.Threading.Thread.Sleep(20000);
+            //System.Threading.Thread.Sleep(5000);
             //serialNumber = "A2N125652";//"U1T004750";
             try
             {
@@ -125,16 +111,9 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
             }
             catch (Exception ex)
             {
-
+                
             }
-
+       
         }
-
-
-
-
-
-
-
     }
 }

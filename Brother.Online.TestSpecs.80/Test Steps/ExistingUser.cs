@@ -50,6 +50,12 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
             Thread.Sleep(TimeSpan.FromSeconds(3));
             CurrentPage.As<SignInPage>().PopulateValidEmailAddress(emailaddress);
         }
+        [Then(@"I enter valid passowrd for the account ""(.*)""")]
+        public void ThenIEnterValidPassowrdForTheAccount(string password)
+        {
+            CurrentPage.As<SignInPage>().PopulatePassword(password);
+        }
+
        [Then(@"I press send email button")]
         public void ThenIPressSendEmailButton()
         {
@@ -68,9 +74,9 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
            if (Email.CheckEmailPackage("GuerrillaEmail"))
            {
                LaunchGuerrillaEmail(emailID);
-               CurrentPage.As<GuerillaEmailConfirmationPage>().SelectEmail("ForgottenPassword");
+               CurrentPage.As<GuerillaEmailConfirmationPage>().SelectEmail("Reset your password");
                //  CurrentPage.As<GuerillaEmailConfirmationPage>().CheckAllEmailLinks();
-               NextPage = CurrentPage.As<GuerillaEmailConfirmationPage>().ValidateForgottenPasswordEmail();
+               //NextPage = CurrentPage.As<GuerillaEmailConfirmationPage>().ValidateForgottenPasswordEmail();
            }
        }
        private void LaunchGuerrillaEmail(string inBox)
