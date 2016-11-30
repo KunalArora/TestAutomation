@@ -37,12 +37,18 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         [FindsBy(How = How.CssSelector, Using = "#input-purchase-date")]
         public IWebElement PurchaseDateTextBox;
 
+        [FindsBy(How = How.CssSelector, Using = "#input-promo-code")]
+        public IWebElement PromoCodeTextBox;
+
         [FindsBy(How = How.CssSelector, Using = "#btn-apply-purchase-date")]
         public IWebElement ApplyPurchaseDateButton;
 
+        [FindsBy(How = How.CssSelector, Using = "#btn-apply-promo-code")]
+        public IWebElement AddCodeButton;
+
         [FindsBy(How = How.Id, Using = "btn-continue-to-next-step")]
         public IWebElement ContinueButton;
-
+        
         public void GetProductRegistrationPage(string url)
         {
             WebDriver.SetPageLoadTimeout(TimeSpan.FromSeconds(60));
@@ -86,18 +92,27 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             PurchaseDateTextBox.SendKeys(purchasedate);
         }
 
+        public void EnterPromoCode(string promocode)
+        {
+            PromoCodeTextBox.SendKeys(promocode);
+        }
+
         public void ClickApplyButton()
         {
             ApplyPurchaseDateButton.Click();
-
         }
 
+        public void ClickAddCodeButton()
+        {
+            AddCodeButton.Click();
+        }
+        
         public UserDetailsPage ClickContinueButton()
         {
             ContinueButton.Click();
-            return GetInstance<UserDetailsPage>(Driver); 
+             return GetInstance<UserDetailsPage>(Driver); 
         }
-
+        
         public void EnterProductSerialCode(string serialCode)
         {
             IsProductSerialCodeTextBoxAvailable();

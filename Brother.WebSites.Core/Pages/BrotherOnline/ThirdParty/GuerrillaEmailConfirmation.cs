@@ -302,7 +302,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.ThirdParty
                     break;
                 case "Important":
                     break;
-                
+                case "Reset your password":
+                    break;
+
             }
             return emailItem.Text.ToLower().Contains(newEmailSubject.ToLower()) ? emailItem : null;
         }
@@ -621,7 +623,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.ThirdParty
 
         public SignInPage ValidateForgottenPasswordEmail()
         {
-            ValidateEmailUrl("ForgottenPassword Validation", true, true);
+            ValidateEmailUrl("Reset your password", true, true);
             return GetInstance<SignInPage>(Driver, "", "");
         }
 

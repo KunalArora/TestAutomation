@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
+using Brother.Tests.Selenium.Lib;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherMainSite;
@@ -79,12 +80,30 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
        {
            CurrentPage.As<ProductRegistrationPage>().ClickApplyButton();
        }
-       [Given(@"I click on continue button")]
-       public void GivenIClickOnContinueButton()
+       [Given(@"I enter ""(.*)""")]
+       public void GivenIEnter(string promocode)
+       {
+           CurrentPage.As<ProductRegistrationPage>().EnterPromoCode(promocode);
+       }
+       [Given(@"I click on add code button")]
+       public void GivenIClickOnAddCodeButton()
+       {
+           CurrentPage.As<ProductRegistrationPage>().ClickAddCodeButton();
+       }
+
+       [Given(@"I click on continue button on brother product page")]
+       public void GivenIClickOnContinueButtonOnBrotherProductPage()
        {
            Thread.Sleep(TimeSpan.FromSeconds(3));
            NextPage = CurrentPage.As<ProductRegistrationPage>().ClickContinueButton();
        }
+
+       [Then(@"I click on continue button on address details page")]
+       public void ThenIClickOnContinueButtonOnAddressDetailsPage()
+       {
+           CurrentPage.As<AddressDetailsPage>().ClickContinueButtonOnAdPage();
+       }
+
        [Then(@"I can register my Email on user details page")]
        public void ThenICanRegisterMyEmailOnUserDetailsPage()
        {
@@ -95,6 +114,23 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
        {
            CurrentPage.As<UserDetailsPage>().EnterNames(firstname, lastname);
        }
+       [Then(@"I click on continue button on user details page")]
+       public void ThenIClickOnContinueButtonOnUserDetailsPage()
+       {
+           Thread.Sleep(TimeSpan.FromSeconds(10));
+           NextPage = CurrentPage.As<UserDetailsPage>().ClickContinueButtonOnUdPage();
+       }
+       [Then(@"I can register my ""(.*)"" on the address details page")]
+       public void ThenICanRegisterMyOnTheAddressDetailsPage(string postcode)
+       {
+           CurrentPage.As<AddressDetailsPage>().EnterPostcode(postcode);
+       }
+       [Then(@"I click on Find Address Button")]
+       public void ThenIClickOnFindAddressButton()
+       {
+           CurrentPage.As<AddressDetailsPage>().ClickOnFindAddressButton();
+       }
+
        [Then(@"I tick on terms and conditions checkbox")]
        public void ThenITickOnTermsAndConditionsCheckbox()
        {
@@ -102,11 +138,29 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
            //var temp = CurrentPage.As<UserDetailsPage>().GetElementByCssSelector("#Terms");
            CurrentPage.As<UserDetailsPage>().ClickAcceptCheckbox();
        }
+       [Then(@"I tick on terms and conditions checkbox on Address details Page")]
+       public void ThenITickOnTermsAndConditionsCheckboxOnAddressDetailsPage()
+       {
+           CurrentPage.As<AddressDetailsPage>().ClickAcceptCheckbox();
+       }
+
        [Then(@"I can complete my product registration by clicking on complete registration button")]
        public void ThenICanCompleteMyProductRegistrationByClickingOnCompleteRegistrationButton()
        {
+           NextPage = CurrentPage.As<UserDetailsPage>().ClickCompleteRegistrationButton(); 
+       }
+       [Then(@"I can complete my product registration by clicking on complete registration button and I can deregister the ""(.*)""")]
+       public void ThenICanCompleteMyProductRegistrationByClickingOnCompleteRegistrationButtonAndICanDeregisterThe(string serialnumber)
+       {
            NextPage = CurrentPage.As<UserDetailsPage>().ClickCompleteRegistrationButton();
        }
+
+       [Then(@"I can complete my product registration by clicking on complete registration button on Address Details Page")]
+       public void ThenICanCompleteMyProductRegistrationByClickingOnCompleteRegistrationButtonOnAddressDetailsPage()
+       {
+           NextPage = CurrentPage.As<AddressDetailsPage>().ClickCompleteRegistrationButton();
+       }
+      
 
 
     }
