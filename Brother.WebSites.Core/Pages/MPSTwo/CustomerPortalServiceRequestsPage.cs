@@ -187,8 +187,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             WaitForElementToExistByCssSelector(ContactPerson, 5, 10);
         }
 
-
-
+        
         public void IsServiceRequestDetailDisplayed()
         {
             TestCheck.AssertIsEqual(true, CreatedServiceRequestDetailPanelElement.Displayed, 

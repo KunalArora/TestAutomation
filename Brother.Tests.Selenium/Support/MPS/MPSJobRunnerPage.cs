@@ -167,7 +167,16 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 
             Helper.MsgOutput(String.Format("The url formed for Set Supply Status is {0}", webSite));
 
-            var toner = string.Format("TonerInk_{0}", tonerType);
+            string toner;
+
+            if (tonerType == "Black" || tonerType == "Cyan" || tonerType == "Magenta" || tonerType == "Yellow")
+            {
+                toner = string.Format("TonerInk_{0}", tonerType);
+            }
+            else
+            {
+                toner = tonerType;
+            }
 
             var deviceWithDefaultPrintCount = "{\"name\": \"" + toner + "\",\"value\": \"Empty\"}";
 

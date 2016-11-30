@@ -10,14 +10,15 @@ Scenario Outline: MPS Actions For Customers
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And the contract created above is approved
 	And I sign back into Cloud MPS as a "<Role1>" from "<Country>"
-	When I install the device with "<SerialNumber>" on the contract with "<Method>" communication and "<Type>" installation 
+	When I install the device with "<SerialNumber>" on the contract with "<Method>" communication and "<Type>" installation
+	Then I can create automatic service request for "<Component>" 
 	And I can sign out of Brother Online
 	
 	
 Scenarios:
 
-	| Role                            | Country        | ContractType                  | UsageType      | Role1            | Method | Type | ExistingCustomer                    | Length  | Billing              | SerialNumber |
-	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR  | Coleen20161123042204@mailinator.com | 3 years | Quarterly in Arrears | A1T010237    |
+	| Role                            | Country        | ContractType                  | UsageType      | Role1            | Method | Type | ExistingCustomer                    | Length  | Billing              | SerialNumber | Component |
+	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR  | Coleen20161123042204@mailinator.com | 3 years | Quarterly in Arrears | A1T010237    | FuserUnit |
 	
 
 Scenario Outline: MPS Close Service Request

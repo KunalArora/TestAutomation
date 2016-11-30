@@ -90,11 +90,15 @@ Scenario Outline: Other Dealers Can Sign A Purchase And Click Contract in Prod
 	
 	Scenarios: 
 	| Role             | Country        | Role2                           | Web                               | ServerName |ContractType                 | UsageType     | Length | Billing               |
-    | Cloud MPS Dealer | Netherlands | Cloud MPS Local Office Approver | https://web1.online.brother.nl | Web_1      |Purchase + Click met Service | Minimumvolume | 3 jaar | Per kwartaal achteraf |
-	| Cloud MPS Dealer | Netherlands | Cloud MPS Local Office Approver | https://web2.online.brother.nl | Web_2      |Purchase + Click met Service | Minimumvolume | 3 jaar | Per kwartaal achteraf |
+    #| Cloud MPS Dealer | Netherlands | Cloud MPS Local Office Approver | https://web1.online.brother.nl | Web_1      |Purchase + Click met Service | Minimumvolume | 3 jaar | Per kwartaal achteraf |
+	#| Cloud MPS Dealer | Netherlands | Cloud MPS Local Office Approver | https://web2.online.brother.nl | Web_2      |Purchase + Click met Service | Minimumvolume | 3 jaar | Per kwartaal achteraf |
 	#| Cloud MPS Dealer | Netherlands | Cloud MPS Local Office Approver | https://web5.online.brother.nl | Web_5      |Purchase + Click met Service | Minimumvolume | 3 jaar | Per kwartaal achteraf |
 	#| Cloud MPS Dealer | Netherlands | Cloud MPS Local Office Approver | https://web6.online.brother.nl | Web_6      |Purchase + Click met Service | Minimumvolume | 3 jaar | Per kwartaal achteraf |
-	| Cloud MPS Dealer | Netherlands | Cloud MPS Local Office Approver | https://web1.online.brother.be | Web_1      |Purchase & Click with Service | Volume minimum | 3 ans | Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance |
-	| Cloud MPS Dealer | Netherlands | Cloud MPS Local Office Approver | https://web2.online.brother.be | Web_2      |Purchase & Click with Service | Volume minimum | 3 ans | Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance |
-	#| Cloud MPS Dealer | Netherlands | Cloud MPS Local Office Approver | https://web5.online.brother.be | Web_5      |Purchase & Click with Service | Volume minimum | 3 ans | Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance |
-	#| Cloud MPS Dealer | Netherlands | Cloud MPS Local Office Approver | https://web6.online.brother.be | Web_6      |Purchase & Click with Service | Volume minimum | 3 ans | Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance |
+	#| Cloud MPS Dealer | Belgium | Cloud MPS Local Office Approver | https://web1.online.brother.be | Web_1      |Purchase & Click with Service | Volume minimum | 3 ans | Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance |
+	#| Cloud MPS Dealer | Belgium | Cloud MPS Local Office Approver | https://web2.online.brother.be | Web_2      |Purchase & Click with Service | Volume minimum | 3 ans | Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance |
+	#| Cloud MPS Dealer | Belgium | Cloud MPS Local Office Approver | https://web5.online.brother.be | Web_5      |Purchase & Click with Service | Volume minimum | 3 ans | Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance |
+	#| Cloud MPS Dealer | Belgium | Cloud MPS Local Office Approver | https://web6.online.brother.be | Web_6      |Purchase & Click with Service | Volume minimum | 3 ans | Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance |
+	#| Cloud MPS Dealer | Poland | Cloud MPS Local Office Approver | http://online.brother.pl | Web_1      |Buy + Click                        | Pakiet wydruków | 3 lata     | Miesięczny / Monthly |
+	#| Cloud MPS Dealer | Poland | Cloud MPS Local Office Approver | https://web2.online.brother.pl | Web_2      |Buy + Click                        | Pakiet wydruków | 3 lata     | Miesięczny / Monthly |
+	#| Cloud MPS Dealer | Poland | Cloud MPS Local Office Approver | https://web5.online.brother.be | Web_5      |Buy + Click                        | Pakiet wydruków | 3 ans | Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance |
+	#| Cloud MPS Dealer | Poland | Cloud MPS Local Office Approver | https://web6.online.brother.be | Web_6      |Buy + Click                        | Pakiet wydruków | 3 ans | Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance |

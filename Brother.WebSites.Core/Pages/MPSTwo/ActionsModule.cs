@@ -378,6 +378,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             SendToBankButtonElement(driver).Last().Click();
         }
 
+        public static void ChangeTonerInkStatus(string toner)
+        {
+            MpsJobRunnerPage.SetTonerInkStatusForNewPrinter(toner);
+            MpsJobRunnerPage.NotifyBocOfNewChanges();
+        }
+
+        public static void RunConsumableOrderCreationJobs()
+        {
+            MpsJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob();
+            MpsJobRunnerPage.RunCreateOrderAndServiceRequestsCommandJob();
+            MpsJobRunnerPage.RunConsumableOrderRequestsCommandJob();
+
+        }
+
        
     }
 }
