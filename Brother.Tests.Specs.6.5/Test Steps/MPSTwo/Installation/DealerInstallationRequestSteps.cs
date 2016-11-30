@@ -57,7 +57,13 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             ThenICanCompleteDeviceInstallation();
         }
 
-       
+        [Then(@"I can create automatic service request for ""(.*)""")]
+        public void ThenICanCreateAutomaticServiceRequestFor(string tonerType)
+        {
+            ActionsModule.ChangeTonerInkStatus(tonerType);
+            ActionsModule.RunConsumableOrderCreationJobs();
+        }
+
 
 
 
