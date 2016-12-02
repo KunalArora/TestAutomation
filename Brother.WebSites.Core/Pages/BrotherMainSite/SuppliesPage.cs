@@ -73,6 +73,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
                     if (string.Equals(itemCode, SupplierCodeDropDownList[i].Text.Trim(), StringComparison.OrdinalIgnoreCase))
                     {
                         SupplierCodeDropDownList[i].Click();
+                        WebDriver.Wait(DurationType.Second, 3);
                         break;
                     }
                 }
@@ -81,6 +82,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
             {
                 throw new NullReferenceException("Unable to find the item.");
             }
+            InkJetCartridgePage.SetExtraPageTitle = itemCode;
             return GetInstance<InkJetCartridgePage>(Driver);
         }
 

@@ -56,7 +56,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
         public CreditCardDetailsPage SummaryPageProceedtoPaymentButtonClick()
         {
             SummaryPageProceedtoPaymentButton.Click();
-            return GetInstance<CreditCardDetailsPage>(Driver);
+            //return GetInstance<CreditCardDetailsPage>(Driver);
+            return LoadCreditCardDetailsFrame(Driver);
         }
 
         public void CheckSummaryPageTermsAndConditions()
@@ -66,9 +67,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
             TestCheck.AssertIsEqual(SummaryPageTermsAndConditionCheckBox.Selected.ToString(), "True", "Accept Terms and Conditions");
         }
 
-      
-
-//End
         public string GetItemPrice()
         {
             return ItemPrice.Text;
