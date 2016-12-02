@@ -168,10 +168,6 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Other Dealers Can Sign A Purchase And Click Contract in Prod")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Netherlands", "Cloud MPS Local Office Approver", "https://web1.online.brother.nl", "Web_1", "Purchase + Click met Service", "Minimumvolume", "3 jaar", "Per kwartaal achteraf", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Netherlands", "Cloud MPS Local Office Approver", "https://web2.online.brother.nl", "Web_2", "Purchase + Click met Service", "Minimumvolume", "3 jaar", "Per kwartaal achteraf", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Netherlands", "Cloud MPS Local Office Approver", "https://web1.online.brother.be", "Web_1", "Purchase & Click with Service", "Volume minimum", "3 ans", "Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Netherlands", "Cloud MPS Local Office Approver", "https://web2.online.brother.be", "Web_2", "Purchase & Click with Service", "Volume minimum", "3 ans", "Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance", null)]
         public virtual void OtherDealersCanSignAPurchaseAndClickContractInProd(string role, string country, string role2, string web, string serverName, string contractType, string usageType, string length, string billing, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Other Dealers Can Sign A Purchase And Click Contract in Prod", exampleTags);

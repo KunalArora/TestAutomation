@@ -201,7 +201,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CloudMPSMultiDeviceVerificationWithPrintCountValidation.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC110\BUK\Service Request\CloudMPSServiceRequestAutomatic.feature.cs">
+    <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC110\BUK\Validate_CustomerRun\CloudMPSServiceRequestAutomatic.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CloudMPSServiceRequestAutomatic.feature</DependentUpon>
@@ -255,6 +255,11 @@
       <DependentUpon>CloudMPSErrorMessageShowsCorrectCurrency.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC113\Reporting\CloudMPSReportingVeification.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CloudMPSReportingVeification.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\CalculationEngine\CalculationEngineScenarios.feature.cs">
       <AutoGen>True</AutoGen>
@@ -1465,7 +1470,7 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSMultiDeviceVerificationWithPrintCountValidation.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwoByCountries\BIEPC110\BUK\Service Request\CloudMPSServiceRequestAutomatic.feature">
+    <None Include="Test Specifications\MPSTwoByCountries\BIEPC110\BUK\Validate_CustomerRun\CloudMPSServiceRequestAutomatic.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSServiceRequestAutomatic.feature.cs</LastGenOutput>
     </None>
@@ -1508,6 +1513,10 @@
     <None Include="Test Specifications\MPSTwoByCountries\BIEPC113\BIG_AT\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSErrorMessageShowsCorrectCurrency.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwoByCountries\BIEPC113\Reporting\CloudMPSReportingVeification.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CloudMPSReportingVeification.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwoByCountries\CalculationEngine\CalculationEngineScenarios.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

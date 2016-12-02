@@ -17,6 +17,7 @@ Scenarios:
 	| Country        | Site Url       | Invalid Email Address                          |
 	| United Kingdom | /qa/signintest | InvalidEmailContaining aspace@mailinator.com   |
 
+
 @SMOKE @TEST
 Scenario Outline: Check Forgotten Password email recieved to the user
 	Given I navigate to "<Country>" Brother Online landing page

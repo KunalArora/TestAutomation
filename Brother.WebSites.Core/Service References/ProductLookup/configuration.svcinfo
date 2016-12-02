@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configurationSnapshot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:schemas-microsoft-com:xml-wcfconfigurationsnapshot">
+  <behaviors />
+  <bindings>
+    <binding digest="System.ServiceModel.Configuration.WSHttpBindingElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089:&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;Data name=&quot;WSHttpBinding_IProductLookupService&quot; /&gt;" bindingType="wsHttpBinding" name="WSHttpBinding_IProductLookupService" />
+  </bindings>
+  <endpoints>
+    <endpoint normalizedDigest="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;Data address=&quot;http://crmsvc.brotherdv2.eu/Product/ProductLookupService.svc&quot; binding=&quot;wsHttpBinding&quot; bindingConfiguration=&quot;WSHttpBinding_IProductLookupService&quot; contract=&quot;ProductLookup.IProductLookupService&quot; name=&quot;WSHttpBinding_IProductLookupService&quot;&gt;&lt;identity&gt;&lt;userPrincipalName value=&quot;PRDAT204V\svc_sitecore_dev&quot; /&gt;&lt;/identity&gt;&lt;/Data&gt;" digest="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;Data address=&quot;http://crmsvc.brotherdv2.eu/Product/ProductLookupService.svc&quot; binding=&quot;wsHttpBinding&quot; bindingConfiguration=&quot;WSHttpBinding_IProductLookupService&quot; contract=&quot;ProductLookup.IProductLookupService&quot; name=&quot;WSHttpBinding_IProductLookupService&quot;&gt;&lt;identity&gt;&lt;userPrincipalName value=&quot;PRDAT204V\svc_sitecore_dev&quot; /&gt;&lt;/identity&gt;&lt;/Data&gt;" contractName="ProductLookup.IProductLookupService" name="WSHttpBinding_IProductLookupService" />
+  </endpoints>
+</configurationSnapshot>

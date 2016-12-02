@@ -24,7 +24,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC113.BIG_
     [NUnit.Framework.CategoryAttribute("MPS")]
     [NUnit.Framework.CategoryAttribute("TEST")]
     [NUnit.Framework.CategoryAttribute("UAT")]
-    [NUnit.Framework.CategoryAttribute("BIEPC112")]
+    [NUnit.Framework.CategoryAttribute("BIEPC113")]
     public partial class CloudMPSErrorMessageShowsCorrectGermanAustriaCurrencyFeature
     {
         
@@ -43,7 +43,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC113.BIG_
                         "MPS",
                         "TEST",
                         "UAT",
-                        "BIEPC112"});
+                        "BIEPC113"});
             testRunner.OnFeatureStart(featureInfo);
         }
         

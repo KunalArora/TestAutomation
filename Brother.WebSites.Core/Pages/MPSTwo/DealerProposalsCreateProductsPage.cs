@@ -1000,7 +1000,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     break;
             }
 
-            if(!IsBigAtSystem())
+            if(!(IsBigAtSystem() || IsPolandSystem()))
             {
                 SelectFromDropdownByValue(GetElementByCssSelector("#InstallationPackId"), install);
             }

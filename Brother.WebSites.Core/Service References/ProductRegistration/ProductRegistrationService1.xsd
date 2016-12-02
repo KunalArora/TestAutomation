@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/BIE.CRM.Core.Data.Product.Request" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/BIE.CRM.Core.Data.Product.Request" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://crmsvc.brotherdv2.eu/Product/ProductRegistrationService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/BIE.CRM.Core.Data.BP" />
+  <xs:import schemaLocation="http://crmsvc.brotherdv2.eu/Product/ProductRegistrationService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://crmsvc.brotherdv2.eu/Product/ProductRegistrationService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/BIE.CRM.Core.Data.Product" />
+  <xs:complexType name="MultipleProductsRegistrationRequestNewBp">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/BIE.CRM.Core.Data.BP" minOccurs="0" name="BpDetails" nillable="true" type="q1:BusinessPartner" />
+      <xs:element minOccurs="0" name="MultipleProductsDetails" nillable="true" type="tns:MultipleProductsRegisterationRequest" />
+      <xs:element minOccurs="0" name="UserId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MultipleProductsRegistrationRequestNewBp" nillable="true" type="tns:MultipleProductsRegistrationRequestNewBp" />
+  <xs:complexType name="MultipleProductsRegisterationRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BusinessPartnerId" nillable="true" type="xs:string" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/BIE.CRM.Core.Data.Product" minOccurs="0" name="DevicesToRegister" nillable="true" type="q2:ArrayOfDeviceToRegister" />
+      <xs:element minOccurs="0" name="Language" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SalesOrganisation" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MultipleProductsRegisterationRequest" nillable="true" type="tns:MultipleProductsRegisterationRequest" />
+  <xs:complexType name="ProductRegistrationRequestNewBp">
+    <xs:sequence>
+      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/BIE.CRM.Core.Data.BP" minOccurs="0" name="BpDetails" nillable="true" type="q3:BusinessPartner" />
+      <xs:element minOccurs="0" name="ProductsDetails" nillable="true" type="tns:ProductRegisterationRequest" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProductRegistrationRequestNewBp" nillable="true" type="tns:ProductRegistrationRequestNewBp" />
+  <xs:complexType name="ProductRegisterationRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BusinessPartnerId" nillable="true" type="xs:string" />
+      <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/BIE.CRM.Core.Data.Product" minOccurs="0" name="DeviceToRegister" nillable="true" type="q4:DeviceToRegister" />
+      <xs:element minOccurs="0" name="Language" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SalesOrganisation" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProductRegisterationRequest" nillable="true" type="tns:ProductRegisterationRequest" />
+</xs:schema>
