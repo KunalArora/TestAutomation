@@ -205,7 +205,7 @@ namespace Brother.Tests.Specs._80.BrotherMainSite.HomePageNavigation
        [Given(@"I have clicked on Supplies option")]
        public void GivenIHaveClickedOnSuppliesOption()
        {
-           CurrentPage.As<MainSiteHomePage>().IsSuppliesLinkAvailable();
+           //CurrentPage.As<MainSiteHomePage>().IsSuppliesLinkAvailable();
            NextPage = CurrentPage.As<MainSiteHomePage>().ClickSuppliesLink();
        }
     }
