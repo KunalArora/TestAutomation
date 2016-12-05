@@ -25,7 +25,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         [FindsBy(How = How.CssSelector, Using = "#lnkForgottenPassword")]
         public IWebElement ForgottenPasswordLink;
 
-        [FindsBy(How = How.CssSelector, Using = "#txtEmail")]
+        [FindsBy(How = How.CssSelector, Using = "#email")]
         public IWebElement EnterEmailId;
         
         [FindsBy(How = How.XPath, Using = ".//*[@id='spanEmailNotValidError']/*/*")] 
@@ -37,6 +37,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         [FindsBy(How = How.CssSelector, Using = "#password")] 
         public IWebElement EnterPassword;
 
+        [FindsBy(How = How.ClassName, Using = "btn--basicsignin.btn.btn-primary")]
+        public IWebElement SignInButton;
 
         public void ClickExistingUserTab()
         {
@@ -62,10 +64,13 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         {
             SendEmailButton.Click();
         }
-
         public void PopulatePassword(string password)
         {
             EnterPassword.SendKeys(password);
+        }
+        public void ClickSignInButton()
+        {
+            SignInButton.Click();
         }
 
     }

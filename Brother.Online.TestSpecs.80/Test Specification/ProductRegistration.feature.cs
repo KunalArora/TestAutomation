@@ -204,30 +204,32 @@ this.ScenarioSetup(scenarioInfo);
 #line 62
  testRunner.And("clicked on Find Product Button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 63
- testRunner.And(string.Format("I have entered \"{0}\"", purchaseDate), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I retreive data product id from Product Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 64
- testRunner.And("I entered apply button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("I have entered \"{0}\"", purchaseDate), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 65
- testRunner.And(string.Format("I enter \"{0}\"", promoCode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I entered apply button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 66
- testRunner.And("I click on add code button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("I enter \"{0}\"", promoCode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 67
- testRunner.And("I click on continue button on brother product page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I click on add code button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 68
- testRunner.Then("I can register my Email on user details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("I click on continue button on brother product page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 69
- testRunner.And(string.Format("I enter \"{0}\"  and \"{1}\" on  user details page", firstName, lastName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("I can register my Email on user details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 70
- testRunner.And("I click on continue button on user details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("I enter \"{0}\"  and \"{1}\" on  user details page", firstName, lastName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 71
- testRunner.And(string.Format("I can register my \"{0}\" on the address details page", postcode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I click on continue button on user details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 72
- testRunner.And("I click on Find Address Button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("I can register my \"{0}\" on the address details page", postcode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 73
- testRunner.And("I click on continue button on address details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I click on Find Address Button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 74
- testRunner.And("I tick on terms and conditions checkbox on Address details Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I click on continue button on address details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 75
+ testRunner.And("I tick on terms and conditions checkbox on Address details Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 76
  testRunner.Then(string.Format("I can complete my product registration by clicking on complete registration butto" +
                         "n on Address Details Page and I can  deregister the \"{0}\"", serialNumber), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
@@ -261,6 +263,8 @@ this.ScenarioSetup(scenarioInfo);
     testRunner.Then(string.Format("I enter an email address as \"{0}\"", validEmailAddress), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 90
     testRunner.Then(string.Format("I enter valid passowrd for the account \"{0}\"", validPassword), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 91
+    testRunner.And("I click on SignIn button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

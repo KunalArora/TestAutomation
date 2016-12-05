@@ -60,6 +60,7 @@ Scenario Outline: New Customer wants to register product with their serial numbe
 	And I browse to the "<Site Url>" product registration page
 	And I have entered my product "<SerialNumber>"
 	And clicked on Find Product Button
+	And I retreive data product id from Product Page 
 	And I have entered "<PurchaseDate>"
 	And I entered apply button
 	And I enter "<PromoCode>" 
@@ -81,14 +82,14 @@ Scenarios:
 
 
 @SMOKE
-#run visual studio as admin to get this test working
 Scenario Outline: Existing Customer wants to register product with their serial numbers, purchase date and promo code
     Given I navigate to "<Country>" Brother Online landing page
 	And I browse to the "<Site Url>" for existing user signin page
 	And I click on existing customer log in option
     Then I enter an email address as "<Valid Email Address>"
     Then I enter valid passowrd for the account "<Valid Password>"
-#And I click on SignIn button
+    And I click on SignIn button
+
 
 
 Scenarios:

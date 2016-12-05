@@ -56,6 +56,12 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
             CurrentPage.As<SignInPage>().PopulatePassword(password);
         }
 
+        [Then(@"I click on SignIn button")]
+        public void ThenIClickOnSignInButton()
+        {
+            CurrentPage.As<SignInPage>().ClickSignInButton();
+        }
+
        [Then(@"I press send email button")]
         public void ThenIPressSendEmailButton()
         {
