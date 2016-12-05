@@ -51,7 +51,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         [FindsBy(How = How.CssSelector, Using = ".checkbox label[for='TermsandConditions']")]
         public IWebElement AcceptCheckbox;
 
-        [FindsBy(How = How.Name, Using = "submit")] public IWebElement CompleteRegistrationButton;
+        [FindsBy(How = How.Id, Using = "btnComplete")]
+        public IWebElement CompleteRegistrationButton;
 
         [FindsBy(How = How.CssSelector, Using = " #btnDeliveryContnue")] public IWebElement ContinueButton;
 
@@ -68,7 +69,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
 
         public void ClickAcceptCheckbox()
         {
-            AcceptCheckbox.Click();
+            ((IJavaScriptExecutor)Driver).ExecuteScript("arguments[0].click();", AcceptCheckbox);
         }
 
         //public ConfirmationPage ClickCompleteRegistrationButton()
@@ -108,7 +109,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             }
 
         }
-
 
         public void ClickContinueButtonOnAdPage()
         {

@@ -48,8 +48,7 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
 
         [FindsBy(How = How.Name, Using = "FirstName")]
         public IWebElement FirstNameInputField;
-
-
+        
         [FindsBy(How = How.Name, Using = "Surname")]
         public IWebElement LastNameInputField;
 
@@ -99,6 +98,7 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
             
             ContinueButtonUdPage.Click();
             return GetInstance<AddressDetailsPage>(Driver);
+
         }
 
         private static void RecycleSerialNumber(string productId)
