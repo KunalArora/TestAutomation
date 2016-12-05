@@ -162,12 +162,12 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Navigate to published page to verify product page - UK")]
-        [NUnit.Framework.CategoryAttribute("SMOKE")]
+        [NUnit.Framework.CategoryAttribute("SMOKE-PublishedPages")]
         [NUnit.Framework.TestCaseAttribute("/QA/TestAutomationPleaseDoNotTouch/DCPL8400CDN", null)]
         public virtual void NavigateToPublishedPageToVerifyProductPage_UK(string siteUrl, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "SMOKE"};
+                    "SMOKE-PublishedPages"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -185,12 +185,12 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Navigate to published page to verify supplies product page - UK")]
-        [NUnit.Framework.CategoryAttribute("SMOKE")]
+        [NUnit.Framework.CategoryAttribute("SMOKE-PublishedPages")]
         [NUnit.Framework.TestCaseAttribute("/QA/TestAutomationPleaseDoNotTouch/HGe131V5-SuppliesPage", null)]
         public virtual void NavigateToPublishedPageToVerifySuppliesProductPage_UK(string siteUrl, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "SMOKE"};
+                    "SMOKE-PublishedPages"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -208,12 +208,12 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Navigate to published page to verify News landing page - UK")]
-        [NUnit.Framework.CategoryAttribute("SMOKE")]
+        [NUnit.Framework.CategoryAttribute("SMOKE-PublishedPages")]
         [NUnit.Framework.TestCaseAttribute("/QA/TestAutomationPleaseDoNotTouch/NewsLandingPage", null)]
         public virtual void NavigateToPublishedPageToVerifyNewsLandingPage_UK(string siteUrl, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "SMOKE"};
+                    "SMOKE-PublishedPages"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));

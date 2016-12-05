@@ -2,7 +2,7 @@
 Feature: CMS website access
 	In order to validate that the CMS site is accessible a number of content editor actions are conducted
 
-@SMOKE
+@SMOKE-CMSWebsiteAccess
 Scenario Outline: Verify that a user is able to login to the CMS system	
 	Given That I navigate to "<SiteUrl>" Brother SiteCore CMS site URL for "<Country>" to validate
 	And I enter an username containing "<UserName>"
