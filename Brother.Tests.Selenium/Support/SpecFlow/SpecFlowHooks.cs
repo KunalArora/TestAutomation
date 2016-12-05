@@ -141,20 +141,20 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
                 return;
             }
 
-            // Now check if this Scenario has Tagging present, and use this level in the first instance
-            if ((ScenarioContext.Current.ScenarioInfo.Tags.Length > 0) && (!ScenarioContext.Current.ScenarioInfo.Tags.Contains("SMOKE")
-                && (!ScenarioContext.Current.ScenarioInfo.Tags.Contains("STAGING")) && (!ScenarioContext.Current.ScenarioInfo.Tags.Contains("ACCESSIBILITY"))))
-            {
-                Helper.MsgOutput("Scenario Tags present - using these to determine Runtime Environment");
+            //// Now check if this Scenario has Tagging present, and use this level in the first instance
+            //if ((ScenarioContext.Current.ScenarioInfo.Tags.Length > 0) && (!ScenarioContext.Current.ScenarioInfo.Tags.Contains("SMOKE")
+            //    && (!ScenarioContext.Current.ScenarioInfo.Tags.Contains("STAGING")) && (!ScenarioContext.Current.ScenarioInfo.Tags.Contains("ACCESSIBILITY"))))
+            //{
+            //    Helper.MsgOutput("Scenario Tags present - using these to determine Runtime Environment");
 
-                // Use ScenarioContext override tag if the run time environment does not match, do not run test
-                if (!Helper.CheckScenarioEnv(Helper.GetRunTimeEnv()))
-                {
-                    IgnoreThisTest(string.Format("Test skipped - Test Environment Mismatch for this test - Target [{0}]", Helper.GetRunTimeEnv()));
-                }
-            }
-            else
-            {
+            //    // Use ScenarioContext override tag if the run time environment does not match, do not run test
+            //    if (!Helper.CheckScenarioEnv(Helper.GetRunTimeEnv()))
+            //    {
+            //        IgnoreThisTest(string.Format("Test skipped - Test Environment Mismatch for this test - Target [{0}]", Helper.GetRunTimeEnv()));
+            //    }
+            //}
+            //else
+            //{
                 switch (FeatureContext.Current.FeatureInfo.Tags.Length)
                 {
                     case (0):
@@ -172,7 +172,7 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
                         }
                         break;
                 }
-            }
+            //}
 
             if (!ScenarioContext.Current.ScenarioInfo.Tags.Contains("ACCESSIBILITY"))
             {
@@ -249,14 +249,19 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
         private static void DoSmokeTestEval(bool smokeTest)
         {
             if (!smokeTest) return;
-            if (ScenarioContext.Current.ScenarioInfo.Tags.Contains("SMOKE"))
+            
+            foreach (string tag in ScenarioContext.Current.ScenarioInfo.Tags)
             {
-                Helper.MsgOutput("!!!!SMOKE TEST IN PROGRESS!!!!");
-            }
-            else
-            {
-                Helper.MsgOutput("Skipping test for Smoke Test run");
-                IgnoreThisTest("Test skipped as NO Smoke Tag present and this is a Smoke Test Run");
+                if (tag.StartsWith("SMOKE"))// ScenarioContext.Current.ScenarioInfo.Tags.Contains("SMOKE"))
+                {
+                    Helper.MsgOutput("!!!!SMOKE TEST IN PROGRESS!!!!");
+                    break;
+                }
+                else
+                {
+                    Helper.MsgOutput("Skipping test for Smoke Test run");
+                    IgnoreThisTest("Test skipped as NO Smoke Tag present and this is a Smoke Test Run");
+                }
             }
         }
 

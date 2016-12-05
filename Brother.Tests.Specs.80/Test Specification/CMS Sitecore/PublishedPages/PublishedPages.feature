@@ -53,7 +53,7 @@ Scenarios:
 	 | /qa/testautomationpleaseleave |
 	#| http://main.co.uk.brotherqas.eu/qa/testautomationpleasedonottouch/testautomationpleaseleave |
 
-@SMOKE
+@SMOKE-PublishedPages
 Scenario Outline: Navigate to published page to verify product page - UK
 	Given That I navigate to "<Site Url>" in order to validate a published page
 	Then I can validate the product page title is displayed
@@ -63,7 +63,7 @@ Scenarios:
 	 | /QA/TestAutomationPleaseDoNotTouch/DCPL8400CDN |
 	 #|http://main.co.uk.brotherqas.eu/QA/TestAutomationPleaseDoNotTouch/DCP9020CDW |
 
-@SMOKE
+@SMOKE-PublishedPages
 Scenario Outline: Navigate to published page to verify supplies product page - UK
 	Given That I navigate to "<Site Url>" in order to validate a published page
 	Then I can validate supply description is displayed
@@ -73,7 +73,7 @@ Scenarios:
 	 | /QA/TestAutomationPleaseDoNotTouch/HGe131V5-SuppliesPage |
 	 #| http://main.co.uk.brotherqas.eu/QA/TestAutomationPleaseDoNotTouch/AD18ESUK						  |
 
-@SMOKE
+@SMOKE-PublishedPages
 Scenario Outline: Navigate to published page to verify News landing page - UK
 	Given That I navigate to "<Site Url>" in order to validate a published page
 	Then I can validate article is displayed on the page
