@@ -6,8 +6,7 @@ using System.Text;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
-using Brother.WebSites.Core.ProductLookup;
-using Brother.WebSites.Core.ProductRegistration;
+using Brother.WebSites.Core.ProductService;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using TechTalk.SpecFlow;
@@ -90,38 +89,51 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
 
         public ConfirmationPage ClickCompleteRegistrationButton()
         {
+            var pId = SpecFlow.GetContext("ProductId");
             CompleteRegistrationButton.Click();
-            RecycleSerialNumber("9100147391", "U1T004786");
+            RecycleSerialNumber(pId);
             return GetInstance<ConfirmationPage>(Driver);
         }
         public AddressDetailsPage ClickContinueButtonOnUdPage()
         {
+            
             ContinueButtonUdPage.Click();
             return GetInstance<AddressDetailsPage>(Driver);
         }
 
-        private static void RecycleSerialNumber(string bpId, string serialNumber)
+        private static void RecycleSerialNumber(string productId)
         {
-            System.Threading.Thread.Sleep(20000);
+             Guid prodId;
+            if (!Guid.TryParse(productId, out prodId))
+            {
+                return;
+            }
+            System.Threading.Thread.Sleep(5000);
             //serialNumber = "A2N125652";//"U1T004750";
             try
             {
-                using (var productLookupServiceClient = new ProductLookupServiceClient())
+
+                using (var productServiceClient = new ProductServiceClient())
                 {
-                    var products = productLookupServiceClient.GetRegisteredDevices(bpId, "GB");
-
-                    if (products == null) return;
-
-                    var firstOrDefault = products.RegisteredDevices.FirstOrDefault(d => d.SerialNumber == serialNumber);
-                    if (firstOrDefault != null)
-                    {
-                        var productId = firstOrDefault.ProductId;
-                        using (var productRegistrationServiceClient = new ProductRegistrationServiceClient())
-                        {
-                            productRegistrationServiceClient.DeregisterProduct(productId);
-                        }
-                    }
+                    productServiceClient.DeregisterProduct(prodId);
                 }
+
+                //using (var productLookupServiceClient = new ProductLookupServiceClient())
+                //{
+                //    var products = productLookupServiceClient.GetRegisteredDevices(bpId, "GB");
+
+                //    if (products == null) return;
+
+                //    var firstOrDefault = products.RegisteredDevices.FirstOrDefault(d => d.SerialNumber == serialNumber);
+                //    if (firstOrDefault != null)
+                //    {
+                //        var productId = firstOrDefault.ProductId;
+                //        using (var productRegistrationServiceClient = new ProductRegistrationServiceClient())
+                //        {
+                //            productRegistrationServiceClient.DeregisterProduct(productId);
+                //        }
+                //    }
+                //}
             }
             catch (Exception ex)
             {

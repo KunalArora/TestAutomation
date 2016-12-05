@@ -6,8 +6,7 @@ using System.Text;
 using Brother.Online.TestSpecs._80.Test_Steps;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
-using Brother.WebSites.Core.ProductLookup;
-using Brother.WebSites.Core.ProductRegistration;
+using Brother.WebSites.Core.ProductService;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using TechTalk.SpecFlow;
@@ -49,8 +48,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
 
         [FindsBy(How = How.CssSelector, Using = "#btnFindAddress")] public IWebElement FindAddressButton;
 
-        [FindsBy(How = How.XPath, Using = "html/body/div[2]/div/div[1]/section/form/div/div/div[2]/div/label")] public
-            IWebElement AcceptCheckbox;
+        [FindsBy(How = How.CssSelector, Using = ".checkbox label[for='TermsandConditions']")]
+        public IWebElement AcceptCheckbox;
 
         [FindsBy(How = How.Name, Using = "submit")] public IWebElement CompleteRegistrationButton;
 
@@ -72,48 +71,49 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             AcceptCheckbox.Click();
         }
 
+        //public ConfirmationPage ClickCompleteRegistrationButton()
+        //{
+        //    CompleteRegistrationButton.Click();
+
+        //    return GetInstance<ConfirmationPage>(Driver);
+        //}
+
         public ConfirmationPage ClickCompleteRegistrationButton()
         {
+            var pId = SpecFlow.GetContext("ProductId");
             CompleteRegistrationButton.Click();
-            
-            RecycleSerialNumber("BPId", "SerialNumber");
-
+            RecycleSerialNumber(pId);
             return GetInstance<ConfirmationPage>(Driver);
         }
+          private static void RecycleSerialNumber(string productId)
+        {
+             Guid prodId;
+            if (!Guid.TryParse(productId, out prodId))
+            {
+                return;
+            }
+            System.Threading.Thread.Sleep(5000);
+            //serialNumber = "A2N125652";//"U1T004750";
+            try
+            {
+
+                using (var productServiceClient = new ProductServiceClient())
+                {
+                    productServiceClient.DeregisterProduct(prodId);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+        }
+
 
         public void ClickContinueButtonOnAdPage()
         {
             ContinueButton.Click();
         }
-
-        private static void RecycleSerialNumber(string bpId, string serialNumber)
-        {
-            //System.Threading.Thread.Sleep(5000);
-            //serialNumber = "A2N125652";//"U1T004750";
-            try
-            {
-                using (var productLookupServiceClient = new ProductLookupServiceClient())
-                {
-                    var products = productLookupServiceClient.GetRegisteredDevices(bpId, "GB");
-
-                    if (products == null) return;
-
-                    var firstOrDefault = products.RegisteredDevices.FirstOrDefault(d => d.SerialNumber == serialNumber);
-                    if (firstOrDefault != null)
-                    {
-                        var productId = firstOrDefault.ProductId;
-                        using (var productRegistrationServiceClient = new ProductRegistrationServiceClient())
-                        {
-                            productRegistrationServiceClient.DeregisterProduct(productId);
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                
-            }
-       
-        }
+        
     }
 }

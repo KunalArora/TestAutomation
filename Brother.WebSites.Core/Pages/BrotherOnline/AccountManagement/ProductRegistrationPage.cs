@@ -48,6 +48,11 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
 
         [FindsBy(How = How.Id, Using = "btn-continue-to-next-step")]
         public IWebElement ContinueButton;
+
+        [FindsBy(How = How.CssSelector, Using = "#link-not-your-product")]
+        public IWebElement RetrieveDataProductId;
+
+
         
         public void GetProductRegistrationPage(string url)
         {
@@ -134,6 +139,13 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
                 throw new Exception("Unable to locate TextBox on page");
             }
             AssertElementPresent(SerialNumberTextBox, "Serial Code Text Box");
+        }
+
+        public void RetreiveDataProductId()
+        {
+            System.Threading.Thread.Sleep(2000);
+            var text = RetrieveDataProductId.GetAttribute("data-product-id");
+            SpecFlow.SetContext("ProductId", text);
         }
 
     }

@@ -70,6 +70,12 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
         {
             CurrentPage.As<ProductRegistrationPage>().ClickFindProductButton();
         }
+       [Given(@"I retreive data product id from Product Page")]
+       public void GivenIRetreiveDataProductIdFromProductPage()
+       {
+           CurrentPage.As<ProductRegistrationPage>().RetreiveDataProductId();
+       }
+
        [Given(@"I have entered ""(.*)""")]
        public void GivenIHaveEntered(string date)
        {
@@ -154,13 +160,12 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
        {
            NextPage = CurrentPage.As<UserDetailsPage>().ClickCompleteRegistrationButton();
        }
-
-       [Then(@"I can complete my product registration by clicking on complete registration button on Address Details Page")]
-       public void ThenICanCompleteMyProductRegistrationByClickingOnCompleteRegistrationButtonOnAddressDetailsPage()
+       [Then(@"I can complete my product registration by clicking on complete registration button on Address Details Page and I can  deregister the ""(.*)""")]
+       public void ThenICanCompleteMyProductRegistrationByClickingOnCompleteRegistrationButtonOnAddressDetailsPageAndICanDeregisterThe(string serialnumber)
        {
            NextPage = CurrentPage.As<AddressDetailsPage>().ClickCompleteRegistrationButton();
        }
-      
+
 
 
     }
