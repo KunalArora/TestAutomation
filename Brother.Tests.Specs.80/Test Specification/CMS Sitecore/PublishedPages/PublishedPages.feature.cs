@@ -71,12 +71,12 @@ namespace Brother.Tests.Specs._80.TestSpecification.CMSSitecore.PublishedPages
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Navigate to published page to verify all page components")]
-        [NUnit.Framework.CategoryAttribute("SMOKE-PublishedPages")]
+        [NUnit.Framework.CategoryAttribute("SMOKE")]
         [NUnit.Framework.TestCaseAttribute("/qa/testautomationpleaseleave", null)]
         public virtual void NavigateToPublishedPageToVerifyAllPageComponents(string siteUrl, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "SMOKE-PublishedPages"};
+                    "SMOKE"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
