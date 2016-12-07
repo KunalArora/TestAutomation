@@ -4,7 +4,7 @@ Feature: PublishedPages
 	previously published pages are verified to ensure 
 	a CMS code change has not had an adverse effect	
 
-@SMOKE-PublishedPages
+@SMOKE
 Scenario Outline: Navigate to published page to verify all page components 
 	Given That I navigate to "<Site Url>" in order to validate a published page
 	Then I can verify that the page header is displayed
