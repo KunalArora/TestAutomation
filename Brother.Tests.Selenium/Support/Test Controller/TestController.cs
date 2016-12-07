@@ -319,6 +319,7 @@ namespace Brother.Tests.Selenium.Lib.Support
             
             
             options.AddArguments("--disable-extensions");
+            options.AddUserProfilePreference("profile.default_content_settings.popups", 0);
             options.AddUserProfilePreference("download.default_directory", path);
             options.AddArguments("no-sandbox");
 

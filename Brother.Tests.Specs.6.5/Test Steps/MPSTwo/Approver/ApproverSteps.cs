@@ -77,6 +77,19 @@ namespace Brother.Tests.Specs.MPSTwo.Approver
             }
         }
 
+        [When(@"I navigate to Report page")]
+        public void WhenINavigateToReportPage()
+        {
+            NextPage = CurrentPage.As<LocalOfficeApproverDashBoardPage>().NavigateToLocalOfficeApproverReportingPage();
+        }
+
+        [Then(@"I can download ""(.*)"" from the page")]
+        public void ThenICanDownloadFromThePage(string downloadType)
+        {
+            CurrentPage.As<LocalOfficeApprovalReportingDashboardPage>().DownloadASpecifiedReport(downloadType);
+        }
+
+
         [When(@"Approver select the proposal on Awaiting Proposal")]
         [Then(@"Approver select the proposal on Awaiting Proposal")]
         public void ThenApproverSelectTheProposalOnAwaitingProposal()
