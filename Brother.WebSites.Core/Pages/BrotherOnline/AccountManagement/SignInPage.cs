@@ -37,7 +37,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         [FindsBy(How = How.CssSelector, Using = "#password")] 
         public IWebElement EnterPassword;
 
-        [FindsBy(How = How.ClassName, Using = "btn--basicsignin.btn.btn-primary")]
+        [FindsBy(How = How.Id, Using = "btnSignin")]
         public IWebElement SignInButton;
 
         public void ClickExistingUserTab()
@@ -68,9 +68,10 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         {
             EnterPassword.SendKeys(password);
         }
-        public void ClickSignInButton()
+        public ProductRegistrationPage ClickSignInButton()
         {
             SignInButton.Click();
+            return GetInstance<ProductRegistrationPage>(Driver);  
         }
 
     }

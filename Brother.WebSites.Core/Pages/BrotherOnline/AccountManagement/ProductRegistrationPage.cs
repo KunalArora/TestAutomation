@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Brother.Online.TestSpecs._80.Test_Steps;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
+using Brother.WebSites.Core.ProductService;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
@@ -105,6 +107,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         public void ClickApplyButton()
         {
             ApplyPurchaseDateButton.Click();
+            WaitForElementToBeClickableById("btn-continue-to-next-step", 10);
+           
         }
 
         public void ClickAddCodeButton()
@@ -117,7 +121,47 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             ContinueButton.Click();
              return GetInstance<UserDetailsPage>(Driver); 
         }
-        
+
+        public AddressDetailsPage ClickContinueButtonAdPage()
+        {
+            ContinueButton.Click();
+            return GetInstance<AddressDetailsPage>(Driver);
+        }
+
+        public MyPrintersAndDevicesPage ClickContinueButtonMyPrinterandDevicePage()
+        {
+            var pId = SpecFlow.GetContext("ProductId");
+            ScrollTo(Driver, ContinueButton);
+            ContinueButton.Click();
+            RecycleSerialNumber(pId);
+            return GetInstance<MyPrintersAndDevicesPage>(Driver); 
+        }
+
+        private static void RecycleSerialNumber(string productId)
+        {
+            Guid prodId;
+            if (!Guid.TryParse(productId, out prodId))
+            {
+                return;
+            }
+            System.Threading.Thread.Sleep(5000);
+            //serialNumber = "A2N125652";//"U1T004750";
+            try
+            {
+
+                using (var productServiceClient = new ProductServiceClient())
+                {
+                    productServiceClient.DeregisterProduct(prodId);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+        }
+
+
         public void EnterProductSerialCode(string serialCode)
         {
             IsProductSerialCodeTextBoxAvailable();

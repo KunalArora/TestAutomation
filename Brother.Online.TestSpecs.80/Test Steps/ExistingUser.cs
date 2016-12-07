@@ -55,13 +55,59 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
         {
             CurrentPage.As<SignInPage>().PopulatePassword(password);
         }
-
         [Then(@"I click on SignIn button")]
         public void ThenIClickOnSignInButton()
         {
-            CurrentPage.As<SignInPage>().ClickSignInButton();
+            NextPage = CurrentPage.As<SignInPage>().ClickSignInButton();
         }
-
+        [Then(@"I have entered my product ""(.*)""")]
+        public void ThenIHaveEnteredMyProduct(string serialnumber)
+        {
+            CurrentPage.As<ProductRegistrationPage>().PopulateSerialNumberTextBox(serialnumber);
+        }
+        [Then(@"clicked on Find Product Button")]
+        public void ThenClickedOnFindProductButton()
+        {
+            CurrentPage.As<ProductRegistrationPage>().ClickFindProductButton();
+        }
+        [Then(@"I retreive data product id from Product Page")]
+        public void ThenIRetreiveDataProductIdFromProductPage()
+        {
+            CurrentPage.As<ProductRegistrationPage>().RetreiveDataProductId();
+        }
+        [Then(@"I have entered ""(.*)""")]
+        public void ThenIHaveEntered(string date)
+        {
+            CurrentPage.As<ProductRegistrationPage>().EnterProductDate(date);
+        }
+        [Then(@"I entered apply button")]
+        public void ThenIEnteredApplyButton()
+        {
+            CurrentPage.As<ProductRegistrationPage>().ClickApplyButton();
+        }
+        [Then(@"I enter ""(.*)""")]
+        public void ThenIEnter(string promocode)
+        {
+            CurrentPage.As<ProductRegistrationPage>().EnterPromoCode(promocode);
+        }
+        [Then(@"I click on add code button")]
+        public void ThenIClickOnAddCodeButton()
+        {
+            CurrentPage.As<ProductRegistrationPage>().ClickAddCodeButton();
+        }
+        [Then(@"I click on continue button on brother product page")]
+        public void ThenIClickOnContinueButtonOnBrotherProductPage()
+        {
+            Thread.Sleep(TimeSpan.FromSeconds(2));
+            NextPage = CurrentPage.As<ProductRegistrationPage>().ClickContinueButton();
+        }
+        [Then(@"I click on continue button on brother product page to go to address details page")]
+        public void ThenIClickOnContinueButtonOnBrotherProductPageToGoToAddressDetailsPage()
+        {
+            Thread.Sleep(TimeSpan.FromSeconds(2));
+            NextPage = CurrentPage.As<ProductRegistrationPage>().ClickContinueButtonAdPage(); ;
+        }
+        
        [Then(@"I press send email button")]
         public void ThenIPressSendEmailButton()
         {

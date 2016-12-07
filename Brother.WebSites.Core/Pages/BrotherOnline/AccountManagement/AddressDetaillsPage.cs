@@ -56,9 +56,21 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
 
         [FindsBy(How = How.CssSelector, Using = " #btnDeliveryContnue")] public IWebElement ContinueButton;
 
+        [FindsBy(How = How.Id, Using = "account-holder")]
+        public IWebElement AccountHoldersName;
+
+        [FindsBy(How = How.Id, Using = "sort-code")]
+        public IWebElement SortCode;
+
+        [FindsBy(How = How.Id, Using = "account-number")]
+        public IWebElement AccountNumber;
+
+        [FindsBy(How = How.CssSelector, Using = ".checkbox label[for='NoProofofPurchase']")]
+        public IWebElement AcceptProofOfPurchaseCheckbox ;
 
         public void EnterPostcode(string postcode)
         {
+            PostcodeField.Clear();
             PostcodeField.SendKeys(postcode);
         }
 
@@ -67,9 +79,21 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             FindAddressButton.Click();
         }
 
+        public void EnterAccountDetails(string accountholdername, string sortcode, string accountnumber)
+        {
+            AccountHoldersName.SendKeys(accountholdername);
+            AccountNumber.SendKeys(accountnumber);
+            SortCode.SendKeys(sortcode);
+        }
+
         public void ClickAcceptCheckbox()
         {
             ((IJavaScriptExecutor)Driver).ExecuteScript("arguments[0].click();", AcceptCheckbox);
+        }
+
+        public void ClickAcceptProofOfPurchase()
+        {
+            ((IJavaScriptExecutor)Driver).ExecuteScript("arguments[0].click();", AcceptProofOfPurchaseCheckbox);
         }
 
         //public ConfirmationPage ClickCompleteRegistrationButton()
