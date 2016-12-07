@@ -109,7 +109,11 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
        {
            CurrentPage.As<AddressDetailsPage>().ClickContinueButtonOnAdPage();
        }
-
+        [Then(@"I enter ""(.*)"" and ""(.*)"" and ""(.*)"" on address details page")]
+       public void ThenIEnterAndAndOnAddressDetailsPage(string accountholdersname, string sortcode, string accountnumber)
+        {
+            CurrentPage.As<AddressDetailsPage>().EnterAccountDetails(accountholdersname, sortcode, accountnumber);
+        }
        [Then(@"I can register my Email on user details page")]
        public void ThenICanRegisterMyEmailOnUserDetailsPage()
        {
@@ -149,7 +153,11 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
        {
            CurrentPage.As<AddressDetailsPage>().ClickAcceptCheckbox();
        }
-
+       [Then(@"I click on tickbox to confirm I will send my proof of purchase")]
+       public void ThenIClickOnTickboxToConfirmIWillSendMyProofOfPurchase()
+       {
+           CurrentPage.As<AddressDetailsPage>().ClickAcceptProofOfPurchase();
+       }
        [Then(@"I can complete my product registration by clicking on complete registration button")]
        public void ThenICanCompleteMyProductRegistrationByClickingOnCompleteRegistrationButton()
        {
@@ -164,6 +172,23 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
        public void ThenICanCompleteMyProductRegistrationByClickingOnCompleteRegistrationButtonOnAddressDetailsPageAndICanDeregisterThe(string serialnumber)
        {
            NextPage = CurrentPage.As<AddressDetailsPage>().ClickCompleteRegistrationButton();
+       }
+       [Then(@"I can complete my product registration by clicking on continue button and I can  deregister the ""(.*)""")]
+       public void ThenICanCompleteMyProductRegistrationByClickingOnContinueButtonAndICanDeregisterThe(string p0)
+       {
+           NextPage = CurrentPage.As<ProductRegistrationPage>().ClickContinueButtonMyPrinterandDevicePage();
+       }
+
+       [Then(@"I can verify registration confirmaiton message is present")]
+       public void ThenICanVerifyRegistrationConfirmaitonMessageIsPresent()
+       {
+           CurrentPage.As<MyPrintersAndDevicesPage>().IsDeviceRegistrationConfirmationMessagePresent();
+       }
+
+      [Then(@"I can confirm device registration message is displayed on My printer and devices screen")]
+       public void ThenICanConfirmDeviceRegistrationMessageIsDisplayedOnMyPrinterAndDevicesScreen()
+       {
+           CurrentPage.As<ConfirmationPage>().CheckConfirmationMessage();
        }
 
 

@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Support.PageObjects;
 
 namespace Brother.Online.TestSpecs._80.Test_Steps
 {
@@ -37,5 +39,14 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
 
             return responseCode;
         }
+
+        [FindsBy(How = How.ClassName, Using = "alert.alert-success")]
+        public IWebElement AlertMessage;
+
+       public void CheckConfirmationMessage()
+       {
+           AssertElementPresent(AlertMessage, "Your device was successfully registered");
+       }
+
     }
 }
