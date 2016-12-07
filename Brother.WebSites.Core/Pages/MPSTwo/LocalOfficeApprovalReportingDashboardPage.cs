@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -11,7 +12,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 {
     public class LocalOfficeApprovalReportingDashboardPage : BasePage
     {
-        
+        private const string DownloadDirectory = @"C:\DataTest";
         
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/local-office/reports\"]")]
         public IWebElement ReportTabElement;
@@ -71,30 +72,50 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             IsReportingPageDisplayed();
             BasicDataReportElement.Click();
+            IsReportDownloaded();
+            PurgeDirectoryForAnyExtension(DownloadDirectory, "xlsx");
         }
 
         private void DownloadDealerReport()
         {
             IsReportingPageDisplayed();
             DealerReportElement.Click();
+            IsReportDownloaded();
+            PurgeDirectoryForAnyExtension(DownloadDirectory, "xlsx");
         }
+
+        private void IsReportDownloaded()
+        {
+            WebDriver.Wait(DurationType.Second, 10);
+           var downloaded = IsFileDownloaded(DownloadDirectory, "xlsx");
+
+            TestCheck.AssertIsEqual(true, downloaded, "The request report was not downloaded");
+        }
+
+        
 
         private void DownloadSupplierOrdersReport()
         {
             IsReportingPageDisplayed();
             SupplierOrdersReportElement.Click();
+            IsReportDownloaded();
+            PurgeDirectoryForAnyExtension(DownloadDirectory, "xlsx");
         }
 
         private void DownloadPrintVolumeReport()
         {
             IsReportingPageDisplayed();
             PrintVolumeReportElement.Click();
+            IsReportDownloaded();
+            PurgeDirectoryForAnyExtension(DownloadDirectory, "xlsx");
         }
 
         private void DownloadServiceRequestReport()
         {
             IsReportingPageDisplayed();
             ServiceRequestReportElement.Click();
+            IsReportDownloaded();
+            PurgeDirectoryForAnyExtension(DownloadDirectory, "xlsx");
         }
 
     }
