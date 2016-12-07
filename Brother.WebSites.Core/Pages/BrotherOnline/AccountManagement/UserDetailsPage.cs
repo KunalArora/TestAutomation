@@ -52,7 +52,7 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
         [FindsBy(How = How.Name, Using = "Surname")]
         public IWebElement LastNameInputField;
 
-        [FindsBy(How = How.XPath, Using = "html/body/div[2]/div/div[1]/section/form/div/div/div[2]/div/div")] 
+        [FindsBy(How = How.CssSelector, Using = ".checkbox label[for='Terms']")] 
         public IWebElement AcceptCheckbox;
 
         [FindsBy(How = How.Name, Using = "submit")]
@@ -83,7 +83,7 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
 
         public void ClickAcceptCheckbox()
         {
-            AcceptCheckbox.Click();
+            ((IJavaScriptExecutor)Driver).ExecuteScript("arguments[0].click();", AcceptCheckbox);
         }
 
         public ConfirmationPage ClickCompleteRegistrationButton()

@@ -144,8 +144,6 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
        [Then(@"I tick on terms and conditions checkbox")]
        public void ThenITickOnTermsAndConditionsCheckbox()
        {
-           //Thread.Sleep(TimeSpan.FromSeconds(3));
-           //var temp = CurrentPage.As<UserDetailsPage>().GetElementByCssSelector("#Terms");
            CurrentPage.As<UserDetailsPage>().ClickAcceptCheckbox();
        }
        [Then(@"I tick on terms and conditions checkbox on Address details Page")]
