@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
@@ -27,19 +28,20 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
         [FindsBy(How = How.CssSelector, Using = "a#content_0_checkoutcontent_0_ChangeaddressLB_ChangeInvoiceaddressLB_AddressRepeater_useAsDeliveryAddressButton_0.button-blue")]
         public IWebElement BillToThisAddressButton;
 
-        [FindsBy(How = How.XPath, Using = ".//*[@id='content_0_checkoutcontent_0_UserCreditCard']/a")] 
+        [FindsBy(How = How.CssSelector, Using = "#content_0_checkoutcontent_0_UserCreditCard .button-blue")] 
         public IWebElement AddNewDebitorCreditCardButton;
 
-         [FindsBy(How = How.XPath, Using = ".//*[@id='content_0_checkoutcontent_0_ChangeaddressLB_ChangeInvoiceaddressLB_AddressRepeater_useAsDeliveryAddressButton_0']")]
+         [FindsBy(How = How.CssSelector, Using = "#content_0_checkoutcontent_0_ChangeaddressLB_ChangeInvoiceaddressLB_AddressRepeater_useAsDeliveryAddressButton_0")]
          public IWebElement PaymentDetailsPageCardAddressButton;
 
          [FindsBy(How = How.CssSelector, Using = ".button-grey")]
          public IWebElement OrderConfirmationPageMyAccountButton;       
-      
-        public BillingDetailsPage AddNewDebitorCreditCardButtonClick()
+
+        //public BillingDetailsPage AddNewDebitorCreditCardButtonClick()
+        public void AddNewDebitorCreditCardButtonClick()
         {
+            ScrollTo(AddNewDebitorCreditCardButton);
             AddNewDebitorCreditCardButton.Click();
-            return GetInstance<BillingDetailsPage>(Driver);
         }
 
         public OrderSummaryPage PaymentDetailsPageCardAddressButtonClick()

@@ -95,6 +95,7 @@
     <Compile Include="Test Steps\BrotherMainSite\HomePageNavigation\ProductsMenuSteps.cs" />
     <Compile Include="Test Steps\BrotherMainSite\PrinterSearch\PrinterSearchSteps.cs" />
     <Compile Include="Test Steps\BrotherMainSite\PublishedPages\PublishedPagesSteps.cs" />
+    <Compile Include="Test Steps\BrotherMainSite\Purchasing\ProductPurchaseValidationSteps.cs" />
     <Compile Include="Test Steps\Global\GlobalSteps.cs" />
     <Compile Include="Test Steps\OmniJoin\FreeTrial\FreeTrialSteps.cs" />
     <Compile Include="Test Steps\OmniJoin\Plans\ManagePlanSteps.cs" />

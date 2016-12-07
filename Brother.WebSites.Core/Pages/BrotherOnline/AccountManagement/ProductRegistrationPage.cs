@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Brother.Online.TestSpecs._80.Test_Steps;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
+using Brother.WebSites.Core.ProductService;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
@@ -37,12 +39,23 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         [FindsBy(How = How.CssSelector, Using = "#input-purchase-date")]
         public IWebElement PurchaseDateTextBox;
 
+        [FindsBy(How = How.CssSelector, Using = "#input-promo-code")]
+        public IWebElement PromoCodeTextBox;
+
         [FindsBy(How = How.CssSelector, Using = "#btn-apply-purchase-date")]
         public IWebElement ApplyPurchaseDateButton;
+
+        [FindsBy(How = How.CssSelector, Using = "#btn-apply-promo-code")]
+        public IWebElement AddCodeButton;
 
         [FindsBy(How = How.Id, Using = "btn-continue-to-next-step")]
         public IWebElement ContinueButton;
 
+        [FindsBy(How = How.CssSelector, Using = "#link-not-your-product")]
+        public IWebElement RetrieveDataProductId;
+
+
+        
         public void GetProductRegistrationPage(string url)
         {
             WebDriver.SetPageLoadTimeout(TimeSpan.FromSeconds(60));
@@ -86,17 +99,68 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             PurchaseDateTextBox.SendKeys(purchasedate);
         }
 
+        public void EnterPromoCode(string promocode)
+        {
+            PromoCodeTextBox.SendKeys(promocode);
+        }
+
         public void ClickApplyButton()
         {
             ApplyPurchaseDateButton.Click();
-
+            WaitForElementToBeClickableById("btn-continue-to-next-step", 10);
+           
         }
 
+        public void ClickAddCodeButton()
+        {
+            AddCodeButton.Click();
+        }
+        
         public UserDetailsPage ClickContinueButton()
         {
             ContinueButton.Click();
-            return GetInstance<UserDetailsPage>(Driver); 
+             return GetInstance<UserDetailsPage>(Driver); 
         }
+
+        public AddressDetailsPage ClickContinueButtonAdPage()
+        {
+            ContinueButton.Click();
+            return GetInstance<AddressDetailsPage>(Driver);
+        }
+
+        public MyPrintersAndDevicesPage ClickContinueButtonMyPrinterandDevicePage()
+        {
+            var pId = SpecFlow.GetContext("ProductId");
+            ScrollTo(Driver, ContinueButton);
+            ContinueButton.Click();
+            RecycleSerialNumber(pId);
+            return GetInstance<MyPrintersAndDevicesPage>(Driver); 
+        }
+
+        private static void RecycleSerialNumber(string productId)
+        {
+            Guid prodId;
+            if (!Guid.TryParse(productId, out prodId))
+            {
+                return;
+            }
+            System.Threading.Thread.Sleep(5000);
+            //serialNumber = "A2N125652";//"U1T004750";
+            try
+            {
+
+                using (var productServiceClient = new ProductServiceClient())
+                {
+                    productServiceClient.DeregisterProduct(prodId);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+        }
+
 
         public void EnterProductSerialCode(string serialCode)
         {
@@ -119,6 +183,13 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
                 throw new Exception("Unable to locate TextBox on page");
             }
             AssertElementPresent(SerialNumberTextBox, "Serial Code Text Box");
+        }
+
+        public void RetreiveDataProductId()
+        {
+            System.Threading.Thread.Sleep(2000);
+            var text = RetrieveDataProductId.GetAttribute("data-product-id");
+            SpecFlow.SetContext("ProductId", text);
         }
 
     }

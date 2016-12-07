@@ -71,14 +71,14 @@ namespace Brother.Tests.Specs._80.TestSpecification.CMSSitecore.SiteAccess
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verify that a user is able to login to the CMS system")]
-        [NUnit.Framework.CategoryAttribute("SMOKE")]
+        [NUnit.Framework.CategoryAttribute("SMOKE_CMSWebsiteAccess")]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "/sitecore/login", "Automation", "Password1", null)]
         [NUnit.Framework.TestCaseAttribute("France", "/sitecore/login", "Automation", "Password1", null)]
         [NUnit.Framework.TestCaseAttribute("Italy", "/sitecore/login", "Automation", "Password1", null)]
         public virtual void VerifyThatAUserIsAbleToLoginToTheCMSSystem(string country, string siteUrl, string userName, string password, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "SMOKE"};
+                    "SMOKE_CMSWebsiteAccess"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));

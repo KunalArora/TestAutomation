@@ -20,7 +20,7 @@ namespace Brother.Tests.Specs._80.TestSpecification.BrotherMainSite.ProductPurch
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("ProductPurchaseValidation")]
-    [NUnit.Framework.IgnoreAttribute()]
+    [NUnit.Framework.CategoryAttribute("TEST")]
     public partial class ProductPurchaseValidationFeature
     {
         
@@ -35,7 +35,7 @@ namespace Brother.Tests.Specs._80.TestSpecification.BrotherMainSite.ProductPurch
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "ProductPurchaseValidation", "In order to poceed through the checkout process\r\nAs a brother online user\r\nI want" +
                     " to be able to purchase a product through online", ProgrammingLanguage.CSharp, new string[] {
-                        "ignore"});
+                        "TEST"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,21 +70,68 @@ namespace Brother.Tests.Specs._80.TestSpecification.BrotherMainSite.ProductPurch
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verify that a user can successfully purchase an item through brother online using" +
             " a credit card")]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "LC1000BK", null)]
-        public virtual void VerifyThatAUserCanSuccessfullyPurchaseAnItemThroughBrotherOnlineUsingACreditCard(string country, string itemCode, string[] exampleTags)
+        [NUnit.Framework.CategoryAttribute("SMOKE_ProductPurchaseValidation")]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "LC1000BK", "testdv2uk@guerrillamail.com", "Brother123", "4259917979151326", "12", "2018", "123", null)]
+        public virtual void VerifyThatAUserCanSuccessfullyPurchaseAnItemThroughBrotherOnlineUsingACreditCard(string country, string itemCode, string emailAddress, string password, string creditCardNumber, string expiryMonth, string expiryYear, string cVV, string[] exampleTags)
         {
+            string[] @__tags = new string[] {
+                    "SMOKE_ProductPurchaseValidation"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify that a user can successfully purchase an item through brother online using" +
-                    " a credit card", exampleTags);
-#line 9
+                    " a credit card", @__tags);
+#line 8
 this.ScenarioSetup(scenarioInfo);
-#line 10
+#line 9
  testRunner.Given(string.Format("I have navigated to the \"{0}\" Brother Main Site", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 11
+#line 10
  testRunner.And("I have clicked on Supplies option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 11
+ testRunner.When(string.Format("I select an InkJet cartridge by searching with a valid supplies code \"{0}\"", itemCode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 12
- testRunner.And(string.Format("I select an InkJet cartridge by searching with a valid supplies code \"{0}\"", itemCode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 13
  testRunner.And("I click on Add To Basket button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 13
+ testRunner.And("I click on Go to Basket button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 14
+ testRunner.And("I click Checkout before loging", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 15
+ testRunner.And("I am redirected to the Brother Login/Register page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 16
+ testRunner.And(string.Format("I enter an email address containing \"{0}\"", emailAddress), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 17
+ testRunner.And(string.Format("I enter a valid Password \"{0}\" into the Password field", password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 18
+ testRunner.And("I click on the signin button to checkout purchase orders", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 19
+ testRunner.Then("I should see DeliveryAddress page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 20
+ testRunner.When("I Choose to deliver to the existing address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 21
+ testRunner.Then("I should see the Saved payment details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 22
+ testRunner.When("I click AddANewDebitCard/CreditCard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 24
+ testRunner.When("I click on CardAddress Button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 25
+ testRunner.Then("I should see OrderSummary Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 26
+ testRunner.When("I accept terms and conditions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 27
+ testRunner.And("I click on proceed to payment button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 29
+ testRunner.And(string.Format("I fill in creditCard details \"{0}\"", creditCardNumber), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 30
+ testRunner.And(string.Format("I select a month as \"{0}\"", expiryMonth), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 31
+ testRunner.And(string.Format("I select a year as \"{0}\"", expiryYear), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 32
+ testRunner.And(string.Format("I fill in security number as  \"{0}\"", cVV), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 33
+ testRunner.And("I click send to submit card details to see order confirmation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 34
+ testRunner.Then("I should see the Order Confirmation message along with the order number", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

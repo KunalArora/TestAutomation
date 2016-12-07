@@ -4,7 +4,7 @@ Feature: PublishedPages
 	previously published pages are verified to ensure 
 	a CMS code change has not had an adverse effect	
 
-@SMOKE
+@SMOKE_PublishedPages
 Scenario Outline: Navigate to published page to verify all page components 
 	Given That I navigate to "<Site Url>" in order to validate a published page
 	Then I can verify that the page header is displayed
@@ -53,7 +53,7 @@ Scenarios:
 	 | /qa/testautomationpleaseleave |
 	#| http://main.co.uk.brotherqas.eu/qa/testautomationpleasedonottouch/testautomationpleaseleave |
 
-@SMOKE
+@SMOKE_PublishedPages
 Scenario Outline: Navigate to published page to verify product page - UK
 	Given That I navigate to "<Site Url>" in order to validate a published page
 	Then I can validate the product page title is displayed
@@ -63,7 +63,7 @@ Scenarios:
 	 | /QA/TestAutomationPleaseDoNotTouch/DCPL8400CDN |
 	 #|http://main.co.uk.brotherqas.eu/QA/TestAutomationPleaseDoNotTouch/DCP9020CDW |
 
-@SMOKE
+@SMOKE_PublishedPages
 Scenario Outline: Navigate to published page to verify supplies product page - UK
 	Given That I navigate to "<Site Url>" in order to validate a published page
 	Then I can validate supply description is displayed
@@ -73,7 +73,7 @@ Scenarios:
 	 | /QA/TestAutomationPleaseDoNotTouch/HGe131V5-SuppliesPage |
 	 #| http://main.co.uk.brotherqas.eu/QA/TestAutomationPleaseDoNotTouch/AD18ESUK						  |
 
-@SMOKE
+@SMOKE_PublishedPages
 Scenario Outline: Navigate to published page to verify News landing page - UK
 	Given That I navigate to "<Site Url>" in order to validate a published page
 	Then I can validate article is displayed on the page
@@ -84,7 +84,7 @@ Scenarios:
 	# | http://main.co.uk.brotherqas.eu/QA/TestAutomationPleaseDoNotTouch/News-Landing-Page				|
 
 		
-@SMOKE
+@SMOKE_PublishedPages
 Scenario Outline: Navigate to published page to verify Glossary page - UK
 	Given That I navigate to "<Site Url>" in order to validate a published page
 	Then I can validate glossary section is displayed
@@ -95,7 +95,7 @@ Scenarios:
 	 #| http://main.co.uk.brotherqas.eu/QA/TestAutomationPleaseDoNotTouch/glossary						 |
 
 
-@SMOKE
+@SMOKE_PublishedPages
 Scenario Outline: Navigate to published page to verify Printer Listing page - UK
 	Given That I navigate to "<Site Url>" in order to validate a published page
 	Then I can validate printers filter section is displayed

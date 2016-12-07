@@ -20,7 +20,8 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.Basket
             get { return string.Empty; }
         }
 
-        [FindsBy(How = How.CssSelector, Using = ".go-to-checkout")] 
+        //[FindsBy(How = How.CssSelector, Using = ".go-to-checkout")]
+        [FindsBy(How = How.XPath, Using = @"//*[@id='basket-page']/div/div/div[2]/div[2]/div/button")]
         public IWebElement CheckOutButton;
 
         [FindsBy(How = How.CssSelector, Using = "#content_0_ContinueShoppingLink")] public IWebElement

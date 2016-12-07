@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -53,6 +54,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.SuppliesAndAccessories
         public void AddToBasketButtonClick()
         {
             AddToBasketButton.Click();
+            Thread.Sleep(TimeSpan.FromSeconds(4));
         }
     }
 }

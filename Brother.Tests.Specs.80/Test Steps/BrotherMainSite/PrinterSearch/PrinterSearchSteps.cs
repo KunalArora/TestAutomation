@@ -4,6 +4,7 @@ using Brother.WebSites.Core.Pages.BrotherMainSite;
 using Brother.WebSites.Core.Pages.BrotherMainSite.Basket;
 using Brother.WebSites.Core.Pages.BrotherMainSite.SuppliesAndAccessories;
 using Brother.WebSites.Core.Pages.BrotherMainSite.SuppliesAndAccessories.Printers;
+using Brother.WebSites.Core.Pages.BrotherOnline.Account;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs._80.BrotherMainSite.PrinterSearch
@@ -87,18 +88,30 @@ namespace Brother.Tests.Specs._80.BrotherMainSite.PrinterSearch
             CurrentPage.As<SuppliesPage>().AddSupplyCode(supplyCode);
         }
 
-        [Given(@"I select an InkJet cartridge by searching with a valid supplies code ""(.*)""")]
+        [When(@"I select an InkJet cartridge by searching with a valid supplies code ""(.*)""")]
         public void GivenISelectAnInkJetCartridgeBySearchingWithAValidSuppliesCode(string itemCode)
         {
             NextPage = CurrentPage.As<SuppliesPage>().SearchForSuppliesItem(itemCode);
-            InkJetCartridgePage.SetExtraPageTitle = itemCode;
         }
 
-        [Given(@"I click on Add To Basket button")]
+        [When(@"I click on Add To Basket button")]
         public void GivenIClickOnAddToBasketButton()
         {
             //TestCheck.AssertIsEqual(0, BasketModule.GetBasketItemsCount(CurrentDriver), "Invalid Basket item count");
             CurrentPage.As<InkJetCartridgePage>().AddToBasketButtonClick();
         }
+
+        [When(@"I click on Go to Basket button")]
+        public void GivenIClickOnGoToBasketButton()
+        {
+            NextPage = BasketModule.GoToBasketButtonClick(CurrentDriver);
+        }
+
+        [When(@"I click Checkout before loging")]
+        public void WhenIClickCheckoutBeforeLoging()
+        {
+            NextPage = CurrentPage.As<BasketPage>().CheckOutButtonClickBeforeLogin();
+        }
+
     }
 }

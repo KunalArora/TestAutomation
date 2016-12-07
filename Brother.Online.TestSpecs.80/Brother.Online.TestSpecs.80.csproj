@@ -38,6 +38,8 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
@@ -64,11 +66,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ExistingUser.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Test Specification\OrderDetails.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>OrderDetails.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Specification\ProductRegistration.feature.cs">
       <AutoGen>True</AutoGen>
@@ -106,10 +103,6 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ExistingUser.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specification\OrderDetails.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>OrderDetails.feature.cs</LastGenOutput>
-    </None>
     <None Include="Test Specification\ProductRegistration.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ProductRegistration.feature.cs</LastGenOutput>
@@ -119,7 +112,6 @@
       <LastGenOutput>SocialLogin.feature.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Brother.Tests.Selenium\Brother.Tests.Selenium.Lib.csproj">
       <Project>{165eba24-2c36-4274-b0ce-19b899de96cc}</Project>

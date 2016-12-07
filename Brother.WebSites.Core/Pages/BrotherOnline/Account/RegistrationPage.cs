@@ -5,6 +5,7 @@ using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherMainSite.Basket;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
+using Brother.WebSites.Core.Pages.BrotherOnline.Checkout;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -252,7 +253,14 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             return GetInstance<WelcomeBackPage>(Driver);
         }
 
-       
+        // Clicks the Sign In button and returns to Delivery Details Page
+        public DeliveryDetailsPage ClickSignInToPurchaseItems()
+        {
+            ScrollTo(SignInButton);
+            SignInButton.Click();
+            return GetInstance<DeliveryDetailsPage>(Driver);
+        }
+
         public DealerDashBoardPage SignInButtonToDealerDashboard()
         {
             ScrollTo(SignInButton);

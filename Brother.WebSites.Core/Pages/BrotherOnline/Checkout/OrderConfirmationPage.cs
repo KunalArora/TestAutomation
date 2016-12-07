@@ -31,6 +31,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
         [FindsBy(How = How.CssSelector, Using = ".purchase-confirmed")]
         public IWebElement PurchaseInfo;
 
+        [FindsBy(How = How.CssSelector, Using = "h1.blue")]
+        public IWebElement OrderConfirmationMessage;
+
         [FindsBy(How = How.CssSelector, Using = ".box-out.purchase-confirmed h3")]
         public IWebElement OrderConfirmationNumber;
 
@@ -93,6 +96,11 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
             return PurchaseInfo.Text;
         }
 
+        public string GetOrderConfirmationMessage()
+        {
+            return OrderConfirmationMessage.Text;
+        }
+
         public string GetOrderConfirmationNumber()
         {
             // remove the prefix from the Order Number
@@ -101,6 +109,26 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
         public bool ValidateSapOrderNumber(string orderNumber)
         {
             return Utils.ConfirmSapOrder(orderNumber);
+        }
+
+        public void IsOrderConfirmationMessageDisplayed()
+        {
+            WaitForElementToExistByCssSelector("h1.blue");
+            if (OrderConfirmationMessage == null)
+            {
+                throw new NullReferenceException("Unable to locate Order Confirmation Message component");
+            }
+            AssertElementPresent(OrderConfirmationMessage, "Features Carousel Tile", 30);
+        }
+
+        public void IsOrderConfirmationNumberDisplayed()
+        {
+            WaitForElementToExistByCssSelector(".box-out.purchase-confirmed h3");
+            if (OrderConfirmationNumber == null)
+            {
+                throw new NullReferenceException("Unable to locate Order Number component");
+            }
+            AssertElementPresent(OrderConfirmationNumber, "Features Carousel Tile", 30);
         }
     }
 }

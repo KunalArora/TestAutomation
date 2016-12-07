@@ -200,6 +200,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         {
             //MoveToElement(SuppliesLink);
             SuppliesLink.Click();
+            WebDriver.Wait(DurationType.Second, 3);
             return GetInstance<SuppliesPage>(Driver);
         }
 

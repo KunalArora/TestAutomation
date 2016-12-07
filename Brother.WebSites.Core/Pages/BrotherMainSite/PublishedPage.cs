@@ -282,7 +282,13 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public void IsSearchIconDisplayed()
         {
-            WaitForElementToExistByCssSelector("body > header > div > div > a.common-global-header--toggle.active");
+            //WaitForElementToExistByCssSelector("body > header > div > div > a.common-global-header--toggle.active");
+            IList<IWebElement> searchIcons = GetElementsByCssSelector("body > header > div > div > a.common-global-header--toggle");
+            if (searchIcons.Count == 0)
+            {
+                throw new NullReferenceException("Unable to locate search icon");
+            }
+            searchIcons[0].Click();
             if (SearchIcon == null)
             {
                 throw new NullReferenceException("Unable to locate search icon");

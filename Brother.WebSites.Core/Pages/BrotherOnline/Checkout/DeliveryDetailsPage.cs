@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
@@ -56,6 +57,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
         [FindsBy(How = How.XPath, Using = ".//*[@id='content_0_checkoutcontent_0_billingedit_btnDeliveryContinue']")]
         public IWebElement DeliveryPageSaveAndUseAddressButton;
 
+        [FindsBy(How = How.CssSelector, Using = "#content_0_checkoutcontent_0_billingreadonly_ReadOnlyAddresses_btndelivertothis_0")]
+        public IWebElement DeliverToThisAddressButton;
+
         [FindsBy(How = How.XPath, Using = ".//*[@id='PhoneNumberText']")]
         public IWebElement DeliveryPagePhoneNumberTextBox;
 
@@ -81,6 +85,10 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
             TestCheck.AssertIsEqual(true,DeliveryPageSaveAndUseAddressButton.Displayed," Is Delivery page SaveAndUseAddressButton Displayed");
         }
 
+        public void IsDeliveryPageDeliverToThisAddressButtonDisplayed()
+        {
+            TestCheck.AssertIsEqual(true, DeliverToThisAddressButton.Displayed, " Is Delivery page SaveAndUseAddressButton Displayed");
+        }
 
         public SavedPaymentDetailsPage DeliveryPageSaveAndUseAddressButtonClick()
         {
@@ -89,6 +97,13 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
             return GetInstance<SavedPaymentDetailsPage>(Driver);
         }
 
+        public SavedPaymentDetailsPage DeliveryPageDeliverToThisAddressButtonClick()
+        {
+            ScrollTo(DeliverToThisAddressButton);
+            DeliverToThisAddressButton.Click();
+            Thread.Sleep(TimeSpan.FromSeconds(2));
+            return GetInstance<SavedPaymentDetailsPage>(Driver);
+        }
      
         public SavedPaymentDetailsPage SaveAndUseAddressButtonClick()
         {
