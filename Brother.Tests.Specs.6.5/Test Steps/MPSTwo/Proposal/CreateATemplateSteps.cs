@@ -1375,7 +1375,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             WhenIFillProposalDescriptionForContractType("Leasing & Service");
             var termAndTypeStepInstance = new DealerProposalsCreateTermAndTypeStep();
             termAndTypeStepInstance.WhenIEnterUsageTypeOfAndContractTermsLeasingAndBillingOnTermAndTypeDetails
-                (usageType, "3 Jahre", "Monatlich", "Halbjährlich");
+                (usageType, "4 Jahre", "Monatlich", "Halbjährlich");
 
             var instance = new DealerProposalsCreateProductsStep();
             instance.WhenIDisplayDeviceScreen("HL-L8350CDW");
@@ -1701,7 +1701,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             WhenIFillProposalDescriptionForContractType("Easy Print Pro & Service");
             
             var stepInstance = new DealerProposalsCreateTermAndTypeStep();
-            stepInstance.EditTermAndTypeTabForPurchaseOffer(usageType, "3 Jahre", "Halbjährlich");
+            stepInstance.EditTermAndTypeTabForPurchaseOffer(usageType, "4 Jahre", "Halbjährlich");
 
             var instance = new DealerProposalsCreateProductsStep();
             instance.WhenIDisplayDeviceScreen("HL-L8350CDW");

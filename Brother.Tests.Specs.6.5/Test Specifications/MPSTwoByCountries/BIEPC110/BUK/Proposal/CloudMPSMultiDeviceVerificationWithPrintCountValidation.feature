@@ -11,13 +11,12 @@ Scenario Outline: Dealer can create a proposal with multiple devices
 	When I fill Proposal Description for "<ContractType>" Contract type
 	And I choose an existing contact from the list of available contacts
 	And I Enter "<UsageType>" usage type "<Contract>" contract length and "<Billing>" billing on Term and Type details  
+	And I select service pack "<PaymentMethod>" payment method
 	And I "<PriceHardware>" Price Hardware radio button
 	And enter a quantity of "<PrinterQty>" for accessory for "<Printer1>"
 	And enter a quantity of "<PrinterQty>" for accessory for "<Printer2>"
 	And I redisplay "<Printer1>" device screen
 	And I confirm the values entered for the device
-	And Service Pack payment method is displayed
-	And I choose to pay Service Packs "<PaymentMethod>"
 	And I enter click price volume of "<ClickVolume>" and "<ColourVolume>"
 	Then hardware unit price is correctly calculated
 	And hardware total cost is correctly calculated for "<PrinterQty>"

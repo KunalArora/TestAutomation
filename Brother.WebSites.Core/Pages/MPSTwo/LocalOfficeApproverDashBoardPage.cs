@@ -27,6 +27,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IList<IWebElement> MultipleLanguagesElement;
         [FindsBy(How = How.CssSelector, Using = "a[href='/mps/local-office/approval'] .media-body .media-heading")]
         public IWebElement SwitchedLanguageIdentifierElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/local-office/reports\"] .media-heading")]
+        public IWebElement LocalApprovalReportingElement;
+        
 
 
 
@@ -46,6 +49,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ApprovalTabElement.Click();
 
             return GetInstance<LocalOfficeApproverApprovalPage>(Driver);
+        }
+
+        public LocalOfficeApprovalReportingDashboardPage NavigateToLocalOfficeApproverReportingPage()
+        {
+            IsApprovalLinkAvailable();
+            LocalApprovalReportingElement.Click();
+
+            return GetInstance<LocalOfficeApprovalReportingDashboardPage>(Driver);
         }
 
         public void SwitchBetweenMultipleLanguages()

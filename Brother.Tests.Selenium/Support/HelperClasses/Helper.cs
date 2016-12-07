@@ -619,6 +619,30 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             MsgOutput(string.Format("Successfully Deleted {0} contract(s)", snapShotCount));
         }
 
+        public static bool IsFileDownloaded(string path, string extension)
+        {
+            var fileExist = false;
+            var dirInfo = new DirectoryInfo(path);
+
+            var extensionString = String.Format("*.{0}", extension);
+
+            var fileCount = new List<String>();
+            var fileContainer = dirInfo.GetFiles(extensionString, SearchOption.TopDirectoryOnly);
+
+            foreach (var file in fileContainer)
+            {
+                fileCount.Add(file.ToString());
+            }
+
+            if (fileCount.Count > 0)
+            {
+                fileExist = true;
+            }
+            
+            return fileExist;
+
+        }
+
         public static void TakeSnapshot(string additionalInformation)
         {
             if (!Directory.Exists(SnapShotDirectory()))

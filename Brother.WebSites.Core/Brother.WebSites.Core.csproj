@@ -150,6 +150,7 @@
     <Compile Include="Pages\MPSTwo\CustomerPortalDashboardPage.cs" />
     <Compile Include="Pages\MPSTwo\CustomerPortalPrintCountPage.cs" />
     <Compile Include="Pages\MPSTwo\CustomerPortalServiceRequestsPage.cs" />
+    <Compile Include="Pages\MPSTwo\DataQueryPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerApprovedProposalPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerClosedProposalPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerClosedProposalSummaryPage.cs" />
@@ -179,6 +180,7 @@
     <Compile Include="Pages\MPSTwo\DealerSetInstallationTypePage.cs" />
     <Compile Include="Pages\MPSTwo\InstallerDeviceInstallationPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeAdminLeasingBanks.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeApprovalReportingDashboardPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeApproverApprovalPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeApproverContractsSummaryPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeApproverContractsPage.cs" />

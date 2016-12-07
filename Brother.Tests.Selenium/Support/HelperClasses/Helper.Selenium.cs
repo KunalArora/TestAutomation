@@ -669,6 +669,13 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         }
 
 
+        public static int NumberOfSelectOption(IWebElement element)
+        {
+            var numberOfOption = new SelectElement(element).Options;
+
+            return numberOfOption.Count;
+        }
+
         public static void SelectFromDropdownWithPartialText(IWebDriver driver, string selBoxId, string partialText)
         {
             try
