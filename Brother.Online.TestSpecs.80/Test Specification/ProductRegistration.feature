@@ -1,4 +1,4 @@
-﻿@TEST
+﻿@SMOKE @TEST
 Feature: ProductRegistration
 	In order to register a product
 	End user will login to existing account or create a new account
@@ -12,7 +12,7 @@ Scenarios:
 | Country        |
 | United Kingdom |
 
-@SMOKE
+@SMOKE @TEST
 Scenario Outline: New Customer wants to register product with their serial numbers and purchase date
 	Given I navigate to "<Country>" Brother Online landing page
 	And I browse to the "<Site Url>" product registration page
@@ -25,7 +25,6 @@ Scenario Outline: New Customer wants to register product with their serial numbe
 	Then I can register my Email on user details page 
 	And I enter "<FirstName>"  and "<LastName>" on  user details page
 	And I tick on terms and conditions checkbox
-	#Then I can complete my product registration by clicking on complete registration button
 	Then I can complete my product registration by clicking on complete registration button and I can deregister the "<SerialNumber>"
 
 
@@ -54,7 +53,7 @@ Scenarios:
 | United Kingdom | /qa/eubol78/serial-number | 12/12/2013   | testemailidinputfield@mailinator.com | Test      | Test     |
 
 
-@SMOKE
+@SMOKE @TEST
 Scenario Outline: New Customer wants to register product with their serial numbers, purchase date and promo code
 	Given I navigate to "<Country>" Brother Online landing page
 	And I browse to the "<Site Url>" product registration page
@@ -81,7 +80,7 @@ Scenarios:
 | United Kingdom | /qa/eubol78/serial-number | U1T004768	| 12/12/2013   | warrantyup | testemailidinputfield@mailinator.com | Test      | Test     | M345JE   |
 
 
-@SMOKE
+@SMOKE @TEST
 Scenario Outline: Existing Customer wants to register product with their serial numbers, purchase date and promo code and also bank details entered for the user
     Given I navigate to "<Country>" Brother Online landing page
 	And I browse to the "<Site Url>" for existing user signin page
@@ -111,7 +110,7 @@ Scenarios:
 	| United Kingdom | /qa/signintest | 123orderplacedukaccount@mailinator.com | Hello123       | U1T004720    | cash50    | 12/12/2013   | Test                | 400699    | 54116897       | M345JE   |
 
 
-@SMOKE
+@SMOKE @TEST
 Scenario Outline: Existing Customer wants to register product with their serial numbers, purchase date
     Given I navigate to "<Country>" Brother Online landing page
 	And I browse to the "<Site Url>" for existing user signin page

@@ -20,7 +20,7 @@ namespace Brother.Online.TestSpecs._80.TestSpecification
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("Existing User Forgotten Password")]
-    [NUnit.Framework.CategoryAttribute("TEST")]
+    [NUnit.Framework.IgnoreAttribute()]
     public partial class ExistingUserForgottenPasswordFeature
     {
         
@@ -35,7 +35,7 @@ namespace Brother.Online.TestSpecs._80.TestSpecification
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Existing User Forgotten Password", "In order to change maintain by Brother Online Account\r\nAs a customer\r\nI need to b" +
                     "e able to have account management options", ProgrammingLanguage.CSharp, new string[] {
-                        "TEST"});
+                        "ignore"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,14 +70,12 @@ namespace Brother.Online.TestSpecs._80.TestSpecification
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Check Forget Password with various invalid scenarios options throws an error for " +
             "existing user - Validation Checks")]
-        [NUnit.Framework.CategoryAttribute("SMOKE")]
-        [NUnit.Framework.CategoryAttribute("TEST")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/signintest", "InvalidEmailContaining aspace@mailinator.com", null)]
         public virtual void CheckForgetPasswordWithVariousInvalidScenariosOptionsThrowsAnErrorForExistingUser_ValidationChecks(string country, string siteUrl, string invalidEmailAddress, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "SMOKE",
-                    "TEST"};
+                    "ignore"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -104,14 +102,12 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Check Forgotten Password email recieved to the user")]
-        [NUnit.Framework.CategoryAttribute("SMOKE")]
-        [NUnit.Framework.CategoryAttribute("TEST")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/signintest", "123orderplacedukaccount@guerrillamail.com", null)]
         public virtual void CheckForgottenPasswordEmailRecievedToTheUser(string country, string siteUrl, string validEmailAddress, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "SMOKE",
-                    "TEST"};
+                    "ignore"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
