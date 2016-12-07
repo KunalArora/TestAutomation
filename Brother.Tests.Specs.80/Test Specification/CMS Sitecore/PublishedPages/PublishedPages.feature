@@ -4,7 +4,7 @@ Feature: PublishedPages
 	previously published pages are verified to ensure 
 	a CMS code change has not had an adverse effect	
 
-@SMOKE
+@SMOKE-PublishedPages
 Scenario Outline: Navigate to published page to verify all page components 
 	Given That I navigate to "<Site Url>" in order to validate a published page
 	Then I can verify that the page header is displayed
@@ -84,7 +84,7 @@ Scenarios:
 	# | http://main.co.uk.brotherqas.eu/QA/TestAutomationPleaseDoNotTouch/News-Landing-Page				|
 
 		
-@SMOKE
+@SMOKE-PublishedPages
 Scenario Outline: Navigate to published page to verify Glossary page - UK
 	Given That I navigate to "<Site Url>" in order to validate a published page
 	Then I can validate glossary section is displayed
@@ -95,7 +95,7 @@ Scenarios:
 	 #| http://main.co.uk.brotherqas.eu/QA/TestAutomationPleaseDoNotTouch/glossary						 |
 
 
-@SMOKE
+@SMOKE-PublishedPages
 Scenario Outline: Navigate to published page to verify Printer Listing page - UK
 	Given That I navigate to "<Site Url>" in order to validate a published page
 	Then I can validate printers filter section is displayed
