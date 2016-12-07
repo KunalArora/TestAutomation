@@ -70,12 +70,12 @@ namespace Brother.Tests.Specs._80.TestSpecification.BrotherMainSite.ProductPurch
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verify that a user can successfully purchase an item through brother online using" +
             " a credit card")]
-        [NUnit.Framework.CategoryAttribute("SMOKE-ProductPurchaseValidation")]
+        [NUnit.Framework.CategoryAttribute("SMOKE")]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "LC1000BK", "testdv2uk@guerrillamail.com", "Brother123", "4259917979151326", "12", "2018", "123", null)]
         public virtual void VerifyThatAUserCanSuccessfullyPurchaseAnItemThroughBrotherOnlineUsingACreditCard(string country, string itemCode, string emailAddress, string password, string creditCardNumber, string expiryMonth, string expiryYear, string cVV, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "SMOKE-ProductPurchaseValidation"};
+                    "SMOKE"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
