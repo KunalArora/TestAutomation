@@ -60,6 +60,25 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<DealerProposalsCreateTermAndTypePage>().SelectPayPerClickBillingCycle(billing);
         }
 
+        [Given(@"I select service pack ""(.*)"" payment method")]
+        [Then(@"I select service pack ""(.*)"" payment method")]
+        [When(@"I select service pack ""(.*)"" payment method")]
+        public void WhenISelectServicePackPaymentMethod(string pay)
+        {
+            CurrentPage.As<DealerProposalsCreateTermAndTypePage>().PayServicePackMethod(pay);
+        }
+
+        [Given(@"the right payment type is displayed as ""(.*)""")]
+        [When(@"the right payment type is displayed as ""(.*)""")]
+        [Then(@"the right payment type is displayed as ""(.*)""")]
+        public void ThenTheRightPaymentTypeIsDisplayedAs(string pay)
+        {
+            CurrentPage.As<DealerProposalsCreateTermAndTypePage>().IsTheRightPaymentMethodSelected(pay);
+            CurrentPage.As<DealerProposalsCreateTermAndTypePage>().HowManyServicePackPaymentIsDisplayed(1);
+        }
+
+
+
         private void WhenIEnterContractTermsLeasingAndBillingOnTermAndTypeDetails(string contract, string leasing,
     string billing)
         {

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -37,6 +37,65 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement NextButton;
         [FindsBy(How = How.Id, Using = "content_1_ComponentIntroductionAlert")]
         public IWebElement TermAndTypeScreenTextElement;
+        [FindsBy(How = How.Id, Using = "content_1_InputServicePaymentOption_Input")]
+        public IWebElement PaymentMethodElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_InputServicePaymentOption_Input [selected=\"selected\"]")]
+        public IWebElement SelectedPaymentMethodElement;
+
+
+        public void IsTheRightPaymentMethodSelected(string pay)
+        {
+            var text = SelectedPaymentMethodElement.Text;
+            TestCheck.AssertTextContains(text, pay);
+        }
+
+        public void HowManyServicePackPaymentIsDisplayed(int number)
+        {
+            TestCheck.AssertIsEqual(number, NumberOfSelectOption(PaymentMethodElement), "The correct number of select option is not displayed"); 
+        }
+
+        public void PayServicePackMethod(string option)
+        {
+                var paymentMethod = "";
+            
+                if (IsSpainSystem() || IsBelgiumSystem() || IsPolandSystem() || IsIrelandSystem() || IsNetherlandSystem()) return;
+                if (
+                        option.Equals("Pay upfront") 
+                        || option.Equals("im Voraus bezahlen") 
+                        || option.Equals("Betale på forskud")
+                        || option.Equals("Paiement au démarrage du contrat") 
+                        || option.Equals("Pagamento anticipato") 
+                        || option.Equals("Förskott")
+                        || option.Equals("Betaling bij aanvang van het contract") 
+                        || option.Equals("Płatność z góry")
+                        || option.Equals("Maksu etukäteen")
+                        || option.Equals("På forskudd")
+                    
+                    )
+                {
+                    paymentMethod = "Pay upfront";
+                }
+                else if (
+                            option.Equals("Included in Click Price")
+                            || option.Equals("über den Seitenpreis zahlen") 
+                            || option.Equals("Inkluderet i klikpris")
+                            || option.Equals("Inclus dans le coût à la page") 
+                            || option.Equals("Incluso nel click") 
+                            || option.Equals("Per utskrift")
+                            || option.Equals("Inbegrepen in de clickprijs") 
+                            || option.Equals("Inclus dans le prix click") 
+                            || option.Equals("Wliczyć w cenę za wydruk strony")
+                            || option.Equals("Über den Seitenpreis zahlen")
+                            || option.Equals("Sisältyy klikkihintaan")
+                            || option.Equals("I klikk")
+                    )
+                {
+                    paymentMethod = "Included in Click Price";
+                }
+
+                SelectFromDropdown(PaymentMethodElement, paymentMethod);
+         }
+            
 
         public void IsTermAndTypeTextDisplayed()
         {
