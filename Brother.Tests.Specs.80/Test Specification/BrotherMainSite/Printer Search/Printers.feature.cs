@@ -71,12 +71,12 @@ namespace Brother.Tests.Specs._80.TestSpecification.BrotherMainSite.PrinterSearc
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("View the list of available Laser Printers on Brother Main sites")]
-        [NUnit.Framework.CategoryAttribute("SMOKE")]
+        [NUnit.Framework.CategoryAttribute("SMOKE-ProductListings")]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "printers/all-Printers", null)]
         public virtual void ViewTheListOfAvailableLaserPrintersOnBrotherMainSites(string country, string site, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "SMOKE"};
+                    "SMOKE-ProductListings"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));

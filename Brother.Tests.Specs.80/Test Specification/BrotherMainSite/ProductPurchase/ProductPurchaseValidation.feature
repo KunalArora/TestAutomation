@@ -4,7 +4,7 @@ Feature: ProductPurchaseValidation
 	As a brother online user
 	I want to be able to purchase a product through online
 
-@SMOKE
+@SMOKE-ProductPurchaseValidation
 Scenario Outline: Verify that a user can successfully purchase an item through brother online using a credit card
 	Given I have navigated to the "<Country>" Brother Main Site
 	And I have clicked on Supplies option
