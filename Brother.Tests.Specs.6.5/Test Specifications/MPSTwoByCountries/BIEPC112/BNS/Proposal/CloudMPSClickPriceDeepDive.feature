@@ -1,4 +1,4 @@
-﻿@MPS @TEST @UAT @BIEPC112
+﻿@ignore @MPS @TEST @UAT @BIEPC112
 Feature: CloudMPSSwedishClickPriceDeepDive
 	In order to create different variety of click price
 	As a dealer 
