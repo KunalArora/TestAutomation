@@ -10,22 +10,23 @@ Scenario Outline: MPS Summary Validation MV In Click
 	And I am on MPS New Proposal Page
 	When I fill Proposal Description for "<ContractType>" Contract type
 	And I choose an existing contact from the list of available contacts
-	And I Enter "<UsageType>" usage type "<Contract>" contract length and "<Billing>" billing on Term and Type details  
+	And I Enter "<UsageType>" usage type "<Contract>" contract length and "<Billing>" billing on Term and Type details 
+	And I select service pack "<PaymentMethod>" payment method 
 	And I "<PriceHardware>" Price Hardware radio button
 	And enter a quantity of "1" for accessory for "<Printer>"
 	And I redisplay "<Printer>" device screen
 	And I confirm the values entered for the device
-	And Service Pack payment method is displayed
-	And I choose to pay Service Packs "<PaymentMethod>"
+	And Service Pack In Click line is displayed
 	And I enter click price volume of "<ClickVolume>" and "<ColourVolume>"
 	Then the billing basis for Accessory is "<Basis2>"
-	##Then the billing basis for product is "<Basis2>"
+	Then the billing basis for product is "<Basis2>"
 	And the billing basis for Installation is "<Basis2>"
-	And the billing basis for Service Pack is "<Basis2>"
+	And the billing basis for Service Pack is "<Basis1>"
 	And the installation type displayed is correct
 	And the installation cost displayed is correct
 	And the quantity displayed is the same as the one entered
-	And the service pack name and price displayed are correct
+	##And the service pack name and price displayed are correct
+	And service pack cost is included click as "0,00 zł"
 	And the displayed volume value for mono click price is "<ClickVolume>"
 	And the displayed volume value for colour click price is "<ColourVolume>"
 	And the calculated consumable net totals are equal in all places
@@ -38,8 +39,8 @@ Scenario Outline: MPS Summary Validation MV In Click
 	
 
 	Scenarios: 
-	| Role             | Country | ContractType                  | UsageType       | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod                   | ClickVolume | ColourVolume | Basis1                          | Basis2        |
-	| Cloud MPS Dealer | Poland  | Purchase & Click with Service | Pakiet wydruków | 3 lata   | Miesięczny / Monthly | Tick          | MFC-L8650CDW | Full         | Wliczyć w cenę za wydruk strony | 800         | 800          | Wliczyć w cenę za wydruk strony | Płatne z góry |
+	| Role             | Country | ContractType                  | UsageType       | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod       | ClickVolume | ColourVolume | Basis1              | Basis2        |
+	| Cloud MPS Dealer | Poland  | Purchase & Click with Service | Pakiet wydruków | 4 lata   | Miesięczny / Monthly | Tick          | MFC-L8650CDW | Full         | Płatność za wydruki | 800         | 800          | Płatność za wydruki | Płatne z góry |
 	
 
 Scenario Outline:  MPS Summary Validation MV Upfront
@@ -47,13 +48,12 @@ Scenario Outline:  MPS Summary Validation MV Upfront
 	And I am on MPS New Proposal Page
 	When I fill Proposal Description for "<ContractType>" Contract type
 	And I choose an existing contact from the list of available contacts
-	And I Enter "<UsageType>" usage type "<Contract>" contract length and "<Billing>" billing on Term and Type details  
+	And I Enter "<UsageType>" usage type "<Contract>" contract length and "<Billing>" billing on Term and Type details 
+	And I select service pack "<PaymentMethod>" payment method 
 	And I "<PriceHardware>" Price Hardware radio button
 	And enter a quantity of "1" for accessory for "<Printer>"
 	And I redisplay "<Printer>" device screen
 	And I confirm the values entered for the device
-	And Service Pack payment method is displayed
-	And I choose to pay Service Packs "<PaymentMethod>"
 	And I enter click price volume of "<ClickVolume>" and "<ColourVolume>"
 	##Then the billing basis for product is "<Basis1>"
 	Then the billing basis for Accessory is "<Basis1>"
@@ -75,8 +75,8 @@ Scenario Outline:  MPS Summary Validation MV Upfront
 	
 
 	Scenarios: 
-	| Role             | Country | ContractType                  | UsageType       | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod   | ClickVolume | ColourVolume | Basis1        |
-	| Cloud MPS Dealer | Poland  | Purchase & Click with Service | Pakiet wydruków | 3 lata   | Miesięczny / Monthly | Tick          | MFC-L8650CDW | Full         | Płatność z góry | 800         | 800          | Płatne z góry |
+	| Role             | Country | ContractType                  | UsageType       | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod | ClickVolume | ColourVolume | Basis1        |
+	| Cloud MPS Dealer | Poland  | Purchase & Click with Service | Pakiet wydruków | 3 lata   | Miesięczny / Monthly | Tick          | MFC-L8650CDW | Full         | Płatne z góry | 800         | 800          | Płatne z góry |
 	
 
 

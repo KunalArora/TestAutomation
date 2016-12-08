@@ -10,12 +10,12 @@ Scenario Outline: MPS Create Proposal From List Page
 	And I begin the process of proposal creation process
 	When I fill Proposal Description for "<ContractType>" Contract type
 	And I Enter "<UsageType>" usage type "<Contract>" contract length and "<Billing>" billing on Term and Type details 
+	And I select service pack "<PaymentMethod>" payment method
 	And I "<PriceHardware>" Price Hardware radio button
 	And I display "<Printer>" device screen
 	And "<DeviceScreen>" device screen is displayed
 	And I move to Click Price page
-	And Service Pack payment method is displayed
-	And I choose to pay Service Packs "<PaymentMethod>"
+	And Service Pack In Click line is displayed
 	And I enter click price volume of "<ClickVolume>" and "<ColourVolume>"
 	Then "<ContractType>" displayed on proposal Summary Page corresponds to "<ContractType>"
 	And "<UsageType>" displayed on proposal Summary Page corresponds to "<UsageType>"
@@ -32,7 +32,7 @@ Scenario Outline: MPS Create Proposal From List Page
 	
 
 Scenarios: 
-	| Role             | Country | ContractType             | CreateOption        | UsageType      | Contract | Billing         | PriceHardware | Printer      | DeviceScreen | PaymentMethod | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | Austria | Easy Print Pro & Service | Create new customer | Mindestvolumen | 5 Jahre  | Vierteljährlich | Tick          | MFC-L8650CDW | Full         | Pay upfront   | 800         | 800          |
-	| Cloud MPS Dealer | Germany | Easy Print Pro & Service | Create new customer | Mindestvolumen | 5 Jahre  | Vierteljährlich | Tick          | MFC-L8650CDW | Full         | Pay upfront   | 800         | 800          |
+	| Role             | Country | ContractType             | CreateOption        | UsageType      | Contract | Billing         | PriceHardware | Printer      | DeviceScreen | PaymentMethod               | ClickVolume | ColourVolume |
+	| Cloud MPS Dealer | Austria | Easy Print Pro & Service | Create new customer | Mindestvolumen | 5 Jahre  | Vierteljährlich | Tick          | MFC-L8650CDW | Full         | über den Seitenpreis zahlen | 800         | 800          |
+	| Cloud MPS Dealer | Germany | Easy Print Pro & Service | Create new customer | Mindestvolumen | 5 Jahre  | Vierteljährlich | Tick          | MFC-L8650CDW | Full         | über den Seitenpreis zahlen | 800         | 800          |
 	

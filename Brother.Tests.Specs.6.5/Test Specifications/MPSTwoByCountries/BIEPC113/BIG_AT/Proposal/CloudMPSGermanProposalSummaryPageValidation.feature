@@ -46,18 +46,18 @@ Scenario Outline: MPS Purchase Summary Validation MV In Click
 	And I am on MPS New Proposal Page
 	And Customer Information tab is not displayed
 	When I fill Proposal Description for "<ContractType>" Contract type
-	And I Enter "<UsageType>" usage type "<Contract>" contract length and "<Billing>" billing on Term and Type details  
+	And I Enter "<UsageType>" usage type "<Contract>" contract length and "<Billing>" billing on Term and Type details 
+	And I select service pack "<PaymentMethod>" payment method 
 	And I "<PriceHardware>" Price Hardware radio button
 	And enter a quantity of "1" for accessory for "<Printer>"
 	And I redisplay "<Printer>" device screen
 	And I confirm the values entered for the device
-	And Service Pack payment method is displayed
-	And I choose to pay Service Packs "über den Seitenpreis zahlen"
+	And Service Pack In Click line is displayed
 	And I enter click price volume of "<ClickVolume>" and "<ColourVolume>"
 	Then the billing basis for product is "<PaymentMethod>"
 	And the billing basis for Accessory is "<PaymentMethod>"
 	And the billing basis for Installation is "<PaymentMethod>"
-	And the billing basis for Service Pack is "über den Seitenpreis zahlen"
+	And the billing basis for Service Pack is "<PaymentMethod>"
 	And the installation type displayed is correct
 	And the installation cost displayed is correct
 	And the quantity displayed is the same as the one entered
@@ -75,9 +75,9 @@ Scenario Outline: MPS Purchase Summary Validation MV In Click
 	
 
 	Scenarios: 
-	| Role             | Country | ContractType             | UsageType      | Contract | Billing      | PriceHardware | Printer      | PaymentMethod      | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | Germany | Easy Print Pro & Service | Mindestvolumen | 5 Jahre  | Halbjährlich | Tick          | MFC-L8650CDW | im Voraus bezahlen | 800         | 800          |
-	| Cloud MPS Dealer | Austria | Easy Print Pro & Service | Mindestvolumen | 5 Jahre  | Halbjährlich | Tick          | MFC-L8650CDW | im Voraus bezahlen | 800         | 800          |
+	| Role             | Country | ContractType             | UsageType      | Contract | Billing      | PriceHardware | Printer      | PaymentMethod               | ClickVolume | ColourVolume |
+	| Cloud MPS Dealer | Germany | Easy Print Pro & Service | Mindestvolumen | 5 Jahre  | Halbjährlich | Tick          | MFC-L8650CDW | über den Seitenpreis zahlen | 800         | 800          |
+	| Cloud MPS Dealer | Austria | Easy Print Pro & Service | Mindestvolumen | 5 Jahre  | Halbjährlich | Tick          | MFC-L8650CDW | über den Seitenpreis zahlen | 800         | 800          |
 	
 	
 
@@ -86,13 +86,12 @@ Scenario Outline: MPS Summary Validation MV Upfront
 	And I am on MPS New Proposal Page
 	And Customer Information tab is not displayed
 	When I fill Proposal Description for "<ContractType>" Contract type
-	And I Enter "<UsageType>" usage type "<Contract>" contract length and "<Billing>" billing on Term and Type details  
+	And I Enter "<UsageType>" usage type "<Contract>" contract length and "<Billing>" billing on Term and Type details 
+	And I select service pack "<PaymentMethod>" payment method  
 	And I "<PriceHardware>" Price Hardware radio button
 	And enter a quantity of "1" for accessory for "<Printer>"
 	And I redisplay "<Printer>" device screen
 	And I confirm the values entered for the device
-	And Service Pack payment method is displayed
-	And I choose to pay Service Packs "<PaymentMethod>"
 	And I enter click price volume of "<ClickVolume>" and "<ColourVolume>"
 	Then the billing basis for product is "<PaymentMethod>"
 	And the billing basis for Accessory is "<PaymentMethod>"
