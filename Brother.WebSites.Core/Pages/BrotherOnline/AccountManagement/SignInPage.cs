@@ -70,6 +70,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         }
         public ProductRegistrationPage ClickSignInButton()
         {
+            ScrollTo(SignInButton);
             SignInButton.Click();
             return GetInstance<ProductRegistrationPage>(Driver);  
         }
