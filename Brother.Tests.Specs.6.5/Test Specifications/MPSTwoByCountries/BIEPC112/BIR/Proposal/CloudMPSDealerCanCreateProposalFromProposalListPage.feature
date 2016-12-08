@@ -10,13 +10,12 @@ Scenario Outline: MPS Create Proposal From List Page
 	And I begin the process of proposal creation process
 	When I fill Proposal Description for "<ContractType>" Contract type
 	And I skip contact creation process
-	And I Enter "<UsageType>" usage type "<Contract>" contract length and "<Billing>" billing on Term and Type details  
+	And I Enter "<UsageType>" usage type "<Contract>" contract length and "<Billing>" billing on Term and Type details 
+	And I select service pack "<PaymentMethod>" payment method 
 	And I "<PriceHardware>" Price Hardware radio button
 	And enter a quantity of "1" for accessory for "<Printer>"
 	And I redisplay "<Printer>" device screen
 	And I move to Click Price page
-	#And Service Pack payment method is displayed
-	#And I choose to pay Service Packs "<PaymentMethod>"
 	And I enter click price volume of "<ClickVolume>" and "<ColourVolume>"
 	Then the billing basis for product is "<Basis2>"
 	And the billing basis for Accessory is "<Basis2>"
@@ -40,5 +39,6 @@ Scenario Outline: MPS Create Proposal From List Page
 
 
 Scenarios: 
-	| Role             | Country | ContractType                  | UsageType      | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod           | ClickVolume | ColourVolume | Basis1                  | Basis2      |
-	| Cloud MPS Dealer | Ireland | Purchase & Click with Service | Minimum Volume | 5 years  | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Included in Click Price | 800         | 800          | Included in Click Price | Pay upfront |
+	| Role             | Country | ContractType                  | UsageType      | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod | ClickVolume | ColourVolume | Basis1                  | Basis2      |
+	| Cloud MPS Dealer | Ireland | Purchase & Click with Service | Minimum Volume | 5 years  | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Pay upfront   | 800         | 800          | Included in Click Price | Pay upfront |
+	
