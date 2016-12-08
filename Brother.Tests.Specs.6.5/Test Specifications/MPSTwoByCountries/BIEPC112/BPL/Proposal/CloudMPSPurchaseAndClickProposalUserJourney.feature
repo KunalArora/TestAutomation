@@ -11,12 +11,12 @@ Scenario Outline: MPS Create MV Proposal
 	When I fill Proposal Description for "<ContractType>" Contract type
 	And I select "<CreateOption>" button for customer data capture 
 	And I Enter "<UsageType>" usage type "<Contract>" contract length and "<Billing>" billing on Term and Type details 
+	And I select service pack "<PaymentMethod>" payment method
 	And I "<PriceHardware>" Price Hardware radio button
 	And I display "<Printer>" device screen
 	And "<DeviceScreen>" device screen is displayed
 	And I accept the default values of the device
-	And Service Pack payment method is displayed
-	And I choose to pay Service Packs "<PaymentMethod>"
+	And Service Pack In Click line is displayed
 	And I enter click price volume of "<ClickVolume>" and "<ColourVolume>"
 	Then "<ContractType>" displayed on proposal Summary Page corresponds to "<ContractType>"
 	And "<UsageType>" displayed on proposal Summary Page corresponds to "<UsageType>"
@@ -32,8 +32,8 @@ Scenario Outline: MPS Create MV Proposal
 	
 
 	Scenarios: 
-	| Role             | Country | ContractType | CreateOption        | UsageType       | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod   | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | Poland  | Buy + Click  | Create new customer | Pakiet wydruków | 3 lata   | Miesięczny / Monthly | Tick          | MFC-L8650CDW | Full         | Service Pack płatny w całości | 800         | 800          |
+	| Role             | Country | ContractType | CreateOption        | UsageType       | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod       | ClickVolume | ColourVolume |
+	| Cloud MPS Dealer | Poland  | Buy + Click  | Create new customer | Pakiet wydruków | 3 lata   | Miesięczny / Monthly | Tick          | MFC-L8650CDW | Full         | Płatność za wydruki | 800         | 800          |
 	
 	 
 	
@@ -72,13 +72,13 @@ Scenario Outline: MPS Create Proposal With Existing Customer
 	And I am on MPS New Proposal Page
 	When I fill Proposal Description for "<ContractType>" Contract type
 	And I choose an existing contact from the list of available contacts
-	And I Enter "<UsageType>" usage type "<Contract>" contract length and "<Billing>" billing on Term and Type details  
+	And I Enter "<UsageType>" usage type "<Contract>" contract length and "<Billing>" billing on Term and Type details 
+	And I select service pack "<PaymentMethod>" payment method 
 	And I "<PriceHardware>" Price Hardware radio button
 	And I display "<Printer>" device screen
 	And "<DeviceScreen>" device screen is displayed
 	And I accept the default values of the device
-	And Service Pack payment method is displayed
-	And I choose to pay Service Packs "<PaymentMethod>"
+	And Service Pack In Click line is displayed
 	And I enter click price volume of "<ClickVolume>" and "<ColourVolume>"
 	Then "<ContractType>" displayed on proposal Summary Page corresponds to "<ContractType>"
 	And "<UsageType>" displayed on proposal Summary Page corresponds to "<UsageType>"
@@ -94,8 +94,8 @@ Scenario Outline: MPS Create Proposal With Existing Customer
 	
 
 	Scenarios: 
-	| Role             | Country | ContractType | UsageType       | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod                   | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | Poland  | Buy + Click  | Pakiet wydruków | 3 lata   | Miesięczny / Monthly | Tick          | MFC-L8650CDW | Full         | Wliczyć w cenę za wydruk strony | 800         | 800          |
+	| Role             | Country | ContractType | UsageType       | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod       | ClickVolume | ColourVolume |
+	| Cloud MPS Dealer | Poland  | Buy + Click  | Pakiet wydruków | 3 lata   | Miesięczny / Monthly | Tick          | MFC-L8650CDW | Full         | Płatność za wydruki | 800         | 800          |
 	
 	
 Scenario Outline: MPS Create Proposal Existing PAYG Customer

@@ -11,12 +11,11 @@ Scenario Outline: MPS Create MV Proposal
 	And Customer Information tab is not displayed
 	When I fill Proposal Description for "<ContractType>" Contract type
 	And I Enter "<UsageType>" usage type "<Contract>" contract length and "<Billing>" billing on Term and Type details 
+	And I select service pack "<PaymentMethod>" payment method
 	And I "<PriceHardware>" Price Hardware radio button
 	And I display "<Printer>" device screen
 	And "<DeviceScreen>" device screen is displayed
 	And I accept the default values of the device
-	And Service Pack payment method is displayed
-	And I choose to pay Service Packs "<PaymentMethod>"
 	And I enter click price volume of "<ClickVolume>" and "<ColourVolume>"
 	Then "<ContractType>" displayed on proposal Summary Page corresponds to "<ContractType>"
 	And "<UsageType>" displayed on proposal Summary Page corresponds to "<UsageType>"
@@ -34,8 +33,8 @@ Scenario Outline: MPS Create MV Proposal
 
 	Scenarios: 
 	| Role             | Country | ContractType             | CreateOption        | UsageType      | Contract | Billing         | PriceHardware | Printer      | DeviceScreen | PaymentMethod | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | Austria | Easy Print Pro & Service | Create new customer | Mindestvolumen | 5 Jahre  | Vierteljährlich | Tick          | MFC-L8650CDW | Full         | Pay upfront   | 800         | 800          |
-	| Cloud MPS Dealer | Germany | Easy Print Pro & Service | Create new customer | Mindestvolumen | 5 Jahre  | Vierteljährlich | Tick          | MFC-L8650CDW | Full         | Pay upfront   | 800         | 800          |
+	| Cloud MPS Dealer | Austria | Easy Print Pro & Service | Create new customer | Mindestvolumen | 5 Jahre  | Vierteljährlich | Tick          | MFC-L8650CDW | Full         | im Voraus bezahlen   | 800         | 800          |
+	| Cloud MPS Dealer | Germany | Easy Print Pro & Service | Create new customer | Mindestvolumen | 5 Jahre  | Vierteljährlich | Tick          | MFC-L8650CDW | Full         | im Voraus bezahlen   | 800         | 800          |
 	
 @Ignore
 Scenario Outline: MPS GermanAustria Create different varieties of German And Austria Purchase and Click proposal for new customer on Pay As You Go Term
@@ -74,13 +73,13 @@ Scenario Outline: MPS Create Proposal With Existing Customer
 	And I am on MPS New Proposal Page
 	And Customer Information tab is not displayed
 	When I fill Proposal Description for "<ContractType>" Contract type
-	And I Enter "<UsageType>" usage type "<Contract>" contract length and "<Billing>" billing on Term and Type details  
+	And I Enter "<UsageType>" usage type "<Contract>" contract length and "<Billing>" billing on Term and Type details 
+	And I select service pack "<PaymentMethod>" payment method 
 	And I "<PriceHardware>" Price Hardware radio button
 	And I display "<Printer>" device screen
 	And "<DeviceScreen>" device screen is displayed
 	And I accept the default values of the device
-	And Service Pack payment method is displayed
-	And I choose to pay Service Packs "<PaymentMethod>"
+	And Service Pack In Click line is displayed
 	And I enter click price volume of "<ClickVolume>" and "<ColourVolume>"
 	Then "<ContractType>" displayed on proposal Summary Page corresponds to "<ContractType>"
 	And "<UsageType>" displayed on proposal Summary Page corresponds to "<UsageType>"
@@ -97,10 +96,10 @@ Scenario Outline: MPS Create Proposal With Existing Customer
 	
 
 	Scenarios: 
-	| Role             | Country | ContractType             | CreateOption        | UsageType      | Contract | Billing         | PriceHardware | Printer      | DeviceScreen | PaymentMethod           | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | Germany | Easy Print Pro & Service | Create new customer | Mindestvolumen | 5 Jahre  | Vierteljährlich | Tick          | MFC-L8650CDW | Full         | Included in Click Price | 800         | 800          |
-	| Cloud MPS Dealer | Austria | Easy Print Pro & Service | Create new customer | Mindestvolumen | 5 Jahre  | Vierteljährlich | Tick          | MFC-L8650CDW | Full         | Included in Click Price | 800         | 800          |
-
+	| Role             | Country | ContractType             | CreateOption        | UsageType      | Contract | Billing         | PriceHardware | Printer      | DeviceScreen | PaymentMethod               | ClickVolume | ColourVolume |
+	| Cloud MPS Dealer | Germany | Easy Print Pro & Service | Create new customer | Mindestvolumen | 5 Jahre  | Vierteljährlich | Tick          | MFC-L8650CDW | Full         | über den Seitenpreis zahlen | 800         | 800          |
+	| Cloud MPS Dealer | Austria | Easy Print Pro & Service | Create new customer | Mindestvolumen | 5 Jahre  | Vierteljährlich | Tick          | MFC-L8650CDW | Full         | über den Seitenpreis zahlen | 800         | 800          |
+	
 @Ignore
 Scenario Outline: MPS GermanAustria Create different varieties of German And Austria Purchase and Click proposal for an existing customer on Pay As You Go Term
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"

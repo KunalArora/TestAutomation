@@ -267,7 +267,7 @@ namespace Brother.Tests.Specs.MPSTwo.CalculationEngine
             WhenIMoveToClickPricePage();
             if (UsageType(usageType).Equals("Minimum Volume"))
             {
-                CurrentPage.As<DealerProposalsCreateClickPricePage>().PayServicePackMethod(servicePack);
+                //CurrentPage.As<DealerProposalsCreateClickPricePage>().PayServicePackMethod(servicePack);
                 NextPage = CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateSelectedMultipleClickPrice("1000", "1000");
             }
             else if (UsageType(usageType).Equals("Pay As You Go"))

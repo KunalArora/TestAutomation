@@ -11,12 +11,11 @@ Scenario Outline: MPS Create MV Proposal
 	When I fill Proposal Description for "<ContractType>" Contract type
 	And I select "<CreateOption>" button for customer data capture 
 	And I Enter "<UsageType>" usage type "<Contract>" contract length and "<Billing>" billing on Term and Type details 
+	And I select service pack "<PaymentMethod>" payment method
 	And I "<PriceHardware>" Price Hardware radio button
 	And I display "<Printer>" device screen
 	And "<DeviceScreen>" device screen is displayed
 	And I accept the default values of the device
-	And Service Pack payment method is displayed
-	And I choose to pay Service Packs "<PaymentMethod>"
 	And I enter click price volume of "<ClickVolume>" and "<ColourVolume>"
 	Then "<ContractType>" displayed on proposal Summary Page corresponds to "<ContractType>"
 	And "<UsageType>" displayed on proposal Summary Page corresponds to "<UsageType>"
@@ -32,7 +31,7 @@ Scenario Outline: MPS Create MV Proposal
 	
 
 	Scenarios: 
-	| Role             | Country | ContractType                       | CreateOption        | UsageType     | Contract   | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod | ClickVolume | ColourVolume |
+	| Role             | Country | ContractType                       | CreateOption        | UsageType     | Contract   | Billing                  | PriceHardware | Printer      | DeviceScreen | PaymentMethod | ClickVolume | ColourVolume |
 	| Cloud MPS Dealer | Sweden  | Purchase & click inklusive service | Create new customer | Minimum volym | 60 månader | Kvartalsvis i efterskott | Tick          | MFC-L8650CDW | Full         | Förskott      | 800         | 800          |
 	
 	
@@ -73,13 +72,13 @@ Scenario Outline: MPS Create Proposal With Existing Customer
 	And I am on MPS New Proposal Page
 	When I fill Proposal Description for "<ContractType>" Contract type
 	And I choose an existing contact from the list of available contacts
-	And I Enter "<UsageType>" usage type "<Contract>" contract length and "<Billing>" billing on Term and Type details  
+	And I Enter "<UsageType>" usage type "<Contract>" contract length and "<Billing>" billing on Term and Type details 
+	And I select service pack "<PaymentMethod>" payment method 
 	And I "<PriceHardware>" Price Hardware radio button
 	And I display "<Printer>" device screen
 	And "<DeviceScreen>" device screen is displayed
 	And I accept the default values of the device
-	And Service Pack payment method is displayed
-	And I choose to pay Service Packs "<PaymentMethod>"
+	And Service Pack In Click line is displayed
 	And I enter click price volume of "<ClickVolume>" and "<ColourVolume>"
 	Then "<ContractType>" displayed on proposal Summary Page corresponds to "<ContractType>"
 	And "<UsageType>" displayed on proposal Summary Page corresponds to "<UsageType>"
