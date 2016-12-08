@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
@@ -109,7 +110,7 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
             {
                 return;
             }
-            System.Threading.Thread.Sleep(10000);
+            System.Threading.Thread.Sleep(15000);
             //serialNumber = "A2N125652";//"U1T004750";
             try
             {

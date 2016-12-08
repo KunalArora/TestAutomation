@@ -104,6 +104,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
 
         public void EnterHouseNumber(string housenumber)
         {
+            HouseNumber.Clear();
             HouseNumber.SendKeys(housenumber);
         }
 
@@ -115,13 +116,13 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         //    return GetInstance<ConfirmationPage>(Driver);
         //}
 
-        public ConfirmationPage ClickCompleteRegistrationButton()
+        public MyPrintersAndDevicesPage ClickCompleteRegistrationButton()
         {
             var pId = SpecFlow.GetContext("ProductId");
             ScrollTo(CompleteRegistrationButton);
             CompleteRegistrationButton.Click();
             RecycleSerialNumber(pId);
-            return GetInstance<ConfirmationPage>(Driver);
+            return GetInstance<MyPrintersAndDevicesPage>(Driver);
         }
           private static void RecycleSerialNumber(string productId)
         {
@@ -130,7 +131,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             {
                 return;
             }
-            System.Threading.Thread.Sleep(10000);
+            System.Threading.Thread.Sleep(15000);
             //serialNumber = "A2N125652";//"U1T004750";
             try
             {

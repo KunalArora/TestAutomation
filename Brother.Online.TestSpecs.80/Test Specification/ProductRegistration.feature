@@ -31,7 +31,7 @@ Scenario Outline: New Customer wants to register product with their serial numbe
 
 Scenarios: 
 | Country        | Site Url                  | SerialNumber | PurchaseDate | Email                                  | FirstName | LastName |
-| United Kingdom | /qa/eubol78/serial-number | U1T004723  | 12/12/2013   | 123orderplacedukaccount@mailinator.com | Test      | Test     |
+| United Kingdom | /qa/eubol78/serial-number | U1T004719  | 12/12/2013   | 123orderplacedukaccount@mailinator.com | Test      | Test     |
 
 
 @ignore
@@ -106,11 +106,11 @@ Scenario Outline: Existing Customer wants to register product with their serial 
 	And I enter "<Account Holder Name>" and "<Sort Code>" and "<Account Number>" on address details page
 	And I tick on terms and conditions checkbox on Address details Page
 	Then I can complete my product registration by clicking on complete registration button on Address Details Page and I can  deregister the "<SerialNumber>"
-	
+	And I can verify registration confirmaiton message is present
 
 Scenarios:
 	| Country        | Site Url       | Valid Email Address                    | Valid Password | SerialNumber | PromoCode | PurchaseDate | Account Holder Name | Sort Code | Account Number | Postcode | House Number |
-	| United Kingdom | /qa/signintest | 123orderplacedukaccount@mailinator.com | Hello123       | U1T004721    | cash50    | 12/12/2013   | Test                | 400699    | 54116897       | M345JE   | 1            |
+	| United Kingdom | /qa/signintest | 123orderplacedukaccount@mailinator.com | Hello123       | U1T004719    | cash50    | 12/12/2013   | Test                | 400699    | 54116897       | M345JE   | 1            |
 
 
 @SMOKE @TEST
