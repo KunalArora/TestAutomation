@@ -86,6 +86,7 @@ Scenario Outline: Summary Page Validation For Pay As you Go Purchase and Click p
 	When I fill Proposal Description for "<ContractType>" Contract type
 	And I select "<CreateOption>" button for customer data capture
 	And I Enter "<UsageType>" usage type "<Contract>" contract length and "<Billing>" billing on Term and Type details  
+	And I select service pack "<Basis1>" payment method
 	And I "<PriceHardware>" Price Hardware radio button
 	And enter a quantity of "1" for accessory for "<Printer>"
 	And I redisplay "<Printer>" device screen
