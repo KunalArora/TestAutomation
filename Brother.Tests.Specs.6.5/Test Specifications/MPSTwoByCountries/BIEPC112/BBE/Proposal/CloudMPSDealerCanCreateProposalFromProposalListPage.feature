@@ -11,13 +11,13 @@ Scenario Outline: MPS Create Proposal From List Page
 	And I begin the process of proposal creation process
 	When I fill Proposal Description for "<ContractType>" Contract type
 	And I skip contact creation process
-	And I Enter "<UsageType>" usage type "<Contract>" contract length and "<Billing>" billing on Term and Type details  
+	And I Enter "<UsageType>" usage type "<Contract>" contract length and "<Billing>" billing on Term and Type details 
+	And I select service pack "<PaymentMethod>" payment method 
 	And I "<PriceHardware>" Price Hardware radio button
 	And enter a quantity of "1" for accessory for "<Printer>"
 	And I redisplay "<Printer>" device screen
 	And I move to Click Price page
-	And Service Pack payment method is displayed
-	And I choose to pay Service Packs "<PaymentMethod>"
+	And Service Pack In Click line is displayed
 	And I enter click price volume of "<ClickVolume>" and "<ColourVolume>"
 	Then the billing basis for product is "<Basis2>"
 	And the billing basis for Accessory is "<Basis2>"
