@@ -140,8 +140,12 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
        {
            CurrentPage.As<AddressDetailsPage>().ClickOnFindAddressButton();
        }
-
-       [Then(@"I tick on terms and conditions checkbox")]
+       [Then(@"I enter ""(.*)"" on address page")]
+       public void ThenIEnterOnAddressPage(string housenumber)
+       {
+           CurrentPage.As<AddressDetailsPage>().EnterHouseNumber(housenumber);
+       }
+        [Then(@"I tick on terms and conditions checkbox")]
        public void ThenITickOnTermsAndConditionsCheckbox()
        {
            CurrentPage.As<UserDetailsPage>().ClickAcceptCheckbox();

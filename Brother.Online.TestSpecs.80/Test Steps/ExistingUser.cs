@@ -104,7 +104,6 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
         [Then(@"I click on continue button on brother product page to go to address details page")]
         public void ThenIClickOnContinueButtonOnBrotherProductPageToGoToAddressDetailsPage()
         {
-            Thread.Sleep(TimeSpan.FromSeconds(2));
             NextPage = CurrentPage.As<ProductRegistrationPage>().ClickContinueButtonAdPage(); ;
         }
         

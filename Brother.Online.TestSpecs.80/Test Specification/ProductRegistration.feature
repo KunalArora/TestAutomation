@@ -12,6 +12,7 @@ Scenarios:
 | Country        |
 | United Kingdom |
 
+
 @SMOKE @TEST
 Scenario Outline: New Customer wants to register product with their serial numbers and purchase date
 	Given I navigate to "<Country>" Brother Online landing page
@@ -30,7 +31,7 @@ Scenario Outline: New Customer wants to register product with their serial numbe
 
 Scenarios: 
 | Country        | Site Url                  | SerialNumber | PurchaseDate | Email                                  | FirstName | LastName |
-| United Kingdom | /qa/eubol78/serial-number | U1T004768    | 12/12/2013   | 123orderplacedukaccount@mailinator.com | Test      | Test     |
+| United Kingdom | /qa/eubol78/serial-number | U1T004723  | 12/12/2013   | 123orderplacedukaccount@mailinator.com | Test      | Test     |
 
 
 @ignore
@@ -70,14 +71,15 @@ Scenario Outline: New Customer wants to register product with their serial numbe
 	And I click on continue button on user details page
 	And I can register my "<Postcode>" on the address details page
 	And I click on Find Address Button
+	And I enter "<House Number>" on address page
 	And I click on continue button on address details page
 	And I tick on terms and conditions checkbox on Address details Page
 	Then I can complete my product registration by clicking on complete registration button on Address Details Page and I can  deregister the "<SerialNumber>"
 	
 
 Scenarios: 
-| Country        | Site Url                  | SerialNumber | PurchaseDate | PromoCode | Email					      			| FirstName | LastName | Postcode |
-| United Kingdom | /qa/eubol78/serial-number | U1T004768	| 12/12/2013   | warrantyup | testemailidinputfield@mailinator.com | Test      | Test     | M345JE   |
+| Country        | Site Url                  | SerialNumber | PurchaseDate | PromoCode  | Email                                | FirstName | LastName | Postcode | House Number |
+| United Kingdom | /qa/eubol78/serial-number | U1T004763    | 12/12/2013   | warrantyup | testemailidinputfield@mailinator.com | Test      | Test     | M345JE   | 1            |
 
 
 @SMOKE @TEST
@@ -98,6 +100,7 @@ Scenario Outline: Existing Customer wants to register product with their serial 
 	And I click on continue button on brother product page to go to address details page
 	And I can register my "<Postcode>" on the address details page
 	And I click on Find Address Button
+	And I enter "<House Number>" on address page
 	And I click on tickbox to confirm I will send my proof of purchase 
 	And I click on continue button on address details page
 	And I enter "<Account Holder Name>" and "<Sort Code>" and "<Account Number>" on address details page
@@ -106,8 +109,8 @@ Scenario Outline: Existing Customer wants to register product with their serial 
 	
 
 Scenarios:
-	| Country        | Site Url       | Valid Email Address                    | Valid Password | SerialNumber | PromoCode | PurchaseDate | Account Holder Name | Sort Code | Account Number | Postcode |
-	| United Kingdom | /qa/signintest | 123orderplacedukaccount@mailinator.com | Hello123       | U1T004720    | cash50    | 12/12/2013   | Test                | 400699    | 54116897       | M345JE   |
+	| Country        | Site Url       | Valid Email Address                    | Valid Password | SerialNumber | PromoCode | PurchaseDate | Account Holder Name | Sort Code | Account Number | Postcode | House Number |
+	| United Kingdom | /qa/signintest | 123orderplacedukaccount@mailinator.com | Hello123       | U1T004721    | cash50    | 12/12/2013   | Test                | 400699    | 54116897       | M345JE   | 1            |
 
 
 @SMOKE @TEST
