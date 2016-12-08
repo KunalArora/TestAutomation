@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using Brother.Online.TestSpecs._80.Test_Steps;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
@@ -68,6 +69,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         [FindsBy(How = How.CssSelector, Using = ".checkbox label[for='NoProofofPurchase']")]
         public IWebElement AcceptProofOfPurchaseCheckbox ;
 
+        [FindsBy(How = How.Id, Using = "txtHousenumber")]
+        public IWebElement HouseNumber;
+
         public void EnterPostcode(string postcode)
         {
             PostcodeField.Clear();
@@ -77,6 +81,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         public void ClickOnFindAddressButton()
         {
             FindAddressButton.Click();
+            WaitForElementToBeClickableByCssSelector("#btnDeliveryContnue",3, 10);
         }
 
         public void EnterAccountDetails(string accountholdername, string sortcode, string accountnumber)
@@ -94,7 +99,14 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         public void ClickAcceptProofOfPurchase()
         {
             ((IJavaScriptExecutor)Driver).ExecuteScript("arguments[0].click();", AcceptProofOfPurchaseCheckbox);
+            WaitForElementToBeClickableByCssSelector("#btnDeliveryContnue", 3, 10);
         }
+
+        public void EnterHouseNumber(string housenumber)
+        {
+            HouseNumber.SendKeys(housenumber);
+        }
+
 
         //public ConfirmationPage ClickCompleteRegistrationButton()
         //{
@@ -106,6 +118,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         public ConfirmationPage ClickCompleteRegistrationButton()
         {
             var pId = SpecFlow.GetContext("ProductId");
+            ScrollTo(CompleteRegistrationButton);
             CompleteRegistrationButton.Click();
             RecycleSerialNumber(pId);
             return GetInstance<ConfirmationPage>(Driver);
@@ -117,7 +130,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             {
                 return;
             }
-            System.Threading.Thread.Sleep(5000);
+            System.Threading.Thread.Sleep(10000);
             //serialNumber = "A2N125652";//"U1T004750";
             try
             {
@@ -136,6 +149,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
 
         public void ClickContinueButtonOnAdPage()
         {
+            Thread.Sleep(10000);
+            ScrollTo(ContinueButton);
             ContinueButton.Click();
         }
         
