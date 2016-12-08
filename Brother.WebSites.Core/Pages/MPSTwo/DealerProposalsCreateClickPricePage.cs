@@ -66,8 +66,23 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement ServicePackContainerElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_InputServicePaymentOption")]
         public IWebElement ServicePackHiddenValueElement;
-        
+        [FindsBy(How = How.CssSelector, Using = "#content_1_LineItems_ServicePackUnitCost_0")]
+        public IWebElement ServicePackUnitCostElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_LineItems_ServicePackUnitPrice_0")]
+        public IWebElement ServicePackUnitPriceElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_LineItems_ServicePackTotalPrice_0")]
+        public IWebElement ServicePackTotalPriceElement;
 
+
+
+
+        public void IsServiceInClickLineDisplayedOnClickPricePage()
+        {
+            TestCheck.AssertIsEqual(true, ServicePackUnitCostElement.Displayed, "Service Pack Unit Cost is not displayed");
+            TestCheck.AssertIsEqual(true, ServicePackUnitPriceElement.Displayed, "Service Pack Unit Price is not displayed");
+            TestCheck.AssertIsEqual(true, ServicePackTotalPriceElement.Displayed, "Service Pack Unit Total Price is not displayed");
+        }
+        
 
         private IWebElement PaymentMethodElement()
         {

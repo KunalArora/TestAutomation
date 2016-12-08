@@ -21,6 +21,12 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
                     .CalculateEnteredClickPriceForMonoAndColourAndProceed(clickprice, colour);
         }
 
+        [When(@"Service Pack In Click line is displayed")]
+        public void WhenServicePackInClickLineIsDisplayed()
+        {
+            CurrentPage.As<DealerProposalsCreateClickPricePage>().IsServiceInClickLineDisplayedOnClickPricePage();
+        }
+
 
         public void WhenIEnterMultipleClickPriceVolumeOf(string clickprice, string colour)
         {
