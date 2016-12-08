@@ -91,6 +91,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
 
         public void ClickFindProductButton()
         {
+            ScrollTo(FindProductButton);
             FindProductButton.Click();
         }
 
@@ -108,6 +109,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
 
         public void ClickApplyButton()
         {
+            ScrollTo(ApplyPurchaseDateButton);
             ApplyPurchaseDateButton.Click();
             WaitForElementToBeClickableById("btn-continue-to-next-step", 20);
            
