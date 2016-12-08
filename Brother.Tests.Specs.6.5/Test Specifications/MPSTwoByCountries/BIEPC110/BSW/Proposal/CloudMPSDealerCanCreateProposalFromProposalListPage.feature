@@ -11,12 +11,11 @@ Scenario Outline: Dealer Can Create Proposal From Proposal List Page
 	When I fill Proposal Description for "<ContractType>" Contract type
 	And I skip contact creation process
 	And I Enter "<UsageType>" usage type "<Contract>" contract length and "<Billing>" billing on Term and Type details  
+	And I select service pack "<PaymentMethod>" payment method
 	And I "<PriceHardware>" Price Hardware radio button
 	And enter a quantity of "1" for accessory for "<Printer>"
 	And I redisplay "<Printer>" device screen
 	And I move to Click Price page
-	##And Service Pack payment method is displayed
-	##And I choose to pay Service Packs "<PaymentMethod>"
 	And I type click price volume of "<ClickVolume>" and "<ColourVolume>"
 	Then the billing basis for product is "<Basis2>"
 	And the billing basis for Accessory is "<Basis2>"
@@ -41,6 +40,6 @@ Scenario Outline: Dealer Can Create Proposal From Proposal List Page
 
 
 Scenarios: 
-	| Role             | Country     | ContractType                 | UsageType     | Contract | Billing       | PriceHardware | Printer      | DeviceScreen | PaymentMethod               | ClickVolume | ColourVolume | Basis1                      | Basis2             |
-	| Cloud MPS Dealer | Switzerland | Purchase & Click mit Service | Pay As You Go | 36       | Quartalsweise | Tick          | MFC-L8650CDW | Full         | Über den Seitenpreis zahlen | 800         | 800          | Über den Seitenpreis zahlen | Im Voraus bezahlen |
+	| Role             | Country     | ContractType                 | UsageType     | Contract | Billing       | PriceHardware | Printer      | DeviceScreen | PaymentMethod      | ClickVolume | ColourVolume | Basis1                      | Basis2             |
+	| Cloud MPS Dealer | Switzerland | Purchase & Click mit Service | Pay As You Go | 36       | Quartalsweise | Tick          | MFC-L8650CDW | Full         | Im Voraus bezahlen | 800         | 800          | Über den Seitenpreis zahlen | Im Voraus bezahlen |
 	

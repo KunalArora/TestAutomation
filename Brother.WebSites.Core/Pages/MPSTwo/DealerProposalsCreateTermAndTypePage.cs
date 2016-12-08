@@ -56,44 +56,44 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void PayServicePackMethod(string option)
         {
-                var paymentMethod = "";
+                //var paymentMethod = "";
             
-                if (IsSpainSystem() || IsBelgiumSystem() || IsPolandSystem() || IsIrelandSystem() || IsNetherlandSystem()) return;
-                if (
-                        option.Equals("Pay upfront") 
-                        || option.Equals("im Voraus bezahlen") 
-                        || option.Equals("Betale på forskud")
-                        || option.Equals("Paiement au démarrage du contrat") 
-                        || option.Equals("Pagamento anticipato") 
-                        || option.Equals("Förskott")
-                        || option.Equals("Betaling bij aanvang van het contract") 
-                        || option.Equals("Płatność z góry")
-                        || option.Equals("Maksu etukäteen")
-                        || option.Equals("På forskudd")
+                //if (IsSpainSystem() || IsBelgiumSystem() || IsPolandSystem() || IsIrelandSystem() || IsNetherlandSystem()) return;
+                //if (
+                //        option.Equals("Pay upfront")
+                //        || option.Equals("Im Voraus bezahlen") 
+                //        || option.Equals("Betale på forskud")
+                //        || option.Equals("Paiement au démarrage du contrat") 
+                //        || option.Equals("Pagamento anticipato") 
+                //        || option.Equals("Förskott")
+                //        || option.Equals("Betaling bij aanvang van het contract") 
+                //        || option.Equals("Płatność z góry")
+                //        || option.Equals("Maksu etukäteen")
+                //        || option.Equals("På forskudd")
                     
-                    )
-                {
-                    paymentMethod = "Pay upfront";
-                }
-                else if (
-                            option.Equals("Included in Click Price")
-                            || option.Equals("über den Seitenpreis zahlen") 
-                            || option.Equals("Inkluderet i klikpris")
-                            || option.Equals("Inclus dans le coût à la page") 
-                            || option.Equals("Incluso nel click") 
-                            || option.Equals("Per utskrift")
-                            || option.Equals("Inbegrepen in de clickprijs") 
-                            || option.Equals("Inclus dans le prix click") 
-                            || option.Equals("Wliczyć w cenę za wydruk strony")
-                            || option.Equals("Über den Seitenpreis zahlen")
-                            || option.Equals("Sisältyy klikkihintaan")
-                            || option.Equals("I klikk")
-                    )
-                {
-                    paymentMethod = "Included in Click Price";
-                }
+                //    )
+                //{
+                //    paymentMethod = "Pay upfront";
+                //}
+                //else if (
+                //            option.Equals("Included in Click Price")
+                //            || option.Equals("über den Seitenpreis zahlen") 
+                //            || option.Equals("Inkluderet i klikpris")
+                //            || option.Equals("Inclus dans le coût à la page") 
+                //            || option.Equals("Incluso nel click") 
+                //            || option.Equals("Per utskrift")
+                //            || option.Equals("Inbegrepen in de clickprijs") 
+                //            || option.Equals("Inclus dans le prix click") 
+                //            || option.Equals("Wliczyć w cenę za wydruk strony")
+                //            || option.Equals("Über den Seitenpreis zahlen")
+                //            || option.Equals("Sisältyy klikkihintaan")
+                //            || option.Equals("I klikk")
+                //    )
+                //{
+                //    paymentMethod = "Included in Click Price";
+                //}
 
-                SelectFromDropdown(PaymentMethodElement, paymentMethod);
+                SelectFromDropdown(PaymentMethodElement, option);
          }
             
 
