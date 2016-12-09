@@ -16,7 +16,7 @@ Scenario Outline: MPS Create Proposal From List Page
 	And enter a quantity of "1" for accessory for "<Printer>"
 	And I redisplay "<Printer>" device screen
 	And I move to Click Price page
-	And I select service pack "<PaymentMethod>" payment method
+	And Service Pack In Click line is displayed
 	And I enter click price volume of "<ClickVolume>" and "<ColourVolume>"
 	Then the billing basis for product is "<Basis2>"
 	And the billing basis for Accessory is "<Basis2>"
