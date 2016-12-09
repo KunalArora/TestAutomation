@@ -481,6 +481,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             
         }
 
+       
         public void EnterSingleSerialNumber(string serialNumber)
         {
             ClosePopUpModal();
