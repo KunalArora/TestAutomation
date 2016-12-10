@@ -197,7 +197,7 @@ Scenarios:
 	
 @ignore
 Scenario Outline: Single Installation With Specified Printer
-	Given "<Country>" Dealer have created "<ContractType>" contract with "<UsageType>" and "<Length>" and "<Billing>" and "<Device1>"
+	Given "<Country>" Dealer has created "<ContractType>" contract with "<UsageType>" and "<Length>" and "<Billing>" and "<Device1>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And the contract created above is approved
 	And I sign back into Cloud MPS as a "<Role1>" from "<Country>"

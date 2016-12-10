@@ -10,13 +10,8 @@ Scenario Outline: Summary Page Validation For Minimum Volume Purchase and Click 
 	And I am on MPS New Proposal Page
 	When I fill Proposal Description for "<ContractType>" Contract type
 	And I choose an existing contact from the list of available contacts
-	And I Enter "<UsageType>" usage type "<Contract>" contract length and "<Billing>" billing on Term and Type details  
-	And I select service pack "<PaymentMethod>" payment method
-	And I "<PriceHardware>" Price Hardware radio button
-	And I display "<Printer>" device screen
-	And "<DeviceScreen>" device screen is displayed
-	And I accept the default values of the device
-	And Service Pack In Click line is displayed 
+	And I Enter "<UsageType>" usage type "<Contract>" contract length and "<Billing>" billing on Term and Type details 
+	And I select service pack "<PaymentMethod>" payment method 
 	And I "<PriceHardware>" Price Hardware radio button
 	And enter a quantity of "1" for accessory for "<Printer>"
 	And I redisplay "<Printer>" device screen
@@ -54,12 +49,7 @@ Scenario Outline: Summary Page Validation For Minimum Volume Purchase and Click 
 	When I fill Proposal Description for "<ContractType>" Contract type
 	And I choose an existing contact from the list of available contacts
 	And I Enter "<UsageType>" usage type "<Contract>" contract length and "<Billing>" billing on Term and Type details 
-	And I select service pack "<PaymentMethod>" payment method
-	And I "<PriceHardware>" Price Hardware radio button
-	And I display "<Printer>" device screen
-	And "<DeviceScreen>" device screen is displayed
-	And I accept the default values of the device
-	And Service Pack In Click line is displayed  
+	And I select service pack "<PaymentMethod>" payment method 
 	And I "<PriceHardware>" Price Hardware radio button
 	And enter a quantity of "1" for accessory for "<Printer>"
 	And I redisplay "<Printer>" device screen

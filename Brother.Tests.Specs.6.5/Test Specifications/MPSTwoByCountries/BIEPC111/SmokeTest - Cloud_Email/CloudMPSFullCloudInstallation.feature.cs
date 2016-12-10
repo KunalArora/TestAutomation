@@ -401,8 +401,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 199
 this.ScenarioSetup(scenarioInfo);
 #line 200
- testRunner.Given(string.Format("\"{0}\" Dealer have created \"{1}\" contract with \"{2}\" and \"{3}\" and \"{4}\" and \"{5}\"" +
-                        "", country, contractType, usageType, length, billing, device1), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given(string.Format("\"{0}\" Dealer has created \"{1}\" contract with \"{2}\" and \"{3}\" and \"{4}\" and \"{5}\"", country, contractType, usageType, length, billing, device1), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 201
  testRunner.And(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 202
