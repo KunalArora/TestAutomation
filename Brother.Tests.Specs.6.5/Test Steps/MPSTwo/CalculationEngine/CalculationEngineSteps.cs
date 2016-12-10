@@ -48,15 +48,15 @@ namespace Brother.Tests.Specs.MPSTwo.CalculationEngine
                  servicePack, installation, delivery, device1, device2); 
         }
 
-        [Given(@"""(.*)"" Dealer have created ""(.*)"" contract with ""(.*)"" and ""(.*)"" and ""(.*)"" and ""(.*)""")]
+        [Given(@"""(.*)"" Dealer has created ""(.*)"" contract with ""(.*)"" and ""(.*)"" and ""(.*)"" and ""(.*)""")]
         public void GivenDealerHaveCreatedContractWithAndAndAnd(string country, string contractType, string usageType, string length, string billing,
              string device1)
         {
-            GivenDealerHaveCreatedContractWithAndAndAndAndAndAndAnd(country, "", contractType, usageType, length, billing, device1);
+            GivenDealerHaveCreatedContractWith(country, "", contractType, usageType, length, billing, device1);
         }
 
 
-        public void GivenDealerHaveCreatedContractWithAndAndAndAndAndAndAnd(string country, string language, string contractType, string usageType, string length, string billing,
+        public void GivenDealerHaveCreatedContractWith(string country, string language, string contractType, string usageType, string length, string billing,
              string device1)
         {
             Selenium.Lib.Support.HelperClasses.SpecFlow.SetContext("BelgianLanguage", language);
