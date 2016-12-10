@@ -205,6 +205,13 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             ThenICanConnectDeviceWithSerialsToBrotherEnvironment("MFC-L8650CDW", serial);
         }
 
+        [Then(@"I can connect device ""(.*)"" with serials ""(.*)"" to Brother environment")]
+        public void ThenICanConnectSingleDeviceWithSerialsToBrotherEnvironment(string device, string serial)
+        {
+            ThenICanConnectDeviceWithSerialsToBrotherEnvironment(device, serial);
+        }
+
+
 
         public void ThenICanConnectDeviceWithSerialsToBrotherEnvironment(string device1, string serial1)
         {

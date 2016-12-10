@@ -195,4 +195,44 @@ Scenarios:
 	| Cloud MPS Local Office Approver | Norway         | Kjøp og klikk med service          | Betale ved forbruk                             | Cloud MPS Dealer | Email  | 48         | Quarterly in Arrears                                               | Pay upfront | Brother      | Yes      | MFC-L8650CDW | DCP-L5500DN | A1T010221    | A1T010222     | A1T010223     | A1T010224     | 5000 | 5000   |
 	| Cloud MPS Local Office Approver | Italy          | Acquisto + Consumo con assistenza  | Volume minimo                                  | Cloud MPS Dealer | Email  | 48         | Trimestrale anticipata                                             | Pay upfront | Brother      | Yes      | MFC-L8650CDW | MFC-L5750DW | A1T010201    | A1T010202     | A1T010203     | A1T010204     | 5000 | 5000   |
 	
+@ignore
+Scenario Outline: Single Installation With Specified Printer
+	Given "<Country>" Dealer have created "<ContractType>" contract with "<UsageType>" and "<Length>" and "<Billing>" and "<Device1>"
+	And I sign into Cloud MPS as a "<Role>" from "<Country>"
+	And the contract created above is approved
+	And I sign back into Cloud MPS as a "<Role1>" from "<Country>"
+	And I generate installation request for the contract with "<Method>" communication
+	And I extract the installer url from Installation Request
+	When I navigate to the installer page
+	And I enter the contract reference number 
+	And I enter device serial number "<SerialNumber>" for "<Method>" communication
+	And I enter the device IP address
+	##Then I can connect device "<Device1>" with serials "<SerialNumber>" to Brother environment
+	Then I can connect the device to Brother environment
+	And I can complete device installation
+	And I can sign out of Brother Online
+	And I navigate to the Invoice tool homepage
+	And I select "<Country>" of interest
+	And I enter "<Mono>" and "<Colour>" print count for a single device
+	And I generate invoices for the contract above
 
+	
+Scenarios:
+
+	| Role                            | Country        | ContractType                       | UsageType                                      | Role1            | Method | Length     | Billing                                                            | Device1     | SerialNumber | Mono | Colour |
+	| Cloud MPS Local Office Approver | France         | Buy & Click                        | Paiement selon la consommation réelle de pages | Cloud MPS Dealer | Email  | 4 ans      | Trimestriellement à terme échu                                     | DCP-9015CDW | A1T010266    | 5000 | 5000   |
+	| Cloud MPS Local Office Approver | Spain          | Purchase & Click con Service       | Pago por Uso                                   | Cloud MPS Dealer | Email  | 4 años     | Por trimestres vencidos                                            | DCP-9015CDW | A1T010267    | 5000 | 5000   |
+	| Cloud MPS Local Office Approver | Denmark        | Purchase & Click with Service      | Pay As You Go                                  | Cloud MPS Dealer | Email  | 4 år       | Quarterly in Arrears                                               | DCP-9015CDW | A1T010268    | 5000 | 5000   |
+	| Cloud MPS Local Office Approver | Sweden         | Purchase & click inklusive service | Betala per utskrift                            | Cloud MPS Dealer | Email  | 48 månader | Kvartalsvis i efterskott                                           | DCP-9015CDW | A1T010269    | 5000 | 5000   |
+	| Cloud MPS Local Office Approver | Netherlands    | Purchase + Click met Service       | Betalen naar verbruik                          | Cloud MPS Dealer | Email  | 4 jaar     | Per kwartaal achteraf                                              | DCP-9015CDW | A1T010270    | 5000 | 5000   |
+	| Cloud MPS Local Office Approver | Ireland        | Purchase & Click with Service      | Pay As You Go                                  | Cloud MPS Dealer | Email  | 4 years    | Quarterly in Arrears                                               | DCP-9015CDW | A1T010271    | 5000 | 5000   |
+	| Cloud MPS Local Office Approver | Poland         | Buy + Click                        | Pakiet wydruków                                | Cloud MPS Dealer | Email  | 4 lata     | Miesięczny / Monthly                                               | DCP-9015CDW | A1T010272    | 5000 | 5000   |
+	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service      | Pay As You Go                                  | Cloud MPS Dealer | Email  | 4 years    | Quarterly in Arrears                                               | DCP-9015CDW | A1T010273    | 5000 | 5000   |
+	| Cloud MPS Local Office Approver | Belgium        | Purchase & Click with Service      | Volume minimum                                 | Cloud MPS Dealer | Email  | 4 ans      | Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance | DCP-9015CDW | A1T010274    | 5000 | 5000   |
+	| Cloud MPS Local Office Approver | Germany        | Easy Print Pro & Service           | Mindestvolumen                                 | Cloud MPS Dealer | Email  | 4 Jahre    | Halbjährlich                                                       | DCP-9015CDW | A1T010275    | 5000 | 5000   |
+	| Cloud MPS Local Office Approver | Austria        | Easy Print Pro & Service           | Pay As You Go                                  | Cloud MPS Dealer | Email  | 5 Jahre    | Halbjährlich                                                       | DCP-9015CDW | A1T010278    | 5000 | 5000   |
+	| Cloud MPS Local Office Approver | Switzerland    | Purchase & Click with Service      | Pay As You Go                                  | Cloud MPS Dealer | Email  | 48         | Quartalsweise                                                      | DCP-9015CDW | A1T010279    | 5000 | 5000   |
+	| Cloud MPS Local Office Approver | Finland        | Purchase & Click with Service      | Maksu tulosteiden mukaan                       | Cloud MPS Dealer | Email  | 4 vuotta   | Quarterly in Arrears                                               | DCP-9015CDW | A1T010276    | 5000 | 5000   |
+	| Cloud MPS Local Office Approver | Norway         | Kjøp og klikk med service          | Betale ved forbruk                             | Cloud MPS Dealer | Email  | 48         | Quarterly in Arrears                                               | DCP-9015CDW | A1T010277    | 5000 | 5000   |
+	| Cloud MPS Local Office Approver | Italy          | Acquisto + Consumo con assistenza  | Volume minimo                                  | Cloud MPS Dealer | Email  | 48         | Trimestrale anticipata                                             | DCP-9015CDW | A1T010280    | 5000 | 5000   |
+	

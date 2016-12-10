@@ -39,6 +39,7 @@ namespace Brother.Tests.Specs.MPSTwo.InvoiceTool
         {
             CurrentPage.As<InvoiceToolsPage>().NavigateToInvoiceToolPrinterPage();
             CurrentPage.As<InvoiceToolsPage>().EnterColourDevicePrintCounts(1000, 1000, "0", 0);
+            CurrentPage.As<InvoiceToolsPage>().CompleteInstallation();
             CurrentPage.As<InvoiceToolsPage>().EnterColourDevicePrintCounts(2000, 2000, "0", 95);
             CurrentPage.As<InvoiceToolsPage>().EnterColourDevicePrintCounts(2500, 2500, "0", 190);
             CurrentPage.As<InvoiceToolsPage>().EnterColourDevicePrintCounts(3500, 3500, "0", 363);
@@ -51,6 +52,7 @@ namespace Brother.Tests.Specs.MPSTwo.InvoiceTool
         {
             CurrentPage.As<InvoiceToolsPage>().NavigateToInvoiceToolPrinterPage();
             CurrentPage.As<InvoiceToolsPage>().EnterColourDevicePrintCounts(1000, 1000, "0", 0);
+            CurrentPage.As<InvoiceToolsPage>().CompleteInstallation();
             CurrentPage.As<InvoiceToolsPage>().EnterColourDevicePrintCounts(1000, 1000, "1", 0);
             CurrentPage.As<InvoiceToolsPage>().EnterMonoDevicePrintCounts(1000, "2", 0);
             CurrentPage.As<InvoiceToolsPage>().EnterMonoDevicePrintCounts(1000, "3", 0);
@@ -104,6 +106,47 @@ namespace Brother.Tests.Specs.MPSTwo.InvoiceTool
             CurrentPage.As<InvoiceToolsPage>().EnterMonoDevicePrintCounts(mono + 2500, "2", 363);
             CurrentPage.As<InvoiceToolsPage>().EnterMonoDevicePrintCounts(mono + 2500, "3", 363);
           
+
+
+
+        }
+
+
+        [Then(@"I enter ""(.*)"" and ""(.*)"" print count for a single device")]
+        public void ThenIEnterAndPrintCountForASingleDevice(int mono, int colour)
+        {
+           ThenIEnterSingleMonoAndColourPrintCount(mono, colour);
+        }
+
+
+        public void ThenIEnterSingleMonoAndColourPrintCount(int mono, int colour)
+        {
+            CurrentPage.As<InvoiceToolsPage>().NavigateToInvoiceToolPrinterPage();
+
+            //Print count for invoice date 1
+            CurrentPage.As<InvoiceToolsPage>().EnterColourDevicePrintCounts(mono, colour, "0", 0);
+           
+
+            CurrentPage.As<InvoiceToolsPage>().CompleteInstallation();
+
+            //Print count for invoice date 2
+            CurrentPage.As<InvoiceToolsPage>().EnterColourDevicePrintCounts(mono + 1000, colour + 1000, "0", 95);
+
+
+
+            //Print count for invoice date 3
+            CurrentPage.As<InvoiceToolsPage>().EnterColourDevicePrintCounts(mono + 1500, colour + 1500, "0", 190);
+
+
+
+            //Print count for invoice date 4
+            CurrentPage.As<InvoiceToolsPage>().EnterColourDevicePrintCounts(mono + 2000, colour + 2000, "0", 280);
+
+
+
+            //Print count for invoice date 5
+            CurrentPage.As<InvoiceToolsPage>().EnterColourDevicePrintCounts(mono + 2500, colour + 2500, "0", 363);
+
 
 
 

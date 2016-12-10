@@ -78,7 +78,7 @@ Scenario Outline: MPS Create Proposal With Existing Customer
 	And I display "<Printer>" device screen
 	And "<DeviceScreen>" device screen is displayed
 	And I accept the default values of the device
-	And Service Pack payment method is displayed
+	And I enter click price volume of "<ClickVolume>" and "<ColourVolume>"
 	Then "<ContractType>" displayed on proposal Summary Page corresponds to "<ContractType>"
 	And "<UsageType>" displayed on proposal Summary Page corresponds to "<UsageType>"
 	And "<Contract>" displayed on proposal Summary Page corresponds to "<Contract>"
