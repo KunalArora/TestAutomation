@@ -373,11 +373,31 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Single Installation With Specified Printer")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Finland", "Purchase & Click with Service", "Maksu tulosteiden mukaan", "Cloud MPS Dealer", "Email", "4 vuotta", "Quarterly in Arrears", "DCP-9015CDW", "A1T010278", "5000", "5000", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Norway", "Kjøp og klikk med service", "Betale ved forbruk", "Cloud MPS Dealer", "Email", "48", "Quarterly in Arrears", "DCP-9015CDW", "A1T010279", "5000", "5000", null)]
+        [NUnit.Framework.IgnoreAttribute()]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "France", "Buy & Click", "Paiement selon la consommation réelle de pages", "Cloud MPS Dealer", "Email", "4 ans", "Trimestriellement à terme échu", "DCP-9015CDW", "A1T010266", "5000", "5000", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Spain", "Purchase & Click con Service", "Pago por Uso", "Cloud MPS Dealer", "Email", "4 años", "Por trimestres vencidos", "DCP-9015CDW", "A1T010267", "5000", "5000", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Denmark", "Purchase & Click with Service", "Pay As You Go", "Cloud MPS Dealer", "Email", "4 år", "Quarterly in Arrears", "DCP-9015CDW", "A1T010268", "5000", "5000", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Sweden", "Purchase & click inklusive service", "Betala per utskrift", "Cloud MPS Dealer", "Email", "48 månader", "Kvartalsvis i efterskott", "DCP-9015CDW", "A1T010269", "5000", "5000", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Netherlands", "Purchase + Click met Service", "Betalen naar verbruik", "Cloud MPS Dealer", "Email", "4 jaar", "Per kwartaal achteraf", "DCP-9015CDW", "A1T010270", "5000", "5000", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Ireland", "Purchase & Click with Service", "Pay As You Go", "Cloud MPS Dealer", "Email", "4 years", "Quarterly in Arrears", "DCP-9015CDW", "A1T010271", "5000", "5000", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Poland", "Buy + Click", "Pakiet wydruków", "Cloud MPS Dealer", "Email", "4 lata", "Miesięczny / Monthly", "DCP-9015CDW", "A1T010272", "5000", "5000", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Pay As You Go", "Cloud MPS Dealer", "Email", "4 years", "Quarterly in Arrears", "DCP-9015CDW", "A1T010273", "5000", "5000", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Belgium", "Purchase & Click with Service", "Volume minimum", "Cloud MPS Dealer", "Email", "4 ans", "Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance", "DCP-9015CDW", "A1T010274", "5000", "5000", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Germany", "Easy Print Pro & Service", "Mindestvolumen", "Cloud MPS Dealer", "Email", "4 Jahre", "Halbjährlich", "DCP-9015CDW", "A1T010275", "5000", "5000", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Austria", "Easy Print Pro & Service", "Pay As You Go", "Cloud MPS Dealer", "Email", "5 Jahre", "Halbjährlich", "DCP-9015CDW", "A1T010278", "5000", "5000", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Switzerland", "Purchase & Click with Service", "Pay As You Go", "Cloud MPS Dealer", "Email", "48", "Quartalsweise", "DCP-9015CDW", "A1T010279", "5000", "5000", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Finland", "Purchase & Click with Service", "Maksu tulosteiden mukaan", "Cloud MPS Dealer", "Email", "4 vuotta", "Quarterly in Arrears", "DCP-9015CDW", "A1T010276", "5000", "5000", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Norway", "Kjøp og klikk med service", "Betale ved forbruk", "Cloud MPS Dealer", "Email", "48", "Quarterly in Arrears", "DCP-9015CDW", "A1T010277", "5000", "5000", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Italy", "Acquisto + Consumo con assistenza", "Volume minimo", "Cloud MPS Dealer", "Email", "48", "Trimestrale anticipata", "DCP-9015CDW", "A1T010280", "5000", "5000", null)]
         public virtual void SingleInstallationWithSpecifiedPrinter(string role, string country, string contractType, string usageType, string role1, string method, string length, string billing, string device1, string serialNumber, string mono, string colour, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Single Installation With Specified Printer", exampleTags);
+            string[] @__tags = new string[] {
+                    "ignore"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Single Installation With Specified Printer", @__tags);
 #line 199
 this.ScenarioSetup(scenarioInfo);
 #line 200
@@ -398,22 +418,22 @@ this.ScenarioSetup(scenarioInfo);
 #line 207
  testRunner.And("I enter the contract reference number", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 208
- testRunner.And(string.Format("I enter device serial number \"{0}\" for \"<Type>\" communication", serialNumber), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("I enter device serial number \"{0}\" for \"{1}\" communication", serialNumber, method), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 209
  testRunner.And("I enter the device IP address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 210
- testRunner.Then(string.Format("I can connect device with serials \"{0}\" to Brother environment", serialNumber), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 211
- testRunner.And("I can complete device installation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("I can connect the device to Brother environment", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 212
- testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I can complete device installation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 213
- testRunner.And("I navigate to the Invoice tool homepage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 214
- testRunner.And(string.Format("I select \"{0}\" of interest", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I navigate to the Invoice tool homepage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 215
- testRunner.And(string.Format("I enter \"{0}\" mono and \"{1}\" colour print count", mono, colour), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("I select \"{0}\" of interest", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 216
+ testRunner.And(string.Format("I enter \"{0}\" and \"{1}\" print count for a single device", mono, colour), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 217
  testRunner.And("I generate invoices for the contract above", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
