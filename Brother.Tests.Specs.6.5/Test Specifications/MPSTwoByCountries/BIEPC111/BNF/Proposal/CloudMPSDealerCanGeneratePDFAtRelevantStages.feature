@@ -15,7 +15,7 @@ Scenario Outline: Dealer Can Generate PDF Purchase and Click Minimum Summary Pag
 	And I "<PriceHardware>" Price Hardware radio button
 	And I display "<Printer>" device screen
 	And "<DeviceScreen>" device screen is displayed
-	And I choose to pay Service Packs "<PaymentMethod>"
+	And I accept the default values of the device
 	And I enter click price volume of "<ClickVolume>" and "<ColourVolume>"
 	Then I can generate customer PDF for the proposal
 	##And I can generate dealer PDF for the proposal
