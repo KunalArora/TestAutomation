@@ -3,7 +3,7 @@ Feature: ProductRegistration
 	In order to register a product
 	End user will login to existing account or create a new account
 
-@SMOKE
+@TEST
 Scenario Outline: Verify the Header and Footer of the landing page
 #Given I navigate to "<Country>" in order to validate the landing page
 Given I navigate to "<Country>" Brother Online landing page

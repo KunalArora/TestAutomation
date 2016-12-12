@@ -71,12 +71,12 @@ namespace Brother.Online.TestSpecs._80.TestSpecification
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verify the Header and Footer of the landing page")]
-        [NUnit.Framework.CategoryAttribute("SMOKE")]
+        [NUnit.Framework.CategoryAttribute("TEST")]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", null)]
         public virtual void VerifyTheHeaderAndFooterOfTheLandingPage(string country, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "SMOKE"};
+                    "TEST"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
