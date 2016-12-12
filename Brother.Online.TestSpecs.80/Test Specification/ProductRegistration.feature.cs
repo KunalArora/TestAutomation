@@ -97,7 +97,7 @@ testRunner.Then("I should see the Header and the Footer appearing on the landing
             "e")]
         [NUnit.Framework.CategoryAttribute("SMOKE")]
         [NUnit.Framework.CategoryAttribute("TEST")]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/eubol78/serial-number", "U1T004719", "12/12/2013", "123orderplacedukaccount@mailinator.com", "Test", "Test", null)]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/eubol78/serial-number", "U1T004731", "12/12/2013", "123orderplacedukaccount@mailinator.com", "Test", "Test", null)]
         public virtual void NewCustomerWantsToRegisterProductWithTheirSerialNumbersAndPurchaseDate(string country, string siteUrl, string serialNumber, string purchaseDate, string email, string firstName, string lastName, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -249,7 +249,7 @@ this.ScenarioSetup(scenarioInfo);
             "ate and promo code and also bank details entered for the user")]
         [NUnit.Framework.CategoryAttribute("SMOKE")]
         [NUnit.Framework.CategoryAttribute("TEST")]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/signintest", "123orderplacedukaccount@mailinator.com", "Hello123", "U1T004719", "cash50", "12/12/2013", "Test", "400699", "54116897", "M345JE", "1", null)]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/signintest", "123orderplacedukaccount@mailinator.com", "Hello123", "U1T004732", "cash50", "12/12/2013", "Test", "400699", "54116897", "M345JE", "1", null)]
         public virtual void ExistingCustomerWantsToRegisterProductWithTheirSerialNumbersPurchaseDateAndPromoCodeAndAlsoBankDetailsEnteredForTheUser(string country, string siteUrl, string validEmailAddress, string validPassword, string serialNumber, string promoCode, string purchaseDate, string accountHolderName, string sortCode, string accountNumber, string postcode, string houseNumber, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -319,7 +319,7 @@ this.ScenarioSetup(scenarioInfo);
             "ate")]
         [NUnit.Framework.CategoryAttribute("SMOKE")]
         [NUnit.Framework.CategoryAttribute("TEST")]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/signintest", "123orderplacedukaccount@mailinator.com", "Hello123", "U1T004781", "12/12/2013", "Test", "400699", "54116897", "M345JE", null)]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/signintest", "123orderplacedukaccount@mailinator.com", "Hello123", "U1T004733", "12/12/2013", "Test", "400699", "54116897", "M345JE", null)]
         public virtual void ExistingCustomerWantsToRegisterProductWithTheirSerialNumbersPurchaseDate(string country, string siteUrl, string validEmailAddress, string validPassword, string serialNumber, string purchaseDate, string accountHolderName, string sortCode, string accountNumber, string postcode, string[] exampleTags)
         {
             string[] @__tags = new string[] {
