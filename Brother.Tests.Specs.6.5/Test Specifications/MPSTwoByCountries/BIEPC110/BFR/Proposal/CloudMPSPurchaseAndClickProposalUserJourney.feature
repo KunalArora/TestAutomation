@@ -31,8 +31,8 @@ Scenario Outline: MPS Create MV Proposal
 	
 
 	Scenarios: 
-	| Role             | Country | ContractType | CreateOption        | UsageType                                 | Contract | Billing                | PriceHardware | Printer      | DeviceScreen | PaymentMethod | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | France  | Buy & Click  | Create new customer | Engagement sur un minimum volume de pages | 4 ans    | Trimestrale anticipata | Tick          | MFC-L8650CDW | Full         | Pay upfront   | 800         | 800          |
+	| Role             | Country | ContractType | CreateOption        | UsageType                                 | Contract | Billing                | PriceHardware | Printer      | DeviceScreen | PaymentMethod                    | ClickVolume | ColourVolume |
+	| Cloud MPS Dealer | France  | Buy & Click  | Create new customer | Engagement sur un minimum volume de pages | 4 ans    | Trimestrale anticipata | Tick          | MFC-L8650CDW | Full         | Paiement au démarrage du contrat | 800         | 800          |
 	
 	
 Scenario Outline: MPS Create PAYG Proposal
