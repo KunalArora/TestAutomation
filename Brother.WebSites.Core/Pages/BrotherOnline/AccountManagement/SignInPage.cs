@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
+using Brother.WebSites.Core.ProductService;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
@@ -73,6 +74,37 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             ScrollTo(SignInButton);
             SignInButton.Click();
             return GetInstance<ProductRegistrationPage>(Driver);  
+        }
+
+        public void DeregisterSerialNumber(string prodid)
+        {
+            RecycleSerialNumber(prodid);
+        }
+
+
+
+        private static void RecycleSerialNumber(string productId)
+        {
+            Guid prodId;
+            if (!Guid.TryParse(productId, out prodId))
+            {
+                return;
+            }
+            System.Threading.Thread.Sleep(5000);
+            //serialNumber = "A2N125652";//"U1T004750";
+            try
+            {
+
+                using (var productServiceClient = new ProductServiceClient())
+                {
+                    productServiceClient.DeregisterProduct(prodId);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
         }
 
     }

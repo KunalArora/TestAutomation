@@ -41,6 +41,17 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
             CurrentPage = BasePage.LoadProductRegistrationPage(CurrentDriver, url);
         }
 
+        [Given(@"I deregister the serial number using the ""(.*)""")]
+        public void GivenIDeregisterTheSerialNumberUsingThe(string productid)
+        {
+            CurrentPage.As<SignInPage>().DeregisterSerialNumber(productid);
+        }
+        [Given(@"I deregister the serial number using the ""(.*)"" on Product Registration page")]
+        public void GivenIDeregisterTheSerialNumberUsingTheOnProductRegistrationPage(string productid)
+        {
+            CurrentPage.As<ProductRegistrationPage>().DeregisterSerialNumber(productid);
+        }
+
         [Given(@"I have entered my product SerialNumber reading from the environmental variable")]
         public void GivenIHaveEnteredMyProductSerialNumberReadingFromTheEnvironmentalVariable()
         {

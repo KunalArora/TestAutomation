@@ -17,6 +17,7 @@ Scenarios:
 Scenario Outline: New Customer wants to register product with their serial numbers and purchase date
 	Given I navigate to "<Country>" Brother Online landing page
 	And I browse to the "<Site Url>" product registration page
+	And I deregister the serial number using the "<ProdId>" on Product Registration page
 	And I have entered my product "<SerialNumber>"
 	And clicked on Find Product Button
 	And I retreive data product id from Product Page 
@@ -30,8 +31,8 @@ Scenario Outline: New Customer wants to register product with their serial numbe
 
 
 Scenarios: 
-| Country        | Site Url                  | SerialNumber | PurchaseDate | Email                                  | FirstName | LastName |
-| United Kingdom | /qa/eubol78/serial-number | U1T004731  | 12/12/2013   | 123orderplacedukaccount@mailinator.com | Test      | Test     |
+| Country        | Site Url                  | SerialNumber | PurchaseDate | Email                                  | FirstName | LastName |ProdId  |
+| United Kingdom | /qa/eubol78/serial-number | U1T004731    | 12/12/2013   | 123orderplacedukaccount@mailinator.com | Test      | Test     |c3beeb53-d80a-1a4c-e100-0000ac1b10d3 |
 
 
 @ignore
@@ -39,6 +40,7 @@ Scenarios:
 Scenario Outline: New Customer wants to register product with their serial numbers in the file
 	Given I navigate to "<Country>" Brother Online landing page
 	And I browse to the "<Site Url>" product registration page
+	And I deregister the serial number using the "<ProdId>" on Product Registration page
 	And I have entered my product SerialNumber reading from the environmental variable
 	And clicked on Find Product Button
 	And I have entered "<PurchaseDate>" 
@@ -58,6 +60,7 @@ Scenarios:
 Scenario Outline: New Customer wants to register product with their serial numbers, purchase date and promo code
 	Given I navigate to "<Country>" Brother Online landing page
 	And I browse to the "<Site Url>" product registration page
+	And I deregister the serial number using the "<ProdId>"
 	And I have entered my product "<SerialNumber>"
 	And clicked on Find Product Button
 	And I retreive data product id from Product Page 
@@ -78,14 +81,15 @@ Scenario Outline: New Customer wants to register product with their serial numbe
 	
 
 Scenarios: 
-| Country        | Site Url                  | SerialNumber | PurchaseDate | PromoCode  | Email                                | FirstName | LastName | Postcode | House Number |
-| United Kingdom | /qa/eubol78/serial-number | U1T004763    | 12/12/2013   | warrantyup | testemailidinputfield@mailinator.com | Test      | Test     | M345JE   | 1            |
+| Country        | Site Url                  | SerialNumber | PurchaseDate | PromoCode  | Email                                | FirstName | LastName | Postcode | House Number |ProdId |
+| United Kingdom | /qa/eubol78/serial-number | U1T004731    | 12/12/2013   | warrantyup | testemailidinputfield@mailinator.com | Test      | Test     | M345JE   | 1            |c3beeb53-d80a-1a4c-e100-0000ac1b10d3 |
 
 
 @SMOKE @TEST
 Scenario Outline: Existing Customer wants to register product with their serial numbers, purchase date and promo code and also bank details entered for the user
     Given I navigate to "<Country>" Brother Online landing page
 	And I browse to the "<Site Url>" for existing user signin page
+	And I deregister the serial number using the "<ProdId>"
 	And I click on existing customer log in option
     Then I enter an email address as "<Valid Email Address>"
     Then I enter valid passowrd for the account "<Valid Password>"
@@ -109,14 +113,15 @@ Scenario Outline: Existing Customer wants to register product with their serial 
 	And I can verify registration confirmaiton message is present
 
 Scenarios:
-	| Country        | Site Url       | Valid Email Address                    | Valid Password | SerialNumber | PromoCode | PurchaseDate | Account Holder Name | Sort Code | Account Number | Postcode | House Number |
-	| United Kingdom | /qa/signintest | 123orderplacedukaccount@mailinator.com | Hello123       | U1T004732   | cash50    | 12/12/2013   | Test                | 400699    | 54116897       | M345JE   | 1            |
+	| Country        | Site Url       | Valid Email Address                    | Valid Password | SerialNumber | PromoCode | PurchaseDate | Account Holder Name | Sort Code | Account Number | Postcode | House Number |ProdId |
+	| United Kingdom | /qa/signintest | 123orderplacedukaccount@mailinator.com | Hello123       | U1T004731   | cash50    | 12/12/2013   | Test                | 400699    | 54116897       | M345JE   | 1            |c3beeb53-d80a-1a4c-e100-0000ac1b10d3 |
 
 
 @SMOKE @TEST
 Scenario Outline: Existing Customer wants to register product with their serial numbers, purchase date
     Given I navigate to "<Country>" Brother Online landing page
 	And I browse to the "<Site Url>" for existing user signin page
+	And I deregister the serial number using the "<ProdId>"
 	And I click on existing customer log in option
     Then I enter an email address as "<Valid Email Address>"
     Then I enter valid passowrd for the account "<Valid Password>"
@@ -131,5 +136,5 @@ Scenario Outline: Existing Customer wants to register product with their serial 
 	
 
 Scenarios:
-	| Country        | Site Url       | Valid Email Address                    | Valid Password | SerialNumber |  PurchaseDate | Account Holder Name | Sort Code | Account Number | Postcode |
-	| United Kingdom | /qa/signintest | 123orderplacedukaccount@mailinator.com | Hello123       | U1T004733   |  12/12/2013   | Test                | 400699    | 54116897       | M345JE   |
+	| Country        | Site Url       | Valid Email Address                    | Valid Password | SerialNumber |  PurchaseDate | Account Holder Name | Sort Code | Account Number | Postcode |ProdId |
+	| United Kingdom | /qa/signintest | 123orderplacedukaccount@mailinator.com | Hello123       | U1T004731   |  12/12/2013   | Test                | 400699    | 54116897       | M345JE   |c3beeb53-d80a-1a4c-e100-0000ac1b10d3 |
