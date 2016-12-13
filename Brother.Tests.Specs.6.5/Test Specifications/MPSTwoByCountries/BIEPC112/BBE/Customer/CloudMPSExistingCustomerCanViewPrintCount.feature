@@ -12,7 +12,7 @@ Scenario Outline: MPS Existing Customer For Run Action
 	And I sign back into Cloud MPS as a "<Role1>" from "<Country>"
 	When I install the device on the contract with "<Method>" communication and "<Type>" installation 
 	And I can sign out of Brother Online
-	And I sign into Cloud MPS as a "<Role2>" from "<Country>"
+	And I sign into Cloud MPS as a "<ExistingCustomer>" from "<Country>"
 	And I navigate to customer dashboard page
 	And I navigate to Print Count page
 	Then the print counts attached to the device are correct
@@ -21,7 +21,7 @@ Scenario Outline: MPS Existing Customer For Run Action
 	
 Scenarios:
 
-	| Role                            | Country | ContractType                  | UsageType      | Role1            | Method | Type | ExistingCustomer                 | Length | Billing                                                            | Role2              | Language |
-	| Cloud MPS Local Office Approver | Belgium | Buy & Click                   | Volume minimum | Cloud MPS Dealer | Cloud  | BOR  | Colonial Avenue_160718082853 Ltd | 4 ans  | Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance | Cloud MPS Customer | French   |
-	| Cloud MPS Local Office Approver | Belgium | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  | Colonial Avenue_160718082853 Ltd | 3 jaar | Jaarlijke afrekening / Décompte annuel                             | Cloud MPS Customer | Dutch    |
+	| Role                            | Country | ContractType                  | UsageType      | Role1            | Method | Type | ExistingCustomer                    | Length | Billing                                                            | Role2              | Language |
+	| Cloud MPS Local Office Approver | Belgium | Buy & Click                   | Volume minimum | Cloud MPS Dealer | Cloud  | BOR  | Belkis20160718082850@mailinator.com | 4 ans  | Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance | Cloud MPS Customer | French   |
+	| Cloud MPS Local Office Approver | Belgium | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  | Belkis20160718082850@mailinator.com | 3 jaar | Jaarlijke afrekening / Décompte annuel                             | Cloud MPS Customer | Dutch    |
 	

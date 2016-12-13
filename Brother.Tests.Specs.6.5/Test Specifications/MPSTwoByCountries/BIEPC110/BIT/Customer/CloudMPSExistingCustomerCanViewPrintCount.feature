@@ -12,7 +12,7 @@ Scenario Outline: MPS Existing Customer For Run Action
 	And I sign back into Cloud MPS as a "<Role1>" from "<Country>"
 	When I install the device on the contract with "<Method>" communication and "<Type>" installation 
 	And I can sign out of Brother Online
-	And I sign into Cloud MPS as a "<Role2>" from "<Country>"
+	And I sign into Cloud MPS as a "<ExistingCustomer>" from "<Country>"
 	And I navigate to customer dashboard page
 	And I navigate to Print Count page
 	Then the print counts attached to the device are correct
@@ -21,6 +21,6 @@ Scenario Outline: MPS Existing Customer For Run Action
 	
 Scenarios:
 
-	| Role                            | Country | ContractType                      | UsageType     | Role1            | Method | Type | ExistingCustomer                 | Length | Billing                | Role2              |
-	| Cloud MPS Local Office Approver | Italy   | Acquisto + Consumo con assistenza | Volume minimo | Cloud MPS Dealer | Cloud  | Web  | Colonial Avenue_160322121421 Ltd | 36     | Trimestrale anticipata | Cloud MPS Customer |
+	| Role                            | Country | ContractType                      | UsageType     | Role1            | Method | Type | ExistingCustomer                    | Length | Billing                | Role2              |
+	| Cloud MPS Local Office Approver | Italy   | Acquisto + Consumo con assistenza | Volume minimo | Cloud MPS Dealer | Cloud  | Web  | Delsie20160322121420@mailinator.com | 36     | Trimestrale anticipata | Cloud MPS Customer |
 	

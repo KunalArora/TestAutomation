@@ -12,7 +12,7 @@ Scenario Outline: Existing Belgian Customer can be used to create a new contract
 	And I sign back into Cloud MPS as a "<Role1>" from "<Country>"
 	When I install the device on the contract with "<Method>" communication and "<Type>" installation 
 	And I can sign out of Brother Online
-	And I sign into Cloud MPS as a "<Role2>" from "<Country>"
+	And I sign into Cloud MPS as a "<ExistingCustomer>" from "<Country>"
 	And I navigate to customer dashboard page
 	And I navigate to Print Count page
 	Then the print counts attached to the device are correct
