@@ -734,7 +734,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             var deviceTotalPrice = MpsUtil.GetValue(SummaryGrandDeviceTotalPriceElement.Text);
             var consumableTotalPrice = MpsUtil.GetValue(SummaryGrandConsumableTotalPriceElement.Text);
-            var charges = IsElementPresent(GetElementByCssSelector("content_1_SummaryTable_ChargesTotalPriceNet"))
+            var charges = IsElementPresent(GetElementByCssSelector("#content_1_SummaryTable_ChargesTotalPriceNet"))
                 ? MpsUtil.GetValue(SummaryGrandChargesTotalPriceElement.Text)
                 : 0;
 
@@ -1084,7 +1084,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             if (!(IsGermanSystem() && GetContractType() == "Easy Print Pro & Service"))
             {
-                TestCheck.AssertIsEqual(ServiceCostNameElement.Text, value,
+                var cost = ServiceCostNameElement.Text;
+                TestCheck.AssertIsEqual(value, cost,
                     "Service Pack cost on Product page is not the same as the Service Pack on Summary page");
             }
         }
