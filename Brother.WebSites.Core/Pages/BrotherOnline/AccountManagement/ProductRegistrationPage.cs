@@ -147,6 +147,13 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             RecycleSerialNumber(pId);
             return GetInstance<MyPrintersAndDevicesPage>(Driver); 
         }
+        
+        public void DeregisterSerialNumber(string prodid)
+        {
+            RecycleSerialNumber(prodid);
+        }
+        
+        
 
         private static void RecycleSerialNumber(string productId)
         {
