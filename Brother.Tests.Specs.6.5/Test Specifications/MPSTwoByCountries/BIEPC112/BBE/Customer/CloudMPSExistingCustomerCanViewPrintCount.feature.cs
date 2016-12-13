@@ -75,8 +75,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BBE.
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("MPS Existing Customer For Run Action")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Belgium", "Buy & Click", "Volume minimum", "Cloud MPS Dealer", "Cloud", "BOR", "Colonial Avenue_160718082853 Ltd", "4 ans", "Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance", "Cloud MPS Customer", "French", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Belgium", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Cloud", "Web", "Colonial Avenue_160718082853 Ltd", "3 jaar", "Jaarlijke afrekening / Décompte annuel", "Cloud MPS Customer", "Dutch", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Belgium", "Buy & Click", "Volume minimum", "Cloud MPS Dealer", "Cloud", "BOR", "Belkis20160718082850@mailinator.com", "4 ans", "Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance", "Cloud MPS Customer", "French", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Belgium", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Cloud", "Web", "Belkis20160718082850@mailinator.com", "3 jaar", "Jaarlijke afrekening / Décompte annuel", "Cloud MPS Customer", "Dutch", null)]
         public virtual void MPSExistingCustomerForRunAction(string role, string country, string contractType, string usageType, string role1, string method, string type, string existingCustomer, string length, string billing, string role2, string language, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Existing Customer For Run Action", exampleTags);
@@ -97,7 +97,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 14
  testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 15
- testRunner.And(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role2, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", existingCustomer, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 16
  testRunner.And("I navigate to customer dashboard page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 17
