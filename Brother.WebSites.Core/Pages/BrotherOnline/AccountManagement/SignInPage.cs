@@ -26,7 +26,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         [FindsBy(How = How.CssSelector, Using = "#lnkForgottenPassword")]
         public IWebElement ForgottenPasswordLink;
 
-        [FindsBy(How = How.CssSelector, Using = "#email")]
+        [FindsBy(How = How.CssSelector, Using = "#txtEmail")]
         public IWebElement EnterEmailId;
         
         [FindsBy(How = How.XPath, Using = ".//*[@id='spanEmailNotValidError']/*/*")] 
