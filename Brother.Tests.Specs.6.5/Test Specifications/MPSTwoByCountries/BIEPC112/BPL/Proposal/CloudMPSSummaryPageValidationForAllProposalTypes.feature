@@ -21,7 +21,7 @@ Scenario Outline: MPS Summary Validation MV In Click
 	Then the billing basis for Accessory is "<Basis2>"
 	Then the billing basis for product is "<Basis2>"
 	And the billing basis for Installation is "<Basis2>"
-	And the billing basis for Service Pack is "<Basis1>"
+	And the billing basis for Service Pack is "Wliczony w cenę za wydruk"
 	And the installation type displayed is correct
 	And the installation cost displayed is correct
 	And the quantity displayed is the same as the one entered
@@ -39,8 +39,8 @@ Scenario Outline: MPS Summary Validation MV In Click
 	
 
 	Scenarios: 
-	| Role             | Country | ContractType                  | UsageType       | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod       | ClickVolume | ColourVolume | Basis1              | Basis2        |
-	| Cloud MPS Dealer | Poland  | Purchase & Click with Service | Pakiet wydruków | 4 lata   | Miesięczny / Monthly | Tick          | MFC-L8650CDW | Full         | Płatność za wydruki | 800         | 800          | Płatność za wydruki | Płatne z góry |
+	| Role             | Country | ContractType                  | UsageType       | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod             | ClickVolume | ColourVolume | Basis1              | Basis2        |
+	| Cloud MPS Dealer | Poland  | Purchase & Click with Service | Pakiet wydruków | 4 lata   | Miesięczny / Monthly | Tick          | MFC-L8650CDW | Full         | Wliczony w cenę za wydruk | 800         | 800          | Płatność za wydruki | Płatny z góry |
 	
 
 Scenario Outline:  MPS Summary Validation MV Upfront
@@ -76,7 +76,7 @@ Scenario Outline:  MPS Summary Validation MV Upfront
 
 	Scenarios: 
 	| Role             | Country | ContractType                  | UsageType       | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod | ClickVolume | ColourVolume | Basis1        |
-	| Cloud MPS Dealer | Poland  | Purchase & Click with Service | Pakiet wydruków | 3 lata   | Miesięczny / Monthly | Tick          | MFC-L8650CDW | Full         | Płatne z góry | 800         | 800          | Płatne z góry |
+	| Cloud MPS Dealer | Poland  | Purchase & Click with Service | Pakiet wydruków | 3 lata   | Miesięczny / Monthly | Tick          | MFC-L8650CDW | Full         | Płatny z góry | 800         | 800          | Płatny z góry |
 	
 
 
@@ -110,4 +110,4 @@ Scenario Outline:  MPS Summary Validation PAYG
 
 	Scenarios: 
 	| Role             | Country | ContractType                  | CreateOption        | UsageType            | Contract | Billing              | PriceHardware | Printer    | DeviceScreen | ClickVolume | Basis1        |
-	| Cloud MPS Dealer | Poland  | Purchase & Click with Service | Create new customer | Bez pakietu wydruków | 4 lata   | Miesięczny / Monthly | Tick          | MFC-8510DN | Full         | 800         | Płatne z góry |
+	| Cloud MPS Dealer | Poland  | Purchase & Click with Service | Create new customer | Bez pakietu wydruków | 4 lata   | Miesięczny / Monthly | Tick          | MFC-8510DN | Full         | 800         | Płatny z góry |
