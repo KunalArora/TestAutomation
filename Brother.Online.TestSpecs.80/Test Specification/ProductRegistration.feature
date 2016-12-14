@@ -138,3 +138,17 @@ Scenario Outline: Existing Customer wants to register product with their serial 
 Scenarios:
 	| Country        | Site Url       | Valid Email Address                    | Valid Password | SerialNumber |  PurchaseDate | Account Holder Name | Sort Code | Account Number | Postcode |ProdId |
 	| United Kingdom | /qa/signintest | 123orderplacedukaccount@mailinator.com | Hello123       | U1T004731   |  12/12/2013   | Test                | 400699    | 54116897       | M345JE   |c3beeb53-d80a-1a4c-e100-0000ac1b10d3 |
+
+
+
+
+@SMOKE @TEST
+Scenario Outline: Deregister Serial Numbers using prod id
+	Given I navigate to "<Country>" Brother Online landing page
+	And I browse to the "<Site Url>" product registration page
+	And I deregister the serial number using the "<ProdId>" on Product Registration page
+
+
+Scenarios:
+	| Country        | Site Url        | ProdId |
+	| United Kingdom | /qa/signintest  |bc20eb53-c926-cd2f-e100-0000ac1b10d3|
