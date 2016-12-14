@@ -32,8 +32,8 @@ Scenario Outline: MPS Create MV Proposal
 	
 
 	Scenarios: 
-	| Role             | Country | ContractType | CreateOption        | UsageType       | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod       | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | Poland  | Buy + Click  | Create new customer | Pakiet wydruków | 3 lata   | Miesięczny / Monthly | Tick          | MFC-L8650CDW | Full         | Płatność za wydruki | 800         | 800          |
+	| Role             | Country | ContractType | CreateOption        | UsageType       | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod             | ClickVolume | ColourVolume |
+	| Cloud MPS Dealer | Poland  | Buy + Click  | Create new customer | Pakiet wydruków | 3 lata   | Miesięczny / Monthly | Tick          | MFC-L8650CDW | Full         | Wliczony w cenę za wydruk | 800         | 800          |
 	
 	 
 	
@@ -94,8 +94,8 @@ Scenario Outline: MPS Create Proposal With Existing Customer
 	
 
 	Scenarios: 
-	| Role             | Country | ContractType | UsageType       | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod       | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | Poland  | Buy + Click  | Pakiet wydruków | 3 lata   | Miesięczny / Monthly | Tick          | MFC-L8650CDW | Full         | Płatność za wydruki | 800         | 800          |
+	| Role             | Country | ContractType | UsageType       | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod             | ClickVolume | ColourVolume |
+	| Cloud MPS Dealer | Poland  | Buy + Click  | Pakiet wydruków | 3 lata   | Miesięczny / Monthly | Tick          | MFC-L8650CDW | Full         | Wliczony w cenę za wydruk | 800         | 800          |
 	
 	
 Scenario Outline: MPS Create Proposal Existing PAYG Customer

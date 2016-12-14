@@ -40,6 +40,6 @@ Scenario Outline: MPS Create Proposal From List Page
 
 
 Scenarios: 
-	| Role             | Country | ContractType | UsageType       | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod       | ClickVolume | ColourVolume | Basis1              | Basis2        |
-	| Cloud MPS Dealer | Poland  | Buy + Click  | Pakiet wydruków | 3 lata   | Miesięczny / Monthly | Tick          | MFC-L8650CDW | Full         | Płatność za wydruki | 800         | 800          | Płatność za wydruki | Płatne z góry |
+	| Role             | Country | ContractType | UsageType       | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod             | ClickVolume | ColourVolume | Basis1                    | Basis2        |
+	| Cloud MPS Dealer | Poland  | Buy + Click  | Pakiet wydruków | 3 lata   | Miesięczny / Monthly | Tick          | MFC-L8650CDW | Full         | Wliczony w cenę za wydruk | 800         | 800          | Wliczony w cenę za wydruk | Płatny z góry |
 	
