@@ -261,6 +261,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CloudMPSReportingVeification.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC113\PrintersCheck\CloudMPSCheckNewPrinterWorks.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CloudMPSCheckNewPrinterWorks.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\CalculationEngine\CalculationEngineScenarios.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1517,6 +1522,10 @@
     <None Include="Test Specifications\MPSTwoByCountries\BIEPC110\BUK\Reporting\CloudMPSReportingVeification.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSReportingVeification.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwoByCountries\BIEPC113\PrintersCheck\CloudMPSCheckNewPrinterWorks.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CloudMPSCheckNewPrinterWorks.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwoByCountries\CalculationEngine\CalculationEngineScenarios.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
