@@ -498,6 +498,13 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         }
 
 
+        [When(@"I accept the default value of printer ""(.*)""")]
+        public void WhenIAcceptTheDefaultValueOfPrinter(string printer)
+        {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().ClickOnAPrinter(printer);
+            WhenIconfirmTheValuesEntereForTheDevice();
+        }
+
         [When(@"I redisplay ""(.*)"" device screen")]
         [Then(@"I redisplay ""(.*)"" device screen")]
         public void WhenIRedisplayDeviceScreen(string printer)
