@@ -1,11 +1,11 @@
-﻿@SMOKE @TEST
+﻿@TEST
 Feature: Existing User Forgotten Password
 	In order to change maintain by Brother Online Account
 	As a customer
 	I need to be able to have account management options
 
 
-@SMOKE_ExistingUserSignIn @TEST
+@SMOKE_ExistingUserSignIn 
 Scenario Outline: Check Forget Password with various invalid scenarios options throws an error for existing user - Validation Checks
 	Given I navigate to "<Country>" Brother Online landing page
 	And I browse to the "<Site Url>" for existing user signin page
@@ -19,7 +19,7 @@ Scenarios:
 	| United Kingdom | /qa/signintest | InvalidEmailContaining aspace@mailinator.com   |
 
 
-@SMOKE_ExistingUserSignIn @TEST
+@SMOKE_ExistingUserSignIn
 Scenario Outline: Check Forgotten Password email recieved to the user
 	Given I navigate to "<Country>" Brother Online landing page
 	And I browse to the "<Site Url>" for existing user signin page
