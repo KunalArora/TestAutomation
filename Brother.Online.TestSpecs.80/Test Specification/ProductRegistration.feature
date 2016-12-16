@@ -91,7 +91,7 @@ Scenario Outline: Existing Customer wants to register product with their serial 
 	And I browse to the "<Site Url>" for existing user signin page
 	And I deregister the serial number using the "<ProdId>"
 	And I click on existing customer log in option
-    Then I enter an email address as "<Valid Email Address>"
+    Then I enter an email address as "<Valid Email Address>" on existing customer page
     Then I enter valid passowrd for the account "<Valid Password>"
     And I click on SignIn button
 	And I have entered my product "<SerialNumber>"
@@ -123,7 +123,7 @@ Scenario Outline: Existing Customer wants to register product with their serial 
 	And I browse to the "<Site Url>" for existing user signin page
 	And I deregister the serial number using the "<ProdId>"
 	And I click on existing customer log in option
-    Then I enter an email address as "<Valid Email Address>"
+    Then I enter an email address as "<Valid Email Address>" on existing customer page
     Then I enter valid passowrd for the account "<Valid Password>"
     And I click on SignIn button
 	And I have entered my product "<SerialNumber>"
@@ -151,4 +151,4 @@ Scenario Outline: Deregister Serial Numbers using prod id
 
 Scenarios:
 	| Country        | Site Url        | ProdId |
-	| United Kingdom | /qa/signintest  |1e20eb53-c926-cd2f-e100-0000ac1b10d3|
+	| United Kingdom | /qa/signintest  |801feb53-c926-cd2f-e100-0000ac1b10d3|

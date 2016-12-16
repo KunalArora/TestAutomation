@@ -28,6 +28,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
 
         [FindsBy(How = How.CssSelector, Using = "#txtEmail")]
         public IWebElement EnterEmailId;
+
+        [FindsBy(How = How.CssSelector, Using = "#email")] 
+        public IWebElement EnterEmailIdOnExistingPage;
         
         [FindsBy(How = How.XPath, Using = ".//*[@id='spanEmailNotValidError']/*/*")] 
         public IWebElement EmailAddressErrorMessage;
@@ -60,6 +63,10 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         public void PopulateValidEmailAddress(string emailid)
         {
             EnterEmailId.SendKeys(emailid);
+        }
+        public void PopulateValidEmailAddressOnExistingPage(string emailid)
+        {
+            EnterEmailIdOnExistingPage.SendKeys(emailid);
         }
         public void ClickSendButton()
         {
