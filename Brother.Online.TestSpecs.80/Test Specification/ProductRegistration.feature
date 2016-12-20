@@ -28,11 +28,12 @@ Scenario Outline: New Customer wants to register product with their serial numbe
 	And I enter "<FirstName>"  and "<LastName>" on  user details page
 	And I tick on terms and conditions checkbox
 	Then I can complete my product registration by clicking on complete registration button and I can deregister the "<SerialNumber>"
+	And Once I have Validated "<Email>" was received and verified my account for Product Registration Email
 
 
 Scenarios: 
 | Country        | Site Url                  | SerialNumber | PurchaseDate | Email                                  | FirstName | LastName |ProdId  |
-| United Kingdom | /qa/eubol78/serial-number | U1T004731    | 12/12/2013   | 123orderplacedukaccount@mailinator.com | Test      | Test     |c3beeb53-d80a-1a4c-e100-0000ac1b10d3 |
+| United Kingdom | /qa/eubol78/serial-number | U1T004731    | 12/12/2013   | testemailidinputfield@guerrillamail.com| Test      | Test     |c3beeb53-d80a-1a4c-e100-0000ac1b10d3 |
 
 
 @ignore
