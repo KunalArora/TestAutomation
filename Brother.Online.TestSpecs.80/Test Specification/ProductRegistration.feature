@@ -36,7 +36,7 @@ Scenarios:
 | United Kingdom | /qa/eubol78/serial-number | U1T004731    | 12/12/2013   | testemailidinputfield@guerrillamail.com| Test      | Test     |c3beeb53-d80a-1a4c-e100-0000ac1b10d3 |
 
 
-@ignore
+@TEST
 #This is same test but serial numbers are stored in the environment variables and it increements itself by plus one everytime tests run
 Scenario Outline: New Customer wants to register product with their serial numbers in the file
 	Given I navigate to "<Country>" Brother Online landing page
@@ -61,7 +61,7 @@ Scenarios:
 Scenario Outline: New Customer wants to register product with their serial numbers, purchase date and promo code
 	Given I navigate to "<Country>" Brother Online landing page
 	And I browse to the "<Site Url>" product registration page
-	And I deregister the serial number using the "<ProdId>"
+	And I deregister the serial number using the "<ProdId>" on Product Registration page
 	And I have entered my product "<SerialNumber>"
 	And clicked on Find Product Button
 	And I retreive data product id from Product Page 
