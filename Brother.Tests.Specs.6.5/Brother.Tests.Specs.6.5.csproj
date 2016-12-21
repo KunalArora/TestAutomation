@@ -1136,7 +1136,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CloudMPSGenerateDataForManualTesting.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\ClickPrice\CloudMPSClickPriceRefactor.feature.cs">
+    <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC113\ClickPrice\CloudMPSClickPriceRefactor.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CloudMPSClickPriceRefactor.feature</DependentUpon>
@@ -2260,7 +2260,7 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSGenerateDataForManualTesting.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwoByCountries\ClickPrice\CloudMPSClickPriceRefactor.feature">
+    <None Include="Test Specifications\MPSTwoByCountries\BIEPC113\ClickPrice\CloudMPSClickPriceRefactor.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSClickPriceRefactor.feature.cs</LastGenOutput>
     </None>
