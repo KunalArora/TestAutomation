@@ -59,11 +59,41 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateEnteredClickPrice(monoVol);
         }
 
+        [When(@"I calculate ""(.*)"" click price volume of ""(.*)""")]
+        public void WhenICalculateClickPriceVolumeOf(string payment, string volume)
+        {
+            if (payment.Equals("Pay As You Go"))
+            {
+                CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateEnteredClickPrice(volume);
+            }
+            else if (payment.Equals("Minimum Volume"))
+            {
+               CurrentPage.As<DealerProposalsCreateClickPricePage>().SelectMonoVolume(volume, "0"); 
+               CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateClickPriceAndStoreVal();
+               CurrentPage.As<DealerProposalsCreateClickPricePage>().StoreMonoClickPrice();
+            }
+        }
+
+
         [When(@"I calculate click price volume of ""(.*)"" and ""(.*)"" without proceeding")]
         public void WhenICalculateClickPriceVolumeOfAnd(string monoVol, string colourVol)
         {
             CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateClickPrice(monoVol, colourVol);
         }
+
+        [When(@"I calculate ""(.*)"" click price volume of ""(.*)"" and ""(.*)"" without proceeding")]
+        public void WhenICalculateClickPriceVolumeOfAndWithoutProceeding(string payment, string monoVol, string colourVol)
+        {
+            if (payment.Equals("Minimum Volume"))
+            {
+                CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateClickPrice(monoVol, colourVol);
+            }
+            else if (payment.Equals("Pay As You Go"))
+            {
+                CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateEnteredMonoAndColourClickPrice(monoVol, colourVol);
+            }
+        }
+
 
 
         [When(@"I type in large click volume of ""(.*)""")]

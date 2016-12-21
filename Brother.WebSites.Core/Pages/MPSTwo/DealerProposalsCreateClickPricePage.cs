@@ -363,6 +363,22 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             CalculateClickPriceElement.Click();
         }
 
+        public void CalculateClickPriceAndStoreVal()
+        {
+            CalculateClickPriceElement.Click();
+            WebDriver.Wait(DurationType.Second, 3);
+        }
+
+        public void StoreMonoClickPrice()
+        {
+            SpecFlow.SetContext("ClickPriceMonoValue", ClickPriceValue().First().Text);
+        }
+
+        public void StoreColourClickPrice()
+        {
+            SpecFlow.SetContext("ClickPriceColourValue", ClickPriceColourValue().First().Text);
+        }
+
         public void SelectMonoVolume(string volume, string row)
         {
             if (monoVolumeDropdownElement == null)
@@ -697,6 +713,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             EnterMonoVolumeQuantity(volume);
             WebDriver.Wait(DurationType.Second, 5);
             VerifyClickPriceValueIsNotDisplayed();
+        }
+
+        public void CalculateEnteredMonoAndColourClickPrice(string mono, string colour)
+        {
+            //            MoveToClickPriceScreen();
+            EnterColourVolume(colour, "0");
+            EnterMonoVolumeQuantity(mono);
+            WebDriver.Wait(DurationType.Second, 5);
+            StoreMonoClickPrice();
+            StoreColourClickPrice();
         }
 
         public void IsLargeEstimatedVolumeErrorMessageDisplayed()
