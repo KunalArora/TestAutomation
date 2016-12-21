@@ -33,11 +33,38 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             NextPage = CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateMultipleClickPriceAndProceed(clickprice, colour);
         }
 
+        [Then(@"I note the calculated click price using ""(.*)"", ""(.*)"", ""(.*)"", ""(.*)"", ""(.*)"" and ""(.*)""")]
+        public void ThenINoteTheCalculatedClickPriceUsingAnd(string contract, string paymentMethod, string printer, string clickVol, string monoCoverage, string qty)
+        {
+            CurrentPage.As<DealerProposalsCreateClickPricePage>().WriteColourPrinterToCsv(printer, paymentMethod, monoCoverage, "Nil", qty, clickVol, "Nil", contract);
+        }
+
+        [Then(@"I note the calculated click price using ""(.*)"", ""(.*)"", ""(.*)"", ""(.*)"", ""(.*)"", ""(.*)"", ""(.*)"", and ""(.*)""")]
+        public void ThenINoteTheCalculatedClickPriceUsingAnd(string contract, string paymentMethod, string printer, string clickVol, string colourVol, string monoCoverage, string colourCoverage, string qty)
+        {
+            CurrentPage.As<DealerProposalsCreateClickPricePage>().WriteColourPrinterToCsv(printer, paymentMethod, monoCoverage, colourCoverage, qty, clickVol, colourVol, contract);
+            
+        }
+
+
         [When(@"I type in click price volume of ""(.*)""")]
         public void WhenITypeInClickPriceVolumeOf(string monoVol)
         {
             NextPage = CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateEnteredClickPriceAndProceed(monoVol);
         }
+
+        [When(@"I calculate click price volume of ""(.*)""")]
+        public void WhenICalculateClickPriceVolumeOf(string monoVol)
+        {
+            CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateEnteredClickPrice(monoVol);
+        }
+
+        [When(@"I calculate click price volume of ""(.*)"" and ""(.*)"" without proceeding")]
+        public void WhenICalculateClickPriceVolumeOfAnd(string monoVol, string colourVol)
+        {
+            CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateClickPrice(monoVol, colourVol);
+        }
+
 
         [When(@"I type in large click volume of ""(.*)""")]
         public void WhenITypeInLargeClickVolumeOf(string volume)

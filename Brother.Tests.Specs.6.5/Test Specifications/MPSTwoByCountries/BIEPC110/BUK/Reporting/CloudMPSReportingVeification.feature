@@ -24,17 +24,17 @@ Scenarios:
 Scenario Outline: Awaiting Approval Proposal Special Pricing
 	Given "<Country>" dealer has created "<ContractType>" proposal of awaiting proposal with "<UsageType>" and "<Length>" and "<Billing>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
-	And Approver navigate to ProposalsPage
-	And Approver navigate to Awaiting Approval screen under Proposals page
+	And I navigate to Report page
+	And Approver navigate to Data Query page
 	When Approver select the proposal on Awaiting Proposal
 	Then Approver should be able to decline that proposal
 	And the decline proposal should be displayed under Declined tab by Approver
 	And I sign out of Cloud MPS
 
 	Scenarios: 
-	| Country | Role                            | ContractType         | UsageType           | Length   | Billing              |
-	| Finland | Cloud MPS Local Office Approver | Click tarvikesopimus | Minimitulostusmäärä | 3 vuotta | Quarterly in Arrears |
-
+	| Country        | Role                            | ContractType                  | UsageType      | Length  | Billing              |
+	| United Kingdom | Cloud MPS Local Office Approver | Purchase & Click with Service | Minimum Volume | 3 years | Quarterly in Arrears |
+	
 @ignore
 Scenario Outline: Approved Proposal Special Pricing
 	Given "<Country>" dealer has created "<ContractType>" proposal of awaiting proposal with "<UsageType>" and "<Length>" and "<Billing>"
@@ -47,6 +47,6 @@ Scenario Outline: Approved Proposal Special Pricing
 	And I sign out of Cloud MPS
 
 	Scenarios: 
-	| Country | Role                            | ContractType         | UsageType           | Length   | Billing              |
-	| Finland | Cloud MPS Local Office Approver | Click tarvikesopimus | Minimitulostusmäärä | 3 vuotta | Quarterly in Arrears |
+	| Country        | Role                            | ContractType         | UsageType           | Length   | Billing              |
+	| United Kingdom | Cloud MPS Local Office Approver | Click tarvikesopimus | Minimitulostusmäärä | 3 vuotta | Quarterly in Arrears |
 	 

@@ -50,6 +50,13 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
             Thread.Sleep(TimeSpan.FromSeconds(3));
             CurrentPage.As<SignInPage>().PopulateValidEmailAddress(emailaddress);
         }
+        [Then(@"I enter an email address as ""(.*)"" on existing customer page")]
+        public void ThenIEnterAnEmailAddressAsOnExistingCustomerPage(string emailaddress)
+        {
+            Thread.Sleep(TimeSpan.FromSeconds(3));
+            CurrentPage.As<SignInPage>().PopulateValidEmailAddressOnExistingPage(emailaddress);
+        }
+
         [Then(@"I enter valid passowrd for the account ""(.*)""")]
         public void ThenIEnterValidPassowrdForTheAccount(string password)
         {

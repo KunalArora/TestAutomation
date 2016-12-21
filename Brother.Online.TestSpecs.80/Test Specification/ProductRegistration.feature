@@ -28,14 +28,15 @@ Scenario Outline: New Customer wants to register product with their serial numbe
 	And I enter "<FirstName>"  and "<LastName>" on  user details page
 	And I tick on terms and conditions checkbox
 	Then I can complete my product registration by clicking on complete registration button and I can deregister the "<SerialNumber>"
+	#And Once I have Validated "<Email>" was received and verified my account for Product Registration Email
 
 
 Scenarios: 
 | Country        | Site Url                  | SerialNumber | PurchaseDate | Email                                  | FirstName | LastName |ProdId  |
-| United Kingdom | /qa/eubol78/serial-number | U1T004731    | 12/12/2013   | 123orderplacedukaccount@mailinator.com | Test      | Test     |c3beeb53-d80a-1a4c-e100-0000ac1b10d3 |
+| United Kingdom | /qa/eubol78/serial-number | U1T004731    | 12/12/2013   | testemailidinputfield@guerrillamail.com| Test      | Test     |c3beeb53-d80a-1a4c-e100-0000ac1b10d3 |
 
 
-@ignore
+@TEST
 #This is same test but serial numbers are stored in the environment variables and it increements itself by plus one everytime tests run
 Scenario Outline: New Customer wants to register product with their serial numbers in the file
 	Given I navigate to "<Country>" Brother Online landing page
@@ -60,7 +61,7 @@ Scenarios:
 Scenario Outline: New Customer wants to register product with their serial numbers, purchase date and promo code
 	Given I navigate to "<Country>" Brother Online landing page
 	And I browse to the "<Site Url>" product registration page
-	And I deregister the serial number using the "<ProdId>"
+	And I deregister the serial number using the "<ProdId>" on Product Registration page
 	And I have entered my product "<SerialNumber>"
 	And clicked on Find Product Button
 	And I retreive data product id from Product Page 
@@ -91,7 +92,7 @@ Scenario Outline: Existing Customer wants to register product with their serial 
 	And I browse to the "<Site Url>" for existing user signin page
 	And I deregister the serial number using the "<ProdId>"
 	And I click on existing customer log in option
-    Then I enter an email address as "<Valid Email Address>"
+    Then I enter an email address as "<Valid Email Address>" on existing customer page
     Then I enter valid passowrd for the account "<Valid Password>"
     And I click on SignIn button
 	And I have entered my product "<SerialNumber>"
@@ -123,7 +124,7 @@ Scenario Outline: Existing Customer wants to register product with their serial 
 	And I browse to the "<Site Url>" for existing user signin page
 	And I deregister the serial number using the "<ProdId>"
 	And I click on existing customer log in option
-    Then I enter an email address as "<Valid Email Address>"
+    Then I enter an email address as "<Valid Email Address>" on existing customer page
     Then I enter valid passowrd for the account "<Valid Password>"
     And I click on SignIn button
 	And I have entered my product "<SerialNumber>"
@@ -151,4 +152,4 @@ Scenario Outline: Deregister Serial Numbers using prod id
 
 Scenarios:
 	| Country        | Site Url        | ProdId |
-	| United Kingdom | /qa/signintest  |1e20eb53-c926-cd2f-e100-0000ac1b10d3|
+	| United Kingdom | /qa/signintest  |c3beeb53-d80a-1a4c-e100-0000ac1b10d3|
