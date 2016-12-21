@@ -138,9 +138,6 @@ this.ScenarioSetup(scenarioInfo);
 #line 30
  testRunner.Then(string.Format("I can complete my product registration by clicking on complete registration butto" +
                         "n and I can deregister the \"{0}\"", serialNumber), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 31
- testRunner.And(string.Format("Once I have Validated \"{0}\" was received and verified my account for Product Regi" +
-                        "stration Email", email), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -381,7 +378,7 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("Deregister Serial Numbers using prod id")]
         [NUnit.Framework.CategoryAttribute("SMOKE")]
         [NUnit.Framework.CategoryAttribute("TEST")]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/signintest", "801feb53-c926-cd2f-e100-0000ac1b10d3", null)]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/signintest", "c3beeb53-d80a-1a4c-e100-0000ac1b10d3", null)]
         public virtual void DeregisterSerialNumbersUsingProdId(string country, string siteUrl, string prodId, string[] exampleTags)
         {
             string[] @__tags = new string[] {
