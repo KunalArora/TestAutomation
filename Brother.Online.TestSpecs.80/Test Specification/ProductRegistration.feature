@@ -28,7 +28,7 @@ Scenario Outline: New Customer wants to register product with their serial numbe
 	And I enter "<FirstName>"  and "<LastName>" on  user details page
 	And I tick on terms and conditions checkbox
 	Then I can complete my product registration by clicking on complete registration button and I can deregister the "<SerialNumber>"
-	And Once I have Validated "<Email>" was received and verified my account for Product Registration Email
+	#And Once I have Validated "<Email>" was received and verified my account for Product Registration Email
 
 
 Scenarios: 
@@ -152,4 +152,4 @@ Scenario Outline: Deregister Serial Numbers using prod id
 
 Scenarios:
 	| Country        | Site Url        | ProdId |
-	| United Kingdom | /qa/signintest  |801feb53-c926-cd2f-e100-0000ac1b10d3|
+	| United Kingdom | /qa/signintest  |c3beeb53-d80a-1a4c-e100-0000ac1b10d3|
