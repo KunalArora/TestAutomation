@@ -77,6 +77,8 @@ namespace Brother.Tests.Specs.MPSTwo.Approver
             }
         }
 
+        [Given(@"I navigate to Report page")]
+        [Then(@"I navigate to Report page")]
         [When(@"I navigate to Report page")]
         public void WhenINavigateToReportPage()
         {
@@ -87,6 +89,13 @@ namespace Brother.Tests.Specs.MPSTwo.Approver
         public void ThenICanDownloadFromThePage(string downloadType)
         {
             CurrentPage.As<LocalOfficeApprovalReportingDashboardPage>().DownloadASpecifiedReport(downloadType);
+        }
+
+
+        [Given(@"Approver navigate to Data Query page")]
+        public void GivenApproverNavigateToDataQueryPage()
+        {
+            NextPage = CurrentPage.As<LocalOfficeApprovalReportingDashboardPage>().NavigateToDataQueryPage();
         }
 
 
