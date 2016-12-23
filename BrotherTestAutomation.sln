@@ -9,13 +9,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{D7394A
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Brother.Tests.Specs.6.5", "Brother.Tests.Specs.6.5\Brother.Tests.Specs.6.5.csproj", "{F1AF49E4-3357-491D-8F04-1E2DE68354D4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Brother.MPS.Tests.Specs", "Brother.Tests.Specs.6.5\Brother.MPS.Tests.Specs.csproj", "{F1AF49E4-3357-491D-8F04-1E2DE68354D4}"
 	ProjectSection(ProjectDependencies) = postProject
 		{165EBA24-2C36-4274-B0CE-19B899DE96CC} = {165EBA24-2C36-4274-B0CE-19B899DE96CC}
 		{85D64580-8536-410E-ABED-F0F28A6F2467} = {85D64580-8536-410E-ABED-F0F28A6F2467}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Brother.Tests.Specs.80", "Brother.Tests.Specs.80\Brother.Tests.Specs.80.csproj", "{E967C724-819D-4B7D-9E66-4FC53E582370}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Brother.MainSite.Tests.Specs", "Brother.Tests.Specs.80\Brother.MainSite.Tests.Specs.csproj", "{E967C724-819D-4B7D-9E66-4FC53E582370}"
 	ProjectSection(ProjectDependencies) = postProject
 		{165EBA24-2C36-4274-B0CE-19B899DE96CC} = {165EBA24-2C36-4274-B0CE-19B899DE96CC}
 		{85D64580-8536-410E-ABED-F0F28A6F2467} = {85D64580-8536-410E-ABED-F0F28A6F2467}
@@ -26,7 +26,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Brother.WebSites.Core", "Br
 		{165EBA24-2C36-4274-B0CE-19B899DE96CC} = {165EBA24-2C36-4274-B0CE-19B899DE96CC}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Brother.Online.TestSpecs.80", "Brother.Online.TestSpecs.80\Brother.Online.TestSpecs.80.csproj", "{EB2C9468-23FE-45A6-8813-3B0FD330DB1D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Brother.Online.Tests.Specs", "Brother.Online.TestSpecs.80\Brother.Online.Tests.Specs.csproj", "{EB2C9468-23FE-45A6-8813-3B0FD330DB1D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
