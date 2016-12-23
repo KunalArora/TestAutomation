@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.PRODUCTION
+namespace Brother.MPS.Tests.Specs.TestSpecifications.MPSTwoByCountries.PRODUCTION
 {
     using TechTalk.SpecFlow;
     
