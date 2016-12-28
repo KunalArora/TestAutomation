@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Brother.MPS.Tests.Specs.TestSpecifications.MPSOne.SignIn
+namespace Brother.Tests.Specs.TestSpecifications.MPSOne.SignIn
 {
     using TechTalk.SpecFlow;
     

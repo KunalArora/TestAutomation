@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Brother.MPS.Tests.Specs.TestSpecifications.BrotherOnline.Account
+namespace Brother.Tests.Specs.TestSpecifications.BrotherOnline.Account
 {
     using TechTalk.SpecFlow;
     

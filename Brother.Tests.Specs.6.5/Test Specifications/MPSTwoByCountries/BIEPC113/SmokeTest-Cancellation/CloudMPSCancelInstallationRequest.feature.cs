@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Brother.MPS.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC113.SmokeTest_Cancellation
+namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC113.SmokeTest_Cancellation
 {
     using TechTalk.SpecFlow;
     
