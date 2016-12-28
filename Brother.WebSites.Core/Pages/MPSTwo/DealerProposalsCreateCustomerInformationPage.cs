@@ -585,6 +585,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 || IsBelgiumSystem()
                 || IsNetherlandSystem()
                 || IsSwissSystem()
+                || IsNorwaySystem()
                                         ) return;
             PropertyNumberElement.SendKeys(MpsUtil.PropertyNumber());
         }
