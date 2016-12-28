@@ -345,7 +345,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
             else if (IsDenmarkSystem())
             {
-                ClearAndType(CompanyRegistrationNumerElement, "35679626");
+              //  ClearAndType(CompanyRegistrationNumerElement, "35679626");
             }
             else if (IsNorwaySystem())
             {
