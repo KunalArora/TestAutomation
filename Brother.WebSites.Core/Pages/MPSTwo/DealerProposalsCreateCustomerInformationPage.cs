@@ -575,14 +575,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterPropertyNumber()
         {
-            if (IsFranceSystem()
+            if (
+                IsFranceSystem()
                 ||IsSpainSystem()
                 ||IsItalySystem()
                 || IsDenmarkSystem()
                 ||IsFinlandSystem() 
                 || IsSwedenSystem()
                 || IsBelgiumSystem()
-                || IsNetherlandSystem()) return;
+                || IsNetherlandSystem()
+                || IsSwissSystem()
+                                        ) return;
             PropertyNumberElement.SendKeys(MpsUtil.PropertyNumber());
         }
 
