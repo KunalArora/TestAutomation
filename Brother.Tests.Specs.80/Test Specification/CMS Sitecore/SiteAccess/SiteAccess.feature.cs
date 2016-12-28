@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Brother.MainSite.Tests.Specs.TestSpecification.CMSSitecore.SiteAccess
+namespace Brother.Tests.Specs._80.TestSpecification.CMSSitecore.SiteAccess
 {
     using TechTalk.SpecFlow;
     
