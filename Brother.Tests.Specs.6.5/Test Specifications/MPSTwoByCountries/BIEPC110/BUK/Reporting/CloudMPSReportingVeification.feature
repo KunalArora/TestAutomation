@@ -19,16 +19,20 @@ Scenarios:
 	| Role                            | Country        | Report1           | Report2       | Report3                | Report4             | Report5                |
 	| Cloud MPS Local Office Approver | United Kingdom | Basic Data Report | Dealer Report | Supplies Orders Report | Print Volume Report | Service Request Report |
 
-	
 @ignore
 Scenario Outline: Awaiting Approval Proposal Special Pricing
 	Given "<Country>" dealer has created "<ContractType>" proposal of awaiting proposal with "<UsageType>" and "<Length>" and "<Billing>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to Report page
 	And Approver navigate to Data Query page
-	When Approver select the proposal on Awaiting Proposal
-	Then Approver should be able to decline that proposal
-	And the decline proposal should be displayed under Declined tab by Approver
+	When Approver navigates to special pricing page for the proposal
+	And Approver makes changes to installation costing
+	And Approver makes changes to Service Pack costing
+	And Approver makes changes to Click Price costing
+	Then the changes made are displayed on the summary page
+	And audit log is displayed
+	And "<Country>" dealer can see the changes made on proposal Click price
+	And the changes are also on Proposal Summary page 
 	And I sign out of Cloud MPS
 
 	Scenarios: 

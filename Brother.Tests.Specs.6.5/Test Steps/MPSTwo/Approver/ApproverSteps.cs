@@ -98,6 +98,15 @@ namespace Brother.Tests.Specs.MPSTwo.Approver
             NextPage = CurrentPage.As<LocalOfficeApprovalReportingDashboardPage>().NavigateToDataQueryPage();
         }
 
+        [When(@"Approver navigates to special pricing page for the proposal")]
+        public void WhenApproverNavigatesToSpecialPricingPageForTheProposal()
+        {
+            CurrentPage.As<DataQueryPage>().SearchForNewlyCreatedProposal();
+            CurrentPage.As<DataQueryPage>().ClickOnSearchedProposal();
+            NextPage = CurrentPage.As<DataQueryPage>().NavigateToProposalSpecialPricingPage();
+        }
+
+
 
         [When(@"Approver select the proposal on Awaiting Proposal")]
         [Then(@"Approver select the proposal on Awaiting Proposal")]

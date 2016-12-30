@@ -1552,6 +1552,8 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
                 clickPriceStepInstance.WhenIEnterClickPriceVolumeOf("800", "800");
             }
 
+
+
         }
 
         public void GivenIChangeTheLanguageDisplayed(string language)
