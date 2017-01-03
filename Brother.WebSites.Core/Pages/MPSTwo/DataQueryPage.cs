@@ -21,6 +21,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement DataQuerySearchField;
         [FindsBy(How = How.CssSelector, Using = "#content_0_ButtonSpecialPricing")]
         public IWebElement SpecialPricingButton;
+        [FindsBy(How = How.CssSelector, Using = "#TableProposalAudit")]
+        public IWebElement SpecialPricingAuditConfirmationTable;
+        
         
 
 
