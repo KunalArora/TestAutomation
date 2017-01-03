@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
@@ -33,6 +35,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string FrText = @"COUT D’ACQUISITION";
         private const string SpText = @"Propuesta";
         private const string DownloadDirectory = @"C:/DataTest";
+        private const string ClickPricePath = @"C:\DataTest\ClickPrice";
+        private const string CsvFile = @"ClickPrice.csv";
 
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_ContractType")]
         public IWebElement ContractTypeElement;
@@ -458,6 +462,59 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             
             
             
+        }
+
+
+        public void WritePrinterParametersToCsv(string printer, string servicePayment, string monoCoverage, string colourCoverage, string qty,
+            string monoVol, string colourVol, string duration)
+        {
+            //before your loop
+            StreamWriter log;
+
+            var monoPrice = SpecFlow.GetContext("ClickPriceMonoValue");
+            string colourPrice;
+            var contractId = SummaryPageContractIdElement.GetAttribute("data-mps-qa-id");
+
+            try
+            {
+                colourPrice = SpecFlow.GetContext("ClickPriceColourValue");
+            }
+            catch (KeyNotFoundException)
+            {
+                colourPrice = "Nil";
+            }
+
+
+            var newLine = string.Format("\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\",\"{6}\",\"{7}\",\"{8}\",\"{9}\",\"{10}\"",
+                                            printer, servicePayment, monoCoverage, colourCoverage, qty, monoVol, colourVol, duration, monoPrice, colourPrice, contractId);
+            //csv.AppendLine(newLine);
+
+            if (!Directory.Exists(ClickPricePath))
+            {
+                Directory.CreateDirectory(ClickPricePath);
+            }
+
+            var filePath = Path.Combine(ClickPricePath, CsvFile);
+
+
+
+            if (!File.Exists(filePath))
+            {
+                log = new StreamWriter(filePath);
+                log.WriteLine("\"Printer\",\"ServicePayment\",\"MonoCoverage\",\"ColourCoverage\",\"Quantity\",\"MonoVol\",\"ColourVol\",\"Duration\",\"MonoPrice\",\"ColourPrice\",\"ProposalId\"");
+            }
+            else
+            {
+                log = File.AppendText(filePath);
+            }
+
+            // Write to the file:
+
+            log.WriteLine(newLine);
+
+            // Close the stream:
+            log.Close();
+
         }
 
         public void IsCustomerNamePresentInPdf()

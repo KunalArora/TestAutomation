@@ -436,6 +436,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetElementByCssSelector(clickPricePageNext);
         }
 
+        public DealerProposalsCreateSummaryPage ClickAndProceedOnDealerProposalsCreateSummaryPage()
+        {
+            ClickPriceNextButton().Click();
+
+            return GetTabInstance<DealerProposalsCreateSummaryPage>(Driver);
+        }
+
         public DealerProposalsCreateSummaryPage ProceedToProposalSummaryFromClickPrice()
         {
             var mono = ClickPriceValue().First().Text;
@@ -647,7 +654,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return ProceedToProposalSummaryFromClickPrice();
         }
 
-        public void WriteColourPrinterToCsv(string printer, string servicePayment, string monoCoverage, string colourCoverage, string qty,
+        public void WritePrinterParametersToCsv(string printer, string servicePayment, string monoCoverage, string colourCoverage, string qty,
             string monoVol, string colourVol, string duration)
         {
             //before your loop

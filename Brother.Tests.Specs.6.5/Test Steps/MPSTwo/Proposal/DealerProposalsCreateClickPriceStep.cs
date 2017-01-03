@@ -36,13 +36,13 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [Then(@"I note the calculated click price using ""(.*)"", ""(.*)"", ""(.*)"", ""(.*)"", ""(.*)"" and ""(.*)""")]
         public void ThenINoteTheCalculatedClickPriceUsingAnd(string contract, string paymentMethod, string printer, string clickVol, string monoCoverage, string qty)
         {
-            CurrentPage.As<DealerProposalsCreateClickPricePage>().WriteColourPrinterToCsv(printer, paymentMethod, monoCoverage, "Nil", qty, clickVol, "Nil", contract);
+            CurrentPage.As<DealerProposalsCreateSummaryPage>().WritePrinterParametersToCsv(printer, paymentMethod, monoCoverage, "Nil", qty, clickVol, "Nil", contract);
         }
 
         [Then(@"I note the calculated click price using ""(.*)"", ""(.*)"", ""(.*)"", ""(.*)"", ""(.*)"", ""(.*)"", ""(.*)"", and ""(.*)""")]
         public void ThenINoteTheCalculatedClickPriceUsingAnd(string contract, string paymentMethod, string printer, string clickVol, string colourVol, string monoCoverage, string colourCoverage, string qty)
         {
-            CurrentPage.As<DealerProposalsCreateClickPricePage>().WriteColourPrinterToCsv(printer, paymentMethod, monoCoverage, colourCoverage, qty, clickVol, colourVol, contract);
+            CurrentPage.As<DealerProposalsCreateSummaryPage>().WritePrinterParametersToCsv(printer, paymentMethod, monoCoverage, colourCoverage, qty, clickVol, colourVol, contract);
             
         }
 
@@ -72,6 +72,10 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
                CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateClickPriceAndStoreVal();
                CurrentPage.As<DealerProposalsCreateClickPricePage>().StoreMonoClickPrice();
             }
+
+            NextPage =
+                CurrentPage.As<DealerProposalsCreateClickPricePage>()
+                    .ClickAndProceedOnDealerProposalsCreateSummaryPage();
         }
 
 
@@ -92,6 +96,10 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             {
                 CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateEnteredMonoAndColourClickPrice(monoVol, colourVol);
             }
+
+            NextPage =
+                CurrentPage.As<DealerProposalsCreateClickPricePage>()
+                    .ClickAndProceedOnDealerProposalsCreateSummaryPage();
         }
 
 
