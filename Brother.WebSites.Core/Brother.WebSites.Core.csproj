@@ -207,6 +207,7 @@
     <Compile Include="Pages\MPSTwo\DealerSendForApproverPage.cs" />
     <Compile Include="Pages\MPSTwo\MultipleLanguageSwitcher.cs" />
     <Compile Include="Pages\MPSTwo\ProposalSpecialPricingPage.cs" />
+    <Compile Include="Pages\MPSTwo\ReportProposalSummaryPage.cs" />
     <Compile Include="Pages\MPSTwo\ServiceDeskDashBoardPage.cs" />
     <Compile Include="Pages\MPSTwo\ServiceDeskReportingPage.cs" />
     <Compile Include="Pages\MPSTwo\ServiceDeskServiceRequestsPage.cs" />
