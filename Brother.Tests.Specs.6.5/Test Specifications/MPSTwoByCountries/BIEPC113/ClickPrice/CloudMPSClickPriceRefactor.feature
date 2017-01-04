@@ -1,4 +1,4 @@
-﻿	@MPS @TEST @UAT @BIEPC113
+﻿	@ignore @MPS @TEST @UAT @BIEPC113
 	Feature: CloudMPSClickPriceRefactor
 	In order to verify the click price refactor works as expected
 	As a math dealer
