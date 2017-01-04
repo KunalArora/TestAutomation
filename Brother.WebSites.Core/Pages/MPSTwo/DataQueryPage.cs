@@ -19,35 +19,66 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         [FindsBy(How = How.CssSelector, Using = "#content_0_txtInputSearch")]
         public IWebElement DataQuerySearchField;
-        [FindsBy(How = How.CssSelector, Using = "#content_0_ButtonSpecialPricing")]
-        public IWebElement SpecialPricingButton;
-        [FindsBy(How = How.CssSelector, Using = "#TableProposalAudit")]
-        public IWebElement SpecialPricingAuditConfirmationTable;
+        [FindsBy(How = How.CssSelector, Using = "#txtContractId")]
+        public IWebElement ProposalIdSearchField;
+        [FindsBy(How = How.CssSelector, Using = "#btnGo")]
+        public IWebElement SearchButton;
+
         
         
+
+
+
+
+        private string ContractId()
+        {
+            var contractid = SpecFlow.GetContext("SummaryPageContractId");
+
+            return contractid;
+        }
 
 
         public void SearchForNewlyCreatedProposal()
         {
+            if (DataQuerySearchField == null)
+                throw new Exception("Data Query Search Field is returned as null");
+
             var proposal = MpsUtil.CreatedProposal();
+
+            WaitForElementToExistByCssSelector(".js-mps-list.js-mps-searchable");
             DataQuerySearchField.Clear();
             DataQuerySearchField.SendKeys(proposal);
         }
 
-        public void ClickOnSearchedProposal()
+        public void SearchForNewlyCreatedProposalByProposalId()
         {
-            var contractid = SpecFlow.GetContext("SummaryPageContractId");
-            var displayedProposal = string.Format(SelectedProposal, contractid);
+            if (ProposalIdSearchField == null)
+                throw new Exception("ProposalId Search Field is returned as null");
+            if (SearchButton == null)
+                throw new Exception("Search Button is returned as null");
+
+            var proposal = ContractId();
+
+            WaitForElementToExistByCssSelector(".js-mps-list.js-mps-searchable");
+            ProposalIdSearchField.Clear();
+            ProposalIdSearchField.SendKeys(proposal);
+
+            SearchButton.Click();
+        }
+
+        public ReportProposalSummaryPage ClickOnSearchedProposal()
+        {
+            var displayedProposal = string.Format(SelectedProposal, ContractId());
             var proposalElement = Driver.FindElement(By.CssSelector(displayedProposal));
 
+            if (proposalElement == null)
+                throw new Exception("Proposal Element is returned as null");
+
             proposalElement.Click();
+
+            return GetInstance<ReportProposalSummaryPage>();
         }
 
-        public ProposalSpecialPricingPage NavigateToProposalSpecialPricingPage()
-        {
-            SpecialPricingButton.Click();
-
-            return new ProposalSpecialPricingPage();
-        }
+        
     }
 }

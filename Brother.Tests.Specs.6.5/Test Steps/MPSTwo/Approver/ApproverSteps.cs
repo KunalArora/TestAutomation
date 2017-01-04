@@ -101,10 +101,73 @@ namespace Brother.Tests.Specs.MPSTwo.Approver
         [When(@"Approver navigates to special pricing page for the proposal")]
         public void WhenApproverNavigatesToSpecialPricingPageForTheProposal()
         {
-            CurrentPage.As<DataQueryPage>().SearchForNewlyCreatedProposal();
-            CurrentPage.As<DataQueryPage>().ClickOnSearchedProposal();
-            NextPage = CurrentPage.As<DataQueryPage>().NavigateToProposalSpecialPricingPage();
+            CurrentPage.As<DataQueryPage>().SearchForNewlyCreatedProposalByProposalId();
+            NextPage = CurrentPage.As<DataQueryPage>().ClickOnSearchedProposal();
+            NextPage = CurrentPage.As<ReportProposalSummaryPage>().NavigateToProposalSpecialPricingPage();
         }
+
+
+        [When(@"Approver makes changes to installation costing")]
+        public void WhenApproverMakesChangesToInstallationCosting()
+        {
+            CurrentPage.As<ProposalSpecialPricingPage>().EnterNewInstallationUnitCost(10);
+            CurrentPage.As<ProposalSpecialPricingPage>().EnterNewInstallationMarginValue(-1);
+            CurrentPage.As<ProposalSpecialPricingPage>().SetInstallationUnitPrice();
+            CurrentPage.As<ProposalSpecialPricingPage>().ProceedOnSpecialPricingPage();
+
+        }
+
+        [When(@"Approver makes changes to Service Pack costing")]
+        public void WhenApproverMakesChangesToServicePackCosting()
+        {
+            CurrentPage.As<ProposalSpecialPricingPage>().EnterNewServicePackValue(5);
+            CurrentPage.As<ProposalSpecialPricingPage>().EnterNewServicePackMarginValue(1);
+            CurrentPage.As<ProposalSpecialPricingPage>().SetServicePackUnitPrice();
+            CurrentPage.As<ProposalSpecialPricingPage>().ProceedOnSpecialPricingPage();
+        }
+
+        [When(@"Approver makes changes to Click Price costing")]
+        public void WhenApproverMakesChangesToClickPriceCosting()
+        {
+            CurrentPage.As<ProposalSpecialPricingPage>().EnterNewClickPriceMonoVolume(500);
+            CurrentPage.As<ProposalSpecialPricingPage>().EnterNewClickPriceMonoMargin(-1);
+            CurrentPage.As<ProposalSpecialPricingPage>().EnterNewMonoClickPriceValue("-0.00005");
+            CurrentPage.As<ProposalSpecialPricingPage>().EnterNewClickPriceColourVolume(200);
+            CurrentPage.As<ProposalSpecialPricingPage>().EnterNewClickPriceColourMargin(1);
+            CurrentPage.As<ProposalSpecialPricingPage>().EnterNewColourClickPriceValue("-0.0001");
+            CurrentPage.As<ProposalSpecialPricingPage>().ValidateSpecialPricesEntered();
+            CurrentPage.As<ProposalSpecialPricingPage>().EnterAdditionalAuditInformation();
+            NextPage = CurrentPage.As<ProposalSpecialPricingPage>().ApplyEnteredSpecialPricing();
+        }
+
+        [Then(@"the changes made are displayed on the summary page")]
+        public void ThenTheChangesMadeAreDisplayedOnTheSummaryPage()
+        {
+            CurrentPage.As<ReportProposalSummaryPage>().IsNewlyEnteredColourClickPriceDisplayed();
+            CurrentPage.As<ReportProposalSummaryPage>().IsNewlyEnteredInstallationUnitPriceDisplayed();
+            CurrentPage.As<ReportProposalSummaryPage>().IsNewlyEnteredMonoClickPriceDisplayed();
+            CurrentPage.As<ReportProposalSummaryPage>().IsNewlyEnteredServicePackUnitPriceDisplayed();
+        }
+
+        [Then(@"audit log is displayed")]
+        public void ThenAuditLogIsDisplayed()
+        {
+            CurrentPage.As<ReportProposalSummaryPage>().IsAuditSectionDisplayed();
+        }
+
+        [Then(@"""(.*)"" dealer can see the changes made on proposal Click price")]
+        public void ThenDealerCanSeeTheChangesMadeOnProposalClickPrice(string country)
+        {
+            var instance4 = new CreateNewAccountSteps();
+            instance4.GivenISignIntoMpsasAFrom("Cloud MPS Dealer", country);
+        }
+
+        [Then(@"the changes are also on Proposal Summary page")]
+        public void ThenTheChangesAreAlsoOnProposalSummaryPage()
+        {
+            
+        }
+
 
 
 
