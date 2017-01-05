@@ -73,7 +73,7 @@ namespace Brother.Tests.Specs.MPSTwo.SendToBank
         [When(@"I navigate to the Summary page of the proposal awaiting approval")]
         public void WhenINavigateToTheSummaryPageOfTheProposalAwaitingApproval()
         {
-            NextPage = CurrentPage.As<DealerProposalsAwaitingApproval>().NavigateToViewSummary();
+            NextPage = CurrentPage.As<DealerProposalsAwaitingApprovalPage>().NavigateToViewSummary();
             CurrentPage.As<DealerProposalsCreateSummaryPage>().StoreValuesFromSummaryPage();
             CurrentPage.As<DealerProposalsCreateSummaryPage>().GetDownloadedPdfPath();
            // NextPage = CurrentPage.As<DealerProposalsCreateSummaryPage>().CloseProposal();
@@ -245,13 +245,13 @@ namespace Brother.Tests.Specs.MPSTwo.SendToBank
         [Then(@"the newly converted contract is available under Awaiting Approval tab")]
         public void ThenTheNewlyConvertedContractIsAvailableUnderAwaitingApprovalTab()
         {
-            CurrentPage.As<DealerProposalsAwaitingApproval>().IsProposalSentToDealerAwaitingProposalPage();
+            CurrentPage.As<DealerProposalsAwaitingApprovalPage>().IsProposalSentToDealerAwaitingProposalPage();
         }
 
         [Then(@"I navigate to Proposal Summary Page under Awaiting Approval tab")]
         public void ThenINavigateToProposalSummaryPageUnderAwaitingApprovalTab()
         {
-            NextPage = CurrentPage.As<DealerProposalsAwaitingApproval>().NavigateToViewSummary();
+            NextPage = CurrentPage.As<DealerProposalsAwaitingApprovalPage>().NavigateToViewSummary();
             CurrentPage.As<DealerProposalsCreateSummaryPage>().StoreProposalSummaryData();
         }
 

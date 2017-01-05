@@ -83,6 +83,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement copyProposalWithoutCustomerElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_InProgressListActions_ActionList_Button_0")]
         public IWebElement CreateNewProposalButtonElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/proposals/awaiting-approval\"]")]
+        public IWebElement AwaitingProposalTabElement;
+        
         
         
         
@@ -94,6 +97,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, CreateNewProposalButtonElement);
             return GetInstance<DealerProposalsCreateDescriptionPage>();
+        }
+
+
+        public DealerProposalsAwaitingApprovalPage NavigateToProposalsAwaitingApproval()
+        {
+            if (AwaitingProposalTabElement == null)
+                throw new Exception("Create a new proposal button is not displayed");
+
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, AwaitingProposalTabElement);
+            return GetInstance<DealerProposalsAwaitingApprovalPage>();
         }
         
         

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Brother.Tests.Specs.BrotherOnline.Account;
+using Brother.Tests.Specs.MPSTwo.Proposal;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using TechTalk.SpecFlow;
@@ -149,23 +150,39 @@ namespace Brother.Tests.Specs.MPSTwo.Approver
             CurrentPage.As<ReportProposalSummaryPage>().IsNewlyEnteredServicePackUnitPriceDisplayed();
         }
 
-        [Then(@"audit log is displayed")]
-        public void ThenAuditLogIsDisplayed()
+        [Then(@"audit log is displayed on report proposal summary page")]
+        public void ThenAuditLogIsDisplayedOnReportProposalSummaryPage()
         {
             CurrentPage.As<ReportProposalSummaryPage>().IsAuditSectionDisplayed();
         }
 
-        [Then(@"""(.*)"" dealer can see the changes made on proposal Click price")]
-        public void ThenDealerCanSeeTheChangesMadeOnProposalClickPrice(string country)
+
+        [Then(@"the dealer navigates to Proposal Summary page")]
+        public void ThenTheDealerNavigatesToProposalSummaryPage()
         {
-            var instance4 = new CreateNewAccountSteps();
-            instance4.GivenISignIntoMpsasAFrom("Cloud MPS Dealer", country);
+            var page = CurrentPage.As<CloudExistingProposalPage>();
+            page.FindExistingPoposalList();
+            NextPage = CurrentPage.As<CloudExistingProposalPage>().NavigateToProposalsAwaitingApproval();
+            NextPage = CurrentPage.As<DealerProposalsAwaitingApprovalPage>().NavigateToViewSummary();
+
+            //NextPage =
+            //    CurrentPage.As<DealerProposalsCreateDescriptionPage>().NavigateToDealerProposalsCreateClickPricePage();
+            //CurrentPage.As<DealerProposalsCreateClickPricePage>().IsSpecialPricingNewColourClickPriceDisplayed();
+            //CurrentPage.As<DealerProposalsCreateClickPricePage>().IsSpecialPricingNewMonoClickPriceDisplayed();
+            //NextPage =
+            //    CurrentPage.As<DealerProposalsCreateClickPricePage>()
+            //        .ClickAndProceedOnDealerProposalsCreateSummaryPage();
+
         }
+
 
         [Then(@"the changes are also on Proposal Summary page")]
         public void ThenTheChangesAreAlsoOnProposalSummaryPage()
         {
-            
+            CurrentPage.As<DealerProposalsCreateSummaryPage>().IsSpecialPricingColourClickPriceDisplayed();
+            CurrentPage.As<DealerProposalsCreateSummaryPage>().IsSpecialPricingInstallationUnitPriceDisplayed();
+            CurrentPage.As<DealerProposalsCreateSummaryPage>().IsSpecialPricingMonoClickPriceDisplayed();
+            CurrentPage.As<DealerProposalsCreateSummaryPage>().IsSpecialPricingServicePackUnitPriceDisplayed();
         }
 
 

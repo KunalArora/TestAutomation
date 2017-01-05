@@ -7,6 +7,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
     [Binding]
     public class DealerCanOperateProposalOffersSteps : BaseSteps
     {
+        [Then(@"I navigate to existing proposal screen")]
         [When(@"I navigate to existing proposal screen")]
         [Given(@"I navigate to existing proposal screen")]
         public void GivenINavigateToExistingProposalScreen()
