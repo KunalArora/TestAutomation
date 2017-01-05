@@ -568,6 +568,50 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             }
         }
 
+
+        [Given(@"""(.*)"" Dealer has created an approved ""(.*)"" proposal of ""(.*)"" and ""(.*)"" and ""(.*)""")]
+        public void GivenDealerHasCreatedAnApprovedProposalOfAndAnd(string country, string contractType, string usageType, string length, string billing)
+        {
+            contractType = ContractType(contractType);
+
+            if (contractType.Equals("Lease & Click with Service"))
+            {
+                GivenDealerHaveCreatedProposalOfOpen(country, contractType, usageType, length, billing);
+                var instance4 = new CreateNewAccountSteps();
+                var instance2 = new SendProposalToApprover();
+                var instance3 = new AccountManagementSteps();
+
+                if (MpsUtil.GetProposalByPassValue() != "Ticked")
+                {
+                    instance4.GivenISignIntoMpsasAFrom("Cloud MPS Bank", country);
+                    instance2.ThenINavigateToBankAwaitingApprovalScreenUnderOfferPage();
+                    instance2.ThenTheConvertedLeasingAndClickAndServiceProposalAboveIsDisplayedOnTheScreen();
+                    var instance5 = new ApproverSteps();
+                    instance5.ThenApproverSelectTheProposalOnAwaitingProposal();
+                    instance5.ThenIShouldBeAbleToApproveThatProposal();
+                }
+                
+            }
+            else if (contractType.Equals("Purchase & Click with Service"))
+            {
+                GivenDealerHaveCreatedProposalOfAwaitingApproval(country, contractType, usageType, length, billing);
+                var instance4 = new CreateNewAccountSteps();
+                var instance2 = new SendProposalToApprover();
+                var instance3 = new AccountManagementSteps();
+
+                if (MpsUtil.GetProposalByPassValue() != "Ticked")
+                {
+                    instance4.GivenISignIntoMpsasAFrom("Cloud MPS Local Office Approver", country);
+                    instance2.ThenINavigateToLOApproverAwaitingApprovalScreenUnderProposalsPage();
+                    instance2.ThenTheConvertedPurchaseAndClickAndServiceProposalAboveIsDisplayedOnTheScreen();
+                    var instance5 = new ApproverSteps();
+                    instance5.ThenApproverSelectTheProposalOnAwaitingProposal();
+                    instance5.ThenIShouldBeAbleToApproveThatProposal();
+                }
+                
+            }
+        }
+
         [Given(@"""(.*)"" Dealer have created ""(.*)"" contract choosing ""(.*)"" with ""(.*)"" and ""(.*)"" and ""(.*)""")]
         public void GivenDealerHaveCreatedContractChoosingWithAndAnd(string country, string contractType, string customer, string usageType, string length, string billing)
         {

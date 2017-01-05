@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Brother.Tests.Specs.BrotherOnline.Account;
+using Brother.Tests.Specs.MPSTwo.Contract;
 using Brother.Tests.Specs.MPSTwo.Proposal;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.MPSTwo;
@@ -86,6 +87,15 @@ namespace Brother.Tests.Specs.MPSTwo.Approver
             NextPage = CurrentPage.As<LocalOfficeApproverDashBoardPage>().NavigateToLocalOfficeApproverReportingPage();
         }
 
+        [Then(@"I navigate to Report page from Approved proposal page")]
+        [When(@"I navigate to Report page from Approved proposal page")]
+        [Given(@"I navigate to Report page from Approved proposal page")]
+        public void GivenINavigateToReportPageFromApprovedProposalPage()
+        {
+            NextPage = CurrentPage.As<LocalOfficeApproverProposalsPage>().NavigateToReportDashboardPage();
+        }
+
+
         [Then(@"I can download ""(.*)"" from the page")]
         public void ThenICanDownloadFromThePage(string downloadType)
         {
@@ -157,8 +167,9 @@ namespace Brother.Tests.Specs.MPSTwo.Approver
         }
 
 
-        [Then(@"the dealer navigates to Proposal Summary page")]
-        public void ThenTheDealerNavigatesToProposalSummaryPage()
+
+        [Then(@"the dealer navigates to Proposal Summary page from Proposal Awaiting Approval page")]
+        public void ThenTheDealerNavigatesToProposalSummaryPageFromProposalAwaitingApprovalPage()
         {
             var page = CurrentPage.As<CloudExistingProposalPage>();
             page.FindExistingPoposalList();
@@ -176,6 +187,15 @@ namespace Brother.Tests.Specs.MPSTwo.Approver
         }
 
 
+        [Then(@"the dealer navigates to Proposal Summary page from Approved Proposal page")]
+        public void ThenTheDealerNavigatesToProposalSummaryPageFromApprovedProposalPage()
+        {
+            var instance1 = new SigningContracts();
+            instance1.ThenICanStartTheProcessOfSigningTheContract();
+        }
+
+
+
         [Then(@"the changes are also on Proposal Summary page")]
         public void ThenTheChangesAreAlsoOnProposalSummaryPage()
         {
@@ -184,6 +204,17 @@ namespace Brother.Tests.Specs.MPSTwo.Approver
             CurrentPage.As<DealerProposalsCreateSummaryPage>().IsSpecialPricingMonoClickPriceDisplayed();
             CurrentPage.As<DealerProposalsCreateSummaryPage>().IsSpecialPricingServicePackUnitPriceDisplayed();
         }
+
+
+        [Then(@"the changes are also on Approved Proposal Summary page")]
+        public void ThenTheChangesAreAlsoOnApprovedProposalSummaryPage()
+        {
+            CurrentPage.As<DealerContractsSummaryPage>().IsSpecialPricingColourClickPriceDisplayed();
+            CurrentPage.As<DealerContractsSummaryPage>().IsSpecialPricingInstallationUnitPriceDisplayed();
+            CurrentPage.As<DealerContractsSummaryPage>().IsSpecialPricingMonoClickPriceDisplayed();
+            CurrentPage.As<DealerContractsSummaryPage>().IsSpecialPricingServicePackUnitPriceDisplayed();
+        }
+
 
 
 
@@ -417,6 +448,8 @@ namespace Brother.Tests.Specs.MPSTwo.Approver
             }
         }
 
+        [Given(@"I should be able to approve that proposal")]
+        [When(@"I should be able to approve that proposal")]
         [Then(@"I should be able to approve that proposal")]
         public void ThenIShouldBeAbleToApproveThatProposal()
         {
@@ -424,13 +457,13 @@ namespace Brother.Tests.Specs.MPSTwo.Approver
             {
                 CurrentPage.As<BankProposalsSummaryPage>().ClickApproveButton();
                 CurrentPage.As<BankProposalsSummaryPage>().EnterApprovalInformation();
-                CurrentPage.As<BankProposalsSummaryPage>().ClickAccpetButton();
+                NextPage = CurrentPage.As<BankProposalsSummaryPage>().ClickAccpetButton();
             }
             else if (PurchaseAndClick)
             {
                 CurrentPage.As<LocalOfficeApproverProposalsSummaryPage>().ClickApproveButton();
                 CurrentPage.As<LocalOfficeApproverProposalsSummaryPage>().EnterApprovalInformation();
-                CurrentPage.As<LocalOfficeApproverProposalsSummaryPage>().ClickAccpetButton();
+                NextPage = CurrentPage.As<LocalOfficeApproverProposalsSummaryPage>().ClickAccpetButton();
             }
         }
 
