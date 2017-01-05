@@ -19,7 +19,7 @@ Scenarios:
 	| Role                            | Country        | Report1           | Report2       | Report3                | Report4             | Report5                |
 	| Cloud MPS Local Office Approver | United Kingdom | Basic Data Report | Dealer Report | Supplies Orders Report | Print Volume Report | Service Request Report |
 
-@ignore
+
 Scenario Outline: Awaiting Approval Proposal Special Pricing
 	Given "<Country>" dealer has created "<ContractType>" proposal of awaiting proposal with "<UsageType>" and "<Length>" and "<Billing>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
@@ -30,14 +30,18 @@ Scenario Outline: Awaiting Approval Proposal Special Pricing
 	And Approver makes changes to Service Pack costing
 	And Approver makes changes to Click Price costing
 	Then the changes made are displayed on the summary page
-	And audit log is displayed
-	And "<Country>" dealer can see the changes made on proposal Click price
+	And audit log is displayed on report proposal summary page
+	And I sign out of Cloud MPS
+	And I sign back into Cloud MPS as a "<Role1>" from "<Country>"
+	And I navigate to existing proposal screen
+	And the dealer navigates to Proposal Summary page
 	And the changes are also on Proposal Summary page 
 	And I sign out of Cloud MPS
 
 	Scenarios: 
-	| Country        | Role                            | ContractType                  | UsageType      | Length  | Billing              |
-	| United Kingdom | Cloud MPS Local Office Approver | Purchase & Click with Service | Minimum Volume | 3 years | Quarterly in Arrears |
+	| Country        | Role                            | ContractType                  | UsageType      | Length  | Billing              | Role1            |
+	| United Kingdom | Cloud MPS Local Office Approver | Purchase & Click with Service | Minimum Volume | 3 years | Quarterly in Arrears | Cloud MPS Dealer |
+	
 	
 @ignore
 Scenario Outline: Approved Proposal Special Pricing

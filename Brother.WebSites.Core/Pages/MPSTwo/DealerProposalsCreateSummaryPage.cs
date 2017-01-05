@@ -78,12 +78,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement InstallationTypeNameElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_RepeaterInstallationPacks_0_InstallationPackLinePrice_0")]
         public IWebElement InstallationCostNameElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_RepeaterInstallationPacks_0_InstallationPackUnitPrice_0")]
+        public IWebElement InstallationUnitPriceElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_HardwareQuantity_0")]
         public IWebElement ModelQuantityNameElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_RepeaterServicePacks_0_ServicePackSku_0")]
         public IWebElement ServicePackNameElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_RepeaterServicePacks_0_ServicePackLinePrice_0")]
         public IWebElement ServiceCostNameElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_RepeaterServicePacks_0_ServicePackUnitPrice_0")]
+        public IWebElement ServicePackUnitPriceElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_MonoVolume_0")]
         public IWebElement MonoVolumeElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_ColourVolume_0")]
@@ -1050,6 +1054,41 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var colourClickRate = ColourClickRateElement.Text;
             return colourClickRate;
         }
+
+        public void IsSpecialPricingMonoClickPriceDisplayed()
+        {
+            var mono = GetMonoClickValue();
+            var monoD = SpecFlow.GetContext("SpecialPriceMonoClickPrice");
+
+            TestCheck.AssertIsEqual(true, mono.Contains(monoD), string.Format("{0} does not contain {1}", mono, monoD));
+        }
+
+        public void IsSpecialPricingColourClickPriceDisplayed()
+        {
+            var colour = GetColourClickValue();
+            var colourD = SpecFlow.GetContext("SpecialPriceColourClickPrice");
+
+            TestCheck.AssertIsEqual(true, colour.Contains(colourD), string.Format("{0} does not contain {1}", colour, colourD));
+        }
+
+        public void IsSpecialPricingInstallationUnitPriceDisplayed()
+        {
+            var install = InstallationUnitPriceElement.Text;
+            var installD = SpecFlow.GetContext("SpecialPriceInstallation");
+
+            TestCheck.AssertIsEqual(true, install.Contains(installD), string.Format("{0} does not contain {1}", install, installD));
+        }
+
+
+        public void IsSpecialPricingServicePackUnitPriceDisplayed()
+        {
+            var servicePack = ServicePackUnitPriceElement.Text;
+            var servicePackD = SpecFlow.GetContext("SpecialPriceServicePack");
+
+            TestCheck.AssertIsEqual(true, servicePack.Contains(servicePackD), string.Format("{0} does not contain {1}", servicePack, servicePackD));
+        }
+
+
 
 
         public void IsMonoClickPriceDisplayedCorrectly()

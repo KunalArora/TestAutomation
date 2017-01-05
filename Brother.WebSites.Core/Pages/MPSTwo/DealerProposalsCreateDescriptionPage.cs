@@ -38,6 +38,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement CustomerInformationTab;
         [FindsBy(How = How.CssSelector, Using = "#MpsAppContent .mps-tabs-main li")]
         public IList<IWebElement> ProposalCreationTabs;
+        [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/proposals/create/click-price\"] span")]
+        public IWebElement ProposalClickPriceTab;
+        
         
 
         
@@ -110,6 +113,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             SpecFlow.SetContext("ContractType", contract);
 
+        }
+
+        public DealerProposalsCreateClickPricePage NavigateToDealerProposalsCreateClickPricePage()
+        {
+            if(ProposalClickPriceTab == null)
+                throw new Exception("proposal summary tab is returned as null");
+
+            ProposalClickPriceTab.Click();
+
+            return GetInstance<DealerProposalsCreateClickPricePage>();
         }
 
        

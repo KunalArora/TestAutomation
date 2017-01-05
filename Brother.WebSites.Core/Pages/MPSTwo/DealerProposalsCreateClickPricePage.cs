@@ -379,6 +379,24 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             SpecFlow.SetContext("ClickPriceColourValue", ClickPriceColourValue().First().Text);
         }
 
+        public void IsSpecialPricingNewMonoClickPriceDisplayed()
+        {
+            var displayedMono = ClickPriceValue().First().Text;
+            var enterSpecialPricing = SpecFlow.GetContext("SpecialPriceMonoClickPrice");
+
+            TestCheck.AssertIsEqual(true, displayedMono.Equals(enterSpecialPricing), 
+                                string.Format("{0} is the not same as {1}", displayedMono, enterSpecialPricing));
+        }
+
+        public void IsSpecialPricingNewColourClickPriceDisplayed()
+        {
+            var displayedColour = ClickPriceValue().First().Text;
+            var enterSpecialPricing = SpecFlow.GetContext("SpecialPriceColourClickPrice");
+
+            TestCheck.AssertIsEqual(true, displayedColour.Equals(enterSpecialPricing),
+                                string.Format("{0} is the not same as {1}", displayedColour, enterSpecialPricing));
+        }
+
         public void SelectMonoVolume(string volume, string row)
         {
             if (monoVolumeDropdownElement == null)
