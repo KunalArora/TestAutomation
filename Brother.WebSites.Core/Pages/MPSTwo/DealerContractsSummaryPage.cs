@@ -41,6 +41,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement SummaryMonoClickRateElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_ColourClickRate_0")]
         public IWebElement SummaryColourClickRateElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_RepeaterInstallationPacks_0_InstallationPackUnitPrice_0")]
+        public IWebElement SummaryInstallationUnitPriceElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_RepeaterServicePacks_0_ServicePackUnitPrice_0")]
+        public IWebElement SummaryServicePackUnitPriceElement;
+        
 
 
         public void ClickCancelButton()
@@ -114,6 +119,39 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             SpecFlow.SetContext("SummaryContractType", SummaryContractTypeElement.Text);
             SpecFlow.SetContext("SummaryMonoClickRate", SummaryMonoClickRateElement.Text);
             SpecFlow.SetContext("SummaryColourClickRate", SummaryColourClickRateElement.Text);
+        }
+
+        public void IsSpecialPricingMonoClickPriceDisplayed()
+        {
+            var mono = SummaryMonoClickRateElement.Text;
+            var monoD = SpecFlow.GetContext("SpecialPriceMonoClickPrice");
+
+            TestCheck.AssertIsEqual(true, mono.Contains(monoD), string.Format("{0} does not contain {1}", mono, monoD));
+        }
+
+        public void IsSpecialPricingColourClickPriceDisplayed()
+        {
+            var colour = SummaryColourClickRateElement.Text;
+            var colourD = SpecFlow.GetContext("SpecialPriceColourClickPrice");
+
+            TestCheck.AssertIsEqual(true, colour.Contains(colourD), string.Format("{0} does not contain {1}", colour, colourD));
+        }
+
+        public void IsSpecialPricingInstallationUnitPriceDisplayed()
+        {
+            var install = SummaryInstallationUnitPriceElement.Text;
+            var installD = SpecFlow.GetContext("SpecialPriceInstallation");
+
+            TestCheck.AssertIsEqual(true, install.Contains(installD), string.Format("{0} does not contain {1}", install, installD));
+        }
+
+
+        public void IsSpecialPricingServicePackUnitPriceDisplayed()
+        {
+            var servicePack = SummaryServicePackUnitPriceElement.Text;
+            var servicePackD = SpecFlow.GetContext("SpecialPriceServicePack");
+
+            TestCheck.AssertIsEqual(true, servicePack.Contains(servicePackD), string.Format("{0} does not contain {1}", servicePack, servicePackD));
         }
 
         public DealerContractsAwaitingAcceptancePage DealerSignsApprovedProposalTAwaitingAcceptancePage()

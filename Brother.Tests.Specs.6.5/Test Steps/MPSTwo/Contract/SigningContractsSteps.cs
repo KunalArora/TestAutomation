@@ -7,6 +7,7 @@ namespace Brother.Tests.Specs.MPSTwo.Contract
     [Binding]
     public class SigningContracts : BaseSteps
     {
+        [Then(@"I navigate to dealer contract approved proposal page")]
         [When(@"I navigate to dealer contract approved proposal page")]
         public void WhenINavigateToDealerContractApprovedProposalPage()
         {
