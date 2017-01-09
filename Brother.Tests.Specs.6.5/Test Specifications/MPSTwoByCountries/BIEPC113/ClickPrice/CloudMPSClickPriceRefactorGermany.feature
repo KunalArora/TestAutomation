@@ -9,7 +9,6 @@ Scenario Outline: Click Price Refactor Mono
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	When I fill Proposal Description for "<ContractType>" Contract type
-	And I skip contact creation process
 	And I Enter "<UsageType>" usage type "<Contract>" contract length and "<Billing>" billing on Term and Type details
 	And I select service pack "<PaymentMethod>" payment method
 	And I "Tick" Price Hardware radio button
@@ -368,7 +367,6 @@ Scenario Outline: Click Price Refactor Colour
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	When I fill Proposal Description for "<ContractType>" Contract type
-	And I skip contact creation process
 	And I Enter "<UsageType>" usage type "<Contract>" contract length and "<Billing>" billing on Term and Type details
 	And I select service pack "<PaymentMethod>" payment method
 	And I "Tick" Price Hardware radio button
