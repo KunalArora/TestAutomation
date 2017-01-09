@@ -261,6 +261,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CloudMPSReportingVeification.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC113\ClickPrice\CloudMPSClickPriceRefactorFrance.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CloudMPSClickPriceRefactorFrance.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC113\ClickPrice\CloudMPSClickPriceRefactorGermany.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CloudMPSClickPriceRefactorGermany.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC113\PrintersCheck\CloudMPSCheckNewPrinterWorks.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1527,6 +1537,14 @@
     <None Include="Test Specifications\MPSTwoByCountries\BIEPC110\BUK\Reporting\CloudMPSReportingVeification.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSReportingVeification.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwoByCountries\BIEPC113\ClickPrice\CloudMPSClickPriceRefactorFrance.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CloudMPSClickPriceRefactorFrance.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwoByCountries\BIEPC113\ClickPrice\CloudMPSClickPriceRefactorGermany.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CloudMPSClickPriceRefactorGermany.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwoByCountries\BIEPC113\PrintersCheck\CloudMPSCheckNewPrinterWorks.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

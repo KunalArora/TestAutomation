@@ -1,5 +1,5 @@
 ﻿	 @MPS @TEST @UAT @BIEPC113
-	Feature: CloudMPSClickPriceRefactor
+	Feature: CloudMPSClickPriceRefactorGermany
 	In order to verify the click price refactor works as expected
 	As a math dealer
 	I want to compare the current click price value with the in coming value

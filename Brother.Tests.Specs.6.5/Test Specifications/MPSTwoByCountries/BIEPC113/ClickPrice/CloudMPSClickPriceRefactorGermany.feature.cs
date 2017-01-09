@@ -19,24 +19,24 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC113.Clic
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.9.0.77")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("CloudMPSClickPriceRefactor")]
+    [NUnit.Framework.DescriptionAttribute("CloudMPSClickPriceRefactorGermany")]
     [NUnit.Framework.CategoryAttribute("MPS")]
     [NUnit.Framework.CategoryAttribute("TEST")]
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("BIEPC113")]
-    public partial class CloudMPSClickPriceRefactorFeature
+    public partial class CloudMPSClickPriceRefactorGermanyFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "CloudMPSClickPriceRefactor.feature"
+#line 1 "CloudMPSClickPriceRefactorGermany.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CloudMPSClickPriceRefactor", "In order to verify the click price refactor works as expected\r\nAs a math dealer\r\n" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CloudMPSClickPriceRefactorGermany", "In order to verify the click price refactor works as expected\r\nAs a math dealer\r\n" +
                     "I want to compare the current click price value with the in coming value", ProgrammingLanguage.CSharp, new string[] {
                         "MPS",
                         "TEST",
