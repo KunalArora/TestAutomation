@@ -36,8 +36,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC113.Clic
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CloudMPSClickPriceRefactorFrance", "In order to verify the click price refactor works as expected\r\nAs a math dealer\r\n" +
-                    "I want to compare the current click price value with the in coming value", ProgrammingLanguage.CSharp, new string[] {
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CloudMPSClickPriceRefactorFrance", "In order to verify the click price refactor works as expected\r\nAs a dealer\r\nI wan" +
+                    "t to compare the current click price value with the in coming value", ProgrammingLanguage.CSharp, new string[] {
                         "MPS",
                         "TEST",
                         "UAT",
