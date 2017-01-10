@@ -4,7 +4,7 @@ Feature: PublishedPages
 	previously published pages are verified to ensure 
 	a CMS code change has not had an adverse effect	
 
-@SMOKE_PublishedPages
+#@SMOKE_PublishedPages
 Scenario Outline: Navigate to published page to verify all page components 
 	Given That I navigate to "<Site Url>" in order to validate a published page
 	Then I can verify that the page header is displayed
@@ -104,19 +104,19 @@ Scenarios:
 	 | Site Url                                        |
 	 | /QA/TestAutomationPleaseDoNotTouch/All-Printers |
 
-## This test shouldn't run on teamcity as currently email takes about 5 minutes to come through.
-#Scenario Outline: Omnijoin Free Trial Sign up
-#	Given That I navigate to "<Site Url>" in order to validate a published page
-#	And I fill in the registration information using a valid email address 
-#	| field           | value          |
-#	| FirstName       | AutoTest       |
-#	| LastName        | AutoTest       |
-#
-#	And I enter phone number as "<PhoneNumber>"
-#	And I have Agreed to the Terms and Conditions
-#	And I press submit button "United Kingdom"
-#	Then I should see download page
-	#And I have Validated an Omnijoin Email was received and verified my account
-#Scenarios: 
-#	 | Site Url                                                   | PhoneNumber |
-#	 | /business-solutions/web-conferencing/free-trial?sc_lang=en | 01555522522 |
+# This test shouldn't run on teamcity as currently email takes about 5 minutes to come through.
+@SMOKE_OJFreeTrialSignUp
+Scenario Outline: Omnijoin Free Trial Sign up
+	Given That I navigate to "<Site Url>" in order to validate a published page
+	And I fill in the registration information using a valid email address 
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	And I enter phone number as "<PhoneNumber>"
+	And I have Agreed to the Terms and Conditions
+	And I press submit button "United Kingdom"
+	Then I should see download page
+
+Scenarios: 
+	 | Site Url                                                   | PhoneNumber |
+	 | /business-solutions/web-conferencing/free-trial?sc_lang=en | 01555522522 |

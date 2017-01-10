@@ -91,51 +91,69 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
 
         public void ClickFindProductButton()
         {
+            ScrollTo(FindProductButton);
             FindProductButton.Click();
         }
 
         public void EnterProductDate(string purchasedate)
         {
             PurchaseDateTextBox.SendKeys(purchasedate);
+            WaitForElementToBeClickableByCssSelector("#btn-apply-purchase-date", 5, 20);
         }
 
         public void EnterPromoCode(string promocode)
         {
             PromoCodeTextBox.SendKeys(promocode);
+            WaitForElementToBeClickableByCssSelector("#btn-apply-promo-code", 5, 20);
         }
 
         public void ClickApplyButton()
         {
+            ScrollTo(ApplyPurchaseDateButton);
             ApplyPurchaseDateButton.Click();
-            WaitForElementToBeClickableById("btn-continue-to-next-step", 10);
+            WaitForElementToBeClickableById("btn-continue-to-next-step", 20);
            
         }
 
         public void ClickAddCodeButton()
         {
+            Thread.Sleep(10000);
+            ScrollTo(AddCodeButton);
             AddCodeButton.Click();
+            WaitForElementToBeClickableById("btn-continue-to-next-step", 10);
         }
         
         public UserDetailsPage ClickContinueButton()
         {
+            ScrollTo(ContinueButton);
             ContinueButton.Click();
              return GetInstance<UserDetailsPage>(Driver); 
         }
 
         public AddressDetailsPage ClickContinueButtonAdPage()
         {
+            Thread.Sleep(10000);
+            ScrollTo(ContinueButton);
             ContinueButton.Click();
             return GetInstance<AddressDetailsPage>(Driver);
         }
 
         public MyPrintersAndDevicesPage ClickContinueButtonMyPrinterandDevicePage()
         {
+            Thread.Sleep(10000);
             var pId = SpecFlow.GetContext("ProductId");
             ScrollTo(Driver, ContinueButton);
             ContinueButton.Click();
             RecycleSerialNumber(pId);
             return GetInstance<MyPrintersAndDevicesPage>(Driver); 
         }
+        
+        public void DeregisterSerialNumber(string prodid)
+        {
+            RecycleSerialNumber(prodid);
+        }
+        
+        
 
         private static void RecycleSerialNumber(string productId)
         {

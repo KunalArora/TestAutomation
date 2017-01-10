@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
@@ -89,13 +90,14 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
         public ConfirmationPage ClickCompleteRegistrationButton()
         {
             var pId = SpecFlow.GetContext("ProductId");
+            ScrollTo(CompleteRegistrationButton);
             CompleteRegistrationButton.Click();
             RecycleSerialNumber(pId);
             return GetInstance<ConfirmationPage>(Driver);
         }
         public AddressDetailsPage ClickContinueButtonOnUdPage()
         {
-            
+            ScrollTo(ContinueButtonUdPage);
             ContinueButtonUdPage.Click();
             return GetInstance<AddressDetailsPage>(Driver);
 
@@ -108,7 +110,7 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
             {
                 return;
             }
-            System.Threading.Thread.Sleep(5000);
+            System.Threading.Thread.Sleep(15000);
             //serialNumber = "A2N125652";//"U1T004750";
             try
             {

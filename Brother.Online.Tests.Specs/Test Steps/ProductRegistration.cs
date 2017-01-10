@@ -12,6 +12,7 @@ using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherMainSite;
 using Brother.WebSites.Core.Pages.BrotherOnline.Account;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
+using Brother.WebSites.Core.Pages.BrotherOnline.ThirdParty;
 using TechTalk.SpecFlow;
 using Brother.Online.TestSpecs._80.Test_Steps;
 using TechTalk.SpecFlow;
@@ -39,6 +40,17 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
         public void GivenIBrowseToTheProductRegistrationPage(string url)
         {
             CurrentPage = BasePage.LoadProductRegistrationPage(CurrentDriver, url);
+        }
+
+        [Given(@"I deregister the serial number using the ""(.*)""")]
+        public void GivenIDeregisterTheSerialNumberUsingThe(string productid)
+        {
+            CurrentPage.As<SignInPage>().DeregisterSerialNumber(productid);
+        }
+        [Given(@"I deregister the serial number using the ""(.*)"" on Product Registration page")]
+        public void GivenIDeregisterTheSerialNumberUsingTheOnProductRegistrationPage(string productid)
+        {
+            CurrentPage.As<ProductRegistrationPage>().DeregisterSerialNumber(productid);
         }
 
         [Given(@"I have entered my product SerialNumber reading from the environmental variable")]
@@ -140,8 +152,12 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
        {
            CurrentPage.As<AddressDetailsPage>().ClickOnFindAddressButton();
        }
-
-       [Then(@"I tick on terms and conditions checkbox")]
+       [Then(@"I enter ""(.*)"" on address page")]
+       public void ThenIEnterOnAddressPage(string housenumber)
+       {
+           CurrentPage.As<AddressDetailsPage>().EnterHouseNumber(housenumber);
+       }
+        [Then(@"I tick on terms and conditions checkbox")]
        public void ThenITickOnTermsAndConditionsCheckbox()
        {
            CurrentPage.As<UserDetailsPage>().ClickAcceptCheckbox();
@@ -166,6 +182,48 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
        {
            NextPage = CurrentPage.As<UserDetailsPage>().ClickCompleteRegistrationButton();
        }
+       [Then(@"Once I have Validated ""(.*)"" was received and verified my account for Product Registration Email")]
+       public void ThenOnceIHaveValidatedWasReceivedAndVerifiedMyAccountForProductRegistrationEmail(string emailAddress)
+       {
+           Thread.Sleep(new TimeSpan(0, 0, 0, 10)); //  deliberate wait for account to finalise before validation
+           ValidateAccountEmail(emailAddress);
+       }
+
+       private void ValidateAccountEmail(string emailID)
+       {
+           if (Email.CheckEmailPackage("GuerrillaEmail"))
+           {
+               LaunchGuerrillaEmail(emailID);
+               CurrentPage.As<GuerillaEmailConfirmationPage>().SelectEmail("Product Registration");
+               //  CurrentPage.As<GuerillaEmailConfirmationPage>().CheckAllEmailLinks();
+               //NextPage = CurrentPage.As<GuerillaEmailConfirmationPage>().ValidateForgottenPasswordEmail();
+           }
+       }
+       private void LaunchGuerrillaEmail(string inBox)
+       {
+           inBox = @"testemailidinputfield@guerrillamail.com";
+           if (inBox == string.Empty)
+           {
+               CurrentPage = BasePage.LoadGuerrillaEmailInboxPage(CurrentDriver, "");
+               CurrentPage.As<GuerillaEmailConfirmationPage>().ForgetMeButtonClick();
+               CurrentPage.As<GuerillaEmailConfirmationPage>()
+                   .SelectEmailDomain(Email.RegistrationEmailDomain.ToLower().Replace("@", string.Empty));
+               CurrentPage.As<GuerillaEmailConfirmationPage>().SetEmailText(Email.ForgottenPasswordEmailAddress);
+               TestCheck.AssertIsEqual(true, CurrentPage.As<GuerillaEmailConfirmationPage>().DeleteGuerrillaWelcomeMail(),
+                   "Unable to delete the Guerrilla Mail Welcome Message");
+           }
+           else
+           {
+               CurrentPage = BasePage.LoadGuerrillaEmailInboxPage(CurrentDriver, "");
+               CurrentPage.As<GuerillaEmailConfirmationPage>().ForgetMeButtonClick();
+               CurrentPage.As<GuerillaEmailConfirmationPage>()
+                  .SelectEmailDomain(Email.RegistrationEmailDomain.ToLower().Replace("@", string.Empty));
+               CurrentPage.As<GuerillaEmailConfirmationPage>().SetEmailText(inBox);
+               TestCheck.AssertIsEqual(true, CurrentPage.As<GuerillaEmailConfirmationPage>().DeleteGuerrillaWelcomeMail(),
+                "Unable to delete the Guerrilla Mail Welcome Message");
+           }
+       }
+    
        [Then(@"I can complete my product registration by clicking on complete registration button on Address Details Page and I can  deregister the ""(.*)""")]
        public void ThenICanCompleteMyProductRegistrationByClickingOnCompleteRegistrationButtonOnAddressDetailsPageAndICanDeregisterThe(string serialnumber)
        {
@@ -188,7 +246,6 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
        {
            CurrentPage.As<ConfirmationPage>().CheckConfirmationMessage();
        }
-
 
 
     }
