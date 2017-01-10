@@ -62,11 +62,11 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [When(@"I calculate ""(.*)"" click price volume of ""(.*)""")]
         public void WhenICalculateClickPriceVolumeOf(string payment, string volume)
         {
-            if (payment.Equals("Pay As You Go"))
+            if (payment.Equals("Pay As You Go") || payment.Equals("Paiement selon la consommation réelle de pages"))
             {
                 CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateEnteredClickPrice(volume);
             }
-            else if (payment.Equals("Minimum Volume"))
+            else if (payment.Equals("Minimum Volume") || payment.Equals("Engagement sur un minimum volume de pages"))
             {
                CurrentPage.As<DealerProposalsCreateClickPricePage>().SelectMonoVolume(volume, "0"); 
                CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateClickPriceAndStoreVal();
@@ -88,11 +88,11 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [When(@"I calculate ""(.*)"" click price volume of ""(.*)"" and ""(.*)"" without proceeding")]
         public void WhenICalculateClickPriceVolumeOfAndWithoutProceeding(string payment, string monoVol, string colourVol)
         {
-            if (payment.Equals("Minimum Volume"))
+            if (payment.Equals("Minimum Volume") || payment.Equals("Engagement sur un minimum volume de pages"))
             {
                 CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateClickPrice(monoVol, colourVol);
             }
-            else if (payment.Equals("Pay As You Go"))
+            else if (payment.Equals("Pay As You Go") || payment.Equals("Paiement selon la consommation réelle de pages"))
             {
                 CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateEnteredMonoAndColourClickPrice(monoVol, colourVol);
             }

@@ -155,6 +155,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsCustomerInfoTextDisplayed()
         {
+            if (IsBigAtSystem()) return;
             if (CustomerInfomationElement == null) throw new 
                 NullReferenceException("Unable to locate text on Customer Information Screen");
 
@@ -208,6 +209,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
        public DealerProposalsCreateTermAndTypePage ClickSkipCustomerButtonAndProceed()
        {
+           
            ScrollTo(SkipCustomerElement);
            SkipCustomerElement.Click();
 
