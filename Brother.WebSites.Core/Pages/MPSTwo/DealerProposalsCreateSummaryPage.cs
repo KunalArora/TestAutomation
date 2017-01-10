@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
@@ -33,6 +35,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string FrText = @"COUT D’ACQUISITION";
         private const string SpText = @"Propuesta";
         private const string DownloadDirectory = @"C:/DataTest";
+        private const string ClickPricePath = @"C:\DataTest\ClickPrice";
+        private const string CsvFile = @"ClickPrice.csv";
 
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_ContractType")]
         public IWebElement ContractTypeElement;
@@ -74,12 +78,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement InstallationTypeNameElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_RepeaterInstallationPacks_0_InstallationPackLinePrice_0")]
         public IWebElement InstallationCostNameElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_RepeaterInstallationPacks_0_InstallationPackUnitPrice_0")]
+        public IWebElement InstallationUnitPriceElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_HardwareQuantity_0")]
         public IWebElement ModelQuantityNameElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_RepeaterServicePacks_0_ServicePackSku_0")]
         public IWebElement ServicePackNameElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_RepeaterServicePacks_0_ServicePackLinePrice_0")]
         public IWebElement ServiceCostNameElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_RepeaterServicePacks_0_ServicePackUnitPrice_0")]
+        public IWebElement ServicePackUnitPriceElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_MonoVolume_0")]
         public IWebElement MonoVolumeElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_ColourVolume_0")]
@@ -460,6 +468,59 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             
         }
 
+
+        public void WritePrinterParametersToCsv(string printer, string servicePayment, string monoCoverage, string colourCoverage, string qty,
+            string monoVol, string colourVol, string duration)
+        {
+            //before your loop
+            StreamWriter log;
+
+            var monoPrice = SpecFlow.GetContext("ClickPriceMonoValue");
+            string colourPrice;
+            var contractId = SummaryPageContractIdElement.GetAttribute("data-mps-qa-id");
+
+            try
+            {
+                colourPrice = SpecFlow.GetContext("ClickPriceColourValue");
+            }
+            catch (KeyNotFoundException)
+            {
+                colourPrice = "Nil";
+            }
+
+
+            var newLine = string.Format("\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\",\"{6}\",\"{7}\",\"{8}\",\"{9}\",\"{10}\"",
+                                            printer, servicePayment, monoCoverage, colourCoverage, qty, monoVol, colourVol, duration, monoPrice, colourPrice, contractId);
+            //csv.AppendLine(newLine);
+
+            if (!Directory.Exists(ClickPricePath))
+            {
+                Directory.CreateDirectory(ClickPricePath);
+            }
+
+            var filePath = Path.Combine(ClickPricePath, CsvFile);
+
+
+
+            if (!File.Exists(filePath))
+            {
+                log = new StreamWriter(filePath);
+                log.WriteLine("\"Printer\",\"ServicePayment\",\"MonoCoverage\",\"ColourCoverage\",\"Quantity\",\"MonoVol\",\"ColourVol\",\"Duration\",\"MonoPrice\",\"ColourPrice\",\"ProposalId\"");
+            }
+            else
+            {
+                log = File.AppendText(filePath);
+            }
+
+            // Write to the file:
+
+            log.WriteLine(newLine);
+
+            // Close the stream:
+            log.Close();
+
+        }
+
         public void IsCustomerNamePresentInPdf()
         {
             var customerName = SpecFlow.GetContext("SummaryCustomerOrCompanyName");
@@ -734,7 +795,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             var deviceTotalPrice = MpsUtil.GetValue(SummaryGrandDeviceTotalPriceElement.Text);
             var consumableTotalPrice = MpsUtil.GetValue(SummaryGrandConsumableTotalPriceElement.Text);
-            var charges = IsElementPresent(GetElementByCssSelector("content_1_SummaryTable_ChargesTotalPriceNet"))
+            var charges = IsElementPresent(GetElementByCssSelector("#content_1_SummaryTable_ChargesTotalPriceNet"))
                 ? MpsUtil.GetValue(SummaryGrandChargesTotalPriceElement.Text)
                 : 0;
 
@@ -994,6 +1055,41 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return colourClickRate;
         }
 
+        public void IsSpecialPricingMonoClickPriceDisplayed()
+        {
+            var mono = GetMonoClickValue();
+            var monoD = SpecFlow.GetContext("SpecialPriceMonoClickPrice");
+
+            TestCheck.AssertIsEqual(true, mono.Contains(monoD), string.Format("{0} does not contain {1}", mono, monoD));
+        }
+
+        public void IsSpecialPricingColourClickPriceDisplayed()
+        {
+            var colour = GetColourClickValue();
+            var colourD = SpecFlow.GetContext("SpecialPriceColourClickPrice");
+
+            TestCheck.AssertIsEqual(true, colour.Contains(colourD), string.Format("{0} does not contain {1}", colour, colourD));
+        }
+
+        public void IsSpecialPricingInstallationUnitPriceDisplayed()
+        {
+            var install = InstallationUnitPriceElement.Text;
+            var installD = SpecFlow.GetContext("SpecialPriceInstallation");
+
+            TestCheck.AssertIsEqual(true, install.Contains(installD), string.Format("{0} does not contain {1}", install, installD));
+        }
+
+
+        public void IsSpecialPricingServicePackUnitPriceDisplayed()
+        {
+            var servicePack = ServicePackUnitPriceElement.Text;
+            var servicePackD = SpecFlow.GetContext("SpecialPriceServicePack");
+
+            TestCheck.AssertIsEqual(true, servicePack.Contains(servicePackD), string.Format("{0} does not contain {1}", servicePack, servicePackD));
+        }
+
+
+
 
         public void IsMonoClickPriceDisplayedCorrectly()
         {
@@ -1084,7 +1180,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             if (!(IsGermanSystem() && GetContractType() == "Easy Print Pro & Service"))
             {
-                TestCheck.AssertIsEqual(ServiceCostNameElement.Text, value,
+                var cost = ServiceCostNameElement.Text;
+                TestCheck.AssertIsEqual(value, cost,
                     "Service Pack cost on Product page is not the same as the Service Pack on Summary page");
             }
         }

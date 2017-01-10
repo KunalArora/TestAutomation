@@ -39,6 +39,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement RejectionCancelButtonElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-proposal-list-container .table .js-mps-searchable tr")]
         public IList<IWebElement> ProposalListContainerElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/local-office/reports\"]")]
+        public IWebElement ReportTabElement;
 
         public void IsAwaitingApprovalLinkAvailable()
         {
@@ -71,6 +73,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ActionsModule.SearchForNewlyProposalItem(Driver, createdProposal);
 
             ActionsModule.IsNewlyCreatedItemDisplayed(Driver);
+        }
+
+        public LocalOfficeApprovalReportingDashboardPage NavigateToReportDashboardPage()
+        {
+            if (ReportTabElement == null)
+                throw new Exception("Approved Proposals Link Element is returned as null");
+
+            ReportTabElement.Click();
+
+            return GetInstance<LocalOfficeApprovalReportingDashboardPage>();
         }
 
         private string Reason()

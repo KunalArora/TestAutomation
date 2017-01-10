@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Text;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
@@ -15,6 +17,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
     public class DealerProposalsCreateClickPricePage : BasePage
     {
         public static string URL = "/mps/dealer/proposals/create/click-price";
+        
 
         public override string DefaultTitle
         {
@@ -25,6 +28,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string clickPriceValue = @"[class='mps-col mps-top mps-clickprice-line2'][data-click-price-mono='true']";
         private const string clickPriceColourValue = @"[class='mps-col mps-top mps-clickprice-line2'][data-click-price-colour='true']";
         private const string clickPricePageNext = @"#content_1_ButtonNext";
+        private const string ClickPricePath = @"C:\DataTest\ClickPrice";
+        private const string CsvFile = @"ClickPrice.csv";
 
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/proposals/create/summary\"]")]
         public IWebElement ProposalSummaryScreenElement;
@@ -66,8 +71,23 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement ServicePackContainerElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_InputServicePaymentOption")]
         public IWebElement ServicePackHiddenValueElement;
-        
+        [FindsBy(How = How.CssSelector, Using = "#content_1_LineItems_ServicePackUnitCost_0")]
+        public IWebElement ServicePackUnitCostElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_LineItems_ServicePackUnitPrice_0")]
+        public IWebElement ServicePackUnitPriceElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_LineItems_ServicePackTotalPrice_0")]
+        public IWebElement ServicePackTotalPriceElement;
 
+
+
+
+        public void IsServiceInClickLineDisplayedOnClickPricePage()
+        {
+            TestCheck.AssertIsEqual(true, ServicePackUnitCostElement.Displayed, "Service Pack Unit Cost is not displayed");
+            TestCheck.AssertIsEqual(true, ServicePackUnitPriceElement.Displayed, "Service Pack Unit Price is not displayed");
+            TestCheck.AssertIsEqual(true, ServicePackTotalPriceElement.Displayed, "Service Pack Unit Total Price is not displayed");
+        }
+        
 
         private IWebElement PaymentMethodElement()
         {
@@ -343,6 +363,40 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             CalculateClickPriceElement.Click();
         }
 
+        public void CalculateClickPriceAndStoreVal()
+        {
+            CalculateClickPriceElement.Click();
+            WebDriver.Wait(DurationType.Second, 3);
+        }
+
+        public void StoreMonoClickPrice()
+        {
+            SpecFlow.SetContext("ClickPriceMonoValue", ClickPriceValue().First().Text);
+        }
+
+        public void StoreColourClickPrice()
+        {
+            SpecFlow.SetContext("ClickPriceColourValue", ClickPriceColourValue().First().Text);
+        }
+
+        public void IsSpecialPricingNewMonoClickPriceDisplayed()
+        {
+            var displayedMono = ClickPriceValue().First().Text;
+            var enterSpecialPricing = SpecFlow.GetContext("SpecialPriceMonoClickPrice");
+
+            TestCheck.AssertIsEqual(true, displayedMono.Equals(enterSpecialPricing), 
+                                string.Format("{0} is the not same as {1}", displayedMono, enterSpecialPricing));
+        }
+
+        public void IsSpecialPricingNewColourClickPriceDisplayed()
+        {
+            var displayedColour = ClickPriceValue().First().Text;
+            var enterSpecialPricing = SpecFlow.GetContext("SpecialPriceColourClickPrice");
+
+            TestCheck.AssertIsEqual(true, displayedColour.Equals(enterSpecialPricing),
+                                string.Format("{0} is the not same as {1}", displayedColour, enterSpecialPricing));
+        }
+
         public void SelectMonoVolume(string volume, string row)
         {
             if (monoVolumeDropdownElement == null)
@@ -400,6 +454,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetElementByCssSelector(clickPricePageNext);
         }
 
+        public DealerProposalsCreateSummaryPage ClickAndProceedOnDealerProposalsCreateSummaryPage()
+        {
+            ClickPriceNextButton().Click();
+
+            return GetTabInstance<DealerProposalsCreateSummaryPage>(Driver);
+        }
+
         public DealerProposalsCreateSummaryPage ProceedToProposalSummaryFromClickPrice()
         {
             var mono = ClickPriceValue().First().Text;
@@ -422,6 +483,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 			//VerifyClickPriceValueIsDisplayed();
             WebDriver.Wait(DurationType.Second, 2);
             return ProceedToProposalSummaryFromClickPrice();
+        }
+
+        public void CalculateClickPrice(string volume, string colour)
+        {
+            //MoveToClickPriceScreen();
+            CalculateClickPrice(volume, colour, "0");
+            //WebDriver.Wait(Helper.DurationType.Second, 1);
+            SpecFlow.SetContext("ClickPriceMonoValue", ClickPriceValue().First().Text);
+            SpecFlow.SetContext("ClickPriceColourValue", ClickPriceColourValue().First().Text);
+            //VerifyClickPriceValueIsDisplayed();
+            WebDriver.Wait(DurationType.Second, 2);
         }
 
         public void CalculateClickPrice(string volume, string colour, string row, bool resetBeforeInput = false)
@@ -600,11 +672,82 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return ProceedToProposalSummaryFromClickPrice();
         }
 
+        public void WritePrinterParametersToCsv(string printer, string servicePayment, string monoCoverage, string colourCoverage, string qty,
+            string monoVol, string colourVol, string duration)
+        {
+            //before your loop
+            var csv = new StringBuilder();
+            StreamWriter log;
+
+            var monoPrice = SpecFlow.GetContext("ClickPriceMonoValue");
+            string colourPrice;
+
+            try
+            {
+                colourPrice = SpecFlow.GetContext("ClickPriceColourValue");
+            }
+            catch (KeyNotFoundException)
+            {
+                colourPrice = "Nil";
+            }
+                
+
+            var newLine = string.Format("\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\",\"{6}\",\"{7}\",\"{8}\",\"{9}\"", 
+                                            printer, servicePayment, monoCoverage, colourCoverage, qty, monoVol, colourVol, duration, monoPrice, colourPrice);
+            //csv.AppendLine(newLine);
+
+            if (!Directory.Exists(ClickPricePath))
+            {
+                Directory.CreateDirectory(ClickPricePath);
+            }
+
+            var filePath = Path.Combine(ClickPricePath, CsvFile);
+
+            
+
+            if (!File.Exists(filePath))
+            {
+                log = new StreamWriter(filePath);
+                log.WriteLine("\"Printer\",\"ServicePayment\",\"MonoCoverage\",\"ColourCoverage\",\"Quantity\",\"MonoVol\",\"ColourVol\",\"Duration\",\"MonoPrice\",\"ColourPrice\"");
+            }
+            else
+            {
+                log = File.AppendText(filePath);
+            }
+
+            // Write to the file:
+            
+            log.WriteLine(newLine);
+            
+            // Close the stream:
+            log.Close();
+
+        }
+
+        public void CalculateEnteredClickPrice(string volume)
+        {
+            //            MoveToClickPriceScreen();
+            EnterMonoVolumeQuantity(volume);
+            WebDriver.Wait(DurationType.Second, 5);
+            VerifyClickPriceValueIsDisplayed();
+            SpecFlow.SetContext("ClickPriceMonoValue", ClickPriceValue().First().Text);
+        }
+
         public void CalculateEnteredErrorClickPrice(string volume)
         {
             EnterMonoVolumeQuantity(volume);
             WebDriver.Wait(DurationType.Second, 5);
             VerifyClickPriceValueIsNotDisplayed();
+        }
+
+        public void CalculateEnteredMonoAndColourClickPrice(string mono, string colour)
+        {
+            //            MoveToClickPriceScreen();
+            EnterColourVolume(colour, "0");
+            EnterMonoVolumeQuantity(mono);
+            WebDriver.Wait(DurationType.Second, 5);
+            StoreMonoClickPrice();
+            StoreColourClickPrice();
         }
 
         public void IsLargeEstimatedVolumeErrorMessageDisplayed()

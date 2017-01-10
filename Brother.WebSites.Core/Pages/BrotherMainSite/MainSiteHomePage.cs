@@ -18,16 +18,16 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
             get { return string.Empty; }
         }
 
-        //[FindsBy(How = How.CssSelector, Using = "#main > div > div.feature-carousel > div > ul.feature-carousel-items > li:nth-child(2) > div > a")]
-        //public IWebElement SuppliesLink;
-       // [FindsBy(How = How.CssSelector, Using = "#footer-websiteinfomation > li:nth-child(4) > a")]
-      //  public IWebElement BrotherNetwork;
+        [FindsBy(How = How.CssSelector, Using = "#superCarousel")]
+        public IWebElement SlidesOnHomePage;
 
+        [FindsBy(How = How.CssSelector, Using = ".common-global-footer")]
+        public IWebElement PageFooter;
 
         [FindsBy(How = How.CssSelector, Using = "#loginuser")]
         public IWebElement UsernameInputField;
 
-       [FindsBy(How = How.CssSelector, Using = "[href='/supplies']")]
+        [FindsBy(How = How.CssSelector, Using = ".common--features-carousel--item [href='/supplies']")]
         public IWebElement SuppliesLink;
 
         [FindsBy(How = How.CssSelector, Using = ".prev")]
@@ -183,14 +183,14 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         public void IsSuppliesLinkAvailable()
 
         {
-            SuppliesLink = Driver.FindElement(By.CssSelector(".feature-carousel-items [href='/supplies']"));
+            //SuppliesLink = Driver.FindElement(By.CssSelector(".common--features-carousel--items [href='/supplies']"));
             if (!SuppliesLink.Displayed)
             {
                 while (!SuppliesLink.Displayed)
                 {
-                    WaitForElementToExistByCssSelector(".feature-carousel-items [href='/supplies']", 1, 5);
-                    PreviousArrow.Click();
-                    SuppliesLink = Driver.FindElement(By.CssSelector(".feature-carousel-items [href='/supplies']"));
+                    WaitForElementToExistByCssSelector(".common--features-carousel--items [href='/supplies']", 1, 5);
+                    //PreviousArrow.Click();
+                    SuppliesLink = Driver.FindElement(By.CssSelector(".common--features-carousel--items [href='/supplies']"));
                 }
             }
             AssertElementPresent(SuppliesLink, "Supplies Link");
@@ -200,6 +200,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         {
             //MoveToElement(SuppliesLink);
             SuppliesLink.Click();
+            WebDriver.Wait(DurationType.Second, 3);
             return GetInstance<SuppliesPage>(Driver);
         }
 
@@ -621,6 +622,28 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
             ResultLink.Click();
             return GetInstance<InkJetCartridgePage>(Driver);
         }
-      
+
+        public void DoPageTileExist()
+        {
+            TestCheck.AssertIsNotNullOrEmpty(Driver.Title, "Tile of the Page.");
+        }
+
+        public void AreSlidesDisplayed()
+        {
+            if (SlidesOnHomePage == null)
+            {
+                throw new NullReferenceException("Unable to locate ribbon on page");
+            }
+            AssertElementPresent(SlidesOnHomePage, "The Slides on the Home Page.");
+        }
+
+        public void DoFooterExistsOnHomePage()
+        {
+            if (PageFooter == null)
+            {
+                throw new NullReferenceException("Unable to locate ribbon on page");
+            }
+            AssertElementPresent(PageFooter, "Footer of the Page.");
+        }
     }
 }

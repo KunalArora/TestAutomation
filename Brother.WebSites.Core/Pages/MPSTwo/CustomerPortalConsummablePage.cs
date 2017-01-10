@@ -39,8 +39,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement ConsumableDeviceChangeToAutomatic;
         [FindsBy(How = How.CssSelector, Using = "[data-original-title=\"Replenish mode: Auto\"]")]
         public IWebElement ConsumableDeviceAutomaticConfirmation;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_ContractDevicesList_Contracts_List_0_ReplenishModeIcon_0")]
+        public IWebElement ConsumableAutomaticConfirmation;
         
-
         
 
 
@@ -61,6 +62,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ChangeConsumableOrderToAutomaticOrdering()
         {
+
+            var modeText = ConsumableAutomaticConfirmation.GetAttribute("data-original-title");
+
+            if (modeText.Equals("Replenish mode: Auto")) return;
             ConsumableDeviceActionButton.Click();
             WaitForElementToExistByCssSelector(".open .js-mps-change-ordermode-to-automatic");
 

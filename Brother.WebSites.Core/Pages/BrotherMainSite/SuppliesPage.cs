@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherMainSite.SuppliesAndAccessories;
@@ -16,7 +17,8 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
             get { return string.Empty; }
         }
 
-        [FindsBy(How = How.CssSelector, Using = "#by-supply-number > input")]
+        //[FindsBy(How = How.CssSelector, Using = "#by-supply-number > input")]
+        [FindsBy(How = How.CssSelector, Using = "#supplies-code")]
         public IWebElement SuppliesCodeExitBox;
 
         [FindsBy(How = How.CssSelector, Using = "#by-supply-number > a")]
@@ -28,8 +30,8 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         [FindsBy(How = How.CssSelector, Using = "#by-device-number > a")]
         public IWebElement DeviceCodeSearchButton;
 
-        [FindsBy(How = How.CssSelector, Using = "#ui-id-1")]
-        public IWebElement SupplierCodeDropDownList;
+        [FindsBy(How = How.CssSelector, Using = ".common-autocomplete_link")]
+        public IList<IWebElement> SupplierCodeDropDownList;
 
         public void IsSuppliesSearchButtonAvailable()
         {
@@ -54,10 +56,34 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         {
             DeviceCodeExitBox.SendKeys(code);
             WebDriver.Wait(DurationType.Second, 3);
-            DeviceCodeExitBox.SendKeys(Keys.ArrowDown);
+            //DeviceCodeExitBox.SendKeys(Keys.ArrowDown);
+            //WebDriver.Wait(DurationType.Second, 3);
+            DeviceCodeExitBox.SendKeys(Keys.Tab);
+            DeviceCodeExitBox.SendKeys(Keys.Tab);
+        }
+
+        public InkJetCartridgePage SearchForSuppliesItem(string itemCode)
+        {
+            SuppliesCodeExitBox.SendKeys(itemCode);
             WebDriver.Wait(DurationType.Second, 3);
-            DeviceCodeExitBox.SendKeys(Keys.Tab);
-            DeviceCodeExitBox.SendKeys(Keys.Tab);
+            if (SupplierCodeDropDownList != null)
+            {
+                for (int i = 0; i < SupplierCodeDropDownList.Count; i++)
+                {
+                    if (string.Equals(itemCode, SupplierCodeDropDownList[i].Text.Trim(), StringComparison.OrdinalIgnoreCase))
+                    {
+                        SupplierCodeDropDownList[i].Click();
+                        WebDriver.Wait(DurationType.Second, 3);
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                throw new NullReferenceException("Unable to find the item.");
+            }
+            InkJetCartridgePage.SetExtraPageTitle = itemCode;
+            return GetInstance<InkJetCartridgePage>(Driver);
         }
 
         public InkJetCartridgePage SearchSuppliesButtonClick()

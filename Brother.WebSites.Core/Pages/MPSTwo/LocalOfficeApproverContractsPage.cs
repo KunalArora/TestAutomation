@@ -36,6 +36,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement LOApproverDeviceManagementElement;
         [FindsBy(How = How.CssSelector, Using = ".open .js-mps-download-contract-pdf")]
         public IWebElement DownloadContractPdfElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/local-office/reports\"]")]
+        public IWebElement ReportTabElement;
+        
         
         
         
@@ -107,7 +110,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ActionsModule.IsNewlyCreatedItemDisplayed(Driver);
         }
 
-       
+        public DealerApprovedProposalPage NavigateToDealerApprovedProposalPage()
+        {
+            if (ReportTabElement == null)
+                throw new Exception("Approved Proposals Link Element is returned as null");
+
+            ReportTabElement.Click();
+
+            return GetInstance<DealerApprovedProposalPage>();
+        }
         
 
         private IWebElement ActionButtonElementByName(string name, string tdcol)

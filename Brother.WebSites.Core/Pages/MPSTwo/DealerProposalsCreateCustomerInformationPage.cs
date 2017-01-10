@@ -345,7 +345,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
             else if (IsDenmarkSystem())
             {
-                ClearAndType(CompanyRegistrationNumerElement, "35679626");
+              //  ClearAndType(CompanyRegistrationNumerElement, "35679626");
             }
             else if (IsNorwaySystem())
             {
@@ -575,14 +575,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterPropertyNumber()
         {
-            if (IsFranceSystem()
+            if (
+                IsFranceSystem()
                 ||IsSpainSystem()
                 ||IsItalySystem()
                 || IsDenmarkSystem()
                 ||IsFinlandSystem() 
                 || IsSwedenSystem()
                 || IsBelgiumSystem()
-                || IsNetherlandSystem()) return;
+                || IsNetherlandSystem()
+                || IsSwissSystem()
+                || IsNorwaySystem()
+                                        ) return;
             PropertyNumberElement.SendKeys(MpsUtil.PropertyNumber());
         }
 

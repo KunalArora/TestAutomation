@@ -75,9 +75,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void EnterDateForInvoicing()
         {
             var todayDate = DateTime.Now;
-            var dateString = todayDate.AddDays(365).ToString("ddMMyyyy"); 
+            var dateString = todayDate.AddDays(390).ToString("ddMMyyyy"); 
 
             InvoiceDateElement.SendKeys(dateString + Keys.Tab);
+
+            CompleteInstallation();
+
+            WebDriver.Wait(DurationType.Second, 30);
 
         }
 
@@ -115,7 +119,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             if (RaiseInvoiceButtonElement == null)
                 throw new Exception("Cannot click on Raise Invoice Button Element");
-            WebDriver.Wait(DurationType.Second, 4);
+            WebDriver.Wait(DurationType.Second, 30);
             RaiseInvoiceButtonElement.Click();
         }
 
@@ -159,7 +163,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var subUrl = Driver.Url;
             var newUrl = "test/mps2/invoicetools/raise.aspx?proposal={0}";
             var proposalId = SpecFlow.GetContext("SummaryPageContractId");
-            newUrl = String.Format(newUrl, proposalId);
+            var contractRef = SpecFlow.GetContext("ProposalId");
+            newUrl = String.Format(newUrl, contractRef);
 
             if (env != null && (env.Equals("LOCAL") && IsUKSystem()))
             {

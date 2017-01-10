@@ -440,8 +440,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SelectATradingStyle()
         {
-            if (IsUKSystem()||IsSpainSystem()|| IsIrelandSystem() || IsDenmarkSystem() 
-                || IsNorwaySystem())
+            if (IsUKSystem()||IsSpainSystem()|| IsIrelandSystem())
                 SelectFromDropdown(TradingStyleElement, TradingStyle());
                 WebDriver.Wait(DurationType.Second, 3);
         }
@@ -941,7 +940,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterGermanStreetNumber()
         {
-            if(IsDenmarkSystem() || IsBigAtSystem())
+            if(IsBigAtSystem())
             HausnummberElement.SendKeys("23");
         }
 

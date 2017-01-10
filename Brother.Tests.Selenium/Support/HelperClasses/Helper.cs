@@ -123,7 +123,9 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             {"Italy", "it"},
             {"Bulgaria", "bg"},
             {"Austria", "at"},
-
+            {"Estonia", "ee"},
+            {"Iceland", "is"},
+            {"Latvia", "lv"},
         };
 
       
@@ -252,6 +254,16 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         public static bool CheckFeatureEnv(string env)
         {
             return FeatureContext.Current.FeatureInfo.Tags.Contains(env);
+            /*if (FeatureContext.Current.FeatureInfo.Tags.Contains("PROD"))
+            {
+                SetRunTimeEnv("PROD");
+                return true;
+            }
+            else
+            {
+                SetRunTimeEnv("TEST");
+                return FeatureContext.Current.FeatureInfo.Tags.Contains(env);
+            }*/
         }
 
         //public static string CurrentBaseUrlAsHttps()
@@ -316,7 +328,8 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             {
                 if (baseUrl.Contains("online"))
                 {
-                    return baseUrl.Replace("online", string.Format("{0}.online", UseCdServerDomain()));
+                    //return baseUrl.Replace("online", string.Format("{0}.online", UseCdServerDomain()));
+                    return baseUrl.Replace("online", string.Format("www.{0}", UseCdServerDomain()));
                 }
 
                 if (baseUrl.Contains("www."))
@@ -604,6 +617,30 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                 }
             }
             MsgOutput(string.Format("Successfully Deleted {0} contract(s)", snapShotCount));
+        }
+
+        public static bool IsFileDownloaded(string path, string extension)
+        {
+            var fileExist = false;
+            var dirInfo = new DirectoryInfo(path);
+
+            var extensionString = String.Format("*.{0}", extension);
+
+            var fileCount = new List<String>();
+            var fileContainer = dirInfo.GetFiles(extensionString, SearchOption.TopDirectoryOnly);
+
+            foreach (var file in fileContainer)
+            {
+                fileCount.Add(file.ToString());
+            }
+
+            if (fileCount.Count > 0)
+            {
+                fileExist = true;
+            }
+            
+            return fileExist;
+
         }
 
         public static void TakeSnapshot(string additionalInformation)

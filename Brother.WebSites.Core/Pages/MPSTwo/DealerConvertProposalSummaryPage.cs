@@ -80,16 +80,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             
         }
 
-        public DealerProposalsAwaitingApproval SaveProposalAsAContract()
+        public DealerProposalsAwaitingApprovalPage SaveProposalAsAContract()
         {
             if (SaveAsContractButton == null)
                 throw new NullReferenceException("Save Contract button not available");
             SaveAsContractButton.Click();
            
-            return GetInstance<DealerProposalsAwaitingApproval>(Driver);
+            return GetInstance<DealerProposalsAwaitingApprovalPage>(Driver);
         }
 
-        public DealerProposalsAwaitingApproval DownloadAndSaveProposalAsAContract()
+        public DealerProposalsAwaitingApprovalPage DownloadAndSaveProposalAsAContract()
         {
             if (SaveAsContractButton == null)
                 throw new NullReferenceException("Save Contract button not available");
@@ -98,7 +98,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             SaveAsContractButton.Click();
             WebDriver.Wait(DurationType.Second, 5);
 
-            return GetInstance<DealerProposalsAwaitingApproval>(Driver);
+            return GetInstance<DealerProposalsAwaitingApprovalPage>(Driver);
         }
 
 

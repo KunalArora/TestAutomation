@@ -142,10 +142,10 @@ namespace Brother.WebSites.Core.Pages8._0.BrotherMainSite
             AssertElementPresent(ViewColourLaserRangeButton, "Colour laser button");
         }
 
-      public void HoverAndClickBrotherNetwork()
-      { 
-          WaitForElementToExistByXPath(BrotherNetworkId, 1, 3);
-          BrotherNetwork.Click();
+        public void HoverAndClickBrotherNetwork()
+        {
+            WaitForElementToExistByXPath(BrotherNetworkId, 1, 3);
+            BrotherNetwork.Click();
         }
     }
 }

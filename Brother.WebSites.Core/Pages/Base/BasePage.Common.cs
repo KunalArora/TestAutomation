@@ -173,20 +173,31 @@ namespace Brother.WebSites.Core.Pages.Base
             
             if (url.ToLower().Contains(local)) return url;
             if (urlParts.Length == 0) return url;
+
+            if (urlParts[1].ToLower().Contains(brother))
+            {
+                if(Locale.ToUpper().Equals("UK"))
+                    url = url.Replace("eu", "co.uk");
+                else
+                    url = url.Replace("eu", Locale);
+                return url.Replace("main.", "online.");
+            }
+
             //if (urlParts[0].ToLower().Contains(mainUrl)) return url;
             // generally for specific brother online sites, there is a locale between Online and Brother<server>.co.uk
             // check for its existence and update accordingly.
             // would not contain brother if locale present at this index
+            
+            if (urlParts[2].ToLower().Contains(brother))
+            {
+                return string.Format("{0}.{1}.{2}.{3}", urlParts[0], Locale, urlParts[2], urlParts[3]);
+            }
+
             if (urlParts[3].ToLower().Contains(brother))
             {
                 if (Locale.ToUpper().Equals("UK"))
                     return url;
                 return string.Format("{0}.{1}.{2}.{3}", urlParts[0], Locale, urlParts[3], urlParts[4]);
-            }
-
-            if (urlParts[2].ToLower().Contains(brother))
-            {
-                return string.Format("{0}.{1}.{2}.{3}", urlParts[0], Locale, urlParts[2], urlParts[3]);
             }
 
             // Live site at this stage so format accordingly
@@ -229,7 +240,8 @@ namespace Brother.WebSites.Core.Pages.Base
 
             if (runTimeEnv.Equals(RunTimeLive) && urlParts[0].ToLower().Contains(mainUrl))
             {
-                return brotherBaseHomePage;
+                //return brotherBaseHomePage;
+                return brotherBaseHomePage.Replace(".co.uk.cms", string.Empty);
             }
 
             if (runTimeEnv.Equals(RunTimeTest) && !urlParts[0].ToLower().Contains(mainUrl))

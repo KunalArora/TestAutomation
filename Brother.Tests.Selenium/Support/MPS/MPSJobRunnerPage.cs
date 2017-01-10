@@ -14,10 +14,10 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
         private const string CompleteInstallationCommand = @"runcommand.aspx?command=MPS:CompleteInstallationCommand";
         private const string SendClickRateInvoicesToSapCommand = @"runcommand.aspx?command=MPS:SendClickRateInvoicesToSapCommand";
         private const string RefreshPrintCountsCommand = @"runcommand.aspx?command=MPS:RefreshPrintCountsCommand";
-        private const string RefreshPrintCountsFromMedioCommand = @"runcommand.aspx?command=MPS:RefreshPrintCountsFromMedioCommand";
+        private const string RefreshPrintCountsFromMedioCommand = @"runcommand.aspx?command=MPS:RefreshMedioPrintCountsAndCreateMpsOrdersAndRequestsCommand";
         private const string StaffAccountCreationCommand = @"runcommand.aspx?command=MPS:StaffAccountCreationCommand";
         private const string ConsumableOrderRequestsCommand = @"runcommand.aspx?command=MPS:ConsumableOrderRequestsCommand";
-        private const string CreateOrderAndServiceRequestsCommand = @"runcommand.aspx?command=MPS:CreateOrderAndServiceRequestsCommand";
+        private const string CreateOrderAndServiceRequestsCommand = @"runcommand.aspx?command=MPS:RefreshMedioPrintCountsAndCreateMpsOrdersAndRequestsCommand";
         private const string SystemJobCreateCustomerAndPersonCommand = @"runcommand.aspx?command=MPS:SystemJobCreateCustomerAndPersonCommand";
         private const string SystemJobCreateCustomerTaxCommand = @"runcommand.aspx?command=MPS:SystemJobCreateCustomerTaxCommand";
         private const string CloseConsumableOrdersCommand = @"runcommand.aspx?command=MPS:CloseConsumableOrdersCommand";
@@ -167,7 +167,16 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 
             Helper.MsgOutput(String.Format("The url formed for Set Supply Status is {0}", webSite));
 
-            var toner = string.Format("TonerInk_{0}", tonerType);
+            string toner;
+
+            if (tonerType == "Black" || tonerType == "Cyan" || tonerType == "Magenta" || tonerType == "Yellow")
+            {
+                toner = string.Format("TonerInk_{0}", tonerType);
+            }
+            else
+            {
+                toner = tonerType;
+            }
 
             var deviceWithDefaultPrintCount = "{\"name\": \"" + toner + "\",\"value\": \"Empty\"}";
 

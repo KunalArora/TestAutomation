@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
@@ -11,7 +12,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.Basket
         // Static Basket class which services the popup basket module common to many pages
         private const string BasketIconId = "#primary-nav > div > ul > li.nav-basket > a";
         private const string ProductInformationListId = ".product-info";
-        private const string GoToBasketButtonId = "#primary-nav > div > ul > li.nav-basket > div > div.sections.add-to-basket > a";
+        private const string GoToBasketButtonId = "#basket-nav-icon";//#primary-nav > div > ul > li.nav-basket > div > div.sections.add-to-basket > a";
         private const string ItemPriceId = ".cf .price";
         private const string PriceString = @"PRICE";
         private const string RemoveFromBasketButton = ".remove-from-basket-button";
@@ -98,6 +99,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.Basket
         public static BasketPage GoToBasketButtonClick(IWebDriver driver)
         {
             GoToBasketButton(driver).Click();
+            Thread.Sleep(TimeSpan.FromSeconds(3));
             return BasePage.GetInstance<BasketPage>(driver, "", "");
         }
 
