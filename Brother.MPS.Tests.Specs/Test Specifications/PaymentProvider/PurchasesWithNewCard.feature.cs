@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Brother.Tests.Specs.TestSpecifications.PaymentProvider
+namespace Brother.MPS.Tests.Specs.TestSpecifications.PaymentProvider
 {
     using TechTalk.SpecFlow;
     
