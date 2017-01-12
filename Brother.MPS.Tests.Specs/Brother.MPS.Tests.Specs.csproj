@@ -7,8 +7,8 @@
     <ProjectGuid>{F1AF49E4-3357-491D-8F04-1E2DE68354D4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Brother.MPS.Tests.Specs</RootNamespace>
-    <AssemblyName>Brother.MPS.Tests.Specs</AssemblyName>
+    <RootNamespace>Brother.Tests.Specs</RootNamespace>
+    <AssemblyName>Brother.Tests.Specs.6.5</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -201,6 +201,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CloudMPSMultiDeviceVerificationWithPrintCountValidation.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC110\BUK\Reporting\CloudMPSDataQuerySearchAndFilterVerification.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CloudMPSDataQuerySearchAndFilterVerification.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC110\BUK\Special Pricing\CloudMPSSpecialPricing.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CloudMPSSpecialPricing.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC110\BUK\Validate_CustomerRun\CloudMPSServiceRequestAutomatic.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -256,10 +266,10 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC110\BUK\Reporting\CloudMPSReportingVeification.feature.cs">
+    <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC110\BUK\Reporting\CloudMPSReportingVerification.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CloudMPSReportingVeification.feature</DependentUpon>
+      <DependentUpon>CloudMPSReportingVerification.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC113\ClickPrice\CloudMPSClickPriceRefactorFrance.feature.cs">
       <AutoGen>True</AutoGen>
@@ -1490,6 +1500,14 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSMultiDeviceVerificationWithPrintCountValidation.feature.cs</LastGenOutput>
     </None>
+    <None Include="Test Specifications\MPSTwoByCountries\BIEPC110\BUK\Reporting\CloudMPSDataQuerySearchAndFilterVerification.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CloudMPSDataQuerySearchAndFilterVerification.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwoByCountries\BIEPC110\BUK\Special Pricing\CloudMPSSpecialPricing.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CloudMPSSpecialPricing.feature.cs</LastGenOutput>
+    </None>
     <None Include="Test Specifications\MPSTwoByCountries\BIEPC110\BUK\Validate_CustomerRun\CloudMPSServiceRequestAutomatic.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSServiceRequestAutomatic.feature.cs</LastGenOutput>
@@ -1534,9 +1552,9 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSErrorMessageShowsCorrectCurrency.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwoByCountries\BIEPC110\BUK\Reporting\CloudMPSReportingVeification.feature">
+    <None Include="Test Specifications\MPSTwoByCountries\BIEPC110\BUK\Reporting\CloudMPSReportingVerification.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSReportingVeification.feature.cs</LastGenOutput>
+      <LastGenOutput>CloudMPSReportingVerification.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwoByCountries\BIEPC113\ClickPrice\CloudMPSClickPriceRefactorFrance.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
@@ -2321,7 +2339,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Test Specifications\MPSOne\Proposals\" />
-    <Folder Include="Test Specifications\MPSTwoByCountries\BIEPC110\BUK\Special Pricing\" />
     <Folder Include="Test Steps\Brother Online Redesign\" />
   </ItemGroup>
   <ItemGroup>
