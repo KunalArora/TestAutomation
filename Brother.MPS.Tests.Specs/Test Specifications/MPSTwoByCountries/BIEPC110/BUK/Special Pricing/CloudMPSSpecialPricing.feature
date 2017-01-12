@@ -48,4 +48,4 @@ Scenario Outline: Approved Proposal Special Pricing
 	Scenarios: 
 	| Country        | Role                            | ContractType                  | UsageType      | Length  | Billing              | Role1            |
 	| United Kingdom | Cloud MPS Local Office Approver | Purchase & Click with Service | Minimum Volume | 3 years | Quarterly in Arrears | Cloud MPS Dealer |
-	 
+	

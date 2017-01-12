@@ -102,8 +102,9 @@ namespace Brother.Tests.Specs.MPSTwo.Approver
             CurrentPage.As<LocalOfficeApprovalReportingDashboardPage>().DownloadASpecifiedReport(downloadType);
         }
 
-
         [Given(@"Approver navigate to Data Query page")]
+        [Then(@"Approver navigate to Data Query page")]
+        [When(@"Approver navigate to Data Query page")]
         public void GivenApproverNavigateToDataQueryPage()
         {
             NextPage = CurrentPage.As<LocalOfficeApprovalReportingDashboardPage>().NavigateToDataQueryPage();
