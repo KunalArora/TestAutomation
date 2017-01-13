@@ -1,7 +1,7 @@
 ﻿using Brother.WebSites.Core.Pages.Base;
 using TechTalk.SpecFlow;
 
-namespace Brother.Tests.Specs.MPSTwo
+namespace Brother.Tests.Specs.MPSTwo.DataQuery
 {
     [Binding]
     public class DataQuerySteps :BaseSteps
@@ -12,6 +12,13 @@ namespace Brother.Tests.Specs.MPSTwo
             ScenarioContext.Current.Pending();
         }
 
+        [Then(@"I can search with contract id ""(.*)""")]
+        public void ThenICanSearchWithContractId(string id)
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+
         [Then(@"search using serial number")]
         public void ThenSearchUsingSerialNumber()
         {
@@ -19,7 +26,7 @@ namespace Brother.Tests.Specs.MPSTwo
         }
 
         [Then(@"search using serial number ""(.*)""")]
-        public void ThenSearchUsingSerialNumber(string p0)
+        public void ThenSearchUsingSerialNumber(string number)
         {
             ScenarioContext.Current.Pending();
         }

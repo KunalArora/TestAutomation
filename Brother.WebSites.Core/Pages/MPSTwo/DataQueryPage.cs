@@ -29,6 +29,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement ClearPreviousSearch;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-list-group")]
         public IList<IWebElement> ProposalControlContainerTitle;
+        [FindsBy(How = How.CssSelector, Using = "#content_0_txtFromDate")]
+        public IWebElement FromDateElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_0_txtToDate")]
+        public IWebElement ToDateElement;
+
+            
         
 
 
@@ -51,7 +57,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void WaitForResultToBeBack()
         {
-            
+            TestCheck.AssertIsEqual(true, ProposalControlContainerTitle.Count > 0, "No result is returned");
+        }
+
+        public void SearchWithDates()
+        {
+            if(FromDateElement == null)
+                throw new Exception("From Date is null");
+            if (FromDateElement == null)
+                throw new Exception("To Date is null");
+            ClearSearchCriteria();
+
+            FromDateElement.SendKeys("01012017");
+            ToDateElement.SendKeys("01012018");
         }
 
 
@@ -71,6 +89,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ClearAndType(SerialNumberSearchField, serialNumber);
         }
 
+        public void ShowEndingContracts()
+        {
+            
+        }
+
 
         public void SearchForNewlyCreatedProposal()
         {
@@ -79,9 +102,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             var proposal = MpsUtil.CreatedProposal();
 
+            ClearSearchCriteria();
+
             WaitForElementToExistByCssSelector(".js-mps-list.js-mps-searchable");
             DataQuerySearchField.Clear();
             DataQuerySearchField.SendKeys(proposal);
+        }
+
+        public void SearchWithGo()
+        {
+            if (SearchButton == null)
+                throw new Exception("Search button returned null");
+
+            SearchButton.Click();
         }
 
         public void SearchForNewlyCreatedProposalByProposalId()
@@ -97,7 +130,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ProposalIdSearchField.Clear();
             ProposalIdSearchField.SendKeys(proposal);
 
-            SearchButton.Click();
+            SearchWithGo();
         }
 
         public ReportProposalSummaryPage ClickOnSearchedProposal()

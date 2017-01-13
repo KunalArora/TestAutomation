@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Brother.MPS.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC113.ClickPrice
+namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC113.ClickPrice
 {
     using TechTalk.SpecFlow;
     
@@ -20,7 +20,6 @@ namespace Brother.MPS.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC113.
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("CloudMPSClickPriceRefactorGermany")]
-    [NUnit.Framework.IgnoreAttribute()]
     [NUnit.Framework.CategoryAttribute("MPS")]
     [NUnit.Framework.CategoryAttribute("TEST")]
     [NUnit.Framework.CategoryAttribute("UAT")]
@@ -39,7 +38,6 @@ namespace Brother.MPS.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC113.
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CloudMPSClickPriceRefactorGermany", "In order to verify the click price refactor works as expected\r\nAs a dealer\r\nI wan" +
                     "t to compare the current click price value with the in coming value", ProgrammingLanguage.CSharp, new string[] {
-                        "ignore",
                         "MPS",
                         "TEST",
                         "UAT",

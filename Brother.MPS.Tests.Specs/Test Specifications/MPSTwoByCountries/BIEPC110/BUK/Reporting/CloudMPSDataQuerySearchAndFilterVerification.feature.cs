@@ -90,7 +90,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 10
  testRunner.When("Approver navigate to Data Query page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 11
- testRunner.Then("I can search with contract id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I can search with contract id \"72502\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 12
  testRunner.And("search using serial number \"A1T010233\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 13
