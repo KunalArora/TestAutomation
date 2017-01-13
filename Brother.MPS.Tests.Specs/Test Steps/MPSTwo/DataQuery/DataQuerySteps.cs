@@ -6,24 +6,13 @@ namespace Brother.Tests.Specs.MPSTwo.DataQuery
     [Binding]
     public class DataQuerySteps :BaseSteps
     {
-        [Then(@"I can search with contract id")]
-        public void ThenICanSearchWithContractId()
-        {
-            ScenarioContext.Current.Pending();
-        }
-
+        
         [Then(@"I can search with contract id ""(.*)""")]
         public void ThenICanSearchWithContractId(string id)
         {
             ScenarioContext.Current.Pending();
         }
 
-
-        [Then(@"search using serial number")]
-        public void ThenSearchUsingSerialNumber()
-        {
-            ScenarioContext.Current.Pending();
-        }
 
         [Then(@"search using serial number ""(.*)""")]
         public void ThenSearchUsingSerialNumber(string number)
