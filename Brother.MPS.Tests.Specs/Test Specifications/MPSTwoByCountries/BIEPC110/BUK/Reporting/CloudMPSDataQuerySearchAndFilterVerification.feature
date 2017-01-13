@@ -8,7 +8,7 @@ Scenario Outline: Data Query searches
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to Report page
 	When Approver navigate to Data Query page
-	Then I can search with contract id
+	Then I can search with contract id "72502"
 	And search using serial number "A1T010233"
 	And I can change the search dates
 	And I can search with show ending contracts
