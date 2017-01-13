@@ -26,8 +26,8 @@ Scenario Outline: Dealer Can Generate PDF Purchase and Click Minimum Summary Pag
 	
 
 	Scenarios: 
-	| Role             | Country | ContractType         | UsageType           | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod          | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | Finland | Click tarvikesopimus | Minimitulostusmäärä | 3 vuotta | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Sisältyy klikkihintaan | 2000        | 2000         |
+	| Role             | Country | ContractType         | UsageType           | Contract | Billing                   | PriceHardware | Printer      | DeviceScreen | PaymentMethod          | ClickVolume | ColourVolume |
+	| Cloud MPS Dealer | Finland | Click tarvikesopimus | Minimitulostusmäärä | 3 vuotta | 3 kk välein käytön mukaan | Tick          | MFC-L8650CDW | Full         | Sisältyy klikkihintaan | 2000        | 2000         |
 	
 
 Scenario Outline: Dealer Can Generate PDF for Purchase and Click in Awaiting Approval Status for other countries
@@ -43,5 +43,5 @@ Scenario Outline: Dealer Can Generate PDF for Purchase and Click in Awaiting App
 	
 	Scenarios: 
 	| Role             | Country | Role2                           | ContractType         | UsageType           | Length   | Billing              |
-	| Cloud MPS Dealer | Finland | Cloud MPS Local Office Approver | Click tarvikesopimus | Minimitulostusmäärä | 3 vuotta | Quarterly in Arrears |
+	| Cloud MPS Dealer | Finland | Cloud MPS Local Office Approver | Click tarvikesopimus | Minimitulostusmäärä | 3 vuotta | 3 kk välein käytön mukaan |
 	

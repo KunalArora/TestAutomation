@@ -76,11 +76,11 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BUK.
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Awaiting Approval Proposal Special Pricing")]
+        [NUnit.Framework.DescriptionAttribute("Data Query searches")]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "Cloud MPS Local Office Approver", "Purchase & Click with Service", "Minimum Volume", "3 years", "Quarterly in Arrears", "Cloud MPS Dealer", null)]
-        public virtual void AwaitingApprovalProposalSpecialPricing(string country, string role, string contractType, string usageType, string length, string billing, string role1, string[] exampleTags)
+        public virtual void DataQuerySearches(string country, string role, string contractType, string usageType, string length, string billing, string role1, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Awaiting Approval Proposal Special Pricing", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Data Query searches", exampleTags);
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
@@ -92,12 +92,120 @@ this.ScenarioSetup(scenarioInfo);
 #line 11
  testRunner.Then("I can search with contract id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 12
- testRunner.And("search using serial number", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("search using serial number \"A1T010233\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 13
  testRunner.And("I can change the search dates", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 14
  testRunner.And("I can search with show ending contracts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 26
+ testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Data Query Proposal Status filters")]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "Cloud MPS Local Office Approver", "Purchase & Click with Service", "Minimum Volume", "3 years", "Quarterly in Arrears", "Cloud MPS Dealer", null)]
+        public virtual void DataQueryProposalStatusFilters(string country, string role, string contractType, string usageType, string length, string billing, string role1, string[] exampleTags)
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Data Query Proposal Status filters", exampleTags);
+#line 34
+this.ScenarioSetup(scenarioInfo);
+#line 35
+ testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 36
+ testRunner.And("I navigate to Report page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 37
+ testRunner.When("Approver navigate to Data Query page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 38
+ testRunner.Then("I can filter out Open Proposals", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 39
+ testRunner.And("I can filter out Awaiting Approval Proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 40
+ testRunner.And("I can filter out Approved Proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 41
+ testRunner.And("I can filter out Closed Proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 42
+ testRunner.And("I can filter out Decline Proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 43
+ testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Data Query Contract Status filters")]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "Cloud MPS Local Office Approver", "Purchase & Click with Service", "Minimum Volume", "3 years", "Quarterly in Arrears", "Cloud MPS Dealer", null)]
+        public virtual void DataQueryContractStatusFilters(string country, string role, string contractType, string usageType, string length, string billing, string role1, string[] exampleTags)
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Data Query Contract Status filters", exampleTags);
+#line 49
+this.ScenarioSetup(scenarioInfo);
+#line 50
+ testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 51
+ testRunner.And("I navigate to Report page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 52
+ testRunner.When("Approver navigate to Data Query page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 53
+ testRunner.Then("I can filter out Awaiting Acceptance Contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 54
+ testRunner.And("I can filter out Accepted Contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 55
+ testRunner.And("I can filter out Running Contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 56
+ testRunner.And("I can filter out Closed Contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 57
+ testRunner.And("I can filter out Rejected Contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 58
+ testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Data Query Contract Type filters")]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "Cloud MPS Local Office Approver", "Purchase & Click with Service", "Minimum Volume", "3 years", "Quarterly in Arrears", "Cloud MPS Dealer", null)]
+        public virtual void DataQueryContractTypeFilters(string country, string role, string contractType, string usageType, string length, string billing, string role1, string[] exampleTags)
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Data Query Contract Type filters", exampleTags);
+#line 64
+this.ScenarioSetup(scenarioInfo);
+#line 65
+ testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 66
+ testRunner.And("I navigate to Report page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 67
+ testRunner.When("Approver navigate to Data Query page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 68
+ testRunner.Then("I can filter out Lease + Click with Service Contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 69
+ testRunner.And("I can filter out Purchase + Click with Service Contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 70
+ testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Data Query Usage Type filters")]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "Cloud MPS Local Office Approver", "Purchase & Click with Service", "Minimum Volume", "3 years", "Quarterly in Arrears", "Cloud MPS Dealer", null)]
+        public virtual void DataQueryUsageTypeFilters(string country, string role, string contractType, string usageType, string length, string billing, string role1, string[] exampleTags)
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Data Query Usage Type filters", exampleTags);
+#line 76
+this.ScenarioSetup(scenarioInfo);
+#line 77
+ testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 78
+ testRunner.And("I navigate to Report page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 79
+ testRunner.When("Approver navigate to Data Query page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 80
+ testRunner.Then("I can filter out Minimum Volume Usage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 81
+ testRunner.And("I can filter out Pay As You Go Usage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 82
  testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();

@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Brother.MPS.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC111.BNF.Contract
+namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC111.BNF.Contract
 {
     using TechTalk.SpecFlow;
     
@@ -76,7 +76,7 @@ namespace Brother.MPS.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC111.
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verify PDF Contents Are Correct")]
-        [NUnit.Framework.TestCaseAttribute("Click tarvikesopimus", "Finland", "Minimitulostusmäärä", "3 vuotta", "Quarterly in Arrears", null)]
+        [NUnit.Framework.TestCaseAttribute("Click tarvikesopimus", "Finland", "Minimitulostusmäärä", "3 vuotta", "3 kk välein käytön mukaan", null)]
         public virtual void VerifyPDFContentsAreCorrect(string contractType, string country, string usageType, string length, string billing, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify PDF Contents Are Correct", exampleTags);

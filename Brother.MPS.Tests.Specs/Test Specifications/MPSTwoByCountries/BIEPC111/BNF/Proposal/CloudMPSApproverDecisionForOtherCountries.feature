@@ -19,7 +19,7 @@ Scenario Outline: Approver Decline Proposal for other Countries
 
 	Scenarios: 
 	| Country | Role                            | ContractType         | UsageType           | Length   | Billing              |
-	| Finland | Cloud MPS Local Office Approver | Click tarvikesopimus | Minimitulostusmäärä | 3 vuotta | Quarterly in Arrears |
+	| Finland | Cloud MPS Local Office Approver | Click tarvikesopimus | Minimitulostusmäärä | 3 vuotta | 3 kk välein käytön mukaan |
 	
 #
 # Approve Signed Contract
@@ -35,7 +35,7 @@ Scenario Outline: Approver can decide to reject or approve the contract for othe
 
 	Scenarios:
 	| Country | Role                            | ContractType         | UsageType           | Length   | Billing              |
-	| Finland | Cloud MPS Local Office Approver | Click tarvikesopimus | Minimitulostusmäärä | 3 vuotta | Quarterly in Arrears |
+	| Finland | Cloud MPS Local Office Approver | Click tarvikesopimus | Minimitulostusmäärä | 3 vuotta | 3 kk välein käytön mukaan |
 	
 
 # Accept5, 6
@@ -52,7 +52,7 @@ Scenario Outline: Approver can approve the contract for other Countries
 	Scenarios:
 
 	| Country | Role                            | ContractType         | UsageType           | Length   | Billing              |
-	| Finland | Cloud MPS Local Office Approver | Click tarvikesopimus | Minimitulostusmäärä | 3 vuotta | Quarterly in Arrears |
+	| Finland | Cloud MPS Local Office Approver | Click tarvikesopimus | Minimitulostusmäärä | 3 vuotta | 3 kk välein käytön mukaan |
 	
 # Reject1,2
 Scenario Outline: Approver can reject the contract for other Countries
@@ -67,7 +67,7 @@ Scenario Outline: Approver can reject the contract for other Countries
 	Scenarios:
 
 	| Country | Role                            | ContractType         | UsageType           | Length   | Billing              |
-	| Finland | Cloud MPS Local Office Approver | Click tarvikesopimus | Minimitulostusmäärä | 3 vuotta | Quarterly in Arrears |
+	| Finland | Cloud MPS Local Office Approver | Click tarvikesopimus | Minimitulostusmäärä | 3 vuotta | 3 kk välein käytön mukaan |
 	
 
 # Reject3
@@ -86,7 +86,7 @@ Scenario Outline: Dealer can resign rejected contract for other Countries
 
 	Scenarios: 
 	| Country | Role                            | ContractType         | UsageType           | Length   | Billing              | Role2            |
-	| Finland | Cloud MPS Local Office Approver | Click tarvikesopimus | Minimitulostusmäärä | 3 vuotta | Quarterly in Arrears | Cloud MPS Dealer |
+	| Finland | Cloud MPS Local Office Approver | Click tarvikesopimus | Minimitulostusmäärä | 3 vuotta | 3 kk välein käytön mukaan | Cloud MPS Dealer |
 	
 		
 # LO Approver can view open offers

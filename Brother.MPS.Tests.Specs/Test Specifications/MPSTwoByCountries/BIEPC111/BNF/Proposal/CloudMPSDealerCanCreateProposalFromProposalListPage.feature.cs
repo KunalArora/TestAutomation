@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Brother.MPS.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC111.BNF.Proposal
+namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC111.BNF.Proposal
 {
     using TechTalk.SpecFlow;
     
@@ -75,7 +75,7 @@ namespace Brother.MPS.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC111.
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Dealer Can Create Proposal From Proposal List Page")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Finland", "Click tarvikesopimus", "Minimitulostusmäärä", "3 vuotta", "Quarterly in Arrears", "Tick", "MFC-L8650CDW", "Full", "Sisältyy klikkihintaan", "800", "800", "Sisältyy klikkihintaan", "Maksu etukäteen", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Finland", "Click tarvikesopimus", "Minimitulostusmäärä", "3 vuotta", "3 kk välein käytön mukaan", "Tick", "MFC-L8650CDW", "Full", "Sisältyy klikkihintaan", "800", "800", "Sisältyy klikkihintaan", "Maksu etukäteen", null)]
         public virtual void DealerCanCreateProposalFromProposalListPage(string role, string country, string contractType, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string basis1, string basis2, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer Can Create Proposal From Proposal List Page", exampleTags);
