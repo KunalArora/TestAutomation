@@ -21,6 +21,6 @@ Scenario Outline: Existing Customer can be used to create a new contract for Run
 	
 Scenarios:
 
-	| Role                            | Country | ContractType         | UsageType           | Role1            | Method | Type | ExistingCustomer                   | Length   | Billing              | Role2              |
-	| Cloud MPS Local Office Approver | Finland | Click tarvikesopimus | Minimitulostusmäärä | Cloud MPS Dealer | Cloud  | Web  | Brady20161010005323@mailinator.com | 3 vuotta | Quarterly in Arrears | Cloud MPS Customer |
+	| Role                            | Country | ContractType         | UsageType           | Role1            | Method | Type | ExistingCustomer                   | Length   | Billing                   | Role2              |
+	| Cloud MPS Local Office Approver | Finland | Click tarvikesopimus | Minimitulostusmäärä | Cloud MPS Dealer | Cloud  | Web  | Brady20161010005323@mailinator.com | 3 vuotta | 3 kk välein käytön mukaan | Cloud MPS Customer |
 	

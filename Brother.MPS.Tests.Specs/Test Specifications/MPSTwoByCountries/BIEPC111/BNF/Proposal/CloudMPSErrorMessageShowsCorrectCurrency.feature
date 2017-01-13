@@ -21,7 +21,7 @@ Scenario Outline: Currency in product screen error message
 	
 
 	Scenarios: 
-	| Role             | Country | ContractType                  | CreateOption           | UsageType                | Contract | Billing              | PriceHardware | Printer     | ClickVolume | Currency |
-	| Cloud MPS Dealer | Finland | Purchase & Click with Service | Skip customer creation | Maksu tulosteiden mukaan | 3 vuotta | Quarterly in Arrears | Tick          | MFC-8950DW  | 750         | €        |
+	| Role             | Country | ContractType                  | CreateOption           | UsageType                | Contract | Billing                   | PriceHardware | Printer    | ClickVolume | Currency |
+	| Cloud MPS Dealer | Finland | Purchase & Click with Service | Skip customer creation | Maksu tulosteiden mukaan | 3 vuotta | 3 kk välein käytön mukaan | Tick          | MFC-8950DW | 750         | €        |
 	
 	                    

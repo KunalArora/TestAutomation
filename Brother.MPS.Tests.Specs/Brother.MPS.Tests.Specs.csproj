@@ -1309,6 +1309,7 @@
     <Compile Include="Test Steps\MPSTwo\CalculationEngine\CalculationEngineSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Contract\SigningContractsSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Customer\DealerCanOperateCustomersSteps.cs" />
+    <Compile Include="Test Steps\MPSTwo\DataQuery\DataQuerySteps.cs" />
     <Compile Include="Test Steps\MPSTwo\DealerAdmin\DealerAdminProfileSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Installation\DealerInstallationRequestSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\InvoiceTool\InvoiceToolSteps.cs" />

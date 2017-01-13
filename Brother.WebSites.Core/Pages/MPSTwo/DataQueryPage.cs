@@ -23,11 +23,36 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement ProposalIdSearchField;
         [FindsBy(How = How.CssSelector, Using = "#btnGo")]
         public IWebElement SearchButton;
-
+        [FindsBy(How = How.CssSelector, Using = "#SerialNumberSearchInput")]
+        public IWebElement SerialNumberSearchField;
+        [FindsBy(How = How.CssSelector, Using = ".js-mps-list-filter-clear")]
+        public IWebElement ClearPreviousSearch;
+        [FindsBy(How = How.CssSelector, Using = ".js-mps-list-group")]
+        public IList<IWebElement> ProposalControlContainerTitle;
         
-        
 
 
+
+
+        private void ClearSearchCriteria()
+        {
+            if(ClearPreviousSearch == null)
+                throw new Exception("Clear Search link is not returned as null");
+
+            ClearPreviousSearch.Click();
+        }
+
+        public void IsResultDisplayedAfterSearch(int count)
+        {
+            var containerCount = ProposalControlContainerTitle.Count;
+
+            TestCheck.AssertIsEqual(true, containerCount.Equals(count), "");
+        }
+
+        private void WaitForResultToBeBack()
+        {
+            
+        }
 
 
         private string ContractId()
@@ -35,6 +60,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var contractid = SpecFlow.GetContext("SummaryPageContractId");
 
             return contractid;
+        }
+
+        public void SearchUsingSerialNumber(string serialNumber)
+        {
+            if(SerialNumberSearchField == null)
+                throw new Exception("Serial Number Search field is returned as null");
+            ClearSearchCriteria();
+
+            ClearAndType(SerialNumberSearchField, serialNumber);
         }
 
 
