@@ -110,6 +110,8 @@ namespace Brother.Tests.Specs.MPSTwo.Approver
             NextPage = CurrentPage.As<LocalOfficeApprovalReportingDashboardPage>().NavigateToDataQueryPage();
         }
 
+        [Given(@"Approver navigates to special pricing page for the proposal")]
+        [Then(@"Approver navigates to special pricing page for the proposal")]
         [When(@"Approver navigates to special pricing page for the proposal")]
         public void WhenApproverNavigatesToSpecialPricingPageForTheProposal()
         {
@@ -118,6 +120,25 @@ namespace Brother.Tests.Specs.MPSTwo.Approver
             NextPage = CurrentPage.As<ReportProposalSummaryPage>().NavigateToProposalSpecialPricingPage();
         }
 
+        [Given(@"Approver validates installation unit price calculation")]
+        [Then(@"Approver validates installation unit price calculation")]
+        [When(@"Approver validates installation unit price calculation")]
+        public void WhenApproverValidatesInstallationUnitPriceCalculation()
+        {
+            CurrentPage.As<ProposalSpecialPricingPage>().IsInstallationPriceCorrectlyCalculated();
+            CurrentPage.As<ProposalSpecialPricingPage>().SetInstallationUnitPrice();
+            CurrentPage.As<ProposalSpecialPricingPage>().ProceedOnSpecialPricingPage();
+        }
+
+        [Then(@"Approver validates Service Pack unit price calculation")]
+        [Given(@"Approver validates Service Pack unit price calculation")]
+        [When(@"Approver validates Service Pack unit price calculation")]
+        public void WhenApproverValidatesServicePackUnitPriceCalculation()
+        {
+            CurrentPage.As<ProposalSpecialPricingPage>().IsServicePackPriceCorrectlyCalculated();
+            CurrentPage.As<ProposalSpecialPricingPage>().SetServicePackUnitPrice();
+            CurrentPage.As<ProposalSpecialPricingPage>().ProceedOnSpecialPricingPage();
+        }
 
         [When(@"Approver makes changes to installation costing")]
         public void WhenApproverMakesChangesToInstallationCosting()

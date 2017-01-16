@@ -1,4 +1,5 @@
 ﻿using Brother.WebSites.Core.Pages.Base;
+using Brother.WebSites.Core.Pages.MPSTwo;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.MPSTwo.DataQuery
@@ -10,27 +11,29 @@ namespace Brother.Tests.Specs.MPSTwo.DataQuery
         [Then(@"I can search with contract id ""(.*)""")]
         public void ThenICanSearchWithContractId(string id)
         {
-            ScenarioContext.Current.Pending();
+            CurrentPage.As<DataQueryPage>().SearchWithContractId(id);
+            CurrentPage.As<DataQueryPage>().IsResultDisplayedAfterSearch(1);
         }
 
 
         [Then(@"search using serial number ""(.*)""")]
         public void ThenSearchUsingSerialNumber(string number)
         {
-            ScenarioContext.Current.Pending();
+            CurrentPage.As<DataQueryPage>().SearchUsingSerialNumber(number);
+            CurrentPage.As<DataQueryPage>().IsResultDisplayedAfterSearch(1);
         }
 
 
         [Then(@"I can change the search dates")]
         public void ThenICanChangeTheSearchDates()
         {
-            ScenarioContext.Current.Pending();
+            CurrentPage.As<DataQueryPage>().SearchWithDates();
         }
 
         [Then(@"I can search with show ending contracts")]
         public void ThenICanSearchWithShowEndingContracts()
         {
-            ScenarioContext.Current.Pending();
+            
         }
 
         [Then(@"I can filter out Open Proposals")]

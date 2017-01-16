@@ -49,3 +49,20 @@ Scenario Outline: Approved Proposal Special Pricing
 	| Country        | Role                            | ContractType                  | UsageType      | Length  | Billing              | Role1            |
 	| United Kingdom | Cloud MPS Local Office Approver | Purchase & Click with Service | Minimum Volume | 3 years | Quarterly in Arrears | Cloud MPS Dealer |
 	
+
+
+Scenario Outline: Validate Special Pricing Calculation
+	Given "<Country>" Dealer has created an approved "<ContractType>" proposal of "<UsageType>" and "<Length>" and "<Billing>"
+	And I navigate to Report page from Approved proposal page
+	And Approver navigate to Data Query page
+	When Approver navigates to special pricing page for the proposal
+	And Approver validates installation unit price calculation
+	And Approver validates Service Pack unit price calculation
+	And Approver makes changes to Click Price costing
+	Then the changes made are displayed on the summary page
+	And audit log is displayed on report proposal summary page
+	And I sign out of Cloud MPS
+
+	Scenarios: 
+	| Country        | Role                            | ContractType                  | UsageType      | Length  | Billing              | Role1            |
+	| United Kingdom | Cloud MPS Local Office Approver | Purchase & Click with Service | Minimum Volume | 3 years | Quarterly in Arrears | Cloud MPS Dealer |
