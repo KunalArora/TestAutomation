@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -15,9 +16,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [FindsBy(How = How.CssSelector, Using = ".mps-special-pricing-group.js-special-pricing-installation-row .form-control.input-sm[name=\"UnitCost\"]")]
         public IWebElement InstallationProductUnitCost;
         [FindsBy(How = How.CssSelector, Using = ".mps-special-pricing-group.js-special-pricing-installation-row .form-control.input-sm[name=\"Margin\"]")]
-        public IWebElement InstallationProductUnitCostMargin;
+        public IWebElement InstallationProductUnitMargin;
         [FindsBy(How = How.CssSelector, Using = ".mps-special-pricing-group.js-special-pricing-installation-row .form-control.input-sm[name=\"UnitPrice\"]")]
-        public IWebElement InstallationProductUnitCostPrice;
+        public IWebElement InstallationProductUnitPrice;
         [FindsBy(How = How.CssSelector, Using = "#content_1_ButtonNext")]
         public IWebElement NextButton;
         [FindsBy(How = How.CssSelector, Using = "#content_1_ButtonValidate")]
@@ -79,17 +80,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterNewInstallationMarginValue(decimal dec)
         {
-            var value = GetFieldValue(InstallationProductUnitCostMargin);
+            var value = GetFieldValue(InstallationProductUnitMargin);
             value = value + dec;
 
-            ClearAndType(InstallationProductUnitCostMargin, value.ToString());
-            InstallationProductUnitCostMargin.SendKeys(Keys.Tab);
+            ClearAndType(InstallationProductUnitMargin, value.ToString());
+            InstallationProductUnitMargin.SendKeys(Keys.Tab);
         }
 
         public void SetInstallationUnitPrice()
         {
             WebDriver.Wait(DurationType.Second, 3);
-            var value = GetFieldValue(InstallationProductUnitCostPrice);
+            var value = GetFieldValue(InstallationProductUnitPrice);
 
             SpecFlow.SetContext("SpecialPriceInstallation", value.ToString());
         }
@@ -115,6 +116,60 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             ClearAndType(ServicePackUnitMargin, value.ToString());
             ServicePackUnitMargin.SendKeys(Keys.Tab);
+        }
+
+        public void IsInstallationPriceCorrectlyCalculated()
+        {
+            var cost = InstallationProductUnitCost.GetAttribute("value");
+            var margin = MarginDecimal(InstallationProductUnitMargin.GetAttribute("value"));
+            var displayedPrice = InstallationProductUnitPrice.GetAttribute("value");
+
+            var calculatedPrice = CalculatePriceFromCostUsingMargin(cost, margin);
+
+            TestCheck.AssertTextContains(displayedPrice, calculatedPrice);
+        }
+
+        private decimal MarginDecimal(string element)
+        {
+            var splitElement = new string[] { };
+
+            if (element.Contains(","))
+            {
+                splitElement = element.Split(',');
+            }
+            else if (element.Contains("."))
+            {
+                splitElement = element.Split('.');
+            }
+
+            var margDecimal = decimal.Parse(splitElement[0]);
+
+            return margDecimal / 100;
+        }
+
+        private decimal RoundUpValue(decimal value, int places)
+        {
+            return Math.Round(value, places);
+        }
+
+        private string CalculatePriceFromCostUsingMargin(string cost, decimal margin)
+        {
+            var number = decimal.Parse(cost);
+            var costDecimal = (number / (1 - margin));
+            costDecimal = RoundUpValue(costDecimal, 2);
+
+            return costDecimal.ToString();
+        }
+
+        public void IsServicePackPriceCorrectlyCalculated()
+        {
+            var cost = ServicePackUnitCost.GetAttribute("value");
+            var margin = MarginDecimal(ServicePackUnitMargin.GetAttribute("value"));
+            var displayedPrice = ServicePackUnitPrice.GetAttribute("value");
+
+            var calculatedPrice = CalculatePriceFromCostUsingMargin(cost, margin);
+
+            TestCheck.AssertTextContains(displayedPrice, calculatedPrice);
         }
 
         public void SetServicePackUnitPrice()
@@ -168,6 +223,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ClearAndType(ClickPriceMonoMargin, value.ToString());
         }
 
+        
         public void EnterNewClickPriceColourMargin(decimal dec)
         {
             var value = GetFieldValue(ClickPriceColourMargin);

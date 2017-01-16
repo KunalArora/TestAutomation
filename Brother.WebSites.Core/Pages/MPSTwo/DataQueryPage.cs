@@ -46,6 +46,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 throw new Exception("Clear Search link is not returned as null");
 
             ClearPreviousSearch.Click();
+            WaitForResultToBeBack();
         }
 
         public void IsResultDisplayedAfterSearch(int count)
@@ -68,8 +69,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 throw new Exception("To Date is null");
             ClearSearchCriteria();
 
-            FromDateElement.SendKeys("01012017");
-            ToDateElement.SendKeys("01012018");
+            var searchBegin = DateTime.Now.ToString("ddMMyyyy");
+            var searchEnd = DateTime.Now.AddDays(365).ToString("ddMMyyyy");
+
+            FromDateElement.SendKeys(searchBegin);
+            ToDateElement.SendKeys(searchEnd);
         }
 
 
@@ -87,6 +91,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ClearSearchCriteria();
 
             ClearAndType(SerialNumberSearchField, serialNumber);
+
+            SearchWithGo();
         }
 
         public void ShowEndingContracts()
@@ -115,6 +121,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 throw new Exception("Search button returned null");
 
             SearchButton.Click();
+        }
+
+        public void SearchWithContractId(string id)
+        {
+            ClearSearchCriteria();
+
+            WaitForElementToExistByCssSelector(".js-mps-list.js-mps-searchable");
+            ProposalIdSearchField.Clear();
+            ProposalIdSearchField.SendKeys(id);
+
+            SearchWithGo();
         }
 
         public void SearchForNewlyCreatedProposalByProposalId()
