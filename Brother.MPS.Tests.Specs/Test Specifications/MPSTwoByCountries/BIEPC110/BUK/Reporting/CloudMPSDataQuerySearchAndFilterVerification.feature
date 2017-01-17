@@ -1,8 +1,8 @@
 ﻿	@MPS @TEST @UAT @BIEPC110
 	Feature: CloudMPSDataQuerySearchAndFilterVerification
-	In order to avoid silly mistakes
-	As a math idiot
-	I want to be told the sum of two numbers
+	In order verify that all search and filters are working on Data Query page
+	As a LO Approver
+	I want to be able to filter all the results displayed on the Data Query page
 
 Scenario Outline: Data Query searches
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"

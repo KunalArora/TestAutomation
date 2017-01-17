@@ -36,8 +36,9 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BUK.
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CloudMPSDataQuerySearchAndFilterVerification", "In order to avoid silly mistakes\r\nAs a math idiot\r\nI want to be told the sum of t" +
-                    "wo numbers", ProgrammingLanguage.CSharp, new string[] {
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CloudMPSDataQuerySearchAndFilterVerification", "In order verify that all search and filters are working on Data Query page\r\nAs a " +
+                    "LO Approver\r\nI want to be able to filter all the results displayed on the Data Q" +
+                    "uery page", ProgrammingLanguage.CSharp, new string[] {
                         "MPS",
                         "TEST",
                         "UAT",
