@@ -103,17 +103,10 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Data Query Proposal Status filters")]
-        [NUnit.Framework.IgnoreAttribute()]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "Cloud MPS Local Office Approver", "Purchase & Click with Service", "Minimum Volume", "3 years", "Quarterly in Arrears", "Cloud MPS Dealer", null)]
-        public virtual void DataQueryProposalStatusFilters(string country, string role, string contractType, string usageType, string length, string billing, string role1, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "Cloud MPS Local Office Approver", null)]
+        public virtual void DataQueryProposalStatusFilters(string country, string role, string[] exampleTags)
         {
-            string[] @__tags = new string[] {
-                    "ignore"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Data Query Proposal Status filters", @__tags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Data Query Proposal Status filters", exampleTags);
 #line 23
 this.ScenarioSetup(scenarioInfo);
 #line 24
@@ -140,17 +133,10 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Data Query Contract Status filters")]
-        [NUnit.Framework.IgnoreAttribute()]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "Cloud MPS Local Office Approver", "Purchase & Click with Service", "Minimum Volume", "3 years", "Quarterly in Arrears", "Cloud MPS Dealer", null)]
-        public virtual void DataQueryContractStatusFilters(string country, string role, string contractType, string usageType, string length, string billing, string role1, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "Cloud MPS Local Office Approver", null)]
+        public virtual void DataQueryContractStatusFilters(string country, string role, string[] exampleTags)
         {
-            string[] @__tags = new string[] {
-                    "ignore"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Data Query Contract Status filters", @__tags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Data Query Contract Status filters", exampleTags);
 #line 39
 this.ScenarioSetup(scenarioInfo);
 #line 40
@@ -177,17 +163,10 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Data Query Contract Type filters")]
-        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "Cloud MPS Local Office Approver", "Purchase & Click with Service", "Minimum Volume", "3 years", "Quarterly in Arrears", "Cloud MPS Dealer", null)]
         public virtual void DataQueryContractTypeFilters(string country, string role, string contractType, string usageType, string length, string billing, string role1, string[] exampleTags)
         {
-            string[] @__tags = new string[] {
-                    "ignore"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Data Query Contract Type filters", @__tags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Data Query Contract Type filters", exampleTags);
 #line 55
 this.ScenarioSetup(scenarioInfo);
 #line 56
@@ -208,17 +187,10 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Data Query Usage Type filters")]
-        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "Cloud MPS Local Office Approver", "Purchase & Click with Service", "Minimum Volume", "3 years", "Quarterly in Arrears", "Cloud MPS Dealer", null)]
         public virtual void DataQueryUsageTypeFilters(string country, string role, string contractType, string usageType, string length, string billing, string role1, string[] exampleTags)
         {
-            string[] @__tags = new string[] {
-                    "ignore"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Data Query Usage Type filters", @__tags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Data Query Usage Type filters", exampleTags);
 #line 68
 this.ScenarioSetup(scenarioInfo);
 #line 69

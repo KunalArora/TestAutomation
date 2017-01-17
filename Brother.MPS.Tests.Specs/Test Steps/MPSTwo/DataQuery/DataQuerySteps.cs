@@ -39,85 +39,99 @@ namespace Brother.Tests.Specs.MPSTwo.DataQuery
         [Then(@"I can filter out Open Proposals")]
         public void ThenICanFilterOutOpenProposals()
         {
-            ScenarioContext.Current.Pending();
+            CurrentPage.As<DataQueryPage>().FilterOpenProposalStatus();
+            CurrentPage.As<DataQueryPage>().IsResultDisplayedAfterSearch(1);
         }
 
         [Then(@"I can filter out Awaiting Approval Proposal")]
         public void ThenICanFilterOutAwaitingApprovalProposal()
         {
-            ScenarioContext.Current.Pending();
+            CurrentPage.As<DataQueryPage>().FilterAwaitingApprovalProposalStatus();
+            CurrentPage.As<DataQueryPage>().IsResultDisplayedAfterSearch(1);
         }
 
         [Then(@"I can filter out Approved Proposal")]
         public void ThenICanFilterOutApprovedProposal()
         {
-            ScenarioContext.Current.Pending();
+            CurrentPage.As<DataQueryPage>().FilterApprovedProposalStatus();
+            CurrentPage.As<DataQueryPage>().IsResultDisplayedAfterSearch(1);
         }
 
         [Then(@"I can filter out Closed Proposal")]
         public void ThenICanFilterOutClosedProposal()
         {
-            ScenarioContext.Current.Pending();
+            CurrentPage.As<DataQueryPage>().FilterClosedProposalStatus();
+            CurrentPage.As<DataQueryPage>().IsResultDisplayedAfterSearch(1);
         }
 
         [Then(@"I can filter out Decline Proposal")]
         public void ThenICanFilterOutDeclineProposal()
         {
-            ScenarioContext.Current.Pending();
+            CurrentPage.As<DataQueryPage>().FilterDeclinedProposalStatus();
+            CurrentPage.As<DataQueryPage>().IsResultDisplayedAfterSearch(1);
         }
 
         [Then(@"I can filter out Awaiting Acceptance Contract")]
         public void ThenICanFilterOutAwaitingAcceptanceContract()
         {
-            ScenarioContext.Current.Pending();
+            CurrentPage.As<DataQueryPage>().FilterAwaitingAcceptanceContractStatus();
+            CurrentPage.As<DataQueryPage>().IsResultDisplayedAfterSearch(1);
         }
 
         [Then(@"I can filter out Accepted Contract")]
         public void ThenICanFilterOutAcceptedContract()
         {
-            ScenarioContext.Current.Pending();
+           CurrentPage.As<DataQueryPage>().FilterAcceptedContractStatus();
+           CurrentPage.As<DataQueryPage>().IsResultDisplayedAfterSearch(1);
         }
 
         [Then(@"I can filter out Running Contract")]
         public void ThenICanFilterOutRunningContract()
         {
-            ScenarioContext.Current.Pending();
+            CurrentPage.As<DataQueryPage>().FilterRunningContractStatus();
+            CurrentPage.As<DataQueryPage>().IsResultDisplayedAfterSearch(1);
         }
 
         [Then(@"I can filter out Closed Contract")]
         public void ThenICanFilterOutClosedContract()
         {
-            ScenarioContext.Current.Pending();
+            CurrentPage.As<DataQueryPage>().FilterClosedContractStatus();
+            CurrentPage.As<DataQueryPage>().IsResultDisplayedAfterSearch(1);
         }
 
         [Then(@"I can filter out Rejected Contract")]
         public void ThenICanFilterOutRejectedContract()
         {
-            ScenarioContext.Current.Pending();
+            CurrentPage.As<DataQueryPage>().FilterRejectedContractStatus();
+            CurrentPage.As<DataQueryPage>().IsResultDisplayedAfterSearch(1);
         }
 
         [Then(@"I can filter out Lease \+ Click with Service Contract")]
         public void ThenICanFilterOutLeaseClickWithServiceContract()
         {
-            ScenarioContext.Current.Pending();
+            CurrentPage.As<DataQueryPage>().FilterLeaseAndClickContracts();
+            CurrentPage.As<DataQueryPage>().AreContractTypeAndUsageTypeReturned();
         }
 
         [Then(@"I can filter out Purchase \+ Click with Service Contract")]
         public void ThenICanFilterOutPurchaseClickWithServiceContract()
         {
-            ScenarioContext.Current.Pending();
+            CurrentPage.As<DataQueryPage>().FilterPurchaseAndClickContracts();
+            CurrentPage.As<DataQueryPage>().AreContractTypeAndUsageTypeReturned();
         }
 
         [Then(@"I can filter out Minimum Volume Usage")]
         public void ThenICanFilterOutMinimumVolumeUsage()
         {
-            ScenarioContext.Current.Pending();
+            CurrentPage.As<DataQueryPage>().FilterMinimumVolumeContracts();
+            CurrentPage.As<DataQueryPage>().AreContractTypeAndUsageTypeReturned();
         }
 
         [Then(@"I can filter out Pay As You Go Usage")]
         public void ThenICanFilterOutPayAsYouGoUsage()
         {
-            ScenarioContext.Current.Pending();
+            CurrentPage.As<DataQueryPage>().FilterPayAsYouGoContracts();
+            CurrentPage.As<DataQueryPage>().AreContractTypeAndUsageTypeReturned();
         }
 
     }
