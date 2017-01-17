@@ -19,7 +19,7 @@ Scenario Outline: Data Query searches
 	| United Kingdom | Cloud MPS Local Office Approver |
 	
 
-@ignore
+
 Scenario Outline: Data Query Proposal Status filters
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to Report page
@@ -32,10 +32,10 @@ Scenario Outline: Data Query Proposal Status filters
 	And I sign out of Cloud MPS
 
 	Scenarios: 
-	| Country        | Role                            | ContractType                  | UsageType      | Length  | Billing              | Role1            |
-	| United Kingdom | Cloud MPS Local Office Approver | Purchase & Click with Service | Minimum Volume | 3 years | Quarterly in Arrears | Cloud MPS Dealer |
+	| Country        | Role                            | 
+	| United Kingdom | Cloud MPS Local Office Approver | 
 
-@ignore
+
 Scenario Outline: Data Query Contract Status filters
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to Report page
@@ -48,10 +48,10 @@ Scenario Outline: Data Query Contract Status filters
 	And I sign out of Cloud MPS
 
 	Scenarios: 
-	| Country        | Role                            | ContractType                  | UsageType      | Length  | Billing              | Role1            |
-	| United Kingdom | Cloud MPS Local Office Approver | Purchase & Click with Service | Minimum Volume | 3 years | Quarterly in Arrears | Cloud MPS Dealer |
+	| Country        | Role                            | 
+	| United Kingdom | Cloud MPS Local Office Approver | 
 
-@ignore
+
 Scenario Outline: Data Query Contract Type filters
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to Report page
@@ -64,7 +64,7 @@ Scenario Outline: Data Query Contract Type filters
 	| Country        | Role                            | ContractType                  | UsageType      | Length  | Billing              | Role1            |
 	| United Kingdom | Cloud MPS Local Office Approver | Purchase & Click with Service | Minimum Volume | 3 years | Quarterly in Arrears | Cloud MPS Dealer |
 
-@ignore
+
 Scenario Outline: Data Query Usage Type filters
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to Report page
