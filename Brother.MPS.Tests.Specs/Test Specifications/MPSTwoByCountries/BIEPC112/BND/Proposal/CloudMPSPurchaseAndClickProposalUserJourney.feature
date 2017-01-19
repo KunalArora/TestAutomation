@@ -62,8 +62,8 @@ Scenario Outline: MPS Create Proposal PAYG
 	
 
 	Scenarios: 
-	| Role             | Country | ContractType           | CreateOption        | UsageType     | Contract | Billing              | PriceHardware | Printer    | DeviceScreen | ClickVolume |
-	| Cloud MPS Dealer | Denmark | Køb & Klik med service | Create new customer | Pay As You Go | 3 år     | Quarterly in Arrears | Tick          | HL-L5100DN | Full         | 750         |
+	| Role             | Country | ContractType           | CreateOption        | UsageType        | Contract | Billing              | PriceHardware | Printer    | DeviceScreen | ClickVolume |
+	| Cloud MPS Dealer | Denmark | Køb & Klik med service | Create new customer | Løbende betaling | 3 år     | Quarterly in Arrears | Tick          | HL-L5100DN | Full         | 750         |
 	
 	
 Scenario Outline: MPS Create Proposal With Existing Customer
@@ -124,8 +124,8 @@ Scenario Outline: MPS Create Proposal Existing PAYG Customer
 	
 
 	Scenarios: 
-	| Role             | Country | ContractType           | UsageType     | Contract | Billing              | PriceHardware | Printer    | DeviceScreen | ClickVolume |
-	| Cloud MPS Dealer | Denmark | Køb & Klik med service | Pay As You Go | 3 år     | Quarterly in Arrears | Tick          | HL-L5100DN | Full         | 750         |
+	| Role             | Country | ContractType           | UsageType        | Contract | Billing              | PriceHardware | Printer    | DeviceScreen | ClickVolume |
+	| Cloud MPS Dealer | Denmark | Køb & Klik med service | Løbende betaling | 3 år     | Quarterly in Arrears | Tick          | HL-L5100DN | Full         | 750         |
 	
 
 	

@@ -4,7 +4,7 @@ Feature: CloudMPSSpecialPricing
 	As a LO Approver
 	I want to be able to change the prices on some types of proposal
 
-Scenario Outline: Awaiting Approval Proposal Special Pricing
+Scenario Outline: Awaiting Approval Proposal Special Pricing Pay Upfront
 	Given "<Country>" dealer has created "<ContractType>" proposal of awaiting proposal with "<UsageType>" and "<Length>" and "<Billing>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to Report page
@@ -62,6 +62,29 @@ Scenario Outline: Validate Special Pricing Calculation
 	Then the changes made are displayed on the summary page
 	And audit log is displayed on report proposal summary page
 	And I sign out of Cloud MPS
+
+	Scenarios: 
+	| Country        | Role                            | ContractType                  | UsageType      | Length  | Billing              | Role1            |
+	| United Kingdom | Cloud MPS Local Office Approver | Purchase & Click with Service | Minimum Volume | 3 years | Quarterly in Arrears | Cloud MPS Dealer |
+
+
+
+Scenario Outline: Approved Proposal Special Pricing Using Multiple Devices
+	Given "<Country>" Dealer has created an approved "<ContractType>" proposal of "<UsageType>" and "<Length>" and "<Billing>" with four devices
+	And I navigate to Report page from Approved proposal page
+	And Approver navigate to Data Query page
+	When Approver navigates to special pricing page for the proposal
+	And Approver makes changes to multiple installation costing
+	And Approver makes changes to multiple Service Pack costing
+	And Approver makes changes to multiple Click Price costing
+	Then the changes made are displayed on the summary page
+	Then the changes to installation cost made are displayed on the summary page
+	And the changes to service pack cost made are displayed on the summary page
+	And the changes to mono click price made are displayed on the summary page
+	And the changes to colour click price made are displayed on the summary page
+	And audit log is displayed on report proposal summary page
+	And I sign out of Cloud MPS
+	
 
 	Scenarios: 
 	| Country        | Role                            | ContractType                  | UsageType      | Length  | Billing              | Role1            |

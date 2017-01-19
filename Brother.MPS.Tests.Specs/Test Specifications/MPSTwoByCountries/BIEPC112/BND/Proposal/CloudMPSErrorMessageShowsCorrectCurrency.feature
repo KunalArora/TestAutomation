@@ -22,6 +22,6 @@ Scenario Outline: Currency in product screen error message
 
 	Scenarios: 
 	| Role             | Country | ContractType                  | CreateOption           | UsageType     | Contract | Billing              | PriceHardware | Printer    | ClickVolume | Currency |
-	| Cloud MPS Dealer | Denmark | Purchase & Click with Service | Skip customer creation | Pay As You Go | 3 år     | Quarterly in Arrears | Tick          | HL-L5200DW | 750         | kr.      |
+	| Cloud MPS Dealer | Denmark | Purchase & Click with Service | Skip customer creation | Løbende betaling | 3 år     | Quarterly in Arrears | Tick          | HL-L5200DW | 750         | kr.      |
 	
 	                    

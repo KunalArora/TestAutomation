@@ -12,6 +12,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 {
     public class ReportProposalSummaryPage : BasePage
     {
+
+        private const string Install = @"#content_0_SummaryTable_RepeaterModels_RepeaterInstallationPacks_{0}_InstallationPackUnitPrice_0";
+
+        private const string ServicePack =
+            @"#content_0_SummaryTable_RepeaterModels_RepeaterServicePacks_{0}_ServicePackUnitPrice_0";
+
+        private const string MonoClickRate =
+            @"#content_0_SummaryTable_RepeaterModels_MonoClickRate_{0}";
+
+        private const string ColourClickRate =
+            @"#content_0_SummaryTable_RepeaterModels_ColourClickRate_{0}";
+        
+
         [FindsBy(How = How.CssSelector, Using = ".btn.btn-primary.pull-right.js-mps-special-pricing")]
         public IWebElement SpecialPricingButton;
         [FindsBy(How = How.CssSelector, Using = "#TableProposalAudit")]
@@ -24,9 +37,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement SpecialPricingSummaryPageInstallationUnitPrice;
         [FindsBy(How = How.CssSelector, Using = "#content_0_SummaryTable_RepeaterModels_RepeaterServicePacks_0_ServicePackUnitPrice_0")]
         public IWebElement SpecialPricingSummaryPageServicePackUnitPrice;
-        
 
 
+
+
+
+        private IWebElement ElementToVerify(string element, string pos)
+        {
+            var fullformed = string.Format(element, pos);
+
+            return Driver.FindElement(By.CssSelector(fullformed));
+        }
 
         public ProposalSpecialPricingPage NavigateToProposalSpecialPricingPage()
         {
@@ -67,10 +88,34 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 string.Format("{0} does not contain {1}", newPrice, enteredPrice));
         }
 
+        public void IsNewlyEnteredMonoClickPriceDisplayed(string pos)
+        {
+            var newPrice = GetElementText(ElementToVerify(MonoClickRate, pos));
+
+            var saved = string.Format("SpecialPriceMonoClickPrice{0}", pos);
+
+            var enteredPrice = SpecFlow.GetContext(saved);
+
+            TestCheck.AssertIsEqual(true, newPrice.Contains(enteredPrice),
+                string.Format("{0} does not contain {1}", newPrice, enteredPrice));
+        }
+
         public void IsNewlyEnteredColourClickPriceDisplayed()
         {
             var newPrice = GetElementText(SpecialPricingSummaryPageColourClickPrice);
             var enteredPrice = SpecFlow.GetContext("SpecialPriceColourClickPrice");
+
+            TestCheck.AssertIsEqual(true, newPrice.Contains(enteredPrice),
+                string.Format("{0} does not contain {1}", newPrice, enteredPrice));
+        }
+
+        public void IsNewlyEnteredColourClickPriceDisplayed(string pos)
+        {
+            var newPrice = GetElementText(ElementToVerify(ColourClickRate, pos));
+
+            var saved = string.Format("SpecialPriceColourClickPrice{0}", pos);
+
+            var enteredPrice = SpecFlow.GetContext(saved);
 
             TestCheck.AssertIsEqual(true, newPrice.Contains(enteredPrice),
                 string.Format("{0} does not contain {1}", newPrice, enteredPrice));
@@ -85,10 +130,34 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 string.Format("{0} does not contain {1}", newPrice, enteredPrice));
         }
 
+        public void IsNewlyEnteredInstallationUnitPriceDisplayed(string pos)
+        {
+            var newPrice = GetElementText(ElementToVerify(Install, pos));
+
+            var saved = string.Format("SpecialPriceInstallation{0}", pos);
+
+            var enteredPrice = SpecFlow.GetContext(saved);
+
+            TestCheck.AssertIsEqual(true, newPrice.Contains(enteredPrice),
+                string.Format("{0} does not contain {1}", newPrice, enteredPrice));
+        }
+
         public void IsNewlyEnteredServicePackUnitPriceDisplayed()
         {
             var newPrice = GetElementText(SpecialPricingSummaryPageServicePackUnitPrice);
             var enteredPrice = SpecFlow.GetContext("SpecialPriceServicePack");
+
+            TestCheck.AssertIsEqual(true, newPrice.Contains(enteredPrice),
+                string.Format("{0} does not contain {1}", newPrice, enteredPrice));
+        }
+
+        public void IsNewlyEnteredServicePackUnitPriceDisplayed(string pos)
+        {
+            var newPrice = GetElementText(ElementToVerify(ServicePack, pos));
+
+            var saved = string.Format("SpecialPriceServicePack{0}", pos);
+
+            var enteredPrice = SpecFlow.GetContext(saved);
 
             TestCheck.AssertIsEqual(true, newPrice.Contains(enteredPrice),
                 string.Format("{0} does not contain {1}", newPrice, enteredPrice));
