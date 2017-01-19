@@ -27,6 +27,11 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<DealerProposalsCreateClickPricePage>().IsServiceInClickLineDisplayedOnClickPricePage();
         }
 
+        public void WhenISelectMultipleClickPrice(string mono, string colour)
+        {
+            NextPage = CurrentPage.As<DealerProposalsCreateClickPricePage>()
+                .CalculateSelectedMultipleClickPrice(mono, colour);
+        }
 
         public void WhenIEnterMultipleClickPriceVolumeOf(string clickprice, string colour)
         {
