@@ -108,7 +108,7 @@ Scenario Outline: MPS Summary Validation PAYG
 
 	Scenarios: 
 	| Role             | Country | ContractType           | CreateOption        | UsageType     | Contract | Billing              | PriceHardware | Printer    | DeviceScreen | ClickVolume | Basis1            |
-	| Cloud MPS Dealer | Denmark | Køb & Klik med service | Create new customer | Pay As You Go | 4 år     | Quarterly in Arrears | Tick          | HL-L5100DN | Full         | 800         | Betale på forskud |
+	| Cloud MPS Dealer | Denmark | Køb & Klik med service | Create new customer | Løbende betaling | 4 år     | Quarterly in Arrears | Tick          | HL-L5100DN | Full         | 800         | Betale på forskud |
 	
 
 	

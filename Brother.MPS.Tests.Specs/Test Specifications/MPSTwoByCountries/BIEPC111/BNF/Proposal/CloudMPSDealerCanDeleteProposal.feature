@@ -16,5 +16,5 @@ Scenario Outline: Other Dealers can delete an open Purchase and Click proposal
 Scenarios:
 
 	| Role             | Country | Role2                           | ContractType         | UsageType           | Length   | Billing              |
-	| Cloud MPS Dealer | Finland | Cloud MPS Local Office Approver | Click tarvikesopimus | Minimitulostusmäärä | 3 vuotta | Quarterly in Arrears |
+	| Cloud MPS Dealer | Finland | Cloud MPS Local Office Approver | Click tarvikesopimus | Minimitulostusmäärä | 3 vuotta | 3 kk välein käytön mukaan |
 	

@@ -75,7 +75,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC111.BNF.
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Currency in product screen error message")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Finland", "Purchase & Click with Service", "Skip customer creation", "Maksu tulosteiden mukaan", "3 vuotta", "Quarterly in Arrears", "Tick", "MFC-8950DW", "750", "€", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Finland", "Purchase & Click with Service", "Skip customer creation", "Maksu tulosteiden mukaan", "3 vuotta", "3 kk välein käytön mukaan", "Tick", "MFC-8950DW", "750", "€", null)]
         public virtual void CurrencyInProductScreenErrorMessage(string role, string country, string contractType, string createOption, string usageType, string contract, string billing, string priceHardware, string printer, string clickVolume, string currency, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Currency in product screen error message", exampleTags);

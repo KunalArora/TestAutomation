@@ -18,7 +18,7 @@ Scenario Outline: MPS Actions For Customers
 Scenarios:
 
 	| Role                            | Country        | ContractType                  | UsageType      | Role1            | Method | Type | ExistingCustomer                    | Length  | Billing              | SerialNumber | Component |
-	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR  | Coleen20161123042204@mailinator.com | 3 years | Quarterly in Arrears | A1T010237    | FuserUnit |
+	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR  | Slater20170119031946@mailinator.com | 3 years | Quarterly in Arrears | A1T010237    | FuserUnit |
 	
 
 Scenario Outline: MPS Close Service Request

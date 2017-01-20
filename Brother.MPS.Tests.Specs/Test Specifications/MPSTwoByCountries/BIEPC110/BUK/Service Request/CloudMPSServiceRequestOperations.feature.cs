@@ -75,7 +75,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BUK.
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("MPS Actions For Customers")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Cloud", "BOR", "Coleen20161123042204@mailinator.com", "3 years", "Quarterly in Arrears", "A1T010237", "FuserUnit", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Cloud", "BOR", "Slater20170119031946@mailinator.com", "3 years", "Quarterly in Arrears", "A1T010237", "FuserUnit", null)]
         public virtual void MPSActionsForCustomers(string role, string country, string contractType, string usageType, string role1, string method, string type, string existingCustomer, string length, string billing, string serialNumber, string component, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Actions For Customers", exampleTags);

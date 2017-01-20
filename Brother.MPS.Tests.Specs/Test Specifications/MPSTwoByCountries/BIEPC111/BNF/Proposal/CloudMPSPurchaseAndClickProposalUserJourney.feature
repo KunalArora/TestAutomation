@@ -32,7 +32,7 @@ Scenario Outline: Create different varieties of Purchase and Click proposal for 
 
 	Scenarios: 
 	| Role             | Country | ContractType         | CreateOption        | UsageType           | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod   | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | Finland | Click tarvikesopimus | Create new customer | Minimitulostusmäärä | 3 vuotta | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Maksu etukäteen | 800         | 800          |
+	| Cloud MPS Dealer | Finland | Click tarvikesopimus | Create new customer | Minimitulostusmäärä | 3 vuotta | 3 kk välein käytön mukaan | Tick          | MFC-L8650CDW | Full         | Maksu etukäteen | 800         | 800          |
 	
  
 	
@@ -63,7 +63,7 @@ Scenario Outline: Create different varieties of Purchase and Click proposal for 
 
 	Scenarios: 
 	| Role             | Country | ContractType         | CreateOption        | UsageType                | Contract | Billing              | PriceHardware | Printer    | DeviceScreen | ClickVolume |
-	| Cloud MPS Dealer | Finland | Click tarvikesopimus | Create new customer | Maksu tulosteiden mukaan | 4 vuotta | Quarterly in Arrears | Tick          | MFC-8510DN | Full         | 750         |
+	| Cloud MPS Dealer | Finland | Click tarvikesopimus | Create new customer | Maksu tulosteiden mukaan | 4 vuotta | 3 kk välein käytön mukaan | Tick          | MFC-8510DN | Full         | 750         |
 	
 	
 
@@ -95,7 +95,7 @@ Scenario Outline: Create different varieties of Purchase and Click proposal for 
 
 	Scenarios: 
 	| Role             | Country | ContractType         | UsageType           | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod          | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | Finland | Click tarvikesopimus | Minimitulostusmäärä | 3 vuotta | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Sisältyy klikkihintaan | 800         | 800          |
+	| Cloud MPS Dealer | Finland | Click tarvikesopimus | Minimitulostusmäärä | 3 vuotta | 3 kk välein käytön mukaan | Tick          | MFC-L8650CDW | Full         | Sisältyy klikkihintaan | 800         | 800          |
 	
 
 Scenario Outline: Create different varieties of Purchase and Click proposal for an existing customer on Pay As You Go Term
@@ -125,5 +125,5 @@ Scenario Outline: Create different varieties of Purchase and Click proposal for 
 
 	Scenarios: 
 	| Role             | Country | ContractType         | UsageType                | Contract | Billing              | PriceHardware | Printer    | DeviceScreen | ClickVolume |
-	| Cloud MPS Dealer | Finland | Click tarvikesopimus | Maksu tulosteiden mukaan | 5 vuotta | Quarterly in Arrears | Tick          | MFC-8510DN | Full         | 750         |
+	| Cloud MPS Dealer | Finland | Click tarvikesopimus | Maksu tulosteiden mukaan | 5 vuotta | 3 kk välein käytön mukaan | Tick          | MFC-8510DN | Full         | 750         |
 	

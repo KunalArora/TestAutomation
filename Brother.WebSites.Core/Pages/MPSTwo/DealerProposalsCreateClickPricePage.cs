@@ -332,6 +332,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetTabInstance<DealerProposalsCreateSummaryPage>(Driver);
         }
 
+        
 
         public void EnterClickPriceMargin(string value)
         {

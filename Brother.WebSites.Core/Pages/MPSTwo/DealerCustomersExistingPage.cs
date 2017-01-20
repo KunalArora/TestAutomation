@@ -25,7 +25,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [FindsBy(How = How.CssSelector, Using = "div.js-mps-customer-list-container>table")]
         public IWebElement customerListContainerElement;
 
-        [FindsBy(How = How.CssSelector, Using = "input[type=\"submit\"]#content_1_CustomerListActions_ActionList_Button_0")]
+        [FindsBy(How = How.CssSelector, Using = "input[type=\"submit\"]#content_1_CustomerViewActions_ActionList_Button_0")]
         public IWebElement createCustomerButtonElement;
 
         public override string DefaultTitle

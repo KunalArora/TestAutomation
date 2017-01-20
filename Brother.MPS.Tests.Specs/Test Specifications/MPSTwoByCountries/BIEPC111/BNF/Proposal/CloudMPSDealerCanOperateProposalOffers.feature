@@ -19,7 +19,7 @@ Scenario Outline: Dealer can copy an existing proposal offer for all countries
 	
 	Scenarios:
 
-	| Role             | Country | ContractType                  | UsageType      | Length  | Billing              | Customer               | Status  |
-	| Cloud MPS Dealer | Finland | Purchase & Click with Service | Minimum Volume | 3 years | Quarterly in Arrears | Skip customer creation | Without |
-	| Cloud MPS Dealer | Finland | Purchase & Click with Service | Minimum Volume | 4 years | Quarterly in Arrears | Create new customer    | With    |
+	| Role             | Country | ContractType                  | UsageType      | Length  | Billing                   | Customer               | Status  |
+	| Cloud MPS Dealer | Finland | Purchase & Click with Service | Minimum Volume | 3 years | 3 kk välein käytön mukaan | Skip customer creation | Without |
+	| Cloud MPS Dealer | Finland | Purchase & Click with Service | Minimum Volume | 4 years | 3 kk välein käytön mukaan | Create new customer    | With    |
 	

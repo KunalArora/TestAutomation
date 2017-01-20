@@ -40,7 +40,7 @@ Scenario Outline: Summary Page Validation For Minimum Volume Purchase and Click 
 
 	Scenarios: 
 	| Role             | Country | ContractType         | UsageType           | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod          | ClickVolume | ColourVolume | Basis1                 | Basis2          |
-	| Cloud MPS Dealer | Finland | Click tarvikesopimus | Minimitulostusmäärä | 3 vuotta | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Sisältyy klikkihintaan | 800         | 800          | Sisältyy klikkihintaan | Maksu etukäteen |
+	| Cloud MPS Dealer | Finland | Click tarvikesopimus | Minimitulostusmäärä | 3 vuotta | 3 kk välein käytön mukaan | Tick          | MFC-L8650CDW | Full         | Sisältyy klikkihintaan | 800         | 800          | Sisältyy klikkihintaan | Maksu etukäteen |
 	
 
 Scenario Outline: Summary Page Validation For Minimum Volume Purchase and Click proposal Upfront Payment
@@ -76,7 +76,7 @@ Scenario Outline: Summary Page Validation For Minimum Volume Purchase and Click 
 
 	Scenarios: 
 	| Role             | Country | ContractType         | UsageType           | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod   | ClickVolume | ColourVolume | Basis1          |
-	| Cloud MPS Dealer | Finland | Click tarvikesopimus | Minimitulostusmäärä | 4 vuotta | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Maksu etukäteen | 800         | 800          | Maksu etukäteen |
+	| Cloud MPS Dealer | Finland | Click tarvikesopimus | Minimitulostusmäärä | 4 vuotta | 3 kk välein käytön mukaan | Tick          | MFC-L8650CDW | Full         | Maksu etukäteen | 800         | 800          | Maksu etukäteen |
 	
 
 
@@ -110,5 +110,5 @@ Scenario Outline: Summary Page Validation For Pay As you Go Purchase and Click p
 
 	Scenarios: 
 	| Role             | Country | ContractType         | CreateOption        | UsageType                | Contract | Billing              | PriceHardware | Printer    | DeviceScreen | ClickVolume | Basis1          |
-	| Cloud MPS Dealer | Finland | Click tarvikesopimus | Create new customer | Maksu tulosteiden mukaan | 4 vuotta | Quarterly in Arrears | Tick          | MFC-8510DN | Full         | 800         | Maksu etukäteen |
+	| Cloud MPS Dealer | Finland | Click tarvikesopimus | Create new customer | Maksu tulosteiden mukaan | 4 vuotta | 3 kk välein käytön mukaan | Tick          | MFC-8510DN | Full         | 800         | Maksu etukäteen |
 	

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using Brother.Tests.Specs.BrotherOnline.Account;
@@ -102,13 +103,16 @@ namespace Brother.Tests.Specs.MPSTwo.Approver
             CurrentPage.As<LocalOfficeApprovalReportingDashboardPage>().DownloadASpecifiedReport(downloadType);
         }
 
-
         [Given(@"Approver navigate to Data Query page")]
+        [Then(@"Approver navigate to Data Query page")]
+        [When(@"Approver navigate to Data Query page")]
         public void GivenApproverNavigateToDataQueryPage()
         {
             NextPage = CurrentPage.As<LocalOfficeApprovalReportingDashboardPage>().NavigateToDataQueryPage();
         }
 
+        [Given(@"Approver navigates to special pricing page for the proposal")]
+        [Then(@"Approver navigates to special pricing page for the proposal")]
         [When(@"Approver navigates to special pricing page for the proposal")]
         public void WhenApproverNavigatesToSpecialPricingPageForTheProposal()
         {
@@ -117,6 +121,25 @@ namespace Brother.Tests.Specs.MPSTwo.Approver
             NextPage = CurrentPage.As<ReportProposalSummaryPage>().NavigateToProposalSpecialPricingPage();
         }
 
+        [Given(@"Approver validates installation unit price calculation")]
+        [Then(@"Approver validates installation unit price calculation")]
+        [When(@"Approver validates installation unit price calculation")]
+        public void WhenApproverValidatesInstallationUnitPriceCalculation()
+        {
+            CurrentPage.As<ProposalSpecialPricingPage>().IsInstallationPriceCorrectlyCalculated();
+            CurrentPage.As<ProposalSpecialPricingPage>().SetInstallationUnitPrice();
+            CurrentPage.As<ProposalSpecialPricingPage>().ProceedOnSpecialPricingPage();
+        }
+
+        [Then(@"Approver validates Service Pack unit price calculation")]
+        [Given(@"Approver validates Service Pack unit price calculation")]
+        [When(@"Approver validates Service Pack unit price calculation")]
+        public void WhenApproverValidatesServicePackUnitPriceCalculation()
+        {
+            CurrentPage.As<ProposalSpecialPricingPage>().IsServicePackPriceCorrectlyCalculated();
+            CurrentPage.As<ProposalSpecialPricingPage>().SetServicePackUnitPrice();
+            CurrentPage.As<ProposalSpecialPricingPage>().ProceedOnSpecialPricingPage();
+        }
 
         [When(@"Approver makes changes to installation costing")]
         public void WhenApproverMakesChangesToInstallationCosting()
@@ -128,12 +151,74 @@ namespace Brother.Tests.Specs.MPSTwo.Approver
 
         }
 
+         [When(@"Approver makes changes to multiple installation costing")]
+        public void WhenApproverMakesChangesToMultipleInstallationCosting()
+        {
+
+            //printer 1
+            CurrentPage.As<ProposalSpecialPricingPage>().EnterNewInstallationUnitCost(0, 10);
+            CurrentPage.As<ProposalSpecialPricingPage>().EnterNewInstallationMarginValue(0, 1);
+            CurrentPage.As<ProposalSpecialPricingPage>().IsInstallationPriceCorrectlyCalculated(0);
+            CurrentPage.As<ProposalSpecialPricingPage>().SetInstallationUnitPrice(0);
+
+            //printer 2
+            CurrentPage.As<ProposalSpecialPricingPage>().EnterNewInstallationUnitCost(1, -10);
+            CurrentPage.As<ProposalSpecialPricingPage>().EnterNewInstallationMarginValue(1, -1);
+            CurrentPage.As<ProposalSpecialPricingPage>().IsInstallationPriceCorrectlyCalculated(1);
+            CurrentPage.As<ProposalSpecialPricingPage>().SetInstallationUnitPrice(1);
+
+            //printer 3
+            CurrentPage.As<ProposalSpecialPricingPage>().EnterZeroInstallationUnitCost(2);
+            CurrentPage.As<ProposalSpecialPricingPage>().EnterZeroInstallationMarginValue(2);
+            CurrentPage.As<ProposalSpecialPricingPage>().IsInstallationPriceCorrectlyCalculated(2);
+            CurrentPage.As<ProposalSpecialPricingPage>().SetInstallationUnitPrice(2);
+            
+            
+            //printer 4
+            CurrentPage.As<ProposalSpecialPricingPage>().IsInstallationPriceCorrectlyCalculated(3);
+            CurrentPage.As<ProposalSpecialPricingPage>().SetInstallationUnitPrice(3);
+
+            //proceed
+            CurrentPage.As<ProposalSpecialPricingPage>().ProceedOnSpecialPricingPage();
+
+        }
+
         [When(@"Approver makes changes to Service Pack costing")]
         public void WhenApproverMakesChangesToServicePackCosting()
         {
             CurrentPage.As<ProposalSpecialPricingPage>().EnterNewServicePackValue(5);
             CurrentPage.As<ProposalSpecialPricingPage>().EnterNewServicePackMarginValue(1);
             CurrentPage.As<ProposalSpecialPricingPage>().SetServicePackUnitPrice();
+            CurrentPage.As<ProposalSpecialPricingPage>().ProceedOnSpecialPricingPage();
+        }
+
+       
+        [When(@"Approver makes changes to multiple Service Pack costing")]
+        public void WhenApproverMakesChangesToMultipleServicePackCosting()
+        {
+            //printer 1
+            CurrentPage.As<ProposalSpecialPricingPage>().EnterNewServicePackValue(0, -5);
+            CurrentPage.As<ProposalSpecialPricingPage>().EnterNewServicePackMarginValue(0, -1);
+            CurrentPage.As<ProposalSpecialPricingPage>().IsServicePackPriceCorrectlyCalculated(0);
+            CurrentPage.As<ProposalSpecialPricingPage>().SetServicePackUnitPrice(0);
+
+            //printer 2
+            CurrentPage.As<ProposalSpecialPricingPage>().EnterNewServicePackValue(1, 5);
+            CurrentPage.As<ProposalSpecialPricingPage>().EnterNewServicePackMarginValue(1, 1);
+            CurrentPage.As<ProposalSpecialPricingPage>().IsServicePackPriceCorrectlyCalculated(1);
+            CurrentPage.As<ProposalSpecialPricingPage>().SetServicePackUnitPrice(1);
+
+            //printer 3
+            CurrentPage.As<ProposalSpecialPricingPage>().EnterZeroServicePackValue(2);
+            CurrentPage.As<ProposalSpecialPricingPage>().EnterZeroServicePackMarginValue(2);
+            CurrentPage.As<ProposalSpecialPricingPage>().IsServicePackPriceCorrectlyCalculated(2);
+            CurrentPage.As<ProposalSpecialPricingPage>().SetServicePackUnitPrice(2);
+
+            //printer 4
+            CurrentPage.As<ProposalSpecialPricingPage>().SetServicePackUnitPrice(3);
+            CurrentPage.As<ProposalSpecialPricingPage>().IsServicePackPriceCorrectlyCalculated(3);
+
+
             CurrentPage.As<ProposalSpecialPricingPage>().ProceedOnSpecialPricingPage();
         }
 
@@ -151,6 +236,37 @@ namespace Brother.Tests.Specs.MPSTwo.Approver
             NextPage = CurrentPage.As<ProposalSpecialPricingPage>().ApplyEnteredSpecialPricing();
         }
 
+        [When(@"Approver makes changes to multiple Click Price costing")]
+        public void WhenApproverMakesChangesToMultipleClickPriceCosting()
+        {
+            //mono
+            CurrentPage.As<ProposalSpecialPricingPage>().EnterNewClickPriceMonoVolume(0, 500);
+            CurrentPage.As<ProposalSpecialPricingPage>().EnterNewClickPriceMonoVolume(1, -50);
+            CurrentPage.As<ProposalSpecialPricingPage>().EnterNewClickPriceMonoVolume(2, 300);
+            CurrentPage.As<ProposalSpecialPricingPage>().EnterNewClickPriceMonoMargin(0, -1);
+            CurrentPage.As<ProposalSpecialPricingPage>().EnterNewClickPriceMonoMargin(1, 1);
+            CurrentPage.As<ProposalSpecialPricingPage>().EnterNewClickPriceMonoMargin(2, 0);
+            CurrentPage.As<ProposalSpecialPricingPage>().EnterNewMonoClickPriceValue(0, "0.00005");
+            CurrentPage.As<ProposalSpecialPricingPage>().EnterNewMonoClickPriceValue(1, "-0.00005");
+            CurrentPage.As<ProposalSpecialPricingPage>().EnterNewMonoClickPriceValue(2, "0.00010");
+
+            //colour
+            CurrentPage.As<ProposalSpecialPricingPage>().EnterNewClickPriceColourVolume(0, 200);
+            CurrentPage.As<ProposalSpecialPricingPage>().EnterNewClickPriceColourVolume(1, -200);
+            CurrentPage.As<ProposalSpecialPricingPage>().EnterNewClickPriceColourVolume(2, 300);
+            CurrentPage.As<ProposalSpecialPricingPage>().EnterNewClickPriceColourMargin(0, 1);
+            CurrentPage.As<ProposalSpecialPricingPage>().EnterNewClickPriceColourMargin(1, -1);
+            CurrentPage.As<ProposalSpecialPricingPage>().EnterNewClickPriceColourMargin(2, 2);
+            CurrentPage.As<ProposalSpecialPricingPage>().EnterNewColourClickPriceValue(0, "-0.0001");
+            CurrentPage.As<ProposalSpecialPricingPage>().EnterNewColourClickPriceValue(1, "0.0001");
+            CurrentPage.As<ProposalSpecialPricingPage>().EnterNewColourClickPriceValue(2, "-0.0002");
+
+
+            CurrentPage.As<ProposalSpecialPricingPage>().ValidateSpecialPricesEntered();
+            CurrentPage.As<ProposalSpecialPricingPage>().EnterAdditionalAuditInformation();
+            NextPage = CurrentPage.As<ProposalSpecialPricingPage>().ApplyEnteredSpecialPricing();
+        }
+
         [Then(@"the changes made are displayed on the summary page")]
         public void ThenTheChangesMadeAreDisplayedOnTheSummaryPage()
         {
@@ -160,6 +276,45 @@ namespace Brother.Tests.Specs.MPSTwo.Approver
             CurrentPage.As<ReportProposalSummaryPage>().IsNewlyEnteredServicePackUnitPriceDisplayed();
         }
 
+
+        [Then(@"the changes to installation cost made are displayed on the summary page")]
+        public void ThenTheChangesToInstallationCostMadeAreDisplayedOnTheSummaryPage()
+        {
+            CurrentPage.As<ReportProposalSummaryPage>().IsNewlyEnteredInstallationUnitPriceDisplayed("0");
+            CurrentPage.As<ReportProposalSummaryPage>().IsNewlyEnteredInstallationUnitPriceDisplayed("1");
+            CurrentPage.As<ReportProposalSummaryPage>().IsNewlyEnteredInstallationUnitPriceDisplayed("2");
+            CurrentPage.As<ReportProposalSummaryPage>().IsNewlyEnteredInstallationUnitPriceDisplayed("3");
+        }
+
+        [Then(@"the changes to service pack cost made are displayed on the summary page")]
+        public void ThenTheChangesToServicePackCostMadeAreDisplayedOnTheSummaryPage()
+        {
+            CurrentPage.As<ReportProposalSummaryPage>().IsNewlyEnteredServicePackUnitPriceDisplayed("0");
+            CurrentPage.As<ReportProposalSummaryPage>().IsNewlyEnteredServicePackUnitPriceDisplayed("1");
+            CurrentPage.As<ReportProposalSummaryPage>().IsNewlyEnteredServicePackUnitPriceDisplayed("2");
+            CurrentPage.As<ReportProposalSummaryPage>().IsNewlyEnteredServicePackUnitPriceDisplayed("3");
+        }
+
+        [Then(@"the changes to mono click price made are displayed on the summary page")]
+        public void ThenTheChangesToMonoClickPriceMadeAreDisplayedOnTheSummaryPage()
+        {
+            CurrentPage.As<ReportProposalSummaryPage>().IsNewlyEnteredMonoClickPriceDisplayed("0");
+            CurrentPage.As<ReportProposalSummaryPage>().IsNewlyEnteredMonoClickPriceDisplayed("1");
+            CurrentPage.As<ReportProposalSummaryPage>().IsNewlyEnteredMonoClickPriceDisplayed("2");
+        }
+
+        [Then(@"the changes to colour click price made are displayed on the summary page")]
+        public void ThenTheChangesToColourClickPriceMadeAreDisplayedOnTheSummaryPage()
+        {
+            CurrentPage.As<ReportProposalSummaryPage>().IsNewlyEnteredColourClickPriceDisplayed("0");
+            CurrentPage.As<ReportProposalSummaryPage>().IsNewlyEnteredColourClickPriceDisplayed("1");
+            CurrentPage.As<ReportProposalSummaryPage>().IsNewlyEnteredColourClickPriceDisplayed("2");
+        }
+
+
+
+
+        [When(@"audit log is displayed on report proposal summary page")]
         [Then(@"audit log is displayed on report proposal summary page")]
         public void ThenAuditLogIsDisplayedOnReportProposalSummaryPage()
         {

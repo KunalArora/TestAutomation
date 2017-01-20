@@ -16,5 +16,5 @@ Scenario Outline: Verify PDF Contents Are Correct
 Scenarios:
 
 	| ContractType         | Country | UsageType           | Length   | Billing              |
-	| Click tarvikesopimus | Finland | Minimitulostusmäärä | 3 vuotta | Quarterly in Arrears |
+	| Click tarvikesopimus | Finland | Minimitulostusmäärä | 3 vuotta | 3 kk välein käytön mukaan |
 	 

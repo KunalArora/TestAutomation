@@ -75,7 +75,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC111.BNF.
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Other Dealers can delete an open Purchase and Click proposal")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Finland", "Cloud MPS Local Office Approver", "Click tarvikesopimus", "Minimitulostusmäärä", "3 vuotta", "Quarterly in Arrears", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Finland", "Cloud MPS Local Office Approver", "Click tarvikesopimus", "Minimitulostusmäärä", "3 vuotta", "3 kk välein käytön mukaan", null)]
         public virtual void OtherDealersCanDeleteAnOpenPurchaseAndClickProposal(string role, string country, string role2, string contractType, string usageType, string length, string billing, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Other Dealers can delete an open Purchase and Click proposal", exampleTags);
