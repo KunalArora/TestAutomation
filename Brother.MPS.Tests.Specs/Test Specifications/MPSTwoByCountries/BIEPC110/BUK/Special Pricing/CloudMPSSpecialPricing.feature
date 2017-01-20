@@ -77,7 +77,6 @@ Scenario Outline: Approved Proposal Special Pricing Using Multiple Devices
 	And Approver makes changes to multiple installation costing
 	And Approver makes changes to multiple Service Pack costing
 	And Approver makes changes to multiple Click Price costing
-	Then the changes made are displayed on the summary page
 	Then the changes to installation cost made are displayed on the summary page
 	And the changes to service pack cost made are displayed on the summary page
 	And the changes to mono click price made are displayed on the summary page
