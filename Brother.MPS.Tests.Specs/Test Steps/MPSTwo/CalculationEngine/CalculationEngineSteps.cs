@@ -504,7 +504,9 @@ namespace Brother.Tests.Specs.MPSTwo.CalculationEngine
                 || usageType.Equals("Consommation réelle")
                 || usageType.Equals("Maksu tulosteiden mukaan")
                 || usageType.Equals("Paiement selon la consommation réelle de pages")
-                || usageType.Equals("Werkelijk verbruik"))
+                || usageType.Equals("Werkelijk verbruik")
+                || usageType.Equals("Løbende betaling")
+                )
             {
                 type = "Pay As You Go";
             }
