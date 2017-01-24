@@ -39,6 +39,16 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 
         }
 
+        public static void SetContractType(string contractType)
+        {
+            HelperClasses.SpecFlow.SetContext("InputtedContractType", contractType);
+        }
+
+        public static String GetContractType()
+        {
+            return HelperClasses.SpecFlow.GetContext("InputtedContractType");
+        }
+
         public static string CreatedProposal()
         {
             var createdProposal = HelperClasses.SpecFlow.GetContext("GeneratedProposalName");

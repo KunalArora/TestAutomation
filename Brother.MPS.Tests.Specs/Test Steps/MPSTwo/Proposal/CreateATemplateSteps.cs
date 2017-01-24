@@ -1023,6 +1023,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         {
             if (contractType.Equals("Leasing & Service"))
             {
+                MpsUtil.SetContractType(contractType);
                 GivenGermanDealerHaveCreatedProposalOfAwaitingApproval(contractType, usageType, country);
                 var instance4 = new CreateNewAccountSteps();
                 var instance2 = new SendProposalToApprover();
