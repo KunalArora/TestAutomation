@@ -96,6 +96,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             if (str.Equals(string.Empty))
                 str = MpsUtil.CustomerReference();
+            SpecFlow.SetContext("CustomerReference", str);
 
             ClearAndType(CustomerReferenceElement, str);
         }
@@ -104,6 +105,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             if (reference.Equals(string.Empty))
                 reference = MpsUtil.CustomerReference();
+            SpecFlow.SetContext("BankReference", reference);
             ClearAndType(ReferenceElement, reference);
         }
 
