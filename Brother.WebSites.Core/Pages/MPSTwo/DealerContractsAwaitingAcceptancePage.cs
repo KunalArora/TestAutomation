@@ -161,15 +161,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void DoesPdfContentContainSomeText()
         {
             WebDriver.Wait(DurationType.Second, 10);
-            var customerRef = SpecFlow.GetContext("CustomerReference");
-            var contractType = MpsUtil.GetContractType();
-            var country = SpecFlow.GetContext("CountryOfTest");
 
-            var germany = country.Equals("Germany");
+            var contractType = MpsUtil.GetContractType();
             var leasing = contractType.Equals("Leasing & Service");
 
+            var country = SpecFlow.GetContext("CountryOfTest");
+            var germany = country.Equals("Germany");
             var germanyLeasing = germany && leasing;
-            var contractId = germanyLeasing ? customerRef : SpecFlow.GetContext("DownloadedContractId");
+
+            var customerRef = germanyLeasing ? SpecFlow.GetContext("CustomerReference") : SpecFlow.GetContext("DownloadedContractId");
+
+            var contractId = customerRef;
 
 
             TestCheck.AssertTextContains(contractId, ExtractTextFromPdf(DownloadedPdf()), 

@@ -879,6 +879,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [Given(@"Dealer have created a contract of ""(.*)"" and ""(.*)""")]
         public void GivenDealerHaveCreatedAContractOfAnd(string contractType, string usageType)
         {
+            
             if (contractType.Equals("Lease & Click with Service"))
             {
                 GivenDealerHaveCreatedProposalOfAwaitingApproval(contractType, usageType);
@@ -926,6 +927,8 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
 
         public void GivenDealerHaveCreatedAContractWithExistingCustomerOfAnd(string customer, string contractType, string usageType)
         {
+            
+
             if (contractType.Equals("Lease & Click with Service"))
             {
                 GivenDealerHaveCreatedProposalOfAwaitingApproval(contractType, usageType);
@@ -974,6 +977,8 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [Given(@"Dealer has created an awaiting acceptance contract of ""(.*)"" and ""(.*)""")]
         public void GivenDealerHasCreatedAnAwaitingAcceptanceContractOfAnd(string contractType, string usageType)
         {
+            
+
             if (contractType.Equals("Lease & Click with Service"))
             {
                 GivenDealerHaveCreatedProposalOfAwaitingApproval(contractType, usageType);
@@ -1023,7 +1028,6 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         {
             if (contractType.Equals("Leasing & Service"))
             {
-                MpsUtil.SetContractType(contractType);
                 GivenGermanDealerHaveCreatedProposalOfAwaitingApproval(contractType, usageType, country);
                 var instance4 = new CreateNewAccountSteps();
                 var instance2 = new SendProposalToApprover();
