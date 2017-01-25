@@ -106,6 +106,6 @@ Scenario Outline: MPS Summary Validation PAYG Upfront
 	
 
 	Scenarios: 
-	| Role             | Country | ContractType | CreateOption        | UsageType                                      | Contract | Billing                        | PriceHardware | Printer    | DeviceScreen | ClickVolume | Basis1                           |
-	| Cloud MPS Dealer | France  | Buy & Click  | Create new customer | Paiement selon la consommation réelle de pages | 4 ans    | Trimestriellement à terme échu | Tick          | DCP-8250DN | Full         | 800         | Paiement au démarrage du contrat |
+	| Role             | Country | ContractType | CreateOption        | UsageType                                      | Contract | Billing                        | PriceHardware | Printer     | DeviceScreen | ClickVolume | Basis1                           |
+	| Cloud MPS Dealer | France  | Buy & Click  | Create new customer | Paiement selon la consommation réelle de pages | 4 ans    | Trimestriellement à terme échu | Tick          | DCP-L5500DN | Full         | 800         | Paiement au démarrage du contrat |
 	
