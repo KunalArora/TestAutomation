@@ -62,36 +62,6 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
             DeviceCodeExitBox.SendKeys(Keys.Tab);
         }
 
-        public InkJetCartridgePage SearchForSuppliesItem(string itemCode)
-        {
-            SuppliesCodeExitBox.SendKeys(itemCode);
-            WebDriver.Wait(DurationType.Second, 3);
-            if (SupplierCodeDropDownList != null)
-            {
-                for (int i = 0; i < SupplierCodeDropDownList.Count; i++)
-                {
-                    if (string.Equals(itemCode, SupplierCodeDropDownList[i].Text.Trim(), StringComparison.OrdinalIgnoreCase))
-                    {
-                        SupplierCodeDropDownList[i].Click();
-                        WebDriver.Wait(DurationType.Second, 3);
-                        break;
-                    }
-                }
-            }
-            else
-            {
-                throw new NullReferenceException("Unable to find the item.");
-            }
-            InkJetCartridgePage.SetExtraPageTitle = itemCode;
-            return GetInstance<InkJetCartridgePage>(Driver);
-        }
-
-        public InkJetCartridgePage SearchSuppliesButtonClick()
-        {
-            SuppliesCodeSearchButton.Click();
-            return GetInstance<InkJetCartridgePage>(Driver);
-        }
-
         public OriginalSuppliesPage SearchModelSuppliesButtonClick()
         {
             DeviceCodeSearchButton.Click();

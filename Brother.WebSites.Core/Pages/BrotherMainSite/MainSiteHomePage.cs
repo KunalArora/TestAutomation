@@ -617,12 +617,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         {
             TestCheck.AssertIsEqual(true,SearchResults.Displayed, "Is search results displayed");
         }
-        public InkJetCartridgePage ClickResultLink()
-        {
-            ResultLink.Click();
-            return GetInstance<InkJetCartridgePage>(Driver);
-        }
-
+       
         public void DoPageTileExist()
         {
             TestCheck.AssertIsNotNullOrEmpty(Driver.Title, "Tile of the Page.");

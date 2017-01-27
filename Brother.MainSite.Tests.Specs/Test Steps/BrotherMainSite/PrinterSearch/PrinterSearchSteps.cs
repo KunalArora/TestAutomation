@@ -88,19 +88,6 @@ namespace Brother.Tests.Specs._80.BrotherMainSite.PrinterSearch
             CurrentPage.As<SuppliesPage>().AddSupplyCode(supplyCode);
         }
 
-        [When(@"I select an InkJet cartridge by searching with a valid supplies code ""(.*)""")]
-        public void GivenISelectAnInkJetCartridgeBySearchingWithAValidSuppliesCode(string itemCode)
-        {
-            NextPage = CurrentPage.As<SuppliesPage>().SearchForSuppliesItem(itemCode);
-        }
-
-        [When(@"I click on Add To Basket button")]
-        public void GivenIClickOnAddToBasketButton()
-        {
-            //TestCheck.AssertIsEqual(0, BasketModule.GetBasketItemsCount(CurrentDriver), "Invalid Basket item count");
-            CurrentPage.As<InkJetCartridgePage>().AddToBasketButtonClick();
-        }
-
         [When(@"I click on Go to Basket button")]
         public void GivenIClickOnGoToBasketButton()
         {
