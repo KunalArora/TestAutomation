@@ -53,53 +53,11 @@ namespace Brother.Tests.Specs.BrotherMainSite.SuppliesAndAccessories
         }
 
    
-        [When(@"I click on search for""(.*)""")]
-        public void WhenIClickOnSearchFor(string p0)
-        {
-            NextPage = CurrentPage.As<SuppliesPage>().SearchSuppliesButtonClick();
-        }
+     
 
-        [When(@"I click on search for supply code as ""(.*)""")]
-        public void WhenIClickOnSearchForSupplyCodeAs(string p0)
-        {
-            NextPage = CurrentPage.As<SuppliesPage>().SearchSuppliesButtonClick();
-        }
+       
 
-        [Then(@"I should be on Basket page of ""(.*)""")]
-        public void ThenIShouldBeOnBasketPageOf(string supplyCode)
-        {
-           
-           //CurrentPage.As<BasketPage>().GetBasketInformationItem();
-          //  CurrentPage.As<BasketPage>().GetItemInBasket();
-            InkJetCartridgePage.SetExtraPageTitle = supplyCode; // sets the supply page title based on supply item
-            NextPage = CurrentPage.As<SuppliesPage>().SearchSuppliesButtonClick();
-        }
-
-        [Then(@"I should see the selected item information page priced at ""(.*)"" inc vat")]
-        public void ThenIShouldSeeTheSelectedItemInformationPagePricedAtIncVat(string productItem)
-        {
-            CurrentPage.As<InkJetCartridgePage>().IsAddToBasketButtonAvailable();
-            TestCheck.AssertIsEqual(BasketModule.GetItemPrice(TestController.CurrentDriver).Contains(productItem), true, "Invalid price for item");
-        }
       
-        [Then(@"I should see the selected item information page priced at ""(.*)"" inc vat on basket page")]
-        public void ThenIShouldSeeTheSelectedItemInformationPagePricedAtIncVatOnBasketPage(string productItem)
-        {
-            CurrentPage.As<InkJetCartridgePage>().IsAddToBasketButtonAvailable();
-            TestCheck.AssertIsEqual(BasketModule.GetItemPrice(TestController.CurrentDriver).Contains(productItem), true, "Invalid price for item");
-        }
-        [Then(@"I should see the selected item information page")]
-        public void ThenIShouldSeeTheSelectedItemInformationPage()
-        {
-            CurrentPage.As<InkJetCartridgePage>().IsAddToBasketButtonAvailable();
-        }
-
-        [When(@"I click on search for supply ""(.*)""")]
-        public void WhenIClickOnSearchForSupply(string supplyCode)
-        {
-            InkJetCartridgePage.SetExtraPageTitle = supplyCode; // sets the supply page title based on supply item
-            NextPage = CurrentPage.As<SuppliesPage>().SearchSuppliesButtonClick();
-        }
 
         [Then(@"I should see an a list of associated items for model ""(.*)""")]
         public void ThenIShouldSeeAnAListOfAssociatedItems(string productName)
@@ -114,26 +72,7 @@ namespace Brother.Tests.Specs.BrotherMainSite.SuppliesAndAccessories
             CurrentPage.As<SuppliesPage>().IsSuppliesSearchButtonAvailable();
         }
 
-        [Then(@"If I click on the item ""(.*)""")]
-        public void ThenIfIClickOnTheItem(string productItem)
-        {
-            InkJetCartridgePage.SetExtraPageTitle = productItem;
-            NextPage = CurrentPage.As<OriginalSuppliesPage>().InkJetCartridgeItemClick(productItem);
-        }
-
-        [When(@"I click on Add To Basket")]
-        public void WhenIClickOnAddToBasket()
-        {
-           TestCheck.AssertIsEqual(0, BasketModule.GetBasketItemsCount(CurrentDriver), "Invalid Basket item count");
-            CurrentPage.As<InkJetCartridgePage>().AddToBasketButtonClick();
-        }
-
-        [When(@"I click on AddToBasket button")]
-        public void WhenIClickOnAddToBasketButton()
-        {
-            TestCheck.AssertIsEqual(0, BasketModule.GetBasketItemsCount(CurrentDriver), "Invalid Basket item count");
-            CurrentPage.As<InkJetCartridgePage>().AddToBasketButtonClick();
-        }
+       
 
     }
 }

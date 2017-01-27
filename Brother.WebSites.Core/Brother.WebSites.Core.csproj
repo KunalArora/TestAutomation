@@ -73,8 +73,8 @@
     <Compile Include="Pages\Base\BasePage.Common.cs" />
     <Compile Include="Pages\Base\BasePage.cs" />
     <Compile Include="Pages\Base\BaseSteps.cs" />
-    <Compile Include="Pages\BrotherMainSite\Basket\BasketModule.cs" />
-    <Compile Include="Pages\BrotherMainSite\Basket\BasketPage.cs" />
+    <Compile Include="Pages\BrotherOnline\AccountManagement\Basket\BasketModule.cs" />
+    <Compile Include="Pages\BrotherOnline\AccountManagement\Basket\BasketPage.cs" />
     <Compile Include="Pages\BrotherMainSite\MainSiteHomePage.cs" />
     <Compile Include="Pages\BrotherMainSite\MainSitePageTitles.Designer.cs">
       <DependentUpon>MainSitePageTitles.settings</DependentUpon>
@@ -84,7 +84,6 @@
     <Compile Include="Pages\BrotherMainSite\PublishedPage.cs" />
     <Compile Include="Pages\BrotherMainSite\Smart Supply\SmartSupplyBasketPage.cs" />
     <Compile Include="Pages\BrotherMainSite\Smart Supply\SmartSupplyProductPage.cs" />
-    <Compile Include="Pages\BrotherMainSite\SuppliesAndAccessories\InkJetCartridgePage.cs" />
     <Compile Include="Pages\BrotherMainSite\SuppliesAndAccessories\OriginalSuppliesPage.cs" />
     <Compile Include="Pages\BrotherMainSite\SuppliesAndAccessories\Printers\AllInOnePrintersPage.cs" />
     <Compile Include="Pages\BrotherMainSite\SuppliesAndAccessories\Printers\AllPrintersPage.cs" />
@@ -93,6 +92,7 @@
     <Compile Include="Pages\BrotherMainSite\SuppliesPage.cs" />
     <Compile Include="Pages\BrotherOnline\AccountManagement\AddressDetaillsPage.cs" />
     <Compile Include="Pages\BrotherOnline\AccountManagement\BusinessDetailsPage.cs" />
+    <Compile Include="Pages\BrotherOnline\AccountManagement\CheckoutPage.cs" />
     <Compile Include="Pages\BrotherOnline\AccountManagement\CloseAccountPage.cs" />
     <Compile Include="Pages\BrotherOnline\AccountManagement\ConfirmationPage.cs" />
     <Compile Include="Pages\BrotherOnline\AccountManagement\ExistingUser.cs" />

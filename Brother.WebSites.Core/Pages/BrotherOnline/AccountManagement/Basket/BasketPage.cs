@@ -40,6 +40,31 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.Basket
         [FindsBy(How = How.CssSelector, Using = "#content_0_CheckOutButton")]
         public IWebElement BasketPageCheckOutButton;
 
+        [FindsBy(How = How.CssSelector, Using = "a[data-checkout-step-trigger='1']")] 
+        public IWebElement ContinueAsGuestButton;
+
+        [FindsBy(How = How.CssSelector, Using = "#email")]
+        public IWebElement EnterEmailTextBox;
+
+        [FindsBy(How = How.Id, Using = "title")]
+        public IWebElement SelectTitleBox;
+
+
+        public void ClickOnContinueAsGuest()
+        {
+            ContinueAsGuestButton.Click();
+        }
+
+        public void EnterEmail(string email)
+        {
+            ScrollTo(EnterEmailTextBox);
+            EnterEmailTextBox.SendKeys(email);
+        }
+
+        public void SelectTile()
+        {
+            SelectTitleBox.SendKeys(Keys.ArrowDown);
+        }
 
 
         private static IWebElement FindElement(ISearchContext driver, string element, string message)
@@ -114,13 +139,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.Basket
             return GetInstance<BillingDetailsPage>(Driver);
         }
 
-        public InkJetCartridgePage ContinueShoppingButtonClick()
-        {
-            ContinueShoppingButton.Click();
-            return GetInstance<InkJetCartridgePage>(Driver);
-        }
-
-        public int GetItemQuantity()
+       public int GetItemQuantity()
         {
             return Convert.ToInt32(QuantityEditBox.GetAttribute("value"));
         }
