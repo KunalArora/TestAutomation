@@ -61,13 +61,7 @@ namespace Brother.WebSites.Core.Pages8._0.BrotherMainSite
             DeviceCodeExitBox.SendKeys(Keys.Tab);
         }
 
-        public InkJetCartridgePage SearchSuppliesButtonClick()
-        {
-            SuppliesCodeSearchButton.Click();
-            return GetInstance<InkJetCartridgePage>(Driver);
-        }
-
-        public OriginalSuppliesPage SearchModelSuppliesButtonClick()
+     public OriginalSuppliesPage SearchModelSuppliesButtonClick()
         {
             DeviceCodeSearchButton.Click();
             return GetInstance<OriginalSuppliesPage>(Driver);

@@ -55,13 +55,6 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.SuppliesAndAccessories
             return null;
         }
 
-        public InkJetCartridgePage InkJetCartridgeItemClick(string itemName)
-        {
-            var productLink = GetCategoryLink(itemName);
-            productLink.Click();
-            return GetInstance<InkJetCartridgePage>(Driver);
-        }
-
         public void IsSuppliesCategoryListAvailable()
         {
             if (SuppliesCategoryList == null)

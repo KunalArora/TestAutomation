@@ -4,6 +4,7 @@ using Brother.Online.TestSpecs._80.Test_Steps;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.BrotherMainSite;
+using Brother.WebSites.Core.Pages.BrotherMainSite.Basket;
 using Brother.WebSites.Core.Pages.BrotherOnline.Account;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
 using Brother.WebSites.Core.Pages.BrotherOnline.Checkout;
@@ -81,7 +82,14 @@ namespace Brother.WebSites.Core.Pages.Base
            return GetInstance<PublishedPage>(driver, baseUrl, "");
         }
 
-        public static DownloadPage LoadDownloadPage(IWebDriver driver, string baseUrl)
+        public static CheckoutPage LoadMainSiteHomePage(IWebDriver driver, string baseUrl)
+        {
+           driver = SetDriver(driver);
+           NavigateToPage(driver, baseUrl.TrimEnd(new char[] { '/' }));
+           return GetInstance<CheckoutPage>(driver, baseUrl, "");
+        }
+
+       public static DownloadPage LoadDownloadPage(IWebDriver driver, string baseUrl)
         {
             driver = SetDriver(driver);
             NavigateToPage(driver, baseUrl.TrimEnd(new char[] { '/' }));
@@ -136,6 +144,22 @@ namespace Brother.WebSites.Core.Pages.Base
             }
             return GetInstance<ProductRegistrationPage>(driver, baseUrl, "");
         }
+
+        public static BasketPage LoadBasketPage(IWebDriver driver, string baseUrl = null)
+        {
+            driver = SetDriver(driver);
+            //NavigateToPage(driver, BaseUrl + baseUrl.TrimEnd(new char[] { '/' }));
+            if (baseUrl == null)
+            {
+                NavigateToPage(driver, BaseUrl.TrimEnd(new char[] { '/' }));
+            }
+            else
+            {
+                NavigateToPage(driver, BaseUrl + baseUrl.TrimEnd(new char[] { '/' }));
+            }
+            return GetInstance<BasketPage>(driver, baseUrl, "");
+        }
+
 
 
         public static SignInPage LoadSignPage(IWebDriver driver, string baseUrl = null)
