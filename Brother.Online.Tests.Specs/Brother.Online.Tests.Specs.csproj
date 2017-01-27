@@ -67,6 +67,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ExistingUser.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specification\MyAccount\PersonalInfo.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PersonalInfo.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specification\ProductRegistration.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -97,6 +102,10 @@
     <None Include="Test Specification\ExistingUser.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ExistingUser.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specification\MyAccount\PersonalInfo.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>PersonalInfo.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specification\ProductRegistration.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
