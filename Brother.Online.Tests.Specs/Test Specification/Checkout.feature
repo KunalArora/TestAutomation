@@ -1,8 +1,8 @@
-﻿@SMOKE @TEST
+﻿@TEST
 Feature: As a user I want to create an order on BOL Site and
 able to checkout with the existing or guest user
 
-@SMOKE @TEST
+@SMOKE_Checkout
 Scenario Outline: Customer creates an order and checkout as existing user on UK BOL site
    	Given That I navigate to "<Site Url>" in order to add a product to validate a published page 
 	And I click on Add to Basket 
