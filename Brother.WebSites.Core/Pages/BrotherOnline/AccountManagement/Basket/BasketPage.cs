@@ -43,27 +43,90 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.Basket
         [FindsBy(How = How.CssSelector, Using = "a[data-checkout-step-trigger='1']")] 
         public IWebElement ContinueAsGuestButton;
 
-        [FindsBy(How = How.CssSelector, Using = "#email")]
-        public IWebElement EnterEmailTextBox;
+        [FindsBy(How = How.CssSelector, Using = "#frmGuest #email")]
+        public IWebElement GuestEmailTextBox;
 
         [FindsBy(How = How.Id, Using = "title")]
         public IWebElement SelectTitleBox;
 
+        [FindsBy(How = How.Id, Using = "txtFirstname")]
+        public IWebElement FirstNameInputField;
+
+        [FindsBy(How = How.Id, Using = "txtLastname")]
+        public IWebElement LastNameInputField;
+
+        [FindsBy(How = How.Id, Using = "txtTelephone")]
+        public IWebElement PhoneNumberTextBox;
+
+        [FindsBy(How = How.Id, Using = "txtMobilephone")]
+        public IWebElement MobileNumberTextBox;
+
+        [FindsBy(How = How.CssSelector, Using = "button[data-checkout-step-trigger='2']")] 
+        public IWebElement ContinueToDeliveryButton;
+
+        [FindsBy(How = How.Id, Using = "DeliveryAddress_PostCode")]
+        public IWebElement PostcodeField;
+
+        [FindsBy(How = How.CssSelector, Using = "fieldset[data-checkout-step='2'] button[data-postcode-lookup-button]")]
+        public IWebElement FindAddressButton;
+
+        [FindsBy(How = How.Id, Using = "DeliveryAddress_Housenumber")]
+        public IWebElement HouseNumber;
+
+        [FindsBy(How = How.CssSelector, Using = "button[data-checkout-step-trigger='3']")]
+        public IWebElement ContinueToBillingAndpaymentyButton;
 
         public void ClickOnContinueAsGuest()
         {
             ContinueAsGuestButton.Click();
         }
 
+        public void EnterName(string firstname, string lastname)
+        {
+            FirstNameInputField.SendKeys(firstname);
+            LastNameInputField.SendKeys(lastname);
+        }
         public void EnterEmail(string email)
         {
-            ScrollTo(EnterEmailTextBox);
-            EnterEmailTextBox.SendKeys(email);
+            ScrollTo(GuestEmailTextBox);
+            GuestEmailTextBox.SendKeys(email);
         }
 
         public void SelectTile()
         {
             SelectTitleBox.SendKeys(Keys.ArrowDown);
+        }
+
+        public void EnterPhoneNumber(string phonenumber, string mobilenumber)
+        {
+            PhoneNumberTextBox.SendKeys(phonenumber);
+            MobileNumberTextBox.SendKeys(mobilenumber);
+        }
+
+        public void ClickOnContinueToDelivery()
+        {
+            ContinueToDeliveryButton.Click();
+        }
+
+        public void EnterPostcode(string postcode)
+        {
+            PostcodeField.SendKeys(postcode);
+        }
+
+        public void ClickOnFindAddressButton()
+        {
+            FindAddressButton.Click();
+            WaitForElementToBeClickableByCssSelector("fieldset[data-checkout-step='2'] button[data-postcode-lookup-button]", 3, 10);
+        }
+
+        public void EnterHouseNumber(string housenumber)
+        {
+            HouseNumber.SendKeys(housenumber);
+        }
+
+        public void ClickOnContinueToBillingAndPayment()
+        {
+            ContinueToBillingAndpaymentyButton.Click();
         }
 
 
