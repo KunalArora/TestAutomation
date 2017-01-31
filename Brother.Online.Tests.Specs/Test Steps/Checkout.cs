@@ -58,7 +58,45 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
         {
             CurrentPage.As<BasketPage>().SelectTile();
         }
+        [Given(@"I enter ""(.*)""  and ""(.*)"" on your details page")]
+        public void GivenIEnterAndOnYourDetailsPage(string firstname, string lastname)
+        {
+            CurrentPage.As<BasketPage>().EnterName(firstname, lastname);
+        }
+        [Given(@"I enter ""(.*)"" and ""(.*)"" on your details page")]
+        public void GivenIEnterOnYourDetailsPage(string phonenumber, string mobilenumber)
+        {
+            CurrentPage.As<BasketPage>().EnterPhoneNumber(phonenumber, mobilenumber);
+        }
+        [Given(@"I click on Continue to Delivery Button")]
+        public void GivenIClickOnContinueToDeliveryButton()
+        {
+            CurrentPage.As<BasketPage>().ClickOnContinueToDelivery();
+        }
+        [Given(@"I can register my ""(.*)"" on the delivery address step")]
+        public void GivenICanRegisterMyOnTheDeliveryAddressStep(string postcode)
+        {
+            CurrentPage.As<BasketPage>().EnterPostcode(postcode);
+        }
+        [Given(@"I click on Find Address Button")]
+        public void GivenIClickOnFindAddressButton()
+        {
+            Thread.Sleep(TimeSpan.FromSeconds(3));
+            CurrentPage.As<BasketPage>().ClickOnFindAddressButton();
+        }
+        [Given(@"I enter ""(.*)"" on delivery address step")]
+        public void GivenIEnterOnDeliveryAddressStep(string housenumber)
+        {
+            CurrentPage.As<BasketPage>().EnterHouseNumber(housenumber);
+        }
+        [Given(@"I click on Continue to Billing & Payment Button")]
+        public void GivenIClickOnContinueToBillingPaymentButton()
+        {
+            Thread.Sleep(TimeSpan.FromSeconds(2));
+            CurrentPage.As<BasketPage>().ClickOnContinueToBillingAndPayment();
+        }
 
+       
 
 
     }
