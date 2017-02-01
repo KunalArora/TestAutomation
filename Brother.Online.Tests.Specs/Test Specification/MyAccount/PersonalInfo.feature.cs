@@ -83,8 +83,10 @@ namespace Brother.Online.Tests.Specs.TestSpecification.MyAccount
 #line 9
 this.ScenarioSetup(scenarioInfo);
 #line 10
-testRunner.Given(string.Format("I navigate to \"{0}\" Brother Online landing page", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+testRunner.Given(string.Format("I have navigated to the \"{0}\" Brother Main Site", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 11
+testRunner.Given(string.Format("I navigate to \"{0}\" Brother Online landing page", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 12
 testRunner.And(string.Format("I browse to the \"{0}\" for existing user signin page", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -97,7 +99,7 @@ testRunner.And(string.Format("I browse to the \"{0}\" for existing user signin p
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Customer cannot update the personal details if mandatory fields are left blank", new string[] {
                         "SMOKE_MyAccountInformation"});
-#line 18
+#line 19
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
