@@ -20,7 +20,6 @@ namespace Brother.Online.Tests.Specs.TestSpecification
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("As a user I want to create an order on BOL Site and")]
-    [NUnit.Framework.CategoryAttribute("SMOKE")]
     [NUnit.Framework.CategoryAttribute("TEST")]
     public partial class AsAUserIWantToCreateAnOrderOnBOLSiteAndFeature
     {
@@ -35,7 +34,6 @@ namespace Brother.Online.Tests.Specs.TestSpecification
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "As a user I want to create an order on BOL Site and", "able to checkout with the existing or guest user", ProgrammingLanguage.CSharp, new string[] {
-                        "SMOKE",
                         "TEST"});
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -70,14 +68,12 @@ namespace Brother.Online.Tests.Specs.TestSpecification
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Customer creates an order and checkout as existing user on UK BOL site")]
-        [NUnit.Framework.CategoryAttribute("SMOKE")]
-        [NUnit.Framework.CategoryAttribute("TEST")]
-        [NUnit.Framework.TestCaseAttribute("http://main.co.uk.brotherdv2.eu/supplies/laser-supplies/tn2000", "/QA/03-Checkout/415ExistingUserDetailsSection", "testyourdetailsemail@mailinator.com", null)]
-        public virtual void CustomerCreatesAnOrderAndCheckoutAsExistingUserOnUKBOLSite(string siteUrl, string url, string email, string[] exampleTags)
+        [NUnit.Framework.CategoryAttribute("SMOKE_Checkout")]
+        [NUnit.Framework.TestCaseAttribute("http://main.co.uk.brotherdv2.eu/supplies/laser-supplies/tn2000", "/QA/03-Checkout/415ExistingUserDetailsSection", "testyourdetailsemail@mailinator.com", "Test", "Test", "01514236589", "07894540846", "M345 JE", "1", null)]
+        public virtual void CustomerCreatesAnOrderAndCheckoutAsExistingUserOnUKBOLSite(string siteUrl, string url, string email, string firstName, string lastName, string phoneNumber, string mobileNumber, string postcode, string houseNumber, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "SMOKE",
-                    "TEST"};
+                    "SMOKE_Checkout"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -97,6 +93,20 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.And(string.Format("I enter \"{0}\" in your details", email), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 12
  testRunner.And("I select title in your details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 13
+ testRunner.And(string.Format("I enter \"{0}\"  and \"{1}\" on your details page", firstName, lastName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 14
+ testRunner.And(string.Format("I enter \"{0}\" and \"{1}\" on your details page", phoneNumber, mobileNumber), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 15
+ testRunner.And("I click on Continue to Delivery Button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 16
+ testRunner.And(string.Format("I can register my \"{0}\" on the delivery address step", postcode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 17
+ testRunner.And("I click on Find Address Button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 18
+ testRunner.And(string.Format("I enter \"{0}\" on delivery address step", houseNumber), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 19
+ testRunner.And("I click on Continue to Billing & Payment Button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

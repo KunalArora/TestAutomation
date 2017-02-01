@@ -1,8 +1,8 @@
-﻿@SMOKE @TEST
+﻿@TEST
 Feature: As a user I want to create an order on BOL Site and
 able to checkout with the existing or guest user
 
-@SMOKE @TEST
+@SMOKE_Checkout
 Scenario Outline: Customer creates an order and checkout as existing user on UK BOL site
    	Given That I navigate to "<Site Url>" in order to add a product to validate a published page 
 	And I click on Add to Basket 
@@ -10,6 +10,13 @@ Scenario Outline: Customer creates an order and checkout as existing user on UK 
 	And I click on continue as guest button
 	And I enter "<Email>" in your details
 	And I select title in your details
+	And I enter "<FirstName>"  and "<LastName>" on your details page
+	And I enter "<PhoneNumber>" and "<MobileNumber>" on your details page
+	And I click on Continue to Delivery Button
+	And I can register my "<Postcode>" on the delivery address step
+	And I click on Find Address Button
+	And I enter "<House Number>" on delivery address step
+	And I click on Continue to Billing & Payment Button
 #	When I click on Go to Basket 
 #    Then I should see Basket page
 #	When I click Checkout on BasketPage
@@ -42,8 +49,8 @@ Scenario Outline: Customer creates an order and checkout as existing user on UK 
 #
 
  Examples:
-| Site Url                                                       | Url                                           | Email |
-| http://main.co.uk.brotherdv2.eu/supplies/laser-supplies/tn2000 | /QA/03-Checkout/415ExistingUserDetailsSection | testyourdetailsemail@mailinator.com   |
+| Site Url                                                       | Url                                           | Email                               | FirstName | LastName | PhoneNumber | MobileNumber | Postcode | House Number |
+| http://main.co.uk.brotherdv2.eu/supplies/laser-supplies/tn2000 | /QA/03-Checkout/415ExistingUserDetailsSection | testyourdetailsemail@mailinator.com | Test      | Test     | 01514236589 | 07894540846  | M345 JE  | 1            |
 	 
 # Examples:
 #| Country             |  | Price    | CountChange | FirstName | LastName | HouseNumber | AddressLine1 | CityTown   | PhoneNumber | CreditCardNumber | ExpiryMonth | ExpiryYear | CVV    |
