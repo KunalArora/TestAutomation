@@ -29,8 +29,7 @@ Scenario Outline: New Customer wants to register product with their serial numbe
 	And I tick on terms and conditions checkbox
 	Then I can complete my product registration by clicking on complete registration button and I can deregister the "<SerialNumber>"
 	#And Once I have Validated "<Email>" was received and verified my account for Product Registration Email
-
-
+	
 Scenarios: 
 | Country        | Site Url                  | SerialNumber | PurchaseDate | Email                                  | FirstName | LastName |ProdId  |
 | United Kingdom | /qa/eubol78/serial-number | U1T004731    | 12/12/2013   | testemailidinputfield@guerrillamail.com| Test      | Test     |c3beeb53-d80a-1a4c-e100-0000ac1b10d3 |
@@ -80,7 +79,6 @@ Scenario Outline: New Customer wants to register product with their serial numbe
 	And I tick on terms and conditions checkbox on Address details Page
 	Then I can complete my product registration by clicking on complete registration button on Address Details Page and I can  deregister the "<SerialNumber>"
 	
-
 Scenarios: 
 | Country        | Site Url                  | SerialNumber | PurchaseDate | PromoCode  | Email                                | FirstName | LastName | Postcode | House Number |ProdId |
 | United Kingdom | /qa/eubol78/serial-number | U1T004731    | 12/12/2013   | warrantyup | testemailidinputfield@mailinator.com | Test      | Test     | M345JE   | 1            |c3beeb53-d80a-1a4c-e100-0000ac1b10d3 |
@@ -135,7 +133,6 @@ Scenario Outline: Existing Customer wants to register product with their serial 
 	Then I can complete my product registration by clicking on continue button and I can  deregister the "<SerialNumber>"
 	And I can verify registration confirmaiton message is present
 	
-
 Scenarios:
 	| Country        | Site Url       | Valid Email Address                    | Valid Password | SerialNumber |  PurchaseDate | Account Holder Name | Sort Code | Account Number | Postcode |ProdId |
 	| United Kingdom | /qa/signintest | 123orderplacedukaccount@mailinator.com | Hello123       | U1T004731   |  12/12/2013   | Test                | 400699    | 54116897       | M345JE   |c3beeb53-d80a-1a4c-e100-0000ac1b10d3 |
@@ -160,9 +157,12 @@ Scenarios:
 	| United Kingdom | /qa/signintest | A5EEEC57-0DDB-5637-E100-0000AC1B10D3 |
 	| United Kingdom | /qa/signintest | 07EEEC57-0DDB-5637-E100-0000AC1B10D3 |
 	| United Kingdom | /qa/signintest | AAB7EC57-E4BA-7B5D-E100-0000AC1B10D3 |
-	| United Kingdom | /qa/signintest | E1ECEC57-0DDB-5537-E1000-000AC1B10D3 |
-	| United Kingdom | /qa/signintest | EFACEC57-ABDA-FC35-E1000-000AC1B10D3 |
-	| United Kingdom | /qa/signintest | 02ACEC57-ABDA-FC35-E1000-000AC1B10D3 |
-	| United Kingdom | /qa/signintest | 35FDEC57-13D7-662B-E1000-000AC1B10D3 |
-	| United Kingdom | /qa/signintest | AAFBEC57-13D7-662B-E1000-000AC1B10D3 |
-	| United Kingdom | /qa/signintest | 0CFBEC57-13D7-662B-E1000-000AC1B10D3 |
+	| United Kingdom | /qa/signintest | E1ECEC57-0DDB-5537-E100-0000AC1B10D3 |
+	| United Kingdom | /qa/signintest | EFACEC57-ABDA-FC35-E100-0000AC1B10D3 |
+	| United Kingdom | /qa/signintest | 02ACEC57-ABDA-FC35-E100-0000AC1B10D3 |
+	| United Kingdom | /qa/signintest | 35FDEC57-13D7-662B-E100-0000AC1B10D3 |
+	| United Kingdom | /qa/signintest | AAFBEC57-13D7-662B-E100-0000AC1B10D3 |
+	| United Kingdom | /qa/signintest | 0CFBEC57-13D7-662B-E100-0000AC1B10D3 |
+	| United Kingdom | /qa/signintest | B4A80058-9890-A70F-E100-0000AC1B10D3 |
+	| United Kingdom | /qa/signintest | D0380058-F3BC-7F0C-E100-0000AC1B10D3 |
+	| United Kingdom | /qa/signintest | 81380058-F3BC-7F0C-E100-0000AC1B10D3 |
