@@ -107,6 +107,8 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.And(string.Format("I enter \"{0}\" on delivery address step", houseNumber), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 19
  testRunner.And("I click on Continue to Billing & Payment Button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 20
+ testRunner.And("I click on Checkbox to use the same delivery address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
