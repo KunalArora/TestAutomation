@@ -17,6 +17,7 @@ Scenario Outline: Customer creates an order and checkout as existing user on UK 
 	And I click on Find Address Button
 	And I enter "<House Number>" on delivery address step
 	And I click on Continue to Billing & Payment Button
+	And I click on Checkbox to use the same delivery address
 #	When I click on Go to Basket 
 #    Then I should see Basket page
 #	When I click Checkout on BasketPage

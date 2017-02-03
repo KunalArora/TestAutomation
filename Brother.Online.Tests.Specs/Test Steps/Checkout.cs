@@ -95,6 +95,11 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
             Thread.Sleep(TimeSpan.FromSeconds(2));
             CurrentPage.As<BasketPage>().ClickOnContinueToBillingAndPayment();
         }
+        [Given(@"I click on Checkbox to use the same delivery address")]
+        public void GivenIClickOnCheckboxToUseTheSameDeliveryAddress()
+        {
+            CurrentPage.As<BasketPage>().ClickOnCheckboxUseSameDeliveryAddress();
+        }
 
        
 

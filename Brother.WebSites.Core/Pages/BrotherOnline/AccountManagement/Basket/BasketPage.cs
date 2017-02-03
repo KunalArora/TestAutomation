@@ -129,6 +129,10 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.Basket
             ContinueToBillingAndpaymentyButton.Click();
         }
 
+        public void ClickOnCheckboxUseSameDeliveryAddress()
+        {
+        }
+
 
         private static IWebElement FindElement(ISearchContext driver, string element, string message)
         {
