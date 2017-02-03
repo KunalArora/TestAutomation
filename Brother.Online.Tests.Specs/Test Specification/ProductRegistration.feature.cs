@@ -379,6 +379,22 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.CategoryAttribute("SMOKE")]
         [NUnit.Framework.CategoryAttribute("TEST")]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/signintest", "c3beeb53-d80a-1a4c-e100-0000ac1b10d3", null)]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/signintest", "1c43ec57-5cda-db34-e100-0000ac1b10d3", null)]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/signintest", "7343ec57-5cda-db34-e100-0000ac1b10d3", null)]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/signintest", "c243ec57-5cda-db34-e100-0000ac1b10d3", null)]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/signintest", "1144ec57-5cda-db34-e100-0000ac1b10d3", null)]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/signintest", "6044ec57-5cda-db34-e100-0000ac1b10d3", null)]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/signintest", "af44ec57-5cda-db34-e100-0000ac1b10d3", null)]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/signintest", "A1D1EC57-45DA-D234-E100-0000AC1B10D3", null)]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/signintest", "A5EEEC57-0DDB-5637-E100-0000AC1B10D3", null)]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/signintest", "07EEEC57-0DDB-5637-E100-0000AC1B10D3", null)]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/signintest", "AAB7EC57-E4BA-7B5D-E100-0000AC1B10D3", null)]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/signintest", "E1ECEC57-0DDB-5537-E1000-000AC1B10D3", null)]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/signintest", "EFACEC57-ABDA-FC35-E1000-000AC1B10D3", null)]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/signintest", "02ACEC57-ABDA-FC35-E1000-000AC1B10D3", null)]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/signintest", "35FDEC57-13D7-662B-E1000-000AC1B10D3", null)]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/signintest", "AAFBEC57-13D7-662B-E1000-000AC1B10D3", null)]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/signintest", "0CFBEC57-13D7-662B-E1000-000AC1B10D3", null)]
         public virtual void DeregisterSerialNumbersUsingProdId(string country, string siteUrl, string prodId, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -389,13 +405,13 @@ this.ScenarioSetup(scenarioInfo);
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Deregister Serial Numbers using prod id", @__tags);
-#line 147
+#line 145
 this.ScenarioSetup(scenarioInfo);
-#line 148
+#line 146
  testRunner.Given(string.Format("I navigate to \"{0}\" Brother Online landing page", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 149
+#line 147
  testRunner.And(string.Format("I browse to the \"{0}\" product registration page", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 150
+#line 148
  testRunner.And(string.Format("I deregister the serial number using the \"{0}\" on Product Registration page", prodId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();

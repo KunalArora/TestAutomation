@@ -141,15 +141,28 @@ Scenarios:
 	| United Kingdom | /qa/signintest | 123orderplacedukaccount@mailinator.com | Hello123       | U1T004731   |  12/12/2013   | Test                | 400699    | 54116897       | M345JE   |c3beeb53-d80a-1a4c-e100-0000ac1b10d3 |
 
 
-
-
 @SMOKE @TEST
 Scenario Outline: Deregister Serial Numbers using prod id
 	Given I navigate to "<Country>" Brother Online landing page
 	And I browse to the "<Site Url>" product registration page
 	And I deregister the serial number using the "<ProdId>" on Product Registration page
 
-
 Scenarios:
-	| Country        | Site Url        | ProdId |
-	| United Kingdom | /qa/signintest  |c3beeb53-d80a-1a4c-e100-0000ac1b10d3|
+	| Country        | Site Url       | ProdId                               |
+	| United Kingdom | /qa/signintest | c3beeb53-d80a-1a4c-e100-0000ac1b10d3 |
+	| United Kingdom | /qa/signintest | 1c43ec57-5cda-db34-e100-0000ac1b10d3 |
+	| United Kingdom | /qa/signintest | 7343ec57-5cda-db34-e100-0000ac1b10d3 |
+	| United Kingdom | /qa/signintest | c243ec57-5cda-db34-e100-0000ac1b10d3 |
+	| United Kingdom | /qa/signintest | 1144ec57-5cda-db34-e100-0000ac1b10d3 |
+	| United Kingdom | /qa/signintest | 6044ec57-5cda-db34-e100-0000ac1b10d3 |
+	| United Kingdom | /qa/signintest | af44ec57-5cda-db34-e100-0000ac1b10d3 |
+	| United Kingdom | /qa/signintest | A1D1EC57-45DA-D234-E100-0000AC1B10D3 |
+	| United Kingdom | /qa/signintest | A5EEEC57-0DDB-5637-E100-0000AC1B10D3 |
+	| United Kingdom | /qa/signintest | 07EEEC57-0DDB-5637-E100-0000AC1B10D3 |
+	| United Kingdom | /qa/signintest | AAB7EC57-E4BA-7B5D-E100-0000AC1B10D3 |
+	| United Kingdom | /qa/signintest | E1ECEC57-0DDB-5537-E1000-000AC1B10D3 |
+	| United Kingdom | /qa/signintest | EFACEC57-ABDA-FC35-E1000-000AC1B10D3 |
+	| United Kingdom | /qa/signintest | 02ACEC57-ABDA-FC35-E1000-000AC1B10D3 |
+	| United Kingdom | /qa/signintest | 35FDEC57-13D7-662B-E1000-000AC1B10D3 |
+	| United Kingdom | /qa/signintest | AAFBEC57-13D7-662B-E1000-000AC1B10D3 |
+	| United Kingdom | /qa/signintest | 0CFBEC57-13D7-662B-E1000-000AC1B10D3 |
