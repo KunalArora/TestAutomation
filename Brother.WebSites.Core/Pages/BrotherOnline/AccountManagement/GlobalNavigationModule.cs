@@ -351,6 +351,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         {
             ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(true);", GetSignOutLink(driver));
 
+            WebDriver.Wait(DurationType.Second, 5);
             GetSignOutLink(driver).Click();
             return GetInstance<HomePage>(driver, "", "");
         }

@@ -83,5 +83,11 @@
     <Setting Name="QASNOCustomer" Type="System.String" Scope="User">
       <Value Profile="(Default)">Belkis20161011002004@mailinator.com</Value>
     </Setting>
+    <Setting Name="QASMPSBIEAdmin" Type="System.String" Scope="User">
+      <Value Profile="(Default)">MPS-BIE-UAT-BIEAdmin@brother.co.uk</Value>
+    </Setting>
+    <Setting Name="QASMPSBIEPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">BIEadmin1</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

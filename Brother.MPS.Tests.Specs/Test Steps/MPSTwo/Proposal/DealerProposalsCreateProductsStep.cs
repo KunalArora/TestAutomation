@@ -376,6 +376,33 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             NextPage = CurrentPage.As<DealerProposalsCreateProductsPage>().MoveToClickPriceScreen();
         }
 
+        public void WhenIAcceptTheDefaultValuesOfTheDevice(string delivery, string installation)
+        {
+
+            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterProductQuantity("1");
+
+            if (!(CurrentPage.As<DealerProposalsCreateProductsPage>().IsGermanSystem()
+                && CurrentPage.As<DealerProposalsCreateProductsPage>().GetContractType() == "Easy Print Pro & Service"))
+            {
+                //CurrentPage.As<DealerProposalsCreateProductsPage>().EnterProductQuantity("2");
+                CurrentPage.As<DealerProposalsCreateProductsPage>().EnterProductMargin("12");
+                CurrentPage.As<DealerProposalsCreateProductsPage>().EnterModelUnitCost();
+                CurrentPage.As<DealerProposalsCreateProductsPage>().EnterOptionsQuantity0("1");
+                CurrentPage.As<DealerProposalsCreateProductsPage>().EnterOptionCostPrice();
+                CurrentPage.As<DealerProposalsCreateProductsPage>().EnterOptionMargin("12", "0");
+                // CurrentPage.As<DealerProposalsCreateProductsPage>().EnterDeliveryCost(delivery);
+                CurrentPage.As<DealerProposalsCreateProductsPage>().EnterDeliveryMargin("12");
+                CurrentPage.As<DealerProposalsCreateProductsPage>().SelectDeviceInstallationType(installation);
+                CurrentPage.As<DealerProposalsCreateProductsPage>().EnterInstallationPackMargin("12");
+                CurrentPage.As<DealerProposalsCreateProductsPage>().EnterServicePackMargin("12");
+            }
+
+            CurrentPage.As<DealerProposalsCreateProductsPage>().AddAllDetailsToProposal();
+            //CurrentPage.As<DealerProposalsCreateProductsPage>().VerifyProductAdditionConfirmationMessage();
+            NextPage = CurrentPage.As<DealerProposalsCreateProductsPage>().MoveToClickPriceScreen();
+
+        }
+
         [When(@"I enter some values for the device")]
         public void WhenIEnterSomeValuesOfTheDevice()
         {

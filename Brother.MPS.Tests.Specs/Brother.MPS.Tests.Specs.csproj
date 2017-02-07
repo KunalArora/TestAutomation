@@ -211,6 +211,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CloudMPSSpecialPricing.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC110\BUK\Toner Run Out\CloudMPSTonerRunOutVerification.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CloudMPSTonerRunOutVerification.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC110\BUK\Validate_CustomerRun\CloudMPSServiceRequestAutomatic.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1311,6 +1316,7 @@
     <Compile Include="Test Steps\MPSTwo\Customer\DealerCanOperateCustomersSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\DataQuery\DataQuerySteps.cs" />
     <Compile Include="Test Steps\MPSTwo\DealerAdmin\DealerAdminProfileSteps.cs" />
+    <Compile Include="Test Steps\MPSTwo\EnhancedUsageMonitoring\EnhancedUsageMonitoringSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Installation\DealerInstallationRequestSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\InvoiceTool\InvoiceToolSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Proposal\CustomerRunPortionSteps.cs" />
@@ -1508,6 +1514,10 @@
     <None Include="Test Specifications\MPSTwoByCountries\BIEPC110\BUK\Special Pricing\CloudMPSSpecialPricing.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSSpecialPricing.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwoByCountries\BIEPC110\BUK\Toner Run Out\CloudMPSTonerRunOutVerification.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CloudMPSTonerRunOutVerification.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwoByCountries\BIEPC110\BUK\Validate_CustomerRun\CloudMPSServiceRequestAutomatic.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

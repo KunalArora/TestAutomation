@@ -630,14 +630,26 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterColourVolume(string volume, string row)
         {
-            IWebElement element = ColourVolumeElement(row);
+            try
+            {
+                IWebElement element = ColourVolumeElement(row);
 
-            if (element == null)
-                throw new NullReferenceException("Colour Volume field can not be found");
+                if (element == null)
+                    throw new NullReferenceException("Colour Volume field can not be found");
 
-            ClearAndType(element, volume);
-            WebDriver.Wait(DurationType.Second, 2);
-            SpecFlow.SetContext(String.Format("ColourVolume{0}-{1}", row, DateTime.Now.ToString("yyyyMMddHHmmss")), volume);
+                ClearAndType(element, volume);
+                WebDriver.Wait(DurationType.Second, 2);
+                SpecFlow.SetContext(String.Format("ColourVolume{0}-{1}", row, DateTime.Now.ToString("yyyyMMddHHmmss")), volume);
+            }
+            catch (NullReferenceException nre)
+            {
+                string.Format("Colour volume is not found because {0}", nre);
+            }
+            catch (WebDriverException web)
+            {
+                string.Format("Colour volume is not found because {0}", web);
+            }
+            
         }
 
         private void EnterClickPriceValueAndCalculate(string volume, string colour, string row)

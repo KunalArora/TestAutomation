@@ -1,4 +1,5 @@
-﻿Feature: CloudMPSAddLocationToUKCustomerInformation
+﻿@ignore
+Feature: CloudMPSAddLocationToUKCustomerInformation
 	In order to use multiple location for products
 	As a dealer
 	I want to be able to add several location to a customer

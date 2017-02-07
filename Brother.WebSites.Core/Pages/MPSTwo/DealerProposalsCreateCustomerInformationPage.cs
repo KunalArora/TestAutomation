@@ -246,6 +246,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             
             switch (lang)
             {
+                case "" :
                 case "French":
                     language = "Français";
                     break;
@@ -553,6 +554,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
            switch (language)
            {
+               case "" :
                case "French":
                    lang = "Gouvernement";
                    break;
