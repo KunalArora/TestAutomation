@@ -178,6 +178,8 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             CurrentPage.As<InstallerDeviceInstallationPage>().EnterIpAddress();
         }
 
+        [When(@"I can connect the device to Brother environment")]
+        [Given(@"I can connect the device to Brother environment")]
         [Then(@"I can connect the device to Brother environment")]
         public void ThenICanConnectTheDeviceToBrotherEnvironment()
         {
@@ -185,7 +187,8 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
 
         }
 
-       
+        [Given(@"I can connect device ""(.*)"" with serials ""(.*)"" ""(.*)"" and ""(.*)"" with serials ""(.*)"" and ""(.*)"" to Brother environment")]
+        [When(@"I can connect device ""(.*)"" with serials ""(.*)"" ""(.*)"" and ""(.*)"" with serials ""(.*)"" and ""(.*)"" to Brother environment")]
         [Then(@"I can connect device ""(.*)"" with serials ""(.*)"" ""(.*)"" and ""(.*)"" with serials ""(.*)"" and ""(.*)"" to Brother environment")]
         public void ThenICanConnectDeviceWithSerialsAndWithSerialsAndToBrotherEnvironment(string device1, string serial1, string serial2, 
             string device2, string serial3, string serial4)
@@ -228,6 +231,8 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
 
         }
 
+        [Given(@"I can complete device installation")]
+        [When(@"I can complete device installation")]
         [Then(@"I can complete device installation")]
         public void ThenICanCompleteDeviceInstallation()
         {

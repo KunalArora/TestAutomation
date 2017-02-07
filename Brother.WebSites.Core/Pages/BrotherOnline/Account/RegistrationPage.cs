@@ -296,6 +296,13 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             return GetInstance<ServiceDeskDashBoardPage>(Driver);
         }
 
+        public BieAdminDashboardPage SignInButtonToBieAdminDashboardPage()
+        {
+            ScrollTo(SignInButton);
+            SignInButton.Click();
+            return GetInstance<BieAdminDashboardPage>(Driver);
+        }
+
         public RegistrationPage ClickSignUpButton()
         {
             ScrollTo(CreateYourAccountButton);

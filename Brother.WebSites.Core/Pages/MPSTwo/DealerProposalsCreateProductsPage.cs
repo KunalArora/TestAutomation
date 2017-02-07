@@ -696,14 +696,29 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterOptionMargin(string value, string row)
         {
-            string sel = String.Format("#OptionMargin{0}", row);
-            IWebElement element = GetElementByCssSelector(sel, 5);
-            if (element != null)
+            try
             {
-                SpecFlow.SetContext(String.Format("EnteredOptionMargin{0}", row), value);
-                ClearAndType(element, value);
-                DeliveryMarginElement.SendKeys(Keys.Tab);
+                string sel = String.Format("#OptionMargin{0}", row);
+                IWebElement element = GetElementByCssSelector(sel, 5);
+                if (element != null)
+                {
+                    SpecFlow.SetContext(String.Format("EnteredOptionMargin{0}", row), value);
+                    ClearAndType(element, value);
+                    DeliveryMarginElement.SendKeys(Keys.Tab);
+                }
+
             }
+            catch (NullReferenceException nre)
+            {
+
+                string.Format("Options margin is not found because {0}", nre);
+            }
+            catch (WebDriverException web)
+            {
+
+                string.Format("Options margin is not found because {0}", web);
+            }
+           
         }
 
         public void EnterDeliveryMargin(string value)
@@ -745,7 +760,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterOptionsQuantity0(string value)
         {
-            ClearAndType(OptionsQuantityElement, value);
+            try
+            {
+                ClearAndType(OptionsQuantityElement, value);
+            }
+            catch (NullReferenceException nre)
+            {
+
+                string.Format("Options Qty is not found because {0}", nre);
+            }
+            catch (WebDriverException web)
+            {
+
+                string.Format("Options Qty is not found because {0}", web);
+            }
         }
 
         public void EnterDeliverySellPrice(string value)
@@ -1135,22 +1163,35 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterOptionCostPrice()
         {
-            if (IsSwedenSystem() || IsDenmarkSystem())
+            try
             {
-                // do nothing
-            }
-            else if (IsNorwaySystem() || IsPolandSystem())
-            {
-                var optionText = GetValueFromCurrencyText(ModelSrpElement.Text);
-                ClearAndType(OptionCostPrice0Element(), optionText);
-            }
-            else
-            {
-                var srpOption = MpsUtil.GetValue(OptionSrpText());
-                var optionText = srpOption.ToString().Substring(0, 3);
-                if (OptionCostPrice0Element() != null)
+                if (IsSwedenSystem() || IsDenmarkSystem())
+                {
+                    // do nothing
+                }
+                else if (IsNorwaySystem() || IsPolandSystem())
+                {
+                    var optionText = GetValueFromCurrencyText(ModelSrpElement.Text);
                     ClearAndType(OptionCostPrice0Element(), optionText);
+                }
+                else
+                {
+                    var srpOption = MpsUtil.GetValue(OptionSrpText());
+                    var optionText = srpOption.ToString().Substring(0, 3);
+                    if (OptionCostPrice0Element() != null)
+                        ClearAndType(OptionCostPrice0Element(), optionText);
+                }
             }
+            catch (NullReferenceException nre)
+            {
+                string.Format("Option Cost Price is not found because {0}", nre);
+            }
+            catch (WebDriverException web)
+            {
+                string.Format("Option Cost Price is not found because {0}", web);
+            }
+
+            
         }
         public void EnterModelUnitCost()
         {

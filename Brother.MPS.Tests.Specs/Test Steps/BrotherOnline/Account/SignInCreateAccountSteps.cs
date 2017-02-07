@@ -358,6 +358,8 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [When(@"I return to Cloud MPS as a ""(.*)"" from ""(.*)""")]
         [When(@"I sign back into Cloud MPS as a ""(.*)"" from ""(.*)""")]
         [Then(@"I sign back into Cloud MPS as a ""(.*)"" from ""(.*)""")]
+        [Then(@"I sign into MPS as a ""(.*)"" from ""(.*)""")]
+        [Then(@"I sign into Cloud MPS as a ""(.*)"" from ""(.*)""")]
         [Given(@"I sign back into Cloud MPS as a ""(.*)"" from ""(.*)""")]
         [Given(@"I sign into Cloud MPS as a ""(.*)"" from ""(.*)""")]
         [Given(@"I sign into MPS as a ""(.*)"" from ""(.*)""")]
@@ -1302,6 +1304,9 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
                         break;
                     case "Cloud MPS Service Desk":
                         NextPage = CurrentPage.As<RegistrationPage>().SignInButtonToServiceDeskDashBoardPage();
+                        break;
+                    case "Cloud MPS BIE Admin":
+                        NextPage = CurrentPage.As<RegistrationPage>().SignInButtonToBieAdminDashboardPage();
                         break;
 
                 }

@@ -29,5 +29,11 @@
     <Setting Name="ProdCustomerPassword" Type="System.String" Scope="User">
       <Value Profile="(Default)">P@$$w0rd</Value>
     </Setting>
+    <Setting Name="ProdMPSBIEAdmin" Type="System.String" Scope="User">
+      <Value Profile="(Default)">MPS-BIE-Prod-BIEAdmin@brother.co.uk</Value>
+    </Setting>
+    <Setting Name="ProdMPSBIEPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">BIEadmin1</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

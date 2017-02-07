@@ -346,5 +346,29 @@ namespace Brother.Tests.Selenium.Lib.Properties {
                 this["QASNOCustomer"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("MPS-BIE-UAT-BIEAdmin@brother.co.uk")]
+        public string QASMPSBIEAdmin {
+            get {
+                return ((string)(this["QASMPSBIEAdmin"]));
+            }
+            set {
+                this["QASMPSBIEAdmin"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("BIEadmin1")]
+        public string QASMPSBIEPassword {
+            get {
+                return ((string)(this["QASMPSBIEPassword"]));
+            }
+            set {
+                this["QASMPSBIEPassword"] = value;
+            }
+        }
     }
 }

@@ -97,24 +97,64 @@ namespace Brother.Tests.Selenium.Lib.Support
         }
 
 
-        public static string BankUsername()
+        public static string SuperUserUsername()
         {
-            string BankUser = null;
+            string superUser = null;
 
             switch (Helper.GetRunTimeEnv())
             {
                 case "UAT":
-                    BankUser = MPSQAS.Default.QASMPSBank;
+                    superUser = MPSQAS.Default.QASMPSBIEAdmin;
                     break;
                 case "TEST":
-                    BankUser = MPSDV2.Default.DV2MPSBank;
+                    superUser = MPSDV2.Default.DV2MPSBIEAdmin;
                     break;
                 case "PROD":
-                    BankUser = MPSProd.Default.ProdMPSBank;
+                    superUser = MPSProd.Default.ProdMPSBIEAdmin;
                     break;
             }
 
-            return BankUser;
+            return superUser;
+        }
+
+        public static string SuperUserPassword()
+        {
+            string pwd = null;
+
+            switch (Helper.GetRunTimeEnv())
+            {
+                case "UAT":
+                    pwd = MPSQAS.Default.QASMPSBIEPassword;
+                    break;
+                case "DV2":
+                    pwd = MPSDV2.Default.DV2MPSBIEPassword;
+                    break;
+                case "PROD":
+                    pwd = MPSProd.Default.ProdMPSBIEPassword;
+                    break;
+            }
+
+            return pwd;
+        }
+
+        public static string BankUsername()
+        {
+            string bankUser = null;
+
+            switch (Helper.GetRunTimeEnv())
+            {
+                case "UAT":
+                    bankUser = MPSQAS.Default.QASMPSBank;
+                    break;
+                case "TEST":
+                    bankUser = MPSDV2.Default.DV2MPSBank;
+                    break;
+                case "PROD":
+                    bankUser = MPSProd.Default.ProdMPSBank;
+                    break;
+            }
+
+            return bankUser;
         }
 
         private static string CustomerUsername(IWebDriver driver)
@@ -381,6 +421,9 @@ namespace Brother.Tests.Selenium.Lib.Support
                 case "Cloud MPS Service Desk Customer":
                     finishedUsername = ServiceDeskCustomer();
                     break;
+                case "Cloud MPS BIE Admin":
+                    finishedUsername = SuperUserUsername();
+                    break;
 
             }
 
@@ -428,6 +471,10 @@ namespace Brother.Tests.Selenium.Lib.Support
                 
                 case "Cloud MPS Service Desk Customer":
                     finishPwd = CustomerPassword();
+                    break;
+
+                case "Cloud MPS BIE Admin":
+                    finishPwd = SuperUserPassword();
                     break;
             }
             

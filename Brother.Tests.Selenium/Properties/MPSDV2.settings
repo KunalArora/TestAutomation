@@ -34,5 +34,11 @@
     <Setting Name="DV2MPSServiceDeskPassword" Type="System.String" Scope="User">
       <Value Profile="(Default)">{0}service1</Value>
     </Setting>
+    <Setting Name="DV2MPSBIEAdmin" Type="System.String" Scope="User">
+      <Value Profile="(Default)">MPS-BIE-DV2-BIEAdmin@brother.co.uk</Value>
+    </Setting>
+    <Setting Name="DV2MPSBIEPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">BIEadmin1</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
