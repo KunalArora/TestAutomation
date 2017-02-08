@@ -111,7 +111,7 @@ Scenarios:
 	| Cloud MPS Local Office Approver | Switzerland | Purchase & Click with Service      | Pay As You Go                             | Cloud MPS Dealer | Cloud  | BOR  | 36         | Quartalsweise             |
 	| Cloud MPS Local Office Approver | Switzerland | Purchase & Click with Service      | Pay As You Go                             | Cloud MPS Dealer | Cloud  | Web  | 48         | Quartalsweise             |
 	
-
+@ignore
 Scenario Outline: BIR Tax Calculation Test
 	Given "<Country>" Dealer have created a "<ContractType>" contract with "<UsageType>" and "<Length>" and "<Billing>" using the device "<Device>" using Brother installation
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"

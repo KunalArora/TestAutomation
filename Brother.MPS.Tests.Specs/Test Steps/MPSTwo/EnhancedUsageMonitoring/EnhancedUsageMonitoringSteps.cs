@@ -70,6 +70,34 @@ namespace Brother.Tests.Specs.MPSTwo.EnhancedUsageMonitoring
         }
 
 
+        [Then(@"I can enter a threshold of ""(.*)"" into all the thresholds")]
+        public void ThenICanEnterAThresholdOfIntoAllTheThresholds(string threshold)
+        {
+            CurrentPage.As<EnhancedUsageMonitoringInstalledPrinterPage>().EnterThresholdValues(threshold);
+        }
+
+        [Then(@"I can enabled all the devices")]
+        public void ThenICanEnabledAllTheDevices()
+        {
+            CurrentPage.As<EnhancedUsageMonitoringInstalledPrinterPage>().EnableAllCheckBoxes();
+            CurrentPage.As<EnhancedUsageMonitoringInstalledPrinterPage>().SaveChanges();
+        }
+
+        [Then(@"I can verify that all the changes made are with threshold of ""(.*)""")]
+        public void ThenICanVerifyThatAllTheChangesMadeAreWithThresholdOf(string threshold)
+        {
+            CurrentPage.As<EnhancedUsageMonitoringInstalledPrinterPage>().IsThresholdValuesSaved(threshold);
+            CurrentPage.As<EnhancedUsageMonitoringInstalledPrinterPage>().IsCheckBoxChecked();
+        }
+
+        [Then(@"I can disable all the thresholds")]
+        public void ThenICanDisableAllTheThresholds()
+        {
+            CurrentPage.As<EnhancedUsageMonitoringInstalledPrinterPage>().EnableAllCheckBoxes();
+            CurrentPage.As<EnhancedUsageMonitoringInstalledPrinterPage>().SaveChanges();
+        }
+
+
 
     }
 }

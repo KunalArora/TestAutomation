@@ -11,8 +11,10 @@ using OpenQA.Selenium.Support.PageObjects;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class EnhancedUsageMonitoringInstalledPrinterPage : BasePage 
+    public class EnhancedUsageMonitoringInstalledPrinterPage : BasePage
     {
+        
+
         [FindsBy(How = How.CssSelector, Using = "#content_1_ButtonLoadContract")]
         public IWebElement EnhancedUsageMonitoringLoadButton;
         [FindsBy(How = How.CssSelector, Using = ".active a[href=\"/mps/bie-admin/enhanced-usage-monitoring/installed-printer\"]")]
@@ -27,17 +29,64 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement EnhancedUsageMonitoringContractPrinterInfo;
         [FindsBy(How = How.CssSelector, Using = "#content_1_InstalledPrinterRepeater_ButtonNext")]
         public IWebElement EnhancedUsageMonitoringInstalledPrinterSaveButton;
-        [FindsBy(How = How.CssSelector, Using = "#content_1_InstalledPrinterRepeater_InputThreshold_0_Input_0")]
-        public IWebElement EnhancedUsageMonitoringContractColourThreshold;
-        [FindsBy(How = How.CssSelector, Using = "#content_1_InstalledPrinterRepeater_InputThreshold_1_Input_1")]
-        public IWebElement EnhancedUsageMonitoringContractMonoThreshold;
         [FindsBy(How = How.CssSelector, Using = "#content_1_ComponentError_ErrorContainer")]
         public IWebElement EnhancedUsageMonitoringContractError;
+        [FindsBy(How = How.CssSelector, Using = "input[id*=\"content_1_InstalledPrinterRepeater_InputEnabled_\"]")]
+        public IList<IWebElement> EnhancedUsageMonitoringEnableCheckBox;
+        [FindsBy(How = How.CssSelector, Using = "input[id*=\"content_1_InstalledPrinterRepeater_InputThreshold_\"]")]
+        public IList<IWebElement> EnhancedUsageMonitoringThresholdField;
+        [FindsBy(How = How.CssSelector, Using = "[checked=\"checked\"]")]
+        public IList<IWebElement> EnhancedUsageMonitoringCheckEnabled;
         
-        
-        
-        
-        
+
+
+
+
+
+
+        public void EnterThresholdValues(string threshold)
+        {
+            foreach (var item in EnhancedUsageMonitoringThresholdField)
+            {
+                ClearAndType(item, threshold);
+            }
+        }
+
+        public void EnableAllCheckBoxes()
+        {
+            foreach (var checkbox in EnhancedUsageMonitoringEnableCheckBox)
+            {
+                checkbox.Click();
+            }
+            
+        }
+
+        public void SaveChanges()
+        {
+            if(EnhancedUsageMonitoringInstalledPrinterSaveButton == null)
+                throw new Exception("Save button cannot be found");
+
+            EnhancedUsageMonitoringInstalledPrinterSaveButton.Click();
+        }
+
+        public void IsThresholdValuesSaved(string threshold)
+        {
+            foreach (var item in EnhancedUsageMonitoringThresholdField)
+            {
+                var value = item.GetAttribute("value");
+
+                TestCheck.AssertIsEqual(true, value.Equals(threshold), 
+                    string.Format("{0} is not equal to {1}", value, threshold));
+            }
+        }
+
+        public void IsCheckBoxChecked()
+        {
+            foreach (var item in EnhancedUsageMonitoringCheckEnabled)
+            {
+                AssertElementPresent(item, "Check box is not checked");
+            }
+        }
         
 
         public void IsInstalledPrinterPageDisplayed()
@@ -85,15 +134,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if(EnhancedUsageMonitoringProposalInformation==null)
                 throw new Exception("Enhanced Usage Monitoring Proposal Information is returned as null");
 
-            TestCheck.AssertIsEqual(true, EnhancedUsageMonitoringProposalInformation.Displayed, "");
+            TestCheck.AssertIsEqual(true, EnhancedUsageMonitoringProposalInformation.Displayed, "Enhanced Usage Monitoring Proposal Information is not displayed");
         }
 
         public void IsEnhancedUsageMonitoringContractPrinterInfoDisplayed()
         {
             if (EnhancedUsageMonitoringContractPrinterInfo == null)
-                throw new Exception("Enhanced Usage Monitoring Proposal Information is returned as null");
+                throw new Exception("Enhanced Usage Monitoring Contract Printer Info is returned as null");
 
-            TestCheck.AssertIsEqual(true, EnhancedUsageMonitoringContractPrinterInfo.Displayed, "");
+            TestCheck.AssertIsEqual(true, EnhancedUsageMonitoringContractPrinterInfo.Displayed, "Enhanced Usage Monitoring Contract Printer Info is not displayed");
         }
         
     }
