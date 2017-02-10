@@ -61,6 +61,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             
         }
 
+        public void IsCheckBoxUnChecked()
+        {
+            foreach (var item in EnhancedUsageMonitoringEnableCheckBox)
+            {
+                TestCheck.AssertIsNullOrEmpty(item.GetAttribute("checked"), "Check box is not checked");
+            }
+        }
+
         public void SaveChanges()
         {
             if(EnhancedUsageMonitoringInstalledPrinterSaveButton == null)
