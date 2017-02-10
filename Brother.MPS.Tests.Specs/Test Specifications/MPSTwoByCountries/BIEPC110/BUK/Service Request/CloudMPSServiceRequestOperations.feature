@@ -32,7 +32,7 @@ Scenario Outline: MPS Actions To Create Contract for Service Request
 Scenarios:
 
 	| Role                            | Country        | ContractType                  | UsageType      | Role1            | Method | Type | ExistingCustomer                    | Length  | Billing              | SerialNumber |
-	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR  | Coleen20161123042204@mailinator.com | 3 years | Quarterly in Arrears | A1T010390    |
+	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR  | Lonna20170210045259@mailinator.com  | 3 years | Quarterly in Arrears | A1T010390    |
 	
 
 Scenario Outline: MPS Close Service Request
@@ -52,7 +52,7 @@ Scenario Outline: MPS Close Service Request
 Scenarios:
 
 	| Country        | Role2                  | Method | Role1                               |
-	| United Kingdom | Cloud MPS Service Desk | Email  | Coleen20161123042204@mailinator.com |
+	| United Kingdom | Cloud MPS Service Desk | Email  | Lonna20170210045259@mailinator.com  |
 	
 
 Scenario Outline: MPS Service Desk Response
@@ -79,5 +79,5 @@ Scenario Outline: MPS Service Desk Response
 Scenarios:
 
 	| Country        | Role2                  | Method | Role1                               |
-	| United Kingdom | Cloud MPS Service Desk | Email  | Coleen20161123042204@mailinator.com |
+	| United Kingdom | Cloud MPS Service Desk | Email  | Lonna20170210045259@mailinator.com  |
 	

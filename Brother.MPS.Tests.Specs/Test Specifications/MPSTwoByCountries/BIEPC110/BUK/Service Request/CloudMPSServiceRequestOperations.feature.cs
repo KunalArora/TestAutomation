@@ -103,7 +103,7 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("MPS Actions To Create Contract for Service Request")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Cloud", "BOR", "Coleen20161123042204@mailinator.com", "3 years", "Quarterly in Arrears", "A1T010390", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Cloud", "BOR", "Lonna20170210045259@mailinator.com", "3 years", "Quarterly in Arrears", "A1T010390", null)]
         public virtual void MPSActionsToCreateContractForServiceRequest(string role, string country, string contractType, string usageType, string role1, string method, string type, string existingCustomer, string length, string billing, string serialNumber, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Actions To Create Contract for Service Request", exampleTags);
@@ -129,7 +129,7 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("MPS Close Service Request")]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "Cloud MPS Service Desk", "Email", "Coleen20161123042204@mailinator.com", null)]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "Cloud MPS Service Desk", "Email", "Lonna20170210045259@mailinator.com", null)]
         public virtual void MPSCloseServiceRequest(string country, string role2, string method, string role1, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Close Service Request", exampleTags);
@@ -161,7 +161,7 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("MPS Service Desk Response")]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "Cloud MPS Service Desk", "Email", "Coleen20161123042204@mailinator.com", null)]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "Cloud MPS Service Desk", "Email", "Lonna20170210045259@mailinator.com", null)]
         public virtual void MPSServiceDeskResponse(string country, string role2, string method, string role1, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Service Desk Response", exampleTags);
