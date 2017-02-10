@@ -94,7 +94,10 @@ namespace Brother.Tests.Specs.MPSTwo.EnhancedUsageMonitoring
         public void ThenICanDisableAllTheThresholds()
         {
             CurrentPage.As<EnhancedUsageMonitoringInstalledPrinterPage>().EnableAllCheckBoxes();
+            
             CurrentPage.As<EnhancedUsageMonitoringInstalledPrinterPage>().SaveChanges();
+
+            CurrentPage.As<EnhancedUsageMonitoringInstalledPrinterPage>().IsCheckBoxUnChecked();
         }
 
 
