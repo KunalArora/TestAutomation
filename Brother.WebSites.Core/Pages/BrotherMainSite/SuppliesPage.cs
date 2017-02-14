@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherMainSite.SuppliesAndAccessories;
+using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
@@ -46,10 +47,24 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         {
             SuppliesCodeExitBox.SendKeys(code);
             WebDriver.Wait(DurationType.Second, 3);
-            SuppliesCodeExitBox.SendKeys(Keys.ArrowDown);
+            //SuppliesCodeExitBox.SendKeys(Keys.Tab);
+            //SuppliesCodeExitBox.SendKeys(Keys.Tab);
+        }
+
+        public CheckoutPage SelectItemFromList(string code)
+        {
+            IList<IWebElement> optionsToSelect = Driver.FindElements(By.CssSelector(".common-autocomplete_list li a"));
+            for (int i = 0; i < optionsToSelect.Count; i++)
+            {
+                if (optionsToSelect[i].Text == code)
+                {
+                    optionsToSelect[i].Click();
+                    break;
+                }
+            }
+            //SuppliesCodeExitBox.SendKeys(Keys.ArrowDown);
             WebDriver.Wait(DurationType.Second, 3);
-            SuppliesCodeExitBox.SendKeys(Keys.Tab);
-            SuppliesCodeExitBox.SendKeys(Keys.Tab);
+            return GetInstance<CheckoutPage>(Driver);
         }
 
         public void AddModelCode(string code)
