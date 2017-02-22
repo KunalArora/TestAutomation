@@ -17,6 +17,8 @@ namespace Brother.Tests.Specs.MPSTwo.EnhancedUsageMonitoring
 
         }
 
+        [Then(@"I navigate to Enhanced Usage Monitoring Printer Engine Page")]
+        [When(@"I navigate to Enhanced Usage Monitoring Printer Engine Page")]
         [Given(@"I navigate to Enhanced Usage Monitoring Printer Engine Page")]
         public void GivenINavigateToEnhancedUsageMonitoringPrinterEnginePage()
         {
@@ -38,6 +40,86 @@ namespace Brother.Tests.Specs.MPSTwo.EnhancedUsageMonitoring
         {
             CurrentPage.As<EnhancedUsageMonitoringPrinterEnginePage>().IsPrinterEngineListDisplayed();
         }
+
+        [When(@"I select ""(.*)"" as country of interest")]
+        public void WhenISelectAsCountryOfInterest(string country)
+        {
+            CurrentPage.As<EnhancedUsageMonitoringPrinterEnginePage>().IsCountryDropdownMenuWorking(country);
+        }
+
+
+        [When(@"I enable the mono threshold ""(.*)""")]
+        public void WhenIEnableTheMonoThreshold(string threshold)
+        {
+            //BC2 mono threshold and tickbox enabled
+            CurrentPage.As<EnhancedUsageMonitoringPrinterEnginePage>().EnterPrinterThreshold(threshold, "0");
+            CurrentPage.As<EnhancedUsageMonitoringPrinterEnginePage>().EnablePrinterMonoThreshold("0");
+
+            //DCL mono threshold and tickbox enabled
+            CurrentPage.As<EnhancedUsageMonitoringPrinterEnginePage>().EnterPrinterThreshold(threshold, "17");
+            CurrentPage.As<EnhancedUsageMonitoringPrinterEnginePage>().EnablePrinterMonoThreshold("17");
+
+            //DLL mono threshold and tickbox enabled
+            CurrentPage.As<EnhancedUsageMonitoringPrinterEnginePage>().EnterPrinterThreshold(threshold, "22");
+            CurrentPage.As<EnhancedUsageMonitoringPrinterEnginePage>().EnablePrinterMonoThreshold("22");
+
+            //DLH Step mono threshold and tickbox enabled
+            CurrentPage.As<EnhancedUsageMonitoringPrinterEnginePage>().EnterPrinterThreshold(threshold, "21");
+            CurrentPage.As<EnhancedUsageMonitoringPrinterEnginePage>().EnablePrinterMonoThreshold("21");
+        }
+
+        [When(@"I enable the colour threshold ""(.*)""")]
+        public void WhenIEnableTheColourThreshold(string threshold)
+        {
+            //BC2 mono threshold and tickbox enabled
+            CurrentPage.As<EnhancedUsageMonitoringPrinterEnginePage>().EnterPrinterThreshold(threshold, "1");
+            CurrentPage.As<EnhancedUsageMonitoringPrinterEnginePage>().EnablePrinterColourThreshold("1");
+
+            //DCL mono threshold and tickbox enabled
+            CurrentPage.As<EnhancedUsageMonitoringPrinterEnginePage>().EnterPrinterThreshold(threshold, "18");
+            CurrentPage.As<EnhancedUsageMonitoringPrinterEnginePage>().EnablePrinterColourThreshold("18");
+
+        }
+
+        [When(@"I disable Engine threshold")]
+        public void WhenIDisableTheEngineThreshold()
+        {
+            CurrentPage.As<EnhancedUsageMonitoringPrinterEnginePage>().DisablePrinterThreshold("0");
+            CurrentPage.As<EnhancedUsageMonitoringPrinterEnginePage>().DisablePrinterThreshold("1");
+            CurrentPage.As<EnhancedUsageMonitoringPrinterEnginePage>().DisablePrinterThreshold("17");
+            CurrentPage.As<EnhancedUsageMonitoringPrinterEnginePage>().DisablePrinterThreshold("21");
+        }
+
+
+        [When(@"I save the changes made above")]
+        public void WhenISaveTheChangesMadeAbove()
+        {
+            CurrentPage.As<EnhancedUsageMonitoringPrinterEnginePage>().SaveChanges();
+        }
+
+
+        [When(@"I navigate to installed printer page")]
+        public void WhenINavigateToInstalledPrinterPage()
+        {
+            NextPage =
+                CurrentPage.As<EnhancedUsageMonitoringPrinterEnginePage>()
+                    .NavigateToEnhancedUsageMonitoringInstalledPrinterPage();
+        }
+
+        [When(@"I enter toner ink threshold of ""(.*)"" for all the printers")]
+        public void WhenIEnterTonerInkThresholdOfForAllThePrinters(string threshold)
+        {
+            CurrentPage.As<EnhancedUsageMonitoringInstalledPrinterPage>().EnterThresholdValues(threshold);
+            CurrentPage.As<EnhancedUsageMonitoringInstalledPrinterPage>().SaveChanges();
+        }
+
+        [When(@"I enable the threshold for all the printers")]
+        public void WhenIEnableTheThresholdForAllThePrinters()
+        {
+            CurrentPage.As<EnhancedUsageMonitoringInstalledPrinterPage>().EnableAllCheckBoxes();
+            CurrentPage.As<EnhancedUsageMonitoringInstalledPrinterPage>().SaveChanges();
+        }
+
 
 
         [When(@"I search for contract using contract id")]

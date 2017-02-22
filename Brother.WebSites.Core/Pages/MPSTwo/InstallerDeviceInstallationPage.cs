@@ -429,6 +429,22 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             WebDriver.Wait(DurationType.Second, 2);
         }
 
+        public void CloudInstallationProcess(string serial, string device, string number)
+        {
+            if (Method() == "Email") return;
+            CreateNewSerialNumber(serial);
+            MpsJobRunnerPage.CreateNewVirtualDevice(device, number);
+            WebDriver.Wait(DurationType.Second, 2);
+            MpsJobRunnerPage.RegisterNewDevice(number);
+            WebDriver.Wait(DurationType.Second, 2);
+            MpsJobRunnerPage.ChangeDeviceStatus(number);
+            WebDriver.Wait(DurationType.Second, 2);
+            MpsJobRunnerPage.SetSupplyStatusForNewPrinter(number);
+            WebDriver.Wait(DurationType.Second, 2);
+            MpsJobRunnerPage.NotifyBocOfNewChanges(number);
+            WebDriver.Wait(DurationType.Second, 2);
+        }
+
         public void SwapCloudInstallationProcess()
         {
             if (Method() == "Email") return;
@@ -627,6 +643,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
+        public void ConnectDeviceWithBor(string device, string serial, string number)
+        {
+            try
+            {
+                CloudInstallationProcess(serial, device, number);
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(String.Format("Connect or Refresh button is not displayed because {0}", exception));
+            }
+        }
+
        
         public void ConnectSwapDevice()
         {
@@ -667,12 +695,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void RefreshCloudInstallation()
         {
-            RetryClickingAction("#content_0_ButtonRefresh", "#content_0_DeviceInstallList_List_CellConnectionStatus_0 .glyphicon-ok", 15, 5);
+            RetryClickingAction("#content_0_ButtonRefresh", "#content_0_DeviceInstallList_List_CellConnectionStatus_0 .glyphicon-ok", 15, 20);
+        }
+
+        public void RefreshCloudInstallationBeforeClickingOnCompleteInstallation()
+        {
+            RetryClickingAction("#content_0_ButtonRefresh", "#content_0_ButtonCompleteCloudInstallation", 30, 30);
         }
 
         public void RefreshCloudMultipleInstallation()
         {
-            RetryMulyipleClodAssertion("#content_0_ButtonRefresh", "[id*=\"content_0_DeviceInstallList_List_CellConnectionStatus_\"] .glyphicon-ok", 15, 5);
+            RetryMulyipleCloudAssertion("#content_0_ButtonRefresh", "[id*=\"content_0_DeviceInstallList_List_CellConnectionStatus_\"] .glyphicon-ok", 15, 30);
         }
 
        
@@ -719,6 +752,33 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             MpsJobRunnerPage.RunCompleteInstallationCommandJob();
            
+        }
+
+        public void ConfirmInstallationSucceed(string number1, string number2, string number3, string number4)
+        {
+            if (Method() == "Email")
+            {
+                TestCheck.AssertIsEqual(true, CompleteInstallationComfirmationElement.Displayed,
+                "Installation not successful");
+                // WaitForElementToBeClickableById("content_0_InstallationSuccessfullyFinished", 10);
+                CompleteInstallationComfirmationElement.Click();
+
+            }
+            else
+            {
+                TestCheck.AssertIsEqual(true, CompleteCloudInstallationComfirmationElement.Displayed,
+                "Installation not successful");
+                TestCheck.AssertIsEqual(true, CloudInstallationConnectionStatusIconElements.Displayed, "Device is not connect");
+                //WaitForElementToBeClickableById("content_0_InstallationSuccessfullyFinished", 10);
+                CompleteCloudInstallationComfirmationElement.Click();
+                MpsJobRunnerPage.NotifyBocOfNewChanges(number1);
+                MpsJobRunnerPage.NotifyBocOfNewChanges(number2);
+                MpsJobRunnerPage.NotifyBocOfNewChanges(number3);
+                MpsJobRunnerPage.NotifyBocOfNewChanges(number4);
+            }
+
+            MpsJobRunnerPage.RunCompleteInstallationCommandJob();
+
         }
 
         public void ConfirmMultipleInstallationSucceed()

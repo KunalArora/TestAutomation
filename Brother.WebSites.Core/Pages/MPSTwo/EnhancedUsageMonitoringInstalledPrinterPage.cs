@@ -23,13 +23,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement EnhancedUsageMonitoringContractField;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/bie-admin/enhanced-usage-monitoring/printer-engine\"] span")]
         public IWebElement EnhancedUsageMonitoringPrinterEngineTab;
-        [FindsBy(How = How.CssSelector, Using = "#content_1_proposalPanel")]
+        [FindsBy(How = How.CssSelector, Using = ".js-mps-EUM-proposal-summary")]
         public IWebElement EnhancedUsageMonitoringProposalInformation;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-searchable")]
         public IWebElement EnhancedUsageMonitoringContractPrinterInfo;
         [FindsBy(How = How.CssSelector, Using = "#content_1_InstalledPrinterRepeater_ButtonNext")]
         public IWebElement EnhancedUsageMonitoringInstalledPrinterSaveButton;
-        [FindsBy(How = How.CssSelector, Using = "#content_1_ComponentError_ErrorContainer")]
+        [FindsBy(How = How.CssSelector, Using = ".js-mps-EUM-installed-printer-alert")]
         public IWebElement EnhancedUsageMonitoringContractError;
         [FindsBy(How = How.CssSelector, Using = "input[id*=\"content_1_InstalledPrinterRepeater_InputEnabled_\"]")]
         public IList<IWebElement> EnhancedUsageMonitoringEnableCheckBox;

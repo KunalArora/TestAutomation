@@ -45,6 +45,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement ConsumableOrderTab;
         [FindsBy(How = How.CssSelector, Using = ".modal-header .close")]
         public IWebElement ClosePopUp;
+        [FindsBy(How = How.CssSelector, Using = "[href=\"/mps/customer/consumables/devices\"] span")]
+        public IWebElement ConsumableDeviceScreenTab;
        
         
 
@@ -91,6 +93,25 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             showDetailButton.Click();
             WaitForElementToExistByCssSelector("#OrderDetailHeader", 5, 5);
             
+        }
+
+        public void ChangeInkLifeStatus(string toner, string life, string number)
+        {
+            MpsJobRunnerPage.SetTonerInkLifeStatusForNewPrinter(toner, life, number);
+            MpsJobRunnerPage.NotifyBocOfNewChanges(number);
+        }
+
+        public void RunConsumableOrderCreationJobs()
+        {
+            MpsJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob();
+            MpsJobRunnerPage.RunCreateOrderAndServiceRequestsCommandJob();
+            MpsJobRunnerPage.RunConsumableOrderRequestsCommandJob();
+            RefreshDeviceScreen();
+        }
+
+        private void RefreshDeviceScreen()
+        {
+            ConsumableDeviceScreenTab.Click();
         }
 
         public void IsBlackTonerDisplayed()

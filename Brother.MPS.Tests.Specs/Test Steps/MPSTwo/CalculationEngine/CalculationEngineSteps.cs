@@ -48,6 +48,13 @@ namespace Brother.Tests.Specs.MPSTwo.CalculationEngine
                  servicePack, installation, delivery, device1, device2); 
         }
 
+        public void GivenDealerHaveCreatedContractWithExistingCustomerAndAndAndAndAndAndAnd(string country, string language, string contractType, string usageType, string length, string billing,
+            string servicePack, string installation, string delivery, string device1, string device2)
+        {
+            GivenDealerHaveCreatedAContractWithMultipleVariables(country, contractType, usageType, length, billing,
+                 servicePack, installation, delivery, device1, device2);
+        }
+
 
 
         [Given(@"""(.*)"" Dealer has created ""(.*)"" contract the following ""(.*)"" and ""(.*)"" and ""(.*)"" and ""(.*)"" and ""(.*)"" and ""(.*)"" and ""(.*)""")]
@@ -55,6 +62,15 @@ namespace Brother.Tests.Specs.MPSTwo.CalculationEngine
            string device1, string device2, string device3, string device4)
         {
             GivenDealerHaveCreatedAContractWithFourDevices(country, contractType, usageType, length, billing,
+                 "", device1, device2, device3, device4);
+        }
+
+
+        [Given(@"""(.*)"" Dealer has created ""(.*)"" contract with Existing Customer ""(.*)"" with the following ""(.*)"" and ""(.*)"" and ""(.*)"" and ""(.*)"" and ""(.*)"" and ""(.*)"" and ""(.*)""")]
+        public void GivenDealerHasCreatedContractWithExistingCustomerWithTheFollowingAndAndAndAndAndAnd(string country, string contractType, string existingcustomer, string usageType, 
+            string length, string billing, string device1, string device2, string device3, string device4)
+        {
+            GivenDealerHaveCreatedAContractWithExistingCustomerWithFourDevices(country, contractType, existingcustomer, usageType, length, billing,
                  "", device1, device2, device3, device4);
         }
 
@@ -228,6 +244,63 @@ namespace Brother.Tests.Specs.MPSTwo.CalculationEngine
             }
         }
 
+        public void GivenDealerHaveCreatedAContractWithExistingCustomerWithFourDevices(string country, string contractType, string existingcustomer, string usageType, string length, string billing,
+            string servicePack, string device1, string device2, string device3, string device4)
+        {
+            var instance = new CreateATemplateSteps();
+
+            contractType = instance.ContractType(contractType);
+
+            if (contractType.Equals("Lease & Click with Service"))
+            {
+                GivenDealerHaveCreatedProposalOfAwaitingApprovalWithMultipleVariables(country, contractType, usageType, length, billing,
+                    servicePack, device1, device2, device3, device4);
+                var instance4 = new CreateNewAccountSteps();
+                var instance2 = new SendProposalToApprover();
+                var instance3 = new AccountManagementSteps();
+
+                if (MpsUtil.GetProposalByPassValue() != "Ticked")
+                {
+                    instance4.GivenISignIntoMpsasAFrom("Cloud MPS Bank", country);
+                    instance2.ThenINavigateToBankAwaitingApprovalScreenUnderOfferPage();
+                    instance2.ThenTheConvertedLeasingAndClickAndServiceProposalAboveIsDisplayedOnTheScreen();
+                    // CalculationEngineModule.DownloadContractPdf(CurrentDriver);
+                    var instance5 = new ApproverSteps();
+                    instance5.ThenApproverSelectTheProposalOnAwaitingProposal();
+                    //CalculationEngineModule.DownloadPageHtml(CurrentDriver, "Bank_AwaitingApprovalSummary");
+                    instance5.ThenIShouldBeAbleToApproveThatProposal();
+                    instance3.ThenIfISignOutOfBrotherOnline();
+                }
+                instance4.GivenISignIntoMpsasAFrom("Cloud MPS Dealer", country);
+                instance.WhenISignTheContractAsADealer();
+                instance3.ThenIfISignOutOfBrotherOnline();
+            }
+            else if (contractType.Equals("Purchase & Click with Service"))
+            {
+                GivenDealerHaveCreatedProposalOfAwaitingApprovalWithExistingCustomerWithFourDevices(country, contractType, existingcustomer, usageType, length, billing,
+                    servicePack, device1, device2, device3, device4);
+                var instance4 = new CreateNewAccountSteps();
+                var instance2 = new SendProposalToApprover();
+                var instance3 = new AccountManagementSteps();
+
+                if (MpsUtil.GetProposalByPassValue() != "Ticked")
+                {
+                    instance4.GivenISignIntoMpsasAFrom("Cloud MPS Local Office Approver", country);
+                    instance2.ThenINavigateToLOApproverAwaitingApprovalScreenUnderProposalsPage();
+                    instance2.ThenTheConvertedPurchaseAndClickAndServiceProposalAboveIsDisplayedOnTheScreen();
+                    //CalculationEngineModule.DownloadContractPdf(CurrentDriver);
+                    var instance5 = new ApproverSteps();
+                    instance5.ThenApproverSelectTheProposalOnAwaitingProposal();
+                    //CalculationEngineModule.DownloadPageHtml(CurrentDriver, "LO_AwaitingApprovalSummary");
+                    instance5.ThenIShouldBeAbleToApproveThatProposal();
+                    instance3.ThenIfISignOutOfBrotherOnline();
+                }
+                instance4.GivenISignIntoMpsasAFrom("Cloud MPS Dealer", country);
+                WhenISignTheContractAsADealer();
+                instance3.ThenIfISignOutOfBrotherOnline();
+            }
+        }
+
 
         public void GivenDealerHaveCreatedAContractWithMultipleVariables(string country, string contractType, string usageType, string length, string billing, 
                       string device1)
@@ -322,6 +395,59 @@ namespace Brother.Tests.Specs.MPSTwo.CalculationEngine
                 instance2.WhenIClickOnActionButtonAgainstTheProposalCreatedAbove();
                 instance2.ThenICanClickOnConvertToContractButtonUnderTheActionButton();
                 instance2.ThenIAmDirectedToCustomerDetailPageForMoreDataCapture();
+                instance2.ThenIAmTakenToTheProposalSummaryWhereICanEnterEnvisageContractStartDate();
+                NextPage = CurrentPage.As<DealerConvertProposalSummaryPage>().DownloadAndSaveProposalAsAContract();
+
+                if (MpsUtil.GetProposalByPassValue() != "Ticked")
+                {
+                    instance2.ThenTheNewlyConvertedContractIsAvailableUnderAwaitingApprovalTab();
+                    //CalculationEngineModule.DownloadContractPdf(CurrentDriver);
+                    instance2.ThenINavigateToProposalSummaryPageUnderAwaitingApprovalTab();
+                    //CalculationEngineModule.DownloadPageHtml(CurrentDriver, "Dealer_AwaitingApprovalSummary");
+                    CalculationEngineModule.DownloadProposalPdfOnSummaryPage(CurrentDriver);
+                }
+                var instance3 = new AccountManagementSteps();
+                instance3.ThenIfISignOutOfBrotherOnline();
+            }
+        }
+
+        public void GivenDealerHaveCreatedProposalOfAwaitingApprovalWithExistingCustomerWithFourDevices(string country, string contractType, string existingcustomer, string usageType, string length, string billing,
+          string servicePack, string device1, string device2, string device3, string device4)
+        {
+            var instance = new CreateATemplateSteps();
+
+            contractType = instance.ContractType(contractType);
+
+            if (contractType.Equals("Lease & Click with Service"))
+            {
+                GivenDealerHaveCreatedProposalOfOpenWithMultipleVariables(country, contractType, usageType, length, billing,
+                    servicePack, device1, device2, device3, device4);
+                var instance2 = new SendProposalToApprover();
+                instance2.WhenIClickOnActionButtonAgainstTheProposalCreatedAbove();
+                instance2.ThenICanClickOnConvertToContractButtonUnderTheActionButton();
+                instance2.ThenIAmDirectedToCustomerDetailPageForMoreDataCapture();
+                instance2.ThenIAmTakenToTheProposalSummaryWhereICanEnterEnvisageContractStartDate();
+                NextPage = CurrentPage.As<DealerConvertProposalSummaryPage>().DownloadAndSaveProposalAsAContract();
+
+                if (MpsUtil.GetProposalByPassValue() != "Ticked")
+                {
+                    instance2.ThenTheNewlyConvertedContractIsAvailableUnderAwaitingApprovalTab();
+                    //CalculationEngineModule.DownloadContractPdf(CurrentDriver);
+                    instance2.ThenINavigateToProposalSummaryPageUnderAwaitingApprovalTab();
+                    //CalculationEngineModule.DownloadPageHtml(CurrentDriver, "Dealer_AwaitingApprovalSummary");
+                    CalculationEngineModule.DownloadProposalPdfOnSummaryPage(CurrentDriver);
+                }
+
+                var instance3 = new AccountManagementSteps();
+                instance3.ThenIfISignOutOfBrotherOnline();
+            }
+            else if (contractType.Equals("Purchase & Click with Service"))
+            {
+                GivenDealerHaveCreatedProposalOfOpenWithExistingCustomerWithFourDevices(country, contractType, existingcustomer, usageType, length, billing,
+                    servicePack, device1, device2, device3, device4);
+                var instance2 = new SendProposalToApprover();
+                instance2.WhenIClickOnActionButtonAgainstTheProposalCreatedAbove();
+                instance2.ThenICanClickOnConvertToContractButtonToNavigateToConvertSummaryPage();
                 instance2.ThenIAmTakenToTheProposalSummaryWhereICanEnterEnvisageContractStartDate();
                 NextPage = CurrentPage.As<DealerConvertProposalSummaryPage>().DownloadAndSaveProposalAsAContract();
 
@@ -493,6 +619,31 @@ namespace Brother.Tests.Specs.MPSTwo.CalculationEngine
             }
         }
 
+
+        public void GivenDealerHaveCreatedProposalOfOpenWithExistingCustomerWithFourDevices(string country, string contractType, string existingcustomer, string usageType, string length, string billing,
+           string servicePack, string device1, string device2, string device3, string device4)
+        {
+            var instance1 = new CreateATemplateSteps();
+            var instance4 = new CreateNewAccountSteps();
+            instance4.SetProposalByPassValue(country, contractType);
+
+            contractType = instance1.ContractType(contractType);
+
+            if (contractType.Equals("Lease & Click with Service"))
+            {
+                instance4.GivenISignIntoMpsasAFrom("Cloud MPS Dealer", country);
+                GivenIHaveCreatedLeasingAndClickProposalWithMultipleVariables(contractType, usageType, length, billing);
+                NextPage = CurrentPage.As<DealerProposalsCreateSummaryPage>().DownloadPdfAndSaveProposal();
+            }
+            else if (contractType.Equals("Purchase & Click with Service"))
+            {
+                instance4.GivenISignIntoMpsasAFrom("Cloud MPS Dealer", country);
+                GivenIHaveCreatedPurchaseAndClickProposalWithExistingCustomerWithFourDevices(contractType, existingcustomer, usageType, length, billing,
+                    servicePack, device1, device2, device3, device4);
+                NextPage = CurrentPage.As<DealerProposalsCreateSummaryPage>().DownloadPdfAndSaveProposal();
+            }
+        }
+
         public void GivenDealerHaveCreatedProposalOfOpenWithMultipleVariables(string country, string contractType, string usageType, string length, string billing,
             string device1)
         {
@@ -570,6 +721,51 @@ namespace Brother.Tests.Specs.MPSTwo.CalculationEngine
 
             WhenIDisplayDeviceScreen(device2);
             WhenIAcceptTheDefaultValuesOfTheDevice(delivery, installation);
+
+            WhenIMoveToClickPricePage();
+            if (UsageType(usageType).Equals("Minimum Volume"))
+            {
+                //CurrentPage.As<DealerProposalsCreateClickPricePage>().PayServicePackMethod(servicePack);
+                NextPage = CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateSelectedMultipleClickPrice("1000", "1000");
+            }
+            else if (UsageType(usageType).Equals("Pay As You Go"))
+            {
+                NextPage = CurrentPage.As<DealerProposalsCreateClickPricePage>().CalculateEnteredMultipleClickPrice("1000", "1000");
+            }
+        }
+
+
+
+        private void GivenIHaveCreatedPurchaseAndClickProposalWithExistingCustomerWithFourDevices(string contractType, string existingcustomer, string usageType, string length, 
+            string billing, string servicePack, string device1, string device2, string device3, string device4)
+        {
+            var instance1 = new CreateATemplateSteps();
+            contractType = instance1.ContractType(contractType);
+
+            
+            instance1.GivenIamOnMpsNewProposalPage();
+            WhenIFillProposalDescriptionForContractType(contractType);
+
+            var customerInformationStepInstance = new DealerProposalsCreateCustomerInformationStep();
+            customerInformationStepInstance.SelectASpecificExistingCustomer(existingcustomer);
+
+            var stepInstance = new DealerProposalsCreateTermAndTypeStep();
+            stepInstance.WhenIEnterUsageTypeContractLengthAndBillingOnTermAndTypeDetails
+                (usageType, length, billing);
+            stepInstance.WhenIPriceHardwareRadioButton("Tick");
+
+
+            WhenIDisplayDeviceScreen(device1);
+            WhenIAcceptTheDefaultValuesOfTheDevice();
+
+            WhenIDisplayDeviceScreen(device2);
+            WhenIAcceptTheDefaultValuesOfTheDevice();
+
+            WhenIDisplayDeviceScreen(device3);
+            WhenIAcceptTheDefaultValuesOfTheDevice();
+
+            WhenIDisplayDeviceScreen(device4);
+            WhenIAcceptTheDefaultValuesOfTheDevice();
 
             WhenIMoveToClickPricePage();
             if (UsageType(usageType).Equals("Minimum Volume"))

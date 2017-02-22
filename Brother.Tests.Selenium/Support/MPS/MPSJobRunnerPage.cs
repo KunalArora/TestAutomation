@@ -107,9 +107,41 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
                 : "CreateNewVirtualDevice probably did not run properly");
         }
 
+        public static void CreateNewVirtualDevice(string device, string number)
+        {
+            var newDevice = String.Format(CreateNewDeviceForSpecific, device, GetSavedNewDeviceSerial(), SetMultipleGuidForNewDevice(number));
+            var webSite = DevSimUrl + newDevice;
+
+            Helper.MsgOutput(String.Format("The url formed for Create New Virtual Device is {0}", webSite));
+
+            var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
+
+            WebDriver.Wait(Helper.DurationType.Second, 1);
+
+            Helper.MsgOutput(response.ToString().Equals("OK")
+                ? "CreateNewVirtualDevice job ran successfully"
+                : "CreateNewVirtualDevice probably did not run properly");
+        }
+
         public static void RegisterNewDevice()
         {
             var newDevice = String.Format(RegisterDeviceUrl, GetSavedDeviceId(), GetInstallationPin());
+            var webSite = DevSimUrl + newDevice;
+
+            Helper.MsgOutput(String.Format("The url formed for Register New Device is {0}", webSite));
+
+            var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
+
+            WebDriver.Wait(Helper.DurationType.Second, 1);
+
+            Helper.MsgOutput(response.ToString().Equals("OK")
+                ? "RegisterNewDevice job ran successfully"
+                : "RegisterNewDevice probably did not run properly");
+        }
+
+        public static void RegisterNewDevice(string number)
+        {
+            var newDevice = String.Format(RegisterDeviceUrl, GetSavedDeviceId(number), GetInstallationPin());
             var webSite = DevSimUrl + newDevice;
 
             Helper.MsgOutput(String.Format("The url formed for Register New Device is {0}", webSite));
@@ -139,6 +171,22 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
                 : "ChangeDeviceStatus probably did not run properly");
         }
 
+        public static void ChangeDeviceStatus(string number)
+        {
+            var newDevice = String.Format(StatusChangeUrl, GetSavedDeviceId(number));
+            var webSite = DevSimUrl + newDevice;
+
+            Helper.MsgOutput(String.Format("The url formed for Change Device Status is {0}", webSite));
+
+            var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
+
+            WebDriver.Wait(Helper.DurationType.Second, 1);
+
+            Helper.MsgOutput(response.ToString().Equals("OK")
+                ? "ChangeDeviceStatus job ran successfully"
+                : "ChangeDeviceStatus probably did not run properly");
+        }
+
         public static void SetSupplyStatusForNewPrinter()
         {
             const string webSite = DevSimUrl + SetSupplyUrl;
@@ -151,6 +199,27 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
                                                        "{\"name\": \"PageCount_Color\",\"value\": 900}";
 
             var json = "{\"id\": \"" + GetSavedDeviceId() + "\",\"items\": [" + deviceWithDefaultPrintCount + "]}";
+
+            //var json = "{\"id\": \"{0}\",\"items\": [{1}]}";
+            //json = String.Format(json, GetSavedDeviceId(), deviceWithDefaultPrintCount);
+
+            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Post, "application/json", json, AuthHeader);
+
+            WebDriver.Wait(Helper.DurationType.Second, 5);
+            Helper.MsgOutput("SetSupplyStatusForNewPrinter job ran successfully");
+        }
+
+        public static void SetSupplyStatusForNewPrinter(string number)
+        {
+            const string webSite = DevSimUrl + SetSupplyUrl;
+
+            Helper.MsgOutput(String.Format("The url formed for Set Supply Status is {0}", webSite));
+
+            const string deviceWithDefaultPrintCount = "{\"name\": \"PageCount\",\"value\": 1000}," +
+                                                       "{\"name\": \"PageCount_Mono\",\"value\": 100}," +
+                                                       "{\"name\": \"PageCount_Color\",\"value\": 900}";
+
+            var json = "{\"id\": \"" + GetSavedDeviceId(number) + "\",\"items\": [" + deviceWithDefaultPrintCount + "]}";
 
             //var json = "{\"id\": \"{0}\",\"items\": [{1}]}";
             //json = String.Format(json, GetSavedDeviceId(), deviceWithDefaultPrintCount);
@@ -189,10 +258,57 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             Helper.MsgOutput(String.Format("SetTonerInkStatus job for {0} ran successfully", tonerType));
         }
 
+        public static void SetTonerInkLifeStatusForNewPrinter(string tonerType, string life, string number)
+        {
+            const string webSite = DevSimUrl + SetSupplyUrl;
+
+            Helper.MsgOutput(String.Format("The url formed for Set Supply Status is {0}", webSite));
+
+            string toner;
+
+            if (tonerType == "Black" || tonerType == "Cyan" || tonerType == "Magenta" || tonerType == "Yellow")
+            {
+                toner = string.Format("TonerInk_Life_{0}", tonerType);
+            }
+            else
+            {
+                toner = tonerType;
+            }
+
+            var deviceWithDefaultPrintCount = "{\"name\": \"" + toner + "\",\"value\": \"" + life + "\"}";
+
+            var json = "{\"id\": \"" + GetSavedDeviceId(number) + "\",\"items\": [" + deviceWithDefaultPrintCount + "]}";
+
+
+            Utils.GetPageResponse(webSite, WebRequestMethods.Http.Post, "application/json", json, AuthHeader);
+
+            WebDriver.Wait(Helper.DurationType.Second, 5);
+            Helper.MsgOutput(String.Format("SetTonerInkStatus job for {0} ran successfully", tonerType));
+        }
+
+
         public static void NotifyBocOfNewChanges()
         {
-           
+
             var newDevice = String.Format(NotifyBocUrl, GetSavedDeviceId());
+            var webSite = DevSimUrl + newDevice;
+
+            Helper.MsgOutput(String.Format("The url formed for Notify BOC of New Changes is {0}", webSite));
+
+            var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
+
+            WebDriver.Wait(Helper.DurationType.Second, 1);
+
+            Helper.MsgOutput(response.ToString().Equals("OK")
+                ? "NotifyBocOfNewChanges job ran successfully"
+                : "NotifyBocOfNewChanges probably did not run properly");
+        }
+
+        
+        public static void NotifyBocOfNewChanges(string number)
+        {
+           
+            var newDevice = String.Format(NotifyBocUrl, GetSavedDeviceId(number));
             var webSite = DevSimUrl + newDevice;
 
             Helper.MsgOutput(String.Format("The url formed for Notify BOC of New Changes is {0}", webSite));
@@ -218,9 +334,30 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             return deviceId;
         }
 
+
+       private static string SetMultipleGuidForNewDevice(string number)
+       {
+           var guid = Guid.NewGuid();
+
+           var deviceIdNumber = "DeviceId" + number;
+
+           var deviceId = "babeface" + guid.ToString().Substring(8);
+           HelperClasses.SpecFlow.SetContext(deviceIdNumber, deviceId);
+
+           Helper.MsgOutput(String.Format("Device Simulators Guid set as {0} for {1}", deviceId, deviceIdNumber));
+
+           return deviceId;
+       }
+
         private static string GetSavedDeviceId()
         {
             return HelperClasses.SpecFlow.GetContext("DeviceId");
+        }
+
+        private static string GetSavedDeviceId(string number)
+        {
+            var deviceIdNumber = "DeviceId" + number;
+            return HelperClasses.SpecFlow.GetContext(deviceIdNumber);
         }
 
 
