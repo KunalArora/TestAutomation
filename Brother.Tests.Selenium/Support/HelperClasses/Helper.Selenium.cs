@@ -437,7 +437,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             
         }
 
-        public static void RetryMulyipleClodAssertion(string element, string elementToVerify, int retryCount, int timeOut)
+        public static void RetryMulyipleCloudAssertion(string element, string elementToVerify, int retryCount, int timeOut)
         {
             WebDriver.SetWebDriverImplicitTimeout(new TimeSpan(0, 0, 0, timeOut));
             var wait = new DefaultWait<IWebDriver>(TestController.CurrentDriver)
@@ -474,6 +474,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                 {
                     MsgOutput(String.Format("Element [{0}] is probabaly gone after [{1}] seconds. Retrying [{2}] times", element, wait.Timeout.Seconds, retries));
                     MsgOutput(String.Format("Exception was [{0}]", timeOutException));
+                    elementStatus = wait.Until(dr => dr.FindElements(By.CssSelector(elementToVerify))).Count == 4;
                     retries++;
                     //elementStatus = true;
                 }

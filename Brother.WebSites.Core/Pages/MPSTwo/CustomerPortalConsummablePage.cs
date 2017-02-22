@@ -116,6 +116,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             MpsJobRunnerPage.NotifyBocOfNewChanges();
         }
 
+       
+
         public void RunConsumableOrderCreationJobs()
         {
             MpsJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob();
@@ -158,7 +160,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if (CyanTonerCounter == null)
                 throw new Exception("Black toner element is not displayed");
 
-            TestCheck.AssertIsEqual("1", CyanTonerCounter.Text, "Black toner counter is not equal 1");
+            TestCheck.AssertIsEqual("1", CyanTonerCounter.Text, "Cyan toner counter is not equal 1");
         }
     }
 }

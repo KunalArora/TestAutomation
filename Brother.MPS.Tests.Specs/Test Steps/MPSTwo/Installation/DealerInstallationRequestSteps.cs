@@ -129,6 +129,19 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             CurrentPage.As<InstallerDeviceInstallationPage>().EnterSerialNumber(serial, serial1, serial2, serial3);
         }
 
+        [When(@"I enter serial numbers ""(.*)"" and ""(.*)"" and ""(.*)"" and ""(.*)"" for ""(.*)"" communication")]
+        public void WhenIEnterSerialNumbersAndAndAndForCommunication(string serial, string serial1, string serial2, string serial3, string method)
+        {
+            WhenIEnterSerialNumbersAndAndAnd(serial, serial1, serial2, serial3, method);
+        }
+
+
+        public void WhenIEnterSerialNumbersAndAndAnd(string serial, string serial1, string serial2, string serial3, string method)
+        {
+            CurrentPage.As<InstallerDeviceInstallationPage>().VerifyTimeZoneIsDisplayed(method);
+            CurrentPage.As<InstallerDeviceInstallationPage>().EnterSerialNumber(serial, serial1, serial2, serial3);
+        }
+
 
 
         [When(@"I enter device serial number for ""(.*)"" communication")]
@@ -187,6 +200,21 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
 
         }
 
+
+        [When(@"I can connect device ""(.*)"" with serials ""(.*)"" and ""(.*)"" to serials ""(.*)"" and ""(.*)"" with serials ""(.*)"" and ""(.*)"" with serials ""(.*)"" to Brother environment")]
+        public void WhenICanConnectDeviceWithSerialsAndToSerialsAndWithSerialsAndWithSerialsToBrotherEnvironment(string device1, string serial1, string device2, string serial2, 
+            string device3, string serial3, string device4, string serial4)
+        {
+            CurrentPage.As<InstallerDeviceInstallationPage>().ConnectDeviceWithBor(device1, serial1, "1");
+            CurrentPage.As<InstallerDeviceInstallationPage>().ConnectDeviceWithBor(device2, serial2, "2");
+            CurrentPage.As<InstallerDeviceInstallationPage>().ConnectDeviceWithBor(device3, serial3, "3");
+            CurrentPage.As<InstallerDeviceInstallationPage>().ConnectDeviceWithBor(device4, serial4, "4");
+            //CurrentPage.As<InstallerDeviceInstallationPage>().RefreshCloudMultipleInstallation();
+            CurrentPage.As<InstallerDeviceInstallationPage>().RefreshCloudInstallationBeforeClickingOnCompleteInstallation();
+        }
+
+
+
         [Given(@"I can connect device ""(.*)"" with serials ""(.*)"" ""(.*)"" and ""(.*)"" with serials ""(.*)"" and ""(.*)"" to Brother environment")]
         [When(@"I can connect device ""(.*)"" with serials ""(.*)"" ""(.*)"" and ""(.*)"" with serials ""(.*)"" and ""(.*)"" to Brother environment")]
         [Then(@"I can connect device ""(.*)"" with serials ""(.*)"" ""(.*)"" and ""(.*)"" with serials ""(.*)"" and ""(.*)"" to Brother environment")]
@@ -242,6 +270,24 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             NextPage = CurrentPage.As<InstallerDeviceInstallationPage>()._ReturnBackToContractAcceptedPage();
             NextPage = CurrentPage.As<DealerContractsAcceptedPage>().NavigateToManageDevicesPageToConfirmThatInstallationRequestAvailability();
             CurrentPage.As<DealerManageDevicesPage>().IsInstallationCompleted();
+        }
+
+        [Given(@"I can complete multiple devices installation")]
+        [Then(@"I can complete multiple devices installation")]
+        [When(@"I can complete multiple devices installation")]
+        public void WhenICanCompleteMultipleDevicesInstallation()
+        {
+            ThenICanCompleteMultipleDeviceInstallation();
+        }
+
+        public void ThenICanCompleteMultipleDeviceInstallation()
+        {
+            CurrentPage.As<InstallerDeviceInstallationPage>().CompleteDeviceConnection();
+            CurrentPage.As<InstallerDeviceInstallationPage>().ConfirmInstallationSucceed("1", "2", "3", "4");
+            CurrentPage.As<InstallerDeviceInstallationPage>().ConfirmCompleteMessageIsDisplayed();
+            NextPage = CurrentPage.As<InstallerDeviceInstallationPage>()._ReturnBackToContractAcceptedPage();
+            NextPage = CurrentPage.As<DealerContractsAcceptedPage>().NavigateToManageDevicesPageToConfirmThatInstallationRequestAvailability();
+            CurrentPage.As<DealerManageDevicesPage>().IsInstallationCompleted("1", "2", "3", "4");
         }
 
         [Then(@"I can reset the installation done above")]

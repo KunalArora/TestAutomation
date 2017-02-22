@@ -29,6 +29,19 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         }
 
 
+        [Then(@"I navigate to consumable ordering page for multiple devices")]
+        [Given(@"I navigate to consumable ordering page for multiple devices")]
+        [When(@"I navigate to consumable ordering page for multiple devices")]
+        public void WhenINavigateToConsumableOrderingPageForMultipleDevices()
+        {
+            NextPage = CurrentPage.As<CustomerPortalDashboardPage>().NavigateToCustomerConsummablePage();
+            CurrentPage.As<CustomerPortalConsummablePage>().IsConsumableScreenDisplayed();
+           // CurrentPage.As<CustomerPortalConsummablePage>().RemoveExistingConsumableOrderBySerialNumber();
+            //CurrentPage.As<CustomerPortalConsummablePage>().IsCorrectDeviceSerialNumberDisplayed();
+            NextPage = CurrentPage.As<CustomerPortalConsummablePage>().NavigateToConsumableExistingOrderListPage();
+        }
+
+
         [Given(@"I navigate to consumable ordering page for ""(.*)""")]
         [When(@"I navigate to consumable ordering page for ""(.*)""")]
         public void WhenINavigateToConsumableOrderingPageFor(string serialNumber)
@@ -133,6 +146,19 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         {
             CurrentPage.As<CustomerPortalConsummablePage>().ChangeTonerInkStatus(toner);
             CurrentPage.As<CustomerPortalConsummablePage>().RunConsumableOrderCreationJobs();
+        }
+
+        [When(@"I create a consumable order for ink life status for ""(.*)"" and ""(.*)"" and ""(.*)""")]
+        public void WhenICreateAConsumableOrderForInkLifeStatusForAndAnd(string toner, string life, string number)
+        {
+            WhenICreateAConsumableOrderForLifeStatus(toner, life, number);
+        }
+
+
+        public void WhenICreateAConsumableOrderForLifeStatus(string toner, string life, string number)
+        {
+            CurrentPage.As<ConsumableExistingOrderListPage>().ChangeInkLifeStatus(toner, life, number);
+            CurrentPage.As<ConsumableExistingOrderListPage>().RunConsumableOrderCreationJobs();
         }
 
 

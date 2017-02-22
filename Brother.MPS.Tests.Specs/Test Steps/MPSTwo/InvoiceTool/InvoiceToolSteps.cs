@@ -8,6 +8,8 @@ namespace Brother.Tests.Specs.MPSTwo.InvoiceTool
     [Binding]
     public class InvoiceToolSpteps : BaseSteps
     {
+        [Given(@"I navigate to the Invoice tool homepage")]
+        [When(@"I navigate to the Invoice tool homepage")]
         [Then(@"I navigate to the Invoice tool homepage")]
         public void ThenINavigateToTheInvoiceToolHomepage()
         {
@@ -15,6 +17,8 @@ namespace Brother.Tests.Specs.MPSTwo.InvoiceTool
             CurrentPage.As<InvoiceToolsPage>().IsInvoiceToolPageDisplayed();
         }
 
+        [When(@"I select ""(.*)"" of interest")]
+        [Given(@"I select ""(.*)"" of interest")]
         [Then(@"I select ""(.*)"" of interest")]
         public void ThenISelectOfInterest(string country)
         {
@@ -63,6 +67,8 @@ namespace Brother.Tests.Specs.MPSTwo.InvoiceTool
 
         }
 
+        [Given(@"I enter ""(.*)"" mono and ""(.*)"" colour print count")]
+        [When(@"I enter ""(.*)"" mono and ""(.*)"" colour print count")]
         [Then(@"I enter ""(.*)"" mono and ""(.*)"" colour print count")]
         public void ThenIEnterMonoAndColourPrintCount(int mono, int colour)
         {
@@ -152,8 +158,8 @@ namespace Brother.Tests.Specs.MPSTwo.InvoiceTool
 
         }
 
-
-        
+        [Given(@"I generate invoices for the contract above")]
+        [When(@"I generate invoices for the contract above")]
         [Then(@"I generate invoices for the contract above")]
         public void ThenIGenerateInvoicesForTheContractAbove()
         {

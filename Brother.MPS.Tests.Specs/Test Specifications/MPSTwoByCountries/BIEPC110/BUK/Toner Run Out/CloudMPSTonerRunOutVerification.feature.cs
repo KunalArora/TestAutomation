@@ -125,7 +125,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 30
  testRunner.Then("The values entered are displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 31
- testRunner.And("I can also the details added", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I can also see the details added", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -276,16 +276,776 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EUM - Printers Auto Consumable Order")]
-        [NUnit.Framework.IgnoreAttribute()]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Pay As You Go", "Cloud MPS Dealer", "Email", "4 years", "Quarterly in Arrears", "DCP-9020CDW", "MFC-L5750DW", "MFC-L8650CDW", "MFC-J6930DW", "A1T010386", "A1T010387", "A1T010388", "A1T010389", "Cloud MPS BIE Admin", null)]
-        public virtual void EUM_PrintersAutoConsumableOrder(
+        [NUnit.Framework.DescriptionAttribute("EUM - Engine Threshold Enabled Contract Disabled And Toner Life Equal Engine Thre" +
+            "shold")]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Pay As You Go", "Mckenzie20170215041634@mailinator.com", "Cloud MPS Dealer", "Cloud", "BOR", "4 years", "Quarterly in Arrears", "DCP-9020CDW", "DCP-L8400CDN", "MFC-L2700DW", "HL-L6250DN", "A1T010536", "A1T010537", "A1T010538", "A1T010539", "Cloud MPS BIE Admin", "20", null)]
+        public virtual void EUM_EngineThresholdEnabledContractDisabledAndTonerLifeEqualEngineThreshold(
                     string role, 
                     string country, 
                     string contractType, 
                     string usageType, 
+                    string existingCustomer, 
                     string role1, 
                     string method, 
+                    string type, 
+                    string length, 
+                    string billing, 
+                    string device1, 
+                    string device2, 
+                    string device3, 
+                    string device4, 
+                    string serialNumber, 
+                    string serialNumber1, 
+                    string serialNumber2, 
+                    string serialNumber3, 
+                    string role2, 
+                    string threshold, 
+                    string[] exampleTags)
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EUM - Engine Threshold Enabled Contract Disabled And Toner Life Equal Engine Thre" +
+                    "shold", exampleTags);
+#line 110
+this.ScenarioSetup(scenarioInfo);
+#line 111
+ testRunner.Given(string.Format("\"{0}\" Dealer has created \"{1}\" contract with Existing Customer \"{2}\" with the fol" +
+                        "lowing \"{3}\" and \"{4}\" and \"{5}\" and \"{6}\" and \"{7}\" and \"{8}\" and \"{9}\"", country, contractType, existingCustomer, usageType, length, billing, device1, device2, device3, device4), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 112
+ testRunner.And(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 113
+ testRunner.And("the contract created above is approved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 114
+ testRunner.And(string.Format("I sign back into Cloud MPS as a \"{0}\" from \"{1}\"", role1, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 115
+ testRunner.And(string.Format("I generate installation request for the contract with \"{0}\" communication and \"{1" +
+                        "}\" installation", method, type), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 116
+ testRunner.And("I extract the installer url from Installation Request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 117
+ testRunner.When("I navigate to the installer page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 118
+ testRunner.And("I enter the contract reference number", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 119
+ testRunner.And(string.Format("I enter serial numbers \"{0}\" and \"{1}\" and \"{2}\" and \"{3}\" for \"{4}\" communicatio" +
+                        "n", serialNumber, serialNumber1, serialNumber2, serialNumber3, type), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 120
+ testRunner.And("I enter the device IP address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 121
+ testRunner.And(string.Format("I can connect device \"{0}\" with serials \"{1}\" and \"{2}\" to serials \"{3}\" and \"{4}" +
+                        "\" with serials \"{5}\" and \"{6}\" with serials \"{7}\" to Brother environment", device1, serialNumber, device2, serialNumber1, device3, serialNumber2, device4, serialNumber3), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 122
+ testRunner.And("I can complete multiple devices installation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 123
+ testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 124
+ testRunner.And(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role2, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 125
+ testRunner.And("I navigate to Enhanced Usage Monitoring Installed Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 126
+ testRunner.And("I navigate to Enhanced Usage Monitoring Printer Engine Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 127
+ testRunner.And(string.Format("I select \"{0}\" as country of interest", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 128
+ testRunner.And(string.Format("I enable the mono threshold \"{0}\"", threshold), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 129
+ testRunner.And(string.Format("I enable the colour threshold \"{0}\"", threshold), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 130
+ testRunner.And("I save the changes made above", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 131
+ testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 132
+ testRunner.And(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", existingCustomer, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 133
+ testRunner.And("I navigate to customer dashboard page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 134
+ testRunner.And("I navigate to consumable ordering page for multiple devices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 135
+ testRunner.And("I create a consumable order for ink life status for \"Cyan\" and \"20\" and \"1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 136
+ testRunner.And("I create a consumable order for ink life status for \"Black\" and \"20\" and \"1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 137
+ testRunner.And("I create a consumable order for ink life status for \"Magenta\" and \"20\" and \"1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 138
+ testRunner.And("I create a consumable order for ink life status for \"Yellow\" and \"20\" and \"1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 139
+ testRunner.And("I create a consumable order for ink life status for \"Cyan\" and \"20\" and \"2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 140
+ testRunner.And("I create a consumable order for ink life status for \"Black\" and \"20\" and \"2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 141
+ testRunner.And("I create a consumable order for ink life status for \"Magenta\" and \"20\" and \"2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 142
+ testRunner.And("I create a consumable order for ink life status for \"Yellow\" and \"20\" and \"2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 143
+ testRunner.And("I create a consumable order for ink life status for \"Cyan\" and \"20\" and \"3\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 144
+ testRunner.And("I create a consumable order for ink life status for \"Black\" and \"20\" and \"3\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 145
+ testRunner.And("I create a consumable order for ink life status for \"Magenta\" and \"20\" and \"3\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 146
+ testRunner.And("I create a consumable order for ink life status for \"Yellow\" and \"20\" and \"3\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 147
+ testRunner.And("I create a consumable order for ink life status for \"Cyan\" and \"20\" and \"4\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 148
+ testRunner.And("I create a consumable order for ink life status for \"Black\" and \"20\" and \"4\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 149
+ testRunner.And("I create a consumable order for ink life status for \"Magenta\" and \"20\" and \"4\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 150
+ testRunner.And("I create a consumable order for ink life status for \"Yellow\" and \"20\" and \"4\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 151
+ testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("EUM - Engine Threshold Enabled Contract Disabled And Toner Life Less Than Engine " +
+            "Threshold")]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Pay As You Go", "Shane2017022234445@mailinator.com", "Cloud MPS Dealer", "Cloud", "BOR", "4 years", "Quarterly in Arrears", "DCP-9020CDW", "DCP-L8400CDN", "MFC-L2700DW", "HL-L6250DN", "A1T010552", "A1T010553", "A1T010554", "A1T010555", "Cloud MPS BIE Admin", "20", null)]
+        public virtual void EUM_EngineThresholdEnabledContractDisabledAndTonerLifeLessThanEngineThreshold(
+                    string role, 
+                    string country, 
+                    string contractType, 
+                    string usageType, 
+                    string existingCustomer, 
+                    string role1, 
+                    string method, 
+                    string type, 
+                    string length, 
+                    string billing, 
+                    string device1, 
+                    string device2, 
+                    string device3, 
+                    string device4, 
+                    string serialNumber, 
+                    string serialNumber1, 
+                    string serialNumber2, 
+                    string serialNumber3, 
+                    string role2, 
+                    string threshold, 
+                    string[] exampleTags)
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EUM - Engine Threshold Enabled Contract Disabled And Toner Life Less Than Engine " +
+                    "Threshold", exampleTags);
+#line 158
+this.ScenarioSetup(scenarioInfo);
+#line 159
+ testRunner.Given(string.Format("\"{0}\" Dealer has created \"{1}\" contract with Existing Customer \"{2}\" with the fol" +
+                        "lowing \"{3}\" and \"{4}\" and \"{5}\" and \"{6}\" and \"{7}\" and \"{8}\" and \"{9}\"", country, contractType, existingCustomer, usageType, length, billing, device1, device2, device3, device4), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 160
+ testRunner.And(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 161
+ testRunner.And("the contract created above is approved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 162
+ testRunner.And(string.Format("I sign back into Cloud MPS as a \"{0}\" from \"{1}\"", role1, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 163
+ testRunner.And(string.Format("I generate installation request for the contract with \"{0}\" communication and \"{1" +
+                        "}\" installation", method, type), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 164
+ testRunner.And("I extract the installer url from Installation Request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 165
+ testRunner.When("I navigate to the installer page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 166
+ testRunner.And("I enter the contract reference number", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 167
+ testRunner.And(string.Format("I enter serial numbers \"{0}\" and \"{1}\" and \"{2}\" and \"{3}\" for \"{4}\" communicatio" +
+                        "n", serialNumber, serialNumber1, serialNumber2, serialNumber3, type), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 168
+ testRunner.And("I enter the device IP address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 169
+ testRunner.And(string.Format("I can connect device \"{0}\" with serials \"{1}\" and \"{2}\" to serials \"{3}\" and \"{4}" +
+                        "\" with serials \"{5}\" and \"{6}\" with serials \"{7}\" to Brother environment", device1, serialNumber, device2, serialNumber1, device3, serialNumber2, device4, serialNumber3), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 170
+ testRunner.And("I can complete multiple devices installation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 171
+ testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 172
+ testRunner.And(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role2, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 173
+ testRunner.And("I navigate to Enhanced Usage Monitoring Installed Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 174
+ testRunner.And("I navigate to Enhanced Usage Monitoring Printer Engine Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 175
+ testRunner.And(string.Format("I select \"{0}\" as country of interest", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 176
+ testRunner.And(string.Format("I enable the mono threshold \"{0}\"", threshold), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 177
+ testRunner.And(string.Format("I enable the colour threshold \"{0}\"", threshold), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 178
+ testRunner.And("I save the changes made above", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 179
+ testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 180
+ testRunner.And(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", existingCustomer, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 181
+ testRunner.And("I navigate to customer dashboard page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 182
+ testRunner.And("I navigate to consumable ordering page for multiple devices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 183
+ testRunner.And("I create a consumable order for ink life status for \"Cyan\" and \"19\" and \"1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 184
+ testRunner.And("I create a consumable order for ink life status for \"Black\" and \"19\" and \"1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 185
+ testRunner.And("I create a consumable order for ink life status for \"Magenta\" and \"19\" and \"1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 186
+ testRunner.And("I create a consumable order for ink life status for \"Yellow\" and \"19\" and \"1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 187
+ testRunner.And("I create a consumable order for ink life status for \"Cyan\" and \"19\" and \"2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 188
+ testRunner.And("I create a consumable order for ink life status for \"Black\" and \"19\" and \"2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 189
+ testRunner.And("I create a consumable order for ink life status for \"Magenta\" and \"19\" and \"2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 190
+ testRunner.And("I create a consumable order for ink life status for \"Yellow\" and \"19\" and \"2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 191
+ testRunner.And("I create a consumable order for ink life status for \"Cyan\" and \"19\" and \"3\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 192
+ testRunner.And("I create a consumable order for ink life status for \"Black\" and \"19\" and \"3\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 193
+ testRunner.And("I create a consumable order for ink life status for \"Magenta\" and \"19\" and \"3\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 194
+ testRunner.And("I create a consumable order for ink life status for \"Yellow\" and \"19\" and \"3\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 195
+ testRunner.And("I create a consumable order for ink life status for \"Cyan\" and \"19\" and \"4\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 196
+ testRunner.And("I create a consumable order for ink life status for \"Black\" and \"19\" and \"4\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 197
+ testRunner.And("I create a consumable order for ink life status for \"Magenta\" and \"19\" and \"4\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 198
+ testRunner.And("I create a consumable order for ink life status for \"Yellow\" and \"19\" and \"4\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 199
+ testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("EUM - Engine Threshold Enabled Contract Enabled And Toner Life Equal Engine Thres" +
+            "hold")]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Pay As You Go", "Bradon2017022013800@mailinator.com", "Cloud MPS Dealer", "Cloud", "BOR", "4 years", "Quarterly in Arrears", "DCP-9020CDW", "DCP-L8400CDN", "MFC-L2700DW", "HL-L6250DN", "A1T010556", "A1T010557", "A1T010558", "A1T010559", "Cloud MPS BIE Admin", "20", null)]
+        public virtual void EUM_EngineThresholdEnabledContractEnabledAndTonerLifeEqualEngineThreshold(
+                    string role, 
+                    string country, 
+                    string contractType, 
+                    string usageType, 
+                    string existingCustomer, 
+                    string role1, 
+                    string method, 
+                    string type, 
+                    string length, 
+                    string billing, 
+                    string device1, 
+                    string device2, 
+                    string device3, 
+                    string device4, 
+                    string serialNumber, 
+                    string serialNumber1, 
+                    string serialNumber2, 
+                    string serialNumber3, 
+                    string role2, 
+                    string threshold, 
+                    string[] exampleTags)
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EUM - Engine Threshold Enabled Contract Enabled And Toner Life Equal Engine Thres" +
+                    "hold", exampleTags);
+#line 206
+this.ScenarioSetup(scenarioInfo);
+#line 207
+ testRunner.Given(string.Format("\"{0}\" Dealer has created \"{1}\" contract with Existing Customer \"{2}\" with the fol" +
+                        "lowing \"{3}\" and \"{4}\" and \"{5}\" and \"{6}\" and \"{7}\" and \"{8}\" and \"{9}\"", country, contractType, existingCustomer, usageType, length, billing, device1, device2, device3, device4), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 208
+ testRunner.And(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 209
+ testRunner.And("the contract created above is approved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 210
+ testRunner.And(string.Format("I sign back into Cloud MPS as a \"{0}\" from \"{1}\"", role1, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 211
+ testRunner.And(string.Format("I generate installation request for the contract with \"{0}\" communication and \"{1" +
+                        "}\" installation", method, type), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 212
+ testRunner.And("I extract the installer url from Installation Request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 213
+ testRunner.When("I navigate to the installer page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 214
+ testRunner.And("I enter the contract reference number", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 215
+ testRunner.And(string.Format("I enter serial numbers \"{0}\" and \"{1}\" and \"{2}\" and \"{3}\" for \"{4}\" communicatio" +
+                        "n", serialNumber, serialNumber1, serialNumber2, serialNumber3, type), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 216
+ testRunner.And("I enter the device IP address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 217
+ testRunner.And(string.Format("I can connect device \"{0}\" with serials \"{1}\" and \"{2}\" to serials \"{3}\" and \"{4}" +
+                        "\" with serials \"{5}\" and \"{6}\" with serials \"{7}\" to Brother environment", device1, serialNumber, device2, serialNumber1, device3, serialNumber2, device4, serialNumber3), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 218
+ testRunner.And("I can complete multiple devices installation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 219
+ testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 220
+ testRunner.And(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role2, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 221
+ testRunner.And("I navigate to Enhanced Usage Monitoring Installed Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 222
+ testRunner.And("I navigate to Enhanced Usage Monitoring Printer Engine Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 223
+ testRunner.And(string.Format("I select \"{0}\" as country of interest", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 224
+ testRunner.And(string.Format("I enable the mono threshold \"{0}\"", threshold), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 225
+ testRunner.And(string.Format("I enable the colour threshold \"{0}\"", threshold), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 226
+ testRunner.And("I save the changes made above", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 227
+ testRunner.And("I navigate to installed printer page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 228
+ testRunner.And("I search for contract using contract id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 229
+ testRunner.And("I enter toner ink threshold of \"15\" for all the printers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 230
+ testRunner.And("I enable the threshold for all the printers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 231
+ testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 232
+ testRunner.And(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", existingCustomer, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 233
+ testRunner.And("I navigate to customer dashboard page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 234
+ testRunner.And("I navigate to consumable ordering page for multiple devices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 235
+ testRunner.And("I create a consumable order for ink life status for \"Cyan\" and \"20\" and \"1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 236
+ testRunner.And("I create a consumable order for ink life status for \"Black\" and \"20\" and \"1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 237
+ testRunner.And("I create a consumable order for ink life status for \"Magenta\" and \"20\" and \"1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 238
+ testRunner.And("I create a consumable order for ink life status for \"Yellow\" and \"20\" and \"1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 239
+ testRunner.And("I create a consumable order for ink life status for \"Cyan\" and \"20\" and \"2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 240
+ testRunner.And("I create a consumable order for ink life status for \"Black\" and \"20\" and \"2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 241
+ testRunner.And("I create a consumable order for ink life status for \"Magenta\" and \"20\" and \"2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 242
+ testRunner.And("I create a consumable order for ink life status for \"Yellow\" and \"20\" and \"2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 243
+ testRunner.And("I create a consumable order for ink life status for \"Cyan\" and \"20\" and \"3\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 244
+ testRunner.And("I create a consumable order for ink life status for \"Black\" and \"20\" and \"3\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 245
+ testRunner.And("I create a consumable order for ink life status for \"Magenta\" and \"20\" and \"3\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 246
+ testRunner.And("I create a consumable order for ink life status for \"Yellow\" and \"20\" and \"3\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 247
+ testRunner.And("I create a consumable order for ink life status for \"Cyan\" and \"20\" and \"4\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 248
+ testRunner.And("I create a consumable order for ink life status for \"Black\" and \"20\" and \"4\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 249
+ testRunner.And("I create a consumable order for ink life status for \"Magenta\" and \"20\" and \"4\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 250
+ testRunner.And("I create a consumable order for ink life status for \"Yellow\" and \"20\" and \"4\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 251
+ testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("EUM - Engine Threshold Enabled Contract Enabled And Toner Life Less Than Engine T" +
+            "hreshold")]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Pay As You Go", "Lonna2017022011628@mailinator.com", "Cloud MPS Dealer", "Cloud", "BOR", "4 years", "Quarterly in Arrears", "DCP-9020CDW", "DCP-L8400CDN", "MFC-L2700DW", "HL-L6250DN", "A1T010548", "A1T010549", "A1T010550", "A1T010551", "Cloud MPS BIE Admin", "20", null)]
+        public virtual void EUM_EngineThresholdEnabledContractEnabledAndTonerLifeLessThanEngineThreshold(
+                    string role, 
+                    string country, 
+                    string contractType, 
+                    string usageType, 
+                    string existingCustomer, 
+                    string role1, 
+                    string method, 
+                    string type, 
+                    string length, 
+                    string billing, 
+                    string device1, 
+                    string device2, 
+                    string device3, 
+                    string device4, 
+                    string serialNumber, 
+                    string serialNumber1, 
+                    string serialNumber2, 
+                    string serialNumber3, 
+                    string role2, 
+                    string threshold, 
+                    string[] exampleTags)
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EUM - Engine Threshold Enabled Contract Enabled And Toner Life Less Than Engine T" +
+                    "hreshold", exampleTags);
+#line 260
+this.ScenarioSetup(scenarioInfo);
+#line 261
+ testRunner.Given(string.Format("\"{0}\" Dealer has created \"{1}\" contract with Existing Customer \"{2}\" with the fol" +
+                        "lowing \"{3}\" and \"{4}\" and \"{5}\" and \"{6}\" and \"{7}\" and \"{8}\" and \"{9}\"", country, contractType, existingCustomer, usageType, length, billing, device1, device2, device3, device4), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 262
+ testRunner.And(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 263
+ testRunner.And("the contract created above is approved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 264
+ testRunner.And(string.Format("I sign back into Cloud MPS as a \"{0}\" from \"{1}\"", role1, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 265
+ testRunner.And(string.Format("I generate installation request for the contract with \"{0}\" communication and \"{1" +
+                        "}\" installation", method, type), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 266
+ testRunner.And("I extract the installer url from Installation Request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 267
+ testRunner.When("I navigate to the installer page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 268
+ testRunner.And("I enter the contract reference number", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 269
+ testRunner.And(string.Format("I enter serial numbers \"{0}\" and \"{1}\" and \"{2}\" and \"{3}\" for \"{4}\" communicatio" +
+                        "n", serialNumber, serialNumber1, serialNumber2, serialNumber3, type), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 270
+ testRunner.And("I enter the device IP address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 271
+ testRunner.And(string.Format("I can connect device \"{0}\" with serials \"{1}\" and \"{2}\" to serials \"{3}\" and \"{4}" +
+                        "\" with serials \"{5}\" and \"{6}\" with serials \"{7}\" to Brother environment", device1, serialNumber, device2, serialNumber1, device3, serialNumber2, device4, serialNumber3), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 272
+ testRunner.And("I can complete multiple devices installation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 273
+ testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 274
+ testRunner.And(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role2, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 275
+ testRunner.And("I navigate to Enhanced Usage Monitoring Installed Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 276
+ testRunner.And("I navigate to Enhanced Usage Monitoring Printer Engine Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 277
+ testRunner.And(string.Format("I select \"{0}\" as country of interest", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 278
+ testRunner.And(string.Format("I enable the mono threshold \"{0}\"", threshold), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 279
+ testRunner.And(string.Format("I enable the colour threshold \"{0}\"", threshold), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 280
+ testRunner.And("I save the changes made above", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 281
+ testRunner.And("I navigate to installed printer page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 282
+ testRunner.And("I search for contract using contract id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 283
+ testRunner.And("I enter toner ink threshold of \"15\" for all the printers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 284
+ testRunner.And("I enable the threshold for all the printers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 285
+ testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 286
+ testRunner.And(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", existingCustomer, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 287
+ testRunner.And("I navigate to customer dashboard page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 288
+ testRunner.And("I navigate to consumable ordering page for multiple devices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 289
+ testRunner.And("I create a consumable order for ink life status for \"Cyan\" and \"17\" and \"1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 290
+ testRunner.And("I create a consumable order for ink life status for \"Black\" and \"17\" and \"1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 291
+ testRunner.And("I create a consumable order for ink life status for \"Magenta\" and \"17\" and \"1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 292
+ testRunner.And("I create a consumable order for ink life status for \"Yellow\" and \"17\" and \"1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 293
+ testRunner.And("I create a consumable order for ink life status for \"Cyan\" and \"17\" and \"2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 294
+ testRunner.And("I create a consumable order for ink life status for \"Black\" and \"17\" and \"2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 295
+ testRunner.And("I create a consumable order for ink life status for \"Magenta\" and \"17\" and \"2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 296
+ testRunner.And("I create a consumable order for ink life status for \"Yellow\" and \"17\" and \"2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 297
+ testRunner.And("I create a consumable order for ink life status for \"Cyan\" and \"17\" and \"3\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 298
+ testRunner.And("I create a consumable order for ink life status for \"Black\" and \"17\" and \"3\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 299
+ testRunner.And("I create a consumable order for ink life status for \"Magenta\" and \"17\" and \"3\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 300
+ testRunner.And("I create a consumable order for ink life status for \"Yellow\" and \"17\" and \"3\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 301
+ testRunner.And("I create a consumable order for ink life status for \"Cyan\" and \"17\" and \"4\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 302
+ testRunner.And("I create a consumable order for ink life status for \"Black\" and \"17\" and \"4\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 303
+ testRunner.And("I create a consumable order for ink life status for \"Magenta\" and \"17\" and \"4\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 304
+ testRunner.And("I create a consumable order for ink life status for \"Yellow\" and \"17\" and \"4\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 305
+ testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("EUM - Engine Threshold Enabled Contract Enabled And Toner Life Equal Contract Thr" +
+            "eshold")]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Pay As You Go", "Jeffie2017022014524@mailinator.com", "Cloud MPS Dealer", "Cloud", "BOR", "4 years", "Quarterly in Arrears", "DCP-9020CDW", "DCP-L8400CDN", "MFC-L2700DW", "HL-L6250DN", "A1T010544", "A1T010545", "A1T010546", "A1T010547", "Cloud MPS BIE Admin", "20", null)]
+        public virtual void EUM_EngineThresholdEnabledContractEnabledAndTonerLifeEqualContractThreshold(
+                    string role, 
+                    string country, 
+                    string contractType, 
+                    string usageType, 
+                    string existingCustomer, 
+                    string role1, 
+                    string method, 
+                    string type, 
+                    string length, 
+                    string billing, 
+                    string device1, 
+                    string device2, 
+                    string device3, 
+                    string device4, 
+                    string serialNumber, 
+                    string serialNumber1, 
+                    string serialNumber2, 
+                    string serialNumber3, 
+                    string role2, 
+                    string threshold, 
+                    string[] exampleTags)
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EUM - Engine Threshold Enabled Contract Enabled And Toner Life Equal Contract Thr" +
+                    "eshold", exampleTags);
+#line 313
+this.ScenarioSetup(scenarioInfo);
+#line 314
+ testRunner.Given(string.Format("\"{0}\" Dealer has created \"{1}\" contract with Existing Customer \"{2}\" with the fol" +
+                        "lowing \"{3}\" and \"{4}\" and \"{5}\" and \"{6}\" and \"{7}\" and \"{8}\" and \"{9}\"", country, contractType, existingCustomer, usageType, length, billing, device1, device2, device3, device4), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 315
+ testRunner.And(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 316
+ testRunner.And("the contract created above is approved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 317
+ testRunner.And(string.Format("I sign back into Cloud MPS as a \"{0}\" from \"{1}\"", role1, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 318
+ testRunner.And(string.Format("I generate installation request for the contract with \"{0}\" communication and \"{1" +
+                        "}\" installation", method, type), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 319
+ testRunner.And("I extract the installer url from Installation Request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 320
+ testRunner.When("I navigate to the installer page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 321
+ testRunner.And("I enter the contract reference number", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 322
+ testRunner.And(string.Format("I enter serial numbers \"{0}\" and \"{1}\" and \"{2}\" and \"{3}\" for \"{4}\" communicatio" +
+                        "n", serialNumber, serialNumber1, serialNumber2, serialNumber3, type), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 323
+ testRunner.And("I enter the device IP address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 324
+ testRunner.And(string.Format("I can connect device \"{0}\" with serials \"{1}\" and \"{2}\" to serials \"{3}\" and \"{4}" +
+                        "\" with serials \"{5}\" and \"{6}\" with serials \"{7}\" to Brother environment", device1, serialNumber, device2, serialNumber1, device3, serialNumber2, device4, serialNumber3), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 325
+ testRunner.And("I can complete multiple devices installation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 326
+ testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 327
+ testRunner.And(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role2, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 328
+ testRunner.And("I navigate to Enhanced Usage Monitoring Installed Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 329
+ testRunner.And("I navigate to Enhanced Usage Monitoring Printer Engine Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 330
+ testRunner.And(string.Format("I select \"{0}\" as country of interest", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 331
+ testRunner.And(string.Format("I enable the mono threshold \"{0}\"", threshold), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 332
+ testRunner.And(string.Format("I enable the colour threshold \"{0}\"", threshold), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 333
+ testRunner.And("I save the changes made above", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 334
+ testRunner.And("I navigate to installed printer page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 335
+ testRunner.And("I search for contract using contract id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 336
+ testRunner.And("I enter toner ink threshold of \"15\" for all the printers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 337
+ testRunner.And("I enable the threshold for all the printers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 338
+ testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 339
+ testRunner.And(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", existingCustomer, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 340
+ testRunner.And("I navigate to customer dashboard page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 341
+ testRunner.And("I navigate to consumable ordering page for multiple devices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 342
+ testRunner.And("I create a consumable order for ink life status for \"Cyan\" and \"15\" and \"1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 343
+ testRunner.And("I create a consumable order for ink life status for \"Black\" and \"15\" and \"1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 344
+ testRunner.And("I create a consumable order for ink life status for \"Magenta\" and \"15\" and \"1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 345
+ testRunner.And("I create a consumable order for ink life status for \"Yellow\" and \"15\" and \"1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 346
+ testRunner.And("I create a consumable order for ink life status for \"Cyan\" and \"15\" and \"2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 347
+ testRunner.And("I create a consumable order for ink life status for \"Black\" and \"15\" and \"2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 348
+ testRunner.And("I create a consumable order for ink life status for \"Magenta\" and \"15\" and \"2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 349
+ testRunner.And("I create a consumable order for ink life status for \"Yellow\" and \"15\" and \"2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 350
+ testRunner.And("I create a consumable order for ink life status for \"Cyan\" and \"15\" and \"3\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 351
+ testRunner.And("I create a consumable order for ink life status for \"Black\" and \"15\" and \"3\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 352
+ testRunner.And("I create a consumable order for ink life status for \"Magenta\" and \"15\" and \"3\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 353
+ testRunner.And("I create a consumable order for ink life status for \"Yellow\" and \"15\" and \"3\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 354
+ testRunner.And("I create a consumable order for ink life status for \"Cyan\" and \"15\" and \"4\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 355
+ testRunner.And("I create a consumable order for ink life status for \"Black\" and \"15\" and \"4\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 356
+ testRunner.And("I create a consumable order for ink life status for \"Magenta\" and \"15\" and \"4\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 357
+ testRunner.And("I create a consumable order for ink life status for \"Yellow\" and \"15\" and \"4\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 358
+ testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("EUM - Engine Threshold Enabled Contract Enabled And Toner Life Less Than Contract" +
+            " Threshold")]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Pay As You Go", "Jeffie20170216085642@mailinator.com", "Cloud MPS Dealer", "Cloud", "BOR", "4 years", "Quarterly in Arrears", "DCP-9020CDW", "DCP-L8400CDN", "MFC-L2700DW", "HL-L6250DN", "A1T010540", "A1T010541", "A1T010542", "A1T010543", "Cloud MPS BIE Admin", "20", null)]
+        public virtual void EUM_EngineThresholdEnabledContractEnabledAndTonerLifeLessThanContractThreshold(
+                    string role, 
+                    string country, 
+                    string contractType, 
+                    string usageType, 
+                    string existingCustomer, 
+                    string role1, 
+                    string method, 
+                    string type, 
+                    string length, 
+                    string billing, 
+                    string device1, 
+                    string device2, 
+                    string device3, 
+                    string device4, 
+                    string serialNumber, 
+                    string serialNumber1, 
+                    string serialNumber2, 
+                    string serialNumber3, 
+                    string role2, 
+                    string threshold, 
+                    string[] exampleTags)
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EUM - Engine Threshold Enabled Contract Enabled And Toner Life Less Than Contract" +
+                    " Threshold", exampleTags);
+#line 365
+this.ScenarioSetup(scenarioInfo);
+#line 366
+ testRunner.Given(string.Format("\"{0}\" Dealer has created \"{1}\" contract with Existing Customer \"{2}\" with the fol" +
+                        "lowing \"{3}\" and \"{4}\" and \"{5}\" and \"{6}\" and \"{7}\" and \"{8}\" and \"{9}\"", country, contractType, existingCustomer, usageType, length, billing, device1, device2, device3, device4), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 367
+ testRunner.And(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 368
+ testRunner.And("the contract created above is approved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 369
+ testRunner.And(string.Format("I sign back into Cloud MPS as a \"{0}\" from \"{1}\"", role1, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 370
+ testRunner.And(string.Format("I generate installation request for the contract with \"{0}\" communication and \"{1" +
+                        "}\" installation", method, type), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 371
+ testRunner.And("I extract the installer url from Installation Request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 372
+ testRunner.When("I navigate to the installer page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 373
+ testRunner.And("I enter the contract reference number", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 374
+ testRunner.And(string.Format("I enter serial numbers \"{0}\" and \"{1}\" and \"{2}\" and \"{3}\" for \"{4}\" communicatio" +
+                        "n", serialNumber, serialNumber1, serialNumber2, serialNumber3, type), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 375
+ testRunner.And("I enter the device IP address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 376
+ testRunner.And(string.Format("I can connect device \"{0}\" with serials \"{1}\" and \"{2}\" to serials \"{3}\" and \"{4}" +
+                        "\" with serials \"{5}\" and \"{6}\" with serials \"{7}\" to Brother environment", device1, serialNumber, device2, serialNumber1, device3, serialNumber2, device4, serialNumber3), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 377
+ testRunner.And("I can complete multiple devices installation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 378
+ testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 379
+ testRunner.And(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role2, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 380
+ testRunner.And("I navigate to Enhanced Usage Monitoring Installed Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 381
+ testRunner.And("I navigate to Enhanced Usage Monitoring Printer Engine Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 382
+ testRunner.And(string.Format("I select \"{0}\" as country of interest", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 383
+ testRunner.And(string.Format("I enable the mono threshold \"{0}\"", threshold), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 384
+ testRunner.And(string.Format("I enable the colour threshold \"{0}\"", threshold), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 385
+ testRunner.And("I save the changes made above", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 386
+ testRunner.And("I navigate to installed printer page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 387
+ testRunner.And("I search for contract using contract id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 388
+ testRunner.And("I enter toner ink threshold of \"15\" for all the printers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 389
+ testRunner.And("I enable the threshold for all the printers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 390
+ testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 391
+ testRunner.And(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", existingCustomer, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 392
+ testRunner.And("I navigate to customer dashboard page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 393
+ testRunner.And("I navigate to consumable ordering page for multiple devices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 394
+ testRunner.And("I create a consumable order for ink life status for \"Cyan\" and \"14\" and \"1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 395
+ testRunner.And("I create a consumable order for ink life status for \"Black\" and \"14\" and \"1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 396
+ testRunner.And("I create a consumable order for ink life status for \"Magenta\" and \"14\" and \"1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 397
+ testRunner.And("I create a consumable order for ink life status for \"Yellow\" and \"14\" and \"1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 398
+ testRunner.And("I create a consumable order for ink life status for \"Cyan\" and \"14\" and \"2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 399
+ testRunner.And("I create a consumable order for ink life status for \"Black\" and \"14\" and \"2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 400
+ testRunner.And("I create a consumable order for ink life status for \"Magenta\" and \"14\" and \"2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 401
+ testRunner.And("I create a consumable order for ink life status for \"Yellow\" and \"14\" and \"2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 402
+ testRunner.And("I create a consumable order for ink life status for \"Cyan\" and \"14\" and \"3\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 403
+ testRunner.And("I create a consumable order for ink life status for \"Black\" and \"14\" and \"3\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 404
+ testRunner.And("I create a consumable order for ink life status for \"Magenta\" and \"14\" and \"3\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 405
+ testRunner.And("I create a consumable order for ink life status for \"Yellow\" and \"14\" and \"3\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 406
+ testRunner.And("I create a consumable order for ink life status for \"Cyan\" and \"14\" and \"4\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 407
+ testRunner.And("I create a consumable order for ink life status for \"Black\" and \"14\" and \"4\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 408
+ testRunner.And("I create a consumable order for ink life status for \"Magenta\" and \"14\" and \"4\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 409
+ testRunner.And("I create a consumable order for ink life status for \"Yellow\" and \"14\" and \"4\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 410
+ testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("EUM - Engine Threshold Disabled Contract Enabled And Toner Life Equal Contract Th" +
+            "reshold")]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Pay As You Go", "Ariana2017022010411@mailinator.com", "Cloud MPS Dealer", "Cloud", "BOR", "4 years", "Quarterly in Arrears", "DCP-9020CDW", "DCP-L8400CDN", "MFC-L2700DW", "HL-L6250DN", "A1T010281", "A1T010282", "A1T010283", "A1T010284", "Cloud MPS BIE Admin", null)]
+        public virtual void EUM_EngineThresholdDisabledContractEnabledAndTonerLifeEqualContractThreshold(
+                    string role, 
+                    string country, 
+                    string contractType, 
+                    string usageType, 
+                    string existingCustomer, 
+                    string role1, 
+                    string method, 
+                    string type, 
                     string length, 
                     string billing, 
                     string device1, 
@@ -299,59 +1059,227 @@ this.ScenarioSetup(scenarioInfo);
                     string role2, 
                     string[] exampleTags)
         {
-            string[] @__tags = new string[] {
-                    "ignore"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EUM - Printers Auto Consumable Order", @__tags);
-#line 110
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EUM - Engine Threshold Disabled Contract Enabled And Toner Life Equal Contract Th" +
+                    "reshold", exampleTags);
+#line 418
 this.ScenarioSetup(scenarioInfo);
-#line 111
- testRunner.Given(string.Format("\"{0}\" Dealer has created \"{1}\" contract the following \"{2}\" and \"{3}\" and \"{4}\" a" +
-                        "nd \"{5}\" and \"{6}\" and \"{7}\" and \"{8}\"", country, contractType, usageType, length, billing, device1, device2, device3, device4), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 112
+#line 419
+ testRunner.Given(string.Format("\"{0}\" Dealer has created \"{1}\" contract with Existing Customer \"{2}\" with the fol" +
+                        "lowing \"{3}\" and \"{4}\" and \"{5}\" and \"{6}\" and \"{7}\" and \"{8}\" and \"{9}\"", country, contractType, existingCustomer, usageType, length, billing, device1, device2, device3, device4), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 420
  testRunner.And(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 113
+#line 421
  testRunner.And("the contract created above is approved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 114
+#line 422
  testRunner.And(string.Format("I sign back into Cloud MPS as a \"{0}\" from \"{1}\"", role1, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 115
- testRunner.And(string.Format("I generate installation request for the contract with \"{0}\" communication", method), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 116
+#line 423
+ testRunner.And(string.Format("I generate installation request for the contract with \"{0}\" communication and \"{1" +
+                        "}\" installation", method, type), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 424
  testRunner.And("I extract the installer url from Installation Request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 117
+#line 425
  testRunner.When("I navigate to the installer page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 118
+#line 426
  testRunner.And("I enter the contract reference number", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 119
- testRunner.And(string.Format("I enter serial numbers \"{0}\" and \"{1}\" and \"{2}\" and \"{3}\"", serialNumber, serialNumber1, serialNumber2, serialNumber3), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 120
+#line 427
+ testRunner.And(string.Format("I enter serial numbers \"{0}\" and \"{1}\" and \"{2}\" and \"{3}\" for \"{4}\" communicatio" +
+                        "n", serialNumber, serialNumber1, serialNumber2, serialNumber3, type), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 428
  testRunner.And("I enter the device IP address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 122
- testRunner.And("I can connect the device to Brother environment", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 123
- testRunner.And("I can complete device installation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 124
+#line 429
+ testRunner.And(string.Format("I can connect device \"{0}\" with serials \"{1}\" and \"{2}\" to serials \"{3}\" and \"{4}" +
+                        "\" with serials \"{5}\" and \"{6}\" with serials \"{7}\" to Brother environment", device1, serialNumber, device2, serialNumber1, device3, serialNumber2, device4, serialNumber3), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 430
+ testRunner.And("I can complete multiple devices installation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 431
  testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 125
+#line 432
  testRunner.And(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role2, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 126
+#line 433
  testRunner.And("I navigate to Enhanced Usage Monitoring Installed Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 127
+#line 434
+ testRunner.And("I navigate to Enhanced Usage Monitoring Printer Engine Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 435
+ testRunner.And(string.Format("I select \"{0}\" as country of interest", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 436
+ testRunner.And("I disable Engine threshold", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 437
+ testRunner.And("I save the changes made above", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 438
+ testRunner.And("I navigate to installed printer page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 439
  testRunner.And("I search for contract using contract id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 128
- testRunner.Then("contract printer details are displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 129
- testRunner.And("I can enter a threshold of \"30.00\" into all the thresholds", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 130
- testRunner.And("I can enabled all the devices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 131
- testRunner.And("I can verify that all the changes made are with threshold of \"30.00\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 132
- testRunner.And("I can disable all the thresholds", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 133
+#line 440
+ testRunner.And("I enter toner ink threshold of \"15\" for all the printers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 441
+ testRunner.And("I enable the threshold for all the printers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 442
+ testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 443
+ testRunner.And(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", existingCustomer, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 444
+ testRunner.And("I navigate to customer dashboard page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 445
+ testRunner.And("I navigate to consumable ordering page for multiple devices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 446
+ testRunner.And("I create a consumable order for ink life status for \"Cyan\" and \"15\" and \"1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 447
+ testRunner.And("I create a consumable order for ink life status for \"Black\" and \"15\" and \"1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 448
+ testRunner.And("I create a consumable order for ink life status for \"Magenta\" and \"15\" and \"1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 449
+ testRunner.And("I create a consumable order for ink life status for \"Yellow\" and \"15\" and \"1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 450
+ testRunner.And("I create a consumable order for ink life status for \"Cyan\" and \"15\" and \"2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 451
+ testRunner.And("I create a consumable order for ink life status for \"Black\" and \"15\" and \"2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 452
+ testRunner.And("I create a consumable order for ink life status for \"Magenta\" and \"15\" and \"2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 453
+ testRunner.And("I create a consumable order for ink life status for \"Yellow\" and \"15\" and \"2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 454
+ testRunner.And("I create a consumable order for ink life status for \"Cyan\" and \"15\" and \"3\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 455
+ testRunner.And("I create a consumable order for ink life status for \"Black\" and \"15\" and \"3\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 456
+ testRunner.And("I create a consumable order for ink life status for \"Magenta\" and \"15\" and \"3\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 457
+ testRunner.And("I create a consumable order for ink life status for \"Yellow\" and \"15\" and \"3\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 458
+ testRunner.And("I create a consumable order for ink life status for \"Cyan\" and \"15\" and \"4\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 459
+ testRunner.And("I create a consumable order for ink life status for \"Black\" and \"15\" and \"4\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 460
+ testRunner.And("I create a consumable order for ink life status for \"Magenta\" and \"15\" and \"4\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 461
+ testRunner.And("I create a consumable order for ink life status for \"Yellow\" and \"15\" and \"4\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 462
+ testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("EUM - Engine Threshold Disabled Contract Enabled And Toner Life Less Than Contrac" +
+            "t Threshold")]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Pay As You Go", "Shane2017022233153@mailinator.com", "Cloud MPS Dealer", "Cloud", "BOR", "4 years", "Quarterly in Arrears", "DCP-9020CDW", "DCP-L8400CDN", "MFC-L2700DW", "HL-L6250DN", "A1T010285", "A1T010286", "A1T010287", "A1T010288", "Cloud MPS BIE Admin", null)]
+        public virtual void EUM_EngineThresholdDisabledContractEnabledAndTonerLifeLessThanContractThreshold(
+                    string role, 
+                    string country, 
+                    string contractType, 
+                    string usageType, 
+                    string existingCustomer, 
+                    string role1, 
+                    string method, 
+                    string type, 
+                    string length, 
+                    string billing, 
+                    string device1, 
+                    string device2, 
+                    string device3, 
+                    string device4, 
+                    string serialNumber, 
+                    string serialNumber1, 
+                    string serialNumber2, 
+                    string serialNumber3, 
+                    string role2, 
+                    string[] exampleTags)
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EUM - Engine Threshold Disabled Contract Enabled And Toner Life Less Than Contrac" +
+                    "t Threshold", exampleTags);
+#line 469
+this.ScenarioSetup(scenarioInfo);
+#line 470
+ testRunner.Given(string.Format("\"{0}\" Dealer has created \"{1}\" contract with Existing Customer \"{2}\" with the fol" +
+                        "lowing \"{3}\" and \"{4}\" and \"{5}\" and \"{6}\" and \"{7}\" and \"{8}\" and \"{9}\"", country, contractType, existingCustomer, usageType, length, billing, device1, device2, device3, device4), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 471
+ testRunner.And(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 472
+ testRunner.And("the contract created above is approved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 473
+ testRunner.And(string.Format("I sign back into Cloud MPS as a \"{0}\" from \"{1}\"", role1, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 474
+ testRunner.And(string.Format("I generate installation request for the contract with \"{0}\" communication and \"{1" +
+                        "}\" installation", method, type), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 475
+ testRunner.And("I extract the installer url from Installation Request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 476
+ testRunner.When("I navigate to the installer page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 477
+ testRunner.And("I enter the contract reference number", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 478
+ testRunner.And(string.Format("I enter serial numbers \"{0}\" and \"{1}\" and \"{2}\" and \"{3}\" for \"{4}\" communicatio" +
+                        "n", serialNumber, serialNumber1, serialNumber2, serialNumber3, type), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 479
+ testRunner.And("I enter the device IP address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 480
+ testRunner.And(string.Format("I can connect device \"{0}\" with serials \"{1}\" and \"{2}\" to serials \"{3}\" and \"{4}" +
+                        "\" with serials \"{5}\" and \"{6}\" with serials \"{7}\" to Brother environment", device1, serialNumber, device2, serialNumber1, device3, serialNumber2, device4, serialNumber3), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 481
+ testRunner.And("I can complete multiple devices installation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 482
+ testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 483
+ testRunner.And(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role2, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 484
+ testRunner.And("I navigate to Enhanced Usage Monitoring Installed Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 485
+ testRunner.And("I navigate to Enhanced Usage Monitoring Printer Engine Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 486
+ testRunner.And(string.Format("I select \"{0}\" as country of interest", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 487
+ testRunner.And("I disable Engine threshold", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 488
+ testRunner.And("I save the changes made above", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 489
+ testRunner.And("I navigate to installed printer page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 490
+ testRunner.And("I search for contract using contract id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 491
+ testRunner.And("I enter toner ink threshold of \"15\" for all the printers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 492
+ testRunner.And("I enable the threshold for all the printers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 493
+ testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 494
+ testRunner.And(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", existingCustomer, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 495
+ testRunner.And("I navigate to customer dashboard page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 496
+ testRunner.And("I navigate to consumable ordering page for multiple devices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 497
+ testRunner.And("I create a consumable order for ink life status for \"Cyan\" and \"14\" and \"1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 498
+ testRunner.And("I create a consumable order for ink life status for \"Black\" and \"14\" and \"1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 499
+ testRunner.And("I create a consumable order for ink life status for \"Magenta\" and \"14\" and \"1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 500
+ testRunner.And("I create a consumable order for ink life status for \"Yellow\" and \"14\" and \"1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 501
+ testRunner.And("I create a consumable order for ink life status for \"Cyan\" and \"14\" and \"2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 502
+ testRunner.And("I create a consumable order for ink life status for \"Black\" and \"14\" and \"2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 503
+ testRunner.And("I create a consumable order for ink life status for \"Magenta\" and \"14\" and \"2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 504
+ testRunner.And("I create a consumable order for ink life status for \"Yellow\" and \"14\" and \"2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 505
+ testRunner.And("I create a consumable order for ink life status for \"Cyan\" and \"14\" and \"3\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 506
+ testRunner.And("I create a consumable order for ink life status for \"Black\" and \"14\" and \"3\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 507
+ testRunner.And("I create a consumable order for ink life status for \"Magenta\" and \"14\" and \"3\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 508
+ testRunner.And("I create a consumable order for ink life status for \"Yellow\" and \"14\" and \"3\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 509
+ testRunner.And("I create a consumable order for ink life status for \"Cyan\" and \"14\" and \"4\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 510
+ testRunner.And("I create a consumable order for ink life status for \"Black\" and \"14\" and \"4\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 511
+ testRunner.And("I create a consumable order for ink life status for \"Magenta\" and \"14\" and \"4\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 512
+ testRunner.And("I create a consumable order for ink life status for \"Yellow\" and \"14\" and \"4\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 513
  testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();

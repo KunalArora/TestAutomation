@@ -406,6 +406,24 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             MpsJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob();
         }
 
+        public void IsInstallationCompleted(string number1, string number2, string number3, string number4)
+        {
+            if (Method() != "Email")
+            {
+                var connection = DeviceRespondingActionElement.Displayed;
+
+                MpsJobRunnerPage.NotifyBocOfNewChanges(number1);
+                MpsJobRunnerPage.NotifyBocOfNewChanges(number2);
+                MpsJobRunnerPage.NotifyBocOfNewChanges(number3);
+                MpsJobRunnerPage.NotifyBocOfNewChanges(number4);
+                TestCheck.AssertIsEqual(true, connection, "Installation is not successfully connected to BOC");
+            }
+
+            MpsJobRunnerPage.RunCreateOrderAndServiceRequestsCommandJob();
+            MpsJobRunnerPage.RunConsumableOrderRequestsCommandJob();
+            MpsJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob();
+        }
+
         public void SelectLocationErrorIsDisplayed()
         {
             TestCheck.AssertIsEqual(true, LocationSelectionAlertElement.Displayed, "Location alert is not displayed"); 
