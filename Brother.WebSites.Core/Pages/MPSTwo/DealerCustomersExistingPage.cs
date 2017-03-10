@@ -220,5 +220,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetInstance<DealerCustomersManagePage>();
         }
 
+        public DealerCustomersManagePage ClickOnEditOnActionItemAgainstNewlyEditedCustomer()
+        {
+            ActionsModule.ClickOnSpecificCustomerActions(Driver);
+            var editElem = Driver.FindElement(By.CssSelector(".open .js-mps-edit"));
+            editElem.Click();
+            return GetInstance<DealerCustomersManagePage>();
+        }
+
     }
 }

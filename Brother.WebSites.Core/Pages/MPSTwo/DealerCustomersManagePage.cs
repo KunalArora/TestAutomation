@@ -1,4 +1,6 @@
-﻿using Brother.Tests.Selenium.Lib.Support;
+﻿using System;
+using System.Collections.Generic;
+using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
@@ -117,7 +119,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement TelephoneElement;
         [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputPersonEmail_Input")]
         public IWebElement EmailElement;
-
+        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputPersonCanOrderConsumables_Input")]
+        public IWebElement OrderingPersonElement;
         [FindsBy(How = How.Id, Using = "content_1_NewOrganisation")]
         public IWebElement NewOrganisationElement;
         [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerName")]
@@ -138,6 +141,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement PropertyLegalFormElement;
         [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerTradingStyle_Input")]
         public IWebElement PropertyTradingStyleElement;
+        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerCostCentre_Input")]
+        public IWebElement PropertyCostCentreElement;
         [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerAuthorisedSignatory_Input")]
         public IWebElement PropertyyAuthorisedSignatoryElement;
 
@@ -151,6 +156,49 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement CompanyRegistrationNumerElement;
         [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputCustomerVatRegistrationNumber_Input")]
         public IWebElement VatFieldElement;
+        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputPersonFirstName_Input")]
+        public IWebElement CustomerContactFirstNameElement;
+        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputPersonLastName_Input")]
+        public IWebElement CustomerContactLastNameElement;
+        [FindsBy(How = How.Id, Using = "content_1_PersonManage_btnLocationsAdd")]
+        public IWebElement CustomerAddAddressButtonElement;
+        [FindsBy(How = How.Id, Using = "content_1_PersonManage_rptLocations_Address_1")]
+        public IWebElement CustomerAdditionalAddressLineElement;
+        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputLocationContract_Input")]
+        public IWebElement CustomerContractLocationAddressElement;
+        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputPersonMobile_Input")]
+        public IWebElement CustomerContractMobileElement;
+        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputPersonCulture_Input")]
+        public IWebElement CustomerContractCultureElement;
+        [FindsBy(How = How.Id, Using = "content_1_PersonManage_InputPersonPosition_Input")]
+        public IWebElement CustomerContactPositionElement;
+        [FindsBy(How = How.CssSelector, Using = ".js-mps-delete-remove #content_1_PersonManage_rptLocations_Address_0")]
+        public IWebElement CustomerContractEditedLocationAddressElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputCustomerCreditReformNumber_Input")]
+        public IWebElement CustomerCreditReformNumberElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputBankAccountNumber_Input")]
+        public IWebElement BankAccountNumberElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputBankSortCode_Input")]
+        public IWebElement BankSortCodeElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputBankIban_Input")]
+        public IWebElement BankIbanElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputBankBic_Input")]
+        public IWebElement BankBicElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputBankName_Input")]
+        public IWebElement BankNameElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_BankLocation_InputTown_Input")]
+        public IWebElement BankTownElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_BankLocation_InputNumber_Input")]
+        public IWebElement BankPropertyNumberElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_BankLocation_InputStreet_Input")]
+        public IWebElement BankStreetElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_BankLocation_InputPostCode_Input")]
+        public IWebElement BankPostcodeElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_BankPaymentTypeDisplayOnly_Label")]
+        public IWebElement PaymentDisplayOnlyElement;
+        
+        
+        
 
         public override string DefaultTitle
         {
@@ -190,10 +238,809 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             AssertElementValue(PaymentTypeElement, bank.PaymentType);
         }
 
+        private void SelectAPaymentTypeIfNotAlreadySelected()
+        {
+            if (GetSelectedOptionText(PaymentTypeElement).Equals("Please Select"))
+            {
+                SelectFromDropdown(PaymentTypeElement, "Invoice");
+            }
+        }
+        
+
         private void AssertElementValue(IWebElement elem, string expected)
         {
             var value = elem.GetAttribute("value");
             TestCheck.AssertIsEqual(expected, value, "Input item is not matched");
+        }
+
+        public void IsAdditionalAddressSuccessfullyAdded()
+        {
+            if(CustomerAdditionalAddressLineElement == null)
+                throw new Exception("Customer Additional Address Line Element is not displayed");
+
+            TestCheck.AssertIsEqual(true, CustomerAdditionalAddressLineElement.Displayed, 
+                                            "Customer Additional Address Line Element is not successfully added");
+        }
+        
+
+        public void IsCustomerContractLocationAddressDisplayed()
+        {
+            if (CustomerContractLocationAddressElement == null)
+                throw new Exception("Customer Contract Location Address Element is not displayed");
+
+            TestCheck.AssertIsEqual(true, CustomerContractLocationAddressElement.Displayed,
+                                            "Customer Contract Location Address Element is not successfully added");
+
+        }
+
+        public void IsEditedCustomerTownNameDisplayed()
+        {
+            if (PropertyStreetElement == null)
+                throw new Exception("Property Town Element is not displayed");
+
+            var town = PropertyStreetElement.GetAttribute("value");
+
+            TestCheck.AssertIsEqual(true, town.Contains("Edited"), string.Format("{0} does not contain Edited", town));
+        }
+
+        public void IsEditedCustomerDetailDisplayed()
+        {
+            if (CustomerContractEditedLocationAddressElement == null)
+                throw new Exception("edited customer detail element is not displayed");
+
+            var town = CustomerContractEditedLocationAddressElement.Text;
+
+            TestCheck.AssertIsEqual(true, town.Contains("Edited"), string.Format("{0} does not contain Edited", town));
+        }
+
+        public void IsEditedCustomerContactFirstNameDisplayed()
+        {
+            if (CustomerContactFirstNameElement == null)
+                throw new Exception("Property Town Element is not displayed");
+
+            var town = CustomerContactFirstNameElement.GetAttribute("value");
+
+            TestCheck.AssertIsEqual(true, town.Contains("Edited"), string.Format("{0} does not contain Edited", town));
+        }
+
+        public void IsEditedCustomerContactLastNameDisplayed()
+        {
+            if (CustomerContactLastNameElement == null)
+                throw new Exception("Property Town Element is not displayed");
+
+            var town = CustomerContactLastNameElement.GetAttribute("value");
+
+            TestCheck.AssertIsEqual(true, town.Contains("Edited"), string.Format("{0} does not contain Edited", town));
+        }
+
+        public DealerCustomerAdditionalAddressPage NavigateToCustomerAdditionalAddressPage()
+        {
+            if(CustomerAddAddressButtonElement == null)
+                throw new Exception("Customer Add Address Button Element is not displayed");
+
+            if (!(IsFinlandSystem() 
+                || IsSwedenSystem()
+                || IsPolandSystem()
+                || IsNetherlandSystem()
+                ||IsDenmarkSystem()))
+            {
+                SelectAPaymentTypeIfNotAlreadySelected();
+            }
+            
+
+            CustomerAddAddressButtonElement.Click();
+
+            return GetInstance<DealerCustomerAdditionalAddressPage>();
+        }
+
+        
+        public string IbanNumber()
+        {
+            var iban = "";
+
+            if (!(IsNetherlandSystem()))
+            {
+                iban = "GB15MIDL40051512345678";
+
+            }
+            else if (IsNetherlandSystem())
+            {
+                iban = "NL91 ABNA 0417 1643 00";
+            }
+            else if (IsBelgiumSystem())
+            {
+                iban = "BE68539007547034";
+            }
+            else if (IsItalySystem())
+            {
+                iban = "IT40 S054 2811 1010 0000 0123 456";
+            }
+
+            return iban;
+
+        }
+
+        public string BicNumber()
+        {
+            var bic = "";
+
+            if (IsBelgiumSystem())
+            {
+                bic = "OBEB3";
+            }
+            else if (!(IsItalySystem() || IsNetherlandSystem() || IsSpainSystem()))
+            {
+                bic = "MIDLGB22";
+            }
+
+            return bic;
+        }
+
+
+        public void FillCustomerDetails(string payment, string country, string culture)
+        {
+            switch (country)
+            {
+                case "Belgium" :
+                    FillBelgiumContactInfo(culture);
+                    FillBelgiumBankDetails(payment);
+                    FillBelgiumOrgDetails();
+                    break;
+                case "Switzerland" :
+                    FillSwissContactInfo(culture);
+                    FillSwissBankDetails(payment);
+                    FillSwissOrgDetails();
+                    break;
+
+                default:
+                    MsgOutput(string.Format("{0} is not a recognised country", country));
+                    break;
+            }
+        }
+
+        public void FillCustomerDetails(string payment, string country)
+        {
+            switch (country)
+            {
+                case "United Kingdom":
+                    FillUkOrgDetails();
+                    FillUkContactInfo();
+                    FillUkBankDetails(payment);
+                    break;
+                case "Germany":
+                    FillGermanyBankDetails(payment);
+                    FillGermanyContactInfo();
+                    FillGermanyOrgDetails();
+                    break;
+                case "Austria":
+                    FillAustriaBankDetails(payment);
+                    FillAustriaContactInfo();
+                    FillAustriaOrgDetails();
+                    break;
+                case "Italy":
+                    FillItalyBankDetails(payment);
+                    FillItalyContactInfo();
+                    FillItalyOrgDetails();
+                    break;
+                case "Norway":
+                    FillNorwayBankDetails(payment);
+                    FillNorwayContactInfo();
+                    FillNorwayOrgDetails();
+                    break;
+                case "Finland":
+                    FillFinlandContactInfo();
+                    FillFinlandOrgDetails();
+                    break;
+                case "Sweden" :
+                    FillSwedenContactInfo();
+                    FillSwedenOrgDetails();
+                    break;
+                case "Poland":
+                    FillPolandBankDetails();
+                    FillPolandContactInfo();
+                    FillPolandOrgDetails();
+                    break;
+                case "Ireland" :
+                    FillIrelandBankDetails(payment);
+                    FillIrelandContactInfo();
+                    FillIrelandOrgDetails();
+                    break;
+                case "Netherlands":
+                    FillNetherlandBankDetails();
+                    FillNetherlandContactInfo();
+                    FillNetherlandOrgDetails();
+                    break;
+                case "France" :
+                    FillFranceBankDetails(payment);
+                    FillFranceContactInfo();
+                    FillFranceOrgDetails();
+                    break;
+                case "Spain":
+                    FillSpainBankDetails(payment);
+                    FillSpainContactInfo();
+                    FillSpainOrgDetails();
+                    break;
+                case "Denmark":
+                    FillDenmarkContactInfo();
+                    FillDenmarkOrgDetails();
+                    break;
+                default:
+                    MsgOutput(string.Format("{0} is not recognised", country));
+                    break;
+                    
+            }
+        }
+
+        public void IsEditedDetailsRetained()
+        {
+            var companyName = GetFieldValue(CompanyNameElement);
+            var authorised = GetFieldValue(PropertyyAuthorisedSignatoryElement);
+            var fname = GetFieldValue(FirstNameElement);
+            var lName = GetFieldValue(LastNameElement);
+            var email = GetFieldValue(EmailElement);
+            
+            
+
+            TestCheck.AssertIsEqual(false, string.IsNullOrWhiteSpace(companyName), "Company name field is empty");
+            TestCheck.AssertIsEqual(false, string.IsNullOrWhiteSpace(authorised), "Authorised person field is empty");
+            TestCheck.AssertIsEqual(false, string.IsNullOrWhiteSpace(fname), "First name field is empty");
+            TestCheck.AssertIsEqual(false, string.IsNullOrWhiteSpace(lName), "Last name field is empty");
+            TestCheck.AssertIsEqual(false, string.IsNullOrWhiteSpace(email), "Email field is empty");
+
+            if (IsNorwaySystem() || IsFinlandSystem() || IsSwedenSystem() || IsDenmarkSystem() || IsNetherlandSystem()) return;
+            var bankName = GetFieldValue(BankNameElement);
+            TestCheck.AssertIsEqual(false, string.IsNullOrWhiteSpace(bankName), "Bank name field is empty");
+        }
+
+        private string GetFieldValue(IWebElement element)
+        {
+            return element.GetAttribute("value");
+        }
+
+        private void FillItalyOrgDetails()
+        {
+            EnterCompanyName(MpsUtil.CompanyName());
+            EnterPropertyStreet(MpsUtil.PropertyStreet());
+            EnterPropertyTown("Town");
+            EnterPropertyPostCode(MpsUtil.PostCodeIt());
+            EnterPropertyArea("Area");
+            EnterLegalForm(LegalForm());
+            EnterRegistrationNumber();
+            EnterInitialVat();
+            EnterPropertyAuthorisedSignatory("Mensha");
+
+        }
+
+        private void FillItalyContactInfo()
+        {
+            SelectTitleFromDropdown();
+            EnterContactFirstName(MpsUtil.FirstName());
+            EnterContactSurName(MpsUtil.SurName());
+            EnterContactTelephone(MpsUtil.CompanyTelephone());
+            EnterContactPosition("Manager");
+            EnterContactMobile("07789000011");
+            EnterContactEmailAdress(MpsUtil.GenerateUniqueEmail());
+        }
+
+        private void FillItalyBankDetails(string payment)
+        {
+            SelectPaymentType(payment);
+
+            if (payment.Equals("Fattura"))
+            {
+                EnterBankIbanNumber(IbanNumber());
+            }
+
+            if (payment == "Addebito diretto")
+            {
+                EnterBankAccountNumber(MpsUtil.AccountNumber());
+                EnterBankSortCodeNumber(MpsUtil.BankCodeNumber()); 
+            }
+            
+            EnterBankName("Bank of MPS");
+            EnterBankPropertyStreet(MpsUtil.PropertyStreet());
+            EnterBankPropertyTown(MpsUtil.PropertyTown());
+            EnterBankPostcode(MpsUtil.PostCodeIt());
+
+        }
+
+
+        private void FillNorwayOrgDetails()
+        {
+            EnterCompanyName(MpsUtil.CompanyName());
+            EnterPropertyStreet(MpsUtil.PropertyStreet());
+            EnterPropertyTown("Town");
+            EnterPropertyPostCode(MpsUtil.PostCodeNo());
+            EnterCostCentre("Marketing");
+            EnterLegalForm(LegalForm());
+            EnterRegistrationNumber();
+            EnterInitialVat();
+            EnterPropertyAuthorisedSignatory("Mensha");
+
+        }
+
+        private void FillNorwayContactInfo()
+        {
+            EnterContactFirstName(MpsUtil.FirstName());
+            EnterContactSurName(MpsUtil.SurName());
+            EnterContactTelephone(MpsUtil.CompanyTelephone());
+            EnterContactPosition("Manager");
+            EnterContactMobile("07789000011");
+            EnterContactEmailAdress(MpsUtil.GenerateUniqueEmail());
+        }
+
+        private void FillNorwayBankDetails(string payment)
+        {
+            SelectPaymentType(payment);
+
+        }
+
+
+        private void FillFinlandOrgDetails()
+        {
+            EnterCompanyName(MpsUtil.CompanyName());
+            EnterPropertyStreet(MpsUtil.PropertyStreet());
+            EnterPropertyTown("Town");
+            EnterPropertyPostCode(MpsUtil.PostCodeFi());
+            EnterCostCentre("Marketing");
+            EnterLegalForm(LegalForm());
+            EnterRegistrationNumber();
+            EnterInitialVat();
+            EnterPropertyAuthorisedSignatory("Mensha");
+
+        }
+
+        private void FillFinlandContactInfo()
+        {
+            EnterContactFirstName(MpsUtil.FirstName());
+            EnterContactSurName(MpsUtil.SurName());
+            EnterContactTelephone(MpsUtil.CompanyTelephone());
+            EnterContactPosition("Manager");
+            EnterContactMobile("07789000011");
+            EnterContactEmailAdress(MpsUtil.GenerateUniqueEmail());
+        }
+
+       
+
+        private void FillSwedenOrgDetails()
+        {
+            EnterCompanyName(MpsUtil.CompanyName());
+            EnterPropertyStreet(MpsUtil.PropertyStreet());
+            EnterPropertyTown("Town");
+            EnterPropertyPostCode(MpsUtil.PostCodeNs());
+            EnterCostCentre("Marketing");
+            EnterRegistrationNumber();
+            EnterInitialVat();
+            EnterPropertyAuthorisedSignatory("Mensha");
+
+        }
+
+        private void FillSwedenContactInfo()
+        {
+            EnterContactFirstName(MpsUtil.FirstName());
+            EnterContactSurName(MpsUtil.SurName());
+            EnterContactTelephone(MpsUtil.CompanyTelephone());
+            EnterContactPosition("Manager");
+            EnterContactMobile("07789000011");
+            EnterContactEmailAdress(MpsUtil.GenerateUniqueEmail());
+        }
+
+        
+        private void FillAustriaOrgDetails()
+        {
+            EnterCompanyName(MpsUtil.CompanyName());
+            EnterPropertyNumber(MpsUtil.PropertyNumber());
+            EnterPropertyStreet(MpsUtil.PropertyStreet());
+            EnterPropertyTown("Town");
+            EnterPropertyArea("Area");
+            EnterPropertyPostCode(MpsUtil.PostCode());
+            EnterCostCentre("Marketing");
+            EnterLegalForm(LegalForm());
+            EnterRegistrationNumber();
+            EnterInitialVat();
+            EnterCreditReformNumber(MpsUtil.CreditReformNumber());
+            EnterPropertyAuthorisedSignatory("Mensha");
+
+        }
+
+        private void FillAustriaContactInfo()
+        {
+            SelectTitleFromDropdown();
+            EnterContactFirstName(MpsUtil.FirstName());
+            EnterContactSurName(MpsUtil.SurName());
+            EnterContactTelephone(MpsUtil.CompanyTelephone());
+            EnterContactPosition("Manager");
+            EnterContactMobile("07789000011");
+            EnterContactEmailAdress(MpsUtil.GenerateUniqueEmail());
+        }
+
+        private void FillAustriaBankDetails(string payment)
+        {
+            SelectPaymentType(payment);
+            EnterBankAccountNumber(MpsUtil.AccountNumber());
+            EnterBankSortCodeNumber(MpsUtil.BankCodeNumber());
+            EnterBankIbanNumber(IbanNumber());
+            EnterBankBicNumber(BicNumber());
+            EnterBankName("Bank of MPS");
+        }
+
+        private void FillGermanyOrgDetails()
+        {
+            EnterCompanyName(MpsUtil.CompanyName());
+            EnterPropertyNumber(MpsUtil.PropertyNumber());
+            EnterPropertyStreet(MpsUtil.PropertyStreet());
+            EnterPropertyTown("Town");
+            EnterPropertyArea("Area");
+            EnterPropertyPostCode(MpsUtil.PostCode());
+            EnterCostCentre("Marketing");
+            EnterLegalForm(LegalForm());
+            EnterRegistrationNumber();
+            EnterInitialVat();
+            EnterCreditReformNumber(MpsUtil.CreditReformNumber());
+            EnterPropertyAuthorisedSignatory("Mensha");
+
+        }
+
+        private void FillGermanyContactInfo()
+        {
+            SelectTitleFromDropdown();
+            EnterContactFirstName(MpsUtil.FirstName());
+            EnterContactSurName(MpsUtil.SurName());
+            EnterContactTelephone(MpsUtil.CompanyTelephone());
+            EnterContactPosition("Manager");
+            EnterContactMobile("07789000011");
+            EnterContactEmailAdress(MpsUtil.GenerateUniqueEmail());
+        }
+
+        private void FillGermanyBankDetails(string payment)
+        {
+            SelectPaymentType(payment);
+            EnterBankAccountNumber(MpsUtil.AccountNumber());
+            EnterBankSortCodeNumber(MpsUtil.BankCodeNumber());
+            EnterBankIbanNumber(IbanNumber());
+            EnterBankBicNumber(BicNumber());
+            EnterBankName("Bank of MPS");
+        }
+
+
+        private void FillBelgiumOrgDetails()
+        {
+            EnterCompanyName(MpsUtil.CompanyName());
+            EnterPropertyStreet(MpsUtil.PropertyStreet());
+            EnterPropertyTown("Town");
+            EnterPropertyPostCode(MpsUtil.PostCodeBe());
+            SelectRegionFromDropdownByIndex();
+            EnterCostCentre("Marketing");
+            EnterLegalFormByIndex();
+            EnterRegistrationNumber();
+            EnterInitialVat();
+            EnterPropertyAuthorisedSignatory("Mensha");
+
+        }
+
+        private void FillBelgiumContactInfo(string culture)
+        {
+            SelectTitleFromDropdown();
+            EnterContactFirstName(MpsUtil.FirstName());
+            EnterContactSurName(MpsUtil.SurName());
+            EnterContactTelephone(MpsUtil.CompanyTelephone());
+            EnterContactPosition("Manager");
+            EnterContactMobile("07789000011");
+            EnterContactEmailAdress(MpsUtil.GenerateUniqueEmail());
+            SelectCustomerCulture(culture);
+            
+        }
+
+        private void FillBelgiumBankDetails(string payment)
+        {
+            SelectPaymentType(payment);
+            EnterBankAccountNumber(MpsUtil.AccountNumber());
+            EnterBankIbanNumber(IbanNumber());
+            EnterBankBicNumber(BicNumber());
+            EnterBankName("Bank of MPS");
+
+        }
+
+        private void FillPolandOrgDetails()
+        {
+            EnterCompanyName(MpsUtil.CompanyName());
+            EnterPropertyNumber(MpsUtil.PropertyNumber());
+            EnterPropertyStreet(MpsUtil.PropertyStreet());
+            EnterPropertyTown("Town");
+            EnterPropertyPostCode(MpsUtil.PostCodePl());
+            EnterInitialVat();
+            EnterPropertyAuthorisedSignatory("Mensha");
+
+        }
+
+        private void FillPolandContactInfo()
+        {
+            EnterContactFirstName(MpsUtil.FirstName());
+            EnterContactSurName(MpsUtil.SurName());
+            EnterContactTelephone(MpsUtil.CompanyTelephone());
+            EnterContactPosition("Manager");
+            EnterContactMobile("07789000011");
+            EnterContactEmailAdress(MpsUtil.GenerateUniqueEmail());
+            if (!OrderingPersonElement.Selected)
+            {
+                ClickOnPersonResponsibleforOrdering();
+            }
+                
+        }
+
+        private void FillPolandBankDetails()
+        {
+            
+            EnterBankAccountNumber(MpsUtil.AccountNumber());
+            EnterBankBicNumber(BicNumber());
+            EnterBankName("Bank of MPS");
+            EnterBankPropertyNumber(MpsUtil.PropertyNumber());
+            EnterBankPropertyStreet(MpsUtil.PropertyStreet());
+            EnterBankPropertyTown(MpsUtil.PropertyTown());
+            EnterBankPostcode(MpsUtil.PostCodePl());
+
+        }
+
+
+        private void FillIrelandOrgDetails()
+        {
+            EnterCompanyName(MpsUtil.CompanyName());
+            EnterPropertyNumber(MpsUtil.PropertyNumber());
+            EnterPropertyStreet(MpsUtil.PropertyStreet());
+            EnterPropertyTown("Town");
+            EnterPropertyPostCode(MpsUtil.PostCodeIr());
+            EnterCostCentre("Marketing");
+            EnterLegalForm(LegalForm());
+            EnterRegistrationNumber();
+            EnterInitialVat();
+            EnterPropertyAuthorisedSignatory("Mensha");
+
+        }
+
+        private void FillIrelandContactInfo()
+        {
+            SelectTitleFromDropdown();
+            EnterContactFirstName(MpsUtil.FirstName());
+            EnterContactSurName(MpsUtil.SurName());
+            EnterContactTelephone(MpsUtil.CompanyTelephone());
+            EnterContactPosition("Manager");
+            EnterContactMobile("07789000011");
+            EnterContactEmailAdress(MpsUtil.GenerateUniqueEmail());
+        }
+
+        private void FillIrelandBankDetails(string payment)
+        {
+            SelectPaymentType(payment);
+            EnterBankAccountNumber(MpsUtil.AccountNumber());
+            EnterBankSortCodeNumber(MpsUtil.BankCodeNumber());
+            EnterBankIbanNumber(IbanNumber());
+            EnterBankBicNumber(BicNumber());
+            EnterBankName("Bank of MPS");
+            EnterBankPropertyNumber(MpsUtil.PropertyNumber());
+            EnterBankPropertyStreet(MpsUtil.PropertyStreet());
+            EnterBankPropertyTown(MpsUtil.PropertyTown());
+            EnterBankPostcode(MpsUtil.PostCodeIr());
+
+        }
+
+
+        private void FillNetherlandOrgDetails()
+        {
+            EnterCompanyName(MpsUtil.CompanyName());
+            EnterPropertyStreet(MpsUtil.PropertyStreet());
+            EnterPropertyTown("Town");
+            EnterPropertyPostCode(MpsUtil.PostCodeNl());
+            EnterRegistrationNumber();
+            EnterInitialVat();
+            EnterPropertyAuthorisedSignatory("Mensha");
+
+        }
+
+        private void FillNetherlandContactInfo()
+        {
+            SelectTitleFromDropdown();
+            EnterContactFirstName(MpsUtil.FirstName());
+            EnterContactSurName(MpsUtil.SurName());
+            EnterContactTelephone(MpsUtil.CompanyTelephone());
+            EnterContactMobile("07789000011");
+            EnterContactEmailAdress(MpsUtil.GenerateUniqueEmail());
+
+            if (!OrderingPersonElement.Selected)
+            {
+                ClickOnPersonResponsibleforOrdering();
+            }
+        }
+
+        private void FillNetherlandBankDetails()
+        {
+            EnterBankIbanNumber(IbanNumber());
+
+        }
+
+        private void FillSwissOrgDetails()
+        {
+            EnterCompanyName(MpsUtil.CompanyName());
+            EnterPropertyStreet(MpsUtil.PropertyStreet());
+            EnterPropertyTown("Town");
+            EnterPropertyPostCode(MpsUtil.PostCodeSw());
+            EnterCostCentre("Marketing");
+            EnterLegalFormByIndex();
+            EnterInitialVat();
+            EnterPropertyAuthorisedSignatory("Mensha");
+
+        }
+
+        private void FillSwissContactInfo(string culture)
+        {
+            SelectTitleFromDropdown();
+            EnterContactFirstName(MpsUtil.FirstName());
+            EnterContactSurName(MpsUtil.SurName());
+            EnterContactTelephone(MpsUtil.CompanyTelephone());
+            EnterContactMobile("07789000011");
+            EnterContactEmailAdress(MpsUtil.GenerateUniqueEmail());
+            SelectCustomerCulture(culture);
+        }
+
+        private void FillSwissBankDetails(string payment)
+        {
+            SelectPaymentType(payment);
+            EnterBankAccountNumber(MpsUtil.AccountNumber());
+            EnterBankSortCodeNumber(MpsUtil.BankCodeNumber());
+            EnterBankIbanNumber(IbanNumber());
+            EnterBankBicNumber(BicNumber());
+            EnterBankName("Bank of MPS");
+            
+        }
+
+        private void FillDenmarkOrgDetails()
+        {
+            EnterCompanyName(MpsUtil.CompanyName());
+            EnterPropertyStreet(MpsUtil.PropertyStreet());
+            EnterPropertyTown("Town");
+            EnterPropertyPostCode(MpsUtil.PostCodeDk());
+            EnterCostCentre("Marketing");
+            EnterLegalFormByIndex();
+            EnterInitialVat();
+            EnterPropertyAuthorisedSignatory("Mensha");
+
+        }
+
+        private void FillDenmarkContactInfo()
+        {
+            EnterContactFirstName(MpsUtil.FirstName());
+            EnterContactSurName(MpsUtil.SurName());
+            EnterContactTelephone(MpsUtil.CompanyTelephone());
+            EnterContactMobile("07789000011");
+            EnterContactEmailAdress(MpsUtil.GenerateUniqueEmail());
+        }
+
+       
+        private void FillSpainOrgDetails()
+        {
+            EnterCompanyName(MpsUtil.CompanyName());
+            EnterPropertyStreet(MpsUtil.PropertyStreet());
+            EnterPropertyArea("Area");
+            EnterPropertyTown("Town");
+            EnterPropertyPostCode(MpsUtil.PostCodeSp());
+            EnterRegistrationNumber();
+            EnterInitialVat();
+            EnterTradingStyle(TradingStyle());
+            EnterPropertyAuthorisedSignatory("Mensha");
+
+        }
+
+        private void FillSpainContactInfo()
+        {
+            SelectTitleFromDropdown();
+            EnterContactFirstName(MpsUtil.FirstName());
+            EnterContactSurName(MpsUtil.SurName());
+            EnterContactTelephone(MpsUtil.CompanyTelephone());
+            EnterContactMobile("07789000011");
+            EnterContactEmailAdress(MpsUtil.GenerateUniqueEmail());
+        }
+
+        private void FillSpainBankDetails(string payment)
+        {
+            SelectPaymentType(payment);
+
+            switch (payment)
+            {
+                case "Factura":
+                    EnterBankAccountNumber(MpsUtil.AccountNumber());
+                    EnterBankSortCodeNumber(MpsUtil.BankCodeNumber());
+                    EnterBankIbanNumber(IbanNumber());
+                    EnterBankBicNumber(BicNumber());
+                    EnterBankName("Bank of MPS");
+                    EnterBankPropertyStreet(MpsUtil.PropertyStreet());
+                    EnterBankPropertyTown(MpsUtil.PropertyTown());
+                    EnterBankPostcode(MpsUtil.PostCodeSp());
+                    break;
+                case "Debito directo":
+                    EnterBankIbanNumber(IbanNumber());
+                    EnterBankName("Bank of MPS");
+                    break;
+            }
+            
+
+        }
+
+        private void FillFranceOrgDetails()
+        {
+            EnterCompanyName(MpsUtil.CompanyName());
+            EnterPropertyStreet(MpsUtil.PropertyStreet());
+            EnterPropertyArea("Area");
+            EnterPropertyTown("Town");
+            EnterPropertyPostCode(MpsUtil.PostCodeFr());
+            EnterPropertyLegalFormByIndex();
+            EnterRegistrationNumber();
+            EnterInitialVat();
+            EnterPropertyAuthorisedSignatory("Mensha");
+
+        }
+
+        private void FillFranceContactInfo()
+        {
+            SelectTitleFromDropdown();
+            EnterContactFirstName(MpsUtil.FirstName());
+            EnterContactSurName(MpsUtil.SurName());
+            EnterContactTelephone(MpsUtil.CompanyTelephone());
+            EnterContactMobile("07789000011");
+            EnterContactEmailAdress(MpsUtil.GenerateUniqueEmail());
+        }
+
+        private void FillFranceBankDetails(string payment)
+        {
+            SelectPaymentType(payment);
+            EnterBankAccountNumber(MpsUtil.AccountNumber());
+            EnterBankSortCodeNumber(MpsUtil.BankCodeNumber());
+            EnterBankIbanNumber(IbanNumber());
+            EnterBankBicNumber(BicNumber());
+            EnterBankName("Bank of MPS");
+            EnterBankPropertyStreet(MpsUtil.PropertyStreet());
+            EnterBankPropertyTown(MpsUtil.PropertyTown());
+            EnterBankPostcode(MpsUtil.PostCodeFr());
+
+        }
+
+        private void FillUkOrgDetails()
+        {
+            EnterCompanyName(MpsUtil.CompanyName());
+            EnterPropertyNumber(MpsUtil.PropertyNumber());
+            EnterPropertyStreet(MpsUtil.PropertyStreet());
+            EnterPropertyArea("Area");
+            EnterPropertyTown("Town");
+            EnterPropertyPostCode(MpsUtil.PostCodeGb());
+            EnterLegalForm(LegalForm());
+            EnterRegistrationNumber();
+            EnterInitialVat();
+            EnterTradingStyle(TradingStyle());
+            EnterPropertyAuthorisedSignatory("Mensha");
+
+        }
+
+        private void FillUkContactInfo()
+        {
+            SelectTitleFromDropdown();
+            EnterContactFirstName(MpsUtil.FirstName());
+            EnterContactSurName(MpsUtil.SurName());
+            EnterContactTelephone(MpsUtil.CompanyTelephone());
+            EnterContactMobile("07789000011");
+            EnterContactEmailAdress(MpsUtil.GenerateUniqueEmail());
+        }
+
+        private void FillUkBankDetails(string payment)
+        {
+            SelectPaymentType(payment);
+            EnterBankAccountNumber(MpsUtil.AccountNumber());
+            EnterBankSortCodeNumber(MpsUtil.BankCodeNumber());
+            EnterBankIbanNumber(IbanNumber());
+            EnterBankBicNumber(BicNumber());
+            EnterBankName("Bank of MPS");
+            EnterBankPropertyNumber(MpsUtil.PropertyNumber());
+            EnterBankPropertyStreet(MpsUtil.PropertyStreet());
+            EnterBankPropertyTown(MpsUtil.PropertyTown());
+            EnterBankPostcode(MpsUtil.PostCodeGb());
+            
         }
 
         public void FillOrganisationDetails()
@@ -201,7 +1048,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             var org = new OrganisationDetail
             {
-                Name = "Deletable_" + MpsUtil.CompanyName(), // in order to boost linear search.
+                Name = "Delete_" + MpsUtil.CompanyName(), // in order to boost linear search.
                 PropertyNumber = MpsUtil.PropertyNumber(),
                 PropertyStreet = MpsUtil.PropertyStreet(),
                 PropertyArea = MpsUtil.FirstName(),
@@ -261,7 +1108,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 case "DirectDebit":
                     bank.PaymentType = "1";
-                    throw new System.NotImplementedException();
                     break; ;
 
                 case "Invoice":
@@ -291,6 +1137,62 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             WebDriver.Wait(DurationType.Millisecond, 100);
         }
 
+        private void EnterCostCentre(string cost)
+        {
+            PropertyCostCentreElement.Clear();
+            PropertyCostCentreElement.SendKeys(cost);
+            WebDriver.Wait(DurationType.Millisecond, 100);
+        }
+
+        public void IsPaymentDetailDisplayedAfterEditing()
+        {
+            if (IsFinlandSystem() || IsSwedenSystem() || IsDenmarkSystem())
+            {
+                if (PaymentDisplayOnlyElement == null)
+                    throw new Exception("selected payment option element is missing");
+
+                TestCheck.AssertIsEqual(true, PaymentDisplayOnlyElement.Displayed,
+                    "payment option selected is not displayed");
+            }
+            else if (IsNorwaySystem())
+            {
+                if(PaymentTypeElement == null)
+                    throw new Exception("payment section is not displayed");
+                TestCheck.AssertIsEqual(true, PaymentTypeElement.Displayed, "payment details are not displayed");
+            }
+            else if (IsNetherlandSystem()|| IsSpainSystem())
+            {
+                if (BankIbanElement == null)
+                    throw new Exception("Bank iban number element is not displayed");
+                TestCheck.AssertIsEqual(true, BankIbanElement.Displayed, "bank iban number is not displayed so payment details are not displayed");
+            }
+            else
+            {
+                if(BankNameElement == null)
+                    throw new Exception("Bank account number element is not displayed");
+                TestCheck.AssertIsEqual(true, BankNameElement.Displayed, "bank account number is not displayed so payment details are not displayed");
+            }
+            
+        }
+
+        private void EnterContactPosition(string cost)
+        {
+            CustomerContactPositionElement.Clear();
+            CustomerContactPositionElement.SendKeys(cost);
+            WebDriver.Wait(DurationType.Millisecond, 100);
+        }
+
+        private void ClickOnPersonResponsibleforOrdering()
+        {
+            if (OrderingPersonElement == null)
+                throw new Exception("ordering person tick box not found");
+
+            OrderingPersonElement.Click();
+        }
+
+        
+        
+
         private void EnterPropertyNumber(string propertyNumber)
         {
             PropertyNumberElement.Clear();
@@ -313,6 +1215,60 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             WebDriver.Wait(DurationType.Millisecond, 100);
         }
 
+        private string TradingStyle()
+        {
+            var trading = "";
+
+            if (IsUKSystem() || IsFranceSystem() || IsIrelandSystem())
+            {
+                trading = "Non-Regulated";
+            }
+            else if (IsItalySystem())
+            {
+                trading = "Non regolamentato";
+            }
+            else if (IsSpainSystem())
+            {
+                trading = "No regulado";
+                //trading = "Persona Física";
+            }
+            else if (IsNetherlandSystem())
+            {
+                trading = "Non-Regulated";
+            }
+            else if (IsBelgiumSystem())
+            {
+                trading = "Non-Regulated";
+            }
+            else if (IsPolandSystem())
+            {
+                trading = "Non-Regulated";
+            }
+            else if (IsNorwaySystem())
+            {
+                trading = "Ikke regulert";
+            }
+            else if (IsDenmarkSystem())
+            {
+                trading = "Ikke-reguleret";
+            }
+            else if (IsFinlandSystem())
+            {
+                trading = "Ei-säännelty";
+            }
+            else if (IsSwissSystem())
+            {
+                trading = "Non-Regulated";
+            }
+            //else if (IsSwedenSystem())
+            //{
+            //    trading = "Icke reglerad";
+            //}
+
+
+            return trading;
+        }
+
         public void EnterRegistrationNumber()
         {
             if (IsFranceSystem())
@@ -323,6 +1279,42 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 ClearAndType(CompanyRegistrationNumerElement, "06488522");
             }
+            else if (IsIrelandSystem())
+            {
+                ClearAndType(CompanyRegistrationNumerElement, "159555");
+            }
+            else if (IsPolandSystem())
+            {
+                ClearAndType(CompanyRegistrationNumerElement, "8522470967");
+            }
+            else if (IsNetherlandSystem())
+            {
+                ClearAndType(CompanyRegistrationNumerElement, "66019702");
+            }
+            else if (IsSwedenSystem())
+            {
+                ClearAndType(CompanyRegistrationNumerElement, "556026-6883");
+            }
+            else if (IsBelgiumSystem())
+            {
+                ClearAndType(CompanyRegistrationNumerElement, "47706706");
+            }
+            else if (IsDenmarkSystem())
+            {
+                //  ClearAndType(CompanyRegistrationNumerElement, "35679626");
+            }
+            else if (IsNorwaySystem())
+            {
+                ClearAndType(CompanyRegistrationNumerElement, "913992415");
+            }
+            //else if (IsSwissSystem())
+            //{
+            //    ClearAndType(CompanyRegistrationNumerElement, "CHE-106.568.179");
+            //}
+            //else if (IsFinlandSystem())
+            //{
+            //    ClearAndType(CompanyRegistrationNumerElement, "0572355-8");
+            //}
 
         }
 
@@ -340,7 +1332,156 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 ClearAndType(VatFieldElement, "GB980780684");
             }
+            else if (IsSpainSystem())
+            {
+                ClearAndType(VatFieldElement, "ES54362315K");
+            }
+            else if (IsIrelandSystem())
+            {
+                ClearAndType(VatFieldElement, "IE6433435F");
+            }
+            else if (IsBelgiumSystem())
+            {
+                ClearAndType(VatFieldElement, "BE0428759497");
+            }
+            else if (IsPolandSystem())
+            {
+                ClearAndType(VatFieldElement, "PL8567346215");
+            }
+            else if (IsNetherlandSystem())
+            {
+                ClearAndType(VatFieldElement, "NL004495445B01");
+            }
+            else if (IsSwissSystem())
+            {
+                ClearAndType(VatFieldElement, "CHE-106.568.179 MWST");
+            }
+            else if (IsFinlandSystem())
+            {
+                ClearAndType(VatFieldElement, "FI20774740");
+            }
+            else if (IsDenmarkSystem())
+            {
+                ClearAndType(VatFieldElement, "DK13585628");
+            }
+            //else if (IsNorwaySystem())
+            //{
+            //    ClearAndType(VatFieldElement, "NO980395898");
+            //}
 
+        }
+
+        private string LegalForm()
+        {
+            var legal = "";
+
+            if (IsGermanSystem() || IsAustriaSystem())
+            {
+                legal = "Aktiengesellschaft";
+
+            }
+            else if (IsUKSystem() || IsItalySystem())
+            {
+                legal ="Church";
+            }
+            else if (IsIrelandSystem())
+            {
+                legal = "School";
+            }
+            else if (IsFranceSystem())
+            {
+                legal ="Administration";
+            }
+            else if (IsNorwaySystem())
+            {
+                legal = "Enkeltpersonforetak";
+            }
+            else if (IsDenmarkSystem())
+            {
+                legal = "Enkeltmandsvirksomhed";
+            }
+            else if (IsSwissSystem())
+            {
+                var language = SwissLegalForm();
+                legal = language;
+            }
+            else if (IsBelgiumSystem())
+            {
+                var language = BelgianLegalForm();
+                legal = language;
+            }
+            else if (IsFinlandSystem())
+            {
+                legal = "Oyj";
+            }
+
+            return legal;
+        }
+
+        private String BelgianLegalForm()
+        {
+            string lang;
+
+            string language;
+
+            try
+            {
+                language = SpecFlow.GetContext("BelgianLanguage");
+            }
+            catch (KeyNotFoundException)
+            {
+
+                language = "Français";
+            }
+
+            switch (language)
+            {
+                case "":
+                case "Français":
+                    lang = "Gouvernement";
+                    break;
+                case "Nederlands":
+                    lang = "Overheid";
+                    break;
+
+                default:
+                    lang = "Overheid";
+                    break;
+            }
+
+            return lang;
+        }
+
+        private String SwissLegalForm()
+        {
+            string lang;
+            string language;
+
+            try
+            {
+                language = SpecFlow.GetContext("BelgianLanguage");
+            }
+            catch (KeyNotFoundException)
+            {
+
+                language = "Français";
+            }
+
+            switch (language)
+            {
+                case "Français":
+                    lang = "Verein";
+                    break;
+                case "Deutsch":
+                    lang = "Verein";
+                    break;
+
+                default:
+                    lang = "Verein";
+                    break;
+            }
+
+            return lang;
         }
 
         private void EnterPropertyTown(string propertyTown)
@@ -357,9 +1498,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             WebDriver.Wait(DurationType.Millisecond, 100);
         }
 
-        private void SelectRegionFromDropdown(string region)
+        private void SelectRegionFromDropdown(string region = "1")
         {
-            SelectFromDropdown(RegionElement, region);
+            SelectFromDropdownByValue(RegionElement, region);
+        }
+
+        private void SelectRegionFromDropdownByIndex(int region = 1)
+        {
+            SelectFromDropDownByIndex(RegionElement, region);
         }
 
         private void EnterPropertyLegalForm(string value = "1")
@@ -368,9 +1514,38 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             WebDriver.Wait(DurationType.Millisecond, 3000);
         }
 
+        private void EnterPropertyLegalFormByIndex(int value = 1)
+        {
+            SelectFromDropDownByIndex(PropertyLegalFormElement, value);
+            WebDriver.Wait(DurationType.Millisecond, 3000);
+        }
+
+        private void SelectCustomerCulture(string value)
+        {
+            SelectFromDropdown(CustomerContractCultureElement, value);
+            WebDriver.Wait(DurationType.Millisecond, 3000);
+        }
+
+        private void EnterLegalForm(string value)
+        {
+            SelectFromDropdown(PropertyLegalFormElement, value);
+            WebDriver.Wait(DurationType.Millisecond, 3000);
+        }
+
+        private void EnterLegalFormByIndex(int value = 1)
+        {
+            SelectFromDropDownByIndex(PropertyLegalFormElement, value);
+            WebDriver.Wait(DurationType.Millisecond, 3000);
+        }
+
         private void EnterPropertyTradingStyle(string value = "1")
         {
             SelectFromDropdownByValue(PropertyTradingStyleElement, value);
+        }
+
+        private void EnterTradingStyle(string style)
+        {
+            SelectFromDropdown(PropertyTradingStyleElement, style);
         }
 
         private void EnterPropertyAuthorisedSignatory(string authsig)
@@ -393,6 +1568,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             WebDriver.Wait(DurationType.Millisecond, 100);
         }
 
+        private void EnterCreditReformNumber(string credit)
+        {
+            CustomerCreditReformNumberElement.Clear();
+            CustomerCreditReformNumberElement.SendKeys(credit);
+            WebDriver.Wait(DurationType.Millisecond, 100);
+        }
+
+        
+
         private void EnterContactSurName(string surname)
         {
             LastNameElement.Clear();
@@ -406,6 +1590,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             TelephoneElement.SendKeys(telephone);
             WebDriver.Wait(DurationType.Millisecond, 100);
         }
+
+
+        private void EnterContactMobile(string telephone)
+        {
+            CustomerContractMobileElement.Clear();
+            CustomerContractMobileElement.SendKeys(telephone);
+            WebDriver.Wait(DurationType.Millisecond, 100);
+        }
+        
 
         private void EnterContactEmailAdress(string email)
         {
@@ -422,6 +1615,69 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             WebDriver.Wait(DurationType.Millisecond, 3000);
         }
 
+        private void SelectPaymentType(string value)
+        {
+            if (PaymentTypeElement.Displayed)
+                SelectFromDropdown(PaymentTypeElement, value);
+
+            WebDriver.Wait(DurationType.Millisecond, 3000);
+        }
+
+        private void EnterBankAccountNumber(string acc)
+        {
+            ClearAndType(BankAccountNumberElement, acc);
+            WebDriver.Wait(DurationType.Millisecond, 100);
+        }
+
+        private void EnterBankSortCodeNumber(string acc)
+        {
+            ClearAndType(BankSortCodeElement, acc);
+            WebDriver.Wait(DurationType.Millisecond, 100);
+        }
+
+        private void EnterBankIbanNumber(string acc)
+        {
+            ClearAndType(BankIbanElement, acc);
+            WebDriver.Wait(DurationType.Millisecond, 100);
+        }
+
+        private void EnterBankBicNumber(string acc)
+        {
+            ClearAndType(BankBicElement, acc);
+            WebDriver.Wait(DurationType.Millisecond, 100);
+        }
+
+        private void EnterBankName(string acc)
+        {
+            ClearAndType(BankNameElement, acc);
+            WebDriver.Wait(DurationType.Millisecond, 100);
+        }
+
+        private void EnterBankPropertyNumber(string acc)
+        {
+            ClearAndType(BankPropertyNumberElement, acc);
+            WebDriver.Wait(DurationType.Millisecond, 100);
+        }
+
+        private void EnterBankPropertyStreet(string acc)
+        {
+            ClearAndType(BankStreetElement, acc);
+            WebDriver.Wait(DurationType.Millisecond, 100);
+        }
+
+        private void EnterBankPropertyTown(string acc)
+        {
+            ClearAndType(BankTownElement, acc);
+            WebDriver.Wait(DurationType.Millisecond, 100);
+        }
+
+        private void EnterBankPostcode(string acc)
+        {
+            ClearAndType(BankPostcodeElement, acc);
+            WebDriver.Wait(DurationType.Millisecond, 100);
+        }
+
+        
         public DealerCustomersExistingPage ClickSaveButton()
         {
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, saveButtonElement);

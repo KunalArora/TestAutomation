@@ -70,12 +70,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SwitchBelgianLanguage(string lang)
         {
-            if (lang.Equals("French"))
+            if (lang.Equals("French") || lang.Equals("Français"))
             {
                 MultipleLanguagesElement.First().Click();
                 IsSwitchedLanguageSelected("Contrats");
             }
-            else if (lang.Equals("Dutch"))
+            else if (lang.Equals("Dutch") || lang.Equals("Nederlands"))
             {
                 MultipleLanguagesElement.Last().Click();
                 IsSwitchedLanguageSelected("Contracten");

@@ -272,6 +272,16 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             CurrentPage.As<DealerManageDevicesPage>().IsInstallationCompleted();
         }
 
+
+        [When(@"I navigate to customer and contact page")]
+        [Given(@"I navigate to customer and contact page")]
+        [Then(@"I navigate to customer and contact page")]
+        public void ThenINavigateToCustomerAndContactPage()
+        {
+            NextPage = CurrentPage.As<DealerManageDevicesPage>().NavigateToCustomerAndContactPage();
+        }
+
+
         [Given(@"I can complete multiple devices installation")]
         [Then(@"I can complete multiple devices installation")]
         [When(@"I can complete multiple devices installation")]
