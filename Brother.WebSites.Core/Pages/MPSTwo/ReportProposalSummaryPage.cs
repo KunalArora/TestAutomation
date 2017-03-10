@@ -37,9 +37,36 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement SpecialPricingSummaryPageInstallationUnitPrice;
         [FindsBy(How = How.CssSelector, Using = "#content_0_SummaryTable_RepeaterModels_RepeaterServicePacks_0_ServicePackUnitPrice_0")]
         public IWebElement SpecialPricingSummaryPageServicePackUnitPrice;
+        [FindsBy(How = How.CssSelector, Using = "#content_0_ButtonChangeCustomerAddress")]
+        public IWebElement LocalApproverChangeCustomerAddressButton;
+        [FindsBy(How = How.CssSelector, Using = "#content_0_SummaryTable_CustomerAddress")]
+        public IWebElement SummaryCustomerStreet;
+        [FindsBy(How = How.CssSelector, Using = "#content_0_SummaryTable_CustomerContact")]
+        public IWebElement SummaryCustomerName;
 
 
 
+
+
+        public void IsCustomerContactNameEdited()
+        {
+            if(SummaryCustomerName == null)
+                throw new Exception("customer street name is not displayed");
+            var street = SummaryCustomerName.Text;
+
+            TestCheck.AssertIsEqual(true, street.Contains("Edited"), 
+                                         string.Format("actual text {0} does not contain Edited", street));
+        }
+
+        public void IsCustomerCustomerCityEdited()
+        {
+            if (SummaryCustomerStreet == null)
+                throw new Exception("customer street name is not displayed");
+            var name = SummaryCustomerStreet.Text;
+
+            TestCheck.AssertIsEqual(true, name.Contains("Edited"),
+                                         string.Format("actual text {0} does not contain Edited", name));
+        }
 
 
         private IWebElement ElementToVerify(string element, string pos)
@@ -61,6 +88,23 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             SpecialPricingButton.Click();
 
             return GetInstance<ProposalSpecialPricingPage>();
+        }
+
+
+        public LocalOfficeApprovalCustomerInformationPage NavigateToLocalOfficeCustomerInformationPage()
+        {
+            WaitForElementToExistByCssSelector(".btn.btn-primary.pull-right.js-mps-special-pricing");
+
+
+            if (LocalApproverChangeCustomerAddressButton == null)
+                throw new Exception("Special Pricing Button is not displayed");
+
+            ScrollDownOnAPage(Driver);
+
+            ScrollTo(LocalApproverChangeCustomerAddressButton);
+            LocalApproverChangeCustomerAddressButton.Click();
+
+            return GetInstance<LocalOfficeApprovalCustomerInformationPage>();
         }
 
 

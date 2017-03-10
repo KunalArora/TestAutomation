@@ -752,6 +752,13 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             
         }
 
+
+        public static string GetSelectedOptionText(IWebElement element)
+        {
+            return new SelectElement(element).SelectedOption.Text;
+        }
+
+
         /// <summary>
         /// Select a value from a dropdown by index
         /// </summary>
@@ -841,6 +848,19 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             {
                 var script = String.Format("window.scrollBy({0}, {1})", xCoord, yCoord);
                 ((IJavaScriptExecutor)driver).ExecuteScript(script);
+            }
+            catch (ElementNotVisibleException elementNotVisibleException)
+            {
+                TestCheck.AssertFailTest(String.Format("Element is not visible [{0}]", elementNotVisibleException.Message));
+            }
+        }
+
+        public static void ScrollDownOnAPage(IWebDriver driver)
+        {
+            try
+            {
+                var js = (IJavaScriptExecutor)driver;
+                js.ExecuteScript("window.scrollTo(0, document.body.scrollHeight);");
             }
             catch (ElementNotVisibleException elementNotVisibleException)
             {

@@ -1274,6 +1274,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             if (!role.StartsWith("Cloud MPS"))
             {
                 NextPage = CurrentPage.As<RegistrationPage>().ClickSignInButton();
+                //NextPage = CurrentPage.As<RegistrationPage>().SignInButtonToDealerDashboard();
             }
             else
             {
@@ -1317,7 +1318,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         private void SignInAsARoleType(string role, string country)
         {
             var username = role.Contains("Cloud") ? MpsUserLogins.Username(country, role, CurrentDriver) : role;
-            var password =  role.Contains("Cloud") ? MpsUserLogins.Password(role) : "P@$$w0rd";
+            var password = role.Contains("Cloud") ? MpsUserLogins.Password(role) : "P@$$w0rd"; //TestBUK1 P@$$w0rd
 
             if (role.StartsWith("MPS One"))
             {

@@ -121,6 +121,138 @@ namespace Brother.Tests.Specs.MPSTwo.Approver
             NextPage = CurrentPage.As<ReportProposalSummaryPage>().NavigateToProposalSpecialPricingPage();
         }
 
+        [Then(@"Approver navigates to customer information page for the proposal")]
+        [Given(@"Approver navigates to customer information page for the proposal")]
+        [When(@"Approver navigates to customer information page for the proposal")]
+        public void WhenApproverNavigatesToCustomerInformationPageForTheProposal()
+        {
+            CurrentPage.As<DataQueryPage>().SearchForNewlyCreatedProposalByProposalId();
+            NextPage = CurrentPage.As<DataQueryPage>().ClickOnSearchedProposal();
+            NextPage = CurrentPage.As<ReportProposalSummaryPage>().NavigateToLocalOfficeCustomerInformationPage();
+        }
+
+        [When(@"Approver navigate to manage customer page for the first address")]
+        public void WhenApproverNavigateToManageCustomerPageForTheFirstAddress()
+        {
+            NextPage = CurrentPage.As<LocalOfficeApprovalCustomerInformationPage>().StartCustomerEdit();
+        }
+
+
+        [Then(@"approver can edit first customer street name")]
+        public void ThenApproverCanEditFirstCustomerStreetName()
+        {
+            CurrentPage.As<LocalOfficeApprovalReportManageCustomerPage>().EditCustomerStreet();
+        }
+
+        [Then(@"approver can edit first customer town name")]
+        public void ThenApproverCanEditFirstCustomerTownName()
+        {
+            CurrentPage.As<LocalOfficeApprovalReportManageCustomerPage>().EditCustomerTown();
+        }
+
+        [Then(@"approver can edit first customer area name")]
+        public void ThenApproverCanEditFirstCustomerAreaName()
+        {
+            CurrentPage.As<LocalOfficeApprovalReportManageCustomerPage>().EditCustomerArea();
+        }
+
+        [Then(@"approver can edit first customer cost centre")]
+        public void ThenApproverCanEditFirstCustomerCostCentre()
+        {
+            CurrentPage.As<LocalOfficeApprovalReportManageCustomerPage>().EditCustomerCostCentre();
+        }
+
+        [Then(@"approver can update the changes made to customer details")]
+        public void ThenApproverCanUpdateTheChangesMadeToCustomerDetails()
+        {
+            NextPage = CurrentPage.As<LocalOfficeApprovalReportManageCustomerPage>().UpdateEditedCustomerInformation();
+        }
+
+
+
+        [Then(@"I can edit customer street name")]
+        public void ThenICanEditCustomerStreetName()
+        {
+            CurrentPage.As<LocalOfficeApprovalCustomerInformationPage>().EditCustomerStreetName();
+        }
+
+        [Then(@"I can edit customer contact first name")]
+        public void ThenICanEditCustomerContactFirstName()
+        {
+            CurrentPage.As<LocalOfficeApprovalCustomerInformationPage>().EditCustomerContactFirstName();
+        }
+
+        [Then(@"the changes made above are displayed on summary page")]
+        public void ThenTheChangesMadeAboveAreDisplayedOnSummaryPage()
+        {
+            CurrentPage.As<ReportProposalSummaryPage>().IsCustomerContactNameEdited();
+            CurrentPage.As<ReportProposalSummaryPage>().IsCustomerCustomerCityEdited();
+        }
+
+
+        [Then(@"I can edit customer contact last name")]
+        public void ThenICanEditCustomerContactLastName()
+        {
+            CurrentPage.As<LocalOfficeApprovalCustomerInformationPage>().EditCustomerContactLastName();
+        }
+
+        [Then(@"I can update the changes made to customer details")]
+        public void ThenICanUpdateTheChangesMadeToCustomerDetails()
+        {
+            NextPage = CurrentPage.As<LocalOfficeApprovalCustomerInformationPage>().UpdateChangesMade();
+        }
+
+
+
+        [Then(@"Customer name field is disabled")]
+        public void ThenCustomerNameFieldIsDisabled()
+        {
+            CurrentPage.As<LocalOfficeApprovalCustomerInformationPage>().IsCustomerNameReadOnly();
+        }
+
+        [Then(@"Customer cost centre is disabled")]
+        public void ThenCustomerCostCentreIsDisabled()
+        {
+            CurrentPage.As<LocalOfficeApprovalCustomerInformationPage>().IsCustomerCostCentreDisabled();
+        }
+
+        [Then(@"customer legal form is disabled")]
+        public void ThenCustomerLegalFormIsDisabled()
+        {
+            CurrentPage.As<LocalOfficeApprovalCustomerInformationPage>().IsCustomerLegalFormDisabled();
+        }
+
+        [Then(@"company registration number field is disabled")]
+        public void ThenCompanyRegistrationNumberFieldIsDisabled()
+        {
+            CurrentPage.As<LocalOfficeApprovalCustomerInformationPage>().IsCustomerCompanyRegistrationNumberDisabled();
+        }
+
+        [Then(@"company vat registration number field is disabled")]
+        public void ThenCompanyVatRegistrationNumberFieldIsDisabled()
+        {
+            CurrentPage.As<LocalOfficeApprovalCustomerInformationPage>().IsCustomerCompanyVatRegistrationNumberDisabled();
+        }
+
+        [Then(@"customer trading style field is disabled")]
+        public void ThenCustomerTradingStyleFieldIsDisabled()
+        {
+           CurrentPage.As<LocalOfficeApprovalCustomerInformationPage>().IsCustomerTradingStyleReadOnly();
+        }
+
+        [Then(@"customer autorised signatories")]
+        public void ThenCustomerAutorisedSignatories()
+        {
+            CurrentPage.As<LocalOfficeApprovalCustomerInformationPage>().IsCustomerAuthorisedSignatoryReadOnly();
+        }
+
+        [Then(@"contact customer email field is disabled")]
+        public void ThenContactCustomerEmailFieldIsDisabled()
+        {
+            CurrentPage.As<LocalOfficeApprovalCustomerInformationPage>().IsCustomerPersonEmailReadOnly();
+        }
+
+
         [Given(@"Approver validates installation unit price calculation")]
         [Then(@"Approver validates installation unit price calculation")]
         [When(@"Approver validates installation unit price calculation")]

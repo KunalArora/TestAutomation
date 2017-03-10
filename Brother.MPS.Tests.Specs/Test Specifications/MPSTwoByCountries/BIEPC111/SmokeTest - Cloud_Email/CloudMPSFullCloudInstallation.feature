@@ -111,6 +111,40 @@ Scenarios:
 	| Cloud MPS Local Office Approver | Switzerland | Purchase & Click with Service      | Pay As You Go                             | Cloud MPS Dealer | Cloud  | BOR  | 36         | Quartalsweise             |
 	| Cloud MPS Local Office Approver | Switzerland | Purchase & Click with Service      | Pay As You Go                             | Cloud MPS Dealer | Cloud  | Web  | 48         | Quartalsweise             |
 	
+
+@ignore
+Scenario Outline: MPS Cloud Installation for SubDealer
+	Given subdealer "<SubRole>" from "<Country>" have created a "<ContractType>" contract with "<UsageType>" and "<Length>" and "<Billing>"
+	And I sign into Cloud MPS as a "<Role>" from "<Country>"
+	And the contract created above is approved
+	And I sign back into Cloud MPS as a "<SubRole>" from "<Country>"
+	And I generate installation request for the contract with "<Method>" communication and "<Type>" installation
+	And I extract the installer url from Installation Request
+	When I navigate to the installer page
+	And I enter the contract reference number
+	And I enter device serial number for "<Type>" communication 
+	And I enter the device IP address
+	Then I can connect the device to Brother environment
+	And I can complete device installation
+	And I can sign out of Brother Online
+	#And I navigate to the Invoice tool homepage
+	#And I select "<Country>" of interest
+	#And I enter mono and colour print count for a single device
+	#And I generate invoices for the contract above
+
+	
+Scenarios:
+
+	| Role                            | Country        | ContractType                  | UsageType      | Role1            | Method | Type | Length  | Billing                                                            | SubRole                                |
+	#| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  | 3 years | Quarterly in Arrears                                               | mps-buk-uat-sub-dealer-1@brother.co.uk |
+	| Cloud MPS Local Office Approver | Belgium | Buy & Click                   | Volume minimum | Cloud MPS Dealer | Cloud  | Web  | 5 ans  | Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance | mps-bbe-uat-sub-dealer-1@brother.co.uk   |
+	
+
+	#| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR  | 4 years | Quarterly in Arrears | abs-test101-sub2@mailinator.com |
+	#| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR  | 4 years | Quarterly in Arrears | abs-test101-sub3@mailinator.com |
+	#
+
+
 @ignore
 Scenario Outline: BIR Tax Calculation Test
 	Given "<Country>" Dealer have created a "<ContractType>" contract with "<UsageType>" and "<Length>" and "<Billing>" using the device "<Device>" using Brother installation

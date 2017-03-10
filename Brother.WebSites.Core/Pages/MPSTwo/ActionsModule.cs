@@ -170,6 +170,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             WaitForRowToAppearBeforeProceeding();
         }
 
+        public static void SearchForNewCustomerByName(IWebDriver driver)
+        {
+            var search = CustomerSearchField(driver);
+            search.Clear();
+            search.SendKeys(SpecFlow.GetContext("GeneratedCompanyName"));
+            WaitForRowToAppearBeforeProceeding();
+        }
+
 
 
         public static void DownloadContractInvoicePDFAction(IWebDriver driver)
@@ -223,6 +231,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public static void ClickOnSpecificCustomerActions(IWebDriver driver)
         {
             SearchForNewCustomer(driver);
+            ClickOnTheActionsDropdown(0, driver);
+        }
+
+        public static void ClickOnCustomerSearchedByNameActions(IWebDriver driver)
+        {
+            SearchForNewCustomerByName(driver);
             ClickOnTheActionsDropdown(0, driver);
         }
 

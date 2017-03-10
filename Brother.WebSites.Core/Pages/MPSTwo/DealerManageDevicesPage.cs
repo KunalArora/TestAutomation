@@ -76,17 +76,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement CompleteSwapProcessElement;
         [FindsBy(How = How.CssSelector, Using = "[class=\"mps-txt-c responding\"]")]
         public IWebElement DeviceRespondingActionElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/customers\"]")]
+        public IWebElement CustomerAndContactTabElement;
         
 
         
-        
-        
-        
-        
-        
-        
-        
-
         public void IsInstallationRequestCancelled()
         {
             if(InstallationRequestStatusElement == null)
@@ -334,21 +328,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
       public void SelectCompanyLocation()
         {
-            //var company = new SelectElement(CompanyLocationElement);
-
-            //var selectableList = company.Options;
-            //selectableList.ElementAt(1).Click();
+           
 
             SelectElementOptionsByIndex(CompanyLocationElement, 1);
 
-          //var genCoy = GetGeneratedCompany();
-
-          //  foreach (var coy in selectableList)
-          //  {
-          //      if (!coy.Text.Contains(genCoy)) continue;
-          //      coy.Click();
-          //      return;
-          //  }
+         
 
           WaitForElementToBeClickableByCssSelector("#content_1_ButtonCreateRequest", 5, 5);
 
@@ -380,19 +364,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return SpecFlow.GetContext("InstallationMethod");
         }
 
+        public DealerCustomersExistingPage NavigateToCustomerAndContactPage()
+        {
+            if(CustomerAndContactTabElement == null)
+                throw new Exception("Customer and Contact Tab is not displayed");
+            CustomerAndContactTabElement.Click();
+
+            return GetInstance<DealerCustomersExistingPage>();
+        }
+
         public void IsInstallationCompleted()
         {
-            //if (Method() == "Email")
-            //{
-            //    var buttonCount = ActionsModule.NumberOfActionButtonDisplayed(Driver);
-
-            //    TestCheck.AssertIsEqual(1, buttonCount,
-            //        String.Format("{0} Actions buttons were returned meaning installation request is not removed",
-            //            buttonCount)
-            //        ); 
-            //}
             
-
             if (Method() != "Email")
             {
                 var connection = DeviceRespondingActionElement.Displayed;

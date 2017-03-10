@@ -158,6 +158,7 @@
     <Compile Include="Pages\MPSTwo\DealerContractPdfPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerContractsAcceptedPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerContractsAwaitingAcceptancePage.cs" />
+    <Compile Include="Pages\MPSTwo\DealerCustomerAdditionalAddressPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerProposalPdfPage.cs" />
     <Compile Include="Pages\MPSTwo\EnhancedUsageMonitoringInstalledPrinterPage.cs" />
     <Compile Include="Pages\MPSTwo\EnhancedUsageMonitoringPrinterEnginePage.cs" />
@@ -183,7 +184,9 @@
     <Compile Include="Pages\MPSTwo\DealerSetInstallationTypePage.cs" />
     <Compile Include="Pages\MPSTwo\InstallerDeviceInstallationPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeAdminLeasingBanks.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeApprovalCustomerInformationPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeApprovalReportingDashboardPage.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeApprovalReportManageCustomerPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeApproverApprovalPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeApproverContractsSummaryPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeApproverContractsPage.cs" />

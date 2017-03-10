@@ -1201,7 +1201,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 //do nothing
             } 
-            else if (IsNorwaySystem() || IsPolandSystem())
+            else if (IsNorwaySystem() || IsPolandSystem() || IsNetherlandSystem() || IsSwissSystem())
             {
                 var optionText = GetValueFromCurrencyText(ModelSrpElement.Text);
                 ClearAndType(ProductCostPriceElement, optionText);
@@ -1231,6 +1231,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             else if (IsPolandSystem())
             {
                 value = value.Replace("zł", "").TrimEnd();
+            }
+            else if (IsSwissSystem())
+            {
+                value = value.Replace("CHF", "").TrimEnd();
+            }
+            else if (IsNetherlandSystem())
+            {
+                value = value.Replace("€", "").TrimEnd();
             }
 
             return value;
