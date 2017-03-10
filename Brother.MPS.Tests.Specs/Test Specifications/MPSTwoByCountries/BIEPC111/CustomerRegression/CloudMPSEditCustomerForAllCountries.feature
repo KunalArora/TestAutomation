@@ -60,4 +60,30 @@ Scenario Outline: MPS Edit New Customer for Multiple Languages
 	| Cloud MPS Dealer | Belgium     | NewlyCreatedItem | Domiciliëring | Factuur                 | Nederlands |
 	| Cloud MPS Dealer | Switzerland | NewlyCreatedItem | LSV           | Rechnung                | Deutsch    |
 	| Cloud MPS Dealer | Switzerland | NewlyCreatedItem | Facture       | Prélèvement automatique | Français   |
+
+
+Scenario Outline: MPS Add Additional Address to New Customer for All Countries 
+	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
+	And I navigate to existing customer screen
+	And I click Create Customer Button
+	When I create new Customer with payment type "<PaymentType>" for "<Country>" 
+	And I navigate to the details of the newly edited customer
+	And I add additional address to the customer
+	And the newly added additional address is displayed
+	And I can sign out of Brother Online
+
+	Scenarios: 
+	| Role             | Country        | TargetItem       | PaymentType          |
+	| Cloud MPS Dealer | United Kingdom | NewlyCreatedItem | Invoice              |
+	| Cloud MPS Dealer | Italy          | NewlyCreatedItem | Addebito diretto     |
+	| Cloud MPS Dealer | Norway         | NewlyCreatedItem | Faktura              | 
+	| Cloud MPS Dealer | Finland        | NewlyCreatedItem | Laskutus             |
+	| Cloud MPS Dealer | Sweden         | NewlyCreatedItem | Faktura              |
+	| Cloud MPS Dealer | Germany        | NewlyCreatedItem | Bankeinzug           |
+	| Cloud MPS Dealer | Poland         | NewlyCreatedItem | Faktura              |
+	| Cloud MPS Dealer | Ireland        | NewlyCreatedItem | Direct Debit         |
+	| Cloud MPS Dealer | Netherlands    | NewlyCreatedItem | Automatische incasso |
+	| Cloud MPS Dealer | France         | NewlyCreatedItem | Débit direct         |
+	| Cloud MPS Dealer | Spain          | NewlyCreatedItem | Debito directo       |
+	| Cloud MPS Dealer | Denmark        | NewlyCreatedItem | Faktura              |
 	

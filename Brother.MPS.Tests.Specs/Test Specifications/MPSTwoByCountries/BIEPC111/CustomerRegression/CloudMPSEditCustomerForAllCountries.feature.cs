@@ -163,6 +163,45 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("MPS Add Additional Address to New Customer for All Countries")]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "NewlyCreatedItem", "Invoice", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Italy", "NewlyCreatedItem", "Addebito diretto", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Norway", "NewlyCreatedItem", "Faktura", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Finland", "NewlyCreatedItem", "Laskutus", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Sweden", "NewlyCreatedItem", "Faktura", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Germany", "NewlyCreatedItem", "Bankeinzug", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Poland", "NewlyCreatedItem", "Faktura", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Ireland", "NewlyCreatedItem", "Direct Debit", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Netherlands", "NewlyCreatedItem", "Automatische incasso", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "France", "NewlyCreatedItem", "Débit direct", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Spain", "NewlyCreatedItem", "Debito directo", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Denmark", "NewlyCreatedItem", "Faktura", null)]
+        public virtual void MPSAddAdditionalAddressToNewCustomerForAllCountries(string role, string country, string targetItem, string paymentType, string[] exampleTags)
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Add Additional Address to New Customer for All Countries", exampleTags);
+#line 65
+this.ScenarioSetup(scenarioInfo);
+#line 66
+ testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 67
+ testRunner.And("I navigate to existing customer screen", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 68
+ testRunner.And("I click Create Customer Button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 69
+ testRunner.When(string.Format("I create new Customer with payment type \"{0}\" for \"{1}\"", paymentType, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 70
+ testRunner.And("I navigate to the details of the newly edited customer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 71
+ testRunner.And("I add additional address to the customer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 72
+ testRunner.And("the newly added additional address is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 73
+ testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

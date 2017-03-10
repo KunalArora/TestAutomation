@@ -19,10 +19,6 @@ Scenario Outline: Local Office Approver can change customer address
 	Then I can connect the device to Brother environment
 	And I can complete device installation
 	And I can sign out of Brother Online
-	And I navigate to the Invoice tool homepage
-	And I select "<Country>" of interest
-	And I enter mono and colour print count for a single device
-	And I generate invoices for the contract above
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to Report page
 	And Approver navigate to Data Query page

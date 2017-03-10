@@ -77,6 +77,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             SelectFromDropdown(AdditionalContactRegionDropdownElement, name);
         }
 
+        public void SelectAdditionRegionByIndex(int value = 1)
+        {
+            SelectFromDropDownByIndex(AdditionalContactRegionDropdownElement, value);
+        }
+
         public void EnterAdditionalCostCentre(string cost)
         {
             ClearAndType(AdditionalContactCostCentreElement, cost);
@@ -95,15 +100,142 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterAdditionalCustomerInformation()
         {
-            EnterAdditionalContactName("New " + string.Format("{0} {1}", MpsUtil.FirstName(), MpsUtil.SurName()));
-            EnterAdditionalDescription("Additional Customer Address");
-            EnterAdditionalPropertyNumber("12");
-            EnterAdditionalStreetName(MpsUtil.PropertyStreet());
-            EnterAdditionalAreaName("Area");
-            EnterAdditionalTownName("Town");
-            EnterAdditionalPostcode(MpsUtil.PostCodeGb());
-            SelectAdditionalRegion("Manchester");
-            EnterAdditionalCostCentre("Marketing");
+            if (IsUKSystem())
+            {
+                EnterAdditionalContactName("New " + string.Format("{0} {1}", MpsUtil.FirstName(), MpsUtil.SurName()));
+                EnterAdditionalDescription("Additional UK Customer Address");
+                EnterAdditionalPropertyNumber("12");
+                EnterAdditionalStreetName(MpsUtil.PropertyStreet());
+                EnterAdditionalAreaName("Area");
+                EnterAdditionalTownName("Town");
+                EnterAdditionalPostcode(MpsUtil.PostCodeGb());
+                SelectAdditionalRegion("Manchester");
+                EnterAdditionalCostCentre("Marketing");
+            }
+            else if (IsItalySystem())
+            {
+                EnterAdditionalContactName("New " + string.Format("{0} {1}", MpsUtil.FirstName(), MpsUtil.SurName()));
+                EnterAdditionalDescription("Additional Italy Customer Address");
+                EnterAdditionalStreetName(MpsUtil.PropertyStreet());
+                EnterAdditionalPostcode(MpsUtil.PostCodeIt());
+                EnterAdditionalTownName("Town");
+                EnterAdditionalCostCentre("Marketing");
+            }
+            else if (IsNorwaySystem())
+            {
+                EnterAdditionalContactName("New " + string.Format("{0} {1}", MpsUtil.FirstName(), MpsUtil.SurName()));
+                EnterAdditionalDescription("Additional Norway Customer Address");
+                EnterAdditionalStreetName(MpsUtil.PropertyStreet());
+                EnterAdditionalTownName("Town");
+                EnterAdditionalPostcode(MpsUtil.PostCodeNo());
+                EnterAdditionalCostCentre("Marketing");
+            }
+            else if (IsFinlandSystem())
+            {
+                EnterAdditionalContactName("New " + string.Format("{0} {1}", MpsUtil.FirstName(), MpsUtil.SurName()));
+                EnterAdditionalDescription("Additional Finland Customer Address");
+                EnterAdditionalStreetName(MpsUtil.PropertyStreet());
+                EnterAdditionalTownName("Town");
+                EnterAdditionalPostcode(MpsUtil.PostCodeFi());
+                EnterAdditionalCostCentre("Marketing");
+            }
+            else if (IsSwedenSystem())
+            {
+                EnterAdditionalContactName("New " + string.Format("{0} {1}", MpsUtil.FirstName(), MpsUtil.SurName()));
+                EnterAdditionalDescription("Additional Customer Address");
+                EnterAdditionalStreetName(MpsUtil.PropertyStreet());
+                EnterAdditionalTownName("Town");
+                EnterAdditionalPostcode(MpsUtil.PostCodeNs());
+                EnterAdditionalCostCentre("Marketing");
+            }
+            else if (IsGermanSystem() || IsAustriaSystem())
+            {
+                EnterAdditionalContactName("New " + string.Format("{0} {1}", MpsUtil.FirstName(), MpsUtil.SurName()));
+                EnterAdditionalDescription("Additional Customer Address");
+                EnterAdditionalPropertyNumber("12");
+                EnterAdditionalStreetName(MpsUtil.PropertyStreet());
+                EnterAdditionalTownName("Town");
+                EnterAdditionalPostcode(MpsUtil.PostCode());
+                EnterAdditionalCostCentre("Marketing");
+            }
+            else if (IsBelgiumSystem())
+            {
+                EnterAdditionalContactName("New " + string.Format("{0} {1}", MpsUtil.FirstName(), MpsUtil.SurName()));
+                EnterAdditionalDescription("Additional Customer Address");
+                EnterAdditionalStreetName(MpsUtil.PropertyStreet());
+                EnterAdditionalTownName("Town");
+                EnterAdditionalPostcode(MpsUtil.PostCodeBe());
+                SelectAdditionRegionByIndex();
+                EnterAdditionalCostCentre("Marketing");
+            }
+            else if (IsPolandSystem())
+            {
+                EnterAdditionalContactName("New " + string.Format("{0} {1}", MpsUtil.FirstName(), MpsUtil.SurName()));
+                EnterAdditionalDescription("Additional Customer Address");
+                EnterAdditionalPropertyNumber("12");
+                EnterAdditionalStreetName(MpsUtil.PropertyStreet());
+                EnterAdditionalTownName("Town");
+                EnterAdditionalPostcode(MpsUtil.PostCodePl());
+                SelectAdditionRegionByIndex();
+            }
+            else if (IsIrelandSystem())
+            {
+                EnterAdditionalContactName("New " + string.Format("{0} {1}", MpsUtil.FirstName(), MpsUtil.SurName()));
+                EnterAdditionalDescription("Additional Customer Address");
+                EnterAdditionalPropertyNumber("12");
+                EnterAdditionalStreetName(MpsUtil.PropertyStreet());
+                EnterAdditionalTownName("Town");
+                EnterAdditionalPostcode(MpsUtil.PostCodeIr());
+                SelectAdditionRegionByIndex();
+                EnterAdditionalCostCentre("Marketing");
+            }
+            else if (IsSwissSystem())
+            {
+                EnterAdditionalContactName("New " + string.Format("{0} {1}", MpsUtil.FirstName(), MpsUtil.SurName()));
+                EnterAdditionalDescription("Additional Customer Address");
+                EnterAdditionalStreetName(MpsUtil.PropertyStreet());
+                EnterAdditionalTownName("Town");
+                EnterAdditionalPostcode(MpsUtil.PostCodeSw());
+                SelectAdditionRegionByIndex();
+                EnterAdditionalCostCentre("Marketing");
+            }
+            else if (IsNetherlandSystem())
+            {
+                EnterAdditionalContactName("New " + string.Format("{0} {1}", MpsUtil.FirstName(), MpsUtil.SurName()));
+                EnterAdditionalDescription("Additional Customer Address");
+                EnterAdditionalStreetName(MpsUtil.PropertyStreet());
+                EnterAdditionalTownName("Town");
+                EnterAdditionalPostcode(MpsUtil.PostCodeNl());
+            }
+            else if (IsFranceSystem())
+            {
+                EnterAdditionalContactName("New " + string.Format("{0} {1}", MpsUtil.FirstName(), MpsUtil.SurName()));
+                EnterAdditionalDescription("Additional Customer Address");
+                EnterAdditionalStreetName(MpsUtil.PropertyStreet());
+                EnterAdditionalTownName("Town");
+                EnterAdditionalPostcode(MpsUtil.PostCodeFr());
+                SelectAdditionRegionByIndex();
+                EnterAdditionalCostCentre("Marketing");
+            }
+            else if (IsSpainSystem())
+            {
+                EnterAdditionalContactName("New " + string.Format("{0} {1}", MpsUtil.FirstName(), MpsUtil.SurName()));
+                EnterAdditionalDescription("Additional Customer Address");
+                EnterAdditionalStreetName(MpsUtil.PropertyStreet());
+                EnterAdditionalTownName("Town");
+                EnterAdditionalPostcode(MpsUtil.PostCodeSp());
+                SelectAdditionRegionByIndex();
+                EnterAdditionalCostCentre("Marketing");
+            }
+            else if (IsDenmarkSystem())
+            {
+                EnterAdditionalContactName("New " + string.Format("{0} {1}", MpsUtil.FirstName(), MpsUtil.SurName()));
+                EnterAdditionalDescription("Additional Customer Address");
+                EnterAdditionalStreetName(MpsUtil.PropertyStreet());
+                EnterAdditionalTownName("Town");
+                EnterAdditionalPostcode(MpsUtil.PostCodeDk());
+                EnterAdditionalCostCentre("Marketing");
+            }
         }
         
         

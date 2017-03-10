@@ -318,7 +318,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if(CustomerAddAddressButtonElement == null)
                 throw new Exception("Customer Add Address Button Element is not displayed");
 
-            SelectAPaymentTypeIfNotAlreadySelected();
+            if (!(IsFinlandSystem() 
+                || IsSwedenSystem()
+                || IsPolandSystem()
+                || IsNetherlandSystem()
+                ||IsDenmarkSystem()))
+            {
+                SelectAPaymentTypeIfNotAlreadySelected();
+            }
+            
 
             CustomerAddAddressButtonElement.Click();
 
