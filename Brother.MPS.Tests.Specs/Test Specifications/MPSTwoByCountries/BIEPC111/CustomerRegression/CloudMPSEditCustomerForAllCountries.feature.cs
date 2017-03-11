@@ -23,7 +23,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC111.Cust
     [NUnit.Framework.CategoryAttribute("MPS")]
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("TEST")]
-    [NUnit.Framework.CategoryAttribute("BIEPC113")]
+    [NUnit.Framework.CategoryAttribute("BIEPC111")]
     public partial class CloudMPSEditCustomerForAllCountriesFeature
     {
         
@@ -41,7 +41,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC111.Cust
                         "MPS",
                         "UAT",
                         "TEST",
-                        "BIEPC113"});
+                        "BIEPC111"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
