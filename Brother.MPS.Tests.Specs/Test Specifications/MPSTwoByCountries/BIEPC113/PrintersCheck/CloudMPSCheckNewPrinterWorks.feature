@@ -1,4 +1,4 @@
-﻿	@TEST @UAT @MPS @BIEPC113
+﻿	@ignore @TEST @UAT @MPS @BIEPC113
 	Feature: CloudMPSCheckNewPrinterWorks
 	In order to ensure that new printers work as expected
 	As a dealer
