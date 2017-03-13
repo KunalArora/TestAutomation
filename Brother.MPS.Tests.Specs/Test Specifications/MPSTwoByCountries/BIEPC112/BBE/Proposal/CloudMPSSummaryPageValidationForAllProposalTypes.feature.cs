@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Brother.MPS.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BBE.Proposal
+namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BBE.Proposal
 {
     using TechTalk.SpecFlow;
     
@@ -76,7 +76,6 @@ namespace Brother.MPS.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("MPS Summary Validation MV In Click")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Belgium", "Purchase & Click with Service", "Minimum Volume", "3 jaar", "Jaarlijke afrekening / Décompte annuel", "Tick", "MFC-L8650CDW", "Full", "Inbegrepen in de clickprijs", "800", "800", "Inbegrepen in de clickprijs", "Betaling bij aanvang van het contract", "Dutch", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Belgium", "Buy & Click", "Volume minimum", "3 ans", "Jaarlijke afrekening / Décompte annuel", "Tick", "MFC-L8650CDW", "Full", "Inclus dans le prix click", "800", "800", "Inclus dans le prix click", "Paiement au démarrage du contrat", "French", null)]
         public virtual void MPSSummaryValidationMVInClick(
                     string role, 
                     string country, 
