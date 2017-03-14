@@ -109,6 +109,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var value = GetFieldValue(elementOfInterest);
             value = value + dec;
 
+            if (value.ToString().StartsWith("-"))
+            {
+                value = 10;
+            }
+
             ClearAndType(elementOfInterest, value.ToString());
 
         }
@@ -194,6 +199,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             var value = GetFieldValue(elementOfInterest);
             value = value + dec;
+
+            if (value.ToString().StartsWith("-"))
+            {
+                value = 5;
+            }
 
             ClearAndType(elementOfInterest, value.ToString());
 
