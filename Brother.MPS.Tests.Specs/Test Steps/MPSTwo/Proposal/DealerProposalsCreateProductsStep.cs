@@ -545,6 +545,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         {
             CurrentPage.As<DealerProposalsCreateProductsPage>().ClickOnAPrinter(printer);
             CurrentPage.As<DealerProposalsCreateProductsPage>().EnterProductQuantity(quantity);
+            CurrentPage.As<DealerProposalsCreateProductsPage>().EnterProductMargin("21");
             if (!(CurrentPage.As<DealerProposalsCreateProductsPage>().IsGermanSystem()
                 && CurrentPage.As<DealerProposalsCreateProductsPage>().GetContractType() == "Easy Print Pro & Service"))
             {
