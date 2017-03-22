@@ -601,6 +601,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                         retries++;
                         WebDriver.Wait(DurationType.Second, 5);
                     }
+                    catch (TargetInvocationException timeoutException)
+                    {
+                        MsgOutput(String.Format("Serial number check failed. Retrying [{0}] times", retries));
+
+                        MsgOutput(String.Format("Exception was [{0}]", timeoutException));
+
+                        elementStatus = false;
+                        retries++;
+                        WebDriver.Wait(DurationType.Second, 5);
+                    }
 
                 }
                 
