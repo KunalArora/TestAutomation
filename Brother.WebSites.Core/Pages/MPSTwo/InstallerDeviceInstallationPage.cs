@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing.Text;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Brother.Tests.Selenium.Lib.Support;
@@ -10,6 +11,7 @@ using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using OpenQA.Selenium.Support.UI;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
@@ -102,6 +104,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement WhereIsMyDevicePopUpElements;
         [FindsBy(How = How.CssSelector, Using = "#content_0_DeviceInstallList_List_CellConnectionStatusIcon_0[data-original-title=\"Not connected\"]")]
         public IWebElement CloudInstallationNoConnectionStatusIconElements;
+        [FindsBy(How = How.CssSelector, Using = ".has-success .glyphicon.glyphicon-ok")]
+        public IWebElement InstallationSerialNumberCheckSuccessIconElement;
+        [FindsBy(How = How.CssSelector, Using = ".has-error .glyphicon.glyphicon-remove")]
+        public IWebElement InstallationSerialNumberCheckFailureIconElements;
+        [FindsBy(How = How.CssSelector, Using = ".has-success .glyphicon.glyphicon-ok")]
+        public IList<IWebElement> InstallationSerialNumberCheckSuccessIconElements;
+        
         
 
         
@@ -466,16 +475,70 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             ClosePopUpModal();
 
-            MpsJobRunnerPage.RunResetSerialNumberJob(SerialNumberUsed());
-            
-            ClearAndType(SerialNumberFieldElement, SerialNumberUsed());
-           
-            SerialNumberFieldElement.SendKeys(Keys.Tab);
+            WebDriver.SetWebDriverImplicitTimeout(new TimeSpan(0, 0, 0, 15));
+            var wait = new DefaultWait<IWebDriver>(TestController.CurrentDriver)
+            {
+                Timeout = new TimeSpan(0, 0, 0, 5)
+            };
+            var methodName = MethodBase.GetCurrentMethod();
+
+            var retries = 0;
+            var elementStatus = false;
+
+            while ((!elementStatus) && (retries != 3))
+            {
+                try
+                {
+                    MsgOutput(String.Format("Retry count = [{0}]", retries));
+                    
+                    MpsJobRunnerPage.RunResetSerialNumberJob(SerialNumberUsed());
+
+                    ClearAndType(SerialNumberFieldElement, SerialNumberUsed());
+
+                    SerialNumberFieldElement.SendKeys(Keys.Tab);
+
+                    WebDriver.Wait(DurationType.Second, 5);
+                    
+
+                    wait.Message = String.Format("{0}:: Timeout of [{1}] seconds trying to locate element {2}", methodName, wait.Timeout, 
+                                                            InstallationSerialNumberCheckSuccessIconElement);
+                    elementStatus = InstallationSerialNumberCheckSuccessIconElement.Displayed;
+
+                    MsgOutput(String.Format("Element Status = [{0}]", elementStatus));
+                    MsgOutput(String.Format("Timeout waited = [{0}]", wait.Timeout.TotalSeconds));
+                    retries++;
+
+                }
+                catch (StaleElementReferenceException stale)
+                {
+                    MsgOutput(String.Format("Serial number check failed. Retrying [{0}] times", retries));
+                    MsgOutput(String.Format("Exception was [{0}]", stale));
+
+                    elementStatus = false;
+                    retries++;
+                    WebDriver.Wait(DurationType.Second, 5);
+                }
+                catch (WebDriverException timeoutException)
+                {
+                    MsgOutput(String.Format("Serial number check failed. Retrying [{0}] times", retries));
+
+                    MsgOutput(String.Format("Exception was [{0}]", timeoutException));
+
+                    elementStatus = false;
+                    retries++;
+                    WebDriver.Wait(DurationType.Second, 5);
+                }
+                
+            }
+            WebDriver.SetWebDriverDefaultTimeOuts(WebDriver.DefaultTimeOut.Implicit);
+
         }
 
         public void EnterSerialNumber(string serialNumber, string serialNumber1, string serialNumber2, string serialNumber3)
         {
             ClosePopUpModal();
+
+            WebDriver.SetWebDriverImplicitTimeout(new TimeSpan(0, 0, 0, 15));
 
             String[] serialNumberContainer = 
                                         {
@@ -487,14 +550,63 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             for(var i = 0; i < SerialNumbersElement.Count; i++)
             {
-                MpsJobRunnerPage.RunResetSerialNumberJob(serialNumberContainer[i]);
+                
+                var wait = new DefaultWait<IWebDriver>(TestController.CurrentDriver)
+                {
+                    Timeout = new TimeSpan(0, 0, 0, 5)
+                };
+                var methodName = MethodBase.GetCurrentMethod();
 
-                ClearAndType(SerialNumbersElement.ElementAt(i), serialNumberContainer[i]);
+                var retries = 0;
+                var elementStatus = false;
 
-                SerialNumbersElement.ElementAt(i).SendKeys(Keys.Tab); 
+                while ((!elementStatus) && (retries != 3))
+                {
+                    try
+                    {
+                        MpsJobRunnerPage.RunResetSerialNumberJob(serialNumberContainer[i]);
+
+                        ClearAndType(SerialNumbersElement.ElementAt(i), serialNumberContainer[i]);
+
+                        SerialNumbersElement.ElementAt(i).SendKeys(Keys.Tab);
+
+                        WebDriver.Wait(DurationType.Second, 5);
+
+
+                        wait.Message = String.Format("{0}:: Timeout of [{1}] seconds trying to locate element {2}", methodName, wait.Timeout,
+                                                                InstallationSerialNumberCheckSuccessIconElements.ElementAt(i));
+                        elementStatus = InstallationSerialNumberCheckSuccessIconElements.ElementAt(i).Displayed;
+
+                        MsgOutput(String.Format("Element Status = [{0}]", elementStatus));
+                        MsgOutput(String.Format("Timeout waited = [{0}]", wait.Timeout.TotalSeconds));
+                        retries++;
+
+                    }
+                    catch (StaleElementReferenceException stale)
+                    {
+                        MsgOutput(String.Format("Serial number check failed. Retrying [{0}] times", retries));
+                        MsgOutput(String.Format("Exception was [{0}]", stale));
+
+                        elementStatus = false;
+                        retries++;
+                        WebDriver.Wait(DurationType.Second, 5);
+                    }
+                    catch (WebDriverException timeoutException)
+                    {
+                        MsgOutput(String.Format("Serial number check failed. Retrying [{0}] times", retries));
+
+                        MsgOutput(String.Format("Exception was [{0}]", timeoutException));
+
+                        elementStatus = false;
+                        retries++;
+                        WebDriver.Wait(DurationType.Second, 5);
+                    }
+
+                }
+                
             }
 
-            
+            WebDriver.SetWebDriverDefaultTimeOuts(WebDriver.DefaultTimeOut.Implicit);
         }
 
        
@@ -503,11 +615,61 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ClosePopUpModal();
 
 
-            MpsJobRunnerPage.RunResetSerialNumberJob(serialNumber);
+            WebDriver.SetWebDriverImplicitTimeout(new TimeSpan(0, 0, 0, 15));
+            var wait = new DefaultWait<IWebDriver>(TestController.CurrentDriver)
+            {
+                Timeout = new TimeSpan(0, 0, 0, 5)
+            };
+            var methodName = MethodBase.GetCurrentMethod();
 
-            ClearAndType(SerialNumberFieldElement, serialNumber);
+            var retries = 0;
+            var elementStatus = false;
 
-            SerialNumberFieldElement.SendKeys(Keys.Tab);
+            while ((!elementStatus) && (retries != 3))
+            {
+                try
+                {
+                    MpsJobRunnerPage.RunResetSerialNumberJob(serialNumber);
+
+                    ClearAndType(SerialNumberFieldElement, serialNumber);
+
+                    SerialNumberFieldElement.SendKeys(Keys.Tab);
+
+                    WebDriver.Wait(DurationType.Second, 5);
+
+
+                    wait.Message = String.Format("{0}:: Timeout of [{1}] seconds trying to locate element {2}", methodName, wait.Timeout,
+                                                            InstallationSerialNumberCheckSuccessIconElement);
+                    elementStatus = InstallationSerialNumberCheckSuccessIconElement.Displayed;
+
+                    MsgOutput(String.Format("Element Status = [{0}]", elementStatus));
+                    MsgOutput(String.Format("Timeout waited = [{0}]", wait.Timeout.TotalSeconds));
+                    retries++;
+
+                }
+                catch (StaleElementReferenceException stale)
+                {
+                    MsgOutput(String.Format("Serial number check failed. Retrying [{0}] times", retries));
+                    MsgOutput(String.Format("Exception was [{0}]", stale));
+
+                    elementStatus = false;
+                    retries++;
+                    WebDriver.Wait(DurationType.Second, 5);
+                }
+                catch (WebDriverException timeoutException)
+                {
+                    MsgOutput(String.Format("Serial number check failed. Retrying [{0}] times", retries));
+
+                    MsgOutput(String.Format("Exception was [{0}]", timeoutException));
+
+                    elementStatus = false;
+                    retries++;
+                    WebDriver.Wait(DurationType.Second, 5);
+                }
+
+            }
+            WebDriver.SetWebDriverDefaultTimeOuts(WebDriver.DefaultTimeOut.Implicit);
+
            
 
 
@@ -517,22 +679,123 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             ClosePopUpModal();
 
-            MpsJobRunnerPage.RunResetSerialNumberJob(SwapSerialNumberUsed());
+            WebDriver.SetWebDriverImplicitTimeout(new TimeSpan(0, 0, 0, 15));
+            var wait = new DefaultWait<IWebDriver>(TestController.CurrentDriver)
+            {
+                Timeout = new TimeSpan(0, 0, 0, 5)
+            };
+            var methodName = MethodBase.GetCurrentMethod();
 
-            ClearAndType(SerialNumberFieldElement, SwapSerialNumberUsed());
+            var retries = 0;
+            var elementStatus = false;
 
-            SerialNumberFieldElement.SendKeys(Keys.Tab);
+            while ((!elementStatus) && (retries != 3))
+            {
+                try
+                {
+                    MpsJobRunnerPage.RunResetSerialNumberJob(SwapSerialNumberUsed());
+
+                    ClearAndType(SerialNumberFieldElement, SwapSerialNumberUsed());
+
+                    SerialNumberFieldElement.SendKeys(Keys.Tab);
+
+                    WebDriver.Wait(DurationType.Second, 5);
+
+
+                    wait.Message = String.Format("{0}:: Timeout of [{1}] seconds trying to locate element {2}", methodName, wait.Timeout,
+                                                            InstallationSerialNumberCheckSuccessIconElement);
+                    elementStatus = InstallationSerialNumberCheckSuccessIconElement.Displayed;
+
+                    MsgOutput(String.Format("Element Status = [{0}]", elementStatus));
+                    MsgOutput(String.Format("Timeout waited = [{0}]", wait.Timeout.TotalSeconds));
+                    retries++;
+
+                }
+                catch (StaleElementReferenceException stale)
+                {
+                    MsgOutput(String.Format("Serial number check failed. Retrying [{0}] times", retries));
+                    MsgOutput(String.Format("Exception was [{0}]", stale));
+
+                    elementStatus = false;
+                    retries++;
+                    WebDriver.Wait(DurationType.Second, 5);
+                }
+                catch (WebDriverException timeoutException)
+                {
+                    MsgOutput(String.Format("Serial number check failed. Retrying [{0}] times", retries));
+
+                    MsgOutput(String.Format("Exception was [{0}]", timeoutException));
+
+                    elementStatus = false;
+                    retries++;
+                    WebDriver.Wait(DurationType.Second, 5);
+                }
+
+            }
+            WebDriver.SetWebDriverDefaultTimeOuts(WebDriver.DefaultTimeOut.Implicit);
+
+
+
         }
 
         public void EnterExistingSerialNumber()
         {
             ClosePopUpModal();
 
-            MpsJobRunnerPage.RunResetSerialNumberJob(UsedSerialNumber());
+            WebDriver.SetWebDriverImplicitTimeout(new TimeSpan(0, 0, 0, 15));
+            var wait = new DefaultWait<IWebDriver>(TestController.CurrentDriver)
+            {
+                Timeout = new TimeSpan(0, 0, 0, 5)
+            };
+            var methodName = MethodBase.GetCurrentMethod();
 
-            ClearAndType(SerialNumberFieldElement, UsedSerialNumber());
+            var retries = 0;
+            var elementStatus = false;
 
-            SerialNumberFieldElement.SendKeys(Keys.Tab);
+            while ((!elementStatus) && (retries != 3))
+            {
+                try
+                {
+                    MpsJobRunnerPage.RunResetSerialNumberJob(UsedSerialNumber());
+
+                    ClearAndType(SerialNumberFieldElement, UsedSerialNumber());
+
+                    SerialNumberFieldElement.SendKeys(Keys.Tab);
+
+                    WebDriver.Wait(DurationType.Second, 5);
+
+
+                    wait.Message = String.Format("{0}:: Timeout of [{1}] seconds trying to locate element {2}", methodName, wait.Timeout,
+                                                            InstallationSerialNumberCheckSuccessIconElement);
+                    elementStatus = InstallationSerialNumberCheckSuccessIconElement.Displayed;
+
+                    MsgOutput(String.Format("Element Status = [{0}]", elementStatus));
+                    MsgOutput(String.Format("Timeout waited = [{0}]", wait.Timeout.TotalSeconds));
+                    retries++;
+
+                }
+                catch (StaleElementReferenceException stale)
+                {
+                    MsgOutput(String.Format("Serial number check failed. Retrying [{0}] times", retries));
+                    MsgOutput(String.Format("Exception was [{0}]", stale));
+
+                    elementStatus = false;
+                    retries++;
+                    WebDriver.Wait(DurationType.Second, 5);
+                }
+                catch (WebDriverException timeoutException)
+                {
+                    MsgOutput(String.Format("Serial number check failed. Retrying [{0}] times", retries));
+
+                    MsgOutput(String.Format("Exception was [{0}]", timeoutException));
+
+                    elementStatus = false;
+                    retries++;
+                    WebDriver.Wait(DurationType.Second, 5);
+                }
+
+            }
+            WebDriver.SetWebDriverDefaultTimeOuts(WebDriver.DefaultTimeOut.Implicit);
         }
 
 
@@ -574,10 +837,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     ClearAndType(ipAddressElement, "1");
                     ipAddressElement.SendKeys(Keys.Tab);
                 }
-                
+
             }
         }
 
+        
         public void ConnectDevice()
         {
             try
