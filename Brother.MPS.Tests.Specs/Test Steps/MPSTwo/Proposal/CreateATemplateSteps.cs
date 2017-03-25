@@ -2034,11 +2034,11 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             var clickPriceStepInstance = new DealerProposalsCreateClickPriceStep();
             if (CurrentDriver.Url.Contains("online.ch") || CurrentDriver.Url.Contains("online.brother.ch.local"))
             {
-                clickPriceStepInstance.WhenITypeClickPriceVolumeOfAnd("800", "800");
+                clickPriceStepInstance.WhenITypeClickPriceVolumeOfAnd("1000", "1000");
             }
             else
             {
-                clickPriceStepInstance.WhenIEnterClickPriceVolumeOf("800", "800");
+                clickPriceStepInstance.WhenIEnterClickPriceVolumeOf("1000", "1000");
             }
 
 
