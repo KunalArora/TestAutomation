@@ -74,17 +74,31 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             
             var testFromFile = webClient.DownloadString(url);
 
-            while ((testFromFile.Contains("Failure")) && (retryCount != numTries))
+            while ((testFromFile.Contains("Failure") && (retryCount != numTries)) || (testFromFile.Contains("Already running")))
             {
-                testFromFile = webClient.DownloadString(url);
+
+                if ((testFromFile.Contains("Failure")))
+                {
+                    MsgOutput(string.Format("Job run is not successful. Retrying..... [{0}] times", retryCount));
+                }
+
+                if ((testFromFile.Contains("Already running")))
+                {
+                    MsgOutput(string.Format("Job is already running"));
+                }
+
                 WebDriver.Wait(DurationType.Second, 2);
-                MsgOutput(string.Format("Retrying..... [{0}] times", retryCount));
+
                 retryCount++;
+
+                testFromFile = webClient.DownloadString(url);
+                
+                
             }
 
             if ((testFromFile.Contains("Failure")))
             {
-                MsgOutput(string.Format("The message from url is [{0}] times", testFromFile));
+                MsgOutput(string.Format("The message from url is [{0}]", testFromFile));
             }
             return testFromFile;
         }
