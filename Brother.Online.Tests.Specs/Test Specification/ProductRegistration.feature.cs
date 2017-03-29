@@ -143,52 +143,6 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("New Customer wants to register product with their serial numbers in the file")]
-        [NUnit.Framework.CategoryAttribute("SMOKE_ProductRegistration")]
-        [NUnit.Framework.CategoryAttribute("TEST")]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/eubol78/serial-number", "12/12/2013", "testemailidinputfield@mailinator.com", "Test", "Test", null)]
-        public virtual void NewCustomerWantsToRegisterProductWithTheirSerialNumbersInTheFile(string country, string siteUrl, string purchaseDate, string email, string firstName, string lastName, string[] exampleTags)
-        {
-            string[] @__tags = new string[] {
-                    "SMOKE_ProductRegistration",
-                    "TEST"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("New Customer wants to register product with their serial numbers in the file", @__tags);
-#line 40
-this.ScenarioSetup(scenarioInfo);
-#line 41
- testRunner.Given(string.Format("I navigate to \"{0}\" Brother Online landing page", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 42
- testRunner.And(string.Format("I browse to the \"{0}\" product registration page", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 43
- testRunner.And("I deregister the serial number using the \"<ProdId>\" on Product Registration page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 44
- testRunner.And("I have entered my product SerialNumber reading from the environmental variable", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 45
- testRunner.And("clicked on Find Product Button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 46
- testRunner.And(string.Format("I have entered \"{0}\"", purchaseDate), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 47
- testRunner.And("I entered apply button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 48
- testRunner.And("I click on continue button on brother product page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 49
- testRunner.Then("I can register my Email on user details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 50
- testRunner.And(string.Format("I enter \"{0}\"  and \"{1}\" on  user details page", firstName, lastName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 51
- testRunner.And("I tick on terms and conditions checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 52
- testRunner.Then("I can complete my product registration by clicking on complete registration butto" +
-                    "n", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("New Customer wants to register product with their serial numbers, purchase date a" +
             "nd promo code")]
         [NUnit.Framework.CategoryAttribute("SMOKE_ProductRegistration")]
@@ -205,47 +159,47 @@ this.ScenarioSetup(scenarioInfo);
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("New Customer wants to register product with their serial numbers, purchase date a" +
                     "nd promo code", @__tags);
-#line 60
+#line 38
 this.ScenarioSetup(scenarioInfo);
-#line 61
+#line 39
  testRunner.Given(string.Format("I navigate to \"{0}\" Brother Online landing page", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 62
+#line 40
  testRunner.And(string.Format("I browse to the \"{0}\" product registration page", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 63
+#line 41
  testRunner.And(string.Format("I deregister the serial number using the \"{0}\" on Product Registration page", prodId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 64
+#line 42
  testRunner.And(string.Format("I have entered my product \"{0}\"", serialNumber), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 65
+#line 43
  testRunner.And("clicked on Find Product Button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 66
+#line 44
  testRunner.And("I retreive data product id from Product Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 67
+#line 45
  testRunner.And(string.Format("I have entered \"{0}\"", purchaseDate), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 68
+#line 46
  testRunner.And("I entered apply button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 69
+#line 47
  testRunner.And(string.Format("I enter \"{0}\"", promoCode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 70
+#line 48
  testRunner.And("I click on add code button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 71
+#line 49
  testRunner.And("I click on continue button on brother product page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 72
+#line 50
  testRunner.Then("I can register my Email on user details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 73
+#line 51
  testRunner.And(string.Format("I enter \"{0}\"  and \"{1}\" on  user details page", firstName, lastName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 74
+#line 52
  testRunner.And("I click on continue button on user details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 75
+#line 53
  testRunner.And(string.Format("I can register my \"{0}\" on the address details page", postcode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 76
+#line 54
  testRunner.And("I click on Find Address Button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 77
+#line 55
  testRunner.And(string.Format("I enter \"{0}\" on address page", houseNumber), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 78
+#line 56
  testRunner.And("I click on continue button on address details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 79
+#line 57
  testRunner.And("I tick on terms and conditions checkbox on Address details Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 80
+#line 58
  testRunner.Then(string.Format("I can complete my product registration by clicking on complete registration butto" +
                         "n on Address Details Page and I can  deregister the \"{0}\"", serialNumber), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
@@ -269,51 +223,51 @@ this.ScenarioSetup(scenarioInfo);
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Existing Customer wants to register product with their serial numbers, purchase d" +
                     "ate and promo code and also bank details entered for the user", @__tags);
-#line 87
+#line 65
 this.ScenarioSetup(scenarioInfo);
-#line 88
+#line 66
     testRunner.Given(string.Format("I navigate to \"{0}\" Brother Online landing page", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 89
+#line 67
  testRunner.And(string.Format("I browse to the \"{0}\" for existing user signin page", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 90
+#line 68
  testRunner.And(string.Format("I deregister the serial number using the \"{0}\"", prodId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 91
+#line 69
  testRunner.And("I click on existing customer log in option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 92
+#line 70
     testRunner.Then(string.Format("I enter an email address as \"{0}\" on existing customer page", validEmailAddress), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 93
+#line 71
     testRunner.Then(string.Format("I enter valid passowrd for the account \"{0}\"", validPassword), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 94
+#line 72
     testRunner.And("I click on SignIn button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 95
+#line 73
  testRunner.And(string.Format("I have entered my product \"{0}\"", serialNumber), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 96
+#line 74
  testRunner.And("clicked on Find Product Button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 97
+#line 75
  testRunner.And("I retreive data product id from Product Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 98
+#line 76
  testRunner.And(string.Format("I have entered \"{0}\"", purchaseDate), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 99
+#line 77
  testRunner.And("I entered apply button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 100
+#line 78
  testRunner.And(string.Format("I enter \"{0}\"", promoCode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 101
+#line 79
  testRunner.And("I click on add code button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 102
+#line 80
  testRunner.And("I click on continue button on brother product page to go to address details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 103
+#line 81
  testRunner.And(string.Format("I can register my \"{0}\" on the address details page", postcode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 104
+#line 82
  testRunner.And("I click on Find Address Button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 105
+#line 83
  testRunner.And(string.Format("I enter \"{0}\" on address page", houseNumber), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 107
+#line 85
  testRunner.And("I click on continue button on address details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 108
+#line 86
  testRunner.And(string.Format("I enter \"{0}\" and \"{1}\" and \"{2}\" on address details page", accountHolderName, sortCode, accountNumber), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 109
+#line 87
  testRunner.And("I tick on terms and conditions checkbox on Address details Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 110
+#line 88
  testRunner.Then(string.Format("I can complete my product registration by clicking on complete registration butto" +
                         "n on Address Details Page and I can  deregister the \"{0}\"", serialNumber), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
@@ -337,33 +291,33 @@ this.ScenarioSetup(scenarioInfo);
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Existing Customer wants to register product with their serial numbers, purchase d" +
                     "ate", @__tags);
-#line 119
+#line 97
 this.ScenarioSetup(scenarioInfo);
-#line 120
+#line 98
     testRunner.Given(string.Format("I navigate to \"{0}\" Brother Online landing page", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 121
+#line 99
  testRunner.And(string.Format("I browse to the \"{0}\" for existing user signin page", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 122
+#line 100
  testRunner.And(string.Format("I deregister the serial number using the \"{0}\"", prodId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 123
+#line 101
  testRunner.And("I click on existing customer log in option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 124
+#line 102
     testRunner.Then(string.Format("I enter an email address as \"{0}\" on existing customer page", validEmailAddress), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 125
+#line 103
     testRunner.Then(string.Format("I enter valid passowrd for the account \"{0}\"", validPassword), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 126
+#line 104
     testRunner.And("I click on SignIn button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 127
+#line 105
  testRunner.And(string.Format("I have entered my product \"{0}\"", serialNumber), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 128
+#line 106
  testRunner.And("clicked on Find Product Button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 129
+#line 107
  testRunner.And("I retreive data product id from Product Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 130
+#line 108
  testRunner.And(string.Format("I have entered \"{0}\"", purchaseDate), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 131
+#line 109
  testRunner.And("I entered apply button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 132
+#line 110
  testRunner.Then(string.Format("I can complete my product registration by clicking on continue button and I can  " +
                         "deregister the \"{0}\"", serialNumber), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
@@ -404,13 +358,13 @@ this.ScenarioSetup(scenarioInfo);
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Deregister Serial Numbers using prod id", @__tags);
-#line 141
+#line 119
 this.ScenarioSetup(scenarioInfo);
-#line 142
+#line 120
  testRunner.Given(string.Format("I navigate to \"{0}\" Brother Online landing page", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 143
+#line 121
  testRunner.And(string.Format("I browse to the \"{0}\" product registration page", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 144
+#line 122
  testRunner.And(string.Format("I deregister the serial number using the \"{0}\" on Product Registration page", prodId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();

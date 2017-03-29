@@ -34,28 +34,6 @@ Scenarios:
 | Country        | Site Url                  | SerialNumber | PurchaseDate | Email                                  | FirstName | LastName |ProdId  |
 | United Kingdom | /qa/eubol78/serial-number | U1T004731    | 12/12/2013   | testemailidinputfield@guerrillamail.com| Test      | Test     |c3beeb53-d80a-1a4c-e100-0000ac1b10d3 |
 
-
-@SMOKE_ProductRegistration @TEST
-#This is same test but serial numbers are stored in the environment variables and it increements itself by plus one everytime tests run
-Scenario Outline: New Customer wants to register product with their serial numbers in the file
-	Given I navigate to "<Country>" Brother Online landing page
-	And I browse to the "<Site Url>" product registration page
-	And I deregister the serial number using the "<ProdId>" on Product Registration page
-	And I have entered my product SerialNumber reading from the environmental variable
-	And clicked on Find Product Button
-	And I have entered "<PurchaseDate>" 
-	And I entered apply button
-	And I click on continue button on brother product page
-	Then I can register my Email on user details page  
-	And I enter "<FirstName>"  and "<LastName>" on  user details page
-	And I tick on terms and conditions checkbox
-	Then I can complete my product registration by clicking on complete registration button
-
-Scenarios: 
-| Country        | Site Url                  | PurchaseDate | Email                                | FirstName | LastName |
-| United Kingdom | /qa/eubol78/serial-number | 12/12/2013   | testemailidinputfield@mailinator.com | Test      | Test     |
-
-
 @SMOKE_ProductRegistration @TEST
 Scenario Outline: New Customer wants to register product with their serial numbers, purchase date and promo code
 	Given I navigate to "<Country>" Brother Online landing page
