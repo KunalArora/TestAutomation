@@ -24,11 +24,11 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.Basket
         [FindsBy(How = How.XPath, Using = @"//*[@id='basket-page']/div/div/div[2]/div[2]/div/button")]
         public IWebElement CheckOutButton;
 
-        [FindsBy(How = How.CssSelector, Using = "#content_0_ContinueShoppingLink")] public IWebElement
-            ContinueShoppingButton;
+        [FindsBy(How = How.CssSelector, Using = "#content_0_ContinueShoppingLink")]
+        public IWebElement ContinueShoppingButton;
 
-        [FindsBy(How = How.CssSelector, Using = "#content_0_BasketItemsRepeater_QuantityTextBox_0")] public IWebElement
-            QuantityEditBox;
+        [FindsBy(How = How.CssSelector, Using = "#content_0_BasketItemsRepeater_QuantityTextBox_0")]
+        public IWebElement QuantityEditBox;
 
         [FindsBy(How = How.CssSelector, Using = ".product-info")]
         public IWebElement ProductInformationList;
@@ -73,8 +73,14 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.Basket
         [FindsBy(How = How.Id, Using = "DeliveryAddress_Housenumber")]
         public IWebElement HouseNumber;
 
+        [FindsBy(How = How.Id, Using = "chkUseDeliveryAddress")]
+        public IWebElement UseDeliveryyAddressCheckbox;
+
         [FindsBy(How = How.CssSelector, Using = "button[data-checkout-step-trigger='3']")]
         public IWebElement ContinueToBillingAndpaymentyButton;
+
+        [FindsBy(How = How.Id, Using = "btnGuestPayment")]
+        public IWebElement ContinueToPaymentAsGuestButton;
 
         public void ClickOnContinueAsGuest()
         {
@@ -129,10 +135,15 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.Basket
             ContinueToBillingAndpaymentyButton.Click();
         }
 
-        public void ClickOnCheckboxUseSameDeliveryAddress()
+        public void ClickOnContinueToPaymentAsGuest()
         {
+            ContinueToPaymentAsGuestButton.Click();
         }
 
+        public void ClickOnCheckboxUseSameDeliveryAddress()
+        {
+            UseDeliveryyAddressCheckbox.Click();
+        }
 
         private static IWebElement FindElement(ISearchContext driver, string element, string message)
         {

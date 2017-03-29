@@ -73,7 +73,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             {
                 throw new Exception("Unable to locate message on page");
             }
-            AssertElementText(DeviceRegistrationConfirmation, "Your device was successfully registered.", "Device Registration Confirmation Message");
+            //AssertElementText(DeviceRegistrationConfirmation, "Your device was successfully registered.", "Device Registration Confirmation Message");
+            AssertElementText(DeviceRegistrationConfirmation, @"Your have successfully registered your products(s).", "Device Registration Confirmation Message");
         }
 
         public string GetPurchasedDate()

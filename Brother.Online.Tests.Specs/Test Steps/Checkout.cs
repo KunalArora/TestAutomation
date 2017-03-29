@@ -14,6 +14,7 @@ using Brother.WebSites.Core.Pages.BrotherMainSite.Basket;
 using Brother.WebSites.Core.Pages.BrotherMainSite.SuppliesAndAccessories;
 using Brother.WebSites.Core.Pages.BrotherOnline.Account;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
+using Brother.WebSites.Core.Pages.BrotherOnline.Checkout;
 using Brother.WebSites.Core.Pages.BrotherOnline.ThirdParty;
 using TechTalk.SpecFlow;
 using Brother.Online.TestSpecs._80.Test_Steps;
@@ -101,8 +102,47 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
             CurrentPage.As<BasketPage>().ClickOnCheckboxUseSameDeliveryAddress();
         }
 
-       
+        [Given(@"I click on Continue to Payment As A Guest Button")]
+        public void GivenIClickOnContinueToPaymentAsAGuestButton()
+        {
+            CurrentPage.As<BasketPage>().ClickOnContinueToPaymentAsGuest();
+        }
 
+        [When(@"I fill in creditCard details ""(.*)""")]
+        public void WhenIFillInCreditCardDetails(string number)
+        {
+            CurrentPage.As<CreditCardDetailsPage>().PopulateCreditCardNumber(number);
+        }
+
+        [When(@"I select a month as (.*)")]
+        public void WhenISelectAMonthAs(int month)
+        {
+            CurrentPage.As<CreditCardDetailsPage>().PopulateCreditCardExpiryMonthDropDown(month.ToString());
+        }
+
+        [When(@"I select a year as ""(.*)""")]
+        public void WhenISelectAYearAs(int year)
+        {
+            CurrentPage.As<CreditCardDetailsPage>().PopulateCreditCardExpiryYearDropDown(year.ToString());
+        }
+
+        [When(@"I fill in security number as  ""(.*)""")]
+        public void WhenIFillInSecurityNumberAs(int cvvNumber)
+        {
+            CurrentPage.As<CreditCardDetailsPage>().PopulateCreditCardCvvNumber(cvvNumber.ToString());
+        }
+
+        [When(@"I click the Confirm My Payment button")]
+        public void WhenIClickTheConfirmMyPaymentButton()
+        {
+            CurrentPage.As<CreditCardDetailsPage>().ConfirmPaymentButtonClick();
+        }
+
+        [Then(@"I should see the order confirmation message")]
+        public void ThenIShouldSeeTheOrderConfirmationMessage()
+        {
+            ScenarioContext.Current.Pending();
+        }
 
     }
 

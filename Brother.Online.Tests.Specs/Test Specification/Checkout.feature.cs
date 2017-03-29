@@ -69,8 +69,8 @@ namespace Brother.Online.Tests.Specs.TestSpecification
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Customer creates an order and checkout as existing user on UK BOL site")]
         [NUnit.Framework.CategoryAttribute("SMOKE_Checkout")]
-        [NUnit.Framework.TestCaseAttribute("http://main.co.uk.brotherdv2.eu/supplies/laser-supplies/tn2000", "/QA/03-Checkout/415ExistingUserDetailsSection", "testyourdetailsemail@mailinator.com", "Test", "Test", "01514236589", "07894540846", "M345 JE", "1", null)]
-        public virtual void CustomerCreatesAnOrderAndCheckoutAsExistingUserOnUKBOLSite(string siteUrl, string url, string email, string firstName, string lastName, string phoneNumber, string mobileNumber, string postcode, string houseNumber, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("http://main.co.uk.brotherdv2.eu/supplies/laser-supplies/tn2000", "/QA/03-Checkout/415ExistingUserDetailsSection", "testyourdetailsemail@mailinator.com", "Test", "Test", "01514236589", "07894540846", "M34 5JE", "1", "4259917979151326", null)]
+        public virtual void CustomerCreatesAnOrderAndCheckoutAsExistingUserOnUKBOLSite(string siteUrl, string url, string email, string firstName, string lastName, string phoneNumber, string mobileNumber, string postcode, string houseNumber, string creditCardNumber, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "SMOKE_Checkout"};
@@ -109,6 +109,20 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.And("I click on Continue to Billing & Payment Button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 20
  testRunner.And("I click on Checkbox to use the same delivery address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 21
+ testRunner.And("I click on Continue to Payment As A Guest Button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 22
+ testRunner.When(string.Format("I fill in creditCard details \"{0}\"", creditCardNumber), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 23
+ testRunner.And("I select a month as 07", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 24
+ testRunner.And("I select a year as \"2018\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 25
+ testRunner.And("I fill in security number as  \"123\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 26
+ testRunner.And("I click the Confirm My Payment button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 27
+ testRunner.Then("I should see the order confirmation message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
