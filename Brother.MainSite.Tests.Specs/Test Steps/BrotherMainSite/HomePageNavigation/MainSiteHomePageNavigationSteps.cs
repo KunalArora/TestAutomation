@@ -208,5 +208,18 @@ namespace Brother.Tests.Specs._80.BrotherMainSite.HomePageNavigation
            //CurrentPage.As<MainSiteHomePage>().IsSuppliesLinkAvailable();
            NextPage = CurrentPage.As<MainSiteHomePage>().ClickSuppliesLink();
        }
+
+       [When(@"I select an InkJet cartridge by searching with a valid supplies code ""(.*)""")]
+       public void WhenISelectAnInkJetCartridgeBySearchingWithAValidSuppliesCode(string supplyNumber)
+       {
+           CurrentPage.As<SuppliesPage>().AddSupplyCode(supplyNumber);
+           NextPage = CurrentPage.As<SuppliesPage>().SelectItemFromList(supplyNumber);
+       }
+
+       [When(@"I click on Add To Basket button")]
+       public void WhenIClickOnAddToBasketButton()
+       {
+           CurrentPage.As<CheckoutPage>().AddToBasketButtonClick();
+       }
     }
 }

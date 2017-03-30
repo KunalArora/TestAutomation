@@ -32,7 +32,3 @@ Scenario Outline: Check Forgotten Password email recieved to the user
 Scenarios:
 	| Country        | Site Url       | Valid Email Address                           |
 	| United Kingdom | /qa/signintest | 123orderplacedukaccount@guerrillamail.com     |
-
-
-
-

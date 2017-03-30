@@ -286,11 +286,6 @@ namespace Brother.Tests.Specs.BrotherMainSite.HomePageNavigation
         {
             CurrentPage.As<MainSiteHomePage>().SearchResultsDisplayed();
         }
-        [Then(@"I click on search result")]
-        public void ThenIClickOnSearchResult()
-        {
-            NextPage = CurrentPage.As<MainSiteHomePage>().ClickResultLink();
-        }
        
     }
 }
