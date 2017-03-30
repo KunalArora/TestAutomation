@@ -62,9 +62,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         public static string GetSuccessStringFromUrl(string url, int numTries, Dictionary<string, string> additionalHeaders = null)
         {
             var retryCount = 0;
-
             var webClient = new AutomationWebClient();
-
 
             if (additionalHeaders != null && additionalHeaders.Any())
             {
@@ -76,7 +74,6 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
             while ((testFromFile.Contains("Failure") && (retryCount != numTries)) || (testFromFile.Contains("Already running")))
             {
-
                 if ((testFromFile.Contains("Failure")))
                 {
                     MsgOutput(string.Format("Job run is not successful. Retrying..... [{0}] times", retryCount));
@@ -92,14 +89,13 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                 retryCount++;
 
                 testFromFile = webClient.DownloadString(url);
-                
-                
             }
 
             if ((testFromFile.Contains("Failure")))
             {
                 MsgOutput(string.Format("The message from url is [{0}]", testFromFile));
             }
+
             return testFromFile;
         }
 

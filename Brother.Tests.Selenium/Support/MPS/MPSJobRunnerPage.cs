@@ -11,26 +11,43 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
         private const string Testurl = @"http://online.{0}.brotherdv2.eu/sitecore/admin/integration/mps2/";
         private const string CustomerAndPersonCommand = @"runcommand.aspx?command=MPS:SystemJobCreateCustomerAndPersonCommand";
         private const string ClickRateInvoiceCommand = @"runcommand.aspx?command=MPS:RaiseClickRateInvoicesCommand";
+        
+        // NEW COMMAND NAME WILL BE:
+        // private const string CompleteInstallationCommand = @"runcommand.aspx?command=MPS:NEW:InstallationCompleteCommand";
         private const string CompleteInstallationCommand = @"runcommand.aspx?command=MPS:CompleteInstallationCommand";
-        private const string SendClickRateInvoicesToSapCommand = @"runcommand.aspx?command=MPS:SendClickRateInvoicesToSapCommand";
+
+        // NO LONGER AVAILABLE:
+        // private const string SendClickRateInvoicesToSapCommand = @"runcommand.aspx?command=MPS:SendClickRateInvoicesToSapCommand";
+        
         private const string RefreshPrintCountsCommand = @"runcommand.aspx?command=MPS:RefreshPrintCountsCommand";
+        
+        // NEW COMMAND NAME WILL BE:
+        // private const string RefreshPrintCountsFromMedioCommand = @"runcommand.aspx?command=MPS:NEW:MeterReadCloudSyncCommand";
         private const string RefreshPrintCountsFromMedioCommand = @"runcommand.aspx?command=MPS:RefreshMedioPrintCountsAndCreateMpsOrdersAndRequestsCommand";
-        private const string StaffAccountCreationCommand = @"runcommand.aspx?command=MPS:StaffAccountCreationCommand";
+
+        // NO LONGER AVAILABLE:
+        // private const string StaffAccountCreationCommand = @"runcommand.aspx?command=MPS:StaffAccountCreationCommand";
         private const string ConsumableOrderRequestsCommand = @"runcommand.aspx?command=MPS:ConsumableOrderRequestsCommand";
-        private const string CreateOrderAndServiceRequestsCommand = @"runcommand.aspx?command=MPS:RefreshMedioPrintCountsAndCreateMpsOrdersAndRequestsCommand";
+
+        // TASK ALREADY DEFINED:
+        // private const string CreateOrderAndServiceRequestsCommand = @"runcommand.aspx?command=MPS:RefreshMedioPrintCountsAndCreateMpsOrdersAndRequestsCommand";
+
         private const string SystemJobCreateCustomerAndPersonCommand = @"runcommand.aspx?command=MPS:SystemJobCreateCustomerAndPersonCommand";
-        private const string SystemJobCreateCustomerTaxCommand = @"runcommand.aspx?command=MPS:SystemJobCreateCustomerTaxCommand";
+
+        // NO LONGER AVAILABLE:
+        // private const string SystemJobCreateCustomerTaxCommand = @"runcommand.aspx?command=MPS:SystemJobCreateCustomerTaxCommand";
+
         private const string CloseConsumableOrdersCommand = @"runcommand.aspx?command=MPS:CloseConsumableOrdersCommand";
         private const string PollConsumableOrderStatusCommand = @"runcommand.aspx?command=MPS:PollConsumableOrderStatusCommand";
         private const string CheckForSilentEmailDevicesCommand = @"runcommand.aspx?command=MPS:CheckForSilentEmailDevicesCommand";
         private const string SystemJobCreateConsumableOrderCommand = @"runcommand.aspx?command=MPS:SystemJobCreateConsumableOrderCommand";
         private const string CheckForSilentMedioDevicesCommand = @"runcommand.aspx?command=MPS:CheckForSilentEmailDevicesCommand";
+
         private const string ResetSerialNumberJob = @"recycleserial.aspx?serial=";
         private const string SetCustomerSapIdJob = @"setcustomersapid.aspx?name={0}&sapid={1}";
         private const string SetPersonSapIdJob = @"setpersonsapid.aspx?email={0}&sapid={1}";
         private const string RemoveConsumableOrderById = @"removeconsumableorderbyid.aspx?orderid=";
         private const string RemoveConsumableOrderByInstalledPrinter = @"removeconsumableorderbyinstalledprinter.aspx?serial=";
-       
         private const string SetConsumableStatusJob = @"setconsumableorderstatus.aspx?orderid={0}&statusid={1}";
 
         public static readonly Dictionary<string, string> AuthHeader = new Dictionary<string, string>
@@ -39,7 +56,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             //{ @"X-BROTHER-Auth", @"OX6Z{mO~nQ87rE!32j6Sjo!21@+`by" }
             
         };
-        
+
         //Device Simulator variables
         private const string DevSimUrl = @"http://localhost:8080/bvd/device/";
         private const string SetSupplyUrl = @"supply/set";
@@ -48,8 +65,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
         private const string NotifyBocUrl = @"notify?id={0}&all=true";
         private const string CreateNewDevice = @"create?model=MFC-L8650CDW&serial={0}&id={1}";
         private const string CreateNewDeviceForSpecific = @"create?model={0}&serial={1}&id={2}";
-    
-        
+
         public static void RunCreateCustomerAndPersonCommandJob()
         {
             var webSite = CoinedUrl() + CustomerAndPersonCommand;
@@ -59,8 +75,6 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             //var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
 
             var runResponse = Utils.GetSuccessStringFromUrl(webSite, 5, AuthHeader);
-            
-            
 
             Helper.MsgOutput(runResponse.Equals("Command run")
                 ? "CreateCustomerAndPersonCommand job ran successfully"
@@ -86,8 +100,6 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 
             var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
 
-            
-
             Helper.MsgOutput(response.ToString().Equals("OK")
                 ? "CreateNewVirtualDevice job ran successfully"
                 : "CreateNewVirtualDevice probably did not run properly");
@@ -101,8 +113,6 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             Helper.MsgOutput(String.Format("The url formed for Create New Virtual Device is {0}", webSite));
 
             var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
-
-            
 
             Helper.MsgOutput(response.ToString().Equals("OK")
                 ? "CreateNewVirtualDevice job ran successfully"
@@ -118,8 +128,6 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 
             var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
 
-            
-
             Helper.MsgOutput(response.ToString().Equals("OK")
                 ? "CreateNewVirtualDevice job ran successfully"
                 : "CreateNewVirtualDevice probably did not run properly");
@@ -133,8 +141,6 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             Helper.MsgOutput(String.Format("The url formed for Register New Device is {0}", webSite));
 
             var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
-
-            
 
             Helper.MsgOutput(response.ToString().Equals("OK")
                 ? "RegisterNewDevice job ran successfully"
@@ -150,8 +156,6 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 
             var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
 
-            
-
             Helper.MsgOutput(response.ToString().Equals("OK")
                 ? "RegisterNewDevice job ran successfully"
                 : "RegisterNewDevice probably did not run properly");
@@ -166,8 +170,6 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 
             var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
 
-            
-
             Helper.MsgOutput(response.ToString().Equals("OK")
                 ? "ChangeDeviceStatus job ran successfully"
                 : "ChangeDeviceStatus probably did not run properly");
@@ -181,8 +183,6 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             Helper.MsgOutput(String.Format("The url formed for Change Device Status is {0}", webSite));
 
             var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
-
-            
 
             Helper.MsgOutput(response.ToString().Equals("OK")
                 ? "ChangeDeviceStatus job ran successfully"
@@ -253,7 +253,6 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 
             var json = "{\"id\": \"" + GetSavedDeviceId() + "\",\"items\": [" + deviceWithDefaultPrintCount + "]}";
 
-            
             Utils.GetPageResponse(webSite, WebRequestMethods.Http.Post, "application/json", json, AuthHeader);
 
             WebDriver.Wait(Helper.DurationType.Second, 5);
@@ -281,17 +280,14 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 
             var json = "{\"id\": \"" + GetSavedDeviceId(number) + "\",\"items\": [" + deviceWithDefaultPrintCount + "]}";
 
-
             Utils.GetPageResponse(webSite, WebRequestMethods.Http.Post, "application/json", json, AuthHeader);
 
             WebDriver.Wait(Helper.DurationType.Second, 5);
             Helper.MsgOutput(String.Format("SetTonerInkStatus job for {0} ran successfully", tonerType));
         }
 
-
         public static void NotifyBocOfNewChanges()
         {
-
             var newDevice = String.Format(NotifyBocUrl, GetSavedDeviceId());
             var webSite = DevSimUrl + newDevice;
 
@@ -299,17 +295,13 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 
             var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
 
-            
-
             Helper.MsgOutput(response.ToString().Equals("OK")
                 ? "NotifyBocOfNewChanges job ran successfully"
                 : "NotifyBocOfNewChanges probably did not run properly");
         }
 
-        
         public static void NotifyBocOfNewChanges(string number)
         {
-           
             var newDevice = String.Format(NotifyBocUrl, GetSavedDeviceId(number));
             var webSite = DevSimUrl + newDevice;
 
@@ -317,18 +309,16 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 
             var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
 
-            
-
             Helper.MsgOutput(response.ToString().Equals("OK")
                 ? "NotifyBocOfNewChanges job ran successfully"
                 : "NotifyBocOfNewChanges probably did not run properly");
         }
 
-       private static string SetGuidForNewDevice()
+        private static string SetGuidForNewDevice()
         {
             var guid = Guid.NewGuid();
-
             var deviceId = "babeface" + guid.ToString().Substring(8);
+
             HelperClasses.SpecFlow.SetContext("DeviceId", deviceId);
 
             Helper.MsgOutput(String.Format("Device Simulators Guid set as {0}", deviceId));
@@ -336,20 +326,18 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             return deviceId;
         }
 
+        private static string SetMultipleGuidForNewDevice(string number)
+        {
+            var guid = Guid.NewGuid();
+            var deviceIdNumber = "DeviceId" + number;
+            var deviceId = "babeface" + guid.ToString().Substring(8);
 
-       private static string SetMultipleGuidForNewDevice(string number)
-       {
-           var guid = Guid.NewGuid();
+            HelperClasses.SpecFlow.SetContext(deviceIdNumber, deviceId);
 
-           var deviceIdNumber = "DeviceId" + number;
+            Helper.MsgOutput(String.Format("Device Simulators Guid set as {0} for {1}", deviceId, deviceIdNumber));
 
-           var deviceId = "babeface" + guid.ToString().Substring(8);
-           HelperClasses.SpecFlow.SetContext(deviceIdNumber, deviceId);
-
-           Helper.MsgOutput(String.Format("Device Simulators Guid set as {0} for {1}", deviceId, deviceIdNumber));
-
-           return deviceId;
-       }
+            return deviceId;
+        }
 
         private static string GetSavedDeviceId()
         {
@@ -359,9 +347,9 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
         private static string GetSavedDeviceId(string number)
         {
             var deviceIdNumber = "DeviceId" + number;
+
             return HelperClasses.SpecFlow.GetContext(deviceIdNumber);
         }
-
 
         private static string CoinedUrl()
         {
@@ -375,12 +363,12 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 
             switch (Helper.GetRunTimeEnv())
             {
-                case "UAT" :
+                case "UAT":
                     //url = String.Format(Uaturl, Helper.Locale);
                     url = String.Format(Uaturl, country);
                     break;
 
-                case "TEST" :
+                case "TEST":
                     url = String.Format(Testurl, Helper.Locale);
                     break;
             }
@@ -388,9 +376,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             Helper.MsgOutput(String.Format("The command job url formed is {0}", url));
 
             return url;
-
         }
-
 
         public static string GetConsumableOrderStatusResetMsg(string orderid, string status)
         {
@@ -402,12 +388,11 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 
                 webSite = String.Format(webSite, orderid, status);
 
-                response = Utils.GetSuccessStringFromUrl(webSite, 5, AuthHeader);  
+                response = Utils.GetSuccessStringFromUrl(webSite, 5, AuthHeader);
             }
 
             return response;
         }
-
 
         public static void RunResetSerialNumberJob(string serial)
         {
@@ -415,13 +400,10 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             var reset = CoinedUrl() + ResetSerialNumberJob + serial;
             var response = Utils.GetPageResponse(reset, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
 
-            
-
             Helper.MsgOutput(response.ToString().Equals("OK")
                 ? "RunResetSerialNumberJob job ran successfully"
                 : "RunResetSerialNumberJob probably did not run properly");
         }
-
 
         public static void RunClickRateInvoiceCommandJob()
         {
@@ -436,7 +418,6 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             var webSite = CoinedUrl() + RemoveConsumableOrderById + id;
             var runResponse = Utils.GetSuccessStringFromUrl(webSite, 5, AuthHeader);
 
-            
             Helper.MsgOutput(runResponse.Equals("Command run")
                 ? "RunRemoveConsumableOrderByIdJob job ran successfully"
                 : "RunRemoveConsumableOrderByIdJob probably did not run properly");
@@ -453,11 +434,9 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
                 : "RunRemoveConsumableOrderByInstalledPrinterJob probably did not run properly");
         }
 
-
-        public static void RunCompleteInstallationCommandJob()
+        public static void RunCompleteInstallationCommandJob(int proposalId = 0)
         {
-            var webSite = CoinedUrl() + CompleteInstallationCommand;
-
+            var webSite = CoinedUrl() + CompleteInstallationCommand + (proposalId > 0 ? "&ProposalId=" + proposalId : "");
             var runResponse = Utils.GetSuccessStringFromUrl(webSite, 5, AuthHeader);
 
             Helper.MsgOutput(runResponse.Equals("Command run")
@@ -467,19 +446,21 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 
         public static void RunSendClickRateInvoicesToSapCommandJob()
         {
-            var webSite = CoinedUrl() + SendClickRateInvoicesToSapCommand;
+            throw new NotImplementedException("Command not longer available");
 
+            /*
+            var webSite = CoinedUrl() + SendClickRateInvoicesToSapCommand;
             var runResponse = Utils.GetSuccessStringFromUrl(webSite, 5, AuthHeader);
 
             Helper.MsgOutput(runResponse.Equals("Command run")
                 ? "RunSendClickRateInvoicesToSapCommandJob job ran successfully"
                 : "RunSendClickRateInvoicesToSapCommandJob probably did not run properly");
+            */
         }
 
         public static void RunRefreshPrintCountsCommandJob()
         {
             var webSite = CoinedUrl() + RefreshPrintCountsCommand;
-
             var runResponse = Utils.GetSuccessStringFromUrl(webSite, 5, AuthHeader);
 
             Helper.MsgOutput(runResponse.Equals("Command run")
@@ -490,7 +471,6 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
         public static void RunRefreshPrintCountsFromMedioCommandJob()
         {
             var webSite = CoinedUrl() + RefreshPrintCountsFromMedioCommand;
-
             var runResponse = Utils.GetSuccessStringFromUrl(webSite, 5, AuthHeader);
 
             Helper.MsgOutput(runResponse.Equals("Command run")
@@ -500,59 +480,60 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 
         public static void RunStaffAccountCreationCommandJob()
         {
-            var webSite = CoinedUrl() + StaffAccountCreationCommand;
+            throw new NotImplementedException("Command not longer available");
 
+            /*
+            var webSite = CoinedUrl() + StaffAccountCreationCommand;
             var runResponse = Utils.GetSuccessStringFromUrl(webSite, 5, AuthHeader);
 
             Helper.MsgOutput(runResponse.Equals("Command run")
                 ? "RunStaffAccountCreationCommandJob job ran successfully"
                 : "RunStaffAccountCreationCommandJob probably did not run properly");
+            */
         }
 
         public static void RunConsumableOrderRequestsCommandJob()
         {
-                var webSite = CoinedUrl() + ConsumableOrderRequestsCommand;
+            var webSite = CoinedUrl() + ConsumableOrderRequestsCommand;
+            var runResponse = Utils.GetSuccessStringFromUrl(webSite, 5, AuthHeader);
 
-                var runResponse = Utils.GetSuccessStringFromUrl(webSite, 5, AuthHeader);
-
-                Helper.MsgOutput(runResponse.Equals("Command run")
-                    ? "RunConsumableOrderRequestsCommandJob job ran successfully"
-                    : "RunConsumableOrderRequestsCommandJob probably did not run properly");
+            Helper.MsgOutput(runResponse.Equals("Command run")
+                ? "RunConsumableOrderRequestsCommandJob job ran successfully"
+                : "RunConsumableOrderRequestsCommandJob probably did not run properly");
         }
 
         public static void RunCreateOrderAndServiceRequestsCommandJob()
         {
-            var webSite = CoinedUrl() + CreateOrderAndServiceRequestsCommand;
+            throw new NotImplementedException("Command not longer available");
 
+            /*
+            var webSite = CoinedUrl() + CreateOrderAndServiceRequestsCommand;
             var runResponse = Utils.GetSuccessStringFromUrl(webSite, 5, AuthHeader);
 
             Helper.MsgOutput(runResponse.Equals("Command run")
                 ? "RunCreateOrderAndServiceRequestsCommandJob job ran successfully"
                 : "RunCreateOrderAndServiceRequestsCommandJob probably did not run properly");
+            */
         }
 
         public static void RunSystemJobCreateCustomerTaxCommandJob()
         {
-            
+            throw new NotImplementedException("Command not longer available");
+
+            /*
             var webSite = CoinedUrl() + SystemJobCreateCustomerTaxCommand;
-
             var runResponse = Utils.GetSuccessStringFromUrl(webSite, 5, AuthHeader);
-
-            
 
             Helper.MsgOutput(runResponse.Equals("Command run")
                 ? "RunSystemJobCreateCustomerTaxCommandJob job ran successfully"
                 : "RunSystemJobCreateCustomerTaxCommandJob probably did not run properly");
-                
+            */
         }
 
         public static void RunSystemJobCreateCustomerAndPersonCommandJob()
         {
             var webSite = CoinedUrl() + SystemJobCreateCustomerAndPersonCommand;
-
             var runResponse = Utils.GetSuccessStringFromUrl(webSite, 5, AuthHeader);
-
-            
 
             Helper.MsgOutput(runResponse.Equals("Command run")
                 ? "RunSystemJobCreateCustomerAndPersonCommandJob job ran successfully"
@@ -562,10 +543,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
         public static void RunCloseConsumableOrdersCommandJob()
         {
             var webSite = CoinedUrl() + CloseConsumableOrdersCommand;
-
             var runResponse = Utils.GetSuccessStringFromUrl(webSite, 5, AuthHeader);
-
-            
 
             Helper.MsgOutput(runResponse.Equals("Command run")
                 ? "RunCloseConsumableOrdersCommandJob job ran successfully"
@@ -577,8 +555,6 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             var webSite = CoinedUrl() + PollConsumableOrderStatusCommand;
             var runResponse = Utils.GetSuccessStringFromUrl(webSite, 5, AuthHeader);
 
-            
-
             Helper.MsgOutput(runResponse.Equals("Command run")
                 ? "RunPollConsumableOrderStatusCommandJob job ran successfully"
                 : "RunPollConsumableOrderStatusCommandJob probably did not run properly");
@@ -587,44 +563,31 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
         public static void RunCheckForSilentEmailDevicesCommandJob()
         {
             var webSite = CoinedUrl() + CheckForSilentEmailDevicesCommand;
-
             var runResponse = Utils.GetSuccessStringFromUrl(webSite, 5, AuthHeader);
-
-            
 
             Helper.MsgOutput(runResponse.Equals("Command run")
                 ? "RunCheckForSilentEmailDevicesCommandJob job ran successfully"
                 : "RunCheckForSilentEmailDevicesCommandJob probably did not run properly");
-                    
         }
-
 
         public static void RunCheckForSilentMedioDevicesCommandJob()
         {
             var webSite = CoinedUrl() + CheckForSilentMedioDevicesCommand;
-
             var runResponse = Utils.GetSuccessStringFromUrl(webSite, 5, AuthHeader);
-
-            
 
             Helper.MsgOutput(runResponse.Equals("Command run")
                 ? "RunCheckForSilentMedioDevicesCommandJob job ran successfully"
                 : "RunCheckForSilentMedioDevicesCommandJob probably did not run properly");
-
         }
 
         public static void RunSystemJobCreateConsumableOrderCommandJob()
         {
             var webSite = CoinedUrl() + SystemJobCreateConsumableOrderCommand;
-
             var runResponse = Utils.GetSuccessStringFromUrl(webSite, 5, AuthHeader);
-
-            
 
             Helper.MsgOutput(runResponse.Equals("Command run")
                 ? "RunSystemJobCreateConsumableOrderCommandJob job ran successfully"
                 : "RunSystemJobCreateConsumableOrderCommandJob probably did not run properly");
-
         }
     }
 }
