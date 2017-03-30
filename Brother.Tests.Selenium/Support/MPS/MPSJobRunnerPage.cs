@@ -60,7 +60,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 
             var runResponse = Utils.GetSuccessStringFromUrl(webSite, 5, AuthHeader);
             
-            WebDriver.Wait(Helper.DurationType.Second, 1);
+            
 
             Helper.MsgOutput(runResponse.Equals("Command run")
                 ? "CreateCustomerAndPersonCommand job ran successfully"
@@ -86,7 +86,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 
             var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
 
-            WebDriver.Wait(Helper.DurationType.Second, 1);
+            
 
             Helper.MsgOutput(response.ToString().Equals("OK")
                 ? "CreateNewVirtualDevice job ran successfully"
@@ -102,7 +102,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 
             var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
 
-            WebDriver.Wait(Helper.DurationType.Second, 1);
+            
 
             Helper.MsgOutput(response.ToString().Equals("OK")
                 ? "CreateNewVirtualDevice job ran successfully"
@@ -118,7 +118,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 
             var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
 
-            WebDriver.Wait(Helper.DurationType.Second, 1);
+            
 
             Helper.MsgOutput(response.ToString().Equals("OK")
                 ? "CreateNewVirtualDevice job ran successfully"
@@ -134,7 +134,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 
             var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
 
-            WebDriver.Wait(Helper.DurationType.Second, 1);
+            
 
             Helper.MsgOutput(response.ToString().Equals("OK")
                 ? "RegisterNewDevice job ran successfully"
@@ -150,7 +150,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 
             var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
 
-            WebDriver.Wait(Helper.DurationType.Second, 1);
+            
 
             Helper.MsgOutput(response.ToString().Equals("OK")
                 ? "RegisterNewDevice job ran successfully"
@@ -166,7 +166,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 
             var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
 
-            WebDriver.Wait(Helper.DurationType.Second, 1);
+            
 
             Helper.MsgOutput(response.ToString().Equals("OK")
                 ? "ChangeDeviceStatus job ran successfully"
@@ -182,7 +182,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 
             var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
 
-            WebDriver.Wait(Helper.DurationType.Second, 1);
+            
 
             Helper.MsgOutput(response.ToString().Equals("OK")
                 ? "ChangeDeviceStatus job ran successfully"
@@ -299,7 +299,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 
             var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
 
-            WebDriver.Wait(Helper.DurationType.Second, 1);
+            
 
             Helper.MsgOutput(response.ToString().Equals("OK")
                 ? "NotifyBocOfNewChanges job ran successfully"
@@ -317,7 +317,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 
             var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
 
-            WebDriver.Wait(Helper.DurationType.Second, 1);
+            
 
             Helper.MsgOutput(response.ToString().Equals("OK")
                 ? "NotifyBocOfNewChanges job ran successfully"
@@ -415,7 +415,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             var reset = CoinedUrl() + ResetSerialNumberJob + serial;
             var response = Utils.GetPageResponse(reset, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
 
-            WebDriver.Wait(Helper.DurationType.Second, 1);
+            
 
             Helper.MsgOutput(response.ToString().Equals("OK")
                 ? "RunResetSerialNumberJob job ran successfully"
@@ -436,8 +436,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             var webSite = CoinedUrl() + RemoveConsumableOrderById + id;
             var runResponse = Utils.GetSuccessStringFromUrl(webSite, 5, AuthHeader);
 
-            WebDriver.Wait(Helper.DurationType.Second, 1);
-
+            
             Helper.MsgOutput(runResponse.Equals("Command run")
                 ? "RunRemoveConsumableOrderByIdJob job ran successfully"
                 : "RunRemoveConsumableOrderByIdJob probably did not run properly");
@@ -448,8 +447,6 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             if (String.IsNullOrWhiteSpace(serial)) return;
             var webSite = CoinedUrl() + RemoveConsumableOrderByInstalledPrinter + serial;
             var runResponse = Utils.GetSuccessStringFromUrl(webSite, 5, AuthHeader);
-
-            WebDriver.Wait(Helper.DurationType.Second, 1);
 
             Helper.MsgOutput(runResponse.Equals("Command run")
                 ? "RunRemoveConsumableOrderByInstalledPrinterJob job ran successfully"
@@ -463,8 +460,6 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 
             var runResponse = Utils.GetSuccessStringFromUrl(webSite, 5, AuthHeader);
 
-            WebDriver.Wait(Helper.DurationType.Second, 1);
-
             Helper.MsgOutput(runResponse.Equals("Command run")
                 ? "RunCompleteInstallationCommandJob job ran successfully"
                 : "RunCompleteInstallationCommandJob probably did not run properly");
@@ -475,8 +470,6 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             var webSite = CoinedUrl() + SendClickRateInvoicesToSapCommand;
 
             var runResponse = Utils.GetSuccessStringFromUrl(webSite, 5, AuthHeader);
-
-            WebDriver.Wait(Helper.DurationType.Second, 1);
 
             Helper.MsgOutput(runResponse.Equals("Command run")
                 ? "RunSendClickRateInvoicesToSapCommandJob job ran successfully"
@@ -489,8 +482,6 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 
             var runResponse = Utils.GetSuccessStringFromUrl(webSite, 5, AuthHeader);
 
-            WebDriver.Wait(Helper.DurationType.Second, 1);
-
             Helper.MsgOutput(runResponse.Equals("Command run")
                 ? "RunRefreshPrintCountsCommandJob job ran successfully"
                 : "RunRefreshPrintCountsCommandJob probably did not run properly");
@@ -501,8 +492,6 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             var webSite = CoinedUrl() + RefreshPrintCountsFromMedioCommand;
 
             var runResponse = Utils.GetSuccessStringFromUrl(webSite, 5, AuthHeader);
-
-            WebDriver.Wait(Helper.DurationType.Second, 1);
 
             Helper.MsgOutput(runResponse.Equals("Command run")
                 ? "RunRefreshPrintCountsFromMedioCommandJob job ran successfully"
@@ -515,8 +504,6 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 
             var runResponse = Utils.GetSuccessStringFromUrl(webSite, 5, AuthHeader);
 
-            WebDriver.Wait(Helper.DurationType.Second, 1);
-
             Helper.MsgOutput(runResponse.Equals("Command run")
                 ? "RunStaffAccountCreationCommandJob job ran successfully"
                 : "RunStaffAccountCreationCommandJob probably did not run properly");
@@ -528,8 +515,6 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 
                 var runResponse = Utils.GetSuccessStringFromUrl(webSite, 5, AuthHeader);
 
-                WebDriver.Wait(Helper.DurationType.Second, 1);
-
                 Helper.MsgOutput(runResponse.Equals("Command run")
                     ? "RunConsumableOrderRequestsCommandJob job ran successfully"
                     : "RunConsumableOrderRequestsCommandJob probably did not run properly");
@@ -540,8 +525,6 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             var webSite = CoinedUrl() + CreateOrderAndServiceRequestsCommand;
 
             var runResponse = Utils.GetSuccessStringFromUrl(webSite, 5, AuthHeader);
-
-            WebDriver.Wait(Helper.DurationType.Second, 1);
 
             Helper.MsgOutput(runResponse.Equals("Command run")
                 ? "RunCreateOrderAndServiceRequestsCommandJob job ran successfully"
@@ -555,7 +538,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 
             var runResponse = Utils.GetSuccessStringFromUrl(webSite, 5, AuthHeader);
 
-            WebDriver.Wait(Helper.DurationType.Second, 1);
+            
 
             Helper.MsgOutput(runResponse.Equals("Command run")
                 ? "RunSystemJobCreateCustomerTaxCommandJob job ran successfully"
@@ -569,7 +552,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 
             var runResponse = Utils.GetSuccessStringFromUrl(webSite, 5, AuthHeader);
 
-            WebDriver.Wait(Helper.DurationType.Second, 1);
+            
 
             Helper.MsgOutput(runResponse.Equals("Command run")
                 ? "RunSystemJobCreateCustomerAndPersonCommandJob job ran successfully"
@@ -582,7 +565,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 
             var runResponse = Utils.GetSuccessStringFromUrl(webSite, 5, AuthHeader);
 
-            WebDriver.Wait(Helper.DurationType.Second, 1);
+            
 
             Helper.MsgOutput(runResponse.Equals("Command run")
                 ? "RunCloseConsumableOrdersCommandJob job ran successfully"
@@ -594,7 +577,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             var webSite = CoinedUrl() + PollConsumableOrderStatusCommand;
             var runResponse = Utils.GetSuccessStringFromUrl(webSite, 5, AuthHeader);
 
-            WebDriver.Wait(Helper.DurationType.Second, 1);
+            
 
             Helper.MsgOutput(runResponse.Equals("Command run")
                 ? "RunPollConsumableOrderStatusCommandJob job ran successfully"
@@ -607,7 +590,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 
             var runResponse = Utils.GetSuccessStringFromUrl(webSite, 5, AuthHeader);
 
-            WebDriver.Wait(Helper.DurationType.Second, 1);
+            
 
             Helper.MsgOutput(runResponse.Equals("Command run")
                 ? "RunCheckForSilentEmailDevicesCommandJob job ran successfully"
@@ -622,7 +605,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 
             var runResponse = Utils.GetSuccessStringFromUrl(webSite, 5, AuthHeader);
 
-            WebDriver.Wait(Helper.DurationType.Second, 1);
+            
 
             Helper.MsgOutput(runResponse.Equals("Command run")
                 ? "RunCheckForSilentMedioDevicesCommandJob job ran successfully"
@@ -636,7 +619,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 
             var runResponse = Utils.GetSuccessStringFromUrl(webSite, 5, AuthHeader);
 
-            WebDriver.Wait(Helper.DurationType.Second, 1);
+            
 
             Helper.MsgOutput(runResponse.Equals("Command run")
                 ? "RunSystemJobCreateConsumableOrderCommandJob job ran successfully"

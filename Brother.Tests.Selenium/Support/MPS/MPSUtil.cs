@@ -22,6 +22,26 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             return generatedProposalName;
         }
 
+
+        public static string GenerateUniqueSubDealerName()
+        {
+            var generatedSubdealerName = "MPS_Smoke_Subdealer" + SurName() +
+                "-" + DateTime.Now.ToString("MMdHHmmss");
+            HelperClasses.SpecFlow.SetContext("GeneratedSubdealerName", generatedSubdealerName);
+            Helper.MsgOutput(String.Format("The proposal generated is {0}", generatedSubdealerName));
+            return generatedSubdealerName;
+        }
+
+
+        public static string GetSubdealerUniqueEmail()
+        {
+            var subdealerEmailAddress = "subdealer_" + FirstName() +
+                DateTime.Now.ToString("MMdHHmmss")
+                + "@mailinator.com";
+            HelperClasses.SpecFlow.SetContext("GeneratedEmailAddress", subdealerEmailAddress);
+            Helper.MsgOutput(String.Format("The unique email generated is {0}", subdealerEmailAddress));
+            return subdealerEmailAddress;
+        }
        
         public static string GenerateUniqueEmail()
         {

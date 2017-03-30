@@ -84,7 +84,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
                 if ((testFromFile.Contains("Already running")))
                 {
-                    MsgOutput(string.Format("Job is already running"));
+                    MsgOutput(string.Format("Job is Already running"));
                 }
 
                 WebDriver.Wait(DurationType.Second, 2);

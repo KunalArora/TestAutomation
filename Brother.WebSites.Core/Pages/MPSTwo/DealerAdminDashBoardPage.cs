@@ -22,6 +22,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement DefaultMarginsElement;
         [FindsBy(How = How.CssSelector, Using = "a[href='/mps/dealer/admin/profile'] .media-body")]
         public IWebElement DealershipProfileElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href='/mps/dealer/admin/dealership-users'] .media-body")]
+        public IWebElement DealershipUserElement;
+        
        
 
         private void IsDefaultMarginsLinkAvailable()
@@ -40,6 +43,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             AssertElementPresent(DealershipProfileElement, "Dealership Profile Link");
         }
 
+        private void IsDealershipUserLinkAvailable()
+        {
+            if (DealershipUserElement == null)
+                throw new Exception("Unable to locate Dealership Profile on dashboard page");
+
+            AssertElementPresent(DealershipUserElement, "Dealership Profile Link");
+        }
+
         public DealerAdminDefaultMarginsPage NavigateToDealerAdminDefaultMarginsPage()
         {
             IsDefaultMarginsLinkAvailable();
@@ -54,5 +65,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetTabInstance<DealerAdminDealershipProfilePage>(Driver);
         }
 
+
+        public DealerAdminDealershipUsersPage NavigateToDealerAdminDealershipUsersPage()
+        {
+            IsDealershipUserLinkAvailable();
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, DealershipProfileElement);
+            return GetTabInstance<DealerAdminDealershipUsersPage>(Driver);
+        }
     }
 }
