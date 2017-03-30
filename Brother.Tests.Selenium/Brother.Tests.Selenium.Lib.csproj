@@ -157,6 +157,9 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Support\HelperClasses\AutomationWebClient.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Support\HelperClasses\Helper.ExpectedConditionsEx.cs" />
     <Compile Include="Support\HelperClasses\Helper.Screenshot.cs" />
     <Compile Include="Support\HelperClasses\Helper.SpecFlow.cs" />

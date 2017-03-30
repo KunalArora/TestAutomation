@@ -63,7 +63,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         {
             var retryCount = 0;
 
-            var webClient = new WebClient();
+            var webClient = new AutomationWebClient();
 
 
             if (additionalHeaders != null && additionalHeaders.Any())
