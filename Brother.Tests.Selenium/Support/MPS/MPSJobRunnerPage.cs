@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Web;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 
 namespace Brother.Tests.Selenium.Lib.Support.MPS
@@ -434,9 +435,9 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
                 : "RunRemoveConsumableOrderByInstalledPrinterJob probably did not run properly");
         }
 
-        public static void RunCompleteInstallationCommandJob(int proposalId = 0)
+        public static void RunCompleteInstallationCommandJob(string proposalName = null)
         {
-            var webSite = CoinedUrl() + CompleteInstallationCommand + (proposalId > 0 ? "&ProposalId=" + proposalId : "");
+            var webSite = CoinedUrl() + CompleteInstallationCommand + (proposalName != null ? "&ProposalName=" + HttpUtility.UrlEncode(proposalName) : "");
             var runResponse = Utils.GetSuccessStringFromUrl(webSite, 5, AuthHeader);
 
             Helper.MsgOutput(runResponse.Equals("Command run")
@@ -468,9 +469,11 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
                 : "RunRefreshPrintCountsCommandJob probably did not run properly");
         }
 
-        public static void RunRefreshPrintCountsFromMedioCommandJob()
+        public static void RunRefreshPrintCountsFromMedioCommandJob(string proposalName = null, string countryIso = null)
         {
-            var webSite = CoinedUrl() + RefreshPrintCountsFromMedioCommand;
+            var webSite = CoinedUrl() + RefreshPrintCountsFromMedioCommand
+                          + (proposalName != null ? "&ProposalName=" + HttpUtility.UrlEncode(proposalName) : "")
+                          + (countryIso != null ? "&CountryIso=" + HttpUtility.UrlEncode(countryIso) : "");
             var runResponse = Utils.GetSuccessStringFromUrl(webSite, 5, AuthHeader);
 
             Helper.MsgOutput(runResponse.Equals("Command run")
