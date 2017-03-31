@@ -21,7 +21,8 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.Basket
         }
 
         //[FindsBy(How = How.CssSelector, Using = ".go-to-checkout")]
-        [FindsBy(How = How.XPath, Using = @"//*[@id='basket-page']/div/div/div[2]/div[2]/div/button")]
+        //[FindsBy(How = How.XPath, Using = @"//*[@id='basket-page']/div/div/div[2]/div[2]/div/button")]
+        [FindsBy(How = How.Id, Using = "basket-page--continue-checkout")]
         public IWebElement CheckOutButton;
 
         [FindsBy(How = How.CssSelector, Using = "#content_0_ContinueShoppingLink")]
