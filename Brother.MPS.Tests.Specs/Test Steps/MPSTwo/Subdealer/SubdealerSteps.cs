@@ -21,6 +21,31 @@ namespace Brother.Tests.Specs.MPSTwo.Subdealer
             CurrentPage.As<DealerAdminDealershipUsersPage>().IsDealershipUserPageDisplayed();
         }
 
+        [When(@"I begin subdealer creation process")]
+        public void WhenIBeginSubdealerCreationProcess()
+        {
+            NextPage = CurrentPage.As<DealerAdminDealershipUsersPage>().StartSubDealerCreation();
+        }
+
+        [When(@"I enter all details with ""(.*)"" as the permission")]
+        public void WhenIEnterAllDetailsWithAsThePermission(string permission)
+        {
+            CurrentPage.As<DealerAdminDealershipUsersCreationPage>().FillSubDealerDetails(permission);
+        }
+
+        [When(@"I submit the detail for creation")]
+        public void WhenISubmitTheDetailForCreation()
+        {
+            NextPage = CurrentPage.As<DealerAdminDealershipUsersCreationPage>().SaveSubdealerDetails();
+        }
+
+        [Then(@"the subdealer created is shown on the list of subdealers")]
+        public void ThenTheSubdealerCreatedIsShownOnTheListOfSubdealers()
+        {
+            CurrentPage.As<DealerAdminDealershipUsersPage>().IsSubdealerCreated();
+        }
+
+
 
     }
 }

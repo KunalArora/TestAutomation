@@ -69,7 +69,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public DealerAdminDealershipUsersPage NavigateToDealerAdminDealershipUsersPage()
         {
             IsDealershipUserLinkAvailable();
-            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, DealershipProfileElement);
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, DealershipUserElement);
             return GetTabInstance<DealerAdminDealershipUsersPage>(Driver);
         }
     }

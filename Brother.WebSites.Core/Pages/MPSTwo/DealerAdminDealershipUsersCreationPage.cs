@@ -12,8 +12,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 {
     public class DealerAdminDealershipUsersCreationPage : BasePage
     {
-        [FindsBy(How = How.CssSelector, Using = "#content_1_StaffListActions_ActionList_Button_0")]
-        public IWebElement SubDealerCreateButton;
         [FindsBy(How = How.CssSelector, Using = "#content_1_StaffManage_permissionFullDescription")]
         public IWebElement SubDealerPermissionText;
         [FindsBy(How = How.CssSelector, Using = "#content_1_StaffManage_InputTitle_Input")]
