@@ -290,7 +290,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void CompleteInstallation()
         {
-            MpsJobRunnerPage.RunCompleteInstallationCommandJob();
+            MpsJobRunnerPage.RunCompleteInstallationCommandJob(MpsUtil.CreatedProposal());
         }
 
 

@@ -152,6 +152,8 @@
     <Compile Include="Pages\MPSTwo\CustomerPortalPrintCountPage.cs" />
     <Compile Include="Pages\MPSTwo\CustomerPortalServiceRequestsPage.cs" />
     <Compile Include="Pages\MPSTwo\DataQueryPage.cs" />
+    <Compile Include="Pages\MPSTwo\DealerAdminDealershipUsersCreationPage.cs" />
+    <Compile Include="Pages\MPSTwo\DealerAdminDealershipUsersPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerApprovedProposalPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerClosedProposalPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerClosedProposalSummaryPage.cs" />
@@ -163,6 +165,10 @@
     <Compile Include="Pages\MPSTwo\EnhancedUsageMonitoringInstalledPrinterPage.cs" />
     <Compile Include="Pages\MPSTwo\EnhancedUsageMonitoringPrinterEnginePage.cs" />
     <Compile Include="Pages\MPSTwo\InvoiceToolsPage.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeAdminAdministrationDashboardPage.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeAdminAdministrationDealerPage.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeAdminDealershipUsersCreationPage.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeAdminExistingDealershipUsersPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeAdminProgramPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerManageDevicesPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerProposalsCreateNavTabs.cs" />

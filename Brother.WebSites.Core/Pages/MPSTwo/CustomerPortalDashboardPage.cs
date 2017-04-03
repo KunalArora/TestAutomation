@@ -37,7 +37,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             ScrollTo(CustomerDashboardConsummableLink);
             CustomerDashboardConsummableLink.Click();
-            MpsJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob();
+            MpsJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob(MpsUtil.CreatedProposal(), Locale);
             return GetInstance<CustomerPortalConsummablePage>(Driver);
         }
 
@@ -52,7 +52,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             ScrollTo(CustomerDashboardPrintCountsLink);
             CustomerDashboardPrintCountsLink.Click();
-            MpsJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob();
+            MpsJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob(MpsUtil.CreatedProposal(), Locale);
             return GetInstance<CustomerPortalPrintCountPage>(Driver);
         }
 

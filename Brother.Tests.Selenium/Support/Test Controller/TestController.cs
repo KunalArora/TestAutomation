@@ -75,6 +75,8 @@ namespace Brother.Tests.Selenium.Lib.Support
             WebDriver.SetWebDriverDefaultTimeOuts(WebDriver.DefaultTimeOut.Script);
             WebDriver.SetWebDriverDefaultTimeOuts(WebDriver.DefaultTimeOut.Implicit);
             driver.Manage().Window.Maximize();
+            
+            
         }
 
         private static IWebDriver UsePhantomJsAsService()
@@ -319,6 +321,7 @@ namespace Brother.Tests.Selenium.Lib.Support
             
             
             options.AddArguments("--disable-extensions");
+           // options.AddArguments("start-maximized");
             options.AddUserProfilePreference("profile.default_content_settings.popups", 0);
             options.AddUserProfilePreference("download.default_directory", path);
             options.AddArguments("no-sandbox");
