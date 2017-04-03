@@ -400,7 +400,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public static void RunConsumableOrderCreationJobs()
         {
-            MpsJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob();
+            MpsJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob(MpsUtil.CreatedProposal(), Helper.Locale);
             MpsJobRunnerPage.RunCreateOrderAndServiceRequestsCommandJob();
             MpsJobRunnerPage.RunConsumableOrderRequestsCommandJob();
 

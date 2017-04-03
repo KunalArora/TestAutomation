@@ -43,8 +43,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerManageDevicesPage NavigateToManageDevicesPageToConfirmThatInstallationRequestAvailability()
         {
-            MpsJobRunnerPage.RunCompleteInstallationCommandJob();
-            MpsJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob();
+            MpsJobRunnerPage.RunCompleteInstallationCommandJob(MpsUtil.CreatedProposal());
+            MpsJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob(MpsUtil.CreatedProposal(), Locale);
             WebDriver.Wait(DurationType.Second,  10);
             ActionsModule.ClickOnSpecificActionsElement(Driver);
             ScrollTo(ManageDevicesElement);

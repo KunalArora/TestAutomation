@@ -1024,7 +1024,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 MpsJobRunnerPage.NotifyBocOfNewChanges();
             }
 
-            MpsJobRunnerPage.RunCompleteInstallationCommandJob();
+            MpsJobRunnerPage.RunCompleteInstallationCommandJob(MpsUtil.CreatedProposal());
            
         }
 
@@ -1051,7 +1051,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 MpsJobRunnerPage.NotifyBocOfNewChanges(number4);
             }
 
-            MpsJobRunnerPage.RunCompleteInstallationCommandJob();
+            MpsJobRunnerPage.RunCompleteInstallationCommandJob(MpsUtil.CreatedProposal());
 
         }
 
@@ -1063,7 +1063,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 //WaitForElementToBeClickableById("content_0_InstallationSuccessfullyFinished", 10);
                 CompleteCloudInstallationComfirmationElement.Click();
                 MpsJobRunnerPage.NotifyBocOfNewChanges();
-                MpsJobRunnerPage.RunCompleteInstallationCommandJob();
+                MpsJobRunnerPage.RunCompleteInstallationCommandJob(MpsUtil.CreatedProposal());
 
         }
 

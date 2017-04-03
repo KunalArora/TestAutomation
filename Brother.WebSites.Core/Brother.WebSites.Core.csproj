@@ -167,6 +167,8 @@
     <Compile Include="Pages\MPSTwo\InvoiceToolsPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeAdminAdministrationDashboardPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeAdminAdministrationDealerPage.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeAdminDealershipUsersCreationPage.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeAdminExistingDealershipUsersPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeAdminProgramPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerManageDevicesPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerProposalsCreateNavTabs.cs" />

@@ -44,7 +44,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
         private const string SystemJobCreateConsumableOrderCommand = @"runcommand.aspx?command=MPS:SystemJobCreateConsumableOrderCommand";
         private const string CheckForSilentMedioDevicesCommand = @"runcommand.aspx?command=MPS:CheckForSilentEmailDevicesCommand";
 
-        private const string ResetSerialNumberJob = @"recycleserial2.aspx?serial=";
+        private const string ResetSerialNumberJob = @"recycleserial.aspx?serial=";
         private const string SetCustomerSapIdJob = @"setcustomersapid.aspx?name={0}&sapid={1}";
         private const string SetPersonSapIdJob = @"setpersonsapid.aspx?email={0}&sapid={1}";
         private const string RemoveConsumableOrderById = @"removeconsumableorderbyid.aspx?orderid=";
@@ -156,7 +156,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             Helper.MsgOutput(String.Format("The url formed for Register New Device is {0}", webSite));
 
             var response = Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
-
+            
             Helper.MsgOutput(response.ToString().Equals("OK")
                 ? "RegisterNewDevice job ran successfully"
                 : "RegisterNewDevice probably did not run properly");

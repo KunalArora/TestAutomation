@@ -321,7 +321,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public InstallerDeviceInstallationPage LaunchInstallerPage()
         {
-            MpsJobRunnerPage.RunCompleteInstallationCommandJob();
+            MpsJobRunnerPage.RunCompleteInstallationCommandJob(MpsUtil.CreatedProposal());
             Driver.Navigate().GoToUrl(GetInstallationLink());
             return GetInstance<InstallerDeviceInstallationPage>(Driver);
         }
@@ -386,7 +386,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
            
             MpsJobRunnerPage.RunCreateOrderAndServiceRequestsCommandJob();
             MpsJobRunnerPage.RunConsumableOrderRequestsCommandJob();
-            MpsJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob();
+            MpsJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob(MpsUtil.CreatedProposal(), Locale);
         }
 
         public void IsInstallationCompleted(string number1, string number2, string number3, string number4)
@@ -404,7 +404,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             MpsJobRunnerPage.RunCreateOrderAndServiceRequestsCommandJob();
             MpsJobRunnerPage.RunConsumableOrderRequestsCommandJob();
-            MpsJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob();
+            MpsJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob(MpsUtil.CreatedProposal(), Locale);
         }
 
         public void SelectLocationErrorIsDisplayed()

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using OpenQA.Selenium.Support.UI;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
@@ -16,10 +17,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement LOAdminDealershipTabElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_DealershipListFilter_InputFilterBy")]
         public IWebElement LOAdminDealershipFilterElement;
+        [FindsBy(How = How.CssSelector, Using = "[class=\"js-mps-delete-remove\"] .js-mps-filter-ignore button")]
+        public IWebElement ActionButtonElement;
+        [FindsBy(How = How.CssSelector, Using = ".open .js-mps-dealership-users")]
+        public IWebElement OpenDealershipUserButtonElement;
+        
+        
         
 
 
-        public void NavvigateToDealership()
+        public void NavigateToDealership()
         {
             if(LOAdminDealershipTabElement == null)
                 throw new Exception("Dealership tab is not displayed");
@@ -27,7 +34,27 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             LOAdminDealershipTabElement.Click();
         }
 
-        
+        public void SearchForDealership(string dealership)
+        {
+            if(LOAdminDealershipFilterElement == null)
+                throw new Exception("Can't see LOAdmin Dealership Filter Element");
+
+            ClearAndType(LOAdminDealershipFilterElement, dealership);
+        }
+
+        public LocalOfficeAdminExistingDealershipUsersPage NavigateToDealershipUsersPage()
+        {
+            if(ActionButtonElement == null)
+                throw new Exception("Can't find Action Button Element");
+            if(OpenDealershipUserButtonElement == null)
+                throw new Exception("Can't find Dealership User Button Element");
+
+            ActionButtonElement.Click();
+            OpenDealershipUserButtonElement.Click();
+
+            return GetInstance<LocalOfficeAdminExistingDealershipUsersPage>();
+
+        }
         
     }
 }
