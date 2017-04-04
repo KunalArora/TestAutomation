@@ -44,7 +44,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
         private const string SystemJobCreateConsumableOrderCommand = @"runcommand.aspx?command=MPS:SystemJobCreateConsumableOrderCommand";
         private const string CheckForSilentMedioDevicesCommand = @"runcommand.aspx?command=MPS:CheckForSilentEmailDevicesCommand";
 
-        private const string ResetSerialNumberJob = @"recycleserial2.aspx?serial=";
+        private const string ResetSerialNumberJob = @"recycleserial.aspx?serial=";
         private const string SetCustomerSapIdJob = @"setcustomersapid.aspx?name={0}&sapid={1}";
         private const string SetPersonSapIdJob = @"setpersonsapid.aspx?email={0}&sapid={1}";
         private const string RemoveConsumableOrderById = @"removeconsumableorderbyid.aspx?orderid=";
