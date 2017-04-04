@@ -384,7 +384,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 TestCheck.AssertIsEqual(true, connection, "Installation is not successfully connected to BOC");
             }
            
-            MpsJobRunnerPage.RunCreateOrderAndServiceRequestsCommandJob();
+            //MpsJobRunnerPage.RunCreateOrderAndServiceRequestsCommandJob();
             MpsJobRunnerPage.RunConsumableOrderRequestsCommandJob();
             MpsJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob(MpsUtil.CreatedProposal(), Locale);
         }
@@ -402,7 +402,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 TestCheck.AssertIsEqual(true, connection, "Installation is not successfully connected to BOC");
             }
 
-            MpsJobRunnerPage.RunCreateOrderAndServiceRequestsCommandJob();
+            //MpsJobRunnerPage.RunCreateOrderAndServiceRequestsCommandJob();
             MpsJobRunnerPage.RunConsumableOrderRequestsCommandJob();
             MpsJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob(MpsUtil.CreatedProposal(), Locale);
         }

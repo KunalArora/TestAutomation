@@ -39,10 +39,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         
         
         
-        
-        
-        
-        
 
 
         public void IsDealershipUserCreationPageDisplayed()
@@ -66,37 +62,37 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
 
-        private void SelectTitle(int value = 2)
+        public void SelectTitle(int value = 2)
         {
             SelectFromDropDownByIndex(SubDealerTitleElement, value);
         }
 
-        private void EnterSubdealerFirstName(string name)
+        public void EnterSubdealerFirstName(string name)
         {
             ClearAndType(SubDealerFirstNameElement, name);
         }
 
-        private void EnterSubdealerLastName(string name)
+        public void EnterSubdealerLastName(string name)
         {
             ClearAndType(SubDealerLastNameElement, name);
         }
 
-        private void EnterSubdealerPosition(string position)
+        public void EnterSubdealerPosition(string position)
         {
             ClearAndType(SubDealerPositionElement, position);
         }
 
-        private void EnterSubdealerTelephone(string tele)
+        public void EnterSubdealerTelephone(string tele)
         {
             ClearAndType(SubDealerTelPhoneElement, tele);
         }
 
-        private void EnterSubdealerEmail(string email)
+        public void EnterSubdealerEmail(string email)
         {
             ClearAndType(SubDealerEmailElement, email);
         }
 
-        private void EnterSubdealerNote(string note)
+        public void EnterSubdealerNote(string note)
         {
             ClearAndType(SubDealerNoteElement, note);
         }
@@ -120,6 +116,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     break;
 
             }
+        }
+
+        public void SubmitSubdealerWithAnyDetails()
+        {
+            if (SubDealerSaveButtonElement == null)
+                throw new Exception("SubDealer Save Button returned as null");
+
+            SubDealerSaveButtonElement.Click();
+
         }
 
         public DealerAdminDealershipUsersPage SaveSubdealerDetails()

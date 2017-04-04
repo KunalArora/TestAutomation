@@ -1,4 +1,5 @@
-﻿using Brother.WebSites.Core.Pages.Base;
+﻿using Brother.Tests.Selenium.Lib.Support.MPS;
+using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using TechTalk.SpecFlow;
 
@@ -30,8 +31,47 @@ namespace Brother.Tests.Specs.MPSTwo.Subdealer
         [When(@"I enter all details with ""(.*)"" as the permission")]
         public void WhenIEnterAllDetailsWithAsThePermission(string permission)
         {
+            CurrentPage.As<DealerAdminDealershipUsersCreationPage>().IsDealershipUserCreationPageDisplayed();
             CurrentPage.As<DealerAdminDealershipUsersCreationPage>().FillSubDealerDetails(permission);
         }
+
+        [When(@"I enter first name as part of the mandatory detail")]
+        public void WhenIEnterFirstNameAsPartOfTheMandatoryDetail()
+        {
+           CurrentPage.As<DealerAdminDealershipUsersCreationPage>().SelectTitle();
+            CurrentPage.As<DealerAdminDealershipUsersCreationPage>().EnterSubdealerFirstName(MpsUtil.FirstName());
+            CurrentPage.As<DealerAdminDealershipUsersCreationPage>().EnterSubdealerPosition(MpsUtil.ContactPosition());
+            CurrentPage.As<DealerAdminDealershipUsersCreationPage>().EnterSubdealerNote("Testing Negative scenarios");
+        }
+
+        [When(@"I enter last name as part of the mandatory detail")]
+        public void WhenIEnterLastNameAsPartOfTheMandatoryDetail()
+        {
+            CurrentPage.As<DealerAdminDealershipUsersCreationPage>().EnterSubdealerLastName(MpsUtil.SurName());
+        }
+
+
+        [When(@"I enter telephone as part of the mandatory detail")]
+        public void WhenIEnterTelephoneAsPartOfTheMandatoryDetail()
+        {
+            CurrentPage.As<DealerAdminDealershipUsersCreationPage>().EnterSubdealerTelephone(MpsUtil.CompanyTelephone());
+        }
+
+
+        [When(@"I enter email as part of the mandatory detail")]
+        public void WhenIEnterEmailAsPartOfTheMandatoryDetail()
+        {
+            CurrentPage.As<DealerAdminDealershipUsersCreationPage>().EnterSubdealerEmail(MpsUtil.GetSubdealerUniqueEmail());
+        }
+
+
+
+        [When(@"I click on submit button without any data")]
+        public void WhenIClickOnSubmitButtonWithoutAnyData()
+        {
+            CurrentPage.As<DealerAdminDealershipUsersCreationPage>().SubmitSubdealerWithAnyDetails();
+        }
+
 
         [When(@"I submit the detail for creation")]
         public void WhenISubmitTheDetailForCreation()
@@ -39,11 +79,20 @@ namespace Brother.Tests.Specs.MPSTwo.Subdealer
             NextPage = CurrentPage.As<DealerAdminDealershipUsersCreationPage>().SaveSubdealerDetails();
         }
 
+
+        [When(@"the subdealer created is shown on the list of subdealers")]
         [Then(@"the subdealer created is shown on the list of subdealers")]
         public void ThenTheSubdealerCreatedIsShownOnTheListOfSubdealers()
         {
             CurrentPage.As<DealerAdminDealershipUsersPage>().IsSubdealerCreated();
         }
+
+        [Then(@"I can delete the subdealer successfully")]
+        public void ThenICanDeleteTheSubdealerSuccessfully()
+        {
+            ActionsModule.DeleteSubdealer(CurrentDriver);
+        }
+
 
         [Given(@"I navigate to LO Admin Administration page using tab")]
         public void GivenINavigateToLoAdminAdministrationPageUsingTab()
