@@ -54,6 +54,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             TestCheck.AssertIsEqual(true, list.Contains(email), String.Format("{0} is not on the list of created subdealers", email));
         }
+
+        public void DeleteSubDealer()
+        {
+            
+        }
         
     }
 }

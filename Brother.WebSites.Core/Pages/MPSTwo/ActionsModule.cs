@@ -214,6 +214,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return actionsElement;
         }
 
+        public static IWebElement SpecificSubDealerActionsDropdownElement()
+        {
+
+            var actionsElement = SeleniumHelper.FindElementByJs(SubDealerEmailActionButton());
+            return actionsElement;
+        }
+
+        public static void DeleteSubdealer(IWebDriver driver)
+        {
+            SpecificSubDealerActionsDropdownElement().Click();
+            WebDriver.Wait(Helper.DurationType.Second, 2);
+            ProposalDeleteButtonElement(driver).Click();
+        }
+
         public static void ClickOnSpecificActionsElement(IWebDriver driver)
         {
             SearchForNewlyProposalItem(driver, MpsUtil.CreatedProposal());
@@ -295,6 +309,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return String.Format("return $('td:contains(\"{0}\")').parent('tr').children('td').children('div').children('button')",
                 MpsUtil.CreatedEmail());
         }
+
+        private static string SubDealerEmailActionButton()
+        {
+            return String.Format("return $('td:contains(\"{0}\")').parent('tr').children('td').children('div').children('button')",
+                MpsUtil.GetSubdealerUniqueEmail());
+        }
+
 
         private static string GeneratedPinForInstallation()
         {
@@ -401,7 +422,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public static void RunConsumableOrderCreationJobs()
         {
             MpsJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob(MpsUtil.CreatedProposal(), Helper.Locale);
-            MpsJobRunnerPage.RunCreateOrderAndServiceRequestsCommandJob();
+            //MpsJobRunnerPage.RunCreateOrderAndServiceRequestsCommandJob();
             MpsJobRunnerPage.RunConsumableOrderRequestsCommandJob();
 
         }
