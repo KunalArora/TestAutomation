@@ -278,6 +278,15 @@ namespace Brother.WebSites.Core.Pages.Base
         }
         #endregion
 
+        #region "Credit Card Details Frame in BOL"
+        public static PaymentPage LoadPaymentCardDetailsFrame(IWebDriver driver)
+        {
+            driver = SetDriver(driver);
+            MsgOutput("Loading Credit Card details frame");
+            return GetIFrameInstance<PaymentPage>(driver, "", "");
+        }
+        #endregion
+
         private static IWebDriver SetDriver(IWebDriver driver)
         {
             return driver ?? TestController.CurrentDriver;
