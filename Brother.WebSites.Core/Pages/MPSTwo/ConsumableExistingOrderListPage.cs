@@ -103,8 +103,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void RunConsumableOrderCreationJobs()
         {
-            MpsJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob();
-            MpsJobRunnerPage.RunCreateOrderAndServiceRequestsCommandJob();
+            MpsJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob(MpsUtil.CreatedProposal(), Locale);
+           // MpsJobRunnerPage.RunCreateOrderAndServiceRequestsCommandJob();
             MpsJobRunnerPage.RunConsumableOrderRequestsCommandJob();
             RefreshDeviceScreen();
         }

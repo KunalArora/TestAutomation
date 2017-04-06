@@ -22,6 +22,16 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             return generatedProposalName;
         }
 
+
+        public static string GetSubdealerUniqueEmail()
+        {
+            var subdealerEmailAddress = "subdealer_" + FirstName() +
+                DateTime.Now.ToString("MMdHHmmss")
+                + "@mailinator.com";
+            HelperClasses.SpecFlow.SetContext("GeneratedEmailAddress", subdealerEmailAddress);
+            Helper.MsgOutput(String.Format("The unique email generated is {0}", subdealerEmailAddress));
+            return subdealerEmailAddress;
+        }
        
         public static string GenerateUniqueEmail()
         {

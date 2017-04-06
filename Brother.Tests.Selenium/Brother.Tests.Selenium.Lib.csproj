@@ -89,6 +89,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml" />
     <Reference Include="TechTalk.SpecFlow, Version=1.9.0.77, Culture=neutral, PublicKeyToken=0778194805d6db41, processorArchitecture=MSIL">
@@ -156,6 +157,9 @@
       <DependentUpon>MPSDV2.settings</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Support\HelperClasses\AutomationWebClient.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Support\HelperClasses\Helper.ExpectedConditionsEx.cs" />
     <Compile Include="Support\HelperClasses\Helper.Screenshot.cs" />

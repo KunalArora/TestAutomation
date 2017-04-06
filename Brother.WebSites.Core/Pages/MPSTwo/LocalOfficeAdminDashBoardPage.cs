@@ -1,4 +1,5 @@
 ﻿using System;
+using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -24,9 +25,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement DealerDefaultsElement;
         [FindsBy(How = How.CssSelector, Using = ".media a[href=\"/mps/local-office/programs\"]")]
         public IWebElement LOAdminProgramElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/local-office/admin\"] .media-body")]
+        public IWebElement LOAdminAdministrationLinkElement;
 
-
-       
+      
 
         public void IsPurchaseAndClickLinkAvailable()
         {
@@ -61,6 +63,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             IsDealerDefaultsLinkAvailable();
             DealerDefaultsElement.Click();
             return GetTabInstance<LocalOfficeAdminDealerDefaultsPage>(Driver);
+        }
+
+        public LocalOfficeAdminAdministrationDashboardPage NavigateToAdministrationPagePage()
+        {
+            if(LOAdminAdministrationLinkElement == null)
+                throw new Exception("Administration link is not displayed");
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, LOAdminAdministrationLinkElement);
+            return GetTabInstance<LocalOfficeAdminAdministrationDashboardPage>(Driver);
         }
 
         
