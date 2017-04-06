@@ -78,6 +78,21 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement DeviceRespondingActionElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/customers\"]")]
         public IWebElement CustomerAndContactTabElement;
+        [FindsBy(How = How.CssSelector, Using = "[data-swap-type-enum-id=\"ReplaceWithSameModel\"]")]
+        public IWebElement ReplaceWithSameModelElement;
+        [FindsBy(How = How.CssSelector, Using = "[data-swap-type-enum-id=\"ReplaceWithDifferentModel\"]")]
+        public IWebElement ReplaceWithDifferentModelElement;
+        [FindsBy(How = How.CssSelector, Using = ".js-mps-swap-type-selected")]
+        public IWebElement SwapTypeNextButtonElement;
+        [FindsBy(How = How.CssSelector, Using = ".form-control.js-mps-replacement-model-list")]
+        public IWebElement SwapModelDeviceSelectorElement;
+        [FindsBy(How = How.CssSelector, Using = ".js-mps-swap-replacement-model-selected-btn")]
+        public IWebElement SwapModelNextElement;
+        
+        
+        
+        
+        
         
 
         
@@ -220,16 +235,43 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetInstance<CompleteSwapProcessPage>();
         }
 
-        public DealerSendInstallationEmailPage ConfirmSwapProcessCommencement()
+        public void ConfirmSwapProcessCommencement()
         {
             if (SwapCommencementConfirmationElement == null)
                 throw new Exception("Swap confirmation pop up not displayed");
-            //WaitForElementToBeClickableByCssSelector(".js-mps-swap-device-confirm", 5, 5);
-            WebDriver.Wait(DurationType.Second, 3);
             SwapCommencementConfirmationElement.Click();
-
-            return GetInstance<DealerSendInstallationEmailPage>();
         }
+
+        public DealerSetCommunicationMethodPage ConfirmSameSwapDeviceType()
+        {
+            if (ReplaceWithSameModelElement == null)
+                throw new Exception("Swap confirmation pop up not displayed");
+            ReplaceWithSameModelElement.Click();
+            SwapTypeNextButtonElement.Click();
+
+            return GetInstance<DealerSetCommunicationMethodPage>();
+        }
+
+        public void ConfirmDifferentSwapDeviceType()
+        {
+            if (ReplaceWithDifferentModelElement == null)
+                throw new Exception("Swap different device pop up not displayed");
+            ReplaceWithDifferentModelElement.Click();
+            SwapTypeNextButtonElement.Click();
+        }
+
+        public DealerSetCommunicationMethodPage SelectANewSwapDevice(string device)
+        {
+            if (SwapModelDeviceSelectorElement == null)
+                throw new Exception("Swap model device pop up not displayed");
+            SelectFromDropdown(SwapModelDeviceSelectorElement, device);
+
+            SwapModelNextElement.Click();
+
+            return GetInstance<DealerSetCommunicationMethodPage>();
+        }
+
+
 
         public void IsSwapInstallationRequestSent()
         {

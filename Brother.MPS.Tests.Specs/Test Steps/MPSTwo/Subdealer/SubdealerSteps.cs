@@ -58,6 +58,13 @@ namespace Brother.Tests.Specs.MPSTwo.Subdealer
         }
 
 
+        [When(@"error message is displayed")]
+        public void WhenErrorMessageIsDisplayed()
+        {
+            CurrentPage.As<DealerAdminDealershipUsersCreationPage>().IsErrorMessageDisplayed();
+        }
+
+
         [When(@"I enter email as part of the mandatory detail")]
         public void WhenIEnterEmailAsPartOfTheMandatoryDetail()
         {
@@ -72,12 +79,19 @@ namespace Brother.Tests.Specs.MPSTwo.Subdealer
             CurrentPage.As<DealerAdminDealershipUsersCreationPage>().SubmitSubdealerWithAnyDetails();
         }
 
-
+        [Then(@"I submit the detail for creation")]
         [When(@"I submit the detail for creation")]
         public void WhenISubmitTheDetailForCreation()
         {
             NextPage = CurrentPage.As<DealerAdminDealershipUsersCreationPage>().SaveSubdealerDetails();
         }
+
+        [Then(@"the subdealer is edited")]
+        public void ThenTheSubdealerIsEdited()
+        {
+            CurrentPage.As<DealerAdminDealershipUsersPage>().IsSubdealerEdited();
+        }
+
 
 
         [When(@"the subdealer created is shown on the list of subdealers")]
@@ -90,9 +104,20 @@ namespace Brother.Tests.Specs.MPSTwo.Subdealer
         [Then(@"I can delete the subdealer successfully")]
         public void ThenICanDeleteTheSubdealerSuccessfully()
         {
-            ActionsModule.DeleteSubdealer(CurrentDriver);
+            NextPage = CurrentPage.As<DealerAdminDealershipUsersPage>().BeginDeleteSubDealerProcess();
+            CurrentPage.As<DeleteSubDealerHandoverPage>().IsHandoverPageDisplayed();
+            NextPage = CurrentPage.As<DeleteSubDealerHandoverPage>().DeleteSubdealer();
+            CurrentPage.As<DealerAdminDealershipUsersPage>().IsSubdealerDeleted();
         }
 
+        [Then(@"I can edit the subdealer with ""(.*)"" successfully")]
+        public void ThenICanEditTheSubdealerWithSuccessfully(string permission)
+        {
+            NextPage = CurrentPage.As<DealerAdminDealershipUsersPage>().BeginEditSubDealer();
+
+            CurrentPage.As<DealerAdminDealershipUsersCreationPage>().EditSubDealerDetails(permission);
+        }
+        
 
         [Given(@"I navigate to LO Admin Administration page using tab")]
         public void GivenINavigateToLoAdminAdministrationPageUsingTab()

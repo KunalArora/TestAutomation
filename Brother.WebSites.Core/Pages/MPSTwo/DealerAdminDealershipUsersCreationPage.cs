@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
@@ -36,10 +37,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement SubDealerContractManagerElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_StaffManage_InputPermissionTypes_Input_1")]
         public IWebElement SubDealerFullElement;
-        
-        
+        [FindsBy(How = How.CssSelector, Using = "#content_1_ValidationErrors_ErrorContainer")]
+        public IWebElement SubDealerErrorContainerElement;
         
 
+
+
+        
 
         public void IsDealershipUserCreationPageDisplayed()
         {
@@ -61,6 +65,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             SubdealerUserPermission(permission);
         }
 
+        public void EditSubDealerDetails(string permission)
+        {
+            SelectTitle(1);
+            EnterSubdealerPosition("Director");
+            EnterSubdealerTelephone(MpsUtil.CompanyTelephone());
+            EnterSubdealerNote("Eidted subdealer");
+            SubdealerUserPermission(permission);
+        }
+
 
         public void SelectTitle(int value = 2)
         {
@@ -75,6 +88,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void EnterSubdealerLastName(string name)
         {
             ClearAndType(SubDealerLastNameElement, name);
+        }
+
+        public void IsErrorMessageDisplayed()
+        {
+            TestCheck.AssertIsEqual(true, SubDealerErrorContainerElement.Displayed, "error message is not displayed");
         }
 
         public void EnterSubdealerPosition(string position)

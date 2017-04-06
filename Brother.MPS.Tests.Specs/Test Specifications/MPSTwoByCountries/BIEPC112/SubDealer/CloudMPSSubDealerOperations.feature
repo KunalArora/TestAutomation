@@ -73,7 +73,7 @@ Scenario Outline: Dealer can create dealership users
 	| Cloud MPS Dealer | United Kingdom | Restricted       |
 
 
-	@ignore
+
 Scenario Outline: SubDealer Fields Validation
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to Admin page using tab
@@ -103,7 +103,7 @@ Scenario Outline: SubDealer Fields Validation
 	| Cloud MPS Dealer | United Kingdom | Restricted       |
 
 
-	@ignore
+
 Scenario Outline: Dealer can Delete dealership users
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to Admin page using tab
@@ -121,4 +121,25 @@ Scenario Outline: Dealer can Delete dealership users
 	| Cloud MPS Dealer | United Kingdom | Full             |
 	| Cloud MPS Dealer | United Kingdom | Contract Manager |
 	| Cloud MPS Dealer | United Kingdom | Restricted       |
+
+
+Scenario Outline: Dealer can Edit dealership users
+	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
+	And I navigate to Admin page using tab
+	When I navigate to Dealership Users page
+	And I begin subdealer creation process
+	And I enter all details with "<UserPermission>" as the permission
+	And I submit the detail for creation
+	And the subdealer created is shown on the list of subdealers
+	Then I can edit the subdealer with "<NewUserPermission>" successfully
+	And I submit the detail for creation
+	And the subdealer is edited
+	And I sign out of Cloud MPS
+
+
+	Scenarios: 
+	| Role             | Country        | UserPermission   | NewUserPermission |
+	| Cloud MPS Dealer | United Kingdom | Full             | Contract Manager  |
+	| Cloud MPS Dealer | United Kingdom | Contract Manager | Full              |
+	| Cloud MPS Dealer | United Kingdom | Restricted       | Contract Manager  |
 	

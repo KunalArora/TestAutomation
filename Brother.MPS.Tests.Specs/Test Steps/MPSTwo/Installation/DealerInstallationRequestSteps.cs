@@ -347,16 +347,32 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
 
         }
 
-        [When(@"I begin device swapping process")]
-        public void WhenIBeginDeviceSwappingProcess()
+        [When(@"I begin device swapping process for same device")]
+        public void WhenIBeginDeviceSwappingProcessForSameDevice()
         {
             CurrentPage.As<DealerManageDevicesPage>().BeginSwapProcess();
-            NextPage = CurrentPage.As<DealerManageDevicesPage>().ConfirmSwapProcessCommencement();
+            CurrentPage.As<DealerManageDevicesPage>().ConfirmSwapProcessCommencement();
+            NextPage = CurrentPage.As<DealerManageDevicesPage>().ConfirmSameSwapDeviceType();
         }
 
-        [When(@"I generate swapping device request")]
-        public void WhenIGenerateSwappingDeviceRequest()
+        [When(@"I begin device swapping process for different device ""(.*)""")]
+        public void WhenIBeginDeviceSwappingProcessForDifferentDevice(string device)
         {
+            CurrentPage.As<DealerManageDevicesPage>().BeginSwapProcess();
+            CurrentPage.As<DealerManageDevicesPage>().ConfirmSwapProcessCommencement();
+            CurrentPage.As<DealerManageDevicesPage>().ConfirmDifferentSwapDeviceType();
+            NextPage = CurrentPage.As<DealerManageDevicesPage>().SelectANewSwapDevice(device);
+        }
+
+
+
+        [When(@"I generate swapping device request with ""(.*)"" and ""(.*)""")]
+        public void WhenIBeginDeviceSwappingProcessForSameDeviceWith(string method, string type)
+        {
+            CurrentPage.As<DealerSetCommunicationMethodPage>().SetCommunicationMethod(method);
+            NextPage = CurrentPage.As<DealerSetCommunicationMethodPage>().ProceedToNextPage();
+            CurrentPage.As<DealerSetInstallationTypePage>().SetInstallationType(type);
+            NextPage = CurrentPage.As<DealerSetInstallationTypePage>().ProccedToDealerSendInstallationEmailPage();
             CurrentPage.As<DealerSendInstallationEmailPage>().IsDeviceModelDisplayedOnSwapConfirmationPage();
             CurrentPage.As<DealerSendInstallationEmailPage>().EnterInstallaterEmail();
             NextPage = CurrentPage.As<DealerSendInstallationEmailPage>().SendSwapInstallationRequest();
@@ -364,6 +380,8 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             CurrentPage.As<DealerManageDevicesPage>().IsSwapProgressTextDisplayed();
             CurrentPage.As<DealerManageDevicesPage>().IsSwapDeviceLineDisplayed();
         }
+
+
 
         [When(@"installer installed the new swap device for ""(.*)"" communication")]
         public void WhenInstallerInstalledTheNewSwapDeviceForCommunication(string type)
