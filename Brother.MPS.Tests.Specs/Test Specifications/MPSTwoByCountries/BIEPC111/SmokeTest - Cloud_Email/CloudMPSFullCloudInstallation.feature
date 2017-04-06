@@ -35,7 +35,7 @@ Scenarios:
 
 	| Role                            | Country        | ContractType                  | UsageType      | Role1            | Method | Type |
 	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  |
-	#| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR  |
+	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR  |
 
 Scenario Outline: MPS BIGAT Cloud Installation
 	Given German Dealer have created a "<Country>" contract of "<ContractType>" and "<UsageType>"
@@ -187,25 +187,25 @@ Scenarios:
 	
 
 
-@ignore
+
 Scenario Outline: Pro Rata Accepted Contracts
 	Given "<Country>" Dealer have created a "<ContractType>" contract with "<UsageType>" and "<Length>" and "<Billing>" using the device "<Device>" using Brother installation
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And the contract created above is approved
-	And I sign back into Cloud MPS as a "<Role1>" from "<Country>"
-	And I generate installation request for the contract with "<Method>" communication and "<Type>" installation
-	And I extract the installer url from Installation Request
-	When I navigate to the installer page
-	And I enter the contract reference number
-	And I enter device serial number for "<Type>" communication 
-	And I enter the device IP address
-	Then I can connect the device to Brother environment
-	And I can complete device installation
-	And I can sign out of Brother Online
-	And I navigate to the Invoice tool homepage
-	And I select "<Country>" of interest
-	And I enter mono and colour print count for a single device
-	And I generate invoices for the contract above
+	#And I sign back into Cloud MPS as a "<Role1>" from "<Country>"
+	#And I generate installation request for the contract with "<Method>" communication and "<Type>" installation
+	#And I extract the installer url from Installation Request
+	#When I navigate to the installer page
+	#And I enter the contract reference number
+	#And I enter device serial number for "<Type>" communication 
+	#And I enter the device IP address
+	#Then I can connect the device to Brother environment
+	#And I can complete device installation
+	#And I can sign out of Brother Online
+	#And I navigate to the Invoice tool homepage
+	#And I select "<Country>" of interest
+	#And I enter mono and colour print count for a single device
+	#And I generate invoices for the contract above
 
 	
 Scenarios:

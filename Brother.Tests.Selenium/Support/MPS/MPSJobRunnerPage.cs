@@ -19,8 +19,8 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 
         // NO LONGER AVAILABLE:
         // private const string SendClickRateInvoicesToSapCommand = @"runcommand.aspx?command=MPS:SendClickRateInvoicesToSapCommand";
-        
-        private const string RefreshPrintCountsCommand = @"runcommand.aspx?command=MPS:RefreshPrintCountsCommand";
+
+        private const string RefreshPrintCountsCommand = @"/runcommand.aspx?command=MPS:NEW:MeterReadEmailSyncCommand";
         
         // NEW COMMAND NAME WILL BE:
         private const string RefreshPrintCountsFromMedioCommand = @"runcommand.aspx?command=MPS:NEW:MeterReadCloudSyncCommand";
@@ -374,8 +374,6 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
                     break;
             }
 
-            Helper.MsgOutput(String.Format("The command job url formed is {0}", url));
-
             return url;
         }
 
@@ -389,6 +387,8 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 
                 webSite = String.Format(webSite, orderid, status);
 
+                Helper.MsgOutput(String.Format("The command job url formed is {0}", webSite));
+
                 response = Utils.GetSuccessStringFromUrl(webSite, 5, AuthHeader);
             }
 
@@ -399,7 +399,10 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
         {
             if (String.IsNullOrWhiteSpace(serial)) return;
             var reset = CoinedUrl() + ResetSerialNumberJob + serial;
+
+            Helper.MsgOutput(String.Format("The command job url formed is {0}", reset));
             var response = Utils.GetPageResponse(reset, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
+
 
             Helper.MsgOutput(response.ToString().Contains("OK")
                 ? "RunResetSerialNumberJob job ran successfully"
@@ -410,6 +413,8 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
         {
             var webSite = CoinedUrl() + ClickRateInvoiceCommand;
 
+            Helper.MsgOutput(String.Format("The command job url formed is {0}", webSite));
+
             Utils.GetPageResponse(webSite, WebRequestMethods.Http.Get, additionalHeaders: AuthHeader);
         }
 
@@ -417,6 +422,8 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
         {
             if (String.IsNullOrWhiteSpace(id)) return;
             var webSite = CoinedUrl() + RemoveConsumableOrderById + id;
+            Helper.MsgOutput(String.Format("The command job url formed is {0}", webSite));
+
             var runResponse = Utils.GetSuccessStringFromUrl(webSite, 5, AuthHeader);
 
             Helper.MsgOutput(runResponse.Contains("Command run")
@@ -428,6 +435,8 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
         {
             if (String.IsNullOrWhiteSpace(serial)) return;
             var webSite = CoinedUrl() + RemoveConsumableOrderByInstalledPrinter + serial;
+            Helper.MsgOutput(String.Format("The command job url formed is {0}", webSite));
+
             var runResponse = Utils.GetSuccessStringFromUrl(webSite, 5, AuthHeader);
 
             Helper.MsgOutput(runResponse.Contains("Command run")
@@ -439,6 +448,8 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
         {
             var webSite = CoinedUrl() + CompleteInstallationCommand + (proposalName != null ? "&ProposalName=" + HttpUtility.UrlEncode(proposalName) : "");
             var runResponse = Utils.GetSuccessStringFromUrl(webSite, 5, AuthHeader);
+
+            Helper.MsgOutput(String.Format("The command job url formed is {0}", webSite));
 
             Helper.MsgOutput(runResponse.Contains("Command run")
                 ? "RunCompleteInstallationCommandJob job ran successfully"
@@ -459,10 +470,16 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             */
         }
 
-        public static void RunRefreshPrintCountsCommandJob()
+        public static void RunRefreshPrintCountsCommandJob(string countryIso = null)
         {
-            var webSite = CoinedUrl() + RefreshPrintCountsCommand;
+            var webSite = CoinedUrl() + RefreshPrintCountsCommand
+                          + (countryIso != null ? "&CountryIso=" + HttpUtility.UrlEncode(countryIso) : "");
+
+            Helper.MsgOutput(String.Format("The command job url formed is {0}", webSite));
+
             var runResponse = Utils.GetSuccessStringFromUrl(webSite, 5, AuthHeader);
+
+           
 
             Helper.MsgOutput(runResponse.Contains("Command run")
                 ? "RunRefreshPrintCountsCommandJob job ran successfully"
@@ -474,6 +491,9 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             var webSite = CoinedUrl() + RefreshPrintCountsFromMedioCommand
                           + (proposalName != null ? "&ProposalName=" + HttpUtility.UrlEncode(proposalName) : "")
                           + (countryIso != null ? "&CountryIso=" + HttpUtility.UrlEncode(countryIso) : "");
+
+            Helper.MsgOutput(String.Format("The command job url formed is {0}", webSite));
+
             var runResponse = Utils.GetSuccessStringFromUrl(webSite, 5, AuthHeader);
 
             Helper.MsgOutput(runResponse.Contains("Command run")
@@ -498,6 +518,8 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
         public static void RunConsumableOrderRequestsCommandJob()
         {
             var webSite = CoinedUrl() + ConsumableOrderRequestsCommand;
+
+            Helper.MsgOutput(String.Format("The command job url formed is {0}", webSite));
             var runResponse = Utils.GetSuccessStringFromUrl(webSite, 5, AuthHeader);
 
             Helper.MsgOutput(runResponse.Contains("Command run")
@@ -536,6 +558,9 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
         public static void RunSystemJobCreateCustomerAndPersonCommandJob()
         {
             var webSite = CoinedUrl() + SystemJobCreateCustomerAndPersonCommand;
+
+            Helper.MsgOutput(String.Format("The command job url formed is {0}", webSite));
+
             var runResponse = Utils.GetSuccessStringFromUrl(webSite, 5, AuthHeader);
 
             Helper.MsgOutput(runResponse.Contains("Command run")
@@ -546,6 +571,8 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
         public static void RunCloseConsumableOrdersCommandJob()
         {
             var webSite = CoinedUrl() + CloseConsumableOrdersCommand;
+
+            Helper.MsgOutput(String.Format("The command job url formed is {0}", webSite));
             var runResponse = Utils.GetSuccessStringFromUrl(webSite, 5, AuthHeader);
 
             Helper.MsgOutput(runResponse.Contains("Command run")
@@ -556,6 +583,8 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
         public static void RunPollConsumableOrderStatusCommandJob()
         {
             var webSite = CoinedUrl() + PollConsumableOrderStatusCommand;
+
+            Helper.MsgOutput(String.Format("The command job url formed is {0}", webSite));
             var runResponse = Utils.GetSuccessStringFromUrl(webSite, 5, AuthHeader);
 
             Helper.MsgOutput(runResponse.Contains("Command run")
@@ -566,6 +595,8 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
         public static void RunCheckForSilentEmailDevicesCommandJob()
         {
             var webSite = CoinedUrl() + CheckForSilentEmailDevicesCommand;
+
+            Helper.MsgOutput(String.Format("The command job url formed is {0}", webSite));
             var runResponse = Utils.GetSuccessStringFromUrl(webSite, 5, AuthHeader);
 
             Helper.MsgOutput(runResponse.Contains("Command run")
@@ -576,6 +607,8 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
         public static void RunCheckForSilentMedioDevicesCommandJob()
         {
             var webSite = CoinedUrl() + CheckForSilentMedioDevicesCommand;
+
+            Helper.MsgOutput(String.Format("The command job url formed is {0}", webSite));
             var runResponse = Utils.GetSuccessStringFromUrl(webSite, 5, AuthHeader);
 
             Helper.MsgOutput(runResponse.Contains("Command run")
@@ -586,6 +619,8 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
         public static void RunSystemJobCreateConsumableOrderCommandJob()
         {
             var webSite = CoinedUrl() + SystemJobCreateConsumableOrderCommand;
+
+            Helper.MsgOutput(String.Format("The command job url formed is {0}", webSite));
             var runResponse = Utils.GetSuccessStringFromUrl(webSite, 5, AuthHeader);
 
             Helper.MsgOutput(runResponse.Contains("Command run")

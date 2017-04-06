@@ -28,7 +28,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             var subdealerEmailAddress = "subdealer_" + FirstName() +
                 DateTime.Now.ToString("MMdHHmmss")
                 + "@mailinator.com";
-            HelperClasses.SpecFlow.SetContext("GeneratedEmailAddress", subdealerEmailAddress);
+            HelperClasses.SpecFlow.SetContext("GeneratedSubdealerEmailAddress", subdealerEmailAddress);
             Helper.MsgOutput(String.Format("The unique email generated is {0}", subdealerEmailAddress));
             return subdealerEmailAddress;
         }
@@ -57,6 +57,12 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
         public static string CreatedProposal()
         {
             var createdProposal = HelperClasses.SpecFlow.GetContext("GeneratedProposalName");
+            return createdProposal;
+        }
+
+        public static string SubdealerEmail()
+        {
+            var createdProposal = HelperClasses.SpecFlow.GetContext("GeneratedSubdealerEmailAddress");
             return createdProposal;
         }
 

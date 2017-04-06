@@ -162,6 +162,7 @@
     <Compile Include="Pages\MPSTwo\DealerContractsAwaitingAcceptancePage.cs" />
     <Compile Include="Pages\MPSTwo\DealerCustomerAdditionalAddressPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerProposalPdfPage.cs" />
+    <Compile Include="Pages\MPSTwo\DeleteSubDealerHandoverPage.cs" />
     <Compile Include="Pages\MPSTwo\EnhancedUsageMonitoringInstalledPrinterPage.cs" />
     <Compile Include="Pages\MPSTwo\EnhancedUsageMonitoringPrinterEnginePage.cs" />
     <Compile Include="Pages\MPSTwo\InvoiceToolsPage.cs" />

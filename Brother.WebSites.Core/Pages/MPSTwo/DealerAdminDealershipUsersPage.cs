@@ -20,7 +20,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement SubDealerCreateButton;
         [FindsBy(How = How.CssSelector, Using = "[id*=\"content_1_StaffList_ListContainer_StaffEmail_\"]")]
         public IList<IWebElement> SubDealerNameList;
-        
+        [FindsBy(How = How.CssSelector, Using = ".js-mps-alert ")]
+        public IWebElement SubDealerSuccessMessageElement;
+
+
+
+
+        public void IsSubdealerEdited()
+        {
+            if (SubDealerSuccessMessageElement == null)
+                throw new Exception("Subdealer cannot be edited");
+
+            TestCheck.AssertIsEqual(true, SubDealerSuccessMessageElement.Displayed, "subdealer was not edited");
+        }
+
 
         public void IsDealershipUserPageDisplayed()
         {
@@ -44,7 +57,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void IsSubdealerCreated()
         {
             var list = new List<string>();
-            var email = SpecFlow.GetContext("GeneratedEmailAddress");
+            var email = SpecFlow.GetContext("GeneratedSubdealerEmailAddress");
 
             foreach (var element in SubDealerNameList)
             {
@@ -55,9 +68,32 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             TestCheck.AssertIsEqual(true, list.Contains(email), String.Format("{0} is not on the list of created subdealers", email));
         }
 
-        public void DeleteSubDealer()
+        public DeleteSubDealerHandoverPage BeginDeleteSubDealerProcess()
         {
-            
+            ActionsModule.DeleteSubdealer(Driver);
+
+            return GetInstance<DeleteSubDealerHandoverPage>();
+        }
+
+        public DealerAdminDealershipUsersCreationPage BeginEditSubDealer()
+        {
+            ActionsModule.EditSubdealer(Driver);
+
+            return GetInstance<DealerAdminDealershipUsersCreationPage>();
+        }
+
+        public void IsSubdealerDeleted()
+        {
+            var list = new List<string>();
+            var email = SpecFlow.GetContext("GeneratedSubdealerEmailAddress");
+
+            foreach (var element in SubDealerNameList)
+            {
+                var elementText = element.Text;
+                list.Add(elementText);
+            }
+
+            TestCheck.AssertIsEqual(false, list.Contains(email), String.Format("{0} is not deleted on the list of created subdealers", email));
         }
         
     }
