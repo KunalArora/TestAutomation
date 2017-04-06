@@ -334,6 +334,7 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Pro Rata Accepted Contracts")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Poland", "Buy + Click", "Pakiet wydruków", "Cloud MPS Dealer", "Cloud", "Web", "4 lata", "Miesięczny / Monthly", "DCP-8110DN", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Poland", "Buy + Click", "Pakiet wydruków", "Cloud MPS Dealer", "Cloud", "Web", "4 lata", "Miesięczny / Monthly", "DCP-8110DN", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Poland", "Buy + Click", "Pakiet wydruków", "Cloud MPS Dealer", "Cloud", "Web", "4 lata", "Quarterly in Arrears", "MFC-L8650CDW", null)]
@@ -353,7 +354,13 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Cloud", "Web", "4 years", "Monthly in Advance", "DCP-8110DN", null)]
         public virtual void ProRataAcceptedContracts(string role, string country, string contractType, string usageType, string role1, string method, string type, string length, string billing, string device, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Pro Rata Accepted Contracts", exampleTags);
+            string[] @__tags = new string[] {
+                    "ignore"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Pro Rata Accepted Contracts", @__tags);
 #line 191
 this.ScenarioSetup(scenarioInfo);
 #line 192

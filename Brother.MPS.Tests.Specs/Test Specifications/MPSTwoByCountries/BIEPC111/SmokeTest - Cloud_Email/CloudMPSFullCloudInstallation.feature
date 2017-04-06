@@ -187,7 +187,7 @@ Scenarios:
 	
 
 
-
+@ignore
 Scenario Outline: Pro Rata Accepted Contracts
 	Given "<Country>" Dealer have created a "<ContractType>" contract with "<UsageType>" and "<Length>" and "<Billing>" using the device "<Device>" using Brother installation
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
