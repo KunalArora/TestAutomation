@@ -83,8 +83,10 @@ Scenario Outline: MPS Dealer Resign Rejected Contract
 	| Country | Role                            | ContractType                  | UsageType      | Length | Billing                                                            | Language | Role2            |
 	| Belgium | Cloud MPS Local Office Approver | Buy & Click                   | Volume minimum | 3 ans  | Jaarlijke afrekening / Décompte annuel                             | French   | Cloud MPS Dealer |
 	| Belgium | Cloud MPS Local Office Approver | Purchase & Click with Service | Minimum Volume | 3 jaar | Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance | Dutch    | Cloud MPS Dealer |
-	
+
+#Belgium workflow now automatically approve	proposal
 # LO Approver can view open offers
+@ignore
 Scenario Outline: MPS LO View Opened Offers
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When I navigate to ProposalPage

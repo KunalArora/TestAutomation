@@ -84,7 +84,9 @@ Scenario Outline: MPS Dealer Resign Rejected Contract
 	| Netherlands | Cloud MPS Local Office Approver | Purchase + Click met Service | Minimumvolume | 3 jaar | Per kwartaal achteraf | Cloud MPS Dealer |
 	
 	
+#BNL Proposals are automatically approved
 # LO Approver can view open offers
+@ignore
 Scenario Outline: MPS LO View Opened Offers
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When I navigate to ProposalPage
