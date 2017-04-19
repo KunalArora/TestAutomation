@@ -85,6 +85,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement CreateNewProposalButtonElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/proposals/awaiting-approval\"]")]
         public IWebElement AwaitingProposalTabElement;
+        [FindsBy(How = How.CssSelector, Using = "#DataTables_Table_0_next a")]
+        public IWebElement DataTableNextButtonElement;
+        
         
         
         
@@ -442,17 +445,27 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ClickOnCopyOnActionItemWithoutCustomer(IWebDriver driver, string operation, string target)
         {
-            IWebElement offer;
-            if (target == "With")
-            {
-                offer = GetProposalOfferWithCustomerElement(driver);
-            }
-            else
-            {
-                offer = GetProposalOfferWithoutCustomerElement(driver);
-            }
-
+            IWebElement offer = null;
             string selector;
+            var displayed = false;
+            var tryCount = 0;
+
+            while (displayed != true)
+            {
+                try
+                {
+                    offer = target == "With" ? GetProposalOfferWithCustomerElement(driver) : GetProposalOfferWithoutCustomerElement(driver);
+                    displayed = offer.Displayed;
+                }
+                catch (InvalidOperationException)
+                {
+
+                    DataTableNextButtonElement.Click();
+                }
+
+                tryCount++;
+            }
+           
             if (operation == "With")
             {
                 selector = ".js-mps-copy-with-customer";
@@ -463,14 +476,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
 
             ClickActionButtonOnOffer(offer);
-            var copyElem = offer.FindElement(By.CssSelector(selector));
-            var id = copyElem.GetAttribute("data-proposal-id");
-            var name = offer.FindElement(By.CssSelector("td:nth-child(1)")).Text;
-            var customer = offer.FindElement(By.CssSelector("td:nth-child(4)")).Text;
-            SpecFlow.SetContext(DealerLatestOperatingItemId, id);
-            SpecFlow.SetContext(DealerLatestOperatingItemName, name);
-            SpecFlow.SetContext(DealerLatestOperatingItemCustomer, customer);
-            copyElem.Click();
+
+            if (offer != null)
+            {
+                var copyElem = offer.FindElement(By.CssSelector(selector));
+                var id = copyElem.GetAttribute("data-proposal-id");
+                var name = offer.FindElement(By.CssSelector("td:nth-child(1)")).Text;
+                var customer = offer.FindElement(By.CssSelector("td:nth-child(4)")).Text;
+                SpecFlow.SetContext(DealerLatestOperatingItemId, id);
+                SpecFlow.SetContext(DealerLatestOperatingItemName, name);
+                SpecFlow.SetContext(DealerLatestOperatingItemCustomer, customer);
+                copyElem.Click();
+            }
         }
 
         public void ExistsCopiedProposalOffer(IWebDriver driver, string operation)

@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Brother.MPS.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BSW.Customer
+namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BSW.Customer
 {
     using TechTalk.SpecFlow;
     
@@ -75,7 +75,7 @@ namespace Brother.MPS.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Existing Customer can be used to create a new contract for Run purpose")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Switzerland", "Purchase & Click mit Service", "Pay As You Go", "Cloud MPS Dealer", "Cloud", "Web", "Lashonda20161213100205@mailinator.com", "36", "Quartalsweise", "Cloud MPS Customer", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Switzerland", "Purchase & Click mit Service", "Pay As You Go", "Cloud MPS Dealer", "Cloud", "Web", "Lashonda20170411033512@mailinator.com", "36", "Quartalsweise", "Cloud MPS Customer", null)]
         public virtual void ExistingCustomerCanBeUsedToCreateANewContractForRunPurpose(string role, string country, string contractType, string usageType, string role1, string method, string type, string existingCustomer, string length, string billing, string role2, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Existing Customer can be used to create a new contract for Run purpose", exampleTags);
