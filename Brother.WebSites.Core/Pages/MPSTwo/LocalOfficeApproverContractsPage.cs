@@ -264,7 +264,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             var contractId = SpecFlow.GetContext("DownloadedContractId");
 
-            if (!IsGermanSystem())
+            if (!Driver.Url.Contains("Vertrag"))
             {
                 TestCheck.AssertTextContains(contractId, ExtractTextFromPdf(DownloadedPdf()),
                 "Contract Id is not available in the PDF");
