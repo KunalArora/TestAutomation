@@ -136,6 +136,10 @@ Scenario Outline: MPS Disable Device
 #
 # 6 Service Pack
 #
+#
+# This test awaits the fixing of https://brother-bie.atlassian.net/browse/MPSBAU-336
+#
+@ignore
 Scenario Outline: MPS Installation Pack Unit Cost Input Error
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
