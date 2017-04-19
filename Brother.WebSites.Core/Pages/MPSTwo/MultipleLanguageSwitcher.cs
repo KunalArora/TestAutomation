@@ -189,15 +189,22 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private static void IsSwitchedLanguageSelected(IWebDriver driver, string text)
         {
-            if (MultipleLanguagesElement(driver) == null)
-                throw new Exception("Unable to locate existing proposals link on dashboard page");
+            try
+            {
+                SeleniumHelper.WaitForElementToExistByCssSelector(".mps-lang > span > a", 3, 5);
 
-            var languageSwitch = driver.Url.Contains("dealer")
+                var languageSwitch = driver.Url.Contains("dealer")
                 ? SwitchedLanguageIdentifierElement(driver)
                 : SwitchedLoLanguageIdentifierElement(driver);
 
-            SeleniumHelper.AssertElementContainsText(languageSwitch, text,
+                SeleniumHelper.AssertElementContainsText(languageSwitch, text,
                                     String.Format("The word displayed was {0}", languageSwitch.Text));
+            }
+            catch (StaleElementReferenceException e)
+            {
+                throw new Exception("The page refreshed and the element became stale with the following error" + e);
+
+            }
         }
        
     }

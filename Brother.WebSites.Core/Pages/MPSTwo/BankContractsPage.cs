@@ -194,6 +194,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void DoesPdfContentContainSomeText()
         {
             var contractId = SpecFlow.GetContext("DownloadedContractId");
+
             if (!IsGermanSystem())
             {
                 TestCheck.AssertTextContains(contractId, ExtractTextFromPdf(DownloadedPdf()), "Text is not available");  
