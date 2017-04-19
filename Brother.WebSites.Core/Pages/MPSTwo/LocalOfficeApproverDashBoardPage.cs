@@ -145,11 +145,21 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void IsSwitchedLanguageSelected(string text)
         {
-            if (MultipleLanguagesElement == null)
-                throw new Exception("Unable to locate existing proposals link on dashboard page");
+            try
+            {
+                WaitForElementToExistByCssSelector("a[href='/mps/dealer/contracts'] .media-body .media-heading", 3, 5);
 
-            AssertElementContainsText(SwitchedLanguageIdentifierElement, text,
+                if (SwitchedLanguageIdentifierElement == null)
+                    throw new Exception("Unable to locate existing proposals link on dashboard page");
+
+                AssertElementContainsText(SwitchedLanguageIdentifierElement, text,
                                     String.Format("The word displayed was {0}", SwitchedLanguageIdentifierElement.Text));
+            }
+            catch (StaleElementReferenceException e)
+            {
+                throw new Exception("The page refreshed and the element became stale with the following error" + e);
+
+            }
         }
 
 

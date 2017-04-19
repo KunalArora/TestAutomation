@@ -172,10 +172,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var customerRef = germanyLeasing ? SpecFlow.GetContext("CustomerReference") : SpecFlow.GetContext("DownloadedContractId");
 
             var contractId = customerRef;
-
-
-            TestCheck.AssertTextContains(contractId, ExtractTextFromPdf(DownloadedPdf()), 
+            
+            if (!IsGermanSystem())
+            {
+                TestCheck.AssertTextContains(contractId, ExtractTextFromPdf(DownloadedPdf()),
                 "Contract Id is not available in the PDF");
+            }
             
         }
         
