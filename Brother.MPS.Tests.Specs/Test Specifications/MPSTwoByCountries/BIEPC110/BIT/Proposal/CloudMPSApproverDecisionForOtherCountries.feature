@@ -80,6 +80,8 @@ Scenario Outline: MPS Resign Rejected Contract
 	| Italy   | Cloud MPS Local Office Approver | Acquisto + Consumo con assistenza | Volume minimo | 36     | Trimestrale anticipata | Cloud MPS Dealer |
 
 # LO Approver can view open offers
+# BIT automatically approve proposal so there is no Awaiting Approval view
+@ignore
 Scenario Outline: MPS LO View Opened Offers
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When I navigate to ProposalPage
