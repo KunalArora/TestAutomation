@@ -43,7 +43,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void IsSubdealerCreated()
         {
             var list = new List<string>();
-            var email = SpecFlow.GetContext("GeneratedEmailAddress");
+            var email = SpecFlow.GetContext("GeneratedSubdealerEmailAddress");
 
             foreach (var element in SubDealerNameList)
             {
