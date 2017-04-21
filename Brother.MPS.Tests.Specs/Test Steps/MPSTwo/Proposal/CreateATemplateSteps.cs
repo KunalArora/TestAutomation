@@ -1903,7 +1903,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             stepInstance.WhenIPriceHardwareRadioButton("Tick");
 
             var instance = new DealerProposalsCreateProductsStep();
-            instance.WhenIDisplayDeviceScreen("MFC-L8650CDW");
+            instance.WhenIDisplayDeviceScreen("DCP-L8400CDN");
             instance.WhenIAcceptTheDefaultValuesOfTheDevice();
 
             var clickPriceStepInstance = new DealerProposalsCreateClickPriceStep();

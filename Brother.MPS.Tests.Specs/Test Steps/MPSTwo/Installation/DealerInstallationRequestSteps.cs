@@ -381,6 +381,19 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             CurrentPage.As<DealerManageDevicesPage>().IsSwapDeviceLineDisplayed();
         }
 
+        [Then(@"the swap installation request can be cancelled")]
+        public void ThenTheSwapInstallationRequestCanBeCancelled()
+        {
+            CancelSwapInstallationRequest();
+        }
+
+
+        public void CancelSwapInstallationRequest()
+        {
+            CurrentPage.As<DealerManageDevicesPage>().CancelSwapInstallationRequest();
+            CurrentPage.As<DealerManageDevicesPage>().IsSwapInstallationRequestCancelled();
+        }
+
 
 
         [When(@"installer installed the new swap device for ""(.*)"" communication")]
