@@ -32,7 +32,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement CreateRequestElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-alert")]
         public IWebElement LocationSelectionAlertElement;
-        [FindsBy(How = How.CssSelector, Using = ".mps-installation-request-container")]
+        [FindsBy(How = How.CssSelector, Using = ".js-mps-delete-remove.mps-installation-request-container")]
         public IWebElement InstallationRequestLineElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-searchable")]
         public IWebElement InstallationRequestContainerElement;
@@ -326,6 +326,27 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ClickOnActionButtonOnDisplay();
             ShowInstallationRequestEmailElement.Click();
             WebDriver.Wait(DurationType.Second, 2);
+        }
+
+
+        public void CancelSwapInstallationRequest()
+        {
+            HeadlessDismissAlertOk();
+            ClickAcceptOnJsAlert();
+
+            if (ShowInstallationRequestEmailElement == null)
+                throw new Exception("Show Installation Request element is not displayed");
+            ClickOnActionButtonOnDisplay();
+            CancelInstallationRequestElement.Click();
+            WebDriver.Wait(DurationType.Second, 2);
+        }
+
+        public void IsSwapInstallationRequestCancelled()
+        {
+            var disp =
+                IsElementPresent(GetElementByCssSelector(".js-mps-delete-remove.mps-installation-request-container"));
+
+            TestCheck.AssertIsEqual(false, disp, "Installation request container is still displayed");
         }
 
         public void IsNewlySwappedDeviceDisplayed()
