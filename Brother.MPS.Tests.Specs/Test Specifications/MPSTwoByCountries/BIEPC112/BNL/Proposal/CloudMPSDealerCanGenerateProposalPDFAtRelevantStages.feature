@@ -27,7 +27,7 @@ Scenario Outline: MPS Generate Summary PDF
 
 	Scenarios: 
 	| Role             | Country     | ContractType                 | UsageType     | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod          | ClickVolume | ColourVolume |
-	| Cloud MPS Dealer | Netherlands | Purchase + Click met Service | Minimumvolume | 3 jaar   | Per kwartaal achteraf | Tick          | MFC-L8650CDW | Full         | Opgenomen in klikprijs | 2000        | 2000         |
+	| Cloud MPS Dealer | Netherlands | Purchase + Click met Service | Minimumvolume | 3 jaar   | 3-maandelijks achteraf | Tick          | MFC-L8650CDW | Full         | Opgenomen in klikprijs | 2000        | 2000         |
 	
 
 Scenario Outline: MPS Generate Awaiting Approval PDF
@@ -43,5 +43,5 @@ Scenario Outline: MPS Generate Awaiting Approval PDF
 	
 	Scenarios: 
 	| Role             | Country     | Role2                           | ContractType                 | UsageType     | Length | Billing              |
-	| Cloud MPS Dealer | Netherlands | Cloud MPS Local Office Approver | Purchase + Click met Service | Minimumvolume | 3 jaar | Per kwartaal achteraf |
+	| Cloud MPS Dealer | Netherlands | Cloud MPS Local Office Approver | Purchase + Click met Service | Minimumvolume | 3 jaar | 3-maandelijks achteraf |
 	

@@ -20,6 +20,6 @@ Scenario Outline: MPS Dutch Dealer can copy an existing proposal offer for all c
 	Scenarios:
 
 	| Role             | Country     | ContractType                 | UsageType     | Length | Billing              | Customer               | Status  |
-	| Cloud MPS Dealer | Netherlands | Purchase + Click met Service | Minimumvolume | 3 jaar | Per kwartaal achteraf | Skip customer creation | Without |
-	| Cloud MPS Dealer | Netherlands | Purchase + Click met Service | Minimumvolume | 4 jaar | Per kwartaal achteraf | Create new customer    | With    |
+	| Cloud MPS Dealer | Netherlands | Purchase + Click met Service | Minimumvolume | 3 jaar | 3-maandelijks achteraf | Skip customer creation | Without |
+	| Cloud MPS Dealer | Netherlands | Purchase + Click met Service | Minimumvolume | 4 jaar | 3-maandelijks achteraf | Create new customer    | With    |
 	
