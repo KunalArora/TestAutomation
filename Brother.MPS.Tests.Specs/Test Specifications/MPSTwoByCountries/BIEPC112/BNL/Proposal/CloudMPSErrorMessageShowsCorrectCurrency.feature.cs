@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Brother.MPS.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BNL.Proposal
+namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BNL.Proposal
 {
     using TechTalk.SpecFlow;
     
@@ -77,7 +77,7 @@ namespace Brother.MPS.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Currency in product screen error message")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Netherlands", "Purchase + Click met Service", "Skip customer creation", "Betalen naar verbruik", "3 jaar", "Per kwartaal achteraf", "Tick", "MFC-L5750DW", "750", "€", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Netherlands", "Purchase + Click met Service", "Skip customer creation", "Betalen naar verbruik", "3 jaar", "3-maandelijks achteraf", "Tick", "MFC-L5750DW", "750", "€", null)]
         public virtual void CurrencyInProductScreenErrorMessage(string role, string country, string contractType, string createOption, string usageType, string contract, string billing, string priceHardware, string printer, string clickVolume, string currency, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Currency in product screen error message", exampleTags);

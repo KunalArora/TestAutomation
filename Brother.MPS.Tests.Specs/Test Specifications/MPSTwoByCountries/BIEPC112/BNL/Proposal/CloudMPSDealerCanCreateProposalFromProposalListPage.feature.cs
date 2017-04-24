@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Brother.MPS.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BNL.Proposal
+namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BNL.Proposal
 {
     using TechTalk.SpecFlow;
     
@@ -75,7 +75,7 @@ namespace Brother.MPS.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("MPS Create Proposal From List Page")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Netherlands", "Purchase + Click met Service", "Minimumvolume", "3 jaar", "Per kwartaal achteraf", "Tick", "MFC-L8650CDW", "Full", "Voorafbetaling", "800", "800", "Opgenomen in klikprijs", "Voorafbetaling", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Netherlands", "Purchase + Click met Service", "Minimumvolume", "3 jaar", "3-maandelijks achteraf", "Tick", "MFC-L8650CDW", "Full", "Voorafbetaling", "800", "800", "Opgenomen in klikprijs", "Voorafbetaling", null)]
         public virtual void MPSCreateProposalFromListPage(string role, string country, string contractType, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string basis1, string basis2, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Create Proposal From List Page", exampleTags);

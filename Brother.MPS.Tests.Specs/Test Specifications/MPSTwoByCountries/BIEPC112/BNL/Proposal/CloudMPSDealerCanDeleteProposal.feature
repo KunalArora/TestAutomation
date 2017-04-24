@@ -17,6 +17,6 @@ Scenario Outline: MPS Delete Open Proposal
 Scenarios:
 
 	| Role             | Country     | Role2                           | ContractType                 | UsageType     | Length | Billing               |
-	| Cloud MPS Dealer | Netherlands | Cloud MPS Local Office Approver | Purchase + Click met Service | Minimumvolume | 3 jaar | Per kwartaal achteraf |
+	| Cloud MPS Dealer | Netherlands | Cloud MPS Local Office Approver | Purchase + Click met Service | Minimumvolume | 3 jaar | 3-maandelijks achteraf |
 	
 

@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Brother.MPS.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BNL.Proposal
+namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BNL.Proposal
 {
     using TechTalk.SpecFlow;
     
@@ -76,8 +76,8 @@ namespace Brother.MPS.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("MPS Dutch Dealer can copy an existing proposal offer for all countries")]
         [NUnit.Framework.IgnoreAttribute()]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Netherlands", "Purchase + Click met Service", "Minimumvolume", "3 jaar", "Per kwartaal achteraf", "Skip customer creation", "Without", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Netherlands", "Purchase + Click met Service", "Minimumvolume", "4 jaar", "Per kwartaal achteraf", "Create new customer", "With", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Netherlands", "Purchase + Click met Service", "Minimumvolume", "3 jaar", "3-maandelijks achteraf", "Skip customer creation", "Without", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Netherlands", "Purchase + Click met Service", "Minimumvolume", "4 jaar", "3-maandelijks achteraf", "Create new customer", "With", null)]
         public virtual void MPSDutchDealerCanCopyAnExistingProposalOfferForAllCountries(string role, string country, string contractType, string usageType, string length, string billing, string customer, string status, string[] exampleTags)
         {
             string[] @__tags = new string[] {

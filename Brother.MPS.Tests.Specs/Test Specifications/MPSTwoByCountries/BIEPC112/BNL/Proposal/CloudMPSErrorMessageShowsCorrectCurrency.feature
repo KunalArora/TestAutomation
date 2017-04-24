@@ -22,6 +22,6 @@ Scenario Outline: Currency in product screen error message
 
 	Scenarios: 
 	| Role             | Country     | ContractType                 | CreateOption           | UsageType             | Contract | Billing               | PriceHardware | Printer     | ClickVolume | Currency |
-	| Cloud MPS Dealer | Netherlands | Purchase + Click met Service | Skip customer creation | Betalen naar verbruik | 3 jaar   | Per kwartaal achteraf | Tick          | MFC-L5750DW | 750         | €        |
+	| Cloud MPS Dealer | Netherlands | Purchase + Click met Service | Skip customer creation | Betalen naar verbruik | 3 jaar   | 3-maandelijks achteraf | Tick          | MFC-L5750DW | 750         | €        |
 	
 	                    
