@@ -49,7 +49,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         
         public void EnterAdditionalPropertyNumber(string prop)
         {
-            ClearAndType(AdditionalContactPropertyNumberElement, prop);
+            if (!IsIrelandSystem())
+            {
+                ClearAndType(AdditionalContactPropertyNumberElement, prop);
+            }
+            
         }
 
         public void EnterAdditionalStreetName(string street)
