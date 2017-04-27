@@ -107,7 +107,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if (IsUKSystem())
             {
                 EnterAdditionalContactName("New " + string.Format("{0} {1}", MpsUtil.FirstName(), MpsUtil.SurName()));
-                EnterAdditionalDescription("Additional UK Customer Address");
+//                EnterAdditionalDescription("Additional UK Customer Address");
                 EnterAdditionalPropertyNumber("12");
                 EnterAdditionalStreetName(MpsUtil.PropertyStreet());
                 EnterAdditionalAreaName("Area");
