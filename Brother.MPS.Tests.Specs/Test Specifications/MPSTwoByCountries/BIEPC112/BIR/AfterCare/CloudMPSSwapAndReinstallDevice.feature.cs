@@ -29,7 +29,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BIR.
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "CloudMPSSwapDevice.feature"
+#line 1 "CloudMPSSwapAndReinstallDevice.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
