@@ -107,7 +107,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if (IsUKSystem())
             {
                 EnterAdditionalContactName("New " + string.Format("{0} {1}", MpsUtil.FirstName(), MpsUtil.SurName()));
-//                EnterAdditionalDescription("Additional UK Customer Address");
                 EnterAdditionalPropertyNumber("12");
                 EnterAdditionalStreetName(MpsUtil.PropertyStreet());
                 EnterAdditionalAreaName("Area");
@@ -119,7 +118,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             else if (IsItalySystem())
             {
                 EnterAdditionalContactName("New " + string.Format("{0} {1}", MpsUtil.FirstName(), MpsUtil.SurName()));
-                EnterAdditionalDescription("Additional Italy Customer Address");
                 EnterAdditionalStreetName(MpsUtil.PropertyStreet());
                 EnterAdditionalPostcode(MpsUtil.PostCodeIt());
                 EnterAdditionalTownName("Town");
@@ -128,7 +126,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             else if (IsNorwaySystem())
             {
                 EnterAdditionalContactName("New " + string.Format("{0} {1}", MpsUtil.FirstName(), MpsUtil.SurName()));
-                EnterAdditionalDescription("Additional Norway Customer Address");
                 EnterAdditionalStreetName(MpsUtil.PropertyStreet());
                 EnterAdditionalTownName("Town");
                 EnterAdditionalPostcode(MpsUtil.PostCodeNo());
@@ -137,7 +134,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             else if (IsFinlandSystem())
             {
                 EnterAdditionalContactName("New " + string.Format("{0} {1}", MpsUtil.FirstName(), MpsUtil.SurName()));
-                EnterAdditionalDescription("Additional Finland Customer Address");
                 EnterAdditionalStreetName(MpsUtil.PropertyStreet());
                 EnterAdditionalTownName("Town");
                 EnterAdditionalPostcode(MpsUtil.PostCodeFi());
@@ -146,7 +142,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             else if (IsSwedenSystem())
             {
                 EnterAdditionalContactName("New " + string.Format("{0} {1}", MpsUtil.FirstName(), MpsUtil.SurName()));
-                EnterAdditionalDescription("Additional Customer Address");
                 EnterAdditionalStreetName(MpsUtil.PropertyStreet());
                 EnterAdditionalTownName("Town");
                 EnterAdditionalPostcode(MpsUtil.PostCodeNs());
@@ -155,7 +150,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             else if (IsGermanSystem() || IsAustriaSystem())
             {
                 EnterAdditionalContactName("New " + string.Format("{0} {1}", MpsUtil.FirstName(), MpsUtil.SurName()));
-                EnterAdditionalDescription("Additional Customer Address");
                 EnterAdditionalPropertyNumber("12");
                 EnterAdditionalStreetName(MpsUtil.PropertyStreet());
                 EnterAdditionalTownName("Town");
@@ -165,7 +159,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             else if (IsBelgiumSystem())
             {
                 EnterAdditionalContactName("New " + string.Format("{0} {1}", MpsUtil.FirstName(), MpsUtil.SurName()));
-                EnterAdditionalDescription("Additional Customer Address");
                 EnterAdditionalStreetName(MpsUtil.PropertyStreet());
                 EnterAdditionalTownName("Town");
                 EnterAdditionalPostcode(MpsUtil.PostCodeBe());
@@ -175,7 +168,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             else if (IsPolandSystem())
             {
                 EnterAdditionalContactName("New " + string.Format("{0} {1}", MpsUtil.FirstName(), MpsUtil.SurName()));
-                EnterAdditionalDescription("Additional Customer Address");
                 EnterAdditionalPropertyNumber("12");
                 EnterAdditionalStreetName(MpsUtil.PropertyStreet());
                 EnterAdditionalTownName("Town");
@@ -185,7 +177,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             else if (IsIrelandSystem())
             {
                 EnterAdditionalContactName("New " + string.Format("{0} {1}", MpsUtil.FirstName(), MpsUtil.SurName()));
-                EnterAdditionalDescription("Additional Customer Address");
                 EnterAdditionalPropertyNumber("12");
                 EnterAdditionalStreetName(MpsUtil.PropertyStreet());
                 EnterAdditionalTownName("Town");
@@ -196,7 +187,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             else if (IsSwissSystem())
             {
                 EnterAdditionalContactName("New " + string.Format("{0} {1}", MpsUtil.FirstName(), MpsUtil.SurName()));
-                EnterAdditionalDescription("Additional Customer Address");
                 EnterAdditionalStreetName(MpsUtil.PropertyStreet());
                 EnterAdditionalTownName("Town");
                 EnterAdditionalPostcode(MpsUtil.PostCodeSw());
@@ -214,7 +204,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             else if (IsFranceSystem())
             {
                 EnterAdditionalContactName("New " + string.Format("{0} {1}", MpsUtil.FirstName(), MpsUtil.SurName()));
-                EnterAdditionalDescription("Additional Customer Address");
                 EnterAdditionalStreetName(MpsUtil.PropertyStreet());
                 EnterAdditionalTownName("Town");
                 EnterAdditionalPostcode(MpsUtil.PostCodeFr());
@@ -224,7 +213,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             else if (IsSpainSystem())
             {
                 EnterAdditionalContactName("New " + string.Format("{0} {1}", MpsUtil.FirstName(), MpsUtil.SurName()));
-                EnterAdditionalDescription("Additional Customer Address");
                 EnterAdditionalStreetName(MpsUtil.PropertyStreet());
                 EnterAdditionalTownName("Town");
                 EnterAdditionalPostcode(MpsUtil.PostCodeSp());
@@ -234,7 +222,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             else if (IsDenmarkSystem())
             {
                 EnterAdditionalContactName("New " + string.Format("{0} {1}", MpsUtil.FirstName(), MpsUtil.SurName()));
-                EnterAdditionalDescription("Additional Customer Address");
                 EnterAdditionalStreetName(MpsUtil.PropertyStreet());
                 EnterAdditionalTownName("Town");
                 EnterAdditionalPostcode(MpsUtil.PostCodeDk());
