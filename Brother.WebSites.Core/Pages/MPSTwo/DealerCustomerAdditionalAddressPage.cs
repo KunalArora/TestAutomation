@@ -196,7 +196,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             else if (IsNetherlandSystem())
             {
                 EnterAdditionalContactName("New " + string.Format("{0} {1}", MpsUtil.FirstName(), MpsUtil.SurName()));
-                EnterAdditionalDescription("Additional Customer Address");
                 EnterAdditionalStreetName(MpsUtil.PropertyStreet());
                 EnterAdditionalTownName("Town");
                 EnterAdditionalPostcode(MpsUtil.PostCodeNl());
