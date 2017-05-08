@@ -40,7 +40,7 @@ Scenario Outline: MPS Summary Validation MV In Click
 
 	Scenarios: 
 	| Role             | Country     | ContractType                 | UsageType     | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod          | ClickVolume | ColourVolume | Basis1                 | Basis2         |
-	| Cloud MPS Dealer | Netherlands | Purchase + Click met Service | Minimumvolume | 3 jaar   | Per kwartaal achteraf | Tick          | MFC-L8650CDW | Full         | Opgenomen in klikprijs | 800         | 800          | Opgenomen in klikprijs | Voorafbetaling |
+	| Cloud MPS Dealer | Netherlands | Purchase + Click met Service | Minimumvolume | 3 jaar   | 3-maandelijks achteraf | Tick          | MFC-L8650CDW | Full         | Opgenomen in klikprijs | 800         | 800          | Opgenomen in klikprijs | Voorafbetaling |
 	
 
 
@@ -77,7 +77,7 @@ Scenario Outline: MPS Summary Validation MV Upfront
 
 	Scenarios: 
 	| Role             | Country     | ContractType                 | UsageType     | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod  | ClickVolume | ColourVolume | Basis1         |
-	| Cloud MPS Dealer | Netherlands | Purchase + Click met Service | Minimumvolume | 3 jaar   | Per kwartaal achteraf | Tick          | MFC-L8650CDW | Full         | Voorafbetaling | 800         | 800          | Voorafbetaling |
+	| Cloud MPS Dealer | Netherlands | Purchase + Click met Service | Minimumvolume | 3 jaar   | 3-maandelijks achteraf | Tick          | MFC-L8650CDW | Full         | Voorafbetaling | 800         | 800          | Voorafbetaling |
 	
 	
 
@@ -111,7 +111,7 @@ Scenario Outline: MPS Summary Validation PAYG
 
 	Scenarios: 
 	| Role             | Country     | ContractType                 | CreateOption        | UsageType             | Contract | Billing              | PriceHardware | Printer    | DeviceScreen | ClickVolume | Basis1         |
-	| Cloud MPS Dealer | Netherlands | Purchase + Click met Service | Create new customer | Betalen naar verbruik | 4 jaar   | Per kwartaal achteraf | Tick          | HL-L6400DW | Full         | 800         | Voorafbetaling |
+	| Cloud MPS Dealer | Netherlands | Purchase + Click met Service | Create new customer | Betalen naar verbruik | 4 jaar   | 3-maandelijks achteraf | Tick          | HL-L6400DW | Full         | 800         | Voorafbetaling |
 	
 
 	

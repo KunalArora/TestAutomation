@@ -173,6 +173,12 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             CurrentPage.As<InstallerDeviceInstallationPage>().EnterSwapSerialNumber();
         }
 
+        public void WhenIEnterReinstallSerialNumberForCommunication(string method)
+        {
+            CurrentPage.As<InstallerDeviceInstallationPage>().VerifyTimeZoneIsDisplayed(method);
+            //CurrentPage.As<InstallerDeviceInstallationPage>().EnterReinstallSerialNumber();
+        }
+
         [When(@"I enter existing device serial number for ""(.*)"" communication")]
         public void WhenIEnterExistingDeviceSerialNumberForCommunication(string method)
         {
@@ -347,6 +353,13 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
 
         }
 
+        [When(@"I begin device reinstallation process for same device")]
+        public void WhenIBeginDeviceReinstallationProcessForSameDevice()
+        {
+            CurrentPage.As<DealerManageDevicesPage>().BeginReInstallationProcess();
+            NextPage = CurrentPage.As<DealerManageDevicesPage>().ConfirmReinstallProcessCommencement();
+        }
+
         [When(@"I begin device swapping process for same device")]
         public void WhenIBeginDeviceSwappingProcessForSameDevice()
         {
@@ -364,6 +377,19 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             NextPage = CurrentPage.As<DealerManageDevicesPage>().SelectANewSwapDevice(device);
         }
 
+        [When(@"I generate reinstall device request with ""(.*)"" and ""(.*)""")]
+        public void WhenIGenerateReinstallDeviceRequestWithAnd(string method, string type)
+        {
+            CurrentPage.As<DealerSetCommunicationMethodPage>().SetCommunicationMethod(method);
+            NextPage = CurrentPage.As<DealerSetCommunicationMethodPage>().ProceedToNextPage();
+            CurrentPage.As<DealerSetInstallationTypePage>().SetInstallationType(type);
+            NextPage = CurrentPage.As<DealerSetInstallationTypePage>().ProccedToDealerSendInstallationEmailPage();
+           // CurrentPage.As<DealerSendInstallationEmailPage>().IsDeviceModelDisplayedOnSwapConfirmationPage();
+            CurrentPage.As<DealerSendInstallationEmailPage>().EnterInstallaterEmail();
+            CurrentPage.As<DealerSendInstallationEmailPage>().SendInstallationRequest();
+            NextPage = CurrentPage.As<DealerSendInstallationEmailPage>().CompleteInstallation();
+            //CurrentPage.As<DealerManageDevicesPage>().IsReinstallationRequestSent();
+        }
 
 
         [When(@"I generate swapping device request with ""(.*)"" and ""(.*)""")]
@@ -381,7 +407,34 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             CurrentPage.As<DealerManageDevicesPage>().IsSwapDeviceLineDisplayed();
         }
 
+        [Then(@"the swap installation request can be cancelled")]
+        public void ThenTheSwapInstallationRequestCanBeCancelled()
+        {
+            CancelSwapInstallationRequest();
+        }
 
+
+        public void CancelSwapInstallationRequest()
+        {
+            CurrentPage.As<DealerManageDevicesPage>().CancelSwapInstallationRequest();
+            CurrentPage.As<DealerManageDevicesPage>().IsSwapInstallationRequestCancelled();
+        }
+
+
+        [When(@"installer installed the new reinstall device for ""(.*)"" communication")]
+        public void WhenInstallerInstalledTheReinstallDeviceForCommunication(string type)
+        {
+            CurrentPage.As<DealerManageDevicesPage>().ClickToExposeSwapInstallationRequest();
+            CurrentPage.As<DealerManageDevicesPage>().IsInstallationRequestScreenDisplayed();
+            NextPage = CurrentPage.As<DealerManageDevicesPage>().LaunchInstallerPage();
+            CurrentPage.As<InstallerDeviceInstallationPage>().EnterContractReference();
+            CurrentPage.As<InstallerDeviceInstallationPage>().ProceedOnInstaller();
+
+            WhenIEnterReinstallSerialNumberForCommunication(type);
+            WhenIEnterTheDeviceIpAddress();
+            ThenICanConnectSwapDeviceToBrotherEnvironment();
+            // ThenICanCompleteDeviceInstallation();
+        }
 
         [When(@"installer installed the new swap device for ""(.*)"" communication")]
         public void WhenInstallerInstalledTheNewSwapDeviceForCommunication(string type)

@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Brother.MPS.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BNL.Proposal
+namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BNL.Proposal
 {
     using TechTalk.SpecFlow;
     
@@ -75,7 +75,7 @@ namespace Brother.MPS.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("MPS Generate Summary PDF")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Netherlands", "Purchase + Click met Service", "Minimumvolume", "3 jaar", "Per kwartaal achteraf", "Tick", "MFC-L8650CDW", "Full", "Opgenomen in klikprijs", "2000", "2000", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Netherlands", "Purchase + Click met Service", "Minimumvolume", "3 jaar", "3-maandelijks achteraf", "Tick", "MFC-L8650CDW", "Full", "Opgenomen in klikprijs", "2000", "2000", null)]
         public virtual void MPSGenerateSummaryPDF(string role, string country, string contractType, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Generate Summary PDF", exampleTags);
@@ -122,7 +122,7 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("MPS Generate Awaiting Approval PDF")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Netherlands", "Cloud MPS Local Office Approver", "Purchase + Click met Service", "Minimumvolume", "3 jaar", "Per kwartaal achteraf", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Netherlands", "Cloud MPS Local Office Approver", "Purchase + Click met Service", "Minimumvolume", "3 jaar", "3-maandelijks achteraf", null)]
         public virtual void MPSGenerateAwaitingApprovalPDF(string role, string country, string role2, string contractType, string usageType, string length, string billing, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Generate Awaiting Approval PDF", exampleTags);

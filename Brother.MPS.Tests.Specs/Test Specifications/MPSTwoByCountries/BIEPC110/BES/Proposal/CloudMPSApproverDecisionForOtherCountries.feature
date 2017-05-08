@@ -85,7 +85,9 @@ Scenario Outline: MPS Resign Rejected Contract
 	| Spain   | Cloud MPS Local Office Approver | Purchase & Click con Service | Volúmen mínimo | 3 años | Por trimestres vencidos | Cloud MPS Dealer |
 	
 
+# BES automatically approve proposal so no proposal can be found on Awaiting Approval view
 # LO Approver can view open offers
+@ignore
 Scenario Outline: MPS LO View Opened Offers
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When I navigate to ProposalPage

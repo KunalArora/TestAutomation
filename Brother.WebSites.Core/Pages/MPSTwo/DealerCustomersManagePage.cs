@@ -785,7 +785,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private void FillIrelandOrgDetails()
         {
             EnterCompanyName(MpsUtil.CompanyName());
-            EnterPropertyNumber(MpsUtil.PropertyNumber());
+            //EnterPropertyNumber(MpsUtil.PropertyNumber());
             EnterPropertyStreet(MpsUtil.PropertyStreet());
             EnterPropertyTown("Town");
             EnterPropertyPostCode(MpsUtil.PostCodeIr());

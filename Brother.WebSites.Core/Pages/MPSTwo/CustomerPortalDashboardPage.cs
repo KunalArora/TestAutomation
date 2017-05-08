@@ -37,7 +37,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             ScrollTo(CustomerDashboardConsummableLink);
             CustomerDashboardConsummableLink.Click();
-            MpsJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob(MpsUtil.CreatedProposal(), Locale);
+            try
+            {
+                MpsJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob(MpsUtil.CreatedProposal(), Locale);
+            }
+            catch (KeyNotFoundException e)
+            {
+                //Do nothing
+            }
+           
             return GetInstance<CustomerPortalConsummablePage>(Driver);
         }
 

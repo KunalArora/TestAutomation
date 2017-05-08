@@ -99,7 +99,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             if(ConsumableDeviceScreenTab == null)
                 throw new Exception("Consumable screen not displayed");
-            MpsJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob(MpsUtil.CreatedProposal(), Locale);
+            try
+            {
+                MpsJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob(MpsUtil.CreatedProposal(), Locale);
+            }
+            catch (KeyNotFoundException e)
+            {
+                //Do nothing
+            }
+            
             MpsJobRunnerPage.RunConsumableOrderRequestsCommandJob();
 
             AssertElementPresent(ConsumableDeviceScreenTab, "Consumable screen");
@@ -120,7 +128,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void RunConsumableOrderCreationJobs()
         {
-            MpsJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob(MpsUtil.CreatedProposal(), Locale);
+            try
+            {
+                MpsJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob(MpsUtil.CreatedProposal(), Locale);
+            }
+            catch (KeyNotFoundException e)
+            {
+              //Do nothing
+            }
+            
             //MpsJobRunnerPage.RunCreateOrderAndServiceRequestsCommandJob();
             MpsJobRunnerPage.RunConsumableOrderRequestsCommandJob();
             RefreshDeviceScreen();

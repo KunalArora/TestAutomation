@@ -263,7 +263,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void DoesPdfContentContainSomeText()
         {
             var contractId = SpecFlow.GetContext("DownloadedContractId");
-            TestCheck.AssertTextContains(contractId, ExtractTextFromPdf(DownloadedPdf()), "Text is not available");
+
+            if (!Driver.Url.Contains("Vertrag"))
+            {
+                TestCheck.AssertTextContains(contractId, ExtractTextFromPdf(DownloadedPdf()),
+                "Contract Id is not available in the PDF");
+            }
+
             Driver.Navigate().Back();
             PurgeDownloads(DownloadDirectory);
         }

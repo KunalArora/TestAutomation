@@ -4,7 +4,7 @@ Feature: CloudMPSErrorMessageShowsCorrectUKCurrency
 	As a dealer
 	I want to see the currency in error match specified currency
 
-
+@ignore
 Scenario Outline: Currency in product screen error message
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page

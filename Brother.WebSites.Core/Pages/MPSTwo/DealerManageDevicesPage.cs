@@ -32,7 +32,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement CreateRequestElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-alert")]
         public IWebElement LocationSelectionAlertElement;
-        [FindsBy(How = How.CssSelector, Using = ".mps-installation-request-container")]
+        [FindsBy(How = How.CssSelector, Using = ".js-mps-delete-remove.mps-installation-request-container")]
         public IWebElement InstallationRequestLineElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-searchable")]
         public IWebElement InstallationRequestContainerElement;
@@ -62,10 +62,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement InstallationRequestStatusElement;
         [FindsBy(How = How.CssSelector, Using = ".open .js-mps-swap-device")]
         public IWebElement SwapRequestElement;
+        [FindsBy(How = How.CssSelector, Using = ".open .js-mps-reinstall-device")]
+        public IWebElement ReinstallationRequestElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-swap-device-confirm")]
         public IWebElement SwapCommencementConfirmationElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_ComponentSuccess")]
         public IWebElement SwapRequestSuccessConfirmationElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_EmailSendSuccess")]
+        public IWebElement ReinstallRequestSuccessConfirmationElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-filter-ignore .mps-txt-r")]
         public IWebElement SwapProgressIndicatorElement;
         [FindsBy(How = How.CssSelector, Using = ".mps-device-container")]
@@ -88,10 +92,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement SwapModelDeviceSelectorElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-swap-replacement-model-selected-btn")]
         public IWebElement SwapModelNextElement;
-        
-        
-        
-        
+        [FindsBy(How = How.CssSelector, Using = ".js-mps-reinstall-device-confirm")]
+        public IWebElement ReInstallCommencementButtonElement;
         
         
 
@@ -226,6 +228,21 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             SwapRequestElement.Click();
         }
 
+        public void BeginReInstallationProcess()
+        {
+            if (InstallationRequestActionButtonsElement.Count > 1)
+            {
+                ClickOnTheLastActionButton();
+            }
+            else
+            {
+                ClickOnActionButtonOnDisplay();
+            }
+
+            WaitForElementToBeClickableByCssSelector(".open .js-mps-reinstall-device", 5, 5);
+            ReinstallationRequestElement.Click();
+        }
+
         public CompleteSwapProcessPage CompleteSwapProcess()
         {
             ClickOnActionButtonOnDisplay();
@@ -233,6 +250,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             CompleteSwapProcessElement.Click();
 
             return GetInstance<CompleteSwapProcessPage>();
+        }
+
+
+
+        public DealerSetCommunicationMethodPage ConfirmReinstallProcessCommencement()
+        {
+            if (ReInstallCommencementButtonElement == null)
+                throw new Exception("Reinstall confirmation pop up not displayed");
+            ReInstallCommencementButtonElement.Click();
+
+            return GetInstance<DealerSetCommunicationMethodPage>();
         }
 
         public void ConfirmSwapProcessCommencement()
@@ -280,6 +308,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             AssertElementPresent(SwapRequestSuccessConfirmationElement, "Swap request installation not sent");
         }
 
+        public void IsReinstallationRequestSent()
+        {
+            if (ReinstallRequestSuccessConfirmationElement == null)
+                throw new Exception("Reinstall request success confirmation is not displayed");
+            AssertElementPresent(ReinstallRequestSuccessConfirmationElement, "Reinstall request installation not sent");
+        }
+
+        
+
         public void IsSwapDeviceLineDisplayed()
         {
             var lineCount = DisplayedDevicesLineElement.Count;
@@ -326,6 +363,27 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ClickOnActionButtonOnDisplay();
             ShowInstallationRequestEmailElement.Click();
             WebDriver.Wait(DurationType.Second, 2);
+        }
+
+
+        public void CancelSwapInstallationRequest()
+        {
+            HeadlessDismissAlertOk();
+            ClickAcceptOnJsAlert();
+
+            if (ShowInstallationRequestEmailElement == null)
+                throw new Exception("Show Installation Request element is not displayed");
+            ClickOnActionButtonOnDisplay();
+            CancelInstallationRequestElement.Click();
+            WebDriver.Wait(DurationType.Second, 2);
+        }
+
+        public void IsSwapInstallationRequestCancelled()
+        {
+            var disp =
+                IsElementPresent(GetElementByCssSelector(".js-mps-delete-remove.mps-installation-request-container"));
+
+            TestCheck.AssertIsEqual(false, disp, "Installation request container is still displayed");
         }
 
         public void IsNewlySwappedDeviceDisplayed()

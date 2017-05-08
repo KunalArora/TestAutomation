@@ -173,9 +173,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             var contractId = customerRef;
 
-
-            TestCheck.AssertTextContains(contractId, ExtractTextFromPdf(DownloadedPdf()), 
+            if (!Driver.Url.Contains("Vertrag"))
+            {
+                TestCheck.AssertTextContains(contractId, ExtractTextFromPdf(DownloadedPdf()),
                 "Contract Id is not available in the PDF");
+            }
             
         }
         
