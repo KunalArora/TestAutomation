@@ -107,15 +107,18 @@ namespace Brother.Tests.Selenium.Lib.Mail
 
             var newReportName = String.Format(NewReportName, timeNow);
 
-           
-
+            var driveLetter = "C";
             if (isOnBuildMachine.ToUpper().Equals("PRDAT169V") || isOnBuildMachine.ToUpper().Equals("PRDAT204V"))
             {
-                // switch to E: drive on Dev and DV2 
-                newReportLoc = newReportLoc.Replace('C', 'E');
-                newReportName = newReportName.Replace('C', 'E');
+                driveLetter = "E";
+            }
+            else if (isOnBuildMachine.ToUpper().Equals("BRO43DBS01DOP"))
+            {
+                driveLetter = "D";
             }
 
+            newReportLoc = newReportLoc.Replace("C", driveLetter);
+            newReportName = newReportName.Replace("C", driveLetter);
 
             Helper.CopyFileToNewLocation(DefaultLogFolder, newReportLoc, ReportName, newReportName);
         }
