@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml;
+using Brother.Tests.Selenium.Lib.Mail;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
@@ -179,8 +181,64 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
 
+        public static void ModifyXmlValues(string model, string serial, string total, string colour, string mono)
+        {
+            var xmlDoc = new XmlDocument();
 
-        public static void DownloadContractInvoicePDFAction(IWebDriver driver)
+            xmlDoc.Load(@"C:\Email\Report.xml");
+
+            serial = string.Format("X00000{0}", serial);
+            model = string.Format("Brother {0}", model);
+
+            var nsMgr = new XmlNamespaceManager(xmlDoc.NameTable);
+            nsMgr.AddNamespace("xbpsdManagedInfo", "http://schemas.brother.info/mfc/mailreports/");
+            nsMgr.AddNamespace("bpsdm", "http://schemas.brother.info/mfc/mailreports/1.00");
+
+            var modelName = xmlDoc.SelectSingleNode("/xbpsdManagedInfo:xbpsdManagedInfo/bpsdm:DeviceInfo/bpsdm:ModelName", nsMgr);
+            var serialNumber = xmlDoc.SelectSingleNode("/xbpsdManagedInfo:xbpsdManagedInfo/bpsdm:DeviceInfo/bpsdm:SerialNumber", nsMgr);
+            var totalPrint = xmlDoc.SelectSingleNode("/xbpsdManagedInfo:xbpsdManagedInfo/bpsdm:DeviceReport/bpsdm:DeviceCounter/bpsdm:PageCount/bpsdm:Total", nsMgr);
+            var colourPrint = xmlDoc.SelectSingleNode("/xbpsdManagedInfo:xbpsdManagedInfo/bpsdm:DeviceReport/bpsdm:DeviceCounter/bpsdm:PageCount/bpsdm:Color", nsMgr);
+            var monoPrint = xmlDoc.SelectSingleNode("/xbpsdManagedInfo:xbpsdManagedInfo/bpsdm:DeviceReport/bpsdm:DeviceCounter/bpsdm:PageCount/bpsdm:Monochrome", nsMgr);
+
+
+            if (modelName != null)
+            {
+                modelName.InnerText = model;
+            }
+
+            if (serialNumber!= null)
+            {
+                serialNumber.InnerText = serial;
+            }
+
+            if (totalPrint != null)
+            {
+                totalPrint.InnerText = total;
+            }
+
+            if (colourPrint != null)
+            {
+                colourPrint.InnerText = colour;
+            }
+
+            if (monoPrint != null)
+            {
+                monoPrint.InnerText = mono;
+            }
+            
+
+            Helper.DeleteFileFromDirectory(@"C:\Email\Edited\Report.xml");
+            xmlDoc.Save(@"C:\Email\Edited\Report.xml");
+
+         }
+
+        public static void SendXml(string email, string subject)
+        {
+            Mailer.SendEmail(email, subject, "", @"C:\Email\Edited\Report.xml");
+        }
+
+
+        public static void DownloadContractInvoicePdfAction(IWebDriver driver)
         {
             var action = DownloadContractInvoicePDFElement(driver);
             action.Click();

@@ -106,7 +106,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void DownloadInvoicePDFOnBankContractPages()
         {
             ActionsModule.ClickOnSpecificActionsElement(Driver);
-            ActionsModule.DownloadContractInvoicePDFAction(Driver);
+            ActionsModule.DownloadContractInvoicePdfAction(Driver);
         }
 
         public void NavigateToAcceptedPage()

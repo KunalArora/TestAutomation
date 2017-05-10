@@ -86,6 +86,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement ReplaceWithSameModelElement;
         [FindsBy(How = How.CssSelector, Using = "[data-swap-type-enum-id=\"ReplaceWithDifferentModel\"]")]
         public IWebElement ReplaceWithDifferentModelElement;
+        [FindsBy(How = How.CssSelector, Using = "[data-swap-type-enum-id=\"ReplaceThePcb\"]")]
+        public IWebElement ReplacePcbElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-swap-type-selected")]
         public IWebElement SwapTypeNextButtonElement;
         [FindsBy(How = How.CssSelector, Using = ".form-control.js-mps-replacement-model-list")]
@@ -279,6 +281,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             return GetInstance<DealerSetCommunicationMethodPage>();
         }
+
+
+        public DealerSetCommunicationMethodPage ConfirmPcbProcess()
+        {
+            if (ReplacePcbElement == null)
+                throw new Exception("Swap confirmation pop up not displayed");
+            ReplacePcbElement.Click();
+            SwapTypeNextButtonElement.Click();
+
+            return GetInstance<DealerSetCommunicationMethodPage>();
+        }
+        
 
         public void ConfirmDifferentSwapDeviceType()
         {

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
@@ -1074,6 +1075,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             catch (Exception)
             {
                 throw new Exception("Complete Installation Button is not displayed");
+            }
+        }
+
+
+
+
+        public void ModifyXmlAndSend(string model, string serial, string totalPrint, string colourPrint, string monoPrint, string emailAddress, string subject)
+        {
+            if (Method() == "Email")
+            {
+                ActionsModule.ModifyXmlValues(model, serial, totalPrint, colourPrint, monoPrint);
+                ActionsModule.SendXml(emailAddress, subject);
             }
         }
 

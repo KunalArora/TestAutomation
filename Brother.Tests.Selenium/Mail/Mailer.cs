@@ -28,30 +28,36 @@ namespace Brother.Tests.Selenium.Lib.Mail
         static readonly MailMessage Mail = new MailMessage();
 
 
-        public static void SendEmail(string address, string subject, string message)
+        public static void SendEmail(string address, string subject, string message, string path)
         {
-           // var loginInfo = new NetworkCredential(Email, Password);
-            var smtpClient = new SmtpClient("smtp.gmail.com", 587);
-            var reportPath = SpecFlow.GetContext("ReportPath");
+           
+            try
+            {
+                //var loginInfo = new NetworkCredential(Email, Password);
+                //var smtpClient = new SmtpClient("smtp.gmail.com", 587);
+                var smtpClient = new SmtpClient("eusmtp.eu.brothergroup.net", 25);
+                //var reportPath = SpecFlow.GetContext("ReportPath");
+                _attachment = new Attachment(path);
 
-            _attachment = new Attachment(reportPath);
-            
+                Mail.From = new MailAddress(Email);
+                Mail.Subject = subject;
+                Mail.Body = message;
+                Mail.IsBodyHtml = true;
+                Mail.Attachments.Add(_attachment);
 
-            Mail.From = new MailAddress(Email);
-            Mail.To.Add(new MailAddress(address));
-            Mail.Subject = subject;
-            Mail.Body = message;
-            Mail.IsBodyHtml = true;
-            
-
-            
-            Mail.Attachments.Add(_attachment);
-
-            smtpClient.EnableSsl = false;
-            smtpClient.UseDefaultCredentials = false;
-           // smtpClient.Credentials = loginInfo;
-            smtpClient.Timeout = 10000;
-            smtpClient.Send(Mail);
+                smtpClient.EnableSsl = false;
+                smtpClient.UseDefaultCredentials = false;
+                //smtpClient.Credentials = loginInfo;
+                smtpClient.Timeout = 10000;
+                Mail.To.Add(new MailAddress(address));
+                smtpClient.Send(Mail);
+                smtpClient.Dispose();
+                Mail.Attachments.Dispose();
+            }
+            catch (SmtpException smtpException)
+            {
+                Helper.MsgOutput("Mailing issue - check additional exception information", smtpException.ToString());
+            }
         }
 
 

@@ -83,7 +83,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             LeadCodeRef.SendKeys(leadCodeRef);
             WebDriver.Wait(DurationType.Millisecond, 100);
         }
-
+        
         private IWebElement ContractTypeSelectorDropdown()
         {
             return GetElementByCssSelector(contractSelector, 10);

@@ -85,6 +85,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         }
 
+        public DealerManageDevicesPage SendPcbSwapInstallationRequest()
+        {
+            return SendSwapInstallationRequest();
+
+        }
+
         public DealerManageDevicesPage SendSwapInstallationRequest()
         {
             NextButtonElement.Click();
