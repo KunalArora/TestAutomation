@@ -96,6 +96,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement SwapModelNextElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-reinstall-device-confirm")]
         public IWebElement ReInstallCommencementButtonElement;
+        [FindsBy(How = How.CssSelector, Using = "[data-original-title=\"Type: Email<br />Status: Responding\"]")]
+        public IWebElement EmailGreenIconElement;
+        
         
         
 
@@ -228,6 +231,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             WaitForElementToBeClickableByCssSelector(".open .js-mps-swap-device", 5, 5);
             SwapRequestElement.Click();
+        }
+
+        public void IsEmailInstallationSuccessful()
+        {
+            if (Method() == "Email")
+            {
+                if (EmailGreenIconElement == null)
+                    throw new Exception("Email Green Icon is returned as null");
+
+                TestCheck.AssertIsEqual(true, EmailGreenIconElement.Displayed, "Email Green Icon is not displayed");
+            }
+           
         }
 
         public void BeginReInstallationProcess()
@@ -501,6 +516,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             //MpsJobRunnerPage.RunCreateOrderAndServiceRequestsCommandJob();
             MpsJobRunnerPage.RunConsumableOrderRequestsCommandJob();
             MpsJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob(MpsUtil.CreatedProposal(), Locale);
+            if (Method() == "Email")
+            {
+                MpsJobRunnerPage.RunRefreshPrintCountsFromEmailCommandJob(Locale);
+                MpsJobRunnerPage.RunCompleteInstallationCommandJob(MpsUtil.CreatedProposal());
+            }
+            
+
         }
 
         public void IsInstallationCompleted(string number1, string number2, string number3, string number4)
@@ -519,6 +541,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             //MpsJobRunnerPage.RunCreateOrderAndServiceRequestsCommandJob();
             MpsJobRunnerPage.RunConsumableOrderRequestsCommandJob();
             MpsJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob(MpsUtil.CreatedProposal(), Locale);
+            MpsJobRunnerPage.RunRefreshPrintCountsFromEmailCommandJob(Locale);
         }
 
         public void SelectLocationErrorIsDisplayed()

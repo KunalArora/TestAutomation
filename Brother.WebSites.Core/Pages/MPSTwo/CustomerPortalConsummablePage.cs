@@ -109,6 +109,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
             
             MpsJobRunnerPage.RunConsumableOrderRequestsCommandJob();
+            MpsJobRunnerPage.RunRefreshPrintCountsFromEmailCommandJob(Locale);
 
             AssertElementPresent(ConsumableDeviceScreenTab, "Consumable screen");
         }
@@ -139,6 +140,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             
             //MpsJobRunnerPage.RunCreateOrderAndServiceRequestsCommandJob();
             MpsJobRunnerPage.RunConsumableOrderRequestsCommandJob();
+            MpsJobRunnerPage.RunRefreshPrintCountsFromEmailCommandJob(Locale);
             RefreshDeviceScreen();
         }
 

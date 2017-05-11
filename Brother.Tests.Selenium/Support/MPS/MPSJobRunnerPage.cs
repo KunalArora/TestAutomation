@@ -20,7 +20,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
         // NO LONGER AVAILABLE:
         // private const string SendClickRateInvoicesToSapCommand = @"runcommand.aspx?command=MPS:SendClickRateInvoicesToSapCommand";
 
-        private const string RefreshPrintCountsCommand = @"/runcommand.aspx?command=MPS:NEW:MeterReadEmailSyncCommand";
+        private const string RefreshPrintCountsCommand = @"runcommand.aspx?command=MPS:NEW:MeterReadEmailSyncCommand";
         
         // NEW COMMAND NAME WILL BE:
         private const string RefreshPrintCountsFromMedioCommand = @"runcommand.aspx?command=MPS:NEW:MeterReadCloudSyncCommand";
@@ -470,8 +470,13 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             */
         }
 
-        public static void RunRefreshPrintCountsCommandJob(string countryIso = null)
+        public static void RunRefreshPrintCountsFromEmailCommandJob(string countryIso = null)
         {
+            if (countryIso != null && countryIso.ToLower().Equals("uk"))
+            {
+                countryIso = @"gb";
+            }
+
             var webSite = CoinedUrl() + RefreshPrintCountsCommand
                           + (countryIso != null ? "&CountryIso=" + HttpUtility.UrlEncode(countryIso) : "");
 
@@ -482,12 +487,17 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
            
 
             Helper.MsgOutput(runResponse.Contains("Command run")
-                ? "RunRefreshPrintCountsCommandJob job ran successfully"
-                : "RunRefreshPrintCountsCommandJob probably did not run properly");
+                ? "RunRefreshPrintCountsFromEmailCommandJob job ran successfully"
+                : "RunRefreshPrintCountsFromEmailCommandJob probably did not run properly");
         }
 
         public static void RunRefreshPrintCountsFromMedioCommandJob(string proposalName = null, string countryIso = null)
         {
+            if (countryIso != null && countryIso.ToLower().Equals("uk"))
+            {
+                countryIso = @"gb";
+            }
+
             var webSite = CoinedUrl() + RefreshPrintCountsFromMedioCommand
                           + (proposalName != null ? "&ProposalName=" + HttpUtility.UrlEncode(proposalName) : "")
                           + (countryIso != null ? "&CountryIso=" + HttpUtility.UrlEncode(countryIso) : "");

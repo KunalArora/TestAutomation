@@ -288,6 +288,7 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             NextPage = CurrentPage.As<InstallerDeviceInstallationPage>()._ReturnBackToContractAcceptedPage();
             NextPage = CurrentPage.As<DealerContractsAcceptedPage>().NavigateToManageDevicesPageToConfirmThatInstallationRequestAvailability();
             CurrentPage.As<DealerManageDevicesPage>().IsInstallationCompleted();
+            CurrentPage.As<DealerManageDevicesPage>().IsEmailInstallationSuccessful();
         }
 
         

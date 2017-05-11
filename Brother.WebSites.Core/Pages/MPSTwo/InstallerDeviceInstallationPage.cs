@@ -1068,8 +1068,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             try
             {
-                if (Method() != "Email") return;
-                CompleteInstallationElement.Click();
+                if (Method() == "Email")
+                {
+                    CompleteInstallationElement.Click();
+                    MpsJobRunnerPage.RunRefreshPrintCountsFromEmailCommandJob(Locale);
+                }
+                else
+                {
+                    CompleteInstallationElement.Click();
+                }
+                
                 WebDriver.Wait(DurationType.Second, 2);
             }
             catch (Exception)
@@ -1097,6 +1105,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 TestCheck.AssertIsEqual(true, CompleteInstallationComfirmationElement.Displayed,
                 "Installation not successful");
                // WaitForElementToBeClickableById("content_0_InstallationSuccessfullyFinished", 10);
+                MpsJobRunnerPage.RunRefreshPrintCountsFromEmailCommandJob(Locale);
                 CompleteInstallationComfirmationElement.Click();
 
             }
@@ -1120,6 +1129,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 TestCheck.AssertIsEqual(true, CompleteInstallationComfirmationElement.Displayed,
                 "Installation not successful");
+                MpsJobRunnerPage.RunRefreshPrintCountsFromEmailCommandJob(Locale);
                 // WaitForElementToBeClickableById("content_0_InstallationSuccessfullyFinished", 10);
                 CompleteInstallationComfirmationElement.Click();
 
