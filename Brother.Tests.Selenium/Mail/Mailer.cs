@@ -28,7 +28,7 @@ namespace Brother.Tests.Selenium.Lib.Mail
         static readonly MailMessage Mail = new MailMessage();
 
 
-        public static void SendEmail(string address, string subject, string message, string path)
+        public static void SendEmailWithAttachment(string address, string subject, string message, string path)
         {
            
             try
@@ -44,6 +44,38 @@ namespace Brother.Tests.Selenium.Lib.Mail
                 Mail.Body = message;
                 Mail.IsBodyHtml = true;
                 Mail.Attachments.Add(_attachment);
+
+                smtpClient.EnableSsl = false;
+                smtpClient.UseDefaultCredentials = false;
+                //smtpClient.Credentials = loginInfo;
+                smtpClient.Timeout = 10000;
+                Mail.To.Add(new MailAddress(address));
+                smtpClient.Send(Mail);
+                smtpClient.Dispose();
+                Mail.Attachments.Dispose();
+            }
+            catch (SmtpException smtpException)
+            {
+                Helper.MsgOutput("Mailing issue - check additional exception information", smtpException.ToString());
+            }
+        }
+
+        public static void SendEmailWithoutAttachment(string address, string subject, string message)
+        {
+
+            try
+            {
+                //var loginInfo = new NetworkCredential(Email, Password);
+                //var smtpClient = new SmtpClient("smtp.gmail.com", 587);
+                var smtpClient = new SmtpClient("eusmtp.eu.brothergroup.net", 25);
+                //var reportPath = SpecFlow.GetContext("ReportPath");
+                //_attachment = new Attachment(path);
+
+                Mail.From = new MailAddress(Email);
+                Mail.Subject = subject;
+                Mail.Body = message;
+                Mail.IsBodyHtml = true;
+               // Mail.Attachments.Add(_attachment);
 
                 smtpClient.EnableSsl = false;
                 smtpClient.UseDefaultCredentials = false;

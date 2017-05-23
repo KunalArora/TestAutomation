@@ -12,14 +12,14 @@ namespace Brother.Tests.Specs.OmniJoin
         [Given(@"I have navigated to the OmniJoin home page")]
         public void GivenIHaveNavigatedToTheOmniJoinHomePage()
         {
-            CurrentPage = BasePage.LoadWebConferencingHomePage(CurrentDriver, BasePage.BaseUrl);
+            CurrentPage = BasePage.LoadWebConferencingHomePage(CurrentDriver, BasePage.BrotherOnlineBaseUrl);
             CurrentPage.As<WebConferencingHomePage>().IsBuyButtonAvailable();
         }
 
         [Then(@"I have navigated to the omnijoin home page on ""(.*)""")]
         public void ThenIHaveNavigatedToTheOmnijoinHomePageOn(string web)
         {
-            CurrentPage = BasePage.LoadWebConferencingHomePage(CurrentDriver, BasePage.BaseUrl);
+            CurrentPage = BasePage.LoadWebConferencingHomePage(CurrentDriver, BasePage.BrotherOnlineBaseUrl);
             CurrentPage.As<WebConferencingHomePage>().IsBuyButtonAvailable();
         }
 

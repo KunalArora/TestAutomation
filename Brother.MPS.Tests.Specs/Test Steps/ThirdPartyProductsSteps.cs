@@ -166,7 +166,7 @@ namespace Brother.Tests.Specs
         [Then(@"Once I have Validated an Email Token")]
         public void OnceIHaveValidatedAnEmailToken()
         {
-            CurrentPage = BasePage.LoadEmailConfirmationPage(CurrentDriver, BasePage.BaseUrl);
+            CurrentPage = BasePage.LoadEmailConfirmationPage(CurrentDriver, BasePage.BrotherOnlineBaseUrl);
             CurrentPage.As<BrotherEmailConfirmationPage>().IsGetRegistrationLinkButtonAvailable();
             CurrentPage.As<BrotherEmailConfirmationPage>().EnterEmailToValidate(Email.RegistrationEmailAddress);
             CurrentPage.As<BrotherEmailConfirmationPage>().SelectLanguage(Helper.Locale);

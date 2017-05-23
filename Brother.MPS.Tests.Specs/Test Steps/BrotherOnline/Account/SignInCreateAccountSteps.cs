@@ -22,7 +22,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         public void GivenIAmLoggedIntoBrotherOnlineUsing(string country, string emailAddress)
         {
             Helper.SetCountry(country);
-            CurrentPage = BasePage.LoadBolHomePage(CurrentDriver, BasePage.BaseUrl, "");
+            CurrentPage = BasePage.LoadBolHomePage(CurrentDriver, BasePage.BrotherOnlineBaseUrl, "");
             WhenIClickOnSignInCreateAnAccount(country);
             WhenIAmRedirectedToTheBrotherLoginRegisterPage();
             DoHaveAnAccountCheckbox();
@@ -37,7 +37,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             {
                 Helper.SetCountry(country);
-                CurrentPage = BasePage.LoadBolHomePage(CurrentDriver, BasePage.BaseUrl, "");
+                CurrentPage = BasePage.LoadBolHomePage(CurrentDriver, BasePage.BrotherOnlineBaseUrl, "");
                 WhenIClickOnSignInCreateAnAccount(country);
                 WhenIAmRedirectedToTheBrotherLoginRegisterPage();
                 WhenIEnterAValidEmailAddress(username);
@@ -288,7 +288,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         public void GivenIWantToCreateANewAccountWithBrotherOnline(string country)
         {
             Helper.SetCountry(country);
-            CurrentPage = BasePage.LoadBolHomePage(CurrentDriver, BasePage.BaseUrl, "");
+            CurrentPage = BasePage.LoadBolHomePage(CurrentDriver, BasePage.BrotherOnlineBaseUrl, "");
         }
 
         [Given(@"I Need A Brother Online ""(.*)"" Account In Order To Use Brother Online Services")]
@@ -326,7 +326,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         public void GivenIAmLoggedOntoBrotherOnlineUsingValidCredentials(string country)
         {
             Helper.SetCountry(country);
-            CurrentPage = BasePage.LoadBolHomePage(CurrentDriver, BasePage.BaseUrl, "");
+            CurrentPage = BasePage.LoadBolHomePage(CurrentDriver, BasePage.BrotherOnlineBaseUrl, "");
             GivenINeedABrotherOnlineAccountInOrderToUseBrotherOnlineServices(country);
         }
         
@@ -336,7 +336,8 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             // Set locale to direct to Brother Online Ireland
             Helper.SetCountry(country);
             var title = HomePage.WelcomePageCountryTitle(country);
-            CurrentPage = BasePage.LoadBolHomePage(CurrentDriver, BasePage.BaseUrl, title);
+            CurrentPage = BasePage.LoadBolHomePage(CurrentDriver, BasePage.BrotherOnlineBaseUrl, title);
+            //CurrentPage = BasePage.LoadBolHomePage(CurrentDriver, @"http://online.co.uk.cds.uat65.brother.eu.com", title);
         }
 
         [Then(@"I click on the sign in / create account button")]
@@ -351,7 +352,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
 
             Helper.SetCountry(country);
-            CurrentPage = BasePage.LoadBolHomePage(CurrentDriver, BasePage.BaseUrl, "");         
+            CurrentPage = BasePage.LoadBolHomePage(CurrentDriver, BasePage.BrotherOnlineBaseUrl, "");         
         }
 
         [When(@"I sign into Cloud MPS as a ""(.*)"" from ""(.*)""")]
@@ -437,7 +438,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             // Used to navigate back the home page (temporary) whilst
             // logged into BOL. Should navigate to the WelcomeBack page
-            NextPage = BasePage.LoadBolHomePage(CurrentDriver, BasePage.BaseUrl, "");
+            NextPage = BasePage.LoadBolHomePage(CurrentDriver, BasePage.BrotherOnlineBaseUrl, "");
         }
         [Then(@"If I go back to Brother Site home page on ""(.*)"" and ""(.*)""")]
         public void ThenIfIGoBackToBrotherSiteHomePageOnAnd(string web, string country)
@@ -946,7 +947,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         public void GivenIAlreadyHaveASetOfBrotherOnlineAccountCredentials(string country)
         {
             Helper.SetCountry(country);
-            CurrentPage = BasePage.LoadBolHomePage(CurrentDriver, BasePage.BaseUrl, "");
+            CurrentPage = BasePage.LoadBolHomePage(CurrentDriver, BasePage.BrotherOnlineBaseUrl, "");
         }
 
         [When(@"I click on Create Account for ""(.*)""")]

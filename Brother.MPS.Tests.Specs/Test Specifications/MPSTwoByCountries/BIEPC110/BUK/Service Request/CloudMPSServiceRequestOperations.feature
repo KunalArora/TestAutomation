@@ -20,6 +20,24 @@ Scenarios:
 	| Role                            | Country        | ContractType                  | UsageType      | Role1            | Method | Type | ExistingCustomer                    | Length  | Billing              | SerialNumber | Component |
 	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR  | Slater20170119031946@mailinator.com | 3 years | Quarterly in Arrears | A1T010237    | FuserUnit |
 	
+
+Scenario Outline: MPS Actions For Customers By Email
+	Given "<Country>" Dealer have created "<ContractType>" contract choosing "<ExistingCustomer>" with "<UsageType>" and "<Length>" and "<Billing>"
+	And I sign into Cloud MPS as a "<Role>" from "<Country>"
+	And the contract created above is approved
+	And I sign back into Cloud MPS as a "<Role1>" from "<Country>"
+	When I install the device with "<SerialNumber>" on the contract with "<Method>" communication and "<Type>" installation
+	Then I can use "<Model>" to create automatic service request for "<Component>" through email with "<SerialNumber>"
+	And I can sign out of Brother Online
+	
+	
+Scenarios:
+
+	| Role                            | Country        | ContractType                  | UsageType      | Role1            | Method | Type | ExistingCustomer                    | Length  | Billing              | SerialNumber | Component     | Model        |
+	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Email  | BOR  | Slater20170119031946@mailinator.com | 3 years | Quarterly in Arrears | A1T010237    | Belt End Soon | MFC-L8650CDW |
+	
+
+
 Scenario Outline: MPS Actions To Create Contract for Service Request
 	Given "<Country>" Dealer have created "<ContractType>" contract choosing "<ExistingCustomer>" with "<UsageType>" and "<Length>" and "<Billing>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
@@ -80,4 +98,7 @@ Scenarios:
 
 	| Country        | Role2                  | Method | Role1                               |
 	| United Kingdom | Cloud MPS Service Desk | Email  | Lonna20170210045259@mailinator.com  |
+
+
+
 	

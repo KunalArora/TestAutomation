@@ -17,10 +17,16 @@ namespace Brother.WebSites.Core.Pages.Base
 {
     public abstract partial class BasePage
     {
-        public static string BaseUrl
+        public static string BrotherOnlineBaseUrl
         {
-            get { return SetBaseUrl(); }
+            get { return SetBrotherOnlineBaseUrl(); }
             
+        }
+
+        public static string MainSiteBaseUrl
+        {
+            get { return SetMainSiteBaseUrl(); }
+
         }
 
         // Home pages
@@ -29,10 +35,10 @@ namespace Brother.WebSites.Core.Pages.Base
         public static WebConferencingHomePage LoadWebConferencingHomePage(IWebDriver driver, string baseUrl)
         {
             driver = SetDriver(driver);
-            baseUrl = ProcessUrlLocale(baseUrl);
-            baseUrl = ProcessMainSiteLiveUrl(baseUrl);
-            baseUrl = CheckForCdServer(baseUrl);
-            NavigateToPage(driver, baseUrl.TrimEnd(new char[] { '/' }) + WebConferencingHomePage.URL);
+            //baseUrl = ProcessUrlLocale(baseUrl);
+            //baseUrl = ProcessMainSiteLiveUrl(baseUrl);
+            //baseUrl = CheckForCdServer(baseUrl);
+            NavigateToPage(driver, baseUrl.TrimEnd(new[] { '/' }) + WebConferencingHomePage.URL);
             return GetInstance<WebConferencingHomePage>(driver, baseUrl, "");
         }
 
@@ -43,10 +49,10 @@ namespace Brother.WebSites.Core.Pages.Base
         public static MainSiteHomePage LoadBrotherMainSiteHomePage(IWebDriver driver, string baseUrl)
         {
             driver = SetDriver(driver);
-            baseUrl = ProcessUrlLocale(baseUrl);
-            baseUrl = ProcessMainSiteLiveUrl(baseUrl);
-            baseUrl = CheckForCdServer(baseUrl); 
-            NavigateToPage(driver, baseUrl.TrimEnd(new char[] { '/' }));
+            //baseUrl = ProcessUrlLocale(baseUrl);
+            //baseUrl = ProcessMainSiteLiveUrl(baseUrl);
+            //baseUrl = CheckForCdServer(baseUrl); 
+            NavigateToPage(driver, baseUrl.TrimEnd(new[] { '/' }));
             return GetInstance<MainSiteHomePage>(driver, baseUrl, "");
         }
 
@@ -57,8 +63,8 @@ namespace Brother.WebSites.Core.Pages.Base
         public static HomePage LoadBrotherOnlineHomePage(IWebDriver driver, string country)
         {
             driver = SetDriver(driver);
-            NavigateToPage(driver, BaseUrl.TrimEnd(new char[] { '/' }));
-            return GetInstance<HomePage>(driver, BaseUrl, "");
+            NavigateToPage(driver, BrotherOnlineBaseUrl.TrimEnd(new[] { '/' }));
+            return GetInstance<HomePage>(driver, BrotherOnlineBaseUrl, "");
         }
 
         #endregion
@@ -68,8 +74,9 @@ namespace Brother.WebSites.Core.Pages.Base
         public static LoginPage LoadBrotherMainSiteLoginPage(IWebDriver driver, string baseUrl)
         {
             driver = SetDriver(driver);
-            var url = ProcessUrlLocale(BaseUrl);
-            NavigateToPageSitecore(driver, url + baseUrl.TrimEnd(new char[] { '/' }));
+            //var url = ProcessUrlLocale(BrotherOnlineBaseUrl);
+            var url = BrotherOnlineBaseUrl;
+            NavigateToPageSitecore(driver, url + baseUrl.TrimEnd(new[] { '/' }));
             return GetInstance<LoginPage>(driver, baseUrl, "");
         }
 
@@ -78,54 +85,54 @@ namespace Brother.WebSites.Core.Pages.Base
         public static PublishedPage LoadPublishedPage(IWebDriver driver, string baseUrl)
         {
            driver = SetDriver(driver);
-           NavigateToPage(driver, BaseUrl+baseUrl.TrimEnd(new char[] { '/' }));
+           NavigateToPage(driver, BrotherOnlineBaseUrl+baseUrl.TrimEnd(new[] { '/' }));
            return GetInstance<PublishedPage>(driver, baseUrl, "");
         }
 
         public static CheckoutPage LoadMainSiteHomePage(IWebDriver driver, string baseUrl)
         {
            driver = SetDriver(driver);
-           NavigateToPage(driver, baseUrl.TrimEnd(new char[] { '/' }));
+           NavigateToPage(driver, baseUrl.TrimEnd(new[] { '/' }));
            return GetInstance<CheckoutPage>(driver, baseUrl, "");
         }
 
        public static DownloadPage LoadDownloadPage(IWebDriver driver, string baseUrl)
         {
             driver = SetDriver(driver);
-            NavigateToPage(driver, baseUrl.TrimEnd(new char[] { '/' }));
+            NavigateToPage(driver, baseUrl.TrimEnd(new[] { '/' }));
             return GetInstance<DownloadPage>(driver, baseUrl, "");
         }
         public static ExperienceEditorPage LoadExperienceEditorPage(IWebDriver driver, string baseUrl)
         {
             driver = SetDriver(driver);
-            NavigateToPageSitecore(driver, baseUrl.TrimEnd(new char[] { '/' }));
+            NavigateToPageSitecore(driver, baseUrl.TrimEnd(new[] { '/' }));
             return GetInstance<ExperienceEditorPage>(driver, baseUrl, "");
         }
 
         public static ContentEditorPage LoadContentEditorPage(IWebDriver driver, string baseUrl)
         {
             driver = SetDriver(driver);
-            NavigateToPageSitecore(driver, baseUrl.TrimEnd(new char[] { '/' }));
+            NavigateToPageSitecore(driver, baseUrl.TrimEnd(new[] { '/' }));
             return GetInstance<ContentEditorPage>(driver, baseUrl, "");
         }
 
         public static FooterNavigationPage LoadFooterPage(IWebDriver driver, string baseUrl)
         {
             driver = SetDriver(driver);
-            baseUrl = ProcessUrlLocale(baseUrl);
-            baseUrl = ProcessMainSiteLiveUrl(baseUrl);
-            baseUrl = CheckForCdServer(baseUrl);
-            NavigateToPage(driver, baseUrl.TrimEnd(new char[] { '/' }));
+            //baseUrl = ProcessUrlLocale(baseUrl);
+            //baseUrl = ProcessMainSiteLiveUrl(baseUrl);
+            //baseUrl = CheckForCdServer(baseUrl);
+            NavigateToPage(driver, baseUrl.TrimEnd(new[] { '/' }));
             return GetInstance<FooterNavigationPage>(driver, baseUrl, "");
         }
 
         public static HeaderNavigationPage LoadHeaderPage(IWebDriver driver, string baseUrl)
         {
             driver = SetDriver(driver);
-            baseUrl = ProcessUrlLocale(baseUrl);
-            baseUrl = ProcessMainSiteLiveUrl(baseUrl);
-            baseUrl = CheckForCdServer(baseUrl);
-            NavigateToPage(driver, baseUrl.TrimEnd(new char[] { '/' }));
+            //baseUrl = ProcessUrlLocale(baseUrl);
+            //baseUrl = ProcessMainSiteLiveUrl(baseUrl);
+            //baseUrl = CheckForCdServer(baseUrl);
+            NavigateToPage(driver, baseUrl.TrimEnd(new[] { '/' }));
             return GetInstance<HeaderNavigationPage>(driver, baseUrl, "");
         }
 
@@ -133,14 +140,14 @@ namespace Brother.WebSites.Core.Pages.Base
         public static ProductRegistrationPage LoadProductRegistrationPage(IWebDriver driver, string baseUrl = null)
         {
             driver = SetDriver(driver);
-            //NavigateToPage(driver, BaseUrl + baseUrl.TrimEnd(new char[] { '/' }));
+            //NavigateToPage(driver, BrotherOnlineBaseUrl + baseUrl.TrimEnd(new char[] { '/' }));
             if (baseUrl == null)
             {
-                NavigateToPage(driver, BaseUrl.TrimEnd(new char[] { '/' }));
+                NavigateToPage(driver, BrotherOnlineBaseUrl.TrimEnd(new[] { '/' }));
             }
             else
             {
-                NavigateToPage(driver, BaseUrl + baseUrl.TrimEnd(new char[] { '/' }));
+                NavigateToPage(driver, BrotherOnlineBaseUrl + baseUrl.TrimEnd(new[] { '/' }));
             }
             return GetInstance<ProductRegistrationPage>(driver, baseUrl, "");
         }
@@ -148,14 +155,14 @@ namespace Brother.WebSites.Core.Pages.Base
         public static BasketPage LoadBasketPage(IWebDriver driver, string baseUrl = null)
         {
             driver = SetDriver(driver);
-            //NavigateToPage(driver, BaseUrl + baseUrl.TrimEnd(new char[] { '/' }));
+            //NavigateToPage(driver, BrotherOnlineBaseUrl + baseUrl.TrimEnd(new char[] { '/' }));
             if (baseUrl == null)
             {
-                NavigateToPage(driver, BaseUrl.TrimEnd(new char[] { '/' }));
+                NavigateToPage(driver, BrotherOnlineBaseUrl.TrimEnd(new[] { '/' }));
             }
             else
             {
-                NavigateToPage(driver, BaseUrl + baseUrl.TrimEnd(new char[] { '/' }));
+                NavigateToPage(driver, BrotherOnlineBaseUrl + baseUrl.TrimEnd(new[] { '/' }));
             }
             return GetInstance<BasketPage>(driver, baseUrl, "");
         }
@@ -165,14 +172,14 @@ namespace Brother.WebSites.Core.Pages.Base
         public static SignInPage LoadSignPage(IWebDriver driver, string baseUrl = null)
         {
             driver = SetDriver(driver);
-            //NavigateToPage(driver, BaseUrl + baseUrl.TrimEnd(new char[] { '/' }));
+            //NavigateToPage(driver, BrotherOnlineBaseUrl + baseUrl.TrimEnd(new char[] { '/' }));
             if (baseUrl == null)
             {
-                NavigateToPage(driver, BaseUrl.TrimEnd(new char[] { '/' }));
+                NavigateToPage(driver, BrotherOnlineBaseUrl.TrimEnd(new[] { '/' }));
             }
             else
             {
-                NavigateToPage(driver, BaseUrl + baseUrl.TrimEnd(new char[] { '/' }));
+                NavigateToPage(driver, BrotherOnlineBaseUrl + baseUrl.TrimEnd(new[] { '/' }));
             }
             
 
@@ -182,7 +189,7 @@ namespace Brother.WebSites.Core.Pages.Base
         public static UserDetailsPage LoadUserDetailsPage(IWebDriver driver, string baseUrl)
         {
             driver = SetDriver(driver);
-            NavigateToPageSitecore(driver, BaseUrl + baseUrl.TrimEnd(new char[] { '/' }));
+            NavigateToPageSitecore(driver, BrotherOnlineBaseUrl + baseUrl.TrimEnd(new[] { '/' }));
             return GetInstance<UserDetailsPage>(driver, baseUrl, "");
         }
 
@@ -197,21 +204,21 @@ namespace Brother.WebSites.Core.Pages.Base
             baseUrl = baseUrl.Replace("online.", "");
             baseUrl = baseUrl.Replace("brother.co.uk", "brother.eu");
             CurrentDomain = baseUrl;
-            NavigateToPage(driver, baseUrl.TrimEnd(new char[] { '/' }) + BrotherEmailConfirmationPage.Url);
+            NavigateToPage(driver, baseUrl.TrimEnd(new[] { '/' }) + BrotherEmailConfirmationPage.Url);
             return GetInstance<BrotherEmailConfirmationPage>(driver, baseUrl, "");
         }
 
         public static MailinatorEmailConfirmationPage LoadMailinatorEmailConfirmationPage(IWebDriver driver, string baseUrl)
         {
             driver = SetDriver(driver);
-            NavigateToPage(driver, baseUrl.TrimEnd(new char[] { '/' }) + MailinatorEmailConfirmationPage.Url + Email.EmailSuffix);
+            NavigateToPage(driver, baseUrl.TrimEnd(new[] { '/' }) + MailinatorEmailConfirmationPage.Url + Email.EmailSuffix);
             return GetInstance<MailinatorEmailConfirmationPage>(driver, baseUrl, "");
         }
 
         public static GuerillaEmailConfirmationPage LoadGuerrillaEmailInboxPage(IWebDriver driver, string baseUrl)
         {
             driver = SetDriver(driver);
-            NavigateToPage(driver, baseUrl.TrimEnd(new char[] { '/' }) + GuerillaEmailConfirmationPage.Url, true);
+            NavigateToPage(driver, baseUrl.TrimEnd(new[] { '/' }) + GuerillaEmailConfirmationPage.Url, true);
             return GetInstance<GuerillaEmailConfirmationPage>(driver, baseUrl, "");
         }
 
@@ -219,7 +226,7 @@ namespace Brother.WebSites.Core.Pages.Base
         {
             driver = SetDriver(driver);
             baseUrl = CheckForCdServer(baseUrl);
-            NavigateToPage(driver, baseUrl.TrimEnd(new char[] { '/' }));
+            NavigateToPage(driver, baseUrl.TrimEnd(new[] { '/' }));
             return GetInstance<RegistrationPage>(driver, baseUrl, "");
         }
 
@@ -230,10 +237,11 @@ namespace Brother.WebSites.Core.Pages.Base
         public static HomePage LoadBolHomePage(IWebDriver driver, string baseUrl, string defaultTitleOverride)
         {
             driver = SetDriver(driver);
-            baseUrl = ProcessUrlLocale(baseUrl);
-            baseUrl = CheckForCdServer(baseUrl);
+            //baseUrl = ProcessUrlLocale(baseUrl);
+            //baseUrl = CheckForCdServer(baseUrl);
             CurrentDomain = baseUrl;
-            NavigateToPage(driver, baseUrl.TrimEnd(new char[] { '/' }) + MainSiteHomePage.Url);
+            NavigateToPage(driver, baseUrl.TrimEnd(new[] { '/' }) + MainSiteHomePage.Url);
+            //driver.Navigate().GoToUrl(baseUrl);
             return GetInstance<HomePage>(driver, baseUrl, defaultTitleOverride);
         }
 
@@ -241,7 +249,7 @@ namespace Brother.WebSites.Core.Pages.Base
         {
             driver = SetDriver(driver);
             driver.Navigate().GoToUrl(baseUrl);
-            return GetInstance<HomePage>(driver, BaseUrl + baseUrl, defaultTitleOverride);
+            return GetInstance<HomePage>(driver, BrotherOnlineBaseUrl + baseUrl, defaultTitleOverride);
         }
 
         // Specific to Email Token validation. Need to Switch to separate tab due to Email Validation page
@@ -261,9 +269,9 @@ namespace Brother.WebSites.Core.Pages.Base
                     driver = driver.SwitchTo().Window(winHandle);
                 }
             }
-            baseUrl = CheckForCdServer(baseUrl);
+           // baseUrl = CheckForCdServer(baseUrl);
             CurrentDomain = baseUrl;
-            NavigateToPage(driver, baseUrl.TrimEnd(new char[] { '/' }));
+            NavigateToPage(driver, baseUrl.TrimEnd(new[] { '/' }));
             return GetInstance<RegistrationPage>(driver, baseUrl, "");
         }
 

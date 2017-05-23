@@ -1106,16 +1106,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 "Installation not successful");
                // WaitForElementToBeClickableById("content_0_InstallationSuccessfullyFinished", 10);
                 MpsJobRunnerPage.RunRefreshPrintCountsFromEmailCommandJob(Locale);
-                CompleteInstallationComfirmationElement.Click();
+    //            CompleteInstallationComfirmationElement.Click();
 
             }
             else
             {
-                TestCheck.AssertIsEqual(true, CompleteCloudInstallationComfirmationElement.Displayed,
-                "Installation not successful");
+                //TestCheck.AssertIsEqual(true, CompleteCloudInstallationComfirmationElement.Displayed,
+                //"Installation not successful");
                 TestCheck.AssertIsEqual(true, CloudInstallationConnectionStatusIconElements.Displayed, "Device is not connect");
                 //WaitForElementToBeClickableById("content_0_InstallationSuccessfullyFinished", 10);
-                CompleteCloudInstallationComfirmationElement.Click();
+//                CompleteCloudInstallationComfirmationElement.Click();
                 MpsJobRunnerPage.NotifyBocOfNewChanges();
             }
 
@@ -1136,8 +1136,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
             else
             {
-                TestCheck.AssertIsEqual(true, CompleteCloudInstallationComfirmationElement.Displayed,
-                "Installation not successful");
+                //TestCheck.AssertIsEqual(true, CompleteCloudInstallationComfirmationElement.Displayed,
+                //"Installation not successful");
                 TestCheck.AssertIsEqual(true, CloudInstallationConnectionStatusIconElements.Displayed, "Device is not connect");
                 //WaitForElementToBeClickableById("content_0_InstallationSuccessfullyFinished", 10);
                 CompleteCloudInstallationComfirmationElement.Click();
@@ -1182,7 +1182,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public DealerContractsAcceptedPage _ReturnBackToContractAcceptedPage()
         {
             var currentUrl = Driver.Url;
-            var firstPart = currentUrl.Substring(0, 31);
+            //var firstPart = currentUrl.Substring(0, 31);
+            var firstPart = SetBrotherOnlineBaseUrl();
             var newUrl = firstPart + "/mps/dealer/contracts/accepted";
             Driver.Navigate().GoToUrl(newUrl);
 

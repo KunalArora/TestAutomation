@@ -234,7 +234,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public static void SendXml(string email, string subject)
         {
-            Mailer.SendEmail(email, subject, "", @"C:\Email\Edited\Report.xml");
+            Mailer.SendEmailWithAttachment(email, subject, "", @"C:\Email\Edited\Report.xml");
+        }
+
+
+        public static void SendServiceRequestEmail(string address, string subject, string body)
+        {
+            Mailer.SendEmailWithoutAttachment(address, subject, body);
         }
 
 

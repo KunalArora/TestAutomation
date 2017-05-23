@@ -84,7 +84,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         }
         public ExperienceEditorPage NavigateToExperienceEditorPage(string country)
         {
-            return GetInstance<ExperienceEditorPage>(Driver, BasePage.BaseUrl, string.Empty);
+            return GetInstance<ExperienceEditorPage>(Driver, BasePage.BrotherOnlineBaseUrl, string.Empty);
         }
 
         public void ClickOnMainHeader(string country)

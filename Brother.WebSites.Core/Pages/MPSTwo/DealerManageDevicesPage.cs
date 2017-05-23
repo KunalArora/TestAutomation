@@ -17,6 +17,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
     public class DealerManageDevicesPage : BasePage
     {
         public static string Url = "/";
+        private string Body = @"<Status Notification >
+                                The device status is [{0}] 
+
+                                <Node Information>
+                                Name: BRN30055C15474D
+                                Model Name: Brother {1}
+                                Location: 
+                                Contact: 
+                                IP Address: 10.135.102.139
+                                Device serial number: U63783{2}
+                                URL: http://10.135.102.139
+                                Page Count: 0
+                                Drum Count: 355";
+        private string Subject = @"Status Notification [{0}]";
 
         public override string DefaultTitle
         {
@@ -235,6 +249,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsEmailInstallationSuccessful()
         {
+            RefreshManageDeviceScreen();
+            
             if (Method() == "Email")
             {
                 if (EmailGreenIconElement == null)
@@ -502,6 +518,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetInstance<DealerCustomersExistingPage>();
         }
 
+        public void SendEmailForServiceRequest(string address, string subject, string model, string serial)
+        {
+            Subject = String.Format(Subject, subject);
+            Body = String.Format(Body, subject, model, serial);
+            ActionsModule.SendServiceRequestEmail(address, Subject, Body);
+            ActionsModule.RunConsumableOrderCreationJobs();
+        }
+
         public void IsInstallationCompleted()
         {
             
@@ -519,7 +543,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if (Method() == "Email")
             {
                 MpsJobRunnerPage.RunRefreshPrintCountsFromEmailCommandJob(Locale);
+                WebDriver.Wait(DurationType.Second, 5);
                 MpsJobRunnerPage.RunCompleteInstallationCommandJob(MpsUtil.CreatedProposal());
+                WebDriver.Wait(DurationType.Second, 5);
             }
             
 

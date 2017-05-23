@@ -103,7 +103,7 @@ namespace Brother.WebSites.Core.Pages.MPSOne
             ExistingOrganisations.ElementAt(0).Click();
             SpecFlow.SetContext("TheFirstContractId", ExistingContractId.ElementAt(0).Text);
             var title = WelcomeBackPage.ValidateCountryTitle(country);
-            return GetInstance<ContractConfirmationPage>(Driver, BasePage.BaseUrl, title);
+            return GetInstance<ContractConfirmationPage>(Driver, BasePage.BrotherOnlineBaseUrl, title);
         }
 
         public void SearchForContractElement(string value)

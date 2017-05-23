@@ -1,4 +1,5 @@
-﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+﻿using System;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using TechTalk.SpecFlow;
@@ -24,7 +25,11 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             WhenINavigateToTheContractManageDeviceScreen();
             WhenISelectLocationInOrderToCreateInstallationRequest();
             WhenISetDeviceCommunicationMethodAs(method);
-            WhenISetDeviceInstallationTypeAs(type);
+            if (!String.IsNullOrWhiteSpace(type))
+            {
+                WhenISetDeviceInstallationTypeAs(type);
+            }
+            
             WhenICompletedTheCreateInstallationProcessFor(type);
             ThenTheInstallationRequestForThatDeviceIsCompleted();
         }
@@ -64,6 +69,12 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             ActionsModule.RunConsumableOrderCreationJobs();
         }
 
+
+        [Then(@"I can use ""(.*)"" to create automatic service request for ""(.*)"" through email with ""(.*)""")]
+        public void ThenICanUseToCreateAutomaticServiceRequestForThroughEmailWith(string model, string component, string serial)
+        {
+            CurrentPage.As<DealerManageDevicesPage>().SendEmailForServiceRequest(@"brothermps_QAS@brother.co.uk", component, model, serial);
+        }
 
 
 

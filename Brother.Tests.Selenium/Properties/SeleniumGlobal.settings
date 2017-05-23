@@ -29,5 +29,17 @@
     <Setting Name="BrowserStackHubUri" Type="System.String" Scope="User">
       <Value Profile="(Default)">http://hub.browserstack.com/wd/hub/</Value>
     </Setting>
+    <Setting Name="QASUrl65" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://online65.{0}.cds.uat.brother.eu.com</Value>
+    </Setting>
+    <Setting Name="TestUrl65" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://online65.{0}.cds.test.brother.eu.com</Value>
+    </Setting>
+    <Setting Name="MainSiteUAT65" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://{0}.cds.uat65.brother.eu.com</Value>
+    </Setting>
+    <Setting Name="MainSiteTest65" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://{0}.cds.test65.brother.eu.com</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

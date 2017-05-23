@@ -18,14 +18,14 @@ namespace Brother.Tests.Specs._80.BrotherMainSite.HomePageNavigation
         public void GivenIHaveNavigatedToTheBrotherMainSiteProductsPages(string country)
         {
             Helper.SetCountry(country);
-            CurrentPage = BasePage.LoadBrotherMainSiteHomePage(CurrentDriver, BasePage.BaseUrl);
+            CurrentPage = BasePage.LoadBrotherMainSiteHomePage(CurrentDriver, BasePage.BrotherOnlineBaseUrl);
         }
 
         [Given(@"I have navigated to the ""(.*)"" Brother Main Site")]
         public void GivenIHaveNavigatedToTheBrotherMainSite(string country)
         {
             Helper.SetCountry(country);
-            CurrentPage = BasePage.LoadBrotherMainSiteHomePage(CurrentDriver, BasePage.BaseUrl);
+            CurrentPage = BasePage.LoadBrotherMainSiteHomePage(CurrentDriver, BasePage.BrotherOnlineBaseUrl);
         }
 
         [Then(@"I shold see the tilte of the page is displayed")]
@@ -50,7 +50,7 @@ namespace Brother.Tests.Specs._80.BrotherMainSite.HomePageNavigation
         public void GivenIHaveNavigatedToTheBrotherMainSiteFooterPages(string country)
         {
             Helper.SetCountry(country);
-            CurrentPage = BasePage.LoadFooterPage(CurrentDriver, BasePage.BaseUrl);
+            CurrentPage = BasePage.LoadFooterPage(CurrentDriver, BasePage.MainSiteBaseUrl);
         }
 
         [Given(@"I have navigated to the ""(.*)"" MainSite URL for country ""(.*)""")]
@@ -71,7 +71,7 @@ namespace Brother.Tests.Specs._80.BrotherMainSite.HomePageNavigation
         public void GivenIHaveNavigatedToTheBrotherMainSiteProductsHeaderPages(string country)
         {
             Helper.SetCountry(country);
-            CurrentPage = BasePage.LoadHeaderPage(CurrentDriver, BasePage.BaseUrl);
+            CurrentPage = BasePage.LoadHeaderPage(CurrentDriver, BasePage.BrotherOnlineBaseUrl);
         }
         [Then(@"I have clicked the top products menu button")]
         public void ThenIHaveClickedTopProductsMenu()

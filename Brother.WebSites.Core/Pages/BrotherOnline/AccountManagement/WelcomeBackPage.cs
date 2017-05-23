@@ -294,26 +294,26 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         {
             ExistingContractButton.Click();
             var title = ValidateCountryTitle(country);
-            return GetInstance<ExistingContractPage>(Driver, BaseUrl, title);
+            return GetInstance<ExistingContractPage>(Driver, BrotherOnlineBaseUrl, title);
         }
 
         public ExistingProposalPage NavigateToProposalPage(string country)
         {
             ExistingProposalButton.Click();
             var title = ValidateCountryTitle(country);
-            return GetInstance<ExistingProposalPage>(Driver, BaseUrl, title);
+            return GetInstance<ExistingProposalPage>(Driver, BrotherOnlineBaseUrl, title);
         }
 
         public MyAccountPage NavigateToMyAccountPage(string country)
         {
             MyAccountNavigationButton.Click();
-            return GetInstance<MyAccountPage>(Driver, BaseUrl, string.Empty);
+            return GetInstance<MyAccountPage>(Driver, BrotherOnlineBaseUrl, string.Empty);
         }
 
         public MyAccountPage MyAccountNavigationButtonClick()
         {
             MyAccountNavigationButton.Click();
-            return GetInstance<MyAccountPage>(Driver, BaseUrl, string.Empty);
+            return GetInstance<MyAccountPage>(Driver, BrotherOnlineBaseUrl, string.Empty);
 
         }
 
@@ -346,21 +346,21 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         {
             NewProposalButton.Click();
             var title = ValidateCountryTitle(country);
-            return GetInstance<ListOfOrganisationsPage>(Driver, BaseUrl, title);
+            return GetInstance<ListOfOrganisationsPage>(Driver, BrotherOnlineBaseUrl, title);
         }
 
         public ConsumablePage NavigateToConsumablePage(string country)
         {
             ConsumableNavigationButton.Click();
             var title = ValidateCountryTitle(country);
-            return GetInstance<ConsumablePage>(Driver, BaseUrl, title);
+            return GetInstance<ConsumablePage>(Driver, BrotherOnlineBaseUrl, title);
         }
 
         public TechnicalServicePage NavigateToTechnicalServicePage(string country)
         {
             ConsumableNavigationButton.Click();
             var title = ValidateCountryTitle(country);
-            return GetInstance<TechnicalServicePage>(Driver, BaseUrl, title);
+            return GetInstance<TechnicalServicePage>(Driver, BrotherOnlineBaseUrl, title);
         }
 
         public void VerifyDealerPrivilege()

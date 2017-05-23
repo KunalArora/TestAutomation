@@ -181,7 +181,7 @@ namespace Brother.Tests.Selenium.Lib.Support
 
             if (Helper.IsMpsSwitchOn())
             {
-                //Mailer.SendEmail(To, Subject, String.Format(Message, dateNow));
+                //Mailer.SendEmailWithAttachment(To, Subject, String.Format(Message, dateNow));
                 Mailer.SendEmailToMultipleRecipients(To, Subject, String.Format(Message, dateNow));
             }
         }
