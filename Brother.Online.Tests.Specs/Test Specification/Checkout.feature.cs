@@ -69,8 +69,9 @@ namespace Brother.Online.Tests.Specs.TestSpecification
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Customer creates an order and checkout as existing user on UK BOL site")]
         [NUnit.Framework.CategoryAttribute("SMOKE_Checkout")]
-        [NUnit.Framework.TestCaseAttribute("http://main.co.uk.brotherdv2.eu/supplies/laser-supplies/tn2000", "/QA/03-Checkout/415ExistingUserDetailsSection", "testyourdetailsemail@mailinator.com", "Test", "Test", "01514236589", "07894540846", "M34 5JE", "1", "4259917979151326", null)]
-        public virtual void CustomerCreatesAnOrderAndCheckoutAsExistingUserOnUKBOLSite(string siteUrl, string url, string email, string firstName, string lastName, string phoneNumber, string mobileNumber, string postcode, string houseNumber, string creditCardNumber, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("http://main.co.uk.brotherdv2.eu/supplies/inkjet-supplies/lc1000bk", "http://atyourside.co.uk.brotherdv2.eu/qa/03-checkout/415existinguserdetailssectio" +
+            "n", "testdv2uk@guerrillamail.com", "Brother123", "01234567890", "01234567890", "4259917979151326", "07", "2019", null)]
+        public virtual void CustomerCreatesAnOrderAndCheckoutAsExistingUserOnUKBOLSite(string siteUrl, string url, string email, string password, string phoneNumber, string mobileNumber, string creditCardNumber, string month, string year, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "SMOKE_Checkout"};
@@ -86,42 +87,34 @@ this.ScenarioSetup(scenarioInfo);
 #line 8
  testRunner.And("I click on Add to Basket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 9
- testRunner.And(string.Format("I browse to the \"{0}\" checkout page", url), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 10
- testRunner.And("I click on continue as guest button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("I browse to the \"{0}\" BOL checkout page", url), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
- testRunner.And(string.Format("I enter \"{0}\" in your details", email), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 12
- testRunner.And("I select title in your details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I click on the login button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 13
- testRunner.And(string.Format("I enter \"{0}\"  and \"{1}\" on your details page", firstName, lastName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("I enter the registered \"{0}\" in the Email field", email), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 14
- testRunner.And(string.Format("I enter \"{0}\" and \"{1}\" on your details page", phoneNumber, mobileNumber), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("I enter the registered \"{0}\" in the Password field", password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 15
- testRunner.And("I click on Continue to Delivery Button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I click on Existing User SiginIn Button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 16
- testRunner.And(string.Format("I can register my \"{0}\" on the delivery address step", postcode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("I enter \"{0}\" and \"{1}\" on your details page", phoneNumber, mobileNumber), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 17
- testRunner.And("I click on Find Address Button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I click on Continue to Delivery Button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 18
- testRunner.And(string.Format("I enter \"{0}\" on delivery address step", houseNumber), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 19
  testRunner.And("I click on Continue to Billing & Payment Button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 19
+ testRunner.And("I click on Continue to Payment Button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 20
- testRunner.And("I click on Checkbox to use the same delivery address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 21
- testRunner.And("I click on Continue to Payment As A Guest Button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 22
  testRunner.When(string.Format("I fill in creditCard details \"{0}\"", creditCardNumber), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 21
+ testRunner.And(string.Format("I select a month as \"{0}\"", month), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 22
+ testRunner.And(string.Format("I select a year as \"{0}\"", year), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 23
- testRunner.And("I select a month as 07", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 24
- testRunner.And("I select a year as \"2018\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 25
  testRunner.And("I fill in security number as  \"123\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 26
+#line 24
  testRunner.And("I click the Confirm My Payment button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 27
+#line 25
  testRunner.Then("I should see the order confirmation message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

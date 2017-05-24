@@ -38,22 +38,50 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
         {
             CurrentPage.As<CheckoutPage>().AddToBasketButtonClick();
         }
-
-        [Given(@"I browse to the ""(.*)"" checkout page")]
-        public void GivenIBrowseToTheCheckoutPage(string url)
+        
+        [Given(@"I browse to the ""(.*)"" BOL checkout page")]
+        public void GivenIBrowseToTheBolCheckoutPage(string url)
         {
-            CurrentPage = BasePage.LoadBasketPage(CurrentDriver, url);
+            CurrentPage = CurrentPage.As<CheckoutPage>().GoToBolBasketPage(url);
         }
+
+
         [Given(@"I click on continue as guest button")]
         public void GivenIClickOnContinueAsGuestButton()
         {
             CurrentPage.As<BasketPage>().ClickOnContinueAsGuest();
         }
+
+        [Given(@"I click on the login button")]
+        public void GivenIClickOnTheLoginButton()
+        {
+            CurrentPage.As<BasketPage>().ClickOnLoginButton();
+        }
+
         [Given(@"I enter ""(.*)"" in your details")]
         public void GivenIEnterInYourDetails(string emailid)
         {
             CurrentPage.As<BasketPage>().EnterEmail(emailid);
         }
+
+        [Given(@"I enter the registered ""(.*)"" in the Email field")]
+        public void GivenIEnterTheRegisteredInTheEmailField(string emailid)
+        {
+            CurrentPage.As<BasketPage>().EnterExistingUserName(emailid);
+        }
+
+        [Given(@"I enter the registered ""(.*)"" in the Password field")]
+        public void GivenIEnterTheRegisteredInThePasswordField(string password)
+        {
+            CurrentPage.As<BasketPage>().EnterPasswordForExistingUser(password);
+        }
+
+        [Given(@"I click on Existing User SiginIn Button")]
+        public void GivenIClickOnExistingUserSiginInButton()
+        {
+            CurrentPage.As<BasketPage>().ClickOnExistingUserSignInButton();
+        }
+
         [Given(@"I select title in your details")]
         public void GivenISelectTitleInYourDetails()
         {
@@ -72,6 +100,7 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
         [Given(@"I click on Continue to Delivery Button")]
         public void GivenIClickOnContinueToDeliveryButton()
         {
+            Thread.Sleep(TimeSpan.FromSeconds(4));
             CurrentPage.As<BasketPage>().ClickOnContinueToDelivery();
         }
         [Given(@"I can register my ""(.*)"" on the delivery address step")]
@@ -102,46 +131,47 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
             CurrentPage.As<BasketPage>().ClickOnCheckboxUseSameDeliveryAddress();
         }
 
-        [Given(@"I click on Continue to Payment As A Guest Button")]
-        public void GivenIClickOnContinueToPaymentAsAGuestButton()
+        [Given(@"I click on Continue to Payment Button")]
+        public void GivenIClickOnContinueToPaymentButton()
         {
-            CurrentPage.As<BasketPage>().ClickOnContinueToPaymentAsGuest();
+            Thread.Sleep(TimeSpan.FromSeconds(2));
+            NextPage = CurrentPage.As<BasketPage>().ClickOnContinueToPayment();
         }
-
+        
         [When(@"I fill in creditCard details ""(.*)""")]
         public void WhenIFillInCreditCardDetails(string number)
         {
-            CurrentPage.As<CreditCardDetailsPage>().PopulateCreditCardNumber(number);
+            CurrentPage.As<PaymentPage>().EnterTheCardNumber(number);
         }
 
         [When(@"I select a month as (.*)")]
         public void WhenISelectAMonthAs(int month)
         {
-            CurrentPage.As<CreditCardDetailsPage>().PopulateCreditCardExpiryMonthDropDown(month.ToString());
+            CurrentPage.As<PaymentPage>().SelectTheExpiryDateMonth(month.ToString());
         }
 
         [When(@"I select a year as ""(.*)""")]
         public void WhenISelectAYearAs(int year)
         {
-            CurrentPage.As<CreditCardDetailsPage>().PopulateCreditCardExpiryYearDropDown(year.ToString());
+            CurrentPage.As<PaymentPage>().SelectTheExpiryDateYear(year.ToString());
         }
 
         [When(@"I fill in security number as  ""(.*)""")]
         public void WhenIFillInSecurityNumberAs(int cvvNumber)
         {
-            CurrentPage.As<CreditCardDetailsPage>().PopulateCreditCardCvvNumber(cvvNumber.ToString());
+            CurrentPage.As<PaymentPage>().EnterTheCardCVVNumber(cvvNumber.ToString());
         }
 
         [When(@"I click the Confirm My Payment button")]
         public void WhenIClickTheConfirmMyPaymentButton()
         {
-            CurrentPage.As<CreditCardDetailsPage>().ConfirmPaymentButtonClick();
+            CurrentPage = CurrentPage.As<PaymentPage>().ClickOnConfirmPaymentButton();
         }
 
         [Then(@"I should see the order confirmation message")]
         public void ThenIShouldSeeTheOrderConfirmationMessage()
         {
-            ScenarioContext.Current.Pending();
+            CurrentPage.As<OrderConfirmationPage>().IsPurchaseOrderConfirmationMessageDisplayed();
         }
 
     }

@@ -33,11 +33,18 @@ namespace Brother.Tests.Selenium.Lib.ExtentReport
 
             var isOnBuildMachine = Environment.MachineName;
 
+            var driveLetter = "C";
             if (isOnBuildMachine.ToUpper().Equals("PRDAT169V") || isOnBuildMachine.ToUpper().Equals("PRDAT204V"))
             {
-                // switch to E: drive on Dev and DV2 
-                reportLocation = reportLocation.Replace('C', 'E');
+                driveLetter = "E";
             }
+            else if (isOnBuildMachine.ToUpper().Equals("BRO43DBS01DOP"))
+            {
+                driveLetter = "D";
+            }
+
+            reportLocation = reportLocation.Replace("C", driveLetter);
+
             if (!Directory.Exists(reportLocation))
             {
                 Directory.CreateDirectory(reportLocation);

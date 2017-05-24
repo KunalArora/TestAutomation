@@ -409,11 +409,16 @@ namespace Brother.Tests.Selenium.Lib.Support
         {
             var logLocation = DefaultLogFolder;
             var isOnBuildMachine = Environment.MachineName;
+            var driveLetter = "C";
             if (isOnBuildMachine.ToUpper().Equals("PRDAT169V") || isOnBuildMachine.ToUpper().Equals("PRDAT204V"))
             {
-                // switch to E: drive on Dev and DV2 
-                logLocation = DefaultSeleniumFolder.Replace('C', 'E');
+                driveLetter = "E";
             }
+            else if (isOnBuildMachine.ToUpper().Equals("BRO43DBS01DOP"))
+            {
+                driveLetter = "D";
+            }
+            logLocation = DefaultSeleniumFolder.Replace("C", driveLetter);
             if (!Directory.Exists(logLocation))
             {
                 Directory.CreateDirectory(logLocation);

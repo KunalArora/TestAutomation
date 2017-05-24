@@ -210,7 +210,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         public static string GetSpecialEnvironmentVariable(string envVar)
         {
             var isOnBuildMachine = Environment.MachineName;
-            return isOnBuildMachine.ToUpper().Equals("PRDAT169V") || isOnBuildMachine.ToUpper().Equals("PRDAT204V")
+            return isOnBuildMachine.ToUpper().Equals("PRDAT169V") || isOnBuildMachine.ToUpper().Equals("PRDAT204V") || isOnBuildMachine.ToUpper().Equals("BRO43DBS01DOP")
                 ? Environment.GetEnvironmentVariable(envVar)
                 : Environment.GetEnvironmentVariable(envVar, EnvironmentVariableTarget.Machine);
         }
@@ -542,11 +542,18 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             var snapshotLocation = DefaultSeleniumFolder;
 
             var isOnBuildMachine = Environment.MachineName;
+            
+            var driveLetter = "C";
             if (isOnBuildMachine.ToUpper().Equals("PRDAT169V") || isOnBuildMachine.ToUpper().Equals("PRDAT204V"))
             {
-                // switch to E: drive on CI box
-                snapshotLocation = DefaultSeleniumFolder.Replace('C', 'E');
+                driveLetter = "E";
             }
+            else if (isOnBuildMachine.ToUpper().Equals("BRO43DBS01DOP"))
+            {
+                driveLetter = "D";
+            }
+
+            snapshotLocation = DefaultSeleniumFolder.Replace("C", driveLetter);
             return snapshotLocation;
         }
 

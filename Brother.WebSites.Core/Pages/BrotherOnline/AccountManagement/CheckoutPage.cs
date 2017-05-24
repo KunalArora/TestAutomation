@@ -7,6 +7,7 @@ using System.Threading;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherMainSite;
+using Brother.WebSites.Core.Pages.BrotherMainSite.Basket;
 using Brother.WebSites.Core.Pages.BrotherMainSite.SuppliesAndAccessories;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -56,15 +57,22 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         [FindsBy(How = How.XPath, Using = "html/body/div[4]/div/div[3]/div/div/div[1]/div/div/div[2]/button")]
         public IWebElement SuppliesCodeSearchButton;
 
-        [FindsBy(How = How.CssSelector, Using = "#product--btn-buy-online")]
+        [FindsBy(How = How.Id, Using = "product--btn-buy-online")]
         public IWebElement AddToBasketButton;
 
 
        public void AddToBasketButtonClick()
         {
+            ScrollTo(AddToBasketButton);
             AddToBasketButton.Click();
-            //Thread.Sleep(TimeSpan.FromSeconds(4));
+            Thread.Sleep(TimeSpan.FromSeconds(4));
         }
+
+       public BasketPage GoToBolBasketPage(string url)
+       {
+           Driver.Navigate().GoToUrl(url);
+           return GetInstance<BasketPage>(Driver);
+       }
 
     }
 }

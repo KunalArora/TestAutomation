@@ -34,6 +34,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
         [FindsBy(How = How.CssSelector, Using = "h1.blue")]
         public IWebElement OrderConfirmationMessage;
 
+        [FindsBy(How = How.CssSelector, Using = ".h3.account-section__title")]
+        public IWebElement PurchaseOrderConfirmationMessage;
+
         [FindsBy(How = How.CssSelector, Using = ".box-out.purchase-confirmed h3")]
         public IWebElement OrderConfirmationNumber;
 
@@ -119,6 +122,16 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
                 throw new NullReferenceException("Unable to locate Order Confirmation Message component");
             }
             AssertElementPresent(OrderConfirmationMessage, "Features Carousel Tile", 30);
+        }
+        
+        public void IsPurchaseOrderConfirmationMessageDisplayed()
+        {
+            WaitForElementToExistByCssSelector(".h3.account-section__title");
+            if (PurchaseOrderConfirmationMessage == null)
+            {
+                throw new NullReferenceException("Unable to locate Order Confirmation Message component");
+            }
+            AssertElementPresent(PurchaseOrderConfirmationMessage, "Features Carousel Tile", 30);
         }
 
         public void IsOrderConfirmationNumberDisplayed()

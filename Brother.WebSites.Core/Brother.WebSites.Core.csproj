@@ -127,6 +127,7 @@
     <Compile Include="Pages\BrotherOnline\Checkout\DeliveryDetailsPage.cs" />
     <Compile Include="Pages\BrotherOnline\Checkout\OrderConfirmationPage.cs" />
     <Compile Include="Pages\BrotherOnline\Checkout\OrderSummaryPage.cs" />
+    <Compile Include="Pages\BrotherOnline\Checkout\PaymentPage.cs" />
     <Compile Include="Pages\BrotherOnline\Checkout\SavedPaymentDetailsPage.cs" />
     <Compile Include="Pages\BrotherOnline\ThirdParty\BrotherEmailConfirmationPage.cs" />
     <Compile Include="Pages\BrotherOnline\ThirdParty\GuerrillaEmailConfirmation.cs" />

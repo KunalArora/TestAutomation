@@ -1,10 +1,12 @@
 ﻿using System;
 using System.ComponentModel.Design;
+using System.Threading;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherMainSite.SuppliesAndAccessories;
 using Brother.WebSites.Core.Pages.BrotherOnline.Account;
+using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
 using Brother.WebSites.Core.Pages.BrotherOnline.Checkout;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -47,6 +49,12 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.Basket
         [FindsBy(How = How.CssSelector, Using = "#frmGuest #email")]
         public IWebElement GuestEmailTextBox;
 
+        [FindsBy(How = How.Id, Using = "email")]
+        public IWebElement ExistingUserEmailTextBox;
+
+        [FindsBy(How = How.Id, Using = "password")]
+        public IWebElement ExistingUserPasswordTextBox;
+
         [FindsBy(How = How.Id, Using = "title")]
         public IWebElement SelectTitleBox;
 
@@ -81,11 +89,23 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.Basket
         public IWebElement ContinueToBillingAndpaymentyButton;
 
         [FindsBy(How = How.Id, Using = "btnGuestPayment")]
-        public IWebElement ContinueToPaymentAsGuestButton;
+        public IWebElement ContinueToPaymentButton;
+
+        [FindsBy(How = How.Id, Using = "btnSignin")]
+        public IWebElement ExistingUserSignInButton;
+
+        [FindsBy(How = How.XPath, Using = @"//*[@id='Login1']/div/a[1]")]
+        public IWebElement LogInButton;
 
         public void ClickOnContinueAsGuest()
         {
             ContinueAsGuestButton.Click();
+        }
+
+        public void ClickOnLoginButton()
+        {
+            ScrollTo(LogInButton);
+            LogInButton.Click();
         }
 
         public void EnterName(string firstname, string lastname)
@@ -99,6 +119,23 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.Basket
             GuestEmailTextBox.SendKeys(email);
         }
 
+        public void EnterExistingUserName(string email)
+        {
+            ScrollTo(ExistingUserEmailTextBox);
+            ExistingUserEmailTextBox.SendKeys(email);
+        }
+
+        public void EnterPasswordForExistingUser(string password)
+        {
+            ScrollTo(ExistingUserPasswordTextBox);
+            ExistingUserPasswordTextBox.SendKeys(password);
+        }
+
+        public void ClickOnExistingUserSignInButton()
+        {
+            ExistingUserSignInButton.Click();
+        }
+
         public void SelectTile()
         {
             SelectTitleBox.SendKeys(Keys.ArrowDown);
@@ -106,12 +143,15 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.Basket
 
         public void EnterPhoneNumber(string phonenumber, string mobilenumber)
         {
+            Thread.Sleep(TimeSpan.FromSeconds(2));
             PhoneNumberTextBox.SendKeys(phonenumber);
+            Thread.Sleep(TimeSpan.FromSeconds(2));
             MobileNumberTextBox.SendKeys(mobilenumber);
         }
 
         public void ClickOnContinueToDelivery()
         {
+            ScrollTo(ContinueToDeliveryButton);
             ContinueToDeliveryButton.Click();
         }
 
@@ -133,12 +173,16 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.Basket
 
         public void ClickOnContinueToBillingAndPayment()
         {
+            ScrollTo(ContinueToBillingAndpaymentyButton);
             ContinueToBillingAndpaymentyButton.Click();
         }
 
-        public void ClickOnContinueToPaymentAsGuest()
+        public PaymentPage ClickOnContinueToPayment()
         {
-            ContinueToPaymentAsGuestButton.Click();
+            ScrollTo(ContinueToPaymentButton);
+            ContinueToPaymentButton.Click();
+            //return GetInstance<PaymentPage>(Driver);
+            return LoadPaymentCardDetailsFrame(Driver);
         }
 
         public void ClickOnCheckboxUseSameDeliveryAddress()
