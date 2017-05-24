@@ -1,4 +1,6 @@
-﻿using System.Threading;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
@@ -1318,6 +1320,20 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
 
         private void SignInAsARoleType(string role, string country)
         {
+            string language = null;
+
+            try
+            {
+                language = Selenium.Lib.Support.HelperClasses.SpecFlow.GetContext("BelgianLanguage");
+            }
+            catch (KeyNotFoundException)
+            {
+                
+                //Do nothing
+            }
+            
+            var pageUrl = CurrentDriver.Url;
+
             var username = role.Contains("Cloud") ? MpsUserLogins.Username(country, role, CurrentDriver) : role;
             var password = role.Contains("Cloud") ? MpsUserLogins.Password(role) : "P@$$w0rd"; //TestBUK1 P@$$w0rd
 
@@ -1325,11 +1341,22 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             {
                 SignInAsMpsOneUser(role);
             }
+            else if (language != null && (pageUrl.Contains("online65.be") && language.Contains("French") && username.Contains("Dealer")))
+            {
+                WhenIEnterAValidEmailAddress("MPS-BBE-UAT-Dealer3@brother.co.uk");
+                WhenIEnterAValidPassword("BEdealer3");
+            }
+            else if (language != null && (pageUrl.Contains("online65.ch") && language.Contains("Français") && username.Contains("Dealer")))
+            {
+                WhenIEnterAValidEmailAddress("MPS-BSW-UAT-Dealer3@brother.co.uk");
+                WhenIEnterAValidPassword("CHdealer3");
+            }
             else
             {
                 WhenIEnterAValidEmailAddress(username);
                 WhenIEnterAValidPassword(password);
             }
+            
         }
 
 

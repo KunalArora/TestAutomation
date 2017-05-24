@@ -909,6 +909,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [Given(@"""(.*)"" Dealer with ""(.*)"" language have created a ""(.*)"" contract with ""(.*)"" and ""(.*)"" and ""(.*)""")]
         public void GivenDealerWithLanguageHaveCreatedAContractWithAndAnd(string country, string language, string contractType, string usageType, string length, string billing)
         {
+            Selenium.Lib.Support.HelperClasses.SpecFlow.SetContext("BelgianLanguage", language);
             contractType = ContractType(contractType);
 
             if (contractType.Equals("Lease & Click with Service"))

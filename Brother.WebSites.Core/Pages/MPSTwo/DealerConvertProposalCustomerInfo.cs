@@ -263,20 +263,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             catch (KeyNotFoundException)
             {
 
-                language = "Français";
+                language = "Deutsch";
             }
 
             switch (language)
             {
                 case "Français":
-                    lang = "Verein";
+                    lang = "Fondation";
                     break;
                 case "Deutsch":
-                    lang = "Verein";
+                    lang = "Einzelfirma";
                     break;
 
                 default:
-                    lang = "Verein";
+                    lang = "Einzelfirma";
                     break;
             }
 
@@ -593,11 +593,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 case "Français":
                     //lang = "Débit direct";
-                    lang = "LSV";
+                    lang = "Prélèvement automatique";
                     break;
                 case "Deutsch":
-                    lang = "Bankeinzug";
-                    //lang = "LSV";
+                    //lang = "Bankeinzug";
+                    lang = "LSV";
                     break;
 
                 default:
