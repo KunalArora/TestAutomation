@@ -32,7 +32,7 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
         [AfterTestRun]
         public static void AfterTestRun()
         {
-            //TestController.SendEmail();
+            //TestController.SendEmailWithAttachment();
             Helper.MsgOutput("........Ending Test Run");
         }
 
@@ -49,6 +49,8 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
         [AfterStep]
         public static void AfterStep()
         {
+           // var step = ScenarioContext.Current.StepContext.StepInfo.Text;
+
             // No Error - move on
             if (ScenarioContext.Current.TestError == null)
             {
@@ -85,7 +87,7 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
             Helper.MsgOutput("Feature end - Tearing Down");
             TestController.ExtentLogFeatureInformation(FeatureContext.Current.FeatureInfo.Title);
             TestController.Test_Teardown();
-            //TestController.SendEmail();
+            //TestController.SendEmailWithAttachment();
         }
 
         #endregion "Before And After Feature Tags"

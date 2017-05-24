@@ -21,6 +21,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         {
             NextPage = CurrentPage.As<DealerDashBoardPage>().NavigateToCreateNewProposalPage();
         }
+        
 
         [Given(@"Dealer have created a Open proposal of ""(.*)"" and ""(.*)""")]
         public void GivenDealerHaveCreatedProposalOfOpen(string contractType, string usageType)
@@ -908,6 +909,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [Given(@"""(.*)"" Dealer with ""(.*)"" language have created a ""(.*)"" contract with ""(.*)"" and ""(.*)"" and ""(.*)""")]
         public void GivenDealerWithLanguageHaveCreatedAContractWithAndAnd(string country, string language, string contractType, string usageType, string length, string billing)
         {
+            Selenium.Lib.Support.HelperClasses.SpecFlow.SetContext("BelgianLanguage", language);
             contractType = ContractType(contractType);
 
             if (contractType.Equals("Lease & Click with Service"))

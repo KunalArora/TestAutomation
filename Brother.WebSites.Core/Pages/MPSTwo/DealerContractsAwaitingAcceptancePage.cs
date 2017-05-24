@@ -68,7 +68,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void DownloadContractPdfOnDealerAwaitingAcceptanceContractPages()
         {
             ActionsModule.ClickOnSpecificActionsElement(Driver);
-            ActionsModule.DownloadContractInvoicePDFAction(Driver);
+            ActionsModule.DownloadContractInvoicePdfAction(Driver);
         }
 
         private string DownloadFolderPath()

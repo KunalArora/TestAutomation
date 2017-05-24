@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
@@ -1067,13 +1068,33 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             try
             {
-                if (Method() != "Email") return;
-                CompleteInstallationElement.Click();
+                if (Method() == "Email")
+                {
+                    CompleteInstallationElement.Click();
+                    MpsJobRunnerPage.RunRefreshPrintCountsFromEmailCommandJob(Locale);
+                }
+                else
+                {
+                    CompleteInstallationElement.Click();
+                }
+                
                 WebDriver.Wait(DurationType.Second, 2);
             }
             catch (Exception)
             {
                 throw new Exception("Complete Installation Button is not displayed");
+            }
+        }
+
+
+
+
+        public void ModifyXmlAndSend(string model, string serial, string totalPrint, string colourPrint, string monoPrint, string emailAddress, string subject)
+        {
+            if (Method() == "Email")
+            {
+                ActionsModule.ModifyXmlValues(model, serial, totalPrint, colourPrint, monoPrint);
+                ActionsModule.SendXml(emailAddress, subject);
             }
         }
 
@@ -1084,16 +1105,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 TestCheck.AssertIsEqual(true, CompleteInstallationComfirmationElement.Displayed,
                 "Installation not successful");
                // WaitForElementToBeClickableById("content_0_InstallationSuccessfullyFinished", 10);
-                CompleteInstallationComfirmationElement.Click();
+                MpsJobRunnerPage.RunRefreshPrintCountsFromEmailCommandJob(Locale);
+    //            CompleteInstallationComfirmationElement.Click();
 
             }
             else
             {
-                TestCheck.AssertIsEqual(true, CompleteCloudInstallationComfirmationElement.Displayed,
-                "Installation not successful");
+                //TestCheck.AssertIsEqual(true, CompleteCloudInstallationComfirmationElement.Displayed,
+                //"Installation not successful");
                 TestCheck.AssertIsEqual(true, CloudInstallationConnectionStatusIconElements.Displayed, "Device is not connect");
                 //WaitForElementToBeClickableById("content_0_InstallationSuccessfullyFinished", 10);
-                CompleteCloudInstallationComfirmationElement.Click();
+//                CompleteCloudInstallationComfirmationElement.Click();
                 MpsJobRunnerPage.NotifyBocOfNewChanges();
             }
 
@@ -1107,14 +1129,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 TestCheck.AssertIsEqual(true, CompleteInstallationComfirmationElement.Displayed,
                 "Installation not successful");
+                MpsJobRunnerPage.RunRefreshPrintCountsFromEmailCommandJob(Locale);
                 // WaitForElementToBeClickableById("content_0_InstallationSuccessfullyFinished", 10);
                 CompleteInstallationComfirmationElement.Click();
 
             }
             else
             {
-                TestCheck.AssertIsEqual(true, CompleteCloudInstallationComfirmationElement.Displayed,
-                "Installation not successful");
+                //TestCheck.AssertIsEqual(true, CompleteCloudInstallationComfirmationElement.Displayed,
+                //"Installation not successful");
                 TestCheck.AssertIsEqual(true, CloudInstallationConnectionStatusIconElements.Displayed, "Device is not connect");
                 //WaitForElementToBeClickableById("content_0_InstallationSuccessfullyFinished", 10);
                 CompleteCloudInstallationComfirmationElement.Click();
@@ -1159,7 +1182,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public DealerContractsAcceptedPage _ReturnBackToContractAcceptedPage()
         {
             var currentUrl = Driver.Url;
-            var firstPart = currentUrl.Substring(0, 31);
+            //var firstPart = currentUrl.Substring(0, 31);
+            var firstPart = SetBrotherOnlineBaseUrl();
             var newUrl = firstPart + "/mps/dealer/contracts/accepted";
             Driver.Navigate().GoToUrl(newUrl);
 

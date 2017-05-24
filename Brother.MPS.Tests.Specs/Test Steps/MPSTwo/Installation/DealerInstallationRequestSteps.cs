@@ -1,4 +1,5 @@
-﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+﻿using System;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using TechTalk.SpecFlow;
@@ -24,7 +25,11 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             WhenINavigateToTheContractManageDeviceScreen();
             WhenISelectLocationInOrderToCreateInstallationRequest();
             WhenISetDeviceCommunicationMethodAs(method);
-            WhenISetDeviceInstallationTypeAs(type);
+            if (!String.IsNullOrWhiteSpace(type))
+            {
+                WhenISetDeviceInstallationTypeAs(type);
+            }
+            
             WhenICompletedTheCreateInstallationProcessFor(type);
             ThenTheInstallationRequestForThatDeviceIsCompleted();
         }
@@ -64,6 +69,12 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             ActionsModule.RunConsumableOrderCreationJobs();
         }
 
+
+        [Then(@"I can use ""(.*)"" to create automatic service request for ""(.*)"" through email with ""(.*)""")]
+        public void ThenICanUseToCreateAutomaticServiceRequestForThroughEmailWith(string model, string component, string serial)
+        {
+            CurrentPage.As<DealerManageDevicesPage>().SendEmailForServiceRequest(@"brothermps_QAS@brother.co.uk", component, model, serial);
+        }
 
 
 
@@ -278,6 +289,20 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             CurrentPage.As<DealerManageDevicesPage>().IsInstallationCompleted();
         }
 
+        [Then(@"I can complete device installation for email ""(.*)"", ""(.*)"", ""(.*)"", ""(.*)"", ""(.*)"", ""(.*)"" and ""(.*)""")]
+        public void ThenICanCompleteDeviceInstallationForEmailAnd(string model, string serial, string total, string colour, string mono, string email, string subject)
+        {
+            CurrentPage.As<InstallerDeviceInstallationPage>().ModifyXmlAndSend(model, serial, total, colour, mono, email, subject);
+            CurrentPage.As<InstallerDeviceInstallationPage>().CompleteDeviceConnection();
+            CurrentPage.As<InstallerDeviceInstallationPage>().ConfirmInstallationSucceed();
+            CurrentPage.As<InstallerDeviceInstallationPage>().ConfirmCompleteMessageIsDisplayed();
+            NextPage = CurrentPage.As<InstallerDeviceInstallationPage>()._ReturnBackToContractAcceptedPage();
+            NextPage = CurrentPage.As<DealerContractsAcceptedPage>().NavigateToManageDevicesPageToConfirmThatInstallationRequestAvailability();
+            CurrentPage.As<DealerManageDevicesPage>().IsInstallationCompleted();
+            CurrentPage.As<DealerManageDevicesPage>().IsEmailInstallationSuccessful();
+        }
+
+        
 
         [When(@"I navigate to customer and contact page")]
         [Given(@"I navigate to customer and contact page")]
@@ -360,6 +385,14 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             NextPage = CurrentPage.As<DealerManageDevicesPage>().ConfirmReinstallProcessCommencement();
         }
 
+        [When(@"I begin device PCB swapping process for same device")]
+        public void WhenIBeginDevicePcbSwappingProcessForDevice()
+        {
+            CurrentPage.As<DealerManageDevicesPage>().BeginSwapProcess();
+            CurrentPage.As<DealerManageDevicesPage>().ConfirmSwapProcessCommencement();
+            NextPage = CurrentPage.As<DealerManageDevicesPage>().ConfirmPcbProcess();
+        }
+
         [When(@"I begin device swapping process for same device")]
         public void WhenIBeginDeviceSwappingProcessForSameDevice()
         {
@@ -390,6 +423,18 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             NextPage = CurrentPage.As<DealerSendInstallationEmailPage>().CompleteInstallation();
             //CurrentPage.As<DealerManageDevicesPage>().IsReinstallationRequestSent();
         }
+
+        [When(@"I generate PCB swapping device request with ""(.*)"" and ""(.*)""")]
+        public void WhenIGeneratePcbSwappingDeviceRequestWithAnd(string method, string type)
+        {
+            CurrentPage.As<DealerSetCommunicationMethodPage>().SetCommunicationMethod(method);
+            NextPage = CurrentPage.As<DealerSetCommunicationMethodPage>().ProceedToNextPage();
+            CurrentPage.As<DealerSetInstallationTypePage>().SetInstallationType(type);
+            NextPage = CurrentPage.As<DealerSetInstallationTypePage>().ProccedToDealerSendInstallationEmailPage();
+            CurrentPage.As<DealerSendInstallationEmailPage>().EnterInstallaterEmail();
+            NextPage = CurrentPage.As<DealerSendInstallationEmailPage>().SendPcbSwapInstallationRequest();
+        }
+
 
 
         [When(@"I generate swapping device request with ""(.*)"" and ""(.*)""")]
@@ -435,6 +480,15 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             ThenICanConnectSwapDeviceToBrotherEnvironment();
             // ThenICanCompleteDeviceInstallation();
         }
+
+
+        [When(@"installer installed new PCB swap device for ""(.*)"" communication")]
+        public void WhenInstallerInstalledNewPcbSwapDeviceForCommunication(string type)
+        {
+            WhenInstallerInstalledTheNewSwapDeviceForCommunication(type);
+        }
+
+
 
         [When(@"installer installed the new swap device for ""(.*)"" communication")]
         public void WhenInstallerInstalledTheNewSwapDeviceForCommunication(string type)

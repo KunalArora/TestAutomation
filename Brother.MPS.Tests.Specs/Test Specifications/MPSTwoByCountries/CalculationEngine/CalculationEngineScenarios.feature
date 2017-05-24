@@ -1,4 +1,4 @@
-﻿@TEST @UAT @MPS
+﻿@ignore @TEST @UAT @MPS
 Feature: CalculationEngineScenarios
 	In order to verify that the calculation on MPS are working as expected
 	As an MPS user

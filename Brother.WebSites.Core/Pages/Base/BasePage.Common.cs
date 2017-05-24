@@ -5,6 +5,7 @@ using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
+using Brother.Tests.Selenium.Lib.Properties;
 
 namespace Brother.WebSites.Core.Pages.Base
 {
@@ -223,7 +224,7 @@ namespace Brother.WebSites.Core.Pages.Base
             return url.Replace(brother, brother + env);
         }
 
-        private static string SetBaseUrl()
+        private static string SetBaseUrl1()
         {
             var brotherBaseHomePage = ConfigurationManager.AppSettings["BrotherOnlineHomePage_DefaultPage"];
 
@@ -271,8 +272,59 @@ namespace Brother.WebSites.Core.Pages.Base
             //}
 
             // for safety, always run on DV" as the default
-            MsgOutput("Unable to determine BaseUrl from {0} so defaulting to DV2", runTimeEnv);
+            MsgOutput("Unable to determine BrotherOnlineBaseUrl from {0} so defaulting to DV2", runTimeEnv);
             return ProcessBaseUrl(brotherBaseHomePage, "dv2");
+        }
+
+
+        private static string SetMainSiteBaseUrl()
+        {
+            var env = GetRunTimeEnv();
+            string url;
+
+            switch (env)
+            {
+                case "TEST":
+                    url = SeleniumGlobal.Default.MainSiteTest65;
+                    break;
+                case "UAT":
+                    url = SeleniumGlobal.Default.MainSiteUAT65;
+                    break;
+                default:
+                    url = SeleniumGlobal.Default.MainSiteTest65;
+                    break;
+            }
+
+            var locale = Locale.ToLower().Equals("uk") ? "co.uk" : Locale;
+
+            url = String.Format(url, locale);
+
+            return url;
+        }
+
+        public static string SetBrotherOnlineBaseUrl()
+        {
+            var env = GetRunTimeEnv();
+            string url;
+
+            switch (env)
+            {
+                case "TEST" :
+                    url = SeleniumGlobal.Default.TestUrl65;
+                    break;
+                case "UAT":
+                    url = SeleniumGlobal.Default.QASUrl65;
+                    break;
+                default:
+                    url = SeleniumGlobal.Default.TestUrl65;
+                    break;
+            }
+
+            var locale = Locale.ToLower().Equals("uk") ? "co.uk" : Locale;
+
+            url = String.Format(url, locale);
+
+            return url;
         }
     }
 }

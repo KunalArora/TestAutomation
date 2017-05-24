@@ -49,7 +49,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.ThirdParty
         public RegistrationPage ClickConfirmAccountHyperLink()
         {
             ConfirmAccountHyperlink.Click();
-            return LoadSignInPage(Driver, BaseUrl);
+            return LoadSignInPage(Driver, BrotherOnlineBaseUrl);
         }
 
         public RegistrationPage GetConfirmAccountHyperLink()

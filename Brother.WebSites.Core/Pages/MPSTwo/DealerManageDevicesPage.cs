@@ -17,6 +17,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
     public class DealerManageDevicesPage : BasePage
     {
         public static string Url = "/";
+        private string Body = @"<Status Notification >
+                                The device status is [{0}] 
+
+                                <Node Information>
+                                Name: BRN30055C15474D
+                                Model Name: Brother {1}
+                                Location: 
+                                Contact: 
+                                IP Address: 10.135.102.139
+                                Device serial number: U63783{2}
+                                URL: http://10.135.102.139
+                                Page Count: 0
+                                Drum Count: 355";
+        private string Subject = @"Status Notification [{0}]";
 
         public override string DefaultTitle
         {
@@ -86,6 +100,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement ReplaceWithSameModelElement;
         [FindsBy(How = How.CssSelector, Using = "[data-swap-type-enum-id=\"ReplaceWithDifferentModel\"]")]
         public IWebElement ReplaceWithDifferentModelElement;
+        [FindsBy(How = How.CssSelector, Using = "[data-swap-type-enum-id=\"ReplaceThePcb\"]")]
+        public IWebElement ReplacePcbElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-swap-type-selected")]
         public IWebElement SwapTypeNextButtonElement;
         [FindsBy(How = How.CssSelector, Using = ".form-control.js-mps-replacement-model-list")]
@@ -94,6 +110,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement SwapModelNextElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-reinstall-device-confirm")]
         public IWebElement ReInstallCommencementButtonElement;
+        [FindsBy(How = How.CssSelector, Using = "[data-original-title=\"Type: Email<br />Status: Responding\"]")]
+        public IWebElement EmailGreenIconElement;
+        
         
         
 
@@ -228,6 +247,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             SwapRequestElement.Click();
         }
 
+        public void IsEmailInstallationSuccessful()
+        {
+            RefreshManageDeviceScreen();
+            
+            if (Method() == "Email")
+            {
+                if (EmailGreenIconElement == null)
+                    throw new Exception("Email Green Icon is returned as null");
+
+                TestCheck.AssertIsEqual(true, EmailGreenIconElement.Displayed, "Email Green Icon is not displayed");
+            }
+           
+        }
+
         public void BeginReInstallationProcess()
         {
             if (InstallationRequestActionButtonsElement.Count > 1)
@@ -279,6 +312,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             return GetInstance<DealerSetCommunicationMethodPage>();
         }
+
+
+        public DealerSetCommunicationMethodPage ConfirmPcbProcess()
+        {
+            if (ReplacePcbElement == null)
+                throw new Exception("Swap confirmation pop up not displayed");
+            ReplacePcbElement.Click();
+            SwapTypeNextButtonElement.Click();
+
+            return GetInstance<DealerSetCommunicationMethodPage>();
+        }
+        
 
         public void ConfirmDifferentSwapDeviceType()
         {
@@ -473,6 +518,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetInstance<DealerCustomersExistingPage>();
         }
 
+        public void SendEmailForServiceRequest(string address, string subject, string model, string serial)
+        {
+            Subject = String.Format(Subject, subject);
+            Body = String.Format(Body, subject, model, serial);
+            ActionsModule.SendServiceRequestEmail(address, Subject, Body);
+            ActionsModule.RunConsumableOrderCreationJobs();
+        }
+
         public void IsInstallationCompleted()
         {
             
@@ -487,6 +540,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             //MpsJobRunnerPage.RunCreateOrderAndServiceRequestsCommandJob();
             MpsJobRunnerPage.RunConsumableOrderRequestsCommandJob();
             MpsJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob(MpsUtil.CreatedProposal(), Locale);
+            if (Method() == "Email")
+            {
+                MpsJobRunnerPage.RunRefreshPrintCountsFromEmailCommandJob(Locale);
+                WebDriver.Wait(DurationType.Second, 5);
+                MpsJobRunnerPage.RunCompleteInstallationCommandJob(MpsUtil.CreatedProposal());
+                WebDriver.Wait(DurationType.Second, 5);
+            }
+            
+
         }
 
         public void IsInstallationCompleted(string number1, string number2, string number3, string number4)
@@ -505,6 +567,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             //MpsJobRunnerPage.RunCreateOrderAndServiceRequestsCommandJob();
             MpsJobRunnerPage.RunConsumableOrderRequestsCommandJob();
             MpsJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob(MpsUtil.CreatedProposal(), Locale);
+            MpsJobRunnerPage.RunRefreshPrintCountsFromEmailCommandJob(Locale);
         }
 
         public void SelectLocationErrorIsDisplayed()

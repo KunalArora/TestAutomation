@@ -240,7 +240,30 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
            NewOrganisationElement.Click();
        }
 
-        public void SelectCustomerLanguage(string lang)
+       public void SelectSwissCustomerLanguage(string lang)
+       {
+           string language;
+
+           switch (lang)
+           {
+               case "":
+               case "Français":
+                   language = "Français";
+                   break;
+               case "Deutsch":
+                   language = "Deutsch";
+                   break;
+               default:
+                   language = lang;
+                   break;
+           }
+
+
+           SelectFromDropdown(CustomerMultipleLanguageElement, language);
+
+       }
+
+        public void SelectBelgianCustomerLanguage(string lang)
         {
             string language;
             
@@ -296,7 +319,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 try
                 {
                     var language = SpecFlow.GetContext("BelgianLanguage");
-                    SelectCustomerLanguage(language);
+                    SelectBelgianCustomerLanguage(language);
                 }
                 catch (KeyNotFoundException keyNotFound)
                 {
@@ -304,6 +327,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 }
 
                 
+            }
+
+            if (IsSwissSystem())
+            {
+                try
+                {
+                    var language = SpecFlow.GetContext("BelgianLanguage");
+                    SelectSwissCustomerLanguage(language);
+                }
+                catch (KeyNotFoundException)
+                {
+                    //Do nothing
+                }
             }
        }
 
@@ -468,7 +504,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
            switch (language)
            {
                case "Français":
-                   lang = "Church";
+                   lang = "Fondation";
                    break;
                case "Deutsch":
                    lang = "Einzelfirma";

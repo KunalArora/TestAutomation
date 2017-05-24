@@ -8,8 +8,8 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 {
     public static class MpsJobRunnerPage
     {
-        private const string Uaturl = @"http://online.{0}.cms.brotherqas.eu/sitecore/admin/integration/mps2/"; //@"http://online.brother.{0}.local/sitecore/admin/integration/mps2/"; 
-        private const string Testurl = @"http://online.{0}.brotherdv2.eu/sitecore/admin/integration/mps2/";
+        private const string Uaturl = @"http://online65.{0}.cms.uat.brother.eu.com/sitecore/admin/integration/mps2/"; //@"http://online.brother.{0}.local/sitecore/admin/integration/mps2/"; 
+        private const string Testurl = @"http://online65.{0}.cms.test.brother.eu.com/sitecore/admin/integration/mps2/";
         private const string CustomerAndPersonCommand = @"runcommand.aspx?command=MPS:SystemJobCreateCustomerAndPersonCommand";
         private const string ClickRateInvoiceCommand = @"runcommand.aspx?command=MPS:RaiseClickRateInvoicesCommand";
         
@@ -20,7 +20,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
         // NO LONGER AVAILABLE:
         // private const string SendClickRateInvoicesToSapCommand = @"runcommand.aspx?command=MPS:SendClickRateInvoicesToSapCommand";
 
-        private const string RefreshPrintCountsCommand = @"/runcommand.aspx?command=MPS:NEW:MeterReadEmailSyncCommand";
+        private const string RefreshPrintCountsCommand = @"runcommand.aspx?command=MPS:NEW:MeterReadEmailSyncCommand";
         
         // NEW COMMAND NAME WILL BE:
         private const string RefreshPrintCountsFromMedioCommand = @"runcommand.aspx?command=MPS:NEW:MeterReadCloudSyncCommand";
@@ -357,10 +357,10 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             string url = null;
             var country = Helper.Locale;
 
-            //if (country.Equals("uk"))
-            //{
-            //    country = "co.uk";
-            //}
+            if (country.Equals("uk"))
+            {
+                country = "co.uk";
+            }
 
             switch (Helper.GetRunTimeEnv())
             {
@@ -470,8 +470,13 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             */
         }
 
-        public static void RunRefreshPrintCountsCommandJob(string countryIso = null)
+        public static void RunRefreshPrintCountsFromEmailCommandJob(string countryIso = null)
         {
+            if (countryIso != null && countryIso.ToLower().Equals("uk"))
+            {
+                countryIso = @"gb";
+            }
+
             var webSite = CoinedUrl() + RefreshPrintCountsCommand
                           + (countryIso != null ? "&CountryIso=" + HttpUtility.UrlEncode(countryIso) : "");
 
@@ -482,12 +487,17 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
            
 
             Helper.MsgOutput(runResponse.Contains("Command run")
-                ? "RunRefreshPrintCountsCommandJob job ran successfully"
-                : "RunRefreshPrintCountsCommandJob probably did not run properly");
+                ? "RunRefreshPrintCountsFromEmailCommandJob job ran successfully"
+                : "RunRefreshPrintCountsFromEmailCommandJob probably did not run properly");
         }
 
         public static void RunRefreshPrintCountsFromMedioCommandJob(string proposalName = null, string countryIso = null)
         {
+            if (countryIso != null && countryIso.ToLower().Equals("uk"))
+            {
+                countryIso = @"gb";
+            }
+
             var webSite = CoinedUrl() + RefreshPrintCountsFromMedioCommand
                           + (proposalName != null ? "&ProposalName=" + HttpUtility.UrlEncode(proposalName) : "")
                           + (countryIso != null ? "&CountryIso=" + HttpUtility.UrlEncode(countryIso) : "");

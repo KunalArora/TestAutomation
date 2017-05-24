@@ -301,6 +301,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CloudMPSCheckNewPrinterWorks.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC113\SmokeTest-Cancellation\CloudMPSCancelInstallationRequestForAllCountries.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CloudMPSCancelInstallationRequestForAllCountries.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC113\SpecialPricing\LocalOfficeApproverChangeCustomerAddress.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1151,11 +1156,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC113\SmokeTest-Cancellation\CloudMPSCancelInstallationRequest.feature.cs">
-      <DependentUpon>CloudMPSCancelInstallationRequest.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC111\SmokeTest - Cloud_Email\CloudMPSFullCloudInstallation.feature.cs">
       <DependentUpon>CloudMPSFullCloudInstallation.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -1602,6 +1602,10 @@
     <None Include="Test Specifications\MPSTwoByCountries\BIEPC113\PrintersCheck\CloudMPSCheckNewPrinterWorks.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSCheckNewPrinterWorks.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwoByCountries\BIEPC113\SmokeTest-Cancellation\CloudMPSCancelInstallationRequestForAllCountries.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CloudMPSCancelInstallationRequestForAllCountries.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwoByCountries\BIEPC113\SpecialPricing\LocalOfficeApproverChangeCustomerAddress.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
@@ -2314,10 +2318,6 @@
     <None Include="Test Specifications\MPSTwoByCountries\BIEPC110\BUK\Service Request\CloudMPSServiceRequestOperations.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSServiceRequestOperations.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPSTwoByCountries\BIEPC113\SmokeTest-Cancellation\CloudMPSCancelInstallationRequest.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSCancelInstallationRequest.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwoByCountries\BIEPC111\SmokeTest - Cloud_Email\CloudMPSFullCloudInstallation.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

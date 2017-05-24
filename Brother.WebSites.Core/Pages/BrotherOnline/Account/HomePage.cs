@@ -329,7 +329,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public InvoiceToolsPage NavigateToInvoiceToolsPage()
         {
-            Driver.Navigate().GoToUrl("http://online.uk.brotherqas.eu/test/mps2/invoicetools/default.aspx");
+            var firstPart = SetBrotherOnlineBaseUrl();
+            Driver.Navigate().GoToUrl(firstPart + "/test/mps2/invoicetools/default.aspx");
             return GetInstance<InvoiceToolsPage>();
         }
 

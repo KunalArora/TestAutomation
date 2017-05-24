@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Brother.MPS.Tests.Specs.TestSpecifications.MPSTwoByCountries.CalculationEngine
+namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.CalculationEngine
 {
     using TechTalk.SpecFlow;
     
@@ -20,6 +20,7 @@ namespace Brother.MPS.Tests.Specs.TestSpecifications.MPSTwoByCountries.Calculati
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("CalculationEngineScenarios")]
+    [NUnit.Framework.IgnoreAttribute()]
     [NUnit.Framework.CategoryAttribute("TEST")]
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("MPS")]
@@ -37,6 +38,7 @@ namespace Brother.MPS.Tests.Specs.TestSpecifications.MPSTwoByCountries.Calculati
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CalculationEngineScenarios", "In order to verify that the calculation on MPS are working as expected\r\nAs an MPS" +
                     " user\r\nI want to go through all the screens and all the PDFs", ProgrammingLanguage.CSharp, new string[] {
+                        "ignore",
                         "TEST",
                         "UAT",
                         "MPS"});

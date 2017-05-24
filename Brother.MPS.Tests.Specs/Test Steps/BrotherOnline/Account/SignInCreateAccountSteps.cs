@@ -1,4 +1,6 @@
-﻿using System.Threading;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
@@ -22,7 +24,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         public void GivenIAmLoggedIntoBrotherOnlineUsing(string country, string emailAddress)
         {
             Helper.SetCountry(country);
-            CurrentPage = BasePage.LoadBolHomePage(CurrentDriver, BasePage.BaseUrl, "");
+            CurrentPage = BasePage.LoadBolHomePage(CurrentDriver, BasePage.BrotherOnlineBaseUrl, "");
             WhenIClickOnSignInCreateAnAccount(country);
             WhenIAmRedirectedToTheBrotherLoginRegisterPage();
             DoHaveAnAccountCheckbox();
@@ -37,7 +39,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             {
                 Helper.SetCountry(country);
-                CurrentPage = BasePage.LoadBolHomePage(CurrentDriver, BasePage.BaseUrl, "");
+                CurrentPage = BasePage.LoadBolHomePage(CurrentDriver, BasePage.BrotherOnlineBaseUrl, "");
                 WhenIClickOnSignInCreateAnAccount(country);
                 WhenIAmRedirectedToTheBrotherLoginRegisterPage();
                 WhenIEnterAValidEmailAddress(username);
@@ -288,7 +290,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         public void GivenIWantToCreateANewAccountWithBrotherOnline(string country)
         {
             Helper.SetCountry(country);
-            CurrentPage = BasePage.LoadBolHomePage(CurrentDriver, BasePage.BaseUrl, "");
+            CurrentPage = BasePage.LoadBolHomePage(CurrentDriver, BasePage.BrotherOnlineBaseUrl, "");
         }
 
         [Given(@"I Need A Brother Online ""(.*)"" Account In Order To Use Brother Online Services")]
@@ -326,7 +328,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         public void GivenIAmLoggedOntoBrotherOnlineUsingValidCredentials(string country)
         {
             Helper.SetCountry(country);
-            CurrentPage = BasePage.LoadBolHomePage(CurrentDriver, BasePage.BaseUrl, "");
+            CurrentPage = BasePage.LoadBolHomePage(CurrentDriver, BasePage.BrotherOnlineBaseUrl, "");
             GivenINeedABrotherOnlineAccountInOrderToUseBrotherOnlineServices(country);
         }
         
@@ -336,7 +338,8 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             // Set locale to direct to Brother Online Ireland
             Helper.SetCountry(country);
             var title = HomePage.WelcomePageCountryTitle(country);
-            CurrentPage = BasePage.LoadBolHomePage(CurrentDriver, BasePage.BaseUrl, title);
+            CurrentPage = BasePage.LoadBolHomePage(CurrentDriver, BasePage.BrotherOnlineBaseUrl, title);
+            //CurrentPage = BasePage.LoadBolHomePage(CurrentDriver, @"http://online.co.uk.cds.uat65.brother.eu.com", title);
         }
 
         [Then(@"I click on the sign in / create account button")]
@@ -351,7 +354,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
 
             Helper.SetCountry(country);
-            CurrentPage = BasePage.LoadBolHomePage(CurrentDriver, BasePage.BaseUrl, "");         
+            CurrentPage = BasePage.LoadBolHomePage(CurrentDriver, BasePage.BrotherOnlineBaseUrl, "");         
         }
 
         [When(@"I sign into Cloud MPS as a ""(.*)"" from ""(.*)""")]
@@ -437,7 +440,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             // Used to navigate back the home page (temporary) whilst
             // logged into BOL. Should navigate to the WelcomeBack page
-            NextPage = BasePage.LoadBolHomePage(CurrentDriver, BasePage.BaseUrl, "");
+            NextPage = BasePage.LoadBolHomePage(CurrentDriver, BasePage.BrotherOnlineBaseUrl, "");
         }
         [Then(@"If I go back to Brother Site home page on ""(.*)"" and ""(.*)""")]
         public void ThenIfIGoBackToBrotherSiteHomePageOnAnd(string web, string country)
@@ -946,7 +949,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         public void GivenIAlreadyHaveASetOfBrotherOnlineAccountCredentials(string country)
         {
             Helper.SetCountry(country);
-            CurrentPage = BasePage.LoadBolHomePage(CurrentDriver, BasePage.BaseUrl, "");
+            CurrentPage = BasePage.LoadBolHomePage(CurrentDriver, BasePage.BrotherOnlineBaseUrl, "");
         }
 
         [When(@"I click on Create Account for ""(.*)""")]
@@ -1317,6 +1320,20 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
 
         private void SignInAsARoleType(string role, string country)
         {
+            string language = null;
+
+            try
+            {
+                language = Selenium.Lib.Support.HelperClasses.SpecFlow.GetContext("BelgianLanguage");
+            }
+            catch (KeyNotFoundException)
+            {
+                
+                //Do nothing
+            }
+            
+            var pageUrl = CurrentDriver.Url;
+
             var username = role.Contains("Cloud") ? MpsUserLogins.Username(country, role, CurrentDriver) : role;
             var password = role.Contains("Cloud") ? MpsUserLogins.Password(role) : "P@$$w0rd"; //TestBUK1 P@$$w0rd
 
@@ -1324,11 +1341,22 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             {
                 SignInAsMpsOneUser(role);
             }
+            else if (language != null && (pageUrl.Contains("online65.be") && language.Contains("French") && username.Contains("Dealer")))
+            {
+                WhenIEnterAValidEmailAddress("MPS-BBE-UAT-Dealer3@brother.co.uk");
+                WhenIEnterAValidPassword("BEdealer3");
+            }
+            else if (language != null && (pageUrl.Contains("online65.ch") && language.Contains("Français") && username.Contains("Dealer")))
+            {
+                WhenIEnterAValidEmailAddress("MPS-BSW-UAT-Dealer3@brother.co.uk");
+                WhenIEnterAValidPassword("CHdealer3");
+            }
             else
             {
                 WhenIEnterAValidEmailAddress(username);
                 WhenIEnterAValidPassword(password);
             }
+            
         }
 
 

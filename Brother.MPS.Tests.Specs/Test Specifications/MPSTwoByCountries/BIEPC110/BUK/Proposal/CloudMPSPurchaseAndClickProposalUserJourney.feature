@@ -35,6 +35,7 @@ Scenario Outline: MPS Create MV Proposal
 	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Create new customer | Minimum Volume | 3 years  | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Pay upfront   | 800         | 800          |
 	
 	
+
 Scenario Outline: MPS Create Proposal PAYG
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
