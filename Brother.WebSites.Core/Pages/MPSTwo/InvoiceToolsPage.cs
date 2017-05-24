@@ -128,18 +128,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             var env = Env();
 
-            var subUrl = Driver.Url;
-            var newUrl = "test/mps2/invoicetools/printers.aspx?proposal={0}";
+            var firstPart = SetBrotherOnlineBaseUrl();
+
+            string subUrl;
+            var newUrl = "/test/mps2/invoicetools/printers.aspx?proposal={0}";
             var proposalId = SpecFlow.GetContext("SummaryPageContractId");
             newUrl = String.Format(newUrl, proposalId);
 
             if (env != null && (env.Equals("LOCAL") && IsUKSystem()))
             {
-                subUrl = subUrl.Substring(0, 34);
+                subUrl = "http://online.brother.co.uk.local";
             }
             else
             {
-                subUrl = subUrl.Substring(0, 31);
+                subUrl = firstPart;
             }
 
 
@@ -158,21 +160,23 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void NavigateToInvoiceToolRaiseInvoicePage()
         {
 
-            var env = Env(); 
+            var env = Env();
 
-            var subUrl = Driver.Url;
-            var newUrl = "test/mps2/invoicetools/raise.aspx?proposal={0}";
+            var firstPart = SetBrotherOnlineBaseUrl();
+
+            string subUrl;
+            var newUrl = "/test/mps2/invoicetools/raise.aspx?proposal={0}";
             var proposalId = SpecFlow.GetContext("SummaryPageContractId");
             var contractRef = SpecFlow.GetContext("ProposalId");
             newUrl = String.Format(newUrl, contractRef);
 
             if (env != null && (env.Equals("LOCAL") && IsUKSystem()))
             {
-                subUrl = subUrl.Substring(0, 34);
+                subUrl = "http://online.brother.co.uk.local";
             }
             else
             {
-                subUrl = subUrl.Substring(0, 31);
+                subUrl = firstPart;
             }
 
 
@@ -185,20 +189,22 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void NavigateToInvoiceToolViewInvoicesPage()
         {
 
+            var firstPart = SetBrotherOnlineBaseUrl();
+
             var env = Env();
 
-            var subUrl = Driver.Url;
+            string subUrl;
             var newUrl = "test/mps2/invoicetools/view.aspx?proposal={0}";
             var proposalId = SpecFlow.GetContext("SummaryPageContractId");
             newUrl = String.Format(newUrl, proposalId);
 
             if (env != null && (env.Equals("LOCAL") && IsUKSystem()))
             {
-                subUrl = subUrl.Substring(0, 34);
+                subUrl = "http://online.brother.co.uk.local";
             }
             else
             {
-                subUrl = subUrl.Substring(0, 31);
+                subUrl = firstPart;
             }
 
 
