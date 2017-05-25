@@ -786,8 +786,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     WebDriver.Wait(DurationType.Second, 5);
 
 
-                    wait.Message = String.Format("{0}:: Timeout of [{1}] seconds trying to locate element {2}", methodName, wait.Timeout,
-                                                            InstallationSerialNumberCheckSuccessIconElement);
+                    wait.Message = String.Format("{0}:: Timeout of [{1}] seconds trying to locate element {2}",
+                        methodName, wait.Timeout,
+                        InstallationSerialNumberCheckSuccessIconElement);
                     elementStatus = InstallationSerialNumberCheckSuccessIconElement.Displayed;
 
                     MsgOutput(String.Format("Element Status = [{0}]", elementStatus));
@@ -814,6 +815,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     retries++;
                     WebDriver.Wait(DurationType.Second, 5);
                 }
+                
 
             }
             WebDriver.SetWebDriverDefaultTimeOuts(WebDriver.DefaultTimeOut.Implicit);
@@ -890,12 +892,21 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void ClosePopUpModal()
         {
-            SerialNumberFieldElement.Click();
+            try
+            {
+                SerialNumberFieldElement.Click();
 
-            WaitForElementToExistById("WhereIsMySerialNumberModal", 5);
+                WaitForElementToExistById("WhereIsMySerialNumberModal", 5);
 
-            if(WhereIsMyDevicePopUpElements != null)
-                WhereIsMyDevicePopUpElements.Click();
+                if (WhereIsMyDevicePopUpElements != null)
+                    WhereIsMyDevicePopUpElements.Click();
+            }
+            catch (WebDriverTimeoutException )
+            {
+                //move on   
+            
+            }
+            
         }
 
         public void EnterIpAddress()

@@ -40,7 +40,7 @@ Scenario Outline: MPS PCB Swap Device
 	And I generate PCB swapping device request with "<Method>" and "<Type>"
 	And installer installed new PCB swap device for "<Type>" communication
 	Then the newly installed device is displayed on Managed Device screen
-	And I can complete the swap process
+	And I can complete PCB swap process
 	And I can sign out of Brother Online
 
 	

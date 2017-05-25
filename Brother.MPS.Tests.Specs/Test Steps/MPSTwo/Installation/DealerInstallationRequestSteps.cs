@@ -485,7 +485,16 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
         [When(@"installer installed new PCB swap device for ""(.*)"" communication")]
         public void WhenInstallerInstalledNewPcbSwapDeviceForCommunication(string type)
         {
-            WhenInstallerInstalledTheNewSwapDeviceForCommunication(type);
+            CurrentPage.As<DealerManageDevicesPage>().ClickToExposeSwapInstallationRequest();
+            CurrentPage.As<DealerManageDevicesPage>().IsInstallationRequestScreenDisplayed();
+            NextPage = CurrentPage.As<DealerManageDevicesPage>().LaunchInstallerPage();
+            CurrentPage.As<InstallerDeviceInstallationPage>().EnterContractReference();
+            CurrentPage.As<InstallerDeviceInstallationPage>().ProceedOnInstaller();
+
+           // WhenIEnterSwapDeviceSerialNumberForCommunication(type);
+            //WhenIEnterTheDeviceIpAddress();
+            ThenICanConnectSwapDeviceToBrotherEnvironment();
+            // ThenICanCompleteDeviceInstallation();
         }
 
 
@@ -523,6 +532,24 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             CurrentPage.As<CompleteSwapProcessPage>().IsCompleteSwapProcessScreenDisplayed();
             CurrentPage.As<CompleteSwapProcessPage>().IsNewDeviceSerialNumberDisplayed();
             CurrentPage.As<CompleteSwapProcessPage>().IsOldDeviceSerialNumberDisplayed();
+            NextPage = CurrentPage.As<CompleteSwapProcessPage>().CompleteSwapProcessThroughPrintCountSwap();
+            CurrentPage.As<DealerManageDevicesPage>().IsSwapInstallationRequestSent();
+        }
+
+        [Then(@"I can complete PCB swap process")]
+        public void ThenICanCompletePcbSwapProcess()
+        {
+            ThenICanCompleteThePcbSwapProcess();
+        }
+
+
+        public void ThenICanCompleteThePcbSwapProcess()
+        {
+            //CurrentPage.As<DealerManageDevicesPage>().IsNewlySwappedDeviceDisplayed();
+            NextPage = CurrentPage.As<DealerManageDevicesPage>().CompleteSwapProcess();
+            CurrentPage.As<CompleteSwapProcessPage>().IsCompleteSwapProcessScreenDisplayed();
+            //CurrentPage.As<CompleteSwapProcessPage>().IsNewDeviceSerialNumberDisplayed();
+            //urrentPage.As<CompleteSwapProcessPage>().IsOldDeviceSerialNumberDisplayed();
             NextPage = CurrentPage.As<CompleteSwapProcessPage>().CompleteSwapProcessThroughPrintCountSwap();
             CurrentPage.As<DealerManageDevicesPage>().IsSwapInstallationRequestSent();
         }
