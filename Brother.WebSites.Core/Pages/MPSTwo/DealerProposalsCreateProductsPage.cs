@@ -100,6 +100,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement ProductMarginValueElement;
         [FindsBy(How = How.Id, Using = "InstallationPackCostPrice")]
         public IWebElement InstallationPackCostPriceElement;
+        [FindsBy(How = How.CssSelector, Using = ".js-mps-installation.mps-qa-installation [readonly]")]
+        public IWebElement InstallationPackReadOnlyCostPriceElement;
         [FindsBy(How = How.Id, Using = "InstallationPackMargin")]
         public IWebElement InstallationPackMarginElement;
         [FindsBy(How = How.Id, Using = "InstallationPackSellPrice")]
@@ -835,7 +837,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterInstallationPackCostPrice(string value)
         {
+
             ClearAndType(InstallationPackCostPriceElement, value);
+            
+        }
+
+        public void IsInstallationCostReadOnly()
+        {
+            TestCheck.AssertIsEqual(true, InstallationPackReadOnlyCostPriceElement.Displayed, 
+                                            "Installation cost is not read only");
         }
 
 
