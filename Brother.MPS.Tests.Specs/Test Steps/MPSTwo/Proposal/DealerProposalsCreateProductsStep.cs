@@ -427,6 +427,13 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             CurrentPage.As<DealerProposalsCreateProductsPage>().AddAllDetailsToProposal();
         }
 
+        [Then(@"Brother installation cost price ca not be changed by a dealer")]
+        public void ThenBrotherInstallationCostPriceCaNotBeChangedByADealer()
+        {
+            CurrentPage.As<DealerProposalsCreateProductsPage>().IsInstallationCostReadOnly();
+        }
+
+
         [Then(@"error message displayed contains the ""(.*)"" of the specified country")]
         public void ThenErrorMessageDisplayedContainsTheCurrencyOfTheSpecifiedCountry(string currency)
         {
