@@ -173,7 +173,7 @@ Scenario Outline: MPS LO View Opened Proposal
 
 	Scenarios: 
 	| Role                            | Country |
-	| Cloud MPS Local Office Approver | Germany |
+	#| Cloud MPS Local Office Approver | Germany |
 	| Cloud MPS Local Office Approver | Austria |
 	
 # LO Approver can view confirmed/rejected/signed contracts

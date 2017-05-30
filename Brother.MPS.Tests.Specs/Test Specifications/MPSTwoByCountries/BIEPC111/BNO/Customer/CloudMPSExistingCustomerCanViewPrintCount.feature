@@ -12,6 +12,8 @@ Scenario Outline: Existing Norwegian Customer can be used to create a new contra
 	And I sign back into Cloud MPS as a "<Role1>" from "<Country>"
 	When I install the device on the contract with "<Method>" communication and "<Type>" installation 
 	And I can sign out of Brother Online
+	And I navigate to the Invoice tool homepage
+	And I refresh daily print counts
 	And I sign into Cloud MPS as a "<ExistingCustomer>" from "<Country>"
 	And I navigate to customer dashboard page
 	And I navigate to Print Count page

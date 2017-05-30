@@ -103,7 +103,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 reason = "Scaduta";
             }
-            else if (IsGermanSystem() || IsAustriaSystem() || IsSwissSystem())
+            else if (IsGermanSystem() || IsAustriaSystem())
             {
                 reason = "Andere";
             }
@@ -126,6 +126,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             else if (IsBelgiumSystem())
             {
                 reason = BelgiumReason();
+            }
+            else if (IsSwissSystem())
+            {
+                reason = SwissReason();
             }
             else if (IsPolandSystem())
             {
@@ -155,6 +159,25 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     break;
                 case "Dutch" :
                     reason = "Andere";
+                    break;
+            }
+
+            return reason;
+
+        }
+
+        private string SwissReason()
+        {
+            var reason = "";
+            var language = SpecFlow.GetContext("BelgianLanguage");
+
+            switch (language)
+            {
+                case "Français":
+                    reason = "Autres";
+                    break;
+                case "Dutch":
+                    reason = "Deutsch";
                     break;
             }
 

@@ -554,6 +554,14 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             CurrentPage.As<DealerManageDevicesPage>().IsSwapInstallationRequestSent();
         }
 
+        [When(@"I refresh daily print counts")]
+        public void WhenIRefreshDailyPrintCounts()
+        {
+            CurrentPage.As<InvoiceToolsPage>().LaunchDailyPrintCountsPage();
+            CurrentPage.As<InvoiceToolsPage>().RefreshPrintCounts();
+        }
+
+
         [When(@"I navigate to the Local Office Approver device management Screen")]
         public void WhenINavigateToTheLocalOfficeApproverDeviceManagementScreen()
         {

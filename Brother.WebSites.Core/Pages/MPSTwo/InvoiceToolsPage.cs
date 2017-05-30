@@ -43,6 +43,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IList<IWebElement> DownloadBankInvoiceElements;
         [FindsBy(How = How.CssSelector, Using = "th[scope=\"col\"]")]
         public IList<IWebElement> NumberOfColumnElements;
+        [FindsBy(How = How.CssSelector, Using = "[name=\"RadioButtonListOptions\"][value=\"REFRESH\"]")]
+        public IWebElement RefreshAllPrintCountsRadioButton;
+        [FindsBy(How = How.CssSelector, Using = "[name=\"RadioButtonListOptions\"][value=\"REBUILDSERIAL\"]")]
+        public IWebElement RefreshACertainPrintCountsRadioButton;
+        [FindsBy(How = How.CssSelector, Using = "#inputSerialNumber")]
+        public IWebElement SerialNumberInputField;
+        [FindsBy(How = How.CssSelector, Using = "#buttonExecute")]
+        public IWebElement RefreshPrintCountsButton;
+        
+        
         
 
         
@@ -212,6 +222,45 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             Driver.Navigate().GoToUrl(conUrl);
 
+        }
+
+        public void LaunchDailyPrintCountsPage()
+        {
+
+            var firstPart = SetBrotherOnlineBaseUrl();
+
+            var env = Env();
+
+            string subUrl;
+            const string newUrl = "http://online65.co.uk.cms.uat.brother.eu.com/sitecore/admin/projects/mps2/MedioDailyPrintCountProcessor.aspx";
+            //var proposalId = SpecFlow.GetContext("SummaryPageContractId");
+            //newUrl = String.Format(newUrl, proposalId);
+
+            if (env != null && (env.Equals("LOCAL") && IsUKSystem()))
+            {
+                subUrl = "http://online.brother.co.uk.local";
+            }
+            else
+            {
+                subUrl = firstPart;
+            }
+
+
+            //var conUrl = subUrl + newUrl;
+
+            const string conUrl = newUrl;
+
+            Driver.Navigate().GoToUrl(conUrl);
+
+        }
+
+        public void RefreshPrintCounts()
+        {
+            RefreshACertainPrintCountsRadioButton.Click();
+            var serial = SpecFlow.GetContext("UsedSerialNumber");
+            ClearAndType(SerialNumberInputField, serial);
+            WebDriver.Wait(DurationType.Second, 1);
+            RefreshPrintCountsButton.Click();
         }
 
         
