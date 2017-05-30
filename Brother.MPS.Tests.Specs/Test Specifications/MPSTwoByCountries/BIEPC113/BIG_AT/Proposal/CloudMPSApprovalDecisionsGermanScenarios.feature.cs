@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Brother.MPS.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC113.BIG_AT.Proposal
+namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC113.BIG_AT.Proposal
 {
     using TechTalk.SpecFlow;
     
@@ -304,7 +304,6 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("MPS LO View Opened Proposal")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Germany", null)]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Austria", null)]
         public virtual void MPSLOViewOpenedProposal(string role, string country, string[] exampleTags)
         {

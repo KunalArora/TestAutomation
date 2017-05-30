@@ -11,16 +11,18 @@ Scenario Outline: Approver Decline Proposal for other Countries
 	Given I verify and store "<Country>" purchase and click proposal bypass status
 	Then "<Role>" can decline Awaiting "<Language>" Approval "<Country>" "<ContractType>" proposal with "<UsageType>" and "<Length>" and "<Billing>"
 
-	Scenarios: 
-	| Country     | Role                            | ContractType                 | UsageType     | Length | Billing       |
-	| Switzerland | Cloud MPS Local Office Approver | Purchase & Click mit Service | Pay As You Go | 36     | Quartalsweise |
+	Scenarios:
+
+	| Country     | Role                            | ContractType                  | UsageType      | Length | Billing              | Language |
+	| Switzerland | Cloud MPS Local Office Approver | Purchase & Click with Service | Volume minimal | 36     | Quarterly in Arrears | Français |
+	| Switzerland | Cloud MPS Local Office Approver | Purchase & Click with Service | Mindestvolumen | 36     | Quarterly in Arrears | Deutsch  |
 	
 #
 # Approve Signed Contract
 #
 # Accept1, 2
 Scenario Outline: Approver can decide to reject or approve the contract for other Countries
-	Given "<Country>" Dealer have created a "<ContractType>" contract with "<UsageType>" and "<Length>" and "<Billing>"
+	Given "<Country>" Dealer with "<Language>" language have created a "<ContractType>" contract with "<UsageType>" and "<Length>" and "<Billing>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When Approver navigate to Contract Awaiting Acceptance page from Dashboard
 	Then Approver can view all the contracts that have been signed by dealer
@@ -28,12 +30,14 @@ Scenario Outline: Approver can decide to reject or approve the contract for othe
 	And I sign out of Cloud MPS
 
 	Scenarios:
-	| Country     | Role                            | ContractType                 | UsageType     | Length | Billing       |
-	| Switzerland | Cloud MPS Local Office Approver | Purchase & Click mit Service | Pay As You Go | 36     | Quartalsweise |
-	
+
+	| Country     | Role                            | ContractType                  | UsageType      | Length | Billing              | Language |
+	| Switzerland | Cloud MPS Local Office Approver | Purchase & Click with Service | Volume minimal | 36     | Quarterly in Arrears | Français |
+	| Switzerland | Cloud MPS Local Office Approver | Purchase & Click with Service | Mindestvolumen | 36     | Quarterly in Arrears | Deutsch  |
+
 # Accept5, 6
 Scenario Outline: Approver can approve the contract for other Countries
-	Given "<Country>" Dealer have created a "<ContractType>" contract with "<UsageType>" and "<Length>" and "<Billing>"
+	Given "<Country>" Dealer with "<Language>" language have created a "<ContractType>" contract with "<UsageType>" and "<Length>" and "<Billing>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When Approver navigate to Contract Awaiting Acceptance page from Dashboard
 	Then Approver can view all the contracts that have been signed by dealer
@@ -44,12 +48,13 @@ Scenario Outline: Approver can approve the contract for other Countries
 
 	Scenarios:
 
-	| Country     | Role                            | ContractType                 | UsageType     | Length | Billing       |
-	| Switzerland | Cloud MPS Local Office Approver | Purchase & Click mit Service | Pay As You Go | 36     | Quartalsweise |
+	| Country     | Role                            | ContractType                  | UsageType      | Length | Billing              | Language |
+	| Switzerland | Cloud MPS Local Office Approver | Purchase & Click with Service | Volume minimal | 36     | Quarterly in Arrears | Français |
+	| Switzerland | Cloud MPS Local Office Approver | Purchase & Click with Service | Mindestvolumen | 36     | Quarterly in Arrears | Deutsch  |
 	
 # Reject1,2
 Scenario Outline: Approver can reject the contract for other Countries
-	Given "<Country>" Dealer have created a "<ContractType>" contract with "<UsageType>" and "<Length>" and "<Billing>"
+	Given "<Country>" Dealer with "<Language>" language have created a "<ContractType>" contract with "<UsageType>" and "<Length>" and "<Billing>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When Approver navigate to Contract Awaiting Acceptance page from Dashboard
 	Then Approver can view all the contracts that have been signed by dealer
@@ -59,12 +64,13 @@ Scenario Outline: Approver can reject the contract for other Countries
 
 	Scenarios:
 
-	| Country     | Role                            | ContractType                 | UsageType     | Length | Billing       |
-	| Switzerland | Cloud MPS Local Office Approver | Purchase & Click mit Service | Pay As You Go | 36     | Quartalsweise |
+	| Country     | Role                            | ContractType                  | UsageType      | Length | Billing              | Language |
+	| Switzerland | Cloud MPS Local Office Approver | Purchase & Click with Service | Volume minimal | 36     | Quarterly in Arrears | Français |
+	| Switzerland | Cloud MPS Local Office Approver | Purchase & Click with Service | Mindestvolumen | 36     | Quarterly in Arrears | Deutsch  |
 	
 # Reject3
 Scenario Outline: Dealer can resign rejected contract for other Countries
-	Given "<Country>" Dealer have created a "<ContractType>" contract with "<UsageType>" and "<Length>" and "<Billing>"
+	Given "<Country>" Dealer with "<Language>" language have created a "<ContractType>" contract with "<UsageType>" and "<Length>" and "<Billing>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When Approver navigate to Contract Awaiting Acceptance page from Dashboard
 	Then Approver can view all the contracts that have been signed by dealer
@@ -76,9 +82,11 @@ Scenario Outline: Dealer can resign rejected contract for other Countries
 	Then I can successfully re-sign the rejected contract
 	And I sign out of Cloud MPS
 
-	Scenarios: 
-	| Country     | Role                            | ContractType                 | UsageType     | Length | Billing       | Role2            |
-	| Switzerland | Cloud MPS Local Office Approver | Purchase & Click mit Service | Pay As You Go | 36     | Quartalsweise | Cloud MPS Dealer |
+	Scenarios:
+
+	| Country     | Role                            | ContractType                  | UsageType      | Length | Billing              | Language |
+	| Switzerland | Cloud MPS Local Office Approver | Purchase & Click with Service | Volume minimal | 36     | Quarterly in Arrears | Français |
+	| Switzerland | Cloud MPS Local Office Approver | Purchase & Click with Service | Mindestvolumen | 36     | Quarterly in Arrears | Deutsch  |
 	
 		
 # LO Approver can view open offers

@@ -1341,12 +1341,12 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             {
                 SignInAsMpsOneUser(role);
             }
-            else if (language != null && (pageUrl.Contains("online65.be") && language.Contains("French") && username.Contains("Dealer")))
+            else if (language != null && (pageUrl.Contains("online65.be") && language.Contains("French") && username.Contains("Dealer3")))
             {
                 WhenIEnterAValidEmailAddress("MPS-BBE-UAT-Dealer3@brother.co.uk");
                 WhenIEnterAValidPassword("BEdealer3");
             }
-            else if (language != null && (pageUrl.Contains("online65.ch") && language.Contains("Français") && username.Contains("Dealer")))
+            else if (language != null && (pageUrl.Contains("online65.ch") && language.Contains("Français") && username.Contains("Dealer3")))
             {
                 WhenIEnterAValidEmailAddress("MPS-BSW-UAT-Dealer3@brother.co.uk");
                 WhenIEnterAValidPassword("CHdealer3");
