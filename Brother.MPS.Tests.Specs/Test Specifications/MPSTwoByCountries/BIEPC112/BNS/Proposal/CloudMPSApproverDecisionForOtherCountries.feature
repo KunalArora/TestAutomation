@@ -86,6 +86,7 @@ Scenario Outline: MPS Dealer Resign Rejected Contract
 	
 	
 # LO Approver can view open offers
+@ignore
 Scenario Outline: MPS LO View Opened Offers
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When I navigate to ProposalPage

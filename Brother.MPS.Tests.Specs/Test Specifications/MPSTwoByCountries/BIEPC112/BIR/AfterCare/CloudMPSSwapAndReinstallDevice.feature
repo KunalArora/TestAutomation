@@ -48,7 +48,7 @@ Scenarios:
 
 	| Role                            | Country | ContractType                  | UsageType      | Role1            | Method | Type | Length  | Billing              |
 	| Cloud MPS Local Office Approver | Ireland | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  | 3 years | Quarterly in Arrears |
-	#| Cloud MPS Local Office Approver | Ireland | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR  | 4 years | Quarterly in Arrears |
+	| Cloud MPS Local Office Approver | Ireland | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR  | 4 years | Quarterly in Arrears |
 
 
 Scenario Outline: MPS Swap Device with Different Device
