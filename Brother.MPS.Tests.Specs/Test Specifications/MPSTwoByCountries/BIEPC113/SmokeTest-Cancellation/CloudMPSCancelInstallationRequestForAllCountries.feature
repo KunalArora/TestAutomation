@@ -87,8 +87,8 @@ Scenarios:
 	| Cloud MPS Local Office Approver | Poland      | Buy + Click                        | Pakiet wydruków                           | Cloud MPS Dealer | Cloud  | BOR  | 4 lata     | Miesięczny / Monthly      |
 	| Cloud MPS Local Office Approver | Finland     | Purchase & Click with Service      | Minimitulostusmäärä                       | Cloud MPS Dealer | Cloud  | Web  | 3 vuotta   | 3 kk välein käytön mukaan |
 	| Cloud MPS Local Office Approver | Finland     | Purchase & Click with Service      | Minimitulostusmäärä                       | Cloud MPS Dealer | Cloud  | BOR  | 4 vuotta   | 3 kk välein käytön mukaan |
-	| Cloud MPS Local Office Approver | Switzerland | Purchase & Click with Service      | Pay As You Go                             | Cloud MPS Dealer | Cloud  | BOR  | 36         | Quartalsweise             |
-	| Cloud MPS Local Office Approver | Switzerland | Purchase & Click with Service      | Pay As You Go                             | Cloud MPS Dealer | Cloud  | Web  | 36         | Quartalsweise             |
+	#| Cloud MPS Local Office Approver | Switzerland | Purchase & Click with Service      | Pay As You Go                             | Cloud MPS Dealer | Cloud  | BOR  | 36         | Quartalsweise             |
+	#| Cloud MPS Local Office Approver | Switzerland | Purchase & Click with Service      | Pay As You Go                             | Cloud MPS Dealer | Cloud  | Web  | 36         | Quartalsweise             |
 	
 
 
@@ -276,9 +276,9 @@ Scenarios:
 	| Cloud MPS Local Office Approver | Poland      | Buy + Click                        | Pakiet wydruków                           | Cloud MPS Dealer | Cloud  | 4 lata     | Miesięczny / Monthly      | BOR  |
 	| Cloud MPS Local Office Approver | Finland     | Purchase & Click with Service      | Minimitulostusmäärä                       | Cloud MPS Dealer | Cloud  | 3 vuotta   | 3 kk välein käytön mukaan | Web  |
 	| Cloud MPS Local Office Approver | Finland     | Purchase & Click with Service      | Minimitulostusmäärä                       | Cloud MPS Dealer | Cloud  | 4 vuotta   | 3 kk välein käytön mukaan | BOR  |
-	| Cloud MPS Local Office Approver | Switzerland | Purchase & Click with Service      | Pay As You Go                             | Cloud MPS Dealer | Cloud  | 36         | Quartalsweise             | BOR  |
-	| Cloud MPS Local Office Approver | Switzerland | Purchase & Click with Service      | Pay As You Go                             | Cloud MPS Dealer | Cloud  | 36         | Quartalsweise             | Web  |
-	
+	#| Cloud MPS Local Office Approver | Switzerland | Purchase & Click with Service      | Pay As You Go                             | Cloud MPS Dealer | Cloud  | 36         | Quartalsweise             | BOR  |
+	#| Cloud MPS Local Office Approver | Switzerland | Purchase & Click with Service      | Pay As You Go                             | Cloud MPS Dealer | Cloud  | 36         | Quartalsweise             | Web  |
+	#
 
 
 Scenario Outline: MPS Cancel MLang Cloud Installation
