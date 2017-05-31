@@ -586,7 +586,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             catch (KeyNotFoundException)
             {
 
-                language = "Français";
+                language = "Deutsch";
             }
 
             switch (language)
