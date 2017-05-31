@@ -7,6 +7,7 @@ Feature: CloudMPSDannishApproverDecisionFeature
 #
 # Decline
 #
+@ignore
 Scenario Outline: MPS LO Decline Proposal
 	Given "<Country>" dealer has created "<ContractType>" proposal of awaiting proposal with "<UsageType>" and "<Length>" and "<Billing>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"

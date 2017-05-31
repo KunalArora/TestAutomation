@@ -13,24 +13,24 @@ namespace Brother.Tests.Selenium.Lib.Support
     public static class MpsUserLogins
     {
 
-        private const string GermanUrl = @"online.de";
-        private const string AustriaUrl = @"online.at";
-        private const string EnglandUrl = @"online.uk";
-        private const string FranceUrl = @"online.fr";
-        private const string SpainUrl = @"online.es";
-        private const string ItalyUrl = @"online.it";
-        private const string IrelandUrl = @"online.ie";
-        private const string BelgiumUrl = @"online.be";
-        private const string PolandUrl = @"online.pl";
-        private const string Denmark = @"online.dk";
-        private const string Sweden = @"online.se";
-        private const string Dutch = @"online.nl";
-        private const string Switzerland = @"online.ch";
-        private const string Finland = @"online.fi";
-        private const string Norway = @"online.no";
-        private const string existingSerialNumber = @"A1T010001";
-        private const string existingSerialNumberBIG = @"A1T010002";
-        private const string existingSerialNumberAUT = @"A1T010003";
+        private const string GermanUrl = @"online65.de";
+        private const string AustriaUrl = @"online65.at";
+        private const string EnglandUrl = @"online65.uk";
+        private const string FranceUrl = @"online65.fr";
+        private const string SpainUrl = @"online65.es";
+        private const string ItalyUrl = @"online65.it";
+        private const string IrelandUrl = @"online65.ie";
+        private const string BelgiumUrl = @"online65.be";
+        private const string PolandUrl = @"online65.pl";
+        private const string Denmark = @"online65.dk";
+        private const string Sweden = @"online65.se";
+        private const string Dutch = @"online65.nl";
+        private const string Switzerland = @"online65.ch";
+        private const string Finland = @"online65.fi";
+        private const string Norway = @"online65.no";
+        private const string ExistingSerialNumber = @"A1T010001";
+        private const string ExistingSerialNumberBig = @"A1T010002";
+        private const string ExistingSerialNumberAut = @"A1T010003";
 
 
         public static string UsedSerialNumber(IWebDriver driver)
@@ -40,15 +40,15 @@ namespace Brother.Tests.Selenium.Lib.Support
 
             if (currentUrl.Contains(EnglandUrl))
             {
-                serial = existingSerialNumber;
+                serial = ExistingSerialNumber;
             }
             else if (currentUrl.Contains(GermanUrl))
             {
-                serial = existingSerialNumberBIG;
+                serial = ExistingSerialNumberBig;
             }
             else if (currentUrl.Contains(AustriaUrl))
             {
-                serial = existingSerialNumberAUT;
+                serial = ExistingSerialNumberAut;
             }
 
             HelperClasses.SpecFlow.SetContext("SerialNumber", serial);
