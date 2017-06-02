@@ -3,6 +3,7 @@ using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.Tests.Specs.BrotherOnline.Account;
 using Brother.Tests.Specs.MPSTwo.Approver;
+using Brother.Tests.Specs.MPSTwo.CalculationEngine;
 using Brother.Tests.Specs.MPSTwo.SendToBank;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
@@ -1877,7 +1878,9 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             instance.WhenIAcceptTheDefaultValuesOfTheDevice();
 
             var clickPriceStepInstance = new DealerProposalsCreateClickPriceStep();
-            if (CurrentDriver.Url.Contains("online65.ch") || CurrentDriver.Url.Contains("online65.brother.ch.local"))
+            var calculationEngine = new CalculationEngineSteps();
+
+            if (calculationEngine.UsageType(usageType).Equals("Pay As You Go"))
             {
                 clickPriceStepInstance.WhenITypeClickPriceVolumeOfAnd("800", "800");
             }
@@ -1938,7 +1941,9 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             instance.WhenIAcceptTheDefaultValuesOfTheDevice();
 
             var clickPriceStepInstance = new DealerProposalsCreateClickPriceStep();
-            if (CurrentDriver.Url.Contains("online65.ch") || CurrentDriver.Url.Contains("online.brother.ch.local"))
+            var calculationEngine = new CalculationEngineSteps();
+
+            if (calculationEngine.UsageType(usageType).Equals("Pay As You Go"))
             {
                 clickPriceStepInstance.WhenITypeClickPriceVolumeOfAnd("800", "800");
             }
@@ -2003,7 +2008,9 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             instance.WhenIAcceptTheDefaultValuesOfTheDevice();
 
             var clickPriceStepInstance = new DealerProposalsCreateClickPriceStep();
-            if (CurrentDriver.Url.Contains("online65.ch") || CurrentDriver.Url.Contains("online.brother.ch.local"))
+            var calculationEngine = new CalculationEngineSteps();
+
+            if (calculationEngine.UsageType(usageType).Equals("Pay As You Go"))
             {
                 clickPriceStepInstance.WhenITypeClickPriceVolumeOfAnd("800", "800");
             }
@@ -2034,7 +2041,9 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             instance.WhenIAcceptTheDefaultValuesOfTheDevice("", "Brother");
 
             var clickPriceStepInstance = new DealerProposalsCreateClickPriceStep();
-            if (CurrentDriver.Url.Contains("online65.ch") || CurrentDriver.Url.Contains("online.brother.ch.local"))
+            var calculationEngine = new CalculationEngineSteps();
+
+            if (calculationEngine.UsageType(usageType).Equals("Pay As You Go"))
             {
                 clickPriceStepInstance.WhenITypeClickPriceVolumeOfAnd("1000", "1000");
             }
@@ -2075,7 +2084,9 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             instance.WhenIAcceptTheDefaultValuesOfTheDevice();
 
             var clickPriceStepInstance = new DealerProposalsCreateClickPriceStep();
-            if (CurrentDriver.Url.Contains("online65.ch") || CurrentDriver.Url.Contains("online.brother.ch.local"))
+            var calculationEngine = new CalculationEngineSteps();
+
+            if (calculationEngine.UsageType(usageType).Equals("Pay As You Go"))
             {
                 clickPriceStepInstance.WhenITypeClickPriceVolumeOfAnd("800", "800");
             }
@@ -2105,7 +2116,9 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             instance.WhenIAcceptTheDefaultValuesOfTheDevice();
 
             var clickPriceStepInstance = new DealerProposalsCreateClickPriceStep();
-            if (CurrentDriver.Url.Contains("online65.ch") || CurrentDriver.Url.Contains("online.brother.ch.local"))
+            var calculationEngine = new CalculationEngineSteps();
+
+            if (calculationEngine.UsageType(usageType).Equals("Pay As You Go"))
             {
                 clickPriceStepInstance.WhenITypeClickPriceVolumeOfAnd("800", "800");
             }
@@ -2137,7 +2150,9 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
            instance.WhenIAcceptTheDefaultValuesOfTheDevice();
 
             var clickPriceStepInstance = new DealerProposalsCreateClickPriceStep();
-            if (CurrentDriver.Url.Contains("online65.ch") || CurrentDriver.Url.Contains("online.brother.ch.local"))
+            var calculationEngine = new CalculationEngineSteps();
+
+            if (calculationEngine.UsageType(usageType).Equals("Pay As You Go"))
             {
                 clickPriceStepInstance.WhenITypeClickPriceVolumeOfAnd("800", "800");
             }
