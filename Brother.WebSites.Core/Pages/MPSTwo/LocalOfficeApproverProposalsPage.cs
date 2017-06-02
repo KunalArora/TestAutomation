@@ -176,8 +176,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 case "Français":
                     reason = "Autres";
                     break;
-                case "Dutch":
-                    reason = "Deutsch";
+                case "Deutsch":
+                    reason = "Andere";
                     break;
             }
 
