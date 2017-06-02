@@ -883,7 +883,7 @@ namespace Brother.Tests.Specs.MPSTwo.CalculationEngine
         }
 
 
-        private string UsageType(string usageType)
+        public string UsageType(string usageType)
         {
             var type = "";
             if (usageType.Equals("Minimum Volume") 
@@ -899,7 +899,9 @@ namespace Brother.Tests.Specs.MPSTwo.CalculationEngine
                 || usageType.Equals("Mindestvolumen")
                 || usageType.Equals("Volume minimum")
                 || usageType.Equals("Minimitulostusmäärä")
-                || usageType.Equals("Per kwartaal achteraf"))
+                || usageType.Equals("Per kwartaal achteraf")
+                || usageType.Equals("Volume minimal")
+                )
                 
             {
                 type = "Minimum Volume";
@@ -915,6 +917,8 @@ namespace Brother.Tests.Specs.MPSTwo.CalculationEngine
                 || usageType.Equals("Paiement selon la consommation réelle de pages")
                 || usageType.Equals("Werkelijk verbruik")
                 || usageType.Equals("Løbende betaling")
+                || usageType.Equals("Mode prépayé")
+                
                 )
             {
                 type = "Pay As You Go";
