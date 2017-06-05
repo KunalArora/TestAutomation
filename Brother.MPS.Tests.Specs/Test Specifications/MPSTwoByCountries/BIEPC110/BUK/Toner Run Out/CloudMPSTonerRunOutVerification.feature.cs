@@ -278,7 +278,7 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("EUM - Engine Threshold Enabled Contract Disabled And Toner Life Equal Engine Thre" +
             "shold")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Pay As You Go", "Mckenzie20170215041634@mailinator.com", "Cloud MPS Dealer", "Cloud", "BOR", "4 years", "Quarterly in Arrears", "DCP-9020CDW", "DCP-L8400CDN", "MFC-L2700DW", "HL-L6250DN", "A1T010536", "A1T010537", "A1T010538", "A1T010539", "Cloud MPS BIE Admin", "20", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Pay As You Go", "Coleen2017062011828@mailinator.com", "Cloud MPS Dealer", "Cloud", "BOR", "4 years", "Quarterly in Arrears", "DCP-9020CDW", "DCP-L8400CDN", "MFC-L2700DW", "HL-L6250DN", "A1T010536", "A1T010537", "A1T010538", "A1T010539", "Cloud MPS BIE Admin", "20", null)]
         public virtual void EUM_EngineThresholdEnabledContractDisabledAndTonerLifeEqualEngineThreshold(
                     string role, 
                     string country, 
@@ -399,7 +399,7 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("EUM - Engine Threshold Enabled Contract Disabled And Toner Life Less Than Engine " +
             "Threshold")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Pay As You Go", "Shane2017022234445@mailinator.com", "Cloud MPS Dealer", "Cloud", "BOR", "4 years", "Quarterly in Arrears", "DCP-9020CDW", "DCP-L8400CDN", "MFC-L2700DW", "HL-L6250DN", "A1T010552", "A1T010553", "A1T010554", "A1T010555", "Cloud MPS BIE Admin", "20", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Pay As You Go", "Arnulfo2017062045021@mailinator.com", "Cloud MPS Dealer", "Cloud", "BOR", "4 years", "Quarterly in Arrears", "DCP-9020CDW", "DCP-L8400CDN", "MFC-L2700DW", "HL-L6250DN", "A1T010552", "A1T010553", "A1T010554", "A1T010555", "Cloud MPS BIE Admin", "20", null)]
         public virtual void EUM_EngineThresholdEnabledContractDisabledAndTonerLifeLessThanEngineThreshold(
                     string role, 
                     string country, 
@@ -520,7 +520,7 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("EUM - Engine Threshold Enabled Contract Enabled And Toner Life Equal Engine Thres" +
             "hold")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Pay As You Go", "Bradon2017022013800@mailinator.com", "Cloud MPS Dealer", "Cloud", "BOR", "4 years", "Quarterly in Arrears", "DCP-9020CDW", "DCP-L8400CDN", "MFC-L2700DW", "HL-L6250DN", "A1T010556", "A1T010557", "A1T010558", "A1T010559", "Cloud MPS BIE Admin", "20", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Pay As You Go", "Graty2017062070810@mailinator.com", "Cloud MPS Dealer", "Cloud", "BOR", "4 years", "Quarterly in Arrears", "DCP-9020CDW", "DCP-L8400CDN", "MFC-L2700DW", "HL-L6250DN", "A1T010556", "A1T010557", "A1T010558", "A1T010559", "Cloud MPS BIE Admin", "20", null)]
         public virtual void EUM_EngineThresholdEnabledContractEnabledAndTonerLifeEqualEngineThreshold(
                     string role, 
                     string country, 
@@ -649,7 +649,7 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("EUM - Engine Threshold Enabled Contract Enabled And Toner Life Less Than Engine T" +
             "hreshold")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Pay As You Go", "Lonna2017022011628@mailinator.com", "Cloud MPS Dealer", "Cloud", "BOR", "4 years", "Quarterly in Arrears", "DCP-9020CDW", "DCP-L8400CDN", "MFC-L2700DW", "HL-L6250DN", "A1T010548", "A1T010549", "A1T010550", "A1T010551", "Cloud MPS BIE Admin", "20", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Pay As You Go", "Epifania2017062095631@mailinator.com", "Cloud MPS Dealer", "Cloud", "BOR", "4 years", "Quarterly in Arrears", "DCP-9020CDW", "DCP-L8400CDN", "MFC-L2700DW", "HL-L6250DN", "A1T010548", "A1T010549", "A1T010550", "A1T010551", "Cloud MPS BIE Admin", "20", null)]
         public virtual void EUM_EngineThresholdEnabledContractEnabledAndTonerLifeLessThanEngineThreshold(
                     string role, 
                     string country, 
@@ -778,7 +778,7 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("EUM - Engine Threshold Enabled Contract Enabled And Toner Life Equal Contract Thr" +
             "eshold")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Pay As You Go", "Jeffie2017022014524@mailinator.com", "Cloud MPS Dealer", "Cloud", "BOR", "4 years", "Quarterly in Arrears", "DCP-9020CDW", "DCP-L8400CDN", "MFC-L2700DW", "HL-L6250DN", "A1T010544", "A1T010545", "A1T010546", "A1T010547", "Cloud MPS BIE Admin", "20", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Pay As You Go", "Aurelio2017065064738@mailinator.com", "Cloud MPS Dealer", "Cloud", "BOR", "4 years", "Quarterly in Arrears", "DCP-9020CDW", "DCP-L8400CDN", "MFC-L2700DW", "HL-L6250DN", "A1T010544", "A1T010545", "A1T010546", "A1T010547", "Cloud MPS BIE Admin", "20", null)]
         public virtual void EUM_EngineThresholdEnabledContractEnabledAndTonerLifeEqualContractThreshold(
                     string role, 
                     string country, 
@@ -907,7 +907,7 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("EUM - Engine Threshold Enabled Contract Enabled And Toner Life Less Than Contract" +
             " Threshold")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Pay As You Go", "Jeffie20170216085642@mailinator.com", "Cloud MPS Dealer", "Cloud", "BOR", "4 years", "Quarterly in Arrears", "DCP-9020CDW", "DCP-L8400CDN", "MFC-L2700DW", "HL-L6250DN", "A1T010540", "A1T010541", "A1T010542", "A1T010543", "Cloud MPS BIE Admin", "20", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Pay As You Go", "Vada2017065092430@mailinator.com", "Cloud MPS Dealer", "Cloud", "BOR", "4 years", "Quarterly in Arrears", "DCP-9020CDW", "DCP-L8400CDN", "MFC-L2700DW", "HL-L6250DN", "A1T010540", "A1T010541", "A1T010542", "A1T010543", "Cloud MPS BIE Admin", "20", null)]
         public virtual void EUM_EngineThresholdEnabledContractEnabledAndTonerLifeLessThanContractThreshold(
                     string role, 
                     string country, 
@@ -1036,7 +1036,7 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("EUM - Engine Threshold Disabled Contract Enabled And Toner Life Equal Contract Th" +
             "reshold")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Pay As You Go", "Ariana2017022010411@mailinator.com", "Cloud MPS Dealer", "Cloud", "BOR", "4 years", "Quarterly in Arrears", "DCP-9020CDW", "DCP-L8400CDN", "MFC-L2700DW", "HL-L6250DN", "A1T010281", "A1T010282", "A1T010283", "A1T010284", "Cloud MPS BIE Admin", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Pay As You Go", "Lashonda2017062022430@mailinator.com", "Cloud MPS Dealer", "Cloud", "BOR", "4 years", "Quarterly in Arrears", "DCP-9020CDW", "DCP-L8400CDN", "MFC-L2700DW", "HL-L6250DN", "A1T010281", "A1T010282", "A1T010283", "A1T010284", "Cloud MPS BIE Admin", null)]
         public virtual void EUM_EngineThresholdDisabledContractEnabledAndTonerLifeEqualContractThreshold(
                     string role, 
                     string country, 
@@ -1162,7 +1162,7 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("EUM - Engine Threshold Disabled Contract Enabled And Toner Life Less Than Contrac" +
             "t Threshold")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Pay As You Go", "Shane2017022233153@mailinator.com", "Cloud MPS Dealer", "Cloud", "BOR", "4 years", "Quarterly in Arrears", "DCP-9020CDW", "DCP-L8400CDN", "MFC-L2700DW", "HL-L6250DN", "A1T010285", "A1T010286", "A1T010287", "A1T010288", "Cloud MPS BIE Admin", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Pay As You Go", "Randi2017062041219@mailinator.com", "Cloud MPS Dealer", "Cloud", "BOR", "4 years", "Quarterly in Arrears", "DCP-9020CDW", "DCP-L8400CDN", "MFC-L2700DW", "HL-L6250DN", "A1T010285", "A1T010286", "A1T010287", "A1T010288", "Cloud MPS BIE Admin", null)]
         public virtual void EUM_EngineThresholdDisabledContractEnabledAndTonerLifeLessThanContractThreshold(
                     string role, 
                     string country, 
