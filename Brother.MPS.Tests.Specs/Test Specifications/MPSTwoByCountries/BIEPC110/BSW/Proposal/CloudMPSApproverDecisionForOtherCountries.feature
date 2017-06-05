@@ -84,9 +84,9 @@ Scenario Outline: Dealer can resign rejected contract for other Countries
 
 	Scenarios:
 
-	| Country     | Role                            | ContractType                  | UsageType      | Length | Billing              | Language |
-	| Switzerland | Cloud MPS Local Office Approver | Purchase & Click with Service | Volume minimal | 36     | Quarterly in Arrears | Français |
-	| Switzerland | Cloud MPS Local Office Approver | Purchase & Click with Service | Mindestvolumen | 36     | Quarterly in Arrears | Deutsch  |
+	| Country     | Role                            | ContractType                  | UsageType      | Length | Billing              | Language | Role2            |
+	| Switzerland | Cloud MPS Local Office Approver | Purchase & Click with Service | Volume minimal | 36     | Quarterly in Arrears | Français | Cloud MPS Dealer |
+	| Switzerland | Cloud MPS Local Office Approver | Purchase & Click with Service | Mindestvolumen | 36     | Quarterly in Arrears | Deutsch  | Cloud MPS Dealer |
 	
 		
 # LO Approver can view open offers

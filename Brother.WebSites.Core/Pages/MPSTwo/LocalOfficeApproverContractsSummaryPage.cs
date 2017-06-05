@@ -223,7 +223,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             var reason = "";
 
-            if (IsAustriaSystem() || IsGermanSystem() || IsSwissSystem())
+            if (IsAustriaSystem() || IsGermanSystem())
             {
                 reason = "Andere";
 
@@ -269,6 +269,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 reason = BelgianLanguage();
             }
+            else if (IsSwissSystem())
+            {
+                reason = SwissLanguage();
+            }
             else if (IsFinlandSystem())
             {
                 reason = "Muu";
@@ -309,6 +313,39 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
                 default:
                     lang = "Expiré";
+                    break;
+            }
+
+            return lang;
+        }
+
+
+        private String SwissLanguage()
+        {
+            string lang;
+            string language;
+
+            try
+            {
+                language = SpecFlow.GetContext("BelgianLanguage");
+            }
+            catch (KeyNotFoundException)
+            {
+
+                language = "Deutsch";
+            }
+
+            switch (language)
+            {
+                case "Français":
+                    lang = "Expiré";
+                    break;
+                case "Deutsch":
+                    lang = "Verlopen";
+                    break;
+
+                default:
+                    lang = "Verlopen";
                     break;
             }
 
