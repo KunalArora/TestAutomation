@@ -175,9 +175,9 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Dealer can resign rejected contract for other Countries")]
-        [NUnit.Framework.TestCaseAttribute("Switzerland", "Cloud MPS Local Office Approver", "Purchase & Click with Service", "Volume minimal", "36", "Quarterly in Arrears", "Français", null)]
-        [NUnit.Framework.TestCaseAttribute("Switzerland", "Cloud MPS Local Office Approver", "Purchase & Click with Service", "Mindestvolumen", "36", "Quarterly in Arrears", "Deutsch", null)]
-        public virtual void DealerCanResignRejectedContractForOtherCountries(string country, string role, string contractType, string usageType, string length, string billing, string language, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("Switzerland", "Cloud MPS Local Office Approver", "Purchase & Click with Service", "Volume minimal", "36", "Quarterly in Arrears", "Français", "Cloud MPS Dealer", null)]
+        [NUnit.Framework.TestCaseAttribute("Switzerland", "Cloud MPS Local Office Approver", "Purchase & Click with Service", "Mindestvolumen", "36", "Quarterly in Arrears", "Deutsch", "Cloud MPS Dealer", null)]
+        public virtual void DealerCanResignRejectedContractForOtherCountries(string country, string role, string contractType, string usageType, string length, string billing, string language, string role2, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer can resign rejected contract for other Countries", exampleTags);
 #line 72
@@ -198,7 +198,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 79
  testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 80
- testRunner.Given(string.Format("I sign into Cloud MPS as a \"<Role2>\" from \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role2, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 81
  testRunner.When("I navigate to Rejected screen", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 82
