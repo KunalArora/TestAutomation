@@ -1151,7 +1151,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 //"Installation not successful");
                 TestCheck.AssertIsEqual(true, CloudInstallationConnectionStatusIconElements.Displayed, "Device is not connect");
                 //WaitForElementToBeClickableById("content_0_InstallationSuccessfullyFinished", 10);
-                CompleteCloudInstallationComfirmationElement.Click();
+               // CompleteCloudInstallationComfirmationElement.Click();
                 MpsJobRunnerPage.NotifyBocOfNewChanges(number1);
                 MpsJobRunnerPage.NotifyBocOfNewChanges(number2);
                 MpsJobRunnerPage.NotifyBocOfNewChanges(number3);
