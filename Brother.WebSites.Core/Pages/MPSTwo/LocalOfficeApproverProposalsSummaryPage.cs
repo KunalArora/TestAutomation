@@ -56,7 +56,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SelectDeclineReason()
         {
-            if (IsAustriaSystem() || IsGermanSystem() || IsSwissSystem())
+            if (IsAustriaSystem() || IsGermanSystem())
             {
                 SelectFromDropdown(DeclineReasonElement, "Andere");
             }
@@ -92,6 +92,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 SelectFromDropdown(DeclineReasonElement, RejectionReason());
             }
+            else if (IsSwissSystem())
+            {
+                SelectFromDropdown(DeclineReasonElement, SwissRejectionReason());
+            }
             else if (IsPolandSystem())
             {
                 SelectFromDropdown(DeclineReasonElement, "Inny");
@@ -117,6 +121,31 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     reason = "Autre";
                     break;
                 case "Dutch" :
+                    reason = "Andere";
+                    break;
+                default:
+                    reason = "Andere";
+                    break;
+            }
+
+            return reason;
+        }
+
+        private string SwissRejectionReason()
+        {
+            var reason = "";
+            var language = SpecFlow.GetContext("BelgianLanguage");
+
+            switch (language)
+            {
+                case "Français":
+                    reason = "Autres";
+                    break;
+                case "Deutsch":
+                    reason = "Andere";
+                    break;
+
+                default:
                     reason = "Andere";
                     break;
             }
