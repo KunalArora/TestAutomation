@@ -169,7 +169,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var germany = country.Equals("Germany");
             var germanyLeasing = germany && leasing;
 
-            var customerRef = germanyLeasing ? SpecFlow.GetContext("CustomerReference") : SpecFlow.GetContext("DownloadedContractId");
+            var customerRef = germanyLeasing ? SpecFlow.GetContext("GeneratedCustomerReference") : SpecFlow.GetContext("DownloadedContractId");
 
             var contractId = customerRef;
 

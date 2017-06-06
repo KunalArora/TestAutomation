@@ -107,8 +107,9 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
         public static string CustomerReference()
         {
             var todayDate = DateTime.Now;
-
-            return "CT" + todayDate.ToString("MMdHHmmss");
+            var time = "CT" + todayDate.ToString("MMdHHmmss");
+            HelperClasses.SpecFlow.SetContext("GeneratedCustomerReference", time);
+            return time;
 
         }
 
