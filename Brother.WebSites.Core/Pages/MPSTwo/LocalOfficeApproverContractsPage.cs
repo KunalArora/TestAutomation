@@ -104,10 +104,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         
         public void IsContractsSignedByDealerDisplayed()
         {
+            try
+            {
+                var createdProposal = MpsUtil.CreatedProposal();
+                ActionsModule.SearchForNewlyProposalItem(Driver, createdProposal);
+                ActionsModule.IsNewlyCreatedItemDisplayed(Driver);
+            }
+            catch (StaleElementReferenceException)
+            {
+                WebDriver.Wait(DurationType.Second, 10);
+                var createdProposal = MpsUtil.CreatedProposal();
+                ActionsModule.SearchForNewlyProposalItem(Driver, createdProposal);
+                ActionsModule.IsNewlyCreatedItemDisplayed(Driver);
+            }
             
-            var createdProposal = MpsUtil.CreatedProposal();
-            ActionsModule.SearchForNewlyProposalItem(Driver, createdProposal);
-            ActionsModule.IsNewlyCreatedItemDisplayed(Driver);
         }
 
         public DealerApprovedProposalPage NavigateToDealerApprovedProposalPage()

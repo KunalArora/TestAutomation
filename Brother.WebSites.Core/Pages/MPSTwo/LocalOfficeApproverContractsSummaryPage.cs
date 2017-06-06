@@ -341,11 +341,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     lang = "Expiré";
                     break;
                 case "Deutsch":
-                    lang = "Verlopen";
+                    lang = "Andere";
                     break;
 
                 default:
-                    lang = "Verlopen";
+                    lang = "Andere";
                     break;
             }
 
