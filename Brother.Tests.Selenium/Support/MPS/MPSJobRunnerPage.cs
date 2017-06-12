@@ -53,9 +53,9 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 
         public static readonly Dictionary<string, string> AuthHeader = new Dictionary<string, string>
         {
-           // { @"X-BROTHER-Auth", @".Kol%CV#<X$6o4C4/0WKxK36yYaH10" } //QAS
+            { @"X-BROTHER-Auth", @".Kol%CV#<X$6o4C4/0WKxK36yYaH10" } //QAS
             //{ @"X-BROTHER-Auth", @"OX6Z{mO~nQ87rE!32j6Sjo!21@+`by" }
-            { @"X-BROTHER-Auth", @"0<*87kV?_dtqrr?5+S<L6?W(BO;bF$" } //Pre-prod
+           // { @"X-BROTHER-Auth", @"0<*87kV?_dtqrr?5+S<L6?W(BO;bF$" } //Pre-prod
             
         };
 
