@@ -1855,6 +1855,27 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         }
 
 
+
+        [Given(@"I have created a German Purchase and Click proposal for ""(.*)""")]
+        public void GivenIHaveCreatedAGermanPurchaseAndClickProposal(string serverName)
+        {
+            GivenIamOnMpsNewProposalPage();
+            CurrentPage.As<DealerProposalsCreateDescriptionPage>().SetServerName(serverName);
+
+            WhenIFillProposalDescriptionForContractType("Easy Print Pro & Service");
+
+            var stepInstance = new DealerProposalsCreateTermAndTypeStep();
+            stepInstance.EditTermAndTypeTabForPurchaseOffer("Mindestvolumen", "4 Jahre", "Halbjährlich");
+
+            var instance = new DealerProposalsCreateProductsStep();
+            instance.WhenIDisplayDeviceScreen("HL-L8350CDW");
+            instance.WhenIAcceptTheDefaultValuesOfTheDevice();
+
+            var clickPricestepInstance = new DealerProposalsCreateClickPriceStep();
+            clickPricestepInstance.WhenIEnterClickPriceVolumeOf("2000", "2000");
+        }
+
+
         [Given(@"I have created a ""(.*)"" proposal for ""(.*)"" with ""(.*)"" and ""(.*)"" and ""(.*)""")]
         public void GivenIHaveCreatedAProposalWithAndAnd(string contractType, string serverName, string usageType, string length, string billing)
         {
@@ -1908,18 +1929,47 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
             stepInstance.WhenIPriceHardwareRadioButton("Tick");
 
             var instance = new DealerProposalsCreateProductsStep();
-            instance.WhenIDisplayDeviceScreen("DCP-L8400CDN");
+            instance.WhenIDisplayDeviceScreen("DCP-L8450CDW");
             instance.WhenIAcceptTheDefaultValuesOfTheDevice();
 
             var clickPriceStepInstance = new DealerProposalsCreateClickPriceStep();
             if (CurrentDriver.Url.Contains("online65.ch") || CurrentDriver.Url.Contains("online.brother.ch.local"))
             {
-                clickPriceStepInstance.WhenITypeClickPriceVolumeOfAnd("800", "800");
+                clickPriceStepInstance.WhenITypeClickPriceVolumeOfAnd("1000", "1000");
             }
             else
             {
-                clickPriceStepInstance.WhenIEnterClickPriceVolumeOf("800", "800");
+                clickPriceStepInstance.WhenIEnterClickPriceVolumeOf("1000", "1000");
             } 
+        }
+
+        public void GivenIHaveCreatedPurchaseAndClickProposalFor(string usageType, string length, string billing, string refs)
+        {
+            GivenIamOnMpsNewProposalPage();
+            CurrentPage.As<DealerProposalsCreateDescriptionPage>().SetServerName(refs);
+
+            WhenIFillProposalDescriptionForContractType("Purchase & Click with Service");
+
+            var customerInformationStepInstance = new DealerProposalsCreateCustomerInformationStep();
+            customerInformationStepInstance.WhenISelectButtonForCustomerDataCapture("Create new customer");
+            var stepInstance = new DealerProposalsCreateTermAndTypeStep();
+            stepInstance.WhenIEnterUsageTypeContractLengthAndBillingOnTermAndTypeDetails
+                (usageType, length, billing);
+            stepInstance.WhenIPriceHardwareRadioButton("Tick");
+
+            var instance = new DealerProposalsCreateProductsStep();
+            instance.WhenIDisplayDeviceScreen("DCP-L8450CDW");
+            instance.WhenIAcceptTheDefaultValuesOfTheDevice();
+
+            var clickPriceStepInstance = new DealerProposalsCreateClickPriceStep();
+            if (CurrentDriver.Url.Contains("online65.ch") || CurrentDriver.Url.Contains("online.brother.ch.local"))
+            {
+                clickPriceStepInstance.WhenITypeClickPriceVolumeOfAnd("1000", "1000");
+            }
+            else
+            {
+                clickPriceStepInstance.WhenIEnterClickPriceVolumeOf("1000", "1000");
+            }
         }
 
 
