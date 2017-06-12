@@ -20,8 +20,10 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.PRODUCTION
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("CloudMPSDealerCanSignContractInProduction")]
+    [NUnit.Framework.IgnoreAttribute()]
     [NUnit.Framework.CategoryAttribute("MPS")]
     [NUnit.Framework.CategoryAttribute("PROD")]
+    [NUnit.Framework.CategoryAttribute("UAT")]
     public partial class CloudMPSDealerCanSignContractInProductionFeature
     {
         
@@ -36,8 +38,10 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.PRODUCTION
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CloudMPSDealerCanSignContractInProduction", "In order to progress an approved proposal to contract\r\nAs a dealer\r\nI want to be " +
                     "able to sign an approve proposal", ProgrammingLanguage.CSharp, new string[] {
+                        "ignore",
                         "MPS",
-                        "PROD"});
+                        "PROD",
+                        "UAT"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -127,9 +131,8 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Dealer Can Sign A Purchase And Click Contract in Prod")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Cloud MPS Local Office Approver", "https://web5.online.brother.co.uk", "Web_5", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Cloud MPS Local Office Approver", "https://web6.online.brother.co.uk", "Web_6", null)]
-        public virtual void DealerCanSignAPurchaseAndClickContractInProd(string role, string country, string role2, string web, string serverName, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Cloud MPS Local Office Approver", "https://p1.online65.co.uk.cds.prod.brother.eu.com", "Web_1", "Cloud", "Web", null)]
+        public virtual void DealerCanSignAPurchaseAndClickContractInProd(string role, string country, string role2, string web, string serverName, string method, string type, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer Can Sign A Purchase And Click Contract in Prod", exampleTags);
 #line 41
@@ -160,43 +163,125 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.And("I can successfully sign the contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 54
  testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 55
+ testRunner.And(string.Format("I sign back into \"{0}\" Cloud MPS as a \"{1}\" from \"{2}\"", role2, web, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 56
+ testRunner.And("the contract created above is approved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 57
+ testRunner.And(string.Format("I sign back into \"{0}\" Cloud MPS as a \"{1}\" from \"{2}\"", role, web, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 58
+ testRunner.And(string.Format("I generate installation request for the contract with \"{0}\" communication and \"{1" +
+                        "}\" installation", method, type), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 59
+ testRunner.And("I extract the installer url from Installation Request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 60
+ testRunner.And("I navigate to the installer page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 64
+ testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Dealer Can Sign A German Purchase And Click Contract in Prod")]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Germany", "Cloud MPS Local Office Approver", "https://p1.online65.de.cds.prod.brother.eu.com", "Web_1", "Cloud", "Web", null)]
+        public virtual void DealerCanSignAGermanPurchaseAndClickContractInProd(string role, string country, string role2, string web, string serverName, string method, string type, string[] exampleTags)
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer Can Sign A German Purchase And Click Contract in Prod", exampleTags);
+#line 75
+this.ScenarioSetup(scenarioInfo);
+#line 76
+ testRunner.Given(string.Format("I sign as \"{0}\" into \"{1}\" for \"{2}\"", role, web, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 77
+ testRunner.And(string.Format("I have created a German Purchase and Click proposal for \"{0}\"", serverName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 78
+ testRunner.And("I am on Proposal List page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 79
+ testRunner.And("I send the created German proposal for approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 80
+ testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 81
+ testRunner.And(string.Format("I sign back into \"{0}\" Cloud MPS as a \"{1}\" from \"{2}\"", role2, web, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 82
+ testRunner.And("I approve the purchase and click proposal created above", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 83
+ testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 84
+ testRunner.And(string.Format("I sign back into \"{0}\" Cloud MPS as a \"{1}\" from \"{2}\"", role, web, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 85
+ testRunner.When("I navigate to dealer contract approved proposal page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 86
+ testRunner.Then("I can start the process of signing the contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 87
+ testRunner.And("I can successfully sign the contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 88
+ testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 89
+ testRunner.And(string.Format("I sign back into \"{0}\" Cloud MPS as a \"{1}\" from \"{2}\"", role2, web, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 90
+ testRunner.And("the contract created above is approved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 91
+ testRunner.And(string.Format("I sign back into \"{0}\" Cloud MPS as a \"{1}\" from \"{2}\"", role, web, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 92
+ testRunner.And(string.Format("I generate installation request for the contract with \"{0}\" communication and \"{1" +
+                        "}\" installation", method, type), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 93
+ testRunner.And("I extract the installer url from Installation Request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 94
+ testRunner.And("I navigate to the installer page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 98
+ testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Other Dealers Can Sign A Purchase And Click Contract in Prod")]
-        public virtual void OtherDealersCanSignAPurchaseAndClickContractInProd(string role, string country, string role2, string web, string serverName, string contractType, string usageType, string length, string billing, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "France", "Cloud MPS Local Office Approver", "https://p1.online65.fr.cds.prod.brother.eu.com", "Web_1", "Buy & Click", "Engagement sur un minimum volume de pages", "4 ans", "Trimestriellement à terme échu", "Cloud", "Web", null)]
+        public virtual void OtherDealersCanSignAPurchaseAndClickContractInProd(string role, string country, string role2, string web, string serverName, string contractType, string usageType, string length, string billing, string method, string type, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Other Dealers Can Sign A Purchase And Click Contract in Prod", exampleTags);
-#line 71
+#line 110
 this.ScenarioSetup(scenarioInfo);
-#line 72
+#line 111
  testRunner.Given(string.Format("I sign as \"{0}\" into \"{1}\" for \"{2}\"", role, web, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 73
+#line 112
  testRunner.And(string.Format("I have created a \"{0}\" proposal for \"{1}\" with \"{2}\" and \"{3}\" and \"{4}\"", contractType, serverName, usageType, length, billing), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 74
+#line 113
  testRunner.And("I am on Proposal List page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 75
+#line 114
  testRunner.And("I send the created proposal for approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 76
+#line 115
  testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 77
+#line 116
  testRunner.And(string.Format("I sign back into \"{0}\" Cloud MPS as a \"{1}\" from \"{2}\"", role2, web, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 78
+#line 117
  testRunner.And("I approve the purchase and click proposal created above", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 79
+#line 118
  testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 80
+#line 119
  testRunner.And(string.Format("I sign back into \"{0}\" Cloud MPS as a \"{1}\" from \"{2}\"", role, web, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 81
+#line 120
  testRunner.When("I navigate to dealer contract approved proposal page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 82
+#line 121
  testRunner.Then("I can start the process of signing the contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 83
+#line 122
  testRunner.And("I can successfully sign the contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 84
+#line 123
  testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 124
+ testRunner.And(string.Format("I sign back into \"{0}\" Cloud MPS as a \"{1}\" from \"{2}\"", role2, web, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 125
+ testRunner.And("the contract created above is approved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 126
+ testRunner.And(string.Format("I sign back into \"{0}\" Cloud MPS as a \"{1}\" from \"{2}\"", role, web, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 127
+ testRunner.And(string.Format("I generate installation request for the contract with \"{0}\" communication and \"{1" +
+                        "}\" installation", method, type), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 128
+ testRunner.And("I extract the installer url from Installation Request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 129
+ testRunner.And("I navigate to the installer page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

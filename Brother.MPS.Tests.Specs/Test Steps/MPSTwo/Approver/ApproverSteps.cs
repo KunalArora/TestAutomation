@@ -672,6 +672,7 @@ namespace Brother.Tests.Specs.MPSTwo.Approver
 
         [Given(@"the contract created above is approved")]
         [Then(@"the contract created above is approved")]
+        [When(@"the contract created above is approved")]
         public void ThenTheContractCreatedAboveIsApprovedWithCreditCheck()
         {
              var instance3 = new AccountManagementSteps();

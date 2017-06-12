@@ -8,8 +8,8 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 {
     public static class MpsJobRunnerPage
     {
-        private const string Uaturl = @"http://online65.{0}.cms.uat.brother.eu.com/sitecore/admin/integration/mps2/"; //@"http://online.brother.{0}.local/sitecore/admin/integration/mps2/"; 
-        private const string Testurl = @"http://online65.{0}.cms.test.brother.eu.com/sitecore/admin/integration/mps2/";
+        private const string Uaturl = @"http://online65.{0}.cms.prod.brother.eu.com/sitecore/admin/integration/mps2/"; //@"http://online.brother.{0}.local/sitecore/admin/integration/mps2/"; 
+        private const string Testurl = @"http://online65.{0}.cms.test.brother.eu.com/sitecore/admin/integration/mps2/"; //online65.co.uk.cms.prod.brother.eu.com
         private const string CustomerAndPersonCommand = @"runcommand.aspx?command=MPS:SystemJobCreateCustomerAndPersonCommand";
         private const string ClickRateInvoiceCommand = @"runcommand.aspx?command=MPS:RaiseClickRateInvoicesCommand";
         
@@ -53,8 +53,9 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 
         public static readonly Dictionary<string, string> AuthHeader = new Dictionary<string, string>
         {
-            { @"X-BROTHER-Auth", @".Kol%CV#<X$6o4C4/0WKxK36yYaH10" }
+            { @"X-BROTHER-Auth", @".Kol%CV#<X$6o4C4/0WKxK36yYaH10" } //QAS
             //{ @"X-BROTHER-Auth", @"OX6Z{mO~nQ87rE!32j6Sjo!21@+`by" }
+           // { @"X-BROTHER-Auth", @"0<*87kV?_dtqrr?5+S<L6?W(BO;bF$" } //Pre-prod
             
         };
 

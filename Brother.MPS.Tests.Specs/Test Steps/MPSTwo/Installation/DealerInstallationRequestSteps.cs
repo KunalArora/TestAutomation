@@ -20,6 +20,8 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
         }
 
         [Given(@"I generate installation request for the contract with ""(.*)"" communication and ""(.*)"" installation")]
+        [When(@"I generate installation request for the contract with ""(.*)"" communication and ""(.*)"" installation")]
+        [Then(@"I generate installation request for the contract with ""(.*)"" communication and ""(.*)"" installation")]
         public void GivenIGenerateInstallationRequestForTheContractWithCommunicationAndInstallation(string method, string type)
         {
             WhenINavigateToTheContractManageDeviceScreen();
@@ -107,6 +109,8 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
 
 
         [Given(@"I extract the installer url from Installation Request")]
+        [Then(@"I extract the installer url from Installation Request")]
+        [When(@"I extract the installer url from Installation Request")]
         public void GivenIExtractTheInstallerUrlFromInstallationRequest()
         {
             CurrentPage.As<DealerManageDevicesPage>().ClickOnActionButtonOnDisplay();
@@ -118,6 +122,7 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
 
         [When(@"I navigate to the installer page")]
         [Given(@"I navigate to the installer page")]
+        [Then(@"I navigate to the installer page")]
         public void GivenINavigateToTheInstallerPage()
         {
             NextPage = CurrentPage.As<DealerManageDevicesPage>().LaunchInstallerPage();
@@ -126,6 +131,7 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
 
         [Then(@"I enter the contract reference number")]
         [When(@"I enter the contract reference number")]
+        [Given(@"I enter the contract reference number")]
         public void WhenIEnterTheContractReferenceNumber()
         {
           CurrentPage.As<InstallerDeviceInstallationPage>().EnterContractReference();
@@ -153,9 +159,9 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             CurrentPage.As<InstallerDeviceInstallationPage>().EnterSerialNumber(serial, serial1, serial2, serial3);
         }
 
-
-
+        [Then(@"I enter device serial number for ""(.*)"" communication")]
         [When(@"I enter device serial number for ""(.*)"" communication")]
+        [Given(@"I enter device serial number for ""(.*)"" communication")]
         public void WhenIEnterDeviceSerialNumberForCommunication(string method)
         {
             CurrentPage.As<InstallerDeviceInstallationPage>().VerifyTimeZoneIsDisplayed(method);
@@ -200,8 +206,9 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
         }
 
 
-
+        [Then(@"I enter the device IP address")]
         [When(@"I enter the device IP address")]
+        [Given(@"I enter the device IP address")]
         public void WhenIEnterTheDeviceIpAddress()
         {
 
