@@ -12,8 +12,8 @@ Scenario Outline: MPS Existing Customer For Run Action
 	And I sign back into Cloud MPS as a "<Role1>" from "<Country>"
 	When I install the device on the contract with "<Method>" communication and "<Type>" installation 
 	And I can sign out of Brother Online
-	And I navigate to the Invoice tool homepage
-	And I refresh daily print counts
+	#And I navigate to the Invoice tool homepage
+	#And I refresh daily print counts
 	And I sign into Cloud MPS as a "<ExistingCustomer>" from "<Country>"
 	And I navigate to customer dashboard page
 	And I navigate to Print Count page
@@ -23,6 +23,6 @@ Scenario Outline: MPS Existing Customer For Run Action
 	
 Scenarios:
 
-	| Role                            | Country | ContractType                  | UsageType      | Role1            | Method | Type | ExistingCustomer                   | Length  | Billing              | Role2              |
-	| Cloud MPS Local Office Approver | Ireland | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  | Ariana2016061114137@mailinator.com | 3 years | Quarterly in Arrears | Cloud MPS Customer |
+	| Role                            | Country | ContractType                  | UsageType      | Role1            | Method | Type | ExistingCustomer                  | Length  | Billing              | Role2              |
+	| Cloud MPS Local Office Approver | Ireland | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  | Shane2017062010735@mailinator.com | 3 years | Quarterly in Arrears | Cloud MPS Customer |
 	

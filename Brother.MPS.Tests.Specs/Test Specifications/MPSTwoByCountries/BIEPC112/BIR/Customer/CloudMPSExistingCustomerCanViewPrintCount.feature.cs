@@ -75,7 +75,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.BIR.
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("MPS Existing Customer For Run Action")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Ireland", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Cloud", "Web", "Ariana2016061114137@mailinator.com", "3 years", "Quarterly in Arrears", "Cloud MPS Customer", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "Ireland", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Cloud", "Web", "Shane2017062010735@mailinator.com", "3 years", "Quarterly in Arrears", "Cloud MPS Customer", null)]
         public virtual void MPSExistingCustomerForRunAction(string role, string country, string contractType, string usageType, string role1, string method, string type, string existingCustomer, string length, string billing, string role2, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Existing Customer For Run Action", exampleTags);
@@ -95,10 +95,6 @@ this.ScenarioSetup(scenarioInfo);
                         "ion", method, type), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 14
  testRunner.And("I can sign out of Brother Online", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 15
- testRunner.And("I navigate to the Invoice tool homepage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 16
- testRunner.And("I refresh daily print counts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 17
  testRunner.And(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", existingCustomer, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 18

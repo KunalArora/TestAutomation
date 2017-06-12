@@ -103,10 +103,17 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("MPS Actions For Customers By Email")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Email", "Omer2017067101751@mailinator.com", "3 years", "Quarterly in Arrears", "A1T010237", "Belt End Soon", "MFC-L8650CDW", null)]
         public virtual void MPSActionsForCustomersByEmail(string role, string country, string contractType, string usageType, string role1, string method, string existingCustomer, string length, string billing, string serialNumber, string component, string model, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Actions For Customers By Email", exampleTags);
+            string[] @__tags = new string[] {
+                    "ignore"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Actions For Customers By Email", @__tags);
 #line 25
 this.ScenarioSetup(scenarioInfo);
 #line 26
