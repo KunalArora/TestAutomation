@@ -8,7 +8,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 {
     public static class MpsJobRunnerPage
     {
-        private const string Uaturl = @"http://online65.{0}.cms.prod.brother.eu.com/sitecore/admin/integration/mps2/"; //@"http://online.brother.{0}.local/sitecore/admin/integration/mps2/"; 
+        private const string Uaturl = @"http://online65.{0}.cms.uat.brother.eu.com/sitecore/admin/integration/mps2/"; //@"http://online.brother.{0}.local/sitecore/admin/integration/mps2/"; 
         private const string Testurl = @"http://online65.{0}.cms.test.brother.eu.com/sitecore/admin/integration/mps2/"; //online65.co.uk.cms.prod.brother.eu.com
         private const string CustomerAndPersonCommand = @"runcommand.aspx?command=MPS:SystemJobCreateCustomerAndPersonCommand";
         private const string ClickRateInvoiceCommand = @"runcommand.aspx?command=MPS:RaiseClickRateInvoicesCommand";
