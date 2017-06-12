@@ -103,8 +103,8 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("MPS Actions For Customers By Email")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Email", "BOR", "Omer2017067101751@mailinator.com", "3 years", "Quarterly in Arrears", "A1T010237", "Belt End Soon", "MFC-L8650CDW", null)]
-        public virtual void MPSActionsForCustomersByEmail(string role, string country, string contractType, string usageType, string role1, string method, string type, string existingCustomer, string length, string billing, string serialNumber, string component, string model, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Email", "Omer2017067101751@mailinator.com", "3 years", "Quarterly in Arrears", "A1T010237", "Belt End Soon", "MFC-L8650CDW", null)]
+        public virtual void MPSActionsForCustomersByEmail(string role, string country, string contractType, string usageType, string role1, string method, string existingCustomer, string length, string billing, string serialNumber, string component, string model, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Actions For Customers By Email", exampleTags);
 #line 25
@@ -119,8 +119,8 @@ this.ScenarioSetup(scenarioInfo);
 #line 29
  testRunner.And(string.Format("I sign back into Cloud MPS as a \"{0}\" from \"{1}\"", role1, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 30
- testRunner.When(string.Format("I install the device with \"{0}\" on the contract with \"{1}\" communication and \"{2}" +
-                        "\" installation", serialNumber, method, type), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When(string.Format("I install the device with \"{0}\" on the contract with \"{1}\" communication and \"<Ty" +
+                        "pe>\" installation", serialNumber, method), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 31
  testRunner.Then(string.Format("I can use \"{0}\" to create automatic service request for \"{1}\" through email with " +
                         "\"{2}\"", model, component, serialNumber), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

@@ -34,8 +34,8 @@ Scenario Outline: MPS Actions For Customers By Email
 	
 Scenarios:
 
-	| Role                            | Country        | ContractType                  | UsageType      | Role1            | Method | Type | ExistingCustomer                 | Length  | Billing              | SerialNumber | Component     | Model        |
-	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Email  | BOR  | Omer2017067101751@mailinator.com | 3 years | Quarterly in Arrears | A1T010237    | Belt End Soon | MFC-L8650CDW |
+	| Role                            | Country        | ContractType                  | UsageType      | Role1            | Method | ExistingCustomer                 | Length  | Billing              | SerialNumber | Component     | Model        |
+	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Email  | Omer2017067101751@mailinator.com | 3 years | Quarterly in Arrears | A1T010237    | Belt End Soon | MFC-L8650CDW |
 	
 
 
