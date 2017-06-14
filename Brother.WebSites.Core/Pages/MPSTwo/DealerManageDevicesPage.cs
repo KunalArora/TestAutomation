@@ -528,8 +528,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsInstallationCompleted()
         {
-            
-            if (Method() != "Email")
+
+            if ((Method() != "Email" && !String.IsNullOrWhiteSpace(Method())))
             {
                 var connection = DeviceRespondingActionElement.Displayed;
 
@@ -540,7 +540,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             //MpsJobRunnerPage.RunCreateOrderAndServiceRequestsCommandJob();
             MpsJobRunnerPage.RunConsumableOrderRequestsCommandJob();
             MpsJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob(MpsUtil.CreatedProposal(), Locale);
-            if (Method() == "Email")
+            if (Method() == "Email" || String.IsNullOrWhiteSpace(Method()))
             {
                 MpsJobRunnerPage.RunRefreshPrintCountsFromEmailCommandJob(Locale);
                 WebDriver.Wait(DurationType.Second, 5);

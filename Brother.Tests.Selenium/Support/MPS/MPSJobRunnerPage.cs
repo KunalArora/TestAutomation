@@ -85,12 +85,14 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 
         private static string GetSavedNewDeviceSerial()
         {
-            return HelperClasses.SpecFlow.GetContext("JoinedSerialNumber");
+            var serial = HelperClasses.SpecFlow.GetContext("JoinedSerialNumber");
+            return serial;
         }
 
         private static string GetInstallationPin()
         {
-            return HelperClasses.SpecFlow.GetContext("InstallationPin");
+            var pin = HelperClasses.SpecFlow.GetContext("InstallationPin");
+            return pin;
         }
 
         public static void CreateNewVirtualDevice()
@@ -343,7 +345,8 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 
         private static string GetSavedDeviceId()
         {
-            return HelperClasses.SpecFlow.GetContext("DeviceId");
+            var device = HelperClasses.SpecFlow.GetContext("DeviceId");
+            return device;
         }
 
         private static string GetSavedDeviceId(string number)
