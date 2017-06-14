@@ -10,6 +10,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
     {
         [Given(@"I navigate to customer dashboard page")]
         [When(@"I navigate to customer dashboard page")]
+        [Then(@"I navigate to customer dashboard page")]
         public void WhenINavigateToCustomerDashboardPage()
         {
             NextPage = CurrentPage.As<WelcomeBackPage>().NavigateToCustomerDashboardPage();

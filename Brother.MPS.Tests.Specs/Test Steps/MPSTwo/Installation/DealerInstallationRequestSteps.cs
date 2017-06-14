@@ -60,7 +60,15 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             WhenIEnterTheContractReferenceNumber();
             WhenIEnterDeviceSerialNumberForCommunication(serialNumber, type);
             WhenIEnterTheDeviceIpAddress();
-            ThenICanConnectDeviceWithSerialsToBrotherEnvironment("MFC-L8650CDW", serialNumber);
+            if (method == "Email")
+            {
+                ThenICanConnectTheDeviceToBrotherEnvironment();
+            }
+            else
+            {
+                ThenICanConnectDeviceWithSerialsToBrotherEnvironment("MFC-L8650CDW", serialNumber); 
+            }
+            
             ThenICanCompleteDeviceInstallation();
         }
 

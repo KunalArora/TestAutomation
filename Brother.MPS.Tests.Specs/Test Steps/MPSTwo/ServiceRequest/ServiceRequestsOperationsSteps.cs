@@ -10,6 +10,8 @@ namespace Brother.Tests.Specs.MPSTwo.ServiceRequest
     {
 
         [Given(@"I navigate to customer request page")]
+        [When(@"I navigate to customer request page")]
+        [Then(@"I navigate to customer request page")]
         public void GivenINavigateToCustomerRequestPage()
         {
             NextPage = CurrentPage.As<CustomerPortalDashboardPage>().NavigateToCustomerServiceRequestsPage();

@@ -21,14 +21,18 @@ Scenarios:
 	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR  | Slater20170119031946@mailinator.com | 3 years | Quarterly in Arrears | A1T010237    | FuserUnit |
 	
 
-@ignore
+##@ignore
 Scenario Outline: MPS Actions For Customers By Email
 	Given "<Country>" Dealer have created "<ContractType>" contract choosing "<ExistingCustomer>" with "<UsageType>" and "<Length>" and "<Billing>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And the contract created above is approved
 	And I sign back into Cloud MPS as a "<Role1>" from "<Country>"
-	When I install the device with "<SerialNumber>" on the contract with "<Method>" communication and "<Type>" installation
+	When I install the device with "<SerialNumber>" on the contract with "<Method>" communication and "" installation
 	Then I can use "<Model>" to create automatic service request for "<Component>" through email with "<SerialNumber>"
+	And I can sign out of Brother Online
+	And I sign into Cloud MPS as a "<ExistingCustomer>" from "<Country>"
+	And I navigate to customer dashboard page
+	And I navigate to customer request page
 	And I can sign out of Brother Online
 	
 	
@@ -46,6 +50,7 @@ Scenario Outline: MPS Actions To Create Contract for Service Request
 	And I sign back into Cloud MPS as a "<Role1>" from "<Country>"
 	When I install the device with "<SerialNumber>" on the contract with "<Method>" communication and "<Type>" installation
 	And I can sign out of Brother Online
+	
 	
 	
 Scenarios:

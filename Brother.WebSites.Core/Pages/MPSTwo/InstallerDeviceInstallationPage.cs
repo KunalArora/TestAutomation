@@ -939,11 +939,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         
         public void ConnectDevice()
         {
+
             try
             {
                 switch (Method())
                 {
                     case "Email":
+                    case "":
+                    case " ":
                         ConnectByEmail();
                         break;
                     case "BOR":
@@ -1111,7 +1114,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ConfirmInstallationSucceed()
         {
-            if (Method() == "Email")
+            if (Method() == "Email" || String.IsNullOrWhiteSpace(Method()))
             {
                 TestCheck.AssertIsEqual(true, CompleteInstallationComfirmationElement.Displayed,
                 "Installation not successful");
