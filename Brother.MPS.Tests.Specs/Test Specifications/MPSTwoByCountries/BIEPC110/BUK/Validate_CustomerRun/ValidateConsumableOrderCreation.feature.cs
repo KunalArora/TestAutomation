@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Brother.MPS.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BUK.Validate_CustomerRun
+namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BUK.Validate_CustomerRun
 {
     using TechTalk.SpecFlow;
     
@@ -75,7 +75,7 @@ namespace Brother.MPS.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("MPS Existing Customer Validate Consumable Creation")]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "Randi20161010065802@mailinator.com", "A1T010265", null)]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "Bradon20170613053736@mailinator.com", "A1T010265", null)]
         public virtual void MPSExistingCustomerValidateConsumableCreation(string country, string existingCustomer, string serialNumber, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Existing Customer Validate Consumable Creation", exampleTags);
