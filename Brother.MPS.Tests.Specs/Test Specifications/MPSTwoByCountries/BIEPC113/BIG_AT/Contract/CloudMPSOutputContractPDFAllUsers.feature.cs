@@ -76,7 +76,6 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC113.BIG_
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("MPS Bank Download Awaiting Acceptance Contract PDF")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Bank", "Germany", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Bank", "Austria", null)]
         public virtual void MPSBankDownloadAwaitingAcceptanceContractPDF(string role, string country, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Bank Download Awaiting Acceptance Contract PDF", exampleTags);
