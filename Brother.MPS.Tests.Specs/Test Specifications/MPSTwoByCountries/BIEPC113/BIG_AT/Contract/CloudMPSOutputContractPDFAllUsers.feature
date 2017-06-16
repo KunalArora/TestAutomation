@@ -15,7 +15,7 @@ Scenario Outline: MPS Bank Download Awaiting Acceptance Contract PDF
 	Scenarios: 
 	| Role           | Country        |
 	| Cloud MPS Bank | Germany        |
-	#| Cloud MPS Bank | Austria        |
+	| Cloud MPS Bank | Austria        |
 
 #@ignore
 Scenario Outline: MPS Bank Download Rejected Contract PDF
