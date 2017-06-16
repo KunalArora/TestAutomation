@@ -17,7 +17,8 @@ Scenario Outline: MPS Existing Customer Validate Consumable Creation
 
 Scenarios:
 
-	| Country        | ExistingCustomer                   |  SerialNumber |
-	| United Kingdom | Bradon20170613053736@mailinator.com |  A1T010265    |
+	| Country        | ExistingCustomer                    | SerialNumber |
+	| United Kingdom | Bradon20170613053736@mailinator.com | A1T010265    |
+	
 	
 	
