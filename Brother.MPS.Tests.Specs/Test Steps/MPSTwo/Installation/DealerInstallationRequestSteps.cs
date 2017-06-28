@@ -60,6 +60,7 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             WhenIEnterTheContractReferenceNumber();
             WhenIEnterDeviceSerialNumberForCommunication(serialNumber, type);
             WhenIEnterTheDeviceIpAddress();
+
             if (method == "Email")
             {
                 ThenICanConnectTheDeviceToBrotherEnvironment();
@@ -68,8 +69,12 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             {
                 ThenICanConnectDeviceWithSerialsToBrotherEnvironment("MFC-L8650CDW", serialNumber); 
             }
+
+            if (method != "Email")
+            {
+                ThenICanCompleteDeviceInstallation();
+            }
             
-            ThenICanCompleteDeviceInstallation();
         }
 
         [Then(@"I can create automatic service request for ""(.*)""")]
@@ -304,6 +309,8 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             CurrentPage.As<DealerManageDevicesPage>().IsInstallationCompleted();
         }
 
+        [Given(@"I can complete device installation for email ""(.*)"", ""(.*)"", ""(.*)"", ""(.*)"", ""(.*)"", ""(.*)"" and ""(.*)""")]
+        [When(@"I can complete device installation for email ""(.*)"", ""(.*)"", ""(.*)"", ""(.*)"", ""(.*)"", ""(.*)"" and ""(.*)""")]
         [Then(@"I can complete device installation for email ""(.*)"", ""(.*)"", ""(.*)"", ""(.*)"", ""(.*)"", ""(.*)"" and ""(.*)""")]
         public void ThenICanCompleteDeviceInstallationForEmailAnd(string model, string serial, string total, string colour, string mono, string email, string subject)
         {

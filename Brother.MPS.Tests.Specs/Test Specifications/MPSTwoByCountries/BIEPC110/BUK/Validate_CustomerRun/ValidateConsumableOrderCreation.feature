@@ -19,6 +19,22 @@ Scenarios:
 
 	| Country        | ExistingCustomer                    | SerialNumber |
 	| United Kingdom | Bradon20170613053736@mailinator.com | A1T010265    |
+
+
+Scenario Outline: MPS Service Request By Email
+	Given I sign into Cloud MPS as a "<ExistingCustomer>" from "<Country>"
+	When I navigate to customer dashboard page
+	And I navigate to customer request page
+	Then consumable can be automatically created
+	And I can sign out of Brother Online
+	
+	
+Scenarios:
+
+	| Country        | ExistingCustomer                 |
+	| United Kingdom | Omer2017067101751@mailinator.com |
+	
+
 	
 	
 	

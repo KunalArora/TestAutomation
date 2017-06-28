@@ -32,6 +32,13 @@ namespace Brother.Tests.Specs.MPSTwo.ServiceRequest
             CurrentPage.As<CustomerPortalServiceRequestsPage>().IsCorrectServiceRequestTypeDisplayed();
         }
 
+        [Then(@"consumable can be automatically created")]
+        public void ThenConsumableCanBeAutomaticallyCreated()
+        {
+            CurrentPage.As<CustomerPortalServiceRequestsPage>().IsServiceRequestCreatedByEmail();
+        }
+
+
         [When(@"all the functionalities of the service request work")]
         public void WhenAllTheFunctionalitiesOfTheServiceRequestWork()
         {

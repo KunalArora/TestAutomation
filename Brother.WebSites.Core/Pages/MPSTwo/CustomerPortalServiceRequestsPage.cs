@@ -81,6 +81,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement PrintCountModalContentElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_InputDevice_Input")]
         public IWebElement DeviceDropdownMenuElement;
+        [FindsBy(How = How.CssSelector, Using = ".mps-row-select.js-mps-searchable.js-mps-row-select")]
+        public IWebElement ServiceRequestLineElement;
         
         
         
@@ -178,6 +180,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             SaveServiceRequestStatus();
             TestCheck.AssertIsEqual(true, CreatedServiceRequestRowElement.Displayed, 
+                                                        "Service request was not created");
+        }
+
+        public void IsServiceRequestCreatedByEmail()
+        {
+            //SaveServiceRequestStatus();
+            TestCheck.AssertIsEqual(true, ServiceRequestLineElement.Displayed,
                                                         "Service request was not created");
         }
 

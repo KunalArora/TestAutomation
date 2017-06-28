@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherOnline;
@@ -37,6 +38,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             ScrollTo(CustomerDashboardConsummableLink);
             CustomerDashboardConsummableLink.Click();
+            WebDriver.Wait(DurationType.Second, 10);
+
+            
             try
             {
                 MpsJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob(MpsUtil.CreatedProposal(), Locale);
@@ -45,7 +49,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 //Do nothing
             }
-            MpsJobRunnerPage.RunRefreshPrintCountsFromEmailCommandJob(Locale);
+            
+            ActionsModule.RunConsumableOrderCreationJobs();
             return GetInstance<CustomerPortalConsummablePage>(Driver);
         }
 

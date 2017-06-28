@@ -87,7 +87,16 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
             Helper.MsgOutput("Feature end - Tearing Down");
             TestController.ExtentLogFeatureInformation(FeatureContext.Current.FeatureInfo.Title);
             TestController.Test_Teardown();
-            //TestController.SendEmailWithAttachment();
+            try
+            {
+                TestController.SendEmail();
+
+            }
+            catch (Exception)
+            {
+                //Do nothing
+            }
+            
         }
 
         #endregion "Before And After Feature Tags"

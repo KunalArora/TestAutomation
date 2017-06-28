@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Xml;
 using Brother.Tests.Selenium.Lib.Mail;
@@ -501,10 +502,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public static void RunConsumableOrderCreationJobs()
         {
-            MpsJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob(MpsUtil.CreatedProposal(), Helper.Locale);
             MpsJobRunnerPage.RunRefreshPrintCountsFromEmailCommandJob(Helper.Locale);
+            MpsJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob(MpsUtil.CreatedProposal(), Helper.Locale);
+            MpsJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJobUsingProposalId(SpecFlow.GetContext("SummaryPageContractId"), Helper.Locale);
+            
             //MpsJobRunnerPage.RunCreateOrderAndServiceRequestsCommandJob();
             MpsJobRunnerPage.RunConsumableOrderRequestsCommandJob();
+         
 
         }
 

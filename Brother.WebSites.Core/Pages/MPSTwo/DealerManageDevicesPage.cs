@@ -17,20 +17,45 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
     public class DealerManageDevicesPage : BasePage
     {
         public static string Url = "/";
-        private string Body = @"<Status Notification >
-                                The device status is [{0}] 
+        //private string _body = "<" + "Status Notification" + ">" + "\r\n" + 
+        //                        "The device status is [{0}] \r\n" + "\r\n"+
+                                
+        //                        "<Node Information>\r\n" +
+        //                        "Name: BRN30055C15474D \r\n" +
+        //                        "Model Name: Brother {1} \r\n" +
+        //                        "Location: \r\n" +
+        //                        "Contact: \r\n" +
+        //                        "IP Address: 10.135.102.139 \r\n" +
+        //                        "Device serial number: U63783{2} \r\n" +
+        //                        "URL: http://10.135.102.139\r\n" +
+        //                        "Page Count: 0 \r\n" + 
+        //                        "Drum Count: 355 \r\n";
 
-                                <Node Information>
-                                Name: BRN30055C15474D
-                                Model Name: Brother {1}
-                                Location: 
-                                Contact: 
-                                IP Address: 10.135.102.139
-                                Device serial number: U63783{2}
-                                URL: http://10.135.102.139
-                                Page Count: 0
-                                Drum Count: 355";
-        private string Subject = @"Status Notification [{0}]";
+        private const string Body1 = @"&lt;Status Notification&gt;";
+        private string _body2 = "<br/>";
+        private string _body3 = @"The device status is [{0}]";
+        private string _body4 = "<br/>" + "<br/>";
+        private const string Body5 = @"&lt;Node Information&gt;";
+        private string _body6 = "<br/>";
+        private const string Body7 = @"Name: BRN30055C15474D";
+        private string _body8 = "<br/>";
+        private string _body9 = @"Model Name: Brother {0}";
+        private string _body10 = "<br/>";
+        private const string Body11 = @"Location:" ;
+        private string _body12 = "<br/>";                             
+        private const string Body13 = @"Contact:" ;
+        private string _body14 = "<br/>";
+        private const string Body15 = @"IP Address: 10.135.102.139";
+        private string _body16 = "<br/>";
+        private string _body17 = @"Device serial number: U63783{0}";
+        private string _body18 = "<br/>";
+        private const string Body19 = @"URL: http://10.135.102.139" ;
+        private string _body20 = "<br/>";
+        private const string Body21 = @"Page Count: 0" ;
+        private string _body22 = "<br/>";
+        private const string Body23 = @"Drum Count: 355";
+
+        private string _subject = @"Status Notification [{0}]";
 
         public override string DefaultTitle
         {
@@ -520,9 +545,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SendEmailForServiceRequest(string address, string subject, string model, string serial)
         {
-            Subject = String.Format(Subject, subject);
-            Body = String.Format(Body, subject, model, serial);
-            ActionsModule.SendServiceRequestEmail(address, Subject, Body);
+            _subject = String.Format(_subject, subject);
+            var message1 = String.Format(_body3, subject);
+            var message2 = String.Format(_body9, model);
+            var message3 = String.Format(_body17, serial);
+
+            var fullBody = Body1 + _body2 + message1 + _body4 + Body5 + _body6 + Body7 + _body8 + message2 + _body10 +
+                           Body11 + _body12 + Body13 + _body14 + Body15
+                           + _body16 + message3 + _body18 + Body19 + _body20 + Body21 + _body22 + Body23;
+
+            //_body = String.Format(_body, subject, model, serial);
+            WebDriver.Wait(DurationType.Second, 10);
+            ActionsModule.SendServiceRequestEmail(address, _subject, fullBody);
             ActionsModule.RunConsumableOrderCreationJobs();
         }
 

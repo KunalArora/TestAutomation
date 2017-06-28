@@ -378,7 +378,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
                     break;
             }
 
-            return url;
+            return "http://eu.cms.uat65.brother.eu.com/sitecore/admin/integration/mps2/";
         }
 
         public static string GetConsumableOrderStatusResetMsg(string orderid, string status)
@@ -478,7 +478,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
         {
             if (countryIso != null && countryIso.ToLower().Equals("uk"))
             {
-                countryIso = @"gb";
+                countryIso = @"GB";
             }
 
             var webSite = CoinedUrl() + RefreshPrintCountsCommand
@@ -499,7 +499,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
         {
             if (countryIso != null && countryIso.ToLower().Equals("uk"))
             {
-                countryIso = @"gb";
+                countryIso = @"GB";
             }
 
             var webSite = CoinedUrl() + RefreshPrintCountsFromMedioCommand
@@ -513,6 +513,26 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             Helper.MsgOutput(runResponse.Contains("Command run")
                 ? "RunRefreshPrintCountsFromMedioCommandJob job ran successfully"
                 : "RunRefreshPrintCountsFromMedioCommandJob probably did not run properly");
+        }
+
+        public static void RunRefreshPrintCountsFromMedioCommandJobUsingProposalId(string proposalId = null, string countryIso = null)
+        {
+            if (countryIso != null && countryIso.ToLower().Equals("uk"))
+            {
+                countryIso = @"GB";
+            }
+
+            var webSite = CoinedUrl() + RefreshPrintCountsFromMedioCommand
+                          + (proposalId != null ? "&ProposalId=" + HttpUtility.UrlEncode(proposalId) : "")
+                          + (countryIso != null ? "&CountryIso=" + HttpUtility.UrlEncode(countryIso) : "");
+
+            Helper.MsgOutput(String.Format("The command job url formed is {0}", webSite));
+
+            var runResponse = Utils.GetSuccessStringFromUrl(webSite, 5, AuthHeader);
+
+            Helper.MsgOutput(runResponse.Contains("Command run")
+                ? "RunRefreshPrintCountsFromMedioCommandJobUsingProposalId job ran successfully"
+                : "RunRefreshPrintCountsFromMedioCommandJobUsingProposalId probably did not run properly");
         }
 
         public static void RunStaffAccountCreationCommandJob()

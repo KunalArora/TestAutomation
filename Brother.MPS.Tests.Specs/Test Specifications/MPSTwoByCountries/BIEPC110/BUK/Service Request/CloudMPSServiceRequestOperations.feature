@@ -28,6 +28,7 @@ Scenario Outline: MPS Actions For Customers By Email
 	And the contract created above is approved
 	And I sign back into Cloud MPS as a "<Role1>" from "<Country>"
 	When I install the device with "<SerialNumber>" on the contract with "<Method>" communication and "" installation
+	And I can complete device installation for email "<Model>", "<SerialNumber>", "<Total>", "<Colour>", "<Mono>", "<EmailAddress>" and "<Subject>"
 	Then I can use "<Model>" to create automatic service request for "<Component>" through email with "<SerialNumber>"
 	And I can sign out of Brother Online
 	And I sign into Cloud MPS as a "<ExistingCustomer>" from "<Country>"
@@ -38,8 +39,8 @@ Scenario Outline: MPS Actions For Customers By Email
 	
 Scenarios:
 
-	| Role                            | Country        | ContractType                  | UsageType      | Role1            | Method | ExistingCustomer                 | Length  | Billing              | SerialNumber | Component     | Model        |
-	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Email  | Omer2017067101751@mailinator.com | 3 years | Quarterly in Arrears | A1T010237    | Belt End Soon | MFC-L8650CDW |
+	| Role                            | Country        | ContractType                  | UsageType      | Role1            | Method | ExistingCustomer                 | Length  | Billing              | SerialNumber | Component     | Model        | Total | Colour | Mono | EmailAddress                 | Subject       |
+	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Email  | Omer2017067101751@mailinator.com | 3 years | Quarterly in Arrears | A1T010237    | Replace Fuser | MFC-L8650CDW | 10000 | 2000   | 8000 | brothermps_QAS@brother.co.uk | E-mail Report |
 	
 
 
