@@ -32,7 +32,16 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
         [AfterTestRun]
         public static void AfterTestRun()
         {
-            //TestController.SendEmailWithAttachment();
+            try
+            {
+                //TestController.SendEmail();
+
+            }
+            catch (Exception)
+            {
+                //Do nothing
+            }
+
             Helper.MsgOutput("........Ending Test Run");
         }
 
@@ -89,7 +98,7 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
             TestController.Test_Teardown();
             try
             {
-                TestController.SendEmail();
+                //TestController.SendEmail();
 
             }
             catch (Exception)
