@@ -24,5 +24,5 @@ Scenario Outline: Existing Norwegian Customer can be used to create a new contra
 Scenarios:
 
 	| Role                            | Country | ContractType              | UsageType     | Role1            | Method | Type | ExistingCustomer                    | Length | Billing              | Role2              |
-	| Cloud MPS Local Office Approver | Norway  | Kjøp og klikk med service | Minimum volum | Cloud MPS Dealer | Cloud  | Web  | Jeffie20170612234919@mailinator.com | 36     | Quarterly in Arrears | Cloud MPS Customer |
+	| Cloud MPS Local Office Approver | Norway  | Kjøp og klikk med service | Minimum volum | Cloud MPS Dealer | Cloud  | Web  | Emilie20170629020103@mailinator.com | 36     | Quarterly in Arrears | Cloud MPS Customer |
 	

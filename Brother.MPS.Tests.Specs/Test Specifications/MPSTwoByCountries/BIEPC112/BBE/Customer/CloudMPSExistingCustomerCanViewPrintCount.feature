@@ -24,6 +24,6 @@ Scenario Outline: MPS Existing Customer For Run Action
 Scenarios:
 
 	| Role                            | Country | ContractType                  | UsageType      | Role1            | Method | Type | ExistingCustomer                   | Length | Billing                                                            | Role2              | Language |
-	| Cloud MPS Local Office Approver | Belgium | Buy & Click                   | Volume minimum | Cloud MPS Dealer | Cloud  | BOR  | Graty20170613065202@mailinator.com | 4 ans  | Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance | Cloud MPS Customer | French   |
-	| Cloud MPS Local Office Approver | Belgium | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  | Graty20170613065202@mailinator.com | 3 jaar | Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance | Cloud MPS Customer | Dutch    |
+	| Cloud MPS Local Office Approver | Belgium | Buy & Click                   | Volume minimum | Cloud MPS Dealer | Cloud  | BOR  | Randi20170629043705@mailinator.com | 4 ans  | Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance | Cloud MPS Customer | French   |
+	| Cloud MPS Local Office Approver | Belgium | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  | Randi20170629043705@mailinator.com | 3 jaar | Driemaandelijks, betaling vooraf / Paiement trimestriel à l’avance | Cloud MPS Customer | Dutch    |
 	

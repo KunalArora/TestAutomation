@@ -23,6 +23,6 @@ Scenario Outline: MPS Existing Customer For Run Action
 	
 Scenarios:
 
-	| Role                            | Country | ContractType                  | UsageType      | Role1            | Method | Type | ExistingCustomer                  | Length  | Billing              | Role2              |
-	| Cloud MPS Local Office Approver | Ireland | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  | Shane2017062010735@mailinator.com | 3 years | Quarterly in Arrears | Cloud MPS Customer |
+	| Role                            | Country | ContractType                  | UsageType      | Role1            | Method | Type | ExistingCustomer                    | Length  | Billing              | Role2              |
+	| Cloud MPS Local Office Approver | Ireland | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  | Jeffie20170629012050@mailinator.com | 3 years | Quarterly in Arrears | Cloud MPS Customer |
 	
