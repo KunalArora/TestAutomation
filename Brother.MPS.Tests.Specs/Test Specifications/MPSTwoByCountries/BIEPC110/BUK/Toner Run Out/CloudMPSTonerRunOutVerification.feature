@@ -152,7 +152,7 @@ Scenario Outline: EUM - Engine Threshold Enabled Contract Disabled And Toner Lif
 
 Scenarios:
 	| Role                            | Country        | ContractType                  | UsageType     | ExistingCustomer                    | Role1            | Method | Type | Length  | Billing              | Device1     | Device2      | Device3     | Device4    | SerialNumber | SerialNumber1 | SerialNumber2 | SerialNumber3 | Role2               | Threshold |
-	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Pay As You Go | Delsie20170612213832@mailinator.com | Cloud MPS Dealer | Cloud  | BOR  | 4 years | Quarterly in Arrears | DCP-9020CDW | DCP-L8400CDN | MFC-L2700DW | HL-L6250DN | A1T010536    | A1T010537     | A1T010538     | A1T010539     | Cloud MPS BIE Admin | 20        |
+	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Pay As You Go | Slater20170629084924@mailinator.com | Cloud MPS Dealer | Cloud  | BOR  | 4 years | Quarterly in Arrears | DCP-9020CDW | DCP-L8400CDN | MFC-L2700DW | HL-L6250DN | A1T010536    | A1T010537     | A1T010538     | A1T010539     | Cloud MPS BIE Admin | 20        |
 	
 ##Case 3-2
 Scenario Outline: EUM - Engine Threshold Enabled Contract Disabled And Toner Life Less Than Engine Threshold
@@ -199,8 +199,8 @@ Scenario Outline: EUM - Engine Threshold Enabled Contract Disabled And Toner Lif
 	And I can sign out of Brother Online
 
 Scenarios:
-	| Role                            | Country        | ContractType                  | UsageType     | ExistingCustomer                      | Role1            | Method | Type | Length  | Billing              | Device1     | Device2      | Device3     | Device4    | SerialNumber | SerialNumber1 | SerialNumber2 | SerialNumber3 | Role2               | Threshold |
-	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Pay As You Go | Mckenzie20170613000343@mailinator.com | Cloud MPS Dealer | Cloud  | BOR  | 4 years | Quarterly in Arrears | DCP-9020CDW | DCP-L8400CDN | MFC-L2700DW | HL-L6250DN | A1T010552    | A1T010553     | A1T010554     | A1T010555     | Cloud MPS BIE Admin | 20        |
+	| Role                            | Country        | ContractType                  | UsageType     | ExistingCustomer                    | Role1            | Method | Type | Length  | Billing              | Device1     | Device2      | Device3     | Device4    | SerialNumber | SerialNumber1 | SerialNumber2 | SerialNumber3 | Role2               | Threshold |
+	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Pay As You Go | Slater20170629002409@mailinator.com | Cloud MPS Dealer | Cloud  | BOR  | 4 years | Quarterly in Arrears | DCP-9020CDW | DCP-L8400CDN | MFC-L2700DW | HL-L6250DN | A1T010552    | A1T010553     | A1T010554     | A1T010555     | Cloud MPS BIE Admin | 20        |
 	
 #@ignore
 Scenario Outline: EUM - Engine Threshold Enabled Contract Enabled And Toner Life Equal Engine Threshold 
@@ -251,8 +251,8 @@ Scenario Outline: EUM - Engine Threshold Enabled Contract Enabled And Toner Life
 	And I can sign out of Brother Online
 
 Scenarios:
-	| Role                            | Country        | ContractType                  | UsageType     | ExistingCustomer                     | Role1            | Method | Type | Length  | Billing              | Device1     | Device2      | Device3     | Device4    | SerialNumber | SerialNumber1 | SerialNumber2 | SerialNumber3 | Role2               | Threshold |
-	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Pay As You Go | Smarties2017066090357@mailinator.com | Cloud MPS Dealer | Cloud  | BOR  | 4 years | Quarterly in Arrears | DCP-9020CDW | DCP-L8400CDN | MFC-L2700DW | HL-L6250DN | A1T010556    | A1T010557     | A1T010558     | A1T010559     | Cloud MPS BIE Admin | 20        |
+	| Role                            | Country        | ContractType                  | UsageType     | ExistingCustomer                      | Role1            | Method | Type | Length  | Billing              | Device1     | Device2      | Device3     | Device4    | SerialNumber | SerialNumber1 | SerialNumber2 | SerialNumber3 | Role2               | Threshold |
+	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Pay As You Go | Smarties20170629005346@mailinator.com | Cloud MPS Dealer | Cloud  | BOR  | 4 years | Quarterly in Arrears | DCP-9020CDW | DCP-L8400CDN | MFC-L2700DW | HL-L6250DN | A1T010556    | A1T010557     | A1T010558     | A1T010559     | Cloud MPS BIE Admin | 20        |
 	
 
 	
@@ -305,8 +305,8 @@ Scenario Outline: EUM - Engine Threshold Enabled Contract Enabled And Toner Life
 	And I can sign out of Brother Online
 
 Scenarios:
-	| Role                            | Country        | ContractType                  | UsageType     | ExistingCustomer                 | Role1            | Method | Type | Length  | Billing              | Device1     | Device2      | Device3     | Device4    | SerialNumber | SerialNumber1 | SerialNumber2 | SerialNumber3 | Role2               | Threshold |
-	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Pay As You Go | Vada2017067081101@mailinator.com | Cloud MPS Dealer | Cloud  | BOR  | 4 years | Quarterly in Arrears | DCP-9020CDW | DCP-L8400CDN | MFC-L2700DW | HL-L6250DN | A1T010548    | A1T010549     | A1T010550     | A1T010551     | Cloud MPS BIE Admin | 20        |
+	| Role                            | Country        | ContractType                  | UsageType     | ExistingCustomer                   | Role1            | Method | Type | Length  | Billing              | Device1     | Device2      | Device3     | Device4    | SerialNumber | SerialNumber1 | SerialNumber2 | SerialNumber3 | Role2               | Threshold |
+	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Pay As You Go | Lonna20170629011852@mailinator.com | Cloud MPS Dealer | Cloud  | BOR  | 4 years | Quarterly in Arrears | DCP-9020CDW | DCP-L8400CDN | MFC-L2700DW | HL-L6250DN | A1T010548    | A1T010549     | A1T010550     | A1T010551     | Cloud MPS BIE Admin | 20        |
 	
 
 #@ignore
@@ -359,7 +359,7 @@ Scenario Outline: EUM - Engine Threshold Enabled Contract Enabled And Toner Life
 
 Scenarios:
 	| Role                            | Country        | ContractType                  | UsageType     | ExistingCustomer                    | Role1            | Method | Type | Length  | Billing              | Device1     | Device2      | Device3     | Device4    | SerialNumber | SerialNumber1 | SerialNumber2 | SerialNumber3 | Role2               | Threshold |
-	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Pay As You Go | Delsie20170612230722@mailinator.com | Cloud MPS Dealer | Cloud  | BOR  | 4 years | Quarterly in Arrears | DCP-9020CDW | DCP-L8400CDN | MFC-L2700DW | HL-L6250DN | A1T010544    | A1T010545     | A1T010546     | A1T010547     | Cloud MPS BIE Admin | 20        |
+	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Pay As You Go | Delsie20170629075227@mailinator.com | Cloud MPS Dealer | Cloud  | BOR  | 4 years | Quarterly in Arrears | DCP-9020CDW | DCP-L8400CDN | MFC-L2700DW | HL-L6250DN | A1T010544    | A1T010545     | A1T010546     | A1T010547     | Cloud MPS BIE Admin | 20        |
 	
 #@ignore
 Scenario Outline: EUM - Engine Threshold Enabled Contract Enabled And Toner Life Less Than Contract Threshold 
@@ -411,7 +411,7 @@ Scenario Outline: EUM - Engine Threshold Enabled Contract Enabled And Toner Life
 
 Scenarios:
 	| Role                            | Country        | ContractType                  | UsageType     | ExistingCustomer                    | Role1            | Method | Type | Length  | Billing              | Device1     | Device2      | Device3     | Device4    | SerialNumber | SerialNumber1 | SerialNumber2 | SerialNumber3 | Role2               | Threshold |
-	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Pay As You Go | Emilie20170612224645@mailinator.com | Cloud MPS Dealer | Cloud  | BOR  | 4 years | Quarterly in Arrears | DCP-9020CDW | DCP-L8400CDN | MFC-L2700DW | HL-L6250DN | A1T010540    | A1T010541     | A1T010542     | A1T010543     | Cloud MPS BIE Admin | 20        |
+	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Pay As You Go | Bradon20170629055306@mailinator.com | Cloud MPS Dealer | Cloud  | BOR  | 4 years | Quarterly in Arrears | DCP-9020CDW | DCP-L8400CDN | MFC-L2700DW | HL-L6250DN | A1T010540    | A1T010541     | A1T010542     | A1T010543     | Cloud MPS BIE Admin | 20        |
 	
 
 ##Disabled Engine Threshold Enabled Contract Threshold
@@ -462,8 +462,8 @@ Scenario Outline: EUM - Engine Threshold Disabled Contract Enabled And Toner Lif
 	And I can sign out of Brother Online
 
 Scenarios:
-	| Role                            | Country        | ContractType                  | UsageType     | ExistingCustomer                   | Role1            | Method | Type | Length  | Billing              | Device1     | Device2      | Device3     | Device4    | SerialNumber | SerialNumber1 | SerialNumber2 | SerialNumber3 | Role2               |
-	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Pay As You Go | Coleen2017067085410@mailinator.com | Cloud MPS Dealer | Cloud  | BOR  | 4 years | Quarterly in Arrears | DCP-9020CDW | DCP-L8400CDN | MFC-L2700DW | HL-L6250DN | A1T010281    | A1T010282     | A1T010283     | A1T010284     | Cloud MPS BIE Admin |
+	| Role                            | Country        | ContractType                  | UsageType     | ExistingCustomer                      | Role1            | Method | Type | Length  | Billing              | Device1     | Device2      | Device3     | Device4    | SerialNumber | SerialNumber1 | SerialNumber2 | SerialNumber3 | Role2               |
+	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Pay As You Go | Epifania20170629010026@mailinator.com | Cloud MPS Dealer | Cloud  | BOR  | 4 years | Quarterly in Arrears | DCP-9020CDW | DCP-L8400CDN | MFC-L2700DW | HL-L6250DN | A1T010281    | A1T010282     | A1T010283     | A1T010284     | Cloud MPS BIE Admin |
 	
 #@ignore
 Scenario Outline: EUM - Engine Threshold Disabled Contract Enabled And Toner Life Less Than Contract Threshold 
@@ -514,5 +514,5 @@ Scenario Outline: EUM - Engine Threshold Disabled Contract Enabled And Toner Lif
 
 Scenarios:
 	| Role                            | Country        | ContractType                  | UsageType     | ExistingCustomer                    | Role1            | Method | Type | Length  | Billing              | Device1     | Device2      | Device3     | Device4    | SerialNumber | SerialNumber1 | SerialNumber2 | SerialNumber3 | Role2               |
-	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Pay As You Go | Emilie20170613022517@mailinator.com | Cloud MPS Dealer | Cloud  | BOR  | 4 years | Quarterly in Arrears | DCP-9020CDW | DCP-L8400CDN | MFC-L2700DW | HL-L6250DN | A1T010285    | A1T010286     | A1T010287     | A1T010288     | Cloud MPS BIE Admin |
+	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Pay As You Go | Delsie20170629084038@mailinator.com | Cloud MPS Dealer | Cloud  | BOR  | 4 years | Quarterly in Arrears | DCP-9020CDW | DCP-L8400CDN | MFC-L2700DW | HL-L6250DN | A1T010285    | A1T010286     | A1T010287     | A1T010288     | Cloud MPS BIE Admin |
 	

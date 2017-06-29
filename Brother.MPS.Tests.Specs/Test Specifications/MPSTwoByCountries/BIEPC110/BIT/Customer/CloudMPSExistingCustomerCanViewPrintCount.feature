@@ -23,6 +23,6 @@ Scenario Outline: MPS Existing Customer For Run Action
 	
 Scenarios:
 
-	| Role                            | Country | ContractType                      | UsageType     | Role1            | Method | Type | ExistingCustomer                    | Length | Billing                | Role2              |
-	| Cloud MPS Local Office Approver | Italy   | Acquisto + Consumo con assistenza | Volume minimo | Cloud MPS Dealer | Cloud  | Web  | Belkis20170613030718@mailinator.com | 36     | Trimestrale anticipata | Cloud MPS Customer |
+	| Role                            | Country | ContractType                      | UsageType     | Role1            | Method | Type | ExistingCustomer                      | Length | Billing                | Role2              |
+	| Cloud MPS Local Office Approver | Italy   | Acquisto + Consumo con assistenza | Volume minimo | Cloud MPS Dealer | Cloud  | Web  | Lashonda20170629030857@mailinator.com | 36     | Trimestrale anticipata | Cloud MPS Customer |
 	

@@ -31,10 +31,10 @@ Scenario Outline: MPS Actions For Customers By Email
 	And I can complete device installation for email "<Model>", "<SerialNumber>", "<Total>", "<Colour>", "<Mono>", "<EmailAddress>" and "<Subject>"
 	Then I can use "<Model>" to create automatic service request for "<Component>" through email with "<SerialNumber>"
 	And I can sign out of Brother Online
-	And I sign into Cloud MPS as a "<ExistingCustomer>" from "<Country>"
-	And I navigate to customer dashboard page
-	And I navigate to customer request page
-	And I can sign out of Brother Online
+	#And I sign into Cloud MPS as a "<ExistingCustomer>" from "<Country>"
+	#And I navigate to customer dashboard page
+	#And I navigate to customer request page
+	#And I can sign out of Brother Online
 	
 	
 Scenarios:
