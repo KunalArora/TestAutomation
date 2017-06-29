@@ -22,7 +22,7 @@ Scenario Outline: MPS Existing Customer For Run Action
 	
 Scenarios:
 
-	| Role                            | Country | ContractType             | UsageType      | Role1            | Method | Type | ExistingCustomer                    | Role2              |
-	| Cloud MPS Local Office Approver | Germany | Easy Print Pro & Service | Mindestvolumen | Cloud MPS Dealer | Cloud  | Web  | Sammie20170612205704@mailinator.com | Cloud MPS Customer |
-	| Cloud MPS Local Office Approver | Austria | Easy Print Pro & Service | Mindestvolumen | Cloud MPS Dealer | Cloud  | Web  | Brady20170612173147@mailinator.com  | Cloud MPS Customer |
+	| Role                            | Country | ContractType             | UsageType      | Role1            | Method | Type | ExistingCustomer                      | Role2              |
+	| Cloud MPS Local Office Approver | Germany | Easy Print Pro & Service | Mindestvolumen | Cloud MPS Dealer | Cloud  | Web  | Coleen20170626042115@mailinator.com   | Cloud MPS Customer |
+	| Cloud MPS Local Office Approver | Austria | Easy Print Pro & Service | Mindestvolumen | Cloud MPS Dealer | Cloud  | Web  | Epifania20170626054130@mailinator.com | Cloud MPS Customer |
 	
