@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Brother.MPS.Tests.Specs.TestSpecifications.OmniJoin
+namespace Brother.Tests.Specs.TestSpecifications.OmniJoin
 {
     using TechTalk.SpecFlow;
     
@@ -37,7 +37,7 @@ namespace Brother.MPS.Tests.Specs.TestSpecifications.OmniJoin
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "FreeTrial", "In order to try out OmniJoin for 30 days\r\nAs a customer\r\nI need to sign up for a " +
-                    "Free trial", ProgrammingLanguage.CSharp, new string[] {
+                    "Free trial\r\n\r\n// @ignore", ProgrammingLanguage.CSharp, new string[] {
                         "PROD",
                         "UAT",
                         "TEST",
@@ -76,12 +76,10 @@ namespace Brother.MPS.Tests.Specs.TestSpecifications.OmniJoin
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Sign Up for 14 day Free trial with a Brother Online account but start from Purcha" +
             "se plans page")]
-        [NUnit.Framework.IgnoreAttribute()]
         public virtual void SignUpFor14DayFreeTrialWithABrotherOnlineAccountButStartFromPurchasePlansPage()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Sign Up for 14 day Free trial with a Brother Online account but start from Purcha" +
-                    "se plans page", new string[] {
-                        "ignore"});
+                    "se plans page", ((string[])(null)));
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line hidden

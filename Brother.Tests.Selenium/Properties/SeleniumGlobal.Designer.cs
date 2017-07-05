@@ -151,25 +151,25 @@ namespace Brother.Tests.Selenium.Lib.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://{0}.cds.uat65.brother.eu.com")]
-        public string MainSiteUAT65 {
+        [global::System.Configuration.DefaultSettingValueAttribute("http://main.{0}.cds.uat.brother.eu.com")]
+        public string MainSiteUAT {
             get {
-                return ((string)(this["MainSiteUAT65"]));
+                return ((string)(this["MainSiteUAT"]));
             }
             set {
-                this["MainSiteUAT65"] = value;
+                this["MainSiteUAT"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://{0}.cds.test65.brother.eu.com")]
-        public string MainSiteTest65 {
+        [global::System.Configuration.DefaultSettingValueAttribute("http://main.{0}.cds.test.brother.eu.com")]
+        public string MainSiteTest {
             get {
-                return ((string)(this["MainSiteTest65"]));
+                return ((string)(this["MainSiteTest"]));
             }
             set {
-                this["MainSiteTest65"] = value;
+                this["MainSiteTest"] = value;
             }
         }
     }

@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Brother.MPS.Tests.Specs.TestSpecifications.BrotherMainSite.PrinterSearch
+namespace Brother.Tests.Specs.TestSpecifications.BrotherMainSite.PrinterSearch
 {
     using TechTalk.SpecFlow;
     

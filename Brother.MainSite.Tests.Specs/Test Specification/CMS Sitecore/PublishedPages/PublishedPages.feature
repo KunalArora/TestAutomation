@@ -120,3 +120,20 @@ Scenario Outline: Omnijoin Free Trial Sign up
 Scenarios: 
 	 | Site Url                                                   | PhoneNumber |
 	 | /business-solutions/web-conferencing/free-trial?sc_lang=en | 01555522522 |
+
+
+ @SMOKE_OJWebCallBack
+Scenario Outline: Omnijoin WebCallBack
+	Given That I navigate to "<Site Url>" in order to validate a published page
+	And I fill in the registration information using a valid email address 
+	| field           | value          |
+	| FirstName       | AutoTest       |
+	| LastName        | AutoTest       |
+	And I enter phone number as "<PhoneNumber>"
+	And I have Agreed to the Terms and Conditions
+	And I press submit button "United Kingdom"
+	Then I should see download page
+
+Scenarios: 
+	 | Site Url                                                   | PhoneNumber |
+	 | /business-solutions/web-call-back?sc_lang=en | 01555522522 |
