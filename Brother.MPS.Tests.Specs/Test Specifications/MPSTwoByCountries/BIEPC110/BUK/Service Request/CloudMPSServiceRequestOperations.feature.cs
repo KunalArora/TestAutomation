@@ -74,11 +74,11 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BUK.
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS Actions For Customers")]
+        [NUnit.Framework.DescriptionAttribute("MPS Actions For Customers Service Request")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Cloud", "BOR", "Slater20170119031946@mailinator.com", "3 years", "Quarterly in Arrears", "A1T010237", "FuserUnit", null)]
-        public virtual void MPSActionsForCustomers(string role, string country, string contractType, string usageType, string role1, string method, string type, string existingCustomer, string length, string billing, string serialNumber, string component, string[] exampleTags)
+        public virtual void MPSActionsForCustomersServiceRequest(string role, string country, string contractType, string usageType, string role1, string method, string type, string existingCustomer, string length, string billing, string serialNumber, string component, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Actions For Customers", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Actions For Customers Service Request", exampleTags);
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line 9
@@ -102,9 +102,9 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS Actions For Customers By Email")]
+        [NUnit.Framework.DescriptionAttribute("MPS Actions For Customers Service Request By Email")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Local Office Approver", "United Kingdom", "Purchase & Click with Service", "Minimum Volume", "Cloud MPS Dealer", "Email", "Omer2017067101751@mailinator.com", "3 years", "Quarterly in Arrears", "A1T010237", "Replace Fuser", "MFC-L8650CDW", "10000", "2000", "8000", "brothermps_QAS@brother.co.uk", "E-mail Report", null)]
-        public virtual void MPSActionsForCustomersByEmail(
+        public virtual void MPSActionsForCustomersServiceRequestByEmail(
                     string role, 
                     string country, 
                     string contractType, 
@@ -124,7 +124,7 @@ this.ScenarioSetup(scenarioInfo);
                     string subject, 
                     string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Actions For Customers By Email", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Actions For Customers Service Request By Email", exampleTags);
 #line 25
 this.ScenarioSetup(scenarioInfo);
 #line 26

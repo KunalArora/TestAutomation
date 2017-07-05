@@ -61,7 +61,7 @@ Scenario Outline: MPS English Bank Approve Proposal
 # Approve Signed Contract
 #
 # Accept1, 2
-Scenario Outline: MPS LO Can Reject Or Accept
+Scenario Outline: MPS LO Can Reject Or Accept Contract
 	Given Dealer have created a contract of "<ContractType>" and "<UsageType>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When Approver navigate to Contract Awaiting Acceptance page from Dashboard

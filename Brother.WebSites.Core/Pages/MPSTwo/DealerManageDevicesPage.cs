@@ -557,7 +557,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             //_body = String.Format(_body, subject, model, serial);
             WebDriver.Wait(DurationType.Second, 10);
             ActionsModule.SendServiceRequestEmail(address, _subject, fullBody);
-            ActionsModule.RunConsumableOrderCreationJobs();
+            ActionsModule.RunServiceRequestCreationJobs();
         }
 
         public void IsInstallationCompleted()

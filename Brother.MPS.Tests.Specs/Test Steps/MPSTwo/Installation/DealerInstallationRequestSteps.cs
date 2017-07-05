@@ -81,7 +81,7 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
         public void ThenICanCreateAutomaticServiceRequestFor(string tonerType)
         {
             ActionsModule.ChangeTonerInkStatus(tonerType);
-            ActionsModule.RunConsumableOrderCreationJobs();
+            ActionsModule.RunServiceRequestCreationJobs();
         }
 
 

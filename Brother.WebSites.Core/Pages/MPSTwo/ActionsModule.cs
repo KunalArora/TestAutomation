@@ -500,10 +500,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             MpsJobRunnerPage.NotifyBocOfNewChanges();
         }
 
-        public static void RunConsumableOrderCreationJobs()
+        public static void RunServiceRequestCreationJobs()
         {
             MpsJobRunnerPage.RunRefreshPrintCountsFromEmailCommandJob(Helper.Locale);
-            MpsJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob(MpsUtil.CreatedProposal(), Helper.Locale);
+            //MpsJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob(MpsUtil.CreatedProposal(), Helper.Locale);
             MpsJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJobUsingProposalId(SpecFlow.GetContext("SummaryPageContractId"), Helper.Locale);
             
             //MpsJobRunnerPage.RunCreateOrderAndServiceRequestsCommandJob();

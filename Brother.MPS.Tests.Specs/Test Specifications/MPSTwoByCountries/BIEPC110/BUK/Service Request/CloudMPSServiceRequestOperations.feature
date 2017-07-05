@@ -5,7 +5,7 @@ Feature: CloudMPSUKServiceRequestOperations
 	I want to be able to raise service request which can be worked on
 
 
-Scenario Outline: MPS Actions For Customers
+Scenario Outline: MPS Actions For Customers Service Request
 	Given "<Country>" Dealer have created "<ContractType>" contract choosing "<ExistingCustomer>" with "<UsageType>" and "<Length>" and "<Billing>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And the contract created above is approved
@@ -22,7 +22,7 @@ Scenarios:
 	
 
 ##@ignore
-Scenario Outline: MPS Actions For Customers By Email
+Scenario Outline: MPS Actions For Customers Service Request By Email
 	Given "<Country>" Dealer have created "<ContractType>" contract choosing "<ExistingCustomer>" with "<UsageType>" and "<Length>" and "<Billing>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And the contract created above is approved

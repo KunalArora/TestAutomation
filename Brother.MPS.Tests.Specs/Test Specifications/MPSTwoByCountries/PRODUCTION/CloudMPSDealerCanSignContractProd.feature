@@ -66,15 +66,12 @@ Scenario Outline: Dealer Can Sign A Purchase And Click Contract in Prod
 	
 	
 	Scenarios: 
-	| Role             | Country | Role2                           | Web                                            | ServerName | Method | Type |
-	| Cloud MPS Dealer | United Kingdom | Cloud MPS Local Office Approver | https://web1.online.brother.co.uk/ | Web_1      | Cloud  | Web  |
-	| Cloud MPS Dealer | United Kingdom | Cloud MPS Local Office Approver | https://web2.online.brother.co.uk/ | Web_2      | Cloud  | Web  |
-	| Cloud MPS Dealer | United Kingdom | Cloud MPS Local Office Approver | https://web5.online.brother.co.uk/ | Web_5      | Cloud  | Web  |
-	| Cloud MPS Dealer | United Kingdom | Cloud MPS Local Office Approver | https://web6.online.brother.co.uk/ | Web_6      | Cloud  | Web  |
-	#| Cloud MPS Dealer | United Kingdom | Cloud MPS Local Office Approver | https://p1.online65.co.uk.cds.prod.brother.eu.com | Web_1      | Cloud  | Web  |
-	#| Cloud MPS Dealer | United Kingdom | Cloud MPS Local Office Approver | https://p2.online65.co.uk.cds.prod.brother.eu.com | Web_2      | Cloud  | Web  |
-	#| Cloud MPS Dealer | United Kingdom | Cloud MPS Local Office Approver | https://p3.online65.co.uk.cds.prod.brother.eu.com | Web_5      | Cloud  | Web  |
-	#| Cloud MPS Dealer | United Kingdom | Cloud MPS Local Office Approver | https://p4.online65.co.uk.cds.prod.brother.eu.com | Web_6      | Cloud  | Web  |
+	| Role             | Country        | Role2                           | Web                                               | ServerName | Method | Type |
+	| Cloud MPS Dealer | United Kingdom | Cloud MPS Local Office Approver | https://p1.online65.co.uk.cds.prod.brother.eu.com | Web_1      | Cloud  | Web  |
+	| Cloud MPS Dealer | United Kingdom | Cloud MPS Local Office Approver | https://p2.online65.co.uk.cds.prod.brother.eu.com | Web_2      | Cloud  | Web  |
+	| Cloud MPS Dealer | United Kingdom | Cloud MPS Local Office Approver | https://p3.online65.co.uk.cds.prod.brother.eu.com | Web_5      | Cloud  | Web  |
+	| Cloud MPS Dealer | United Kingdom | Cloud MPS Local Office Approver | https://p4.online65.co.uk.cds.prod.brother.eu.com | Web_6      | Cloud  | Web  |
+	
 
 
 

@@ -50,7 +50,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 //Do nothing
             }
             
-            ActionsModule.RunConsumableOrderCreationJobs();
+            ActionsModule.RunServiceRequestCreationJobs();
             return GetInstance<CustomerPortalConsummablePage>(Driver);
         }
 
