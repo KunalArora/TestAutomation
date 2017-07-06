@@ -504,7 +504,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             MpsJobRunnerPage.RunRefreshPrintCountsFromEmailCommandJob(Helper.Locale);
             //MpsJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob(MpsUtil.CreatedProposal(), Helper.Locale);
-            MpsJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJobUsingProposalId(SpecFlow.GetContext("SummaryPageContractId"), Helper.Locale);
+
+            try
+            {
+                MpsJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJobUsingProposalId(SpecFlow.GetContext("SummaryPageContractId"), Helper.Locale);
+            }
+            catch (KeyNotFoundException knf)
+            {
+                //Key not found is swallowed because it is anticipated
+            }
+            
             
             //MpsJobRunnerPage.RunCreateOrderAndServiceRequestsCommandJob();
             MpsJobRunnerPage.RunConsumableOrderRequestsCommandJob();

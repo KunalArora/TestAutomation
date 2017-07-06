@@ -106,9 +106,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
 
-        private void InputDatesAYearBackBeforeSearch()
+        private void InputDatesYearsBackBeforeSearch()
         {
-            var searchBegin = DateTime.Now.AddDays(-365).ToString("ddMMyyyy");
+            var searchBegin = DateTime.Now.AddDays(-1095).ToString("ddMMyyyy");
             var searchEnd = DateTime.Now.AddDays(365).ToString("ddMMyyyy");
 
             FromDateElement.SendKeys(searchBegin);
@@ -118,7 +118,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void InputDatesBeforeSearch()
         {
-            var searchBegin = DateTime.Now.ToString("ddMMyyyy");
+            var searchBegin = DateTime.Now.AddDays(-1095).ToString("ddMMyyyy");
             var searchEnd = DateTime.Now.AddDays(365).ToString("ddMMyyyy");
 
             FromDateElement.SendKeys(searchBegin);
@@ -192,7 +192,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 throw new Exception("Closed proposal checkbox is null");
             ClearSearchCriteria();
 
-            InputDatesAYearBackBeforeSearch();
+            InputDatesYearsBackBeforeSearch();
 
             ClosedProposalElement.Click();
             WaitForResultToBeBack();
@@ -205,7 +205,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 throw new Exception("Declined proposal checkbox is null");
             ClearSearchCriteria();
 
-            InputDatesAYearBackBeforeSearch();
+            InputDatesYearsBackBeforeSearch();
 
             DeclinedProposalElement.Click();
             WaitForResultToBeBack();
@@ -278,7 +278,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 throw new Exception("Lease and Click filter checkbox is null");
             ClearSearchCriteria();
 
-            InputDatesAYearBackBeforeSearch();
+            InputDatesYearsBackBeforeSearch();
 
             LeaseClickElement.Click();
             WaitForResultToBeBack();
