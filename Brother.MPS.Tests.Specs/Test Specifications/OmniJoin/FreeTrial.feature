@@ -4,7 +4,7 @@ Feature: FreeTrial
 	As a customer
 	I need to sign up for a Free trial
 
-@ignore
+// @ignore
 Scenario: Sign Up for 14 day Free trial with a Brother Online account but start from Purchase plans page
 
 #Once the defect is fixed take out the last comments off the test

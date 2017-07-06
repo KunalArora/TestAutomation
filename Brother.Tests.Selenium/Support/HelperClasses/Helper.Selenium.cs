@@ -626,7 +626,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                     return;
                 }
                 var action = new Actions(Driver);
-                Actions result = action.MoveToElement(element);
+                action.MoveToElement(element).Build().Perform();
             }
             catch (ElementNotVisibleException elementNotVisibleException)
             {

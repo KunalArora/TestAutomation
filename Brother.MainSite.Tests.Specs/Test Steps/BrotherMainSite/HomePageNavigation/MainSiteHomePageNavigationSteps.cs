@@ -18,14 +18,14 @@ namespace Brother.Tests.Specs._80.BrotherMainSite.HomePageNavigation
         public void GivenIHaveNavigatedToTheBrotherMainSiteProductsPages(string country)
         {
             Helper.SetCountry(country);
-            CurrentPage = BasePage.LoadBrotherMainSiteHomePage(CurrentDriver, BasePage.BrotherOnlineBaseUrl);
+            CurrentPage = BasePage.LoadBrotherMainSiteHomePage(CurrentDriver, BasePage.MainSiteBaseUrl);
         }
 
         [Given(@"I have navigated to the ""(.*)"" Brother Main Site")]
         public void GivenIHaveNavigatedToTheBrotherMainSite(string country)
         {
             Helper.SetCountry(country);
-            CurrentPage = BasePage.LoadBrotherMainSiteHomePage(CurrentDriver, BasePage.BrotherOnlineBaseUrl);
+            CurrentPage = BasePage.LoadBrotherMainSiteHomePage(CurrentDriver, BasePage.MainSiteBaseUrl);
         }
 
         [Then(@"I shold see the tilte of the page is displayed")]

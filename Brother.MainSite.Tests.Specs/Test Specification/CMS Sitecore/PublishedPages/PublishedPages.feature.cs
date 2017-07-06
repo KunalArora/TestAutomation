@@ -308,6 +308,47 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Omnijoin WebCallBack")]
+        [NUnit.Framework.CategoryAttribute("SMOKE_OJWebCallBack")]
+        [NUnit.Framework.TestCaseAttribute("/business-solutions/web-call-back?sc_lang=en", "01555522522", null)]
+        public virtual void OmnijoinWebCallBack(string siteUrl, string phoneNumber, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "SMOKE_OJWebCallBack"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Omnijoin WebCallBack", @__tags);
+#line 126
+this.ScenarioSetup(scenarioInfo);
+#line 127
+ testRunner.Given(string.Format("That I navigate to \"{0}\" in order to validate a published page", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "field",
+                        "value"});
+            table2.AddRow(new string[] {
+                        "FirstName",
+                        "AutoTest"});
+            table2.AddRow(new string[] {
+                        "LastName",
+                        "AutoTest"});
+#line 128
+ testRunner.And("I fill in the registration information using a valid email address", ((string)(null)), table2, "And ");
+#line 132
+ testRunner.And(string.Format("I enter phone number as \"{0}\"", phoneNumber), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 133
+ testRunner.And("I have Agreed to the Terms and Conditions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 134
+ testRunner.And("I press submit button \"United Kingdom\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 135
+ testRunner.Then("I should see download page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

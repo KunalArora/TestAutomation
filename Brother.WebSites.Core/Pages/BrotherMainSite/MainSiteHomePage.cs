@@ -27,8 +27,17 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
         [FindsBy(How = How.CssSelector, Using = "#loginuser")]
         public IWebElement UsernameInputField;
 
-        [FindsBy(How = How.CssSelector, Using = ".common--features-carousel--item [href='/supplies']")]
+        //[FindsBy(How = How.CssSelector, Using = ".common--features-carousel--item [href='/supplies']")]
+        //public IWebElement SuppliesLink;
+
+
+        [FindsBy(How = How.CssSelector, Using = ".common-global-nav--sub-link[href=\"http://main.co.uk.cds.test.brother.eu.com/supplies\"]")]
         public IWebElement SuppliesLink;
+        
+
+         [FindsBy(How = How.CssSelector, Using = "a[href=\"http://main.co.uk.cds.test.brother.eu.com/products\"]")]
+        public IWebElement ProductMenuElement;
+        
 
         [FindsBy(How = How.CssSelector, Using = ".prev")]
         public IWebElement PreviousArrow;
@@ -198,9 +207,10 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite
 
         public SuppliesPage ClickSuppliesLink()
         {
-            //MoveToElement(SuppliesLink);
+            MoveToElement(ProductMenuElement);
+            WebDriver.Wait(DurationType.Second, 2);
             SuppliesLink.Click();
-            WebDriver.Wait(DurationType.Second, 3);
+            
             return GetInstance<SuppliesPage>(Driver);
         }
 

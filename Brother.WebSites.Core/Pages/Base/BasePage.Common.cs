@@ -285,13 +285,13 @@ namespace Brother.WebSites.Core.Pages.Base
             switch (env)
             {
                 case "TEST":
-                    url = SeleniumGlobal.Default.MainSiteTest65;
+                    url = SeleniumGlobal.Default.MainSiteTest;
                     break;
                 case "UAT":
-                    url = SeleniumGlobal.Default.MainSiteUAT65;
+                    url = SeleniumGlobal.Default.MainSiteUAT;
                     break;
                 default:
-                    url = SeleniumGlobal.Default.MainSiteTest65;
+                    url = SeleniumGlobal.Default.MainSiteTest;
                     break;
             }
 

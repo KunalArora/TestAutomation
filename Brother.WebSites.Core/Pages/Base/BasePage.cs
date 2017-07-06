@@ -75,7 +75,7 @@ namespace Brother.WebSites.Core.Pages.Base
         {
             driver = SetDriver(driver);
             //var url = ProcessUrlLocale(BrotherOnlineBaseUrl);
-            var url = BrotherOnlineBaseUrl;
+            var url = MainSiteBaseUrl;
             NavigateToPageSitecore(driver, url + baseUrl.TrimEnd(new[] { '/' }));
             return GetInstance<LoginPage>(driver, baseUrl, "");
         }
