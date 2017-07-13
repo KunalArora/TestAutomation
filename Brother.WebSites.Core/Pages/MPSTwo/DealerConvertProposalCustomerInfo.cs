@@ -1169,7 +1169,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SelectTitleFromDropdown()
         {
-            if (IsPolandSystem()) return;
+            if (IsSwedenSystem() || IsDenmarkSystem() || IsFinlandSystem() || IsNorwaySystem() || IsPolandSystem()) return;
             if (ContactTitleElement.Displayed)
                 //SelectFromDropdownByValue(ContactTitleElement, MpsUtil.ContactTitle());
                 //SelectFromDropdownByValue(ContactTitleElement, "0002");
