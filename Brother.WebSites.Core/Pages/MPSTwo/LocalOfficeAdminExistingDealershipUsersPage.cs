@@ -29,7 +29,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 throw new Exception("Subdealer list returned as null");
 
             AssertElementPresent(SubDealerCreateButton, "Subdealer create button is not displayed");
-            AssertElementPresent(SubDealerListTable, "Subdealer list table is not displayed");
+            //AssertElementPresent(SubDealerListTable, "Subdealer list table is not displayed");
 
         }
 

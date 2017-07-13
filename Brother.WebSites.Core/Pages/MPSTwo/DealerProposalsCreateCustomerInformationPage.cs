@@ -737,6 +737,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             if (IsSwedenSystem()||IsDenmarkSystem() || IsFinlandSystem() || IsNorwaySystem()) return;
                 SelectFromDropdownByValue(ContactTitleElement, "0002");
+                SelectFromDropDownByIndex(ContactTitleElement, 2);
         }
 
 

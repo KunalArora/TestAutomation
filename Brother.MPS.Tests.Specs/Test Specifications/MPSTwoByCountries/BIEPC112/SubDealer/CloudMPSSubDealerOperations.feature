@@ -53,7 +53,56 @@ Scenario Outline: Local Office Admin can create dealership users
 	| Cloud MPS Local Office | United Kingdom | Full             | MPS-BUK-UAT-Dealer1 |
 	| Cloud MPS Local Office | United Kingdom | Contract Manager | MPS-BUK-UAT-Dealer1 |
 	| Cloud MPS Local Office | United Kingdom | Restricted       | MPS-BUK-UAT-Dealer1 |
+	| Cloud MPS Local Office | Germany        | Full             | MPS-BIG-UAT-Dealer1 |
+	| Cloud MPS Local Office | Germany        | Contract Manager | MPS-BIG-UAT-Dealer1 |
+	| Cloud MPS Local Office | Germany        | Restricted       | MPS-BIG-UAT-Dealer1 |
+	| Cloud MPS Local Office | Austria        | Full             | MPS-BAT-UAT-Dealer1 |
+	| Cloud MPS Local Office | Austria        | Contract Manager | MPS-BAT-UAT-Dealer1 |
+	| Cloud MPS Local Office | Austria        | Restricted       | MPS-BAT-UAT-Dealer1 |
+	| Cloud MPS Local Office | Belgium        | Full             | MPS-BBE-UAT-Dealer1 |
+	| Cloud MPS Local Office | Belgium        | Contract Manager | MPS-BBE-UAT-Dealer1 |
+	| Cloud MPS Local Office | Belgium        | Restricted       | MPS-BBE-UAT-Dealer1 |
+	| Cloud MPS Local Office | Belgium        | Full             | MPS-BBE-UAT-Dealer3 |
+	| Cloud MPS Local Office | Belgium        | Contract Manager | MPS-BBE-UAT-Dealer3 |
+	| Cloud MPS Local Office | Belgium        | Restricted       | MPS-BBE-UAT-Dealer3 |
+	| Cloud MPS Local Office | Spain          | Full             | MPS-BES-UAT-Dealer1 |
+	| Cloud MPS Local Office | Spain          | Contract Manager | MPS-BES-UAT-Dealer1 |
+	| Cloud MPS Local Office | Spain          | Restricted       | MPS-BES-UAT-Dealer1 |
+	| Cloud MPS Local Office | Netherlands    | Full             | MPS-BNL-UAT-Dealer1 |
+	| Cloud MPS Local Office | Netherlands    | Contract Manager | MPS-BNL-UAT-Dealer1 |
+	| Cloud MPS Local Office | Netherlands    | Restricted       | MPS-BNL-UAT-Dealer1 |
+	| Cloud MPS Local Office | France         | Full             | MPS-BFR-UAT-Dealer1 |
+	| Cloud MPS Local Office | France         | Contract Manager | MPS-BFR-UAT-Dealer1 |
+	| Cloud MPS Local Office | France         | Restricted       | MPS-BFR-UAT-Dealer1 |
+	| Cloud MPS Local Office | Sweden         | Full             | MPS-BNS-UAT-Dealer1 |
+	| Cloud MPS Local Office | Sweden         | Contract Manager | MPS-BNS-UAT-Dealer1 |
+	| Cloud MPS Local Office | Sweden         | Restricted       | MPS-BNS-UAT-Dealer1 |
+	| Cloud MPS Local Office | Italy          | Full             | MPS-BIT-UAT-Dealer1 |
+	| Cloud MPS Local Office | Italy          | Contract Manager | MPS-BIT-UAT-Dealer1 |
+	| Cloud MPS Local Office | Italy          | Restricted       | MPS-BIT-UAT-Dealer1 |
+	| Cloud MPS Local Office | Poland         | Full             | MPS-BPL-UAT-Dealer1 |
+	| Cloud MPS Local Office | Poland         | Contract Manager | MPS-BPL-UAT-Dealer1 |
+	| Cloud MPS Local Office | Poland         | Restricted       | MPS-BPL-UAT-Dealer1 |
+	| Cloud MPS Local Office | Finland        | Full             | MPS-BNF-UAT-Dealer1 |
+	| Cloud MPS Local Office | Finland        | Contract Manager | MPS-BNF-UAT-Dealer1 |
+	| Cloud MPS Local Office | Finland        | Restricted       | MPS-BNF-UAT-Dealer1 |
+	| Cloud MPS Local Office | Norway         | Full             | MPS-BNN-UAT-Dealer1 |
+	| Cloud MPS Local Office | Norway         | Contract Manager | MPS-BNN-UAT-Dealer1 |
+	| Cloud MPS Local Office | Norway         | Restricted       | MPS-BNN-UAT-Dealer1 |
+	| Cloud MPS Local Office | Ireland        | Full             | MPS-BIR-UAT-Dealer1 |
+	| Cloud MPS Local Office | Ireland        | Contract Manager | MPS-BIR-UAT-Dealer1 |
+	| Cloud MPS Local Office | Ireland        | Restricted       | MPS-BIR-UAT-Dealer1 |
+	| Cloud MPS Local Office | Denmark        | Full             | MPS-BND-UAT-Dealer1 |
+	| Cloud MPS Local Office | Denmark        | Contract Manager | MPS-BND-UAT-Dealer1 |
+	| Cloud MPS Local Office | Denmark        | Restricted       | MPS-BND-UAT-Dealer1 |
+	| Cloud MPS Local Office | Switzerland    | Full             | MPS-BSW-UAT-Dealer1 |
+	| Cloud MPS Local Office | Switzerland    | Contract Manager | MPS-BSW-UAT-Dealer1 |
+	| Cloud MPS Local Office | Switzerland    | Restricted       | MPS-BSW-UAT-Dealer1 |
+	| Cloud MPS Local Office | Switzerland    | Full             | MPS-BSW-UAT-Dealer3 |
+	| Cloud MPS Local Office | Switzerland    | Contract Manager | MPS-BSW-UAT-Dealer3 |
+	| Cloud MPS Local Office | Switzerland    | Restricted       | MPS-BSW-UAT-Dealer3 |
 	
+
 ##Scenario 2.2
 Scenario Outline: Dealer can create dealership users
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"

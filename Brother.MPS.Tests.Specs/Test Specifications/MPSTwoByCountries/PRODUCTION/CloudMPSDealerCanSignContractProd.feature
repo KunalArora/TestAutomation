@@ -53,6 +53,10 @@ Scenario Outline: Dealer Can Sign A Purchase And Click Contract in Prod
 	Then I can start the process of signing the contract
 	And I can successfully sign the contract
 	And I sign out of Cloud MPS
+	And I sign back into "<Role2>" Cloud MPS as a "<Web>" from "<Country>"
+	And I navigate to Contract Awaiting Acceptance page from Local Office DashBoard
+	And the signed contract is displayed
+	And I sign out of Cloud MPS
 	#And I sign back into "<Role2>" Cloud MPS as a "<Web>" from "<Country>"
 	#And the contract created above is approved
 	#And I sign back into "<Role>" Cloud MPS as a "<Web>" from "<Country>"
@@ -67,10 +71,10 @@ Scenario Outline: Dealer Can Sign A Purchase And Click Contract in Prod
 	
 	Scenarios: 
 	| Role             | Country        | Role2                           | Web                                               | ServerName | Method | Type |
-	| Cloud MPS Dealer | United Kingdom | Cloud MPS Local Office Approver | https://p1.online65.co.uk.cds.prod.brother.eu.com | Web_1      | Cloud  | Web  |
-	| Cloud MPS Dealer | United Kingdom | Cloud MPS Local Office Approver | https://p2.online65.co.uk.cds.prod.brother.eu.com | Web_2      | Cloud  | Web  |
-	| Cloud MPS Dealer | United Kingdom | Cloud MPS Local Office Approver | https://p3.online65.co.uk.cds.prod.brother.eu.com | Web_5      | Cloud  | Web  |
-	| Cloud MPS Dealer | United Kingdom | Cloud MPS Local Office Approver | https://p4.online65.co.uk.cds.prod.brother.eu.com | Web_6      | Cloud  | Web  |
+	#| Cloud MPS Dealer | United Kingdom | Cloud MPS Local Office Approver | https://p1.online.brother.co.uk | Web_1      | Cloud  | Web  |
+	#| Cloud MPS Dealer | United Kingdom | Cloud MPS Local Office Approver | https://p2.online.brother.co.uk | Web_2      | Cloud  | Web  |
+	| Cloud MPS Dealer | United Kingdom | Cloud MPS Local Office Approver | https://p3.online.brother.co.uk | Web_5      | Cloud  | Web  |
+	| Cloud MPS Dealer | United Kingdom | Cloud MPS Local Office Approver | https://p4.online.brother.co.uk | Web_6      | Cloud  | Web  |
 	
 
 

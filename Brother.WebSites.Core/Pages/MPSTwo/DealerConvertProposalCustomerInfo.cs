@@ -761,6 +761,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             //{
             //    CreateANewCustomerInConvertProcess();
             //}
+
+            SelectTitleFromDropdown();
             SelectALegalForm();
             EnterCompanyRegistration();
             EnterVatNumber();
@@ -1170,7 +1172,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if (IsPolandSystem()) return;
             if (ContactTitleElement.Displayed)
                 //SelectFromDropdownByValue(ContactTitleElement, MpsUtil.ContactTitle());
-                SelectFromDropdownByValue(ContactTitleElement, "0002");
+                //SelectFromDropdownByValue(ContactTitleElement, "0002");
+                SelectFromDropDownByIndex(ContactTitleElement, 2);
         }
 
 

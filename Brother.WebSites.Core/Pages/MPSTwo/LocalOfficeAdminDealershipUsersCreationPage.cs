@@ -34,7 +34,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement SubDealerRestrictedElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_StaffManage_InputPermissionTypes_Input_1")]
         public IWebElement SubDealerContractManagerElement;
-        [FindsBy(How = How.CssSelector, Using = "#content_1_StaffManage_InputPermissionTypes_Input_1")]
+        [FindsBy(How = How.CssSelector, Using = "#content_1_StaffManage_InputPermissionTypes_Input_2")]
         public IWebElement SubDealerFullElement;
         
         
@@ -68,7 +68,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void SelectTitle(int value = 2)
         {
-            SelectFromDropDownByIndex(SubDealerTitleElement, value);
+            if(IsDenmarkSystem() 
+                || IsSwedenSystem() 
+                || IsPolandSystem() 
+                || IsFinlandSystem() 
+                || IsNorwaySystem()) return;
+                SelectFromDropDownByIndex(SubDealerTitleElement, value);
         }
 
         private void EnterSubdealerFirstName(string name)
