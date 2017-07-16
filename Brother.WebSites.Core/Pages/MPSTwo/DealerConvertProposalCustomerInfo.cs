@@ -233,6 +233,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 SelectFromDropdown(LegalFormDropdown, "Enkeltmandsvirksomhed");
             }
+            else if (IsFinlandSystem())
+            {
+                SelectFromDropDownByIndex(LegalFormDropdown, 2);
+            }
             else if (IsSwissSystem())
             {
                 var language = SwissLegalForm();

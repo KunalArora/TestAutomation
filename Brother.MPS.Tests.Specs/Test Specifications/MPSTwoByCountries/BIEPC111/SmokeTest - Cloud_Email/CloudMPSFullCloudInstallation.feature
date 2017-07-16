@@ -263,7 +263,7 @@ Scenarios:
 	| Cloud MPS Local Office Approver | Switzerland | Purchase & Click with Service | Volume minimal | Cloud MPS Dealer | Cloud  | BOR  | 48     | Quarterly in Arrears                                               | Français |
 	| Cloud MPS Local Office Approver | Switzerland | Purchase & Click with Service | Mindestvolumen | Cloud MPS Dealer | Cloud  | BOR  | 36     | Quarterly in Arrears                                               | Deutsch  |
 	| Cloud MPS Local Office Approver | Switzerland | Purchase & Click with Service | Volume minimal | Cloud MPS Dealer | Cloud  | Web  | 48     | Quarterly in Arrears                                               | Français |
-	
+
 
 	#| Cloud MPS Local Office Approver | Finland     | Purchase & Click with Service | Minimitulostusmäärä                       | Cloud MPS Dealer | Cloud  | Web  | 3 vuotta | Quarterly in Arrears | Suomi    |
 	#| Cloud MPS Local Office Approver | Finland     | Purchase & Click with Service | Minimitulostusmäärä                       | Cloud MPS Dealer | Cloud  | BOR  | 4 vuotta | Quarterly in Arrears | Suomi    |
